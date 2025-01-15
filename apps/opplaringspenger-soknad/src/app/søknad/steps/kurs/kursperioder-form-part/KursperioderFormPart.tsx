@@ -4,9 +4,14 @@ import { FieldArray, useFormikContext } from 'formik';
 import { KursFormValues } from '../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { AppText } from '../../../../i18n';
 
-const KursperioderFormPart = () => {
+interface Props {
+    gyldigSøknadsperiode: DateRange;
+}
+
+const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursperioder } = values;
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
@@ -33,6 +38,7 @@ const KursperioderFormPart = () => {
                                         values={kursperiode || {}}
                                         index={index}
                                         harFlerePerioder={harFlerePerioder}
+                                        gyldigSøknadsperiode={gyldigSøknadsperiode}
                                         onRemove={() => {
                                             arrayHelpers.remove(index);
                                             setTimeout(() => {

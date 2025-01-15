@@ -1,9 +1,9 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
+import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
-import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
-const getSøknadSteps = (_søknadsdata: Søknadsdata): StepId[] => {
+const getSøknadSteps = (): StepId[] => {
     return [
         StepId.OM_BARNET,
         StepId.KURS,
@@ -15,13 +15,13 @@ const getSøknadSteps = (_søknadsdata: Søknadsdata): StepId[] => {
     ];
 };
 
-export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId> =>
-    soknadStepUtils.getStepsConfig(getSøknadSteps(søknadsdata), SoknadApplicationType.SOKNAD, (step) => {
+export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
+    soknadStepUtils.getStepsConfig(getSøknadSteps(), SoknadApplicationType.SOKNAD, (step) => {
         return getSøknadStepRoute(step);
     });
 
-export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
-    const config = getSøknadStepConfig(søknadsdata)[stepId];
+export const getSøknadStepConfigForStep = (stepId: StepId): StepConfig<StepId> => {
+    const config = getSøknadStepConfig()[stepId];
     if (!config) {
         throw `Missing step config ${stepId}`;
     }

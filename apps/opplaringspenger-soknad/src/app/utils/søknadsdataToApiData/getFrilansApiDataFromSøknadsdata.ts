@@ -7,7 +7,7 @@ import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeri
 export const getFrilansApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;
     dagerMedOpplæring: Date[];
-    frilans?: ArbeidFrilansSøknadsdata;
+    frilans: ArbeidFrilansSøknadsdata | undefined;
     arbeidIPeriode: ArbeidIPeriodeSøknadsdata | undefined;
 }): FrilansApiData | undefined => {
     const { søknadsperiode, dagerMedOpplæring, frilans, arbeidIPeriode } = props;

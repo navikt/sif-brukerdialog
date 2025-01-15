@@ -80,7 +80,7 @@ const ArbeidstidStep = () => {
         useLogSøknadInfo();
 
     const stepId = StepId.ARBEIDSTID;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -188,6 +188,7 @@ const ArbeidstidStep = () => {
                             : undefined;
                     const oppdatereArbeidstid = () =>
                         handleArbeidstidChanged({ ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid });
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -237,7 +238,6 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
-                                                                skjulJobberNormaltValg={false}
                                                             />
                                                         </Block>
                                                     </FormBlock>
@@ -290,7 +290,7 @@ const ArbeidstidStep = () => {
                                                         onArbeidstidVariertChange={oppdatereArbeidstid}
                                                         onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                         onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                        skjulJobberNormaltValg={antallArbeidsforhold === 1}
+                                                        skjulJobberNormaltValg={false}
                                                     />
                                                 </Block>
                                             </FormBlock>

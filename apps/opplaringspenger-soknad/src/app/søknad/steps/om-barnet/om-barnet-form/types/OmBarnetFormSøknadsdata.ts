@@ -17,7 +17,7 @@ interface OmBarnetFormSøknadsdata_BarnUtenFnr extends RelasjonTilBarnetSøknads
     type: 'annetBarnUtenFnr';
     barnetsNavn: string;
     årsakManglerIdentitetsnummer: ÅrsakBarnetManglerIdentitetsnummer;
-    barnetsFødselsdato: string;
+    barnetsFødselsdato: Date;
     fødselsattest: Vedlegg[];
 }
 
