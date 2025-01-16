@@ -1,6 +1,6 @@
-import { Arbeidsgiver } from '../../app/types/Arbeidsgiver';
+import { ArbeidsgiverForEndring } from '../../app/types/ArbeidsgiverForEndring';
 
-export const arbeidsgivereMock: Arbeidsgiver[] = [
+export const arbeidsgivereMock: ArbeidsgiverForEndring[] = [
     {
         key: 'a_805824352',
         navn: 'Dykkert svømmeutstyr',

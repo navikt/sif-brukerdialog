@@ -25,7 +25,7 @@ import {
     ArbeidsaktivitetFrilanser,
     ArbeidsaktivitetSelvstendigNæringsdrivende,
     ArbeidsaktivitetType,
-    Arbeidsgiver,
+    ArbeidsgiverForEndring,
     ArbeidsgiverIkkeFunnetError,
     ArbeidstidEnkeltdagMap,
     Arbeidsuke,
@@ -64,7 +64,7 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
  */
 export const getSakFromK9Sak = (
     k9sak: K9Sak,
-    alleArbeidsgivere: Arbeidsgiver[],
+    alleArbeidsgivere: ArbeidsgiverForEndring[],
     tillattEndringsperiode: DateRange,
 ): Sak => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
@@ -137,7 +137,7 @@ export const getSakFromK9Sak = (
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
 export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverForEndring[],
 ) => {
     return k9SakArbeidstakere.filter((a) =>
         arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer),
@@ -147,7 +147,7 @@ export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
 /** Henter utk9SakArbeidstakere hvor arbeidsgiver IKKE er funnet i AA-reg */
 export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverForEndring[],
 ) => {
     return k9SakArbeidstakere.filter(
         (a) => arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer) === false,
@@ -162,7 +162,7 @@ export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
  */
 const getEndringsperiodeForArbeidsgiver = (
     tillattEndringsperiode: DateRange,
-    arbeidsgiver: Arbeidsgiver,
+    arbeidsgiver: ArbeidsgiverForEndring,
 ): DateRange => {
     const { ansettelsesperioder } = arbeidsgiver;
     const sisteAnsattTom = ansettelsesperioder.sort(sortMaybeDateRange).reverse()[0]?.to;
@@ -474,7 +474,7 @@ const getArbeidsaktivitetPerioderPart = (
  */
 const getArbeidsaktivitetArbeidstaker = (
     arbeidstaker: K9SakArbeidstaker,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverForEndring[],
     endringsperiode: DateRange,
 ): ArbeidsaktivitetArbeidstaker => {
     const {
@@ -547,7 +547,10 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
  * @param søknadsperioder
  * @returns boolean
  */
-const erArbeidsgiverInnenforSøknadsperioder = (arbeidsgiver: Arbeidsgiver, søknadsperioder: DateRange[]): boolean => {
+const erArbeidsgiverInnenforSøknadsperioder = (
+    arbeidsgiver: ArbeidsgiverForEndring,
+    søknadsperioder: DateRange[],
+): boolean => {
     const { ansettelsesperioder = [] } = arbeidsgiver;
     return ansettelsesperioder.some((ansettelsesperiode) =>
         erAnsattPeriodeInnenforSøknadsperioder(ansettelsesperiode, søknadsperioder),

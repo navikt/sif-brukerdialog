@@ -4,7 +4,7 @@ import {
     getPeriodeForArbeidsgiverOppslag,
 } from '../../utils/initialDataUtils';
 import { Arbeidsgivere } from '@navikt/sif-common-api';
-import { Arbeidsgiver } from '../../types';
+import { ArbeidsgiverForEndring } from '../../types';
 
 describe('initialDataUtils', () => {
     describe('getPeriodeForArbeidsgiverOppslag', () => {
@@ -42,7 +42,7 @@ describe('initialDataUtils', () => {
                     },
                 ],
             };
-            const expectedResult: Arbeidsgiver[] = [
+            const expectedResult: ArbeidsgiverForEndring[] = [
                 {
                     key: 'a_123',
                     navn: 'a',
@@ -68,7 +68,7 @@ describe('initialDataUtils', () => {
                     },
                 ],
             };
-            const expectedResult: Arbeidsgiver[] = [
+            const expectedResult: ArbeidsgiverForEndring[] = [
                 {
                     key: 'a_123',
                     navn: 'a',

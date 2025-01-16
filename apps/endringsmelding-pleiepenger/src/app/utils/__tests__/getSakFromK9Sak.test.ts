@@ -9,7 +9,12 @@ import {
     ISODuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, ArbeidstidEnkeltdagMap, FaktiskOgNormalArbeidstid, K9SakArbeidstidPeriodeMap } from '@types';
+import {
+    ArbeidsgiverForEndring,
+    ArbeidstidEnkeltdagMap,
+    FaktiskOgNormalArbeidstid,
+    K9SakArbeidstidPeriodeMap,
+} from '@types';
 import { _getSakFromK9Sak } from '../getSakFromK9Sak';
 
 const {
@@ -39,14 +44,14 @@ describe('getSakFromK9Sak', () => {
         it('beholder uendret endringsperiode hvis bruker er fortsatt ansatt', () => {
             const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
                 ansettelsesperioder: [{ to: undefined }],
-            } as Arbeidsgiver);
+            } as ArbeidsgiverForEndring);
             expect(dateToISODate(result.from)).toEqual(isoFrom);
             expect(dateToISODate(result.to)).toEqual(isoTo);
         });
         it('justerer endringsperiode hvis sluttdato er før endringsperiode sluttdato', () => {
             const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
                 ansettelsesperioder: [{ to: ISODateToDate(isoSluttdato) }],
-            } as Arbeidsgiver);
+            } as ArbeidsgiverForEndring);
             expect(dateToISODate(result.from)).toEqual(isoFrom);
             expect(dateToISODate(result.to)).toEqual(isoSluttdato);
         });
@@ -290,9 +295,9 @@ describe('getSakFromK9Sak', () => {
             ISODateRangeToDateRange('2020-01-01/2020-02-01'),
             ISODateRangeToDateRange('2020-04-01/2020-05-01'),
         ];
-        const arbeidsgiver: Arbeidsgiver = {
+        const arbeidsgiver: ArbeidsgiverForEndring = {
             ansettelsesperioder: [{ from: ISODateToDate('2019-01-01') }],
-        } as Arbeidsgiver;
+        } as ArbeidsgiverForEndring;
 
         describe('uten ansattTom', () => {
             it('returnerer true når ansattFom er før søknadsperiode', () => {
@@ -303,7 +308,7 @@ describe('getSakFromK9Sak', () => {
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
                             ansettelsesperioder: [{ from: ISODateToDate('2020-02-03') }],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeTruthy();
@@ -313,7 +318,7 @@ describe('getSakFromK9Sak', () => {
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
                             ansettelsesperioder: [{ from: ISODateToDate('2020-03-02') }],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeTruthy();
@@ -323,7 +328,7 @@ describe('getSakFromK9Sak', () => {
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
                             ansettelsesperioder: [{ from: ISODateToDate('2020-05-02') }],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeFalsy();
@@ -337,7 +342,7 @@ describe('getSakFromK9Sak', () => {
                             ansettelsesperioder: [
                                 { from: ISODateToDate('2019-01-01'), to: ISODateToDate('2023-01-01') },
                             ],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeTruthy();
@@ -349,7 +354,7 @@ describe('getSakFromK9Sak', () => {
                             ansettelsesperioder: [
                                 { from: ISODateToDate('2019-01-01'), to: ISODateToDate('2020-03-01') },
                             ],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeTruthy();
@@ -364,7 +369,7 @@ describe('getSakFromK9Sak', () => {
                                     to: ISODateToDate('2019-12-31'),
                                 },
                             ],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeFalsy();
@@ -376,7 +381,7 @@ describe('getSakFromK9Sak', () => {
                             ansettelsesperioder: [
                                 { from: ISODateToDate('2020-03-01'), to: ISODateToDate('2020-03-02') },
                             ],
-                        } as Arbeidsgiver,
+                        } as ArbeidsgiverForEndring,
                         søknadsperioder,
                     ),
                 ).toBeFalsy();

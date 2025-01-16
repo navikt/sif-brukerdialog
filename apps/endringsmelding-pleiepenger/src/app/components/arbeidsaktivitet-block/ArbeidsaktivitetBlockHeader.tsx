@@ -2,7 +2,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+import { ArbeidsaktivitetType, ArbeidsgiverForEndring } from '@types';
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
@@ -10,7 +10,7 @@ import './arbeidsaktivitetBlockHeader.scss';
 
 interface Props {
     navn: string;
-    arbeidsgiver?: Arbeidsgiver;
+    arbeidsgiver?: ArbeidsgiverForEndring;
     type: ArbeidsaktivitetType;
     erUkjentAktivitet?: boolean;
     endret?: {

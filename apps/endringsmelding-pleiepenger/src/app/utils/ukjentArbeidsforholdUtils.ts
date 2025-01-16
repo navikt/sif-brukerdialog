@@ -13,7 +13,7 @@ import {
     Arbeidsaktivitet,
     ArbeidsaktivitetType,
     ArbeidsforholdAktivt,
-    Arbeidsgiver,
+    ArbeidsgiverForEndring,
     ArbeidstidEnkeltdagMap,
     ArbeidstidPerDag,
     ArbeidsukeMap,
@@ -40,7 +40,7 @@ export const getSøknadsperioderForUkjentArbeidsforhold = (
 
 export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
-    { ansettelsesperioder }: Arbeidsgiver,
+    { ansettelsesperioder }: ArbeidsgiverForEndring,
     normalarbeidstidPerUke: Duration,
     faktiskArbeidstidPerUke: Duration | undefined,
 ): PeriodeMedArbeidstid[] => {
@@ -97,7 +97,7 @@ export const getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold = (
 
 export const getArbeidsaktivitetForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
-    arbeidsgiver: Arbeidsgiver,
+    arbeidsgiver: ArbeidsgiverForEndring,
     arbeidsforhold: ArbeidsforholdAktivt,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ): Arbeidsaktivitet => {
@@ -123,7 +123,7 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
 
 export const getArbeidsaktiviteterForUkjenteArbeidsforhold = (
     søknadsperioder: DateRange[],
-    arbeidsgivereIkkeISak: Arbeidsgiver[],
+    arbeidsgivereIkkeISak: ArbeidsgiverForEndring[],
     arbeidsaktivitetFormValues: ArbeidsaktivitetFormValuesMap,
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): Arbeidsaktivitet[] => {

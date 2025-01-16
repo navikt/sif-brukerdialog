@@ -1,5 +1,5 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
+import { ArbeidsgiverForEndring, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
@@ -9,7 +9,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     sak: Sak,
     valgteEndringer: ValgteEndringer,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverForEndring[],
 ): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
 

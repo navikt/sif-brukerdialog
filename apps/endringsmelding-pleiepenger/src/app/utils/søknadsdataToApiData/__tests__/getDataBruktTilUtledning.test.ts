@@ -2,7 +2,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
-    Arbeidsgiver,
+    ArbeidsgiverForEndring,
     ArbeidstidSøknadsdata,
     TimerEllerProsent,
 } from '../../../types';
@@ -31,7 +31,7 @@ describe('getDataBruktTilUtledningAnnetData', () => {
 });
 
 describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
-    const arbeidsgivere: Arbeidsgiver[] = [
+    const arbeidsgivere: ArbeidsgiverForEndring[] = [
         {
             organisasjonsnummer: '123',
             key: 'a_123',
@@ -58,7 +58,7 @@ describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
 });
 
 describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
-    const arbeidsgiver: Arbeidsgiver = {
+    const arbeidsgiver: ArbeidsgiverForEndring = {
         organisasjonsnummer: '123',
         key: 'a_123',
         navn: 'Arbeidsgibvernavn',

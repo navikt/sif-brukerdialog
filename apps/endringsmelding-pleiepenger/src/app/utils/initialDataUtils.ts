@@ -1,7 +1,7 @@
 import { ArbeidsgiverOrganisasjon } from '@navikt/sif-common-api';
 import { DateRange, MaybeDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { Arbeidsgiver } from '../types';
+import { ArbeidsgiverForEndring } from '../types';
 import { getArbeidsgiverKey } from './arbeidsgiverUtils';
 
 export const getPeriodeForArbeidsgiverOppslag = (
@@ -20,8 +20,8 @@ export const getPeriodeForArbeidsgiverOppslag = (
 
 export const getArbeidsgivereFromArbeidsgiverOrganisasjoner = (
     organisasjoner: ArbeidsgiverOrganisasjon[],
-): Arbeidsgiver[] => {
-    const aaArbeidsgivereMap = new Map<string, Arbeidsgiver>();
+): ArbeidsgiverForEndring[] => {
+    const aaArbeidsgivereMap = new Map<string, ArbeidsgiverForEndring>();
     (organisasjoner || []).forEach((a) => {
         const ansettelsesperiode: MaybeDateRange = {
             from: a.ansattFom ? a.ansattFom : undefined,

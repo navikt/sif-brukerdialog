@@ -13,7 +13,7 @@ import {
     Arbeidsaktiviteter,
     ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
-    Arbeidsgiver,
+    ArbeidsgiverForEndring,
     ArbeidstakerApiData,
     ArbeidstidApiData,
     ArbeidstidEndring,
@@ -98,7 +98,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     søknadsperioder: DateRange[],
     arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
-    arbeidsgivereIkkeISak: Arbeidsgiver[],
+    arbeidsgivereIkkeISak: ArbeidsgiverForEndring[],
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidsaktivitetEndring[ArbeidsaktivitetType.frilanser]?.endringer;
