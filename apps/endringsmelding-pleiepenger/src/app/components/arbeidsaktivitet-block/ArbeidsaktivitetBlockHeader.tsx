@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -7,6 +7,7 @@ import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import './arbeidsaktivitetBlockHeader.scss';
+import AnsettelsesperioderInfo from './AnsettelsesperioderInfo';
 
 interface Props {
     navn: string;
@@ -37,12 +38,13 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                     </Heading>
                     {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                         <BodyLong as="div">
-                            <div>
+                            <Box>
                                 <AppText
                                     id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
                                     values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
                                 />
-                            </div>
+                            </Box>
+                            <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
                         </BodyLong>
                     ) : undefined}
                     {(endret || erUkjentAktivitet) && (
