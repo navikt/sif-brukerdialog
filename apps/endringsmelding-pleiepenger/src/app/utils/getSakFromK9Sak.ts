@@ -14,7 +14,9 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
     joinAdjacentDateRanges,
+    MaybeDateRange,
     numberDurationAsDuration,
+    sortMaybeDateRange,
 } from '@navikt/sif-common-utils';
 import {
     Arbeidsaktivitet,
@@ -162,9 +164,11 @@ const getEndringsperiodeForArbeidsgiver = (
     tillattEndringsperiode: DateRange,
     arbeidsgiver: Arbeidsgiver,
 ): DateRange => {
+    const { ansettelsesperioder } = arbeidsgiver;
+    const sisteAnsattTom = ansettelsesperioder.sort(sortMaybeDateRange).reverse()[0]?.to;
     return {
         ...tillattEndringsperiode,
-        to: arbeidsgiver.ansattTom || tillattEndringsperiode.to,
+        to: sisteAnsattTom || tillattEndringsperiode.to,
     };
 };
 
@@ -395,6 +399,7 @@ const getPerioderMedArbeidstid = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
     tillattEndringsperiode: DateRange,
 ): PeriodeMedArbeidstid[] => {
+    /** TODO - filtrere ut perioder hvor en ikke er ansatt? */
     const perioder = trimArbeidstidTilTillattEndringsperiode(arbeidstidPeriodeMap, tillattEndringsperiode);
 
     return grupperArbeidstidPerioder(perioder).map((gruppertPeriode) => {
@@ -537,24 +542,41 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
 };
 
 /**
- * Sjekker om ansatt-periode hos arbeidsgiver er innenfor søknadsperioder
+ * Sjekker om en er ansatt hos arbeidsgiver innenfor søknadsperioder
  * @param arbeidsgiver
  * @param søknadsperioder
  * @returns boolean
  */
 const erArbeidsgiverInnenforSøknadsperioder = (arbeidsgiver: Arbeidsgiver, søknadsperioder: DateRange[]): boolean => {
+    const { ansettelsesperioder = [] } = arbeidsgiver;
+    return ansettelsesperioder.some((ansettelsesperiode) =>
+        erAnsattPeriodeInnenforSøknadsperioder(ansettelsesperiode, søknadsperioder),
+    );
+};
+
+/**
+ * Sjekker om ansatt-periode hos arbeidsgiver er innenfor søknadsperioder
+ * @param arbeidsgiver
+ * @param søknadsperioder
+ * @returns boolean
+ */
+const erAnsattPeriodeInnenforSøknadsperioder = (
+    ansettelsesperiode: MaybeDateRange,
+    søknadsperioder: DateRange[],
+): boolean => {
     const sisteSøknadsdag = getLastDateInDateRanges(søknadsperioder);
-    if (!arbeidsgiver.ansattFom || !sisteSøknadsdag) {
+
+    if (!ansettelsesperiode.from || !sisteSøknadsdag) {
         return false;
     }
-    if (!arbeidsgiver.ansattTom) {
-        return dayjs(arbeidsgiver.ansattFom).isSameOrBefore(sisteSøknadsdag);
+    if (!ansettelsesperiode.to) {
+        return dayjs(ansettelsesperiode.from).isSameOrBefore(sisteSøknadsdag);
     }
-    const ansattPeriode: DateRange = {
-        from: arbeidsgiver.ansattFom,
-        to: arbeidsgiver.ansattTom || sisteSøknadsdag,
+    const periode: DateRange = {
+        from: ansettelsesperiode.from,
+        to: ansettelsesperiode.to || sisteSøknadsdag,
     };
-    return søknadsperioder.some((søknadsperiode) => dateRangesCollide([søknadsperiode, ansattPeriode]));
+    return søknadsperioder.some((søknadsperiode) => dateRangesCollide([søknadsperiode, periode]));
 };
 
 /**

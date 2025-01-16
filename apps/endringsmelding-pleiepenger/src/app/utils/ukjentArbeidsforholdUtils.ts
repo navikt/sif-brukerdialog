@@ -30,6 +30,7 @@ export const getSøknadsperioderForUkjentArbeidsforhold = (
     ansattTom: Date | undefined,
 ): DateRange[] => {
     const alleSøknadsperioder: DateRange = getDateRangeFromDateRanges(søknadsperioder);
+    /** TODO - sjekke denne opp mot flere ansattelsesperioder */
     const ansettelsesperiode = {
         from: ansattFom || alleSøknadsperioder.from,
         to: ansattTom || alleSøknadsperioder.to,
@@ -39,15 +40,22 @@ export const getSøknadsperioderForUkjentArbeidsforhold = (
 
 export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
-    { ansattFom, ansattTom }: Arbeidsgiver,
+    { ansettelsesperioder }: Arbeidsgiver,
     normalarbeidstidPerUke: Duration,
     faktiskArbeidstidPerUke: Duration | undefined,
 ): PeriodeMedArbeidstid[] => {
-    const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsforhold(
-        søknadsperioder,
-        ansattFom,
-        ansattTom,
-    );
+    if (ansettelsesperioder.length === 0) {
+        return [];
+    }
+    /** TODO - håndtere flere ansettelsesperioder */
+    const søknadsperioderForArbeidsforhold =
+        ansettelsesperioder.length === 1
+            ? getSøknadsperioderForUkjentArbeidsforhold(
+                  søknadsperioder,
+                  ansettelsesperioder[0].from,
+                  ansettelsesperioder[0].to,
+              )
+            : [];
     const perioderMedArbeidstid: PeriodeMedArbeidstid[] = [];
 
     const arbeidstidPerDag: ArbeidstidPerDag = {

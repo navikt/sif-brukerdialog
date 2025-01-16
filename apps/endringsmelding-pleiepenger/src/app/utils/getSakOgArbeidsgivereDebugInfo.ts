@@ -41,8 +41,7 @@ const maskSak = (sak: Sak) => {
 
 const maskArbeidsgivere = (arbeidsgivere: Arbeidsgiver[]) => {
     return arbeidsgivere.map((a) => ({
-        ansattFom: a.ansattFom,
-        ansattTom: a.ansattTom,
+        ansettelsesperioder: a.ansettelsesperioder,
         a: maskString(a.key),
     }));
 };

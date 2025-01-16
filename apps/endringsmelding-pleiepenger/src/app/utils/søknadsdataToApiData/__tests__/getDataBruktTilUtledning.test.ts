@@ -36,7 +36,7 @@ describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
             organisasjonsnummer: '123',
             key: 'a_123',
             navn: 'Arbeidsgibvernavn',
-            ansattFom: ISODateToDate('2001-01-01'),
+            ansettelsesperioder: [{ from: ISODateToDate('2001-01-01') }],
         },
     ];
     const arbeidstid: ArbeidstidSøknadsdata = {
@@ -62,7 +62,7 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
         organisasjonsnummer: '123',
         key: 'a_123',
         navn: 'Arbeidsgibvernavn',
-        ansattFom: ISODateToDate('2001-01-01'),
+        ansettelsesperioder: [{ from: ISODateToDate('2001-01-01') }],
     };
 
     it('returnerer riktig hvis en ikke er ansatt i arbeidsforholdet', () => {

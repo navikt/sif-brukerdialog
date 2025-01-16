@@ -2,7 +2,6 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
@@ -44,18 +43,6 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                                     values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
                                 />
                             </div>
-                            {arbeidsgiver.ansattFom && (
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
-                                    values={{ dato: dateFormatter.full(arbeidsgiver.ansattFom) }}
-                                />
-                            )}
-                            {arbeidsgiver.ansattTom && (
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
-                                    values={{ dato: dateFormatter.full(arbeidsgiver.ansattTom) }}
-                                />
-                            )}
                         </BodyLong>
                     ) : undefined}
                     {(endret || erUkjentAktivitet) && (
