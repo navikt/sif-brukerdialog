@@ -21,7 +21,7 @@ export const handlers = [
         return HttpResponse.json({});
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = true;
+        const harSøkt = false;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
     http.get('**/person/personopplysninger-api/personalia', () => {

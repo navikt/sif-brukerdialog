@@ -16,7 +16,6 @@ export const useAppStore = create<AppState>((set) => ({
     deltakelse: undefined,
     site: undefined,
     setInitialData: (data) => {
-        console.log(data);
         return set({
             søker: data.søker,
             deltakelser: data.deltakelser,
