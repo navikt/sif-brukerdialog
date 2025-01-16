@@ -61,7 +61,7 @@
         "@storybook/react": "8.4.7",
         "@storybook/testing-library": "0.2.2",
         "@testing-library/dom": "10.4.0",
-        "@testing-library/react": "16.1.0",
+        "@testing-library/react": "16.2.0",
         "@types/flat": "5.0.5",
         "@types/intl": "1.2.2",
         "@types/js-cookie": "3.0.6",

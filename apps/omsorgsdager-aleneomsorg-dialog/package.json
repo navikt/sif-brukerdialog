@@ -44,7 +44,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*",
-        "@testing-library/react": "16.1.0",
+        "@testing-library/react": "16.2.0",
         "axios": "1.7.9",
         "csp-header": "6.0.0",
         "dayjs": "1.11.13",
