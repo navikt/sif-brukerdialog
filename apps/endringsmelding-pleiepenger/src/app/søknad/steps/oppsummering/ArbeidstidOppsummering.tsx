@@ -47,6 +47,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUker
+                            arbeidsgivernavn={'Frilanser'}
                             listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
@@ -63,6 +64,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                             listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
                                 selvstendigNæringsdrivendeArbeidstidInfo.perioder,
                             )}
+                            arbeidsgivernavn="Selvstendig næringsdrivende"
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>

@@ -3,6 +3,7 @@ import { ArbeidsgiverForEndring, Sak, SøknadApiData, Søknadsdata, ValgteEndrin
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
+import { getEndringsdato, getTillattEndringsperiode } from '../endringsperiode';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -31,6 +32,7 @@ export const getApiDataFromSøknadsdata = (
             lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
             arbeidstid: arbeidstid
                 ? getArbeidstidApiDataFromSøknadsdata(
+                      getTillattEndringsperiode(getEndringsdato()),
                       sak.søknadsperioder,
                       arbeidstid.arbeidsaktivitet,
                       sak.arbeidsaktiviteter,

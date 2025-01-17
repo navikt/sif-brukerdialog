@@ -280,7 +280,11 @@ const getUkerOgÅrBeskrivelse = (
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
-                        <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
+                        <UkeTags
+                            visDagNavn={true}
+                            dagerMedFerie={dagerMedFerie}
+                            arbeidsdagerIkkeAnsatt={arbeidsuker[0].arbeidsdagerIkkeAnsatt}
+                        />
                     </Block>
                 )}
             </BodyShort>

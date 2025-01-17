@@ -95,6 +95,7 @@ const getArbeidsaktivitetArbeidstidInfo = (
 };
 
 export const getArbeidstidApiDataFromSøknadsdata = (
+    endringsperiode: DateRange,
     søknadsperioder: DateRange[],
     arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
@@ -148,6 +149,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 søknadsperioder,
                 arbeidsgiver,
                 arbeidsforhold,
+                endringsperiode,
             );
 
             const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);

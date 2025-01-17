@@ -40,6 +40,7 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                     <ArbeidstidUker
                         listItems={oppsummeringStepUtils.getArbeidstidUkerItems(arbeidstidInfo.perioder)}
                         arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                        arbeidsgivernavn={arbeidstaker.organisasjonsnavn}
                         visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}
                     />
                 </Block>

@@ -12,6 +12,7 @@ import {
     getLastDateInDateRanges,
     isDateInDateRange,
     isDateInDateRanges,
+    isDateWeekDay,
     ISODateRangeToDateRange,
     ISODateToDate,
     joinAdjacentDateRanges,
@@ -314,15 +315,25 @@ const fjernArbeidstidEnkeltdagerUtenforPeriode = (
     return enkeltdagerMap;
 };
 
+const getUkedagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: DateRange[]): Date[] => {
+    if (!ansettelsesperioder) {
+        return [];
+    }
+    return getDatesInDateRange(periode)
+        .filter(isDateWeekDay)
+        .filter((d) => !isDateInDateRanges(d, ansettelsesperioder));
+};
+
 /**
  * Mapper periode og enkeltdager med arbeid om til Arbeidsuke. Summerer tid per dag om til timer per uke
  * @param periode DateRange for uken
  * @param arbeidstidEnkeltdagerIUken Enkeltdager med arbeidstid
  * @returns Arbeidsuke
  */
-const getArbeidsukeFromEnkeltdagerIUken = (
+export const getArbeidsukeFromEnkeltdagerIUken = (
     periode: DateRange,
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
+    ansettelsesperioder?: DateRange[],
 ): Arbeidsuke => {
     const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(periode, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
@@ -336,6 +347,7 @@ const getArbeidsukeFromEnkeltdagerIUken = (
         isoDateRange: dateRangeToISODateRange(periode),
         periode: periode,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
+        arbeidsdagerIkkeAnsatt: getUkedagerIkkeAnsattIPeriode(periode, ansettelsesperioder),
         faktisk: {
             uke: faktiskSummertHeleUken,
             dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
@@ -379,7 +391,10 @@ const setArbeidsukeSluttdatoTilSisteDagSøktFor = (arbeidsuke: Arbeidsuke): Arbe
  * @param enkeltdager
  * @returns Array av arbeidsuker
  */
-const getArbeidsukerFromEnkeltdager = (enkeltdager: ArbeidstidEnkeltdagMap): Arbeidsuke[] => {
+const getArbeidsukerFromEnkeltdager = (
+    enkeltdager: ArbeidstidEnkeltdagMap,
+    ansettelsesperioder?: DateRange[],
+): Arbeidsuke[] => {
     const ukerMap: {
         [key: string]: {
             dagerMap: ArbeidstidEnkeltdagMap;
@@ -408,12 +423,16 @@ const getArbeidsukerFromEnkeltdager = (enkeltdager: ArbeidstidEnkeltdagMap): Arb
     const arbeidsuker = Object.keys(ukerMap).map((isoDateRange) => {
         const uke = ISODateRangeToDateRange(isoDateRange);
         const dager = ukerMap[isoDateRange].dagerMap;
-        return getArbeidsukeFromEnkeltdagerIUken(uke, dager);
+        return getArbeidsukeFromEnkeltdagerIUken(uke, dager, ansettelsesperioder);
     });
 
     /** Juster start og sluttdato til første og siste dag søkt for (dag med arbeidstid) */
-    arbeidsuker[0] = setArbeidsukeStartdatoTilFørsteDagSøktFor(arbeidsuker[0]);
-    arbeidsuker[arbeidsuker.length - 1] = setArbeidsukeSluttdatoTilSisteDagSøktFor(arbeidsuker[arbeidsuker.length - 1]);
+    if (arbeidsuker.length > 0) {
+        arbeidsuker[0] = setArbeidsukeStartdatoTilFørsteDagSøktFor(arbeidsuker[0]);
+        arbeidsuker[arbeidsuker.length - 1] = setArbeidsukeSluttdatoTilSisteDagSøktFor(
+            arbeidsuker[arbeidsuker.length - 1],
+        );
+    }
 
     return arbeidsuker;
 };
@@ -426,7 +445,7 @@ const getArbeidsukerFromEnkeltdager = (enkeltdager: ArbeidstidEnkeltdagMap): Arb
 const getPerioderMedArbeidstid = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
     tillattEndringsperiode: DateRange,
-    ansettelsesperioder: MaybeDateRange[],
+    ansettelsesperioderInnenforEndringsperiode: DateRange[],
 ): PeriodeMedArbeidstid[] => {
     const perioder = trimArbeidstidTilTillattEndringsperiode(arbeidstidPeriodeMap, tillattEndringsperiode);
 
@@ -435,9 +454,12 @@ const getPerioderMedArbeidstid = (
         const arbeidsdagerSomKanEndres = getArbeidsdagerInneforEndringsperiodeOgAnsettelsesperioder(
             enkeltdagerIPeriode,
             tillattEndringsperiode,
-            ansettelsesperioder,
+            ansettelsesperioderInnenforEndringsperiode,
         );
-        const uker = getArbeidsukerFromEnkeltdager(arbeidsdagerSomKanEndres);
+        const uker = getArbeidsukerFromEnkeltdager(
+            arbeidsdagerSomKanEndres,
+            ansettelsesperioderInnenforEndringsperiode,
+        );
         const periodeSomKanEndres: DateRange = { from: uker[0].periode.from, to: uker[uker.length - 1].periode.to };
         const arbeidsuker = getArbeidsukerMapFromArbeidsuker(uker);
         const periode: PeriodeMedArbeidstid = {
@@ -489,14 +511,17 @@ const harPerioderEtterEndringsperiode = (
 const getArbeidsaktivitetPerioderPart = (
     arbeidstidPerioder: K9SakArbeidstidPeriodeMap,
     endringsperiode: DateRange,
-    ansettelsesperioder: MaybeDateRange[],
+    ansettelsesperioderInnenforEndringsperiode: DateRange[],
 ): Pick<
     Arbeidsaktivitet,
     'perioderMedArbeidstid' | 'harPerioderEtterTillattEndringsperiode' | 'harPerioderFørTillattEndringsperiode'
 > => {
-    console.log(ansettelsesperioder);
     return {
-        perioderMedArbeidstid: getPerioderMedArbeidstid(arbeidstidPerioder, endringsperiode, ansettelsesperioder),
+        perioderMedArbeidstid: getPerioderMedArbeidstid(
+            arbeidstidPerioder,
+            endringsperiode,
+            ansettelsesperioderInnenforEndringsperiode,
+        ),
         harPerioderFørTillattEndringsperiode: harPerioderFørEndringsperiode(arbeidstidPerioder, endringsperiode),
         harPerioderEtterTillattEndringsperiode: harPerioderEtterEndringsperiode(arbeidstidPerioder, endringsperiode),
     };
@@ -528,18 +553,37 @@ const getArbeidsaktivitetArbeidstaker = (
         throw error;
     }
     const endringsperiodeForArbeidsgiver = getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver);
+    const ansettelsesperioderInnenforEndringsperiode = ensureAnsettelsesperioderIsValidDateRange(
+        arbeidsgiver.ansettelsesperioder,
+        endringsperiode,
+    );
     return {
         key: arbeidsgiver.key,
         arbeidsgiver,
         type: ArbeidsaktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
         erUkjentArbeidsforhold: false,
-        // ansettelsesperioderInnenforEndringsperiode: arbeidsgiver.ansettelsesperioder.map((a) => ({
-        //     from: a.from || endringsperiode.from,
-        //     to: a.to || endringsperiode.to,
-        // })),
-        ...getArbeidsaktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver, arbeidsgiver.ansettelsesperioder),
+        ansettelsesperioderInnenforEndringsperiode,
+        ...getArbeidsaktivitetPerioderPart(
+            perioder,
+            endringsperiodeForArbeidsgiver,
+            ansettelsesperioderInnenforEndringsperiode,
+        ),
     };
+};
+
+/** Går gjennom og endrer ansettelsesperioder til gyldig DateRange
+ * Bruker tillattEndringsperiode som erstatning hvis ansettelsesperiode mangler daga
+ */
+
+const ensureAnsettelsesperioderIsValidDateRange = (
+    ansettelsesperioder: MaybeDateRange[],
+    endringsperiode: DateRange,
+): DateRange[] => {
+    return ansettelsesperioder.map((a) => ({
+        from: a.from || endringsperiode.from,
+        to: a.to || endringsperiode.to,
+    }));
 };
 
 /**
@@ -557,7 +601,8 @@ const getArbeidsaktivitetFrilanser = (
               key: ArbeidsaktivitetType.frilanser,
               type: ArbeidsaktivitetType.frilanser,
               navn: 'Frilanser',
-              ...getArbeidsaktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode, []),
+              ansettelsesperioderInnenforEndringsperiode: [endringsperiode], // TODO
+              ...getArbeidsaktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode, [endringsperiode]),
           }
         : undefined;
 };
@@ -577,11 +622,10 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
               key: ArbeidsaktivitetType.selvstendigNæringsdrivende,
               type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
               navn: 'Selvstendig næringsdrivende',
-              ...getArbeidsaktivitetPerioderPart(
-                  selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+              ansettelsesperioderInnenforEndringsperiode: [], // TODO
+              ...getArbeidsaktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode, [
                   endringsperiode,
-                  [],
-              ),
+              ]),
           }
         : undefined;
 };
@@ -678,16 +722,15 @@ export const _getSakFromK9Sak = {
 const getArbeidsdagerInneforEndringsperiodeOgAnsettelsesperioder = (
     arbeidsdager: ArbeidstidEnkeltdagMap,
     tillattEndringsperiode: DateRange,
-    ansettelsesperioder: MaybeDateRange[],
+    ansettelsesperioderInnenforEndringsperiode: DateRange[],
 ) => {
     const arbeidsdagerInnenforPerioder: ArbeidstidEnkeltdagMap = {};
-    const ansettelsesperiodeDateRanges = ansettelsesperioder.map((a) => ({
-        from: a.from || tillattEndringsperiode.from,
-        to: a.to || tillattEndringsperiode.to,
-    }));
     for (const [dato, info] of Object.entries(arbeidsdager)) {
         const d = ISODateToDate(dato);
-        if (isDateInDateRange(d, tillattEndringsperiode) && isDateInDateRanges(d, ansettelsesperiodeDateRanges)) {
+        if (
+            isDateInDateRange(d, tillattEndringsperiode) &&
+            isDateInDateRanges(d, ansettelsesperioderInnenforEndringsperiode)
+        ) {
             arbeidsdagerInnenforPerioder[dato] = info;
         }
     }
