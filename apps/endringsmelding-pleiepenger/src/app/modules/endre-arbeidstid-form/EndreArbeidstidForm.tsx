@@ -283,7 +283,7 @@ const getUkerOgÅrBeskrivelse = (
                         <UkeTags
                             visDagNavn={true}
                             dagerMedFerie={dagerMedFerie}
-                            arbeidsdagerIkkeAnsatt={arbeidsuker[0].arbeidsdagerIkkeAnsatt}
+                            arbeidsdagerIkkeAnsatt={arbeidsuker[0].dagerIkkeAnsatt}
                         />
                     </Block>
                 )}

@@ -58,9 +58,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
 
     const korteUker = visibleItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
-    const ukerMedDagerIkkeAnsatt = visibleItems
-        .filter((i) => i.arbeidsdagerIkkeAnsatt.length > 0)
-        .map((uke) => uke.periode);
+    const ukerMedDagerIkkeAnsatt = visibleItems.filter((i) => i.dagerIkkeAnsatt.length > 0).map((uke) => uke.periode);
     const ukerMedFerie = visibleItems
         .filter((i) => i.ferie && i.ferie?.dagerMedFerie.length > 0)
         .map((uke) => uke.periode);

@@ -12,7 +12,6 @@ import {
     getLastDateInDateRanges,
     isDateInDateRange,
     isDateInDateRanges,
-    isDateWeekDay,
     ISODateRangeToDateRange,
     ISODateToDate,
     joinAdjacentDateRanges,
@@ -315,13 +314,11 @@ const fjernArbeidstidEnkeltdagerUtenforPeriode = (
     return enkeltdagerMap;
 };
 
-const getUkedagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: DateRange[]): Date[] => {
+const getDagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: DateRange[]): Date[] => {
     if (!ansettelsesperioder) {
         return [];
     }
-    return getDatesInDateRange(periode)
-        .filter(isDateWeekDay)
-        .filter((d) => !isDateInDateRanges(d, ansettelsesperioder));
+    return getDatesInDateRange(periode).filter((d) => !isDateInDateRanges(d, ansettelsesperioder));
 };
 
 /**
@@ -347,7 +344,7 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
         isoDateRange: dateRangeToISODateRange(periode),
         periode: periode,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
-        arbeidsdagerIkkeAnsatt: getUkedagerIkkeAnsattIPeriode(periode, ansettelsesperioder),
+        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(periode, ansettelsesperioder),
         faktisk: {
             uke: faktiskSummertHeleUken,
             dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),

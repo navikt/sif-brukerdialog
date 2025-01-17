@@ -152,7 +152,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 erKortUke={uke.erKortUke}
-                                                arbeidsdagerIkkeAnsatt={uke.arbeidsdagerIkkeAnsatt}
+                                                arbeidsdagerIkkeAnsatt={uke.dagerIkkeAnsatt}
                                             />
                                         </Block>
                                     )}
@@ -176,13 +176,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             <UkeTags
                                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
-                                                                arbeidsdagerIkkeAnsatt={uke.arbeidsdagerIkkeAnsatt}
+                                                                arbeidsdagerIkkeAnsatt={uke.dagerIkkeAnsatt}
                                                             />
                                                         </Block>
                                                     )}
                                                 </span>
                                                 <span className="arbeidsukeTidsrom__info">
-                                                    {(uke.erKortUke || uke.arbeidsdagerIkkeAnsatt.length > 0) && (
+                                                    {(uke.erKortUke || uke.dagerIkkeAnsatt.length > 0) && (
                                                         <UkeInfoTooltip uke={uke} arbeidsgivernavn={arbeidsgivernavn} />
                                                     )}
                                                 </span>

@@ -8,7 +8,7 @@ export interface ArbeidstidUkerItem {
     periode: DateRange;
     antallDagerMedArbeidstid: number;
     erKortUke: boolean;
-    arbeidsdagerIkkeAnsatt: Date[];
+    dagerIkkeAnsatt: Date[];
     harFeriedager?: boolean;
     harFjernetFeriedager?: boolean;
     ferie?: {

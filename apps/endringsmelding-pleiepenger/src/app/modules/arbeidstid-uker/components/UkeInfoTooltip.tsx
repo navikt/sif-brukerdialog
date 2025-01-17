@@ -10,7 +10,7 @@ interface Props {
 }
 
 const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke, arbeidsgivernavn }) => {
-    const { arbeidsdagerIkkeAnsatt, erKortUke } = uke;
+    const { dagerIkkeAnsatt: arbeidsdagerIkkeAnsatt, erKortUke } = uke;
     if (erKortUke && arbeidsdagerIkkeAnsatt.length === 0) {
         return (
             <Tooltip content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
