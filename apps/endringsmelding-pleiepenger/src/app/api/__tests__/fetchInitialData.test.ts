@@ -1,10 +1,10 @@
-import { ISODateRangeToDateRange, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { ArbeidsgiverForEndring } from '../../types';
 import {
     getArbeidsgivereFromArbeidsgiverOrganisasjoner,
     getPeriodeForArbeidsgiverOppslag,
 } from '../../utils/initialDataUtils';
-import { Arbeidsgivere } from '@navikt/sif-common-api';
-import { ArbeidsgiverForEndring } from '../../types';
+import { AARegArbeidsgiverOrganisasjon } from '../endpoints/arbeidsgivereEndpoint';
 
 describe('initialDataUtils', () => {
     describe('getPeriodeForArbeidsgiverOppslag', () => {
@@ -32,16 +32,15 @@ describe('initialDataUtils', () => {
 
     describe('getArbeidsgivereFromArbeidsgiverOrganisasjoner', () => {
         it('oppretter ansettelsesperiode riktig når bruker har ett ansettelsesforhold hos én arbeidsgiver', () => {
-            const respons: Arbeidsgivere = {
-                organisasjoner: [
-                    {
-                        navn: 'a',
-                        organisasjonsnummer: '123',
-                        ansattFom: ISODateToDate('2022-01-01'),
-                        ansattTom: ISODateToDate('2022-02-01'),
-                    },
-                ],
-            };
+            const organisasjoner: AARegArbeidsgiverOrganisasjon[] = [
+                {
+                    navn: 'a',
+                    organisasjonsnummer: '123',
+                    ansattFom: '2022-01-01',
+                    ansattTom: '2022-02-01',
+                },
+            ];
+
             const expectedResult: ArbeidsgiverForEndring[] = [
                 {
                     key: 'a_123',
@@ -50,24 +49,22 @@ describe('initialDataUtils', () => {
                     ansettelsesperioder: [{ from: ISODateToDate('2022-01-01'), to: ISODateToDate('2022-02-01') }],
                 },
             ];
-            expect(getArbeidsgivereFromArbeidsgiverOrganisasjoner(respons.organisasjoner)).toEqual(expectedResult);
+            expect(getArbeidsgivereFromArbeidsgiverOrganisasjoner(organisasjoner)).toEqual(expectedResult);
         });
         it('oppretter ansettelsesperioder riktig når bruker har to ansettelsesforhold hos samme arbeidsgiver', () => {
-            const respons: Arbeidsgivere = {
-                organisasjoner: [
-                    {
-                        navn: 'a',
-                        organisasjonsnummer: '123',
-                        ansattFom: ISODateToDate('2022-01-01'),
-                        ansattTom: ISODateToDate('2022-02-01'),
-                    },
-                    {
-                        navn: 'a',
-                        organisasjonsnummer: '123',
-                        ansattFom: ISODateToDate('2022-02-15'),
-                    },
-                ],
-            };
+            const organisasjoner: AARegArbeidsgiverOrganisasjon[] = [
+                {
+                    navn: 'a',
+                    organisasjonsnummer: '123',
+                    ansattFom: '2022-01-01',
+                    ansattTom: '2022-02-01',
+                },
+                {
+                    navn: 'a',
+                    organisasjonsnummer: '123',
+                    ansattFom: '2022-02-15',
+                },
+            ];
             const expectedResult: ArbeidsgiverForEndring[] = [
                 {
                     key: 'a_123',
@@ -79,7 +76,7 @@ describe('initialDataUtils', () => {
                     ],
                 },
             ];
-            expect(getArbeidsgivereFromArbeidsgiverOrganisasjoner(respons.organisasjoner)).toEqual(expectedResult);
+            expect(getArbeidsgivereFromArbeidsgiverOrganisasjoner(organisasjoner)).toEqual(expectedResult);
         });
     });
 });

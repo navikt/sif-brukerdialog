@@ -1,12 +1,18 @@
-import { ArbeidsgiverOrganisasjon } from '@navikt/sif-common-api';
-import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate, ISODate } from '@navikt/sif-common-utils';
 import { ArbeidsgiverForEndring } from '@types';
 import { getArbeidsgivereFromArbeidsgiverOrganisasjoner } from '../../utils/initialDataUtils';
 import api from '../api';
 import { ApiEndpointPsb } from './';
 
-type AAregArbeidsgiver = {
-    organisasjoner?: ArbeidsgiverOrganisasjon[];
+export type AAregArbeidsgiver = {
+    organisasjoner?: AARegArbeidsgiverOrganisasjon[];
+};
+
+export type AARegArbeidsgiverOrganisasjon = {
+    organisasjonsnummer: string;
+    navn: string;
+    ansattFom?: ISODate;
+    ansattTom?: ISODate;
 };
 
 export const arbeidsgivereEndpoint = {
