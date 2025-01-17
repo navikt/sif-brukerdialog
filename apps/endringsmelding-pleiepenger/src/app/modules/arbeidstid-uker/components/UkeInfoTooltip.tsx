@@ -25,11 +25,10 @@ const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke, arbeidsgivernavn 
         const info = (
             <VStack gap="4">
                 <Box>
-                    Kort uke - du er ikke registrert som ansatt alle dagene denne uken. Dager du ikke registrert som
-                    ansatt er: <strong>{dager.join(',')}</strong>.
+                    Kort uke - du er ikke registrert som ansatt hos {arbeidsgivernavn} alle dagene denne uken. Dager du
+                    ikke registrert som ansatt er: <strong>{dager.join(',')}</strong>.
                 </Box>
-
-                <Box>Hvis dette ikke stemmer, må du ta kontakt med arbeidsgiveren din, {arbeidsgivernavn}.</Box>
+                <Box>Hvis dette ikke stemmer, må du ta kontakt med {arbeidsgivernavn}.</Box>
             </VStack>
         );
         return (

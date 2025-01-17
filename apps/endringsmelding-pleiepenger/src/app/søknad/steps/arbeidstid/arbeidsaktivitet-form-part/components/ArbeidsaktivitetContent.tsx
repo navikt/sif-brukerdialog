@@ -173,6 +173,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                 isVisible={arbeidsukerForEndring !== undefined}
                 onClose={() => setArbeidsukerForEndring(undefined)}>
                 <EndreArbeidstidForm
+                    arbeidsgivernavn={arbeidsaktivitet.navn}
                     arbeidsuker={arbeidsukerForEndring || []}
                     lovbestemtFerie={lovbestemtFerie}
                     endring={
