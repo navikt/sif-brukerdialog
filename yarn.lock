@@ -4080,7 +4080,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.9.1"
     "@navikt/sif-common-hooks": "npm:*"
     "@portabletext/react": "npm:3.2.0"
-    "@sanity/client": "npm:6.24.3"
+    "@sanity/client": "npm:6.25.0"
     "@sif/eslint-config": "npm:*"
     "@types/node": "npm:22.10.6"
     "@types/react": "npm:19.0.7"
@@ -7989,14 +7989,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.24.3":
-  version: 6.24.3
-  resolution: "@sanity/client@npm:6.24.3"
+"@sanity/client@npm:6.25.0":
+  version: 6.25.0
+  resolution: "@sanity/client@npm:6.25.0"
   dependencies:
     "@sanity/eventsource": "npm:^5.0.2"
-    get-it: "npm:^8.6.5"
+    get-it: "npm:^8.6.6"
     rxjs: "npm:^7.0.0"
-  checksum: 10/41df837ed060d806de6ab2c8397996b8a42e5889fce73a75fc2558497a08bf47f8b046b157806df8b2c8496e87722817175872e988394cabb1d4fb92e2ba900b
+  checksum: 10/f5473e9c85b907c07e1d12fec6f371f0fe4dfd240479b58a2d132d29653bd87a7738952b534d759b784d9d247d78f24c8dae70b161f5df274bf61d9ba6be6a5e
   languageName: node
   linkType: hard
 
@@ -17423,7 +17423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.6":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.6, follow-redirects@npm:^1.15.9":
   version: 1.15.9
   resolution: "follow-redirects@npm:1.15.9"
   peerDependenciesMeta:
@@ -17869,6 +17869,21 @@ __metadata:
     progress-stream: "npm:^2.0.0"
     tunnel-agent: "npm:^0.6.0"
   checksum: 10/fd2b4826449dcfc35e2939808f3b7e941b1814704e48c0186ba8e431d0da74a1a0497e924252b22f6a4425cba1ff3d9e5db187e4f9d93a5f8e182d4498e5a65e
+  languageName: node
+  linkType: hard
+
+"get-it@npm:^8.6.6":
+  version: 8.6.6
+  resolution: "get-it@npm:8.6.6"
+  dependencies:
+    "@types/follow-redirects": "npm:^1.14.4"
+    "@types/progress-stream": "npm:^2.0.5"
+    decompress-response: "npm:^7.0.0"
+    follow-redirects: "npm:^1.15.9"
+    is-retry-allowed: "npm:^2.2.0"
+    progress-stream: "npm:^2.0.0"
+    tunnel-agent: "npm:^0.6.0"
+  checksum: 10/baa699c8aa456a01d010469a47df16b46aeb856eeb893b96d5114423c3a1b6f627f3d1211fc60e011d1c2939127d7e17809746b2ab916ad70c98e5efa1d81008
   languageName: node
   linkType: hard
 
