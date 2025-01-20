@@ -62,7 +62,14 @@ export const søknadContextMock: SøknadContextState = {
             },
             søknadsdatoer: getDatoerIKursperioder(kursperioder),
             reisedager: {
-                reiserUtenforKursdager: false,
+                reiserUtenforKursdager: true,
+                reisedager: [
+                    {
+                        dato: new Date('2024-05-03T22:00:00.000Z'),
+                        id: '1',
+                    },
+                ],
+                reisedagerBeskrivelse: 'Kombinerer med ferie',
             },
             kursholder: 'annen',
             kursperioder,

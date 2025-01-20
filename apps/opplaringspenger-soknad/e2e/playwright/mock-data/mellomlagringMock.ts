@@ -33,7 +33,14 @@ const søknadsdata: Søknadsdata = {
             new Date('2024-12-09T00:00:00.000Z'),
         ],
         reisedager: {
-            reiserUtenforKursdager: false,
+            reiserUtenforKursdager: true,
+            reisedager: [
+                {
+                    id: 'a3a41532-7db3-409a-9903-3d5b62fdb0ba',
+                    dato: new Date('2024-12-03T00:00:00.000Z'),
+                },
+            ],
+            reisedagerBeskrivelse: 'Kombinerer med ferie',
         },
         kursholder: 'AHus avdeling 1',
         kursperioder: [
