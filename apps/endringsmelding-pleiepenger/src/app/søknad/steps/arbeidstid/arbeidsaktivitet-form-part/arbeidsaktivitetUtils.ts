@@ -38,7 +38,7 @@ const arbeidsukeToArbeidstidUkerItem = (
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
         kanVelges: !erKortUke && dagerMedFerie.length === 0 && arbeidsuke.dagerIkkeAnsatt.length === 0,
-        antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
+        antallDagerSøktFor: arbeidsuke.antallDagerSøktFor,
         erKortUke,
         dagerIkkeAnsatt: arbeidsuke.dagerIkkeAnsatt || [],
         harFeriedager: dagerMedFerie && dagerMedFerie.length > 0,
@@ -57,9 +57,9 @@ const arbeidsukeToArbeidstidUkerItem = (
                       beregnEndretFaktiskArbeidstidPerDag(
                           arbeidsuke.normalt.uke,
                           endring,
-                          arbeidsuke.antallDagerMedArbeidstid,
+                          arbeidsuke.antallDagerSøktFor,
                       ),
-                      arbeidsuke.antallDagerMedArbeidstid,
+                      arbeidsuke.antallDagerSøktFor,
                   ),
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
               }

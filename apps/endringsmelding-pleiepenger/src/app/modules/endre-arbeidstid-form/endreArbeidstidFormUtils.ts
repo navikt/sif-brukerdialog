@@ -50,7 +50,7 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
     const sisteUke = arbeidsuker[arbeidsuker.length - 1];
     if (arbeidsuker.length === 2) {
         /** Begge uker er komplette uker */
-        if (førsteUke.antallDagerMedArbeidstid + sisteUke.antallDagerMedArbeidstid === 10) {
+        if (førsteUke.antallDagerSøktFor + sisteUke.antallDagerSøktFor === 10) {
             return {
                 spørOmSnittUker: true,
             };
@@ -62,7 +62,7 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
     }
 
     /** Bare fulle uker */
-    const antallIkkeFulleUker = arbeidsuker.filter((uke) => uke.antallDagerMedArbeidstid !== 5).length;
+    const antallIkkeFulleUker = arbeidsuker.filter((uke) => uke.antallDagerSøktFor !== 5).length;
     if (antallIkkeFulleUker === 0) {
         return {
             spørOmSnittUker: true,
@@ -76,8 +76,8 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
         };
     }
 
-    const spørOmFørsteUke = arbeidsuker[0].antallDagerMedArbeidstid < 5;
-    const spørOmSisteUke = arbeidsuker[arbeidsuker.length - 1].antallDagerMedArbeidstid < 5;
+    const spørOmFørsteUke = arbeidsuker[0].antallDagerSøktFor < 5;
+    const spørOmSisteUke = arbeidsuker[arbeidsuker.length - 1].antallDagerSøktFor < 5;
 
     return {
         spørOmSnittUker: true,

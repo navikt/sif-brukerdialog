@@ -51,7 +51,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     isoDateRange: ISODateRange,
 ): ArbeidstidUkerItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
-    const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
+    const antallDagerSøktFor = getDatesInDateRange(periode).length;
 
     const arbeidsuke: ArbeidstidUkerItem = {
         id: isoDateRange,
@@ -59,26 +59,17 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         kanVelges: false,
         isoDateRange,
         periode,
-        antallDagerMedArbeidstid,
+        antallDagerSøktFor,
         erKortUke: erKortArbeidsuke(periode),
         dagerIkkeAnsatt: [], //TODO
         opprinnelig: {
-            normalt: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligNormaltPerDag),
-                antallDagerMedArbeidstid,
-            ),
+            normalt: getTimerPerUkeFraTimerPerDag(ISODurationToDuration(_opprinneligNormaltPerDag), antallDagerSøktFor),
             faktisk: _opprinneligFaktiskPerDag
-                ? getTimerPerUkeFraTimerPerDag(
-                      ISODurationToDuration(_opprinneligFaktiskPerDag),
-                      antallDagerMedArbeidstid,
-                  )
+                ? getTimerPerUkeFraTimerPerDag(ISODurationToDuration(_opprinneligFaktiskPerDag), antallDagerSøktFor)
                 : undefined,
         },
         endret: {
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(faktiskArbeidTimerPerDag),
-                antallDagerMedArbeidstid,
-            ),
+            faktisk: getTimerPerUkeFraTimerPerDag(ISODurationToDuration(faktiskArbeidTimerPerDag), antallDagerSøktFor),
             endretProsent: _endretProsent,
         },
     };

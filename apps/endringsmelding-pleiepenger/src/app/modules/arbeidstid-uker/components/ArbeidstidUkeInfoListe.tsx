@@ -50,7 +50,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
 
     const erEndret = erArbeidstidUkeItemEndret(uke);
 
-    const erEndringGyldig = erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerMedArbeidstid);
+    const erEndringGyldig = erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerSøktFor);
     return (
         <div className="arbeidstidInfoListe">
             <p>

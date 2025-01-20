@@ -73,7 +73,7 @@ export const cleanupArbeidsaktivitetEndringer = (
         const endretArbeidstid = beregnEndretArbeidstidForUke(
             endring,
             opprinnelig.normalt.uke,
-            opprinnelig.antallDagerMedArbeidstid,
+            opprinnelig.antallDagerSøktFor,
         );
         if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk?.uke)) {
             cleanedEndringer[key] = endring;

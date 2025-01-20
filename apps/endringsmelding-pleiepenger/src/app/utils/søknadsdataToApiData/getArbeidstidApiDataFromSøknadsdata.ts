@@ -48,20 +48,20 @@ const getEndretArbeidstid = (
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
-    const endringKeys = Object.keys(endringUkeMap).sort();
+    const endringUkeKeys = Object.keys(endringUkeMap).sort();
 
-    endringKeys.forEach((isoDateRange) => {
+    endringUkeKeys.forEach((isoDateRange) => {
         const endring = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidsaktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
         const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
-        const { antallDagerMedArbeidstid } = arbeidsuke;
+        const { antallDagerSøktFor } = arbeidsuke;
 
-        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
+        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerSøktFor);
         const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
             arbeidsuke.normalt.uke,
             endring,
-            antallDagerMedArbeidstid,
+            antallDagerSøktFor,
         );
 
         /** Splitt opp hvis det er enkeltdager i uken */
@@ -168,7 +168,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
                 const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(
                     arbeidsuke.normalt.uke,
-                    arbeidsuke.antallDagerMedArbeidstid,
+                    arbeidsuke.antallDagerSøktFor,
                 );
 
                 /** Splitt opp hvis det er enkeltdager i uken */
@@ -216,18 +216,14 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
 export const getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold = (
     arbeiderIPerioden: ArbeiderIPeriodenSvar,
-    arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerMedArbeidstid'>,
+    arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerSøktFor'>,
     endring?: ArbeidstidEndring,
 ): Duration => {
     if (!endring && arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
         throw 'Faktisk arbeidstid mangler for redusert arbeidsforhold';
     }
     if (endring) {
-        return beregnEndretFaktiskArbeidstidPerDag(
-            arbeidsuke.normalt.uke,
-            endring,
-            arbeidsuke.antallDagerMedArbeidstid,
-        );
+        return beregnEndretFaktiskArbeidstidPerDag(arbeidsuke.normalt.uke, endring, arbeidsuke.antallDagerSøktFor);
     }
     return arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
         ? {

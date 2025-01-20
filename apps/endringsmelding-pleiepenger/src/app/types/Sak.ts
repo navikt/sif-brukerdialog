@@ -61,7 +61,8 @@ export interface Arbeidsuke {
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
     faktisk?: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
-    antallDagerMedArbeidstid: number;
+    antallDagerSøktFor: number;
+    dagerSøktFor: Date[];
     dagerIkkeAnsatt: Date[];
 }
 
