@@ -1,13 +1,11 @@
 const nb = {
     'steg.kurs.counsellorPanel.avsnitt.1':
-        'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring. ',
+        'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring. Du kan få opplæringspenger for perioder du er på kurs eller opplæring, og for eventuell reisetid til og fra opplæringsstedet.',
     'steg.kurs.counsellorPanel.avsnitt.2':
-        'For å få opplæringspenger må kurset eller opplæringen være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
-    'steg.kurs.counsellorPanel.avsnitt.3':
-        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
+        'Opplæringen må være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
     'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
+        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
@@ -18,7 +16,7 @@ const nb = {
     'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
     'steg.kurs.kursperiode.listTitle': 'Kursperioder',
 
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du søker om hvor du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst':
         'Du kan ha rett til opplæringspenger for reisedager til og fra opplæringen. Eksempel: [TODO]',
@@ -28,7 +26,7 @@ const nb = {
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':
-        'Du har krysset av for at du reiser på dager du ikke har kurs eller opplæring, da må du legge til minst én ferie.',
+        'Du har krysset av for at du reiser på dager du ikke har kurs eller opplæring, da må du legge til minst én dag med reise.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringHasNoValue':
         'Du må beskrive hvorfor du reiser på andre dager enn du har kurs eller opplæring.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooShort':

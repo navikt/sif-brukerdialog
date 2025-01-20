@@ -1,11 +1,12 @@
 const nb = {
     'steg.legeerklæring.counsellorPanel.info.1':
-        'Her skal du laste opp legeerklæring og kursbekreftelse, dette får du fra lege og/eller på stedet du har opplæring. Hvis du har søkt om opplæringspenger tidligere, trenger du ikke å sende ny legeerklæring.',
-    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Dokumentasjonen må inneholde:',
-    'steg.legeerklæring.counsellorPanel.info.2.1':
-        'Bekreftelse fra lege om at opplæringen er nødvendig for at du skal kunne ta deg av barnet.',
-    'steg.legeerklæring.counsellorPanel.info.2.2': 'Informasjon om innhold og tidspunkt for opplæring.',
-    'steg.legeerklæring.counsellorPanel.info.3': 'Vi kontakter deg hvis vi trenger flere opplysninger. ',
+        'Her skal du laste opp dokumentasjon på nødvendig opplæring. Denne dokumentasjonen får man ofte når man søker om opplæring/kurs, eller man får den på kursstedet.',
+    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Det kan for eksempel være:',
+    'steg.legeerklæring.counsellorPanel.info.2.1': 'Bekreftelse fra lege om at opplæringen er nødvendig',
+    'steg.legeerklæring.counsellorPanel.info.2.2':
+        'Informasjon om innhold og tidspunkt for opplæring/kurs (kursbekreftelse)',
+    'steg.legeerklæring.counsellorPanel.info.3':
+        'Send inn det du har fått av dokumentasjon, vi kontakter deg hvis vi trenger flere opplysninger. Hvis du ikke har dokumentasjonen nå, kan du ettersende den senere.',
 
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 

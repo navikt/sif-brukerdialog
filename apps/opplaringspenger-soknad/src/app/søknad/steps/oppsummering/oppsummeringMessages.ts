@@ -71,7 +71,7 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb de dagene du søker for',
+    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
     'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg søker for',
     'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg jobber noe de dagene jeg søker for',

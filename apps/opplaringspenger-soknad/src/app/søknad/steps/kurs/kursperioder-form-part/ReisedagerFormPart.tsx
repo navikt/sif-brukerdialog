@@ -24,12 +24,7 @@ const ReisedagerFormPart = ({ søknadsperiode, disabledDateRanges }: Props) => {
                         addLabel: 'Legg til reisedag',
                         modalTitle: 'Reisedager',
                         listTitle: 'Reisedager uten kurs eller opplæring',
-                        modalDescription: (
-                            <>
-                                <Box>Du kan kun velge dager som du har søkt om opplæringspenger for.</Box>
-                                <Box>Dager med reise utenfor søknadsperioden trenger du ikke legge til.</Box>
-                            </>
-                        ),
+                        modalDescription: <Box>Du kan kun velge dager som du har søkt om opplæringspenger.</Box>,
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}

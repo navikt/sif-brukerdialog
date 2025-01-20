@@ -1,4 +1,4 @@
-import { Alert, Box, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -129,9 +129,40 @@ const KursStep = () => {
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
                                         </p>
-                                        <p>
-                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.3" />
-                                        </p>
+                                        <ReadMore header="Hva er en godkjent helseinstitusjon?">
+                                            <p>
+                                                En godkjent helseinstitusjon tilbyr vanligvis heldøgnsopphold, og
+                                                tjenester fra flere typer helsepersonell og behandlingstilbud. Typiske
+                                                eksempler er sykehus, opptreningsinstitusjoner og poliklinikker.
+                                            </p>
+                                            <p>
+                                                Kurset eller opplæringen kan også skje utenfor helseinstitusjonens
+                                                lokaler, men dette forutsetter at det er i regi av helseinstitusjonen,
+                                                og at institusjonen har hele det faglige og økonomiske ansvaret for
+                                                kurset. Det inkluderer også de pårørendes utgifter.
+                                            </p>
+                                            <p>
+                                                Du kan også få opplæringspenger for foreldrekurs ved et offentlig
+                                                spesialpedagogisk kompetansesenter.
+                                            </p>
+                                            <p>
+                                                Kommunehelsetjenesteloven eller Spesialisthelsetjenesteloven sier hva
+                                                som er en godkjent helseinstitusjon.
+                                            </p>
+                                            <Heading level="3" size="xsmall">
+                                                Hva er ikke godkjent som helseinstitusjon?
+                                            </Heading>
+                                            <p>
+                                                Det gis ikke opplæringspenger hvis du deltar i opplæring som arrangeres
+                                                av humanitære organisasjoner, brukerorganisasjoner eller lignende.
+                                                Barne-, ungdoms- og familieetaten (Bufetat) og hjelpemiddelsentralen er
+                                                andre eksempler på helseinstitusjoner som ikke er godkjente.
+                                            </p>
+                                            <p>
+                                                Hvis vi er i tvil om opplæringsstedet er en godkjent helseinstitusjon,
+                                                må institusjonen selv dokumentere sin status.
+                                            </p>
+                                        </ReadMore>
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
@@ -213,16 +244,10 @@ const KursStep = () => {
                                                         modalTitle: text('steg.kurs.ferie.modalTitle'),
                                                         listTitle: text('steg.kurs.ferie.listTitle'),
                                                         modalDescription: (
-                                                            <>
-                                                                <Box>
-                                                                    Du kan kun velge dager som du har søkt om
-                                                                    opplæringspenger for.
-                                                                </Box>
-                                                                <Box>
-                                                                    Feriedager utenfor søknadsperioden trenger du ikke
-                                                                    legge til.
-                                                                </Box>
-                                                            </>
+                                                            <Box>
+                                                                Du kan kun velge dager som du har søkt om
+                                                                opplæringspenger.
+                                                            </Box>
                                                         ),
                                                     }}
                                                     name={KursFormFields.ferieuttak}

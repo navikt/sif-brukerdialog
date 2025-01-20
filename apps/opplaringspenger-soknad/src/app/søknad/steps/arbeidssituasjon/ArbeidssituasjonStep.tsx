@@ -171,9 +171,6 @@ const ArbeidssituasjonStep = () => {
                                     <p>
                                         <AppText id="steg.arbeidssituasjon.veileder.1" />
                                     </p>
-                                    <p>
-                                        <AppText id="steg.arbeidssituasjon.veileder.2" />
-                                    </p>
                                 </SifGuidePanel>
 
                                 <FormBlock>

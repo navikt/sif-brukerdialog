@@ -2,13 +2,12 @@ const nb = {
     'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
 
     'steg.arbeidssituasjon.veileder.1':
-        'Nå trenger vi å vite litt om arbeidssituasjonen din og hvor mye du normalt jobber når du ikke har fravær fra jobben din.',
-    'steg.arbeidssituasjon.veileder.2':
-        'Hvis du er arbeidstaker og er usikker på hva som er din normale arbeidstid, finner du svaret i arbeidskontrakten din. Eventuelt kan du forhøre deg med arbeidsgiveren din.',
+        'Nå trenger vi informasjon om din arbeidssituasjon og hvor mye du normalt jobber. Dette trenger vi for å se hvor mye du taper i lønn på grunn av kurs eller opplæring.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om opplæringspenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
         'Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.',
+    'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.header': 'Min arbeidsgiver vises ikke',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
         'Hvis du i noen av dagene du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
     'steg.arbeidssituasjon.info.tekst':

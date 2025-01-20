@@ -54,6 +54,9 @@ const nb = {
     'frilanser.hjelpetekst':
         'Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på',
     'frilanser.hjelpetekst.skatteetatenLenke': 'skatteetaten sine nettsider.',
+    'frilanser.hjelpetekst.2.heading': 'Omsorgsstønad og fosterhjemsgodtgjørelse',
+    'frilanser.hjelpetekst.2':
+        'Du trenger ikke å oppgi omsorgsstønad eller fosterhjemsgodtgjørelse, hvis du fortsetter å motta det under opplæringen.',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du selvstendig næringsdrivende i perioden du søker for?',
     'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Hva betyr det å være selvstendig næringsdrivende?',
@@ -86,9 +89,9 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Din arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Din arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Jobb de dagene du søker for',
-    'step.arbeidstid.pageTitle': 'Jobb de dagene du søker for',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb de dagene du søker for',
+    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
+    'step.arbeidstid.pageTitle': 'Jobb i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',

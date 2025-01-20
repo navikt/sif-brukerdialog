@@ -3,7 +3,8 @@ const nb = {
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress': 'Velkommen til søknad om opplæringspenger.',
     'page.velkommen.guide.tekst.1':
-        'Denne søknaden er for deg som må være borte fra jobb for å ta opplæring som er nødvendig for å kunne ta deg av et barn med langvarig sykdom eller funksjonshemning.',
+        'Denne søknaden er for deg som må være borte fra jobb på grunn av opplæring som er nødvendig for å kunne ta deg av et barn med langvarig sykdom eller funksjonshemning.',
+    'page.velkommen.guide.tekst.2': 'Du kan lese <Lenke>mer om opplæringspenger her</Lenke>.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
@@ -23,15 +24,14 @@ const nb = {
     'personopplysninger.2':
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
-    'personopplysninger.4': 'Opplysningene vi innhenter kommer enten fra deg eller fra offentlige registre:',
+    'personopplysninger.4':
+        'Opplysningene vi innhenter kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
     'personopplysninger.4.1': 'opplysninger om helsen til den du skal søke opplæringspenger for',
     'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din',
     'personopplysninger.4.3': 'ytelser du mottar fra Nav',
     'personopplysninger.4.4': 'tilknytningen din til Norge',
     'personopplysninger.4.5':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
-    'personopplysninger.5.1':
-        'Vi lagrer opplysninger vi får inn om personen du søker opplæringspenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre søker opplæringspenger for samme person.',
 
     'personopplysninger.6':
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',

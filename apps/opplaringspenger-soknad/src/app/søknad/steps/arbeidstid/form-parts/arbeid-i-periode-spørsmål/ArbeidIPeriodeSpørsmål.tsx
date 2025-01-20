@@ -174,7 +174,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         description={
                             <Block margin="l">
                                 <Alert variant="info" inline={true}>
-                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                                    Du trenger ikke fylle ut for dager du ikke jobber
                                 </Alert>
                             </Block>
                         }>

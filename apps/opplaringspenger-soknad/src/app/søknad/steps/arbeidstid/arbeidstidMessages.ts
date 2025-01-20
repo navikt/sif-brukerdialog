@@ -1,12 +1,12 @@
 export const arbeidstidMessages = {
     nb: {
-        'arbeidIPeriode.StepInfo.1': 'TODO',
+        'arbeidIPeriode.StepInfo.1':
+            'Her fyller du ut om du har hatt fullt fravær eller jobber noe de dagene du er på kurs eller har opplæring.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-        'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
-        'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mye du jobber {hvor} i de dagene du søker opplæringspenger for.',
-        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg søker om',
+        'arbeidIPeriode.jobberIPerioden.spm': 'Jobber du noe {hvor} i søknadsperioden?',
+        'arbeidIPeriode.enkeltdager_gruppe.legend': 'Oppgi hvor mye du jobber {hvor} i søknadsperioden.',
+        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke de dagene jeg søker om',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
         'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg jobber noe de dagene jeg søker om',
         'arbeidIPeriode.iDag.utledet': 'timer i uka',
