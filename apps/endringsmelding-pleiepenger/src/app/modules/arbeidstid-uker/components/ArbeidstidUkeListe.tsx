@@ -59,7 +59,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                             erKortUke={uke.erKortUke}
                                             dagerMedFerie={uke.ferie?.dagerMedFerie}
                                             dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
-                                            arbeidsdagerIkkeAnsatt={uke.dagerIkkeAnsatt}
                                         />
                                     </Block>
                                 </BodyShort>

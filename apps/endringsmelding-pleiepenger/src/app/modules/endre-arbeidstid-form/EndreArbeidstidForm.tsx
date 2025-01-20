@@ -25,7 +25,7 @@ import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
-import KortUkeEllerIkkeAnsattInformasjon from '../arbeidstid-uker/components/KortUkeEllerIkkeAnsattInfo';
+import KortUkeInfo from '../arbeidstid-uker/components/KortUkeInfo';
 
 type EndreArbeidstidData = {
     perioder: DateRange[];
@@ -63,7 +63,6 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
     arbeidsuker,
     lovbestemtFerie,
     endring,
-    arbeidsgivernavn,
     onCancel,
     onSubmit,
 }) => {
@@ -199,10 +198,9 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                             </ToggleGroup>
 
                             {arbeidsuker.length === 1 ? (
-                                <KortUkeEllerIkkeAnsattInformasjon
-                                    arbeidsuke={arbeidsuker[0]}
-                                    arbeidsgivernavn={arbeidsgivernavn}
-                                />
+                                <Block margin="xl">
+                                    <KortUkeInfo arbeidsuke={arbeidsuker[0]} />
+                                </Block>
                             ) : null}
 
                             <FormBlock paddingBottom="l">
@@ -276,11 +274,7 @@ const getUkerOgÅrBeskrivelse = (
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
-                        <UkeTags
-                            visDagNavn={true}
-                            dagerMedFerie={dagerMedFerie}
-                            arbeidsdagerIkkeAnsatt={arbeidsuker[0].dagerIkkeAnsatt}
-                        />
+                        <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
                     </Block>
                 )}
             </BodyShort>

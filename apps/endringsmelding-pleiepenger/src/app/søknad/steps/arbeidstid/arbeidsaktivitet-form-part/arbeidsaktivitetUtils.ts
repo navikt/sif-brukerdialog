@@ -37,10 +37,9 @@ const arbeidsukeToArbeidstidUkerItem = (
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        kanVelges: !erKortUke && dagerMedFerie.length === 0 && arbeidsuke.dagerIkkeAnsatt.length === 0,
+        kanVelges: !erKortUke && dagerMedFerie.length === 0,
         antallDagerSøktFor: arbeidsuke.antallDagerSøktFor,
         erKortUke,
-        dagerIkkeAnsatt: arbeidsuke.dagerIkkeAnsatt || [],
         harFeriedager: dagerMedFerie && dagerMedFerie.length > 0,
         harFjernetFeriedager: dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0,
         ferie: {

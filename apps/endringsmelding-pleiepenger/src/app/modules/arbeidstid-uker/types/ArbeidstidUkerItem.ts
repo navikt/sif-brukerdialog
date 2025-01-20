@@ -6,9 +6,8 @@ export interface ArbeidstidUkerItem {
     kanVelges: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
-    antallDagerMedArbeidstid: number;
+    antallDagerSøktFor: number;
     erKortUke: boolean;
-    dagerIkkeAnsatt: Date[];
     harFeriedager?: boolean;
     harFjernetFeriedager?: boolean;
     ferie?: {
