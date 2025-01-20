@@ -3,8 +3,7 @@ import { IntlShape } from 'react-intl';
 
 const arbeidIPeriodeIntlValuesMessages = {
     nb: {
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.harJobbet': 'har jobbet',
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe': 'skal jobbe',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.jobber': 'jobber',
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt': `hos {arbeidsstedNavn}`,
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser': 'som frilanser',
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN': 'som selvstendig næringsdrivende',

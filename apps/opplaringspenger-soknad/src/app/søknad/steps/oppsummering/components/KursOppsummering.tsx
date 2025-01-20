@@ -53,9 +53,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
-                        <FormSummary.Label>
-                            Reiser du på dager du søker om hvor du ikke har kurs eller opplæring?
-                        </FormSummary.Label>
+                        <FormSummary.Label>Reiser du på dager du ikke har kurs eller opplæring?</FormSummary.Label>
                         <FormSummary.Value>
                             <JaNeiSvar harSvartJa={kurs.reisedager.reiserUtenforKursdager} />
                         </FormSummary.Value>

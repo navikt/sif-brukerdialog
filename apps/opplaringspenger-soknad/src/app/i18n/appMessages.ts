@@ -160,6 +160,8 @@ const nb = {
         'Du må svare på på om du utøvde verneplikt på tidspunktet du søker opplæringspenger fra.',
     'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
 
+    'validation.arbeidIPeriode.jobber': 'Du må svare på om du jobber noe {hvor} i søknadsperioden.',
+
     'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i et annet EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
         'Du må svare på på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med opplæringspenger.',
@@ -171,7 +173,7 @@ const nb = {
     'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
         'Du må svare på om du sluttet hos {navn} før {fraDato}.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasNoValue':
-        'Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.',
+        'Du må oppgi hvor mange timer du {jobber} {hvor} i perioden, når du ikke har fravær.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat':
         'Antall timer du {jobber} per uke {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
 

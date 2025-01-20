@@ -44,7 +44,7 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
                     startdato: startdato ? prettifyDateExtended(startdato) : undefined,
                     sluttdato: sluttdato ? prettifyDateExtended(sluttdato) : undefined,
                 };
-                const visStartdato = startdato; // TODO - skal denne inn igjen? && dayjs(startdato).isAfter(periode.from, 'day');
+                const visStartdato = startdato;
                 const visSluttdato = sluttdato && dayjs(sluttdato).isBefore(periode.to, 'day');
 
                 if (visStartdato && visSluttdato) {

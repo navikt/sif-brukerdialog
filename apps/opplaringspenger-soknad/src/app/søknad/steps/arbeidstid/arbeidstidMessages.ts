@@ -29,6 +29,6 @@ export const arbeidstidMessages = {
         'arbeidIPeriode.validation.timerDag.hoursAreNegative':
             'Antall timer og minutter {dato}  kan ikke være mindre enn 0 timer og 0 minutter.',
         'arbeidIPeriode.validation.ingenTidRegistrert':
-            'Du har ikke oppgitt noe tid med jobb {hvor} på dagene du har søkt om. Hvis dette stemmer, skal du velge "Jeg jobber ikke " på spørsmålet ovenfor.',
+            'Du har ikke oppgitt noe tid med jobb {hvor} på dagene du har søkt om. Hvis dette stemmer, skal du velge "Jeg jobber ikke de dagene jeg søker om" på spørsmålet ovenfor.',
     },
 };

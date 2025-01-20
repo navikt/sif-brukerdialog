@@ -39,7 +39,7 @@ const nb = {
         'Noen av periodene du har lagt til overlapper hverandre. Se over fra og til datoene og korriger. Hvis periodene overlapper, må du slå disse periodene sammen til én.',
     'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',
     'steg.kurs.validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
-        'Du må svare på om du skal ha ferie i søknadsperioden.',
+        'Du må svare på om du skal ha ferie i løpet av søknadsperioden.',
     'steg.kurs.ferie.addLabel': 'Legg til ferie',
     'steg.kurs.ferie.modalTitle': 'Legg til ferie',
     'steg.kurs.ferie.listTitle': 'Ferie i perioden',
