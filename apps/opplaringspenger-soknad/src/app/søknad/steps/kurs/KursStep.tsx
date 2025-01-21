@@ -1,6 +1,12 @@
 import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import {
+    DateRange,
+    FormikInputGroup,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
@@ -23,6 +29,7 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import {
+    erFerieInnenforSøknadsperioder,
     getDateRangesFromKursperiodeFormValues,
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
@@ -183,11 +190,14 @@ const KursStep = () => {
                                                     return from && to ? { from, to } : undefined;
                                                 })
                                                 .filter((range) => dateRangeUtils.isDateRange(range));
-                                            return ranges &&
-                                                ranges.length > 1 &&
-                                                dateRangeUtils.dateRangesCollide(ranges)
-                                                ? 'kursperioderOverlapper'
-                                                : undefined;
+                                            if (!ranges || ranges.length === 0) {
+                                                return undefined;
+                                            }
+                                            /** Perioder overlapper */
+                                            if (dateRangeUtils.dateRangesCollide(ranges)) {
+                                                return 'kursperioderOverlapper';
+                                            }
+                                            return undefined;
                                         }}>
                                         <KursperioderFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                                     </FormikInputGroup>
@@ -209,6 +219,7 @@ const KursStep = () => {
                                                 <ReisedagerFormPart
                                                     disabledDateRanges={disabledDateRanges}
                                                     søknadsperiode={søknadsperiode}
+                                                    kursperioder={kursperioder}
                                                 />
                                             ) : (
                                                 <Alert variant="info">
@@ -240,7 +251,20 @@ const KursStep = () => {
                                                     minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
                                                     maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
                                                     disabledDateRanges={disabledDateRanges}
-                                                    validate={getListValidator({ required: true })}
+                                                    validate={(ferieperioder: DateRange[]) => {
+                                                        const listError = getListValidator({ required: true })(
+                                                            ferieperioder,
+                                                        );
+                                                        if (listError) {
+                                                            return listError;
+                                                        }
+                                                        /** Kontroller om ferieperioder er innenfor søknadsperioder */
+                                                        if (
+                                                            erFerieInnenforSøknadsperioder(ferieperioder, kursperioder)
+                                                        ) {
+                                                            return 'ferieperiodeUtenforKursperiode';
+                                                        }
+                                                    }}
                                                 />
                                             </FormLayout.Panel>
                                         </FormLayout.QuestionBleedTop>

@@ -30,6 +30,10 @@ const nb = {
         'For få tegn. Du må beskrive hvorfor du reiser på andre dager enn du har kurs eller opplæring med flere tegn.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
+    'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
+        'Reisedag er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikke er innenfor dager du søker.',
+    'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
+        'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':

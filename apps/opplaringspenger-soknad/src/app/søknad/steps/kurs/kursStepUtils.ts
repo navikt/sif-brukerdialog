@@ -1,7 +1,14 @@
 import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils, DateRange } from '@navikt/sif-common-utils';
+import {
+    getDate1YearFromNow,
+    getDate3YearsAgo,
+    dateRangeUtils,
+    DateRange,
+    isDateInDateRanges,
+    getDatesInDateRange,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
@@ -200,4 +207,15 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
         return ranges[0];
     }
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
+};
+
+export const erAlleReisedagerInnenforSøknadsperioder = (reisedager: Date[], søknadsperioder: DateRange[]): boolean => {
+    return reisedager.every((reisedag) => isDateInDateRanges(reisedag, søknadsperioder));
+};
+
+export const erFerieInnenforSøknadsperioder = (ferieperioder: DateRange[], søknadsperioder: DateRange[]): boolean => {
+    return ferieperioder.every((ferieperiode) => {
+        const feriedager = getDatesInDateRange(ferieperiode);
+        return feriedager.every((feriedag) => isDateInDateRanges(feriedag, søknadsperioder));
+    });
 };
