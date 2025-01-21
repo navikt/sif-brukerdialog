@@ -15,7 +15,13 @@ const VelkommenGuideContent = () => {
             <p>
                 <AppText
                     id="page.velkommen.guide.tekst.2"
-                    values={{ Lenke: (text) => <Link href={getLenker(locale).opplæringspengerNavNo}>{text}</Link> }}
+                    values={{
+                        Lenke: (text) => (
+                            <Link key="lenke" href={getLenker(locale).opplæringspengerNavNo}>
+                                {text}
+                            </Link>
+                        ),
+                    }}
                 />
             </p>
         </BodyLong>
