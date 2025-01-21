@@ -6,7 +6,7 @@ export interface ModalFormAndListListItemBase {
 
 export interface ModalFormAndListLabels {
     modalTitle: string;
-    modalDescription?: React.ReactNode;
+    modalDescription?: ReactElement;
     listTitle?: string;
     emptyListText?: string;
     addLabel: string;
@@ -15,7 +15,7 @@ export interface ModalFormAndListLabels {
 
 export interface ModalFormAndInfoLabels {
     modalTitle: string;
-    infoTitle?: React.ReactNode;
+    infoTitle?: ReactElement;
     addLabel: string;
     editLabel: string;
     deleteLabel: string;
