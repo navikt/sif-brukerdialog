@@ -14,7 +14,6 @@ import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
 interface Props {
-    arbeidsgivernavn: string;
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;

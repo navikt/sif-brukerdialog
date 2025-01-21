@@ -21,7 +21,6 @@ interface Props {
     paginering?: {
         antall: number;
     };
-    arbeidsgivernavn: string;
     arbeidstidKolonneTittel?: string;
     triggerResetValgCounter?: number;
     visEndringSomOpprinnelig?: boolean;
@@ -36,7 +35,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
-    arbeidsgivernavn,
     onEndreUker,
 }) => {
     const { text, intl } = useAppIntl();
@@ -167,7 +165,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
             {renderEndreUkerHeader()}
 
             <ArbeidstidUkeTabell
-                arbeidsgivernavn={arbeidsgivernavn}
                 uker={visibleItems}
                 selectableList={selectableList}
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}

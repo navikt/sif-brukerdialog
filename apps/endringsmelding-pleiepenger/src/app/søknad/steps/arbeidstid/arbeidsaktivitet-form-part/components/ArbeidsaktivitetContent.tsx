@@ -73,7 +73,6 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                 )}
                 visEndringSomOpprinnelig={erNyArbeidsgiver}
                 triggerResetValgCounter={resetUkerTabellCounter}
-                arbeidsgivernavn={arbeidsaktivitet.navn}
                 onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => periode.arbeidsuker[uke.isoDateRange]));
                 }}
