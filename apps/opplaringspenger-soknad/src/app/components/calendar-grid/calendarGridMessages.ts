@@ -10,8 +10,17 @@ const nb = {
     'calendarGrid.Måned': 'Måned',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
+const nn: Record<keyof typeof nb, string> = {
+    'calendarGrid.Mandag': 'Måndag',
+    'calendarGrid.Tirsdag': 'Tysdag',
+    'calendarGrid.Onsdag': 'Onsdag',
+    'calendarGrid.Torsdag': 'Torsdag',
+    'calendarGrid.Fredag': 'Fredag',
+    'calendarGrid.uke': 'veke',
+    'calendarGrid.Uke': 'Veke',
+    'calendarGrid.måned': 'månad',
+    'calendarGrid.Måned': 'Månad',
+};
 export const calendarGridMessages = {
     nb,
     nn,

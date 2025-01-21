@@ -30,7 +30,37 @@ const nb = {
         'Du har ikke oppgitt noe tid med jobb {hvor} på dagene du har søkt om. Hvis dette stemmer, skal du velge "Jeg jobber ikke de dagene jeg søker om" på spørsmålet ovenfor.',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+const nn: Record<keyof typeof nb, string> = {
+    'arbeidIPeriode.StepInfo.1':
+        'Her fyller du ut om du har hatt fullt fråvær eller jobbar noko dei dagane du er på kurs eller har opplæring.',
+    'arbeidIPeriode.FrilansLabel': 'Frilans',
+    'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
+    'arbeidIPeriode.jobberIPerioden.spm': 'Jobbar du noko {hvor} i søknadsperioden?',
+    'arbeidIPeriode.enkeltdager_gruppe.legend': 'Oppgi kor mykje du jobbar {hvor} i søknadsperioden.',
+    'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Eg jobbar ikkje dei dagane eg søkjer om',
+    'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Eg jobbar som normalt, og har ikkje fråvær',
+    'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Eg jobbar noko dei dagane eg søkjer om',
+    'arbeidIPeriode.iDag.utledet': 'timar i veka',
+    'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
+    'arbeidIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',
+    'arbeidIPeriode.arbeidstidSted.sn': 'Sjølvstendig næringsdrivande',
+
+    'arbeidIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut timar og minutt for {dato} {hvor}.',
+    'arbeidIPeriode.validation.timerDag.hoursAreInvalid': 'Talet på timar på {dato} er ikkje eit gyldig tal.',
+    'arbeidIPeriode.validation.timerDag.minutesAreInvalid': 'Talet på minutt på {dato} er ikkje eit gyldig tal.',
+    'arbeidIPeriode.validation.timerDag.tooManyHours': 'Talet på timar på {dato} kan ikkje overstige 24 timar.',
+    'arbeidIPeriode.validation.timerDag.tooManyMinutes': 'Talet på minutt på {dato} kan ikkje overstige 59 minutt.',
+    'arbeidIPeriode.validation.timerDag.durationIsTooLong':
+        'Talet på timar og minutt registrert {dato} er for høgt. Tida kan ikkje overstige 24 timar kvar vekedag.',
+    'arbeidIPeriode.validation.timerDag.durationIsTooShort':
+        'Talet på timar og minutt {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'arbeidIPeriode.validation.timerDag.minutesAreNegative':
+        'Talet på timar og minutt {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'arbeidIPeriode.validation.timerDag.hoursAreNegative':
+        'Talet på timar og minutt {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+    'arbeidIPeriode.validation.ingenTidRegistrert':
+        'Du har ikkje oppgitt noko tid med jobb {hvor} på dagane du har søkt om. Dersom dette stemmer, skal du velje "Eg jobbar ikkje dei dagane eg søkjer om" på spørsmålet ovanfor.',
+};
 
 export const arbeidstidMessages = {
     nb,

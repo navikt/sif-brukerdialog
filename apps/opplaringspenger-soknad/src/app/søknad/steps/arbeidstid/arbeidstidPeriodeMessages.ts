@@ -13,8 +13,15 @@ const nb = {
 
 type ArbeidstidPeriodeMessagesType = keyof typeof nb;
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
+const nn: Record<keyof typeof nb, string> = {
+    'arbeidstidPeriode.arbeidIPeriodeIntlValues.jobber': 'jobbar',
+    'arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt': 'hos {arbeidsstedNavn}',
+    'arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser': 'som frilanser',
+    'arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN': 'som sjølvstendig næringsdrivande',
+    'arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden': 'i perioden {fra} til {til}',
+    'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timar}}',
+    'arbeidstidPeriode.timer.ikkeTall': '{timer} timar',
+};
 export const arbeidstidPeriodeMessages = { nb, nn };
 
 export const getArbeidstidPeriodeIntl = (intl: IntlShape) => typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);

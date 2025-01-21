@@ -12,8 +12,10 @@ const nb = {
     'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
+const nn: Record<keyof typeof nb, string> = {
+    'apiDataValidation.undefined': 'Det oppstod ein feil ved visninga av sida.',
+    'apiDataValidation.omsorgsavtaleMangler': 'Det manglar avtale om delt bustad.',
+};
 export const validateApiDataMessages = { nb, nn };
 
 interface ApiDataValidationError {
