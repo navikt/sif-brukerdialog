@@ -8,7 +8,6 @@ interface Props {
     erKortUke?: boolean;
     dagerMedFerie: Date[] | undefined;
     dagerMedFjernetFerie?: Date[] | undefined;
-
     visDagNavn?: boolean;
 }
 

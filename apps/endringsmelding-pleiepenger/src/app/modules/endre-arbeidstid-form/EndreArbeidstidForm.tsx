@@ -21,11 +21,11 @@ import {
 import dayjs from 'dayjs';
 import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
+import KortUkeInfo from '../arbeidstid-uker/components/KortUkeInfo';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
-import KortUkeInfo from '../arbeidstid-uker/components/KortUkeInfo';
 
 type EndreArbeidstidData = {
     perioder: DateRange[];
@@ -36,7 +36,6 @@ export interface EndreArbeidstidFormProps {
     arbeidsuker: Arbeidsuke[];
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     endring?: ArbeidstidEndring;
-    arbeidsgivernavn: string;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
