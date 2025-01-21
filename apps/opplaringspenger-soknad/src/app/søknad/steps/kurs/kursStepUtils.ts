@@ -1,6 +1,6 @@
 import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getDateRangeValidator, getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import {
     getDate1YearFromNow,
     getDate3YearsAgo,
@@ -20,6 +20,7 @@ import kursperiodeUtils from './kursperiodeUtils';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
 import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
+import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 
 dayjs.extend(isoWeek);
 
@@ -209,8 +210,25 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
 };
 
-export const erAlleReisedagerInnenforSøknadsperioder = (reisedager: Date[], søknadsperioder: DateRange[]): boolean => {
-    return reisedager.every((reisedag) => isDateInDateRanges(reisedag, søknadsperioder));
+export const erAlleReisedagerInnenforSøknadsperioder = (
+    reisedager: Enkeltdato[],
+    søknadsperioder: DateRange[],
+): boolean => {
+    return reisedager.every((reisedag) => isDateInDateRanges(reisedag.dato, søknadsperioder));
+};
+
+export const getReisedagerValidator = (kursperioder: DateRange[]) => {
+    return (reisedager: Enkeltdato[]) => {
+        const error = getListValidator({ required: true })(reisedager);
+        if (error) {
+            return error;
+        }
+        /** Kontroller om datoer er innenfor søknadsperioder */
+        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder) === false) {
+            return 'reisedagUtenforKursperiode';
+        }
+        return undefined;
+    };
 };
 
 export const erFerieInnenforSøknadsperioder = (ferieperioder: DateRange[], søknadsperioder: DateRange[]): boolean => {
@@ -218,4 +236,18 @@ export const erFerieInnenforSøknadsperioder = (ferieperioder: DateRange[], søk
         const feriedager = getDatesInDateRange(ferieperiode);
         return feriedager.every((feriedag) => isDateInDateRanges(feriedag, søknadsperioder));
     });
+};
+
+export const getFerieperioderValidator = (kursperioder: DateRange[]) => {
+    return (ferieperioder: DateRange[]) => {
+        const listError = getListValidator({ required: true })(ferieperioder);
+        if (listError) {
+            return listError;
+        }
+        /** Kontroller om ferieperioder er innenfor søknadsperioder */
+        if (erFerieInnenforSøknadsperioder(ferieperioder, kursperioder) === false) {
+            return 'ferieperiodeUtenforKursperiode';
+        }
+        return undefined;
+    };
 };

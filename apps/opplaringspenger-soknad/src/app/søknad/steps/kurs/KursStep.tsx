@@ -1,13 +1,7 @@
 import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import {
-    DateRange,
-    FormikInputGroup,
-    getTypedFormComponents,
-    ValidationError,
-    YesOrNo,
-} from '@navikt/sif-common-formik-ds';
-import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
@@ -29,8 +23,8 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import {
-    erFerieInnenforSøknadsperioder,
     getDateRangesFromKursperiodeFormValues,
+    getFerieperioderValidator,
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
@@ -251,20 +245,7 @@ const KursStep = () => {
                                                     minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
                                                     maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
                                                     disabledDateRanges={disabledDateRanges}
-                                                    validate={(ferieperioder: DateRange[]) => {
-                                                        const listError = getListValidator({ required: true })(
-                                                            ferieperioder,
-                                                        );
-                                                        if (listError) {
-                                                            return listError;
-                                                        }
-                                                        /** Kontroller om ferieperioder er innenfor søknadsperioder */
-                                                        if (
-                                                            erFerieInnenforSøknadsperioder(ferieperioder, kursperioder)
-                                                        ) {
-                                                            return 'ferieperiodeUtenforKursperiode';
-                                                        }
-                                                    }}
+                                                    validate={getFerieperioderValidator(kursperioder)}
                                                 />
                                             </FormLayout.Panel>
                                         </FormLayout.QuestionBleedTop>

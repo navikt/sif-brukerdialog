@@ -1,12 +1,12 @@
 import { KursFormFields } from './KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikTextarea } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import { useAppIntl } from '../../../i18n';
-import { erAlleReisedagerInnenforSøknadsperioder } from './kursStepUtils';
+import { getReisedagerValidator } from './kursStepUtils';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -33,17 +33,7 @@ const ReisedagerFormPart = ({ søknadsperiode, disabledDateRanges, kursperioder 
                     maxDate={søknadsperiode.to}
                     labelRenderer={(dato: Enkeltdato) => capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                     disabledDateRanges={disabledDateRanges}
-                    validate={(reisedager: Date[]) => {
-                        const error = getListValidator({ required: true })(reisedager);
-                        if (error) {
-                            return error;
-                        }
-                        /** Kontroller om datoer er innenfor søknadsperioder */
-                        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder)) {
-                            return 'reisedagUtenforKursperiode';
-                        }
-                        return undefined;
-                    }}
+                    validate={getReisedagerValidator(kursperioder)}
                 />
                 <FormikTextarea
                     name={KursFormFields.reisedagerBeskrivelse}
