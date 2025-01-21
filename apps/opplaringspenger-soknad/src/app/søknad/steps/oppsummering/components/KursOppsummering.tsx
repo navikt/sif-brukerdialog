@@ -18,7 +18,7 @@ interface Props {
 }
 
 const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
-    const { kursholder, perioder } = kurs;
+    const { kursholder, kursperioder } = kurs;
     const { locale } = useAppIntl();
     return (
         <>
@@ -42,9 +42,9 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <List>
-                                {perioder.map((periode) => {
+                                {kursperioder.map((kursperiode) => {
                                     const periodeString = dateRangeFormatter.getDateRangeText(
-                                        ISODateRangeToDateRange(periode.kursperiode),
+                                        ISODateRangeToDateRange(kursperiode),
                                         locale,
                                     );
                                     return <List.Item key={periodeString}>{periodeString}</List.Item>;
