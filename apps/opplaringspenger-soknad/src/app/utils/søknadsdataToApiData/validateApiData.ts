@@ -7,12 +7,14 @@ export enum API_DATA_VALIDATION_ERROR {
     'omsorgsavtaleMangler' = 'omsorgsavtaleMangler',
 }
 
-export const validateApiDataMessages = {
-    nb: {
-        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
-        'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
-    },
+const nb = {
+    'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
+    'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
 };
+
+const nn: Record<keyof typeof nb, string> = { ...nb };
+
+export const validateApiDataMessages = { nb, nn };
 
 interface ApiDataValidationError {
     error: API_DATA_VALIDATION_ERROR;

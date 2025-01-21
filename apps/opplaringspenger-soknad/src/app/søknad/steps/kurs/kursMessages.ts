@@ -67,7 +67,7 @@ const nb = {
 
     'steg.kurs.reisedagerFormPart.modal.addLabel': 'Legg til reisedag',
     'steg.kurs.reisedagerFormPart.modal.modalTitle': 'Reisedager',
-    'steg.kurs.reisedagerFormPart.modal.listTitle': 'Reisedager uten kurs eller opplæring',
+    'steg.kurs.reisedagerFormPart.modal.listTitle': 'Reise på dager du ikke har kurs eller opplæring',
     'steg.kurs.reisedagerFormPart.modal.modalDescription':
         'Du kan kun velge dager som du har søkt om opplæringspenger.',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
