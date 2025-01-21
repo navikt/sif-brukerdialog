@@ -110,7 +110,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
         : [];
 
     const getMaksTimer = () => {
-        const antallDager = arbeidsuker.length === 1 ? arbeidsuker[0].antallDagerSøktFor : 7;
+        const antallDager = arbeidsuker.length === 1 ? arbeidsuker[0].antallDagerMedArbeidstid : 7;
         return 24 * antallDager;
     };
 

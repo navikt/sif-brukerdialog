@@ -48,7 +48,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
         );
     }
     const { faktisk, endretProsent } = uke.endret;
-    const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerSøktFor);
+    const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
         <div className={'endretArbeidstid'}>

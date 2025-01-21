@@ -16,7 +16,10 @@ const getMockArbeidsuke = (
     normaltPerDag: Duration = { hours: '7', minutes: '30' },
     faktiskPerDag: Duration = { hours: '2', minutes: '0' },
 ): Arbeidsuke => {
-    const antallDagerSøktFor = dateRangeUtils.getNumberOfDaysInDateRange(ISODateRangeToDateRange(isoDateRange), true);
+    const antallDagerMedArbeidstid = dateRangeUtils.getNumberOfDaysInDateRange(
+        ISODateRangeToDateRange(isoDateRange),
+        true,
+    );
     const periode = ISODateRangeToDateRange(isoDateRange);
     const dagerSøktFor = getDatesInDateRange(periode, true).map((d) => dateToISODate(d)); // Alle dager i perioden
     const arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap = {};
@@ -34,14 +37,14 @@ const getMockArbeidsuke = (
         dagerIkkeAnsatt: [],
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         normalt: {
-            uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerSøktFor),
+            uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerMedArbeidstid),
             dag: normaltPerDag,
         },
         faktisk: {
-            uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallDagerSøktFor),
+            uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallDagerMedArbeidstid),
             dag: faktiskPerDag,
         },
-        antallDagerSøktFor,
+        antallDagerMedArbeidstid,
     };
 };
 

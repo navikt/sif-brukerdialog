@@ -4,11 +4,11 @@ import { ArbeidstidEndring, TimerEllerProsent } from '@types';
 export const beregnEndretArbeidstidForUke = (
     endring: ArbeidstidEndring,
     normaltidPerUke: Duration,
-    antallDagerSøktFor: number,
+    antallDagerMedArbeidstid: number,
 ): Duration => {
     return getTimerPerUkeFraTimerPerDag(
-        beregnEndretFaktiskArbeidstidPerDag(normaltidPerUke, endring, antallDagerSøktFor),
-        antallDagerSøktFor,
+        beregnEndretFaktiskArbeidstidPerDag(normaltidPerUke, endring, antallDagerMedArbeidstid),
+        antallDagerMedArbeidstid,
     );
 };
 
@@ -37,8 +37,8 @@ export const summerTimerPerDag = (timerPerDag: Duration, antallDager: number): D
     return decimalDurationToDuration(durationToDecimalDuration(timerPerDag) * antallDager);
 };
 
-export const getTimerPerUkeFraTimerPerDag = (tidPerDag: Duration, antallDagerSøktFor: number): Duration => {
-    return summerTimerPerDag(tidPerDag, antallDagerSøktFor);
+export const getTimerPerUkeFraTimerPerDag = (tidPerDag: Duration, antallDagerMedArbeidstid: number): Duration => {
+    return summerTimerPerDag(tidPerDag, antallDagerMedArbeidstid);
 };
 
 /**

@@ -307,7 +307,7 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
 ): Arbeidsuke => {
     const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(periode, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
-    const antallDagerSøktFor = dagerSøktFor.length;
+    const antallDagerMedArbeidstid = dagerSøktFor.length;
     const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
     const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].normalt);
     const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
@@ -319,14 +319,14 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(periode, ansettelsesperioder),
-        antallDagerSøktFor: dagerSøktFor.length,
+        antallDagerMedArbeidstid: dagerSøktFor.length,
         faktisk: {
             uke: faktiskSummertHeleUken,
-            dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerSøktFor),
+            dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
         },
         normalt: {
             uke: normaltSummertHeleUken,
-            dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerSøktFor),
+            dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),
         },
     };
     return arbeidsuke;
