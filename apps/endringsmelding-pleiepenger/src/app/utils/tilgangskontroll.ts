@@ -1,4 +1,4 @@
-import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
+import { DateRange, durationToDecimalDuration, ensureDateRange, sortDateRange } from '@navikt/sif-common-utils';
 import {
     ArbeidsgiverForEndring,
     IngenTilgangÅrsak,
@@ -26,7 +26,11 @@ type TilgangTillatt = {
 
 export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRange): TilgangKontrollResultat => {
+export const tilgangskontroll = (
+    saker: K9Sak[],
+    tillattEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverForEndring[],
+): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {
@@ -55,6 +59,11 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     /** Bruker er SN */
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
+    }
+
+    /** Bruker har ansettelsperioder hos samme arbeidsgiver som starter og stopper samme uke, med opphold mellom */
+    if (harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold(sak, tillattEndringsperiode, arbeidsgivere)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harAnsettelsesforholdSomSlutterOgStarterInneforSammeUke);
     }
 
     if (ingenTilgangÅrsak.length > 0) {
@@ -114,8 +123,51 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
         : false;
 };
 
+const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
+    sak: K9Sak,
+    tillatEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverForEndring[],
+): boolean => {
+    const orgnrISak = (sak.ytelse.arbeidstid.arbeidstakerList || []).map((a) => a.organisasjonsnummer);
+    return arbeidsgivere
+        .filter((a) => orgnrISak.includes(a.organisasjonsnummer))
+        .some((arbeidsgiver) => {
+            const ansettelserInnenforEndringsperiode = arbeidsgiver.ansettelsesperioder.map((d) =>
+                ensureDateRange(d, tillatEndringsperiode),
+            );
+            return perioderSlutterOgStarterSammeUkeMedOpphold(ansettelserInnenforEndringsperiode);
+        });
+};
+
+/**
+ * Går gjennom array for å se om det er perioder som slutter og starter innenfor samme
+ * uke, og hvor det er opphold på en dag mellom periodene.
+ * @param ansettelsesperioder DateRange
+ * @returns boolean
+ */
+const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRange[]) => {
+    return ansettelsesperioder.sort(sortDateRange).some((periode, index) => {
+        if (index === 0) {
+            return false;
+        }
+        const forrigePeriode = ansettelsesperioder[index - 1];
+
+        /** Slutter og starter periodene innenfor samme uke */
+        if (!dayjs(periode.from).isSame(dayjs(forrigePeriode.to), 'isoWeek')) {
+            return false;
+        }
+        /** Periodene er sammenhengende */
+        if (dayjs(periode.from).diff(forrigePeriode.to, 'day') === 1) {
+            return false;
+        }
+
+        return true;
+    });
+};
+
 export const tilgangskontrollUtils = {
     getIngenTilgangMeta,
     harArbeidsgiverUtenArbeidsaktivitet,
     harSøknadsperiodeInnenforTillattEndringsperiode,
+    slutterOgStarterHosArbeidsgiverSammeUke: perioderSlutterOgStarterSammeUkeMedOpphold,
 };

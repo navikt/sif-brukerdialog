@@ -33,7 +33,11 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
         const { endretProsent } = uke.endret;
         return (
             <>
-                {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
+                {medLabels && (
+                    <BodyShort as="div" size="small">
+                        Arbeidstimer:
+                    </BodyShort>
+                )}
                 <span data-testid="timer-faktisk">
                     <DurationText duration={uke.endret.faktisk} />
                 </span>

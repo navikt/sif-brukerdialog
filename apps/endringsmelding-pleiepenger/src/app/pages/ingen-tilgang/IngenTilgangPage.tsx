@@ -88,6 +88,15 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>{skrivTilOssGenerell}</p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.harAnsettelsesforholdSomSlutterOgStarterInneforSammeUke:
+            return (
+                <BodyLong as="div" data-testid="flereSaker">
+                    <p>
+                        <AppText id="ingenTilgangPage.slutterOgStarterInneforSammeUke" />
+                    </p>
+                    <p>{skrivTilOssGenerell}</p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">

@@ -29,11 +29,11 @@ describe('tilgangskontroll', () => {
     const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
 
     it('stopper ved ingen sak', () => {
-        const result = tilgangskontroll([], tillattEndringsperiode);
+        const result = tilgangskontroll([], tillattEndringsperiode, []);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
     it('stopper hvis bruker har flere enn én sak', () => {
-        const result = tilgangskontroll([true, false] as any, tillattEndringsperiode);
+        const result = tilgangskontroll([true, false] as any, tillattEndringsperiode, []);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
 });
@@ -144,5 +144,34 @@ describe('ingenTilgangMeta', () => {
         expect(result.erArbeidstaker).toBeTruthy();
         expect(result.erFrilanser).toBeTruthy();
         expect(result.erSN).toBeTruthy();
+    });
+});
+
+describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
+    const uke2: DateRange = ISODateRangeToDateRange('2025-01-06/2025-01-12');
+    const uke4: DateRange = ISODateRangeToDateRange('2025-01-20/2025-01-26');
+    const uke3ManOns: DateRange = ISODateRangeToDateRange('2025-01-13/2025-01-15');
+    const uke3TorFre: DateRange = ISODateRangeToDateRange('2025-01-16/2025-01-17');
+    const uke3FreSøn: DateRange = ISODateRangeToDateRange('2025-01-17/2025-01-19');
+
+    it('returnerer false hvis det ikke er noen ansettelsesperiode', () => {
+        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([])).toBeFalsy();
+    });
+    it('returnerer false hvis det bare er én ansettelsesperiode', () => {
+        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2])).toBeFalsy();
+    });
+    it('returnerer false hvis det to ansettelsesperiode med én uke mellom', () => {
+        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2, uke4])).toBeFalsy();
+    });
+    it('returnerer false hvis det to ansettelsesperiode med er sammenhengende', () => {
+        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke3ManOns, uke3TorFre])).toBeFalsy();
+    });
+    it('returnerer true hvis to perioder slutter og starter innenfor samme uke men med opphold', () => {
+        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke3ManOns, uke3FreSøn])).toBeTruthy();
+    });
+    it('returnerer true hvis to det er mange perioder usortert og noen slutter og starter innenfor samme uke men med opphold', () => {
+        expect(
+            tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2, uke4, uke3ManOns, uke3FreSøn]),
+        ).toBeTruthy();
     });
 });
