@@ -29,7 +29,7 @@ import {
     getSøknadsperiodeFromKursperioderFormValues,
 } from './kursStepUtils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
-import ReisedagerFormPart from './kursperioder-form-part/ReisedagerFormPart';
+import ReisedagerFormPart from './ReisedagerFormPart';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 export enum KursFormFields {

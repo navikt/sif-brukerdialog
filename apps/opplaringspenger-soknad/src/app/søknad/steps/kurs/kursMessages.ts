@@ -60,6 +60,15 @@ const nb = {
         'Hvis vi er i tvil om opplæringsstedet er en godkjent helseinstitusjon, må institusjonen selv dokumentere sin status.',
 
     'steg.kurs.reisedager.førPeriodeLagtTil': 'Du må legge inn en søknadsperiode før du kan legge til reisedager.',
+
+    'steg.kurs.reisedagerFormPart.modal.addLabel': 'Legg til reisedag',
+    'steg.kurs.reisedagerFormPart.modal.modalTitle': 'Reisedager',
+    'steg.kurs.reisedagerFormPart.modal.listTitle': 'Reisedager uten kurs eller opplæring',
+    'steg.kurs.reisedagerFormPart.modal.modalDescription':
+        'Du kan kun velge dager som du har søkt om opplæringspenger.',
+    'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
+    'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
+        'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

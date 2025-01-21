@@ -6,7 +6,7 @@ import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validati
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
-import { getPerioderFromKursperiodeFormValue } from '../kursperiodeUtils';
+import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 
 export enum KursperiodeFormFields {
@@ -50,10 +50,8 @@ const KursperiodeQuestions = ({
 
     const disabledDateRanges = allePerioder
         .filter((p) => p !== values)
-        .map(getPerioderFromKursperiodeFormValue)
-        .filter((p) => p !== undefined)
-        .map((p) => p.periode);
-
+        .map(getPeriodeFromKursperiodeFormValue)
+        .filter((p) => p !== undefined);
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
     const periodeNr = index + 1;
