@@ -11,10 +11,7 @@ const nb = {
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.kursperioder.tekst':
         'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
-
-    'steg.kurs.kursperiode.addLabel': 'Legg til kursperiode',
-    'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
-    'steg.kurs.kursperiode.listTitle': 'Kursperioder',
+    'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
@@ -43,8 +40,26 @@ const nb = {
     'steg.kurs.ferie.addLabel': 'Legg til ferie',
     'steg.kurs.ferie.modalTitle': 'Legg til ferie',
     'steg.kurs.ferie.listTitle': 'Ferie i perioden',
+    'steg.kurs.ferie.modalDescription': 'Du kan kun velge dager som du har søkt om opplæringspenger.',
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
+
+    'steg.kurs.godkjentHelseinstitusjon.label': 'Hva er en godkjent helseinstitusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.text.1':
+        'En godkjent helseinstitusjon tilbyr vanligvis heldøgnsopphold, og tjenester fra flere typer helsepersonell og behandlingstilbud. Typiske eksempler er sykehus, opptreningsinstitusjoner og poliklinikker.',
+    'steg.kurs.godkjentHelseinstitusjon.text.2':
+        'Kurset eller opplæringen kan også skje utenfor helseinstitusjonens lokaler, men dette forutsetter at det er i regi av helseinstitusjonen, og at institusjonen har hele det faglige og økonomiske ansvaret for kurset. Det inkluderer også de pårørendes utgifter.',
+    'steg.kurs.godkjentHelseinstitusjon.text.3':
+        'Du kan også få opplæringspenger for foreldrekurs ved et offentlig spesialpedagogisk kompetansesenter.',
+    'steg.kurs.godkjentHelseinstitusjon.text.4':
+        'Kommunehelsetjenesteloven eller Spesialisthelsetjenesteloven sier hva som er en godkjent helseinstitusjon.',
+    'steg.kurs.godkjentHelseinstitusjon.text.5': 'Hva er ikke godkjent som helseinstitusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.text.6':
+        'Det gis ikke opplæringspenger hvis du deltar i opplæring som arrangeres av humanitære organisasjoner, brukerorganisasjoner eller lignende. Barne-, ungdoms- og familieetaten (Bufetat) og hjelpemiddelsentralen er andre eksempler på helseinstitusjoner som ikke er godkjente.',
+    'steg.kurs.godkjentHelseinstitusjon.text.7':
+        'Hvis vi er i tvil om opplæringsstedet er en godkjent helseinstitusjon, må institusjonen selv dokumentere sin status.',
+
+    'steg.kurs.reisedager.førPeriodeLagtTil': 'Du må legge inn en søknadsperiode før du kan legge til reisedager.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

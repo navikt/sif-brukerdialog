@@ -60,7 +60,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                             validateForm(values);
                                         });
                                     }}>
-                                    Legg til ny periode
+                                    <AppText id="steg.kurs.kursperioder.leggTil.label" />
                                 </Button>
                             </Box>
                         </VStack>
