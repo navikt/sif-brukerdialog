@@ -16,7 +16,7 @@ const nb = {
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst':
-        'Du kan ha rett til opplæringspenger for reisedager til og fra opplæringen. Eksempel: [TODO]',
+        'Du kan ha rett til opplæringspenger for reisedager til og fra opplæringen.',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
@@ -91,7 +91,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst':
-        'Du kan ha rett til opplæringspengar for reisedagar til og frå opplæringa. Døme: [TODO]',
+        'Du kan ha rett til opplæringspengar for reisedagar til og frå opplæringa.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':

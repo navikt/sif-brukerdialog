@@ -35,6 +35,5 @@ export const validateApiData = (
             message: text('apiDataValidation.undefined'),
         };
     }
-    // TODO
     return undefined;
 };
