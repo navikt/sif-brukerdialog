@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.3.2
+
+### Patch Changes
+
+- Slette ubrukt komponent og lokal fallback som håndterer nynorsk på Forrige steg knapp
+
 ## 2.3.1
 
 ### Patch Changes
