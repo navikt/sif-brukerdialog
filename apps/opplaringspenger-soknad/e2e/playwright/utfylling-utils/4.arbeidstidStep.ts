@@ -2,10 +2,7 @@ import { expect, Page } from '@playwright/test';
 
 export const fyllUtArbeidstid = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
-    await page
-        .getByRole('group', { name: 'Jobber du noe hos Arbeids- og' })
-        .getByLabel('Jeg jobber noe de dagene jeg')
-        .check();
+    await page.getByRole('group', { name: 'Jobber du noe hos Arbeids- og' }).getByLabel('Jeg jobber noe').check();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').fill('5');
     await page.getByRole('group', { name: 'Uke 49' }).getByLabel('Timer').first().click();
