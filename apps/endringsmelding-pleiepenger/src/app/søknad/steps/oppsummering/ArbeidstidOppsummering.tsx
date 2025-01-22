@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { ArbeidsgiverForEndring, ArbeidstidApiData } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@types';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
@@ -9,7 +9,7 @@ import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
-    arbeidsgivere: ArbeidsgiverForEndring[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
 }
 
 const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, arbeidsgivere }) => {

@@ -1,11 +1,20 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { ArbeidsgiverForEndring, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 import { vi } from 'vitest';
 
-const arbeidsgiver1: ArbeidsgiverForEndring = { key: 'a_1', organisasjonsnummer: '1' } as ArbeidsgiverForEndring;
-const arbeidsgiver2: ArbeidsgiverForEndring = { key: 'a_2', organisasjonsnummer: '2' } as ArbeidsgiverForEndring;
-const arbeidsgiver3: ArbeidsgiverForEndring = { key: 'a_3', organisasjonsnummer: '3' } as ArbeidsgiverForEndring;
+const arbeidsgiver1: ArbeidsgiverMedAnsettelseperioder = {
+    key: 'a_1',
+    organisasjonsnummer: '1',
+} as ArbeidsgiverMedAnsettelseperioder;
+const arbeidsgiver2: ArbeidsgiverMedAnsettelseperioder = {
+    key: 'a_2',
+    organisasjonsnummer: '2',
+} as ArbeidsgiverMedAnsettelseperioder;
+const arbeidsgiver3: ArbeidsgiverMedAnsettelseperioder = {
+    key: 'a_3',
+    organisasjonsnummer: '3',
+} as ArbeidsgiverMedAnsettelseperioder;
 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
 const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;

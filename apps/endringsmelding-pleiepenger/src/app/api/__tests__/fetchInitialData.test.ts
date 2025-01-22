@@ -1,5 +1,5 @@
 import { dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { ArbeidsgiverForEndring } from '../../types';
+import { ArbeidsgiverMedAnsettelseperioder } from '../../types';
 import {
     getArbeidsgivereFromArbeidsgiverOrganisasjoner,
     getPeriodeForArbeidsgiverOppslag,
@@ -41,7 +41,7 @@ describe('initialDataUtils', () => {
                 },
             ];
 
-            const expectedResult: ArbeidsgiverForEndring[] = [
+            const expectedResult: ArbeidsgiverMedAnsettelseperioder[] = [
                 {
                     key: 'a_123',
                     navn: 'a',
@@ -65,7 +65,7 @@ describe('initialDataUtils', () => {
                     ansattFom: '2022-02-15',
                 },
             ];
-            const expectedResult: ArbeidsgiverForEndring[] = [
+            const expectedResult: ArbeidsgiverMedAnsettelseperioder[] = [
                 {
                     key: 'a_123',
                     navn: 'a',

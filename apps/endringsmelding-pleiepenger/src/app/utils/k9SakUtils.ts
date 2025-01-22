@@ -1,5 +1,5 @@
 import { DateRange, dateRangeUtils, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
-import { ArbeidsgiverForEndring, K9Sak, K9SakArbeidstaker } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak, K9SakArbeidstaker } from '@types';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
@@ -15,7 +15,7 @@ export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefi
 };
 
 export const finnesArbeidsgiverIK9Sak = (
-    arbeidsgiver: ArbeidsgiverForEndring,
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
     arbeidsgivereISak: K9SakArbeidstaker[],
 ): boolean => {
     return arbeidsgivereISak.some(

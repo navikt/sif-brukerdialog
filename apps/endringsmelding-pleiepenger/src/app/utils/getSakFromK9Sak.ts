@@ -26,7 +26,7 @@ import {
     ArbeidsaktivitetFrilanser,
     ArbeidsaktivitetSelvstendigNæringsdrivende,
     ArbeidsaktivitetType,
-    ArbeidsgiverForEndring,
+    ArbeidsgiverMedAnsettelseperioder,
     ArbeidsgiverIkkeFunnetError,
     ArbeidstidEnkeltdagMap,
     Arbeidsuke,
@@ -65,7 +65,7 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
  */
 export const getSakFromK9Sak = (
     k9sak: K9Sak,
-    alleArbeidsgivere: ArbeidsgiverForEndring[],
+    alleArbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     tillattEndringsperiode: DateRange,
 ): Sak => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
@@ -138,7 +138,7 @@ export const getSakFromK9Sak = (
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
 export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): K9SakArbeidstaker[] => {
     return k9SakArbeidstakere.filter((a) =>
         arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer),
@@ -148,7 +148,7 @@ export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
 /** Henter utk9SakArbeidstakere hvor arbeidsgiver IKKE er funnet i AA-reg */
 export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ) => {
     return k9SakArbeidstakere.filter(
         (a) => arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer) === false,
@@ -163,7 +163,7 @@ export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
  */
 const getEndringsperiodeForArbeidsgiver = (
     tillattEndringsperiode: DateRange,
-    arbeidsgiver: ArbeidsgiverForEndring,
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
 ): DateRange => {
     const { ansettelsesperioder } = arbeidsgiver;
     const sisteAnsattTom = ansettelsesperioder.sort(sortMaybeDateRange).reverse()[0]?.to;
@@ -507,7 +507,7 @@ const getArbeidsaktivitetPerioderPart = (
  */
 const getArbeidsaktivitetArbeidstaker = (
     arbeidstaker: K9SakArbeidstaker,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     endringsperiode: DateRange,
 ): ArbeidsaktivitetArbeidstaker => {
     const {
@@ -608,7 +608,7 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
  * @returns boolean
  */
 const erArbeidsgiverInnenforSøknadsperioder = (
-    arbeidsgiver: ArbeidsgiverForEndring,
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
     søknadsperioder: DateRange[],
 ): boolean => {
     const { ansettelsesperioder = [] } = arbeidsgiver;

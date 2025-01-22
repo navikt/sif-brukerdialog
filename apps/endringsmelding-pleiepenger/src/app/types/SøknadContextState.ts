@@ -1,7 +1,7 @@
 import { DateRange } from '@navikt/sif-common-utils';
 import { StepId } from '../søknad/config/StepId';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import { ArbeidsgiverForEndring } from './ArbeidsgiverForEndring';
+import { ArbeidsgiverMedAnsettelseperioder } from './ArbeidsgiverMedAnsettelseperioder';
 import { K9Sak } from './K9Sak';
 import { Sak } from './Sak';
 import { Søker } from './Søker';
@@ -15,7 +15,7 @@ export interface SøknadContextState {
     k9saker: K9Sak[];
     sak: Sak;
     tillattEndringsperiode: DateRange;
-    arbeidsgivere: ArbeidsgiverForEndring[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     endringsmeldingSendt?: boolean;

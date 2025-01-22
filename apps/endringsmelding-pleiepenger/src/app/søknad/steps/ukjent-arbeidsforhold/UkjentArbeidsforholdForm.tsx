@@ -12,7 +12,7 @@ import {
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import {
     ArbeidsaktivitetType,
-    ArbeidsgiverForEndring,
+    ArbeidsgiverMedAnsettelseperioder,
     SøknadContextState,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
@@ -63,8 +63,8 @@ const { FormikWrapper, Form } = getTypedFormComponents<
 >();
 
 interface Props {
-    arbeidsgivere: ArbeidsgiverForEndring[];
-    arbeidsgivereIkkeISak: ArbeidsgiverForEndring[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
     stepId: StepId;
     goBack?: () => void;

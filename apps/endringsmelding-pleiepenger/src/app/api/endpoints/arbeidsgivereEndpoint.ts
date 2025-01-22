@@ -1,5 +1,5 @@
 import { DateRange, dateToISODate, ISODate } from '@navikt/sif-common-utils';
-import { ArbeidsgiverForEndring } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder } from '@types';
 import { getArbeidsgivereFromArbeidsgiverOrganisasjoner } from '../../utils/initialDataUtils';
 import api from '../api';
 import { ApiEndpointPsb } from './';
@@ -16,7 +16,7 @@ export type AARegArbeidsgiverOrganisasjon = {
 };
 
 export const arbeidsgivereEndpoint = {
-    fetch: async (periode: DateRange): Promise<ArbeidsgiverForEndring[]> => {
+    fetch: async (periode: DateRange): Promise<ArbeidsgiverMedAnsettelseperioder[]> => {
         try {
             const { from, to } = periode;
             const { data } = await api.psb.get<AAregArbeidsgiver>(

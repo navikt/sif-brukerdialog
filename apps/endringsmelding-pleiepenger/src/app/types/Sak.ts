@@ -1,6 +1,6 @@
 import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { ArbeidsgiverForEndring } from './ArbeidsgiverForEndring';
+import { ArbeidsgiverMedAnsettelseperioder } from './ArbeidsgiverMedAnsettelseperioder';
 import { K9SakBarn } from './K9Sak';
 
 export interface Sak {
@@ -9,7 +9,7 @@ export interface Sak {
     /** Settes til true hvis det finnes en arbeidsgiver som ikke har arbeidstid i sak */
     harArbeidsgivereIkkeISak: boolean;
     /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
-    arbeidsgivereIkkeISak: ArbeidsgiverForEndring[];
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     /** Alle aktiviteter som ikke har arbeidsgiver i AA-reg */
     arbeidsaktivitetMedUkjentArbeidsgiver: ArbeidsaktivitetUkjentArbeidsgiver[];
     /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
@@ -84,7 +84,7 @@ interface ArbeidsaktivitetBase {
 
 export interface ArbeidsaktivitetArbeidstaker extends ArbeidsaktivitetBase {
     type: ArbeidsaktivitetType.arbeidstaker;
-    arbeidsgiver: ArbeidsgiverForEndring;
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder;
     erUkjentArbeidsforhold: boolean;
 }
 export interface ArbeidsaktivitetUkjentArbeidsgiver {

@@ -1,12 +1,12 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { ArbeidsaktivitetType, ArbeidsgiverForEndring } from '@types';
+import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@types';
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
 interface Props {
     navn: string;
     type: ArbeidsaktivitetType;
-    arbeidsgiver?: ArbeidsgiverForEndring;
+    arbeidsgiver?: ArbeidsgiverMedAnsettelseperioder;
     endret?: { tekst: string };
     erUkjent?: boolean;
     renderAsExpansionCard?: boolean;

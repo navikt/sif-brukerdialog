@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { ArbeidsgiverForEndring, K9Sak, K9SakArbeidstaker, Sak } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak, K9SakArbeidstaker, Sak } from '@types';
 import { maskString } from './maskString';
 
 const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {
@@ -39,7 +39,7 @@ const maskSak = (sak: Sak) => {
     };
 };
 
-const maskArbeidsgivere = (arbeidsgivere: ArbeidsgiverForEndring[]) => {
+const maskArbeidsgivere = (arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[]) => {
     return arbeidsgivere.map((a) => ({
         ansettelsesperioder: a.ansettelsesperioder,
         a: maskString(a.key),
@@ -49,7 +49,7 @@ const maskArbeidsgivere = (arbeidsgivere: ArbeidsgiverForEndring[]) => {
 export const getSakOgArbeidsgivereDebugInfo = (
     k9sak: K9Sak,
     sak: Sak,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     endringsperiode: DateRange,
 ) => {
     return {

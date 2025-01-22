@@ -1,6 +1,6 @@
 import { DateRange, durationToDecimalDuration, ensureDateRange, sortDateRange } from '@navikt/sif-common-utils';
 import {
-    ArbeidsgiverForEndring,
+    ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
     K9Sak,
     K9SakArbeidstaker,
@@ -29,7 +29,7 @@ export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 export const tilgangskontroll = (
     saker: K9Sak[],
     tillattEndringsperiode: DateRange,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
@@ -101,7 +101,7 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
 };
 
 const harArbeidsgiverUtenArbeidsaktivitet = (
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     k9SakArbeidstaker: K9SakArbeidstaker[] = [],
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
@@ -126,7 +126,7 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
 const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
     sak: K9Sak,
     tillatEndringsperiode: DateRange,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): boolean => {
     const orgnrISak = (sak.ytelse.arbeidstid.arbeidstakerList || []).map((a) => a.organisasjonsnummer);
     return arbeidsgivere

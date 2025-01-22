@@ -2,7 +2,7 @@ import { durationToISODuration } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,
-    ArbeidsgiverForEndring,
+    ArbeidsgiverMedAnsettelseperioder,
     ArbeidstidSøknadsdata,
     DataBruktTilUtledningApiData,
     DataBruktTilUtledningApiDataAnnetData as DataBruktTilUtledningAnnetDataApiData,
@@ -15,7 +15,7 @@ import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 export const getDataBruktTilUtledningApiData = (
     ukjentArbeidsforhold: UkjentArbeidsforholdSøknadsdata | undefined,
     arbeidstid: ArbeidstidSøknadsdata | undefined,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): DataBruktTilUtledningApiData => {
     return {
         ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
@@ -35,7 +35,7 @@ export const getDataBruktTilUtledningAnnetDataApiData = (
 
 export const mapArbeidsforholdToArbeidsforholdApiData = (
     arbeidsforhold: Arbeidsforhold,
-    arbeidsgiver: ArbeidsgiverForEndring,
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ): UkjentArbeidsforholdApiData => {
     const organisasjonsnummer = getOrgNummerFromArbeidsgiverKey(arbeidsforhold.arbeidsgiverKey);
@@ -63,7 +63,7 @@ export const mapArbeidsforholdToArbeidsforholdApiData = (
 export const getUkjentArbeidsforholdApiDataFromSøknadsdata = (
     ukjenteArbeidsforhold: Arbeidsforhold[] | undefined,
     arbeidstid: ArbeidstidSøknadsdata | undefined,
-    arbeidsgivere: ArbeidsgiverForEndring[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): UkjentArbeidsforholdApiData[] => {
     if (ukjenteArbeidsforhold === undefined) {
         return [];
