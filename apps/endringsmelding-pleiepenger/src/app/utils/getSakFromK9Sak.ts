@@ -572,7 +572,7 @@ const getArbeidsaktivitetFrilanser = (
               key: ArbeidsaktivitetType.frilanser,
               type: ArbeidsaktivitetType.frilanser,
               navn: 'Frilanser',
-              ansettelsesperioderInnenforEndringsperiode: [endringsperiode], // TODO
+              ansettelsesperioderInnenforEndringsperiode: [], // Brukes ikke for frilanser
               ...getArbeidsaktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode, [endringsperiode]),
           }
         : undefined;
@@ -593,7 +593,7 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
               key: ArbeidsaktivitetType.selvstendigNæringsdrivende,
               type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
               navn: 'Selvstendig næringsdrivende',
-              ansettelsesperioderInnenforEndringsperiode: [], // TODO
+              ansettelsesperioderInnenforEndringsperiode: [], // Brukes ikke for SN
               ...getArbeidsaktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode, [
                   endringsperiode,
               ]),

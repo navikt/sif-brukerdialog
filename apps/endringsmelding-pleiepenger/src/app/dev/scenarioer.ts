@@ -11,7 +11,8 @@ export type ScenarioType =
     | 'ingen-sak'
     | 'arbeidsaktivitet-uten-arbeidsgiver'
     | 'ugyldig-k9-format'
-    | 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold';
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold'
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold';
 
 export interface Scenario {
     name: string;
@@ -80,6 +81,16 @@ export const scenarioer: Scenario[] = [
         name: 'Ugyldig k9format',
         value: 'ugyldig-k9-format',
         harTilgang: false,
+    },
+    {
+        name: 'Arbeidsgiver med to ansettelser samme uke med opphold',
+        value: 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold',
+        harTilgang: false,
+    },
+    {
+        name: 'Arbeidsgiver med to ansettelser samme uke uten opphold',
+        value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
+        harTilgang: true,
     },
 ];
 

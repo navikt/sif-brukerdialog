@@ -5,12 +5,13 @@ import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/Arbeidsgive
 import { ArbeidsgivereOgFrilanser } from './arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
 import { Debug } from './debug/Debug';
 import { EnArbeidsgiverEnPeriode } from './en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
+import { EnArbeidsgiverToAnsettelserSammeUkeMedOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold/EnArbeidsgiverToAnsettelserSammeUkeMedOpphold';
+import { EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold/EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold';
 import { EnArbeidsgiverToPerioder } from './en-arbeidsgiver-to-perioder/EnArbeidsgiverToPerioder';
 import { FlereSaker } from './flere-saker/FlereSaker';
 import { IngenSak } from './ingen-sak/IngenSak';
 import { SelvstendigNæringsdrivende } from './selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
 import { UgyldigK9Format } from './ugyldig-k9-format/UgyldigK9Format';
-import { EnArbeidsgiverToAnsettelserSammeUkeMedOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold/EnArbeidsgiverToAnsettelserSammeUkeMedOpphold';
 
 type ScenarioMap = {
     [key: string]: ScenarioData;
@@ -29,6 +30,7 @@ export const mockData: ScenarioMap = {
     ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
     ['ugyldig-k9-format']: UgyldigK9Format,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold']: EnArbeidsgiverToAnsettelserSammeUkeMedOpphold,
+    ['en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold']: EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold,
 };
 
 export interface ScenarioData {
