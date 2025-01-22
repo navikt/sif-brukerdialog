@@ -1,4 +1,4 @@
-import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -31,7 +31,8 @@ import {
 } from './kursStepUtils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './ReisedagerFormPart';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
+import ReiseInfo from './ReiseInfo';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -130,29 +131,7 @@ const KursStep = () => {
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
                                         </p>
-                                        <ReadMore header={text('steg.kurs.godkjentHelseinstitusjon.label')}>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.1" />
-                                            </p>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.2" />
-                                            </p>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.3" />
-                                            </p>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.4" />
-                                            </p>
-                                            <Heading level="3" size="xsmall" as="div">
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.5" />
-                                            </Heading>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.6" />
-                                            </p>
-                                            <p>
-                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.7" />
-                                            </p>
-                                        </ReadMore>
+                                        <GodkjentHelseinstitusjonInfo />
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
@@ -200,12 +179,7 @@ const KursStep = () => {
                                         name={KursFormFields.reiserUtenforKursdager}
                                         legend={text('steg.kurs.reiserUtenforKursdager.label')}
                                         validate={getYesOrNoValidator()}
-                                        description={
-                                            <ExpandableInfo
-                                                title={text('steg.kurs.reiserUtenforKursdager.info.tittel')}>
-                                                <AppText id="steg.kurs.reiserUtenforKursdager.info.tekst" />
-                                            </ExpandableInfo>
-                                        }
+                                        description={<ReiseInfo />}
                                     />
                                     {reiserUtenforKursdager ? (
                                         <FormLayout.QuestionBleedTop>

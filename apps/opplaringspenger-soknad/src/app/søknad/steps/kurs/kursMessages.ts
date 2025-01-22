@@ -14,9 +14,13 @@ const nb = {
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
-    'steg.kurs.reiserUtenforKursdager.info.tekst':
-        'Du kan ha rett til opplæringspenger for reisedager til og fra opplæringen.',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.1':
+        'Om du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.2':
+        'Her informerer du oss om kva for dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og derfor ikkje kan jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søker om opplæringspengar.',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.3':
+        'Du treng ikkje å fylle ut noko her om du reiser til og frå opplæringa same dag som du har opplæring.',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
@@ -50,18 +54,14 @@ const nb = {
 
     'steg.kurs.godkjentHelseinstitusjon.label': 'Hva er en godkjent helseinstitusjon?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
-        'En godkjent helseinstitusjon tilbyr vanligvis heldøgnsopphold, og tjenester fra flere typer helsepersonell og behandlingstilbud. Typiske eksempler er sykehus, opptreningsinstitusjoner og poliklinikker.',
+        'For å få opplæringspenger, må du få opplæringen på en godkjent helseinstitusjon eller ved et spesialpedagogisk kompetansesenter.',
     'steg.kurs.godkjentHelseinstitusjon.text.2':
-        'Kurset eller opplæringen kan også skje utenfor helseinstitusjonens lokaler, men dette forutsetter at det er i regi av helseinstitusjonen, og at institusjonen har hele det faglige og økonomiske ansvaret for kurset. Det inkluderer også de pårørendes utgifter.',
+        'Opplæring ved offentlige helseinstitusjoner i kommune- eller spesialisthelsetjeneste kan gi rett til opplæringspenger. Det vil si at for eksempel sykehus og BUP kan regnes som godkjent institusjon. Det samme gjelder private helseinstitusjoner som har avtale med helseforetakene, helsesportsentre og kompetansesenter for sjeldne diagnoser.',
     'steg.kurs.godkjentHelseinstitusjon.text.3':
-        'Du kan også få opplæringspenger for foreldrekurs ved et offentlig spesialpedagogisk kompetansesenter.',
-    'steg.kurs.godkjentHelseinstitusjon.text.4':
-        'Kommunehelsetjenesteloven eller Spesialisthelsetjenesteloven sier hva som er en godkjent helseinstitusjon.',
-    'steg.kurs.godkjentHelseinstitusjon.text.5': 'Hva er ikke godkjent som helseinstitusjon?',
-    'steg.kurs.godkjentHelseinstitusjon.text.6':
-        'Det gis ikke opplæringspenger hvis du deltar i opplæring som arrangeres av humanitære organisasjoner, brukerorganisasjoner eller lignende. Barne-, ungdoms- og familieetaten (Bufetat) og hjelpemiddelsentralen er andre eksempler på helseinstitusjoner som ikke er godkjente.',
-    'steg.kurs.godkjentHelseinstitusjon.text.7':
-        'Hvis vi er i tvil om opplæringsstedet er en godkjent helseinstitusjon, må institusjonen selv dokumentere sin status.',
+        'Du kan også få opplæringspenger for foreldrekurs ved et offentlig spesialpedagogisk kompetansesenter. Det kan for eksempel være kurs for hørsels- og synshemmede barn, kurs hos PPT og lignende. I noen tilfeller kan også private kompetansesentre godkjennes, hvis det er kvalitetsmessig likestilt med det offentlige tilbudet.',
+    'steg.kurs.godkjentHelseinstitusjon.text.4': 'Hva er ikke godkjent institusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.text.5':
+        'Det gis som hovedregel ikke opplæringspenger for kurs som arrangeres av humanitære organisasjoner og brukerorganisasjoner.',
 
     'steg.kurs.reisedager.førPeriodeLagtTil': 'Du må legge inn en søknadsperiode før du kan legge til reisedager.',
 
@@ -72,7 +72,7 @@ const nb = {
         'Du kan kun velge dager som du har søkt om opplæringspenger.',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
-        'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor.',
+        'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor det er nødvendig å reise på andre dager. Det kan for eksempel være at det er lang reisevei og/eller begrenset mulighet til å reise samme dag.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -90,8 +90,13 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
-    'steg.kurs.reiserUtenforKursdager.info.tekst':
-        'Du kan ha rett til opplæringspengar for reisedagar til og frå opplæringa.',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.1':
+        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.2':
+        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
+    'steg.kurs.reiserUtenforKursdager.info.tekst.3':
+        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
+
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
@@ -123,18 +128,14 @@ const nn: Record<keyof typeof nb, string> = {
         'Du har krysset av for at du har ferie i søknadsperioden, då må du legge til minst éi ferie.',
     'steg.kurs.godkjentHelseinstitusjon.label': 'Kva er ein godkjend helseinstitusjon?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
-        'Ein godkjend helseinstitusjon tilbyr vanlegvis heilårsope opphald, og tenester frå fleire typar helsepersonell og behandlingstilbod. Typiske døme er sjukehus, opptreningstilbod og poliklinikkar.',
+        'For å få opplæringspengar, må du få opplæringa på ein godkjend helseinstitusjon eller ved eit spesialpedagogisk kompetansesenter.',
     'steg.kurs.godkjentHelseinstitusjon.text.2':
-        'Kurset eller opplæringa kan også skje utanfor helseinstitusjonen sine lokale, men dette føreset at det er i regi av helseinstitusjonen, og at institusjonen har heile det faglege og økonomiske ansvaret for kurset. Dette inkluderer også dei pårørande sine utgifter.',
+        'Opplæring ved offentlege helseinstitusjonar i kommune- eller spesialisthelsetenesta kan gi rett til opplæringspengar. Det vil seie at for eksempel sjukehus og BUP kan reknast som godkjend institusjon. Det same gjeld private helseinstitusjonar som har avtale med helseføretaka, helsesportsenter og kompetansesenter for sjeldne diagnosar.',
     'steg.kurs.godkjentHelseinstitusjon.text.3':
-        'Du kan også få opplæringspengar for foreldrekurs ved eit offentleg spesialpedagogisk kompetansesenter.',
-    'steg.kurs.godkjentHelseinstitusjon.text.4':
-        'Kommunehelsetenestelova eller Spesialisthelsetenestelova seier kva som er ein godkjend helseinstitusjon.',
-    'steg.kurs.godkjentHelseinstitusjon.text.5': 'Kva er ikkje godkjent som helseinstitusjon?',
-    'steg.kurs.godkjentHelseinstitusjon.text.6':
-        'Det blir ikkje gitt opplæringspengar om du deltek i opplæring arrangert av humanitære organisasjonar, brukarorganisasjonar eller liknande. Barne-, ungdoms- og familieetaten (Bufetat) og hjelpemiddelsentralen er andre døme på helseinstitusjonar som ikkje er godkjende.',
-    'steg.kurs.godkjentHelseinstitusjon.text.7':
-        'Om me er i tvil om opplæringsstaden er ein godkjend helseinstitusjon, må institusjonen sjølv dokumentere sin status.',
+        'Du kan også få opplæringspengar for foreldrekurs ved eit offentleg spesialpedagogisk kompetansesenter. Det kan for eksempel vere kurs for høyrsels- og synshemma barn, kurs hos PPT og liknande. I nokre tilfelle kan også private kompetansesenter godkjennast, dersom det er kvalitetsmessig likestilt med det offentlege tilbodet.',
+    'steg.kurs.godkjentHelseinstitusjon.text.4': 'Kva er ikkje ein godkjend institusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.text.5':
+        'Som hovudregel gis det ikkje opplæringspengar for kurs som blir arrangerte av humanitære organisasjonar og brukarorganisasjonar.',
     'steg.kurs.reisedager.førPeriodeLagtTil': 'Du må legge inn ein søknadsperiode før du kan legge til reisedagar.',
     'steg.kurs.reisedagerFormPart.modal.addLabel': 'Legg til reisedag',
     'steg.kurs.reisedagerFormPart.modal.modalTitle': 'Reisedagar',
@@ -143,6 +144,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Du kan berre velje dagar som du har søkt om opplæringspengar.',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
-        'Fordi du reiser på andre dagar enn du har kurs eller opplæring, må du beskrive kvifor.',
+        'Fordi du reiser på andre dagar enn du har kurs eller opplæring, må du beskrive kvifor det er nødvendig å reise på andre dagar. Det kan for eksempel vere at det er lang reiseveg og/eller avgrensa moglegheit til å reise same dag.',
 };
 export const kursMessages = { nb, nn };
