@@ -5,7 +5,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.12.2",
+        "@grafana/faro-web-sdk": "1.12.3",
         "constate": "3.3.2",
         "react": "19.0.0"
     },
