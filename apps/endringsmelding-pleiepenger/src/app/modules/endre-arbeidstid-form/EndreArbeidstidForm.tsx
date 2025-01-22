@@ -108,6 +108,8 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
         ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerFjernet, arbeidsuker[0].periode, true)
         : [];
 
+    const gjelderKortUke = arbeidsuker.length === 1 && erKortArbeidsuke(arbeidsuker[0].periode);
+
     const getMaksTimer = () => {
         const antallDager = arbeidsuker.length === 1 ? arbeidsuker[0].antallDagerMedArbeidstid : 7;
         return 24 * antallDager;
@@ -196,7 +198,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                 </ToggleGroup.Item>
                             </ToggleGroup>
 
-                            {arbeidsuker.length === 1 ? (
+                            {gjelderKortUke ? (
                                 <Block margin="xl">
                                     <KortUkeInfo arbeidsuke={arbeidsuker[0]} />
                                 </Block>
