@@ -32,6 +32,7 @@ const App = () => (
         appName={OpplæringspengerApp.navn}
         appTitle={OpplæringspengerApp.tittel.nb}
         intlMessages={applicationIntlMessages}
+        useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
         appStatus={{
             sanityConfig: {
                 projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

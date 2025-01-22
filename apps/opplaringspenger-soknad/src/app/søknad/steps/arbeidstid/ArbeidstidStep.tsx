@@ -24,11 +24,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
-import {
-    getAntallArbeidsforhold,
-    getArbeidstidStepInitialValues,
-    getArbeidstidSøknadsdataFromFormValues,
-} from './arbeidstidStepUtils';
+import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
@@ -80,7 +76,7 @@ const ArbeidstidStep = () => {
         useLogSøknadInfo();
 
     const stepId = StepId.ARBEIDSTID;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -153,10 +149,6 @@ const ArbeidstidStep = () => {
 
     const valgteDatoer = søknadsdata.kurs?.søknadsdatoer;
 
-    const antallArbeidsforhold = søknadsdata.arbeidssituasjon
-        ? getAntallArbeidsforhold(søknadsdata.arbeidssituasjon)
-        : 0;
-
     const tempArbeidstid = tempFormData?.stepId === stepId ? tempFormData.values : undefined;
     return (
         <SøknadStep stepId={stepId}>
@@ -188,6 +180,7 @@ const ArbeidstidStep = () => {
                             : undefined;
                     const oppdatereArbeidstid = () =>
                         handleArbeidstidChanged({ ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid });
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -237,7 +230,6 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
-                                                                skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                             />
                                                         </Block>
                                                     </FormBlock>
@@ -265,7 +257,6 @@ const ArbeidstidStep = () => {
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                 />
                                             </Block>
                                         </FormBlock>
@@ -290,7 +281,6 @@ const ArbeidstidStep = () => {
                                                         onArbeidstidVariertChange={oppdatereArbeidstid}
                                                         onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                         onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                        skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                     />
                                                 </Block>
                                             </FormBlock>
