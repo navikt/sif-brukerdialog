@@ -1,8 +1,12 @@
-import { VStack } from '@navikt/ds-react';
+import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { dateRangeUtils, getDateRangesBetweenDateRangesWithinDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -10,28 +14,31 @@ import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getBarnetsFødselsdato, getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import {
+    getDateRangesFromKursperiodeFormValues,
+    getFerieperioderValidator,
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
 } from './kursStepUtils';
-import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
-import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
-import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
-import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
-import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
+import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
+import ReisedagerFormPart from './ReisedagerFormPart';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
-    arbeiderIKursperiode = 'arbeiderIKursperiode',
+    reiserUtenforKursdager = 'reiserUtenforKursdager',
+    reisedager = 'reisedager',
+    reisedagerBeskrivelse = 'reisedagerBeskrivelse',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
 }
@@ -39,9 +46,11 @@ export enum KursFormFields {
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
-    [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
+    [KursFormFields.reisedager]?: Enkeltdato[];
+    [KursFormFields.reisedagerBeskrivelse]?: string;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
+    [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
 const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
@@ -58,8 +67,7 @@ const KursStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const gyldigSøknadsperiode = getTillattSøknadsperiode();
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -85,6 +93,8 @@ const KursStep = () => {
         },
     );
 
+    const gyldigSøknadsperiode = getTillattSøknadsperiode(getBarnetsFødselsdato(søknadsdata.omBarnet));
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -92,6 +102,16 @@ const KursStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
+                    const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
+                    const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
+                    const disabledDateRanges = søknadsperiode
+                        ? getDateRangesBetweenDateRangesWithinDateRange(
+                              søknadsperiode.from,
+                              søknadsperiode.to,
+                              kursperioder,
+                          )
+                        : [];
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -110,9 +130,29 @@ const KursStep = () => {
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
                                         </p>
-                                        <p>
-                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.3" />
-                                        </p>
+                                        <ReadMore header={text('steg.kurs.godkjentHelseinstitusjon.label')}>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.1" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.2" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.3" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.4" />
+                                            </p>
+                                            <Heading level="3" size="xsmall" as="div">
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.5" />
+                                            </Heading>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.6" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.kurs.godkjentHelseinstitusjon.text.7" />
+                                            </p>
+                                        </ReadMore>
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
@@ -144,20 +184,44 @@ const KursStep = () => {
                                                     return from && to ? { from, to } : undefined;
                                                 })
                                                 .filter((range) => dateRangeUtils.isDateRange(range));
-                                            return ranges &&
-                                                ranges.length > 1 &&
-                                                dateRangeUtils.dateRangesCollide(ranges)
-                                                ? 'kursperioderOverlapper'
-                                                : undefined;
+                                            if (!ranges || ranges.length === 0) {
+                                                return undefined;
+                                            }
+                                            /** Perioder overlapper */
+                                            if (dateRangeUtils.dateRangesCollide(ranges)) {
+                                                return 'kursperioderOverlapper';
+                                            }
+                                            return undefined;
                                         }}>
-                                        <KursperioderFormPart />
+                                        <KursperioderFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                                     </FormikInputGroup>
 
                                     <YesOrNoQuestion
-                                        name={KursFormFields.arbeiderIKursperiode}
-                                        legend={text('steg.kurs.arbeiderIKursperiode.label')}
+                                        name={KursFormFields.reiserUtenforKursdager}
+                                        legend={text('steg.kurs.reiserUtenforKursdager.label')}
                                         validate={getYesOrNoValidator()}
+                                        description={
+                                            <ExpandableInfo
+                                                title={text('steg.kurs.reiserUtenforKursdager.info.tittel')}>
+                                                <AppText id="steg.kurs.reiserUtenforKursdager.info.tekst" />
+                                            </ExpandableInfo>
+                                        }
                                     />
+                                    {reiserUtenforKursdager ? (
+                                        <FormLayout.QuestionBleedTop>
+                                            {søknadsperiode ? (
+                                                <ReisedagerFormPart
+                                                    disabledDateRanges={disabledDateRanges}
+                                                    søknadsperiode={søknadsperiode}
+                                                    kursperioder={kursperioder}
+                                                />
+                                            ) : (
+                                                <Alert variant="info">
+                                                    <AppText id="steg.kurs.reisedager.førPeriodeLagtTil" />
+                                                </Alert>
+                                            )}
+                                        </FormLayout.QuestionBleedTop>
+                                    ) : null}
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.skalTaUtFerieIPerioden}
@@ -173,11 +237,15 @@ const KursStep = () => {
                                                         addLabel: text('steg.kurs.ferie.addLabel'),
                                                         modalTitle: text('steg.kurs.ferie.modalTitle'),
                                                         listTitle: text('steg.kurs.ferie.listTitle'),
+                                                        modalDescription: (
+                                                            <AppText id="steg.kurs.ferie.modalDescription" />
+                                                        ),
                                                     }}
                                                     name={KursFormFields.ferieuttak}
                                                     minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
                                                     maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
-                                                    validate={getListValidator({ required: true })}
+                                                    disabledDateRanges={disabledDateRanges}
+                                                    validate={getFerieperioderValidator(kursperioder)}
                                                 />
                                             </FormLayout.Panel>
                                         </FormLayout.QuestionBleedTop>

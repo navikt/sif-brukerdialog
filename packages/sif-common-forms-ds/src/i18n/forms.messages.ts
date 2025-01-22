@@ -1,5 +1,6 @@
 import { annetBarnMessages } from '../forms/annet-barn/annetBarnMessages';
 import { bostedUtlandMessages } from '../forms/bosted-utland/bostedUtlandMessages';
+import { enkeltdatoMessages } from '../forms/enkeltdatoer';
 import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
 import { fosterbarnMessages } from '../forms/fosterbarn/fosterbarnMessages';
 import { fraværMessages } from '../forms/fravær/fraværMessages';
@@ -22,6 +23,7 @@ const nb = {
     ...utenlandsoppholdMessages.nb,
     ...virksomhetMessages.nb,
     ...medlemskapFormMessages.nb,
+    ...enkeltdatoMessages.nb,
 };
 
 type FormsMessageKeys = keyof typeof nb;
@@ -38,6 +40,7 @@ const nn: Record<FormsMessageKeys, string> = {
     ...utenlandsoppholdMessages.nn,
     ...virksomhetMessages.nn,
     ...medlemskapFormMessages.nn,
+    ...enkeltdatoMessages.nn,
 };
 
 export const formsMessages = {

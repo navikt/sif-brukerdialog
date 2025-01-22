@@ -1,4 +1,4 @@
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
@@ -20,18 +20,20 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
         </Block>
         <Block margin="m">
             <BodyLong as="div">
-                {ansatt_arbeidsforhold.length > 0 && (
-                    <AppText
-                        id={'steg.arbeidssituasjon.veileder.medArbeidsgiver'}
-                        values={{ antall: ansatt_arbeidsforhold.length }}
-                    />
-                )}
-                {ansatt_arbeidsforhold.length === 0 && (
-                    <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
-                )}
-                <p>
-                    <AppText id={'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver'} />
-                </p>
+                <VStack gap="2" marginBlock="0 8">
+                    {ansatt_arbeidsforhold.length > 0 && (
+                        <AppText
+                            id={'steg.arbeidssituasjon.veileder.medArbeidsgiver'}
+                            values={{ antall: ansatt_arbeidsforhold.length }}
+                        />
+                    )}
+                    {ansatt_arbeidsforhold.length === 0 && (
+                        <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
+                    )}
+                    <ReadMore header="Min arbeidsgiver vises ikke">
+                        <AppText id={'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver'} />
+                    </ReadMore>
+                </VStack>
             </BodyLong>
         </Block>
         {ansatt_arbeidsforhold.length > 0 && (

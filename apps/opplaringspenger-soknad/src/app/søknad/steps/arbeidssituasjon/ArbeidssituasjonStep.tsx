@@ -104,7 +104,7 @@ const ArbeidssituasjonStep = () => {
     });
 
     const stepId = StepId.ARBEIDSSITUASJON;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -170,9 +170,6 @@ const ArbeidssituasjonStep = () => {
                                 <SifGuidePanel>
                                     <p>
                                         <AppText id="steg.arbeidssituasjon.veileder.1" />
-                                    </p>
-                                    <p>
-                                        <AppText id="steg.arbeidssituasjon.veileder.2" />
                                     </p>
                                 </SifGuidePanel>
 

@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
         mellomlagring: mellomlagringMock,
     });
     await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSSITUASJON, { arbeidssituasjon: undefined });
-    await expect(page.getByRole('heading', { name: 'Arbeidssituasjon' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Din arbeidssituasjon' })).toBeVisible();
 });
 
 test('Fyll ut arbeidssituasjon steg', async ({ page }) => {

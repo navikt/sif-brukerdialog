@@ -48,7 +48,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (
                 _harFødselsnummer: false,
                 navn: omBarnetSøknadsdata.barnetsNavn,
                 årsakManglerIdentitetsnummer: omBarnetSøknadsdata.årsakManglerIdentitetsnummer,
-                fødselsdato: omBarnetSøknadsdata.barnetsFødselsdato,
+                fødselsdato: dateToISODate(omBarnetSøknadsdata.barnetsFødselsdato),
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
                 relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
                 fødselsattestVedleggUrls: getVedleggApiData(omBarnetSøknadsdata.fødselsattest),
