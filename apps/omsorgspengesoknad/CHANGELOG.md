@@ -1,5 +1,14 @@
 # @navikt/omsorgspengesoknad
 
+## 1.37.2
+
+### Patch Changes
+
+- Slette ubrukt komponent og lokal fallback som håndterer nynorsk på Forrige steg knapp
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.3.2
+    - @navikt/sif-common-soknad-ds@23.0.1
+
 ## 1.37.1
 
 ### Patch Changes
