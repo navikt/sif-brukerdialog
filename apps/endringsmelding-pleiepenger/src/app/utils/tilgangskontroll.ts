@@ -63,7 +63,7 @@ export const tilgangskontroll = (
 
     /** Bruker har ansettelsperioder hos samme arbeidsgiver som starter og stopper samme uke, med opphold mellom */
     if (harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold(sak, tillattEndringsperiode, arbeidsgivere)) {
-        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harAnsettelsesforholdSomSlutterOgStarterInneforSammeUke);
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold);
     }
 
     if (ingenTilgangÅrsak.length > 0) {

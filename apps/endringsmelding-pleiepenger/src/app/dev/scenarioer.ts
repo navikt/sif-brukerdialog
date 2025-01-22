@@ -10,7 +10,8 @@ export type ScenarioType =
     | 'flere-saker'
     | 'ingen-sak'
     | 'arbeidsaktivitet-uten-arbeidsgiver'
-    | 'ugyldig-k9-format';
+    | 'ugyldig-k9-format'
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold';
 
 export interface Scenario {
     name: string;

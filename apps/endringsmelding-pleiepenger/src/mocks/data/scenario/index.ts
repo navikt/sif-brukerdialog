@@ -10,6 +10,7 @@ import { FlereSaker } from './flere-saker/FlereSaker';
 import { IngenSak } from './ingen-sak/IngenSak';
 import { SelvstendigNæringsdrivende } from './selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
 import { UgyldigK9Format } from './ugyldig-k9-format/UgyldigK9Format';
+import { EnArbeidsgiverToAnsettelserSammeUkeMedOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold/EnArbeidsgiverToAnsettelserSammeUkeMedOpphold';
 
 type ScenarioMap = {
     [key: string]: ScenarioData;
@@ -27,6 +28,7 @@ export const mockData: ScenarioMap = {
     ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
     ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
     ['ugyldig-k9-format']: UgyldigK9Format,
+    ['en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold']: EnArbeidsgiverToAnsettelserSammeUkeMedOpphold,
 };
 
 export interface ScenarioData {

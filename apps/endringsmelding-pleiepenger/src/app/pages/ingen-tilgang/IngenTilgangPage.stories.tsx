@@ -52,6 +52,14 @@ export const IngenSak: Story = {
     },
 };
 
+export const EnArbeidsgiverToAnsettelserSammeUkeMedOpphold: Story = {
+    name: 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
+    args: {
+        søker,
+        årsak: [IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold],
+    },
+};
+
 export const MerEnnEnSak: Story = {
     name: 'harMerEnnEnSak',
     args: {

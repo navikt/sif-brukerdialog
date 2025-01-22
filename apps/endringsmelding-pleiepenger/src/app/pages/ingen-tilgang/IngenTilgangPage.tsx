@@ -88,9 +88,9 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>{skrivTilOssGenerell}</p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harAnsettelsesforholdSomSlutterOgStarterInneforSammeUke:
+        case IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold:
             return (
-                <BodyLong as="div" data-testid="flereSaker">
+                <BodyLong as="div" data-testid="enArbeidsgiverToAnsettelserSammeUkeMedOpphold">
                     <p>
                         <AppText id="ingenTilgangPage.slutterOgStarterInneforSammeUke" />
                     </p>
