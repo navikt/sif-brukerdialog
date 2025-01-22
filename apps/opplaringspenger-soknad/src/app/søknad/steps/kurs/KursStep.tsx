@@ -143,7 +143,7 @@ const KursStep = () => {
                                             <p>
                                                 <AppText id="steg.kurs.godkjentHelseinstitusjon.text.4" />
                                             </p>
-                                            <Heading level="3" size="xsmall">
+                                            <Heading level="3" size="xsmall" as="div">
                                                 <AppText id="steg.kurs.godkjentHelseinstitusjon.text.5" />
                                             </Heading>
                                             <p>
