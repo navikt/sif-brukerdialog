@@ -10,7 +10,7 @@ export const getKursApiDataFromSøknadsdata = ({
     const apiData: KursApiData = {
         kursholder,
         kursperioder: kursperioder.map((p) => dateRangeToISODateRange(p.periode)),
-        reisedager:
+        reise:
             reisedager.reiserUtenforKursdager === true
                 ? {
                       reiserUtenforKursdager: true,
