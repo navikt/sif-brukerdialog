@@ -23,7 +23,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
         <AppText
             id="ingenTilgangPage.skrivTilOssGenerell"
             values={{
-                SkrivTilOssLink: <SkrivTilOssLink />,
+                SkrivTilOssLink: <SkrivTilOssLink key="lenke" />,
             }}
         />
     );
@@ -48,7 +48,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.harIngenSak.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
                         />
                     </p>
                     <p>
@@ -56,16 +56,16 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
+        case IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver:
             return (
                 <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
-                        <AppText id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1" />
+                        <AppText id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1" />
                     </p>
                     <p>
                         <AppText
-                            id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.2"
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
                         />
                     </p>
                 </BodyLong>
@@ -103,13 +103,16 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.utenforEndringsperiode.1"
-                            values={{ ANTALL_MÅNEDER_TILLATT_FOR_ENDRING, SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{
+                                ANTALL_MÅNEDER_TILLATT_FOR_ENDRING,
+                                SkrivTilOssLink: <SkrivTilOssLink key="lenke" />,
+                            }}
                         />
                     </p>
                     <p>
                         <AppText
                             id="ingenTilgangPage.utenforEndringsperiode.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
                         />
                     </p>
                 </BodyLong>

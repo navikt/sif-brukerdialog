@@ -4,7 +4,7 @@ export type ScenarioType =
     | 'arbeidsgiver-og-frilanser'
     | 'arbeidsgivere-og-frilanser'
     | 'arbeidsgiver-ikke-i-sak'
-    | 'flere-saker-kun-en-aktiv'
+    | 'arbeidsgiver-ikke-i-sak-flere-ansettelser'
     | 'debug'
     | 'selvstendig-næringsdrivende'
     | 'flere-saker'
@@ -48,9 +48,9 @@ export const scenarioer: Scenario[] = [
         harTilgang: true,
     },
     {
-        name: 'Flere saker, kun én aktiv',
-        value: 'flere-saker-kun-en-aktiv',
-        harTilgang: true,
+        name: 'Arbeidsgiver som ikke er i sak med flere ansettelser',
+        value: 'arbeidsgiver-ikke-i-sak-flere-ansettelser',
+        harTilgang: false,
     },
     {
         name: 'Selvstendig næringsdrivende',

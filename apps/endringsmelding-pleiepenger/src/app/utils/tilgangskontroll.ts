@@ -66,6 +66,11 @@ export const tilgangskontroll = (
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold);
     }
 
+    /** Bruker har flere ansettelsperioder hos ukjent arbeidsgiver */
+    if (harFlereAnsettelsesforholdHosUkjentArbeidsgiver(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver);
+    }
+
     if (ingenTilgangÅrsak.length > 0) {
         return {
             kanBrukeSøknad: false,
@@ -100,12 +105,16 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
     };
 };
 
-const harArbeidsgiverUtenArbeidsaktivitet = (
+const harFlereAnsettelsesforholdHosUkjentArbeidsgiver = (
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     k9SakArbeidstaker: K9SakArbeidstaker[] = [],
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
-        return finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
+        const erUkjentArbeidsgiver = finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
+        if (!erUkjentArbeidsgiver) {
+            return false;
+        }
+        return arbeidsgiver.ansettelsesperioder.length > 1;
     });
 };
 
@@ -125,7 +134,7 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
 
 const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
     sak: K9Sak,
-    tillatEndringsperiode: DateRange,
+    tillattEndringsperiode: DateRange,
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): boolean => {
     const orgnrISak = (sak.ytelse.arbeidstid.arbeidstakerList || []).map((a) => a.organisasjonsnummer);
@@ -133,7 +142,7 @@ const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
         .filter((a) => orgnrISak.includes(a.organisasjonsnummer))
         .some((arbeidsgiver) => {
             const ansettelserInnenforEndringsperiode = arbeidsgiver.ansettelsesperioder.map((d) =>
-                ensureDateRange(d, tillatEndringsperiode),
+                ensureDateRange(d, tillattEndringsperiode),
             );
             return perioderSlutterOgStarterSammeUkeMedOpphold(ansettelserInnenforEndringsperiode);
         });
@@ -167,7 +176,7 @@ const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRan
 
 export const tilgangskontrollUtils = {
     getIngenTilgangMeta,
-    harArbeidsgiverUtenArbeidsaktivitet,
     harSøknadsperiodeInnenforTillattEndringsperiode,
-    slutterOgStarterHosArbeidsgiverSammeUke: perioderSlutterOgStarterSammeUkeMedOpphold,
+    harFlereAnsettelsesforholdHosUkjentArbeidsgiver,
+    perioderSlutterOgStarterSammeUkeMedOpphold,
 };

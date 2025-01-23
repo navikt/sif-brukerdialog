@@ -88,9 +88,10 @@ const nb = {
         'Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig melde endringer i pleiepengesaken din via {SkrivTilOssLink}.',
     'ingenTilgangPage.harIngenSak.3':
         'Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.',
-    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1':
-        'Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og utbetalingene dine blir riktige.',
-    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2':
+    'ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1':
+        'Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet arbeidsforhold på deg som ikke er registrert i pleiepengesaken din, og hvor du har flere ansettelsesforhold. Du må derfor sende en ny søknad, slik at saken og utbetalingene dine blir riktige.',
+
+    'ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
     'ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1':
         'Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.',

@@ -1,5 +1,6 @@
 import { ScenarioType } from '../../../app/dev/scenarioer';
 import { ArbeidsaktivitetUtenArbeidsgiver } from './arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
+import { ArbeidsgiverIkkeISakFlereAnsettelser } from './arbeidsgiver-ikke-i-sak-flere-ansettelser/ArbeidsgiverIkkeISakFlereAnsettelser';
 import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
 import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
 import { ArbeidsgivereOgFrilanser } from './arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
@@ -13,9 +14,7 @@ import { IngenSak } from './ingen-sak/IngenSak';
 import { SelvstendigNæringsdrivende } from './selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
 import { UgyldigK9Format } from './ugyldig-k9-format/UgyldigK9Format';
 
-type ScenarioMap = {
-    [key: string]: ScenarioData;
-};
+type ScenarioMap = Record<ScenarioType, ScenarioData>;
 
 export const mockData: ScenarioMap = {
     ['en-arbeidsgiver-en-periode']: EnArbeidsgiverEnPeriode,
@@ -27,6 +26,7 @@ export const mockData: ScenarioMap = {
     ['ingen-sak']: IngenSak,
     ['debug']: Debug,
     ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
+    ['arbeidsgiver-ikke-i-sak-flere-ansettelser']: ArbeidsgiverIkkeISakFlereAnsettelser,
     ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
     ['ugyldig-k9-format']: UgyldigK9Format,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold']: EnArbeidsgiverToAnsettelserSammeUkeMedOpphold,

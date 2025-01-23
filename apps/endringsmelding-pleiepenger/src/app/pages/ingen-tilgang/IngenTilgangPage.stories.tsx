@@ -21,10 +21,10 @@ export default meta;
 type Story = StoryObj<typeof IngenTilgangPage>;
 
 export const Default: Story = {
-    name: 'harArbeidsgiverUtenArbeidsaktivitet',
+    name: 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
     args: {
         søker,
-        årsak: [IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet],
+        årsak: [IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver],
     },
 };
 

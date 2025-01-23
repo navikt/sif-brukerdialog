@@ -3,17 +3,29 @@ import { ArbeidsgiverMedAnsettelseperioder, K9SakArbeidstaker, K9SakArbeidstidPe
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 import { vi } from 'vitest';
 
+const ansettelsesperioder: DateRange[] = [ISODateRangeToDateRange('2022-01-01/2023-03-01')];
+
 const arbeidsgiver1: ArbeidsgiverMedAnsettelseperioder = {
     key: 'a_1',
+    navn: 'a_1',
+    ansettelsesperioder,
     organisasjonsnummer: '1',
-} as ArbeidsgiverMedAnsettelseperioder;
+};
 const arbeidsgiver2: ArbeidsgiverMedAnsettelseperioder = {
     key: 'a_2',
+    navn: 'a_2',
+    ansettelsesperioder,
     organisasjonsnummer: '2',
-} as ArbeidsgiverMedAnsettelseperioder;
-const arbeidsgiver3: ArbeidsgiverMedAnsettelseperioder = {
-    key: 'a_3',
-    organisasjonsnummer: '3',
+};
+
+const arbeidsgiverFlereAnsettelsesperioder: ArbeidsgiverMedAnsettelseperioder = {
+    key: 'a_4',
+    navn: 'a_4',
+    ansettelsesperioder: [
+        ISODateRangeToDateRange('2022-01-01/2023-02-01'),
+        ISODateRangeToDateRange('2023-02-01/2023-03-01'),
+    ],
+    organisasjonsnummer: '4',
 } as ArbeidsgiverMedAnsettelseperioder;
 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
@@ -47,32 +59,40 @@ describe('tilgangskontroll', () => {
     });
 });
 
-describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
-    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
-            [arbeidsgiver3],
+describe('harFlereAnsettelsesforholdHosUkjentArbeidsgiver', () => {
+    /** TODO - oppdatere */
+    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak og har flere ansettelseperioder', () => {
+        const result = tilgangskontrollUtils.harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
+            [arbeidsgiverFlereAnsettelsesperioder],
             [arbeidstaker1, arbeidstaker2],
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
+        const result = tilgangskontrollUtils.harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
             [arbeidsgiver1, arbeidsgiver2],
             [arbeidstaker1, arbeidstaker2],
+        );
+        expect(result).toBeFalsy();
+    });
+    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak men har kun én ansettelseperiode', () => {
+        const result = tilgangskontrollUtils.harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
+            [arbeidsgiver1],
+            [arbeidstaker1],
         );
         expect(result).toBeFalsy();
     });
 });
 
 describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
-    const tillatEndringsperiode = ISODateRangeToDateRange('2022-01-02/2022-02-01');
+    const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-02/2022-02-01');
     const søknadsperiodeUtenfor: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');
     const søknadsperiodeInnenfor: DateRange = ISODateRangeToDateRange('2022-01-02/2022-02-01');
 
     it('returnerer true hvis søknadsperioder er innenfor tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeInnenfor,
-            tillatEndringsperiode,
+            tillattEndringsperiode,
         );
         expect(result).toBeTruthy();
     });
@@ -80,7 +100,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     it('returnerer false hvis søknadsperioder er før tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeUtenfor,
-            tillatEndringsperiode,
+            tillattEndringsperiode,
         );
         expect(result).toBeFalsy();
     });
@@ -164,23 +184,23 @@ describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
     const uke3FreSøn: DateRange = ISODateRangeToDateRange('2025-01-17/2025-01-19');
 
     it('returnerer false hvis det ikke er noen ansettelsesperiode', () => {
-        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([])).toBeFalsy();
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([])).toBeFalsy();
     });
     it('returnerer false hvis det bare er én ansettelsesperiode', () => {
-        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2])).toBeFalsy();
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke2])).toBeFalsy();
     });
     it('returnerer false hvis det to ansettelsesperiode med én uke mellom', () => {
-        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2, uke4])).toBeFalsy();
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke2, uke4])).toBeFalsy();
     });
     it('returnerer false hvis det to ansettelsesperiode med er sammenhengende', () => {
-        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke3ManOns, uke3TorFre])).toBeFalsy();
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke3ManOns, uke3TorFre])).toBeFalsy();
     });
     it('returnerer true hvis to perioder slutter og starter innenfor samme uke men med opphold', () => {
-        expect(tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke3ManOns, uke3FreSøn])).toBeTruthy();
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke3ManOns, uke3FreSøn])).toBeTruthy();
     });
     it('returnerer true hvis to det er mange perioder usortert og noen slutter og starter innenfor samme uke men med opphold', () => {
         expect(
-            tilgangskontrollUtils.slutterOgStarterHosArbeidsgiverSammeUke([uke2, uke4, uke3ManOns, uke3FreSøn]),
+            tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke2, uke4, uke3ManOns, uke3FreSøn]),
         ).toBeTruthy();
     });
 });
