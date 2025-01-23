@@ -296,16 +296,17 @@ const getDagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: Da
 
 /**
  * Mapper periode og enkeltdager med arbeid om til Arbeidsuke. Summerer tid per dag om til timer per uke
- * @param periode DateRange for uken
+ * @param uke DateRange for uken
  * @param arbeidstidEnkeltdagerIUken Enkeltdager med arbeidstid
  * @returns Arbeidsuke
  */
 export const getArbeidsukeFromEnkeltdagerIUken = (
-    periode: DateRange,
+    uke: DateRange,
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
     ansettelsesperioder?: DateRange[],
 ): Arbeidsuke => {
-    const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(periode, arbeidstidEnkeltdager);
+    /** Forsikre seg om at ingen enkeltdager er utenfor uken */
+    const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(uke, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;
     const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
@@ -314,11 +315,11 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
     const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
 
     const arbeidsuke: Arbeidsuke = {
-        isoDateRange: dateRangeToISODateRange(periode),
-        periode: periode,
+        isoDateRange: dateRangeToISODateRange(uke),
+        periode: uke,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
-        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(periode, ansettelsesperioder),
+        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(uke, ansettelsesperioder),
         antallDagerMedArbeidstid: dagerSøktFor.length,
         faktisk: {
             uke: faktiskSummertHeleUken,
@@ -332,9 +333,19 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
     return arbeidsuke;
 };
 
-const setArbeidsukeStartdatoTilFørsteDagSøktFor = (arbeidsuke: Arbeidsuke): Arbeidsuke => {
+/** Fjerner dager det ikke er søkt for i en arbeidsuke. Men inkluderer lørdag og søndag  */
+const trimArbeidsukePeriodeTilDagerSøktForEllerHelUke = (
+    arbeidsuke: Arbeidsuke,
+    erSisteUkeIPeriode: boolean,
+): Arbeidsuke => {
     const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
-    const periode: DateRange = { ...arbeidsuke.periode, from: ISODateToDate(dagerSøktFor[0]) };
+    const periode: DateRange = {
+        from: ISODateToDate(dagerSøktFor[0]),
+        to: ISODateToDate(dagerSøktFor[dagerSøktFor.length - 1]),
+    };
+    if (!erSisteUkeIPeriode && dayjs(periode.to).isoWeekday() === 5) {
+        periode.to = dayjs(periode.to).endOf('isoWeek').toDate();
+    }
     return {
         ...arbeidsuke,
         periode,
@@ -342,18 +353,6 @@ const setArbeidsukeStartdatoTilFørsteDagSøktFor = (arbeidsuke: Arbeidsuke): Ar
     };
 };
 
-const setArbeidsukeSluttdatoTilSisteDagSøktFor = (arbeidsuke: Arbeidsuke): Arbeidsuke => {
-    const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
-    const periode: DateRange = {
-        ...arbeidsuke.periode,
-        to: ISODateToDate(dagerSøktFor[dagerSøktFor.length - 1]),
-    };
-    return {
-        ...arbeidsuke,
-        periode,
-        isoDateRange: dateRangeToISODateRange(periode),
-    };
-};
 /**
  * Grupperer arbeidsdager inn i uker
  * Hver uke er hele uker, inklusiv helg, med unntak av første og siste uke som
@@ -398,11 +397,12 @@ const getArbeidsukerFromEnkeltdager = (
     });
 
     /** Juster start og sluttdato til første og siste dag søkt for (dag med arbeidstid) */
-    if (arbeidsuker.length > 0) {
-        arbeidsuker[0] = setArbeidsukeStartdatoTilFørsteDagSøktFor(arbeidsuker[0]);
-        arbeidsuker[arbeidsuker.length - 1] = setArbeidsukeSluttdatoTilSisteDagSøktFor(
-            arbeidsuker[arbeidsuker.length - 1],
-        );
+    const antallUker = arbeidsuker.length;
+    if (antallUker > 0) {
+        arbeidsuker.forEach((arbeidsuke, index) => {
+            const erSisteUke = index === antallUker - 1;
+            arbeidsuker[index] = trimArbeidsukePeriodeTilDagerSøktForEllerHelUke(arbeidsuke, erSisteUke);
+        });
     }
 
     return arbeidsuker;
