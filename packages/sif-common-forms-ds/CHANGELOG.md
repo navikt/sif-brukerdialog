@@ -1,5 +1,23 @@
 # @navikt/sif-common-forms-ds
 
+## 19.0.0
+
+### Minor Changes
+
+- f2a18cf: EnkeltdatoListAndDialog
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+- Updated dependencies [f2a18cf]
+- Updated dependencies
+- Updated dependencies [f2a18cf]
+    - @navikt/sif-common-utils@3.49.0
+    - @navikt/sif-common-core-ds@10.2.1
+    - @navikt/sif-common-env@0.1.3
+    - @navikt/sif-common-formik-ds@2.4.0
+    - @navikt/sif-common-ui@0.9.2
+
 ## 18.0.0
 
 ### Patch Changes

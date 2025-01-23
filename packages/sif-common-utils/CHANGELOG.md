@@ -1,5 +1,15 @@
 # @navikt/sif-common-utils
 
+## 3.49.0
+
+### Minor Changes
+
+- f2a18cf: getDateRangesBetweenDateRangesWithinDateRange
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 3.48.0
 
 ### Minor Changes

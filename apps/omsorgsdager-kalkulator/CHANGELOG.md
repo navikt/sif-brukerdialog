@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.11.2
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 3.11.1
 
 ### Patch Changes
