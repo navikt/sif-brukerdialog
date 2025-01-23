@@ -120,7 +120,9 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                     id="arbeidstidStep.ingenArbeidsaktiviteter"
                                     values={{
                                         Lenke: (txt: string) => (
-                                            <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                            <Link key="lenke" href={getLenker(intl.locale).beskjedOmFamilie}>
+                                                {txt}
+                                            </Link>
                                         ),
                                     }}
                                 />

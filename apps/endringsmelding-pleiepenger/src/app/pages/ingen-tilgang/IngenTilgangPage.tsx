@@ -56,15 +56,15 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
+        case IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver:
             return (
                 <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
-                        <AppText id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1" />
+                        <AppText id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1" />
                     </p>
                     <p>
                         <AppText
-                            id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2"
+                            id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.2"
                             values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
                         />
                     </p>
