@@ -1,5 +1,15 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.0
+
+### Minor Changes
+
+- f2a18cf: modalDescription i ModalFormAndList
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 2.3.2
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @navikt/sif-common-ui
 
+## 0.9.2
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+- Updated dependencies [f2a18cf]
+- Updated dependencies
+- Updated dependencies [f2a18cf]
+    - @navikt/sif-common-utils@3.49.0
+    - @navikt/sif-common-core-ds@10.2.1
+    - @navikt/sif-common-formik-ds@2.4.0
+
 ## 0.9.1
 
 ### Patch Changes

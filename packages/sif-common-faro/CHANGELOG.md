@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.2.1
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 0.2.0
 
 ### Minor Changes
