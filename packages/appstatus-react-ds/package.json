@@ -10,13 +10,13 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "*",
         "@portabletext/react": "3.2.0",
-        "@sanity/client": "6.26.0"
+        "@sanity/client": "6.27.1"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.9.2",
         "@navikt/ds-react": "7.9.2",
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.7",
+        "@types/node": "22.10.8",
         "@types/react": "19.0.7",
         "@types/react-dom": "19.0.3",
         "config": "*",
