@@ -67,11 +67,13 @@ export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
             getDatesInDateRange(uke, true).forEach((date) => {
                 enkeldagerMap[dateToISODate(date)] = arbeidstidPerDag;
             });
-            arbeidsuker[dateRangeToISODateRange(uke)] = getArbeidsukeFromEnkeltdagerIUken(
-                uke,
-                enkeldagerMap,
-                [getTillattEndringsperiode(getEndringsdato())], // TODO - fikses når andre todos i denne er tatt
-            );
+            if (Object.keys(enkeldagerMap).length > 0) {
+                arbeidsuker[dateRangeToISODateRange(uke)] = getArbeidsukeFromEnkeltdagerIUken(
+                    uke,
+                    enkeldagerMap,
+                    [getTillattEndringsperiode(getEndringsdato())], // TODO - fikses når andre todos i denne er tatt
+                );
+            }
         });
         perioderMedArbeidstid.push({
             arbeidsuker,

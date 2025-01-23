@@ -40,7 +40,8 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByLabel('Endre uke 5 (01.02.2023 - 05.').click();
+    await page.getByLabel('Endre uke 6 (06.02').first().click();
+    await page.getByTestId('toggle-timer').click();
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok' }).click();
