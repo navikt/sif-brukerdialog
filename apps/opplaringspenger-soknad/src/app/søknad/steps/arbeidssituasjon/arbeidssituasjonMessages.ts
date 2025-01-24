@@ -2,13 +2,12 @@ const nb = {
     'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
 
     'steg.arbeidssituasjon.veileder.1':
-        'Nå trenger vi å vite litt om arbeidssituasjonen din og hvor mye du normalt jobber når du ikke har fravær fra jobben din.',
-    'steg.arbeidssituasjon.veileder.2':
-        'Hvis du er arbeidstaker og er usikker på hva som er din normale arbeidstid, finner du svaret i arbeidskontrakten din. Eventuelt kan du forhøre deg med arbeidsgiveren din.',
+        'Nå trenger vi informasjon om din arbeidssituasjon og hvor mye du normalt jobber. Dette trenger vi for å se hvor mye du taper i lønn på grunn av kurs eller opplæring.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om opplæringspenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
         'Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.',
+    'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.header': 'Min arbeidsgiver vises ikke',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
         'Hvis du i noen av dagene du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
     'steg.arbeidssituasjon.info.tekst':
@@ -107,6 +106,110 @@ const nb = {
         'Hvis du for dette arbeidsforholdet for eksempel får foreldrepenger, sykepenger eller annet fra Nav nå, registrerer du det som var normalarbeidstiden din før du begynte å få denne utbetalingen fra Nav.',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+const nn: Record<keyof typeof nb, string> = {
+    'steg.arbeidssituasjon.tittel': 'Arbeidsgivarar',
+
+    'steg.arbeidssituasjon.veileder.1':
+        'No treng vi informasjon om arbeidssituasjonen din og kor mykje du vanlegvis jobbar. Dette treng vi for å sjå kor mykje du taper i løn på grunn av kurs eller opplæring.',
+    'steg.arbeidssituasjon.veileder.medArbeidsgiver':
+        'Nedanfor ser du {antall, plural, one {arbeidsgivaren} other {arbeidsgivarane}} du er registrert som tilsett hos i AA-registeret i perioden du søkjer om opplæringspengar for. For at vi skal vere sikre på at opplysningane er riktige, må du stadfeste om du er, eller har vore, tilsett der.',
+    'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
+        'Vi har ikkje funne nokon arbeidsgivarar registrert på deg i AA-registeret.',
+    'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.header': 'Arbeidsgivaren min visast ikkje',
+    'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
+        'Dersom du i nokre av dagane du søkjer for er, eller var, tilsett hos ein arbeidsgivar som ikkje visast her, må du be arbeidsgivaren om å sende ei ny A-melding. Det gjer dei anten via sitt eige lønns- og personalsystem eller via Altinn.',
+    'steg.arbeidssituasjon.info.tekst':
+        'Om det manglar ein arbeidsgivar her, må du be arbeidsgivaren din sende ei ny A-melding, anten via lønns- og personalsystemet eller gjennom Altinn.',
+    'steg.arbeidssituasjon.ingenOpplysninger': 'Vi har ikkje funne nokon arbeidsgivar registrert på deg.',
+
+    'steg.arbeidssituasjon.intro': 'Vi har funne desse arbeidsforholda registrert på deg.',
+    'steg.arbeidssituasjon.info.tittel': 'Manglar det eit arbeidsforhold her?',
+    'steg.arbeidssituasjon.frilanser.tittel': 'Frilans',
+    'steg.arbeidssituasjon.sn.tittel': 'Sjølvstendig næringsdrivande',
+    'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
+    'steg.arbeidssituasjon.verneplikt.spm': 'Utførte du verneplikt på tidspunktet du søkjer opplæringspengar frå?',
+    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.verneplikt.info.tekst':
+        'Du skal svare ja på dette spørsmålet om du har utført verneplikt i minst 28 dagar på starttidspunktet for perioden du søkjer for, eller om perioden med verneplikt var meint å vare i minst 28 dagar.',
+
+    'steg.arbeidssituasjon.opptjeningUtland.tittel': 'Jobba i eit anna EØS-land',
+    'steg.arbeidssituasjon.opptjeningUtland.spm':
+        'Har du jobba som arbeidstakar eller frilanser i eit anna EØS-land i løpet av dei 3 siste månadene før perioden du søkjer om?',
+    'steg.arbeidssituasjon.opptjeningUtland.addLabel': 'Legg til jobb i eit anna EØS-land',
+    'steg.arbeidssituasjon.opptjeningUtland.listTitle': 'Registrert jobb i eit anna EØS-land',
+    'steg.arbeidssituasjon.opptjeningUtland.modalTitle': 'Jobb i EØS-land',
+
+    'steg.arbeidssituasjon.utenlandskNæring.spm':
+        'Har du jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei 3 siste åra før perioden du søkjer om?',
+    'steg.arbeidssituasjon.utenlandskNæring.addLabel': 'Legg til næringsverksemd i eit anna EØS-land',
+    'steg.arbeidssituasjon.utenlandskNæring.modalTitle': 'Verksemd',
+    'steg.arbeidssituasjon.utenlandskNæring.listTitle': 'Næringsverksemd i eit anna EØS-land',
+
+    'arbeidsforhold.part.jobber': 'jobbar',
+    'arbeidsforhold.part.jobbet': 'jobba',
+    'arbeidsforhold.part.hosArbeidsgiver': 'hos {navn}',
+    'arbeidsforhold.part.som.ANSATT': 'hos {navn}',
+    'arbeidsforhold.part.som.FRILANSER': 'som frilanser',
+    'arbeidsforhold.part.som.SELVSTENDIG': 'som sjølvstendig næringsdrivande',
+
+    'arbeidsforhold.ikkeAnsatt.info':
+        'Når du ikkje er tilsett her lenger, må du be denne arbeidsgivaren om å sende ei ny A-melding med sluttdato. Dette gjer dei anten via sitt eige lønns- og personalsystem eller via Altinn.',
+    'arbeidsforhold.ikkeFrilansoppdragIPerioden.info': 'Informasjon når frilansoppdraget ikkje gjeld perioden',
+
+    'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er tilsett hos {navn} i perioden du søkjer for?',
+    'arbeidsforhold.harFrilansoppdrag.spm':
+        'Stemmer det at du har eit frilansoppdrag hos {navn} i perioden du søkjer for?',
+    'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Slutta du hos {navn} før {fraDato}?',
+    'arbeidsforhold.avsluttet.info':
+        'Sluttdato var innanfor perioden du søkjer opplæringspengar for. Vi treng difor å vite korleis normalarbeidstida di var hos {navn}.',
+
+    'arbeidsforhold.jobberNormaltTimer.spm':
+        'Kor mange timar jobbar du vanlegvis per veke hos {navn} når du ikkje har fråvær?',
+    'arbeidsforhold.jobberNormaltTimer.avsluttet.spm': 'Kor mange timar jobba du vanlegvis per veke hos {navn}?',
+    'arbeidsforhold.utledet': 'timar i veka',
+    'arbeidsforhold.timer.suffix': 'timar per veke',
+
+    'arbeidsforhold.normalTimer.info.tittel': 'Kva betyr dette?',
+    'arbeidsforhold.ansatt.normalTimer.info':
+        'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også høyre med arbeidsgivaren din.',
+    'arbeidsforhold.frilanser.normalTimer.info':
+        'Her skal du oppgi kor mange timar du vanlegvis jobbar som frilanser når du ikkje har fråvær på grunn av til dømes pleiepengar.',
+    'arbeidsforhold.selvstendig.normalTimer.info':
+        'Her skal du oppgi kor mange timar du vanlegvis jobbar som sjølvstendig næringsdrivande når du ikkje har fråvær på grunn av til dømes pleiepengar.',
+    'arbeidsforhold.normalTimer.info.list.item.1':
+        'Om du jobbar like mange timar kvar veke, er det desse timane du oppgir.',
+    'arbeidsforhold.normalTimer.info.list.item.2':
+        'Om du jobbar turnus eller har ein annan varierande arbeidstid, legg du inn eit snitt per veke.',
+
+    'arbeidsforhold.normalTimer.info.turnus.tittel': 'Korleis reknar eg ut eit snitt når eg jobbar turnus?',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.1':
+        'Du reknar ut snittet ved å leggje saman talet på timar du jobbar totalt i heile turnusperioden din, og deler det med talet på veker som turnusperioden din består av.',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.2': 'Døme:',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.3':
+        'Du har ein turnus som går over 3 veker. Den første veka jobbar du 20 timar, den andre 40 timar og den tredje veka jobbar du 15 timar. Då legg du saman talet på timar du har jobba og deler med talet på veker i turnusperioden din.',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.4': 'Då blir reknestykket slik i dette dømet:',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.4a': '20 timar + 40 timar + 15 timar = 75 timar',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.4b':
+        'Så deler du talet på timar med talet på veker i turnusperioden din: 75 / 3 = 25',
+    'arbeidsforhold.normalTimer.info.turnus.avsnitt.5':
+        'Du jobbar altså i snitt 25 timar per veke, og det er dette talet du oppgir.',
+
+    'arbeidsforhold.normalTimer.info.varierende.tittel': 'Korleis reknar eg ut eit snitt ved varierande arbeidstid?',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.1':
+        'Du reknar ut eit snitt ved å leggje saman talet på timar du totalt har jobba dei siste 12 vekene og deler det med 12. Om du ikkje har jobba i 12 veker, reknar du ut snittet på same måten ved å bruke dei vekene du har jobba.',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.2': 'Døme når du har jobba dei siste 12 vekene:',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.3':
+        'Dei siste 12 vekene har du jobba 250 timar. Då deler du talet på timar du har jobba med 12: 250 timar / 12 veker = 20,8',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.4':
+        'Du jobbar altså i snitt 20,8 timar per veke, og det er dette talet du oppgir.',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.5':
+        'Slik reknar du ut eit snitt når du har jobba mindre enn 12 veker:',
+    'arbeidsforhold.normalTimer.info.varierende.avsnitt.6':
+        'Då deler du talet på timar med talet på veker du har jobba. Om du til dømes har jobba i 7 veker, så deler du talet på timar du har jobba med 7.',
+
+    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Kva om eg får utbetaling frå Nav no?',
+    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
+        'Om du for dette arbeidsforholdet til dømes får foreldrepengar, sjukepengar eller anna frå Nav no, registrerer du det som var normalarbeidstida di før du begynte å få denne utbetalinga frå Nav.',
+};
 
 export const arbeidssituasjonMessages = { nb, nn };

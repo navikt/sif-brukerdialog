@@ -10,13 +10,12 @@ import {
 } from './tidsbrukApiUtils';
 
 export const getArbeidIPeriodeApiDataFromSøknadsdata = (
-    skalJobbeIPerioden: boolean,
     arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined,
     periode: DateRange,
     jobberNormaltTimer: number,
     valgteDatoer: Date[],
 ): ArbeidIPeriodeApiData => {
-    if (skalJobbeIPerioden === false || !arbeidIPeriodeSøknadsdata) {
+    if (!arbeidIPeriodeSøknadsdata) {
         return {
             jobberIPerioden: JobberIPeriodeSvar.heltFravær,
             enkeltdager: getEnkeltdagerIPeriodeApiData(

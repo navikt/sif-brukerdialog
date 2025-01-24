@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import KursperiodeExample from './KursperiodeExample';
-import { withIntl } from '../../../../../../storybook/decorators/withIntl';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
 
 const meta: Meta<typeof KursperiodeExample> = {
     component: KursperiodeExample,

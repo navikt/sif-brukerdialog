@@ -1,37 +1,22 @@
-import { Box, Button } from '@navikt/ds-react';
-import { getTypedFormComponents, ISOStringToDate, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ISODate } from '@navikt/sif-common-utils';
+import { Box, Button, VStack } from '@navikt/ds-react';
+import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
-import {
-    getDateRangeValidator,
-    getDateValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtils';
+import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
-import kursperiodeUtils, { getPerioderFromKursperiodeFormValue } from '../kursperiodeUtils';
+import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
     fom = 'fom',
-    harTaptArbeidstid = 'harTaptArbeidstid',
-    avreise = 'avreise',
-    hjemkomst = 'hjemkomst',
-    beskrivelseReisetid = 'beskrivelseReisetid',
 }
 
 export interface KursperiodeFormValues {
     [KursperiodeFormFields.fom]: ISODate;
     [KursperiodeFormFields.tom]: ISODate;
-    [KursperiodeFormFields.harTaptArbeidstid]: YesOrNo;
-    [KursperiodeFormFields.avreise]?: ISODate;
-    [KursperiodeFormFields.hjemkomst]?: string;
-    [KursperiodeFormFields.beskrivelseReisetid]?: string;
 }
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
 
@@ -40,15 +25,22 @@ interface Props {
     index: number;
     harFlerePerioder?: boolean;
     allePerioder: Partial<KursperiodeFormValues>[];
+    gyldigSøknadsperiode: DateRange;
     onRemove?: () => void;
 }
 
 const getValidationErrorKey = (field: KursperiodeFormFields, error: string) => {
     return `kursperiode.form.${field}.validation.${error}`;
 };
-const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, onRemove }: Props) => {
+const KursperiodeQuestions = ({
+    values,
+    index,
+    harFlerePerioder,
+    allePerioder,
+    gyldigSøknadsperiode,
+    onRemove,
+}: Props) => {
     const { text } = useAppIntl();
-    const gyldigSøknadsperiode = getTillattSøknadsperiode();
     const { validateField } = useFormikContext<KursperiodeFormValues>();
     const minDate = gyldigSøknadsperiode.from;
     const maxDate = gyldigSøknadsperiode.to;
@@ -58,17 +50,14 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
 
     const disabledDateRanges = allePerioder
         .filter((p) => p !== values)
-        .map(getPerioderFromKursperiodeFormValue)
-        .filter((p) => p !== undefined)
-        .map((periode) => periode.periodeMedReise);
-
+        .map(getPeriodeFromKursperiodeFormValue)
+        .filter((p) => p !== undefined);
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
-    const harTaptArbeidstid = values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES;
     const periodeNr = index + 1;
 
     return (
-        <FormLayout.Questions>
+        <VStack gap="4">
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
                 hideLegend={harFlerePerioder === false}
@@ -140,79 +129,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                     },
                 }}
             />
-            <Form.YesOrNoQuestion
-                name={getFieldName(KursperiodeFormFields.harTaptArbeidstid)}
-                legend={text('kursperiode.form.harTaptArbeidstid.label')}
-                validate={(value) => {
-                    const error = getYesOrNoValidator()(value);
-                    if (error) {
-                        return {
-                            key: getValidationErrorKey(KursperiodeFormFields.harTaptArbeidstid, error),
-                            keepKeyUnaltered: true,
-                            values: { periodeNr, harFlerePerioder },
-                        };
-                    }
-                }}
-            />
-            {harTaptArbeidstid ? (
-                <>
-                    <Form.DatePicker
-                        name={getFieldName(KursperiodeFormFields.avreise)}
-                        label={text('kursperiode.form.avreise.label')}
-                        maxDate={startdato}
-                        defaultMonth={startdato}
-                        validate={(value) => {
-                            const error = getDateValidator({ required: true, max: startdato })(value);
-                            if (error) {
-                                return {
-                                    key: getValidationErrorKey(KursperiodeFormFields.avreise, error),
-                                    keepKeyUnaltered: true,
-                                    values: { periodeNr, harFlerePerioder },
-                                };
-                            }
-                        }}
-                    />
 
-                    <Form.DatePicker
-                        name={getFieldName(KursperiodeFormFields.hjemkomst)}
-                        label={text('kursperiode.form.hjemkomst.label')}
-                        minDate={sluttdato}
-                        defaultMonth={sluttdato}
-                        validate={(value) => {
-                            const error = getDateValidator({ required: true, min: sluttdato })(value);
-                            if (error) {
-                                return {
-                                    key: getValidationErrorKey(KursperiodeFormFields.hjemkomst, error),
-                                    keepKeyUnaltered: true,
-                                    values: { periodeNr, harFlerePerioder },
-                                };
-                            }
-                        }}
-                    />
-
-                    {kursperiodeUtils.måBesvareBeskrivelseReisetid(values) && (
-                        <Form.Textarea
-                            name={getFieldName(KursperiodeFormFields.beskrivelseReisetid)}
-                            label={text('kursperiode.form.beskrivelseReisetid.label')}
-                            description={text('kursperiode.form.beskrivelseReisetid.description')}
-                            validate={(value) => {
-                                const error = getStringValidator({
-                                    minLength: 5,
-                                    required: true,
-                                    maxLength: 500,
-                                })(value);
-                                if (error) {
-                                    return {
-                                        key: getValidationErrorKey(KursperiodeFormFields.beskrivelseReisetid, error),
-                                        keepKeyUnaltered: true,
-                                        values: { periodeNr, harFlerePerioder, maxLength: 500 },
-                                    };
-                                }
-                            }}
-                        />
-                    )}
-                </>
-            ) : null}
             {harFlerePerioder && onRemove && (
                 <Box>
                     <Button
@@ -226,7 +143,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                     </Button>
                 </Box>
             )}
-        </FormLayout.Questions>
+        </VStack>
     );
 };
 

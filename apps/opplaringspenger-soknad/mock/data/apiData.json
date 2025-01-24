@@ -1,0 +1,72 @@
+{
+    "søkerNorskIdent": "02869599258",
+    "id": "f19ded9b-10e4-48bb-8718-0de7d9e98a12",
+    "språk": "nb",
+    "harForståttRettigheterOgPlikter": true,
+    "barn": {
+        "_type": "registrertBarn",
+        "aktørId": "123",
+        "navn": "Barn Barne Barnesen",
+        "fødselsdato": "2020-04-20"
+    },
+    "vedlegg": [],
+    "fraOgMed": "2025-01-01",
+    "tilOgMed": "2025-01-02",
+    "kurs": {
+        "kursholder": "ABC",
+        "perioder": [
+            {
+                "kursperiode": "2025-01-01/2025-01-02"
+            }
+        ],
+        "reisedager": {
+            "reiserUtenforKursdager": true,
+            "reisedager": ["2025-01-01"],
+            "reisedagerBeskrivelse": "Nåja derfor"
+        }
+    },
+    "ferieuttakIPerioden": {
+        "skalTaUtFerieIPerioden": true,
+        "ferieuttak": [
+            {
+                "fraOgMed": "2025-01-01",
+                "tilOgMed": "2025-01-02"
+            }
+        ]
+    },
+    "arbeidsgivere": [
+        {
+            "type": "ORGANISASJON",
+            "navn": "Arbeids- og velferdsetaten",
+            "organisasjonsnummer": "123451234",
+            "erAnsatt": true,
+            "sluttetFørSøknadsperiode": false,
+            "arbeidsforhold": {
+                "jobberNormaltTimer": 20,
+                "arbeidIPeriode": {
+                    "jobberIPerioden": "REDUSERT",
+                    "enkeltdager": [
+                        {
+                            "dato": "2025-01-01",
+                            "tid": "PT2H0M"
+                        },
+                        {
+                            "dato": "2025-01-02",
+                            "tid": "PT0H0M"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "opptjeningIUtlandet": [],
+    "utenlandskNæring": [],
+    "medlemskap": {
+        "harBoddIUtlandetSiste12Mnd": false,
+        "utenlandsoppholdSiste12Mnd": [],
+        "skalBoIUtlandetNeste12Mnd": false,
+        "utenlandsoppholdNeste12Mnd": []
+    },
+    "harBekreftetOpplysninger": false,
+    "dataBruktTilUtledningAnnetData": "{}"
+}
