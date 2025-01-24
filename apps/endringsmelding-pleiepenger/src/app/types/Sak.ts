@@ -63,7 +63,6 @@ export interface Arbeidsuke {
     normalt: ArbeidsukeTimer;
     antallDagerMedArbeidstid: number;
     dagerSøktFor: Date[];
-    dagerIkkeAnsatt: Date[];
 }
 
 export type ArbeidsukeMap = ISODateRangeMap<Arbeidsuke>;

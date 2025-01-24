@@ -25,7 +25,6 @@ import { ArbeidsaktivitetFormValuesMap } from '../søknad/steps/arbeidstid/Arbei
 // import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getArbeidsukeFromEnkeltdagerIUken } from './getSakFromK9Sak';
-import { getEndringsdato, getTillattEndringsperiode } from './endringsperiode';
 
 export const getSøknadsperioderForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
@@ -68,11 +67,7 @@ export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
                 enkeldagerMap[dateToISODate(date)] = arbeidstidPerDag;
             });
             if (Object.keys(enkeldagerMap).length > 0) {
-                arbeidsuker[dateRangeToISODateRange(uke)] = getArbeidsukeFromEnkeltdagerIUken(
-                    uke,
-                    enkeldagerMap,
-                    [getTillattEndringsperiode(getEndringsdato())], // TODO - fikses når andre todos i denne er tatt
-                );
+                arbeidsuker[dateRangeToISODateRange(uke)] = getArbeidsukeFromEnkeltdagerIUken(uke, enkeldagerMap);
             }
         });
         perioderMedArbeidstid.push({

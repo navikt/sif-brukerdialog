@@ -68,7 +68,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-02-26T00:00:00.000Z'),
                                     to: new Date('2024-02-29T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-02-26': {
@@ -146,7 +145,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-03-25T00:00:00.000Z'),
                                     to: new Date('2024-03-31T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-03-25': {
@@ -228,7 +226,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-01T00:00:00.000Z'),
                                     to: new Date('2024-04-07T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-01': {
@@ -310,7 +307,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-08T00:00:00.000Z'),
                                     to: new Date('2024-04-14T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-08': {
@@ -392,7 +388,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-15T00:00:00.000Z'),
                                     to: new Date('2024-04-21T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-15': {
@@ -474,7 +469,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-22T00:00:00.000Z'),
                                     to: new Date('2024-04-28T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-22': {
@@ -556,7 +550,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-29T00:00:00.000Z'),
                                     to: new Date('2024-05-05T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-29': {
@@ -638,7 +631,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-06T00:00:00.000Z'),
                                     to: new Date('2024-05-12T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-06': {
@@ -720,7 +712,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-13T00:00:00.000Z'),
                                     to: new Date('2024-05-19T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-13': {
@@ -802,7 +793,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-20T00:00:00.000Z'),
                                     to: new Date('2024-05-26T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-20': {
@@ -884,7 +874,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-27T00:00:00.000Z'),
                                     to: new Date('2024-05-31T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-27': {
@@ -985,7 +974,6 @@ export const sakMock: Sak = {
                                 from: new Date('2024-04-08T00:00:00.000Z'),
                                 to: new Date('2024-04-09T00:00:00.000Z'),
                             },
-                            dagerIkkeAnsatt: [],
                             dagerSøktFor: [],
                             arbeidstidEnkeltdager: {
                                 '2024-04-08': {
@@ -1079,7 +1067,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-02-26T00:00:00.000Z'),
                                     to: new Date('2024-02-29T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-02-26': {
@@ -1157,7 +1144,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-03-25T00:00:00.000Z'),
                                     to: new Date('2024-03-31T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-03-25': {
@@ -1239,7 +1225,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-01T00:00:00.000Z'),
                                     to: new Date('2024-04-07T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-01': {
@@ -1321,7 +1306,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-08T00:00:00.000Z'),
                                     to: new Date('2024-04-14T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-08': {
@@ -1403,7 +1387,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-15T00:00:00.000Z'),
                                     to: new Date('2024-04-21T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-15': {
@@ -1485,7 +1468,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-22T00:00:00.000Z'),
                                     to: new Date('2024-04-28T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-22': {
@@ -1567,7 +1549,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-29T00:00:00.000Z'),
                                     to: new Date('2024-05-05T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-29': {
@@ -1649,7 +1630,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-06T00:00:00.000Z'),
                                     to: new Date('2024-05-12T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-06': {
@@ -1731,7 +1711,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-13T00:00:00.000Z'),
                                     to: new Date('2024-05-19T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-13': {
@@ -1813,7 +1792,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-20T00:00:00.000Z'),
                                     to: new Date('2024-05-26T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-20': {
@@ -1895,7 +1873,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-05-27T00:00:00.000Z'),
                                     to: new Date('2024-05-31T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-05-27': {
@@ -1995,7 +1972,6 @@ export const sakMock: Sak = {
                                     from: new Date('2024-04-08T00:00:00.000Z'),
                                     to: new Date('2024-04-09T00:00:00.000Z'),
                                 },
-                                dagerIkkeAnsatt: [],
                                 dagerSøktFor: [],
                                 arbeidstidEnkeltdager: {
                                     '2024-04-08': {

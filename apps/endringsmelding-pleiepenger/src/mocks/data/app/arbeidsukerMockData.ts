@@ -34,7 +34,6 @@ const getMockArbeidsuke = (
         isoDateRange,
         periode,
         arbeidstidEnkeltdager,
-        dagerIkkeAnsatt: [],
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         normalt: {
             uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerMedArbeidstid),

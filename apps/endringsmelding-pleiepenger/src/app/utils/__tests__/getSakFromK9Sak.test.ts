@@ -247,9 +247,6 @@ describe('getSakFromK9Sak', () => {
     });
 
     describe('getArbeidsukeFromEnkeltdagerIUken', () => {
-        const ansettelsesperioder: DateRange[] = [
-            { from: ISODateToDate('2022-01-01'), to: ISODateToDate('2023-01-31') },
-        ];
         const periodeEnDag: DateRange = ISODateRangeToDateRange('2022-01-03/2022-01-03');
         const periodeHelUke: DateRange = ISODateRangeToDateRange('2022-01-03/2022-01-07');
 
@@ -269,7 +266,7 @@ describe('getSakFromK9Sak', () => {
         };
 
         it('returnerer riktig for én enkeltdag', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag, ansettelsesperioder);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
@@ -278,7 +275,7 @@ describe('getSakFromK9Sak', () => {
         });
 
         it('fjerner dager som ikke er innenfor uken', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke, ansettelsesperioder);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
@@ -287,7 +284,7 @@ describe('getSakFromK9Sak', () => {
         });
 
         it('returnerer riktig for én uke', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke, ansettelsesperioder);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
             expect(uke.isoDateRange).toEqual(dateRangeToISODateRange(periodeHelUke));
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));

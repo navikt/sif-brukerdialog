@@ -303,7 +303,6 @@ const getDagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: Da
 export const getArbeidsukeFromEnkeltdagerIUken = (
     ansattUke: DateRange,
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
-    ansettelsesperioder: DateRange[],
 ): Arbeidsuke => {
     /** Forsikre seg om at ingen enkeltdager er utenfor uken */
     const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(ansattUke, arbeidstidEnkeltdager);
@@ -319,7 +318,6 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
         periode: ansattUke,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
-        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(ansattUke, ansettelsesperioder),
         antallDagerMedArbeidstid: dagerSøktFor.length,
         faktisk: {
             uke: faktiskSummertHeleUken,
@@ -412,7 +410,7 @@ const getArbeidsukerFromEnkeltdager = (
     const arbeidsuker = Object.keys(ukerMap).map((isoDateRange) => {
         const uke = ISODateRangeToDateRange(isoDateRange);
         const dager = ukerMap[isoDateRange].dagerMap;
-        return getArbeidsukeFromEnkeltdagerIUken(uke, dager, ansettelsesperioder);
+        return getArbeidsukeFromEnkeltdagerIUken(uke, dager);
     });
 
     /** Juster start og sluttdato til første og siste dag søkt for (dag med arbeidstid) */
@@ -711,6 +709,7 @@ export const _getSakFromK9Sak = {
     getArbeidsukeFromEnkeltdagerIUken,
     grupperArbeidstidPerioder,
     trimArbeidstidTilTillattEndringsperiode,
+    getDagerIkkeAnsattIPeriode,
 };
 
 const getArbeidsdagerInneforEndringsperiodeOgAnsettelsesperioder = (
