@@ -296,17 +296,17 @@ const getDagerIkkeAnsattIPeriode = (periode: DateRange, ansettelsesperioder?: Da
 
 /**
  * Mapper periode og enkeltdager med arbeid om til Arbeidsuke. Summerer tid per dag om til timer per uke
- * @param uke DateRange for uken
+ * @param ansattUke DateRange for uken, justert ned til perioden en er ansatt
  * @param arbeidstidEnkeltdagerIUken Enkeltdager med arbeidstid
  * @returns Arbeidsuke
  */
 export const getArbeidsukeFromEnkeltdagerIUken = (
-    uke: DateRange,
+    ansattUke: DateRange,
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
-    ansettelsesperioder?: DateRange[],
+    ansettelsesperioder: DateRange[],
 ): Arbeidsuke => {
     /** Forsikre seg om at ingen enkeltdager er utenfor uken */
-    const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(uke, arbeidstidEnkeltdager);
+    const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(ansattUke, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;
     const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
@@ -315,11 +315,11 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
     const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
 
     const arbeidsuke: Arbeidsuke = {
-        isoDateRange: dateRangeToISODateRange(uke),
-        periode: uke,
+        isoDateRange: dateRangeToISODateRange(ansattUke),
+        periode: ansattUke,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
-        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(uke, ansettelsesperioder),
+        dagerIkkeAnsatt: getDagerIkkeAnsattIPeriode(ansattUke, ansettelsesperioder),
         antallDagerMedArbeidstid: dagerSøktFor.length,
         faktisk: {
             uke: faktiskSummertHeleUken,
@@ -337,6 +337,7 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
 const trimArbeidsukePeriodeTilDagerSøktForEllerHelUke = (
     arbeidsuke: Arbeidsuke,
     erSisteUkeIPeriode: boolean,
+    ansettelsesperioder: DateRange[],
 ): Arbeidsuke => {
     const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
     const periode: DateRange = {
@@ -344,7 +345,15 @@ const trimArbeidsukePeriodeTilDagerSøktForEllerHelUke = (
         to: ISODateToDate(dagerSøktFor[dagerSøktFor.length - 1]),
     };
     if (!erSisteUkeIPeriode && dayjs(periode.to).isoWeekday() === 5) {
-        periode.to = dayjs(periode.to).endOf('isoWeek').toDate();
+        const søndag = dayjs(periode.to).add(2, 'day').toDate();
+        const lørdag = dayjs(periode.to).add(1, 'day').toDate();
+        if (isDateInDateRanges(søndag, ansettelsesperioder)) {
+            // Kontroller om en er ansatt søndag
+            periode.to = søndag;
+        } else if (isDateInDateRanges(lørdag, ansettelsesperioder)) {
+            // Kontroller om en er ansatt lørdag
+            periode.to = lørdag;
+        }
     }
     return {
         ...arbeidsuke,
@@ -363,7 +372,7 @@ const trimArbeidsukePeriodeTilDagerSøktForEllerHelUke = (
  */
 const getArbeidsukerFromEnkeltdager = (
     enkeltdager: ArbeidstidEnkeltdagMap,
-    ansettelsesperioder?: DateRange[],
+    ansettelsesperioder: DateRange[],
 ): Arbeidsuke[] => {
     const ukerMap: {
         [key: string]: {
@@ -377,7 +386,17 @@ const getArbeidsukerFromEnkeltdager = (
         const { faktisk, normalt } = enkeltdager[isoDate];
 
         /** Midlertidig nøkkel som tar hele uken */
-        const isoDateRange = dateRangeToISODateRange(getIsoWeekDateRangeForDate(date));
+        const uke = getIsoWeekDateRangeForDate(date);
+        /** Litt tungvindt måte å fjerne dager på, men virker frem til hele løsningen tar bedre høyde for ansettelsesperioder */
+        const dagerAnsattIUken = getDatesInDateRange(uke).filter((d) => isDateInDateRanges(d, ansettelsesperioder));
+        if (dagerAnsattIUken.length === 0) {
+            throw new Error('Dag utenfor ansettelsesperiode');
+        }
+        const ansattUke: DateRange = {
+            from: dagerAnsattIUken[0],
+            to: dagerAnsattIUken[dagerAnsattIUken.length - 1],
+        };
+        const isoDateRange = dateRangeToISODateRange(ansattUke);
         if (ukerMap[isoDateRange] === undefined) {
             ukerMap[isoDateRange] = {
                 dagerMap: {},
@@ -401,7 +420,11 @@ const getArbeidsukerFromEnkeltdager = (
     if (antallUker > 0) {
         arbeidsuker.forEach((arbeidsuke, index) => {
             const erSisteUke = index === antallUker - 1;
-            arbeidsuker[index] = trimArbeidsukePeriodeTilDagerSøktForEllerHelUke(arbeidsuke, erSisteUke);
+            arbeidsuker[index] = trimArbeidsukePeriodeTilDagerSøktForEllerHelUke(
+                arbeidsuke,
+                erSisteUke,
+                ansettelsesperioder,
+            );
         });
     }
 

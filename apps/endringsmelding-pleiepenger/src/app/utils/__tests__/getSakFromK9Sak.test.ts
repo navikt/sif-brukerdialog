@@ -193,6 +193,9 @@ describe('getSakFromK9Sak', () => {
     });
 
     describe('getArbeidsukerFromEnkeltdager', () => {
+        const ansettelsesperioder: DateRange[] = [
+            { from: ISODateToDate('2022-01-01'), to: ISODateToDate('2023-01-31') },
+        ];
         const arbeidstid: FaktiskOgNormalArbeidstid = {
             faktisk: faktiskArbeidTimerPerDag,
             normalt: jobberNormaltTimerPerDag,
@@ -218,21 +221,21 @@ describe('getSakFromK9Sak', () => {
         };
 
         it('returnerer riktig for én enkeltdag', () => {
-            const result = getArbeidsukerFromEnkeltdager(enkeltdag);
+            const result = getArbeidsukerFromEnkeltdager(enkeltdag, ansettelsesperioder);
             expect(result.length).toEqual(1);
             const uke = result[0];
             expect(dateRangeToISODateRange(uke.periode)).toEqual('2022-01-03/2022-01-03');
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
         });
         it('returnerer riktig for dager som går over én hel uke', () => {
-            const result = getArbeidsukerFromEnkeltdager(helUke);
+            const result = getArbeidsukerFromEnkeltdager(helUke, ansettelsesperioder);
             expect(result.length).toEqual(1);
             const uke = result[0];
             expect(dateRangeToISODateRange(uke.periode)).toEqual('2022-01-03/2022-01-07');
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
         });
         it('returnerer riktig for dager som går mer enn én uker', () => {
-            const result = getArbeidsukerFromEnkeltdager(flereUker);
+            const result = getArbeidsukerFromEnkeltdager(flereUker, ansettelsesperioder);
             expect(result.length).toEqual(2);
             const uke1 = result[0];
             const uke2 = result[1];
@@ -244,6 +247,9 @@ describe('getSakFromK9Sak', () => {
     });
 
     describe('getArbeidsukeFromEnkeltdagerIUken', () => {
+        const ansettelsesperioder: DateRange[] = [
+            { from: ISODateToDate('2022-01-01'), to: ISODateToDate('2023-01-31') },
+        ];
         const periodeEnDag: DateRange = ISODateRangeToDateRange('2022-01-03/2022-01-03');
         const periodeHelUke: DateRange = ISODateRangeToDateRange('2022-01-03/2022-01-07');
 
@@ -263,7 +269,7 @@ describe('getSakFromK9Sak', () => {
         };
 
         it('returnerer riktig for én enkeltdag', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag, ansettelsesperioder);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
@@ -272,7 +278,7 @@ describe('getSakFromK9Sak', () => {
         });
 
         it('fjerner dager som ikke er innenfor uken', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke, ansettelsesperioder);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
@@ -281,7 +287,7 @@ describe('getSakFromK9Sak', () => {
         });
 
         it('returnerer riktig for én uke', () => {
-            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke);
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke, ansettelsesperioder);
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
             expect(uke.isoDateRange).toEqual(dateRangeToISODateRange(periodeHelUke));
             expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
