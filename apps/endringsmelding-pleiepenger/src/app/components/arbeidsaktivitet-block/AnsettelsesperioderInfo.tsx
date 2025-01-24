@@ -8,22 +8,34 @@ interface Props {
 }
 
 const Ansettelsesperiode = ({ periode }: { periode: MaybeDateRange }) => {
-    return (
-        <>
-            {periode.from && (
-                <AppText
-                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
-                    values={{ dato: dateFormatter.full(periode.from) }}
-                />
-            )}
-            {periode.to && (
-                <AppText
-                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
-                    values={{ dato: dateFormatter.full(periode.to) }}
-                />
-            )}
-        </>
-    );
+    if (periode.from === undefined && periode.to === undefined) {
+        return null;
+    }
+    if (periode.from && periode.to) {
+        return (
+            <AppText
+                id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom"
+                values={{ fom: dateFormatter.compact(periode.from), tom: dateFormatter.compact(periode.to) }}
+            />
+        );
+    }
+    if (periode.from) {
+        return (
+            <AppText
+                id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
+                values={{ dato: dateFormatter.compact(periode.from) }}
+            />
+        );
+    }
+    if (periode.to) {
+        return (
+            <AppText
+                id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
+                values={{ dato: dateFormatter.compact(periode.to) }}
+            />
+        );
+    }
+    return null;
 };
 
 const AnsettelsesperioderInfo = ({ ansettelsesperioder }: Props) => {

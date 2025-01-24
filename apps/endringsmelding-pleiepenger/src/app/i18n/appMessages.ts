@@ -30,7 +30,8 @@ const nb = {
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer': 'Organisasjonsnummer: {orgnr}',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder': 'Ansettelsesperioder',
-    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom': 'Ansatt: {fom} - {tom}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato} - pågående',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom': ' Sluttdato: {dato}.',
 
     'ikkeAnsattMelding.tekst':
