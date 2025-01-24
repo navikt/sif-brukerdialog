@@ -3,13 +3,13 @@ import React, { ReactElement } from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
-import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
-import UkeInfoTooltip from './UkeInfoTooltip';
+import UkeInfoTooltip, { getKortUkeTooltipText } from './UkeInfoTooltip';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
@@ -125,10 +125,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 <Table.DataCell>
                                     <div>
                                         <AppText id="arbeidstidUkeTabell.compact.uke" values={{ ukenummer }} />
-                                        <div>
-                                            {dateFormatter.compact(uke.periode.from)} - {` `}
-                                            {dateFormatter.compact(uke.periode.to)}
-                                        </div>
+                                        <div>{getDateRangeText(uke.periode, intl.locale)}</div>
                                     </div>
 
                                     <div>
@@ -147,6 +144,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
                                         <Block margin="s">
                                             <UkeTags
+                                                kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 erKortUke={uke.erKortUke}
