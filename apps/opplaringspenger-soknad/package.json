@@ -75,7 +75,7 @@
         "busboy": "1.6.0",
         "chromatic": "11.25.1",
         "cross-env": "7.0.3",
-        "eslint": "9.18.0",
+        "eslint": "9.19.0",
         "eslint-plugin-storybook": "0.11.2",
         "helmet": "8.0.0",
         "msw": "2.7.0",
