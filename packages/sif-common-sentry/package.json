@@ -17,7 +17,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.9",
+        "@types/node": "22.10.10",
         "axios": "1.7.9",
         "config": "*",
         "copyfiles": "2.4.1",
