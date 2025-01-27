@@ -1,12 +1,12 @@
 {
     "name": "@navikt/sif-common-hooks",
     "main": "src/index.ts",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "private": true,
     "type": "module",
     "dependencies": {
         "react": "19.0.0",
-        "typescript": "5.7.2"
+        "typescript": "5.7.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "*",

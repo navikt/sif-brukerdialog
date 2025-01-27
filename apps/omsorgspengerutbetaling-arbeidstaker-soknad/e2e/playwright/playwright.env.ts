@@ -5,6 +5,7 @@ export const playwrightEnv: AppEnv = {
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker',
     GITHUB_REF_NAME: 'branch-name',
+    SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
@@ -18,4 +19,6 @@ export const playwrightEnv: AppEnv = {
         '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    MOCK_DATE: '2024-08-01',
+    USE_MOCK_DATE: 'true',
 };

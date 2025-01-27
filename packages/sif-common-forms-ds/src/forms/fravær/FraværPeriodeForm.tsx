@@ -1,6 +1,7 @@
+import { Alert } from '@navikt/ds-react';
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -9,8 +10,10 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { handleDateRangeValidationError } from '../../utils';
+import { useFraværIntl } from './fraværMessages';
 import { isFraværPeriode, mapFormValuesToFraværPeriode, mapFraværPeriodeToFormValues } from './fraværUtilities';
 import {
     FraværFieldValidationErrors,
@@ -21,8 +24,6 @@ import {
     validateTilOgMedForCollision,
 } from './fraværValidationUtils';
 import { FraværPeriode, FraværPeriodeFormValues } from './types';
-import { Alert } from '@navikt/ds-react';
-import { useFraværIntl } from './fraværMessages';
 
 export interface FraværPeriodeFormLabels {
     tittel: string;
@@ -35,14 +36,14 @@ export interface FraværPeriodeFormLabels {
 
 interface Props {
     fraværPeriode?: Partial<FraværPeriode>;
-    periodeDescription?: JSX.Element;
+    periodeDescription?: ReactElement;
     minDate: Date;
     maxDate: Date;
     dateRangesToDisable?: DateRange[];
     helgedagerIkkeTillat?: boolean;
     begrensTilSammeÅr?: boolean;
     begrensTilSammeÅrAlertStripeTekst?: string;
-    headerContent?: JSX.Element;
+    headerContent?: ReactElement;
     onSubmit: (values: FraværPeriode) => void;
     onCancel: () => void;
 }

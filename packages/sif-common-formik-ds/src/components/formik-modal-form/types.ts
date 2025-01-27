@@ -1,12 +1,16 @@
+import { ReactElement } from 'react';
+
 export interface ModalFormAndListListItemBase {
     id?: string;
 }
 
 export interface ModalFormAndListLabels {
     modalTitle: string;
+    modalDescription?: React.ReactNode;
     listTitle?: string;
     emptyListText?: string;
     addLabel: string;
+    description?: ReactElement | string;
 }
 
 export interface ModalFormAndInfoLabels {

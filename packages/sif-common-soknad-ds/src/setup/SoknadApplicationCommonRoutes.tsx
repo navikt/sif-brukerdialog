@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ErrorPage from '../pages/error-page/ErrorPage';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
+import ErrorPage from '../pages/error-page/ErrorPage';
 
 export enum GlobalSoknadApplicationRoutes {
     error = '/feil',
@@ -12,9 +12,9 @@ export enum GlobalSoknadApplicationRoutes {
 interface Props {
     contentRoutes: React.ReactNode[];
     onReset?: () => void;
-    errorContentRenderer?: () => JSX.Element;
-    unavailableContentRenderer?: () => JSX.Element;
-    unknownRouteContentRenderer?: () => JSX.Element;
+    errorContentRenderer?: () => ReactElement;
+    unavailableContentRenderer?: () => ReactElement;
+    unknownRouteContentRenderer?: () => ReactElement;
 }
 
 const SoknadApplicationCommonRoutes = ({

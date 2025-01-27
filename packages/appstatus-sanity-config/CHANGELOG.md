@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.1
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 1.2.0
 
 ### Minor Changes

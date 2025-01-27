@@ -44,7 +44,7 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
                     startdato: startdato ? prettifyDateExtended(startdato) : undefined,
                     sluttdato: sluttdato ? prettifyDateExtended(sluttdato) : undefined,
                 };
-                const visStartdato = startdato; // TODO - skal denne inn igjen? && dayjs(startdato).isAfter(periode.from, 'day');
+                const visStartdato = startdato;
                 const visSluttdato = sluttdato && dayjs(sluttdato).isBefore(periode.to, 'day');
 
                 if (visStartdato && visSluttdato) {
@@ -100,15 +100,9 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         });
     }
 
-    const aktiveArbeidsforhold = alleArbeidsforhold.filter((a) => a.erAktivIPeriode);
-
-    if (aktiveArbeidsforhold.length === 0) {
-        return null;
-    }
-
     return (
         <>
-            {aktiveArbeidsforhold.length > 0 && (
+            {alleArbeidsforhold.length > 0 && (
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2">
@@ -117,7 +111,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                         {onEdit && <EditStepLink onEdit={onEdit} />}
                     </FormSummary.Header>
                     <FormSummary.Answers>
-                        {aktiveArbeidsforhold.map((forhold) => (
+                        {alleArbeidsforhold.map((forhold) => (
                             <FormSummary.Answer key={forhold.tittel}>
                                 {forhold.arbeidIPeriode ? (
                                     <>
@@ -128,7 +122,6 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             <ArbeidIPeriodeSummaryItem
-                                                harFlereArbeidsforhold={aktiveArbeidsforhold.length > 1}
                                                 periode={søknadsperiode}
                                                 valgteDatoer={valgteDatoer}
                                                 arbeidIPeriode={forhold.arbeidIPeriode}

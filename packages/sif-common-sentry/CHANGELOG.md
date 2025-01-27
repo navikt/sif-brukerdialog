@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.1
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 0.28.0
 
 ### Minor Changes

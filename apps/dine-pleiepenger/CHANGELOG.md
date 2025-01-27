@@ -1,5 +1,25 @@
 # @navikt/dine-pleiepenger
 
+## 1.8.2
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+- Updated dependencies [f2a18cf]
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.0
+    - @navikt/appstatus-react-ds@2.20.1
+    - @navikt/sif-app-register@0.1.6
+    - @navikt/sif-common-amplitude@2.27.1
+    - @navikt/sif-common-core-ds@10.2.1
+    - @navikt/sif-common-sentry@0.28.1
+
+## 1.8.1
+
+### Patch Changes
+
+- Endre lenke til dokumentoversikten
+
 ## 1.8.0
 
 ### Minor Changes

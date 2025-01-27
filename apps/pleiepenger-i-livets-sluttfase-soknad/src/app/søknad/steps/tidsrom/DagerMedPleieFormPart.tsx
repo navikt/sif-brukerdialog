@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { getTilgjengeligSøknadsperiode } from '../../../utils/getTilgjengeligSøknadsperiode';
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 interface MånedOgDag {
     måned: Date;
@@ -15,6 +15,7 @@ interface MånedOgDag {
 }
 
 const DagerMedPleieFormPart = () => {
+    const { text } = useAppIntl();
     const periode = getTilgjengeligSøknadsperiode();
     const { setFieldValue, values } = useFormikContext<TidsromFormValues>();
 
@@ -36,7 +37,7 @@ const DagerMedPleieFormPart = () => {
         <>
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
-                legend="Hvilke dager skal du være hjemme fra jobb for å gi pleie?"
+                legend={text('steg.tidsrom.dagerMedPleie.spm')}
                 validate={(sd: Date[]) => {
                     return sd.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}

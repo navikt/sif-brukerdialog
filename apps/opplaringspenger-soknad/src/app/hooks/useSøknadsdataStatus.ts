@@ -18,6 +18,7 @@ import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getOmBarnetSøknadsdataFromFormValues } from '../søknad/steps/om-barnet/om-barnet-form/utils/omBarnetFormUtils';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -27,6 +28,7 @@ const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
     state: SøknadContextState,
+    registrerteBarn: RegistrertBarn[],
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -35,7 +37,7 @@ const getStepSøknadsdataFromStepFormValues = (
 
     switch (step) {
         case StepId.OM_BARNET:
-            return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, [] as any /*todo*/);
+            return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, registrerteBarn);
         case StepId.KURS:
             return getKursSøknadsdataFromFormValues(formValues as KursFormValues);
         case StepId.LEGEERKLÆRING:
@@ -59,7 +61,12 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
-        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues, state);
+        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(
+            step,
+            stepFormValues,
+            state,
+            state.registrerteBarn,
+        );
 
         if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
             return false;

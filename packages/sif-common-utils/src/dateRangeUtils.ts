@@ -759,6 +759,16 @@ export const getFirstDateInDateRanges = (dateRanges: DateRange[]): Date | undefi
 //   return difference;
 // }
 
+export const getDateRangesBetweenDateRangesWithinDateRange = (
+    minDate: Date,
+    maxDate: Date,
+    dateRanges: DateRange[],
+): DateRange[] => {
+    const preDateRange: DateRange = { from: minDate, to: dayjs(minDate).subtract(1, 'day').toDate() };
+    const postDateRange: DateRange = { from: maxDate, to: dayjs(maxDate).add(1, 'day').toDate() };
+    return getDateRangesBetweenDateRanges([preDateRange, ...dateRanges, postDateRange]);
+};
+
 export const dateRangeUtils = {
     dateRangeIsAdjacentToDateRange,
     dateRangesCollide,

@@ -1,6 +1,6 @@
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;
-    skalEllerHarJobbet: string;
+    jobber: string;
     timer: string;
     fra: string;
     til: string;

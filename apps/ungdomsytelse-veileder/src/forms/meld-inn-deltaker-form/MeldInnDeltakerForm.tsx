@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltakelse, NyDeltaker } from '../../api/types';
+import { Deltakelse, Deltaker, NyDeltaker } from '../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -15,23 +15,21 @@ import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { veilederService } from '../../api/services/veilederService';
 
 interface Props {
-    deltaker: NyDeltaker;
+    deltaker: NyDeltaker | Deltaker;
+    minStartDato?: Date;
     onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;
 }
 
 const maxDate = dayjs().add(2, 'years').endOf('month').toDate();
 const minDate = dayjs().subtract(2, 'years').startOf('month').toDate();
-// const maxDate = dayjs().add(1, 'month').endOf('month').toDate();
-// const minDate = dayjs().subtract(3, 'months').startOf('month').toDate();
 
 interface FormValues {
     startDato: string;
     bekreftRegistrering: boolean;
 }
 
-const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltakerRegistrert }: Props) => {
-    const navn = deltaker.navn.fornavn;
+const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
     const [submitPending, setSubmitPending] = useState(false);
     const intl = useIntl();
 
@@ -42,7 +40,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDel
             startdato: values.startDato,
         });
         setSubmitPending(false);
-        onDeltakerRegistrert(deltakelse);
+        onDeltakelseRegistrert(deltakelse);
     };
 
     return (
@@ -57,14 +55,15 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDel
                         <VStack gap="6">
                             <VStack gap="4">
                                 <Heading level="2" size="small" spacing={false}>
-                                    Registrer ny deltaker
+                                    Registrer ny deltakelse
                                 </Heading>
                                 <FormikDatepicker
                                     name="startDato"
-                                    label={`Hva er første dato i programmet for ${navn}?`}
+                                    label={`Når starter deltakelsen?`}
                                     disableWeekends={true}
-                                    minDate={minDate}
+                                    minDate={minStartDato || minDate}
                                     maxDate={maxDate}
+                                    defaultMonth={minStartDato}
                                     validate={getDateValidator({
                                         required: true,
                                         min: minDate,

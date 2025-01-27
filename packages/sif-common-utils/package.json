@@ -3,32 +3,32 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.48.0",
+    "version": "3.49.0",
     "private": true,
     "type": "module",
     "dependencies": {
         "dayjs": "1.11.13",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
-        "uuid": "11.0.3"
+        "uuid": "11.0.5"
     },
     "devDependencies": {
-        "@babel/core": "7.26.0",
-        "@babel/preset-env": "7.26.0",
+        "@babel/core": "7.26.7",
+        "@babel/preset-env": "7.26.7",
         "@babel/preset-react": "7.26.3",
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.2",
-        "@types/react": "19.0.1",
-        "@types/react-dom": "19.0.2",
+        "@types/node": "22.10.10",
+        "@types/react": "19.0.8",
+        "@types/react-dom": "19.0.3",
         "@types/uuid": "10.0.0",
         "config": "*",
-        "globals": "15.13.0",
+        "globals": "15.14.0",
         "intl": "1.2.5",
         "react": "19.0.0",
         "react-dom": "19.0.0",
-        "react-intl": "7.0.4",
-        "typescript": "5.7.2",
-        "vitest": "2.1.8"
+        "react-intl": "7.1.5",
+        "typescript": "5.7.3",
+        "vitest": "3.0.4"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

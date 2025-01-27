@@ -1,17 +1,26 @@
 import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils, DateRange } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import {
+    getDate1YearFromNow,
+    getDate3YearsAgo,
+    dateRangeUtils,
+    DateRange,
+    isDateInDateRanges,
+    getDatesInDateRange,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { KursFormValues } from './KursStep';
+import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
+import { KursFormFields, KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
 import kursperiodeUtils from './kursperiodeUtils';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
+import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
+import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 
 dayjs.extend(isoWeek);
 
@@ -40,45 +49,29 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
     }).validateToDate(tilDatoString);
 };
 
-export const getDatoerIKursperioderUtenReisedager = (perioder: Kursperiode[]) => {
+export const getDatoerIKursperioder = (perioder: Kursperiode[]) => {
     return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periode));
-};
-
-export const getDatoerIKursperioderInkludertReisedager = (perioder: Kursperiode[]) => {
-    return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periodeMedReise));
 };
 
 const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
-export const getKursSøknadsdataFromFormValues = ({
-    opplæringsinstitusjon,
-    arbeiderIKursperiode,
-    kursperioder: kursperioderValues,
-    ferieuttak,
-    skalTaUtFerieIPerioden,
-}: KursFormValues): KursSøknadsdata | undefined => {
-    if (!opplæringsinstitusjon || !kursperioderValues || !arbeiderIKursperiode) {
+export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
+    const { opplæringsinstitusjon, kursperioder: kursperioderValues, ferieuttak, skalTaUtFerieIPerioden } = values;
+    if (!opplæringsinstitusjon || !kursperioderValues) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
     const kursperioder = kursperioderValues.map((periode, index) =>
         kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
     );
 
-    const søknadsperiodeUtenReisedager = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
-    const søknadsperiodeMedReisedager = dateRangeUtils.getDateRangeFromDateRanges(
-        kursperioder.map((p) => p.periodeMedReise),
-    );
-
     return {
-        søknadsperiode: INKLUDER_REISEDAGER_I_PERIODE ? søknadsperiodeMedReisedager : søknadsperiodeUtenReisedager,
-        søknadsdatoer: INKLUDER_REISEDAGER_I_PERIODE
-            ? getDatoerIKursperioderInkludertReisedager(kursperioder)
-            : getDatoerIKursperioderUtenReisedager(kursperioder),
+        søknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode)),
+        søknadsdatoer: getDatoerIKursperioder(kursperioder),
+        reisedager: extractReisedagerSøknadsdata(values),
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
-        arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
     };
 };
@@ -100,8 +93,16 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
             ...defaultValues,
             opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
-            arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
             skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
+            ...(kurs.reisedager.reiserUtenforKursdager === true
+                ? {
+                      reisedager: kurs.reisedager.reisedager,
+                      reisedagerBeskrivelse: kurs.reisedager.reisedagerBeskrivelse,
+                      reiserUtenforKursdager: YesOrNo.YES,
+                  }
+                : {
+                      reiserUtenforKursdager: YesOrNo.NO,
+                  }),
             ferieuttak:
                 kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
                     ? kurs.ferieuttakIPerioden.ferieuttak
@@ -154,6 +155,27 @@ export const extractFerieuttakIPeriodenSøknadsdata = ({
     return undefined;
 };
 
+export const extractReisedagerSøknadsdata = (values: KursFormValues): ReisedagerSøknadsdata => {
+    if (values.reiserUtenforKursdager === YesOrNo.YES) {
+        const reisedagerBeskrivelse = values[KursFormFields.reisedagerBeskrivelse];
+        const reisedager = values[KursFormFields.reisedager] || [];
+        if (reisedager.length === 0) {
+            throw 'Reisedager er ikke definert';
+        }
+        if (reisedagerBeskrivelse === undefined) {
+            throw 'Reisedager er ikke definert';
+        }
+        return {
+            reiserUtenforKursdager: true,
+            reisedager: reisedager,
+            reisedagerBeskrivelse,
+        };
+    }
+    return {
+        reiserUtenforKursdager: false,
+    };
+};
+
 export const getDateRangesFromKursperiodeFormValues = (
     kursperioderValues?: Partial<KursperiodeFormValues>[],
 ): DateRange[] => {
@@ -167,7 +189,7 @@ export const getDateRangesFromKursperiodeFormValues = (
                     periode as KursperiodeFormValues,
                     `${index}`,
                 );
-                return INKLUDER_REISEDAGER_I_PERIODE ? kursperiode.periodeMedReise : kursperiode.periode;
+                return kursperiode.periode;
             } catch {
                 return undefined;
             }
@@ -186,4 +208,46 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
         return ranges[0];
     }
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
+};
+
+export const erAlleReisedagerInnenforSøknadsperioder = (
+    reisedager: Enkeltdato[],
+    søknadsperioder: DateRange[],
+): boolean => {
+    return reisedager.every((reisedag) => isDateInDateRanges(reisedag.dato, søknadsperioder));
+};
+
+export const getReisedagerValidator = (kursperioder: DateRange[]) => {
+    return (reisedager: Enkeltdato[]) => {
+        const error = getListValidator({ required: true })(reisedager);
+        if (error) {
+            return error;
+        }
+        /** Kontroller om datoer er innenfor søknadsperioder */
+        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder) === false) {
+            return 'reisedagUtenforKursperiode';
+        }
+        return undefined;
+    };
+};
+
+export const erFerieInnenforSøknadsperioder = (ferieperioder: DateRange[], søknadsperioder: DateRange[]): boolean => {
+    return ferieperioder.every((ferieperiode) => {
+        const feriedager = getDatesInDateRange(ferieperiode);
+        return feriedager.every((feriedag) => isDateInDateRanges(feriedag, søknadsperioder));
+    });
+};
+
+export const getFerieperioderValidator = (kursperioder: DateRange[]) => {
+    return (ferieperioder: DateRange[]) => {
+        const listError = getListValidator({ required: true })(ferieperioder);
+        if (listError) {
+            return listError;
+        }
+        /** Kontroller om ferieperioder er innenfor søknadsperioder */
+        if (erFerieInnenforSøknadsperioder(ferieperioder, kursperioder) === false) {
+            return 'ferieperiodeUtenforKursperiode';
+        }
+        return undefined;
+    };
 };

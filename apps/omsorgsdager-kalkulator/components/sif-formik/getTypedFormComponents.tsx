@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import FormikRadioGroup, { FormikRadioGroupProps } from './formik-radio-group/FormikRadioGroup';
 import FormikSelect, { FormikSelectProps } from './formik-select/FormikSelect';
 import FormikYesOrNoQuestion, { FormikYesOrNoQuestionProps } from './formik-yes-or-no-question/FormikYesOrNoQuestion';
@@ -5,11 +6,11 @@ import TypedFormikForm, { TypedFormikFormProps } from './typed-formik-form/Typed
 import TypedFormikWrapper, { TypedFormikWrapperProps } from './typed-formik-wrapper/TypedFormikWrapper';
 
 export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
-    Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => JSX.Element;
-    FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => JSX.Element;
-    RadioGroup: (props: FormikRadioGroupProps<FieldName, ErrorType>) => JSX.Element;
-    Select: (props: FormikSelectProps<FieldName, ErrorType>) => JSX.Element;
-    YesOrNoQuestion: (props: FormikYesOrNoQuestionProps<FieldName, ErrorType>) => JSX.Element;
+    Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => ReactElement;
+    FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => ReactElement;
+    RadioGroup: (props: FormikRadioGroupProps<FieldName, ErrorType>) => ReactElement;
+    Select: (props: FormikSelectProps<FieldName, ErrorType>) => ReactElement;
+    YesOrNoQuestion: (props: FormikYesOrNoQuestionProps<FieldName, ErrorType>) => ReactElement;
 }
 
 export function getTypedFormComponents<FieldName, FormValues, ErrorType = string>(): TypedFormComponents<

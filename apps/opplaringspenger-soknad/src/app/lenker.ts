@@ -1,14 +1,15 @@
 interface Lenker {
-    navno: string;
+    ettersend: string;
+    medlemskap: string;
     minSide: string;
+    navno: string;
+    opplæringspengerNavNo: string;
     personvern: string;
     rettOgPlikt: string;
     saksbehandlingstider: string;
-    ettersend: string;
-    medlemskap: string;
-    søknadPåPapir: string;
     skatteetaten: string;
     skatteetatenSN: string;
+    søknadPåPapir: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -22,6 +23,7 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
+    opplæringspengerNavNo: 'https://www.nav.no/opplaringspenger',
     søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',
     skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
     skatteetatenSN:
