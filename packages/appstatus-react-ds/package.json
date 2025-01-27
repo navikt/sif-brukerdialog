@@ -16,7 +16,7 @@
         "@navikt/ds-css": "7.10.0",
         "@navikt/ds-react": "7.10.0",
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.9",
+        "@types/node": "22.10.10",
         "@types/react": "19.0.8",
         "@types/react-dom": "19.0.3",
         "config": "*",
