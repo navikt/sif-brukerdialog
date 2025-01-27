@@ -55,18 +55,18 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                     <FormSummary.Answer>
                         <FormSummary.Label>Reiser du på dager du ikke har kurs eller opplæring?</FormSummary.Label>
                         <FormSummary.Value>
-                            <JaNeiSvar harSvartJa={kurs.reisedager.reiserUtenforKursdager} />
+                            <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
                         </FormSummary.Value>
                     </FormSummary.Answer>
 
-                    {kurs.reisedager.reiserUtenforKursdager ? (
+                    {kurs.reise.reiserUtenforKursdager ? (
                         <>
                             <FormSummary.Answer>
                                 <FormSummary.Label>Reisedager uten kurs eller opplæring</FormSummary.Label>
                                 <FormSummary.Value>
                                     <VStack>
                                         <List>
-                                            {kurs.reisedager.reisedager.map((reisedag) => {
+                                            {kurs.reise.reisedager.map((reisedag) => {
                                                 return (
                                                     <List.Item key={reisedag}>
                                                         {capsFirstCharacter(
@@ -83,7 +83,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                 <FormSummary.Label>Årsak til reisetid</FormSummary.Label>
                                 <FormSummary.Value>
                                     <Sitat>
-                                        <TextareaSvar text={kurs.reisedager.reisedagerBeskrivelse} />
+                                        <TextareaSvar text={kurs.reise.reisedagerBeskrivelse} />
                                     </Sitat>
                                 </FormSummary.Value>
                             </FormSummary.Answer>
