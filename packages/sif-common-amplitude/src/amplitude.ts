@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import * as amplitude from '@amplitude/analytics-browser';
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -60,7 +59,7 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const initAmplitude = (apiKey = 'default') => {
+export const initAmplitude = (amplitude, apiKey = 'default') => {
     amplitude.init(apiKey, undefined, {
         serverUrl: 'https://amplitude.nav.no/collect-auto',
         defaultTracking: false,
@@ -74,14 +73,17 @@ export const initAmplitude = (apiKey = 'default') => {
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
 
+    const amplitude = (window as any)?.dekoratorenAmplitude;
+    const enabled = amplitude !== undefined;
+
     useEffect(() => {
-        if (isActive) {
-            initAmplitude(apiKey);
+        if (isActive && enabled) {
+            initAmplitude(amplitude, apiKey);
         }
-    }, [isActive]);
+    }, [isActive, enabled]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        if (isActive) {
+        if (isActive && enabled) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
