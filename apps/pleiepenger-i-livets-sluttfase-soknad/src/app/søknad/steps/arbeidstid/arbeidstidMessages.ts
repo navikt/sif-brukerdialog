@@ -3,8 +3,6 @@ const nb = {
         'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. I denne kalenderen fører du opp hvor mange timer du faktisk jobber i perioden.',
     'arbeidIPeriode.StepInfo.2':
         'Hvis du søker for første gang, eller du har hatt et opphold i pleiepengene i minst fire uker, vil vi kontakte arbeidsgivere som du har helt eller delvis fravær fra for å innhente inntektsmelding.',
-    'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
-        'Vi kontakter arbeidsgiveren din hvis vi trenger inntektsmelding for å behandle søknaden.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
@@ -39,8 +37,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Du har fortalt oss at du skal jobbe noko dei dagane du skal gi pleie. I denne kalenderen fører du opp kor mange timar du faktisk jobbar i perioden.',
     'arbeidIPeriode.StepInfo.2':
         'Om du søkjer for første gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgivarar som du har heilt eller delvis fråvær frå for å hente inn inntektsmelding.',
-    'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
-        'Vi kontaktar arbeidsgivaren din viss vi treng inntektsmelding for å handsame søknaden.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagane du søkjer for, kva situasjon gjeld for deg {hvor}?',
