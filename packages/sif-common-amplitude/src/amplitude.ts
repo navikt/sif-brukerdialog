@@ -73,7 +73,11 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 } else {
-                    logger(eventName, eventProps);
+                    try {
+                        logger(eventName, eventProps);
+                    } catch {
+                        resolve(true);
+                    }
                 }
             });
             return Promise.race([timeoutPromise, logPromise]);
