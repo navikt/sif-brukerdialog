@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -59,34 +58,32 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const initAmplitude = (amplitude, apiKey = 'default') => {
-    amplitude.init(apiKey, undefined, {
-        serverUrl: 'https://amplitude.nav.no/collect-auto',
-        defaultTracking: false,
-        useBatch: false,
-        ingestionMetadata: {
-            sourceName: window.location.toString().split('?')[0].split('#')[0],
-        },
-    });
-};
+// export const initAmplitude = (amplitude, apiKey = 'default') => {
+//     amplitude.init(apiKey, undefined, {
+//         serverUrl: 'https://amplitude.nav.no/collect-auto',
+//         defaultTracking: false,
+//         useBatch: false,
+//         ingestionMetadata: {
+//             sourceName: window.location.toString().split('?')[0].split('#')[0],
+//         },
+//     });
+// };
 
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
 
-    const amplitude = (window as any)?.dekoratorenAmplitude;
-    const enabled = amplitude !== undefined;
-
-    useEffect(() => {
-        if (isActive && enabled) {
-            initAmplitude(amplitude, apiKey);
-        }
-    }, [isActive, enabled]);
+    // useEffect(() => {
+    //     if (isActive && enabled) {
+    //         initAmplitude(amplitude, apiKey);
+    //     }
+    // }, [isActive, enabled]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        if (isActive && enabled) {
+        if (isActive) {
+            const amplitude = (window as any)?.dekoratorenAmplitude;
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
-                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
+                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
                 if (logToConsoleOnly) {
                     // eslint-disable-next-line no-console
                     console.log({ eventName, eventProperties: eventProps });
