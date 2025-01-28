@@ -82,7 +82,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                         id="@forms.medlemskapForm.info"
                         values={{
                             Lenke: (children: React.ReactNode) => (
-                                <Link href={medlemskapInfoUrl} target="_blank">
+                                <Link key="link" href={medlemskapInfoUrl} target="_blank">
                                     {children}
                                 </Link>
                             ),

@@ -1,14 +1,13 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { Kursperiode } from '../Kursperiode';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
-
-export const INKLUDER_REISEDAGER_I_PERIODE = true;
+import { ReisedagerSøknadsdata } from './ReisedagerSøknadsdata';
 
 export interface KursSøknadsdata {
     søknadsperiode: DateRange;
     søknadsdatoer: Date[];
+    reisedager: ReisedagerSøknadsdata;
     kursholder: string;
     kursperioder: Kursperiode[];
-    arbeiderIKursperiode: boolean;
     ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata;
 }

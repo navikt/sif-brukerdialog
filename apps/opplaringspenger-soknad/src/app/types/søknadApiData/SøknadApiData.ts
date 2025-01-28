@@ -6,17 +6,16 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
-export interface KursperiodeApiData {
-    kursperiode: ISODateRange;
-    harTaptArbeidstid: boolean;
-    avreise: ISODate;
-    hjemkomst: ISODate;
-    beskrivelseReisetid?: string;
-}
-
 export interface KursApiData {
     kursholder: string;
-    perioder: KursperiodeApiData[];
+    reise:
+        | {
+              reiserUtenforKursdager: true;
+              reisedager: ISODate[];
+              reisedagerBeskrivelse?: string;
+          }
+        | { reiserUtenforKursdager: false };
+    kursperioder: ISODateRange[];
 }
 
 export interface TidEnkeltdagApiData {

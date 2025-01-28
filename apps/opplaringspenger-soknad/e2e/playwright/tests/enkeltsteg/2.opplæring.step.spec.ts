@@ -7,6 +7,7 @@ import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
 import {
     fyllUtOpplæringEnPeriode,
     fyllUtOpplæringToPerioder,
+    kontrollerOpplæringEnPeriodeOppsummering,
     kontrollerOpplæringFlerePerioderOppsummering,
 } from '../../utfylling-utils/2.opplæringStep';
 
@@ -22,8 +23,12 @@ test.beforeEach(async ({ page }) => {
 test.describe('Opplæring-steg', () => {
     test('Opplæring med én periode', async ({ page }) => {
         await fyllUtOpplæringEnPeriode(page);
+        await expect(page.getByRole('heading', { name: 'Din arbeidssituasjon' })).toBeVisible();
         await page.getByTestId('typedFormikForm-submitButton').click();
-        await page.getByRole('heading', { name: 'Arbeidssituasjon' }).isVisible();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await kontrollerOpplæringEnPeriodeOppsummering(page);
     });
     test('Opplæring med flere perioder', async ({ page }) => {
         await fyllUtOpplæringToPerioder(page);

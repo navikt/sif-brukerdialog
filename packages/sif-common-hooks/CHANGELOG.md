@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.3.1
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 0.3.0
 
 ### Minor Changes
