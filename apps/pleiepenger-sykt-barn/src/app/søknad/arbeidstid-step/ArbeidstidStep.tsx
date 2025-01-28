@@ -33,6 +33,14 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const arbeidsgivere = arbeidssituasjon ? Array.from(arbeidssituasjon.arbeidsgivere, (a) => a[1]) : [];
 
+    const visInntektsmeldingInfo =
+        arbeidsgivere.length > 0 &&
+        arbeidsgivere.some(
+            (ansatt) =>
+                ansatt.type === ArbeidssituasjonAnsattType.pågående ||
+                ansatt.type === ArbeidssituasjonAnsattType.sluttetISøknadsperiode,
+        );
+
     return (
         <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="m">
@@ -43,6 +51,12 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                     <p>
                         <AppText id={'arbeidIPeriode.StepInfo.2'} />
                     </p>
+
+                    {visInntektsmeldingInfo && (
+                        <p>
+                            <AppText id={'arbeidIPeriode.StepInfo.3'} />
+                        </p>
+                    )}
                 </SifGuidePanel>
             </Block>
 
