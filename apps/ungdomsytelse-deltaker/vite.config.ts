@@ -14,17 +14,6 @@ export default defineConfig({
     server: {
         port: 8080,
     },
-    resolve: {
-        alias: {
-            '@api': '/src/api',
-            '@components': '/src/components',
-            '@context': '/src/context',
-            '@hooks': '/src/hooks',
-            '@i18n': '/src/i18n',
-            '@types': '/src/types',
-            '@utils': '/src/utils',
-        },
-    },
     build: {
         sourcemap: true,
     },

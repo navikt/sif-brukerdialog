@@ -1,4 +1,4 @@
-import { appEnv } from '@utils/appEnv';
+import { appEnv } from '../utils/appEnv';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosConfig: AxiosRequestConfig = {

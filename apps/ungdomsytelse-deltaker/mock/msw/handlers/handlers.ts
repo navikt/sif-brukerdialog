@@ -17,15 +17,12 @@ export const handlers = [
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
-    http.post('**/soknad/innsending', () => {
-        return HttpResponse.json({});
-    }),
     http.get('**/deltakelse/register/hent/alle', () => {
         const harSøkt = false;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
-    http.get('**/person/personopplysninger-api/personalia', () => {
-        return HttpResponse.json(søker1Mock.personalia);
+    http.post('**/soknad/innsending', () => {
+        return HttpResponse.json({});
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

@@ -1,8 +1,8 @@
-import { Rapporteringsperiode } from '@api/types';
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { z } from 'zod';
+import { Rapporteringsperiode } from '../types';
 
 const rapporteringsperiodeDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),

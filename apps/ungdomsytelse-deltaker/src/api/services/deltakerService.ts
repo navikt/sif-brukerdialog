@@ -1,9 +1,9 @@
-import { ungDeltakelseOpplyserApiClient } from '@api/apiClient';
-import { Deltakelse, PeriodeMedInntekt } from '@api/types';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserSchema } from '../schemas/deltakelserSchema';
+import { Deltakelser, PeriodeMedInntekt } from '../types';
 
-const getDeltakelser = async (): Promise<Deltakelse[]> => {
+const getDeltakelser = async (): Promise<Deltakelser> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
     try {
         return deltakelserSchema.parse(response.data);

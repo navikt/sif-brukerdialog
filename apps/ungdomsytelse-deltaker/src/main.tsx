@@ -11,6 +11,7 @@ async function enableMocking() {
     const { worker } = await import('../mock/msw/browser');
     return worker.start();
 }
+
 enableMocking().then(() =>
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
