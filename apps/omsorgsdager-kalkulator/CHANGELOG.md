@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
 ## 3.11.2
 
 ### Patch Changes

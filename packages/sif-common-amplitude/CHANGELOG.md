@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
 ## 2.27.1
 
 ### Patch Changes
