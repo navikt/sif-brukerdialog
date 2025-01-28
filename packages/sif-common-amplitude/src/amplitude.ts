@@ -1,4 +1,5 @@
 import constate from 'constate';
+import { getAmplitudeInstance } from '@navikt/nav-dekoratoren-moduler';
 
 const MAX_AWAIT_TIME = 500;
 
@@ -62,8 +63,8 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        const amplitude = (window as any)?.dekoratorenAmplitude;
-        if (isActive && amplitude) {
+        const logger = getAmplitudeInstance('dekoratoren');
+        if (isActive && logger) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
@@ -72,8 +73,7 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 } else {
-                    amplitude.track(eventName, eventProps);
-                    amplitude.flush().promise.then((result) => resolve(result));
+                    logger(eventName, eventProps);
                 }
             });
             return Promise.race([timeoutPromise, logPromise]);
