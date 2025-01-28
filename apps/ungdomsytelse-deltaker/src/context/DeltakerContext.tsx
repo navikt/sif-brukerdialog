@@ -1,43 +1,28 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { Deltaker, fetchDeltaker } from '../api/fetchers/fetchDeltaker';
-import { IkkeTilgangÅrsak } from '../types';
+import { Søker } from '@navikt/sif-common-api';
+import { Deltakelse } from '../api/types';
+import { createContext, useContext } from 'react';
 
 interface DeltakerContextType {
-    deltaker: Deltaker | null;
-    loading: boolean;
-    ikkeTilgangÅrsak?: IkkeTilgangÅrsak;
-    error: string | null;
+    søker: Søker;
+    deltakelse: Deltakelse;
 }
 
-const DeltakerContext = createContext<DeltakerContextType | undefined>(undefined);
+export const DeltakerContext = createContext<DeltakerContextType>(null!);
 
-export const DeltakerProvider = ({ children }: { children: ReactNode }) => {
-    const [deltaker, setDeltaker] = useState<Deltaker | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+interface Props {
+    children: React.ReactNode;
+    søker: Søker;
+    deltakelse: Deltakelse;
+}
 
-    const hentDeltaker = async () => {
-        try {
-            const data = await fetchDeltaker();
-            setDeltaker(data);
-        } catch (err) {
-            setError('Kunne ikke laste data.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        hentDeltaker();
-    }, []);
-
-    return <DeltakerContext.Provider value={{ deltaker, loading, error }}>{children}</DeltakerContext.Provider>;
+export const DeltakerContextProvider = ({ children, søker, deltakelse }: Props) => {
+    return <DeltakerContext.Provider value={{ søker, deltakelse }}>{children}</DeltakerContext.Provider>;
 };
 
-export const useDeltaker = () => {
+export const useDeltakerContext = (): DeltakerContextType => {
     const context = useContext(DeltakerContext);
     if (!context) {
-        throw new Error('useDeltaker må brukes innenfor en DeltakerProvider');
+        throw new Error('useDeltakerContext must be used within a DeltakerContextProvider');
     }
     return context;
 };

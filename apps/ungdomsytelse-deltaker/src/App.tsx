@@ -1,6 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { DeltakerProvider } from './context/DeltakerContext';
-import Deltaker from './Deltaker';
+import DeltakerInfoLoader from './DeltakerInfoLoader';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import './app.css';
 
@@ -8,9 +7,7 @@ function App() {
     return (
         <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
             <AppIntlMessageProvider>
-                <DeltakerProvider>
-                    <Deltaker />
-                </DeltakerProvider>
+                <DeltakerInfoLoader />
             </AppIntlMessageProvider>
         </ErrorBoundary>
     );

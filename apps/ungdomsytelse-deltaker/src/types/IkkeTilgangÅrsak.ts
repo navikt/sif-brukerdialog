@@ -1,4 +1,0 @@
-export enum IkkeTilgangÅrsak {
-    'INGEN_DELTAKELSE' = 'INGEN_DELTAKELSE',
-    'FOR_MANGE_DELTAKELSER' = 'FOR_MANGE_DELTAKELSER',
-}
