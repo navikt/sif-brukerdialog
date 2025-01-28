@@ -1,6 +1,6 @@
 const nb = {
     'arbeidIPeriode.StepInfo.1':
-        'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
+        'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. I denne kalenderen fører du opp hvor mange timer du faktisk jobber i perioden.',
     'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
         'Vi kontakter arbeidsgiveren din hvis vi trenger inntektsmelding for å behandle søknaden.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
@@ -34,7 +34,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.StepInfo.1':
-        'Du har fortalt oss at du skal jobbe noko dei dagane du skal gi pleie. No må du leggje inn i kalenderen kor mykje du skal jobbe.',
+        'Du har fortalt oss at du skal jobbe noko dei dagane du skal gi pleie. I denne kalenderen fører du opp kor mange timar du faktisk jobbar i perioden.',
     'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
         'Vi kontaktar arbeidsgivaren din viss vi treng inntektsmelding for å handsame søknaden.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
