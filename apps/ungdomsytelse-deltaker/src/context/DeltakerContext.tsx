@@ -1,22 +1,21 @@
-import { Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Deltakelse } from '../api/types';
 import { createContext, useContext } from 'react';
 
 interface DeltakerContextType {
     søker: Søker;
     deltakelse: Deltakelse;
+    barn: RegistrertBarn[];
 }
 
 export const DeltakerContext = createContext<DeltakerContextType>(null!);
 
-interface Props {
+interface DeltakerContextProviderProps extends DeltakerContextType {
     children: React.ReactNode;
-    søker: Søker;
-    deltakelse: Deltakelse;
 }
 
-export const DeltakerContextProvider = ({ children, søker, deltakelse }: Props) => {
-    return <DeltakerContext.Provider value={{ søker, deltakelse }}>{children}</DeltakerContext.Provider>;
+export const DeltakerContextProvider = ({ children, søker, barn, deltakelse }: DeltakerContextProviderProps) => {
+    return <DeltakerContext.Provider value={{ søker, deltakelse, barn }}>{children}</DeltakerContext.Provider>;
 };
 
 export const useDeltakerContext = (): DeltakerContextType => {

@@ -13,7 +13,7 @@ import { IntlProvider } from 'react-intl';
 export const AppIntlMessageProvider = ({ children }) => {
     const [locale, setLocale] = useState<Locale>(getLocaleFromSessionStorage());
     const localeMessages = applicationIntlMessages[locale] || applicationIntlMessages['nb'];
-    const locales = Object.keys(applicationIntlMessages) as any;
+    const locales = []; //Object.keys(applicationIntlMessages) as any;
 
     useDecoratorLanguageSelector(locales, (decoratorLocale: any) => {
         setLocaleInSessionStorage(decoratorLocale);

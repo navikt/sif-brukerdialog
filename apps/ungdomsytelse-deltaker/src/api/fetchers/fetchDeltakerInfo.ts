@@ -1,11 +1,12 @@
 import { cache } from 'react';
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { deltakerService } from '../services/deltakerService';
 import { Deltakelse } from '../types';
 
 export type DeltakerInfo = {
     søker: Søker;
     deltakelser: Deltakelse[];
+    barn: RegistrertBarn[];
 };
 
 export const fetchDeltakerInfo = cache(async (): Promise<DeltakerInfo> => {
@@ -15,9 +16,9 @@ export const fetchDeltakerInfo = cache(async (): Promise<DeltakerInfo> => {
         return fetchDeltakerInfo[cacheKey];
     }
 
-    const [søker, deltakelser] = await Promise.all([fetchSøker(), deltakerService.getDeltakelser()]);
+    const [søker, deltakelser, barn] = await Promise.all([fetchSøker(), deltakerService.getDeltakelser(), fetchBarn()]);
 
-    const result = { søker, deltakelser };
+    const result: DeltakerInfo = { søker, deltakelser, barn };
 
     fetchDeltakerInfo[cacheKey] = result;
 

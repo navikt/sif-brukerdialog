@@ -34,7 +34,6 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
                         <Heading level="2" size="small" spacing={true}>
                             <AppText id="page.velkommen.form.ansvar.tittel" />
                         </Heading>
-
                         <List>
                             <List.Item>
                                 <AppText id="page.velkommen.form.ansvar.list.1" />

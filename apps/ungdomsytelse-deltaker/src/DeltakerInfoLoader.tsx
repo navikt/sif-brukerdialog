@@ -39,7 +39,7 @@ const DeltakerInfoLoader = () => {
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
-    const { deltakelser } = deltakerInfo;
+    const { deltakelser, søker, barn } = deltakerInfo;
 
     if (deltakelser.length === 0) {
         return <IngenDeltakelsePage />;
@@ -51,7 +51,7 @@ const DeltakerInfoLoader = () => {
 
     const deltakelse = deltakerInfo.deltakelser[0];
     return (
-        <DeltakerContextProvider søker={deltakerInfo.søker} deltakelse={deltakelse}>
+        <DeltakerContextProvider søker={søker} deltakelse={deltakelse} barn={barn}>
             {deltakelse.harSøkt ? <InnsynApp /> : <SøknadApp />}
         </DeltakerContextProvider>
     );

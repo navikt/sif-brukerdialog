@@ -5,7 +5,7 @@ interface Props {
     title: string;
 }
 
-const VelkommenPageHeader = ({ title }: Props) => {
+const YtelseHeader = ({ title }: Props) => {
     return (
         <Stack
             gap="6"
@@ -25,4 +25,4 @@ const VelkommenPageHeader = ({ title }: Props) => {
     );
 };
 
-export default VelkommenPageHeader;
+export default YtelseHeader;
