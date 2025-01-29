@@ -1,5 +1,5 @@
 import { inntektFormComponents, InntektFormFields } from '../InntektForm';
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
@@ -13,6 +13,7 @@ const SelvstendigNæringsdrivendeSpørsmål = ({ harSNInntekt }: Props) => {
             <YesOrNoQuestion
                 name={InntektFormFields.harSNInntekt}
                 legend="Har du hatt inntekt som selvstendig næringsdrivende i denne perioden?"
+                validate={getYesOrNoValidator()}
             />
             {harSNInntekt ? (
                 <FormLayout.QuestionBleedTop>

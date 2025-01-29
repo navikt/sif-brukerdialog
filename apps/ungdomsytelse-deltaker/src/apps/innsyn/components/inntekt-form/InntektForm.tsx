@@ -48,7 +48,7 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
 
-    const onValidSubmit = (values: InntektFormValues) => {
+    const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values);
         const data: PeriodeMedInntekt = {
             ...inntekt,
@@ -83,7 +83,7 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                         <Box marginBlock="4 0">
                             <FormikWrapper
                                 initialValues={{}}
-                                onSubmit={onValidSubmit}
+                                onSubmit={handleSubmit}
                                 renderForm={({ values }) => {
                                     const harAnsattInntekt = values[InntektFormFields.harAnsattInntekt] === YesOrNo.YES;
                                     const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;

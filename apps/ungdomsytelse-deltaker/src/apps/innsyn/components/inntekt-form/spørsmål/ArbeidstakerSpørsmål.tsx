@@ -1,6 +1,6 @@
 import { inntektFormComponents, InntektFormFields } from '../InntektForm';
 import { ReadMore } from '@navikt/ds-react';
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
@@ -14,6 +14,7 @@ const ArbeidstakerSpørsmål = ({ harAnsattInntekt }: Props) => {
             <YesOrNoQuestion
                 name={InntektFormFields.harAnsattInntekt}
                 legend="Har du hatt inntekt som arbeidstaker i denne perioden?"
+                validate={getYesOrNoValidator()}
                 description={
                     <ReadMore header="Hva er inntekt som arbeidstaker?">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nam quisquam eum enim cum.
