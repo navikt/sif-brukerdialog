@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.25.1",
+    "version": "2.26.0",
     "private": true,
     "type": "module",
     "scripts": {

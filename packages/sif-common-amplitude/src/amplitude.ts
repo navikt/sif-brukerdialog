@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-import * as amplitude from '@amplitude/analytics-browser';
 import constate from 'constate';
+import { getAmplitudeInstance } from '@navikt/nav-dekoratoren-moduler';
 
 const MAX_AWAIT_TIME = 500;
 
@@ -60,42 +59,28 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const initAmplitude = (apiKey = 'default') => {
-    amplitude.init(apiKey, undefined, {
-        serverUrl: 'https://amplitude.nav.no/collect-auto',
-        defaultTracking: false,
-        useBatch: false,
-        ingestionMetadata: {
-            sourceName: window.location.toString().split('?')[0].split('#')[0],
-        },
-    });
-};
-
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
 
-    useEffect(() => {
-        if (isActive) {
-            initAmplitude(apiKey);
-        }
-    }, [isActive]);
-
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        if (isActive) {
+        const logger = getAmplitudeInstance('dekoratoren');
+        if (isActive && logger) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
-                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
+                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
                 if (logToConsoleOnly) {
                     // eslint-disable-next-line no-console
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 } else {
-                    amplitude.track(eventName, eventProps);
-                    amplitude.flush().promise.then((result) => resolve(result));
+                    logger(eventName, eventProps).catch(() => {
+                        resolve(true);
+                    });
                 }
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
+        return Promise.resolve();
     }
 
     async function logSoknadStartet(skjemanavn: string) {

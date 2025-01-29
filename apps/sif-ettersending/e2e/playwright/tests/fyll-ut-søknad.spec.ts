@@ -7,6 +7,10 @@ test.describe('Start og innsending av ettersending', () => {
         await page.route('https://login.nav.no/**', async (route) => {
             await route.fulfill({ status: 200 });
         });
+        await page.route('https://login.ekstern.dev.nav.no/**', async (route) => {
+            await route.fulfill({ status: 200 });
+        });
+
         await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
             await route.fulfill({ status: 200 });
         });

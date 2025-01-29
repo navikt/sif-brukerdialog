@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.5.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
 ## 0.4.1
 
 ### Patch Changes
