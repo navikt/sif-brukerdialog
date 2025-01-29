@@ -1,6 +1,6 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, isDateInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Rapporteringsperiode } from '../../../../api/types';
 import InntektForm from '../inntekt-form/InntektForm';
@@ -16,7 +16,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
     const {
         periode,
         harRapportert,
-        kanRapportere,
+        kanRapportere = isDateInDateRange(new Date(), periode), // TODO - fallback frem til backend er klar
         fristForRapportering = dayjs().endOf('month').toDate(), // TODO - fallback frem til backend er klar
     } = rapporteringsperiode;
 
