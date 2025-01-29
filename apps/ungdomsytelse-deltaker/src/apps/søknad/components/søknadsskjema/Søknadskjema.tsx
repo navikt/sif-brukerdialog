@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -9,6 +9,8 @@ import SamtykkeSpørsmål from './SamtykkeSpørsmål';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { sendSøknadApiData, SendSøknadApiData } from '../../../../api/schemas/sendSøknadDto';
+import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
+import Startdato from './Startdato';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -26,12 +28,13 @@ const { FormikWrapper, Form } = søknadFormComponents;
 
 interface Props {
     deltakelseId: string;
+    startdato: Date;
     kontonummer: string;
     barn: RegistrertBarn[];
     onSøknadSendt: () => void;
 }
-const Søknadsskjema = ({ kontonummer, deltakelseId, onSøknadSendt }: Props) => {
-    const { intl } = useAppIntl();
+const Søknadsskjema = ({ kontonummer, deltakelseId, barn, startdato, onSøknadSendt }: Props) => {
+    const { intl, text } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
     const handleSubmit = (values: SøknadFormValues) => {
@@ -52,11 +55,13 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, onSøknadSendt }: Props) =>
 
     return (
         <VStack gap="8">
-            <VStack gap="4">
+            <VStack gap="2">
                 <Heading level="2" size="medium">
                     Søknadsskjema
                 </Heading>
-                <BodyShort size="large">Du må svare på alle spørsmålene for å kunne sende inn en søknaden.</BodyShort>
+                <ReadMore header={text('personopplysninger.accordion.header')}>
+                    <BehandlingAvPersonopplysningerContent />
+                </ReadMore>
             </VStack>
             <FormikWrapper
                 initialValues={{}}
@@ -77,6 +82,8 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, onSøknadSendt }: Props) =>
                                 submitButtonLabel="Send søknad"
                                 runDelayedFormValidation={true}>
                                 <VStack gap="8">
+                                    <Startdato startdato={startdato} />
+
                                     <KontonummerSpørsmål
                                         kontonummer={kontonummer}
                                         kontonummerStemmerIkke={kontonummerSvar === YesOrNo.NO}
@@ -85,7 +92,7 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, onSøknadSendt }: Props) =>
 
                                     {visBarnSpørsmål && (
                                         <BarnSpørsmål
-                                            barn={[]}
+                                            barn={barn}
                                             barnStemmerIkke={barnSvar === YesOrNo.NO}
                                             disabled={pending}
                                         />

@@ -19,9 +19,11 @@ const SøknadApp = () => {
             {søknadSendt === false ? (
                 <VStack gap="8">
                     <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
+
                     <Søknadsskjema
                         kontonummer="3543.12.24988"
                         barn={barn}
+                        startdato={deltakelse.programPeriode.from}
                         deltakelseId={deltakelse.id}
                         onSøknadSendt={handleOnSøknadSendt}
                     />

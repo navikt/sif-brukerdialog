@@ -1,4 +1,4 @@
-import { List } from '@navikt/ds-react';
+import { List, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 
 interface Props {
@@ -7,13 +7,16 @@ interface Props {
 
 const BarnList = ({ barn }: Props) => {
     return (
-        <List>
-            {barn.map((b) => (
-                <List.Item key={b.aktørId}>
-                    {b.fornavn} {b.etternavn}
-                </List.Item>
-            ))}
-        </List>
+        <VStack gap="2">
+            Barn vi har registrert på deg:
+            <List>
+                {barn.map((b) => (
+                    <List.Item key={b.aktørId}>
+                        {b.fornavn} {b.etternavn}
+                    </List.Item>
+                ))}
+            </List>
+        </VStack>
     );
 };
 
