@@ -40,7 +40,7 @@ const TidligerePerioder = ({ perioder }: Props) => {
                 Tidligere perioder
             </Heading>
 
-            {perioder.slice(0, antall).map(({ periode, inntekt = 0, kanEndre }, index) => {
+            {perioder.slice(0, antall).map(({ periode, inntekt = 0, kanRapportere }, index) => {
                 const periodeNavn = dateFormatter.MonthFullYear(periode.from, locale);
                 return (
                     <ExpansionCard
@@ -61,18 +61,26 @@ const TidligerePerioder = ({ perioder }: Props) => {
                             </VStack>
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
-                            <VStack gap="2">
-                                <Heading level="3" size="xsmall">
-                                    Har inntekten endret seg?
-                                </Heading>
-                                {kanEndre ? (
+                            {kanRapportere ? (
+                                <VStack gap="2">
+                                    <Heading level="3" size="xsmall">
+                                        Har inntekten endret seg?
+                                    </Heading>
                                     <Box>
                                         <Button variant="secondary" type="button" size="small" disabled={true}>
                                             Endre inntekt
                                         </Button>
                                     </Box>
-                                ) : null}
-                            </VStack>
+                                </VStack>
+                            ) : (
+                                <VStack gap="2">
+                                    <BodyShort>
+                                        Evt. informasjon som er relevant for deltaker på denne perioden. Hvis inntekten
+                                        kan endres, vises knapp for det.
+                                    </BodyShort>
+                                    <Box>Inntekten kan ikke endres på dette tidspunktet.</Box>
+                                </VStack>
+                            )}
                         </ExpansionCard.Content>
                     </ExpansionCard>
                 );

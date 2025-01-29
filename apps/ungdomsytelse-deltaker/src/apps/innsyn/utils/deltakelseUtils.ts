@@ -20,7 +20,7 @@ export const getGjeldendeRapporteringsperiode = (
 export const getTidligereRapporteringsperioder = (
     rapporteringsperioder: Rapporteringsperiode[],
 ): Rapporteringsperiode[] => {
-    return rapporteringsperioder.filter(rapporteringsperiodeErTidligerePeriode);
+    return rapporteringsperioder.filter(rapporteringsperiodeErTidligerePeriode).sort(sorterRapporteringsperioderDesc);
 };
 
 export const sorterRapporteringsperioderDesc = (r1: Rapporteringsperiode, r2: Rapporteringsperiode): number => {

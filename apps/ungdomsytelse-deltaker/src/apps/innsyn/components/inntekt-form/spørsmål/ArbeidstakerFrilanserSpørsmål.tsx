@@ -1,5 +1,5 @@
 import { inntektFormComponents, InntektFormFields } from '../InntektForm';
-import { ReadMore } from '@navikt/ds-react';
+import { Box, ReadMore } from '@navikt/ds-react';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 
@@ -25,12 +25,14 @@ const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerFrilanserInntekt }: Pr
             />
             {harArbeidstakerFrilanserInntekt ? (
                 <FormLayout.QuestionBleedTop>
-                    <NumberInput
-                        name={InntektFormFields.ansattInntekt}
-                        label="Oppgi hvor mye du har hatt i inntekt som arbeidstaker eller frilanser i perioden"
-                        integerValue={true}
-                        validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
-                    />
+                    <Box className=" bg-deepblue-50 p-6 rounded-md">
+                        <NumberInput
+                            name={InntektFormFields.ansattInntekt}
+                            label="Oppgi i hele kroner hvor mye du har hatt i inntekt som arbeidstaker eller frilanser i perioden."
+                            integerValue={true}
+                            validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
+                        />
+                    </Box>
                 </FormLayout.QuestionBleedTop>
             ) : null}
         </>
