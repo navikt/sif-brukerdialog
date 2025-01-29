@@ -8,7 +8,7 @@ export * from './OmBarnetApiData';
 
 export interface KursApiData {
     kursholder: string;
-    reisedager:
+    reise:
         | {
               reiserUtenforKursdager: true;
               reisedager: ISODate[];

@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
 ## 0.5.1
 
 ### Patch Changes

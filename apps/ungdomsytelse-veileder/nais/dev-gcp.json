@@ -20,7 +20,7 @@
         "SKIP_DECORATOR": "true",
 
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "false",
+        "SIF_PUBLIC_USE_AMPLITUDE": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
