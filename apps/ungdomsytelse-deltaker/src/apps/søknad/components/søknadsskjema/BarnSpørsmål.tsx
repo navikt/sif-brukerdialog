@@ -8,14 +8,15 @@ import { søknadFormComponents } from './TypedSøknadFormComponents';
 interface Props {
     barn: RegistrertBarn[];
     barnStemmerIkke?: boolean;
+    disabled?: boolean;
 }
 
 const { YesOrNoQuestion } = søknadFormComponents;
 
-const BarnSpørsmål = ({ barn, barnStemmerIkke }: Props) => {
+const BarnSpørsmål = ({ barn, barnStemmerIkke, disabled }: Props) => {
     return (
         <VStack gap="4">
-            <Heading level="3" size="small">
+            <Heading level="3" size="medium">
                 Dine barn
             </Heading>
             {barn.length > 0 ? <BarnList barn={barn} /> : null}
@@ -28,6 +29,7 @@ const BarnSpørsmål = ({ barn, barnStemmerIkke }: Props) => {
                 name={SøknadFormFields.barnErRiktig}
                 validate={getYesOrNoValidator()}
                 labels={{ no: 'Nei det stemmer ikke' }}
+                disabled={disabled}
             />
             {barnStemmerIkke ? <Alert variant="info">Når informasjon om dine barn ikke stemmer ...</Alert> : null}
         </VStack>

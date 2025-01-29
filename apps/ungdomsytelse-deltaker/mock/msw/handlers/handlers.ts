@@ -21,6 +21,9 @@ export const handlers = [
         const harSøkt = false;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
+    http.post('**/deltakelse/register/*/marker-har-sokt', () => {
+        return HttpResponse.json({});
+    }),
     http.post('**/soknad/innsending', () => {
         return HttpResponse.json({});
     }),

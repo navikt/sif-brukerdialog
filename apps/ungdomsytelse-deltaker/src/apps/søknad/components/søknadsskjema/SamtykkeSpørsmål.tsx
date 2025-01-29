@@ -1,6 +1,6 @@
 import { Heading, Link, List } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { SøknadFormFields } from './Søknadskjema';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
 
@@ -8,14 +8,19 @@ const RETT_OG_PLIKT_URL = 'https://www.nav.no/endringer#du-har-plikt-til-a-gi-na
 
 const { ConfirmationCheckbox } = søknadFormComponents;
 
-const SamtykkeSpørsmål = () => {
+interface Props {
+    disabled?: boolean;
+}
+
+const SamtykkeSpørsmål = ({ disabled }: Props) => {
     const { text } = useAppIntl();
     return (
         <>
             <ConfirmationCheckbox
                 label={text('samtykke.bekreftLabel')}
                 name={SøknadFormFields.samtykker}
-                validate={getCheckedValidator()}>
+                validate={getCheckedValidator()}
+                disabled={disabled}>
                 <Heading level="2" size="small" spacing={true}>
                     <AppText id="samtykke.ansvar.tittel" />
                 </Heading>
@@ -34,6 +39,9 @@ const SamtykkeSpørsmål = () => {
                                 ),
                             }}
                         />
+                    </List.Item>
+                    <List.Item>
+                        <AppText id="samtykke.ansvar.list.3" />
                     </List.Item>
                 </List>
             </ConfirmationCheckbox>

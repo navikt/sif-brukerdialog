@@ -6,17 +6,19 @@ import { søknadFormComponents } from './TypedSøknadFormComponents';
 interface Props {
     kontonummer: string;
     kontonummerStemmerIkke?: boolean;
+    disabled?: boolean;
 }
 
 const { YesOrNoQuestion } = søknadFormComponents;
 
-const KontonummerSpørsmål = ({ kontonummer, kontonummerStemmerIkke }: Props) => {
+const KontonummerSpørsmål = ({ kontonummer, kontonummerStemmerIkke, disabled }: Props) => {
     return (
         <VStack gap="4">
-            <Heading level="3" size="small">
+            <Heading level="3" size="medium">
                 Kontonummer
             </Heading>
             <YesOrNoQuestion
+                disabled={disabled}
                 legend={`Er kontonummeret ditt ${kontonummer}?`}
                 name={SøknadFormFields.kontonummerErRiktig}
                 validate={getYesOrNoValidator()}
