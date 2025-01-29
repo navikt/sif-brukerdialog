@@ -14,8 +14,8 @@ const getDeltakelser = async (): Promise<Deltakelser> => {
     }
 };
 
-const putMarkerHarSøkt = async (id: string): Promise<void> => {
-    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${id}/marker-har-sokt`);
+const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
 };
 
 const sendSøknad = async (deltakelseId: string, apiData: SendSøknadApiData): Promise<void> => {
@@ -25,9 +25,9 @@ const sendSøknad = async (deltakelseId: string, apiData: SendSøknadApiData): P
     // return await ungDeltakelseOpplyserApiClient.post(`/deltakelse/register/${deltakelseId}/marker-har-sokt`, apiData);
 };
 
-const rapporterInntekt = async (periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
+const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.post(
-        `/deltakelse/register/registrer-inntekt-i-periode`,
+        `/deltakelse/register/${deltakelseId}/registrer-inntekt-i-periode`,
         periodeMedInntekt,
     );
 };

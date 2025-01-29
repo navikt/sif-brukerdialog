@@ -4,5 +4,9 @@ import { isoDateStringSchema } from './isoDateStringSchema';
 export const periodeMedInntektSchema = z.object({
     fraOgMed: isoDateStringSchema,
     tilOgMed: isoDateStringSchema,
-    inntekt: z.number().min(0),
+    inntektAnsatt: z.number().min(0).optional(),
+    inntektSN: z.number().min(0).optional(),
+    inntektYtelse: z.number().min(0).optional(),
+    samletInntekt: z.number().min(0),
+    bekrefterInntekt: z.boolean(),
 });

@@ -51,7 +51,7 @@ const TidligerePerioder = ({ perioder }: Props) => {
                         <ExpansionCard.Header>
                             <VStack gap="2">
                                 <ExpansionCard.Title size="small">{periodeNavn}</ExpansionCard.Title>
-                                <BodyShort size="small">
+                                <BodyShort as="div" size="small">
                                     <HStack gap="4">
                                         <Box>
                                             Inntekt: <FormattedNumber value={inntekt} /> kroner
@@ -65,7 +65,6 @@ const TidligerePerioder = ({ perioder }: Props) => {
                                 <Heading level="3" size="xsmall">
                                     Har inntekten endret seg?
                                 </Heading>
-
                                 {kanEndre ? (
                                     <Box>
                                         <Button variant="secondary" type="button" size="small">

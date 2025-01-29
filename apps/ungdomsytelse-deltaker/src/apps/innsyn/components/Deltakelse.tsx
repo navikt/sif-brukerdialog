@@ -21,7 +21,9 @@ const Deltakelse = ({ deltakelse }: Props) => {
 
     return (
         <VStack gap="8">
-            {åpenPeriode ? <Inntektsrapportering rapporteringsperiode={åpenPeriode} /> : null}
+            {åpenPeriode ? (
+                <Inntektsrapportering deltakelseId={deltakelse.id} rapporteringsperiode={åpenPeriode} />
+            ) : null}
 
             <TidligerePerioder perioder={tidligerePerioder || []} />
         </VStack>

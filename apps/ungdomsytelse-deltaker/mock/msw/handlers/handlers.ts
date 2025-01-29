@@ -24,7 +24,7 @@ export const handlers = [
     http.post('**/deltakelse/register/*/marker-har-sokt', () => {
         return HttpResponse.json({});
     }),
-    http.post('**/soknad/innsending', () => {
+    http.post('**/deltakelse/register/*/registrer-inntekt-i-periode', () => {
         return HttpResponse.json({});
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {

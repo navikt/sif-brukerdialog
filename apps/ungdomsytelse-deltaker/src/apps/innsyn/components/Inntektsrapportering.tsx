@@ -1,13 +1,17 @@
 import { Alert, BodyShort, Box, Button, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { Rapporteringsperiode } from '../../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useState } from 'react';
+import InntektForm from './inntekt-form/InntektForm';
 
 interface Props {
+    deltakelseId: string;
     rapporteringsperiode: Rapporteringsperiode;
 }
 
-const Inntektsrapportering = ({ rapporteringsperiode }: Props) => {
+const Inntektsrapportering = ({ rapporteringsperiode, deltakelseId }: Props) => {
     const { periode, fristForRapportering } = rapporteringsperiode;
+    const [visSkjema, setVisSkjema] = useState(true);
 
     if (!fristForRapportering) {
         return <Alert variant="warning">FristForRapportering mangler</Alert>;
@@ -28,7 +32,24 @@ const Inntektsrapportering = ({ rapporteringsperiode }: Props) => {
                 </BodyShort>
                 <ReadMore header="Mer om inntekt, hva skal jeg ta med">Kort info</ReadMore>
                 <Box className="mt-4">
-                    <Button variant="primary">Meld inn inntekt for {månedNavn} </Button>
+                    {visSkjema ? (
+                        <InntektForm
+                            deltakelseId={deltakelseId}
+                            periode={periode}
+                            onCancel={() => {
+                                setVisSkjema(false);
+                            }}
+                        />
+                    ) : (
+                        <Button
+                            variant="primary"
+                            type="button"
+                            onClick={() => {
+                                setVisSkjema(true);
+                            }}>
+                            Meld inn inntekt for {månedNavn}{' '}
+                        </Button>
+                    )}
                 </Box>
             </VStack>
         </Box>
