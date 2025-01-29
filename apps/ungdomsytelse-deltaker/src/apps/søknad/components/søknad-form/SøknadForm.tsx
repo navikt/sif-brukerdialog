@@ -3,9 +3,9 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useAppIntl } from '../../../../i18n';
-import BarnSpørsmål from './BarnSpørsmål';
-import KontonummerSpørsmål from './KontonummerSpørsmål';
-import SamtykkeSpørsmål from './SamtykkeSpørsmål';
+import BarnSpørsmål from './spørsmål/BarnSpørsmål';
+import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
+import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { sendSøknadApiData, SendSøknadApiData } from '../../../../api/schemas/sendSøknadDto';
@@ -34,7 +34,7 @@ interface Props {
     barn: RegistrertBarn[];
     onSøknadSendt: () => void;
 }
-const Søknadsskjema = ({ kontonummer, deltakelseId, barn, startdato, onSøknadSendt }: Props) => {
+const SøknadForm = ({ kontonummer, deltakelseId, barn, startdato, onSøknadSendt }: Props) => {
     const { intl, text } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
@@ -116,4 +116,4 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, barn, startdato, onSøknadS
     );
 };
 
-export default Søknadsskjema;
+export default SøknadForm;

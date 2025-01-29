@@ -9,9 +9,9 @@ interface Props {
     rapporteringsperiode: Rapporteringsperiode;
 }
 
-const Inntektsrapportering = ({ rapporteringsperiode, deltakelseId }: Props) => {
+const ÅpenInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props) => {
     const { periode, fristForRapportering } = rapporteringsperiode;
-    const [visSkjema, setVisSkjema] = useState(true);
+    const [visSkjema, setVisSkjema] = useState(false);
 
     if (!fristForRapportering) {
         return <Alert variant="warning">FristForRapportering mangler</Alert>;
@@ -56,4 +56,4 @@ const Inntektsrapportering = ({ rapporteringsperiode, deltakelseId }: Props) => 
     );
 };
 
-export default Inntektsrapportering;
+export default ÅpenInntektsperiode;

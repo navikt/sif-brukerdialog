@@ -2,7 +2,7 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useDeltakerContext } from '../../context/DeltakerContext';
 import VelkommenMelding from './components/VelkommenMelding';
 import { VStack } from '@navikt/ds-react';
-import Søknadsskjema from './components/søknadsskjema/Søknadskjema';
+import SøknadForm from './components/søknad-form/SøknadForm';
 import InformasjonOmUngdomsytelsen from './components/Informasjon';
 import { useState } from 'react';
 import SøknadSendtInformasjon from './components/SøknadSendtInformasjon';
@@ -21,7 +21,7 @@ const SøknadApp = () => {
                 <VStack gap="8">
                     <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
 
-                    <Søknadsskjema
+                    <SøknadForm
                         kontonummer="3543.12.24988"
                         barn={barn}
                         startdato={deltakelse.programPeriode.from}

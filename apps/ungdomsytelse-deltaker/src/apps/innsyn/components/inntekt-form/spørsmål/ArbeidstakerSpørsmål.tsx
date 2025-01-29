@@ -1,4 +1,4 @@
-import { inntektFormComponents, InntektFormFields } from './InntektForm';
+import { inntektFormComponents, InntektFormFields } from '../InntektForm';
 import { ReadMore } from '@navikt/ds-react';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -27,7 +27,7 @@ const ArbeidstakerSpørsmål = ({ harAnsattInntekt }: Props) => {
                     <NumberInput
                         name={InntektFormFields.ansattInntekt}
                         label="Oppgi hvor mye du har hatt i inntekt som arbeidstaker i perioden"
-                        validate={getNumberValidator({ min: 0, required: true })}
+                        validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
                     />
                 </FormLayout.QuestionBleedTop>
             ) : null}

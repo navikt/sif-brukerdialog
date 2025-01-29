@@ -1,4 +1,4 @@
-import { inntektFormComponents, InntektFormFields } from './InntektForm';
+import { inntektFormComponents, InntektFormFields } from '../InntektForm';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 
@@ -19,7 +19,7 @@ const SelvstendigNæringsdrivendeSpørsmål = ({ harSNInntekt }: Props) => {
                     <NumberInput
                         name={InntektFormFields.snInntekt}
                         label="Oppgi hvor mye du har hatt i inntekt som selvstendig næringsdrivende i perioden?"
-                        validate={getNumberValidator({ min: 0, required: true })}
+                        validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
                     />
                 </FormLayout.QuestionBleedTop>
             ) : null}

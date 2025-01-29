@@ -67,7 +67,7 @@ const TidligerePerioder = ({ perioder }: Props) => {
                                 </Heading>
                                 {kanEndre ? (
                                     <Box>
-                                        <Button variant="secondary" type="button" size="small">
+                                        <Button variant="secondary" type="button" size="small" disabled={true}>
                                             Endre inntekt
                                         </Button>
                                     </Box>

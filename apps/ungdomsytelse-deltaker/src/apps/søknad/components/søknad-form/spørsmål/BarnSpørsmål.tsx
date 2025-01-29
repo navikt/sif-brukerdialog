@@ -1,9 +1,9 @@
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { SøknadFormFields } from './Søknadskjema';
+import { SøknadFormFields } from '../SøknadForm';
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import BarnList from './BarnList';
-import { søknadFormComponents } from './TypedSøknadFormComponents';
+import { søknadFormComponents } from '../TypedSøknadFormComponents';
 
 interface Props {
     barn: RegistrertBarn[];

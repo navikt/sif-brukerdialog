@@ -5,7 +5,7 @@ import {
     getÅpenRapporteringsperiode,
     sorterRapporteringsperioderDesc,
 } from '../utils/deltakelseUtils';
-import Inntektsrapportering from './Inntektsrapportering';
+import ÅpenInntektsperiode from './ÅpenInntektsperiode';
 import TidligerePerioder from './TidligerePerioder';
 
 interface Props {
@@ -22,7 +22,7 @@ const Deltakelse = ({ deltakelse }: Props) => {
     return (
         <VStack gap="8">
             {åpenPeriode ? (
-                <Inntektsrapportering deltakelseId={deltakelse.id} rapporteringsperiode={åpenPeriode} />
+                <ÅpenInntektsperiode deltakelseId={deltakelse.id} rapporteringsperiode={åpenPeriode} />
             ) : null}
 
             <TidligerePerioder perioder={tidligerePerioder || []} />

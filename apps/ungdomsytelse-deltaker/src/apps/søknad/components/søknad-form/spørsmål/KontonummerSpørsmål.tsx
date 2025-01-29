@@ -1,7 +1,7 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { SøknadFormFields } from './Søknadskjema';
-import { søknadFormComponents } from './TypedSøknadFormComponents';
+import { SøknadFormFields } from '../SøknadForm';
+import { søknadFormComponents } from '../TypedSøknadFormComponents';
 
 interface Props {
     kontonummer: string;

@@ -1,8 +1,8 @@
 import { Heading, Link, List } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { SøknadFormFields } from './Søknadskjema';
-import { søknadFormComponents } from './TypedSøknadFormComponents';
+import { AppText, useAppIntl } from '../../../../../i18n';
+import { SøknadFormFields } from '../SøknadForm';
+import { søknadFormComponents } from '../TypedSøknadFormComponents';
 
 const RETT_OG_PLIKT_URL = 'https://www.nav.no/endringer#du-har-plikt-til-a-gi-nav-riktige-opplysninger';
 
