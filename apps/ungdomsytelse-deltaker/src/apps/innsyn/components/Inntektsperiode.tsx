@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 import InntektForm from './inntekt-form/InntektForm';
 import { FormattedNumber } from 'react-intl';
+import dayjs from 'dayjs';
 
 interface Props {
     deltakelseId: string;
@@ -11,7 +12,12 @@ interface Props {
 }
 
 const Inntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props) => {
-    const { periode, fristForRapportering, harRapportert, kanEndre } = rapporteringsperiode;
+    const {
+        periode,
+        fristForRapportering = dayjs().endOf('month').toDate(),
+        harRapportert,
+        kanEndre,
+    } = rapporteringsperiode;
     const [visSkjema, setVisSkjema] = useState(false);
 
     if (!fristForRapportering) {

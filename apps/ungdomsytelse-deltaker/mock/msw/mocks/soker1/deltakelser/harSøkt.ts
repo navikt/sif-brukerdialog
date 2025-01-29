@@ -60,7 +60,7 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
                 kanRapportere: false,
-                fristForRapportering: '2025-01-31',
+                // fristForRapportering: '2025-01-31',
                 kanEndre: true,
                 inntekt: 0,
             },
