@@ -53,7 +53,7 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 harRapportert: true,
                 kanRapportere: false,
                 kanEndre: true,
-                inntekt: 0,
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-01-01',
