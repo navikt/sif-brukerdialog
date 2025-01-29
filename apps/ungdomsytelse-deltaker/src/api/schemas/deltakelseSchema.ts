@@ -8,8 +8,8 @@ const rapporteringsperiodeProcessedDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     harRapportert: z.boolean(),
-    kanRapportere: z.boolean(),
-    kanEndre: z.boolean(),
+    kanRapportere: z.boolean().optional(),
+    kanEndre: z.boolean().optional(),
     fristForRapportering: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).optional(),
     inntekt: z.number().optional(),
 });

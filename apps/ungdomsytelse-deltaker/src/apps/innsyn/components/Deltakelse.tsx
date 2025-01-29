@@ -1,11 +1,11 @@
 import { Deltakelse } from '../../../api/types';
 import { VStack } from '@navikt/ds-react';
 import {
+    getGjeldendeRapporteringsperiode,
     getTidligereRapporteringsperioder,
-    getÅpenRapporteringsperiode,
     sorterRapporteringsperioderDesc,
 } from '../utils/deltakelseUtils';
-import ÅpenInntektsperiode from './ÅpenInntektsperiode';
+import Inntektsperiode from './Inntektsperiode';
 import TidligerePerioder from './TidligerePerioder';
 
 interface Props {
@@ -14,16 +14,14 @@ interface Props {
 
 const Deltakelse = ({ deltakelse }: Props) => {
     const { rapporteringsPerioder } = deltakelse;
-    const åpenPeriode = getÅpenRapporteringsperiode(rapporteringsPerioder || []);
+    const periode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []).sort(
         sorterRapporteringsperioderDesc,
     );
 
     return (
         <VStack gap="8">
-            {åpenPeriode ? (
-                <ÅpenInntektsperiode deltakelseId={deltakelse.id} rapporteringsperiode={åpenPeriode} />
-            ) : null}
+            {periode ? <Inntektsperiode deltakelseId={deltakelse.id} rapporteringsperiode={periode} /> : null}
 
             <TidligerePerioder perioder={tidligerePerioder || []} />
         </VStack>

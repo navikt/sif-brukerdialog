@@ -16,6 +16,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 interface Props {
     deltakelseId: string;
     periode: DateRange;
+    gjelderEndring?: boolean;
     onCancel: () => void;
 }
 
@@ -43,7 +44,7 @@ export const inntektFormComponents = getTypedFormComponents<InntektFormFields, I
 
 const { FormikWrapper, Form, ConfirmationCheckbox } = inntektFormComponents;
 
-const InntektForm = ({ deltakelseId, periode, onCancel }: Props) => {
+const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
 
@@ -61,7 +62,7 @@ const InntektForm = ({ deltakelseId, periode, onCancel }: Props) => {
         <Bleed marginInline="5">
             <VStack gap="2" className="rounded-md bg-white p-8 shadow-large">
                 <Heading level="2" size="medium">
-                    Inntektskjema
+                    Inntektskjema {gjelderEndring ? '(endring)' : null}
                 </Heading>
                 {inntektSendt ? (
                     <VStack gap="4">

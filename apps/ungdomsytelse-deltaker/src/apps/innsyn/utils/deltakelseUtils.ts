@@ -1,18 +1,20 @@
 import dayjs from 'dayjs';
 import { Rapporteringsperiode } from '../../../api/types';
+import { isDateInDateRange } from '@navikt/sif-common-utils';
 
-export const rapporteringsperiodeErÅpen = (rapporteringsperiode: Rapporteringsperiode): boolean =>
-    rapporteringsperiode.kanRapportere && !!rapporteringsperiode.fristForRapportering;
+const datoErIRapporteringsperiode = (dato: Date, periode: Rapporteringsperiode): boolean => {
+    return isDateInDateRange(dato, periode.periode);
+};
 
 export const rapporteringsperiodeErTidligerePeriode = (rapporteringsperiode: Rapporteringsperiode): boolean => {
     const { periode } = rapporteringsperiode;
     return dayjs(periode.to).isBefore(dayjs());
 };
 
-export const getÅpenRapporteringsperiode = (
+export const getGjeldendeRapporteringsperiode = (
     rapporteringsperioder: Rapporteringsperiode[],
 ): Rapporteringsperiode | undefined => {
-    return rapporteringsperioder.find(rapporteringsperiodeErÅpen);
+    return rapporteringsperioder.find((p) => datoErIRapporteringsperiode(new Date(), p));
 };
 
 export const getTidligereRapporteringsperioder = (
