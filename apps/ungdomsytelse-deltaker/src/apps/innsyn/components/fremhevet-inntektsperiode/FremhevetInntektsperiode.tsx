@@ -20,7 +20,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
         fristForRapportering = dayjs().endOf('month').toDate(), // TODO - fallback frem til backend er klar
     } = rapporteringsperiode;
 
-    const [visSkjema, setVisSkjema] = useState(false);
+    const [visSkjema, setVisSkjema] = useState(true);
     const månedNavn = dateFormatter.month(periode.from);
     const månedÅrNavn = dateFormatter.monthFullYear(periode.from);
 

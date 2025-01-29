@@ -111,8 +111,11 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                                             <ArbeidstakerFrilanserSpørsmål
                                                 harArbeidstakerFrilanserInntekt={harArbeidstakerFrilanserInntekt}
                                             />
+
                                             <SelvstendigNæringsdrivendeSpørsmål harSNInntekt={harSNInntekt} />
+
                                             <YtelseSpørsmål harYtelseInntekt={harYtelseInntekt} />
+
                                             {inntekt ? (
                                                 <ConfirmationCheckbox
                                                     name={InntektFormFields.bekrefterInntekt}

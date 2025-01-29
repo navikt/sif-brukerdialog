@@ -23,6 +23,7 @@ const SelvstendigNæringsdrivendeSpørsmål = ({ harSNInntekt }: Props) => {
                 }
                 validate={getYesOrNoValidator()}
             />
+
             {harSNInntekt ? (
                 <FormLayout.QuestionBleedTop>
                     <Box className=" bg-deepblue-50 p-6 rounded-md">
