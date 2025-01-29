@@ -20,6 +20,7 @@ const SelvstendigNæringsdrivendeSpørsmål = ({ harSNInntekt }: Props) => {
                     <NumberInput
                         name={InntektFormFields.snInntekt}
                         label="Oppgi hvor mye du har hatt i inntekt som selvstendig næringsdrivende i perioden?"
+                        integerValue={true}
                         validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
                     />
                 </FormLayout.QuestionBleedTop>

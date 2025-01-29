@@ -20,6 +20,7 @@ const YtelseSpørsmål = ({ harYtelseInntekt }: Props) => {
                     <NumberInput
                         name={InntektFormFields.ytelseInntekt}
                         label="Oppgi hvor mye du har mottatt i ytelser fra Nav i perioden"
+                        integerValue={true}
                         validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
                     />
                 </FormLayout.QuestionBleedTop>

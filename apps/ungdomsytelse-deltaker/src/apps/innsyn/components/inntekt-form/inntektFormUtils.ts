@@ -3,11 +3,11 @@ import { InntektFormFields, InntektFormValues } from './InntektForm';
 import { Inntekt } from '../../../../api/types';
 
 export const getInntektFromFormValues = (values: InntektFormValues): Inntekt => {
-    const harAnsattInntekt = values[InntektFormFields.harAnsattInntekt] === YesOrNo.YES;
+    const harArbeidstakerFrilanserInntekt = values[InntektFormFields.harArbeidstakerFrilanserInntekt] === YesOrNo.YES;
     const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;
     const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt] === YesOrNo.YES;
 
-    const inntektAnsatt = harAnsattInntekt
+    const inntektAnsatt = harArbeidstakerFrilanserInntekt
         ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
         : 0;
     const inntektSN = harSNInntekt ? getNumberFromNumberInputValue(values[InntektFormFields.snInntekt]) || 0 : 0;
@@ -24,8 +24,8 @@ export const getInntektFromFormValues = (values: InntektFormValues): Inntekt => 
 };
 
 export const erAlleInntektSpørsmålBesvartOgGyldig = (values: InntektFormValues) => {
-    const harAnsattInntekt = values[InntektFormFields.harAnsattInntekt];
+    const harArbeidstakerFrilanserInntekt = values[InntektFormFields.harArbeidstakerFrilanserInntekt];
     const harSNInntekt = values[InntektFormFields.harSNInntekt];
     const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt];
-    return !!harAnsattInntekt && !!harSNInntekt && !!harYtelseInntekt;
+    return !!harArbeidstakerFrilanserInntekt && !!harSNInntekt && !!harYtelseInntekt;
 };

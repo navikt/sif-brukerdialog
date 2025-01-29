@@ -8,7 +8,7 @@ import { PeriodeMedInntekt } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { erAlleInntektSpørsmålBesvartOgGyldig, getInntektFromFormValues } from './inntektFormUtils';
-import ArbeidstakerSpørsmål from './spørsmål/ArbeidstakerSpørsmål';
+import ArbeidstakerFrilanserSpørsmål from './spørsmål/ArbeidstakerFrilanserSpørsmål';
 import SelvstendigNæringsdrivendeSpørsmål from './spørsmål/SelvstendigNæringsdrivendeSpørsmål';
 import YtelseSpørsmål from './spørsmål/YtelseSpørsmål';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export enum InntektFormFields {
-    harAnsattInntekt = 'harAnsattInntekt',
+    harArbeidstakerFrilanserInntekt = 'harArbeidstakerFrilanserInntekt',
     harSNInntekt = 'harSNInntekt',
     harYtelseInntekt = 'harYtelseInntekt',
     ansattInntekt = 'ansattInntekt',
@@ -31,7 +31,7 @@ export enum InntektFormFields {
 }
 
 export interface InntektFormValues {
-    [InntektFormFields.harAnsattInntekt]?: YesOrNo;
+    [InntektFormFields.harArbeidstakerFrilanserInntekt]?: YesOrNo;
     [InntektFormFields.harSNInntekt]?: YesOrNo;
     [InntektFormFields.harYtelseInntekt]?: YesOrNo;
     [InntektFormFields.ansattInntekt]?: string;
@@ -85,7 +85,8 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                                 initialValues={{}}
                                 onSubmit={handleSubmit}
                                 renderForm={({ values }) => {
-                                    const harAnsattInntekt = values[InntektFormFields.harAnsattInntekt] === YesOrNo.YES;
+                                    const harArbeidstakerFrilanserInntekt =
+                                        values[InntektFormFields.harArbeidstakerFrilanserInntekt] === YesOrNo.YES;
                                     const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;
                                     const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt] === YesOrNo.YES;
 
@@ -97,10 +98,13 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                                             submitButtonLabel="Send inn inntekt"
                                             onCancel={onCancel}
                                             cancelButtonLabel="Avbryt"
+                                            includeValidationSummary={true}
                                             submitPending={pending}
                                             formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                             <FormLayout.Questions>
-                                                <ArbeidstakerSpørsmål harAnsattInntekt={harAnsattInntekt} />
+                                                <ArbeidstakerFrilanserSpørsmål
+                                                    harArbeidstakerFrilanserInntekt={harArbeidstakerFrilanserInntekt}
+                                                />
                                                 <SelvstendigNæringsdrivendeSpørsmål harSNInntekt={harSNInntekt} />
                                                 <YtelseSpørsmål harYtelseInntekt={harYtelseInntekt} />
                                                 {inntekt ? (
