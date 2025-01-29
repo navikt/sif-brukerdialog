@@ -1,4 +1,4 @@
-import { BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
@@ -23,7 +23,9 @@ const RapporterInntektPart = ({ månedNavn, kanRapportere, fristForRapportering,
                     </Button>
                 </Box>
             ) : (
-                <>Du kan ikke melde inn inntekt for denne perioden nå.</>
+                <Alert variant="info" inline={true}>
+                    Du kan ikke melde inn inntekt for denne perioden nå.
+                </Alert>
             )}
         </VStack>
     );
