@@ -11,7 +11,7 @@ const rapporteringsperiodeProcessedDTOSchema = z.object({
     kanRapportere: z.boolean().optional(),
     kanEndre: z.boolean().optional(),
     fristForRapportering: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).optional(),
-    inntekt: z.number().optional(),
+    inntekt: z.preprocess((val) => (val === null ? undefined : val), z.number().optional()),
 });
 
 const deltakelseProcessedDTOSchema = z.object({

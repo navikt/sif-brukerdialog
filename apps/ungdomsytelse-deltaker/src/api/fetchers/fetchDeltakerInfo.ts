@@ -10,24 +10,17 @@ export type DeltakerInfo = {
 };
 
 export const fetchDeltakerInfo = cache(async (): Promise<DeltakerInfo> => {
+    const cacheKey = 'deltaker-data';
+
+    if (fetchDeltakerInfo[cacheKey]) {
+        return fetchDeltakerInfo[cacheKey];
+    }
+
     const [søker, deltakelser, barn] = await Promise.all([fetchSøker(), deltakerService.getDeltakelser(), fetchBarn()]);
 
     const result: DeltakerInfo = { søker, deltakelser, barn };
 
+    fetchDeltakerInfo[cacheKey] = result;
+
     return result;
 });
-// export const fetchDeltakerInfo = cache(async (): Promise<DeltakerInfo> => {
-//     const cacheKey = 'deltaker-data';
-
-//     if (fetchDeltakerInfo[cacheKey]) {
-//         return fetchDeltakerInfo[cacheKey];
-//     }
-
-//     const [søker, deltakelser, barn] = await Promise.all([fetchSøker(), deltakerService.getDeltakelser(), fetchBarn()]);
-
-//     const result: DeltakerInfo = { søker, deltakelser, barn };
-
-//     fetchDeltakerInfo[cacheKey] = result;
-
-//     return result;
-// });
