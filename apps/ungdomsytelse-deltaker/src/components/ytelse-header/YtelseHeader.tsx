@@ -3,9 +3,10 @@ import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/component
 
 interface Props {
     title: string;
+    description?: React.ReactNode;
 }
 
-const YtelseHeader = ({ title }: Props) => {
+const YtelseHeader = ({ title, description }: Props) => {
     return (
         <Stack
             gap="6"
@@ -20,6 +21,7 @@ const YtelseHeader = ({ title }: Props) => {
                 <Heading level="1" size="large">
                     {title}
                 </Heading>
+                {description}
             </VStack>
         </Stack>
     );

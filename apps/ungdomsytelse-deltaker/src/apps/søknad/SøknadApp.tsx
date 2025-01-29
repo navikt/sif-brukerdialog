@@ -14,6 +14,7 @@ const SøknadApp = () => {
     const handleOnSøknadSendt = () => {
         setSøknadSendt(true);
     };
+
     return (
         <Page title="Søknad om ungdomsytelse">
             {søknadSendt === false ? (

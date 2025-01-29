@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -11,6 +11,7 @@ import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { sendSøknadApiData, SendSøknadApiData } from '../../../../api/schemas/sendSøknadDto';
 import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import Startdato from './Startdato';
+import BlueBox from '../../../../components/blue-box/BlueBox';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -74,7 +75,7 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, barn, startdato, onSøknadS
                     const visSamtykkeSpørsmål = visBarnSpørsmål && !!barnSvar && barnSvar !== YesOrNo.NO;
 
                     return (
-                        <Box className="bg-deepblue-50 p-8 pb-4 rounded-md">
+                        <BlueBox>
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
@@ -107,7 +108,7 @@ const Søknadsskjema = ({ kontonummer, deltakelseId, barn, startdato, onSøknadS
                                     )}
                                 </VStack>
                             </Form>
-                        </Box>
+                        </BlueBox>
                     );
                 }}
             />
