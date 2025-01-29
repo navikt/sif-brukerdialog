@@ -1,14 +1,15 @@
-import { BodyShort, Box, Button, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
 
 interface Props {
     månedNavn: string;
     rapportertInntekt: number;
     kanRapportere?: boolean;
+    visSkjema: boolean;
     onEndreInntekt: () => void;
 }
 
-const EndreInntektPart = ({ månedNavn, rapportertInntekt, kanRapportere, onEndreInntekt }: Props) => {
+const EndreInntektPart = ({ månedNavn, rapportertInntekt, kanRapportere, onEndreInntekt, visSkjema }: Props) => {
     return (
         <VStack gap="6">
             <BodyShort>
@@ -19,15 +20,20 @@ const EndreInntektPart = ({ månedNavn, rapportertInntekt, kanRapportere, onEndr
                 i inntekt.
             </BodyShort>
             {kanRapportere ? (
-                <VStack gap="2">
-                    <ReadMore header="Mer om inntekt, hva skal jeg ta med">Kort info</ReadMore>
-                    <Box>
-                        <Button variant="primary" type="button" onClick={onEndreInntekt}>
-                            Endre inntekt for {månedNavn}
-                        </Button>
-                    </Box>
-                </VStack>
-            ) : null}
+                <>
+                    {visSkjema !== true ? (
+                        <Box>
+                            <Button variant="primary" type="button" onClick={onEndreInntekt}>
+                                Endre inntekt for {månedNavn}
+                            </Button>
+                        </Box>
+                    ) : null}
+                </>
+            ) : (
+                <Alert variant="info" inline={true}>
+                    Du kan ikke endre inntekt for denne perioden nå.
+                </Alert>
+            )}
         </VStack>
     );
 };

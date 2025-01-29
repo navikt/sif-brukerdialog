@@ -26,12 +26,13 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
 
     return (
         <Box className="bg-deepblue-50 p-8 rounded-md">
-            <VStack gap="8">
+            <VStack gap="4">
                 <Heading level="2" size="medium">
                     Inntekt {månedÅrNavn}
                 </Heading>
                 {harRapportert ? (
                     <EndreInntektPart
+                        visSkjema={visSkjema}
                         månedNavn={månedNavn}
                         onEndreInntekt={() => setVisSkjema(true)}
                         kanRapportere={kanRapportere}
@@ -39,6 +40,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
                     />
                 ) : (
                     <RapporterInntektPart
+                        visSkjema={visSkjema}
                         månedNavn={månedNavn}
                         fristForRapportering={fristForRapportering}
                         kanRapportere={kanRapportere}
@@ -47,14 +49,16 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
                 )}
 
                 {visSkjema ? (
-                    <InntektForm
-                        gjelderEndring={harRapportert}
-                        deltakelseId={deltakelseId}
-                        periode={periode}
-                        onCancel={() => {
-                            setVisSkjema(false);
-                        }}
-                    />
+                    <Box className="mt-4">
+                        <InntektForm
+                            gjelderEndring={harRapportert}
+                            deltakelseId={deltakelseId}
+                            periode={periode}
+                            onCancel={() => {
+                                setVisSkjema(false);
+                            }}
+                        />
+                    </Box>
                 ) : null}
             </VStack>
         </Box>

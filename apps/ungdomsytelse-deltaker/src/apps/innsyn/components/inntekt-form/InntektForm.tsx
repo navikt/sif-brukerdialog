@@ -60,7 +60,7 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
     };
     return (
         <Bleed marginInline="5">
-            <VStack gap="4" className="rounded-md bg-white p-8 shadow-large">
+            <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
                 <Heading level="2" size="medium">
                     Inntektskjema {gjelderEndring ? '(endring)' : null}
                 </Heading>

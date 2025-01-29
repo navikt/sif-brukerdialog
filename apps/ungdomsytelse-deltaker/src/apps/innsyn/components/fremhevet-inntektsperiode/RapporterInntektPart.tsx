@@ -5,10 +5,17 @@ interface Props {
     månedNavn: string;
     kanRapportere?: boolean;
     fristForRapportering: Date;
+    visSkjema: boolean;
     onRapporterInntekt: () => void;
 }
 
-const RapporterInntektPart = ({ månedNavn, kanRapportere, fristForRapportering, onRapporterInntekt }: Props) => {
+const RapporterInntektPart = ({
+    månedNavn,
+    kanRapportere,
+    fristForRapportering,
+    onRapporterInntekt,
+    visSkjema,
+}: Props) => {
     return (
         <VStack gap="6">
             <BodyShort>
@@ -17,11 +24,15 @@ const RapporterInntektPart = ({ månedNavn, kanRapportere, fristForRapportering,
                 måneden, trenger du ikke melde fra.
             </BodyShort>
             {kanRapportere ? (
-                <Box>
-                    <Button variant="primary" type="button" onClick={onRapporterInntekt}>
-                        Meld inn inntekt for {månedNavn}
-                    </Button>
-                </Box>
+                <>
+                    {visSkjema !== true ? (
+                        <Box>
+                            <Button variant="primary" type="button" onClick={onRapporterInntekt}>
+                                Meld inn inntekt for {månedNavn}
+                            </Button>
+                        </Box>
+                    ) : null}
+                </>
             ) : (
                 <Alert variant="info" inline={true}>
                     Du kan ikke melde inn inntekt for denne perioden nå.
