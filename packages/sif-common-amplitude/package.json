@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.10",
+        "@types/node": "22.12.0",
         "@types/react": "19.0.8",
         "config": "*",
         "constate": "3.3.2",
