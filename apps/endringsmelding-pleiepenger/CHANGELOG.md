@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.37.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.0
+
 ## 2.36.1
 
 ### Patch Changes

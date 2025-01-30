@@ -1,5 +1,16 @@
 # @navikt/omsorgspengesoknad
 
+## 1.38.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.0
+
 ## 1.37.3
 
 ### Patch Changes

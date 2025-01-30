@@ -5,6 +5,7 @@ export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/
 
 const velgYtelsePleiepenger = async (page: Page) => {
     await page.goto(startUrl);
+    await page.getByRole('button').getByText('Godkjenn alle').click();
     await page.getByLabel('Pleiepenger for sykt barn').click();
     await page.getByRole('button').getByText('Gå videre').click();
 };
