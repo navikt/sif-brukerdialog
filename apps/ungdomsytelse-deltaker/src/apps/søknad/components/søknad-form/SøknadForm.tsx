@@ -2,18 +2,19 @@ import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { dateToISODate } from '@navikt/sif-common-utils';
+import { søknadApiDataSchema } from '../../../../api/schemas/søknadApiDataSchema';
+import { SøknadApiData } from '../../../../api/types';
+import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
+import { Søknadstype } from '../../../../types/Søknadstype';
+import { useSendSøknad } from '../../hooks/useSendSøknad';
+import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import BarnSpørsmål from './spørsmål/BarnSpørsmål';
 import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
-import { søknadFormComponents } from './TypedSøknadFormComponents';
-import { useSendSøknad } from '../../hooks/useSendSøknad';
-import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import Startdato from './Startdato';
-import BlueBox from '../../../../components/blue-box/BlueBox';
-import { SøknadApiData } from '../../../../api/types';
-import { dateToISODate } from '@navikt/sif-common-utils';
-import { søknadApiDataSchema } from '../../../../api/schemas/søknadApiDataSchema';
+import { søknadFormComponents } from './TypedSøknadFormComponents';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -43,14 +44,16 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
 
     const handleSubmit = (values: SøknadFormValues) => {
         const apiData: SøknadApiData = {
-            id: deltakelseId,
+            søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
+            søknadId: deltakelseId,
             språk: intl.locale,
-            fraOgMed: dateToISODate(startdato),
+            startdato: dateToISODate(startdato),
             barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
             kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
             harBekreftetOpplysninger: values[SøknadFormFields.samtykker],
             harForståttRettigheterOgPlikter: values[SøknadFormFields.samtykker],
             søkerNorskIdent: søker.fødselsnummer,
+            isInntektForPeriode: false,
         };
         if (søknadApiDataSchema.parse(apiData)) {
             sendSøknad(apiData).then(() => {
