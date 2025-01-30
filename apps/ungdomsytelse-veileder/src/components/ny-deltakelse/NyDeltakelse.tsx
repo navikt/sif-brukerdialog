@@ -13,7 +13,7 @@ interface Props {
 const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Props) => {
     const [showForm, setShowForm] = useState(false);
 
-    const kanOppretteNyDeltakelse = alleDeltakelser.every((d) => !!d.periode && d.harSøkt);
+    const kanOppretteNyDeltakelse = alleDeltakelser.every((d) => (!!d.periode || !!d.fraOgMed) && d.harSøkt);
 
     if (!kanOppretteNyDeltakelse) {
         return null;
