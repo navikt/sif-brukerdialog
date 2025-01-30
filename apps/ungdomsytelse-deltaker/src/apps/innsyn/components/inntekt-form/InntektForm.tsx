@@ -1,52 +1,36 @@
-import { Alert, Bleed, BodyShort, Box, Button, Heading, ReadMore, VStack } from '@navikt/ds-react';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { PeriodeMedInntekt } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
-import { erAlleInntektSpørsmålBesvartOgGyldig, getInntektFromFormValues } from './inntektFormUtils';
-import ArbeidstakerFrilanserSpørsmål from './spørsmål/ArbeidstakerFrilanserSpørsmål';
-import SelvstendigNæringsdrivendeSpørsmål from './spørsmål/SelvstendigNæringsdrivendeSpørsmål';
-import YtelseSpørsmål from './spørsmål/YtelseSpørsmål';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
+import { InntektFormValues } from './types';
+import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
+import InntektDefaultForm from './varianter/InntektDefaultForm';
+import InntektKompaktForm from './varianter/InntektKompaktForm';
 
 interface Props {
     deltakelseId: string;
     periode: DateRange;
     gjelderEndring?: boolean;
+    variant?: 'kompakt' | 'vanlig';
+    kanEndreVariant?: boolean;
     onCancel: () => void;
 }
 
-export enum InntektFormFields {
-    harArbeidstakerFrilanserInntekt = 'harArbeidstakerFrilanserInntekt',
-    harSNInntekt = 'harSNInntekt',
-    harYtelseInntekt = 'harYtelseInntekt',
-    ansattInntekt = 'ansattInntekt',
-    snInntekt = 'snInntekt',
-    ytelseInntekt = 'ytelseInntekt',
-    bekrefterInntekt = 'bekrefterInntekt',
-}
-
-export interface InntektFormValues {
-    [InntektFormFields.harArbeidstakerFrilanserInntekt]?: YesOrNo;
-    [InntektFormFields.harSNInntekt]?: YesOrNo;
-    [InntektFormFields.harYtelseInntekt]?: YesOrNo;
-    [InntektFormFields.ansattInntekt]?: string;
-    [InntektFormFields.snInntekt]?: string;
-    [InntektFormFields.ytelseInntekt]?: string;
-    [InntektFormFields.bekrefterInntekt]?: boolean;
-}
-
-export const inntektFormComponents = getTypedFormComponents<InntektFormFields, InntektFormValues, ValidationError>();
-
-const { FormikWrapper, Form, ConfirmationCheckbox } = inntektFormComponents;
-
-const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props) => {
+const InntektForm = ({
+    deltakelseId,
+    periode,
+    gjelderEndring,
+    variant = 'vanlig',
+    kanEndreVariant,
+    onCancel,
+}: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
+    const [kompakt, setKompakt] = useState(variant === 'kompakt');
+    const { FormikWrapper, Form } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values);
@@ -60,22 +44,38 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
     };
 
     return (
-        <Bleed marginInline="5">
-            <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
-                <Heading level="2" size="medium">
-                    Inntektskjema {gjelderEndring ? '(endring)' : null}
-                </Heading>
-                {inntektSendt ? (
-                    <VStack gap="8">
-                        <Alert variant="success">Inntekt for perioden er sendt</Alert>
-                        <Box>
-                            <Button variant="tertiary" onClick={() => window.location.reload()}>
-                                Ok, oppdater side
-                            </Button>
-                        </Box>
-                    </VStack>
-                ) : (
-                    <VStack gap="8">
+        <>
+            <VStack gap="2">
+                {kompakt ? null : (
+                    <Heading level="2" size="small">
+                        Inntektskjema {gjelderEndring ? '(endring)' : null}
+                    </Heading>
+                )}
+
+                {kanEndreVariant ? (
+                    <Switch
+                        size="small"
+                        value="kompakt"
+                        onChange={(evt) => {
+                            setKompakt(evt.target.checked);
+                        }}
+                        checked={kompakt}>
+                        Vis kompakt skjema
+                    </Switch>
+                ) : null}
+            </VStack>
+            {inntektSendt ? (
+                <VStack gap="8">
+                    <Alert variant="success">Inntekt for perioden er sendt</Alert>
+                    <Box>
+                        <Button variant="tertiary" onClick={() => window.location.reload()}>
+                            Ok, oppdater side
+                        </Button>
+                    </Box>
+                </VStack>
+            ) : (
+                <VStack gap="8">
+                    {!kompakt ? (
                         <VStack gap="2">
                             <BodyShort>
                                 Spørsmålene nedenfor gjelder for perioden{' '}
@@ -87,57 +87,34 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                                 din eller kontakte arbeidsgiveren din.
                             </ReadMore>
                         </VStack>
+                    ) : null}
 
-                        <FormikWrapper
-                            initialValues={{}}
-                            onSubmit={handleSubmit}
-                            renderForm={({ values }) => {
-                                const harArbeidstakerFrilanserInntekt =
-                                    values[InntektFormFields.harArbeidstakerFrilanserInntekt] === YesOrNo.YES;
-                                const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;
-                                const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt] === YesOrNo.YES;
+                    <FormikWrapper
+                        initialValues={{}}
+                        onSubmit={handleSubmit}
+                        renderForm={({ values }) => {
+                            return (
+                                <Form
+                                    submitButtonLabel="Send inn inntekt"
+                                    onCancel={onCancel}
+                                    cancelButtonLabel="Avbryt"
+                                    includeValidationSummary={true}
+                                    submitPending={pending}
+                                    formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
+                                    {kompakt ? (
+                                        <InntektKompaktForm values={values} periode={periode} />
+                                    ) : (
+                                        <InntektDefaultForm values={values} periode={periode} />
+                                    )}
 
-                                const inntekt = erAlleInntektSpørsmålBesvartOgGyldig(values)
-                                    ? getInntektFromFormValues(values)
-                                    : undefined;
-                                return (
-                                    <Form
-                                        submitButtonLabel="Send inn inntekt"
-                                        onCancel={onCancel}
-                                        cancelButtonLabel="Avbryt"
-                                        includeValidationSummary={true}
-                                        submitPending={pending}
-                                        formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
-                                        <FormLayout.Questions>
-                                            <ArbeidstakerFrilanserSpørsmål
-                                                harArbeidstakerFrilanserInntekt={harArbeidstakerFrilanserInntekt}
-                                            />
-
-                                            <SelvstendigNæringsdrivendeSpørsmål harSNInntekt={harSNInntekt} />
-
-                                            <YtelseSpørsmål harYtelseInntekt={harYtelseInntekt} />
-
-                                            {inntekt ? (
-                                                <ConfirmationCheckbox
-                                                    name={InntektFormFields.bekrefterInntekt}
-                                                    label="Jeg bekrefter at opplysningene er korrekte"
-                                                    validate={getCheckedValidator()}>
-                                                    <InntektOppsummering
-                                                        periode={periode}
-                                                        inntekt={getInntektFromFormValues(values)}
-                                                    />
-                                                </ConfirmationCheckbox>
-                                            ) : null}
-                                        </FormLayout.Questions>
-                                        {error ? <Alert variant="error">{error}</Alert> : null}
-                                    </Form>
-                                );
-                            }}
-                        />
-                    </VStack>
-                )}
-            </VStack>
-        </Bleed>
+                                    {error ? <Alert variant="error">{error}</Alert> : null}
+                                </Form>
+                            );
+                        }}
+                    />
+                </VStack>
+            )}
+        </>
     );
 };
 

@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { dateFormatter, isDateInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -50,14 +50,18 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
 
                 {visSkjema ? (
                     <Box className="mt-4">
-                        <InntektForm
-                            gjelderEndring={harRapportert}
-                            deltakelseId={deltakelseId}
-                            periode={periode}
-                            onCancel={() => {
-                                setVisSkjema(false);
-                            }}
-                        />
+                        <Bleed marginInline="5">
+                            <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
+                                <InntektForm
+                                    gjelderEndring={harRapportert}
+                                    deltakelseId={deltakelseId}
+                                    periode={periode}
+                                    onCancel={() => {
+                                        setVisSkjema(false);
+                                    }}
+                                />
+                            </VStack>
+                        </Bleed>
                     </Box>
                 ) : null}
             </VStack>

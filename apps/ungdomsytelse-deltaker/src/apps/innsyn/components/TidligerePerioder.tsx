@@ -5,16 +5,19 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../i18n';
 import { FormattedNumber } from 'react-intl';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import EndreInntektDialog from './endre-inntekt-dialog/EndreInntektDialog';
 
 interface Props {
+    deltakelseId: string;
     perioder: Rapporteringsperiode[];
 }
 
-const TidligerePerioder = ({ perioder }: Props) => {
+const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
     const { locale } = useAppIntl();
     const [antall, setAntall] = useState(3);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
     const ref = useRef<HTMLDivElement>(null);
+    const [periodeForEndring, setPeriodeForEndring] = useState<Rapporteringsperiode | undefined>();
 
     useEffect(() => {
         if (focusIndex && ref.current) {
@@ -34,13 +37,18 @@ const TidligerePerioder = ({ perioder }: Props) => {
         setAntall(Math.min(perioder.length, antall + 3));
     };
 
+    const visEndreDialog = (periode: Rapporteringsperiode) => {
+        setPeriodeForEndring(periode);
+    };
+
     return (
         <VStack gap="2">
             <Heading level="2" size="small" spacing={true}>
                 Tidligere perioder
             </Heading>
 
-            {perioder.slice(0, antall).map(({ periode, inntekt = 0, kanRapportere }, index) => {
+            {perioder.slice(0, antall).map((rapporteringsperiode, index) => {
+                const { periode, inntekt = 0, kanRapportere } = rapporteringsperiode;
                 const periodeNavn = dateFormatter.MonthFullYear(periode.from, locale);
                 return (
                     <ExpansionCard
@@ -67,7 +75,13 @@ const TidligerePerioder = ({ perioder }: Props) => {
                                         Har inntekten endret seg?
                                     </Heading>
                                     <Box>
-                                        <Button variant="secondary" type="button" size="small" disabled={true}>
+                                        <Button
+                                            variant="secondary"
+                                            type="button"
+                                            size="small"
+                                            onClick={() => {
+                                                visEndreDialog(rapporteringsperiode);
+                                            }}>
                                             Endre inntekt
                                         </Button>
                                     </Box>
@@ -95,6 +109,11 @@ const TidligerePerioder = ({ perioder }: Props) => {
                     </Button>
                 </Box>
             ) : null}
+            <EndreInntektDialog
+                deltakelseId={deltakelseId}
+                rapporteringsperiode={periodeForEndring}
+                onCancel={() => setPeriodeForEndring(undefined)}
+            />
         </VStack>
     );
 };

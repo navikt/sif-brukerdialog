@@ -1,7 +1,8 @@
 import { Box, ReadMore } from '@navikt/ds-react';
-import { inntektFormComponents, InntektFormFields } from '../InntektForm';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { inntektFormComponents } from '../inntektFormUtils';
+import { InntektFormFields } from '../types';
 
 interface Props {
     harYtelseInntekt: boolean;
