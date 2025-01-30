@@ -16,6 +16,7 @@ import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
 import Startdato from './Startdato';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
+import { deltakerService } from '../../../../api/services/deltakerService';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -57,7 +58,8 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
             isInntektForPeriode: false,
         };
         if (søknadApiDataSchema.parse(apiData)) {
-            sendSøknad(apiData).then(() => {
+            sendSøknad(apiData).then(async () => {
+                await deltakerService.putMarkerHarSøkt(apiData.søknadId);
                 onSøknadSendt();
             });
         } else {
