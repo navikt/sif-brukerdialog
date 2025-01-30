@@ -3,7 +3,7 @@ import { Søknadstype } from '../../types/Søknadstype';
 
 export const søknadApiDataSchema = z.object({
     søknadstype: z.nativeEnum(Søknadstype),
-    språk: z.string(),
+    språk: z.enum(['nb', 'nn']),
     søknadId: z.string(),
     startdato: z.string(),
     søkerNorskIdent: z.string(),

@@ -1,5 +1,6 @@
 import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { dateToISODate } from '@navikt/sif-common-utils';
@@ -46,7 +47,7 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
         const apiData: SøknadApiData = {
             søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
             søknadId: deltakelseId,
-            språk: intl.locale,
+            språk: getLocaleForApi(intl.locale),
             startdato: dateToISODate(startdato),
             barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
             kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
