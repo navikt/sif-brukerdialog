@@ -1,5 +1,4 @@
 import { Alert, Bleed, BodyShort, Box, Button, Heading, ReadMore, VStack } from '@navikt/ds-react';
-import { FormattedNumber } from 'react-intl';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -12,6 +11,7 @@ import ArbeidstakerFrilanserSpørsmål from './spørsmål/ArbeidstakerFrilanserS
 import SelvstendigNæringsdrivendeSpørsmål from './spørsmål/SelvstendigNæringsdrivendeSpørsmål';
 import YtelseSpørsmål from './spørsmål/YtelseSpørsmål';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
 
 interface Props {
     deltakelseId: string;
@@ -122,8 +122,10 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
                                                     name={InntektFormFields.bekrefterInntekt}
                                                     label="Jeg bekrefter at opplysningene er korrekte"
                                                     validate={getCheckedValidator()}>
-                                                    Samlet inntekt for perioden er{' '}
-                                                    <FormattedNumber value={inntekt.samletInntekt} /> kr.{' '}
+                                                    <InntektOppsummering
+                                                        periode={periode}
+                                                        inntekt={getInntektFromFormValues(values)}
+                                                    />
                                                 </ConfirmationCheckbox>
                                             ) : null}
                                         </FormLayout.Questions>

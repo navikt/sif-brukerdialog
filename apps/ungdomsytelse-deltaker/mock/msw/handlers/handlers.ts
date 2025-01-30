@@ -18,7 +18,7 @@ export const handlers = [
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = false;
+        const harSøkt = true;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
     http.post('**/deltakelse/register/*/registrer-inntekt-i-periode', () => {
