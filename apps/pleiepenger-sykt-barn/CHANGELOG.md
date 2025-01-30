@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.9.1
+
+### Patch Changes
+
+- 0c6b88f: Nye tekster for inntektsmelding
+
 ## 4.9.0
 
 ### Minor Changes
