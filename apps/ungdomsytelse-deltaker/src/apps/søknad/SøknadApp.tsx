@@ -22,7 +22,8 @@ const SøknadApp = () => {
                     <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
 
                     <SøknadForm
-                        kontonummer="3543.12.24988"
+                        kontonummer="TODO"
+                        søker={søker}
                         barn={barn}
                         startdato={deltakelse.programPeriode.from}
                         deltakelseId={deltakelse.id}

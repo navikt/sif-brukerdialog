@@ -58,6 +58,7 @@ const InntektForm = ({ deltakelseId, periode, gjelderEndring, onCancel }: Props)
         };
         rapporterInntekt(deltakelseId, data);
     };
+
     return (
         <Bleed marginInline="5">
             <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">

@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { deltakerService } from '../../../api/services/deltakerService';
-import { SendSøknadApiData } from '../../../api/schemas/sendSøknadDto';
+import { sendSøknadService } from '../../../api/services/sendSøknadService';
+import { SøknadApiData } from '../../../api/types';
 
 export const useSendSøknad = () => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [søknadSendt, setSøknadSendt] = useState(false);
 
-    const sendSøknad = (deltakelseId: string, apiData: SendSøknadApiData) => {
+    const sendSøknad = (apiData: SøknadApiData) => {
         setPending(true);
-        return deltakerService
-            .sendSøknad(deltakelseId, apiData)
+        return sendSøknadService
+            .sendSøknad(apiData)
             .then(() => {
                 setSøknadSendt(true);
             })

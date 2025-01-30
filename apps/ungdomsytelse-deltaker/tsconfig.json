@@ -6,5 +6,5 @@
         "baseUrl": "./"
     },
     "exclude": ["node_modules", "src/build", "_src/**/*", "**.js", "dist"],
-    "include": ["src/**/*", "./mock/msw/**/*"]
+    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*"]
 }

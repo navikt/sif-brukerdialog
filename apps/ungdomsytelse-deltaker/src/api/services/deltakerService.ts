@@ -2,7 +2,6 @@ import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserSchema } from '../schemas/deltakelserSchema';
 import { Deltakelser, PeriodeMedInntekt } from '../types';
-import { SendSøknadApiData } from '../schemas/sendSøknadDto';
 
 const getDeltakelser = async (): Promise<Deltakelser> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
@@ -14,17 +13,6 @@ const getDeltakelser = async (): Promise<Deltakelser> => {
     }
 };
 
-const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
-    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
-};
-
-const sendSøknad = async (deltakelseId: string, apiData: SendSøknadApiData): Promise<void> => {
-    console.log(apiData);
-    return putMarkerHarSøkt(deltakelseId);
-    // avventer til backend er klar
-    // return await ungDeltakelseOpplyserApiClient.post(`/deltakelse/register/${deltakelseId}/marker-har-sokt`, apiData);
-};
-
 const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.post(
         `/deltakelse/register/${deltakelseId}/registrer-inntekt-i-periode`,
@@ -34,7 +22,5 @@ const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: Periode
 
 export const deltakerService = {
     getDeltakelser,
-    putMarkerHarSøkt,
     rapporterInntekt,
-    sendSøknad,
 };

@@ -1,10 +1,10 @@
 import { Box, Button, Tabs, VStack } from '@navikt/ds-react';
 import * as React from 'react';
 import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
-import ShadowBox from '@components/ShadowBox';
-import { storybookIntlUtils } from '@utils/intlUtils';
 import { StoryFormikWrapper } from './StoryFormikWrapper';
 import '@navikt/ds-css';
+import { storybookIntlUtils } from '../utils/intlUtils';
+import ShadowBox from './ShadowBox';
 
 export interface SpørsmålWrapperProps {
     formErrorHandlerIntlKey: string;

@@ -1,5 +1,5 @@
 import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useAppIntl } from '../../../../i18n';
@@ -8,10 +8,12 @@ import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
-import { sendSøknadApiData, SendSøknadApiData } from '../../../../api/schemas/sendSøknadDto';
 import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import Startdato from './Startdato';
 import BlueBox from '../../../../components/blue-box/BlueBox';
+import { SøknadApiData } from '../../../../api/types';
+import { dateToISODate } from '@navikt/sif-common-utils';
+import { søknadApiDataSchema } from '../../../../api/schemas/søknadApiDataSchema';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -32,21 +34,26 @@ interface Props {
     startdato: Date;
     kontonummer: string;
     barn: RegistrertBarn[];
+    søker: Søker;
     onSøknadSendt: () => void;
 }
-const SøknadForm = ({ kontonummer, deltakelseId, barn, startdato, onSøknadSendt }: Props) => {
+const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSøknadSendt }: Props) => {
     const { intl, text } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
     const handleSubmit = (values: SøknadFormValues) => {
-        const apiData: SendSøknadApiData = {
+        const apiData: SøknadApiData = {
+            id: deltakelseId,
+            språk: intl.locale,
+            fraOgMed: dateToISODate(startdato),
             barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
             kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
-            bekrefterAnsvar: values[SøknadFormFields.samtykker],
-            deltakelseId,
+            harBekreftetOpplysninger: values[SøknadFormFields.samtykker],
+            harForståttRettigheterOgPlikter: values[SøknadFormFields.samtykker],
+            søkerNorskIdent: søker.fødselsnummer,
         };
-        if (sendSøknadApiData.parse(apiData)) {
-            sendSøknad(deltakelseId, apiData).then(() => {
+        if (søknadApiDataSchema.parse(apiData)) {
+            sendSøknad(apiData).then(() => {
                 onSøknadSendt();
             });
         } else {

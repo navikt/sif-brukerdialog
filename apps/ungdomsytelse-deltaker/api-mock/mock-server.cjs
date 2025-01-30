@@ -184,14 +184,6 @@ const startExpressServer = () => {
         }, 500);
     });
 
-    server.put('/deltakelse/register/:id/marker-har-søkt', (req, res) => {
-        const body = req.body;
-        console.log('[POST] body', body);
-        setTimeout(() => {
-            res.sendStatus(200);
-        }, 500);
-    });
-
     /** --- Rapporter inntekt for en måned -------------- */
 
     server.post('/deltakelse/register/:id/registrer-inntekt-i-periode', (req, res) => {
