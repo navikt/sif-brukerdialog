@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.20.1
+
+### Patch Changes
+
+- 0c6b88f: Nye tekster for inntektsmelding
+
 ## 2.20.0
 
 ### Minor Changes
