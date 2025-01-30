@@ -18,11 +18,14 @@ export const handlers = [
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = true;
+        const harSøkt = false;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
     http.post('**/deltakelse/register/*/registrer-inntekt-i-periode', () => {
         return HttpResponse.json({});
+    }),
+    http.post('**/ungdomsytelse/soknad/innsending', () => {
+        return new HttpResponse(null, { status: 500 });
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

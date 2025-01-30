@@ -16,7 +16,7 @@ export const useSendSøknad = () => {
             })
             .catch((error) => {
                 setError('Søknad feilet');
-                console.log(error);
+                throw error;
             })
             .finally(() => {
                 setPending(false);
