@@ -14,7 +14,7 @@ interface Props {
 
 const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
     const { locale } = useAppIntl();
-    const [antall, setAntall] = useState(3);
+    const [antall, setAntall] = useState(2);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
     const ref = useRef<HTMLDivElement>(null);
     const [periodeForEndring, setPeriodeForEndring] = useState<Rapporteringsperiode | undefined>();
@@ -43,7 +43,7 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
 
     return (
         <VStack gap="2">
-            <Heading level="2" size="small" spacing={true}>
+            <Heading level="2" size="medium" spacing={true}>
                 Tidligere perioder
             </Heading>
 

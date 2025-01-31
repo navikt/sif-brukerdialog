@@ -1,7 +1,7 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-
 export const withPageWidth = (Story) => (
-    <Page title="abc">
-        <Story />
-    </Page>
+    <div className="p-5 pb-10 md:p-10 md:pb-20">
+        <div className="max-w-[1128px] mx-auto">
+            <Story />
+        </div>
+    </div>
 );
