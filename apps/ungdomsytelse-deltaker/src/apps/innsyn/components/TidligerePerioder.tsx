@@ -91,12 +91,12 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                                             ,-
                                         </Box>
                                     </HStack>
-                                    <VStack gap="3">
+                                    <VStack gap="2">
                                         <Heading level="3" size="xsmall">
                                             Endre inntekt
                                         </Heading>
                                         <BodyShort>Hvis inntekten har endret seg, kan du korrigere den her.</BodyShort>
-                                        <Box>
+                                        <Box style={{ marginTop: '.25rem' }}>
                                             <Button
                                                 variant="secondary"
                                                 type="button"

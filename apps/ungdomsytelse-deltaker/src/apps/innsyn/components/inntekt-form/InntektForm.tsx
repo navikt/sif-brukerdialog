@@ -8,8 +8,8 @@ import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { InntektFormValues } from './types';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
-import InntektKompaktForm from './varianter/InntektKompaktForm';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import InntektTableForm from './varianter/InntektTableForm';
 
 interface Props {
     deltakelseId: string;
@@ -27,7 +27,7 @@ const InntektForm = ({
     inntekt,
     gjelderEndring,
     variant = 'vanlig',
-    kanEndreVariant,
+    kanEndreVariant = true,
     onCancel,
 }: Props) => {
     const { intl } = useAppIntl();
@@ -60,11 +60,11 @@ const InntektForm = ({
     return (
         <>
             <VStack gap="2">
-                {kompakt ? null : (
-                    <Heading level="2" size="small">
-                        Inntektskjema {gjelderEndring ? '(endring)' : null}
-                    </Heading>
-                )}
+                {/* {kompakt ? null : ( */}
+                <Heading level="2" size="small">
+                    Inntektskjema {gjelderEndring ? '(endring)' : null}
+                </Heading>
+                {/* )} */}
 
                 {kanEndreVariant ? (
                     <Switch
@@ -116,7 +116,7 @@ const InntektForm = ({
                                     submitPending={pending}
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                     {kompakt ? (
-                                        <InntektKompaktForm values={values} periode={periode} />
+                                        <InntektTableForm inntekt={getInntektFromFormValues(values, true)} />
                                     ) : (
                                         <InntektDefaultForm values={values} periode={periode} />
                                     )}
