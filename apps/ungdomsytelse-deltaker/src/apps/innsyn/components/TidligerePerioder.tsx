@@ -47,7 +47,7 @@ const TidligerePerioder = ({ perioder }: Props) => {
             </Heading>
 
             {perioder.slice(0, antall).map((rapporteringsperiode, index) => {
-                const { periode, inntekt, kanRapportere } = rapporteringsperiode;
+                const { periode, inntekt, kanRapportere = true } = rapporteringsperiode;
                 const måned = dateFormatter.MonthFullYear(periode.from, locale);
                 const datoperiode = dateRangeFormatter.getDateRangeText(periode, locale);
                 const periodeNavn = `${måned} - ${datoperiode}`;
