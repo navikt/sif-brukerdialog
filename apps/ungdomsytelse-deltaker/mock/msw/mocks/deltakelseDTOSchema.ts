@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+/** Kun for å type mock */
 export const deltakelseDTOSchema = z.object({
     id: z.string(),
     programperiodeFraOgMed: z.string(),
@@ -19,7 +20,8 @@ export const deltakelseDTOSchema = z.object({
                         inntektYtelse: z.number().optional(),
                         summertInntekt: z.number(),
                     })
-                    .optional(),
+                    .optional()
+                    .nullable(),
                 fristForRapportering: z.string().optional().nullable(),
             }),
         )

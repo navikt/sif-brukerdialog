@@ -24,6 +24,7 @@ const EndreInntektDialog = ({ rapporteringsperiode, deltakelseId, onCancel }: Pr
             <Modal.Body>
                 <InntektForm
                     periode={rapporteringsperiode?.periode}
+                    inntekt={rapporteringsperiode?.inntekt}
                     deltakelseId={deltakelseId}
                     onCancel={onCancel}
                     variant="kompakt"

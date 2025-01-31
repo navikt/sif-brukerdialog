@@ -1,4 +1,4 @@
-import { DeltakelseDTO } from '../../../../../src/api/schemas/deltakelseDTOSchema';
+import { DeltakelseDTO } from '../../deltakelseDTOSchema';
 
 export const deltakelserHarSøkt: DeltakelseDTO[] = [
     {
@@ -73,9 +73,9 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 harRapportert: true,
                 kanRapportere: true,
                 inntekt: {
-                    inntektAnsatt: 0,
+                    inntektAnsatt: 2180,
                     inntektSN: 0,
-                    inntektYtelse: 0,
+                    inntektYtelse: 1500,
                     summertInntekt: 0,
                 },
             },
@@ -84,72 +84,42 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
                 kanRapportere: true,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-02-01',
                 tilOgMed: '2025-02-28',
                 harRapportert: false,
                 kanRapportere: false,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-03-01',
                 tilOgMed: '2025-03-31',
                 harRapportert: false,
                 kanRapportere: false,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-04-01',
                 tilOgMed: '2025-04-30',
                 harRapportert: false,
                 kanRapportere: false,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-05-01',
                 tilOgMed: '2025-05-31',
                 harRapportert: false,
                 kanRapportere: false,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
             {
                 fraOgMed: '2025-06-01',
                 tilOgMed: '2025-06-30',
                 harRapportert: false,
                 kanRapportere: false,
-                inntekt: {
-                    inntektAnsatt: 0,
-                    inntektSN: 0,
-                    inntektYtelse: 0,
-                    summertInntekt: 0,
-                },
+                inntekt: null,
             },
         ],
     },

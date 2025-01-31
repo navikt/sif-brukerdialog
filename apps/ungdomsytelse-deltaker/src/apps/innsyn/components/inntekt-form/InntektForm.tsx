@@ -2,16 +2,18 @@ import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from
 import { useState } from 'react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { PeriodeMedInntekt } from '../../../../api/types';
+import { Inntekt, PeriodeMedInntekt } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { InntektFormValues } from './types';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 import InntektKompaktForm from './varianter/InntektKompaktForm';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 interface Props {
     deltakelseId: string;
+    inntekt?: Inntekt;
     periode: DateRange;
     gjelderEndring?: boolean;
     variant?: 'kompakt' | 'vanlig';
@@ -22,6 +24,7 @@ interface Props {
 const InntektForm = ({
     deltakelseId,
     periode,
+    inntekt,
     gjelderEndring,
     variant = 'vanlig',
     kanEndreVariant,
@@ -42,6 +45,17 @@ const InntektForm = ({
         };
         rapporterInntekt(deltakelseId, data);
     };
+
+    const initialValues: Partial<InntektFormValues> = inntekt
+        ? {
+              harArbeidstakerFrilanserInntekt: inntekt.inntektAnsatt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              harSNInntekt: inntekt.inntektSN || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              harYtelseInntekt: inntekt.inntektYtelse || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              ansattInntekt: `${inntekt.inntektAnsatt}`,
+              snInntekt: `${inntekt.inntektSN}`,
+              ytelseInntekt: `${inntekt.inntektYtelse}`,
+          }
+        : {};
 
     return (
         <>
@@ -90,7 +104,7 @@ const InntektForm = ({
                     ) : null}
 
                     <FormikWrapper
-                        initialValues={{}}
+                        initialValues={initialValues}
                         onSubmit={handleSubmit}
                         renderForm={({ values }) => {
                             return (

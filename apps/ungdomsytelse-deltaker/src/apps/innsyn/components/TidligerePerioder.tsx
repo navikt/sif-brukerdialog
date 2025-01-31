@@ -62,7 +62,11 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                                 <BodyShort as="div" size="small">
                                     <HStack gap="4">
                                         <Box>
-                                            Inntekt: <FormattedNumber value={inntekt?.summertInntekt || 0} /> kroner
+                                            Registrert inntekt:{' '}
+                                            <BodyShort as="span" weight="semibold">
+                                                <FormattedNumber value={inntekt?.summertInntekt || 0} />
+                                            </BodyShort>
+                                            ,-
                                         </Box>
                                     </HStack>
                                 </BodyShort>
@@ -70,21 +74,40 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
                             {kanRapportere ? (
-                                <VStack gap="2">
-                                    <Heading level="3" size="xsmall">
-                                        Har inntekten endret seg?
-                                    </Heading>
-                                    <Box>
-                                        <Button
-                                            variant="secondary"
-                                            type="button"
-                                            size="small"
-                                            onClick={() => {
-                                                visEndreDialog(rapporteringsperiode);
-                                            }}>
+                                <VStack gap="6">
+                                    <HStack gap="4">
+                                        <Box>
+                                            Arbeidstaker/frilanser:{' '}
+                                            <FormattedNumber value={inntekt?.inntektAnsatt || 0} />
+                                            ,-
+                                        </Box>
+                                        <Box>
+                                            Selvstendig næringsdrivende:{' '}
+                                            <FormattedNumber value={inntekt?.inntektSN || 0} />
+                                            ,-
+                                        </Box>
+                                        <Box>
+                                            Ytelse fra Nav: <FormattedNumber value={inntekt?.inntektYtelse || 0} />
+                                            ,-
+                                        </Box>
+                                    </HStack>
+                                    <VStack gap="3">
+                                        <Heading level="3" size="xsmall">
                                             Endre inntekt
-                                        </Button>
-                                    </Box>
+                                        </Heading>
+                                        <BodyShort>Hvis inntekten har endret seg, kan du korrigere den her.</BodyShort>
+                                        <Box>
+                                            <Button
+                                                variant="secondary"
+                                                type="button"
+                                                size="small"
+                                                onClick={() => {
+                                                    visEndreDialog(rapporteringsperiode);
+                                                }}>
+                                                Endre inntekt
+                                            </Button>
+                                        </Box>
+                                    </VStack>
                                 </VStack>
                             ) : (
                                 <VStack gap="2">

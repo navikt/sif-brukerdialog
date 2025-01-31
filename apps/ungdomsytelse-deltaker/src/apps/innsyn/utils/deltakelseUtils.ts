@@ -8,7 +8,7 @@ const datoErIRapporteringsperiode = (dato: Date, periode: Rapporteringsperiode):
 
 export const rapporteringsperiodeErTidligerePeriode = (rapporteringsperiode: Rapporteringsperiode): boolean => {
     const { periode } = rapporteringsperiode;
-    return dayjs(periode.to).isBefore(dayjs());
+    return dayjs(periode.to).isBefore(dayjs(), 'day');
 };
 
 export const getGjeldendeRapporteringsperiode = (
