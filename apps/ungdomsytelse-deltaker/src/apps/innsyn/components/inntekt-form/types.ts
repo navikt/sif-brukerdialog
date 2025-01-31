@@ -1,9 +1,9 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 export enum InntektFormFields {
-    harArbeidstakerFrilanserInntekt = 'harArbeidstakerFrilanserInntekt',
-    harSNInntekt = 'harSNInntekt',
-    harYtelseInntekt = 'harYtelseInntekt',
+    harArbeidstakerOgFrilansInntekt = 'harArbeidstakerOgFrilansInntekt',
+    harNæringsinntekt = 'harNæringsinntekt',
+    harInntektFraYtelse = 'harInntektFraYtelse',
     ansattInntekt = 'ansattInntekt',
     snInntekt = 'snInntekt',
     ytelseInntekt = 'ytelseInntekt',
@@ -11,9 +11,9 @@ export enum InntektFormFields {
 }
 
 export interface InntektFormValues {
-    [InntektFormFields.harArbeidstakerFrilanserInntekt]?: YesOrNo;
-    [InntektFormFields.harSNInntekt]?: YesOrNo;
-    [InntektFormFields.harYtelseInntekt]?: YesOrNo;
+    [InntektFormFields.harArbeidstakerOgFrilansInntekt]?: YesOrNo;
+    [InntektFormFields.harNæringsinntekt]?: YesOrNo;
+    [InntektFormFields.harInntektFraYtelse]?: YesOrNo;
     [InntektFormFields.ansattInntekt]?: string;
     [InntektFormFields.snInntekt]?: string;
     [InntektFormFields.ytelseInntekt]?: string;

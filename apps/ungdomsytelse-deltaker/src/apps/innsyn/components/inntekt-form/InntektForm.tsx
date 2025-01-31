@@ -2,7 +2,7 @@ import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from
 import { useState } from 'react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { Inntekt, PeriodeMedInntekt } from '../../../../api/types';
+import { Inntekt, InntektsrapporteringDTO } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { InntektFormValues } from './types';
@@ -37,23 +37,29 @@ const InntektForm = ({
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values);
-        const data: PeriodeMedInntekt = {
-            ...inntekt,
-            fraOgMed: dateToISODate(periode.from),
-            tilOgMed: dateToISODate(periode.to),
-            bekrefterInntekt: true,
+        const data: InntektsrapporteringDTO = {
+            oppgittInntektForPeriode: {
+                periodeForInntekt: {
+                    fraOgMed: dateToISODate(periode.from),
+                    tilOgMed: dateToISODate(periode.to),
+                },
+                arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
+                inntektFraYtelse: inntekt.inntektFraYtelse,
+                næringsinntekt: inntekt.næringsinntekt,
+            },
+            harBekreftetInntekt: values.bekrefterInntekt === true,
         };
         rapporterInntekt(deltakelseId, data);
     };
 
     const initialValues: Partial<InntektFormValues> = inntekt
         ? {
-              harArbeidstakerFrilanserInntekt: inntekt.inntektAnsatt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              harSNInntekt: inntekt.inntektSN || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              harYtelseInntekt: inntekt.inntektYtelse || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              ansattInntekt: `${inntekt.inntektAnsatt}`,
-              snInntekt: `${inntekt.inntektSN}`,
-              ytelseInntekt: `${inntekt.inntektYtelse}`,
+              harArbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              harNæringsinntekt: inntekt.næringsinntekt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              harInntektFraYtelse: inntekt.inntektFraYtelse || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              ansattInntekt: `${inntekt.arbeidstakerOgFrilansInntekt}`,
+              snInntekt: `${inntekt.næringsinntekt}`,
+              ytelseInntekt: `${inntekt.inntektFraYtelse}`,
           }
         : {};
 
@@ -115,13 +121,22 @@ const InntektForm = ({
                                     includeValidationSummary={true}
                                     submitPending={pending}
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
-                                    {kompakt ? (
-                                        <InntektTableForm inntekt={getInntektFromFormValues(values, true)} />
-                                    ) : (
-                                        <InntektDefaultForm values={values} periode={periode} />
-                                    )}
+                                    <VStack gap="4">
+                                        {kompakt ? (
+                                            <InntektTableForm inntekt={getInntektFromFormValues(values, true)} />
+                                        ) : (
+                                            <InntektDefaultForm values={values} periode={periode} />
+                                        )}
 
-                                    {error ? <Alert variant="error">{error}</Alert> : null}
+                                        {inntekt ? (
+                                            <Alert variant="info" inline={true}>
+                                                Når du endrer inntekt på tidligere perioder, vil Lorem ipsum dolor sit
+                                                amet consectetur adipisicing elit. Voluptas cumque quo sunt.
+                                            </Alert>
+                                        ) : null}
+
+                                        {error ? <Alert variant="error">{error}</Alert> : null}
+                                    </VStack>
                                 </Form>
                             );
                         }}

@@ -5,15 +5,15 @@ import { inntektFormComponents } from '../inntektFormUtils';
 import { InntektFormFields } from '../types';
 
 interface Props {
-    harArbeidstakerFrilanserInntekt: boolean;
+    harArbeidstakerOgFrilansInntekt: boolean;
 }
 
-const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerFrilanserInntekt }: Props) => {
+const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerOgFrilansInntekt }: Props) => {
     const { YesOrNoQuestion, NumberInput } = inntektFormComponents;
     return (
         <>
             <YesOrNoQuestion
-                name={InntektFormFields.harArbeidstakerFrilanserInntekt}
+                name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
                 legend="Har du hatt inntekt som arbeidstaker eller frilanser i denne perioden?"
                 validate={getYesOrNoValidator()}
                 description={
@@ -25,7 +25,7 @@ const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerFrilanserInntekt }: Pr
                 }
             />
 
-            {harArbeidstakerFrilanserInntekt ? (
+            {harArbeidstakerOgFrilansInntekt ? (
                 <FormLayout.QuestionBleedTop>
                     <Box className=" bg-deepblue-50 p-6 rounded-md">
                         <NumberInput

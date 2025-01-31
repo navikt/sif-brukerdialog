@@ -78,16 +78,16 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                                     <HStack gap="4">
                                         <Box>
                                             Arbeidstaker/frilanser:{' '}
-                                            <FormattedNumber value={inntekt?.inntektAnsatt || 0} />
+                                            <FormattedNumber value={inntekt?.arbeidstakerOgFrilansInntekt || 0} />
                                             ,-
                                         </Box>
                                         <Box>
                                             Selvstendig næringsdrivende:{' '}
-                                            <FormattedNumber value={inntekt?.inntektSN || 0} />
+                                            <FormattedNumber value={inntekt?.næringsinntekt || 0} />
                                             ,-
                                         </Box>
                                         <Box>
-                                            Ytelse fra Nav: <FormattedNumber value={inntekt?.inntektYtelse || 0} />
+                                            Ytelse fra Nav: <FormattedNumber value={inntekt?.inntektFraYtelse || 0} />
                                             ,-
                                         </Box>
                                     </HStack>

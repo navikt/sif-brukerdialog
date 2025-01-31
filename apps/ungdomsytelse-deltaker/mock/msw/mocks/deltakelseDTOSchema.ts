@@ -15,9 +15,9 @@ export const deltakelseDTOSchema = z.object({
                 kanRapportere: z.boolean().optional(),
                 inntekt: z
                     .object({
-                        inntektAnsatt: z.number().optional(),
-                        inntektSN: z.number().optional(),
-                        inntektYtelse: z.number().optional(),
+                        arbeidstakerOgFrilansInntekt: z.number().optional(),
+                        næringsinntekt: z.number().optional(),
+                        inntektFraYtelse: z.number().optional(),
                         summertInntekt: z.number(),
                     })
                     .optional()

@@ -20,19 +20,19 @@ interface Props {
 
 const InntektDefaultForm = ({ periode, values }: Props) => {
     const { ConfirmationCheckbox } = inntektFormComponents;
-    const harArbeidstakerFrilanserInntekt = values[InntektFormFields.harArbeidstakerFrilanserInntekt] === YesOrNo.YES;
-    const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;
-    const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt] === YesOrNo.YES;
+    const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
+    const harNæringsinntekt = values[InntektFormFields.harNæringsinntekt] === YesOrNo.YES;
+    const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse] === YesOrNo.YES;
 
     const inntekt = erAlleInntektSpørsmålBesvartOgGyldig(values) ? getInntektFromFormValues(values) : undefined;
 
     return (
         <FormLayout.Questions>
-            <ArbeidstakerFrilanserSpørsmål harArbeidstakerFrilanserInntekt={harArbeidstakerFrilanserInntekt} />
+            <ArbeidstakerFrilanserSpørsmål harArbeidstakerOgFrilansInntekt={harArbeidstakerOgFrilansInntekt} />
 
-            <SelvstendigNæringsdrivendeSpørsmål harSNInntekt={harSNInntekt} />
+            <SelvstendigNæringsdrivendeSpørsmål harNæringsinntekt={harNæringsinntekt} />
 
-            <YtelseSpørsmål harYtelseInntekt={harYtelseInntekt} />
+            <YtelseSpørsmål harInntektFraYtelse={harInntektFraYtelse} />
 
             {inntekt ? (
                 <ConfirmationCheckbox

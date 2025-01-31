@@ -5,15 +5,15 @@ import { inntektFormComponents } from '../inntektFormUtils';
 import { InntektFormFields } from '../types';
 
 interface Props {
-    harYtelseInntekt: boolean;
+    harInntektFraYtelse: boolean;
 }
 
-const YtelseSpørsmål = ({ harYtelseInntekt }: Props) => {
+const YtelseSpørsmål = ({ harInntektFraYtelse }: Props) => {
     const { YesOrNoQuestion, NumberInput } = inntektFormComponents;
     return (
         <>
             <YesOrNoQuestion
-                name={InntektFormFields.harYtelseInntekt}
+                name={InntektFormFields.harInntektFraYtelse}
                 legend="Har du hatt mottatt ytelser fra Nav i denne perioden?"
                 description={
                     <ReadMore header="Om Nav-ytelser som inntekt og hvilke ytelser som skal tas med">
@@ -24,7 +24,7 @@ const YtelseSpørsmål = ({ harYtelseInntekt }: Props) => {
                 }
                 validate={getYesOrNoValidator()}
             />
-            {harYtelseInntekt ? (
+            {harInntektFraYtelse ? (
                 <FormLayout.QuestionBleedTop>
                     <Box className=" bg-deepblue-50 p-6 rounded-md">
                         <NumberInput

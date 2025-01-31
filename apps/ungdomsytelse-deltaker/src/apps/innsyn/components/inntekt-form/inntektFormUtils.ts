@@ -10,34 +10,34 @@ import { InntektFormFields, InntektFormValues } from './types';
 export const inntektFormComponents = getTypedFormComponents<InntektFormFields, InntektFormValues, ValidationError>();
 
 export const getInntektFromFormValues = (values: InntektFormValues, ignoreYesNoQuestions?: boolean): Inntekt => {
-    const harArbeidstakerFrilanserInntekt = values[InntektFormFields.harArbeidstakerFrilanserInntekt] === YesOrNo.YES;
-    const harSNInntekt = values[InntektFormFields.harSNInntekt] === YesOrNo.YES;
-    const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt] === YesOrNo.YES;
+    const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
+    const harNæringsinntekt = values[InntektFormFields.harNæringsinntekt] === YesOrNo.YES;
+    const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse] === YesOrNo.YES;
 
-    const inntektAnsatt =
-        ignoreYesNoQuestions || harArbeidstakerFrilanserInntekt
+    const arbeidstakerOgFrilansInntekt =
+        ignoreYesNoQuestions || harArbeidstakerOgFrilansInntekt
             ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
             : 0;
-    const inntektSN =
-        ignoreYesNoQuestions || harSNInntekt
+    const næringsinntekt =
+        ignoreYesNoQuestions || harNæringsinntekt
             ? getNumberFromNumberInputValue(values[InntektFormFields.snInntekt]) || 0
             : 0;
-    const inntektYtelse =
-        ignoreYesNoQuestions || harYtelseInntekt
+    const inntektFraYtelse =
+        ignoreYesNoQuestions || harInntektFraYtelse
             ? getNumberFromNumberInputValue(values[InntektFormFields.ytelseInntekt]) || 0
             : 0;
 
     return {
-        inntektAnsatt,
-        inntektSN,
-        inntektYtelse,
-        summertInntekt: inntektAnsatt + inntektSN + inntektYtelse,
+        arbeidstakerOgFrilansInntekt,
+        næringsinntekt,
+        inntektFraYtelse,
+        summertInntekt: arbeidstakerOgFrilansInntekt + næringsinntekt + inntektFraYtelse,
     };
 };
 
 export const erAlleInntektSpørsmålBesvartOgGyldig = (values: InntektFormValues) => {
-    const harArbeidstakerFrilanserInntekt = values[InntektFormFields.harArbeidstakerFrilanserInntekt];
-    const harSNInntekt = values[InntektFormFields.harSNInntekt];
-    const harYtelseInntekt = values[InntektFormFields.harYtelseInntekt];
-    return !!harArbeidstakerFrilanserInntekt && !!harSNInntekt && !!harYtelseInntekt;
+    const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt];
+    const harNæringsinntekt = values[InntektFormFields.harNæringsinntekt];
+    const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse];
+    return !!harArbeidstakerOgFrilansInntekt && !!harNæringsinntekt && !!harInntektFraYtelse;
 };

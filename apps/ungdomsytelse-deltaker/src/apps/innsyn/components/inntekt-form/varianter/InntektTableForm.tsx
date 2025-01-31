@@ -13,10 +13,12 @@ const InntektTableForm = ({ inntekt }: Props) => {
     const { NumberInput, ConfirmationCheckbox } = inntektFormComponents;
     return (
         <VStack gap="6">
-            <BodyShort className="mt-2">
-                Fyll ut der hvor du har hatt inntekt i tabellen nedenfor. Har du ikke hatt inntekt denne perioden, kan
-                du skrive 0 eller la feltet stå tomt.
-            </BodyShort>
+            {inntekt ? null : (
+                <BodyShort className="mt-2">
+                    Fyll ut der hvor du har hatt inntekt i tabellen nedenfor. Har du ikke hatt inntekt denne perioden,
+                    kan du skrive 0 eller la feltet stå tomt.
+                </BodyShort>
+            )}
             <Table>
                 <Table.Header>
                     <Table.Row>

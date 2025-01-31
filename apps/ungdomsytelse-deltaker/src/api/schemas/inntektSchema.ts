@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const inntektSchema = z.object({
-    inntektAnsatt: z.number().min(0).optional(),
-    inntektSN: z.number().min(0).optional(),
-    inntektYtelse: z.number().min(0).optional(),
+    arbeidstakerOgFrilansInntekt: z.number().min(0).optional(),
+    næringsinntekt: z.number().min(0).optional(),
+    inntektFraYtelse: z.number().min(0).optional(),
     summertInntekt: z.number().min(0),
 });

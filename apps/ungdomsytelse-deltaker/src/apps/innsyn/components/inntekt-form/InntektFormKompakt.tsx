@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
-import { PeriodeMedInntekt } from '../../../../api/types';
+import { InntektsrapporteringDTO } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
@@ -27,11 +27,17 @@ const InntektFormKompakt = ({ deltakelseId, periode, gjelderEndring, variant = '
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values);
-        const data: PeriodeMedInntekt = {
-            ...inntekt,
-            fraOgMed: dateToISODate(periode.from),
-            tilOgMed: dateToISODate(periode.to),
-            bekrefterInntekt: true,
+        const data: InntektsrapporteringDTO = {
+            oppgittInntektForPeriode: {
+                periodeForInntekt: {
+                    fraOgMed: dateToISODate(periode.from),
+                    tilOgMed: dateToISODate(periode.to),
+                },
+                arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
+                næringsinntekt: inntekt.næringsinntekt,
+                inntektFraYtelse: inntekt.inntektFraYtelse,
+            },
+            harBekreftetInntekt: values.bekrefterInntekt === true,
         };
         rapporterInntekt(deltakelseId, data);
     };

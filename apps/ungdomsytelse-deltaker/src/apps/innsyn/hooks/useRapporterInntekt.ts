@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { deltakerService } from '../../../api/services/deltakerService';
-import { PeriodeMedInntekt } from '../../../api/types';
+import { InntektsrapporteringDTO } from '../../../api/types';
 
 export const useRapporterInntekt = () => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [inntektSendt, setInntektSendt] = useState(false);
 
-    const rapporterInntekt = (deltakelseId: string, apiData: PeriodeMedInntekt) => {
+    const rapporterInntekt = (deltakelseId: string, apiData: InntektsrapporteringDTO) => {
         setPending(true);
         return deltakerService
             .rapporterInntekt(deltakelseId, apiData)

@@ -1,9 +1,17 @@
 import { z } from 'zod';
 import { isoDateStringSchema } from './isoDateStringSchema';
-import { inntektSchema } from './inntektSchema';
 
-export const periodeMedInntektSchema = inntektSchema.extend({
-    fraOgMed: isoDateStringSchema,
-    tilOgMed: isoDateStringSchema,
-    bekrefterInntekt: z.boolean(),
+export const oppgittInntektForPeriodeSchema = z.object({
+    arbeidstakerOgFrilansInntekt: z.number().min(0).optional(),
+    næringsinntekt: z.number().min(0).optional(),
+    inntektFraYtelse: z.number().min(0).optional(),
+    periodeForInntekt: z.object({
+        fraOgMed: isoDateStringSchema,
+        tilOgMed: isoDateStringSchema,
+    }),
+});
+
+export const inntektsrapporteringSchema = z.object({
+    oppgittInntektForPeriode: oppgittInntektForPeriodeSchema,
+    harBekreftetInntekt: z.boolean(),
 });
