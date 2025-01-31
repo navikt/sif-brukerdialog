@@ -12,7 +12,6 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import InntektTableForm from './varianter/InntektTableForm';
 
 interface Props {
-    deltakelseId: string;
     inntekt?: Inntekt;
     periode: DateRange;
     gjelderEndring?: boolean;
@@ -22,7 +21,6 @@ interface Props {
 }
 
 const InntektForm = ({
-    deltakelseId,
     periode,
     inntekt,
     gjelderEndring,
@@ -49,7 +47,7 @@ const InntektForm = ({
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };
-        rapporterInntekt(deltakelseId, data);
+        rapporterInntekt(data);
     };
 
     const initialValues: Partial<InntektFormValues> = inntekt

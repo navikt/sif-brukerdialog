@@ -8,11 +8,10 @@ import EndreInntektPart from './EndreInntektPart';
 import RapporterInntektPart from './RapporterInntektPart';
 
 interface Props {
-    deltakelseId: string;
     rapporteringsperiode: Rapporteringsperiode;
 }
 
-const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props) => {
+const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
     const {
         periode,
         harRapportert,
@@ -54,7 +53,6 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
                             <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
                                 <InntektForm
                                     gjelderEndring={harRapportert}
-                                    deltakelseId={deltakelseId}
                                     periode={periode}
                                     onCancel={() => {
                                         setVisSkjema(false);

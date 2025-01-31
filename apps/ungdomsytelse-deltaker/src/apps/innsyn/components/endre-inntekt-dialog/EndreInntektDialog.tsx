@@ -4,12 +4,11 @@ import InntektForm from '../inntekt-form/InntektForm';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
-    deltakelseId: string;
     rapporteringsperiode?: Rapporteringsperiode;
     onCancel: () => void;
 }
 
-const EndreInntektDialog = ({ rapporteringsperiode, deltakelseId, onCancel }: Props) => {
+const EndreInntektDialog = ({ rapporteringsperiode, onCancel }: Props) => {
     if (!rapporteringsperiode) {
         return null;
     }
@@ -25,7 +24,6 @@ const EndreInntektDialog = ({ rapporteringsperiode, deltakelseId, onCancel }: Pr
                 <InntektForm
                     periode={rapporteringsperiode?.periode}
                     inntekt={rapporteringsperiode?.inntekt}
-                    deltakelseId={deltakelseId}
                     onCancel={onCancel}
                     variant="kompakt"
                 />

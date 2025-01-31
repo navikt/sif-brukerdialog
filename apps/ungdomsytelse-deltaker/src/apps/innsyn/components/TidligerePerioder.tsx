@@ -8,11 +8,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import EndreInntektDialog from './endre-inntekt-dialog/EndreInntektDialog';
 
 interface Props {
-    deltakelseId: string;
     perioder: Rapporteringsperiode[];
 }
 
-const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
+const TidligerePerioder = ({ perioder }: Props) => {
     const { locale } = useAppIntl();
     const [antall, setAntall] = useState(2);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
@@ -133,7 +132,6 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                 </Box>
             ) : null}
             <EndreInntektDialog
-                deltakelseId={deltakelseId}
                 rapporteringsperiode={periodeForEndring}
                 onCancel={() => setPeriodeForEndring(undefined)}
             />

@@ -22,14 +22,14 @@ export const handlers = [
         const harSøkt = true;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
-    http.post('**/deltakelse/register/*/registrer-inntekt-i-periode', () => {
-        return HttpResponse.json({});
-    }),
     http.post('**/marker-har-sokt', () => {
         return HttpResponse.json({});
     }),
     http.post('**/ungdomsytelse/soknad/innsending', () => {
         return new HttpResponse(null, { status: 500 });
+    }),
+    http.post('**/ungdomsytelse/inntektsrapportering/innsending', () => {
+        return HttpResponse.json({});
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

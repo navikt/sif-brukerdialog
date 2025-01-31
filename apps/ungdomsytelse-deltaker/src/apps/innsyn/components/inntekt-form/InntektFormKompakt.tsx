@@ -12,14 +12,13 @@ import InntektKompaktForm from './varianter/InntektKompaktForm';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 
 interface Props {
-    deltakelseId: string;
     periode: DateRange;
     gjelderEndring?: boolean;
     variant?: 'kompakt' | 'vanlig';
     onCancel: () => void;
 }
 
-const InntektFormKompakt = ({ deltakelseId, periode, gjelderEndring, variant = 'kompakt', onCancel }: Props) => {
+const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
     const [kompakt, setKompakt] = useState(variant === 'kompakt');
@@ -39,7 +38,7 @@ const InntektFormKompakt = ({ deltakelseId, periode, gjelderEndring, variant = '
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };
-        rapporterInntekt(deltakelseId, data);
+        rapporterInntekt(data);
     };
 
     return (

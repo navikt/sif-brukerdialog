@@ -20,7 +20,6 @@ const meta: Meta<typeof FremhevetInntektsperiode> = {
     component: FremhevetInntektsperiode,
     decorators: [withIntl, withPageWidth],
     args: {
-        deltakelseId: '123',
         rapporteringsperiode,
     },
 };
@@ -31,7 +30,6 @@ type Story = StoryObj<typeof FremhevetInntektsperiode>;
 export const IkkeRapportertPeriode: Story = {
     name: 'Åpen - uten inntekt',
     args: {
-        deltakelseId: '123',
         rapporteringsperiode: {
             ...rapporteringsperiode,
             harRapportert: false,
@@ -42,7 +40,6 @@ export const IkkeRapportertPeriode: Story = {
 export const RapportertPeriode: Story = {
     name: 'Åpen - med inntekt',
     args: {
-        deltakelseId: '123',
         rapporteringsperiode: {
             ...rapporteringsperiode,
             harRapportert: true,
