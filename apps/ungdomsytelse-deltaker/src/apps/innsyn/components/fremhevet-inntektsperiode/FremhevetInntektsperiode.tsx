@@ -36,7 +36,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode, deltakelseId }: Props)
                         månedNavn={månedNavn}
                         onEndreInntekt={() => setVisSkjema(true)}
                         kanRapportere={kanRapportere}
-                        rapportertInntekt={rapporteringsperiode.inntekt || 0}
+                        inntekt={rapporteringsperiode.inntekt}
                     />
                 ) : (
                     <RapporterInntektPart

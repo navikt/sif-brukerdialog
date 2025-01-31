@@ -3,6 +3,7 @@ import { OpenDateRange } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { z } from 'zod';
 import { Rapporteringsperiode } from '../types';
+import { inntektSchema } from './inntektSchema';
 
 const rapporteringsperiodeProcessedDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
@@ -10,7 +11,7 @@ const rapporteringsperiodeProcessedDTOSchema = z.object({
     harRapportert: z.boolean(),
     kanRapportere: z.boolean().optional(),
     fristForRapportering: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).optional(),
-    inntekt: z.preprocess((val) => (val === null ? undefined : val), z.number().optional()),
+    inntekt: inntektSchema.optional(),
 });
 
 const deltakelseProcessedDTOSchema = z.object({

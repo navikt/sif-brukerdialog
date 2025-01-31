@@ -93,7 +93,7 @@ const InntektTableForm = ({ inntekt }: Props) => {
                         <BodyShort weight="semibold">
                             {inntekt ? (
                                 <>
-                                    <FormattedNumber value={inntekt.samletInntekt} />{' '}
+                                    <FormattedNumber value={inntekt.summertInntekt} />{' '}
                                 </>
                             ) : (
                                 '-'

@@ -48,7 +48,7 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
             </Heading>
 
             {perioder.slice(0, antall).map((rapporteringsperiode, index) => {
-                const { periode, inntekt = 0, kanRapportere } = rapporteringsperiode;
+                const { periode, inntekt, kanRapportere } = rapporteringsperiode;
                 const periodeNavn = dateFormatter.MonthFullYear(periode.from, locale);
                 return (
                     <ExpansionCard
@@ -62,7 +62,7 @@ const TidligerePerioder = ({ perioder, deltakelseId }: Props) => {
                                 <BodyShort as="div" size="small">
                                     <HStack gap="4">
                                         <Box>
-                                            Inntekt: <FormattedNumber value={inntekt} /> kroner
+                                            Inntekt: <FormattedNumber value={inntekt?.summertInntekt || 0} /> kroner
                                         </Box>
                                     </HStack>
                                 </BodyShort>

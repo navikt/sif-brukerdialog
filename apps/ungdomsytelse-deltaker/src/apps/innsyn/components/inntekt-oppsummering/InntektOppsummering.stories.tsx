@@ -15,7 +15,7 @@ const meta: Meta<typeof InntektOppsummering> = {
             inntektAnsatt: 123,
             inntektSN: 123,
             inntektYtelse: 0,
-            samletInntekt: 0,
+            summertInntekt: 0,
         },
     },
 };

@@ -12,7 +12,14 @@ export const deltakelseDTOSchema = z.object({
                 tilOgMed: z.string(),
                 harRapportert: z.boolean(),
                 kanRapportere: z.boolean().optional(),
-                inntekt: z.number().optional().nullable(),
+                inntekt: z
+                    .object({
+                        inntektAnsatt: z.number().optional(),
+                        inntektSN: z.number().optional(),
+                        inntektYtelse: z.number().optional(),
+                        summertInntekt: z.number(),
+                    })
+                    .optional(),
                 fristForRapportering: z.string().optional().nullable(),
             }),
         )

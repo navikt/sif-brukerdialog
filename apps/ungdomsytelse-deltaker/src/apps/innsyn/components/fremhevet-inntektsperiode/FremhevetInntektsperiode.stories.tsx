@@ -47,7 +47,12 @@ export const RapportertPeriode: Story = {
             ...rapporteringsperiode,
             harRapportert: true,
             kanRapportere: true,
-            inntekt: 4500,
+            inntekt: {
+                inntektAnsatt: 1500,
+                inntektSN: 0,
+                inntektYtelse: 0,
+                summertInntekt: 1500,
+            },
         },
     },
 };

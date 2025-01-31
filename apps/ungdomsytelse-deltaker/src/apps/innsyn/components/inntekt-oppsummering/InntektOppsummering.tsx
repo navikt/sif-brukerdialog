@@ -47,7 +47,7 @@ const InntektOppsummering = ({ periode, inntekt }: Props) => {
                     style={{ marginBottom: '.125rem' }}>
                     <BodyShort weight="semibold">Samlet inntekt</BodyShort>
                     <BodyShort weight="semibold">
-                        <FormattedNumber value={inntekt.samletInntekt} />
+                        <FormattedNumber value={inntekt.summertInntekt} />
                     </BodyShort>
                 </HGrid>
             </VStack>

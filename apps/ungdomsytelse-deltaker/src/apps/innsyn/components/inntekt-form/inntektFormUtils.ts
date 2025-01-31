@@ -31,7 +31,7 @@ export const getInntektFromFormValues = (values: InntektFormValues, ignoreYesNoQ
         inntektAnsatt,
         inntektSN,
         inntektYtelse,
-        samletInntekt: inntektAnsatt + inntektSN + inntektYtelse,
+        summertInntekt: inntektAnsatt + inntektSN + inntektYtelse,
     };
 };
 
