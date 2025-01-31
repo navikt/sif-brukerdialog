@@ -8,6 +8,7 @@ const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse-deltaker-soknad';
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
+    http.get('*login*', () => new HttpResponse(null, { status: 200 })),
     http.get('**/oppslag/soker', () => {
         return HttpResponse.json(søker1Mock.søker);
     }),
