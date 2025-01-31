@@ -1,7 +1,7 @@
 import { Add } from '@navikt/ds-icons';
 import { BodyShort, Box, Button, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import { Rapporteringsperiode } from '../../../api/types';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../i18n';
 import { FormattedNumber } from 'react-intl';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -48,7 +48,9 @@ const TidligerePerioder = ({ perioder }: Props) => {
 
             {perioder.slice(0, antall).map((rapporteringsperiode, index) => {
                 const { periode, inntekt, kanRapportere } = rapporteringsperiode;
-                const periodeNavn = dateFormatter.MonthFullYear(periode.from, locale);
+                const måned = dateFormatter.MonthFullYear(periode.from, locale);
+                const datoperiode = dateRangeFormatter.getDateRangeText(periode, locale);
+                const periodeNavn = `${måned} - ${datoperiode}`;
                 return (
                     <ExpansionCard
                         size="small"
@@ -57,12 +59,18 @@ const TidligerePerioder = ({ perioder }: Props) => {
                         ref={index === focusIndex ? ref : undefined}>
                         <ExpansionCard.Header>
                             <VStack gap="2">
-                                <ExpansionCard.Title size="small">{periodeNavn}</ExpansionCard.Title>
+                                <ExpansionCard.Title size="small">{måned}</ExpansionCard.Title>
                                 <BodyShort as="div" size="small">
                                     <HStack gap="4">
                                         <Box>
+                                            <BodyShort size="small" as="span">
+                                                {datoperiode}
+                                            </BodyShort>
+                                        </Box>
+                                        |
+                                        <Box>
                                             Registrert inntekt:{' '}
-                                            <BodyShort as="span" weight="semibold">
+                                            <BodyShort size="small" as="span" weight="semibold">
                                                 <FormattedNumber value={inntekt?.summertInntekt || 0} />
                                             </BodyShort>
                                             ,-
