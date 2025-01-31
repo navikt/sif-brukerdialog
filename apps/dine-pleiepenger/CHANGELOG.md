@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.1
+
+### Patch Changes
+
+- 0c6b88f: Nye tekster for inntektsmelding
+
 ## 1.9.0
 
 ### Minor Changes
