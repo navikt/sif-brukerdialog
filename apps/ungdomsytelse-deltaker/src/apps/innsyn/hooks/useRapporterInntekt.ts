@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { InntektsrapporteringDTO } from '../../../api/types';
-import { k9BrukerdialogService } from '../../../api/services/k9BrukerdialogService';
+import { deltakerService } from '../../../api/services/deltakerService';
 
 export const useRapporterInntekt = () => {
     const [pending, setPending] = useState(false);
@@ -9,7 +9,7 @@ export const useRapporterInntekt = () => {
 
     const rapporterInntekt = (apiData: InntektsrapporteringDTO) => {
         setPending(true);
-        return k9BrukerdialogService
+        return deltakerService
             .rapporterInntekt(apiData)
             .then(() => {
                 setInntektSendt(true);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { k9BrukerdialogService } from '../../../api/services/k9BrukerdialogService';
+import { deltakerService } from '../../../api/services/deltakerService';
 import { SøknadApiData } from '../../../api/types';
 
 export const useSendSøknad = () => {
@@ -9,7 +9,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setPending(true);
-        return k9BrukerdialogService
+        return deltakerService
             .sendSøknad(apiData)
             .then(() => {
                 setSøknadSendt(true);
