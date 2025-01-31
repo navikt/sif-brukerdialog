@@ -1,5 +1,13 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.18.1
+
+### Patch Changes
+
+- Oppdatert sif-common-formik-ds
+- Updated dependencies [8cb29f6]
+    - @navikt/sif-common-formik-ds@2.4.1
+
 ## 1.18.0
 
 ### Minor Changes

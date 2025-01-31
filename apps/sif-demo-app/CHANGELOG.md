@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.4.2
+
+### Patch Changes
+
+- Oppdatert sif-common-formik-ds
+
 ## 0.4.1
 
 ### Patch Changes
