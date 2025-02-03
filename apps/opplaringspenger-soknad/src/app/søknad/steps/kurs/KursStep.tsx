@@ -68,7 +68,7 @@ const KursStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
     const { goBack } = useStepNavigation(step);
 

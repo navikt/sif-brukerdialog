@@ -8,6 +8,7 @@ import {
     DateRange,
     isDateInDateRanges,
     getDatesInDateRange,
+    dateFormatter,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -210,6 +211,13 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
 };
 
+export const getReisedagerUtenforSøknadsperioder = (
+    reisedager: Enkeltdato[],
+    søknadsperioder: DateRange[],
+): Enkeltdato[] => {
+    return reisedager.filter((reisedag) => !isDateInDateRanges(reisedag.dato, søknadsperioder));
+};
+
 export const erAlleReisedagerInnenforSøknadsperioder = (
     reisedager: Enkeltdato[],
     søknadsperioder: DateRange[],
@@ -224,8 +232,14 @@ export const getReisedagerValidator = (kursperioder: DateRange[]) => {
             return error;
         }
         /** Kontroller om datoer er innenfor søknadsperioder */
-        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder) === false) {
-            return 'reisedagUtenforKursperiode';
+        const reisedagerUtenforSøknadsperioder = getReisedagerUtenforSøknadsperioder(reisedager, kursperioder);
+        if (reisedagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'reisedagUtenforKursperiode',
+                values: {
+                    dager: reisedagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d.dato)).join(', '),
+                },
+            };
         }
         return undefined;
     };
