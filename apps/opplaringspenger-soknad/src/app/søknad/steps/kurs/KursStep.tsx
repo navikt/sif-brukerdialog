@@ -185,6 +185,7 @@ const KursStep = () => {
                                         <FormLayout.QuestionBleedTop>
                                             {søknadsperiode ? (
                                                 <ReisedagerFormPart
+                                                    reisedager={values[KursFormFields.reisedager] || []}
                                                     disabledDateRanges={disabledDateRanges}
                                                     søknadsperiode={søknadsperiode}
                                                     kursperioder={kursperioder}

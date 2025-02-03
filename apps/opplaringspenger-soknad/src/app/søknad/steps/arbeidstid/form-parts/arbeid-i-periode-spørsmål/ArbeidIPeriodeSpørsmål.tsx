@@ -118,9 +118,7 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <HStack gap="4" align="center">
-                <div style={{ minWidth: '10rem' }} className="capitalize">
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
-                </div>
+                <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
                         Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
