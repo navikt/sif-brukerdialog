@@ -8,14 +8,19 @@ interface Props {
     uke: ArbeidstidUkerItem;
 }
 
-const UkeInfoIkon: React.FunctionComponent<Props> = ({ uke }) => {
-    return (
-        <Tooltip content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
-            <span style={{ fontSize: '1.4rem' }}>
-                <InformationColored aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />
-            </span>
-        </Tooltip>
-    );
+export const getKortUkeTooltipText = (periode: DateRange): string => `Kort uke - ${getDagerPeriode(periode, false)}`;
+
+const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke }) => {
+    const { erKortUke } = uke;
+    if (erKortUke) {
+        return (
+            <Tooltip content={getKortUkeTooltipText(uke.periode)}>
+                <span style={{ fontSize: '1.4rem' }}>
+                    <InformationColored aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />
+                </span>
+            </Tooltip>
+        );
+    }
 };
 
 const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
@@ -27,4 +32,4 @@ const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     return `${fra} til ${til}`;
 };
 
-export default UkeInfoIkon;
+export default UkeInfoTooltip;

@@ -74,12 +74,12 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                         )}
                     </>
                     {erEndret && (
-                        <div className={'endretArbeidstid__opprinnelig'}>
+                        <span className={'endretArbeidstid__opprinnelig'}>
                             <AriaText>Endret fra </AriaText>
                             <span className={'endretArbeidstid__timer'} data-testid="timer-opprinnelig">
                                 {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                             </span>
-                        </div>
+                        </span>
                     )}
                 </span>
             </p>

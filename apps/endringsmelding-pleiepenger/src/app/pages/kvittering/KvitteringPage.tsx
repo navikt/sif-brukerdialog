@@ -23,7 +23,11 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                     <AppText
                         id="kvitteringPage.info.1"
                         values={{
-                            Lenke: (children) => <Link href={appEnv.SIF_PUBLIC_INNSYN_URL}>{children}</Link>,
+                            Lenke: (children) => (
+                                <Link key="lenke" href={appEnv.SIF_PUBLIC_INNSYN_URL}>
+                                    {children}
+                                </Link>
+                            ),
                         }}
                     />
                 </BodyShort>

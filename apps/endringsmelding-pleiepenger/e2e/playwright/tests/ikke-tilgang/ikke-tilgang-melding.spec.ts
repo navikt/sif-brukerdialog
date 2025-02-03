@@ -34,3 +34,14 @@ test('Er selvstendig næringsdrivende', async ({ page }) => {
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('erSN')).toBeVisible();
 });
+
+test('Har en arbeidsgiver med to ansettelsesforhold som slutter og starter samme uke med opphold', async ({ page }) => {
+    await routeUtils.resumeFromRoute(
+        page,
+        SøknadRoutes.VELKOMMEN,
+        'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold',
+    );
+    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
+    await expect(page.getByText('Hei Nora')).toBeVisible();
+    await expect(page.getByTestId('enArbeidsgiverToAnsettelserSammeUkeMedOpphold')).toBeVisible();
+});

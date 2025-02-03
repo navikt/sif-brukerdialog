@@ -29,7 +29,9 @@ const nb = {
 
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer': 'Organisasjonsnummer: {orgnr}',
-    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder': 'Ansettelsesperioder',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom': 'Ansatt: {fom} - {tom}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato} - pågående',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom': ' Sluttdato: {dato}.',
 
     'ikkeAnsattMelding.tekst':
@@ -87,9 +89,10 @@ const nb = {
         'Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig melde endringer i pleiepengesaken din via {SkrivTilOssLink}.',
     'ingenTilgangPage.harIngenSak.3':
         'Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.',
-    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1':
-        'Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og utbetalingene dine blir riktige.',
-    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2':
+    'ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1':
+        'Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet arbeidsforhold på deg som ikke er registrert i pleiepengesaken din, og hvor du har flere ansettelsesforhold. Du må derfor sende en ny søknad, slik at saken og utbetalingene dine blir riktige.',
+
+    'ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
     'ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1':
         'Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.',
@@ -99,6 +102,8 @@ const nb = {
         'Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten {SkrivTilOssLink}, eller sende oss en ny søknad.',
     'ingenTilgangPage.utenforEndringsperiode.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
+    'ingenTilgangPage.slutterOgStarterInneforSammeUke':
+        'Vi ser at du har to ansettelsesforhold hos samme arbeidsgiver som slutter og starter samme uke. Da kan du desverre ikke bruke denne løsningen for å melde fra om endringer.',
 
     'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',

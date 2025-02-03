@@ -1,7 +1,7 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HStack } from '@navikt/ds-react';
 import React, { ReactElement } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText } from '../../../i18n';
@@ -9,6 +9,8 @@ import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
+import { useIntl } from 'react-intl';
+import { getKortUkeTooltipText } from './UkeInfoTooltip';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -23,6 +25,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     selectableList,
     renderEditButton,
 }) => {
+    const intl = useIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -52,10 +55,12 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </Heading>
 
                                 <BodyShort as="div">
-                                    {dateFormatter.compact(uke.periode.from)} - {` `}
-                                    {dateFormatter.compact(uke.periode.to)}
+                                    <HStack gap="4">
+                                        <Box>{getDateRangeText(uke.periode, intl.locale)}</Box>
+                                    </HStack>
                                     <Block margin="s">
                                         <UkeTags
+                                            kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
                                             erKortUke={uke.erKortUke}
                                             dagerMedFerie={uke.ferie?.dagerMedFerie}
                                             dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}

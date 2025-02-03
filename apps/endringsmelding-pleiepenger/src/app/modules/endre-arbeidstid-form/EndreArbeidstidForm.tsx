@@ -21,6 +21,7 @@ import {
 import dayjs from 'dayjs';
 import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
+import KortUkeInfo from '../arbeidstid-uker/components/KortUkeInfo';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
@@ -155,7 +156,6 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                 </Ingress>
                             </Block>
                         </Block>
-
                         {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
                             <Block margin="s" padBottom="l">
                                 <Alert variant="warning">
@@ -198,16 +198,11 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                 </ToggleGroup.Item>
                             </ToggleGroup>
 
-                            {gjelderKortUke && (
+                            {gjelderKortUke ? (
                                 <Block margin="xl">
-                                    <Alert variant="info" inline={false}>
-                                        <AppText
-                                            id="endreArbeidstidForm.kortUke.info"
-                                            values={{ dager: getDagerTekst(arbeidsuker[0].periode) }}
-                                        />
-                                    </Alert>
+                                    <KortUkeInfo arbeidsuke={arbeidsuker[0]} />
                                 </Block>
-                            )}
+                            ) : null}
 
                             <FormBlock paddingBottom="l">
                                 {timerEllerProsent === TimerEllerProsent.PROSENT && (

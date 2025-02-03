@@ -13,7 +13,7 @@ import {
     Arbeidsaktiviteter,
     ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
-    Arbeidsgiver,
+    ArbeidsgiverMedAnsettelseperioder,
     ArbeidstakerApiData,
     ArbeidstidApiData,
     ArbeidstidEndring,
@@ -48,9 +48,9 @@ const getEndretArbeidstid = (
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
-    const endringKeys = Object.keys(endringUkeMap).sort();
+    const endringUkeKeys = Object.keys(endringUkeMap).sort();
 
-    endringKeys.forEach((isoDateRange) => {
+    endringUkeKeys.forEach((isoDateRange) => {
         const endring = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidsaktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
@@ -95,10 +95,11 @@ const getArbeidsaktivitetArbeidstidInfo = (
 };
 
 export const getArbeidstidApiDataFromSøknadsdata = (
+    endringsperiode: DateRange,
     søknadsperioder: DateRange[],
     arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
-    arbeidsgivereIkkeISak: Arbeidsgiver[],
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[],
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidsaktivitetEndring[ArbeidsaktivitetType.frilanser]?.endringer;
@@ -148,6 +149,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 søknadsperioder,
                 arbeidsgiver,
                 arbeidsforhold,
+                endringsperiode,
             );
 
             const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);

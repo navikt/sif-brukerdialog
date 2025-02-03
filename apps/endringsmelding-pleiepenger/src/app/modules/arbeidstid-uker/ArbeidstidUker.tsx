@@ -35,7 +35,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
-
     onEndreUker,
 }) => {
     const { text, intl } = useAppIntl();

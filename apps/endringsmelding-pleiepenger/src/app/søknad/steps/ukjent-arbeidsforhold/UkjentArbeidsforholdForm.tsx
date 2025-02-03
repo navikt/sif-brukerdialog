@@ -10,7 +10,12 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@types';
+import {
+    ArbeidsaktivitetType,
+    ArbeidsgiverMedAnsettelseperioder,
+    SøknadContextState,
+    UkjentArbeidsforholdSøknadsdata,
+} from '@types';
 import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import InfoNormalarbeidstid from '../../../components/info-normalarbeidstid/InfoNormalarbeidstid';
@@ -58,8 +63,8 @@ const { FormikWrapper, Form } = getTypedFormComponents<
 >();
 
 interface Props {
-    arbeidsgivere: Arbeidsgiver[];
-    arbeidsgivereIkkeISak: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
     stepId: StepId;
     goBack?: () => void;
