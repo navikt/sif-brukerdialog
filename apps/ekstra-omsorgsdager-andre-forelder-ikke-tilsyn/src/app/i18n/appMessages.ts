@@ -31,7 +31,29 @@ const nb = {
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+const nn: Record<keyof typeof nb, string> = {
+    ...velkommenPageMessages.nn,
+    ...omAnnenForelderMessages.nn,
+    ...annenForelderenSituasjonMessages.nn,
+    ...omBarnaMessages.nn,
+    ...barnMessages.nn,
+    ...oppsummeringMessages.nn,
+    ...kvitteringMessages.nn,
+    ...validateApiDataMessages.nn,
+
+    'application.title': 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+
+    'step.omAnnenForelder.stepTitle': 'Om den andre forelderen',
+    'step.annenForelderSituasjon.stepTitle': 'Den andre forelderens situasjon',
+    'step.omBarna.stepTitle': 'Om barn',
+    'step.oppsummering.stepTitle': 'Oppsummering',
+
+    'initialLoadError.pageTitle': 'Det oppstod en feil',
+    'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+
+    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+    'resetMellomlagring.startPåNytt': 'Start på nytt',
+};
 
 export const appMessages = {
     nb,

@@ -16,7 +16,7 @@ export const nb = {
         'Ikke alle pengestøtter har innloggede informasjonssider. Denne siden viser kun saker som gjelder pleiepenger for sykt barn.',
 
     'ingeSakPage.melding.andreYtelser.tekst.avsnitt.2':
-        'Hvis du ikke finner egen informasjonsside på <lenkeMinSide>Min Side</lenkeMinSide>, finner du dine innsendte søknader og brev fra NAV i <lenkeInnboksen>innboksen</lenkeInnboksen>.',
+        'Hvis du ikke finner egen informasjonsside på <lenkeMinSide>Min Side</lenkeMinSide>, finner du dine innsendte søknader og brev fra Nav i <lenkeInnboksen>innboksen</lenkeInnboksen>.',
 
     'ingeSakPage.melding.andreYtelser.tekst.avsnitt.3':
         'Hvis du leter etter informasjon om søknader som du har sendt i ditt barns navn, vil du ikke finne informasjon om denne saken ved å logge inn på <Lenke>nav.no</Lenke> . Det gjelder for eksempel søknad om hjelpemidler og grunn- og hjelpestønad for barnet ditt. Du må da kontakte oss på telefon 55 55 33 33.',
@@ -90,7 +90,7 @@ export const nb = {
 
     'hvaSkjerInfo.utbetaling.tittel': 'Utbetaling',
     'hvaSkjerInfo.utbetaling.1':
-        'Hvis du skal få pleiepengene direkte fra NAV, utbetaler vi innen den 25. i måneden. Hvis du skal ha etterbetalt pleiepenger for måneder bakover i tid, er de vanligvis på konto innen 5 virkedager fra du fikk svar på søknaden. Du finner ',
+        'Hvis du skal få pleiepengene direkte fra Nav, utbetaler vi innen den 25. i måneden. Hvis du skal ha etterbetalt pleiepenger for måneder bakover i tid, er de vanligvis på konto innen 5 virkedager fra du fikk svar på søknaden. Du finner ',
     'hvaSkjerInfo.utbetaling.2': 'oversikt over utbetalingene dine her',
     'hvaSkjerInfo.utbetaling.3': '.',
 
@@ -115,7 +115,9 @@ export const nb = {
     'dokumenter.ingenDokumenter': 'Dokumenter ikke tilgjengelig.',
     'bekreftelseTilArbeidsgiver.title': 'Bekreftelse til arbeidsgiver',
     'bekreftelseTilArbeidsgiver.info':
-        'Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg, hvilken periode du har søkt pleiepenger og informasjon om når arbeidsgiver må sende inntektsmelding.',
+        'Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg og hvilken periode du har søkt om pleiepenger.',
+    'bekreftelseTilArbeidsgiver.info.1':
+        'Vi kontakter arbeidsgiver for å be dem sende inntektsmelding hvis og når vi trenger det.',
     'dokumenterSomKanLastesNed.tittel': 'Dokumenter som kan lastes ned',
     'dokumenterSomKanLastesNed.bekreftelse': 'Bekreftelse til {organisasjonsnavn}',
 
@@ -166,8 +168,7 @@ export const nb = {
 
     'venteårsakMelding.inntektsmelding.tittel': 'Vi mangler inntektsmelding fra en eller flere arbeidsgivere',
     'venteårsakMelding.inntektsmelding.info':
-        'Vi har sendt brev til deg og arbeidsgiveren din, fordi vi mangler inntektsmelding. For å behandle søknaden og beregne hvor mye pleiepenger du kan få, må arbeidsgiver sende inntektsmelding.',
-    'venteårsakMelding.inntektsmelding.dokumentarkivLenke': '<lenke>Se brev i dokumentarkivet</lenke>',
+        'Vi har informert arbeidsgiver om at de må sende oss inntektsmelding. Vi må ha inntektsmelding for å behandle søknaden og beregne hvor mye pleiepenger du kan få.',
 
     'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
     'venteårsakMelding.søktForTidlig.info':

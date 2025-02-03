@@ -33,18 +33,19 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
 const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, valgteDatoer }) => {
     return (
         <>
-            {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
-                arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
-                <p style={{ marginTop: 0 }}>
-                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
-            )}
-
-            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
-                <p style={{ marginTop: 0 }}>
-                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
-            )}
+            <>
+                {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
+                    arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
+                    <p style={{ marginTop: 0 }}>
+                        <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
+                    </p>
+                )}
+                {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
+                    <p style={{ marginTop: 0 }}>
+                        <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
+                    </p>
+                )}
+            </>
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
                 <Block margin="xl">

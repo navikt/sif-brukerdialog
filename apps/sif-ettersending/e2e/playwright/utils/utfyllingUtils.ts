@@ -5,6 +5,7 @@ export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/
 
 const velgYtelsePleiepenger = async (page: Page) => {
     await page.goto(startUrl);
+    await page.getByRole('button').getByText('Godkjenn alle').click();
     await page.getByLabel('Pleiepenger for sykt barn').click();
     await page.getByRole('button').getByText('Gå videre').click();
 };
@@ -85,12 +86,12 @@ const sendInnDokumenter = async (page: Page) => {
 
 const kontrollerKvittering = async (page: Page) => {
     await page.waitForURL('**/dokumenter-sendt');
-    await expect(page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' })).toBeVisible();
+    await expect(page.getByText('Vi har mottatt ettersendingen av dokumenter')).toBeVisible();
 };
 
 const kontrollerKvitteringLegeerklæring = async (page: Page) => {
     await page.waitForURL('**/dokumenter-sendt');
-    await expect(page.getByRole('heading', { name: 'Vi har mottatt legeerklæring' })).toBeVisible();
+    await expect(page.getByText('Vi har mottatt legeerklæring')).toBeVisible();
 };
 
 export const utfyllingUtils = {

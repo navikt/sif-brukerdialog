@@ -38,16 +38,13 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                         <AppText id="personopplysninger.4.5" />
                     </List.Item>
                 </List>
-                <p>
-                    <AppText id="personopplysninger.5.1" />
-                </p>
             </div>
             <div>
                 <AppText
                     id="personopplysninger.6"
                     values={{
                         Lenke: (children) => (
-                            <Link href={getLenker().personvern} target="_blank">
+                            <Link href={getLenker().personvern} target="_blank" key="personvernLenke">
                                 {children}
                             </Link>
                         ),

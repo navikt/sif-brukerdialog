@@ -13,6 +13,7 @@ import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -25,11 +26,8 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
-export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    const { søknadsdatoer } = kurs;
-    return {
-        kursdager: søknadsdatoer.map((dato) => dateToISODate(dato)),
-    };
+export const getDataBruktTilUtledningApiData = (_kurs: KursSøknadsdata): DataBruktTilUtledning => {
+    return {};
 };
 
 export const getApiDataFromSøknadsdata = (
@@ -64,16 +62,25 @@ export const getApiDataFromSøknadsdata = (
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
-        utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
+        ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
-            kurs.arbeiderIKursperiode,
             arbeidsgivere,
             arbeidstid?.arbeidsgivere,
         ),
-        frilans: getFrilansApiDataFromSøknadsdata(frilans),
-        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
+        frilans: getFrilansApiDataFromSøknadsdata({
+            søknadsperiode,
+            dagerMedOpplæring: valgteDatoer,
+            frilans,
+            arbeidIPeriode: arbeidstid?.frilans,
+        }),
+        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata({
+            søknadsperiode,
+            dagerMedOpplæring: valgteDatoer,
+            selvstendig,
+            arbeidIperiode: arbeidstid?.selvstendig,
+        }),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),
         harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig

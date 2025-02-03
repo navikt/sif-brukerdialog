@@ -3,19 +3,16 @@ import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
-import { getDatoerIKursperioderInkludertReisedager } from '../../app/søknad/steps/kurs/kursStepUtils';
+
 import { Kursperiode } from '../../app/types/Kursperiode';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
 
 const kursperioder: Kursperiode[] = [
     {
         id: '1',
         periode: {
-            from: new Date('2024-05-05T22:00:00.000Z'),
-            to: new Date('2024-05-30T22:00:00.000Z'),
-        },
-        periodeMedReise: {
             from: new Date('2024-05-05T22:00:00.000Z'),
             to: new Date('2024-05-30T22:00:00.000Z'),
         },
@@ -49,7 +46,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-    opplæringsinstitusjoner: [],
+
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',
@@ -63,10 +60,19 @@ export const søknadContextMock: SøknadContextState = {
                 from: new Date('2024-05-05T22:00:00.000Z'),
                 to: new Date('2024-05-30T22:00:00.000Z'),
             },
-            søknadsdatoer: getDatoerIKursperioderInkludertReisedager(kursperioder),
+            søknadsdatoer: getDatoerIKursperioder(kursperioder),
+            reisedager: {
+                reiserUtenforKursdager: true,
+                reisedager: [
+                    {
+                        dato: new Date('2024-05-03T22:00:00.000Z'),
+                        id: '1',
+                    },
+                ],
+                reisedagerBeskrivelse: 'Kombinerer med ferie',
+            },
             kursholder: 'annen',
             kursperioder,
-            arbeiderIKursperiode: true,
         },
         arbeidssituasjon: {
             arbeidsgivere: {

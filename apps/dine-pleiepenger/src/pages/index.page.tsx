@@ -1,7 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import axios from 'axios';
-import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
@@ -70,10 +69,7 @@ function DinePleiepengerPage(): ReactElement {
     }
 
     return (
-        <DefaultPageLayout>
-            <Head>
-                <title>{text('forside.dokumentTittel')}</title>
-            </Head>
+        <DefaultPageLayout documentTitle={text('forside.dokumentTittel')}>
             <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">

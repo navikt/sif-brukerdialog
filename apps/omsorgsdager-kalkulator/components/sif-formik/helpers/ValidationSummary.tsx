@@ -3,7 +3,7 @@ import React, { RefObject } from 'react';
 
 export interface Props extends Pick<ErrorSummaryProps, 'heading' | 'headingTag'> {
     errors: ValidationSummaryError[];
-    summaryRef?: RefObject<HTMLDivElement>;
+    summaryRef?: RefObject<HTMLDivElement | null>;
 }
 
 export interface ValidationSummaryError {

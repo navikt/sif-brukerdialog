@@ -28,6 +28,7 @@
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/oauth2/logout",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
-        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside"
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
+        "SIF_PUBLIC_FEATURE_NYNORSK": "off"
     }
 }

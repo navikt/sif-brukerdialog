@@ -48,8 +48,8 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const stepConfig = getSøknadStepConfig(søknadsdata);
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const stepConfig = getSøknadStepConfig();
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
     const hasInvalidSteps = invalidSteps.length > 0;
@@ -129,6 +129,7 @@ const OppsummeringStep = () => {
 
                                     <KursOppsummering
                                         kurs={apiData.kurs}
+                                        ferieuttakIPerioden={apiData.ferieuttakIPerioden}
                                         onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 

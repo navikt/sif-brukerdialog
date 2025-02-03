@@ -3,7 +3,7 @@ import isBetween from 'dayjs/plugin/isBetween';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
-import { uniq, uniqBy } from 'lodash';
+import { isDate, uniq, uniqBy } from 'lodash';
 import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from './';
 import {
     dateToISODate,
@@ -19,13 +19,17 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(isBetween);
 dayjs.extend(minMax);
 
+const isDateObject = (maybeDate: any) => {
+    return typeof maybeDate === 'object' && isDate(maybeDate) && !isNaN(maybeDate.getTime());
+};
+
 /**
  * Typecheck for DateRange object
  * @param dateRange
  * @returns boolean
  */
 export const isDateRange = (dateRange: any): dateRange is DateRange => {
-    return dateRange.from && dateRange.to;
+    return isDateObject(dateRange.from) && isDateObject(dateRange.to);
 };
 
 /**
@@ -754,6 +758,16 @@ export const getFirstDateInDateRanges = (dateRanges: DateRange[]): Date | undefi
 //   });
 //   return difference;
 // }
+
+export const getDateRangesBetweenDateRangesWithinDateRange = (
+    minDate: Date,
+    maxDate: Date,
+    dateRanges: DateRange[],
+): DateRange[] => {
+    const preDateRange: DateRange = { from: minDate, to: dayjs(minDate).subtract(1, 'day').toDate() };
+    const postDateRange: DateRange = { from: maxDate, to: dayjs(maxDate).add(1, 'day').toDate() };
+    return getDateRangesBetweenDateRanges([preDateRange, ...dateRanges, postDateRange]);
+};
 
 export const dateRangeUtils = {
     dateRangeIsAdjacentToDateRange,

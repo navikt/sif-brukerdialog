@@ -4,6 +4,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 export type FormikCheckboxGroupCheckboxProp = Omit<CheckboxProps, 'children' | 'name' | 'checked'> & {
     label: React.ReactNode;
@@ -48,6 +49,7 @@ function FormikCheckboxGroup<FieldName, ErrorType>({
                 return (
                     <CheckboxGroup
                         {...restProps}
+                        {...inputPropsToRemove}
                         value={getFieldValueArray(field.value)}
                         legend={legend}
                         className="focusableFieldset"

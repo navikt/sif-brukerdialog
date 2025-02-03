@@ -6,6 +6,11 @@ const nb = {
     'aktivitetFravær.FRILANSER': 'frilanser',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
+const nn: Record<keyof typeof nb, string> = {
+    'step.fravaerFra.dag.spm': 'Kva arbeid hadde du fråvær frå {dato}?',
+    'step.fravaerFra.info':
+        'Du har opplyst at du er både sjølvstendig næringsdrivande og frilanser. No treng me å vite kva arbeid du hadde fråvær frå i dagane du brukte omsorgsdagar.',
+    'aktivitetFravær.SELVSTENDIG_VIRKSOMHET': 'sjølvstendig næringsdrivande',
+    'aktivitetFravær.FRILANSER': 'frilanser',
+};
 export const fraværFraMessages = { nb, nn };

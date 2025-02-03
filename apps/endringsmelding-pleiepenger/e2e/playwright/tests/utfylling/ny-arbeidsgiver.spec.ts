@@ -47,5 +47,5 @@ test('test', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
-    await expect(page.getByTestId('kvittering-heading')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });

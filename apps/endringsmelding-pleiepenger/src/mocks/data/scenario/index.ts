@@ -3,6 +3,7 @@ import { ArbeidsaktivitetUtenArbeidsgiver } from './arbeidsaktivitet-uten-arbeid
 import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
 import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
 import { ArbeidsgivereOgFrilanser } from './arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
+import { Debug } from './debug/Debug';
 import { EnArbeidsgiverEnPeriode } from './en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
 import { EnArbeidsgiverToPerioder } from './en-arbeidsgiver-to-perioder/EnArbeidsgiverToPerioder';
 import { FlereSaker } from './flere-saker/FlereSaker';
@@ -22,6 +23,7 @@ export const mockData: ScenarioMap = {
     ['selvstendig-næringsdrivende']: SelvstendigNæringsdrivende,
     ['flere-saker']: FlereSaker,
     ['ingen-sak']: IngenSak,
+    ['debug']: Debug,
     ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
     ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
     ['ugyldig-k9-format']: UgyldigK9Format,

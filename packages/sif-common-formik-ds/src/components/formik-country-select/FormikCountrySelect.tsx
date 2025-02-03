@@ -5,6 +5,7 @@ import { TestProps, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import CountrySelect from './CountrySelect';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<SelectProps, 'name' | 'children'> {
     name: FieldName;
@@ -31,6 +32,7 @@ function FormikCountrySelect<FieldName, ErrorType>({
                     <CountrySelect
                         {...restProps}
                         {...field}
+                        {...inputPropsToRemove}
                         data-testid={testKey}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         onChange={(value) => {

@@ -1,0 +1,30 @@
+name: Prod - deploy opplaringspenger-soknad
+run-name: Deploy opplaringspenger-soknad to prod
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'apps/opplaringspenger-soknad/**/*'
+            - 'server/**/*'
+    workflow_dispatch:
+
+jobs:
+    run-tests:
+        uses: ./.github/workflows/test.opplaringspenger-soknad.yml
+        secrets: inherit
+
+    # deploy-to-prod:
+    #     name: Deploy opplaringspenger-soknad to prod
+    #     needs: [run-tests]
+    #     uses: ./.github/workflows/.deploy-app-to-prod.yml
+    #     secrets: inherit
+    #     permissions:
+    #         contents: write
+    #         security-events: write
+    #         id-token: write
+    #         actions: read
+    #     with:
+    #         app-name: 'opplaringspenger-soknad'
+    #         working-directory: 'apps/opplaringspenger-soknad'

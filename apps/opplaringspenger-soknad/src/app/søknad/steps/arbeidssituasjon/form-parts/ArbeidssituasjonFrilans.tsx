@@ -1,4 +1,4 @@
-import { Heading, Link, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, VStack } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -97,12 +97,23 @@ const ArbeidssituasjonFrilans = ({
                             description={
                                 søkerHarFrilansoppdrag ? undefined : (
                                     <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
-                                        <>
-                                            {text('frilanser.hjelpetekst')}{' '}
-                                            <Link href={urlSkatteetaten} target="_blank">
-                                                <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
-                                            </Link>
-                                        </>
+                                        <VStack gap="6">
+                                            <BodyShort>
+                                                {text('frilanser.hjelpetekst')}{' '}
+                                                <Link href={urlSkatteetaten} target="_blank">
+                                                    <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
+                                                </Link>
+                                                .
+                                            </BodyShort>
+                                            <VStack gap="2">
+                                                <Heading level="3" size="xsmall">
+                                                    <AppText id="frilanser.hjelpetekst.2.heading" />
+                                                </Heading>
+                                                <BodyShort>
+                                                    <AppText id="frilanser.hjelpetekst.2" />
+                                                </BodyShort>
+                                            </VStack>
+                                        </VStack>
                                     </ExpandableInfo>
                                 )
                             }

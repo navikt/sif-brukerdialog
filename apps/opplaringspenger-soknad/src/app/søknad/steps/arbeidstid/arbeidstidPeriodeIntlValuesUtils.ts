@@ -48,7 +48,7 @@ export const getArbeidstidIPeriodeIntlValues = (
     };
 
     return {
-        skalEllerHarJobbet: arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
+        jobber: arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.jobber'),
         hvor: getHvorTekst(),
         timer: getTimerTekst(),
         fra: prettifyDateExtended(info.periode.from),

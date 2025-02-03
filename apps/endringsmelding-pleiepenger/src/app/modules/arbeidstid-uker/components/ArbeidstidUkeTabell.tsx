@@ -1,17 +1,17 @@
 import { Checkbox, Table, Tooltip } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
+import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
-import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -19,8 +19,8 @@ interface Props {
     visEndringSomOpprinnelig?: boolean;
     renderCompactTable: boolean;
     arbeidstidKolonneTittel?: string;
-    renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => JSX.Element | undefined;
-    renderUkerFooter: () => JSX.Element;
+    renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
+    renderUkerFooter: () => ReactElement;
 }
 
 const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({

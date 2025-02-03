@@ -178,6 +178,7 @@ const sendInnSøknad = async (page: Page) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 const kontrollerKvittering = async (page: Page) => {
+    await page.waitForURL('**/soknad_sendt');
     await page.getByRole('heading', { name: 'Vi har mottatt søknad om utbetaling av omsorgspenger' });
 };
 

@@ -1,6 +1,6 @@
 import { IntlProvider } from 'react-intl';
-import { applicationIntlMessages } from '../../app/i18n';
 import { uiMessages } from '@navikt/sif-common-ui';
+import { applicationIntlMessages } from '../../src/i18n';
 import './print.css';
 
 export const withIntl = (Story, context) => {

@@ -108,7 +108,7 @@ const nb = {
     'step.medlemskap.pageTitle': 'Pleiepengesøknad - medlemskap',
     'step.medlemskap.stepTitle': 'Medlemskap',
     'step.medlemskap.veileder':
-        'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på',
+        'Medlemskap i folketrygden er nøkkelen til rettigheter fra Nav. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
     'step.medlemskap.leggTilKnapp': 'Legg til nytt utenlandsopphold',
     'step.medlemskap.utenlandsoppholdSiste12': 'Utenlandsopphold siste 12 måneder',
@@ -184,7 +184,7 @@ const nb = {
     'steg.arbeidssituasjon.veileder.2':
         'Det er normalarbeidstiden din <strong>før</strong> du starter med pleiepenger som vi er ute etter her, uavhengig av om du søker for første gang, eller om du søker forlengelse.',
     'steg.arbeidssituasjon.veileder.3':
-        'Hvis du mottar ytelse fra NAV (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
+        'Hvis du mottar ytelse fra Nav (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
@@ -460,11 +460,10 @@ const nb = {
         'Oops, nå ser vi at inntekten du har oppgitt for virksomheten din er for høy.',
 
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-    'page.confirmation.tittel.1': 'Takk!',
-    'page.confirmation.tittel.2': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
+    'page.confirmation.tittel.1': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
 
     'page.confirmation.tittel.advarsel.list.tittel':
-        'Husk å be arbeidsgiver(e) å sende inntektsmelding så snart som mulig hvis:',
+        'Vi kontakter arbeidsgivere du har fravær hos, for å informere om at de må sende inntektsmelding. Dette er aktuelt hvis:',
     'page.confirmation.tittel.advarsel.list.item.1': 'du søker for første gang, eller',
     'page.confirmation.tittel.advarsel.list.item.2': 'det er mer enn 4 uker siden du hadde pleiepenger sist',
 
@@ -563,6 +562,8 @@ const nb = {
         'Her skal du svare på om du jobber noe i perioden du søker om. Altså om du kombinerer pleiepenger med delvis jobb.',
     'arbeidIPeriode.StepInfo.2':
         'Pleiepengene graderes mot den tiden du jobber. Det vil si at hvis du for eksempel i søknadsperioden jobber 30 prosent, kan du ha rett til opptil 70 prosent pleiepenger.',
+    'arbeidIPeriode.StepInfo.3':
+        'Hvis du søker for første gang, eller du har hatt et opphold i pleiepengene i minst fire uker, vil vi kontakte arbeidsgivere som du har helt eller delvis fravær fra for å innhente inntektsmelding.',
 
     'arbeidIPeriode.redusert.info.tekst':
         'Hvis du er usikker på hvor mye du skal jobbe fremover i tid, legger du inn slik du tror du skal jobbe. Hvis det senere viser seg at du jobber mer eller mindre av hva du tror nå, melder du fra om endring i slutten av den aktuelle måneden.',
@@ -784,7 +785,7 @@ const nb = {
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberHasNoValue':
         'Du må oppgi hvor mange timer du {jobber} per uke {hvor} i perioden når du ikke har fravær på grunn av pleiepenger.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberHasInvalidFormat':
-        'Antall timer du normalt {jobber} per uke {hvor} kan kun bestå av tall.',
+        'Antall timer du normalt {jobber} per uke {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooSmall':
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':

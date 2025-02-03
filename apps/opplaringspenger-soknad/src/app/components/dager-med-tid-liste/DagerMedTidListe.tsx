@@ -3,9 +3,9 @@ import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import './dagerMedTidListe.less';
-import { AppText } from '../../i18n';
 
 interface Props {
     dagerMedTid: DagMedTid[];
@@ -38,11 +38,11 @@ const renderDagMedTid = (dag: DagMedTid, visNormaltid?: boolean): React.ReactNod
 
 const renderDagerMedTid = (dager: DagMedTid[], visNormaltid?: boolean) => {
     return (
-        <ol className={bem.element('dager')}>
+        <ul className={bem.element('dager')}>
             {dager.sort(sortDays).map((dag, idx) => {
                 return <li key={idx}>{renderDagMedTid(dag, visNormaltid)}</li>;
             })}
-        </ol>
+        </ul>
     );
 };
 

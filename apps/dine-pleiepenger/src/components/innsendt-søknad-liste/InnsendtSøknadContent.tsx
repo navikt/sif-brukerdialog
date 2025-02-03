@@ -40,7 +40,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
 
     const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
         return (
-            <List.Item key={organisasjon.organisasjonsnummer}>
+            <li key={organisasjon.organisasjonsnummer}>
                 <Link
                     target="_blank"
                     href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
@@ -55,13 +55,13 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                         }}
                     />
                 </Link>
-            </List.Item>
+            </li>
         );
     };
 
     const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
         return (
-            <List.Item key={dokument.dokumentInfoId}>
+            <li key={dokument.dokumentInfoId}>
                 <Link
                     target="_blank"
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
@@ -70,7 +70,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                     <File title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
-            </List.Item>
+            </li>
         );
     };
 
@@ -95,6 +95,10 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                     </Heading>
                     <p>
                         <AppText id="bekreftelseTilArbeidsgiver.info" />
+                    </p>
+
+                    <p className="mt-4">
+                        <AppText id="bekreftelseTilArbeidsgiver.info.1" />
                     </p>
                     {'arbeidsgivere' in søknad.søknad &&
                         'organisasjoner' in søknad.søknad.arbeidsgivere &&

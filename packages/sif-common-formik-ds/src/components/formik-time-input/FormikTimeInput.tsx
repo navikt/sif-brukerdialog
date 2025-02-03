@@ -9,6 +9,7 @@ import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import SkjemagruppeQuestion from '../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import TimeInput, { TimeInputLabels, TimeInputLayoutProps, TimeInputRefProps } from './TimeInput';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'onChange'> {
     name: FieldName;
@@ -40,7 +41,7 @@ function FormikTimeInput<FieldName, ErrorType>({
     ...restProps
 }: FormikTimeInputProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
-    const ref = useRef<any>();
+    const ref = useRef<any>(null);
     const FieldComponent = useFastField ? FastField : Field;
 
     const skjemagruppeClassName = classNames(
@@ -82,6 +83,7 @@ function FormikTimeInput<FieldName, ErrorType>({
                             {...restProps}
                             {...field}
                             {...timeInputLayout}
+                            {...inputPropsToRemove}
                             justifyContent="left"
                             time={field.value || undefined}
                             onChange={(time: Partial<InputTime> | undefined) => {

@@ -1,6 +1,7 @@
 import { InputTime } from '../types';
+import { getNumberFromNumberInputValue } from '../utils/numberInputUtils';
 import { ValidationFunction } from './types';
-import { getNumberFromStringInput, hasValue } from './validationUtils';
+import { hasValue } from './validationUtils';
 
 export enum ValidateTimeError {
     timeHasNoValue = 'timeHasNoValue',
@@ -45,7 +46,7 @@ const valueIsValidNumber = (value: string | undefined): boolean => {
     if (value) {
         const containsNumbers = value.match(/^[-0-9]+$/) !== null; // Tillatt - for å kunne gi feil på negative verdier
         if (containsNumbers) {
-            return getNumberFromStringInput(value) !== undefined;
+            return getNumberFromNumberInputValue(value) !== undefined;
         }
     }
     return false;
@@ -64,8 +65,8 @@ const getTimeValidator =
             return ValidateTimeError.minutesAreInvalid;
         }
 
-        const hours = getNumberFromStringInput(inputHours);
-        const minutes = getNumberFromStringInput(inputMinutes);
+        const hours = getNumberFromNumberInputValue(inputHours);
+        const minutes = getNumberFromNumberInputValue(inputMinutes);
 
         if (hours === undefined && minutes === undefined && required) {
             return ValidateTimeError.timeHasNoValue;

@@ -4,6 +4,7 @@ import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import { Select, SelectProps } from '@navikt/ds-react';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<SelectProps, 'name'> {
     name: FieldName;
@@ -31,6 +32,7 @@ function FormikSelect<FieldName, ErrorType>({
                     <Select
                         {...restProps}
                         {...field}
+                        {...inputPropsToRemove}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         autoComplete="off"
                         value={field.value === undefined ? '' : field.value}>

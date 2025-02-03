@@ -1,4 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
+import { ReactElement } from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils/src';
 import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
@@ -62,7 +63,7 @@ export const outNull = (
     maybeUtbetalingsperiodeDag: UtbetalingsperiodeDag | null,
 ): maybeUtbetalingsperiodeDag is UtbetalingsperiodeDag => maybeUtbetalingsperiodeDag !== null;
 
-export const utbetalingsperiodeDagToDagSummaryStringView = (dag: UtbetalingsperiodeDag): JSX.Element => {
+export const utbetalingsperiodeDagToDagSummaryStringView = (dag: UtbetalingsperiodeDag): ReactElement => {
     const antallTimerSkulleJobbet = `${timeToDecimalTime(dag.antallTimerPlanlagt)} ${timeText(
         `${timeToDecimalTime(dag.antallTimerPlanlagt)}`,
     )}`;
@@ -83,7 +84,7 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
     );
 };
 
-const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): JSX.Element => {
+const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): ReactElement => {
     const perioder = utbetalingsperioder.filter((p) => p.antallTimerBorte === null);
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
 
@@ -98,7 +99,7 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
                         <SummaryList
                             useAkselList={true}
                             items={perioder}
-                            itemRenderer={(periode: Utbetalingsperiode): JSX.Element => (
+                            itemRenderer={(periode: Utbetalingsperiode): ReactElement => (
                                 <>
                                     <AppText
                                         id="step.oppsummering.arbeidsforhold.fravær.heleDager.item"

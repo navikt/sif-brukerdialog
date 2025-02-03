@@ -12,6 +12,7 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_LOGIN_URL:
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
+    SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
         '/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/api/k9-brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',

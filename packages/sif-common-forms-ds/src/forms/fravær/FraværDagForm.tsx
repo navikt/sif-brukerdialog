@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -14,6 +15,7 @@ import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/int
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { useFraværIntl } from './fraværMessages';
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
@@ -23,7 +25,6 @@ import {
     validateNotHelgedag,
 } from './fraværValidationUtils';
 import { FraværDag, FraværDagFormValues } from './types';
-import { useFraværIntl } from './fraværMessages';
 
 export interface FraværDagFormLabels {
     tittel: string;
@@ -36,12 +37,12 @@ export interface FraværDagFormLabels {
 
 interface Props {
     fraværDag?: Partial<FraværDag>;
-    dagDescription?: JSX.Element;
+    dagDescription?: ReactElement;
     minDate: Date;
     maxDate: Date;
     dateRangesToDisable?: DateRange[];
     helgedagerIkkeTillatt?: boolean;
-    headerContent?: JSX.Element;
+    headerContent?: ReactElement;
     maksArbeidstidPerDag?: number;
     onSubmit: (values: FraværDag) => void;
     onCancel: () => void;

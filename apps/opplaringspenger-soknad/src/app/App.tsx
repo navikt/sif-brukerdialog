@@ -6,12 +6,12 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { mellomlagringService } from './api/mellomlagringService';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
-import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
+import { relocateToWelcomePage } from './utils/navigationUtils';
 import './app.css';
 
 const {
@@ -32,6 +32,7 @@ const App = () => (
         appName={OpplæringspengerApp.navn}
         appTitle={OpplæringspengerApp.tittel.nb}
         intlMessages={applicationIntlMessages}
+        useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
         appStatus={{
             sanityConfig: {
                 projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
@@ -39,6 +40,10 @@ const App = () => (
             },
         }}
         publicPath={PUBLIC_PATH}
+        onResetSoknad={async () => {
+            await mellomlagringService.purge();
+            relocateToWelcomePage();
+        }}
         useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
         amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
         <SoknadApplicationCommonRoutes

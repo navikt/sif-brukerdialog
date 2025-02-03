@@ -1,10 +1,13 @@
-import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
+import { Alert, Button, VStack } from '@navikt/ds-react';
 import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
-import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
+import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import { AppText, useAppIntl } from '../../i18n';
+import actionsCreator from '../../søknad/context/action/actionCreator';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidsgiverDetaljer } from '../../types/søknadApiData/SøknadApiData';
 import TilArbeidsgiverDokumentListe from './components/TilArbeidsgiverDokumentListe';
 import './kvitteringPage.css';
@@ -15,46 +18,25 @@ interface Props {
 }
 const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
     const { text } = useAppIntl();
+    const { dispatch } = useSøknadContext();
+
+    useEffectOnce(() => {
+        dispatch(actionsCreator.setSøknadSendt());
+    });
 
     return (
         <Page title={text('page.confirmation.sidetittel')}>
-            <div data-testid="kvittering-page">
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <CheckmarkIcon />
-                </div>
-
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <Heading level="1" size="large">
-                        <AppText id="page.confirmation.tittel" />
-                    </Heading>
-                </div>
-
-                <Block margin="xl">
-                    <div className={'infopanelInfoForsvinner'}>
-                        <Block padBottom="m">
-                            <Heading level="2" size="medium">
-                                <AppText id="page.confirmation.undertittel" />
-                            </Heading>
-                        </Block>
-
-                        <Panel border={true} className={'luftOver'}>
-                            <Alert variant="warning" inline={true}>
-                                <AppText id="page.conformation.alert.infoForsvinner" />
-
-                                <Block margin="l">
-                                    <AppText id="page.conformation.alert.infoPrint" />
-                                </Block>
-                            </Alert>
-                        </Panel>
-                    </div>
-                    <Checklist>
+            <Kvittering tittel={text('page.confirmation.tittel')}>
+                <Alert variant="warning">
+                    <AppText id="page.conformation.alert.infoForsvinner" />
+                    <Block margin="l">
+                        <AppText id="page.conformation.alert.infoPrint" />
+                    </Block>
+                </Alert>
+                <VStack gap="8">
+                    <Infolist heading={text('page.confirmation.undertittel')}>
                         <li>
-                            <strong>
-                                <AppText id="page.conformation.alert.info.1.1" />
-                            </strong>
-                            <p>
-                                <AppText id="page.conformation.alert.info.1.2" />
-                            </p>
+                            <AppText id="page.conformation.alert.info.1" />
                         </li>
                         <li>
                             <AppText id="page.conformation.alert.info.2" />
@@ -65,11 +47,9 @@ const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
                         <li>
                             <AppText id="page.conformation.alert.info.4" />
                         </li>
-                    </Checklist>
-                </Block>
+                    </Infolist>
 
-                <div className="kvittering-print-button" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <Block margin="xl" padBottom={'xl'}>
+                    <VStack align="center" className="kvittering-print-button">
                         <Button
                             type="button"
                             variant="secondary"
@@ -79,17 +59,15 @@ const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
                             }}>
                             <AppText id="page.conformation.skrivUtKnapp" />
                         </Button>
-                    </Block>
-                </div>
-                <Block padBottom={'xl'}>
-                    <div className={'kviteringsBlokk'}>
-                        <AppText id="page.conformation.skrivUt.info" />
-                    </div>
-                </Block>
+                    </VStack>
+
+                    <AppText id="page.conformation.skrivUt.info" />
+                </VStack>
+
                 {søker && kvitteringInfo && (
                     <TilArbeidsgiverDokumentListe søker={søker} arbeidsgivere={kvitteringInfo} />
                 )}
-            </div>
+            </Kvittering>
         </Page>
     );
 };

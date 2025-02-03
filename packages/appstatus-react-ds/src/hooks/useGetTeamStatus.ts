@@ -38,7 +38,7 @@ function useGetTeamStatus(teamKey: string | undefined, sanityConfig: SanityConfi
     const [liveUpdate, setLiveUpdate] = useState<boolean>();
     const [error, setError] = useState<SanityError | undefined>();
 
-    const subscription = useRef<any>();
+    const subscription = useRef<any>(null);
 
     async function fetch(key: string, config: SanityConfig) {
         const query = getTeamStatusQuery(key);

@@ -1,15 +1,30 @@
-import { BodyLong } from '@navikt/ds-react';
-import { AppText } from '../../i18n';
+import { BodyLong, Link } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '../../i18n';
+import getLenker from '../../lenker';
 
-const VelkommenGuideContent = () => (
-    <>
-        <BodyLong size="large">
-            <AppText id="page.velkommen.guide.ingress" />
+const VelkommenGuideContent = () => {
+    const { locale } = useAppIntl();
+    return (
+        <BodyLong as="div">
+            <p>
+                <AppText id="page.velkommen.guide.ingress" />
+            </p>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.1" />
+            </p>
+            <p>
+                <AppText
+                    id="page.velkommen.guide.tekst.2"
+                    values={{
+                        Lenke: (text) => (
+                            <Link key="lenke" href={getLenker(locale).opplæringspengerNavNo}>
+                                {text}
+                            </Link>
+                        ),
+                    }}
+                />
+            </p>
         </BodyLong>
-        <p>
-            <AppText id="page.velkommen.guide.tekst.1" />
-        </p>
-    </>
-);
-
+    );
+};
 export default VelkommenGuideContent;

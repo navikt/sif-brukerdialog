@@ -87,16 +87,16 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     /** Jobb i søknadsperioden */
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
     await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('Timer').fill('3');
-    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('Minutt').fill('30');
     await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('Timer').fill('3');
-    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('Minutt').fill('30');
     await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Timer').fill('3');
-    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Minutt').fill('30');
     await page.getByRole('group', { name: 'mandag 18. september' }).click();
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').fill('3');
-    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutt').fill('30');
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Medlemsskap */
@@ -132,7 +132,5 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
-    await expect(
-        page.getByRole('heading', { level: 1, name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase' }),
-    ).toBeVisible();
+    await expect(page.getByText('Vi har mottatt søknad om pleiepenger i livets sluttfase')).toBeVisible();
 });

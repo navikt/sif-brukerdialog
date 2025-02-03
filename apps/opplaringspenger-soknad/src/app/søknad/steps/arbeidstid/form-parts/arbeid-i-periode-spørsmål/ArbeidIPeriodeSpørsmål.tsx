@@ -28,6 +28,7 @@ import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../A
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
 import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -43,7 +44,7 @@ interface Props extends ArbeidstidRegistrertLogProps {
     arbeidsstedNavn: string;
     periode: DateRange;
     valgteDatoer: Date[];
-    skjulJobberNormaltValg: boolean;
+    skjulJobberNormaltValg?: boolean;
     onArbeidstidVariertChange: () => void;
 }
 
@@ -173,13 +174,13 @@ const ArbeidIPeriodeSpørsmål = ({
                         description={
                             <Block margin="l">
                                 <Alert variant="info" inline={true}>
-                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                                    Du trenger ikke fylle ut for dager du ikke jobber
                                 </Alert>
                             </Block>
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
-                                dateRange={periode}
+                                dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
                                 useAccordion={useAccordion}

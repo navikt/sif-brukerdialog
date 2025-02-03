@@ -4,6 +4,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<CheckboxProps, 'name' | 'error' | 'children'> {
     name: FieldName;
@@ -36,6 +37,7 @@ function FormikCheckbox<FieldName, ErrorType>({
                     <Checkbox
                         {...restProps}
                         {...field}
+                        {...inputPropsToRemove}
                         error={hasError !== undefined}
                         checked={field.value === true}
                         autoComplete="off"
