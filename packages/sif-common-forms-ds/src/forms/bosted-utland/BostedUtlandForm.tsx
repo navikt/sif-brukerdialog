@@ -106,6 +106,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={false}
                             disabledDateRanges={andreBosteder}
+                            dropdownCaption={true}
                             fromInputProps={{
                                 name: BostedUtlandFormFields.fom,
                                 label: text('@forms.bostedUtland.form.tidsperiode.fraDato'),
