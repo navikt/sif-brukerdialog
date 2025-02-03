@@ -17,7 +17,7 @@
         "@navikt/sif-common-utils": "*"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.2.0",
+        "@navikt/nav-dekoratoren-moduler": "3.2.1",
         "classnames": "2.5.1",
         "csp-header": "6.0.0",
         "date-fns": "3.6.0",
@@ -37,8 +37,8 @@
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.4.2",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "7.10.0",
-        "@navikt/ds-react": "7.10.0",
+        "@navikt/ds-css": "7.11.0",
+        "@navikt/ds-react": "7.11.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-hooks": "*",
