@@ -62,6 +62,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
         (visKunArbeidstidPerUke || formValues?.erLiktHverUke === YesOrNo.NO);
 
     const spørsmål = getArbeidstidSpørsmålstekst(appIntl, arbeidsforholdType, intlValues);
+
     return (
         <>
             <SøknadFormComponents.RadioGroup
@@ -86,6 +87,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                     ]
                 }
             />
+
             {formValues?.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
                 <FormBlock margin="l">
                     <ResponsivePanel border={true}>

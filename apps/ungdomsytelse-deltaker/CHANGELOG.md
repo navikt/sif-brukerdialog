@@ -1,5 +1,31 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.1
+
+### Patch Changes
+
+- Oppdatert sif-common-formik-ds
+
+## 0.6.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
+## 0.5.1
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+- Updated dependencies
+- Updated dependencies [f2a18cf]
+    - @navikt/sif-common-api@0.4.1
+    - @navikt/sif-common-core-ds@10.2.1
+    - @navikt/sif-common-env@0.1.3
+    - @navikt/sif-common-forms-ds@19.0.0
+    - @navikt/sif-common-soknad-ds@24.0.0
+    - @navikt/sif-common-ui@0.9.2
+
 ## 0.5.0
 
 ### Minor Changes

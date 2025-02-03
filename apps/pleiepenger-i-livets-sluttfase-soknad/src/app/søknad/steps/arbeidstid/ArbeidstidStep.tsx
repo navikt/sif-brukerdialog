@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Heading } from '@navikt/ds-react';
 import { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -233,6 +232,12 @@ const ArbeidstidStep = () => {
                                         <p>
                                             <AppText id={'arbeidIPeriode.StepInfo.1'} />
                                         </p>
+
+                                        {ansattArbeidstid && ansattArbeidstid.length > 0 && (
+                                            <p>
+                                                <AppText id={'arbeidIPeriode.StepInfo.2'} />
+                                            </p>
+                                        )}
                                     </SifGuidePanel>
 
                                     {ansattArbeidstid && (
@@ -243,6 +248,7 @@ const ArbeidstidStep = () => {
                                                         <Heading level="2" size="medium">
                                                             {arbeidsforhold.navn}
                                                         </Heading>
+
                                                         <Block>
                                                             <ArbeidIPeriodeSpørsmål
                                                                 arbeidsstedNavn={arbeidsforhold.navn}

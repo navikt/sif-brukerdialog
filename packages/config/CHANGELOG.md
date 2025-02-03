@@ -1,5 +1,11 @@
 # config
 
+## 0.10.29
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+
 ## 0.10.28
 
 ### Patch Changes

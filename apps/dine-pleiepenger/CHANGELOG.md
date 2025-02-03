@@ -1,5 +1,36 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.1
+
+### Patch Changes
+
+- 0c6b88f: Nye tekster for inntektsmelding
+
+## 1.9.0
+
+### Minor Changes
+
+- Bruke amplitude fra dekoratøren
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.0
+
+## 1.8.2
+
+### Patch Changes
+
+- Trigger deploy etter pakkeoppdateringer
+- Updated dependencies [f2a18cf]
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.0
+    - @navikt/appstatus-react-ds@2.20.1
+    - @navikt/sif-app-register@0.1.6
+    - @navikt/sif-common-amplitude@2.27.1
+    - @navikt/sif-common-core-ds@10.2.1
+    - @navikt/sif-common-sentry@0.28.1
+
 ## 1.8.1
 
 ### Patch Changes
