@@ -14,13 +14,13 @@ const nb = {
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Om du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
+        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om kva for dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og derfor ikkje kan jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søker om opplæringspengar.',
+        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du treng ikkje å fylle ut noko her om du reiser til og frå opplæringa same dag som du har opplæring.',
+        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
