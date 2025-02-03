@@ -1,12 +1,13 @@
-import { Alert, HStack, Heading, Tag } from '@navikt/ds-react';
+import { Alert, Heading, HStack, Tag } from '@navikt/ds-react';
+import { useContext, useEffect, useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import {
     DateRange,
-    TypedFormikFormContext,
-    ValidationError,
     getErrorForField,
     getTypedFormComponents,
+    TypedFormikFormContext,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -21,14 +22,13 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import { useContext, useEffect, useState } from 'react';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
+import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
-import { AppIntlShape, useAppIntl } from '../../../../../i18n';
-import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -121,7 +121,10 @@ const ArbeidIPeriodeSpørsmål = ({
                 <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
-                        Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
+                        <AppText
+                            id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader"
+                            values={{ numDatesInMonthWithDuration, enabledDatesInMonth }}
+                        />
                     </Tag>
                 )}
             </HStack>
@@ -131,7 +134,10 @@ const ArbeidIPeriodeSpørsmål = ({
         return (
             <>
                 <Heading size="small" level="3" spacing={true}>
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
+                    <AppText
+                        id="arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion"
+                        values={{ date: dayjs(month).format('MMMM YYYY') }}
+                    />
                 </Heading>
             </>
         );
@@ -172,7 +178,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         description={
                             <Block margin="l">
                                 <Alert variant="info" inline={true}>
-                                    Du trenger ikke fylle ut for dager du ikke jobber
+                                    <AppText id="arbeidIPeriode.enkeltdager_gruppe.description" />
                                 </Alert>
                             </Block>
                         }>

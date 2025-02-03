@@ -5,6 +5,8 @@ const nb = {
     'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobber du noe {hvor} i søknadsperioden?',
     'arbeidIPeriode.enkeltdager_gruppe.legend': 'Oppgi hvor mye du jobber {hvor} i søknadsperioden.',
+    'arbeidIPeriode.enkeltdager_gruppe.description': 'Du trenger ikke fylle ut for dager du ikke jobber',
+
     'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
     'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
     'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg jobber noe',
@@ -12,6 +14,10 @@ const nb = {
     'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
     'arbeidIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',
     'arbeidIPeriode.arbeidstidSted.sn': 'Selvstendig næringsdrivende',
+
+    'arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader':
+        'Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager',
+    'arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion': 'Timer med jobb {date}',
 
     'arbeidIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut timer og minutter for {dato} {hvor}.',
     'arbeidIPeriode.validation.timerDag.hoursAreInvalid': 'Antall timer på {dato} er ikke et gyldig tall.',
@@ -37,6 +43,7 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'Jobbar du noko {hvor} i søknadsperioden?',
     'arbeidIPeriode.enkeltdager_gruppe.legend': 'Oppgi kor mykje du jobbar {hvor} i søknadsperioden.',
+    'arbeidIPeriode.enkeltdager_gruppe.description': 'Du treng ikkje fylle ut for dagar du ikkje jobbar',
     'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Eg jobbar ikkje dei dagane eg søkjer om',
     'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Eg jobbar som normalt, og har ikkje fråvær',
     'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Eg jobbar noko dei dagane eg søkjer om',
@@ -44,6 +51,10 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
     'arbeidIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',
     'arbeidIPeriode.arbeidstidSted.sn': 'Sjølvstendig næringsdrivande',
+
+    'arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader':
+        'Jobbar {numDatesInMonthWithDuration} av {enabledDatesInMonth} dagar',
+    'arbeidIPeriode.arbeidIPeriodeSpørsmål.monthHeader.noAccordion': 'Timar med jobb {date}',
 
     'arbeidIPeriode.validation.timerDag.timeHasNoValue': 'Du må fylle ut timar og minutt for {dato} {hvor}.',
     'arbeidIPeriode.validation.timerDag.hoursAreInvalid': 'Talet på timar på {dato} er ikkje eit gyldig tal.',
