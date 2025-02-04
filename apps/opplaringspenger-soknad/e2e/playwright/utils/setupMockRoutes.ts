@@ -1,9 +1,15 @@
-import { Page } from '@playwright/test';
+import { BrowserContext, Page } from '@playwright/test';
 import { StepId } from '../../../src/app/types/StepId';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { barnMock } from '../mock-data/barnMock';
+import { setupNavnoConsentCookieForPlaywrightTests } from '@navikt/sif-common-core-ds/src';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep?: StepId }) => {
+export const setupMockRoutes = async (
+    page: Page,
+    context: BrowserContext,
+    props?: { mellomlagring: any; lastStep?: StepId },
+) => {
+    await setupNavnoConsentCookieForPlaywrightTests(context);
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
