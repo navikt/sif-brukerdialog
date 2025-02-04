@@ -6,9 +6,9 @@ import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtf
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockRoutes(page);
+    await setupMockRoutes(page, context);
 });
 
 test('Fyll ut søknad med fnr', async ({ page }) => {

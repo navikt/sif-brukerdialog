@@ -1,7 +1,9 @@
-import { Page } from '@playwright/test';
+import { BrowserContext, Page } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
+export const setupMockRoutes = async (page: Page, context: BrowserContext, props?: { mellomlagring: any }) => {
+    await setupNavnoConsentCookieForPlaywrightTests(context);
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
