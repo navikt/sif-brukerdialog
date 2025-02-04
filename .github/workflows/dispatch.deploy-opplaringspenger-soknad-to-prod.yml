@@ -15,16 +15,16 @@ jobs:
         uses: ./.github/workflows/test.opplaringspenger-soknad.yml
         secrets: inherit
 
-    # deploy-to-prod:
-    #     name: Deploy opplaringspenger-soknad to prod
-    #     needs: [run-tests]
-    #     uses: ./.github/workflows/.deploy-app-to-prod.yml
-    #     secrets: inherit
-    #     permissions:
-    #         contents: write
-    #         security-events: write
-    #         id-token: write
-    #         actions: read
-    #     with:
-    #         app-name: 'opplaringspenger-soknad'
-    #         working-directory: 'apps/opplaringspenger-soknad'
+    deploy-to-prod:
+        name: Deploy opplaringspenger-soknad to prod
+        needs: [run-tests]
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        with:
+            app-name: 'opplaringspenger-soknad'
+            working-directory: 'apps/opplaringspenger-soknad'
