@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { Søknadstype } from '../../../src/app/types/Søknadstype';
+import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { startUrl } from '../utils/utfyllingUtils';
 
@@ -8,7 +9,8 @@ export const getSøknadstypeUrl = (søknadstype: string) => {
 };
 
 test.describe('Direktelenker', () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ page, context }) => {
+        await setupNavnoConsentCookieForPlaywrightTests(context);
         await page.route('https://login.nav.no/**', async (route) => {
             await route.fulfill({ status: 200 });
         });

@@ -18,9 +18,9 @@ const gåTilOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
 };
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE);
+    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE);
 });
 
 test('Viser riktig informasjon fra mellomlagring', async ({ page }) => {

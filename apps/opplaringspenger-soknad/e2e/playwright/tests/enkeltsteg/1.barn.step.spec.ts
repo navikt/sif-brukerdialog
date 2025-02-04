@@ -1,23 +1,16 @@
-import { test, expect } from '@playwright/test';
-import { StepId } from '../../../../src/app/types/StepId';
-import { mellomlagringMock } from '../../mock-data/mellomlagringMock';
+import { expect, test } from '@playwright/test';
+import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
 import {
     fyllUtAnnetBarn,
     fyllUtRegistrertBarn,
     kontrollerAnnetBarnOppsummering,
 } from '../../utfylling-utils/1.barnStep';
-import { setNow } from '../../utils/setNow';
-import { setupMockRoutes } from '../../utils/setupMockRoutes';
 import { routeUtils } from '../../utils/routeUtils';
-import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
+import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockRoutes(page, {
-        mellomlagring: mellomlagringMock,
-        lastStep: StepId.OM_BARNET,
-    });
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.BARN);
+    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.BARN);
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
 });
 

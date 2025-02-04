@@ -2,9 +2,11 @@ import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 import { setNow } from '../utils/setNow';
+import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
+    await setupNavnoConsentCookieForPlaywrightTests(context);
 });
 
 test.describe('Fyller ut søknad', () => {

@@ -1,17 +1,12 @@
-import { test, expect } from '@playwright/test';
-import { mellomlagringMock } from '../../mock-data/mellomlagringMock';
-import { setNow } from '../../utils/setNow';
-import { setupMockRoutes } from '../../utils/setupMockRoutes';
-import { routeUtils } from '../../utils/routeUtils';
+import { expect, test } from '@playwright/test';
 import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
 import { fyllUtArbeidssituasjonStep } from '../../utfylling-utils/3.arbeidssituasjonStep';
+import { routeUtils } from '../../utils/routeUtils';
+import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockRoutes(page, {
-        mellomlagring: mellomlagringMock,
-    });
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSSITUASJON, { arbeidssituasjon: undefined });
+    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.ARBEIDSSITUASJON, { arbeidssituasjon: undefined });
     await expect(page.getByRole('heading', { name: 'Din arbeidssituasjon' })).toBeVisible();
 });
 

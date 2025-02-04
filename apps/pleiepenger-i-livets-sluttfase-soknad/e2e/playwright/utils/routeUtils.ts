@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Page } from '@playwright/test';
+import { BrowserContext, Page } from '@playwright/test';
 import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import { mellomlagring } from '../mock-data/mellomlagring';
 import { setupMockRoutes } from './setupMockRoutes';
@@ -14,7 +14,7 @@ const getRouteUrl = (route: SøknadRoutes): string => {
     return `${rootUrl}${route}`;
 };
 
-const resumeFromRoute = async (page: Page, route: SøknadRoutes, søknadsdata?: any) => {
+const resumeFromRoute = async (page: Page, context: BrowserContext, route: SøknadRoutes, søknadsdata?: any) => {
     const mellomlagringToUse = {
         ...mellomlagring,
         søknadRoute: route,
@@ -24,7 +24,7 @@ const resumeFromRoute = async (page: Page, route: SøknadRoutes, søknadsdata?: 
         },
     };
 
-    await setupMockRoutes(page, {
+    await setupMockRoutes(page, context, {
         mellomlagring: mellomlagringToUse,
     });
 
