@@ -6,7 +6,7 @@ import MessagesPreviewExplanation from './MessagePreviewExplanation';
 import MessagesList from './MessagesList';
 import './messagesPreview.scss';
 
-interface Props {
+export interface MessagesPreviewProps {
     title?: string;
     showMissingTextSummary?: boolean;
     showExplanation?: boolean;
@@ -35,7 +35,12 @@ const validateMessageKeys = (nb: Record<string, string>, nn: Record<string, stri
     };
 };
 
-const MessagesPreview = ({ messages, title, showMissingTextSummary = true, showExplanation = true }: Props) => {
+const MessagesPreview = ({
+    messages,
+    title,
+    showMissingTextSummary = true,
+    showExplanation = true,
+}: MessagesPreviewProps) => {
     const allMessages = createMultiLocaleObject(messages);
     const missingMessages = getMissingMessageKeys(allMessages);
     const { placeholdersMismatch } = validateMessageKeys(messages['nb'], messages['nn']);

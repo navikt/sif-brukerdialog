@@ -31,6 +31,14 @@ const nn: Record<keyof typeof nb, string> = {
     ...componentMessages.nn,
 };
 
+export const appAndComponentIntlMessages = {
+    nb: {
+        ...appMessages.nb,
+        ...componentMessages.nb,
+    },
+    nn: { ...appMessages.nn, ...componentMessages.nn },
+};
+
 export type AppMessageKeys = keyof typeof nb;
 
 export const useAppIntl = () => {
