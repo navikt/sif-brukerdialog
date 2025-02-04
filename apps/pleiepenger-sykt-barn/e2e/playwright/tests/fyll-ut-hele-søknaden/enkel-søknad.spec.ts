@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { setNow } from '../../utils/setNow';
 import { routeUtils } from '../../utils/routeUtils';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
 });
 

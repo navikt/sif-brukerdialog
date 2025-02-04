@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await routeUtils.setupMockRoutes(page);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');

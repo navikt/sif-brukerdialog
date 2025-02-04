@@ -4927,6 +4927,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
+    "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
     "@storybook/addon-actions": "npm:8.5.3"

@@ -4,9 +4,9 @@ import { mellomlagringMock } from '../../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { StepID } from '../../../../src/app/types/StepID';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await routeUtils.setupMockRoutes(page, {
+    await routeUtils.setupMockRoutes(page, context, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.OMSORGSTILBUD,
     });

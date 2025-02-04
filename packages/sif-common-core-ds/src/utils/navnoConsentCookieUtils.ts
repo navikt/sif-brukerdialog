@@ -1,4 +1,6 @@
-export const setupNavnoConsentCookieForPlaywrightTests = async (context: any) => {
+import { BrowserContext } from '@playwright/test';
+
+export const setupNavnoConsentCookieForPlaywrightTests = async (context: BrowserContext) => {
     return await context.addCookies([
         {
             name: 'navno-consent',
