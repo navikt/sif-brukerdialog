@@ -2,7 +2,7 @@ import { BrowserContext, Page } from '@playwright/test';
 import { StepId } from '../../../src/app/types/StepId';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { barnMock } from '../mock-data/barnMock';
-import { setupNavnoConsentCookieForPlaywrightTests } from '@navikt/sif-common-core-ds/src';
+import { setupNavnoConsentCookieForPlaywrightTests } from '@navikt/sif-common-core-ds';
 
 export const setupMockRoutes = async (
     page: Page,
