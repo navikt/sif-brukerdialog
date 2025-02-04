@@ -6,8 +6,8 @@ import { setupMockApi } from '../utils/setupMockApi';
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/velkommen';
 
-test.beforeEach(async ({ page }) => {
-    await setupMockApi(page);
+test.beforeEach(async ({ page, context }) => {
+    await setupMockApi(page, context);
 });
 
 test('Fyll ut søknad med annet barn', async ({ page }) => {
