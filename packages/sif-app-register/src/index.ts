@@ -203,3 +203,7 @@ export const UngdomsytelseDeltakerApp: AppInfo = {
         prod: 'https://www.nav.no/familie/sykdom-i-familien/ungdomsytelse-deltaker',
     },
 };
+
+export const sifAppRegister = {
+    OmsorgsdagerAleneomsorgApp,
+};
