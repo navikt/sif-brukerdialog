@@ -8,6 +8,8 @@ import {
     DateRange,
     isDateInDateRanges,
     getDatesInDateRange,
+    dateFormatter,
+    getDatesInDateRanges,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -210,6 +212,10 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
 };
 
+export const getDatoerUtenforSøknadsperioder = (datoer: Date[], søknadsperioder: DateRange[]): Date[] => {
+    return datoer.filter((reisedag) => !isDateInDateRanges(reisedag, søknadsperioder));
+};
+
 export const erAlleReisedagerInnenforSøknadsperioder = (
     reisedager: Enkeltdato[],
     søknadsperioder: DateRange[],
@@ -224,8 +230,18 @@ export const getReisedagerValidator = (kursperioder: DateRange[]) => {
             return error;
         }
         /** Kontroller om datoer er innenfor søknadsperioder */
-        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder) === false) {
-            return 'reisedagUtenforKursperiode';
+        const reisedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(
+            reisedager.map((d) => d.dato),
+            kursperioder,
+        );
+        if (reisedagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'reisedagUtenforKursperiode',
+                values: {
+                    antallDager: reisedagerUtenforSøknadsperioder.length,
+                    dager: reisedagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
         }
         return undefined;
     };
@@ -245,8 +261,16 @@ export const getFerieperioderValidator = (kursperioder: DateRange[]) => {
             return listError;
         }
         /** Kontroller om ferieperioder er innenfor søknadsperioder */
-        if (erFerieInnenforSøknadsperioder(ferieperioder, kursperioder) === false) {
-            return 'ferieperiodeUtenforKursperiode';
+        const feriedager = getDatesInDateRanges(ferieperioder);
+        const feriedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(feriedager, kursperioder);
+        if (feriedagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'ferieperiodeUtenforKursperiode',
+                values: {
+                    antallDager: feriedagerUtenforSøknadsperioder.length,
+                    dager: feriedagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
         }
         return undefined;
     };

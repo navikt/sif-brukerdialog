@@ -14,13 +14,13 @@ const nb = {
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Om du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
+        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om kva for dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og derfor ikkje kan jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søker om opplæringspengar.',
+        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du treng ikkje å fylle ut noko her om du reiser til og frå opplæringa same dag som du har opplæring.',
+        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
@@ -35,9 +35,9 @@ const nb = {
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
-        'Reisedag er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikke er innenfor dager du søker.',
+        '{antallDager, plural, one {Én reisedag} other {# reisedager}} er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikke er innenfor dager du søker. Reisedager utenfor søknadsperiode: {dager}.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
-        'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker.',
+        'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker. Feriedager utenfor søknadsperiode: {dager}.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':

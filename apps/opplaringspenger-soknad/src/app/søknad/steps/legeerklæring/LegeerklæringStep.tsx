@@ -25,7 +25,7 @@ const LegeerklæringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.LEGEERKLÆRING;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
     const { goBack } = useStepNavigation(step);
 
