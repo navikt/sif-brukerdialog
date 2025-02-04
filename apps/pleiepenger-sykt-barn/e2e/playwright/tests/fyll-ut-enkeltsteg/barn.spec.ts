@@ -4,7 +4,7 @@ import { setNow } from '../../utils/setNow';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await routeUtils.setupMockRoutes(page);
+    await routeUtils.setupMockRoutes(page, context);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await expect(page.getByRole('heading', { name: 'Hei, Test' })).toBeVisible();
     await page.getByText('Jeg bekrefter at jeg har').click();
