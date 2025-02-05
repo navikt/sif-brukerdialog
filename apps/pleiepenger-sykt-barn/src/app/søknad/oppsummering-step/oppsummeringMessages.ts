@@ -172,7 +172,178 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    'step.oppsummering.pageTitle': 'Pleiepengesøknad - oppsummering',
+    'step.oppsummering.stepTitle': 'Oppsummering',
+    'step.oppsummering.stepIndicatorLabel': 'Oppsummering',
+    'step.oppsummering.nextButtonLabel': 'Send inn søknaden',
+
+    'steg.oppsummering.info':
+        'Les gjennom oppsummeringa før du sender inn søknaden. Du kan gå tilbake viss du vil gjere endringar.',
+    'steg.oppsummering.søker.header': 'Om deg',
+    'steg.oppsummering.søker.navn': 'Namn',
+    'steg.oppsummering.søker.fnr': 'Fødselsnummer',
+    'steg.oppsummering.tidsrom.header': 'Perioden du søkjer pleiepengar for',
+    'steg.oppsummering.søknadsperiode.header': 'Periode',
+    'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
+
+    'steg.oppsummering.barnet.header': 'Om barnet',
+    'steg.oppsummering.barnet.navn': 'Namn',
+    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
+    'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
+    'steg.oppsummering.barnet.barnetHarIkkeFnr': 'Utan fødselsnummer/D-nummer',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.NYFØDT':
+        'Barnet er nyfødd og har ikkje fått fødselsnummer enno',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET': 'Barnet bur i utlandet',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.ANNET': 'Anna',
+    'steg.oppsummering.omBarn.fødselsattest.tittel': 'Fødselsattest',
+    'step.oppsummering.omBarn.ingenFødselsattest': 'Ingen fødselsattest er lasta opp',
+    'steg.oppsummering.relasjonTilBarnet.header': 'Relasjon til barnet',
+    'steg.oppsummering.relasjonTilBarnetBeskrivelse': 'Di skildring av relasjon og tilsynsrolle for barnet:',
+    'steg.oppsummering.barnRelasjon.MOR': 'Du er mor til barnet',
+    'steg.oppsummering.barnRelasjon.MEDMOR': 'Du er medmor til barnet',
+    'steg.oppsummering.barnRelasjon.FOSTERFORELDER': 'Du er fosterforelder til barnet',
+    'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
+    'steg.oppsummering.barnRelasjon.ANNET': 'Anna',
+    'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du vere i utlandet i perioden?',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utlandsopphald i perioden',
+    'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
+    'steg.oppsummering.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
+
+    'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbod i søknadsperioden',
+    'steg.oppsummering.omsorgstilbud.fortid.spm':
+        'Har barnet vore fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod?',
+    'steg.oppsummering.omsorgstilbud.fortid.svar.JA': 'Ja, i heile eller delar av perioden',
+    'steg.oppsummering.omsorgstilbud.fortid.svar.NEI': 'Nei',
+    'steg.oppsummering.omsorgstilbud.fortid.svar.USIKKER': 'Usikker',
+    'steg.oppsummering.omsorgstilbud.fremtid.spm':
+        'Skal barnet vere fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod framover i tid?',
+    'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid':
+        'Skal barnet vere fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod?',
+    'steg.oppsummering.omsorgstilbud.fremtid.svar.JA': 'Ja, i heile eller delar av perioden',
+    'steg.oppsummering.omsorgstilbud.fremtid.svar.NEI': 'Nei',
+    'steg.oppsummering.omsorgstilbud.fremtid.svar.USIKKER': 'Usikker',
+    'steg.oppsummering.nattevåkBeredskap.header': 'Nattevåk og beredskap',
+    'steg.oppsummering.nattevåkBeredskap.nattevåk.beskrivelse':
+        'Skildring av korleis barnet sin sjukdom gir eit pleie- eller tilsynsbehov om nettene',
+    'steg.oppsummering.nattevåkBeredskap.beredskap.beskrivelse':
+        'Skildring av korleis barnet sin sjukdom gjer at du må vere i beredskap',
+    'steg.oppsummering.omsorgstilbud.fast.header': 'Omsorgstilbod er likt kvar veke i perioden:',
+    'steg.oppsummering.omsorgstilbud.fast.header.fortid': 'Tida har vore lik kvar veke i perioden:',
+
+    'steg.oppsummering.omsorgstilbud.enkeltdager.header': 'Fast og regelmessig tid i omsorgstilbod:',
+
+    'steg.oppsummering.utlandetSiste12.header': 'Har budd i utlandet dei siste 12 månadene',
+    'steg.oppsummering.utlandetNeste12.header': 'Skal bu i utlandet dei neste 12 månadene',
+    'steg.oppsummering.utlandetSiste12.liste.header': 'Utlandsopphald siste 12 månader',
+    'steg.oppsummering.utlandetNeste12.liste.header': 'Utlandsopphald neste 12 månader',
+
+    'steg.oppsummering.bekrefterOpplysninger':
+        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har betydning for retten min til pleiepengar.',
+
+    'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
+    'steg.oppsummering.arbeidssituasjon.omsfost.title': 'Omsorgsstønad eller fosterheimgodtgjersle',
+    'steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke':
+        'Mottar ikkje fosterheimgodtgjersle eller omsorgsstønad frå kommunen',
+    'steg.oppsummering.vedlegg.header': 'Legeerklæring',
+    'steg.oppsummering.vedlegg.listTitle': 'Dokument lasta opp',
+
+    'steg.oppsummering.validering.navigasjonTilStegInfo':
+        'Gå tilbake og sjekk informasjonen du har fylt ut. Når du har gjort det, trykk på "Fortsett"-knappen for å gå vidare.',
+    'steg.oppsummering.validering.navigasjonTilStegGåTil': 'Gå til',
+    'steg.oppsummering.validering.tidsromKunHelg':
+        'Oops, noko gjekk galt med perioden du søkjer for. Du kan berre få utbetalt pleiepengar for vekedagar. Det blir ikkje utbetalt pleiepengar for laurdag eller sundag sjølv om du har hatt fråvær frå jobb for å pleie barn. Du kan difor ikkje søkje pleiepengar berre for laurdag og/eller sundag.',
+    'steg.oppsummering.validering.manglerVedlegg':
+        'Oops, noko gjekk galt med legeerklæringa. Gå tilbake og kontroller at ho er lasta opp riktig.',
+    'steg.oppsummering.validering.fødselsattest':
+        'Oops, noko gjekk galt med fødselsattesten. Gå tilbake og kontroller at ho er lasta opp riktig.',
+    'steg.oppsummering.validering.omsorgstilbud.ugyldig':
+        'Oops, noko gjekk galt med omsorgstilbodet som er registrert.',
+    'steg.oppsummering.validering.omsorgstilbud.nattevåkBeskrivelseForLang':
+        'Oops, teksten du har skrive om nattevåk er for lang.',
+    'steg.oppsummering.validering.omsorgstilbud.beredskapBeskrivelseForLang':
+        'Oops, teksten du har skrive om beredskap er for lang.',
+    'steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt':
+        'Oops, inntekta du har oppgitt for verksemda di er for høg.',
+
+    'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er tilsett',
+    'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikkje lenger tilsett',
+    'oppsummering.arbeidssituasjon.tid': 'Jobbar normalt {timer, plural, one {# time} other {# timar}} per veke',
+    'oppsummering.arbeidssituasjon.avsluttet.tid':
+        'Jobba normalt {timer, plural, one {# time} other {# timar}} per veke',
+    'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode': 'Slutta før {periodeFra}',
+    'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode': 'Slutta etter {periodeFra}',
+
+    'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header': 'Arbeidsgivarar',
+    'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst': 'Er ikkje tilsett i søknadsperioden',
+
+    'oppsummering.arbeidssituasjon.frilanser.header': 'Frilans og oppdrag som blir rekna som frilansoppdrag',
+    'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser':
+        'Er ikkje frilanser og får ikkje honorar i søknadsperioden',
+    'oppsummering.arbeidssituasjon.frilans.startetFørSisteTreHeleMåneder':
+        'Starta som frilanser før {opptjeningStartdato}',
+    'oppsummering.arbeidssituasjon.frilans.startet': 'Starta som frilanser {dato}',
+    'oppsummering.arbeidssituasjon.frilans.FRILANS': 'Jobbar som frilanser',
+    'oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR': 'Jobbar som frilanser og mottar honorar',
+    'oppsummering.arbeidssituasjon.frilans.HONORAR': 'Mottar honorar',
+    'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar': 'Mister ikkje honorar i søknadsperioden',
+    'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar': 'Mister honorar i søknadsperioden',
+    'oppsummering.arbeidssituasjon.frilans.sluttet': 'Slutta {dato}',
+    'oppsummering.arbeidssituasjon.frilans.frilansoppdrag': 'Frilansoppdrag registrert i søknadsperioden:',
+
+    'oppsummering.arbeidssituasjon.selvstendig.header': 'Sjølvstendig næringsdrivande',
+    'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN': 'Er ikkje sjølvstendig næringsdrivande i søknadsperioden',
+
+    'oppsummering.arbeidssituasjon.selvstendig.erSn': 'Er sjølvstendig næringsdrivande',
+    'oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter': 'Har fleire verksemder',
+    'oppsummering.arbeidssituasjon.selvstendig.enVirksomhet': 'Har 1 verksemd',
+
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel': 'Jobba i anna EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstakar eller frilanser i eit anna EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
+        'Har jobba som arbeidstakar eller frilanser i eit anna EØS-land i løpet av dei 3 siste månadene før perioden ein søkjer om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
+        'Har ikkje jobba som arbeidstakar eller frilanser i eit anna EØS-land i løpet av dei 3 siste månadene før perioden ein søkjer om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i anna EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Periodar med jobb i anna EØS-land',
+
+    'oppsummering.arbeidssituasjon.utenlandskNæring.tittel': 'Sjølvstendig næringsdrivande i eit anna EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.nei':
+        'Har ikkje jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei 3 siste åra før perioden ein søkjer om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.ja':
+        'Har jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei 3 siste åra før perioden ein søkjer om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsverksemder i andre EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsverksemd i anna EØS-land',
+
+    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
+    'opptjeningIUtlandetSummaryItem.info': 'Jobba i {landnavn} som {hva} hos {hvor}',
+
+    'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
+        'Jobba som sjølvstendig næringsdrivande i eit anna EØS-land',
+
+    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.nei': 'Jobbar ikkje i søknadsperioden',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar': 'Mister alt av honorar',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig':
+        'Jobbar som normalt, har ikkje fråvær på grunn av pleiepengar i søknadsperioden',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar': 'Mister ikkje honorar på grunn av pleiepengar',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert':
+        'Kombinerer delvis jobb med pleiepengar i søknadsperioden',
+
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.REDUSERT':
+        'Frilanser: Kombinerer delvis jobb med pleiepengar',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.HELT_FRAVÆR': 'Frilanser: Jobbar ikkje i søknadsperioden',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG':
+        'Frilanser: Jobbar som normalt, har ikkje fråvær på grunn av pleiepengar',
+
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent': 'Jobbar {prosent} prosent av normalt',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke': 'Jobbar {timer} per veke',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel':
+        'Jobbar ulikt tal timar i vekene i søknadsperioden:',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel': 'Jobbar:',
+    'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke': 'Veke {ukenummer}: {timer}',
+
+    'oppsummering.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn:',
 };
 
 export const oppsummeringMessages = {
