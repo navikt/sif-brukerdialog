@@ -18,31 +18,32 @@ import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted
 
 const libMessages = {
     nb: {
+        ...bostedUtlandMessages.nb,
+        ...bostedUtlandMessages.nb,
         ...commonMessages.nb,
-        ...uiMessages.nb,
-        ...soknadMessages.nb,
-        ...bostedUtlandMessages.nb,
-        ...utenlandsoppholdMessages.nb,
-        ...bostedUtlandMessages.nb,
-        ...virksomhetMessages.nb,
-        ...tidsperiodeMessages.nb,
         ...ferieuttakMessages.nb,
-        ...opptjeningUtlandMessages.nb,
-        ...utenlandskNæringMessages.nb,
         ...medlemskapFormMessages.nb,
+        ...opptjeningUtlandMessages.nb,
+        ...soknadMessages.nb,
+        ...tidsperiodeMessages.nb,
+        ...uiMessages.nb,
+        ...utenlandskNæringMessages.nb,
+        ...utenlandsoppholdMessages.nb,
+        ...virksomhetMessages.nb,
     },
     nn: {
+        ...bostedUtlandMessages.nn,
+        ...bostedUtlandMessages.nn,
         ...commonMessages.nn,
-        ...uiMessages.nn,
-        ...soknadMessages.nn,
-        ...bostedUtlandMessages.nn,
-        ...utenlandsoppholdMessages.nn,
-        ...bostedUtlandMessages.nn,
-        ...virksomhetMessages.nn,
-        ...tidsperiodeMessages.nn,
         ...ferieuttakMessages.nn,
+        ...medlemskapFormMessages.nn,
         ...opptjeningUtlandMessages.nn,
+        ...soknadMessages.nn,
+        ...tidsperiodeMessages.nn,
+        ...uiMessages.nn,
         ...utenlandskNæringMessages.nn,
+        ...utenlandsoppholdMessages.nn,
+        ...virksomhetMessages.nn,
     },
 };
 
@@ -52,7 +53,8 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    ...libMessages.nn,
+    ...appMessages.nn,
 };
 
 export type AppMessageKeys = keyof typeof nb;

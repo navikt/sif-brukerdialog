@@ -56,6 +56,7 @@ const App = () => {
             appTitle={PleiepengerSyktBarnApp.tittel.nb}
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
+            useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
             useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
             publicPath={PUBLIC_PATH}
             amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
