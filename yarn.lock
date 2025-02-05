@@ -8064,7 +8064,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/ui@npm:^2.11.4, @sanity/ui@npm:^2.11.6":
+"@sanity/ui@npm:^2.11.4, @sanity/ui@npm:^2.11.6, @sanity/ui@npm:^2.11.8":
   version: 2.11.8
   resolution: "@sanity/ui@npm:2.11.8"
   dependencies:
@@ -8121,9 +8121,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.72.1":
-  version: 3.72.1
-  resolution: "@sanity/vision@npm:3.72.1"
+"@sanity/vision@npm:3.74.0":
+  version: 3.74.0
+  resolution: "@sanity/vision@npm:3.74.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8138,18 +8138,19 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
     "@sanity/icons": "npm:^3.5.7"
-    "@sanity/ui": "npm:^2.11.6"
+    "@sanity/ui": "npm:^2.11.8"
     "@uiw/react-codemirror": "npm:^4.11.4"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.0.0-beta-27714ef-20250124"
+    react-compiler-runtime: "npm:19.0.0-beta-714736e-20250131"
+    react-fast-compare: "npm:^3.2.2"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1
-  checksum: 10/83eb75336792259e3f216f407ee8af8ee313dd6a594b9d33a7aa07d8ba0026aadc9039890b4bbba2a6ad979e1700dabbe5fb3da6f896dfb2e40aadc696e5a628
+  checksum: 10/8155af47b875d9f87cadc5d1d87d8f6dbba455d8dfa0ebe2bcabafb158dbc02aaea16ef1ff89756f072039b4097fd3fba2a1643317e100074c26edc806479e62
   languageName: node
   linkType: hard
 
@@ -11482,7 +11483,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.1"
-    "@sanity/vision": "npm:3.72.1"
+    "@sanity/vision": "npm:3.74.0"
     "@types/react": "npm:19.0.8"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.19.0"
@@ -23681,7 +23682,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:3.2.2, react-fast-compare@npm:^3.2.0":
+"react-fast-compare@npm:3.2.2, react-fast-compare@npm:^3.2.0, react-fast-compare@npm:^3.2.2":
   version: 3.2.2
   resolution: "react-fast-compare@npm:3.2.2"
   checksum: 10/a6826180ba75cefba1c8d3ac539735f9b627ca05d3d307fe155487f5d0228d376dac6c9708d04a283a7b9f9aee599b637446635b79c8c8753d0b4eece56c125c
