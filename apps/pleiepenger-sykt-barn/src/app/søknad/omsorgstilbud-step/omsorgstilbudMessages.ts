@@ -49,6 +49,10 @@ const nb = {
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid': 'Fremover i tid',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid.spm':
         'Skal barnet være fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud fremover i tid?',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.ja': 'Ja, i hele eller deler av perioden',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.nei': 'Nei',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.vetIkke': 'Usikker',
+
     'steg.omsorgstilbud.erIOmsorgstilbudKunFremtid.spm':
         'Skal barnet være fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud?',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker':
@@ -172,6 +176,10 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid': 'Framover i tid',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid.spm':
         'Skal barnet vere fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod framover i tid?',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.ja': 'Ja, i heile eller delar av perioden',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.nei': 'Nei',
+    'omsorgstilbud__erIOmsorgstilbud_fremtid.svar.vetIkke': 'Usikker',
+
     'steg.omsorgstilbud.erIOmsorgstilbudKunFremtid.spm':
         'Skal barnet vere fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod?',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker':
