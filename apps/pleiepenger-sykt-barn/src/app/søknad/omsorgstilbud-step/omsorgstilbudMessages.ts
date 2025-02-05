@@ -55,7 +55,6 @@ const nb = {
         'Når barnet har vært i et omsorgstilbud frem til nå, men du er usikker på om det blir fast og regelmessig fremover, oppgir du kun det som har vært til nå. Du gir oss beskjed hvis det senere viser seg at tiden fremover blir fast og regelmessig.',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker':
         'Du må gi oss beskjed hvis barnet begynner å være fast og regelmessig i omsorgstilbud.',
-
     'steg.omsorgstilbud.eksempel.tittel': 'Eksempler på å oppholde seg fast og regelmessig  i et omsorgstilbud',
     'steg.omsorgstilbud.eksempel.1':
         'I perioden med pleiepenger klarer Anna å være i barnehagen mellom 5 og 15 timer per uke. Det er det laveste antallet timer Anna er i barnehagen som anses som fast og regelmessig. I dette eksempelet skal det derfor oppgis 5 timer per uke.',
@@ -82,7 +81,6 @@ const nb = {
     'steg.omsorgstilbud.erLiktHverUke.info.1': 'Eksempel:',
     'steg.omsorgstilbud.erLiktHverUke.info.2':
         'Anna går fast hver uke i barnehagen 2 timer på mandag og 3 timer på torsdag. Hun bytter ikke på dager eller antall timer hun er i barnehagen i løpet av en uke.',
-
     'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud': 'Oppgi den tiden barnet er fast og regelmessig i omsorgstilbudet.',
     'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.kunFremtid':
         'Oppgi den tiden barnet skal være fast og regelmessig i omsorgstilbudet',
