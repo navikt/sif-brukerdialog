@@ -1,4 +1,7 @@
 const nb = {
+    'page.velkommen.tittel': 'Søknad om pleiepenger for sykt barn',
+    'page.velkommen.startSøknad': 'Start søknad',
+
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress': 'Velkommen til søknad om pleiepenger for sykt barn.',
     'page.velkommen.guide.tekst.1':
