@@ -44,7 +44,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                                     erAnsatt={true}
                                 />
                             </List.Item>
-                            <List.Item title={text('summary.virksomhet.virksomhetInfo.tittel')}>
+                            <List.Item title={text('oppsummering.virksomhet.virksomhetInfo.tittel')}>
                                 <VirksomhetFormSummaryAnswers virksomhet={selvstendig.virksomhet} />
                             </List.Item>
                         </>

@@ -95,6 +95,25 @@ const nb = {
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
     'arbeidIPeriode.info.frilanser.tekst.1':
         'Nå trenger vi å vite hvor mange timer du jobber som frilanser i søknadsperioden.',
+    'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysninger om arbeidstid',
+    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
+
+    'arbeidIPeriode.StepInfo.1':
+        'Her skal du svare på om du jobber noe i perioden du søker om. Altså om du kombinerer pleiepenger med delvis jobb.',
+    'arbeidIPeriode.StepInfo.2':
+        'Pleiepengene graderes mot den tiden du jobber. Det vil si at hvis du for eksempel i søknadsperioden jobber 30 prosent, kan du ha rett til opptil 70 prosent pleiepenger.',
+    'arbeidIPeriode.StepInfo.3':
+        'Hvis du søker for første gang, eller du har hatt et opphold i pleiepengene i minst fire uker, vil vi kontakte arbeidsgivere som du har helt eller delvis fravær fra for å innhente inntektsmelding.',
+
+    'arbeidIPeriode.redusert.info.tekst':
+        'Hvis du er usikker på hvor mye du skal jobbe fremover i tid, legger du inn slik du tror du skal jobbe. Hvis det senere viser seg at du jobber mer eller mindre av hva du tror nå, melder du fra om endring i slutten av den aktuelle måneden.',
+
+    'arbeidIPeriode.redusert.endring.tittel': 'Hvordan melder jeg fra om endring?',
+    'arbeidIPeriode.redusert.endring.arb_frilans.tekst':
+        'Du sender endringsmelding for pleiepenger som du finner under «Skjema og søknad» på nav.no, eller på «Dine pleiepenger» på innlogget side. I endringsmeldingen kan du enkelt registrere hvor mye du har jobbet.',
+    'arbeidIPeriode.redusert.endring.sn.tekst':
+        'Du sender en melding med hvor mye du har jobbet via «Skriv til oss»-tjenesten på innlogget side.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
