@@ -1,10 +1,10 @@
+import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { axiosJsonConfig } from '../api/api';
 import { ApiEndpoint } from '../types/ApiEndpoint';
-import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
@@ -13,7 +13,7 @@ import { StepID } from './soknadStepsConfig';
 export const STORAGE_VERSION = '2.4';
 
 interface UserHashInfo {
-    søker: Person;
+    søker: Søker;
 }
 
 const createHashString = (info: UserHashInfo) => {
