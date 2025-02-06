@@ -10,6 +10,7 @@ import {
     getDatesInDateRange,
     dateFormatter,
     getDatesInDateRanges,
+    sortDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -184,7 +185,7 @@ export const getDateRangesFromKursperiodeFormValues = (
     if (!kursperioderValues) {
         return [];
     }
-    return kursperioderValues
+    const perioder = kursperioderValues
         .map((periode, index) => {
             try {
                 const kursperiode = kursperiodeUtils.mapFormValuesToKursperiode(
@@ -197,6 +198,7 @@ export const getDateRangesFromKursperiodeFormValues = (
             }
         })
         .filter((p) => p && p.from && p.to) as DateRange[];
+    return perioder.sort(sortDateRange);
 };
 
 export const getSøknadsperiodeFromKursperioderFormValues = (
