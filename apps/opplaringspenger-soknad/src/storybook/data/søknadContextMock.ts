@@ -8,6 +8,7 @@ import { Kursperiode } from '../../app/types/Kursperiode';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
+import { Institusjon } from '../../app/api/institusjonService';
 
 const kursperioder: Kursperiode[] = [
     {
@@ -34,6 +35,11 @@ const barn2: RegistrertBarn = {
     aktørId: '123',
 };
 
+const institusjon: Institusjon = {
+    uuid: 'bcbc78d9-465b-48c6-913a-bf9b1eeb0faf',
+    navn: 'Stavanger Universitetssykehus',
+};
+
 const registrerteBarn: RegistrertBarn[] = [barn1, barn2];
 
 export const søknadContextMock: SøknadContextState = {
@@ -46,7 +52,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-
+    institusjoner: [institusjon],
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',

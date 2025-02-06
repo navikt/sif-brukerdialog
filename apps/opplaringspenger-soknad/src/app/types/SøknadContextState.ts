@@ -1,11 +1,11 @@
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { KvitteringInfo } from './KvitteringInfo';
-import { RegistrertBarn } from './RegistrertBarn';
 import { StepId } from './StepId';
-import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
+import { Institusjon } from '../api/institusjonService';
 
 export type ArbeidstidStepTempFormValues = {
     stepId: StepId.ARBEIDSTID;
@@ -18,6 +18,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
+    institusjoner: Institusjon[];
     frilansoppdrag?: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     tempFormData?: TempFormValues;
