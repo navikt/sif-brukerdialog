@@ -21,7 +21,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent } = useAmplitudeInstance();
+    const { logSoknadSent, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
@@ -29,7 +29,8 @@ export const useSendSøknad = () => {
             .send(apiData)
             .then(() => {
                 const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);
-                onSøknadSendSuccess(kvitteringInfo);
+                const søknadMeta = getSendtSøknadMetadata(apiData);
+                onSøknadSendSuccess(søknadMeta, kvitteringInfo);
             })
             .catch((error) => {
                 setSendSøknadError(error);
@@ -37,8 +38,9 @@ export const useSendSøknad = () => {
             });
     };
 
-    const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
+    const onSøknadSendSuccess = async (metadata: SendtSøknadMetadata, kvitteringInfo?: KvitteringInfo) => {
         await logSoknadSent(OpplæringspengerApp.key, locale);
+        await logInfo(metadata);
         await mellomlagringService.purge();
         setIsSubmitting(false);
         if (kvitteringInfo) {
@@ -53,5 +55,21 @@ export const useSendSøknad = () => {
         sendSøknad,
         isSubmitting,
         sendSøknadError,
+    };
+};
+
+interface SendtSøknadMetadata {
+    antallPerioder: number;
+    antallReisedager: number;
+    antallFerieperioder: number;
+}
+
+const getSendtSøknadMetadata = (apiData: SøknadApiData): SendtSøknadMetadata => {
+    return {
+        antallPerioder: apiData.kurs.kursperioder.length,
+        antallReisedager: apiData.kurs.reise.reiserUtenforKursdager ? apiData.kurs.reise.reisedager.length : 0,
+        antallFerieperioder: apiData.ferieuttakIPerioden?.skalTaUtFerieIPerioden
+            ? apiData.ferieuttakIPerioden.ferieuttak.length
+            : 0,
     };
 };
