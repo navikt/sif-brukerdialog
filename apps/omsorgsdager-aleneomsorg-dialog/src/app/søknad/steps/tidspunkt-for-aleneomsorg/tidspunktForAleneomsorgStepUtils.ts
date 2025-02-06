@@ -1,8 +1,8 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { Søknadsdata, TidspunktForAleneomsorgSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import {
     AleneomsorgTidspunkt,
