@@ -33,6 +33,7 @@ import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './ReisedagerFormPart';
 import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
 import ReiseInfo from './ReiseInfo';
+import InstitusjonerComboBox from './InstitusjonerComboBox';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -64,7 +65,7 @@ const KursStep = () => {
     const { intl, text } = useAppIntl();
 
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, institusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
@@ -135,6 +136,7 @@ const KursStep = () => {
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
+                                        <InstitusjonerComboBox institusjoner={institusjoner} />
                                         <TextField
                                             label={text('steg.kurs.opplæringsinstitusjon.label')}
                                             name={KursFormFields.opplæringsinstitusjon}

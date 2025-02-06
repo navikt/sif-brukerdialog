@@ -3,6 +3,7 @@ import * as React from 'react';
 import TypedFormikForm from '../../src/components/typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper from '../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import '@navikt/ds-css';
+import { IntlProvider } from 'react-intl';
 
 interface Props {
     parameters?: {
@@ -14,9 +15,11 @@ interface Props {
 }
 
 export const withFormikWrapper = (Story, args) => (
-    <StoryFormikWrapper {...args}>
-        <Story />
-    </StoryFormikWrapper>
+    <IntlProvider locale="nb" messages={{}}>
+        <StoryFormikWrapper {...args}>
+            <Story />
+        </StoryFormikWrapper>
+    </IntlProvider>
 );
 
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
