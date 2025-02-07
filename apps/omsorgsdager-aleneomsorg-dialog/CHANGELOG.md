@@ -1,5 +1,19 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.26.2
+
+### Patch Changes
+
+- adbbe0a: Bytte til å bruke Søker og RegistrertBarn fra sif-common-api
+
+## 2.26.1
+
+### Patch Changes
+
+- Oppdatert sif-common-formik-ds
+- Updated dependencies [8cb29f6]
+    - @navikt/sif-common-formik-ds@2.4.1
+
 ## 2.26.0
 
 ### Minor Changes

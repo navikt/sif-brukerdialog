@@ -104,7 +104,7 @@ const ArbeidssituasjonStep = () => {
     });
 
     const stepId = StepId.ARBEIDSSITUASJON;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
     const { goBack } = useStepNavigation(step);
 

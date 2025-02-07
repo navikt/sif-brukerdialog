@@ -8,8 +8,8 @@ test.beforeEach(async ({ page }) => {
     await setNow(page);
 });
 
-test('Fyll ut periodesteget', async ({ page }) => {
-    await routeUtils.setupMockRoutes(page, {
+test('Fyll ut periodesteget', async ({ page, context }) => {
+    await routeUtils.setupMockRoutes(page, context, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.OPPLYSNINGER_OM_BARNET,
     });

@@ -1,8 +1,11 @@
 const søkerMock = {
+    aktørId: '2486083225079',
+    fødselsdato: '1987-10-09',
+    fødselsnummer: '09908799647',
+    mellomnavn: null,
+    myndig: true,
     fornavn: 'Test',
-    mellomnavn: undefined,
     etternavn: 'Testesen',
-    fødselsnummer: '23058916765',
 };
 
 const barnMock = {

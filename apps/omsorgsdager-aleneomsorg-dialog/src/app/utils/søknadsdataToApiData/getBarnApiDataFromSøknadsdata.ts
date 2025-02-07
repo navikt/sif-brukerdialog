@@ -1,14 +1,14 @@
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { ApiBarn, RegisterteBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import {
     AleneomsorgTidspunkt,
     TidspunktForAleneomsorg,
 } from '../../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { prefixBarnIdFnr } from '../../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
+import { ApiBarn, RegisterteBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const mapRegistrertBarnToApiBarn = (
     registrertBarn: RegistrertBarn,

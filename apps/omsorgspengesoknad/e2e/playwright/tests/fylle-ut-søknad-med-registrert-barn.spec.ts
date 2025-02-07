@@ -4,9 +4,9 @@ import { setupMockRoutes } from '../utils/setupMockApi';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockRoutes(page);
+    await setupMockRoutes(page, context);
 });
 
 test('Fyll ut søknad med registrert barn', async ({ page }) => {

@@ -4,9 +4,9 @@ import { setNow } from '../utils/setNow';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/velkommen';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockApi(page);
+    await setupMockApi(page, context);
 });
 
 test('Fyll ut enkel søknad', async ({ page }) => {

@@ -1,9 +1,12 @@
 import { test } from '@playwright/test';
+import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.describe('Start og innsending av ettersending', () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ page, context }) => {
+        await setupNavnoConsentCookieForPlaywrightTests(context);
+
         await page.route('https://login.nav.no/**', async (route) => {
             await route.fulfill({ status: 200 });
         });

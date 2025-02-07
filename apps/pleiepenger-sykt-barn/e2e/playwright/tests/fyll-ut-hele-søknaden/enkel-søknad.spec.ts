@@ -6,8 +6,8 @@ test.beforeEach(async ({ page }) => {
     await setNow(page);
 });
 
-test('Velkommen side', async ({ page }) => {
-    await routeUtils.setupMockRoutes(page);
+test('Velkommen side', async ({ page, context }) => {
+    await routeUtils.setupMockRoutes(page, context);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByRole('button', { name: 'Start søknad' }).click();

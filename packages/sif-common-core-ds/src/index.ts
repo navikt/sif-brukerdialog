@@ -8,3 +8,4 @@ export * from './types';
 export * from './utils/apiUtils';
 export * from './utils/localeUtils';
 export * from './utils/vedleggUtils';
+export * from './utils/navnoConsentCookieUtils';

@@ -100,6 +100,7 @@ const KursperiodeQuestions = ({
                 toInputProps={{
                     label: text('kursperiode.form.tom.label'),
                     name: getFieldName(KursperiodeFormFields.tom),
+                    defaultMonth: startdato,
                     validate: (value) => {
                         const error = getDateRangeValidator({
                             required: true,

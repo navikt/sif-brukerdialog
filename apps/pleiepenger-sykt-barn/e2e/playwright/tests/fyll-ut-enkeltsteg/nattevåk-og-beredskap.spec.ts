@@ -14,9 +14,9 @@ const formValues: SøknadFormValues = {
     },
 } as any;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await routeUtils.setupMockRoutes(page, {
+    await routeUtils.setupMockRoutes(page, context, {
         mellomlagring: { ...mellomlagringMock, formValues },
         lastStep: StepID.OMSORGSTILBUD,
     });

@@ -1,25 +1,28 @@
-import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
-import { DateRange } from '@navikt/sif-common-utils';
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
+import { DateRange } from '@navikt/sif-common-utils';
+import { z } from 'zod';
 import { Rapporteringsperiode } from '../types';
+import { inntektSchema } from './inntektSchema';
 
-const rapporteringsperiodeDTOSchema = z.object({
+const rapporteringsperiodeProcessedDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     harRapportert: z.boolean(),
-    inntekt: z.number().optional().nullable(),
+    kanRapportere: z.boolean().optional(),
+    fristForRapportering: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).optional(),
+    inntekt: z.preprocess((val) => (val === null ? undefined : val), inntektSchema.optional()),
 });
 
-const deltakelseDTOSchema = z.object({
+const deltakelseProcessedDTOSchema = z.object({
     id: z.string(),
     programperiodeFraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     programperiodeTilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
     harSøkt: z.boolean(),
-    rapporteringsPerioder: z.array(rapporteringsperiodeDTOSchema).optional().nullable(),
+    rapporteringsPerioder: z.array(rapporteringsperiodeProcessedDTOSchema).optional().nullable(),
 });
 
-export const rapporteringsperiodeSchema = rapporteringsperiodeDTOSchema.transform((data) => {
+export const rapporteringsperiodeSchema = rapporteringsperiodeProcessedDTOSchema.transform((data) => {
     const { fraOgMed, tilOgMed, ...rest } = data;
     return {
         ...rest,
@@ -30,7 +33,7 @@ export const rapporteringsperiodeSchema = rapporteringsperiodeDTOSchema.transfor
     };
 });
 
-export const deltakelseSchema = deltakelseDTOSchema.transform((data) => {
+export const deltakelseSchema = deltakelseProcessedDTOSchema.transform((data) => {
     const { programperiodeFraOgMed, programperiodeTilOgMed, ...rest } = data;
     const deltakelse = {
         ...rest,

@@ -110,17 +110,17 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                         }}
                         radios={[
                             {
-                                label: 'Ja, i hele eller deler av perioden',
+                                label: text('omsorgstilbud__erIOmsorgstilbud_fremtid.svar.ja'),
                                 value: YesOrNo.YES,
                                 'data-testid': 'erIOmsorgstilbud-fremtid_yes',
                             },
                             {
-                                label: 'Nei',
+                                label: text('omsorgstilbud__erIOmsorgstilbud_fremtid.svar.nei'),
                                 value: YesOrNo.NO,
                                 'data-testid': 'erIOmsorgstilbud-fremtid_no',
                             },
                             {
-                                label: 'Usikker',
+                                label: text('omsorgstilbud__erIOmsorgstilbud_fremtid.svar.vetIkke'),
                                 value: YesOrNoOrDoNotKnow.DO_NOT_KNOW,
                             },
                         ]}

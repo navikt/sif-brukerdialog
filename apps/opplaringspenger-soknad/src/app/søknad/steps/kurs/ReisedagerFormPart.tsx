@@ -1,14 +1,18 @@
 import { KursFormFields } from './KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { FormikTextarea } from '@navikt/sif-common-formik-ds';
+import { FormikTextarea, isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import { useAppIntl } from '../../../i18n';
-import { getReisedagerValidator } from './kursStepUtils';
+import { getDatoerUtenforSøknadsperioder, getReisedagerValidator } from './kursStepUtils';
+import { WarningFilled } from '@navikt/ds-icons';
+import { BodyShort, HStack, Tooltip } from '@navikt/ds-react';
+import { useFormikContext } from 'formik';
 
 interface Props {
+    reisedager: Enkeltdato[];
     søknadsperiode: DateRange;
     disabledDateRanges: DateRange[];
     kursperioder: DateRange[];
@@ -16,8 +20,14 @@ interface Props {
 
 const maksTegnBeskrivelse = 250;
 
-const ReisedagerFormPart = ({ søknadsperiode, disabledDateRanges, kursperioder }: Props) => {
+const ReisedagerFormPart = ({ reisedager, søknadsperiode, disabledDateRanges, kursperioder }: Props) => {
     const { text } = useAppIntl();
+    const formik = useFormikContext();
+    const visFeil = isValidationErrorsVisible(formik);
+    const reisedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(
+        reisedager.map((d) => d.dato),
+        kursperioder,
+    );
     return (
         <FormLayout.Panel>
             <FormLayout.Questions>
@@ -31,7 +41,22 @@ const ReisedagerFormPart = ({ søknadsperiode, disabledDateRanges, kursperioder 
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}
-                    labelRenderer={(dato: Enkeltdato) => capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
+                    labelRenderer={(dato: Enkeltdato) => {
+                        const erUtenforSøknadsperiode = reisedagerUtenforSøknadsperioder.includes(dato.dato);
+                        if (erUtenforSøknadsperiode && visFeil) {
+                            return (
+                                <HStack gap="2">
+                                    {capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
+                                    <BodyShort className="text-red-500" as="span">
+                                        <Tooltip content="Reisedag er utenfor søknadsperioden">
+                                            <WarningFilled />
+                                        </Tooltip>
+                                    </BodyShort>
+                                </HStack>
+                            );
+                        }
+                        return capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato));
+                    }}
                     disabledDateRanges={disabledDateRanges}
                     validate={getReisedagerValidator(kursperioder)}
                 />

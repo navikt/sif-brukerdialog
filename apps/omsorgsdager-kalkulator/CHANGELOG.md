@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.1
+
+### Patch Changes
+
+- Oppdatert sif-common-formik-ds
+
 ## 3.12.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.1
+
+### Patch Changes
+
+- 8cb29f6: Endre FormikTextField til alltid å sette verdi slik at den blir controlled. Defaulter til tom string hvis value er undefined.
+
 ## 2.4.0
 
 ### Minor Changes

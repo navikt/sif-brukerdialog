@@ -14,7 +14,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     labels: ModalFormAndListLabels;
     minDate: Date;
     maxDate: Date;
-    labelRenderer?: (dato: Enkeltdato) => string;
+    labelRenderer?: (dato: Enkeltdato) => React.ReactNode;
     disabledDateRanges?: DateRange[];
 }
 

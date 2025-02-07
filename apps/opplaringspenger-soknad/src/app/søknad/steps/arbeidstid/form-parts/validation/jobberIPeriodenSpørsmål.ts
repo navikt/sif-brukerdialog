@@ -3,7 +3,6 @@ import { ArbeidIPeriodeIntlValues } from '../../../../../types/ArbeidIPeriodeInt
 
 export const getJobberIPeriodenValidator = (intlValues: ArbeidIPeriodeIntlValues) => (value: any) => {
     const error = getRequiredFieldValidator()(value);
-    console.log(intlValues);
     return error
         ? {
               key: 'validation.arbeidIPeriode.jobber',

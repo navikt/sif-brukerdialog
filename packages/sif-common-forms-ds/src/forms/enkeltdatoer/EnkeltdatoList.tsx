@@ -6,7 +6,7 @@ import { Enkeltdato } from './types';
 
 interface Props {
     enkeltdatoer: Enkeltdato[];
-    labelRenderer?: (dato: Enkeltdato) => string;
+    labelRenderer?: (dato: Enkeltdato) => React.ReactNode;
     onEdit?: (dato: Enkeltdato) => void;
     onDelete?: (Enkeltdato: Enkeltdato) => void;
 }
