@@ -29,9 +29,9 @@
         "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
-        "@navikt/ds-css": "7.11.0",
-        "@navikt/ds-react": "7.11.0",
-        "@navikt/ds-tailwind": "7.11.0",
+        "@navikt/ds-css": "7.12.2",
+        "@navikt/ds-react": "7.12.2",
+        "@navikt/ds-tailwind": "7.12.2",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",

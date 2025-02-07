@@ -5,9 +5,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.11.0",
+        "@navikt/ds-css": "7.12.2",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.11.0",
+        "@navikt/ds-react": "7.12.2",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
