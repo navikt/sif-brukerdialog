@@ -6,6 +6,7 @@ import { utfyllingUtils } from '../utils/utfyllingUtils';
 test.describe('Start og innsending av ettersending', () => {
     test.beforeEach(async ({ page, context }) => {
         await setupNavnoConsentCookieForPlaywrightTests(context);
+
         await page.route('https://login.nav.no/**', async (route) => {
             await route.fulfill({ status: 200 });
         });

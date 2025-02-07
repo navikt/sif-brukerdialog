@@ -1,11 +1,11 @@
 import { VStack } from '@navikt/ds-react';
+import { Søker } from '@navikt/sif-common-api';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
-import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormStep from '../SoknadFormStep';
@@ -14,7 +14,7 @@ import SøknadTempStorage from '../soknadTempStorage';
 
 interface Props {
     søknadstype: Søknadstype;
-    søker: Person;
+    søker: Søker;
     soknadId: string;
 }
 

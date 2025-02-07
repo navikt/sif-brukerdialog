@@ -58,10 +58,12 @@ const existsSync = (path) => fs.existsSync(path);
 const RESPONSE_DELAY = 0;
 
 const søkerMock = {
-    fornavn: 'Test',
-    mellomnavn: undefined,
-    etternavn: 'Testesen',
-    fødselsnummer: '17458209871',
+    aktørId: '2534326051524',
+    fødselsdato: new Date('1981-02-06'),
+    fødselsnummer: '06828199151',
+    fornavn: 'SUNN',
+    mellomnavn: null,
+    etternavn: 'KORRIDOR',
 };
 
 const barnMock = {

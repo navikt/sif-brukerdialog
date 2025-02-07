@@ -1,19 +1,16 @@
 import { useState } from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isObjectLike } from 'lodash';
-import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
-import { Person } from '../types/Person';
 import { RequestStatus } from '../types/RequestStatus';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import appSentryLogger from '../utils/appSentryLogger';
 import { navigateToLoginPage } from '../utils/navigationUtils';
-import getBarnRemoteData from '../api/getBarn';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 
-export type SoknadEssentials = { søker: Person; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
+export type SoknadEssentials = { søker: Søker; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
@@ -60,8 +57,8 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
         try {
             if (søknadstype === Søknadstype.pleiepengerSyktBarn) {
                 const [søker, barn, mellomlagring] = await Promise.all([
-                    getSokerRemoteData(),
-                    getBarnRemoteData(),
+                    fetchSøker(),
+                    fetchBarn(),
                     getSoknadTempStorage(søknadstype),
                 ]);
                 setInitialData({
@@ -69,10 +66,7 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
                     data: { søker, barn, mellomlagring },
                 });
             } else {
-                const [søker, mellomlagring] = await Promise.all([
-                    getSokerRemoteData(),
-                    getSoknadTempStorage(søknadstype),
-                ]);
+                const [søker, mellomlagring] = await Promise.all([fetchSøker(), getSoknadTempStorage(søknadstype)]);
                 setInitialData({
                     status: RequestStatus.success,
                     data: { søker, mellomlagring },
