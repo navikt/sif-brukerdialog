@@ -33,7 +33,6 @@ import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './ReisedagerFormPart';
 import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
 import ReiseInfo from './ReiseInfo';
-import InstitusjonerComboBox from './InstitusjonerComboBox';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -55,7 +54,7 @@ export interface KursFormValues {
     [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Combobox } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -136,17 +135,21 @@ const KursStep = () => {
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
-                                        <InstitusjonerComboBox institusjoner={institusjoner} />
-                                        <TextField
-                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                        <Combobox
                                             name={KursFormFields.opplæringsinstitusjon}
-                                            description={text('steg.kurs.opplæringsinstitusjon.description')}
-                                            min={2}
-                                            max={50}
+                                            allowNewValues={true}
+                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                            options={institusjoner.map((institusjon) => institusjon.navn)}
+                                            shouldAutocomplete
+                                            maxLength={90}
+                                            minLength={2}
+                                            isMultiSelect={false}
+                                            maxSelected={1}
+                                            initialValue={values[KursFormFields.opplæringsinstitusjon]}
                                             validate={getStringValidator({
                                                 required: true,
                                                 minLength: 2,
-                                                maxLength: 50,
+                                                maxLength: 100,
                                             })}
                                         />
                                     </VStack>
