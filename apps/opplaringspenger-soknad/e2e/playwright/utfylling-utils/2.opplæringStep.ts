@@ -2,7 +2,10 @@ import { Page, expect } from '@playwright/test';
 
 export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
-    await page.getByLabel('Hvor foregår opplæringen?').fill('AHus avdeling 1');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).click();
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('Enter');
     await leggTilPeriode1(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
@@ -11,7 +14,10 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
 
 export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
-    await page.getByLabel('Hvor foregår opplæringen?').fill('AHus avdeling 1');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).click();
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('Enter');
     await page.getByRole('button', { name: 'Legg til ny periode' }).click();
     await leggTilPeriode1(page);
     await leggTilPeriode2(page);
