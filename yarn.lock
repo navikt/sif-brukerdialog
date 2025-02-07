@@ -4618,7 +4618,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.25.2"
+    chromatic: "npm:^11.25.2"
     compression: "npm:1.7.5"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
