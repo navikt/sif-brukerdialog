@@ -1,6 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { fetchSøkerId } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -10,7 +11,6 @@ import {
     useVerifyUserOnWindowFocus,
 } from '@navikt/sif-common-soknad-ds';
 import { appSentryLogger } from '@utils';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
@@ -44,7 +44,7 @@ const SøknadRouter = () => {
         søknadSteps.map((step) => getSøknadStepRoute(step)),
     );
 
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
     usePersistSøknadState();
 
     const startPåNytt = async () => {

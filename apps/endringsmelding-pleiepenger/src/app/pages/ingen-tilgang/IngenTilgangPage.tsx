@@ -1,11 +1,12 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { IngenTilgangMeta } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { IngenTilgangÅrsak, Søker } from '@types';
+import { IngenTilgangÅrsak } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { AppText, useAppIntl } from '../../i18n';
 import { SkrivTilOssLink } from '../../lenker';
