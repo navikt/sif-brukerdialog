@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.46.2
+
+### Patch Changes
+
+- e299549: Bytte til å bruke RegistrertBarn og Søker fra sif-common-api
+
 ## 3.46.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.33.2
+
+### Patch Changes
+
+- cfbaf6a: Bytte til å bruke Søker og RegistrertBarn fra sif-common-api
+
 ## 1.33.1
 
 ### Patch Changes
