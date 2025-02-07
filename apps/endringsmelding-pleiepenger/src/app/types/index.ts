@@ -13,7 +13,6 @@ export * from './LovbestemtFerieSøknadsdata';
 export * from './LovbestemtFerieType';
 export * from './RequestStatus';
 export * from './Sak';
-export * from './Søker';
 export * from './SøknadApiData';
 export * from './SøknadContextState';
 export * from './Søknadsdata';
