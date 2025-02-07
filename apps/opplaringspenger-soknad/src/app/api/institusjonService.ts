@@ -1,5 +1,4 @@
-import { k9SakApiClient, parseMaybeDateStringToDate } from '@navikt/sif-common-api';
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { z } from 'zod';
 import { institusjoner } from '../data/institusjoner';
 
@@ -22,15 +21,12 @@ export type Institusjon = z.infer<typeof institusjonSchema>;
 export type Institusjoner = z.infer<typeof institusjonerSchema>;
 
 export const fetchInstitusjoner = async (): Promise<Institusjon[]> => {
-    if (1 + 1 === 3) {
-        const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner`);
-        try {
-            return institusjonerSchema.parse(response.data);
-        } catch (e) {
-            getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
-            throw e;
-        }
-    } else {
-        return institusjonerSchema.parse(institusjoner);
-    }
+    // const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner`);
+    // try {
+    //     return institusjonerSchema.parse(response.data);
+    // } catch (e) {
+    //     getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
+    //     throw e;
+    // }
+    return institusjonerSchema.parse(institusjoner);
 };
