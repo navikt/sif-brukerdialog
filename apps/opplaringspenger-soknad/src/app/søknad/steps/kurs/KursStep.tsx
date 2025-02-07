@@ -67,6 +67,7 @@ const KursStep = () => {
         state: { søknadsdata, institusjoner },
     } = useSøknadContext();
 
+    const institusjonsnavn = institusjoner.map((institusjon) => institusjon.navn);
     const stepId = StepId.KURS;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
@@ -139,12 +140,11 @@ const KursStep = () => {
                                             name={KursFormFields.opplæringsinstitusjon}
                                             allowNewValues={true}
                                             label={text('steg.kurs.opplæringsinstitusjon.label')}
-                                            options={institusjoner.map((institusjon) => institusjon.navn)}
-                                            shouldAutocomplete
+                                            options={institusjonsnavn}
+                                            shouldAutocomplete={false}
                                             maxLength={90}
                                             minLength={2}
                                             isMultiSelect={false}
-                                            maxSelected={1}
                                             initialValue={values[KursFormFields.opplæringsinstitusjon]}
                                             validate={getStringValidator({
                                                 required: true,
