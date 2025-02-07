@@ -3,6 +3,8 @@ const søker = {
     mellomnavn: undefined,
     etternavn: 'Testesen',
     fødselsnummer: '23058916765',
+    aktørId: '123',
+    fødselsdato: '1989-05-23',
 };
 
 const barn = {

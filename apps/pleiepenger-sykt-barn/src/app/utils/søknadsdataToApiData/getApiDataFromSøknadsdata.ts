@@ -1,8 +1,9 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../types';
+import { ÅrsakManglerIdentitetsnummer } from '../../types';
 import {
     DataBruktTilUtledningAnnetData,
     SøknadApiData,
@@ -26,7 +27,7 @@ import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenla
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
-    barn: RegistrerteBarn[],
+    barn: RegistrertBarn[],
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetData,
