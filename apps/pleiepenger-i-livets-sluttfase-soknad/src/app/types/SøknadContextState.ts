@@ -1,8 +1,8 @@
+import { Søker } from '@navikt/sif-common-api';
 import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { KvitteringInfo } from './KvitteringInfo';
 import { StepId } from './StepId';
-import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
