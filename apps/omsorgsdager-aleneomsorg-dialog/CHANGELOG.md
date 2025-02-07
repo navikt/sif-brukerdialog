@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.26.2
+
+### Patch Changes
+
+- adbbe0a: Bytte til å bruke Søker og RegistrertBarn fra sif-common-api
+
 ## 2.26.1
 
 ### Patch Changes

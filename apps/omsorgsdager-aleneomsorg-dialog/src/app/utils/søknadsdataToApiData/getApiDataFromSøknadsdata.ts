@@ -1,4 +1,4 @@
-import { RegistrertBarn } from '../../types/RegistrertBarn';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';

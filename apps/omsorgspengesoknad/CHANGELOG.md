@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.38.2
+
+### Patch Changes
+
+- 0089b81: Bytte til å bruke Søker og RegistertBarn fra sif-common-api
+
 ## 1.38.1
 
 ### Patch Changes

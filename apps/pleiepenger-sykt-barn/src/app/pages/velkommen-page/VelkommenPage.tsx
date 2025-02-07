@@ -1,9 +1,9 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
+import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
-import { Søker } from '../../types';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import OmSøknaden from './components/OmSøknaden';
 

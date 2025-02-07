@@ -84,10 +84,13 @@ const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApi
                         <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <VedleggSummaryList vedlegg={fødselsattester} />
-                        </div>
-                        {fødselsattester.length === 0 && <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />}
+                        {fødselsattester.length === 0 ? (
+                            <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
+                        ) : (
+                            <div data-testid={'oppsummering-omBarn-fødselsattest'}>
+                                <VedleggSummaryList vedlegg={fødselsattester} />
+                            </div>
+                        )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
             )}

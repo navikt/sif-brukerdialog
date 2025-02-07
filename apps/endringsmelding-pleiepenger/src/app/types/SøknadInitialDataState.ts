@@ -1,7 +1,7 @@
+import { Søker } from '@navikt/sif-common-api';
 import { IngenTilgangÅrsak } from '@types';
 import { IngenTilgangMeta, SøknadInitialData } from '../hooks';
 import { RequestStatus } from './RequestStatus';
-import { Søker } from './Søker';
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;

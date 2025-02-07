@@ -1,11 +1,11 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { AppText } from '../../../i18n';
 import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
-import { AppText } from '../../../i18n';
 
 export const getOmOmsorgenForBarnStepInitialValues = (
     søknadsdata: Søknadsdata,

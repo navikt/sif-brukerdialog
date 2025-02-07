@@ -1,6 +1,7 @@
 import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
+import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -13,7 +14,6 @@ import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
 import { DokumentType } from '../../types/DokumentType';
-import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
@@ -26,7 +26,7 @@ import './oppsummeringStep.css';
 interface Props {
     soknadId: string;
     søknadstype: Søknadstype;
-    søker: Person;
+    søker: Søker;
 }
 
 const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {

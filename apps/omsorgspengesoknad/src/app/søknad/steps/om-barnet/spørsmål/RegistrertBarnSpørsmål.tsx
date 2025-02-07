@@ -1,11 +1,11 @@
 import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { AppText, useAppIntl } from '../../../../i18n';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
 import RegistrerteBarnHelpText from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnHelpText';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];

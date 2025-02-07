@@ -1,4 +1,4 @@
-import { RegistrerteBarn } from '../../types';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
@@ -10,7 +10,7 @@ export type BarnApiData = Pick<
 >;
 
 export const getBarnApiDataFromSøknadsdata = (
-    registrerteBarn: RegistrerteBarn[],
+    registrerteBarn: RegistrertBarn[],
     omBarnetSøknadsdata?: OmBarnetSøknadsdata,
 ): BarnApiData => {
     if (omBarnetSøknadsdata === undefined) {
@@ -28,14 +28,13 @@ export const getBarnApiDataFromSøknadsdata = (
                 throw Error('barnChosenFromList undefined');
             }
             // eslint-disable-next-line no-case-declarations
-            const { fornavn, etternavn, mellomnavn, aktørId, harSammeAdresse: sammeAdresse } = barnChosenFromList;
+            const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList;
 
             return {
                 barn: {
                     navn: formatName(fornavn, etternavn, mellomnavn),
                     aktørId,
                     fødselsdato: dateToISODate(barnChosenFromList.fødselsdato),
-                    sammeAdresse: sammeAdresse,
                 },
             };
         case 'annetBarn':

@@ -1,4 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
@@ -7,18 +8,18 @@ import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
-import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
 interface Props {
-    barn: RegistrerteBarn[];
+    barn: RegistrertBarn[];
     formValues: SøknadFormValues;
     apiValues: SøknadApiData;
     onEdit?: () => void;
 }
 
-const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
+const apiBarnSummary = (apiBarn: RegistrertBarn) => (
     <>
         <FormSummary.Answer>
             <FormSummary.Label>

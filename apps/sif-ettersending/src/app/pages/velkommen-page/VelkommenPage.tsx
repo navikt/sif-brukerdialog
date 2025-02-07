@@ -1,13 +1,13 @@
+import { Søker } from '@navikt/sif-common-api';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
 import { useSoknadContext } from '../../soknad/SoknadContext';
-import { Person } from '../../types/Person';
 import { Søknadstype } from '../../types/Søknadstype';
 import OmSøknaden from './OmSøknaden';
 
 interface Props {
     søknadstype: Søknadstype;
-    søker: Person;
+    søker: Søker;
 }
 
 const VelkommenPage = ({ søknadstype, søker }: Props) => {

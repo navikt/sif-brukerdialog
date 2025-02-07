@@ -9,9 +9,9 @@ import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getOmOmsorgenForBarnSøknadsdataFromFormValues } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnStepUtils';
 import { getTidspunktForAleneomsorgSøknadsdataFromFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 import { OmOmsorgenForBarnFormValues } from '../søknad/steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
 import { TidspunktForAleneomsorgFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];

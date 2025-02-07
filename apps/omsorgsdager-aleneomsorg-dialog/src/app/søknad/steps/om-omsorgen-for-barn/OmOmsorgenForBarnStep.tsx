@@ -14,7 +14,6 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { nYearsAgo } from '../../../utils/aldersUtils';
@@ -32,6 +31,7 @@ import {
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
 import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
 export enum OmOmsorgenForBarnFormFields {
     annetBarn = 'annetBarn',

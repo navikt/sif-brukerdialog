@@ -7,7 +7,6 @@ import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
-import { Søker } from '../types';
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
 
 export const getPersistUrl = (stepID?: StepID) =>
@@ -36,12 +35,6 @@ export const rehydrate = () =>
     });
 export const purge = () => axios.delete(ResourceType.MELLOMLAGRING, { ...axiosConfigPsb, data: {} });
 
-export const getBarn = () => axios.get(ResourceType.BARN, axiosJsonConfig);
-export const getSøker = () => axios.get<Søker>(ResourceType.SØKER, axiosJsonConfig);
-export const getSøkerId = async () => {
-    const søker = await getSøker();
-    return søker.data.fødselsnummer;
-};
 export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
     return axios.get(
         `${ResourceType.ARBEIDSGIVER}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`,

@@ -8,7 +8,6 @@ import {
     isUgyldigK9SakFormat,
     K9Sak,
     RequestStatus,
-    Søker,
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
 } from '@types';
@@ -20,11 +19,11 @@ import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint, { K9SakResult } from './endpoints/sakerEndpoint';
-import søkerEndpoint from './endpoints/søkerEndpoint';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
 
 export const fetchInitialData = async (
     tillattEndringsperiode: DateRange,
@@ -35,7 +34,7 @@ export const fetchInitialData = async (
     arbeidsgivere: Arbeidsgiver[];
     lagretSøknadState?: SøknadStatePersistence;
 }> => {
-    const [søker, k9sakerResult] = await Promise.all([søkerEndpoint.fetch(), sakerEndpoint.fetch()]);
+    const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
 
     if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
         appSentryLogger.logInfo('fetchInitialData.ingenSaker');

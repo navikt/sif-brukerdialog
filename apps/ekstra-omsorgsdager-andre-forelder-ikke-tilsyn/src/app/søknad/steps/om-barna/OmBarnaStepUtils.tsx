@@ -1,7 +1,7 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { AppIntlShape } from '../../../i18n';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnaFormValues } from './OmBarnaStep';

@@ -1,14 +1,14 @@
 import { BodyShort } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 import { dateToISODate, prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 interface Props {
     registrertBarn: RegistrertBarn[];

@@ -1,9 +1,9 @@
+import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
-import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
 import { ApiEndpoint, axiosConfig } from '../api';
