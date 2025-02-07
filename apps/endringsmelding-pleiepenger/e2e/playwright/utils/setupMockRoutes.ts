@@ -4,7 +4,8 @@ import { getScenarioMockData } from '../../../src/mocks/data/scenario';
 
 export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType) => {
     const mockData = getScenarioMockData(scenario);
-    await page.route('**/oppslag/soker?ytelse=endringsmelding-pleiepenger', async (route) => {
+    await page.route('**/oppslag/soker', async (route) => {
+        console.log('mocking this------------');
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.søker) });
     });
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
