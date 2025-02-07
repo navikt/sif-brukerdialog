@@ -1,6 +1,6 @@
-import { RegistrerteBarn } from '../../app/types';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
-export const barnMock: RegistrerteBarn[] = [
+export const barnMock: RegistrertBarn[] = [
     {
         fornavn: 'ALFABETISK',
         etternavn: 'FAGGOTT',

@@ -1,8 +1,8 @@
-import { FødselsnummerSvar } from '@navikt/sif-common-ui';
-import { Søker } from '../../../types';
 import { FormSummary } from '@navikt/ds-react';
-import { AppText } from '../../../i18n';
+import { Søker } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { FødselsnummerSvar } from '@navikt/sif-common-ui';
+import { AppText } from '../../../i18n';
 
 interface Props {
     søker: Søker;
