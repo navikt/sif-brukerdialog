@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
-import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
