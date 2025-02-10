@@ -26,3 +26,7 @@ export const getTidligereRapporteringsperioder = (
 export const sorterRapporteringsperioderDesc = (r1: Rapporteringsperiode, r2: Rapporteringsperiode): number => {
     return dayjs(r2.periode.from).diff(dayjs(r1.periode.from));
 };
+
+export const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): boolean => {
+    return dayjs(dato).isSame(programStartdato, 'month');
+};

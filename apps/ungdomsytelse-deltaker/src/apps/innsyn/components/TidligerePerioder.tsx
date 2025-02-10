@@ -6,12 +6,14 @@ import { useAppIntl } from '../../../i18n';
 import { FormattedNumber } from 'react-intl';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import EndreInntektDialog from './endre-inntekt-dialog/EndreInntektDialog';
+import { erDatoIFørsteMånedIProgrammet } from '../utils/deltakelseUtils';
 
 interface Props {
     perioder: Rapporteringsperiode[];
+    programperiodeStartDato: Date;
 }
 
-const TidligerePerioder = ({ perioder }: Props) => {
+const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
     const { locale } = useAppIntl();
     const [antall, setAntall] = useState(2);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
@@ -51,6 +53,7 @@ const TidligerePerioder = ({ perioder }: Props) => {
                 const måned = dateFormatter.MonthFullYear(periode.from, locale);
                 const datoperiode = dateRangeFormatter.getDateRangeText(periode, locale);
                 const periodeNavn = `${måned} - ${datoperiode}`;
+                const erFørsteMåned = erDatoIFørsteMånedIProgrammet(periode.from, programperiodeStartDato);
                 return (
                     <ExpansionCard
                         size="small"
@@ -122,7 +125,11 @@ const TidligerePerioder = ({ perioder }: Props) => {
                                         Evt. informasjon som er relevant for deltaker på denne perioden. Hvis inntekten
                                         kan endres, vises knapp for det.
                                     </BodyShort>
-                                    <Box>Inntekten kan ikke endres på dette tidspunktet.</Box>
+                                    <Box>
+                                        {erFørsteMåned
+                                            ? 'Du skal ikke rapportere inntekt for den første måneden i programmet.'
+                                            : 'Inntekten kan ikke endres på dette tidspunktet.'}
+                                    </Box>
                                 </VStack>
                             )}
                         </ExpansionCard.Content>

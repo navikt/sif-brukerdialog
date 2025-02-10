@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
 import { Deltakelse, Deltakelser } from '../types';
 import { DateRange } from '@navikt/sif-common-utils';
+import { erDatoIFørsteMånedIProgrammet } from '../../apps/innsyn/utils/deltakelseUtils';
 
 /**
  * Sjekker om bruker kan rapportere inntekt for en gitt periode.
@@ -11,10 +11,7 @@ import { DateRange } from '@navikt/sif-common-utils';
  * @returns boolean
  */
 export const kanBrukerRapportereInntektForPeriode = (periode: DateRange, programStartdato: Date): boolean => {
-    if (dayjs(periode.from).isSame(programStartdato, 'month')) {
-        return false;
-    }
-    return true;
+    return erDatoIFørsteMånedIProgrammet(periode.from, programStartdato) === false;
 };
 
 /**
