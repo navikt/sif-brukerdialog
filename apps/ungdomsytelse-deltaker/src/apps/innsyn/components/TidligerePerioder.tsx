@@ -70,67 +70,85 @@ const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
                                                 {datoperiode}
                                             </BodyShort>
                                         </Box>
-                                        |
-                                        <Box>
-                                            Registrert inntekt:{' '}
-                                            <BodyShort size="small" as="span" weight="semibold">
-                                                <FormattedNumber value={inntekt?.summertInntekt || 0} />
-                                            </BodyShort>
-                                            ,-
-                                        </Box>
+                                        {erFørsteMåned ? null : (
+                                            <>
+                                                |
+                                                <Box>
+                                                    Registrert inntekt:{' '}
+                                                    <BodyShort size="small" as="span" weight="semibold">
+                                                        <FormattedNumber value={inntekt?.summertInntekt || 0} />
+                                                    </BodyShort>
+                                                    ,-
+                                                </Box>
+                                            </>
+                                        )}
                                     </HStack>
                                 </BodyShort>
                             </VStack>
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
-                            {kanRapportere ? (
-                                <VStack gap="6">
-                                    <HStack gap="4">
-                                        <Box>
-                                            Arbeidstaker/frilanser:{' '}
-                                            <FormattedNumber value={inntekt?.arbeidstakerOgFrilansInntekt || 0} />
-                                            ,-
-                                        </Box>
-                                        <Box>
-                                            Selvstendig næringsdrivende:{' '}
-                                            <FormattedNumber value={inntekt?.næringsinntekt || 0} />
-                                            ,-
-                                        </Box>
-                                        <Box>
-                                            Ytelse fra Nav: <FormattedNumber value={inntekt?.inntektFraYtelse || 0} />
-                                            ,-
-                                        </Box>
-                                    </HStack>
-                                    <VStack gap="2">
-                                        <Heading level="3" size="xsmall">
-                                            Endre inntekt
-                                        </Heading>
-                                        <BodyShort>Hvis inntekten har endret seg, kan du korrigere den her.</BodyShort>
-                                        <Box style={{ marginTop: '.25rem' }}>
-                                            <Button
-                                                variant="secondary"
-                                                type="button"
-                                                size="small"
-                                                onClick={() => {
-                                                    visEndreDialog(rapporteringsperiode);
-                                                }}>
-                                                Endre inntekt
-                                            </Button>
-                                        </Box>
-                                    </VStack>
-                                </VStack>
+                            {erFørsteMåned ? (
+                                <>
+                                    Dette er den første måneden din i programmet. Du trenger ikke rapportere inntekt for
+                                    denne måneden.
+                                </>
                             ) : (
-                                <VStack gap="2">
-                                    <BodyShort>
-                                        Evt. informasjon som er relevant for deltaker på denne perioden. Hvis inntekten
-                                        kan endres, vises knapp for det.
-                                    </BodyShort>
-                                    <Box>
-                                        {erFørsteMåned
-                                            ? 'Du skal ikke rapportere inntekt for den første måneden i programmet.'
-                                            : 'Inntekten kan ikke endres på dette tidspunktet.'}
-                                    </Box>
-                                </VStack>
+                                <>
+                                    {kanRapportere ? (
+                                        <VStack gap="6">
+                                            <HStack gap="4">
+                                                <Box>
+                                                    Arbeidstaker/frilanser:{' '}
+                                                    <FormattedNumber
+                                                        value={inntekt?.arbeidstakerOgFrilansInntekt || 0}
+                                                    />
+                                                    ,-
+                                                </Box>
+                                                <Box>
+                                                    Selvstendig næringsdrivende:{' '}
+                                                    <FormattedNumber value={inntekt?.næringsinntekt || 0} />
+                                                    ,-
+                                                </Box>
+                                                <Box>
+                                                    Ytelse fra Nav:{' '}
+                                                    <FormattedNumber value={inntekt?.inntektFraYtelse || 0} />
+                                                    ,-
+                                                </Box>
+                                            </HStack>
+                                            <VStack gap="2">
+                                                <Heading level="3" size="xsmall">
+                                                    Endre inntekt
+                                                </Heading>
+                                                <BodyShort>
+                                                    Hvis inntekten har endret seg, kan du korrigere den her.
+                                                </BodyShort>
+                                                <Box style={{ marginTop: '.25rem' }}>
+                                                    <Button
+                                                        variant="secondary"
+                                                        type="button"
+                                                        size="small"
+                                                        onClick={() => {
+                                                            visEndreDialog(rapporteringsperiode);
+                                                        }}>
+                                                        Endre inntekt
+                                                    </Button>
+                                                </Box>
+                                            </VStack>
+                                        </VStack>
+                                    ) : (
+                                        <VStack gap="2">
+                                            <BodyShort>
+                                                Evt. informasjon som er relevant for deltaker på denne perioden. Hvis
+                                                inntekten kan endres, vises knapp for det.
+                                            </BodyShort>
+                                            <Box>
+                                                {erFørsteMåned
+                                                    ? 'Du skal ikke rapportere inntekt for den første måneden i programmet.'
+                                                    : 'Inntekten kan ikke endres på dette tidspunktet.'}
+                                            </Box>
+                                        </VStack>
+                                    )}
+                                </>
                             )}
                         </ExpansionCard.Content>
                     </ExpansionCard>
