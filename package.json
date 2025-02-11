@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@changesets/cli": "2.27.12",
-        "turbo": "2.4.0"
+        "turbo": "2.4.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
