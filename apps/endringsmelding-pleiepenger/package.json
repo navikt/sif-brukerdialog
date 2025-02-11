@@ -73,7 +73,7 @@
         "@vitejs/plugin-react": "4.3.4",
         "axe-core": "4.10.2",
         "babel-polyfill": "6.26.0",
-        "compression": "1.7.5",
+        "compression": "1.8.0",
         "cross-env": "7.0.3",
         "dotenv": "16.4.7",
         "express": "4.21.2",

@@ -68,7 +68,7 @@
         "@vitejs/plugin-react": "4.3.4",
         "axe-core": "4.10.2",
         "busboy": "1.6.0",
-        "compression": "1.7.5",
+        "compression": "1.8.0",
         "cross-env": "7.0.3",
         "dayjs": "1.11.13",
         "dotenv": "16.4.7",

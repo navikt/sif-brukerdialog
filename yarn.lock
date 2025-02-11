@@ -4267,7 +4267,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     dayjs: "npm:1.11.13"
@@ -4346,7 +4346,7 @@ __metadata:
     axe-core: "npm:4.10.2"
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     date-fns: "npm:3.6.0"
@@ -4470,7 +4470,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4588,7 +4588,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     dayjs: "npm:1.11.13"
@@ -4668,7 +4668,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     dotenv: "npm:16.4.7"
@@ -4746,7 +4746,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4822,7 +4822,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:11.25.2"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4907,7 +4907,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     dayjs: "npm:1.11.13"
@@ -4990,7 +4990,7 @@ __metadata:
     axios: "npm:1.7.9"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     date-fns: "npm:3.6.0"
@@ -5540,7 +5540,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.4"
     autoprefixer: "npm:10.4.20"
     clsx: "npm:2.1.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     csp-header: "npm:6.0.0"
     date-fns: "npm:3.6.0"
     eslint: "npm:9.20.0"
@@ -5608,7 +5608,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
     date-fns: "npm:3.6.0"
@@ -5705,7 +5705,7 @@ __metadata:
     autoprefixer: "npm:10.4.20"
     axios: "npm:1.7.9"
     clsx: "npm:2.1.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     csp-header: "npm:6.0.0"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.20.0"
@@ -5769,7 +5769,7 @@ __metadata:
     autoprefixer: "npm:10.4.20"
     axios: "npm:1.7.9"
     clsx: "npm:2.1.1"
-    compression: "npm:1.7.5"
+    compression: "npm:1.8.0"
     csp-header: "npm:6.0.0"
     date-fns: "npm:3.6.0"
     eslint: "npm:9.20.0"
@@ -13278,9 +13278,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compression@npm:1.7.5":
-  version: 1.7.5
-  resolution: "compression@npm:1.7.5"
+"compression@npm:1.8.0":
+  version: 1.8.0
+  resolution: "compression@npm:1.8.0"
   dependencies:
     bytes: "npm:3.1.2"
     compressible: "npm:~2.0.18"
@@ -13289,7 +13289,7 @@ __metadata:
     on-headers: "npm:~1.0.2"
     safe-buffer: "npm:5.2.1"
     vary: "npm:~1.1.2"
-  checksum: 10/c69cf6da151db6f9db2e242b6a0039ad41975ee886c385cff2920c5f8f7050678e0ee9a021437af033536c451791de529de376851b8d31fee42ca2d6adca03f0
+  checksum: 10/ca213b9bd03e56c7c3596399d846237b5f0b31ca4cdeaa76a9547cd3c1465fbcfcb0fe93a5d7ff64eff28383fc65b53f1ef8bb2720d11bb48ad8c0836c502506
   languageName: node
   linkType: hard
 
