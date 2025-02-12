@@ -1,6 +1,5 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -15,6 +14,7 @@ import ErAnsattIArbeidsforholdSpørsmål from './ansatt-spørsmål/ErAnsattIArbe
 import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørsmål/SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål';
 import ArbeidssituasjonPanel from './arbeidssituasjon-panel/ArbeidssituasjonPanel';
 import { AppText } from '../../../i18n';
+import { getFeatureToggles } from '../../../utils/featureToggleUtils';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
@@ -23,6 +23,8 @@ interface Props {
 }
 
 const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldName, søknadsperiode }) => {
+    const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
+
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField =>
         `${parentFieldName}.${field}` as any;
 
@@ -52,26 +54,28 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
 
                 {arbeidsforhold.erAnsatt !== undefined && (
                     <FormBlock margin="l">
-                        {arbeidsforhold.erAnsatt === YesOrNo.NO && (
-                            <Block padBottom={arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO ? 'xl' : 'none'}>
-                                <Alert variant="info">
-                                    <AppText id="arbeidsforhold.ikkeAnsatt.info" />
-                                </Alert>
-                                <FormBlock>
-                                    <SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål
-                                        søknadsperiode={søknadsperiode}
-                                        arbeidsforhold={arbeidsforhold}
-                                        fieldName={getFieldName(ArbeidsforholdFormField.sluttetFørSøknadsperiode)}
-                                    />
-                                </FormBlock>
-                            </Block>
-                        )}
-                        {erFortsattAnsattEllerSluttetISøknadsperioden && (
-                            <AnsattNormalarbeidstidSpørsmål
-                                arbeidsforhold={arbeidsforhold}
-                                fieldName={getFieldName(ArbeidsforholdFormField.normalarbeidstid_TimerPerUke)}
-                            />
-                        )}
+                        <VStack gap="8">
+                            {arbeidsforhold.erAnsatt === YesOrNo.NO && (
+                                <>
+                                    <Alert variant="info">
+                                        <AppText id="arbeidsforhold.ikkeAnsatt.info" />
+                                    </Alert>
+                                    {spørOmSluttetISøknadsperiode ? (
+                                        <SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål
+                                            søknadsperiode={søknadsperiode}
+                                            arbeidsforhold={arbeidsforhold}
+                                            fieldName={getFieldName(ArbeidsforholdFormField.sluttetFørSøknadsperiode)}
+                                        />
+                                    ) : null}
+                                </>
+                            )}
+                            {(!spørOmSluttetISøknadsperiode || erFortsattAnsattEllerSluttetISøknadsperioden) && (
+                                <AnsattNormalarbeidstidSpørsmål
+                                    arbeidsforhold={arbeidsforhold}
+                                    fieldName={getFieldName(ArbeidsforholdFormField.normalarbeidstid_TimerPerUke)}
+                                />
+                            )}
+                        </VStack>
                     </FormBlock>
                 )}
             </ArbeidssituasjonPanel>

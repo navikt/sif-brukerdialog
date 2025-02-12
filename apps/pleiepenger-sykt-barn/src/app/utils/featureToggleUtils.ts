@@ -1,6 +1,5 @@
-export enum Feature {}
+import { appEnv } from '../env/appEnv';
 
-export const isFeatureEnabled = (feature: Feature) => {
-    const appSettings = (window as any).appSettings;
-    return appSettings[feature] === 'on' || (window as any).appSettings[feature] === 'true';
-};
+export const getFeatureToggles = () => ({
+    spørOmSluttetISøknadsperiode: appEnv.SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE === 'on',
+});

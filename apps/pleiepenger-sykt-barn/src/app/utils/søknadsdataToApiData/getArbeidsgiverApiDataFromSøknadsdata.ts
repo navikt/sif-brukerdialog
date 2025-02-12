@@ -7,6 +7,7 @@ import {
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
+import { getFeatureToggles } from '../featureToggleUtils';
 
 export const dateToISODateOrUndefined = (date?: Date): ISODate | undefined => (date ? dateToISODate(date) : undefined);
 
@@ -15,31 +16,34 @@ export const getArbeidsgiverApiDataFromSøknadsdata = (
     arbeidIPeriode?: ArbeidIPeriodeSøknadsdata,
 ): ArbeidsgiverAnsattApiData => {
     const { arbeidsgiver } = arbeidssituasjon;
+    const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
 
-    if (arbeidssituasjon.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
+    if (arbeidssituasjon.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
         return {
-            erAnsatt: arbeidssituasjon.type === 'sluttetISøknadsperiode' ? false : true,
+            erAnsatt: false,
             navn: arbeidsgiver.navn,
             offentligIdent: arbeidsgiver.offentligIdent,
             organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
             ansattFom: dateToISODateOrUndefined(arbeidsgiver.ansattFom),
             ansattTom: dateToISODateOrUndefined(arbeidsgiver.ansattTom),
-            sluttetFørSøknadsperiode: false,
-            arbeidsforhold: {
-                normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(arbeidssituasjon.normalarbeidstid),
-                arbeidIPeriode: arbeidIPeriode
-                    ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode)
-                    : arbeidIPeriode,
-            },
+            sluttetFørSøknadsperiode: true,
         };
     }
     return {
-        erAnsatt: false,
+        erAnsatt:
+            arbeidssituasjon.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato ||
+            arbeidssituasjon.type === ArbeidssituasjonAnsattType.sluttetISøknadsperiode
+                ? false
+                : true,
         navn: arbeidsgiver.navn,
         offentligIdent: arbeidsgiver.offentligIdent,
         organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
         ansattFom: dateToISODateOrUndefined(arbeidsgiver.ansattFom),
         ansattTom: dateToISODateOrUndefined(arbeidsgiver.ansattTom),
-        sluttetFørSøknadsperiode: true,
+        sluttetFørSøknadsperiode: spørOmSluttetISøknadsperiode ? undefined : arbeidssituasjon.type ? false : true,
+        arbeidsforhold: {
+            normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(arbeidssituasjon.normalarbeidstid),
+            arbeidIPeriode: arbeidIPeriode ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode) : arbeidIPeriode,
+        },
     };
 };

@@ -4,6 +4,7 @@ import { ArbeidsforholdFormValues } from '../../types/søknad-form-values/Arbeid
 import { ArbeidssituasjonAnsattType } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { ArbeidssituasjonArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { getPeriodeSomAnsattInnenforPeriode } from '../arbeidUtils';
+import { getFeatureToggles } from '../featureToggleUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonAnsattSøknadsdata = (
@@ -11,6 +12,7 @@ export const extractArbeidssituasjonAnsattSøknadsdata = (
     alleAnsattArbeidsforhold: ArbeidsforholdFormValues[],
 ): ArbeidssituasjonArbeidsgivereSøknadsdata => {
     const arbeidssituasjoner: ArbeidssituasjonArbeidsgivereSøknadsdata = new Map();
+
     alleAnsattArbeidsforhold.forEach((values, index) => {
         if (values.erAnsatt === YesOrNo.NO && values.sluttetFørSøknadsperiode === YesOrNo.YES) {
             arbeidssituasjoner.set(values.arbeidsgiver.id, {
@@ -23,11 +25,23 @@ export const extractArbeidssituasjonAnsattSøknadsdata = (
             if (!normalarbeidstid) {
                 return;
             }
-            arbeidssituasjoner.set(values.arbeidsgiver.id, {
-                type:
+            const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
+
+            let type: ArbeidssituasjonAnsattType;
+            if (spørOmSluttetISøknadsperiode) {
+                type =
                     values.erAnsatt === YesOrNo.NO
                         ? ArbeidssituasjonAnsattType.sluttetISøknadsperiode
-                        : ArbeidssituasjonAnsattType.pågående,
+                        : ArbeidssituasjonAnsattType.pågående;
+            } else {
+                type =
+                    values.erAnsatt === YesOrNo.NO
+                        ? ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
+                        : ArbeidssituasjonAnsattType.pågående;
+            }
+
+            arbeidssituasjoner.set(values.arbeidsgiver.id, {
+                type,
                 index,
                 normalarbeidstid,
                 arbeidsgiver: values.arbeidsgiver,

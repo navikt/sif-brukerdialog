@@ -4,6 +4,7 @@ import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { ArbeidsgiverAnsattApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
+import { getFeatureToggles } from '../../../utils/featureToggleUtils';
 
 interface Props {
     arbeidsgivere?: ArbeidsgiverAnsattApiData[];
@@ -29,6 +30,8 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
             </FormSummary.Answer>
         );
     }
+
+    const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
 
     return (
         <>
@@ -61,7 +64,7 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                         />
                                     </List.Item>
                                 )}
-                                {erAnsatt === false && (
+                                {spørOmSluttetISøknadsperiode && erAnsatt === false && (
                                     <List.Item>
                                         <AppText
                                             id={
