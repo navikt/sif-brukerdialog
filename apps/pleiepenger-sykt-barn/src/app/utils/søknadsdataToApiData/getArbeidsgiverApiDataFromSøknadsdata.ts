@@ -40,7 +40,11 @@ export const getArbeidsgiverApiDataFromSøknadsdata = (
         organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
         ansattFom: dateToISODateOrUndefined(arbeidsgiver.ansattFom),
         ansattTom: dateToISODateOrUndefined(arbeidsgiver.ansattTom),
-        sluttetFørSøknadsperiode: spørOmSluttetISøknadsperiode ? undefined : arbeidssituasjon.type ? false : true,
+        sluttetFørSøknadsperiode:
+            spørOmSluttetISøknadsperiode === false &&
+            arbeidssituasjon.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
+                ? undefined
+                : false,
         arbeidsforhold: {
             normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(arbeidssituasjon.normalarbeidstid),
             arbeidIPeriode: arbeidIPeriode ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode) : arbeidIPeriode,
