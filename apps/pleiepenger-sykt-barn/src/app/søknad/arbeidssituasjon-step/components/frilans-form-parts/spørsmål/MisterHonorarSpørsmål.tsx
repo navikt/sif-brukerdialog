@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getYesOrNoValidator } from '@navikt/sif-common-validation';
 import { AppText } from '../../../../../i18n';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';

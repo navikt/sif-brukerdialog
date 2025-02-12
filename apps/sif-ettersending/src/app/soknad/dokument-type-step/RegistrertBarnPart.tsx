@@ -2,7 +2,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 import { dateToISODate, prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';

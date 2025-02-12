@@ -2,14 +2,9 @@ import { Alert } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { handleDateRangeValidationError } from '../../utils';
@@ -146,7 +141,7 @@ const FraværPeriodeForm = ({
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.fraværPeriodeForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fraværPeriodeForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         {headerContent && <Block margin="l">{headerContent}</Block>}

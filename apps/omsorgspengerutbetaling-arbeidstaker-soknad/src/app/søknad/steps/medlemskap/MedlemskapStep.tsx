@@ -1,5 +1,5 @@
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getMedlemskapFormInitialValues,
     getMedlemskapSøknadsdataFromFormValues,

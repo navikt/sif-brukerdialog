@@ -11,7 +11,8 @@
         "@navikt/sif-common-env": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-ui": "*",
-        "@navikt/sif-common-utils": "*"
+        "@navikt/sif-common-utils": "*",
+        "@navikt/sif-common-validation": "workspace:*"
     },
     "dependencies": {
         "date-fns": "3.6.0"
@@ -27,6 +28,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
+        "@navikt/sif-common-validation": "workspace:*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.5.3",

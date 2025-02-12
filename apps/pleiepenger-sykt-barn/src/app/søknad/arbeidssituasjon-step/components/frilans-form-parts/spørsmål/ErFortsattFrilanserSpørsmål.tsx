@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getYesOrNoValidator } from '@navikt/sif-common-validation';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 

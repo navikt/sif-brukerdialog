@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRange, InputTime } from '@navikt/sif-common-formik-ds/src';
+import { DateRange, InputTime } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate, Duration, ensureDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import CalendarGrid from '../calendar-grid/CalendarGrid';

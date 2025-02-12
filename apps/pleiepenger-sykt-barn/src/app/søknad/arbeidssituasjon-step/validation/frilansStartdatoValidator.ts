@@ -1,7 +1,7 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
+import { getDateValidator } from '@navikt/sif-common-validation';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 

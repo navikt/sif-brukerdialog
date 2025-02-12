@@ -1,16 +1,15 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+} from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { hasValue } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '../../utils';
 import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
 import utils from './opptjeningUtlandUtils';
@@ -106,7 +105,7 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.opptjeningUtlandForm')}>
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.opptjeningUtlandForm')}>
                         <Form.DateRangePicker
                             legend={text('@forms.opptjeningUtland.form.tidsperiode.spm')}
                             minDate={minDate}

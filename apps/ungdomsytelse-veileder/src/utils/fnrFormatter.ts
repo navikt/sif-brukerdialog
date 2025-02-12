@@ -1,4 +1,4 @@
-import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getFødselsnummerValidator } from '@navikt/sif-common-validation';
 import { TextfieldFormatter } from '../hooks/useTextFieldFormatter';
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });

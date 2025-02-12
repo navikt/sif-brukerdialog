@@ -1,7 +1,7 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
-import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/src';
+import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';

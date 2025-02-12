@@ -1,5 +1,5 @@
 import { Heading, HStack, VStack } from '@navikt/ds-react';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';

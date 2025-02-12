@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     dateToISODate,

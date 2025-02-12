@@ -1,6 +1,6 @@
-import { InputTime } from '@navikt/sif-common-formik-ds/src';
-import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { InputTime } from '@navikt/sif-common-formik-ds';
+import { getTimeValidator } from '@navikt/sif-common-validation';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { NumberDuration } from '@navikt/sif-common-utils';
 
 export const getTidEnkeltdagFormTidValidator =

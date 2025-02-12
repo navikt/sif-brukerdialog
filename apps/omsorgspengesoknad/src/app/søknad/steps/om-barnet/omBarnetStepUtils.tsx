@@ -1,7 +1,7 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppMessageKeys, AppText } from '../../../i18n';

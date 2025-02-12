@@ -1,15 +1,14 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getFødselsnummerValidator,
     getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';
 import { Fosterbarn, isFosterbarn } from './types';
@@ -84,7 +83,7 @@ const FosterbarnForm = ({
                 renderForm={() => (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.fosterbarnForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fosterbarnForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.TextField

@@ -1,6 +1,6 @@
 import { BodyLong, Link, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getStringValidator } from '@navikt/sif-common-validation';
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';

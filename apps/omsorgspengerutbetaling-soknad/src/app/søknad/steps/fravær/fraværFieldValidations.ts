@@ -1,6 +1,6 @@
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { getListValidator } from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { validateAll } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
 import { validateNoCollisions } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværValidationUtils';
 

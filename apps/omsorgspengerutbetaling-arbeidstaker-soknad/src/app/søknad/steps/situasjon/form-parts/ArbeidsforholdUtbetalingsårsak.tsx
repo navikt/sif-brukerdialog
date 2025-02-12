@@ -2,11 +2,7 @@ import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import {
-    getRequiredFieldValidator,
-    getStringValidator,
-    ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
+import { getRequiredFieldValidator, getStringValidator, ValidateStringError } from '@navikt/sif-common-validation';
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';

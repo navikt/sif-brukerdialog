@@ -1,9 +1,8 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validation/getRequiredFieldValidator';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -23,6 +22,7 @@ import {
     getFraværFraSøknadsdataFromFormValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',

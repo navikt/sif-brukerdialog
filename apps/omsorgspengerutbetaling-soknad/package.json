@@ -29,6 +29,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*",
+        "@navikt/sif-common-validation": "workspace:*",
         "axios": "1.7.9",
         "csp-header": "6.0.0",
         "html-react-parser": "5.2.2",

@@ -1,6 +1,6 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 import { useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';

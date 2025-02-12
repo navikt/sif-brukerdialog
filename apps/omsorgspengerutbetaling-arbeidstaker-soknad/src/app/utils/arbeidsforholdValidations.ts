@@ -1,5 +1,5 @@
 import { Arbeidsforhold, Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 export const evaluatePrevAndCurrent = (prev: boolean, curr: boolean): boolean => {
     if (prev === false) {

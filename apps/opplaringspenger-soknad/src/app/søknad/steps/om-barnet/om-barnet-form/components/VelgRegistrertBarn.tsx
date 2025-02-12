@@ -1,8 +1,8 @@
 import { Box, Heading } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetFormText, useOmBarnetFormIntl } from '../omBarnetFormMessages';

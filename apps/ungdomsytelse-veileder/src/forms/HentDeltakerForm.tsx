@@ -11,7 +11,7 @@ import {
     VStack,
 } from '@navikt/ds-react';
 import { ReactElement, useState } from 'react';
-import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getFødselsnummerValidator } from '@navikt/sif-common-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isAxiosError } from 'axios';
 import { veilederService } from '../api/services/veilederService';

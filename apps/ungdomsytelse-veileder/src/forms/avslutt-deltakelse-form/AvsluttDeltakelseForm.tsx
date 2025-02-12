@@ -2,14 +2,10 @@ import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-re
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import FormikCheckboxGroup from '@navikt/sif-common-formik-ds/src/components/formik-checkbox-group/FormikCheckboxGroup';
-import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
-import {
-    DateValidationOptions,
-    getCheckedValidator,
-    getDateValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { FormikCheckboxGroup } from '@navikt/sif-common-formik-ds';
+import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
+import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@navikt/sif-common-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';
 import { veilederService } from '../../api/services/veilederService';

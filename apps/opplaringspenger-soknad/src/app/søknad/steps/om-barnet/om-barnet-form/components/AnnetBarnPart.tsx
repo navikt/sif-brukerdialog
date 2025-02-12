@@ -8,14 +8,14 @@ import {
     resetFieldValues,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
+import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-common-formik-ds/src/validation';
+} from '@navikt/sif-common-validation';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';

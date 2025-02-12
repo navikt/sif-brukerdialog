@@ -1,6 +1,6 @@
 import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator, getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
+import { getDateRangeValidator, getListValidator } from '@navikt/sif-common-validation';
 import {
     getDate1YearFromNow,
     getDate3YearsAgo,

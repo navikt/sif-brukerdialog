@@ -4,6 +4,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
+    getIntlFormErrorHandler,
     getNumberFromNumberInputValue,
     getTypedFormComponents,
     ISOStringToDate,
@@ -24,9 +25,8 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getDate3YearsAgo,
     getDate4YearsAgo,
@@ -204,7 +204,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                     <Form.Form
                         includeValidationSummary={true}
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.virksomhetForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.virksomhetForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         cleanup={cleanupVirksomhetFormValues}>

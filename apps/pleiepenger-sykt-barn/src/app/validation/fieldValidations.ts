@@ -1,13 +1,13 @@
 import { isDevMode } from '@navikt/sif-common-env';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getDateValidator,
     getFødselsnummerValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-common-validation';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {

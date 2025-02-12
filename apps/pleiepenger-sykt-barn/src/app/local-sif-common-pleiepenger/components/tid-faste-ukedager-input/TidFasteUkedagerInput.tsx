@@ -1,7 +1,7 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds/src';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';

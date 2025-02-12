@@ -1,13 +1,17 @@
 import { VStack } from '@navikt/ds-react';
-import { getTypedFormComponents, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getDateValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate } from '@navikt/sif-common-utils';
@@ -82,7 +86,7 @@ const KursperiodeForm = ({ maxDate, minDate, kursperiode, alleKursperioder = [],
                     return (
                         <Form.Form
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, 'kursperiodeForm')}
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'kursperiodeForm')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
                             <VStack gap={'6'} maxWidth={'30rem'}>

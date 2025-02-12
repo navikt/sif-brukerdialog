@@ -23,15 +23,16 @@ import {
     ValidateOrgNumberError,
     ValidateRequiredFieldError,
     ValidateStringError,
+    ValidateTimeError,
     ValidateYesOrNoError,
-} from '../../../src/validation';
-import getTimeValidator, { ValidateTimeError } from '../../../src/validation/getTimeValidator';
+} from '@navikt/sif-common-validation';
 import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
 import { ValidationError } from '../../../src/validation/types';
 import ValidationErrorList from '../../components/validation-error-list/ValidationErrorList';
 import ValidationPanel from '../../components/validation-panel/ValidationPanel';
 import { FormFields, FormValues } from './types';
 import { getTypedFormComponents } from '../../../src';
+import getTimeValidator from '@navikt/sif-common-validation/src/validation/getTimeValidator';
 
 const initialValues: FormValues = {
     liste: [],

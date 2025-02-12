@@ -1,15 +1,11 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-common-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import TidFasteUkedagerInput from '../../../tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';

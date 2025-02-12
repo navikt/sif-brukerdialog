@@ -1,12 +1,7 @@
 import { useIntl } from 'react-intl';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-common-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     dateRangeToISODateRange,
@@ -126,7 +121,7 @@ const FerieuttakForm = ({
             renderForm={(formik) => (
                 <Form.Form
                     onCancel={onCancel}
-                    formErrorHandler={getFormErrorHandler(intl, '@forms.ferieuttakForm')}
+                    formErrorHandler={getIntlFormErrorHandler(intl, '@forms.ferieuttakForm')}
                     showButtonArrows={false}
                     submitButtonLabel={formLabels.okButton}
                     cancelButtonLabel={formLabels.cancelButton}>

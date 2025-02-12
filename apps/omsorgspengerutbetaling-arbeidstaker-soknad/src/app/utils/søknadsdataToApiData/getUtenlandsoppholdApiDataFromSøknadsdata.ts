@@ -2,7 +2,7 @@ import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenland
 import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
 import { FraværSøknadsdata } from '../../types/søknadsdata/FraværSøknadsdata';
 import { mapBostedUtlandToApiData } from './getMedlemskapApiDataFromSøknadsdata';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 export const getUtenlansoppholdApiDataFromSøknadsdata = (
     locale: string,

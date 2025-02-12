@@ -2,7 +2,7 @@ import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { søknadApiDataSchema } from '../../../../api/schemas/søknadApiDataSchema';
 import { SøknadApiData } from '../../../../api/types';

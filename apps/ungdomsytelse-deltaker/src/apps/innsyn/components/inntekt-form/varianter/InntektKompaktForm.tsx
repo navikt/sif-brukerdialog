@@ -1,6 +1,6 @@
 import { InntektFormFields, InntektFormValues } from '../types';
 import { getInntektFromFormValues, inntektFormComponents } from '../inntektFormUtils';
-import { getCheckedValidator, getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getCheckedValidator, getNumberValidator } from '@navikt/sif-common-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { VStack } from '@navikt/ds-react';
 

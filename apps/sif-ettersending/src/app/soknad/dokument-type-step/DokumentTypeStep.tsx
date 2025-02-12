@@ -3,7 +3,7 @@ import { ReactNode, useEffect } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
