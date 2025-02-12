@@ -81,7 +81,7 @@ const leggTilFerie = async (page: Page) => {
 };
 
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
-    await expect(page.getByText('Hvor foregår opplæringen?AHus')).toBeVisible();
+    await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(page.locator('li').filter({ hasText: '02.12.2024 - 08.12.2024' })).toBeVisible();
     await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæringTirsdag')).toBeVisible();
@@ -91,7 +91,7 @@ export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
 };
 
 export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) => {
-    await expect(page.getByText('Hvor foregår opplæringen?AHus')).toBeVisible();
+    await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(
         page.getByText('Hvilke dager søker du opplæringspenger?02.12.2024 - 08.12.202416.12.2024 -'),
     ).toBeVisible();
