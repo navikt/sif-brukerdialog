@@ -1,0 +1,25 @@
+{
+    "name": "@navikt/sif-common-validation",
+    "type": "module",
+    "types": "src/index.ts",
+    "main": "src/index.ts",
+    "devDependencies": {
+        "@navikt/fnrvalidator": "2.1.5",
+        "@sif/eslint-config": "*",
+        "config": "*",
+        "date-fns": "3.6.0",
+        "dayjs": "1.11.13",
+        "typescript": "5.7.3",
+        "vitest": "3.0.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
+    }
+}

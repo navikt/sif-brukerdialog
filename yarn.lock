@@ -5516,6 +5516,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/sif-common-validation@workspace:packages/sif-common-validation":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-validation@workspace:packages/sif-common-validation"
+  dependencies:
+    "@navikt/fnrvalidator": "npm:2.1.5"
+    "@sif/eslint-config": "npm:*"
+    config: "npm:*"
+    date-fns: "npm:3.6.0"
+    dayjs: "npm:1.11.13"
+    typescript: "npm:5.7.3"
+    vitest: "npm:3.0.5"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-demo-app@workspace:apps/sif-demo-app":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
