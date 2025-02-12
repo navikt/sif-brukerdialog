@@ -6,21 +6,6 @@ export enum YesOrNo {
     'UNANSWERED' = 'unanswered',
 }
 
-export interface InputTime {
-    hours: string;
-    minutes: string;
-}
-
-export interface DateRange {
-    from: Date;
-    to: Date;
-}
-
-export interface OpenDateRange {
-    from: Date;
-    to?: Date;
-}
-
 export interface IntlErrorObject {
     /** If passed in, the key is not transformed with field name and error */
     key: string;

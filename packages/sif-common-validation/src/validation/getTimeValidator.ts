@@ -1,8 +1,12 @@
-import { getNumberFromNumberInputValue } from '../utils/numberInputUtils';
-import { InputTime, ValidationFunction } from './types';
+import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
 
-const { hasValue } = validationUtils;
+const { hasValue, getNumberFromNumberInputValue } = validationUtils;
+
+interface InputTime {
+    hours: string;
+    minutes: string;
+}
 
 export enum ValidateTimeError {
     timeHasNoValue = 'timeHasNoValue',
