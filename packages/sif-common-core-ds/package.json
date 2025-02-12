@@ -30,7 +30,7 @@
         "@navikt/ds-react": "7.12.2",
         "@navikt/ds-tailwind": "7.12.2",
         "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-validation": "workspace:*",
+        "@navikt/sif-common-validation": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@playwright/test": "1.50.1",
         "@sif/eslint-config": "*",

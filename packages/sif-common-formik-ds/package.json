@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/sif-common-validation": "workspace:*",
+        "@navikt/sif-common-validation": "*",
         "classnames": "2.5.1",
         "i18n-iso-countries": "7.13.0",
         "lodash": "4.17.21",

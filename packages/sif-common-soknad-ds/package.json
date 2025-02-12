@@ -45,7 +45,7 @@
         "@navikt/sif-common-hooks": "*",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/sif-common-validation": "workspace:*",
+        "@navikt/sif-common-validation": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.5.3",

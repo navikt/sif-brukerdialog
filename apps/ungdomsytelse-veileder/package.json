@@ -27,7 +27,7 @@
         "@navikt/sif-common-env": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-ui": "*",
-        "@navikt/sif-common-validation": "workspace:*",
+        "@navikt/sif-common-validation": "*",
         "axios": "1.7.9",
         "clsx": "2.1.1",
         "csp-header": "6.0.0",

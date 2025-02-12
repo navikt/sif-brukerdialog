@@ -28,7 +28,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/sif-common-validation": "workspace:*",
+        "@navikt/sif-common-validation": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.5.3",
