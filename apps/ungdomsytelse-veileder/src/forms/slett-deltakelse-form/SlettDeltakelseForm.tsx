@@ -1,7 +1,7 @@
 import { Deltakelse } from '../../api/types';
 import { useState } from 'react';
 import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
+import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
 import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
 
 interface Props {

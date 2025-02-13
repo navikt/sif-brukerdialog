@@ -2,10 +2,9 @@ import { Checkbox, Heading, Panel, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
@@ -84,7 +83,7 @@ const VirksomhetExample = () => {
                                     <TypedFormikForm<FormValues, ValidationError>
                                         includeButtons={true}
                                         submitButtonLabel="Valider skjema"
-                                        formErrorHandler={getFormErrorHandler(intl)}>
+                                        formErrorHandler={getIntlFormErrorHandler(intl)}>
                                         <VirksomhetInfoAndDialog<FormField>
                                             name={FormField.virksomhet}
                                             harFlereVirksomheter={harFlereVirksomheter}

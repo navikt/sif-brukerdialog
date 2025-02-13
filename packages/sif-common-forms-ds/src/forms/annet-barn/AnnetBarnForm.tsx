@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -11,9 +11,8 @@ import {
     ValidateFødselsnummerError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
 import annetBarnUtils from './annetBarnUtils';
@@ -113,7 +112,7 @@ const AnnetBarnForm = ({
             renderForm={() => (
                 <Form.Form
                     onCancel={onCancel}
-                    formErrorHandler={getFormErrorHandler(intl, '@forms.annetBarnForm')}
+                    formErrorHandler={getIntlFormErrorHandler(intl, '@forms.annetBarnForm')}
                     submitButtonLabel="Ok"
                     showButtonArrows={false}>
                     <Form.TextField

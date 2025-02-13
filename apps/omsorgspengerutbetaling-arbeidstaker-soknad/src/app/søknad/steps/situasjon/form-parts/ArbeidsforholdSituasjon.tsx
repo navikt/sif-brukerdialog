@@ -2,7 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold } from '../../../../types/ArbeidsforholdTypes';
 import { AppFieldValidationErrors } from '../../../../utils/validations';

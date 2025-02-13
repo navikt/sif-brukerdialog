@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 
 export enum FraværFormFields {

@@ -1,6 +1,6 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { AppIntlShape, useAppIntl } from '../../../i18n';
 import {

@@ -9,9 +9,9 @@ import {
     ISODateString,
     ISODateStringToUTCDate,
 } from '../dateFormatUtils';
-import datepickerUtils, { isISODateString } from '../datepickerUtils';
 import { DatepickerLimitations } from '../FormikDatepicker';
 import { usePrevious } from './usePrevious';
+import { datepickerUtils, isISODateString } from '../datepickerUtils';
 
 type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
     DatepickerLimitations & {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     decimalDurationToDuration,
     ISODateToDate,

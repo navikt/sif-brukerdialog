@@ -10,7 +10,7 @@ import { Søknadstype } from '../types/Søknadstype';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 
 interface Props {
     id: StepID;

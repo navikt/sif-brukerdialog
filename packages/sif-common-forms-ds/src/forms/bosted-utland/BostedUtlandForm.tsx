@@ -1,15 +1,14 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';
@@ -97,7 +96,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.bostedUtlandForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.bostedUtlandForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.DateRangePicker

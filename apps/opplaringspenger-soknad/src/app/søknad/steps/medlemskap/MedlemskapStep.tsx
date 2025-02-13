@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getMedlemskapFormInitialValues,
     getMedlemskapSøknadsdataFromFormValues,

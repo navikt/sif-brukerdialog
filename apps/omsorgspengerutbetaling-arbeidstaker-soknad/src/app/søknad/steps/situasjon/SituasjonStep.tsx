@@ -8,7 +8,7 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getDateToday } from '@navikt/sif-common-utils';
 import FormSection from '../../../components/form-section/FormSection';

@@ -1,7 +1,7 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
 import { StepCommonProps } from '../../types/StepCommonProps';

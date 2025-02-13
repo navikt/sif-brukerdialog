@@ -8,6 +8,7 @@ export default defineWorkspace([
     './apps/omsorgspengerutbetaling-arbeidstaker-soknad/vitest.config.ts',
     './apps/omsorgspengerutbetaling-soknad/vitest.config.ts',
     './apps/omsorgspengesoknad/vitest.config.ts',
+    './apps/opplaringspenger-soknad/vitest.config.ts',
     './apps/pleiepenger-i-livets-sluttfase-soknad/vitest.config.ts',
     './apps/pleiepenger-sykt-barn/vitest.config.ts',
     './apps/sif-ettersending/vitest.config.ts',

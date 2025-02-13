@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 

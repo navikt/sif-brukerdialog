@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';

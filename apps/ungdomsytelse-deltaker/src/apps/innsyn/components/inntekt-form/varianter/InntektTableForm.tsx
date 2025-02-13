@@ -1,6 +1,6 @@
 import { BodyShort, Table, VStack } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
-import { getCheckedValidator, getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getCheckedValidator, getNumberValidator } from '@navikt/sif-validation';
 import { Inntekt } from '../../../../../api/types';
 import { inntektFormComponents } from '../inntektFormUtils';
 import { InntektFormFields } from '../types';
