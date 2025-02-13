@@ -3,7 +3,7 @@ import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-
 import { isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '', getK9SakInnsynEnv: () => ({}) };
 });
 
 describe('OmsorgstilbudApiDataValid', () => {

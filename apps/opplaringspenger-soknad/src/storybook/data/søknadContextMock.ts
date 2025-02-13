@@ -8,6 +8,7 @@ import { Kursperiode } from '../../app/types/Kursperiode';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
+import { institusjoner } from '../../app/data/institusjoner';
 
 const kursperioder: Kursperiode[] = [
     {
@@ -46,7 +47,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-
+    institusjoner: institusjoner,
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',
@@ -71,7 +72,7 @@ export const søknadContextMock: SøknadContextState = {
                 ],
                 reisedagerBeskrivelse: 'Kombinerer med ferie',
             },
-            kursholder: 'annen',
+            kursholder: '',
             kursperioder,
         },
         arbeidssituasjon: {

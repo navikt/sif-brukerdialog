@@ -5,6 +5,7 @@ import { KvitteringInfo } from './KvitteringInfo';
 import { StepId } from './StepId';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
+import { Institusjon } from '../api/institusjonService';
 
 export type ArbeidstidStepTempFormValues = {
     stepId: StepId.ARBEIDSTID;
@@ -17,6 +18,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
+    institusjoner: Institusjon[];
     frilansoppdrag?: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     tempFormData?: TempFormValues;

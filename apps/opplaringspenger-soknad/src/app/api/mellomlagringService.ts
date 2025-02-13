@@ -46,6 +46,7 @@ export const mellomlagringService = {
             søknadRoute,
             søknadSendt,
             registrerteBarn: [],
+            institusjoner: [],
             versjon: SØKNAD_VERSJON,
         });
     },
