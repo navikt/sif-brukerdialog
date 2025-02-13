@@ -15,7 +15,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';

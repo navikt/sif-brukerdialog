@@ -8,7 +8,7 @@ import {
     getErrorForField,
     getTypedFormComponents,
 } from '@navikt/sif-common-formik-ds';
-import { getTimeValidator } from '@navikt/sif-common-validation';
+import { getTimeValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
 import {

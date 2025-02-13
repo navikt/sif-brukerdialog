@@ -6,7 +6,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
 import FormSection from '../../components/form-section/FormSection';

@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../i18n';

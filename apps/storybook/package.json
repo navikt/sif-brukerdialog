@@ -12,7 +12,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/sif-common-validation": "*",
+        "@navikt/sif-validation": "*",
         "classnames": "2.5.1",
         "react-day-picker": "8.10.1"
     },

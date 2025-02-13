@@ -4062,7 +4062,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/react-vite": "npm:8.5.3"
@@ -4130,7 +4130,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sentry/vite-plugin": "npm:3.1.2"
     "@sif/eslint-config": "npm:*"
@@ -4260,7 +4260,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.5.3"
@@ -4375,7 +4375,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
@@ -4457,7 +4457,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.5.3"
@@ -4536,7 +4536,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
@@ -4613,7 +4613,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.5.3"
@@ -4701,7 +4701,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.5.3"
@@ -4782,7 +4782,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sentry/vite-plugin": "npm:3.1.2"
     "@sif/eslint-config": "npm:*"
@@ -4895,7 +4895,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
     "@storybook/addon-actions": "npm:8.5.3"
@@ -4946,7 +4946,7 @@ __metadata:
     "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
@@ -5028,7 +5028,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.12.2"
     "@navikt/fnrvalidator": "npm:2.1.5"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
@@ -5098,7 +5098,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
@@ -5146,7 +5146,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-ui": "*"
     "@navikt/sif-common-utils": "*"
-    "@navikt/sif-common-validation": "workspace:*"
+    "@navikt/sif-validation": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -5203,7 +5203,7 @@ __metadata:
     "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
@@ -5268,7 +5268,7 @@ __metadata:
     "@navikt/sif-common-sentry": "*"
     "@navikt/sif-common-ui": "*"
     "@navikt/sif-common-utils": "*"
-    "@navikt/sif-common-validation": "workspace:*"
+    "@navikt/sif-validation": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -5282,7 +5282,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
     "@storybook/addon-actions": "npm:8.5.3"
@@ -5336,20 +5336,6 @@ __metadata:
     react-intl: "npm:7.1.6"
     typescript: "npm:5.7.3"
     uuid: "npm:11.0.5"
-    vitest: "npm:3.0.5"
-  languageName: unknown
-  linkType: soft
-
-"@navikt/sif-common-validation@npm:*, @navikt/sif-common-validation@workspace:packages/sif-common-validation":
-  version: 0.0.0-use.local
-  resolution: "@navikt/sif-common-validation@workspace:packages/sif-common-validation"
-  dependencies:
-    "@navikt/fnrvalidator": "npm:2.1.5"
-    "@sif/eslint-config": "npm:*"
-    config: "npm:*"
-    date-fns: "npm:3.6.0"
-    dayjs: "npm:1.11.13"
-    typescript: "npm:5.7.3"
     vitest: "npm:3.0.5"
   languageName: unknown
   linkType: soft
@@ -5433,7 +5419,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@playwright/test": "npm:1.50.1"
     "@sif/eslint-config": "npm:*"
     "@testing-library/dom": "npm:10.4.0"
@@ -5505,6 +5491,20 @@ __metadata:
     typescript: "npm:5.7.3"
     winston: "npm:3.17.0"
     zod: "npm:3.24.1"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-validation@npm:*, @navikt/sif-validation@workspace:packages/sif-validation":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-validation@workspace:packages/sif-validation"
+  dependencies:
+    "@navikt/fnrvalidator": "npm:2.1.5"
+    "@sif/eslint-config": "npm:*"
+    config: "npm:*"
+    date-fns: "npm:3.6.0"
+    dayjs: "npm:1.11.13"
+    typescript: "npm:5.7.3"
+    vitest: "npm:3.0.5"
   languageName: unknown
   linkType: soft
 
@@ -5601,7 +5601,7 @@ __metadata:
     "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@types/node": "npm:22.13.1"
     "@types/react": "npm:19.0.8"
     "@types/react-dom": "npm:19.0.3"
@@ -25498,7 +25498,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
-    "@navikt/sif-common-validation": "npm:*"
+    "@navikt/sif-validation": "npm:*"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-a11y": "npm:8.5.3"
     "@storybook/addon-actions": "npm:8.5.3"

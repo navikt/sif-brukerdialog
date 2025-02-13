@@ -5,7 +5,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

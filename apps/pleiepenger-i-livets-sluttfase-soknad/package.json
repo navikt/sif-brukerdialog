@@ -24,7 +24,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/sif-common-validation": "*",
+        "@navikt/sif-validation": "*",
         "@testing-library/react": "16.2.0",
         "axios": "1.7.9",
         "busboy": "1.6.0",

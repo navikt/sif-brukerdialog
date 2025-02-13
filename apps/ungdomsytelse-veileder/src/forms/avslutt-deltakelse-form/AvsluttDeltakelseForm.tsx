@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { FormikCheckboxGroup } from '@navikt/sif-common-formik-ds';
 import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
-import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@navikt/sif-common-validation';
+import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';

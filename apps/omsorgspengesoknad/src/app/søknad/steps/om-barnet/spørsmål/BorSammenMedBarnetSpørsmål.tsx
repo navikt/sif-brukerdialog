@@ -1,4 +1,4 @@
-import { getRequiredFieldValidator, ValidateRequiredFieldError } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator, ValidateRequiredFieldError } from '@navikt/sif-validation';
 import { useAppIntl } from '../../../../i18n';
 import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';
 import { OmBarnetFormFields } from '../OmBarnetStep';

@@ -1,5 +1,5 @@
 import { InputTime } from '@navikt/sif-common-formik-ds';
-import { getTimeValidator } from '@navikt/sif-common-validation';
+import { getTimeValidator } from '@navikt/sif-validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { NumberDuration } from '@navikt/sif-common-utils';
 

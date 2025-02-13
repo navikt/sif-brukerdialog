@@ -11,7 +11,7 @@ import {
     ValidateFødselsnummerError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';

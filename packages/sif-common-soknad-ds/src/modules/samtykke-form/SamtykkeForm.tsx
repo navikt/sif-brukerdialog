@@ -2,7 +2,7 @@ import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { FormikCheckbox, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-common-validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 

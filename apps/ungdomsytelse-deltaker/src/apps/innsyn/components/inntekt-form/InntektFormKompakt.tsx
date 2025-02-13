@@ -1,6 +1,6 @@
 import { Alert, Bleed, Box, Button, Heading, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { getCheckedValidator } from '@navikt/sif-common-validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { InntektsrapporteringDTO } from '../../../../api/types';

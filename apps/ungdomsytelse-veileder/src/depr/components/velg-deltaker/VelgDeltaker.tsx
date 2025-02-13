@@ -1,6 +1,6 @@
 import { PersonIcon } from '@navikt/aksel-icons';
 import { Button, Fieldset, Heading, HStack, TextField } from '@navikt/ds-react';
-import { getFødselsnummerValidator } from '@navikt/sif-common-validation';
+import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useState } from 'react';
 
 interface Props {

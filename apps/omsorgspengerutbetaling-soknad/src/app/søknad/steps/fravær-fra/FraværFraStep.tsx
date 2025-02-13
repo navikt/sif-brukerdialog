@@ -22,7 +22,7 @@ import {
     getFraværFraSøknadsdataFromFormValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
-import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',

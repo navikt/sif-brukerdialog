@@ -25,7 +25,7 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getDate3YearsAgo,

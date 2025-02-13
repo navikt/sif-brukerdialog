@@ -7,7 +7,7 @@ import {
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { hasValue } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '../../utils';

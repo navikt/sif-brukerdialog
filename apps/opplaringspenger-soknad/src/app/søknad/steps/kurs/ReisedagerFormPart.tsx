@@ -1,7 +1,7 @@
 import { KursFormFields } from './KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikTextarea, isValidationErrorsVisible } from '@navikt/sif-common-formik-ds';
-import { getStringValidator } from '@navikt/sif-common-validation';
+import { getStringValidator } from '@navikt/sif-validation';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';

@@ -5,7 +5,7 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';

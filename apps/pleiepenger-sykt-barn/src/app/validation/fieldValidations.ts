@@ -6,7 +6,7 @@ import {
     getDateValidator,
     getFødselsnummerValidator,
     getStringValidator,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';

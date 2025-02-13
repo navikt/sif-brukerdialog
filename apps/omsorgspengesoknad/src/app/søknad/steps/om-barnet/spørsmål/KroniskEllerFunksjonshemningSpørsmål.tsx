@@ -1,4 +1,4 @@
-import { getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
 import { OmBarnetFormFields } from '../OmBarnetStep';

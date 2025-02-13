@@ -8,7 +8,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-common-validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { purge, sendApplication } from '../../api/api';

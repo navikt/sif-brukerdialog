@@ -3,7 +3,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-validation';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

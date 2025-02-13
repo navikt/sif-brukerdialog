@@ -1,5 +1,5 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
-import { getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { SøknadFormFields } from '../SøknadForm';
 import { søknadFormComponents } from '../TypedSøknadFormComponents';
 

@@ -7,7 +7,7 @@ import {
     getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';

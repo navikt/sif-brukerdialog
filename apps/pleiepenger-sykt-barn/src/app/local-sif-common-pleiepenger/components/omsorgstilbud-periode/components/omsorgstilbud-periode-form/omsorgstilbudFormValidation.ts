@@ -1,4 +1,4 @@
-import { getTimeValidator } from '@navikt/sif-common-validation';
+import { getTimeValidator } from '@navikt/sif-validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { DurationWeekdays, summarizeDurationInDurationWeekdays, durationUtils } from '@navikt/sif-common-utils';
 

@@ -1,5 +1,5 @@
 import { Heading, Link, List } from '@navikt/ds-react';
-import { getCheckedValidator } from '@navikt/sif-common-validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../../i18n';
 import { SøknadFormFields } from '../SøknadForm';
 import { søknadFormComponents } from '../TypedSøknadFormComponents';

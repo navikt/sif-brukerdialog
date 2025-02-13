@@ -1,5 +1,5 @@
 import { getNumberFromNumberInputValue, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '@types';
 import {

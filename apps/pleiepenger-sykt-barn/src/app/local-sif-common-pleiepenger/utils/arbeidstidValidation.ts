@@ -1,4 +1,4 @@
-import { getNumberValidator } from '@navikt/sif-common-validation';
+import { getNumberValidator } from '@navikt/sif-validation';
 import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
 
 export const getArbeidstidFastProsentValidator =

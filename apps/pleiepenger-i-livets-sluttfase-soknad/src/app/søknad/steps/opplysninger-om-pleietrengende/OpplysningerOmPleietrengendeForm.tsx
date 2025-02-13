@@ -18,7 +18,7 @@ import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';

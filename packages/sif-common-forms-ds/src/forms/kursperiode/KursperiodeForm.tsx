@@ -10,7 +10,7 @@ import {
     getDateValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { FormLayout } from '@navikt/sif-common-ui';

@@ -1,4 +1,4 @@
-import { getRequiredFieldValidator } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { OmBarnetFormFields } from '../OmBarnetStep';

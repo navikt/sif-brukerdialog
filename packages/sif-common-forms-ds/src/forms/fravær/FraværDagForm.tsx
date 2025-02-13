@@ -15,7 +15,7 @@ import {
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateNumberError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFraværIntl } from './fraværMessages';
 import FraværTimerSelect from './FraværTimerSelect';

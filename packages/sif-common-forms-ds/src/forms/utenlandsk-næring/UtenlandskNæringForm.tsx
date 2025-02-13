@@ -9,7 +9,7 @@ import {
     ValidateDateRangeError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { handleDateRangeValidationError } from '../../utils';

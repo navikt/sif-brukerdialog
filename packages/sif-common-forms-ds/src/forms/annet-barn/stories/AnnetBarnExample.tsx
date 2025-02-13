@@ -2,7 +2,7 @@ import { Tabs, VStack } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-validation';
+import { getListValidator } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';

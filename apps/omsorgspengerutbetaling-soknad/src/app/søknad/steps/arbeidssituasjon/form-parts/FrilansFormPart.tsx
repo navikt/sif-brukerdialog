@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
-import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';

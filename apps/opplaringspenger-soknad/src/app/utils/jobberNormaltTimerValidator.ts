@@ -1,4 +1,4 @@
-import { getNumberValidator } from '@navikt/sif-common-validation';
+import { getNumberValidator } from '@navikt/sif-validation';
 
 export const MIN_TIMER_NORMAL_ARBEIDSFORHOLD = 0.01;
 export const MAX_TIMER_NORMAL_ARBEIDSFORHOLD = 100;

@@ -1,7 +1,7 @@
 import { isDevMode } from '@navikt/sif-common-env';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-validation';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';

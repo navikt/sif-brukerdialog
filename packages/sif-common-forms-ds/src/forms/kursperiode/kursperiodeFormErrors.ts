@@ -3,7 +3,7 @@ import {
     ValidateDateRangeError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { KursperiodeFormFields } from './KursperiodeForm';
 import { KursperiodeMessageKeys } from './kursperiodeMessages';
 

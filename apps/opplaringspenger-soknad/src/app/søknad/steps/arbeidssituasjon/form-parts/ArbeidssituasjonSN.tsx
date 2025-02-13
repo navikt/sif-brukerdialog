@@ -1,7 +1,7 @@
 import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert, Heading, Link, VStack } from '@navikt/ds-react';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';

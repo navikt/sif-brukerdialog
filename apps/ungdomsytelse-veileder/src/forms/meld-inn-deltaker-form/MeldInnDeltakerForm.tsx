@@ -10,7 +10,7 @@ import {
 import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useIntl } from 'react-intl';
-import { getCheckedValidator, getDateValidator } from '@navikt/sif-common-validation';
+import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { veilederService } from '../../api/services/veilederService';
 

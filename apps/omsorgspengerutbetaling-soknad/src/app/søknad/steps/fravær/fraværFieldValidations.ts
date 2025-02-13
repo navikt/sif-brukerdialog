@@ -1,4 +1,4 @@
-import { getListValidator } from '@navikt/sif-common-validation';
+import { getListValidator } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateAll } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';

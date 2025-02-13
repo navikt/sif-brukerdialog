@@ -3,7 +3,7 @@ import {
     ValidateRequiredFieldError,
     ValidateRequiredFieldErrorKeys,
     ValidateYesOrNoErrorKeys,
-} from '@navikt/sif-common-validation';
+} from '@navikt/sif-validation';
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { RegistrerteBarnMock } from '../../../../../storybook/mock-data';
