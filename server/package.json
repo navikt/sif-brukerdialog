@@ -12,7 +12,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@navikt/oasis": "3.6.0",
-        "@navikt/sif-common-env": "*",
+        "@navikt/sif-common-env": "workspace:*",
         "cookie-parser": "1.4.7",
         "csp-header": "6.0.0",
         "express": "4.21.2",
