@@ -21,3 +21,4 @@ export * from './getStringValidator';
 export * from './getYesOrNoValidator';
 export * from './getRequiredFieldValidator';
 export * from './getTimeValidator';
+export * from './validationUtils';

@@ -9,7 +9,7 @@ import {
     ValidateRequiredFieldError,
 } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { hasValue } from '@navikt/sif-common-formik-ds';
+import { hasValue } from '@navikt/sif-validation';
 import { handleDateRangeValidationError } from '../../utils';
 import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
 import utils from './opptjeningUtlandUtils';

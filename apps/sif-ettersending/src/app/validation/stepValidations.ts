@@ -1,5 +1,5 @@
 import { SoknadFormData } from '../types/SoknadFormData';
-import { hasValue } from '@navikt/sif-common-formik-ds';
+import { hasValue } from '@navikt/sif-validation';
 
 export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: SoknadFormData): boolean =>
     harForståttRettigheterOgPlikter === true;
