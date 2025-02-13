@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-validation",
-    "main": "index.ts",
-    "types": "index.ts",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "private": true,
     "type": "module",
     "devDependencies": {
