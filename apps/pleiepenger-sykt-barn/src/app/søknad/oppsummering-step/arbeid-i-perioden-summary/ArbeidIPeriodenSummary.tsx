@@ -27,13 +27,15 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
 
     arbeidsgivere.forEach((arbeidsgiverApiData) => {
         if (arbeidsgiverApiData.arbeidsforhold) {
-            summaryItem.push({
-                ...arbeidsgiverApiData.arbeidsforhold,
-                tittel: text('arbeidsgiver.tittel', {
-                    navn: arbeidsgiverApiData.navn,
-                    organisasjonsnummer: arbeidsgiverApiData.organisasjonsnummer,
-                }),
-            });
+            if (arbeidsgiverApiData.arbeidsforhold.arbeidIPeriode) {
+                summaryItem.push({
+                    ...arbeidsgiverApiData.arbeidsforhold,
+                    tittel: text('arbeidsgiver.tittel', {
+                        navn: arbeidsgiverApiData.navn,
+                        organisasjonsnummer: arbeidsgiverApiData.organisasjonsnummer,
+                    }),
+                });
+            }
         }
     });
 
