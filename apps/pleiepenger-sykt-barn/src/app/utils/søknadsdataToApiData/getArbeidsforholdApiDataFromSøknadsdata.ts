@@ -40,6 +40,10 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (arbeid: ArbeidIPeriodeS
                 type: ArbeidIPeriodeType.arbeiderRedusert,
                 redusertArbeid: getRedusertArbeidApiData(arbeid.redusertArbeid),
             };
+        case ArbeidIPeriodeType.ikkeBesvart:
+            return {
+                type: ArbeidIPeriodeType.ikkeBesvart,
+            };
     }
 };
 
