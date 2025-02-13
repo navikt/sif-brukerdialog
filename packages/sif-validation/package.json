@@ -5,13 +5,14 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@navikt/fnrvalidator": "2.1.5",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "date-fns": "3.6.0",
-        "dayjs": "1.11.13",
         "typescript": "5.7.3",
         "vitest": "3.0.5"
+    },
+    "peerDependencies": {
+        "@navikt/fnrvalidator": "2.1.5",
+        "dayjs": "1.11.13"
     },
     "repository": {
         "type": "git",

@@ -5498,13 +5498,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-validation@workspace:packages/sif-validation"
   dependencies:
-    "@navikt/fnrvalidator": "npm:2.1.5"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
-    date-fns: "npm:3.6.0"
-    dayjs: "npm:1.11.13"
     typescript: "npm:5.7.3"
     vitest: "npm:3.0.5"
+  peerDependencies:
+    "@navikt/fnrvalidator": 2.1.5
+    dayjs: 1.11.13
   languageName: unknown
   linkType: soft
 
