@@ -39,12 +39,15 @@ const getValidVedlegg = (vedlegg: Vedlegg[] = []): Vedlegg[] => {
     });
 };
 
-const isMellomlagringValid = (mellomlagring: SøknadTempStorageData): boolean => {
-    return (
-        mellomlagring.metadata?.version === MELLOMLAGRING_VERSION &&
-            mellomlagring.formValues?.harForståttRettigheterOgPlikter === true,
-        JSON.stringify(mellomlagring.metadata.featureToggles) === JSON.stringify(getFeatureToggles())
-    );
+const isMellomlagringValid = ({ metadata, formValues }: SøknadTempStorageData): boolean => {
+    if (metadata) {
+        const isValid =
+            metadata.version === MELLOMLAGRING_VERSION &&
+            metadata.featureToggles.spørOmSluttetISøknadsperiode === getFeatureToggles().spørOmSluttetISøknadsperiode &&
+            formValues?.harForståttRettigheterOgPlikter === true;
+        return isValid;
+    }
+    return false;
 };
 class SøknadEssentialsLoader extends React.Component<Props, State> {
     constructor(props: Props) {
