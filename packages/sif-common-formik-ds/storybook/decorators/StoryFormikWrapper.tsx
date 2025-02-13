@@ -2,8 +2,8 @@ import { Panel } from '@navikt/ds-react';
 import * as React from 'react';
 import TypedFormikForm from '../../src/components/typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper from '../../src/components/typed-formik-wrapper/TypedFormikWrapper';
-import AppIntlProvider from '../components/app-intl-provider/AppIntlProvider';
 import '@navikt/ds-css';
+import { IntlProvider } from 'react-intl';
 
 interface Props {
     parameters?: {
@@ -15,11 +15,11 @@ interface Props {
 }
 
 export const withFormikWrapper = (Story, args) => (
-    <AppIntlProvider locale="nb">
+    <IntlProvider locale="nb" messages={{}}>
         <StoryFormikWrapper {...args}>
             <Story />
         </StoryFormikWrapper>
-    </AppIntlProvider>
+    </IntlProvider>
 );
 
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {

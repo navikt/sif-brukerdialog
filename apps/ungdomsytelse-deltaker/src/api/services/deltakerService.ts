@@ -1,15 +1,17 @@
+import { k9BrukerdialogApiClient } from '@navikt/sif-common-api/src/api/apiClient';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserSchema } from '../schemas/deltakelserSchema';
-import { Deltakelser, InntektsrapporteringDTO, SøknadApiData } from '../types';
 import { søknadApiDataSchema } from '../schemas/søknadApiDataSchema';
-import { k9BrukerdialogApiClient } from '@navikt/sif-common-api/src/api/apiClient';
+import { Deltakelser, InntektsrapporteringDTO, SøknadApiData } from '../types';
+import { polyfillManglendeBackendLogikk } from '../utils/apiPolyfillUtils';
 
 export const deltakerService = {
     getDeltakelser: async (): Promise<Deltakelser> => {
         const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
         try {
-            return deltakelserSchema.parse(response.data);
+            const deltakelser = deltakelserSchema.parse(response.data);
+            return polyfillManglendeBackendLogikk(deltakelser);
         } catch (e) {
             getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
             return Promise.reject(e);

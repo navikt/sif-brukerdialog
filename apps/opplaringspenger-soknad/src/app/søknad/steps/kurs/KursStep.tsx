@@ -54,7 +54,7 @@ export interface KursFormValues {
     [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Combobox } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -64,9 +64,10 @@ const KursStep = () => {
     const { intl, text } = useAppIntl();
 
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, institusjoner },
     } = useSøknadContext();
 
+    const institusjonsnavn = institusjoner.map((institusjon) => institusjon.navn);
     const stepId = StepId.KURS;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
@@ -135,16 +136,20 @@ const KursStep = () => {
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
-                                        <TextField
-                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                        <Combobox
                                             name={KursFormFields.opplæringsinstitusjon}
-                                            description={text('steg.kurs.opplæringsinstitusjon.description')}
-                                            min={2}
-                                            max={50}
+                                            allowNewValues={true}
+                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                            options={institusjonsnavn}
+                                            shouldAutocomplete={false}
+                                            maxLength={90}
+                                            minLength={2}
+                                            isMultiSelect={false}
+                                            initialValue={values[KursFormFields.opplæringsinstitusjon]}
                                             validate={getStringValidator({
                                                 required: true,
                                                 minLength: 2,
-                                                maxLength: 50,
+                                                maxLength: 100,
                                             })}
                                         />
                                     </VStack>
