@@ -22,7 +22,7 @@
         "@types/react-dom": "19.0.3",
         "@types/uuid": "10.0.0",
         "config": "*",
-        "globals": "15.14.0",
+        "globals": "15.15.0",
         "intl": "1.2.5",
         "react": "19.0.0",
         "react-dom": "19.0.0",

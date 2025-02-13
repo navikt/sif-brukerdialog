@@ -5096,7 +5096,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.13"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     intl: "npm:1.2.5"
     less: "npm:4.2.2"
     postcss: "npm:8.5.2"
@@ -5475,7 +5475,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.13"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     intl: "npm:1.2.5"
     less: "npm:4.2.2"
     postcss: "npm:8.5.2"
@@ -5503,7 +5503,7 @@ __metadata:
     "@types/uuid": "npm:10.0.0"
     config: "npm:*"
     dayjs: "npm:1.11.13"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     intl: "npm:1.2.5"
     iso8601-duration: "npm:2.1.2"
     lodash: "npm:4.17.21"
@@ -5631,7 +5631,7 @@ __metadata:
     dotenv: "npm:16.4.7"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     helmet: "npm:8.0.0"
     html-react-parser: "npm:5.2.2"
     http-proxy-middleware: "npm:3.0.3"
@@ -8699,7 +8699,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.4"
     eslint-plugin-react-hooks: "npm:5.1.0"
     eslint-plugin-vitest: "npm:0.5.4"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     typescript: "npm:5.7.3"
     typescript-eslint: "npm:8.24.0"
   languageName: unknown
@@ -17728,10 +17728,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:15.14.0, globals@npm:^15.9.0":
-  version: 15.14.0
-  resolution: "globals@npm:15.14.0"
-  checksum: 10/e35ffbdbc024d6381efca906f67211a7bbf935db2af8c14a65155785479e28b3e475950e5933bb6b296eed54b6dcd924e25b26dbc8579b1bde9d5d25916e1c5f
+"globals@npm:15.15.0":
+  version: 15.15.0
+  resolution: "globals@npm:15.15.0"
+  checksum: 10/7f561c87b2fd381b27fc2db7df8a4ea7a9bb378667b8a7193e61fd2ca3a876479174e2a303a74345fbea6e1242e16db48915c1fd3bf35adcf4060a795b425e18
   languageName: node
   linkType: hard
 
@@ -17746,6 +17746,13 @@ __metadata:
   version: 14.0.0
   resolution: "globals@npm:14.0.0"
   checksum: 10/03939c8af95c6df5014b137cac83aa909090c3a3985caef06ee9a5a669790877af8698ab38007e4c0186873adc14c0b13764acc754b16a754c216cc56aa5f021
+  languageName: node
+  linkType: hard
+
+"globals@npm:^15.9.0":
+  version: 15.14.0
+  resolution: "globals@npm:15.14.0"
+  checksum: 10/e35ffbdbc024d6381efca906f67211a7bbf935db2af8c14a65155785479e28b3e475950e5933bb6b296eed54b6dcd924e25b26dbc8579b1bde9d5d25916e1c5f
   languageName: node
   linkType: hard
 
@@ -25756,7 +25763,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.13"
-    globals: "npm:15.14.0"
+    globals: "npm:15.15.0"
     intl: "npm:1.2.5"
     less: "npm:4.2.2"
     postcss: "npm:8.5.2"
