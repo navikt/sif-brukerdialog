@@ -8,8 +8,8 @@ import {
     getTypedFormComponents,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';

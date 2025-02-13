@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';

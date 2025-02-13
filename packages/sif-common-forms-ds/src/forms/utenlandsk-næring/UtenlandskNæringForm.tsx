@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
@@ -9,9 +9,8 @@ import {
     ValidateDateRangeError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { handleDateRangeValidationError } from '../../utils';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
@@ -111,7 +110,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.utenlandskNæringForm')}>
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.utenlandskNæringForm')}>
                         <Form.RadioGroup
                             name={UtenlandskNæringFormField.næringstype}
                             legend={text('@forms.utenlandskNæringForm.hvilken_type_virksomhet')}

@@ -1,7 +1,7 @@
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';

@@ -1,4 +1,4 @@
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { durationToDecimalDuration, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils';
 import { OmsorgstilbudFormValues } from '../types/søknad-form-values/OmsorgtilbudFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';

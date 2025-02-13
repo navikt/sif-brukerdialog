@@ -1,5 +1,5 @@
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { useFraværIntl } from './';
 import { FraværDagForm, FraværDagFormFields } from './FraværDagForm';
 

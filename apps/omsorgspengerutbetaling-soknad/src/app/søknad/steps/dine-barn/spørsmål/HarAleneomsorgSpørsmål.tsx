@@ -1,7 +1,7 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { DineBarnFormFields } from '../DineBarnStep';
 

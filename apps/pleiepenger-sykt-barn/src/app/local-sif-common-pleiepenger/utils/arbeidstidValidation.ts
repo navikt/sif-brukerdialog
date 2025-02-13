@@ -1,5 +1,5 @@
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { IntlErrorObject } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getNumberValidator } from '@navikt/sif-validation';
+import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
 
 export const getArbeidstidFastProsentValidator =
     (minMax?: { min: number; max: number }) =>

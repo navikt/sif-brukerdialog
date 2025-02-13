@@ -1,5 +1,5 @@
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

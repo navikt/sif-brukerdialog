@@ -1,4 +1,4 @@
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
     DateRange,

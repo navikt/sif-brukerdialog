@@ -1,6 +1,8 @@
 import { fnr } from '@navikt/fnrvalidator';
 import { ValidationFunction } from './types';
-import { hasValue } from './validationUtils';
+import { validationUtils } from './validationUtils';
+
+const { hasValue } = validationUtils;
 
 export enum ValidateFødselsnummerError {
     fødselsnummerHasNoValue = 'fødselsnummerHasNoValue',

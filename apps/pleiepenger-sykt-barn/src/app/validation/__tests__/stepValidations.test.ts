@@ -19,7 +19,7 @@ vi.mock('./../fieldValidations', () => {
     };
 });
 
-vi.mock('@navikt/sif-common-formik-ds/src/validation', () => ({
+vi.mock('@navikt/sif-validation', () => ({
     getDateValidator: () => () => undefined,
     getFødselsnummerValidator: () => () => undefined,
     getStringValidator: () => () => undefined,

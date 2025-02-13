@@ -3,6 +3,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import {
     DateRange,
     getCountryName,
+    getIntlFormErrorHandler,
     getTypedFormComponents,
     ISOStringToDate,
     YesOrNo,
@@ -17,9 +18,8 @@ import {
     ValidateListError,
     ValidateRequiredFieldError,
     ValidateYesOrNoError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from './types';
@@ -135,7 +135,7 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.utenlandsoppholdForm')}>
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.utenlandsoppholdForm')}>
                         <Form.DateRangePicker
                             legend={text('@forms.utenlandsopphold.form.tidsperiode.spm')}
                             disabledDateRanges={registrerteTidsperioder}

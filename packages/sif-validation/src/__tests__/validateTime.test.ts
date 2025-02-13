@@ -1,7 +1,6 @@
-import { InputTime } from '../../types';
 import getTimeValidator, { ValidateTimeError } from '../getTimeValidator';
 
-const zeroTime: InputTime = {
+const zeroTime = {
     hours: '0',
     minutes: '0',
 };

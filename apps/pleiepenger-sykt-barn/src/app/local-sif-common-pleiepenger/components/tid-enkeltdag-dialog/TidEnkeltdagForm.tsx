@@ -3,10 +3,10 @@ import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,

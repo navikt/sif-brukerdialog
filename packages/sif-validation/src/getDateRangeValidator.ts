@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import datepickerUtils from '../components/formik-datepicker/datepickerUtils';
 import getDateValidator, { DateValidationOptions, DateValidationResult } from './getDateValidator';
 import { ValidationFunction } from './types';
+import { validationUtils } from './validationUtils';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -34,7 +34,7 @@ const getFromDateValidator =
             return dateError;
         }
         const { toDate } = options;
-        const date = datepickerUtils.getDateFromDateString(value);
+        const date = validationUtils.getDateFromDateString(value);
         if (!date || !toDate) {
             return undefined;
         }
@@ -53,7 +53,7 @@ const getToDateValidator =
             return dateError;
         }
         const { fromDate } = options;
-        const date = datepickerUtils.getDateFromDateString(value);
+        const date = validationUtils.getDateFromDateString(value);
         if (!date || !fromDate) {
             return undefined;
         }

@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import { FrilansFormValues, Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';

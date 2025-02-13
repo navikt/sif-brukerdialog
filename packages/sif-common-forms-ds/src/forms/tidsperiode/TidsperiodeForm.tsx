@@ -1,12 +1,7 @@
 import { useIntl } from 'react-intl';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import tidsperiodeUtils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
@@ -99,7 +94,7 @@ const TidsperiodeForm = ({
                     return (
                         <Form.Form
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, '@forms.tidsperiodeForm')}
+                            formErrorHandler={getIntlFormErrorHandler(intl, '@forms.tidsperiodeForm')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
                             <Form.DateRangePicker

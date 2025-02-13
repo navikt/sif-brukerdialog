@@ -18,8 +18,8 @@ import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+} from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../../i18n';

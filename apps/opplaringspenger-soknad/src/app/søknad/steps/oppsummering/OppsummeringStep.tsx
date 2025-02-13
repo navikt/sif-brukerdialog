@@ -13,8 +13,8 @@ import ResetMellomagringButton from '../../../components/reset-mellomlagring-but
 import SøknadStep from '../../../søknad/SøknadStep';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { ErrorSummary, VStack } from '@navikt/ds-react';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';

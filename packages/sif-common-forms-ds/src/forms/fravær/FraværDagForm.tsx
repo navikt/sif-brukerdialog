@@ -2,18 +2,20 @@ import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { FormikDatepickerProps } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/FormikDatepicker';
+import {
+    datepickerUtils,
+    FormikDatepickerProps,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateNumberError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DateRange, getDateToday } from '@navikt/sif-common-utils';
+} from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFraværIntl } from './fraværMessages';
 import FraværTimerSelect from './FraværTimerSelect';
@@ -164,7 +166,7 @@ const FraværDagFormView = ({
                             submitButtonLabel="Ok"
                             showButtonArrows={false}
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, '@forms.fraværDagForm')}>
+                            formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fraværDagForm')}>
                             {headerContent && <Block>{headerContent}</Block>}
 
                             <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />

@@ -1,5 +1,5 @@
-import { ISOStringToDate } from '../../components/formik-datepicker/datepickerUtils';
 import getDateValidator, { ValidateDateError } from '../getDateValidator';
+import { validationUtils } from '../validationUtils';
 
 describe(`validateDate`, () => {
     it(`returns undefined when date is valid`, () => {
@@ -49,8 +49,8 @@ describe(`validateDate`, () => {
         });
     });
     describe('date ranges', () => {
-        const min = ISOStringToDate('2020-10-10');
-        const max = ISOStringToDate('2020-10-20');
+        const min = validationUtils.ISOStringToDate('2020-10-10');
+        const max = validationUtils.ISOStringToDate('2020-10-20');
         it(`returns ${ValidateDateError.dateIsBeforeMin} when date is before min date`, () => {
             expect(getDateValidator({ min })(`2020-10-01`)).toBe(ValidateDateError.dateIsBeforeMin);
         });
