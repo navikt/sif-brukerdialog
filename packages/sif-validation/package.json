@@ -1,16 +1,18 @@
 {
-    "name": "@navikt/sif-common-validation",
-    "type": "module",
-    "types": "src/index.ts",
+    "name": "@navikt/sif-validation",
     "main": "src/index.ts",
+    "types": "src/index.ts",
+    "private": true,
+    "type": "module",
     "devDependencies": {
-        "@navikt/fnrvalidator": "2.1.5",
-        "@sif/eslint-config": "*",
-        "config": "*",
-        "date-fns": "3.6.0",
-        "dayjs": "1.11.13",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
         "typescript": "5.7.3",
         "vitest": "3.0.5"
+    },
+    "peerDependencies": {
+        "@navikt/fnrvalidator": "2.1.5",
+        "dayjs": "1.11.13"
     },
     "repository": {
         "type": "git",

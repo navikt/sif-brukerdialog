@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { OpptjeningUtland } from '../types';
@@ -49,7 +48,7 @@ const OpptjeningUtlandExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <OpptjeningUtlandListAndDialog
                                         minDate={getDate1YearAgo()}
                                         maxDate={getDate1YearFromNow()}

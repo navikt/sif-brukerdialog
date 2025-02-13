@@ -2,8 +2,6 @@ import dayjs from 'dayjs';
 
 type ISODateString = string;
 
-const hasValue = (value: any): boolean => value !== '' && value !== undefined && value !== null;
-
 const ISOStringToDate = (dateString = ''): Date | undefined => getDateFromDateString(dateString);
 
 const getDateFromDateString = (dateString: string | undefined): Date | undefined => {
@@ -77,6 +75,8 @@ const getNumberFromNumberInputValue = (inputValue: string | undefined, integerVa
     }
     return numValue;
 };
+
+export const hasValue = (value: any): boolean => value !== '' && value !== undefined && value !== null;
 
 export const validationUtils = {
     getDateFromDateString,

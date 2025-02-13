@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import dayjs from 'dayjs';
 import MinMax from 'dayjs/plugin/minMax';

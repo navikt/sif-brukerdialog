@@ -5,7 +5,7 @@ import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { AppText, useAppIntl } from '../../../../i18n';
 

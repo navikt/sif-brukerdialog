@@ -4,7 +4,7 @@ import {
     ArbeidsukerFormValues,
 } from '../../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { cleanupArbeidIPeriode, cleanupArbeidsuker } from '../cleanupArbeidstidStep';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../../types';
 import { vi } from 'vitest';

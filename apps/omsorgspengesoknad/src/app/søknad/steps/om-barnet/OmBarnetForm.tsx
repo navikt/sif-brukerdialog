@@ -1,6 +1,6 @@
 import { isDevMode } from '@navikt/sif-common-env';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppText, useAppIntl } from '../../../i18n';

@@ -2,7 +2,7 @@ import { FormikModalFormAndList, TypedFormInputValidationProps } from '@navikt/s
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';
 import { Fosterbarn } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { useFosterbarnIntl } from './fosterbarnMessages';
 
 export interface FosterbarnListAndDialogText {

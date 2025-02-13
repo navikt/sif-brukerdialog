@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';

@@ -3,9 +3,9 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

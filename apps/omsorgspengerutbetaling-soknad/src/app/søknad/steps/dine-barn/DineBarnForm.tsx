@@ -2,7 +2,7 @@ import { Box } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { useAppIntl } from '../../../i18n';
