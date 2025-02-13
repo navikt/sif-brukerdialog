@@ -12,6 +12,7 @@ import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } 
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { getFeatureToggles } from '../utils/featureToggleUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -41,7 +42,8 @@ const getValidVedlegg = (vedlegg: Vedlegg[] = []): Vedlegg[] => {
 const isMellomlagringValid = (mellomlagring: SøknadTempStorageData): boolean => {
     return (
         mellomlagring.metadata?.version === MELLOMLAGRING_VERSION &&
-        mellomlagring.formValues?.harForståttRettigheterOgPlikter === true
+            mellomlagring.formValues?.harForståttRettigheterOgPlikter === true,
+        JSON.stringify(mellomlagring.metadata.featureToggles) === JSON.stringify(getFeatureToggles())
     );
 };
 class SøknadEssentialsLoader extends React.Component<Props, State> {

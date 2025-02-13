@@ -8,6 +8,7 @@ import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValue
 import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
+import { getFeatureToggles } from '../utils/featureToggleUtils';
 
 export const getPersistUrl = (stepID?: StepID) =>
     stepID ? `${ResourceType.MELLOMLAGRING}?lastStepID=${encodeURI(stepID)}` : ResourceType.MELLOMLAGRING;
@@ -21,6 +22,7 @@ export const persist = ({ formValues, lastStepID }: { formValues?: SøknadFormVa
                 lastStepID,
                 version: MELLOMLAGRING_VERSION,
                 updatedTimestemp: new Date().toISOString(),
+                featureToggles: getFeatureToggles(),
             },
         };
         return axios.put(url, { ...body }, axiosJsonConfig);
