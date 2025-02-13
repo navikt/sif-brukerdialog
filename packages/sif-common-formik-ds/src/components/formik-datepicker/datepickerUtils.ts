@@ -77,11 +77,9 @@ export const isISODateString = (value: any): value is ISODateString => {
     }
 };
 
-const datepickerUtils = {
+export const datepickerUtils = {
     getDateStringFromValue,
     getDateFromDateString,
     getDisabledDates,
     isValidFormattedDateString,
 };
-
-export default datepickerUtils;

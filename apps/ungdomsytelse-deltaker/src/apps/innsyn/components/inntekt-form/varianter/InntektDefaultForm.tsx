@@ -8,7 +8,7 @@ import {
     getInntektFromFormValues,
     inntektFormComponents,
 } from '../inntektFormUtils';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import InntektOppsummering from '../../inntekt-oppsummering/InntektOppsummering';
 import { DateRange } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';

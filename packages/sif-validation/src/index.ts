@@ -8,7 +8,7 @@ export { default as getOrgNumberValidator } from './getOrgNumberValidator';
 export { default as getStringValidator } from './getStringValidator';
 export { default as getYesOrNoValidator } from './getYesOrNoValidator';
 export { default as getRequiredFieldValidator } from './getRequiredFieldValidator';
-export { default as fieldErrorHandler } from './intlFormErrorHandler';
+export { default as getTimeValidator } from './getTimeValidator';
 
 export * from './getCheckedValidator';
 export * from './getDateValidator';
@@ -21,3 +21,4 @@ export * from './getStringValidator';
 export * from './getYesOrNoValidator';
 export * from './getRequiredFieldValidator';
 export * from './getTimeValidator';
+export * from './validationUtils';

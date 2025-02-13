@@ -10,11 +10,11 @@
     },
     "dependencies": {
         "@changesets/cli": "2.27.12",
-        "turbo": "2.4.0"
+        "turbo": "2.4.1"
     },
     "devDependencies": {
-        "@sif/eslint-config": "*",
-        "config": "*",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
         "husky": "9.1.7",
         "lint-staged": "15.4.3",
         "prettier": "3.5.0",

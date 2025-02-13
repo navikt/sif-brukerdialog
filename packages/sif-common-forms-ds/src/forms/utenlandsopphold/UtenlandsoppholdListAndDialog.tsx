@@ -3,7 +3,7 @@ import {
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { sortMaybeDateRange } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdVariant } from './types';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';

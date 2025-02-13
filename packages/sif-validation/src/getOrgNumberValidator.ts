@@ -1,5 +1,7 @@
 import { ValidationFunction } from './types';
-import { hasValue } from './validationUtils';
+import { validationUtils } from './validationUtils';
+
+const { hasValue } = validationUtils;
 
 export enum ValidateOrgNumberError {
     orgNumberHasNoValue = 'orgNumberHasNoValue',

@@ -2,9 +2,8 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import datepickerUtils from '../components/formik-datepicker/datepickerUtils';
 import { ValidationFunction } from './types';
-import { hasValue } from './validationUtils';
+import { validationUtils } from './validationUtils';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -39,11 +38,11 @@ const getDateValidator =
     (options: DateValidationOptions = {}): ValidationFunction<DateValidationResult> =>
     (value: any) => {
         const { required, min, max, onlyWeekdays } = options;
-        const date = datepickerUtils.getDateFromDateString(value);
-        if (required && hasValue(value) === false) {
+        const date = validationUtils.getDateFromDateString(value);
+        if (required && validationUtils.hasValue(value) === false) {
             return ValidateDateError.dateHasNoValue;
         }
-        if (hasValue(value)) {
+        if (validationUtils.hasValue(value)) {
             if (date === undefined) {
                 return ValidateDateError.dateHasInvalidFormat;
             }

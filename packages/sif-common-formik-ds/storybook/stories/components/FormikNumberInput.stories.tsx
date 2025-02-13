@@ -3,7 +3,7 @@ import * as React from 'react';
 import FormikNumberInput from '../../../src/components/formik-number-input/FormikNumberInput';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
-import getNumberValidator from '@navikt/sif-common-formik-ds/src/validation/getNumberValidator';
+import { getNumberValidator } from '@navikt/sif-validation';
 
 const meta: Meta<typeof FormikNumberInput> = {
     title: 'Component/FormikNumberInput',

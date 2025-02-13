@@ -1,6 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';

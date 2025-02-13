@@ -12,7 +12,7 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';

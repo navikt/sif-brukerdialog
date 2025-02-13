@@ -1,5 +1,5 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
 import dayjs from 'dayjs';
 

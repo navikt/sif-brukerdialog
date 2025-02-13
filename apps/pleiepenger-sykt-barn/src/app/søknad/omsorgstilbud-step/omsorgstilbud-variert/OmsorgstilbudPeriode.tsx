@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
     dateToISODate,

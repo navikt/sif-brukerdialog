@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src';
+import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
