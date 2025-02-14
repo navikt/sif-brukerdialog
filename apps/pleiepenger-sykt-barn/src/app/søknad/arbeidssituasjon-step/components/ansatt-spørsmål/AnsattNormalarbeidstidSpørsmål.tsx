@@ -29,6 +29,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
         arbeidsforhold: {
             arbeidsgiverNavn: arbeidsforhold.arbeidsgiver.navn,
             type: ArbeidsforholdType.ANSATT,
+            erAnsatt: arbeidsforhold.erAnsatt ? arbeidsforhold.erAnsatt === YesOrNo.YES : undefined,
         },
     });
 
