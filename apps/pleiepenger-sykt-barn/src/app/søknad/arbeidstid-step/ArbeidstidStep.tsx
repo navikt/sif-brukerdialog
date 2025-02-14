@@ -63,7 +63,10 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             {arbeidsgivere.length > 0 && (
                 <FormBlock>
                     {arbeidsgivere.map((ansatt) => {
-                        if (ansatt.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
+                        if (
+                            ansatt.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode ||
+                            ansatt.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
+                        ) {
                             return null;
                         }
                         const { arbeidsgiver, normalarbeidstid, index } = ansatt;
