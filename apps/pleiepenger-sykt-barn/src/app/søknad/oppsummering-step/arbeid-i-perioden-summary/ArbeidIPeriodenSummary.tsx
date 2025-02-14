@@ -5,6 +5,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdApiData, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
+import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -27,7 +28,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
 
     arbeidsgivere.forEach((arbeidsgiverApiData) => {
         if (arbeidsgiverApiData.arbeidsforhold) {
-            if (arbeidsgiverApiData.arbeidsforhold.arbeidIPeriode) {
+            if (arbeidsgiverApiData.arbeidsforhold.arbeidIPeriode.type !== ArbeidIPeriodeType.ikkeBesvart) {
                 summaryItem.push({
                     ...arbeidsgiverApiData.arbeidsforhold,
                     tittel: text('arbeidsgiver.tittel', {
