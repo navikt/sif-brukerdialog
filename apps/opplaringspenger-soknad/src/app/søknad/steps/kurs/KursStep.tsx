@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, Box, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
@@ -151,6 +151,14 @@ const KursStep = () => {
                                                 minLength: 2,
                                                 maxLength: 100,
                                             })}
+                                            description={
+                                                <ReadMore
+                                                    header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
+                                                    <Box marginBlock="0 4">
+                                                        <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
+                                                    </Box>
+                                                </ReadMore>
+                                            }
                                         />
                                     </VStack>
 
