@@ -5,7 +5,7 @@ export const playwrightEnv: AppEnv = {
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',
     GITHUB_REF_NAME: 'main',
-    SIF_PUBLIC_FEATURE_SOKE_ETT_AAR_TILBAKE: 'on',
+    SIF_PUBLIC_FEATURE_SOKE_TRE_AAR_TILBAKE: 'on',
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
