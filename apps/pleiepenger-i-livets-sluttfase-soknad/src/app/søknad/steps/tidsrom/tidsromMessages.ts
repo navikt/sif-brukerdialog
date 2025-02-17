@@ -6,7 +6,7 @@ const nb = {
     'step.tidsrom.counsellorPanel.avsnitt.2.3mnd':
         'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.2.3år':
-        'Du kan søke opp til tre år tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
+        'Du kan søke tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
 
