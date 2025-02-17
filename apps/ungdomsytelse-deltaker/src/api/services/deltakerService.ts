@@ -11,6 +11,7 @@ export const deltakerService = {
         const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
         try {
             const deltakelser = deltakelserSchema.parse(response.data);
+            console.log(deltakelser);
             return polyfillManglendeBackendLogikk(deltakelser);
         } catch (e) {
             getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);

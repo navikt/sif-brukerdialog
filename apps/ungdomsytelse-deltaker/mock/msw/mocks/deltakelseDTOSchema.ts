@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { oppgaveDTOSchema } from '../../../src/api/schemas/oppgaveSchema';
 
 /** Kun for å type mock */
 export const deltakelseDTOSchema = z.object({
@@ -6,6 +7,7 @@ export const deltakelseDTOSchema = z.object({
     programperiodeFraOgMed: z.string(),
     programperiodeTilOgMed: z.string(),
     harSøkt: z.boolean(),
+    oppgaver: z.array(oppgaveDTOSchema).optional(),
     rapporteringsPerioder: z
         .array(
             z.object({

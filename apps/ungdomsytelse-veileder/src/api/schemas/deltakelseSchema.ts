@@ -3,6 +3,7 @@ import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jso
 import { dateRangeUtils } from '@navikt/sif-common-utils';
 import { isBefore } from 'date-fns';
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
+import { oppgaveSchema } from './oppgaveSchema';
 
 const erDeltakelseAktiv = (harSøkt: boolean, fraOgMed: Date, tilOgMed: Date | undefined): boolean => {
     if (!harSøkt) {
@@ -33,6 +34,7 @@ export const deltakelseSchema = z
             deltakerIdent: z.string(),
         }),
         harSøkt: z.boolean(),
+        oppgaver: z.array(oppgaveSchema),
         fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
         tilOgMed: z.preprocess(
             (val) => (val !== '' ? parseMaybeDateStringToDate(val) : null),

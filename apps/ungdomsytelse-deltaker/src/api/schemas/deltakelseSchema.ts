@@ -4,6 +4,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { z } from 'zod';
 import { Rapporteringsperiode } from '../types';
 import { inntektSchema } from './inntektSchema';
+import { oppgaveSchema } from './oppgaveSchema';
 
 const rapporteringsperiodeProcessedDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
@@ -19,6 +20,7 @@ const deltakelseProcessedDTOSchema = z.object({
     programperiodeFraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     programperiodeTilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
     harSøkt: z.boolean(),
+    oppgaver: z.array(oppgaveSchema),
     rapporteringsPerioder: z.array(rapporteringsperiodeProcessedDTOSchema).optional().nullable(),
 });
 
