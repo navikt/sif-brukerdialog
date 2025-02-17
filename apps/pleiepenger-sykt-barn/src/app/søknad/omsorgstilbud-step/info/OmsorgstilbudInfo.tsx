@@ -1,6 +1,6 @@
 import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
-import { AppHtml, useAppIntl } from '@i18n/index';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -79,7 +79,10 @@ const OmsorgstilbudStepInfo = () => {
                         <AppText id="steg.omsorgstilbud.veileder.5.2" />
                     </p>
                     <p>
-                        <AppHtml id="steg.omsorgstilbud.veileder.5.3" />
+                        <AppText
+                            id="steg.omsorgstilbud.veileder.5.3"
+                            values={{ strong: (children) => <strong key="strong">{children}</strong> }}
+                        />
                     </p>
                     <p>
                         <AppText id="steg.omsorgstilbud.veileder.5.4" />

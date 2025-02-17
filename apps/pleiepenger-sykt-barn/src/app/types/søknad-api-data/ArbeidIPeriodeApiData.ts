@@ -32,6 +32,13 @@ export type ArbeidRedusertIPeriodeApiData =
     | ArbeiderRedusertProsentAvNormalt
     | ArbeiderReduserUlikeUkerTimer;
 
+export interface ArbeidIPeriodeApiDataIkkeBesvart {
+    type: ArbeidIPeriodeType.ikkeBesvart;
+}
+export interface ArbeidIPeriodeApiDataJobberIkke {
+    type: ArbeidIPeriodeType.arbeiderIkke;
+}
+
 export interface ArbeidIPeriodeApiDataJobberIkke {
     type: ArbeidIPeriodeType.arbeiderIkke;
 }
@@ -46,6 +53,7 @@ export interface ArbeidIPeriodeApiDataRedusert {
 }
 
 export type ArbeidIPeriodeApiData =
+    | ArbeidIPeriodeApiDataIkkeBesvart
     | ArbeidIPeriodeApiDataJobberIkke
     | ArbeidIPeriodeApiDataJobberVanlig
     | ArbeidIPeriodeApiDataRedusert;

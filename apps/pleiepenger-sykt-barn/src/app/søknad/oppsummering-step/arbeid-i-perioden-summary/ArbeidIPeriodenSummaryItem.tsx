@@ -35,6 +35,10 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         return <>Informasjon om arbeid i perioden mangler</>;
     }
 
+    if (arbeidIPeriode.type === ArbeidIPeriodeType.ikkeBesvart) {
+        return null;
+    }
+
     if (arbeidIPeriode.type === ArbeidIPeriodeType.arbeiderVanlig) {
         return (
             <List>

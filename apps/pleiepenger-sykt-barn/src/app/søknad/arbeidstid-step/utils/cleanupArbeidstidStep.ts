@@ -82,7 +82,8 @@ export const cleanupArbeidstidStep = (
         return {
             ...arbeidsforholdFormValues,
             arbeidIPeriode:
-                arbeidssituasjon.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode
+                arbeidssituasjon.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode ||
+                arbeidssituasjon.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
                     ? undefined
                     : cleanupArbeidIPeriode(
                           arbeidssituasjon.periodeSomAnsattISøknadsperiode,

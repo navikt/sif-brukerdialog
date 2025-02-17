@@ -25,13 +25,6 @@ vi.mock('../utils/apiUtils', () => {
     };
 });
 
-vi.mock('../../utils/featureToggleUtils', () => {
-    return {
-        isFeatureEnabled: vi.fn(() => false),
-        Feature: {},
-    };
-});
-
 vi.mock('axios');
 
 describe('api', () => {

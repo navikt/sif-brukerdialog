@@ -15,6 +15,7 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
     SIF_PUBLIC_USE_AMPLITUDE: 'false',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
+    SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE: 'off',
     MOCK_DATE: '2023-01-01',
     USE_MOCK_DATE: 'true',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger/api/k9-brukerdialog',
