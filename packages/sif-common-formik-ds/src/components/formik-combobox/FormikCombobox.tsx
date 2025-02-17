@@ -34,7 +34,6 @@ function FormikCombobox<FieldName, ErrorType>({
             validate={
                 validate
                     ? (value: any) => {
-                          console.log(value);
                           return validate(value, name);
                       }
                     : undefined
