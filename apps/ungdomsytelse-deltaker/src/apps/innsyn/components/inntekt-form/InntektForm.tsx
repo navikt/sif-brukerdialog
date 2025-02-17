@@ -34,7 +34,7 @@ const InntektForm = ({
     const { FormikWrapper, Form } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const inntekt = getInntektFromFormValues(values);
+        const inntekt = getInntektFromFormValues(values, kompakt);
         const data: InntektsrapporteringDTO = {
             oppgittInntektForPeriode: {
                 periodeForInntekt: {

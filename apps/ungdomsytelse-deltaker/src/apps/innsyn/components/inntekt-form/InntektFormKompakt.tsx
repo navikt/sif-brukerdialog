@@ -25,7 +25,7 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
     const { FormikWrapper, Form, ConfirmationCheckbox } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const inntekt = getInntektFromFormValues(values);
+        const inntekt = getInntektFromFormValues(values, true);
         const data: InntektsrapporteringDTO = {
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
