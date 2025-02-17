@@ -64,8 +64,11 @@ const nn: Record<keyof typeof nb, string> = {
     'step.tidsrom.stepTitle': 'Dagar du må vere heime frå jobb for å gi pleie',
     'step.tidsrom.stepIndicatorLabel': 'Periode',
     'step.tidsrom.counsellorPanel.avsnitt.1': 'No skal du velje dei dagane du må vere heime frå jobb for å gi pleie.',
-    'step.tidsrom.counsellorPanel.avsnitt.2':
-        'Du kan søkje tre månader tilbake i tid, og to veker fram i tid. Dersom du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
+
+    'step.tidsrom.counsellorPanel.avsnitt.2.3mnd':
+        'Du kan søkje tre månader tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
+    'step.tidsrom.counsellorPanel.avsnitt.2.3år':
+        'Du kan søkje opptil tre år tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Hugs at det ikkje er rett til pleiepengar på dagar der personen er innlagt på sjukehus eller ein annan institusjon.',
 
