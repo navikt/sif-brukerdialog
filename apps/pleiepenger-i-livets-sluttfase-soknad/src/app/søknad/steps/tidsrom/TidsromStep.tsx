@@ -90,8 +90,6 @@ const TidsromStep = () => {
         },
     );
 
-    console.log(appEnv);
-
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
