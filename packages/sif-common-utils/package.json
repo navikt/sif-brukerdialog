@@ -13,13 +13,13 @@
         "uuid": "11.0.5"
     },
     "devDependencies": {
-        "@babel/core": "7.26.8",
-        "@babel/preset-env": "7.26.8",
+        "@babel/core": "7.26.9",
+        "@babel/preset-env": "7.26.9",
         "@babel/preset-react": "7.26.3",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "22.13.2",
-        "@types/react": "19.0.8",
-        "@types/react-dom": "19.0.3",
+        "@types/node": "22.13.4",
+        "@types/react": "19.0.10",
+        "@types/react-dom": "19.0.4",
         "@types/uuid": "10.0.0",
         "config": "workspace:*",
         "globals": "15.15.0",
