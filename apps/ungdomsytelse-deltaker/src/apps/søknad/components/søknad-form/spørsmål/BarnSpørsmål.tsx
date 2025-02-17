@@ -1,4 +1,4 @@
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { SøknadFormFields } from '../SøknadForm';
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';

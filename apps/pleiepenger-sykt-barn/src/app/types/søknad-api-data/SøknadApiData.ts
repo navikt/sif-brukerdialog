@@ -8,7 +8,7 @@ import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
-import { ISODateString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/dateFormatUtils';
+import { ISODateString } from '@navikt/sif-common-formik-ds';
 import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
 
 export * from './ArbeidIPeriodeApiData';

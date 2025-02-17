@@ -8,20 +8,20 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/sif-common-hooks": "*",
+        "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.2.1",
-        "@sanity/client": "6.27.2"
+        "@sanity/client": "6.28.0"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.12.2",
         "@navikt/ds-react": "7.12.2",
-        "@sif/eslint-config": "*",
-        "@types/node": "22.13.1",
+        "@sif/eslint-config": "workspace:*",
+        "@types/node": "22.13.2",
         "@types/react": "19.0.8",
         "@types/react-dom": "19.0.3",
-        "config": "*",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.5.1",
+        "postcss": "8.5.2",
         "prop-types": "15.8.1",
         "react": "19.0.0",
         "react-dom": "19.0.0",

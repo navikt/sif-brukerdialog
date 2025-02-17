@@ -2,10 +2,9 @@ import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     getDate1YearAgo,
@@ -63,7 +62,7 @@ const EnkeltdatoExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <EnkeltdatoListAndDialog<FormField>
                                         name={FormField.enkeltdato}
                                         minDate={minDate}

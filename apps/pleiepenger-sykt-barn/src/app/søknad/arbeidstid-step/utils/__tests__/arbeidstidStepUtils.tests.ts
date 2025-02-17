@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import {
     ArbeidsperiodeIForholdTilSøknadsperiode,

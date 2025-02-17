@@ -1,6 +1,6 @@
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

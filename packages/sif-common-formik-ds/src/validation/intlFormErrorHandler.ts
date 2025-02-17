@@ -24,7 +24,10 @@ const getFieldErrorHandler =
             : intl.formatMessage({ id: createFieldErrorIntlKey(error, fieldName, keySeparator, errorPrefix) });
     };
 
-const getIntlFormErrorHandler = (intl: IntlShape, errorPrefix?: string): CustomFormErrorHandler<ValidationError> => ({
+export const getIntlFormErrorHandler = (
+    intl: IntlShape,
+    errorPrefix?: string,
+): CustomFormErrorHandler<ValidationError> => ({
     fieldErrorHandler: getFieldErrorHandler(intl, '.', errorPrefix),
     isHandledErrorTypeFunc: (error) => isIntlErrorObject(error) || typeof error === 'string',
 });
@@ -36,5 +39,3 @@ export const getIntlFormErrorHandler_underscoreKeys = (
     fieldErrorHandler: getFieldErrorHandler(intl, '_', errorPrefix),
     isHandledErrorTypeFunc: isIntlErrorObject,
 });
-
-export default getIntlFormErrorHandler;

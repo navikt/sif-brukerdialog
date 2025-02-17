@@ -1,5 +1,5 @@
 import React from 'react';
-import FormikValuesObserver from '@navikt/sif-common-formik-ds/src/components/helpers/formik-values-observer/FormikValuesObserver';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { StepId } from '../../søknad/config/StepId';
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
 

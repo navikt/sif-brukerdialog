@@ -42,7 +42,7 @@ const søknadsdata: Søknadsdata = {
             ],
             reisedagerBeskrivelse: 'Kombinerer med ferie',
         },
-        kursholder: 'AHus avdeling 1',
+        kursholder: 'Barnas Fysioterapisenter i Bergen',
         kursperioder: [
             {
                 id: '0',

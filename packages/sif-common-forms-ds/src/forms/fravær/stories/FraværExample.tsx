@@ -2,10 +2,9 @@ import { BodyLong, Heading, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { FraværDag, fraværDagToFraværDateRange, fraværMessages, FraværPeriode, fraværPeriodeToDateRange } from '../';
@@ -65,7 +64,7 @@ const FormikExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError | FraværFieldValidationErrors>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <FormBlock>
                                         <Heading level="2" size="medium" spacing={true}>
                                             FraværPerioderListAndDialog

@@ -4,8 +4,9 @@ const nb = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringen må være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Jeg finner ikke riktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
@@ -35,7 +36,7 @@ const nb = {
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
-        '{antallDager, plural, one {Én reisedag} other {# reisedager}} er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikke er innenfor dager du søker. Reisedager utenfor søknadsperiode: {dager}.',
+        '{antallDager, plural, one {Én reisedag} other {# reisedager}} er utenfor søknadsperioden: {dager}. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Hvis du vil søke om opplæringspenger for disse dagene, må du inkludere dem i perioden du søker om opplæringspenger. Hvis du ikke søker opplæringspenger disse dagene, må du fjerne dem her.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
         'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker. Feriedager utenfor søknadsperiode: {dager}.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
@@ -52,7 +53,7 @@ const nb = {
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
 
-    'steg.kurs.godkjentHelseinstitusjon.label': 'Hva er en godkjent helseinstitusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.label': 'Hvilke institusjoner er godkjente?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspenger, må du få opplæringen på en godkjent helseinstitusjon eller ved et spesialpedagogisk kompetansesenter.',
     'steg.kurs.godkjentHelseinstitusjon.text.2':
@@ -81,8 +82,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringa må vere ved ein godkjend helseinstitusjon eller eit offentleg spesialpedagogisk kompetansesenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Kvar føregår opplæringa?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarleg for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkjeriktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
     'steg.kurs.kursperioder.tekst':

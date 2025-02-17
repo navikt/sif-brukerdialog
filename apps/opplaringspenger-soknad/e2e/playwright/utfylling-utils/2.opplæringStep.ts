@@ -2,7 +2,10 @@ import { Page, expect } from '@playwright/test';
 
 export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
-    await page.getByLabel('Hvor foregår opplæringen?').fill('AHus avdeling 1');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).click();
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('Enter');
     await leggTilPeriode1(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
@@ -11,7 +14,10 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
 
 export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
-    await page.getByLabel('Hvor foregår opplæringen?').fill('AHus avdeling 1');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).click();
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('ArrowDown');
+    await page.getByRole('combobox', { name: 'Hvor foregår opplæringen?' }).press('Enter');
     await page.getByRole('button', { name: 'Legg til ny periode' }).click();
     await leggTilPeriode1(page);
     await leggTilPeriode2(page);
@@ -75,7 +81,7 @@ const leggTilFerie = async (page: Page) => {
 };
 
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
-    await expect(page.getByText('Hvor foregår opplæringen?AHus')).toBeVisible();
+    await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(page.locator('li').filter({ hasText: '02.12.2024 - 08.12.2024' })).toBeVisible();
     await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæringTirsdag')).toBeVisible();
@@ -85,7 +91,7 @@ export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
 };
 
 export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) => {
-    await expect(page.getByText('Hvor foregår opplæringen?AHus')).toBeVisible();
+    await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(
         page.getByText('Hvilke dager søker du opplæringspenger?02.12.2024 - 08.12.202416.12.2024 -'),
     ).toBeVisible();

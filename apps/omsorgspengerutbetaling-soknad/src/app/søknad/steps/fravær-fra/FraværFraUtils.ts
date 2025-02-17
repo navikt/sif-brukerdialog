@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { dateToISOString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import { dateErHelg } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværUtilities';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import dayjs from 'dayjs';

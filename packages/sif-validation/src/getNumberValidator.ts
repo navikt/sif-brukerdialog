@@ -1,6 +1,7 @@
-import { hasValue } from './validationUtils';
 import { ValidationFunction } from './types';
-import { getNumberFromNumberInputValue } from '../utils/numberInputUtils';
+import { validationUtils } from './validationUtils';
+
+const { hasValue, getNumberFromNumberInputValue } = validationUtils;
 
 export enum ValidateNumberError {
     numberHasNoValue = 'numberHasNoValue',

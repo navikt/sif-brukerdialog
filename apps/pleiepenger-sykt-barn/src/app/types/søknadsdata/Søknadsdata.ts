@@ -1,5 +1,5 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';

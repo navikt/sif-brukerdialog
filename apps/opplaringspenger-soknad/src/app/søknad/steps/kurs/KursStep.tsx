@@ -1,8 +1,8 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, Box, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -54,7 +54,7 @@ export interface KursFormValues {
     [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Combobox } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -64,9 +64,10 @@ const KursStep = () => {
     const { intl, text } = useAppIntl();
 
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, institusjoner },
     } = useSøknadContext();
 
+    const institusjonsnavn = institusjoner.map((institusjon) => institusjon.navn);
     const stepId = StepId.KURS;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
@@ -135,17 +136,29 @@ const KursStep = () => {
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
-                                        <TextField
-                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                        <Combobox
                                             name={KursFormFields.opplæringsinstitusjon}
-                                            description={text('steg.kurs.opplæringsinstitusjon.description')}
-                                            min={2}
-                                            max={50}
+                                            allowNewValues={true}
+                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                            options={institusjonsnavn}
+                                            shouldAutocomplete={false}
+                                            maxLength={90}
+                                            minLength={2}
+                                            isMultiSelect={false}
+                                            initialValue={values[KursFormFields.opplæringsinstitusjon]}
                                             validate={getStringValidator({
                                                 required: true,
                                                 minLength: 2,
-                                                maxLength: 50,
+                                                maxLength: 100,
                                             })}
+                                            description={
+                                                <ReadMore
+                                                    header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
+                                                    <Box marginBlock="0 4">
+                                                        <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
+                                                    </Box>
+                                                </ReadMore>
+                                            }
                                         />
                                     </VStack>
 

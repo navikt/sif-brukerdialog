@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { Inntekt, InntektsrapporteringDTO } from '../../../../api/types';
 import { useAppIntl } from '../../../../i18n';

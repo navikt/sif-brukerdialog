@@ -1,5 +1,5 @@
 import { Box, ReadMore } from '@navikt/ds-react';
-import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { inntektFormComponents } from '../inntektFormUtils';
 import { InntektFormFields } from '../types';

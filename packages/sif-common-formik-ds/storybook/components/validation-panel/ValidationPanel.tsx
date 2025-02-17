@@ -3,7 +3,7 @@ import * as React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { hasValue } from '../../../src/validation/validationUtils';
+import { hasValue } from '@navikt/sif-validation';
 
 interface Props {
     title: string;

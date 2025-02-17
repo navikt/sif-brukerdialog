@@ -7,8 +7,8 @@ import {
     YesOrNo,
     getTypedFormComponents,
 } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';

@@ -7,6 +7,7 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
 import { MellomlagringData, mellomlagringService } from './mellomlagringService';
+import { fetchInstitusjoner, Institusjon } from './institusjonService';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -41,6 +42,7 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
+    institusjoner: Institusjon[],
     lagretSøknadState: MellomlagringData,
 ): Promise<SøknadInitialData> => {
     const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
@@ -54,6 +56,7 @@ const getSøknadInitialData = async (
         ...lagretSøknadStateToUse,
         søker,
         registrerteBarn,
+        institusjoner,
     });
 };
 
@@ -62,14 +65,15 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, registrerteBarn, lagretSøknadState] = await Promise.all([
+            const [søker, registrerteBarn, institusjoner, lagretSøknadState] = await Promise.all([
                 fetchSøker(),
                 fetchBarn(),
+                fetchInstitusjoner(),
                 mellomlagringService.fetch(),
             ]);
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
+                data: await getSøknadInitialData(søker, registrerteBarn, institusjoner, lagretSøknadState),
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

@@ -22,7 +22,6 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
                 valgteDatoer,
                 getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                 periode,
-                jobberNormaltTimer,
             ),
         };
     }
@@ -34,7 +33,6 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
                     valgteDatoer,
                     getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                     periode,
-                    jobberNormaltTimer,
                 ),
             };
         case ArbeidIPeriodeType.arbeiderVanlig:
@@ -44,7 +42,6 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
                     valgteDatoer,
                     getEnkeltdagerMedTidPerDag(valgteDatoer, getNormalarbeidstidPerDag(jobberNormaltTimer)),
                     periode,
-                    jobberNormaltTimer,
                 ),
             };
         case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
@@ -54,7 +51,6 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
                     valgteDatoer,
                     arbeidIPeriodeSøknadsdata.enkeltdager,
                     periode,
-                    jobberNormaltTimer,
                 ),
             };
     }
