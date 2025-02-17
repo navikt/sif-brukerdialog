@@ -4,8 +4,9 @@ const nb = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringen må være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Jeg finner ikke riktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
@@ -52,7 +53,7 @@ const nb = {
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
 
-    'steg.kurs.godkjentHelseinstitusjon.label': 'Hva er en godkjent helseinstitusjon?',
+    'steg.kurs.godkjentHelseinstitusjon.label': 'Hvilke institusjoner er godkjente?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspenger, må du få opplæringen på en godkjent helseinstitusjon eller ved et spesialpedagogisk kompetansesenter.',
     'steg.kurs.godkjentHelseinstitusjon.text.2':
@@ -81,8 +82,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringa må vere ved ein godkjend helseinstitusjon eller eit offentleg spesialpedagogisk kompetansesenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Kvar føregår opplæringa?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarleg for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkjeriktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
     'steg.kurs.kursperioder.tekst':
