@@ -12,10 +12,7 @@ const getSpørOmSluttetISøknadsperiodeFraEnv = async (page: Page): Promise<bool
         }
         return null;
     });
-
-    const spørOmSluttetISøknadsperiode = appSettings?.SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE;
-    console.log('spørOmSluttetISøknadsperiode', spørOmSluttetISøknadsperiode);
-    return spørOmSluttetISøknadsperiode === 'on';
+    return appSettings?.SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE === 'on';
 };
 
 test.beforeEach(async ({ page, context }) => {
