@@ -3052,12 +3052,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@hookform/resolvers@npm:4.0.0"
+"@hookform/resolvers@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@hookform/resolvers@npm:4.1.0"
+  dependencies:
+    caniuse-lite: "npm:^1.0.30001698"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 10/48990cb7b4eaad76c0cce76c135ac7110eeeda16d1ab9dfcc5fd994c9f94c5af604e4ed6395f7c1d007b05378306057f029ee7a67d2b495f3f17deadfdca0760
+  checksum: 10/9769dadd038f817a119aa810ff3f951f492686e814b99246dc6ada7a89daad22490381c79ff4406484870d98d5a0bd8400a6e4f22082509db1974adbf62e0a6d
   languageName: node
   linkType: hard
 
@@ -5347,7 +5349,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:3.2.0"
     "@eslint/js": "npm:9.20.0"
-    "@hookform/resolvers": "npm:4.0.0"
+    "@hookform/resolvers": "npm:4.1.0"
     "@navikt/aksel-icons": "npm:7.12.2"
     "@navikt/ds-css": "npm:7.12.2"
     "@navikt/ds-react": "npm:7.12.2"
@@ -12592,6 +12594,13 @@ __metadata:
   version: 1.0.30001699
   resolution: "caniuse-lite@npm:1.0.30001699"
   checksum: 10/325bf4d4ea8ab377046b6d5a43685359d5426adbb62aa1bea2c851cb5673547ef22b4a2b0e172e5a87ac74a7042e6ad23b87b78fdd04543c152d4e799397d7ba
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001698":
+  version: 1.0.30001700
+  resolution: "caniuse-lite@npm:1.0.30001700"
+  checksum: 10/9203ed502fd1b74c47f315a001e1d91abe2abecb951f8e15dd1556cfc23a29fa7a7b2cc654380604bb6f58bcfa0c65b78055b9d99a7489c13baa0d4158a6e25e
   languageName: node
   linkType: hard
 

@@ -14,7 +14,7 @@
         "lint:fix": "eslint --fix"
     },
     "dependencies": {
-        "@hookform/resolvers": "4.0.0",
+        "@hookform/resolvers": "4.1.0",
         "@navikt/aksel-icons": "7.12.2",
         "@navikt/ds-css": "7.12.2",
         "@navikt/ds-react": "7.12.2",
