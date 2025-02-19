@@ -11,8 +11,8 @@ const OppgaveBase = z.object({
     type: z.nativeEnum(Oppgavetype),
     id: z.string(),
     status: z.nativeEnum(Oppgavestatus),
-    opprettetDato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    løstDato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().nullable()).optional(),
+    // opprettetDato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    // løstDato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().nullable()).optional(),
 });
 
 /**
