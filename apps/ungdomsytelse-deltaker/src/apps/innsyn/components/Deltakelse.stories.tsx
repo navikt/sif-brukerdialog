@@ -1,10 +1,27 @@
-import { deltakelseSchema, Oppgavetype } from '@navikt/ung-common';
+import {
+    BekreftEndretSluttdatoOppgave,
+    BekreftEndretStartdatoOppgave,
+    deltakelseSchema,
+    Oppgavetype,
+} from '@navikt/ung-common';
 import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakelser/harSøkt';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import Deltakelse from './Deltakelse';
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
+    type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    startdato: ISODateToDate('2024-07-01'),
+    svarfrist: ISODateToDate('2024-07-31'),
+};
+
+const endretSluttdatoOppgave: BekreftEndretSluttdatoOppgave = {
+    type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    sluttdato: ISODateToDate('2024-07-01'),
+    svarfrist: ISODateToDate('2024-07-31'),
+};
 
 const meta: Meta<typeof Deltakelse> = {
     component: Deltakelse,
@@ -17,7 +34,6 @@ export default meta;
 type Story = StoryObj<typeof Deltakelse>;
 
 const deltakelse = deltakelseSchema.parse(deltakelserHarSøkt[0]);
-const oppgaver = deltakelse.oppgaver;
 
 export const DeltakelseUtenOppgaver: Story = {
     name: 'Åpen timerapportering',
@@ -34,7 +50,7 @@ export const DeltakelseMedEndretStartdato: Story = {
     args: {
         deltakelse: {
             ...deltakelse,
-            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.BEKREFT_ENDRET_STARTDATO),
+            oppgaver: [endretStartdatoOppgave],
         },
     },
 };
@@ -44,7 +60,7 @@ export const DeltakelseMedEndretSluttdato: Story = {
     args: {
         deltakelse: {
             ...deltakelse,
-            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO),
+            oppgaver: [endretSluttdatoOppgave],
         },
     },
 };

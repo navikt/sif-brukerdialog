@@ -1,5 +1,3 @@
-import { Oppgavetype } from '@navikt/ung-common';
-
 export const deltakelserHarSøkt = [
     {
         id: '123',
@@ -7,11 +5,11 @@ export const deltakelserHarSøkt = [
         programperiodeTilOgMed: '2025-06-30',
         harSøkt: true,
         oppgaver: [
-            {
-                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
-                startdato: '2024-07-01',
-                svarfrist: '2024-07-31',
-            },
+            // {
+            //     type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            //     startdato: '2024-07-01',
+            //     svarfrist: '2024-07-31',
+            // },
             // {
             //     type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
             //     sluttdato: '2024-07-01',
