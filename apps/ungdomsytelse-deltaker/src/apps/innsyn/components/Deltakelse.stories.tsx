@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Deltakelse> = {
     component: Deltakelse,
-    title: 'Content/Deltakelse',
+    title: 'Deltakelse',
     parameters: {},
     decorators: [withPageWidth, withIntl],
 };
@@ -21,7 +21,7 @@ const deltakelse = deltakelseSchema.parse(deltakelserHarSøkt[0]);
 const oppgaver = deltakelse.oppgaver;
 
 export const DeltakelseUtenOppgaver: Story = {
-    name: 'Deltakelse med timerapportering',
+    name: 'Åpen timerapportering',
     args: {
         deltakelse: {
             ...deltakelse,
@@ -31,7 +31,7 @@ export const DeltakelseUtenOppgaver: Story = {
 };
 
 export const DeltakelseMedEndretStartdato: Story = {
-    name: 'Deltakelse med endret startdato',
+    name: 'Endret startdato',
     args: {
         deltakelse: {
             ...deltakelse,
@@ -41,7 +41,7 @@ export const DeltakelseMedEndretStartdato: Story = {
 };
 
 export const DeltakelseMedEndretSluttdato: Story = {
-    name: 'Deltakelse med endret sluttdato',
+    name: 'Endret sluttdato',
     args: {
         deltakelse: {
             ...deltakelse,

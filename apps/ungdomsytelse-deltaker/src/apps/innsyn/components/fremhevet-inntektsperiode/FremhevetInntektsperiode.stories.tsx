@@ -16,7 +16,7 @@ const rapporteringsperiode: Rapporteringsperiode = {
 };
 
 const meta: Meta<typeof FremhevetInntektsperiode> = {
-    title: 'Components/Fremhevet inntektsperiode',
+    title: 'Komponenter/Fremhevet inntektsperiode',
     component: FremhevetInntektsperiode,
     decorators: [withIntl, withPageWidth],
     args: {
