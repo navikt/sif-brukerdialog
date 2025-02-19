@@ -27,6 +27,7 @@
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
+        "@navikt/ung-common": "workspace:*",
         "@tanstack/react-query": "5.66.3",
         "@trpc/client": "10.45.2",
         "@trpc/react-query": "10.45.2",

@@ -10,7 +10,9 @@ export const oppgittInntektForPeriodeSchema = z.object({
     }),
 });
 
-export const inntektsrapporteringSchema = z.object({
+export const rapporterInntektDTOSchema = z.object({
     oppgittInntektForPeriode: oppgittInntektForPeriodeSchema,
     harBekreftetInntekt: z.boolean(),
 });
+
+export type RapporterInntektDTO = z.infer<typeof rapporterInntektDTOSchema>;

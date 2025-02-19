@@ -5695,6 +5695,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/ung-common@workspace:*, @navikt/ung-common@workspace:packages/ung-common":
+  version: 0.0.0-use.local
+  resolution: "@navikt/ung-common@workspace:packages/ung-common"
+  dependencies:
+    "@sif/eslint-config": "workspace:*"
+    config: "workspace:*"
+    typescript: "npm:5.7.3"
+    vitest: "npm:3.0.5"
+    zod: "npm:3.24.2"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/ungdomsytelse-deltaker@workspace:apps/ungdomsytelse-deltaker":
   version: 0.0.0-use.local
   resolution: "@navikt/ungdomsytelse-deltaker@workspace:apps/ungdomsytelse-deltaker"
@@ -5712,6 +5727,7 @@ __metadata:
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
+    "@navikt/ung-common": "workspace:*"
     "@storybook/addon-essentials": "npm:8.5.6"
     "@storybook/addon-interactions": "npm:8.5.6"
     "@storybook/addon-links": "npm:8.5.6"
