@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
-import { Inntekt } from '../../../../api/types';
+import { Inntekt } from '@navikt/ung-common';
 
 interface Props {
     månedNavn: string;

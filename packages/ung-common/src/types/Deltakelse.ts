@@ -3,8 +3,7 @@ import { isDateInDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 import { deltakelseDTOSchema } from './dto/DeltakelseDTO';
-import { Rapporteringsperiode, rapporteringsperiodeSchema } from './Rapporteringsperiode';
-import { oppgaveSchema } from './Oppgave';
+import { Rapporteringsperiode } from './Rapporteringsperiode';
 
 export const deltakelseSchema = deltakelseDTOSchema.transform((data) => {
     const { programperiodeFraOgMed, programperiodeTilOgMed, ...rest } = data;
@@ -12,13 +11,17 @@ export const deltakelseSchema = deltakelseDTOSchema.transform((data) => {
         from: programperiodeFraOgMed,
         to: programperiodeTilOgMed,
     };
+
     const deltakelse = {
         ...rest,
         programPeriode,
-        oppgaver: data.oppgaver.map((oppgaveDTO) => oppgaveSchema.parse(oppgaveDTO)),
         rapporteringsPerioder: data.rapporteringsPerioder?.map((rapporteringsperiodeDTO): Rapporteringsperiode => {
             return {
-                ...rapporteringsperiodeSchema.parse(rapporteringsperiodeDTO),
+                ...rapporteringsperiodeDTO,
+                periode: {
+                    from: rapporteringsperiodeDTO.fraOgMed,
+                    to: rapporteringsperiodeDTO.tilOgMed,
+                },
                 // TODO - fallback frem til backend er klar
                 kanRapportere: isDateInDateRange(new Date(), {
                     from: programPeriode.from,

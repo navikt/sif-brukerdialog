@@ -1,6 +1,6 @@
 import { BodyShort, Button, ConfirmationPanel, Heading, HStack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { BekreftEndretSluttdatoOppgave } from '../../../../api/schemas/oppgaveSchema';
+import { BekreftEndretSluttdatoOppgave } from '@navikt/ung-common';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 
 interface Props {

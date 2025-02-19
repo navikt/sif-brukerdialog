@@ -1,7 +1,7 @@
-import { Rapporteringsperiode } from '../../../../api/types';
 import { Heading, Modal } from '@navikt/ds-react';
-import InntektForm from '../inntekt-form/InntektForm';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Rapporteringsperiode } from '@navikt/ung-common';
+import InntektForm from '../inntekt-form/InntektForm';
 
 interface Props {
     rapporteringsperiode?: Rapporteringsperiode;

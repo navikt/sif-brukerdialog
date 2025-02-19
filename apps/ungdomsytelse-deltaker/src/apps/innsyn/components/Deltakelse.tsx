@@ -1,11 +1,9 @@
-import { Deltakelse } from '../../../api/types';
 import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+import { Deltakelse, Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
 import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
-import Periodeliste from './Periodeliste';
 import OppgavePanel from './oppgaver/OppgavePanel';
-import { Oppgave } from '../../../api/schemas/oppgaveSchema';
-import { Oppgavetype } from '../../../types/Oppgavetype';
+import Periodeliste from './Periodeliste';
 
 interface Props {
     deltakelse: Deltakelse;

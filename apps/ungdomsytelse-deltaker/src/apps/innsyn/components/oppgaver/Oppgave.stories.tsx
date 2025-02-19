@@ -1,8 +1,7 @@
+import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
-import { Oppgave } from '../../../../api/schemas/oppgaveSchema';
-import { Oppgavetype } from '../../../../types/Oppgavetype';
 import OppgavePanel from './OppgavePanel';
 
 import type { Meta, StoryObj } from '@storybook/react';

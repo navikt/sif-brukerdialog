@@ -1,9 +1,9 @@
 import { barnResponseSchema, søkerResponseSchema } from '@navikt/sif-common-api';
-import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
+import { deltakelseSchema } from '@navikt/ung-common';
 import { søker1Mock } from '../../mock/msw/mocks/soker1';
-import { deltakelseSchema } from '../../src/api/schemas/deltakelseSchema';
-import { deltakelserHarSøkt } from '../../mock/msw/mocks/soker1/deltakelser/harSøkt';
 import { barnMock } from '../../mock/msw/mocks/soker1/barnMock';
+import { deltakelserHarSøkt } from '../../mock/msw/mocks/soker1/deltakelser/harSøkt';
+import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
 
 export const withDeltakerContext = (Story) => {
     const søker = søkerResponseSchema.parse(søker1Mock);

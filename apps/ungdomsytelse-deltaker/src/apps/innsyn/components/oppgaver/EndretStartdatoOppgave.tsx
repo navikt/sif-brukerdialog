@@ -1,10 +1,7 @@
 import { BodyShort, Button, ConfirmationPanel, Heading, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import {
-    BekreftEndretStartdatoOppgave,
-    BekreftEndretStartdatoOppgave as EndretStartdatoOppgave,
-} from '../../../../api/schemas/oppgaveSchema';
-import BlueBox from '../../../../components/blue-box/BlueBox';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { BekreftEndretStartdatoOppgave } from '@navikt/ung-common';
+import BlueBox from '../../../../components/blue-box/BlueBox';
 
 interface Props {
     oppgave: BekreftEndretStartdatoOppgave;

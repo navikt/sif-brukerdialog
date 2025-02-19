@@ -7,7 +7,7 @@ import { ungDeltakelseOpplyserApiClient } from '../deltakelseOpplyserClient';
 import { polyfillManglendeBackendLogikk } from '../utils/apiPolyfillUtils';
 
 export const deltakerService = {
-    hentDeltakelser: async (): Promise<Deltakelser> => {
+    fetchDeltakelser: async (): Promise<Deltakelser> => {
         const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
         try {
             const deltakelser = deltakelserSchema.parse(response.data);

@@ -1,7 +1,6 @@
-import { Oppgavetype } from '../../../../../src/types/Oppgavetype';
-import { DeltakelseDTO } from '../../deltakelseDTOSchema';
+import { Oppgavetype } from '@navikt/ung-common';
 
-export const deltakelserHarSøkt: DeltakelseDTO[] = [
+export const deltakelserHarSøkt = [
     {
         id: '123',
         programperiodeFraOgMed: '2024-07-01',
@@ -13,11 +12,11 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 startdato: '2024-07-01',
                 svarfrist: '2024-07-31',
             },
-            {
-                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-                sluttdato: '2024-07-01',
-                svarfrist: '2024-07-31',
-            },
+            // {
+            //     type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+            //     sluttdato: '2024-07-01',
+            //     svarfrist: '2024-07-31',
+            // },
         ],
         rapporteringsPerioder: [
             {

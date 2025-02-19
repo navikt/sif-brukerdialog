@@ -1,6 +1,5 @@
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
-import { Oppgave } from '../../../../api/schemas/oppgaveSchema';
-import { Oppgavetype } from '../../../../types/Oppgavetype';
+import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import EndretSluttdatoOppgave from './EndretSluttdatoOppgave';
 import EndretStartdatoOppgave from './EndretStartdatoOppgave';
 

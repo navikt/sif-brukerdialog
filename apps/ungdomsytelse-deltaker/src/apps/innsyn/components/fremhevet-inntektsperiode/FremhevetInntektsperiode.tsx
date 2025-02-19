@@ -1,7 +1,7 @@
 import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Rapporteringsperiode } from '../../../../api/types';
+import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import EndreInntektPart from './EndreInntektPart';
 import RapporterInntektPart from './RapporterInntektPart';

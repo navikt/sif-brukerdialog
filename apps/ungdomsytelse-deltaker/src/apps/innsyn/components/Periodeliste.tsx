@@ -1,12 +1,12 @@
-import { Add } from '@navikt/ds-icons';
 import { BodyShort, Box, Button, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
-import { Rapporteringsperiode } from '../../../api/types';
-import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
-import { useAppIntl } from '../../../i18n';
-import { FormattedNumber } from 'react-intl';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import EndreInntektDialog from './endre-inntekt-dialog/EndreInntektDialog';
+import { FormattedNumber } from 'react-intl';
+import { Add } from '@navikt/ds-icons';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
+import { Rapporteringsperiode } from '@navikt/ung-common';
+import { useAppIntl } from '../../../i18n';
 import { erDatoIFørsteMånedIProgrammet } from '../utils/deltakelseUtils';
+import EndreInntektDialog from './endre-inntekt-dialog/EndreInntektDialog';
 
 interface Props {
     perioder: Rapporteringsperiode[];
