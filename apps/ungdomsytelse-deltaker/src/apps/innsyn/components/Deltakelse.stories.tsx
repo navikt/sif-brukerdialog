@@ -2,6 +2,7 @@ import {
     BekreftEndretSluttdatoOppgave,
     BekreftEndretStartdatoOppgave,
     deltakelseSchema,
+    Oppgavestatus,
     Oppgavetype,
 } from '@navikt/ung-common';
 import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakelser/harSøkt';
@@ -11,13 +12,20 @@ import Deltakelse from './Deltakelse';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
     type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    id: '123',
+    opprettetDato: ISODateToDate('2024-07-01'),
+    status: Oppgavestatus.ULØST,
     startdato: ISODateToDate('2024-07-01'),
     svarfrist: ISODateToDate('2024-07-31'),
 };
 
 const endretSluttdatoOppgave: BekreftEndretSluttdatoOppgave = {
+    id: '123',
+    opprettetDato: ISODateToDate('2024-07-01'),
+    status: Oppgavestatus.ULØST,
     type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     sluttdato: ISODateToDate('2024-07-01'),
     svarfrist: ISODateToDate('2024-07-31'),
