@@ -14,9 +14,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
 const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
-    type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     id: '123',
-    // opprettetDato: ISODateToDate('2024-07-01'),
+    opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
     startdato: ISODateToDate('2024-07-01'),
     svarfrist: ISODateToDate('2024-07-31'),
@@ -24,9 +24,9 @@ const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
 
 const endretSluttdatoOppgave: BekreftEndretSluttdatoOppgave = {
     id: '123',
-    // opprettetDato: ISODateToDate('2024-07-01'),
+    opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
-    type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     sluttdato: ISODateToDate('2024-07-01'),
     svarfrist: ISODateToDate('2024-07-31'),
 };

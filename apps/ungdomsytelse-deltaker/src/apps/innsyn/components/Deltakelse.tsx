@@ -43,7 +43,7 @@ const Deltakelse = ({ deltakelse }: Props) => {
 };
 
 const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
-    switch (oppgave.type) {
+    switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return true;

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const OppgavePanel = ({ oppgave }: Props) => {
-    switch (oppgave.type) {
+    switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgave oppgave={oppgave} />;
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
