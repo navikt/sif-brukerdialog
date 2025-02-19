@@ -3,7 +3,7 @@ import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jso
 import { dateRangeUtils } from '@navikt/sif-common-utils';
 import { isBefore } from 'date-fns';
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
-import { oppgaveSchema } from './oppgaveSchema';
+import { oppgaveSchema } from '@navikt/ung-common';
 
 const erDeltakelseAktiv = (harSøkt: boolean, fraOgMed: Date, tilOgMed: Date | undefined): boolean => {
     if (!harSøkt) {

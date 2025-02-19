@@ -61,10 +61,11 @@ const deltakelse1 = {
     harSøkt: true,
     oppgaver: [
         {
-            type: 'bekreftEndretStartdato',
-            startdato: '2025-01-15',
-            frist: '2025-04-01',
-            harBekreftet: false,
+            id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
+            oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
+            status: 'ULØST',
+            opprettetDato: '2025-02-19T13:29:14.553804Z',
+            løstDato: null,
         },
     ],
 };
@@ -80,10 +81,10 @@ const deltakelse3 = {
     tilOgMed: null,
     oppgaver: [
         {
-            id: '7bc2ab45-f6f7-416d-86a9-355c37ef35c3',
+            id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
             oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
             status: 'ULØST',
-            opprettetDato: '2025-02-19T14:45:11.242853Z',
+            opprettetDato: '2025-02-19T13:29:14.553804Z',
             løstDato: null,
         },
     ],
