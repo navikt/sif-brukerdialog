@@ -4,7 +4,8 @@ import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } f
 import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
 import Periodeliste from './Periodeliste';
 import OppgavePanel from './oppgaver/OppgavePanel';
-import { Oppgave, Oppgavetype } from '../../../api/schemas/oppgaveSchema';
+import { Oppgave } from '../../../api/schemas/oppgaveSchema';
+import { Oppgavetype } from '../../../types/Oppgavetype';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -45,8 +46,8 @@ const Deltakelse = ({ deltakelse }: Props) => {
 
 const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
     switch (oppgave.type) {
-        case Oppgavetype.bekreftEndretStartdato:
-        case Oppgavetype.bekreftEndretSluttdato:
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return true;
         default:
             return false;

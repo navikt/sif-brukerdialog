@@ -2,7 +2,7 @@ import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakels
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import { deltakelseSchema } from '../../../api/schemas/deltakelseSchema';
-import { Oppgavetype } from '../../../api/schemas/oppgaveSchema';
+import { Oppgavetype } from '../../../types/Oppgavetype';
 import Deltakelse from './Deltakelse';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -35,7 +35,7 @@ export const DeltakelseMedEndretStartdato: Story = {
     args: {
         deltakelse: {
             ...deltakelse,
-            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.bekreftEndretStartdato),
+            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.BEKREFT_ENDRET_STARTDATO),
         },
     },
 };
@@ -45,7 +45,7 @@ export const DeltakelseMedEndretSluttdato: Story = {
     args: {
         deltakelse: {
             ...deltakelse,
-            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.bekreftEndretSluttdato),
+            oppgaver: oppgaver.filter((oppgave) => oppgave.type === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO),
         },
     },
 };

@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
-import { Oppgave, Oppgavetype } from '../../../../api/schemas/oppgaveSchema';
-
-import type { Meta, StoryObj } from '@storybook/react';
+import { Oppgave } from '../../../../api/schemas/oppgaveSchema';
+import { Oppgavetype } from '../../../../types/Oppgavetype';
 import OppgavePanel from './OppgavePanel';
 
+import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof OppgavePanel> = {
     component: OppgavePanel,
     title: 'Oppgaver',
@@ -17,13 +17,13 @@ export default meta;
 type Story = StoryObj<typeof OppgavePanel>;
 
 const endretSluttdato: Oppgave = {
-    type: Oppgavetype.bekreftEndretSluttdato,
+    type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     sluttdato: dayjs().add(1, 'day').toDate(),
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
 const endretStartdato: Oppgave = {
-    type: Oppgavetype.bekreftEndretStartdato,
+    type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     startdato: dayjs().add(1, 'day').toDate(),
     svarfrist: dayjs().add(1, 'day').toDate(),
 };

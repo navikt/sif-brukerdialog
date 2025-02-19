@@ -1,21 +1,17 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { z } from 'zod';
-
-export enum Oppgavetype {
-    bekreftEndretStartdato = 'bekreftEndretStartdato',
-    bekreftEndretSluttdato = 'bekreftEndretSluttdato',
-}
+import { Oppgavetype } from '../../types/Oppgavetype';
 
 /** DTO typer */
 
 export const bekreftEndretStartdatoOppgaveDTOSchema = z.object({
-    type: z.literal(Oppgavetype.bekreftEndretStartdato),
+    type: z.literal(Oppgavetype.BEKREFT_ENDRET_STARTDATO),
     startdato: z.string(),
     svarfrist: z.string(),
 });
 
 export const bekreftEndretSluttdatoDTOSchema = z.object({
-    type: z.literal(Oppgavetype.bekreftEndretSluttdato),
+    type: z.literal(Oppgavetype.BEKREFT_ENDRET_SLUTTDATO),
     sluttdato: z.string(),
     svarfrist: z.string(),
 });
@@ -23,13 +19,13 @@ export const bekreftEndretSluttdatoDTOSchema = z.object({
 /** Parsed typer */
 
 export const bekreftEndretStartdatoOppgaveSchema = z.object({
-    type: z.literal(Oppgavetype.bekreftEndretStartdato),
+    type: z.literal(Oppgavetype.BEKREFT_ENDRET_STARTDATO),
     startdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     svarfrist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
 
 export const bekreftEndretSluttdatoSchema = z.object({
-    type: z.literal(Oppgavetype.bekreftEndretSluttdato),
+    type: z.literal(Oppgavetype.BEKREFT_ENDRET_SLUTTDATO),
     sluttdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     svarfrist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });

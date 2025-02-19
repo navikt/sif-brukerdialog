@@ -1,4 +1,4 @@
-import { Oppgavetype } from '../../../../../src/api/schemas/oppgaveSchema';
+import { Oppgavetype } from '../../../../../src/types/Oppgavetype';
 import { DeltakelseDTO } from '../../deltakelseDTOSchema';
 
 export const deltakelserHarSøkt: DeltakelseDTO[] = [
@@ -9,12 +9,12 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
         harSøkt: true,
         oppgaver: [
             {
-                type: Oppgavetype.bekreftEndretStartdato,
+                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
                 startdato: '2024-07-01',
                 svarfrist: '2024-07-31',
             },
             {
-                type: Oppgavetype.bekreftEndretSluttdato,
+                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                 sluttdato: '2024-07-01',
                 svarfrist: '2024-07-31',
             },
