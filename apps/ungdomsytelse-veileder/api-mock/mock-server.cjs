@@ -187,6 +187,26 @@ const startExpressServer = () => {
             res.status(200).send(response);
         }, 50);
     });
+    server.put('/veileder/register/deltakelse/:id/endre/startdato', (req, res) => {
+        const body = req.body;
+        const response = {
+            ...deltakelse1,
+            ...body,
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 50);
+    });
+    server.put('/veileder/register/deltakelse/:id/endre/sluttdato', (req, res) => {
+        const body = req.body;
+        const response = {
+            ...deltakelse1,
+            ...body,
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 50);
+    });
 
     server.delete('/veileder/register/deltakelse/:id/fjern', (req, res) => {
         res.sendStatus(200);

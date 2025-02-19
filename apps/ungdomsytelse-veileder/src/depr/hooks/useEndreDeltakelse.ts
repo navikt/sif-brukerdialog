@@ -31,9 +31,46 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
         }
     };
 
+    const endreStartdato = async (deltakelse: Deltakelse, startdato: Date) => {
+        setError(undefined);
+        setPending(true);
+        if (deltakelse) {
+            await veilederService
+                .endreStartdato(deltakelse.id, startdato)
+                .catch((e) => {
+                    setError(e.message);
+                })
+                .then((r) => {
+                    if (r) {
+                        onDeltakelseEndret(r);
+                    }
+                    setPending(false);
+                });
+        }
+    };
+    const endreSluttdato = async (deltakelse: Deltakelse, sluttdato: Date) => {
+        setError(undefined);
+        setPending(true);
+        if (deltakelse) {
+            await veilederService
+                .endreSluttdato(deltakelse.id, sluttdato)
+                .catch((e) => {
+                    setError(e.message);
+                })
+                .then((r) => {
+                    if (r) {
+                        onDeltakelseEndret(r);
+                    }
+                    setPending(false);
+                });
+        }
+    };
+
     return {
         pending,
         error,
         endreDeltakelse,
+        endreStartdato,
+        endreSluttdato,
     };
 };

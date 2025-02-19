@@ -18,6 +18,8 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                 <Tabs.List>
                     <Tabs.Tab value="status" label="Status" />
                     <Tabs.Tab value="endre" label="Endre periode" />
+                    <Tabs.Tab value="endreStartdato" label="Endre startdato" />
+                    <Tabs.Tab value="endreSluttdato" label="Endre sluttdato" />
                     {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
                 </Tabs.List>
                 <Tabs.Panel value="status">
@@ -28,6 +30,29 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                 <Tabs.Panel value="endre">
                     <Box paddingBlock="8 0">
                         <EndreDeltakelseForm
+                            variant="startOgSluttdato"
+                            deltakelse={deltakelse}
+                            deltakelser={alleDeltakelser}
+                            onChange={onChange}
+                        />
+                    </Box>
+                </Tabs.Panel>
+                <Tabs.Panel value="endreStartdato">
+                    <Box paddingBlock="8 0">
+                        <EndreDeltakelseForm
+                            header="Endre startdato"
+                            variant="startdato"
+                            deltakelse={deltakelse}
+                            deltakelser={alleDeltakelser}
+                            onChange={onChange}
+                        />
+                    </Box>
+                </Tabs.Panel>
+                <Tabs.Panel value="endreSluttdato">
+                    <Box paddingBlock="8 0">
+                        <EndreDeltakelseForm
+                            header="Endre sluttdato"
+                            variant="sluttdato"
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
                             onChange={onChange}

@@ -14,13 +14,20 @@ export type DeltakelseFormValues = {
 };
 
 interface Props {
+    header?: string;
+    variant: 'startdato' | 'sluttdato' | 'startOgSluttdato';
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onChange: () => void;
 }
 
-const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
-    const { pending: endreDeltakelsePending, endreDeltakelse } = useEndreDeltakelse(onChange || (() => {}));
+const EndreDeltakelseForm = ({ deltakelse, deltakelser, header, variant, onChange }: Props) => {
+    const {
+        pending: endreDeltakelsePending,
+        endreDeltakelse,
+        endreSluttdato,
+        endreStartdato,
+    } = useEndreDeltakelse(onChange || (() => {}));
 
     const getInitialValues = (d: Deltakelse): DeltakelseFormValues => {
         return {
@@ -35,14 +42,25 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
         <Box maxWidth={'40rem'}>
             <TypedFormikWrapper<DeltakelseFormValues>
                 initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
-                onSubmit={(values) => endreDeltakelse(deltakelse, values)}
+                onSubmit={(values) => {
+                    switch (variant) {
+                        case 'startdato':
+                            endreStartdato(deltakelse, ISODateToDate(values.fom));
+                            break;
+                        case 'sluttdato':
+                            endreSluttdato(deltakelse, ISODateToDate(values.tom));
+                            break;
+                        case 'startOgSluttdato':
+                            endreDeltakelse(deltakelse, values);
+                    }
+                }}
                 renderForm={({ values }) => {
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
                         <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
                             <Heading level="2" size="small">
-                                Endre deltakerperiode
+                                {header || 'Endre deltakerperiode'}
                             </Heading>
                             <TypedFormikForm
                                 submitPending={endreDeltakelsePending}
@@ -51,6 +69,8 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
                                 showButtonArrows={false}>
                                 <VStack gap="6">
                                     <PeriodeFormPart
+                                        visSluttdato={variant === 'startOgSluttdato' || variant === 'sluttdato'}
+                                        visStartdato={variant === 'startOgSluttdato' || variant === 'startdato'}
                                         fomDate={fomDate}
                                         tomDate={tomDate}
                                         deltakelser={deltakelser}
