@@ -16,8 +16,8 @@ const EndretStartdatoOppgave = ({ oppgave }: Props) => {
             <VStack gap="4">
                 <BodyShort>
                     Veileder har endret din startdato for ungdomsprogrammet til{' '}
-                    <strong>{dateFormatter.compact(oppgave.startdato)}</strong>. Du må bekrefte at din periode i
-                    programmet nå skal gjelde fra og med denne datoen.
+                    <strong>{oppgave.startdato ? dateFormatter.compact(oppgave.startdato) : 'TODO'}</strong>. Du må
+                    bekrefte at din periode i programmet nå skal gjelde fra og med denne datoen.
                 </BodyShort>
                 <VStack gap="1">
                     <ReadMore header="Hvilke konsekvenser får det at datoen nå er senere enn opprinnelig dato?">

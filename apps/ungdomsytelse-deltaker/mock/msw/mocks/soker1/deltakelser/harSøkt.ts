@@ -25,7 +25,7 @@ export const deltakelserHarSøkt = [
                 status: 'ULØST',
                 opprettetDato: '2025-02-19T13:29:14.553804Z',
                 løstDato: null,
-                startdato: '2025-01-10',
+                // startdato: '2025-01-10',
             },
         ],
     },

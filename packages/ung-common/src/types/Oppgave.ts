@@ -19,7 +19,7 @@ export const bekreftEndretStartdatoOppgaveSchema = z.object({
         .nullable()
         .optional(),
     oppgavetype: z.literal(Oppgavetype.BEKREFT_ENDRET_STARTDATO),
-    startdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    startdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).optional(),
     svarfrist: z
         .preprocess((val) => parseMaybeDateStringToDate(val), z.date())
         .nullable()
