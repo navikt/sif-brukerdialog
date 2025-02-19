@@ -5,6 +5,8 @@ import DeltakelseContent from './deltakelse-content/DeltakelseContent';
 import NyDeltakelse from './ny-deltakelse/NyDeltakelse';
 import DeltakelseHeader from './deltakelse-content/DeltakelseHeader';
 
+const kanOppretteNyDeltakelse = false;
+
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
     const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
@@ -58,11 +60,13 @@ const DeltakerPageContent = () => {
                         ))}
                     </Accordion>
 
-                    <NyDeltakelse
-                        deltaker={deltaker}
-                        alleDeltakelser={deltakelser}
-                        onDeltakelseRegistrert={handleOnDeltakelseChange}
-                    />
+                    {kanOppretteNyDeltakelse ? (
+                        <NyDeltakelse
+                            deltaker={deltaker}
+                            alleDeltakelser={deltakelser}
+                            onDeltakelseRegistrert={handleOnDeltakelseChange}
+                        />
+                    ) : null}
                 </VStack>
             </Box>
         </Box>
