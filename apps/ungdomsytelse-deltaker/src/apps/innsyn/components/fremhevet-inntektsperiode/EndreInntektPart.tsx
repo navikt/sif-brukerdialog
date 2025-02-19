@@ -5,6 +5,7 @@ import { Inntekt } from '../../../../api/types';
 interface Props {
     månedNavn: string;
     inntekt?: Inntekt;
+    fristForRapportering: Date;
     kanRapportere?: boolean;
     visSkjema: boolean;
     onEndreInntekt: () => void;

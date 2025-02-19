@@ -13,11 +13,11 @@ export const deltakelserHarSøkt: DeltakelseDTO[] = [
                 startdato: '2024-07-01',
                 svarfrist: '2024-07-31',
             },
-            // {
-            //     type: Oppgavetype.bekreftEndretSluttdato,
-            //     sluttdato: '2024-07-01',
-            //     frist: '2024-07-31',
-            // },
+            {
+                type: Oppgavetype.bekreftEndretSluttdato,
+                sluttdato: '2024-07-01',
+                svarfrist: '2024-07-31',
+            },
         ],
         rapporteringsPerioder: [
             {

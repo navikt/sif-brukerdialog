@@ -1,10 +1,11 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange, isDateInDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import { z } from 'zod';
 import { Rapporteringsperiode } from '../types';
 import { inntektSchema } from './inntektSchema';
 import { oppgaveSchema } from './oppgaveSchema';
+import dayjs from 'dayjs';
 
 const rapporteringsperiodeProcessedDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
@@ -37,12 +38,13 @@ export const rapporteringsperiodeSchema = rapporteringsperiodeProcessedDTOSchema
 
 export const deltakelseSchema = deltakelseProcessedDTOSchema.transform((data) => {
     const { programperiodeFraOgMed, programperiodeTilOgMed, ...rest } = data;
+    const programPeriode: OpenDateRange = {
+        from: programperiodeFraOgMed,
+        to: programperiodeTilOgMed,
+    };
     const deltakelse = {
         ...rest,
-        programPeriode: <OpenDateRange | DateRange>{
-            from: programperiodeFraOgMed,
-            to: programperiodeTilOgMed,
-        },
+        programPeriode,
         rapporteringsPerioder: data.rapporteringsPerioder?.map((rapporteringsperiode): Rapporteringsperiode => {
             const { fraOgMed, tilOgMed, ...rapporteringsperiodeRest } = rapporteringsperiode;
             return <Rapporteringsperiode>{
@@ -51,6 +53,11 @@ export const deltakelseSchema = deltakelseProcessedDTOSchema.transform((data) =>
                     from: fraOgMed,
                     to: tilOgMed,
                 },
+                kanRapportere: isDateInDateRange(new Date(), {
+                    from: programPeriode.from,
+                    to: programPeriode.to || ISODateToDate('2026-01-01'),
+                }), // TODO - fallback frem til backend er klar
+                fristForRapportering: dayjs().endOf('month').toDate(), // TODO - fallback frem til backend er klar
             };
         }),
     };
