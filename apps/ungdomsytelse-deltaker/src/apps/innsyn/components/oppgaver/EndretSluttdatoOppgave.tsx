@@ -11,7 +11,7 @@ const EndretSluttdatoOppgave = ({ oppgave }: Props) => {
     return (
         <BlueBox>
             <Heading level="2" size="medium" spacing={true}>
-                Ny oppgave: Bekreft endret sluttdato
+                Oppgave: Bekreft endret sluttdato
             </Heading>
             <VStack gap="4">
                 <BodyShort>

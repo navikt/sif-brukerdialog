@@ -14,17 +14,18 @@ const Deltakelse = ({ deltakelse }: Props) => {
     const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
 
-    const oppgave = oppgaver.length === 1 ? oppgaver[0] : null;
-    const oppgaveSperrerAndreEndringer = !!oppgave && sperrerOppgaveAndreEndringer(oppgave);
+    const oppgaverSperrerAndreEndringer = oppgaver.some(sperrerOppgaveAndreEndringer);
 
     return (
         <VStack gap="8">
-            {oppgave ? <OppgavePanel oppgave={oppgave} programPeriode={programPeriode} /> : null}
+            {oppgaver.map((oppgave, index) => (
+                <OppgavePanel key={index} oppgave={oppgave} programPeriode={programPeriode} />
+            ))}
 
-            {oppgaveSperrerAndreEndringer ? (
+            {oppgaverSperrerAndreEndringer ? (
                 <Alert variant="info">Info om at en ikke får gjort noe før en har godkjent endring</Alert>
             ) : null}
-            {gjeldendePeriode && oppgaveSperrerAndreEndringer === false ? (
+            {gjeldendePeriode && oppgaverSperrerAndreEndringer === false ? (
                 <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} />
             ) : null}
 
@@ -33,7 +34,7 @@ const Deltakelse = ({ deltakelse }: Props) => {
                     Tidligere perioder
                 </Heading>
                 <Periodeliste
-                    erLåstForEndring={oppgaveSperrerAndreEndringer}
+                    erLåstForEndring={oppgaverSperrerAndreEndringer}
                     perioder={tidligerePerioder || []}
                     programperiodeStartDato={deltakelse.programPeriode.from}
                 />
