@@ -69,13 +69,24 @@ const deltakelse1 = {
     ],
 };
 
-const endretSluttdato = {
-    id: '123',
-    opprettetDato: ISODateToDate('2024-07-01'),
-    status: Oppgavestatus.ULØST,
-    type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    sluttdato: dayjs().add(1, 'day').toDate(),
-    svarfrist: dayjs().add(1, 'day').toDate(),
+const deltakelse3 = {
+    id: 'a3bed73f-d5d7-4aac-9c3b-3134c8394dac',
+    deltaker: {
+        id: '6ab6cd9f-9589-46b2-b665-cfc7502e38db',
+        deltakerIdent: '10457231682',
+    },
+    harSøkt: true,
+    fraOgMed: '2025-01-02',
+    tilOgMed: null,
+    oppgaver: [
+        {
+            id: '7bc2ab45-f6f7-416d-86a9-355c37ef35c3',
+            oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
+            status: 'ULØST',
+            opprettetDato: '2025-02-19T14:45:11.242853Z',
+            løstDato: null,
+        },
+    ],
 };
 
 const deltakelse2 = {
@@ -85,16 +96,14 @@ const deltakelse2 = {
         id: 'd-r',
         deltakerIdent: '03867198392',
     },
-    oppgaver: [
-        {}
-    ]
+    oppgaver: [{}],
     fraOgMed: '2025-01-02',
     tilOgMed: '2025-02-04',
     oppgaver: [],
     harSøkt: false,
 };
 
-const deltakelser = [deltakelse1, deltakelse2];
+const deltakelser = [deltakelse3];
 
 const getDeltaker = ({ deltakerIdent, deltakerId }) => {
     if (deltakerIdent) {
