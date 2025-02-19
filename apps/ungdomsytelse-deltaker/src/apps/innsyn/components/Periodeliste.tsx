@@ -11,9 +11,10 @@ import { erDatoIFørsteMånedIProgrammet } from '../utils/deltakelseUtils';
 interface Props {
     perioder: Rapporteringsperiode[];
     programperiodeStartDato: Date;
+    erLåstForEndring?: boolean;
 }
 
-const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
+const Periodeliste = ({ perioder, programperiodeStartDato, erLåstForEndring }: Props) => {
     const { locale } = useAppIntl();
     const [antall, setAntall] = useState(2);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
@@ -44,10 +45,6 @@ const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
 
     return (
         <VStack gap="2">
-            <Heading level="2" size="medium" spacing={true}>
-                Tidligere perioder
-            </Heading>
-
             {perioder.slice(0, antall).map((rapporteringsperiode, index) => {
                 const { periode, inntekt, kanRapportere = true } = rapporteringsperiode;
                 const måned = dateFormatter.MonthFullYear(periode.from, locale);
@@ -123,15 +120,17 @@ const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
                                                     Hvis inntekten har endret seg, kan du korrigere den her.
                                                 </BodyShort>
                                                 <Box style={{ marginTop: '.25rem' }}>
-                                                    <Button
-                                                        variant="secondary"
-                                                        type="button"
-                                                        size="small"
-                                                        onClick={() => {
-                                                            visEndreDialog(rapporteringsperiode);
-                                                        }}>
-                                                        Endre inntekt
-                                                    </Button>
+                                                    {erLåstForEndring ? null : (
+                                                        <Button
+                                                            variant="secondary"
+                                                            type="button"
+                                                            size="small"
+                                                            onClick={() => {
+                                                                visEndreDialog(rapporteringsperiode);
+                                                            }}>
+                                                            Endre inntekt
+                                                        </Button>
+                                                    )}
                                                 </Box>
                                             </VStack>
                                         </VStack>
@@ -172,4 +171,4 @@ const TidligerePerioder = ({ perioder, programperiodeStartDato }: Props) => {
     );
 };
 
-export default TidligerePerioder;
+export default Periodeliste;

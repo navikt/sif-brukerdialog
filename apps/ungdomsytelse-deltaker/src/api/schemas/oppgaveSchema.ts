@@ -11,12 +11,13 @@ export enum Oppgavetype {
 export const bekreftEndretStartdatoOppgaveDTOSchema = z.object({
     type: z.literal(Oppgavetype.bekreftEndretStartdato),
     startdato: z.string(),
-    frist: z.string(),
+    svarfrist: z.string(),
 });
+
 export const bekreftEndretSluttdatoDTOSchema = z.object({
     type: z.literal(Oppgavetype.bekreftEndretSluttdato),
     sluttdato: z.string(),
-    frist: z.string(),
+    svarfrist: z.string(),
 });
 
 /** Parsed typer */
@@ -24,13 +25,13 @@ export const bekreftEndretSluttdatoDTOSchema = z.object({
 export const bekreftEndretStartdatoOppgaveSchema = z.object({
     type: z.literal(Oppgavetype.bekreftEndretStartdato),
     startdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    frist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    svarfrist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
 
 export const bekreftEndretSluttdatoSchema = z.object({
     type: z.literal(Oppgavetype.bekreftEndretSluttdato),
     sluttdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    frist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    svarfrist: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
 
 export const oppgaveDTOSchema = z.union([bekreftEndretStartdatoOppgaveDTOSchema, bekreftEndretSluttdatoDTOSchema]);
