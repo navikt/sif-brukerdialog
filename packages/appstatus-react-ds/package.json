@@ -13,15 +13,15 @@
         "@sanity/client": "6.28.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "7.13.0",
-        "@navikt/ds-react": "7.13.0",
+        "@navikt/ds-css": "7.14.0",
+        "@navikt/ds-react": "7.14.0",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.13.4",
         "@types/react": "19.0.10",
         "@types/react-dom": "19.0.4",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.5.2",
+        "postcss": "8.5.3",
         "prop-types": "15.8.1",
         "react": "19.0.0",
         "react-dom": "19.0.0",
