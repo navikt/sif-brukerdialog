@@ -69,6 +69,15 @@ const deltakelse1 = {
     ],
 };
 
+const endretSluttdato = {
+    id: '123',
+    opprettetDato: ISODateToDate('2024-07-01'),
+    status: Oppgavestatus.ULØST,
+    type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    sluttdato: dayjs().add(1, 'day').toDate(),
+    svarfrist: dayjs().add(1, 'day').toDate(),
+};
+
 const deltakelse2 = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
     deltakerIdent: '03867198392',
@@ -76,6 +85,9 @@ const deltakelse2 = {
         id: 'd-r',
         deltakerIdent: '03867198392',
     },
+    oppgaver: [
+        {}
+    ]
     fraOgMed: '2025-01-02',
     tilOgMed: '2025-02-04',
     oppgaver: [],

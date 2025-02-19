@@ -14,7 +14,7 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             await veilederService
                 .updateDeltakelse({
                     id: deltakelse.id,
-                    deltakerIdent: deltakelse.deltakerIdent,
+                    deltakerIdent: deltakelse.deltaker.deltakerIdent,
                     fraOgMed: values.fom,
                     tilOgMed: values.tom,
                     harSøkt: deltakelse.harSøkt,

@@ -28,7 +28,6 @@ const erDeltakelseAvsluttet = (harSøkt: boolean, tilOgMed: Date | undefined): b
 export const deltakelseSchema = z
     .object({
         id: z.string(),
-        deltakerIdent: z.string(),
         deltaker: z.object({
             id: z.string(),
             deltakerIdent: z.string(),
