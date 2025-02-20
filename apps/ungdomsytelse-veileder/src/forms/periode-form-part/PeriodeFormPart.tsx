@@ -1,6 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { FormikConfirmationCheckbox, FormikDatepicker } from '@navikt/sif-common-formik-ds';
-import { getDateValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { max, min } from 'date-fns';
 import { Deltakelse } from '../../api/types';
@@ -55,7 +55,11 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
-            <FormikConfirmationCheckbox name="bekrefterEndring" label="Bekreft endring deltakerperioden" />
+            <FormikConfirmationCheckbox
+                name="bekrefterEndring"
+                label="Bekreft endring deltakerperioden"
+                validate={getCheckedValidator()}
+            />
         </VStack>
     );
 };
