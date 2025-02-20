@@ -12,7 +12,10 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { AppText, useAppIntl } from '../../../i18n';
-import { isInvalidParameterErrorResponse } from '../../../types/InvalidParameter';
+import {
+    getInvalidParameters as getInvalidParameters,
+    isInvalidParameterErrorResponse,
+} from '../../../types/InvalidParameter';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -57,9 +60,10 @@ const OppsummeringStep = () => {
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+
     const invalidParameters =
         sendSøknadError && isInvalidParameterErrorResponse(sendSøknadError)
-            ? sendSøknadError.response.data.invalid_parameters
+            ? getInvalidParameters(sendSøknadError)
             : undefined;
 
     useEffect(() => {
