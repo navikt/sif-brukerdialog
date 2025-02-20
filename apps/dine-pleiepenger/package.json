@@ -47,10 +47,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
-        "@navikt/ds-css": "7.14.0",
+        "@navikt/ds-css": "7.14.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.14.0-alpha.2",
-        "@navikt/ds-tailwind": "7.14.0",
+        "@navikt/ds-react": "7.14.1",
+        "@navikt/ds-tailwind": "7.14.1",
         "@playwright/test": "1.50.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.5.8",

@@ -31,9 +31,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.14.0",
-        "@navikt/ds-react": "7.14.0-alpha.2",
-        "@navikt/ds-tailwind": "7.14.0",
+        "@navikt/ds-css": "7.14.1",
+        "@navikt/ds-react": "7.14.1",
+        "@navikt/ds-tailwind": "7.14.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -90,7 +90,7 @@
         "storybook": "8.5.8",
         "typescript": "5.7.3",
         "vite": "6.0.11",
-        "vite-plugin-checker": "0.8.0",
+        "vite-plugin-checker": "0.9.0",
         "vitest": "3.0.6"
     },
     "eslintConfig": {
