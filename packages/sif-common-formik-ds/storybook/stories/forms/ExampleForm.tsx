@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
 import { Heading, Panel } from '@navikt/ds-react';
 import * as React from 'react';
+import { Accept } from 'react-dropzone';
 import { useIntl } from 'react-intl';
+import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '../../../src';
+import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
 import { YesOrNo } from '../../../src/types';
-import { getCheckedValidator, getRequiredFieldValidator } from '../../../src/validation';
-import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
 import { ValidationError } from '../../../src/validation/types';
 import FormBlock from '../../components/form-block/FormBlock';
 import { mockAnimalOptions, MockAnimals } from '../../mock-data';
 import ExampleListAndDialog from './ExampleListAndDialog';
-import { Accept } from 'react-dropzone';
-import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 
 enum Fields {
     checked = 'checked',
@@ -71,12 +71,7 @@ const ExampleForm: React.FunctionComponent = () => {
                             onCancel={() => console.log('cancel')}
                             formErrorHandler={getIntlFormErrorHandler(intl)}>
                             <FormBlock>
-                                <Form.DatePicker
-                                    name={Fields.date}
-                                    label="Choose a date"
-                                    fromDate={undefined}
-                                    toDate={undefined}
-                                />
+                                <Form.DatePicker name={Fields.date} label="Choose a date" />
                             </FormBlock>
                             <FormBlock>
                                 <Form.Checkbox

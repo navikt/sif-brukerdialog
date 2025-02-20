@@ -14,7 +14,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "8.10.1"
+        "react-day-picker": "9.5.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

@@ -1,7 +1,8 @@
-import dayjs from 'dayjs';
-import { DatepickerLimitations } from './FormikDatepicker';
 import { Matcher } from 'react-day-picker';
-import { ISODateString, ISO_DATE_STRING_FORMAT } from './dateFormatUtils';
+import dayjs from 'dayjs';
+import { isArray } from 'lodash';
+import { ISODateString } from './dateFormatUtils';
+import { DatepickerLimitations } from './FormikDatepicker';
 
 const isoStringFormat = 'YYYY-MM-DD';
 
@@ -20,36 +21,26 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
             }
         });
     }
-    const minDate = limitations.minDate;
-    const maxDate = limitations.maxDate;
-
     const disabledWeekdays: Matcher = {
-        dayOfWeek: [
-            ...(limitations.disableWeekends ? [0, 6] : []),
-            ...(limitations.disabledDaysOfWeek?.dayOfWeek || []),
-        ],
+        dayOfWeek: [...(limitations.disableWeekends ? [0, 6] : [])],
     };
+
+    if (limitations.disabledDaysOfWeek) {
+        const { dayOfWeek } = limitations.disabledDaysOfWeek;
+        const days = isArray(dayOfWeek) ? dayOfWeek : [dayOfWeek];
+        if (isArray(disabledWeekdays.dayOfWeek)) {
+            disabledWeekdays.dayOfWeek = [...disabledWeekdays.dayOfWeek, ...days];
+        } else {
+            disabledWeekdays.dayOfWeek = [disabledWeekdays.dayOfWeek, ...days];
+        }
+    }
+
     return [
         ...invalidDates,
-        ...(maxDate ? [{ after: dayjs(maxDate, ISO_DATE_STRING_FORMAT).toDate() } as Matcher] : []),
-        ...(minDate ? [{ before: dayjs(minDate, ISO_DATE_STRING_FORMAT).toDate() } as Matcher] : []),
+        ...(limitations.maxDate ? [{ after: limitations.maxDate } as Matcher] : []),
+        ...(limitations.minDate ? [{ before: limitations.minDate } as Matcher] : []),
         ...[disabledWeekdays],
     ];
-};
-
-const getDateStringFromValue = (value?: Date | string): string | undefined => {
-    let date;
-    if (value && typeof value === 'string') {
-        if (isISODateString(value) === false) {
-            return value;
-        }
-        if (dayjs(value, isoStringFormat, true).isValid()) {
-            date = new Date(value);
-        }
-    } else if (typeof value === 'object') {
-        date = value;
-    }
-    return date ? dateToISOString(date) : undefined;
 };
 
 const getDateFromDateString = (dateString: string | undefined): Date | undefined => {
@@ -57,7 +48,7 @@ const getDateFromDateString = (dateString: string | undefined): Date | undefined
         return undefined;
     }
     if (isISODateString(dateString) && dayjs(dateString, 'YYYY-MM-DD', true).isValid()) {
-        return new Date(dateString);
+        return dayjs(dateString).utc().toDate();
     }
     return undefined;
 };
@@ -78,7 +69,6 @@ export const isISODateString = (value: any): value is ISODateString => {
 };
 
 export const datepickerUtils = {
-    getDateStringFromValue,
     getDateFromDateString,
     getDisabledDates,
     isValidFormattedDateString,
