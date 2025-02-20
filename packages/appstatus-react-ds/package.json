@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@navikt/ds-css": "7.14.0",
-        "@navikt/ds-react": "7.14.0",
+        "@navikt/ds-react": "7.14.0-alpha.2",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.13.4",
         "@types/react": "19.0.10",

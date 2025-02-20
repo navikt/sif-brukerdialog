@@ -26,7 +26,7 @@
         "@babel/preset-react": "7.26.3",
         "@babel/preset-typescript": "7.26.0",
         "@navikt/ds-css": "7.14.0",
-        "@navikt/ds-react": "7.14.0",
+        "@navikt/ds-react": "7.14.0-alpha.2",
         "@navikt/fnrvalidator": "2.1.5",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "workspace:*",

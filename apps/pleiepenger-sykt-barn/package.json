@@ -11,7 +11,7 @@
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "7.14.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.14.0",
+        "@navikt/ds-react": "7.14.0-alpha.2",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
