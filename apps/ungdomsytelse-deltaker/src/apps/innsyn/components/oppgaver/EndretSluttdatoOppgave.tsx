@@ -16,8 +16,12 @@ const EndretSluttdatoOppgave = ({ oppgave }: Props) => {
             <VStack gap="4">
                 <BodyShort>
                     Veileder har endret datoen for når du skal ut av ungdomsprogrammet til{' '}
-                    <strong>{oppgave.sluttdato ? dateFormatter.compact(oppgave.sluttdato) : 'TODO'}</strong>. Du må
-                    bekrefte at denne datoen er riktig.
+                    <strong>
+                        {oppgave.oppgavetypeData.nySluttdato
+                            ? dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nySluttdato)
+                            : 'TODO'}
+                    </strong>
+                    . Du må bekrefte at denne datoen er riktig.
                 </BodyShort>
                 <ConfirmationPanel name="bekreftEndretStartdato" label="Jeg bekrefter at ny dato er riktig." />
                 <HStack gap="8">

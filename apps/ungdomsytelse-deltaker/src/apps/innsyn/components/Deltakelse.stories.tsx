@@ -18,7 +18,9 @@ const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
-    startdato: ISODateToDate('2024-07-01'),
+    oppgavetypeData: {
+        nyStartdato: ISODateToDate('2024-07-01'),
+    },
     svarfrist: ISODateToDate('2024-07-31'),
 };
 
@@ -27,7 +29,9 @@ const endretSluttdatoOppgave: BekreftEndretSluttdatoOppgave = {
     opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    sluttdato: ISODateToDate('2024-07-01'),
+    oppgavetypeData: {
+        nySluttdato: ISODateToDate('2024-07-01'),
+    },
     svarfrist: ISODateToDate('2024-07-31'),
 };
 

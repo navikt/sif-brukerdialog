@@ -10,9 +10,9 @@ interface Props {
 const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <Box>Startdato endret til: TODO</Box>;
+            return <Box>Startdato endret til: {dateFormatter.compact(oppgave.oppgavetypeData.nyStartdato)}</Box>;
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <Box>Sluttdato endret til: TODO</Box>;
+            return <Box>Sluttdato endret til: {dateFormatter.compact(oppgave.oppgavetypeData.nySluttdato)}</Box>;
     }
 };
 

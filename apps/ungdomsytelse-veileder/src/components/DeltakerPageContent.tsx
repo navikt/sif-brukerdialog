@@ -34,7 +34,10 @@ const DeltakerPageContent = () => {
         return <Box>Ingen deltakelser funnet</Box>;
     }
 
-    if (deltakelser.length !== 1) {
+    if (deltakelser.length === 0) {
+        return <Box>Ingen deltakelse funnet</Box>;
+    }
+    if (deltakelser.length > 1) {
         return <Box>Kun en deltakelse støttes</Box>;
     }
 

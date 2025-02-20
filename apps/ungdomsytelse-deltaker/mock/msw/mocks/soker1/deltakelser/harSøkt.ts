@@ -25,7 +25,9 @@ export const deltakelserHarSøkt = [
                 status: 'ULØST',
                 opprettetDato: '2025-02-19T13:29:14.553804Z',
                 løstDato: null,
-                // startdato: '2025-01-10',
+                oppgavetypeData: {
+                    nyStartdato: '2025-01-01',
+                },
             },
             {
                 id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
@@ -33,7 +35,9 @@ export const deltakelserHarSøkt = [
                 status: 'ULØST',
                 opprettetDato: '2025-02-19T13:29:14.553804Z',
                 løstDato: null,
-                // startdato: '2025-01-10',
+                oppgavetypeData: {
+                    nySluttdato: '2026-01-10',
+                },
             },
         ],
     },

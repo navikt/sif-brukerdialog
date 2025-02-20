@@ -21,7 +21,9 @@ const endretSluttdato: Oppgave = {
     opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    sluttdato: dayjs().add(1, 'day').toDate(),
+    oppgavetypeData: {
+        nySluttdato: ISODateToDate('2024-07-01'),
+    },
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
@@ -30,7 +32,9 @@ const endretStartdato: Oppgave = {
     opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
-    startdato: dayjs().add(1, 'day').toDate(),
+    oppgavetypeData: {
+        nyStartdato: dayjs().add(1, 'day').toDate(),
+    },
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
