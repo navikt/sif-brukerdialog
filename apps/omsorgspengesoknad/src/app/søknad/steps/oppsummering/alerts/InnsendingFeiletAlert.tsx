@@ -1,18 +1,10 @@
 import { Alert, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { InvalidParameter } from '../../../../types/InvalidParameter';
 import { AppText } from '../../../../i18n';
 
-interface Props {
-    invalidParameter: InvalidParameter[];
-}
-
-const isHøyereRisikoForFraværBeskrivelseFeil = (feil: string): boolean =>
-    feil.includes('høyereRisikoForFraværBeskrivelse');
-
-const renderFeilmelding = (invalidParameter: InvalidParameter) => {
-    const erBeskrivelseFeil = isHøyereRisikoForFraværBeskrivelseFeil(invalidParameter);
+const renderFeilmelding = (invalidParameter: string) => {
+    const erBeskrivelseFeil = invalidParameter === 'høyereRisikoForFraværBeskrivelse';
     return (
         <>
             {erBeskrivelseFeil ? (
@@ -48,7 +40,11 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
     );
 };
 
-const InnsendingFeiletAlert: React.FunctionComponent<Props> = ({ invalidParameter }) => {
+interface Props {
+    invalidParameter: string[];
+}
+
+const InnsendingFeiletAlert = ({ invalidParameter }: Props) => {
     return (
         <FormBlock>
             <Alert variant="error">
