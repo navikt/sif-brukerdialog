@@ -52,7 +52,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "formik": "2.4.6",
-        "msw": "2.7.0",
+        "msw": "2.7.1",
         "msw-storybook-addon": "2.0.4",
         "postcss": "8.5.3",
         "prop-types": "15.8.1",
