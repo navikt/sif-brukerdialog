@@ -1,8 +1,13 @@
 import { Matcher } from 'react-day-picker';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { isArray } from 'lodash';
 import { ISODateString } from './dateFormatUtils';
 import { DatepickerLimitations } from './FormikDatepicker';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+
+dayjs.extend(utc);
 
 const isoStringFormat = 'YYYY-MM-DD';
 
