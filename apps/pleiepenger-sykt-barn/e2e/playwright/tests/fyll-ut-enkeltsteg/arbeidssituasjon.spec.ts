@@ -113,10 +113,6 @@ test.describe('Arbeidssituasjon', () => {
             .filter({ hasText: /^Til og medÅpne datovelger$/ })
             .getByRole('button')
             .click();
-        await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-        await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-        await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-        await page.getByRole('button', { name: 'Gå til neste måned' }).click();
         await page.getByRole('button', { name: 'onsdag 24' }).click();
         await page.getByLabel('Velg land').selectOption('BGR');
         await page.getByText('Arbeidstaker', { exact: true }).click();
