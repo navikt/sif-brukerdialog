@@ -38,7 +38,7 @@
         "react": "19.0.0",
         "react-day-picker": "8.10.1",
         "react-router-dom": "7.1.5",
-        "uuid": "11.0.5"
+        "uuid": "11.1.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",

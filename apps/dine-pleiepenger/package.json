@@ -42,7 +42,7 @@
         "react-dom": "19.0.0",
         "react-loading-skeleton": "3.5.0",
         "swr": "2.3.2",
-        "uuid": "11.0.5",
+        "uuid": "11.1.0",
         "zod": "3.24.2"
     },
     "devDependencies": {
@@ -81,7 +81,7 @@
         "storybook": "8.5.6",
         "tailwindcss": "3.4.17",
         "typescript": "5.7.3",
-        "uuid": "11.0.5",
+        "uuid": "11.1.0",
         "vitest": "3.0.5",
         "webpack": "5.98.0"
     },

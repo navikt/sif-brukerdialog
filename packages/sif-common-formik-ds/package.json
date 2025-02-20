@@ -17,7 +17,7 @@
         "lodash": "4.17.21",
         "react-dropzone": "14.3.5",
         "react-fast-compare": "3.2.2",
-        "uuid": "11.0.5"
+        "uuid": "11.1.0"
     },
     "devDependencies": {
         "@babel/core": "7.26.9",
