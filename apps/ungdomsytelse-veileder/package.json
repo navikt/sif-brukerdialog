@@ -31,7 +31,7 @@
         "axios": "1.7.9",
         "clsx": "2.1.1",
         "csp-header": "6.0.1",
-        "date-fns": "3.6.0",
+        "date-fns": "4.1.0",
         "formik": "2.4.6",
         "html-react-parser": "5.2.2",
         "jsdom": "26.0.0",

@@ -25,7 +25,7 @@
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.7.9",
         "csp-header": "6.0.1",
-        "date-fns": "3.6.0",
+        "date-fns": "4.1.0",
         "dayjs": "1.11.13",
         "flat": "6.0.1",
         "formik": "2.4.6",

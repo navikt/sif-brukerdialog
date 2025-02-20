@@ -5,6 +5,7 @@ import { isArray } from 'lodash';
 import { ISODateString } from './dateFormatUtils';
 import { DatepickerLimitations } from './FormikDatepicker';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 dayjs.extend(customParseFormat);
 
 dayjs.extend(utc);
@@ -53,7 +54,7 @@ const getDateFromDateString = (dateString: string | undefined): Date | undefined
         return undefined;
     }
     if (isISODateString(dateString) && dayjs(dateString, 'YYYY-MM-DD', true).isValid()) {
-        return dayjs(dateString).utc().toDate();
+        return ISODateToDate(dateString);
     }
     return undefined;
 };

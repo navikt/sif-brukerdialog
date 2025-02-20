@@ -33,7 +33,7 @@
         "@storybook/testing-library": "0.2.2",
         "@types/react": "19.0.10",
         "copyfiles": "2.4.1",
-        "date-fns": "3.6.0",
+        "date-fns": "4.1.0",
         "dayjs": "1.11.13",
         "globals": "15.15.0",
         "intl": "1.2.5",
