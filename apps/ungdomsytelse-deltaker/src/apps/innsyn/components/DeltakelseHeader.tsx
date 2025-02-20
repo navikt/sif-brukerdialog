@@ -1,7 +1,7 @@
-import { Deltakelse } from '../../../api/types';
-import YtelseHeader from '../../../components/ytelse-header/YtelseHeader';
 import { Box, HStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse } from '@navikt/ung-common';
+import YtelseHeader from '../../../components/ytelse-header/YtelseHeader';
 
 interface Props {
     deltakelse: Deltakelse;

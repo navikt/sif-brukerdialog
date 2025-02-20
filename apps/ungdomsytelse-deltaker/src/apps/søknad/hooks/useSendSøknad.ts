@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { deltakerService } from '../../../api/services/deltakerService';
-import { SøknadApiData } from '../../../api/types';
+import { deltakerService, SendSøknadDTO } from '@navikt/ung-common';
 
 export const useSendSøknad = () => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [søknadSendt, setSøknadSendt] = useState(false);
 
-    const sendSøknad = (apiData: SøknadApiData) => {
+    const sendSøknad = (søknad: SendSøknadDTO) => {
         setPending(true);
         return deltakerService
-            .sendSøknad(apiData)
+            .sendSøknad(søknad)
             .then(() => {
                 setSøknadSendt(true);
             })

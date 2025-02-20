@@ -5,7 +5,7 @@ import SnarveiLinkPanel from './SnarveiLinkPanel';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof SnarveiLinkPanel> = {
     component: SnarveiLinkPanel,
-    title: 'Components/SnarveiLinkPanel',
+    title: 'Komponenter/SnarveiLinkPanel',
     parameters: {
         layout: 'centered',
     },

@@ -1,14 +1,11 @@
 import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { søknadApiDataSchema } from '../../../../api/schemas/søknadApiDataSchema';
-import { SøknadApiData } from '../../../../api/types';
+import { deltakerService, SendSøknadDTO, sendSøknadDTOSchema, Søknadstype } from '@navikt/ung-common';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
-import { Søknadstype } from '../../../../types/Søknadstype';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
 import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import BarnSpørsmål from './spørsmål/BarnSpørsmål';
@@ -16,7 +13,6 @@ import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
 import Startdato from './Startdato';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
-import { deltakerService } from '../../../../api/services/deltakerService';
 
 export enum SøknadFormFields {
     kontonummerErRiktig = 'kontonummerErRiktig',
@@ -45,7 +41,7 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
     const { pending, error, sendSøknad } = useSendSøknad();
 
     const handleSubmit = (values: SøknadFormValues) => {
-        const apiData: SøknadApiData = {
+        const søknad: SendSøknadDTO = {
             søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
             søknadId: deltakelseId,
             språk: getLocaleForApi(intl.locale),
@@ -57,9 +53,9 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
             søkerNorskIdent: søker.fødselsnummer,
             isInntektForPeriode: false,
         };
-        if (søknadApiDataSchema.parse(apiData)) {
-            sendSøknad(apiData).then(async () => {
-                await deltakerService.putMarkerHarSøkt(apiData.søknadId);
+        if (sendSøknadDTOSchema.parse(søknad)) {
+            sendSøknad(søknad).then(async () => {
+                await deltakerService.markerDeltakelseSøkt(søknad.søknadId);
                 onSøknadSendt();
             });
         } else {

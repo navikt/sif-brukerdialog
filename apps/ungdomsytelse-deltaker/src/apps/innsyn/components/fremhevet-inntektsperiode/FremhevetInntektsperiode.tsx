@@ -1,8 +1,7 @@
 import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { dateFormatter, isDateInDateRange } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import { Rapporteringsperiode } from '../../../../api/types';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import EndreInntektPart from './EndreInntektPart';
 import RapporterInntektPart from './RapporterInntektPart';
@@ -12,12 +11,11 @@ interface Props {
 }
 
 const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
-    const {
-        periode,
-        harRapportert,
-        kanRapportere = isDateInDateRange(new Date(), periode), // TODO - fallback frem til backend er klar
-        fristForRapportering = dayjs().endOf('month').toDate(), // TODO - fallback frem til backend er klar
-    } = rapporteringsperiode;
+    const { periode, harRapportert, kanRapportere, fristForRapportering } = rapporteringsperiode;
+
+    if (!fristForRapportering) {
+        return null;
+    }
 
     const [visSkjema, setVisSkjema] = useState(false);
     const månedNavn = dateFormatter.month(periode.from);
@@ -35,6 +33,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
                         månedNavn={månedNavn}
                         onEndreInntekt={() => setVisSkjema(true)}
                         kanRapportere={kanRapportere}
+                        fristForRapportering={fristForRapportering}
                         inntekt={rapporteringsperiode.inntekt}
                     />
                 ) : (

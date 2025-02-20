@@ -20,8 +20,6 @@ const InnsynApp = () => {
                 <Deltakelse deltakelse={deltakelse} />
 
                 <InformasjonOmUngdomsytelsen />
-
-                {/* <Snarveier title="Snarveier" /> */}
             </VStack>
         </Page>
     );

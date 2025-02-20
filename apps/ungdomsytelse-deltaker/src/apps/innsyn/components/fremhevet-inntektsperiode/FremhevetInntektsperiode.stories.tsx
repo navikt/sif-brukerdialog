@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import FremhevetInntektsperiode from './FremhevetInntektsperiode';
-import { Rapporteringsperiode } from '../../../../api/types';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Rapporteringsperiode } from '@navikt/ung-common';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
+import FremhevetInntektsperiode from './FremhevetInntektsperiode';
 
 const rapporteringsperiode: Rapporteringsperiode = {
     harRapportert: true,
@@ -16,7 +16,7 @@ const rapporteringsperiode: Rapporteringsperiode = {
 };
 
 const meta: Meta<typeof FremhevetInntektsperiode> = {
-    title: 'Components/Fremhevet inntektsperiode',
+    title: 'Komponenter/Fremhevet inntektsperiode',
     component: FremhevetInntektsperiode,
     decorators: [withIntl, withPageWidth],
     args: {
