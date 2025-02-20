@@ -1,7 +1,7 @@
-import { Box, List, Tag, VStack } from '@navikt/ds-react';
+import { Box, Heading, List, Tag, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import DeltakelseOppgaveliste from '../deltakelse-oppgaveliste/DeltakelseOppgaveliste';
+import { Oppgavestatus } from '@navikt/ung-common';
 
 interface Props {
     deltaker: Deltaker;
@@ -9,7 +9,10 @@ interface Props {
 }
 const DeltakelseStatusContent = ({ deltakelse }: Props) => {
     return (
-        <Box>
+        <VStack gap="4">
+            <Heading level="3" size="small">
+                Status
+            </Heading>
             <List>
                 <List.Item title="Deltaker har søkt">
                     <VStack gap="4">
@@ -30,11 +33,11 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                 <List.Item title="Sluttdato">
                     {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
                 </List.Item>
-                <List.Item title="Oppgaver til deltaker">
-                    <DeltakelseOppgaveliste oppgaver={deltakelse.oppgaver} />
+                <List.Item title="Utestående oppgaver">
+                    {deltakelse.oppgaver.some((oppgave) => oppgave.status === Oppgavestatus.ULØST) ? 'Ja' : 'Nei'}
                 </List.Item>
             </List>
-        </Box>
+        </VStack>
     );
 };
 

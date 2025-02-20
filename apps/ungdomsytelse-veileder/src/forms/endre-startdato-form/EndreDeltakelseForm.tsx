@@ -32,7 +32,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
     };
 
     return (
-        <Box maxWidth={'40rem'}>
+        <Box maxWidth={'60rem'}>
             <TypedFormikWrapper<DeltakelseFormValues>
                 initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
                 onSubmit={(values) => endreDeltakelse(deltakelse, values)}

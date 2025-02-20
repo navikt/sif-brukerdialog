@@ -1,5 +1,5 @@
-import { HStack } from '@navikt/ds-react';
-import { FormikDatepicker } from '@navikt/sif-common-formik-ds';
+import { VStack } from '@navikt/ds-react';
+import { FormikConfirmationCheckbox, FormikDatepicker } from '@navikt/sif-common-formik-ds';
 import { getDateValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { max, min } from 'date-fns';
@@ -27,7 +27,7 @@ const PeriodeFormPart = ({
         .filter((d) => d.id !== deltakelseId && d.tilOgMed !== undefined)
         .map((d) => ({ from: d.fraOgMed, to: d.tilOgMed! }));
     return (
-        <HStack gap="6">
+        <VStack gap="6" className="rounded bg-bg-subtle p-5">
             {visStartdato ? (
                 <FormikDatepicker
                     name="fom"
@@ -55,7 +55,8 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
-        </HStack>
+            <FormikConfirmationCheckbox name="bekrefterEndring" label="Bekreft endring deltakerperioden" />
+        </VStack>
     );
 };
 

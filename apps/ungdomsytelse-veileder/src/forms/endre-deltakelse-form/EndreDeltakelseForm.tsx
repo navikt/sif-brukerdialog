@@ -15,13 +15,14 @@ export type DeltakelseFormValues = {
 
 interface Props {
     header?: string;
+    description?: React.ReactNode;
     variant: 'startdato' | 'sluttdato' | 'startOgSluttdato';
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onChange: () => void;
 }
 
-const EndreDeltakelseForm = ({ deltakelse, deltakelser, header, variant, onChange }: Props) => {
+const EndreDeltakelseForm = ({ deltakelse, deltakelser, header, description, variant, onChange }: Props) => {
     const {
         pending: endreDeltakelsePending,
         endreDeltakelse,
@@ -58,10 +59,11 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, header, variant, onChang
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
-                        <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
+                        <VStack gap="4" width={'100%'}>
                             <Heading level="2" size="small">
                                 {header || 'Endre deltakerperiode'}
                             </Heading>
+                            {description}
                             <TypedFormikForm
                                 submitPending={endreDeltakelsePending}
                                 showSubmitButton={false}
