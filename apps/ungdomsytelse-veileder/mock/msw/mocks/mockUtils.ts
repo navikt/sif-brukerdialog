@@ -63,7 +63,7 @@ const oppgave = {
     },
 };
 
-const deltakelse1 = {
+const deltakelseDR = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
         id: 'd-r',
@@ -75,8 +75,18 @@ const deltakelse1 = {
     oppgaver: [oppgave],
 };
 
-export const getDeltakelser = (id) => {
-    return id === 'd-n' ? [] : deltakelser;
+const deltakelseDN = {
+    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
+    deltaker: {
+        id: 'd-n',
+        deltakerIdent: '03867198392',
+    },
+    fraOgMed: '2025-01-01',
+    tilOgMed: null,
+    harSøkt: false,
+    oppgaver: [],
 };
 
-const deltakelser = [deltakelse1];
+export const getDeltakelser = (id) => {
+    return id === 'd-n' ? [deltakelseDN] : [deltakelseDR];
+};
