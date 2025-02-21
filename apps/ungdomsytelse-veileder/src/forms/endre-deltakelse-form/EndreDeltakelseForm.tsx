@@ -60,7 +60,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, header, description, var
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
                         <VStack gap="4" width={'100%'}>
-                            <Heading level="2" size="small">
+                            <Heading level="3" size="medium">
                                 {header || 'Endre deltakerperiode'}
                             </Heading>
                             {description}

@@ -22,14 +22,13 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
             <Tabs defaultValue="oversikt">
                 <Tabs.List>
                     <Tabs.Tab value="oversikt" label="Oversikt" />
-                    <Tabs.Tab value="oppgaver" label="Oppgaver til deltaker" />
+                    <Tabs.Tab value="oppgaver" label="Deltakeroppgaver" />
                     <Tabs.Tab value="endreStartdato" label="Endre startdato" />
                     <Tabs.Tab value="endreSluttdato" label="Endre sluttdato" />
                     {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
                 </Tabs.List>
                 <Tabs.Panel value="oversikt">
                     <HGrid columns={'1fr 1fr 1fr'} gap="2" paddingBlock={'6'}>
-                        {/* <VStack paddingBlock="8 0" gap="8"> */}
                         <DeltakelseStatusContent deltakelse={deltakelse} deltaker={deltaker} />
                         <VStack gap="4" className="rounded p-5 bg-gray-50">
                             <Heading level="3" size="medium">
@@ -41,7 +40,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         </VStack>
                         <VStack gap="4" className="rounded p-5 bg-gray-50">
                             <Heading level="3" size="medium">
-                                Åpne oppgaver
+                                Uløste oppgaver
                             </Heading>
 
                             {åpneOppgaver.length > 0 ? (
@@ -68,16 +67,6 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         <DeltakelseOppgaver oppgaver={deltakelse.oppgaver} />
                     </Box>
                 </Tabs.Panel>
-                {/* <Tabs.Panel value="endre">
-                    <Box paddingBlock="8 0">
-                        <EndreDeltakelseForm
-                            variant="startOgSluttdato"
-                            deltakelse={deltakelse}
-                            deltakelser={alleDeltakelser}
-                            onChange={onChange}
-                        />
-                    </Box>
-                </Tabs.Panel> */}
                 <Tabs.Panel value="endreStartdato">
                     <Box paddingBlock="8 0">
                         <EndreDeltakelseForm
