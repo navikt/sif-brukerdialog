@@ -1,7 +1,6 @@
 import { Box, Heading, List, Tag, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Oppgavestatus } from '@navikt/ung-common';
 
 interface Props {
     deltaker: Deltaker;
@@ -9,8 +8,8 @@ interface Props {
 }
 const DeltakelseStatusContent = ({ deltakelse }: Props) => {
     return (
-        <VStack gap="4">
-            <Heading level="3" size="small">
+        <VStack gap="4" className="rounded p-5 bg-gray-50">
+            <Heading level="3" size="medium">
                 Status
             </Heading>
             <List>
@@ -31,11 +30,9 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                 </List.Item>
                 <List.Item title="Startdato">{dateFormatter.compact(deltakelse.fraOgMed)}</List.Item>
                 <List.Item title="Sluttdato">
-                    {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
+                    {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : 'Ikke satt'}
                 </List.Item>
-                <List.Item title="Utestående oppgaver">
-                    {deltakelse.oppgaver.some((oppgave) => oppgave.status === Oppgavestatus.ULØST) ? 'Ja' : 'Nei'}
-                </List.Item>
+                <List.Item title="Antall dager brukt">X av Y dager brukt</List.Item>
             </List>
         </VStack>
     );
