@@ -65,6 +65,7 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Pro
                                     showButtonArrows={false}>
                                     <VStack gap="6">
                                         <PeriodeFormPart
+                                            deltakernavn={deltakernavn}
                                             visSluttdato={false}
                                             visStartdato={true}
                                             fomDate={fomDate}
