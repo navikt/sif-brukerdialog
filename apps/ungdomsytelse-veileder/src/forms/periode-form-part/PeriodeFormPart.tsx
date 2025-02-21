@@ -1,6 +1,6 @@
-import { VStack } from '@navikt/ds-react';
-import { FormikConfirmationCheckbox, FormikDatepicker } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
+import { Alert, VStack } from '@navikt/ds-react';
+import { FormikConfirmationCheckbox, FormikDatepicker, FormikTextarea } from '@navikt/sif-common-formik-ds';
+import { getCheckedValidator, getDateValidator, getStringValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { max, min } from 'date-fns';
 import { Deltakelse } from '../../api/types';
@@ -14,6 +14,9 @@ interface Props {
     deltakelser: Deltakelse[];
     deltakelseId?: string;
 }
+
+const MELDING_MAX_LENGTH = 250;
+const MELDING_MIN_LENGTH = 10;
 
 const PeriodeFormPart = ({
     fomDate,
@@ -55,9 +58,23 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
+            <FormikTextarea
+                name="melding"
+                label="Melding til deltaker (valgfritt)"
+                maxLength={MELDING_MAX_LENGTH}
+                minLength={MELDING_MIN_LENGTH}
+                validate={getStringValidator({
+                    required: false,
+                    maxLength: MELDING_MAX_LENGTH,
+                    minLength: MELDING_MIN_LENGTH,
+                })}
+            />
+            <Alert variant="info" inline={true}>
+                Oppgaven vil bli merket med navnet ditt (<strong>Navn Veiledersen</strong>).
+            </Alert>
             <FormikConfirmationCheckbox
                 name="bekrefterEndring"
-                label="Bekreft endring deltakerperioden"
+                label="Bekreft endring av deltakerperiode"
                 validate={getCheckedValidator()}
             />
         </VStack>

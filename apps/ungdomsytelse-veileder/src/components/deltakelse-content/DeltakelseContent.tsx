@@ -1,13 +1,14 @@
-import { Alert, Box, Heading, HGrid, Tabs, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { Oppgavestatus } from '@navikt/ung-common';
 import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
-import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
-import EndreDeltakelseForm from '../../forms/endre-deltakelse-form/EndreDeltakelseForm';
+import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
+import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
-import { Oppgavestatus } from '@navikt/ung-common';
+import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
-import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     deltaker: Deltaker;
@@ -22,7 +23,19 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
             <Tabs defaultValue="oversikt">
                 <Tabs.List>
                     <Tabs.Tab value="oversikt" label="Oversikt" />
-                    <Tabs.Tab value="oppgaver" label="Deltakeroppgaver" />
+                    <Tabs.Tab
+                        value="oppgaver"
+                        label={
+                            <HStack gap="1">
+                                <Box>Deltakeroppgaver</Box>
+                                <Box
+                                    className="rounded-full bg-data-surface-2 text-white w-6 h-6 relative"
+                                    style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
+                                    {deltakelse.oppgaver.length}
+                                </Box>
+                            </HStack>
+                        }
+                    />
                     <Tabs.Tab value="endreStartdato" label="Endre startdato" />
                     <Tabs.Tab value="endreSluttdato" label="Endre sluttdato" />
                     {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
@@ -69,48 +82,18 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                 </Tabs.Panel>
                 <Tabs.Panel value="endreStartdato">
                     <Box paddingBlock="8 0">
-                        <EndreDeltakelseForm
-                            header="Endre startdato"
-                            description={
-                                deltakelse.harSøkt ? (
-                                    <Alert variant="info" inline={true}>
-                                        Når startdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
-                                        nye startdatoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
-                                        deltaker".
-                                    </Alert>
-                                ) : (
-                                    <Alert variant="info" inline={true}>
-                                        Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det uløser blir
-                                        noen oppgave til deltaker.
-                                    </Alert>
-                                )
-                            }
-                            variant="startdato"
+                        <EndreStartdato
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
                             onChange={onChange}
+                            deltakernavn={deltaker.navn.fornavn}
                         />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="endreSluttdato">
                     <Box paddingBlock="8 0">
-                        <EndreDeltakelseForm
-                            header="Endre sluttdato"
-                            description={
-                                deltakelse.harSøkt ? (
-                                    <Alert variant="info" inline={true}>
-                                        Når sluttdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
-                                        nye sluttdatoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
-                                        deltaker".
-                                    </Alert>
-                                ) : (
-                                    <Alert variant="info" inline={true}>
-                                        Deltaker har ikke søkt enda. Du kan endre sluttdato uten at det uløser blir noen
-                                        oppgave til deltaker.
-                                    </Alert>
-                                )
-                            }
-                            variant="sluttdato"
+                        <EndreSluttdato
+                            deltakernavn={deltaker.navn.fornavn}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
                             onChange={onChange}
