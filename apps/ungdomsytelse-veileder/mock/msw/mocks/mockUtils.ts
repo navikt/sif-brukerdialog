@@ -57,7 +57,6 @@ const oppgave = {
     oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
     status: 'ULØST',
     opprettetDato: '2025-02-19T13:29:14.553804Z',
-    løstDato: null,
     oppgavetypeData: {
         nyStartdato: '2025-01-10',
     },
