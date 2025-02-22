@@ -14,7 +14,7 @@ export const oppgaveCommonSchema = z.object({
         .transform((val) => (val === null ? undefined : val))
         .optional(),
     løstDato: z
-        .preprocess((val) => parseMaybeDateStringToDate(val), z.date())
+        .preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional())
         .transform((val) => (val === null ? undefined : val))
         .optional(),
     løsningstype: z
