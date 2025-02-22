@@ -39,13 +39,13 @@ const EndretStartdatoOppgave = ({ oppgave }: Props) => {
                     <BodyShort as="span" className="inline-block nowrap" weight="semibold">
                         {nyStartdatoTekst}
                     </BodyShort>
-                    . Du må godkjenne at din deltakelse nå skal gjelde fra og med denne datoen.
+                    .
                 </BodyShort>
 
                 {oppgave.svarfrist ? (
                     <Alert variant="info" inline>
-                        Fristen din for å svare på er <strong>{dateFormatter.full(oppgave.svarfrist)}</strong>. Hvis du
-                        ikke svarer, vil oppgaven løses automatisk ved at datoen endres til dato veileder har angitt.
+                        Fristen din for å svare er <strong>{dateFormatter.full(oppgave.svarfrist)}</strong>. Hvis du
+                        ikke svarer, godkjennes oppgaven automatisk og startdatoen din blir endret.
                     </Alert>
                 ) : null}
                 <ExpansionCard aria-label="Demo med bare tittel" size="small">
