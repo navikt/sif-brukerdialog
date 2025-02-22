@@ -30,16 +30,16 @@ const EndretStartdatoOppgave = ({ oppgave }: Props) => {
     return (
         <BlueBox>
             <Heading level="2" size="medium" spacing={true}>
-                Ny oppgave: Bekreft endret startdato
+                Ny oppgave: Godkjenn endret startdato
             </Heading>
             <VStack gap="6">
                 <BodyShort>
-                    Veileder har bedt deg bekrefte en endring for når du startet i ungdomsprogrammet. Startdatoen er
+                    Veileder har bedt deg godkjenne en endring for når du startet i ungdomsprogrammet. Startdatoen er
                     endret til{' '}
                     <BodyShort as="span" className="inline-block nowrap" weight="semibold">
                         {nyStartdatoTekst}
                     </BodyShort>
-                    . Du må bekrefte at din deltakelse nå skal gjelde fra og med denne datoen.
+                    . Du må godkjenne at din deltakelse nå skal gjelde fra og med denne datoen.
                 </BodyShort>
 
                 {oppgave.svarfrist ? (

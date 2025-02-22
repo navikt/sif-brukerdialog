@@ -11,13 +11,19 @@ export const oppgaveCommonSchema = z.object({
     opprettetDato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     svarfrist: z
         .preprocess((val) => parseMaybeDateStringToDate(val), z.date())
-        .nullable()
+        .transform((val) => (val === null ? undefined : val))
         .optional(),
     løstDato: z
         .preprocess((val) => parseMaybeDateStringToDate(val), z.date())
-        .nullable()
+        .transform((val) => (val === null ? undefined : val))
         .optional(),
-    løsningstype: z.nativeEnum(Oppgaveløsning).nullable().optional(),
-    åpnetAvDeltaker: z.date().nullable().optional(),
+    løsningstype: z
+        .nativeEnum(Oppgaveløsning)
+        .transform((val) => (val === null ? undefined : val))
+        .optional(),
+    åpnetAvDeltaker: z
+        .date()
+        .transform((val) => (val === null ? undefined : val))
+        .optional(),
     veilederReferanse: z.string().optional(),
 });

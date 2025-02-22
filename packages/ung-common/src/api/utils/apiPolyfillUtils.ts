@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { DateRange } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltakelser } from '../../types/Deltakelser';
+import { OppgaveEndretSluttdato, OppgaveEndretStartdato, Oppgavetype } from '../../types';
 
 const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): boolean => {
     return dayjs(dato).isSame(programStartdato, 'month');
@@ -17,6 +18,31 @@ const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): bo
  */
 export const kanBrukerRapportereInntektForPeriode = (periode: DateRange, programStartdato: Date): boolean => {
     return erDatoIFørsteMånedIProgrammet(periode.from, programStartdato) === false;
+};
+
+const polyfillOppgaveEndretStartdato = (oppgave: OppgaveEndretStartdato): OppgaveEndretStartdato => {
+    return {
+        ...oppgave,
+        svarfrist: dayjs(oppgave.opprettetDato).add(14, 'days').toDate(),
+        veilederReferanse: 'Pål Hønesen [TODO]',
+        oppgavetypeData: {
+            nyStartdato: oppgave.oppgavetypeData.nyStartdato,
+            meldingFraVeileder:
+                'Hei, jeg har endret startdatoen til TODO som vi avtalte i møtet på fredag 21. februar.',
+        },
+    };
+};
+
+const polyfillOppgaveEndretSluttdato = (oppgave: OppgaveEndretSluttdato): OppgaveEndretSluttdato => {
+    return {
+        ...oppgave,
+        svarfrist: dayjs(oppgave.opprettetDato).add(14, 'days').toDate(),
+        veilederReferanse: 'Pål Hønesen [TODO]',
+        oppgavetypeData: {
+            nySluttdato: oppgave.oppgavetypeData.nySluttdato,
+            meldingFraVeileder: 'Hei, jeg har endret sluttdatoe til TODO som vi avtalte i møtet på fredag 21. februar.',
+        },
+    };
 };
 
 /**
@@ -37,6 +63,11 @@ const polyfillDeltakelse = (deltakelse: Deltakelse): Deltakelse => {
 
     return {
         ...deltakelse,
+        oppgaver: deltakelse.oppgaver.map((oppgave) =>
+            oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO
+                ? polyfillOppgaveEndretStartdato(oppgave)
+                : polyfillOppgaveEndretSluttdato(oppgave),
+        ),
         rapporteringsPerioder: rapporteringsPerioder.map((rapporteringsperiode) => {
             return {
                 ...rapporteringsperiode,
