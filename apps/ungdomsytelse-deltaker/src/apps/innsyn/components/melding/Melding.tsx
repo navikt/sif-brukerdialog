@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Melding = ({ tekst, avsender }: Props) => (
-    <VStack gap="6" className="p-5 bg-bg-default border border-navGra60 border-dashed">
+    <VStack gap="6" className="p-5 bg-orange-100 border border-navGra60 border-dotted rounded-md">
         <BodyShort weight="semibold">Melding fra veileder:</BodyShort>
         <FormatertFritekst tekst={tekst} />
         {avsender ? <BodyShort>- {avsender}</BodyShort> : null}

@@ -1,5 +1,5 @@
-import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
-import { Deltakelse, Oppgave, Oppgavetype } from '@navikt/ung-common';
+import { Box, Heading, VStack } from '@navikt/ds-react';
+import { Deltakelse } from '@navikt/ung-common';
 import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
 import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
 import OppgavePanel from './oppgaver/OppgavePanel';
@@ -14,7 +14,7 @@ const Deltakelse = ({ deltakelse }: Props) => {
     const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
 
-    const oppgaverSperrerAndreEndringer = oppgaver.some(sperrerOppgaveAndreEndringer);
+    // const oppgaverSperrerAndreEndringer = oppgaver.some(sperrerOppgaveAndreEndringer);
 
     return (
         <VStack gap="8">
@@ -22,19 +22,14 @@ const Deltakelse = ({ deltakelse }: Props) => {
                 <OppgavePanel key={index} oppgave={oppgave} programPeriode={programPeriode} />
             ))}
 
-            {oppgaverSperrerAndreEndringer ? (
-                <Alert variant="info">Info om at en ikke får gjort noe før en har godkjent endring</Alert>
-            ) : null}
-            {gjeldendePeriode && oppgaverSperrerAndreEndringer === false ? (
-                <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} />
-            ) : null}
+            {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}
 
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
-                    Tidligere perioder
+                    Perioder og inntekt
                 </Heading>
                 <Periodeliste
-                    erLåstForEndring={oppgaverSperrerAndreEndringer}
+                    erLåstForEndring={false}
                     perioder={tidligerePerioder || []}
                     programperiodeStartDato={deltakelse.programPeriode.from}
                 />
@@ -43,14 +38,14 @@ const Deltakelse = ({ deltakelse }: Props) => {
     );
 };
 
-const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
-    switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return true;
-        default:
-            return false;
-    }
-};
+// const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
+//     switch (oppgave.oppgavetype) {
+//         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+//         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+//             return true;
+//         default:
+//             return false;
+//     }
+// };
 
 export default Deltakelse;

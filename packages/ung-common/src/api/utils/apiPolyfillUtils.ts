@@ -24,11 +24,10 @@ const polyfillOppgaveEndretStartdato = (oppgave: OppgaveEndretStartdato): Oppgav
     return {
         ...oppgave,
         svarfrist: dayjs(oppgave.opprettetDato).add(14, 'days').toDate(),
-        veilederReferanse: 'Pål Hønesen [TODO]',
+        veilederReferanse: 'Pål Hønesen [TODO]',
         oppgavetypeData: {
             nyStartdato: oppgave.oppgavetypeData.nyStartdato,
-            meldingFraVeileder:
-                'Hei, jeg har endret startdatoen til TODO som vi avtalte i møtet på fredag 21. februar.',
+            meldingFraVeileder: 'Hei, jeg har endret startdatoen  som vi avtalte i møtet fredag 21. februar.',
         },
     };
 };
@@ -37,10 +36,10 @@ const polyfillOppgaveEndretSluttdato = (oppgave: OppgaveEndretSluttdato): Oppgav
     return {
         ...oppgave,
         svarfrist: dayjs(oppgave.opprettetDato).add(14, 'days').toDate(),
-        veilederReferanse: 'Pål Hønesen [TODO]',
+        veilederReferanse: 'Pål Hønesen [TODO]',
         oppgavetypeData: {
             nySluttdato: oppgave.oppgavetypeData.nySluttdato,
-            meldingFraVeileder: 'Hei, jeg har endret sluttdatoe til TODO som vi avtalte i møtet på fredag 21. februar.',
+            meldingFraVeileder: `Hei, jeg har endret sluttdatoen som vi avtalte i møtet onsdag 19. februar.`,
         },
     };
 };
