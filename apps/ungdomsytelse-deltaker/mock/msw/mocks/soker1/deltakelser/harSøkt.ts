@@ -25,8 +25,12 @@ export const deltakelserHarSøkt = [
                 status: 'ULØST',
                 opprettetDato: '2025-02-19T13:29:14.553804Z',
                 løstDato: null,
+                veilederReferanse: 'Pål Hønesen',
+                svarfrist: '2025-03-01',
                 oppgavetypeData: {
                     nyStartdato: '2025-01-01',
+                    meldingFraVeileder:
+                        'Hei, jeg har endret startdatoen til 1. januar 2025 som vi avtalte i møtet på fredag 21. februar.',
                 },
             },
             // {
