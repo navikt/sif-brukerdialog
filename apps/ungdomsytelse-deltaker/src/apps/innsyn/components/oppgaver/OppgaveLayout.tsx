@@ -14,7 +14,7 @@ interface Props {
 const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgave }: Props) => {
     return (
         <BlueBox>
-            <VStack gap="4">
+            <VStack gap="6">
                 <Box>
                     <Bleed marginBlock="2 0">
                         <Tag variant="alt1-filled" size="small">
@@ -26,7 +26,7 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgav
                     {tittel}
                 </Heading>
             </VStack>
-            <VStack gap="6">
+            <VStack gap="6" className="pb-6">
                 {beskrivelse}
                 {svarfrist ? (
                     <Alert variant="info" inline>

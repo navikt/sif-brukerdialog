@@ -34,9 +34,10 @@ export const deltakelserHarSøkt = [
             {
                 id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
                 oppgavetype: 'BEKREFT_ENDRET_SLUTTDATO',
-                status: 'ULØST',
+                status: 'LØST',
                 opprettetDato: '2025-02-19T13:29:14.553804Z',
-                løstDato: null,
+                løstDato: '2025-02-19T13:29:14.553804Z',
+                løsningstype: 'GODKJENT_AV_DELTAKER',
                 oppgavetypeData: {
                     nySluttdato: '2026-03-15',
                 },
