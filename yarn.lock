@@ -5004,7 +5004,7 @@ __metadata:
     helmet: "npm:8.0.0"
     html-react-parser: "npm:5.2.2"
     http-proxy-middleware: "npm:3.0.3"
-    jose: "npm:5.10.0"
+    jose: "npm:6.0.6"
     jsdom: "npm:26.0.0"
     lodash: "npm:4.17.21"
     msw: "npm:2.7.1"
@@ -20457,10 +20457,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:5.10.0, jose@npm:^5.10.0":
-  version: 5.10.0
-  resolution: "jose@npm:5.10.0"
-  checksum: 10/03881d1dfb390dcf50926402edcfe233bf557b5a77321fcb1bdb53453bc1cdd26d2d0a9ab28c7445cbb826881f84fdf5074179700f10c2711ccb9880f51065d7
+"jose@npm:6.0.6":
+  version: 6.0.6
+  resolution: "jose@npm:6.0.6"
+  checksum: 10/cf9a01df6fd6e2d502137169cb6c91ff78d035cf3e8bfbbc1a2d7ed9d4ba2ebe7df29324b59eca9f216c0e4aa45a5daf5f307c21caff422322f8a72673a5abc8
   languageName: node
   linkType: hard
 
@@ -20468,6 +20468,13 @@ __metadata:
   version: 4.15.9
   resolution: "jose@npm:4.15.9"
   checksum: 10/256234b6f85cdc080b1331f2d475bd58c8ccf459cb20f70ac5e4200b271bce10002b1c2f8e5b96dd975d83065ae5a586d52cdf89d28471d56de5d297992f9905
+  languageName: node
+  linkType: hard
+
+"jose@npm:^5.10.0":
+  version: 5.10.0
+  resolution: "jose@npm:5.10.0"
+  checksum: 10/03881d1dfb390dcf50926402edcfe233bf557b5a77321fcb1bdb53453bc1cdd26d2d0a9ab28c7445cbb826881f84fdf5074179700f10c2711ccb9880f51065d7
   languageName: node
   linkType: hard
 
