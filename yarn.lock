@@ -3182,6 +3182,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.21.0":
+  version: 9.21.0
+  resolution: "@eslint/js@npm:9.21.0"
+  checksum: 10/6c03f96a3e7c5825e780c707edbaa211ca976007a7194794a1e0cfaba76eae8759c9076ac15cab929b57323a117a385e99711395cbb3e58b8af7e5d95097160c
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.6":
   version: 2.1.6
   resolution: "@eslint/object-schema@npm:2.1.6"
@@ -5700,7 +5707,7 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.2.0"
-    "@eslint/js": "npm:9.20.0"
+    "@eslint/js": "npm:9.21.0"
     "@hookform/resolvers": "npm:4.1.0"
     "@navikt/aksel-icons": "npm:7.14.1"
     "@navikt/ds-css": "npm:7.14.1"
@@ -5883,7 +5890,7 @@ __metadata:
   resolution: "@navikt/ungdomsytelse-deltaker@workspace:apps/ungdomsytelse-deltaker"
   dependencies:
     "@eslint/eslintrc": "npm:3.2.0"
-    "@eslint/js": "npm:9.20.0"
+    "@eslint/js": "npm:9.21.0"
     "@navikt/aksel-icons": "npm:7.14.1"
     "@navikt/ds-css": "npm:7.14.1"
     "@navikt/ds-react": "npm:7.14.1"
@@ -5961,7 +5968,7 @@ __metadata:
   resolution: "@navikt/ungdomsytelse-veileder@workspace:apps/ungdomsytelse-veileder"
   dependencies:
     "@eslint/eslintrc": "npm:3.2.0"
-    "@eslint/js": "npm:9.20.0"
+    "@eslint/js": "npm:9.21.0"
     "@navikt/aksel-icons": "npm:7.14.1"
     "@navikt/ds-css": "npm:7.14.1"
     "@navikt/ds-react": "npm:7.14.1"
@@ -8943,7 +8950,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
-    "@eslint/js": "npm:9.20.0"
+    "@eslint/js": "npm:9.21.0"
     eslint: "npm:9.20.1"
     eslint-config-prettier: "npm:10.0.1"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
