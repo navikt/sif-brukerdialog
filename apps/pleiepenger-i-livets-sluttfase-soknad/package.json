@@ -70,7 +70,7 @@
         "compression": "1.8.0",
         "cross-env": "7.0.3",
         "dotenv": "16.4.7",
-        "eslint": "9.20.1",
+        "eslint": "9.21.0",
         "eslint-plugin-storybook": "0.11.3",
         "express": "4.21.2",
         "helmet": "8.0.0",
@@ -81,7 +81,7 @@
         "storybook": "8.5.8",
         "storybook-addon-mock": "5.0.0",
         "typescript": "5.7.3",
-        "vite": "6.0.11",
+        "vite": "6.1.1",
         "vite-plugin-checker": "0.9.0",
         "vitest": "3.0.6"
     },
