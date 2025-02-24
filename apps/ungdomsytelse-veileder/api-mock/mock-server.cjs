@@ -65,7 +65,6 @@ const deltakelse1 = {
             oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
             status: 'ULØST',
             opprettetDato: '2025-02-19T13:29:14.553804Z',
-            løstDato: null,
         },
     ],
 };
@@ -85,7 +84,6 @@ const deltakelse3 = {
             oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
             status: 'ULØST',
             opprettetDato: '2025-02-19T13:29:14.553804Z',
-            løstDato: null,
         },
     ],
 };

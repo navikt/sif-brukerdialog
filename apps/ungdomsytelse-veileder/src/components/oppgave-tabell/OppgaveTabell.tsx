@@ -7,7 +7,7 @@ interface Props {
     oppgaver: Oppgave[];
 }
 
-const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
+export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <Box>Startdato endret til: {dateFormatter.compact(oppgave.oppgavetypeData.nyStartdato)}</Box>;

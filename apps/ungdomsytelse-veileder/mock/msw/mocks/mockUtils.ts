@@ -57,13 +57,12 @@ const oppgave = {
     oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
     status: 'ULØST',
     opprettetDato: '2025-02-19T13:29:14.553804Z',
-    løstDato: null,
     oppgavetypeData: {
         nyStartdato: '2025-01-10',
     },
 };
 
-const deltakelse1 = {
+const deltakelseDR = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
         id: 'd-r',
@@ -75,8 +74,18 @@ const deltakelse1 = {
     oppgaver: [oppgave],
 };
 
-export const getDeltakelser = (id) => {
-    return id === 'd-n' ? [] : deltakelser;
+const deltakelseDN = {
+    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
+    deltaker: {
+        id: 'd-n',
+        deltakerIdent: '03867198392',
+    },
+    fraOgMed: '2025-01-01',
+    tilOgMed: null,
+    harSøkt: false,
+    oppgaver: [],
 };
 
-const deltakelser = [deltakelse1];
+export const getDeltakelser = (id) => {
+    return id === 'd-n' ? [deltakelseDN] : [deltakelseDR];
+};

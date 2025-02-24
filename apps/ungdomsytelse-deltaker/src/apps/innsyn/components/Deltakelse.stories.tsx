@@ -1,6 +1,6 @@
 import {
-    BekreftEndretSluttdatoOppgave,
-    BekreftEndretStartdatoOppgave,
+    OppgaveEndretSluttdato,
+    OppgaveEndretStartdato,
     deltakelseSchema,
     Oppgavestatus,
     Oppgavetype,
@@ -13,7 +13,7 @@ import Deltakelse from './Deltakelse';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
-const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
+const endretStartdatoOppgave: OppgaveEndretStartdato = {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
@@ -24,7 +24,7 @@ const endretStartdatoOppgave: BekreftEndretStartdatoOppgave = {
     svarfrist: ISODateToDate('2024-07-31'),
 };
 
-const endretSluttdatoOppgave: BekreftEndretSluttdatoOppgave = {
+const endretSluttdatoOppgave: OppgaveEndretSluttdato = {
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: Oppgavestatus.ULØST,
