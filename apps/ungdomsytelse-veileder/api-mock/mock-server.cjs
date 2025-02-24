@@ -16,7 +16,7 @@ server.use(
 
 server.use(
     cors({
-        origin: 'http://localhost:8080',
+        origin: 'http://localhost:8088',
         methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
         allowedHeaders: ['content-type', 'X-Brukerdialog-Git-Sha', 'x_correlation_id'],
         credentials: true,
