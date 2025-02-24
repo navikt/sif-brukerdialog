@@ -18,10 +18,6 @@ export const deltakerService = {
         }
     },
 
-    markerDeltakelseSøkt: async (id: string): Promise<void> => {
-        return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${id}/marker-har-sokt`);
-    },
-
     sendSøknad: async (data: SendSøknadDTO): Promise<any> => {
         return await k9BrukerdialogApiClient.post(`/ungdomsytelse/soknad/innsending`, data);
     },
