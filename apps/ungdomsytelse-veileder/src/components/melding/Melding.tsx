@@ -1,5 +1,5 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import FormatertFritekst from '../FormatertFritekst';
+import FormatertFritekst from '@navikt/ung-common/src/components/formatert-fritekst/FormatertFritekst';
 
 interface Props {
     tekst: string;
@@ -8,9 +8,8 @@ interface Props {
 
 const Melding = ({ tekst, avsender }: Props) => (
     <VStack gap="6" className="p-5 bg-orange-100 border border-navGra60 border-dotted rounded-md">
-        <BodyShort weight="semibold">Melding fra veileder:</BodyShort>
         <FormatertFritekst tekst={tekst} />
-        {avsender ? <BodyShort>- {avsender}</BodyShort> : null}
+        {avsender ? <BodyShort>Fra: {avsender}</BodyShort> : null}
     </VStack>
 );
 

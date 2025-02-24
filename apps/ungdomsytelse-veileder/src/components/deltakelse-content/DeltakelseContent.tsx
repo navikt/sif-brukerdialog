@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, HGrid, HStack, List, Tabs, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Oppgavestatus } from '@navikt/ung-common';
 import { Deltakelse, Deltaker } from '../../api/types';
@@ -8,7 +8,6 @@ import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
-import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
 
 interface Props {
     deltaker: Deltaker;
@@ -29,7 +28,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                             <HStack gap="1">
                                 <Box>Deltakeroppgaver</Box>
                                 <Box
-                                    className="rounded-full bg-data-surface-2 text-white w-6 h-6 relative"
+                                    className="rounded-full bg-icon-warning text-white w-6 h-6 relative"
                                     style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
                                     {deltakelse.oppgaver.length}
                                 </Box>
@@ -60,11 +59,19 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                                 åpneOppgaver.map((oppgave) => (
                                     <Alert key={oppgave.id} variant="warning" inline>
                                         <Box>{oppgave.oppgavetype}</Box>
-                                        <OppgaveInfo oppgave={oppgave} />
-                                        <Box>
-                                            Frist:{' '}
-                                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
-                                        </Box>
+                                        <List>
+                                            <List.Item className="m-0">
+                                                {oppgave.åpnetAvDeltaker
+                                                    ? `Åpnet av deltaker ${dateFormatter.compactWithTime(oppgave.åpnetAvDeltaker)}`
+                                                    : 'Ikke åpnet av deltaker'}
+                                            </List.Item>
+                                            <List.Item className="m-0">
+                                                Frist{' '}
+                                                {oppgave.svarfrist
+                                                    ? dateFormatter.compact(oppgave.svarfrist)
+                                                    : 'ikke satt'}
+                                            </List.Item>
+                                        </List>
                                     </Alert>
                                 ))
                             ) : (
