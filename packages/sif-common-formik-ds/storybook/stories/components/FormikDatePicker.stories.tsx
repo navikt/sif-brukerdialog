@@ -1,11 +1,12 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
+import { getDateValidator } from '@navikt/sif-validation';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 import { useFormikContext } from 'formik';
+import { datepickerUtils } from '../../../src/components/formik-datepicker/datepickerUtils';
 import FormikDatepicker, { FormikDatepickerProps } from '../../../src/components/formik-datepicker/FormikDatepicker';
-import { getDateValidator } from '../../../src/validation';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 
@@ -19,7 +20,7 @@ export default meta;
 
 type Story = StoryObj<typeof FormikDatepicker>;
 
-const Wrapper: StoryFn = ({ children }) => {
+const Wrapper = ({ children }) => {
     const formik = useFormikContext();
     return (
         <>
@@ -100,7 +101,7 @@ const defaultProps: FormikDatepickerProps<any, any> = {
     label: 'Velg en dato',
     description: 'Some description',
     dropdownCaption: true,
-    minDate: new Date(2020, 1, 1),
+    minDate: datepickerUtils.getDateFromDateString('2025-02-02'),
     maxDate: new Date(2030, 1, 10),
     validate: validator,
 };

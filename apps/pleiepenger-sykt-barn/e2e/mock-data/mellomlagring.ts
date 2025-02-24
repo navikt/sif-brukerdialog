@@ -44,5 +44,12 @@ export const mellomlagringMock = {
         harUtenlandskNæring: 'no',
         utenlandskNæring: [],
     },
-    metadata: { lastStepID: 'medlemskap', version: '14.0.1', updatedTimestemp: '2023-01-01T00:00:00.000Z' },
+    metadata: {
+        lastStepID: 'medlemskap',
+        version: '14.1.0',
+        updatedTimestemp: '2023-01-01T00:00:00.000Z',
+        featureToggles: {
+            spørOmSluttetISøknadsperiode: false,
+        },
+    },
 };

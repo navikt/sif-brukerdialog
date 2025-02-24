@@ -25,10 +25,6 @@ vi.mock('@navikt/sif-validation', () => ({
     getStringValidator: () => () => undefined,
 }));
 
-vi.mock('./../../utils/featureToggleUtils', () => {
-    return { isFeatureEnabled: () => false, Feature: {} };
-});
-
 const formValues: Partial<SøknadFormValues> = {};
 
 describe('stepValidation tests', () => {

@@ -41,6 +41,7 @@ export const institusjoner: Institusjon[] = [
     { navn: 'Nevromuskulært kompetansesenter' },
     { navn: 'NevSom' },
     { navn: 'Nordlandssykehuset HF' },
+    { navn: 'Nordre Aasen Habiliteringssenter' },
     { navn: 'Norsk senter for cystisk fibrose - NSCF (OUS)' },
     { navn: 'Oslo Universitetssykehus' },
     { navn: 'PTØ Gardermoen' },
@@ -76,6 +77,7 @@ export const institusjoner: Institusjon[] = [
     { navn: 'Universitetssykehus Nord Norge' },
     { navn: 'Valnesfjord Helsesportsenter' },
     { navn: 'Vestre Viken HF (Bærum sykehus)' },
+    { navn: 'Østbytunet' },
     { navn: 'Ål folkehøgskole og kurssenter for døve' },
     { navn: 'Ålesund Sjukehus' },
 ];

@@ -8,9 +8,9 @@ interface Props {
 }
 const DeltakelseStatusContent = ({ deltakelse }: Props) => {
     return (
-        <Box>
-            <Heading level="2" size="medium">
-                Status for deltakerperiode
+        <VStack gap="4" className="rounded p-5 bg-gray-50">
+            <Heading level="3" size="medium">
+                Status
             </Heading>
             <List>
                 <List.Item title="Deltaker har søkt">
@@ -30,10 +30,11 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                 </List.Item>
                 <List.Item title="Startdato">{dateFormatter.compact(deltakelse.fraOgMed)}</List.Item>
                 <List.Item title="Sluttdato">
-                    {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
+                    {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : 'Ikke satt'}
                 </List.Item>
+                <List.Item title="Antall dager brukt">X av Y dager brukt</List.Item>
             </List>
-        </Box>
+        </VStack>
     );
 };
 

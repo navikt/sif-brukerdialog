@@ -4,7 +4,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { Inntekt } from '../../../../api/types';
+import { Inntekt } from '@navikt/ung-common';
 import { InntektFormFields, InntektFormValues } from './types';
 
 export const inntektFormComponents = getTypedFormComponents<InntektFormFields, InntektFormValues, ValidationError>();

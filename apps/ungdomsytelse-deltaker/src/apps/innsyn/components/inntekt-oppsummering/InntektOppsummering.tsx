@@ -1,7 +1,7 @@
-import { FormattedNumber } from 'react-intl';
-import { Inntekt } from '../../../../api/types';
 import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
+import { FormattedNumber } from 'react-intl';
 import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
+import { Inntekt } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
 
 interface Props {

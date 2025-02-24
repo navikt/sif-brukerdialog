@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { InntektsrapporteringDTO } from '../../../api/types';
-import { deltakerService } from '../../../api/services/deltakerService';
+import { deltakerService, RapporterInntektDTO } from '@navikt/ung-common';
 
 export const useRapporterInntekt = () => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [inntektSendt, setInntektSendt] = useState(false);
 
-    const rapporterInntekt = (apiData: InntektsrapporteringDTO) => {
+    const rapporterInntekt = (inntekt: RapporterInntektDTO) => {
         setPending(true);
         return deltakerService
-            .rapporterInntekt(apiData)
+            .rapporterInntekt(inntekt)
             .then(() => {
                 setInntektSendt(true);
             })

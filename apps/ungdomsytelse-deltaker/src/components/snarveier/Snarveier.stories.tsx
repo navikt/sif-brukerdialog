@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Snarveier> = {
     component: Snarveier,
-    title: 'Content/Snarveier',
+    title: 'Komponenter/Snarveier',
     parameters: {
         layout: 'centered',
     },

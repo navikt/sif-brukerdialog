@@ -5,13 +5,6 @@ import { SøknadFormField } from '../../types/søknad-form-values/SøknadFormVal
 import { isAvailable } from '../routeUtils';
 import * as stepUtils from '../stepUtils';
 
-vi.mock('../featureToggleUtils', () => {
-    return {
-        isFeatureEnabled: () => false,
-        Feature: {},
-    };
-});
-
 vi.mock('./../stepUtils', () => {
     return {
         opplysningerOmBarnetStepAvailable: vi.fn(() => 'barn step available'),

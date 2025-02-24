@@ -6,7 +6,7 @@ import InntektOppsummering from './InntektOppsummering';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 const meta: Meta<typeof InntektOppsummering> = {
-    title: 'Components/Inntektsoppsummering',
+    title: 'Komponenter/Inntektsoppsummering',
     component: InntektOppsummering,
     decorators: [withIntl, withPageWidth],
     args: {

@@ -14,7 +14,7 @@ const DeltakerPage = () => {
     return (
         <DeltakerProvider deltakerId={deltakerId}>
             <Page.Block width="xl" gutters={true}>
-                <VStack gap="4">
+                <VStack gap="2">
                     <DeltakerPageHeader />
                     <DeltakerPageContent />
                 </VStack>

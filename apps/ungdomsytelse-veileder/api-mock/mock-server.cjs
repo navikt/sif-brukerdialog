@@ -59,18 +59,35 @@ const deltakelse1 = {
     fraOgMed: '2025-01-01',
     tilOgMed: '2025-05-01',
     harSøkt: true,
+    oppgaver: [
+        {
+            id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
+            oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
+            status: 'ULØST',
+            opprettetDato: '2025-02-19T13:29:14.553804Z',
+        },
+    ],
 };
-const deltakelse2 = {
-    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-2',
-    deltakerIdent: '03867198392',
+
+const deltakelse3 = {
+    id: 'a3bed73f-d5d7-4aac-9c3b-3134c8394dac',
     deltaker: {
-        id: 'd-r',
-        deltakerIdent: '03867198392',
+        id: '6ab6cd9f-9589-46b2-b665-cfc7502e38db',
+        deltakerIdent: '10457231682',
     },
-    fraOgMed: '2024-09-01',
-    tilOgMed: '2025-01-01',
     harSøkt: true,
+    fraOgMed: '2025-01-02',
+    tilOgMed: null,
+    oppgaver: [
+        {
+            id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
+            oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
+            status: 'ULØST',
+            opprettetDato: '2025-02-19T13:29:14.553804Z',
+        },
+    ],
 };
+
 const deltakelse2 = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
     deltakerIdent: '03867198392',
@@ -78,11 +95,14 @@ const deltakelse2 = {
         id: 'd-r',
         deltakerIdent: '03867198392',
     },
+    oppgaver: [{}],
     fraOgMed: '2025-01-02',
     tilOgMed: '2025-02-04',
+    oppgaver: [],
     harSøkt: false,
 };
-const deltakelser = [deltakelse1, deltakelse2];
+
+const deltakelser = [deltakelse3];
 
 const getDeltaker = ({ deltakerIdent, deltakerId }) => {
     if (deltakerIdent) {
@@ -178,6 +198,26 @@ const startExpressServer = () => {
     });
 
     server.put('/veileder/register/deltakelse/:id/oppdater', (req, res) => {
+        const body = req.body;
+        const response = {
+            ...deltakelse1,
+            ...body,
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 50);
+    });
+    server.put('/veileder/register/deltakelse/:id/endre/startdato', (req, res) => {
+        const body = req.body;
+        const response = {
+            ...deltakelse1,
+            ...body,
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 50);
+    });
+    server.put('/veileder/register/deltakelse/:id/endre/sluttdato', (req, res) => {
         const body = req.body;
         const response = {
             ...deltakelse1,

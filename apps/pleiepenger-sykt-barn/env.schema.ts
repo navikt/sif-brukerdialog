@@ -6,6 +6,7 @@ export const appEnvSchema = commonEnvSchema.extend({
     MOCK_DATE: z.string().optional(),
     USE_MOCK_DATE: z.string().optional(),
     SIF_PUBLIC_FEATURE_NYNORSK: z.enum(['on', 'off']).optional(),
+    SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE: z.enum(['on', 'off']).optional(),
 });
 
 export type AppEnv = z.infer<typeof appEnvSchema>;

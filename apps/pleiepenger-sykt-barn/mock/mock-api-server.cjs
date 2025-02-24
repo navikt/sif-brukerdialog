@@ -100,7 +100,7 @@ const frilansoppdrag2 = {
 const arbeidsgivereMock = {
     organisasjoner: [
         { navn: 'SJOKKERENDE ELEKTRIKER', organisasjonsnummer: '947064649', ansattFom: '2002-04-20' },
-        // { navn: 'ROLIG SVANE', organisasjonsnummer: '947064642', ansattFom: '2016-12-01' },
+        { navn: 'ROLIG SVANE', organisasjonsnummer: '947064642', ansattFom: '2016-12-01' },
     ],
     frilansoppdrag: [frilansoppdrag, frilansoppdrag2],
     // frilansoppdrag: [],

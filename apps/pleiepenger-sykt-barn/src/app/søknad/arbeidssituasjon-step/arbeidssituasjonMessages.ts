@@ -112,6 +112,7 @@ const nb = {
         'Da deler du antall timer med antall uker du har jobbet. Hvis du for eksempel har jobbet i 7 uker, så deler du antall timer du har jobbet med 7.',
 
     'arbeidsforhold.arbeidsforholdIntlValues.jobber': 'jobber',
+    'arbeidsforhold.arbeidsforholdIntlValues.jobbet': 'jobbet',
     'arbeidsforhold.arbeidsforholdIntlValues.somAnsatt': 'hos {arbeidsgiverNavn}',
     'arbeidsforhold.arbeidsforholdIntlValues.somFrilanser': 'som frilanser',
     'arbeidsforhold.arbeidsforholdIntlValues.somSN': 'som selvstendig næringsdrivende',
@@ -277,6 +278,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Da deler du antall timer med antall veker du har jobba. Hvis du for eksempel har jobba i 7 veker, så deler du antall timer du har jobba med 7.',
 
     'arbeidsforhold.arbeidsforholdIntlValues.jobber': 'jobbar',
+    'arbeidsforhold.arbeidsforholdIntlValues.jobbet': 'jobba',
     'arbeidsforhold.arbeidsforholdIntlValues.somAnsatt': 'hos {arbeidsgiverNavn}',
     'arbeidsforhold.arbeidsforholdIntlValues.somFrilanser': 'som frilanser',
     'arbeidsforhold.arbeidsforholdIntlValues.somSN': 'som selvstendig næringsdrivande',

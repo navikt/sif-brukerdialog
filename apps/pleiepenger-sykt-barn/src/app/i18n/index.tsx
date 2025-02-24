@@ -14,7 +14,6 @@ import {
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 
 const libMessages = {
     nb: {
@@ -68,9 +67,6 @@ export type AppIntlShape = ReturnType<typeof useAppIntl>;
 
 export const AppText = (props: { id: AppMessageKeys; values?: any }) => {
     return <FormattedMessage {...props} />;
-};
-export const AppHtml = (props: { id: AppMessageKeys; values?: any }) => {
-    return <FormattedHtmlMessage {...props} />;
 };
 
 export const applicationIntlMessages = {

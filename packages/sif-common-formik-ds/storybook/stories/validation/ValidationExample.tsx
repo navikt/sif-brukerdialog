@@ -4,8 +4,6 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDate } from '@navikt/sif-common-utils';
-
-import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import {
     getCheckedValidator,
     getDateValidator,
@@ -14,6 +12,7 @@ import {
     getOrgNumberValidator,
     getRequiredFieldValidator,
     getStringValidator,
+    getTimeValidator,
     getYesOrNoValidator,
     ValidateCheckedError,
     ValidateDateError,
@@ -26,13 +25,12 @@ import {
     ValidateTimeError,
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
-import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '../../../src';
+import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import { ValidationError } from '../../../src/validation/types';
 import ValidationErrorList from '../../components/validation-error-list/ValidationErrorList';
 import ValidationPanel from '../../components/validation-panel/ValidationPanel';
 import { FormFields, FormValues } from './types';
-import { getTypedFormComponents } from '../../../src';
-import getTimeValidator from '@navikt/sif-validation/src/validation/getTimeValidator';
 
 const initialValues: FormValues = {
     liste: [],

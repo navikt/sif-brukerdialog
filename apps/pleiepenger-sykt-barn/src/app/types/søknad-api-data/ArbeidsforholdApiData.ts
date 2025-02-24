@@ -3,5 +3,5 @@ import { NormalarbeidstidApiData } from './NormalarbeidstidApiData';
 
 export interface ArbeidsforholdApiData {
     normalarbeidstid: NormalarbeidstidApiData;
-    arbeidIPeriode?: ArbeidIPeriodeApiData;
+    arbeidIPeriode: ArbeidIPeriodeApiData;
 }

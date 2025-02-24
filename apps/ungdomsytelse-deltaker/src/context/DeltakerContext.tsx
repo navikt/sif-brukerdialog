@@ -1,6 +1,6 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { Deltakelse } from '../api/types';
 import { createContext, useContext } from 'react';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { Deltakelse } from '@navikt/ung-common';
 
 interface DeltakerContextType {
     søker: Søker;

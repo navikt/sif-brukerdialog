@@ -1,15 +1,15 @@
 import { Alert, Bleed, Box, Button, Heading, Switch, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { getCheckedValidator } from '@navikt/sif-validation';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
-import { InntektsrapporteringDTO } from '../../../../api/types';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import { RapporterInntektDTO } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormFields, InntektFormValues } from './types';
-import InntektKompaktForm from './varianter/InntektKompaktForm';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
+import InntektKompaktForm from './varianter/InntektKompaktForm';
 
 interface Props {
     periode: DateRange;
@@ -25,8 +25,8 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
     const { FormikWrapper, Form, ConfirmationCheckbox } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const inntekt = getInntektFromFormValues(values);
-        const data: InntektsrapporteringDTO = {
+        const inntekt = getInntektFromFormValues(values, true);
+        const data: RapporterInntektDTO = {
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
                     fraOgMed: dateToISODate(periode.from),

@@ -1,9 +1,11 @@
-import { Accordion, Alert, Box, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
 import DeltakelseContent from './deltakelse-content/DeltakelseContent';
 import NyDeltakelse from './ny-deltakelse/NyDeltakelse';
 import DeltakelseHeader from './deltakelse-content/DeltakelseHeader';
+
+const kanOppretteNyDeltakelse = false;
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
@@ -32,38 +34,34 @@ const DeltakerPageContent = () => {
         return <Box>Ingen deltakelser funnet</Box>;
     }
 
-    return (
-        <Box className="rounded bg-gray-100 pb-10">
-            <Box className=" p-3 pr-6 pl-6">
-                <VStack gap="4" marginBlock="4 0">
-                    <Heading level="2" size="medium">
-                        Deltakelseperioder
-                    </Heading>
-                    <Accordion>
-                        {deltakelser.map((deltakelse) => (
-                            <Accordion.Item key={deltakelse.id}>
-                                <Accordion.Header>
-                                    <DeltakelseHeader deltakelse={deltakelse} />
-                                </Accordion.Header>
-                                <Accordion.Content>
-                                    <DeltakelseContent
-                                        key={deltakelse.id}
-                                        deltakelse={deltakelse}
-                                        deltaker={deltaker}
-                                        alleDeltakelser={deltakelser}
-                                        onChange={handleOnDeltakelseChange}
-                                    />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        ))}
-                    </Accordion>
+    if (deltakelser.length === 0) {
+        return <Box>Ingen deltakelse funnet</Box>;
+    }
+    if (deltakelser.length > 1) {
+        return <Box>Kun en deltakelse støttes</Box>;
+    }
 
+    const deltakelse = deltakelser[0];
+
+    return (
+        <Box className="rounded bg-white">
+            <DeltakelseHeader deltakelse={deltakelse} />
+            <Box className=" p-3 pr-6 pl-6">
+                <DeltakelseContent
+                    key={deltakelse.id}
+                    deltakelse={deltakelse}
+                    deltaker={deltaker}
+                    alleDeltakelser={deltakelser}
+                    onChange={handleOnDeltakelseChange}
+                />
+
+                {kanOppretteNyDeltakelse ? (
                     <NyDeltakelse
                         deltaker={deltaker}
                         alleDeltakelser={deltakelser}
                         onDeltakelseRegistrert={handleOnDeltakelseChange}
                     />
-                </VStack>
+                ) : null}
             </Box>
         </Box>
     );

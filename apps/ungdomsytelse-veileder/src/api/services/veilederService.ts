@@ -6,6 +6,7 @@ import { deltakelseSchema } from '../schemas/deltakelseSchema';
 import { deltakerSchema } from '../schemas/deltakerSchema';
 import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
 import { Deltakelse, Deltaker, isNyDeltaker, NyDeltaker } from '../types';
+import { dateToISODate } from '@navikt/sif-common-utils';
 
 /**
  * ----------------------------------------------------------
@@ -166,6 +167,30 @@ const updateDeltakelse = async (data: OppdaterDeltakelseRequestPayload): Promise
 
 /**
  * ----------------------------------------------------------
+ * Endre startdato
+ * ----------------------------------------------------------
+ */
+
+const endreStartdato = async (deltakelseId: string, dato: Date): Promise<any> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/veileder/register/deltakelse/${deltakelseId}/endre/startdato`, {
+        dato: dateToISODate(dato),
+    });
+};
+
+/**
+ * ----------------------------------------------------------
+ * Endre sluttdato
+ * ----------------------------------------------------------
+ */
+
+const endreSluttdato = async (deltakelseId: string, dato: Date): Promise<any> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/veileder/register/deltakelse/${deltakelseId}/endre/sluttdato`, {
+        dato: dateToISODate(dato),
+    });
+};
+
+/**
+ * ----------------------------------------------------------
  * Slett deltakelse
  * ----------------------------------------------------------
  */
@@ -188,4 +213,6 @@ export const veilederService = {
     updateDeltakelse,
     avsluttDeltakelse,
     deleteDeltakelse,
+    endreSluttdato,
+    endreStartdato,
 };

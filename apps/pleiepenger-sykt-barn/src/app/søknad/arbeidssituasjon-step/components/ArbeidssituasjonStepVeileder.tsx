@@ -10,7 +10,7 @@ const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (
         <p>
             <AppText
                 id="steg.arbeidssituasjon.veileder.2"
-                values={{ strong: (children) => <strong>{children}</strong> }}
+                values={{ strong: (children) => <strong key="strong">{children}</strong> }}
             />
         </p>
         <p>

@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
-import { Rapporteringsperiode } from '../../../api/types';
 import { isDateInDateRange } from '@navikt/sif-common-utils';
+import { Rapporteringsperiode } from '@navikt/ung-common';
+import dayjs from 'dayjs';
 
 const datoErIRapporteringsperiode = (dato: Date, periode: Rapporteringsperiode): boolean => {
     return isDateInDateRange(dato, periode.periode);

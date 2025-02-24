@@ -3,6 +3,7 @@ import { Arbeidsgiver } from '../Arbeidsgiver';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 export enum ArbeidssituasjonAnsattType {
+    'ikkeAnsattUkjentSluttdato' = 'ikkeAnsattUkjentSluttdato',
     'sluttetFørSøknadsperiode' = 'sluttetFørSøknadsperiode',
     'sluttetISøknadsperiode' = 'sluttetISøknadsperiode',
     'pågående' = 'pågående',
@@ -11,6 +12,13 @@ export enum ArbeidssituasjonAnsattType {
 interface ArbeidssituasjonAnsatt {
     type: ArbeidssituasjonAnsattType;
     index: number /** Index i arbeidsgiver-arrayet - skal skrives om */;
+    arbeidsgiver: Arbeidsgiver;
+}
+
+interface ArbeidssituasjonIkkeAnsattUkjentSluttdato {
+    type: ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato;
+    index: number /** Index i arbeidsgiver-arrayet - skal skrives om */;
+    normalarbeidstid: NormalarbeidstidSøknadsdata;
     arbeidsgiver: Arbeidsgiver;
 }
 
@@ -30,4 +38,8 @@ interface AnsattPågående extends ArbeidssituasjonAnsatt {
     normalarbeidstid: NormalarbeidstidSøknadsdata;
 }
 
-export type ArbeidssituasjonAnsattSøknadsdata = SluttetFørSøknadsperiode | SluttetISøknadsperiode | AnsattPågående;
+export type ArbeidssituasjonAnsattSøknadsdata =
+    | SluttetFørSøknadsperiode
+    | SluttetISøknadsperiode
+    | AnsattPågående
+    | ArbeidssituasjonIkkeAnsattUkjentSluttdato;
