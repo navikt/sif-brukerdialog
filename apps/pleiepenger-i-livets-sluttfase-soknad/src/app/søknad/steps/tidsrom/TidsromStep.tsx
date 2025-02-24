@@ -117,7 +117,7 @@ const TidsromStep = () => {
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
                                     <p>
-                                        {appEnv.SIF_PUBLIC_FEATURE_SOKE_TRE_AAR_TILBAKE === 'on' ? (
+                                        {appEnv.SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE === 'on' ? (
                                             <AppText id="step.tidsrom.counsellorPanel.avsnitt.2.3år" />
                                         ) : (
                                             <AppText id="step.tidsrom.counsellorPanel.avsnitt.2.3mnd" />
