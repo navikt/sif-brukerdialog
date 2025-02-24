@@ -8,12 +8,12 @@ interface Props {
     oppgave: Oppgave;
 }
 
-const OppgavePanel = ({ oppgave }: Props) => {
+const OppgavePanel = ({ oppgave, programPeriode }: Props) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgave oppgave={oppgave} />;
+            return <EndretStartdatoOppgave oppgave={oppgave} opprinneligStartdato={programPeriode.from} />;
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgave oppgave={oppgave} />;
+            return <EndretSluttdatoOppgave oppgave={oppgave} opprinneligSluttdato={programPeriode.to} />;
     }
 };
 

@@ -1,6 +1,6 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { z } from 'zod';
-import { oppgaveSchema } from '../Oppgave';
+import { oppgaveSchema } from '../oppgave';
 import { rapporteringsperiodeDTOSchema } from './RapporteringsperiodeDTO';
 
 export const deltakelseDTOSchema = z.object({
