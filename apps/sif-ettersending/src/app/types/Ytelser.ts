@@ -38,12 +38,6 @@ export const Ytelser: YtelserMap = {
             nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         },
     },
-    // [YtelseKey.omsorgsdagerAleneomsorg]: {
-    //     navn: 'Ekstra omsorgsdager ved aleneomsorg',
-    //     søknadstittel: {
-    //         nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
-    //     },
-    // },
     [YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn]: {
         navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
         søknadstittel: {
