@@ -26,6 +26,8 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
         case 'pleiepenger-livets-sluttfase':
         case 'pleiepengerLivetsSluttfase':
             return Søknadstype.pleiepengerLivetsSluttfase;
+        case 'opplaringspenger':
+            return Søknadstype.opplaringspenger;
     }
     return undefined;
 };

@@ -16,6 +16,7 @@ export enum YtelseKey {
     'omsorgsdagerAnnenForelderIkkeTilsyn' = 'omsorgsdagerAnnenForelderIkkeTilsyn',
     'omsorgspengerutbetalingSNFri' = 'omsorgspengerutbetalingSNFri',
     'omsorgspengerutbetalingArbeidstaker' = 'omsorgspengerutbetalingArbeidstaker',
+    'opplaringspenger' = 'opplaringspenger',
 }
 
 export const Ytelser: YtelserMap = {
@@ -59,6 +60,12 @@ export const Ytelser: YtelserMap = {
         navn: 'Utbetaling av omsorgspenger for arbeidstaker',
         søknadstittel: {
             nb: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
+        },
+    },
+    [YtelseKey.opplaringspenger]: {
+        navn: 'Opplæringspenger',
+        søknadstittel: {
+            nb: 'Søknad om opplæringspenger',
         },
     },
 };
