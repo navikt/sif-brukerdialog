@@ -38,8 +38,8 @@
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.4.3",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "7.14.1",
-        "@navikt/ds-react": "7.14.1",
+        "@navikt/ds-css": "7.14.2",
+        "@navikt/ds-react": "7.14.2",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
@@ -89,9 +89,9 @@
         "style-loader": "4.0.0",
         "typescript": "5.7.3",
         "uuid": "11.1.0",
-        "vite": "6.1.1",
+        "vite": "6.2.0",
         "vite-plugin-checker": "0.9.0",
-        "vitest": "3.0.6"
+        "vitest": "3.0.7"
     },
     "scripts": {
         "build-storybook": "storybook build",

@@ -16,10 +16,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.14.1",
+        "@navikt/ds-css": "7.14.2",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.14.1",
-        "@navikt/ds-tailwind": "7.14.1",
+        "@navikt/ds-react": "7.14.2",
+        "@navikt/ds-tailwind": "7.14.2",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "classnames": "2.5.1",
         "csp-header": "6.0.1",

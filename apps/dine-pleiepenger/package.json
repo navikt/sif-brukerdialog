@@ -17,8 +17,8 @@
         "test-w": "vitest"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.13.3",
-        "@grafana/faro-web-tracing": "1.13.3",
+        "@grafana/faro-web-sdk": "1.14.0",
+        "@grafana/faro-web-tracing": "1.14.0",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@navikt/next-logger": "1.35.0",
@@ -47,10 +47,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
-        "@navikt/ds-css": "7.14.1",
+        "@navikt/ds-css": "7.14.2",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.14.1",
-        "@navikt/ds-tailwind": "7.14.1",
+        "@navikt/ds-react": "7.14.2",
+        "@navikt/ds-tailwind": "7.14.2",
         "@playwright/test": "1.50.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.5.8",
@@ -82,7 +82,7 @@
         "tailwindcss": "3.4.17",
         "typescript": "5.7.3",
         "uuid": "11.1.0",
-        "vitest": "3.0.6",
+        "vitest": "3.0.7",
         "webpack": "5.98.0"
     },
     "_id": "@navikt/dine-pleiepenger@0.3.1"

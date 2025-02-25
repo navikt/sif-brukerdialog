@@ -16,7 +16,7 @@
         "classnames": "2.5.1",
         "i18n-iso-countries": "7.14.0",
         "lodash": "4.17.21",
-        "react-dropzone": "14.3.6",
+        "react-dropzone": "14.3.8",
         "react-fast-compare": "3.2.2",
         "uuid": "11.1.0"
     },
@@ -25,8 +25,8 @@
         "@babel/preset-env": "7.26.9",
         "@babel/preset-react": "7.26.3",
         "@babel/preset-typescript": "7.26.0",
-        "@navikt/ds-css": "7.14.1",
-        "@navikt/ds-react": "7.14.1",
+        "@navikt/ds-css": "7.14.2",
+        "@navikt/ds-react": "7.14.2",
         "@navikt/fnrvalidator": "2.1.5",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "workspace:*",
@@ -67,9 +67,9 @@
         "storybook": "8.5.8",
         "style-loader": "4.0.0",
         "typescript": "5.7.3",
-        "vite": "6.1.1",
+        "vite": "6.2.0",
         "vite-plugin-checker": "0.9.0",
-        "vitest": "3.0.6",
+        "vitest": "3.0.7",
         "webpack": "5.98.0"
     },
     "directories": {
