@@ -59,7 +59,9 @@ const oppgave = {
     opprettetDato: '2025-02-19T13:29:14.553804Z',
     oppgavetypeData: {
         nyStartdato: '2025-01-10',
+        meldingFraVeileder: 'Hei, endrer startdatoen i henhold til møtet vårt 21. februar.',
     },
+    veilederReferanse: 'Pål Hønesen',
 };
 
 const deltakelseDR = {

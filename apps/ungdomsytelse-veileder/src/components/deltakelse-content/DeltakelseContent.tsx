@@ -94,6 +94,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                             deltakelser={alleDeltakelser}
                             onChange={onChange}
                             deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
                         />
                     </Box>
                 </Tabs.Panel>
