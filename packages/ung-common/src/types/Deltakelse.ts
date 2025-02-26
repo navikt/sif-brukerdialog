@@ -6,10 +6,10 @@ import { deltakelseDTOSchema } from './dto/DeltakelseDTO';
 import { Rapporteringsperiode } from './Rapporteringsperiode';
 
 export const deltakelseSchema = deltakelseDTOSchema.transform((data) => {
-    const { programperiodeFraOgMed, programperiodeTilOgMed, ...rest } = data;
+    const { fraOgMed, tilOgMed, ...rest } = data;
     const programPeriode: OpenDateRange = {
-        from: programperiodeFraOgMed,
-        to: programperiodeTilOgMed,
+        from: fraOgMed,
+        to: tilOgMed,
     };
 
     const deltakelse = {

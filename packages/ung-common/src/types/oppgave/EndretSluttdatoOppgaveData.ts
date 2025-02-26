@@ -18,6 +18,7 @@ export const endretSluttdatoOppgaveDataSchema = z.object({
     nySluttdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     meldingFraVeileder: z
         .string()
+        .nullable()
         .transform((v) => (v === null ? undefined : v))
         .optional(),
     responsFraDeltaker: z.union([godkjentResponsSchema, ikkeGodkjentResponsSchema]).optional(),

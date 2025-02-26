@@ -5,8 +5,8 @@ import { rapporteringsperiodeDTOSchema } from './RapporteringsperiodeDTO';
 
 export const deltakelseDTOSchema = z.object({
     id: z.string(),
-    programperiodeFraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    programperiodeTilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
+    fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
     harSøkt: z.boolean(),
     oppgaver: z.array(oppgaveSchema),
     rapporteringsPerioder: z.array(rapporteringsperiodeDTOSchema).optional().nullable(),
