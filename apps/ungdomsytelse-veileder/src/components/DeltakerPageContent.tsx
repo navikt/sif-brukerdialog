@@ -56,11 +56,7 @@ const DeltakerPageContent = () => {
                 />
 
                 {kanOppretteNyDeltakelse ? (
-                    <NyDeltakelse
-                        deltaker={deltaker}
-                        alleDeltakelser={deltakelser}
-                        onDeltakelseRegistrert={handleOnDeltakelseChange}
-                    />
+                    <NyDeltakelse deltaker={deltaker} onDeltakelseRegistrert={handleOnDeltakelseChange} />
                 ) : null}
             </Box>
         </Box>

@@ -35,6 +35,9 @@ const nyDeltaker = {
         mellomnavn: null,
         etternavn: 'TØFFEL',
     },
+    fødselsdato: '1972-05-10',
+    førsteMuligeInnmeldingsdato: '1990-06-10',
+    sisteMuligeInnmeldingsdato: '2001-05-10',
 };
 
 const nyDeltakerRegistrert = {
@@ -50,6 +53,9 @@ const registrertDeltaker = {
         mellomnavn: null,
         etternavn: 'HOFTE',
     },
+    fødselsdato: '1972-05-10',
+    førsteMuligeInnmeldingsdato: '1990-06-10',
+    sisteMuligeInnmeldingsdato: '2001-05-10',
 };
 
 const oppgave = {

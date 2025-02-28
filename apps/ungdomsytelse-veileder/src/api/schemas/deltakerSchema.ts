@@ -1,3 +1,4 @@
+import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { z } from 'zod';
 
 export const deltakerSchema = z.object({
@@ -15,4 +16,7 @@ export const deltakerSchema = z.object({
         })
         .optional()
         .default({ fornavn: 'ToDoFornavn', etternavn: 'ToDoEtternavn' }),
+    fødselsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    førsteMuligeInnmeldingsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    sisteMuligeInnmeldingsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
