@@ -8,7 +8,7 @@
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.7.3",
-        "vitest": "3.0.6"
+        "vitest": "3.0.7"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2.1.5",
