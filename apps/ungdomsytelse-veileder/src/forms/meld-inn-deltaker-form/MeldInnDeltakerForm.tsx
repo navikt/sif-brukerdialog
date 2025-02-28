@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltakelse, Deltaker, NyDeltaker } from '../../api/types';
+import { Deltakelse, Deltaker, UregistrertDeltaker } from '../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -15,7 +15,7 @@ import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { veilederService } from '../../api/services/veilederService';
 
 interface Props {
-    deltaker: NyDeltaker | Deltaker;
+    deltaker: UregistrertDeltaker | Deltaker;
     minStartDato?: Date;
     onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;

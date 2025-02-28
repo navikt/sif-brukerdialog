@@ -1,38 +1,21 @@
-import { OpenDateRange } from '@navikt/sif-common-formik-ds';
-import { isDateInDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { hentAlleDeltakelserGittDeltakerIdResponseItem } from '@navikt/ung-deltakelse-opplyser';
 import { z } from 'zod';
-import { deltakelseDTOSchema } from './dto/DeltakelseDTO';
-import { Rapporteringsperiode } from './Rapporteringsperiode';
+import { parseOppgaverDTO } from '../utils/parseOppgaverDTO';
 
-export const deltakelseSchema = deltakelseDTOSchema.transform((data) => {
-    const { programperiodeFraOgMed, programperiodeTilOgMed, ...rest } = data;
-    const programPeriode: OpenDateRange = {
-        from: programperiodeFraOgMed,
-        to: programperiodeTilOgMed,
-    };
+export const deltakelseSchema = hentAlleDeltakelserGittDeltakerIdResponseItem
+    .extend({
+        id: z.string(),
+    })
+    .transform((data) => {
+        return {
+            ...data,
+            fraOgMed: ISODateToDate(data.fraOgMed),
+            tilOgMed: data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined,
+            oppgaver: parseOppgaverDTO(data.oppgaver),
+        };
+    });
 
-    const deltakelse = {
-        ...rest,
-        programPeriode,
-        rapporteringsPerioder: data.rapporteringsPerioder?.map((rapporteringsperiodeDTO): Rapporteringsperiode => {
-            return {
-                ...rapporteringsperiodeDTO,
-                periode: {
-                    from: rapporteringsperiodeDTO.fraOgMed,
-                    to: rapporteringsperiodeDTO.tilOgMed,
-                },
-                // TODO - fallback frem til backend er klar
-                kanRapportere: isDateInDateRange(new Date(), {
-                    from: programPeriode.from,
-                    to: programPeriode.to || ISODateToDate('2026-01-01'),
-                }),
-                // TODO - fallback frem til backend er klar
-                fristForRapportering: dayjs().endOf('month').toDate(),
-            };
-        }),
-    };
-    return deltakelse;
-});
+export const deltakelserSchema = z.array(deltakelseSchema);
 
 export type Deltakelse = z.infer<typeof deltakelseSchema>;

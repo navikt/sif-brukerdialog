@@ -13,7 +13,7 @@ interface Props {
 const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Props) => {
     const [showForm, setShowForm] = useState(false);
 
-    const kanOppretteNyDeltakelse = alleDeltakelser.every((d) => (!!d.periode || !!d.fraOgMed) && d.harSøkt);
+    const kanOppretteNyDeltakelse = alleDeltakelser.every((d) => !!d.fraOgMed && d.harSøkt);
 
     if (!kanOppretteNyDeltakelse) {
         return null;
@@ -40,9 +40,9 @@ const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Pro
 };
 
 const getMinFraOgMedDato = (alleDeltakelser: Deltakelse[]): Date | undefined => {
-    const perioder = (alleDeltakelser.map((d) => d.periode).filter((p) => p !== undefined) as DateRange[]).sort(
-        dateRangeUtils.sortDateRangeByToDate,
-    );
+    const perioder = (
+        alleDeltakelser.map((d) => ({ from: d.fraOgMed, to: d.tilOgMed })).filter((p) => p !== undefined) as DateRange[]
+    ).sort(dateRangeUtils.sortDateRangeByToDate);
     return perioder.length === 0 ? undefined : perioder[perioder.length - 1].to;
 };
 

@@ -1,6 +1,7 @@
 import { Alert, Box, Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Oppgave, Oppgavetype } from '@navikt/ung-common';
+import { Oppgave } from '@navikt/ung-common';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -51,7 +52,7 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                         <Table.DataCell>{oppgave.oppgavetype}</Table.DataCell>
                         <Table.DataCell>{oppgave.status}</Table.DataCell>
                         <Table.DataCell>
-                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
+                            {/* {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'} */}
                         </Table.DataCell>
                     </Table.ExpandableRow>
                 ))}

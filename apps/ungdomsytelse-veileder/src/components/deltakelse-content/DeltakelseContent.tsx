@@ -1,6 +1,4 @@
 import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { Oppgavestatus } from '@navikt/ung-common';
 import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
@@ -9,6 +7,7 @@ import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakel
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser';
 
 interface Props {
     deltaker: Deltaker;
@@ -17,7 +16,7 @@ interface Props {
     onChange: () => void;
 }
 const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
-    const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === Oppgavestatus.ULØST);
+    const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
     return (
         <Box className="pb-20">
             <Tabs defaultValue="oversikt">
@@ -61,10 +60,10 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                                     <Alert key={oppgave.id} variant="warning" inline>
                                         <Box>{oppgave.oppgavetype}</Box>
                                         <OppgaveInfo oppgave={oppgave} />
-                                        <Box>
+                                        {/* <Box>
                                             Frist:{' '}
                                             {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
-                                        </Box>
+                                        </Box> */}
                                     </Alert>
                                 ))
                             ) : (
