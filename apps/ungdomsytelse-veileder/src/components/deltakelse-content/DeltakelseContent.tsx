@@ -92,18 +92,19 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         <EndreStartdato
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
-                            onChange={onChange}
                             deltakernavn={deltaker.navn.fornavn}
                             oppgaver={deltakelse.oppgaver}
+                            onChange={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="endreSluttdato">
                     <Box paddingBlock="8 0">
                         <EndreSluttdato
-                            deltakernavn={deltaker.navn.fornavn}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
+                            deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
                             onChange={onChange}
                         />
                     </Box>

@@ -31,12 +31,12 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
         }
     };
 
-    const endreStartdato = async (deltakelse: Deltakelse, startdato: Date) => {
+    const endreStartdato = async (deltakelse: Deltakelse, startdato: Date, meldingFraVeileder?: string) => {
         setError(undefined);
         setPending(true);
         if (deltakelse) {
             await veilederService
-                .endreStartdato(deltakelse.id, startdato)
+                .endreStartdato(deltakelse.id, startdato, 'Navn Veiledersen [todo]', meldingFraVeileder)
                 .catch((e) => {
                     setError(e.message);
                 })
@@ -48,12 +48,12 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
                 });
         }
     };
-    const endreSluttdato = async (deltakelse: Deltakelse, sluttdato: Date) => {
+    const endreSluttdato = async (deltakelse: Deltakelse, sluttdato: Date, meldingFraVeileder?: string) => {
         setError(undefined);
         setPending(true);
         if (deltakelse) {
             await veilederService
-                .endreSluttdato(deltakelse.id, sluttdato)
+                .endreSluttdato(deltakelse.id, sluttdato, 'Navn Veiledersen [todo]', meldingFraVeileder)
                 .catch((e) => {
                     setError(e.message);
                 })

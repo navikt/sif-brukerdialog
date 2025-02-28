@@ -30,7 +30,6 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
     ) as OppgaveEndretStartdato[];
 
     const åpenOppgave: OppgaveEndretStartdato | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
-    console.log(åpenOppgaver);
 
     const getInitialValues = (d: Deltakelse): EndreStartdatoFormValues => {
         return {
@@ -45,8 +44,9 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
         <Box>
             <TypedFormikWrapper<EndreStartdatoFormValues>
                 initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
-                onSubmit={(values) => {
-                    endreStartdato(deltakelse, ISODateToDate(values.fom));
+                onSubmit={(values: EndreStartdatoFormValues) => {
+                    const melding = values.melding ? values.melding.trim() : undefined;
+                    endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
                 }}
                 renderForm={({ values }) => {
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
