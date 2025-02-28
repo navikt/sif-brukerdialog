@@ -1,5 +1,15 @@
+import { vi } from 'vitest';
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { kanBrukerRapportereInntektForPeriode } from './apiPolyfillUtils';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => '',
+        getMaybeEnv: () => '',
+        getCommonEnv: () => ({}),
+        getSifInnsynBrowserEnv: () => ({}),
+    };
+});
 
 describe('kanBrukerRapportereInntektForPeriode', () => {
     it('Kan ikke rapportere hvis periode er innenfor første måned en blir med i programmet', () => {
