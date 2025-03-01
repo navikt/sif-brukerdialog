@@ -6,7 +6,6 @@ import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
-import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 
 interface Props {
@@ -59,11 +58,6 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                                 åpneOppgaver.map((oppgave) => (
                                     <Alert key={oppgave.id} variant="warning" inline>
                                         <Box>{oppgave.oppgavetype}</Box>
-                                        <OppgaveInfo oppgave={oppgave} />
-                                        {/* <Box>
-                                            Frist:{' '}
-                                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
-                                        </Box> */}
                                     </Alert>
                                 ))
                             ) : (
