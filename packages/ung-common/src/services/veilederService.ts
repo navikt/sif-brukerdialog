@@ -1,9 +1,4 @@
-import {
-    // hentAlleDeltakelserGittDeltakerId,
-    hentDeltakerInfoGittDeltaker,
-    hentDeltakerInfoGittDeltakerId,
-} from '@navikt/ung-deltakelse-opplyser';
-import { hentAlleDeltakelserGittDeltakerId } from '@navikt/ung-deltakelse-opplyser-hey-api';
+import { hentAlleDeltakelserGittDeltakerId, hentDeltakerInfoGittDeltakerId } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, UregistrertDeltaker, uregistrertDeltakerSchema, registrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema } from '../types/Deltakelse';
 
@@ -13,8 +8,8 @@ import { Deltakelse, deltakelserSchema } from '../types/Deltakelse';
  * @returns  Deltaker | UregistrertDeltaker
  */
 export const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promise<Deltaker | UregistrertDeltaker> => {
-    const respons = await hentDeltakerInfoGittDeltaker({ deltakerIdent });
-    return respons.id ? registrertDeltakerSchema.parse(respons) : uregistrertDeltakerSchema.parse(respons);
+    const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
+    return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
 };
 
 /**
@@ -23,9 +18,9 @@ export const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promis
  * @returns
  */
 export const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker> => {
-    const respons = await hentDeltakerInfoGittDeltakerId(deltakerIdent);
-    if (respons.id) {
-        return registrertDeltakerSchema.parse(respons);
+    const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
+    if (data?.id) {
+        return registrertDeltakerSchema.parse(data);
     }
     throw new Error('Deltaker funnet, men uten deltaker id');
 };
@@ -36,6 +31,6 @@ export const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<De
  * @returns Deltalser for deltaker
  */
 export const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
-    const respons = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
-    return deltakelserSchema.parse(respons.data);
+    const { data } = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
+    return deltakelserSchema.parse(data);
 };

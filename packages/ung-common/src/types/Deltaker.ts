@@ -1,8 +1,8 @@
-import { hentDeltakerInfoGittDeltakerIdResponse } from '@navikt/ung-deltakelse-opplyser';
+import { zHentDeltakerInfoGittDeltakerIdResponse } from '@navikt/ung-deltakelse-opplyser-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { z } from 'zod';
 
-export const uregistrertDeltakerSchema = hentDeltakerInfoGittDeltakerIdResponse
+export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .extend({
         id: z.undefined(),
     })
@@ -14,7 +14,7 @@ export const uregistrertDeltakerSchema = hentDeltakerInfoGittDeltakerIdResponse
         sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
     }));
 
-export const registrertDeltakerSchema = hentDeltakerInfoGittDeltakerIdResponse
+export const registrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .extend({
         id: z.string(),
     })

@@ -1,4 +1,4 @@
-import { HentDeltakerInfoGittDeltakerIdResult, OppgaveDTO } from '@navikt/ung-deltakelse-opplyser';
+import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
@@ -50,7 +50,7 @@ const nyDeltakerRegistrert = {
     id: nyDeltakerId,
 };
 
-const registrertDeltaker: HentDeltakerInfoGittDeltakerIdResult = {
+const registrertDeltaker: DeltakerPersonlia = {
     id: registrertDeltakerId,
     deltakerIdent: '03867198392',
     navn: {
@@ -62,10 +62,10 @@ const registrertDeltaker: HentDeltakerInfoGittDeltakerIdResult = {
     sisteMuligeInnmeldingsdato: '2024-12-31',
 };
 
-const oppgave: OppgaveDTO = {
+const oppgave: OppgaveDto = {
     id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-    oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
-    status: 'ULØST',
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    status: OppgaveStatus.ULØST,
     opprettetDato: '2025-02-19T13:29:14.553804Z',
     oppgavetypeData: {
         nyStartdato: '2025-01-10',

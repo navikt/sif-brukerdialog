@@ -1,5 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-hey-api';
+import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { parseOppgaverElement } from '../utils/parseOppgaverElement';
 

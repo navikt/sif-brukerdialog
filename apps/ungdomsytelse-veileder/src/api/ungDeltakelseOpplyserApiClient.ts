@@ -1,6 +1,6 @@
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { isUnauthorized } from '@navikt/sif-common-api';
-import { client } from '@navikt/ung-deltakelse-opplyser-hey-api/src/client/client.gen';
+import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 } from 'uuid';
 

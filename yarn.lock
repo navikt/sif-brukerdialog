@@ -5849,6 +5849,7 @@ __metadata:
   resolution: "@navikt/ung-common@workspace:packages/ung-common"
   dependencies:
     "@navikt/sif-common-utils": "workspace:*"
+    "@navikt/ung-deltakelse-opplyser-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.7.3"
@@ -5860,9 +5861,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ung-deltakelse-opplyser-hey-api@workspace:packages/ung-deltakelse-opplyser-hey-api":
+"@navikt/ung-deltakelse-opplyser-api@workspace:*, @navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api":
   version: 0.0.0-use.local
-  resolution: "@navikt/ung-deltakelse-opplyser-hey-api@workspace:packages/ung-deltakelse-opplyser-hey-api"
+  resolution: "@navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api"
   dependencies:
     "@hey-api/client-axios": "npm:^0.6.1"
     "@hey-api/client-fetch": "npm:^0.8.1"
@@ -5878,9 +5879,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ung-deltakelse-opplyser@workspace:packages/ung-deltakelse-opplyser":
+"@navikt/ung-deltakelse-opplyser-orval@workspace:packages/ung-deltakelse-opplyser-orval":
   version: 0.0.0-use.local
-  resolution: "@navikt/ung-deltakelse-opplyser@workspace:packages/ung-deltakelse-opplyser"
+  resolution: "@navikt/ung-deltakelse-opplyser-orval@workspace:packages/ung-deltakelse-opplyser-orval"
   dependencies:
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"

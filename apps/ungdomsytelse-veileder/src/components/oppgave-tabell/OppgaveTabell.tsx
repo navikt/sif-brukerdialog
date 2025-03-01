@@ -1,7 +1,7 @@
 import { Alert, Box, Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 
 interface Props {

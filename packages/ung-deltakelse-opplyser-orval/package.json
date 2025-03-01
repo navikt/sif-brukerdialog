@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/ung-deltakelse-opplyser",
+    "name": "@navikt/ung-deltakelse-opplyser-orval",
     "main": "src/generated/index.ts",
     "types": "src/generated/index.ts",
     "private": true,

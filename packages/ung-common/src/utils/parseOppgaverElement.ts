@@ -5,7 +5,7 @@ import {
     OppgaveStatus,
     Oppgavetype,
     zDeltakelseOpplysningDto,
-} from '@navikt/ung-deltakelse-opplyser-hey-api';
+} from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { Oppgave } from '../types';
 

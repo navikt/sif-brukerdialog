@@ -1,4 +1,5 @@
 import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
@@ -7,7 +8,6 @@ import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakel
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser';
 
 interface Props {
     deltaker: Deltaker;

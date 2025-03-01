@@ -1,4 +1,4 @@
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface oppgaveBase {
     id: string;

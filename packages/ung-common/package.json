@@ -4,6 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
+    "dependencies": {
+        "@navikt/ung-deltakelse-opplyser-api": "workspace:*"
+    },
     "devDependencies": {
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
