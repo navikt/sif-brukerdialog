@@ -1,33 +1,42 @@
-import { BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { Oppgave, EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
 import { Deltakelse } from '../../api/types';
-import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
+import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
 
 export type EndreStartdatoFormValues = {
     id: string;
     fnr: string;
     fom: string;
+    melding?: string;
 };
 
 interface Props {
+    oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onChange: () => void;
 }
 
-const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Props) => {
+const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
     const { pending: endreDeltakelsePending, endreStartdato } = useEndreDeltakelse(onChange || (() => {}));
+
+    const åpenOppgaver = oppgaver.filter(
+        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    ) as EndreStartdatoOppgave[];
+
+    const åpenOppgave: EndreStartdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
 
     const getInitialValues = (d: Deltakelse): EndreStartdatoFormValues => {
         return {
             fnr: d.deltaker.deltakerIdent,
             id: d.id,
             fom: dateToISODate(d.fraOgMed),
+            melding: åpenOppgave?.oppgavetypeData.meldingFraVeileder,
         };
     };
 
@@ -35,14 +44,24 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Pro
         <Box>
             <TypedFormikWrapper<EndreStartdatoFormValues>
                 initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
-                onSubmit={(values) => {
-                    endreStartdato(deltakelse, ISODateToDate(values.fom));
+                onSubmit={(values: EndreStartdatoFormValues) => {
+                    const melding = values.melding ? values.melding.trim() : undefined;
+                    endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
                 }}
                 renderForm={({ values }) => {
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
                     return (
                         <HGrid columns={'2fr 1fr'} gap="6">
                             <VStack gap="4">
+                                {åpenOppgave ? (
+                                    <Box marginBlock="0 4">
+                                        <Alert variant="warning">
+                                            Det eksisterer en ubesvart oppgave på endret startdato. Endringer du gjør nå
+                                            vil erstatte den gamle oppgaven, og deltaker vil kun se den oppdaterte
+                                            informasjonen.
+                                        </Alert>
+                                    </Box>
+                                ) : null}
                                 <Heading level="3" size="medium">
                                     Endre startdato
                                 </Heading>

@@ -40,4 +40,17 @@ export const handlers = [
         await delay(250);
         return HttpResponse.json(response);
     }),
+
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
+    }),
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
+    }),
 ];

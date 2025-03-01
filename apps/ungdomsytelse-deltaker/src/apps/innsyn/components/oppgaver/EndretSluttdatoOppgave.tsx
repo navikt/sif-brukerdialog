@@ -1,10 +1,10 @@
 import { Alert, BodyShort, Button, HStack, Radio, RadioGroup, ReadMore, Textarea, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveEndretSluttdato } from '@navikt/ung-common';
-import Melding from '../melding/Melding';
 import { useState } from 'react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import OppgaveLayout from './OppgaveLayout';
+import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 
 interface Props {
     oppgave: OppgaveEndretSluttdato;
@@ -33,7 +33,10 @@ const EndretSluttdatoOppgave = ({ oppgave, opprinneligSluttdato }: Props) => {
             }>
             <VStack gap="4">
                 {oppgave.oppgavetypeData.meldingFraVeileder ? (
-                    <Melding tekst={oppgave.oppgavetypeData.meldingFraVeileder} avsender={oppgave.veilederReferanse} />
+                    <MeldingFraVeileder
+                        tekst={oppgave.oppgavetypeData.meldingFraVeileder}
+                        avsender={oppgave.veilederReferanse}
+                    />
                 ) : null}
 
                 <VStack gap="6" marginBlock="2 0">

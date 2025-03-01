@@ -83,7 +83,7 @@ const PeriodeFormPart = ({
             />
             <FormikYesOrNoQuestion
                 name="deltakerInformert"
-                legend={`Er ${deltakernavn} er informert om endringen?`}
+                legend={`Er ${deltakernavn} informert om endringen?`}
                 validate={getRequiredFieldValidator()}
             />
 

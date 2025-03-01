@@ -72,6 +72,7 @@ const oppgave: OppgaveDto = {
         veilederRef: 'Veil Veiledersen',
         meldingFraVeileder: 'Hei, dette',
     },
+    // veilederReferanse: 'Pål Hønesen',
 };
 
 const deltakelseDR = {

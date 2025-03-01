@@ -1,46 +1,42 @@
 export const deltakelserHarSøkt = [
     {
-        id: '695262f7-7dc8-4b55-bb28-549385b59d21',
-        programperiodeFraOgMed: '2025-01-10',
-        programperiodeTilOgMed: null,
+        id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
+        fraOgMed: '2024-12-02',
+        tilOgMed: null,
         harSøkt: true,
+        oppgaver: [
+            {
+                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
+                oppgavetypeData: {
+                    type: 'BEKREFT_ENDRET_STARTDATO',
+                    nyStartdato: '2025-01-01',
+                    veilederRef: 'n/a',
+                    meldingFraVeileder: null,
+                },
+                status: 'ULØST',
+                opprettetDato: '2025-02-22T11:43:29.048157Z',
+                løstDato: null,
+            },
+        ],
         rapporteringsPerioder: [
             {
-                fraOgMed: '2025-01-10',
+                fraOgMed: '2024-12-02',
+                tilOgMed: '2024-12-31',
+                harRapportert: false,
+                inntekt: null,
+            },
+            {
+                fraOgMed: '2025-01-01',
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
                 inntekt: null,
             },
             {
                 fraOgMed: '2025-02-01',
-                tilOgMed: '2025-02-19',
+                tilOgMed: '2025-02-26',
                 harRapportert: false,
                 inntekt: null,
-            },
-        ],
-        oppgaver: [
-            {
-                id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-                oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
-                status: 'ULØST',
-                opprettetDato: '2025-02-19T13:29:14.553804Z',
-                // løstDato: null,
-                // veilederReferanse: 'Pål Hønesen',
-                // svarfrist: '2025-03-01',
-                oppgavetypeData: {
-                    nyStartdato: '2025-01-01',
-                },
-            },
-            {
-                id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-                oppgavetype: 'BEKREFT_ENDRET_SLUTTDATO',
-                status: 'LØST',
-                opprettetDato: '2025-02-19T13:29:14.553804Z',
-                løstDato: '2025-02-19T13:29:14.553804Z',
-                løsningstype: 'GODKJENT_AV_DELTAKER',
-                oppgavetypeData: {
-                    nySluttdato: '2026-03-15',
-                },
             },
         ],
     },

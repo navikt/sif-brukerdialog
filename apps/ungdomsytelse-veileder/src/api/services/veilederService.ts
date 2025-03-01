@@ -109,9 +109,16 @@ const updateDeltakelse = async (data: OppdaterDeltakelseRequestPayload): Promise
  * ----------------------------------------------------------
  */
 
-const endreStartdato = async (deltakelseId: string, dato: Date): Promise<any> => {
+const endreStartdato = async (
+    deltakelseId: string,
+    dato: Date,
+    veilederRef: string,
+    meldingFraVeileder?: string,
+): Promise<any> => {
     return await ungDeltakelseOpplyserApiClient.put(`/veileder/register/deltakelse/${deltakelseId}/endre/startdato`, {
         dato: dateToISODate(dato),
+        veilederRef,
+        meldingFraVeileder,
     });
 };
 
@@ -121,9 +128,16 @@ const endreStartdato = async (deltakelseId: string, dato: Date): Promise<any> =>
  * ----------------------------------------------------------
  */
 
-const endreSluttdato = async (deltakelseId: string, dato: Date): Promise<any> => {
+const endreSluttdato = async (
+    deltakelseId: string,
+    dato: Date,
+    veilederRef: string,
+    meldingFraVeileder?: string,
+): Promise<any> => {
     return await ungDeltakelseOpplyserApiClient.put(`/veileder/register/deltakelse/${deltakelseId}/endre/sluttdato`, {
         dato: dateToISODate(dato),
+        veilederRef,
+        meldingFraVeileder,
     });
 };
 

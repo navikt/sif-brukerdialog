@@ -5879,9 +5879,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ung-deltakelse-opplyser-orval@workspace:packages/ung-deltakelse-opplyser-orval":
+"@navikt/ung-deltakelse-opplyser-orval@workspace:packages/depr-ung-deltakelse-opplyser-orval":
   version: 0.0.0-use.local
-  resolution: "@navikt/ung-deltakelse-opplyser-orval@workspace:packages/ung-deltakelse-opplyser-orval"
+  resolution: "@navikt/ung-deltakelse-opplyser-orval@workspace:packages/depr-ung-deltakelse-opplyser-orval"
   dependencies:
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"

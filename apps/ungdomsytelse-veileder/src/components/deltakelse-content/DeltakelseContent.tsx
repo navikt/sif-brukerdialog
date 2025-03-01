@@ -1,6 +1,5 @@
 import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
-import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
 import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
@@ -8,6 +7,7 @@ import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakel
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 
 interface Props {
     deltaker: Deltaker;
@@ -28,7 +28,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                             <HStack gap="1">
                                 <Box>Deltakeroppgaver</Box>
                                 <Box
-                                    className="rounded-full bg-data-surface-2 text-white w-6 h-6 relative"
+                                    className="rounded-full bg-icon-warning text-white w-6 h-6 relative"
                                     style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
                                     {deltakelse.oppgaver.length}
                                 </Box>
@@ -84,17 +84,19 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         <EndreStartdato
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
-                            onChange={onChange}
                             deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
+                            onChange={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="endreSluttdato">
                     <Box paddingBlock="8 0">
                         <EndreSluttdato
-                            deltakernavn={deltaker.navn.fornavn}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
+                            deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
                             onChange={onChange}
                         />
                     </Box>

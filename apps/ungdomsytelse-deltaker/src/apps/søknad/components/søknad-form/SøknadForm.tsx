@@ -3,7 +3,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { deltakerService, SendSøknadDTO, sendSøknadDTOSchema, Søknadstype } from '@navikt/ung-common';
+import { SendSøknadDTO, sendSøknadDTOSchema, Søknadstype } from '@navikt/ung-common';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
@@ -54,8 +54,7 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
             isInntektForPeriode: false,
         };
         if (sendSøknadDTOSchema.parse(søknad)) {
-            sendSøknad(søknad).then(async () => {
-                await deltakerService.markerDeltakelseSøkt(søknad.søknadId);
+            sendSøknad(søknad).then(() => {
                 onSøknadSendt();
             });
         } else {

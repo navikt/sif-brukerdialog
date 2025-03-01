@@ -8,6 +8,7 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { Oppgave } from '../types';
+import dayjs from 'dayjs';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
@@ -24,6 +25,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
                     oppgavetypeData: {
                         nyStartdato: ISODateToDate(endreStartdatoData.nyStartdato),
                         veilederRef: endreStartdatoData.veilederRef,
@@ -39,6 +41,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
+                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                     oppgavetypeData: {
                         nySluttdato: ISODateToDate(endreSluttdatoData.nySluttdato),

@@ -3,6 +3,7 @@ import { Deltakelse, Deltaker } from '../api/types';
 import PersonNøytral from '../illustrations/PersonNøytral';
 import Fødselsnummer from './Fødselsnummer';
 import { XMarkIcon } from '@navikt/aksel-icons';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     deltaker: Deltaker;
@@ -14,6 +15,7 @@ const DeltakerHeader = ({
     deltaker: {
         navn: { fornavn, etternavn },
         deltakerIdent: fødselsnummer,
+        fødselsdato,
     },
     deltakelser = [],
     onLukkDeltaker,
@@ -27,6 +29,7 @@ const DeltakerHeader = ({
                         {fornavn} {etternavn}
                     </BodyShort>
                     <Fødselsnummer fnr={fødselsnummer} />
+                    <Box>(f. {dateFormatter.compact(fødselsdato)})</Box>
                 </HStack>
                 {deltakelser && deltakelser?.length > 1 ? (
                     <>

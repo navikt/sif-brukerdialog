@@ -5,6 +5,7 @@ interface oppgaveBase {
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
+    svarfrist: Date;
     oppgavetype: Oppgavetype;
 }
 
