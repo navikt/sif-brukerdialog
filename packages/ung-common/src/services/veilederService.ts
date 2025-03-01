@@ -1,5 +1,9 @@
-import { hentAlleDeltakelserGittDeltakerId, hentDeltakerInfoGittDeltakerId } from '@navikt/ung-deltakelse-opplyser-api';
-import { Deltaker, UregistrertDeltaker, uregistrertDeltakerSchema, registrertDeltakerSchema } from '../types';
+import {
+    hentAlleDeltakelserGittDeltakerId,
+    hentDeltakerInfoGittDeltaker,
+    hentDeltakerInfoGittDeltakerId,
+} from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema } from '../types/Deltakelse';
 
 /**
@@ -8,7 +12,7 @@ import { Deltakelse, deltakelserSchema } from '../types/Deltakelse';
  * @returns  Deltaker | UregistrertDeltaker
  */
 export const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promise<Deltaker | UregistrertDeltaker> => {
-    const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
+    const { data } = await hentDeltakerInfoGittDeltaker({ body: { deltakerIdent } });
     return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
 };
 

@@ -20,6 +20,7 @@ client.setConfig({
     headers: { 'Content-type': 'application/json; charset=utf-8' },
     baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
 });
+console.log('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH', getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'));
 
 /**
  * Håndterer 401 (Unauthorized) feil ved å sende brukeren til innloggingssiden.
