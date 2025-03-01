@@ -1,2 +1,2 @@
-export * from './api/index';
-export * from './types/index';
+export * from './services/veilederService';
+export * from './types';

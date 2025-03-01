@@ -1,70 +1,8 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
-import { z } from 'zod';
-import { ungDeltakelseOpplyserApiClient } from '../apiClient';
-import { deltakelserSchema } from '../schemas/deltakelserSchema';
-import { deltakelseSchema } from '../schemas/deltakelseSchema';
-import { deltakerSchema } from '../schemas/deltakerSchema';
-import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
-import { Deltakelse, Deltaker, isNyDeltaker, NyDeltaker } from '../types';
 import { dateToISODate } from '@navikt/sif-common-utils';
-
-/**
- * ----------------------------------------------------------
- * Finn deltaker med fnr/dnr
- * ----------------------------------------------------------
- */
-
-const findDeltakerRequestSchema = z.object({
-    deltakerIdent: z.string().optional(),
-});
-type OppslagDeltakerRequestPayload = z.infer<typeof findDeltakerRequestSchema>;
-
-const findDeltaker = async (deltakerIdent: string): Promise<Deltaker | NyDeltaker> => {
-    const payload: OppslagDeltakerRequestPayload = { deltakerIdent };
-    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, payload);
-    try {
-        const deltaker = isNyDeltaker(response.data)
-            ? await nyDeltakerSchema.parse(response.data)
-            : await deltakerSchema.parse(response.data);
-        return deltaker;
-    } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
-        throw e;
-    }
-};
-
-/**
- * ----------------------------------------------------------
- * Hent deltaker med deltakerId
- * ----------------------------------------------------------
- */
-
-const getDeltaker = async (deltakerId: string): Promise<Deltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.get(`/oppslag/deltaker/${deltakerId}`);
-    try {
-        return await deltakerSchema.parse(response.data);
-    } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
-        throw e;
-    }
-};
-
-/**
- * ----------------------------------------------------------
- * Hent alle deltakelser for en deltaker
- * ----------------------------------------------------------
- */
-
-const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
-    const response = await ungDeltakelseOpplyserApiClient.get(`/veileder/register/deltaker/${deltakerId}/deltakelser`);
-    try {
-        const deltakelse = deltakelserSchema.parse(response.data);
-        return deltakelse;
-    } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
-        throw e;
-    }
-};
+import { z } from 'zod';
+import { ungDeltakelseOpplyserApiClient } from '../ungDeltakelseOpplyserApiClient';
+import { Deltakelse, deltakelseSchema } from '../types';
 
 /**
  * ----------------------------------------------------------
@@ -206,9 +144,6 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
  */
 
 export const veilederService = {
-    findDeltaker,
-    getDeltaker,
-    getDeltakelser,
     meldInnDeltaker,
     updateDeltakelse,
     avsluttDeltakelse,

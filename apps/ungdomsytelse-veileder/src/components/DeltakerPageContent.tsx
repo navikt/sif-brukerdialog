@@ -9,7 +9,7 @@ const kanOppretteNyDeltakelse = false;
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
-    const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
+    const aktiveDeltakelser = deltakelser; //.filter((d) => d.erAktiv);
 
     const handleOnDeltakelseChange = () => {
         refetchDeltakelser();
