@@ -1,8 +1,9 @@
 import {
-    hentAlleDeltakelserGittDeltakerId,
+    // hentAlleDeltakelserGittDeltakerId,
     hentDeltakerInfoGittDeltaker,
     hentDeltakerInfoGittDeltakerId,
 } from '@navikt/ung-deltakelse-opplyser';
+import { hentAlleDeltakelserGittDeltakerId } from '@navikt/ung-deltakelse-opplyser-hey-api';
 import { Deltaker, UregistrertDeltaker, uregistrertDeltakerSchema, registrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema } from '../types/Deltakelse';
 
@@ -35,6 +36,6 @@ export const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<De
  * @returns Deltalser for deltaker
  */
 export const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
-    const respons = await hentAlleDeltakelserGittDeltakerId(deltakerId);
-    return deltakelserSchema.parse(respons);
+    const respons = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
+    return deltakelserSchema.parse(respons.data);
 };

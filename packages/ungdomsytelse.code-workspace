@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {
+            "path": "../apps/ungdomsytelse-veileder",
+        },
+        {
+            "path": "ung-deltakelse-opplyser",
+        },
+        {
+            "path": "ung-common",
+        },
+        {
+            "path": "ung-deltakelse-opplyser-hey-api",
+        },
+    ],
+    "settings": {},
+}

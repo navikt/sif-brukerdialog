@@ -1,9 +1,9 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { hentAlleDeltakelserGittDeltakerIdResponseItem } from '@navikt/ung-deltakelse-opplyser';
+import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-hey-api';
 import { z } from 'zod';
-import { parseOppgaverDTO } from '../utils/parseOppgaverDTO';
+import { parseOppgaverElement } from '../utils/parseOppgaverElement';
 
-export const deltakelseSchema = hentAlleDeltakelserGittDeltakerIdResponseItem
+export const deltakelseSchema = zDeltakelseOpplysningDto
     .extend({
         id: z.string(),
     })
@@ -12,7 +12,7 @@ export const deltakelseSchema = hentAlleDeltakelserGittDeltakerIdResponseItem
             ...data,
             fraOgMed: ISODateToDate(data.fraOgMed),
             tilOgMed: data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined,
-            oppgaver: parseOppgaverDTO(data.oppgaver),
+            oppgaver: parseOppgaverElement(data.oppgaver),
         };
     });
 

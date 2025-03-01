@@ -1,11 +1,11 @@
+import { Page } from '@navikt/ds-react';
 import { IntlProvider } from 'react-intl';
 import { Route, Routes } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
+import DeltakerPage from './components/DeltakerPage';
 import { appMessages } from './i18n';
 import StartPage from './pages/start-page/StartPage';
-import DeltakerPage from './components/DeltakerPage';
 import './app.css';
-import { Page } from '@navikt/ds-react';
 
 const App = () => {
     return (

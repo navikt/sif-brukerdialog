@@ -99,6 +99,5 @@ const deltakelseDN = {
 };
 
 export const getDeltakelser = (id) => {
-    console.log({ deltakelseDN, deltakelseDR });
     return id === nyDeltakerId ? [deltakelseDN] : [deltakelseDR];
 };
