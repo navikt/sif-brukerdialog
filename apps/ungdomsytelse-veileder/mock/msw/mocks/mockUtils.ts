@@ -32,7 +32,7 @@ export const getDeltakerByDeltakerId = (deltakerId) => {
     }
 };
 
-const nyDeltaker = {
+const nyDeltaker: DeltakerPersonlia & any = {
     id: null,
     deltakerIdent: '56857102105',
     navn: {

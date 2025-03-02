@@ -2,6 +2,8 @@ import {
     EndrePeriodeDatoDto,
     endreSluttdato,
     endreStartdato,
+    fjernFraProgram,
+    FjernFraProgramResponse,
     hentAlleDeltakelserGittDeltakerId,
     hentDeltakerInfoGittDeltaker,
     hentDeltakerInfoGittDeltakerId,
@@ -70,10 +72,21 @@ export const endreSluttdatoForDeltakelse = async (
     return deltakelseSchema.parse(data);
 };
 
+/**
+ * Sletter en deltakelse
+ * @param deltakelseId
+ * @returns void
+ */
+export const deleteDeltakelse = async (deltakelseId: string): Promise<FjernFraProgramResponse> => {
+    await fjernFraProgram({ path: { deltakelseId } });
+    return Promise.resolve();
+};
+
 export const veilederService = {
     findDeltakerByDeltakerIdent,
     getDeltakerByDeltakerId,
     getDeltakelser,
     endreStartdatoForDeltakelse,
     endreSluttdatoForDeltakelse,
+    deleteDeltakelse,
 };
