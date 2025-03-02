@@ -157,7 +157,7 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
  * ----------------------------------------------------------
  */
 
-export const veilederService = {
+export const localVeilederService = {
     meldInnDeltaker,
     updateDeltakelse,
     avsluttDeltakelse,

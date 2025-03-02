@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
-import { getDeltakelser, getDeltakerByDeltakerId, getDeltakerByDeltakerIdent } from '../mocks/mockUtils';
+import { getDeltakelser, getDeltakerByDeltakerId, findDeltaker } from '../mocks/mockUtils';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -9,7 +9,7 @@ export const handlers = [
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
-        const data = getDeltakerByDeltakerIdent(deltakerIdent);
+        const data = findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),
 

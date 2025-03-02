@@ -8,7 +8,7 @@ import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@n
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';
-import { veilederService } from '../../api/services/veilederService';
+import { localVeilederService } from '../../api/services/localVeilederService';
 import { Deltakelse } from '../../api/types';
 
 interface Props {
@@ -38,7 +38,7 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
         setSubmitPending(true);
 
         try {
-            const avsluttetDeltakelse = await veilederService.avsluttDeltakelse({
+            const avsluttetDeltakelse = await localVeilederService.avsluttDeltakelse({
                 deltakelseId: deltakelse.id,
                 utmeldingsdato,
             });

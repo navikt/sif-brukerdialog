@@ -4,9 +4,9 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
+
 import EndreSluttdatoInfo from './EndreSluttdatoInfo';
-import { EndreSluttdatoOppgave, Oppgave, Oppgavetype } from '@navikt/ung-common';
+import { EndreSluttdatoOppgave, Oppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 
 export type EndreSluttdatoFormValues = {
     id: string;

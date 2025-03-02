@@ -1,9 +1,8 @@
 import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { Oppgave, EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
+import { Oppgave, EndreStartdatoOppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 import { Deltakelse } from '../../api/types';
-import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
 
@@ -23,7 +22,7 @@ interface Props {
 }
 
 const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
-    const { pending: endreDeltakelsePending, endreStartdato } = useEndreDeltakelse(onChange || (() => {}));
+    const { pending: endreDeltakelsePending, endreStartdato, error } = useEndreDeltakelse(onChange || (() => {}));
 
     const åpenOppgaver = oppgaver.filter(
         (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -96,6 +95,7 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                                 Send oppgave til {deltakernavn}
                                             </Button>
                                         </HStack>
+                                        {error ? <Alert variant="error">{error.message}</Alert> : null}
                                     </VStack>
                                 </TypedFormikForm>
                             </VStack>
