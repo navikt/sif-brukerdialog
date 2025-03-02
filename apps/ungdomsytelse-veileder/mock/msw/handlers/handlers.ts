@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
-import { getDeltakelser, getDeltakerByDeltakerId, getDeltakerByDeltakerIdent } from '../mocks/mockUtils';
+import { getDeltakelser, getDeltakerByDeltakerId, findDeltaker } from '../mocks/mockUtils';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -9,7 +9,7 @@ export const handlers = [
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
-        const data = getDeltakerByDeltakerIdent(deltakerIdent);
+        const data = findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),
 
@@ -39,5 +39,18 @@ export const handlers = [
         };
         await delay(250);
         return HttpResponse.json(response);
+    }),
+
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
+    }),
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
     }),
 ];

@@ -30,16 +30,6 @@ const getDeltakelseStatus = (deltakelse: Deltakelse) => {
             </Tag>
         );
     }
-    if (
-        (dayjs().isSameOrAfter(deltakelse.fraOgMed) && !!deltakelse.fraOgMed) ||
-        dayjs().isSameOrBefore(deltakelse.tilOgMed)
-    ) {
-        return (
-            <Tag variant="success-filled" size="small">
-                Aktiv
-            </Tag>
-        );
-    }
 };
 
 const DeltakelseHeader = ({ deltakelse }: Props) => (

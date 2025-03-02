@@ -12,7 +12,10 @@ export default defineConfig({
         checker({ typescript: true }),
     ],
     server: {
-        port: 8080,
+        hmr: {
+            port: 3005,
+        },
+        port: 8088,
     },
     resolve: {},
     build: {

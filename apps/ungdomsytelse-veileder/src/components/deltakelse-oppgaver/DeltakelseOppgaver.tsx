@@ -1,6 +1,6 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
-import { Oppgave } from '@navikt/ung-common';
 import OppgaveTabell from '../oppgave-tabell/OppgaveTabell';
+import { Oppgave } from '@navikt/ung-common';
 
 interface Props {
     oppgaver: Oppgave[];

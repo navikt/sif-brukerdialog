@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltakelse, Deltaker, NyDeltaker } from '../../api/types';
+import { Deltakelse, Deltaker, UregistrertDeltaker } from '../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -12,10 +12,10 @@ import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { veilederService } from '../../api/services/veilederService';
+import { localVeilederService } from '../../api/services/localVeilederService';
 
 interface Props {
-    deltaker: NyDeltaker | Deltaker;
+    deltaker: UregistrertDeltaker | Deltaker;
     minStartDato?: Date;
     onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;
@@ -35,7 +35,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
 
     const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
-        const deltakelse = await veilederService.meldInnDeltaker({
+        const deltakelse = await localVeilederService.meldInnDeltaker({
             deltakerIdent: deltaker.deltakerIdent,
             startdato: values.startDato,
         });

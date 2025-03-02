@@ -9,7 +9,7 @@ const kanOppretteNyDeltakelse = false;
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
-    const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
+    const aktiveDeltakelser = deltakelser; //.filter((d) => d.erAktiv);
 
     const handleOnDeltakelseChange = () => {
         refetchDeltakelser();
@@ -56,11 +56,7 @@ const DeltakerPageContent = () => {
                 />
 
                 {kanOppretteNyDeltakelse ? (
-                    <NyDeltakelse
-                        deltaker={deltaker}
-                        alleDeltakelser={deltakelser}
-                        onDeltakelseRegistrert={handleOnDeltakelseChange}
-                    />
+                    <NyDeltakelse deltaker={deltaker} onDeltakelseRegistrert={handleOnDeltakelseChange} />
                 ) : null}
             </Box>
         </Box>

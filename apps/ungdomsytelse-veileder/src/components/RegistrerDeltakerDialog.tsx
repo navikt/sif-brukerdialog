@@ -1,8 +1,8 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { NyDeltaker } from '../api/types';
+import { Deltaker } from '../api/types';
 
 interface Props {
-    nyDeltaker: NyDeltaker;
+    nyDeltaker: Deltaker;
 }
 
 const RegistrerDeltakerDialog = ({ nyDeltaker }: Props) => {
