@@ -5217,7 +5217,7 @@ __metadata:
     "@storybook/preset-scss": "npm:1.0.3"
     "@storybook/react": "npm:8.6.2"
     "@storybook/react-vite": "npm:8.6.2"
-    "@storybook/test-runner": "npm:0.21.3"
+    "@storybook/test-runner": "npm:0.22.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:29.5.14"
     "@types/node": "npm:22.13.5"
@@ -9509,9 +9509,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.21.3":
-  version: 0.21.3
-  resolution: "@storybook/test-runner@npm:0.21.3"
+"@storybook/test-runner@npm:0.22.0":
+  version: 0.22.0
+  resolution: "@storybook/test-runner@npm:0.22.0"
   dependencies:
     "@babel/core": "npm:^7.22.5"
     "@babel/generator": "npm:^7.22.5"
@@ -9533,10 +9533,10 @@ __metadata:
     nyc: "npm:^15.1.0"
     playwright: "npm:^1.14.0"
   peerDependencies:
-    storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+    storybook: ^0.0.0-0 || ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0 || ^9.0.0-0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: 10/897b91be682578dfcb6af4a98f2d28e895d61edab858a61cd9dc83ea7bebc637c7df843c3e1c077b018e5e6383111af1ae1f3168a06f4437fd9131e4603e3c1a
+  checksum: 10/edd1ca562864eadab831b45c0197cd52e41e0d639b7549a0ea9da71f6b82c1e59c8e77cb00ca25ad2727f2c99fe98b191d93a73e923f6e8cd61c994ba158c6ab
   languageName: node
   linkType: hard
 
