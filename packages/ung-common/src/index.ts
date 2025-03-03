@@ -1,4 +1,4 @@
-export * from './services/veilederService';
+export * from './services/ungDeltakelseApiService';
 export * from './hooks';
 export * from './types';
 export * from './api/ungDeltakelseOpplyserApiClient';

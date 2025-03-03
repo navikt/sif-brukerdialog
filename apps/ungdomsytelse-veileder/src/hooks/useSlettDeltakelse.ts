@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Deltakelse } from '../api/types';
-import { veilederService } from '@navikt/ung-common';
+import { ungDeltakelseApiService } from '@navikt/ung-common';
 
 export const useSlettDeltakelse = (onDeltakelseSlettet: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState(false);
@@ -8,8 +8,8 @@ export const useSlettDeltakelse = (onDeltakelseSlettet: (deltakelse: Deltakelse)
 
     const slettDeltakelse = async (deltakelse: Deltakelse) => {
         setPending(true);
-        veilederService
-            .deleteDeltakelse(deltakelse.id)
+        ungDeltakelseApiService
+            .fjernDeltakelse(deltakelse.id)
             .catch((e) => {
                 setPending(false);
                 setError(e.message);

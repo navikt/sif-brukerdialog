@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Deltakelse, endreSluttdatoForDeltakelse, endreStartdatoForDeltakelse } from '@navikt/ung-common';
+import { Deltakelse, ungDeltakelseApiService } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { ApiErrorObject, handleError } from '../utils/errorHandlers';
 import { ZodError } from 'zod';
@@ -37,11 +37,21 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
     };
 
     const endreStartdato = (deltakelse: Deltakelse, startdato: Date, meldingFraVeileder?: string) => {
-        return handleEndreDato(deltakelse, startdato, meldingFraVeileder, endreStartdatoForDeltakelse);
+        return handleEndreDato(
+            deltakelse,
+            startdato,
+            meldingFraVeileder,
+            ungDeltakelseApiService.endreStartdatoForDeltakelse,
+        );
     };
 
     const endreSluttdato = (deltakelse: Deltakelse, sluttdato: Date, meldingFraVeileder?: string) => {
-        return handleEndreDato(deltakelse, sluttdato, meldingFraVeileder, endreSluttdatoForDeltakelse);
+        return handleEndreDato(
+            deltakelse,
+            sluttdato,
+            meldingFraVeileder,
+            ungDeltakelseApiService.endreSluttdatoForDeltakelse,
+        );
     };
 
     return {

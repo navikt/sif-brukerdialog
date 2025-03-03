@@ -13,7 +13,7 @@ import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@n
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';
 import { Deltakelse } from '../../api/types';
-import { meldUtDeltaker } from '@navikt/ung-common';
+import { ungDeltakelseApiService } from '@navikt/ung-common';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -42,7 +42,7 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
         setSubmitPending(true);
 
         try {
-            const avsluttetDeltakelse = await meldUtDeltaker(deltakelse.id, utmeldingsdato);
+            const avsluttetDeltakelse = await ungDeltakelseApiService.meldUtDeltaker(deltakelse.id, utmeldingsdato);
             reset();
             setSubmitPending(false);
             onDeltakelseAvsluttet(avsluttetDeltakelse);
