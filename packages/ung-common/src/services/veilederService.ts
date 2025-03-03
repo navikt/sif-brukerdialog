@@ -1,4 +1,5 @@
 import {
+    DeltakelseInnmeldingDto,
     EndrePeriodeDatoDto,
     endreSluttdato,
     endreStartdato,
@@ -7,6 +8,9 @@ import {
     hentAlleDeltakelserGittDeltakerId,
     hentDeltakerInfoGittDeltaker,
     hentDeltakerInfoGittDeltakerId,
+    meldInnDeltaker as generertMeldInnDeltaker,
+    meldUtDeltaker as generertMeldUtDeltaker,
+    MeldUtDeltakerResponse,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';
@@ -15,34 +19,77 @@ import { handleError } from '../utils/errorHandlers';
 /**
  * Henter enten registrert eller uregistrert deltaker basert på deltakerIdent (fnr/dnr).
  * @param deltakerIdent fnr/dnr
- * @returns  Deltaker | UregistrertDeltaker
+ * @returns {Promise<Deltaker | UregistrertDeltaker>}
+ * @throws {ApiErrorObject}
  */
 export const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promise<Deltaker | UregistrertDeltaker> => {
-    const { data } = await hentDeltakerInfoGittDeltaker({ body: { deltakerIdent } });
-    return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
+    try {
+        const { data } = await hentDeltakerInfoGittDeltaker({ body: { deltakerIdent } });
+        return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 /**
  * Returnerer en registrert deltaker basert på deltaker-id.
  * @param deltakerIdent
- * @returns
+ * @returns {Promise<Deltaker[]>}
+ * @throws {ApiErrorObject}
  */
 export const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker> => {
-    const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
-    if (data?.id) {
+    try {
+        const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
         return registrertDeltakerSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
     }
-    throw new Error('Deltaker funnet, men uten deltaker id');
 };
 
 /**
  * Henter alle deltakelser som en deltaker har registrert
  * @param deltakerId deltaker-id
- * @returns Deltalser for deltaker
+ * @returns {Promise<Deltakelse[]>}
+ * @throws {ApiErrorObject}
  */
 export const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
-    const { data } = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
-    return deltakelserSchema.parse(data);
+    try {
+        const { data } = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
+        return deltakelserSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
+};
+
+/**
+ * Melder inn en bruker til deltakelse
+ * @param dto DeltakelseInnmeldingDto
+ * @returns {Promise<Deltakelse>}
+ * @throws {ApiErrorObject}
+ */
+export const meldInnDeltaker = async (dto: DeltakelseInnmeldingDto): Promise<Deltakelse> => {
+    try {
+        const { data } = await generertMeldInnDeltaker({ body: dto });
+        return deltakelseSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
+};
+
+/**
+ * Melder ut en deltaker fra deltakelse
+ * @param deltakelseId
+ * @param utmeldingsdato
+ * @returns {Promise<MeldUtDeltakerResponse>}
+ * @throws {ApiErrorObject}
+ */
+export const meldUtDeltaker = async (deltakelseId: string, utmeldingsdato: string): Promise<Deltakelse> => {
+    try {
+        const { data } = await generertMeldUtDeltaker({ path: { deltakelseId }, body: { utmeldingsdato } });
+        return deltakelseSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 /**
@@ -75,18 +122,27 @@ export const endreSluttdatoForDeltakelse = async (
     deltakelseId: string,
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
-    const { data } = await endreSluttdato({ path: { deltakelseId }, body: endrePeriodeData });
-    return deltakelseSchema.parse(data);
+    try {
+        const { data } = await endreSluttdato({ path: { deltakelseId }, body: endrePeriodeData });
+        return deltakelseSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 /**
  * Sletter en deltakelse
  * @param deltakelseId
- * @returns void
+ * @returns {Promise<FjernFraProgramResponse>}
+ * @throws {ApiErrorObject}
  */
 export const deleteDeltakelse = async (deltakelseId: string): Promise<FjernFraProgramResponse> => {
-    await fjernFraProgram({ path: { deltakelseId } });
-    return Promise.resolve();
+    try {
+        await fjernFraProgram({ path: { deltakelseId } });
+        return Promise.resolve();
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 export const veilederService = {

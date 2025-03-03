@@ -1,15 +1,19 @@
 import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { FormikCheckboxGroup } from '@navikt/sif-common-formik-ds';
-import { ConfirmationDialog } from '@navikt/sif-common-formik-ds';
+import {
+    ConfirmationDialog,
+    FormikCheckboxGroup,
+    FormikDatepicker,
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+} from '@navikt/sif-common-formik-ds';
 import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';
-import { localVeilederService } from '../../api/services/localVeilederService';
 import { Deltakelse } from '../../api/types';
+import { meldUtDeltaker } from '@navikt/ung-common';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -38,10 +42,7 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
         setSubmitPending(true);
 
         try {
-            const avsluttetDeltakelse = await localVeilederService.avsluttDeltakelse({
-                deltakelseId: deltakelse.id,
-                utmeldingsdato,
-            });
+            const avsluttetDeltakelse = await meldUtDeltaker(deltakelse.id, utmeldingsdato);
             reset();
             setSubmitPending(false);
             onDeltakelseAvsluttet(avsluttetDeltakelse);

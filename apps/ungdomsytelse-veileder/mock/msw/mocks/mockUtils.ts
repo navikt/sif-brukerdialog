@@ -6,8 +6,8 @@ const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
 /** Fnr */
 export const findDeltaker = (deltakerIdent) => {
     switch (deltakerIdent) {
-        case nyDeltaker.deltakerIdent:
-            return nyDeltaker;
+        case nyDeltakerMock.deltakerIdent:
+            return nyDeltakerMock;
         case registrertDeltaker.deltakerIdent:
             return registrertDeltaker;
         default:
@@ -32,12 +32,12 @@ export const getDeltakerByDeltakerId = (deltakerId) => {
     }
 };
 
-const nyDeltaker: DeltakerPersonlia & any = {
-    id: null,
+export const nyDeltakerMock: DeltakerPersonlia = {
+    id: null as any,
     deltakerIdent: '56857102105',
     navn: {
         fornavn: 'GLORETE',
-        mellomnavn: null,
+        mellomnavn: null as any,
         etternavn: 'TØFFEL',
     },
     fødselsdato: '1998-12-31',
@@ -46,7 +46,7 @@ const nyDeltaker: DeltakerPersonlia & any = {
 };
 
 const nyDeltakerRegistrert = {
-    ...nyDeltaker,
+    ...nyDeltakerMock,
     id: nyDeltakerId,
 };
 
@@ -55,6 +55,7 @@ const registrertDeltaker: DeltakerPersonlia = {
     deltakerIdent: '03867198392',
     navn: {
         fornavn: 'PRESENTABEL',
+        mellomnavn: null as any,
         etternavn: 'HOFTE',
     },
     fødselsdato: '1998-12-31',
@@ -87,18 +88,18 @@ const deltakelseDR = {
     oppgaver: [oppgave],
 };
 
-const deltakelseDN = {
+export const deltakelseDNMock = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
         id: nyDeltakerId,
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-01-01',
-    tilOgMed: null,
+    tilOgMed: null as any,
     harSøkt: false,
     oppgaver: [],
 };
 
 export const getDeltakelser = (id) => {
-    return id === nyDeltakerId ? [deltakelseDN] : [deltakelseDR];
+    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDR];
 };

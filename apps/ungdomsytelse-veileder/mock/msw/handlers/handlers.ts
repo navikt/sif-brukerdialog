@@ -1,5 +1,6 @@
 import { delay, http, HttpResponse } from 'msw';
-import { getDeltakelser, getDeltakerByDeltakerId, findDeltaker } from '../mocks/mockUtils';
+import { getDeltakelser, getDeltakerByDeltakerId, findDeltaker, deltakelseDNMock } from '../mocks/mockUtils';
+import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -27,14 +28,12 @@ export const handlers = [
 
     http.post<any, any>('**/veileder/register/deltaker/innmelding', async ({ request }) => {
         const { deltakerIdent, startdato } = await request.json();
-        const response = {
-            id: 'd-n',
+        const response: DeltakelseOpplysningDto = {
+            ...deltakelseDNMock,
             deltaker: {
-                id: 'd-n',
+                ...deltakelseDNMock.deltaker,
                 deltakerIdent,
             },
-            oppgaver: [],
-            harSøkt: false,
             fraOgMed: startdato,
         };
         await delay(250);

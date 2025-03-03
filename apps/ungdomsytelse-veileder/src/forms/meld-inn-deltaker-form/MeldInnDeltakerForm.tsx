@@ -7,12 +7,13 @@ import {
     TypedFormikForm,
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
-import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { localVeilederService } from '../../api/services/localVeilederService';
+import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
+import { meldInnDeltaker } from '@navikt/ung-common';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -31,16 +32,22 @@ interface FormValues {
 
 const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
     const [submitPending, setSubmitPending] = useState(false);
+    const [error, setError] = useState<ApiErrorObject | undefined>();
     const intl = useIntl();
 
     const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
-        const deltakelse = await localVeilederService.meldInnDeltaker({
-            deltakerIdent: deltaker.deltakerIdent,
-            startdato: values.startDato,
-        });
-        setSubmitPending(false);
-        onDeltakelseRegistrert(deltakelse);
+        try {
+            const deltakelse = await meldInnDeltaker({
+                deltakerIdent: deltaker.deltakerIdent,
+                startdato: values.startDato,
+            });
+            onDeltakelseRegistrert(deltakelse);
+        } catch (e) {
+            setError(e);
+        } finally {
+            setSubmitPending(false);
+        }
     };
 
     return (
@@ -95,6 +102,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                     Avbryt
                                 </Button>
                             </HStack>
+                            {error ? <Alert variant="error">{error.message}</Alert> : null}
                         </VStack>
                     </TypedFormikForm>
                 );
