@@ -1,46 +1,48 @@
 import { Alert, BodyShort, Button, HStack, Radio, RadioGroup, ReadMore, Textarea, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveEndretStartdato } from '@navikt/ung-common';
+import { EndreSluttdatoOppgave } from '@navikt/ung-common';
 import { useState } from 'react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import OppgaveLayout from './OppgaveLayout';
 import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 
 interface Props {
-    oppgave: OppgaveEndretStartdato;
-    opprinneligStartdato: Date;
+    oppgave: EndreSluttdatoOppgave;
+    opprinneligSluttdato?: Date;
 }
 
-const EndretStartdatoOppgave = ({ oppgave, opprinneligStartdato }: Props) => {
+const EndretSluttdatoOppgaveForm = ({ oppgave, opprinneligSluttdato }: Props) => {
     const [godkjenner, setGodkjenner] = useState<string>('');
     const [harKontaktetVeileder, setHarKontaktetVeileder] = useState<string>('');
-    const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
-    const opprinneligStartdatoTekst = dateFormatter.dayDateMonthYear(opprinneligStartdato);
+    const nySluttdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nySluttdato);
+    const opprinneligSluttdatoTekst = opprinneligSluttdato
+        ? dateFormatter.dayDateMonthYear(opprinneligSluttdato)
+        : 'å ikke være bestemt';
     return (
         <OppgaveLayout
-            tittel="Godkjenn endret startdato"
+            tittel="Godkjenn endret sluttdato"
             beskrivelse={
                 <BodyShort>
-                    Veileder har bedt deg godkjenne en endring for når du startet i ungdomsprogrammet. Startdatoen er
-                    endret til{' '}
+                    Veileder har bedt deg godkjenne en endring for når du går ut av ungdoms&shy;programmet. Sluttdatoen
+                    er endret til{' '}
                     <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                        {nyStartdatoTekst}
+                        {nySluttdatoTekst}
                     </BodyShort>{' '}
-                    fra {opprinneligStartdatoTekst}.
+                    fra {opprinneligSluttdatoTekst}.
                 </BodyShort>
             }>
             <VStack gap="4">
                 {oppgave.oppgavetypeData.meldingFraVeileder ? (
                     <MeldingFraVeileder
                         tekst={oppgave.oppgavetypeData.meldingFraVeileder}
-                        avsender={oppgave.veilederReferanse}
+                        avsender={oppgave.oppgavetypeData.veilederRef}
                     />
                 ) : null}
 
                 <VStack gap="6" marginBlock="2 0">
                     <RadioGroup
                         name="svar"
-                        legend={`Godkjenner du at startdato endres til ${nyStartdatoTekst}?`}
+                        legend={`Godkjenner du at sluttdato endres til ${nySluttdatoTekst}?`}
                         onChange={(value) => setGodkjenner(value)}
                         description={
                             <>
@@ -102,4 +104,4 @@ const EndretStartdatoOppgave = ({ oppgave, opprinneligStartdato }: Props) => {
     );
 };
 
-export default EndretStartdatoOppgave;
+export default EndretSluttdatoOppgaveForm;

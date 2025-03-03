@@ -1,10 +1,10 @@
 import { Box, HStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Deltakelse } from '@navikt/ung-common';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 import YtelseHeader from '../../../components/ytelse-header/YtelseHeader';
 
 interface Props {
-    deltakelse: Deltakelse;
+    deltakelse: DeltakelsePeriode;
 }
 
 const DeltakelseHeader = ({ deltakelse }: Props) => {

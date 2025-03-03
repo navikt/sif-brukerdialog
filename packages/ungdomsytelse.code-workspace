@@ -9,6 +9,9 @@
         {
             "path": "ung-deltakelse-opplyser-api",
         },
+        {
+            "path": "../apps/ungdomsytelse-deltaker",
+        },
     ],
     "settings": {},
 }

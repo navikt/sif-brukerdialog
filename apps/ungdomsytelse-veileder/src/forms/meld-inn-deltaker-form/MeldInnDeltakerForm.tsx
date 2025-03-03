@@ -13,7 +13,7 @@ import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
-import { ungDeltakelseApiService } from '@navikt/ung-common';
+import { veilederApiService } from '@navikt/ung-common';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -38,7 +38,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
     const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
         try {
-            const deltakelse = await ungDeltakelseApiService.meldInnDeltaker({
+            const deltakelse = await veilederApiService.meldInnDeltaker({
                 deltakerIdent: deltaker.deltakerIdent,
                 startdato: values.startDato,
             });

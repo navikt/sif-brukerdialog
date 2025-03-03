@@ -13,7 +13,7 @@ import {
 import { ReactElement, useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
-import { ungDeltakelseApiService } from '@navikt/ung-common';
+import { veilederApiService } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import { Deltakelse, Deltaker, UregistrertDeltaker } from '../api/types';
 import DeltakerKort from '../components/DeltakerKort';
@@ -47,7 +47,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
             setPending(true);
             setKandidat(undefined);
             try {
-                const deltakerEllerKandidat = await ungDeltakelseApiService.findDeltakerByDeltakerIdent(fnrValue);
+                const deltakerEllerKandidat = await veilederApiService.findDeltakerByDeltakerIdent(fnrValue);
                 if (deltakerEllerKandidat.id !== undefined) {
                     setPending(false);
                     onDeltakerFetched(deltakerEllerKandidat);

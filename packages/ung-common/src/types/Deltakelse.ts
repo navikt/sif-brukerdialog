@@ -19,3 +19,4 @@ export const deltakelseSchema = zDeltakelseOpplysningDto
 export const deltakelserSchema = z.array(deltakelseSchema);
 
 export type Deltakelse = z.infer<typeof deltakelseSchema>;
+export type Deltakelser = Deltakelse[];

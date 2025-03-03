@@ -142,7 +142,7 @@ const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
     }
 };
 
-export const ungDeltakelseApiService = {
+export const veilederApiService = {
     findDeltakerByDeltakerIdent,
     getDeltakerByDeltakerId,
     getDeltakelser,

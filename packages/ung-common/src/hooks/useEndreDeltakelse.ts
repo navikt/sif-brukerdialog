@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Deltakelse, ungDeltakelseApiService } from '@navikt/ung-common';
+import { Deltakelse, veilederApiService } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { ApiErrorObject, handleError } from '../utils/errorHandlers';
 import { ZodError } from 'zod';
@@ -41,7 +41,7 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             deltakelse,
             startdato,
             meldingFraVeileder,
-            ungDeltakelseApiService.endreStartdatoForDeltakelse,
+            veilederApiService.endreStartdatoForDeltakelse,
         );
     };
 
@@ -50,7 +50,7 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             deltakelse,
             sluttdato,
             meldingFraVeileder,
-            ungDeltakelseApiService.endreSluttdatoForDeltakelse,
+            veilederApiService.endreSluttdatoForDeltakelse,
         );
     };
 

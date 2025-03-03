@@ -13,6 +13,10 @@ export interface DateRange {
     from: Date;
     to: Date;
 }
+export interface OpenDateRange {
+    from: Date;
+    to?: Date;
+}
 export type MaybeDateRange = Partial<DateRange>;
 
 export interface NumberDuration {

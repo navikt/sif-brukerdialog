@@ -56,7 +56,7 @@ const LøsteOppgaver = ({ oppgaver }: Props) => {
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
                             <List>
-                                <List.Item>Løsningstype: {oppgave.løsningstype}</List.Item>
+                                {/* <List.Item>Løsningstype: {oppgave.løsningstype}</List.Item> */}
                                 <List.Item>TO</List.Item>
                                 <List.Item>DO</List.Item>
                             </List>
