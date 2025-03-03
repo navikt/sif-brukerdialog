@@ -1,14 +1,8 @@
 import {
     DeltakelseInnmeldingDto,
     EndrePeriodeDatoDto,
-    endreSluttdato,
-    endreStartdato,
-    fjernFraProgram,
-    hentAlleDeltakelserGittDeltakerId,
-    hentDeltakerInfoGittDeltaker,
-    hentDeltakerInfoGittDeltakerId,
-    meldInnDeltaker as generertMeldInnDeltaker,
-    meldUtDeltaker as generertMeldUtDeltaker,
+    OppslagService,
+    VeilederService,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';
@@ -22,7 +16,7 @@ import { handleError } from '../utils/errorHandlers';
  */
 const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promise<Deltaker | UregistrertDeltaker> => {
     try {
-        const { data } = await hentDeltakerInfoGittDeltaker({ body: { deltakerIdent } });
+        const { data } = await OppslagService.hentDeltakerInfoGittDeltaker({ body: { deltakerIdent } });
         return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -37,7 +31,7 @@ const findDeltakerByDeltakerIdent = async (deltakerIdent: string): Promise<Delta
  */
 const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker> => {
     try {
-        const { data } = await hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
+        const { data } = await OppslagService.hentDeltakerInfoGittDeltakerId({ path: { id: deltakerIdent } });
         return registrertDeltakerSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -52,7 +46,7 @@ const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker>
  */
 const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
     try {
-        const { data } = await hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
+        const { data } = await VeilederService.hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
         return deltakelserSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -67,7 +61,7 @@ const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
  */
 const meldInnDeltaker = async (dto: DeltakelseInnmeldingDto): Promise<Deltakelse> => {
     try {
-        const { data } = await generertMeldInnDeltaker({ body: dto });
+        const { data } = await VeilederService.meldInnDeltaker({ body: dto });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -83,7 +77,7 @@ const meldInnDeltaker = async (dto: DeltakelseInnmeldingDto): Promise<Deltakelse
  */
 const meldUtDeltaker = async (deltakelseId: string, utmeldingsdato: string): Promise<Deltakelse> => {
     try {
-        const { data } = await generertMeldUtDeltaker({ path: { deltakelseId }, body: { utmeldingsdato } });
+        const { data } = await VeilederService.meldUtDeltaker({ path: { deltakelseId }, body: { utmeldingsdato } });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -102,7 +96,7 @@ const endreStartdatoForDeltakelse = async (
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
     try {
-        const { data } = await endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
+        const { data } = await VeilederService.endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -121,7 +115,7 @@ const endreSluttdatoForDeltakelse = async (
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
     try {
-        const { data } = await endreSluttdato({ path: { deltakelseId }, body: endrePeriodeData });
+        const { data } = await VeilederService.endreSluttdato({ path: { deltakelseId }, body: endrePeriodeData });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);
@@ -136,7 +130,7 @@ const endreSluttdatoForDeltakelse = async (
  */
 const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
     try {
-        await fjernFraProgram({ path: { deltakelseId } });
+        await VeilederService.fjernFraProgram({ path: { deltakelseId } });
     } catch (e) {
         throw handleError(e);
     }
