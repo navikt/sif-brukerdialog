@@ -10,7 +10,6 @@ import {
     hentDeltakerInfoGittDeltakerId,
     meldInnDeltaker as generertMeldInnDeltaker,
     meldUtDeltaker as generertMeldUtDeltaker,
-    MeldUtDeltakerResponse,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';

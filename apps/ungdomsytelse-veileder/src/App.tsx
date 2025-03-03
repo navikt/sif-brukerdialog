@@ -6,6 +6,9 @@ import DeltakerPage from './components/DeltakerPage';
 import { appMessages } from './i18n';
 import StartPage from './pages/start-page/StartPage';
 import './app.css';
+import { initApiClient } from '@navikt/ung-common';
+
+initApiClient();
 
 const App = () => {
     return (

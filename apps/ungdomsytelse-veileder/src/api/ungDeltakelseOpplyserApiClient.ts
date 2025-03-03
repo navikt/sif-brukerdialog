@@ -1,18 +1,7 @@
-import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { isUnauthorized } from '@navikt/sif-common-api';
+import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
-import axios, { AxiosRequestConfig } from 'axios';
 import { v4 } from 'uuid';
-
-const axiosConfig: AxiosRequestConfig = {
-    withCredentials: false,
-    headers: { 'Content-type': 'application/json; charset=utf-8' },
-};
-
-export const ungDeltakelseOpplyserApiClient = axios.create({
-    ...axiosConfig,
-    baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
-});
 
 /** Set config for generert klient */
 client.setConfig({
@@ -20,7 +9,6 @@ client.setConfig({
     headers: { 'Content-type': 'application/json; charset=utf-8' },
     baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
 });
-console.log('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH', getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'));
 
 /**
  * Håndterer 401 (Unauthorized) feil ved å sende brukeren til innloggingssiden.
@@ -46,6 +34,11 @@ client.instance.interceptors.request.use(
     (error) => Promise.reject(error),
 );
 
+/**
+ * Går gjennom objekt og erstatter alle null med undefined
+ * @param obj
+ * @returns
+ */
 const convertNullToUndefined = (obj: any): any => {
     if (obj === null) {
         return undefined;
