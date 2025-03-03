@@ -3,6 +3,7 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 import { Deltakelse, endreSluttdatoForDeltakelse, endreStartdatoForDeltakelse } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { ApiErrorObject, handleError } from '../utils/errorHandlers';
+import { ZodError } from 'zod';
 
 export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState<boolean>(false);
@@ -25,7 +26,11 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             const oppdatertDeltakelse = await endreDatoForDeltakelse(deltakelse.id, dto);
             onDeltakelseEndret(oppdatertDeltakelse);
         } catch (e) {
-            setError(handleError(e));
+            if (e instanceof ZodError) {
+                setError(handleError(e));
+            } else {
+                setError(e);
+            }
         } finally {
             setPending(false);
         }

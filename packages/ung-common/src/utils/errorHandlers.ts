@@ -23,6 +23,11 @@ export interface ApiErrorObject {
     message: string;
 }
 
+// Funksjon for å sjekke om objektet er ApiErrorObject
+export const isApiErrorObject = (error: unknown): error is ApiErrorObject => {
+    return (error as ApiErrorObject).type !== undefined;
+};
+
 // Funksjon for å håndtere feil
 export const handleError = (e: unknown): ApiErrorObject => {
     if (e instanceof ZodError) {

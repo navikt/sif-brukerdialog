@@ -10,6 +10,7 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';
+import { handleError } from '../utils/errorHandlers';
 
 /**
  * Henter enten registrert eller uregistrert deltaker basert på deltakerIdent (fnr/dnr).
@@ -48,21 +49,27 @@ export const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> 
  * Lager en oppgave for å endre sluttdato for en deltakelse
  * @param deltakelseId
  * @param endrePeriodeData EndrePeriodeDatoDto
- * @returns
+ * @returns {Promise<Deltakelse>}
+ * @throws {ApiErrorObject}
  */
 export const endreStartdatoForDeltakelse = async (
     deltakelseId: string,
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
-    const { data } = await endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
-    return deltakelseSchema.parse(data);
+    try {
+        const { data } = await endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
+        return deltakelseSchema.parse(data);
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 /**
  * Lager en oppgave for å endre sluttdato for en deltakelse
  * @param deltakelseId
  * @param endrePeriodeData EndrePeriodeDatoDto
- * @returns
+ * @returns {Promise<Deltakelse>}
+ * @throws {ApiErrorObject}
  */
 export const endreSluttdatoForDeltakelse = async (
     deltakelseId: string,
