@@ -2,13 +2,14 @@ import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from
 import { useState } from 'react';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { Inntekt, RapporterInntektDTO } from '@navikt/ung-common';
+import { Inntekt } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 import InntektTableForm from './varianter/InntektTableForm';
+import { RapporterInntektDTO } from '@navikt/ung-common/src/types/dto/RapporterinntektDTO';
 
 interface Props {
     inntekt?: Inntekt;

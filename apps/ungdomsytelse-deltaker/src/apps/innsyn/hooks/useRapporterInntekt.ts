@@ -1,5 +1,6 @@
+import { deltakerApiService } from '@navikt/ung-common';
+import { RapporterInntektDTO } from '@navikt/ung-common/src/types/dto/RapporterinntektDTO';
 import { useState } from 'react';
-import { deltakerService, RapporterInntektDTO } from '@navikt/ung-common';
 
 export const useRapporterInntekt = () => {
     const [pending, setPending] = useState(false);
@@ -8,7 +9,7 @@ export const useRapporterInntekt = () => {
 
     const rapporterInntekt = (inntekt: RapporterInntektDTO) => {
         setPending(true);
-        return deltakerService
+        return deltakerApiService
             .rapporterInntekt(inntekt)
             .then(() => {
                 setInntektSendt(true);

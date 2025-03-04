@@ -5,6 +5,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
+        "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api": "workspace:*"
     },
     "devDependencies": {

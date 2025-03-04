@@ -4,6 +4,7 @@ export const deltakelserIkkeSøkt = [
         fraOgMed: '2024-07-01',
         tilOgMed: '2025-06-30',
         harSøkt: false,
+        oppgaver: [],
         rapporteringsPerioder: [
             {
                 fraOgMed: '2024-07-01',

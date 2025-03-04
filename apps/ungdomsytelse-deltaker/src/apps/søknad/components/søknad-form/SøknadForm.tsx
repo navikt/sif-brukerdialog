@@ -3,7 +3,8 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { SendSøknadDTO, sendSøknadDTOSchema, Søknadstype } from '@navikt/ung-common';
+import { SendSøknadDTO } from '@navikt/ung-common/src/types/dto/SendSøknadDTO';
+import { Søknadstype } from '@navikt/ung-common/src/types/Søknadstype';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
@@ -40,25 +41,24 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
     const { intl, text } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
-    const handleSubmit = (values: SøknadFormValues) => {
-        const søknad: SendSøknadDTO = {
-            søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
-            søknadId: deltakelseId,
-            språk: getLocaleForApi(intl.locale),
-            startdato: dateToISODate(startdato),
-            barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
-            kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
-            harBekreftetOpplysninger: values[SøknadFormFields.samtykker],
-            harForståttRettigheterOgPlikter: values[SøknadFormFields.samtykker],
-            søkerNorskIdent: søker.fødselsnummer,
-            isInntektForPeriode: false,
-        };
-        if (sendSøknadDTOSchema.parse(søknad)) {
-            sendSøknad(søknad).then(() => {
-                onSøknadSendt();
-            });
-        } else {
-            alert('Invalid data');
+    const handleSubmit = async (values: SøknadFormValues) => {
+        try {
+            const søknad: SendSøknadDTO = {
+                søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
+                søknadId: deltakelseId,
+                språk: getLocaleForApi(intl.locale),
+                startdato: dateToISODate(startdato),
+                barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
+                kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
+                harBekreftetOpplysninger: values[SøknadFormFields.samtykker],
+                harForståttRettigheterOgPlikter: values[SøknadFormFields.samtykker],
+                søkerNorskIdent: søker.fødselsnummer,
+                isInntektForPeriode: false,
+            };
+            await sendSøknad(søknad);
+            onSøknadSendt();
+        } catch (e) {
+            console.error(e);
         }
     };
 
@@ -111,7 +111,7 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
                                         <Alert variant="error">
                                             Det oppstod en feil:
                                             <br />
-                                            {error}
+                                            {error.message}
                                         </Alert>
                                     )}
                                 </VStack>

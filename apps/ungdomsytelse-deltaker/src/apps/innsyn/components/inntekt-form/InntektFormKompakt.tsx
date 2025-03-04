@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { RapporterInntektDTO } from '@navikt/ung-common';
+import { RapporterInntektDTO } from '@navikt/ung-common/src/types/dto/RapporterinntektDTO';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';

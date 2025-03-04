@@ -12,6 +12,9 @@
         {
             "path": "../apps/ungdomsytelse-deltaker",
         },
+        {
+            "path": "k9-brukerdialog-prosessering",
+        },
     ],
     "settings": {},
 }

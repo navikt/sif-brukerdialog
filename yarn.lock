@@ -3281,7 +3281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/client-axios@npm:^0.6.1":
+"@hey-api/client-axios@npm:0.6.1":
   version: 0.6.1
   resolution: "@hey-api/client-axios@npm:0.6.1"
   peerDependencies:
@@ -3290,10 +3290,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/client-fetch@npm:^0.8.1":
-  version: 0.8.2
-  resolution: "@hey-api/client-fetch@npm:0.8.2"
-  checksum: 10/15f5cb918856442988f7350c109184da017e406d9a24601059e038f5b02e81f51a66ffc321e1821e2a486495b0a11609d43916aa8c9b12c8a83c45252b731a16
+"@hey-api/client-fetch@npm:0.8.1":
+  version: 0.8.1
+  resolution: "@hey-api/client-fetch@npm:0.8.1"
+  checksum: 10/0c499611b19b83abc14f5c8356dd2e9de4831f3f9c380936e35eaf2906a9064aa7f7cffb59d0d1034a6e2b76bc064fd5b999c8f0b1a6cf8b9b47a0856e403539
   languageName: node
   linkType: hard
 
@@ -3308,9 +3308,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:^0.64.5":
-  version: 0.64.7
-  resolution: "@hey-api/openapi-ts@npm:0.64.7"
+"@hey-api/openapi-ts@npm:0.64.5":
+  version: 0.64.5
+  resolution: "@hey-api/openapi-ts@npm:0.64.5"
   dependencies:
     "@hey-api/json-schema-ref-parser": "npm:1.0.2"
     c12: "npm:2.0.1"
@@ -3320,7 +3320,7 @@ __metadata:
     typescript: ^5.5.3
   bin:
     openapi-ts: bin/index.cjs
-  checksum: 10/151cce6dad281b541d7839d6e933ceb5f582892f5d170ab943358fc9d849b9387593fada8675285dde26d04fd526aa91100247772e8c6f968c28b8be0928e7b0
+  checksum: 10/10e4554845725e3c947a98b62105eb9ecf9b2c3341c89d2f208350cab2d0440ee2d5f0949c5fd68978091c76ce032d97a36e2247f65e94e59ff831d2efda6902
   languageName: node
   linkType: hard
 
@@ -4533,6 +4533,24 @@ __metadata:
   checksum: 10/6004890b3046d957f117b8566d6b12bc254cb5417a6fa9dd800a807bbb78d6775165d8c2aba5f1c1561b499341d4e97d662589a9d708651ae59aee06411ce66d
   languageName: node
   linkType: hard
+
+"@navikt/k9-brukerdialog-prosessering-api@workspace:*, @navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering":
+  version: 0.0.0-use.local
+  resolution: "@navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering"
+  dependencies:
+    "@hey-api/client-axios": "npm:0.6.1"
+    "@hey-api/client-fetch": "npm:0.8.1"
+    "@hey-api/openapi-ts": "npm:0.64.5"
+    "@sif/eslint-config": "workspace:*"
+    config: "workspace:*"
+    typescript: "npm:5.7.3"
+    vitest: "npm:3.0.6"
+    zod: "npm:3.24.2"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
 
 "@navikt/nav-dekoratoren-moduler@npm:3.2.2":
   version: 3.2.2
@@ -5848,6 +5866,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/ung-common@workspace:packages/ung-common"
   dependencies:
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/ung-deltakelse-opplyser-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
@@ -5865,9 +5884,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api"
   dependencies:
-    "@hey-api/client-axios": "npm:^0.6.1"
-    "@hey-api/client-fetch": "npm:^0.8.1"
-    "@hey-api/openapi-ts": "npm:^0.64.5"
+    "@hey-api/client-axios": "npm:0.6.1"
+    "@hey-api/client-fetch": "npm:0.8.1"
+    "@hey-api/openapi-ts": "npm:0.64.5"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.7.3"

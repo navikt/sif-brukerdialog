@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { deltakerService, SendSøknadDTO } from '@navikt/ung-common';
+import { deltakerApiService } from '@navikt/ung-common';
+import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
+import { SendSøknadDTO } from '@navikt/ung-common/src/types/dto/SendSøknadDTO';
 
 export const useSendSøknad = () => {
     const [pending, setPending] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<ApiErrorObject | undefined>();
     const [søknadSendt, setSøknadSendt] = useState(false);
 
-    const sendSøknad = (søknad: SendSøknadDTO) => {
+    const sendSøknad = async (søknad: SendSøknadDTO) => {
+        setError(undefined);
         setPending(true);
-        return deltakerService
-            .sendSøknad(søknad)
-            .then(() => {
-                setSøknadSendt(true);
-            })
-            .catch((error) => {
-                setError('Søknad feilet');
-                throw error;
-            })
-            .finally(() => {
-                setPending(false);
-            });
+        try {
+            await deltakerApiService.sendSøknad(søknad);
+            setSøknadSendt(true);
+        } catch (e) {
+            setError(e);
+            throw e;
+        } finally {
+            setPending(false);
+        }
     };
     return { sendSøknad, søknadSendt, pending, error };
 };
