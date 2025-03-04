@@ -19,7 +19,7 @@ export const handlers = [
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = true;
+        const harSøkt = false;
         return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
     }),
     http.post('**/marker-har-sokt', () => {

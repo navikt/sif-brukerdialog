@@ -41,7 +41,7 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgav
                         <ExpansionCard.Title size="small">
                             <HStack gap="2" align={'center'}>
                                 <ClipboardCheckmarkIcon />
-                                Bekreft eller kommenter endring
+                                Se mer informasjon om endringen
                             </HStack>
                         </ExpansionCard.Title>
                     </ExpansionCard.Header>

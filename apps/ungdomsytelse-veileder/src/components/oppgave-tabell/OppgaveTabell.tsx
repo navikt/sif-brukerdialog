@@ -14,7 +14,7 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             const { meldingFraVeileder = 'Hei, jeg endrer startdatoen som avtalt i møtet vårt.', nyStartdato } =
                 oppgave.oppgavetypeData;
-            const { veilederRef = 'Pål Hønesen' } = oppgave.oppgavetypeData;
+            const { veilederRef } = oppgave.oppgavetypeData;
             return (
                 <HGrid columns="1fr 1fr" gap="10">
                     <VStack>

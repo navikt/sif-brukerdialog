@@ -1,11 +1,22 @@
 import { delay, http, HttpResponse } from 'msw';
-import { getDeltakelser, getDeltakerByDeltakerId, findDeltaker, deltakelseDNMock } from '../mocks/mockUtils';
+import {
+    getDeltakelser,
+    getDeltakerByDeltakerId,
+    findDeltaker,
+    deltakelseDNMock,
+    veilederMock,
+} from '../mocks/mockUtils';
 import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
     http.get('*login*', () => new HttpResponse(null, { status: 200 })),
+
+    /** TODO - Bruker søker endepunkt enn så lenge for å hente mock veileder */
+    http.get<any, any>('**/oppslag/soker', async () => {
+        return HttpResponse.json(veilederMock);
+    }),
 
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();

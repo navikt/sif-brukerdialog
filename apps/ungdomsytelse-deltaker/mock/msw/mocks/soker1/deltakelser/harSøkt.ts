@@ -11,8 +11,8 @@ export const deltakelserHarSøkt = [
                 oppgavetypeData: {
                     type: 'BEKREFT_ENDRET_STARTDATO',
                     nyStartdato: '2025-01-01',
-                    veilederRef: 'n/a',
-                    meldingFraVeileder: null,
+                    veilederRef: 'Pål Hønesen, Andeby',
+                    meldingFraVeileder: 'Jeg endrer startdatoen som vi avtalte på møtet forrige uke.',
                 },
                 status: 'ULØST',
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
