@@ -25,7 +25,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         value="oppgaver"
                         label={
                             <HStack gap="1">
-                                <Box>Deltakeroppgaver</Box>
+                                <Box>Deltakervarsler</Box>
                                 <Box
                                     className="rounded-full bg-icon-warning text-white w-6 h-6 relative"
                                     style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>

@@ -1,6 +1,6 @@
 import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Oppgave, EndreStartdatoOppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 import { Deltakelse } from '../../api/types';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
@@ -30,19 +30,10 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
 
     const åpenOppgave: EndreStartdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
 
-    const getInitialValues = (d: Deltakelse): EndreStartdatoFormValues => {
-        return {
-            fnr: d.deltaker.deltakerIdent,
-            id: d.id,
-            fom: dateToISODate(d.fraOgMed),
-            melding: åpenOppgave?.oppgavetypeData.meldingFraVeileder,
-        };
-    };
-
     return (
         <Box>
             <TypedFormikWrapper<EndreStartdatoFormValues>
-                initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
+                initialValues={{}}
                 onSubmit={(values: EndreStartdatoFormValues) => {
                     const melding = values.melding ? values.melding.trim() : undefined;
                     endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
@@ -55,9 +46,9 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                 {åpenOppgave ? (
                                     <Box marginBlock="0 4">
                                         <Alert variant="warning">
-                                            Det eksisterer en ubesvart oppgave på endret startdato. Endringer du gjør nå
-                                            vil erstatte den gamle oppgaven, og deltaker vil kun se den oppdaterte
-                                            informasjonen.
+                                            Det eksisterer allerede en oppgave på endring av startdato. Hvis du
+                                            registrerer en ny endring i startdato, vil denne oppgaven lukkes og bli
+                                            erstattet med den nye.
                                         </Alert>
                                     </Box>
                                 ) : null}

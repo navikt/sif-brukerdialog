@@ -5,29 +5,37 @@ import { useState } from 'react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import OppgaveLayout from './OppgaveLayout';
 import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
+import dayjs from 'dayjs';
 
 interface Props {
     oppgave: EndreStartdatoOppgave;
     opprinneligStartdato: Date;
 }
 
-const EndretStartdatoOppgaveForm = ({ oppgave, opprinneligStartdato }: Props) => {
+const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
     const [godkjenner, setGodkjenner] = useState<string>('');
     const [harKontaktetVeileder, setHarKontaktetVeileder] = useState<string>('');
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
-    const opprinneligStartdatoTekst = dateFormatter.dayDateMonthYear(opprinneligStartdato);
+    // const opprinneligStartdatoTekst = dateFormatter.dayDateMonthYear(opprinneligStartdato);
     return (
         <OppgaveLayout
-            tittel="Godkjenn endret startdato"
+            tittel="Din deltakerperiode blir endret"
             beskrivelse={
-                <BodyShort>
-                    Veileder har bedt deg godkjenne en endring for når du startet i ungdomsprogrammet. Startdatoen er
-                    endret til{' '}
-                    <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                        {nyStartdatoTekst}
-                    </BodyShort>{' '}
-                    fra {opprinneligStartdatoTekst}.
-                </BodyShort>
+                <>
+                    <BodyShort>
+                        Veileder har registrert at datoen du startet i ungdomsprogrammet vil bli endret til{' '}
+                        <BodyShort as="span" className="inline-block nowrap" weight="semibold">
+                            {nyStartdatoTekst}
+                        </BodyShort>
+                        .
+                    </BodyShort>
+                    <BodyShort>
+                        Du kan bekrefte eller kommentere denne endringen frem til og med{' '}
+                        {dateFormatter.compact(oppgave.svarfrist)}. Endringen vil tre i kraft når du bekrefter
+                        endringen, eller senest {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}
+                        .
+                    </BodyShort>
+                </>
             }>
             <VStack gap="4">
                 {oppgave.oppgavetypeData.meldingFraVeileder ? (

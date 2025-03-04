@@ -11,25 +11,28 @@ interface Props {
     opprinneligSluttdato?: Date;
 }
 
-const EndretSluttdatoOppgaveForm = ({ oppgave, opprinneligSluttdato }: Props) => {
+const EndretSluttdatoOppgaveForm = ({ oppgave }: Props) => {
     const [godkjenner, setGodkjenner] = useState<string>('');
     const [harKontaktetVeileder, setHarKontaktetVeileder] = useState<string>('');
     const nySluttdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nySluttdato);
-    const opprinneligSluttdatoTekst = opprinneligSluttdato
-        ? dateFormatter.dayDateMonthYear(opprinneligSluttdato)
-        : 'å ikke være bestemt';
     return (
         <OppgaveLayout
-            tittel="Godkjenn endret sluttdato"
+            tittel="Din deltakerperiode blir endret"
             beskrivelse={
-                <BodyShort>
-                    Veileder har bedt deg godkjenne en endring for når du går ut av ungdoms&shy;programmet. Sluttdatoen
-                    er endret til{' '}
-                    <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                        {nySluttdatoTekst}
-                    </BodyShort>{' '}
-                    fra {opprinneligSluttdatoTekst}.
-                </BodyShort>
+                <>
+                    <BodyShort>
+                        Veileder har registrert at datoen du går ut av ungdomsprogrammet vil bli endret til{' '}
+                        <BodyShort as="span" className="inline-block nowrap" weight="semibold">
+                            {nySluttdatoTekst}
+                        </BodyShort>
+                        .
+                    </BodyShort>
+                    <BodyShort>
+                        Du kan bekrefte eller kommentere denne endringen frem til og med{' '}
+                        {dateFormatter.compact(oppgave.svarfrist)}. Endringen vil tre i kraft når du bekrefter
+                        endringen, eller senest {dateFormatter.compact(oppgave.svarfrist)}.
+                    </BodyShort>
+                </>
             }>
             <VStack gap="4">
                 {oppgave.oppgavetypeData.meldingFraVeileder ? (
