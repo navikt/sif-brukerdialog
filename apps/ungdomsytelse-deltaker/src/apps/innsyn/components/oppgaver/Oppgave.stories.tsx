@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof OppgavePanel>;
 
 const endretSluttdato: Oppgave = {
-    id: '123',
+    oppgaveId: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
@@ -29,7 +29,7 @@ const endretSluttdato: Oppgave = {
 };
 
 const endretStartdato: Oppgave = {
-    id: '123',
+    oppgaveId: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,

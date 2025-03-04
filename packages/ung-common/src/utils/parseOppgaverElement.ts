@@ -20,7 +20,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
             case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
                 const endreStartdatoData = oppgave.oppgavetypeData as EndretStartdatoOppgavetypeDataDto;
                 const endretStartdatoOppgave: Oppgave = {
-                    id: oppgave.id,
+                    oppgaveId: oppgave.id,
                     status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
@@ -37,7 +37,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
             case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
                 const endreSluttdatoData = oppgave.oppgavetypeData as EndretSluttdatoOppgavetypeDataDto;
                 const endretSluttdatoOppgave: Oppgave = {
-                    id: oppgave.id,
+                    oppgaveId: oppgave.id,
                     status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),

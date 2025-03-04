@@ -12,16 +12,18 @@ import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysni
 import BarnSpørsmål from './spørsmål/BarnSpørsmål';
 import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
-import Startdato from './Startdato';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
+import StartdatoSpørsmål from './spørsmål/StartdatoSpørsmål';
 
 export enum SøknadFormFields {
+    startdatoErRiktig = 'startdatoErRiktig',
     kontonummerErRiktig = 'kontonummerErRiktig',
     barnErRiktig = 'barnErRiktig',
     samtykker = 'samtykker',
 }
 
 export interface SøknadFormValues {
+    [SøknadFormFields.startdatoErRiktig]: YesOrNo;
     [SøknadFormFields.kontonummerErRiktig]: YesOrNo;
     [SøknadFormFields.barnErRiktig]: YesOrNo;
     [SøknadFormFields.samtykker]: boolean;
@@ -76,10 +78,17 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
                 initialValues={{}}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
+                    const startdatoSvar = values[SøknadFormFields.startdatoErRiktig];
                     const kontonummerSvar = values[SøknadFormFields.kontonummerErRiktig];
                     const barnSvar = values[SøknadFormFields.barnErRiktig];
 
-                    const visBarnSpørsmål = !!kontonummerSvar && kontonummerSvar !== YesOrNo.NO;
+                    const startdatoStemmerIkke = startdatoSvar === YesOrNo.NO;
+                    const kontonummerStemmerIkke = kontonummerSvar === YesOrNo.NO;
+                    const submitDisabled = startdatoStemmerIkke || kontonummerStemmerIkke;
+
+                    const visKontonummerSpørsmål = !!startdatoSvar && startdatoSvar !== YesOrNo.NO;
+                    const visBarnSpørsmål =
+                        visKontonummerSpørsmål && !!kontonummerSvar && kontonummerSvar !== YesOrNo.NO;
                     const visSamtykkeSpørsmål = visBarnSpørsmål && !!barnSvar && barnSvar !== YesOrNo.NO;
 
                     return (
@@ -88,16 +97,22 @@ const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSø
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={pending}
+                                showSubmitButton={!!submitDisabled === false}
                                 submitButtonLabel="Send søknad"
                                 runDelayedFormValidation={true}>
                                 <VStack gap="8">
-                                    <Startdato startdato={startdato} />
-
-                                    <KontonummerSpørsmål
-                                        kontonummer={kontonummer}
-                                        kontonummerStemmerIkke={kontonummerSvar === YesOrNo.NO}
+                                    <StartdatoSpørsmål
+                                        startdato={startdato}
+                                        startdatoStemmerIkke={startdatoStemmerIkke}
                                         disabled={pending}
                                     />
+                                    {visKontonummerSpørsmål && (
+                                        <KontonummerSpørsmål
+                                            kontonummer={kontonummer}
+                                            kontonummerStemmerIkke={kontonummerStemmerIkke}
+                                            disabled={pending}
+                                        />
+                                    )}
 
                                     {visBarnSpørsmål && (
                                         <BarnSpørsmål

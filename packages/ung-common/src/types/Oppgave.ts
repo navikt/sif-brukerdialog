@@ -1,7 +1,7 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface oppgaveBase {
-    id: string;
+    oppgaveId: string;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
