@@ -8,49 +8,43 @@ import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
 import StartPage from './pages/start-page/StartPage';
 import './app.css';
-import { useState } from 'react';
-import { fetchSøker } from '@navikt/sif-common-api';
-import { getZodErrorsInfo } from './utils/zodUtils';
-import { Veileder } from './types/Veileder';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 initApiClient();
 
 const App = () => {
-    const [veileder, setVeileder] = useState<Veileder>();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState();
+    // const [veileder, setVeileder] = useState<Veileder>();
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState();
 
-    useEffectOnce(() => {
-        const fetchVeileder = async () => {
-            setError(undefined);
-            try {
-                const veileder = await fetchSøker();
-                setVeileder(veileder);
-            } catch (e) {
-                setError(e);
-                getZodErrorsInfo(e);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchVeileder();
-    });
+    // useEffectOnce(() => {
+    //     const fetchVeileder = async () => {
+    //         setError(undefined);
+    //         try {
+    //             const veileder = await fetchSøker();
+    //             setVeileder(veileder);
+    //         } catch (e) {
+    //             setError(e);
+    //             getZodErrorsInfo(e);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchVeileder();
+    // });
 
-    if (loading) {
-        return (
-            <Page className="bg-gray-500">
-                <LoadingSpinner />
-            </Page>
-        );
-    }
-    if (error || !veileder) {
-        return <Page className="bg-gray-500">Det oppstod en feil under henting av veileder</Page>;
-    }
+    // if (loading) {
+    //     return (
+    //         <Page className="bg-gray-500">
+    //             <LoadingSpinner />
+    //         </Page>
+    //     );
+    // }
+    // if (error || !veileder) {
+    //     return <Page className="bg-gray-500">Det oppstod en feil under henting av veileder</Page>;
+    // }
 
     return (
-        <VeilederProvider veileder={veileder}>
+        <VeilederProvider veileder={{ fornavn: 'Pål', etternavn: 'Veileder Hønesen' }}>
             <IntlProvider locale="nb" messages={appMessages.nb}>
                 <AppHeader />
                 <Page className="bg-gray-500">
