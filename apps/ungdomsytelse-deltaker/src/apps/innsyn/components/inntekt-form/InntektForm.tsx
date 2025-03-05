@@ -9,7 +9,10 @@ import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUt
 import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 import InntektTableForm from './varianter/InntektTableForm';
-import { RapporterInntektDTO } from '@navikt/ung-common/src/types/dto/RapporterinntektDTO';
+import {
+    UngdomsytelseInntektsrapportering,
+    zUngdomsytelseInntektsrapportering,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 
 interface Props {
     inntekt?: Inntekt;
@@ -35,7 +38,7 @@ const InntektForm = ({
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values, kompakt);
-        const data: RapporterInntektDTO = {
+        const data: UngdomsytelseInntektsrapportering = zUngdomsytelseInntektsrapportering.parse({
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
                     fraOgMed: dateToISODate(periode.from),
@@ -46,7 +49,7 @@ const InntektForm = ({
                 næringsinntekt: inntekt.næringsinntekt,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
-        };
+        });
         rapporterInntekt(data);
     };
 

@@ -1,6 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
 import { søker1Mock } from '../mocks/soker1';
-import { deltakelserIkkeSøkt } from '../mocks/soker1/deltakelser/ikkeSøkt';
 import { deltakelserHarSøkt } from '../mocks/soker1/deltakelser/harSøkt';
 
 const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse-deltaker-soknad';
@@ -19,8 +18,8 @@ export const handlers = [
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = false;
-        return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
+        return HttpResponse.json(deltakelserHarSøkt);
+        // return HttpResponse.json(deltakelserIkkeSøkt);
     }),
     http.post('**/marker-har-sokt', () => {
         return HttpResponse.json({});

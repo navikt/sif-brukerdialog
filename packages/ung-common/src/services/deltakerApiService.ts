@@ -1,9 +1,11 @@
 import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 import { DeltakelsePeriode, deltakelsePerioderSchema } from '../types/DeltakelsePeriode';
 import { handleError } from '../utils/errorHandlers';
-import { k9BrukerdialogApiClient } from '@navikt/sif-common-api';
-import { RapporterInntektDTO } from '../types/dto/RapporterinntektDTO';
-import { UngdomsytelseControllerService, Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import {
+    UngdomsytelseControllerService,
+    UngdomsytelseInntektsrapportering,
+    Ungdomsytelsesøknad,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 
 /**
  * Påkrevde headers settes andre steder, dette er bare en mock for å tilfredstille typescript
@@ -41,12 +43,15 @@ const sendSøknad = async (data: Ungdomsytelsesøknad): Promise<any> => {
     } catch (e) {
         throw handleError(e);
     }
-
-    // return await k9BrukerdialogApiClient.post(`/ungdomsytelse/soknad/innsending`, data);
 };
 
-const rapporterInntekt = async (data: RapporterInntektDTO): Promise<void> => {
-    return await k9BrukerdialogApiClient.post(`/ungdomsytelse/inntektsrapportering/innsending`, data);
+const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promise<void> => {
+    try {
+        await UngdomsytelseControllerService.inntektrapportering({ body: data, headers: k9RequestHeader });
+        return Promise.resolve();
+    } catch (e) {
+        throw handleError(e);
+    }
 };
 
 export const deltakerApiService = {

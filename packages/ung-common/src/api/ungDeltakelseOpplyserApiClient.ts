@@ -3,7 +3,7 @@ import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
 import { v4 } from 'uuid';
 
-export const initApiClient = () => {
+export const initUngDeltakelseOpplyserApiClient = () => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,

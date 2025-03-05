@@ -1,5 +1,5 @@
+import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { deltakerApiService } from '@navikt/ung-common';
-import { RapporterInntektDTO } from '@navikt/ung-common/src/types/dto/RapporterinntektDTO';
 import { useState } from 'react';
 
 export const useRapporterInntekt = () => {
@@ -7,7 +7,7 @@ export const useRapporterInntekt = () => {
     const [error, setError] = useState<string | null>(null);
     const [inntektSendt, setInntektSendt] = useState(false);
 
-    const rapporterInntekt = (inntekt: RapporterInntektDTO) => {
+    const rapporterInntekt = (inntekt: UngdomsytelseInntektsrapportering) => {
         setPending(true);
         return deltakerApiService
             .rapporterInntekt(inntekt)
