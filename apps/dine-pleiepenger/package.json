@@ -21,7 +21,7 @@
         "@grafana/faro-web-tracing": "1.14.1",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@navikt/next-logger": "1.35.0",
+        "@navikt/next-logger": "2.0.0",
         "@navikt/oasis": "3.7.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
