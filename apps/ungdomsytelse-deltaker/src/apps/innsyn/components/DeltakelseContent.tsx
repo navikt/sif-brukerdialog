@@ -1,5 +1,5 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
-import { Deltakelse } from '@navikt/ung-common';
+import { Deltakelse as DeltakelseContent } from '@navikt/ung-common';
 import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
 import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
 import OppgavePanel from './oppgaver/OppgavePanel';
@@ -11,7 +11,7 @@ interface Props {
     deltakelse: DeltakelsePeriode;
 }
 
-const Deltakelse = ({ deltakelse }: Props) => {
+const DeltakelseContent = ({ deltakelse }: Props) => {
     const { rapporteringsPerioder, oppgaver, programPeriode } = deltakelse;
     const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
@@ -59,4 +59,4 @@ const Deltakelse = ({ deltakelse }: Props) => {
 //     }
 // };
 
-export default Deltakelse;
+export default DeltakelseContent;

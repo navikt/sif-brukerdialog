@@ -1,7 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import { useDeltakerContext } from '../../context/DeltakerContext';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import Deltakelse from './components/Deltakelse';
+import DeltakelseContent from './components/DeltakelseContent';
 import InformasjonOmUngdomsytelsen from '../søknad/components/Informasjon';
 import DeltakelseHeader from './components/DeltakelseHeader';
 
@@ -17,7 +17,7 @@ const InnsynApp = () => {
                     </VStack>
                 </VStack>
 
-                <Deltakelse deltakelse={deltakelse} />
+                <DeltakelseContent deltakelse={deltakelse} />
 
                 <InformasjonOmUngdomsytelsen />
             </VStack>
