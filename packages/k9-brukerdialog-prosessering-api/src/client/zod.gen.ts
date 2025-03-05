@@ -288,8 +288,8 @@ export const zBarnDetaljer = z.object({
     aktørId: z.string().optional(),
     navn: z.string(),
     getårsakManglerIdentitetsnummer: z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET']).optional(),
-    isFødselsDato: z.boolean(),
     isÅrsakManglerIdentitetsnummer: z.boolean(),
+    isFødselsDato: z.boolean(),
 });
 
 export const zBeredskap = z.object({
@@ -1119,13 +1119,11 @@ export const zUttakPeriodeInfo = z.object({
 });
 
 export const zPleiepengerILivetsSluttfaseSøknad = z.object({
-    søknadId: z.string().optional(),
     språk: z.string(),
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     skalJobbeOgPleieSammeDag: z.boolean(),
     dagerMedPleie: z.array(z.string().date()),
-    mottatt: z.string().datetime(),
     vedleggUrls: z.array(z.string()),
     opplastetIdVedleggUrls: z.array(z.string()),
     pleietrengende: z.object({
@@ -1150,7 +1148,6 @@ export const zPleiepengerILivetsSluttfaseSøknad = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
     flereSokere: z.enum(['JA', 'NEI', 'USIKKER']).optional(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    søknadId$k9_brukerdialog_prosessering: z.string(),
 });
 
 export const zPleietrengende = z.object({
@@ -1210,9 +1207,9 @@ export const zFrilansOlp = z.object({
     jobberFortsattSomFrilans: z.boolean(),
     arbeidsforhold: zArbeidsforholdOlp.optional(),
     harHattInntektSomFrilanser: z.boolean(),
-    isSluttdatoEtterStartdato: z.boolean(),
-    isJobberFortsattSomFrilans: z.boolean(),
     isSluttdato: z.boolean(),
+    isJobberFortsattSomFrilans: z.boolean(),
+    isSluttdatoEtterStartdato: z.boolean(),
 });
 
 export const zKurs = z.object({
@@ -1292,8 +1289,6 @@ export const zBekreftelser = z.object({
 });
 
 export const zOmsorgspengerutbetalingSnfSøknad = z.object({
-    søknadId: z.string().optional(),
-    mottatt: z.string().datetime(),
     språk: z.string(),
     søkerNorskIdent: z.string().optional(),
     bosteder: z.array(zBosted),
@@ -1362,7 +1357,6 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
     erArbeidstakerOgså: z.boolean(),
     vedlegg: z.array(z.string()),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    søknadId$k9_brukerdialog_prosessering: z.string(),
 });
 
 export const zSpørsmålOgSvar = z.object({
@@ -1445,8 +1439,8 @@ export const zAnnenForelder = z.object({
     periodeFraOgMed: z.string().date(),
     periodeTilOgMed: z.string().date().optional(),
     isSituasjonBeskrivelse: z.boolean(),
-    isSituasjon_utøver_verneplikt_eller_fengsel: z.boolean(),
     isPeriodeTilOgMed: z.boolean(),
+    isSituasjon_utøver_verneplikt_eller_fengsel: z.boolean(),
     isSituasjon_innlagt_i_helseinstitusjon_sykdom_eller_annet: z.boolean(),
 });
 

@@ -35,6 +35,9 @@ import type {
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
+    HentOppgaveForDeltakelseData,
+    HentOppgaveForDeltakelseResponse,
+    HentOppgaveForDeltakelseError,
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserResponse,
     HentAlleMineDeltakelserError,
@@ -54,6 +57,7 @@ import {
     zHentDeltakerInfoGittDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentOppgaveForDeltakelseResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
 } from './zod.gen';
@@ -300,6 +304,31 @@ export class DeltakelseService {
                 return await zMarkerDeltakelseSomSøktResponse.parseAsync(data);
             },
             url: '/deltakelse/register/{id}/marker-har-sokt',
+            ...options,
+        });
+    }
+
+    /**
+     * Henter en oppgave for en gitt deltakelse
+     */
+    public static hentOppgaveForDeltakelse<ThrowOnError extends boolean = false>(
+        options: Options<HentOppgaveForDeltakelseData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            HentOppgaveForDeltakelseResponse,
+            HentOppgaveForDeltakelseError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zHentOppgaveForDeltakelseResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveId}',
             ...options,
         });
     }
