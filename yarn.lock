@@ -4534,9 +4534,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/k9-brukerdialog-prosessering-api@workspace:*, @navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering":
+"@navikt/k9-brukerdialog-prosessering-api@workspace:*, @navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering-api":
   version: 0.0.0-use.local
-  resolution: "@navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering"
+  resolution: "@navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering-api"
   dependencies:
     "@hey-api/client-axios": "npm:0.6.1"
     "@hey-api/client-fetch": "npm:0.8.1"
