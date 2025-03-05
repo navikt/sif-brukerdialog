@@ -3,8 +3,6 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { SendSøknadDTO } from '@navikt/ung-common/src/types/dto/SendSøknadDTO';
-import { Søknadstype } from '@navikt/ung-common/src/types/Søknadstype';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
@@ -14,6 +12,7 @@ import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
 import { søknadFormComponents } from './TypedSøknadFormComponents';
 import StartdatoSpørsmål from './spørsmål/StartdatoSpørsmål';
+import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 
 export enum SøknadFormFields {
     startdatoErRiktig = 'startdatoErRiktig',
@@ -32,32 +31,26 @@ export interface SøknadFormValues {
 const { FormikWrapper, Form } = søknadFormComponents;
 
 interface Props {
-    deltakelseId: string;
     startdato: Date;
     kontonummer: string;
     barn: RegistrertBarn[];
     søker: Søker;
     onSøknadSendt: () => void;
 }
-const SøknadForm = ({ kontonummer, deltakelseId, barn, søker, startdato, onSøknadSendt }: Props) => {
+const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: Props) => {
     const { intl, text } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
     const handleSubmit = async (values: SøknadFormValues) => {
         try {
-            const søknad: SendSøknadDTO = {
-                søknadstype: Søknadstype.DELTAKELSE_SØKNAD,
-                søknadId: deltakelseId,
+            const søknad: Partial<Ungdomsytelsesøknad> = {
+                søkerNorskIdent: søker.fødselsnummer,
                 språk: getLocaleForApi(intl.locale),
                 startdato: dateToISODate(startdato),
-                barnStemmer: values[SøknadFormFields.barnErRiktig] === YesOrNo.YES,
-                kontonummerStemmer: values[SøknadFormFields.kontonummerErRiktig] === YesOrNo.YES,
                 harBekreftetOpplysninger: values[SøknadFormFields.samtykker],
                 harForståttRettigheterOgPlikter: values[SøknadFormFields.samtykker],
-                søkerNorskIdent: søker.fødselsnummer,
-                isInntektForPeriode: false,
             };
-            await sendSøknad(søknad);
+            await sendSøknad(søknad as Ungdomsytelsesøknad);
             onSøknadSendt();
         } catch (e) {
             console.error(e);

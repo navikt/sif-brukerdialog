@@ -46,7 +46,7 @@ const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
         const dto: EndretStartdatoUngdomsytelseOppgaveDto = {
             // ...oppgave,
             bekreftelseSvar: values[FormFields.godkjenner] === YesOrNo.YES ? 'GODTAR' : 'AVSLÅR',
-            oppgaveId: oppgave.oppgaveId,
+            oppgaveId: oppgave.id,
             veilederRef: oppgave.oppgavetypeData.veilederRef,
             nyStartdato: 'sdf',
             isIkkeGodkjentResponseValid: false,

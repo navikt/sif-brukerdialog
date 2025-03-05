@@ -18,9 +18,7 @@ export type Friteksfelt = {
 };
 
 export type Ungdomsytelsesøknad = {
-    søknadId: string;
     språk: string;
-    mottatt: string;
     startdato: string;
     søkerNorskIdent: string;
     harBekreftetOpplysninger: boolean;
@@ -142,8 +140,8 @@ export type BarnDetaljer = {
     aktørId?: string;
     navn: string;
     getårsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
-    isÅrsakManglerIdentitetsnummer: boolean;
     isFødselsDato: boolean;
+    isÅrsakManglerIdentitetsnummer: boolean;
 };
 
 export type Beredskap = {
@@ -314,8 +312,6 @@ export type PlanUkedager = {
 export type PleiepengerSyktBarnSøknad = {
     newVersion?: boolean;
     apiDataVersjon?: string;
-    søknadId: string;
-    mottatt: string;
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
@@ -381,10 +377,7 @@ export type Utenlandsopphold = {
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: Array<Periode>;
-    getårsak?:
-        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
-        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
-        | 'ANNET';
+    getårsak?: 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING' | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD' | 'ANNET';
 };
 
 export type UtenlandsoppholdIPerioden = {
@@ -413,12 +406,12 @@ export type Virksomhet = {
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
+    isRegistrertIUtlandet: boolean;
+    isOrganisasjonsnummer: boolean;
     isFiskerErPåBladB: boolean;
     isErNyoppstartet: boolean;
     isErIkkeNyoppstartet: boolean;
     isTilOgMed: boolean;
-    isRegistrertIUtlandet: boolean;
-    isOrganisasjonsnummer: boolean;
 };
 
 export type YrkesaktivSisteTreFerdigliknedeArene = {
@@ -516,8 +509,6 @@ export type DataBruktTilUtledning = {
 };
 
 export type Endringsmelding = {
-    søknadId: string;
-    mottattDato?: string;
     språk: string;
     pleietrengendeNavn?: string;
     gyldigeEndringsPerioder?: Array<string>;
@@ -723,9 +714,9 @@ export type FrilansOlp = {
     jobberFortsattSomFrilans: boolean;
     arbeidsforhold?: ArbeidsforholdOlp;
     harHattInntektSomFrilanser: boolean;
-    isSluttdato: boolean;
     isSluttdatoEtterStartdato: boolean;
     isJobberFortsattSomFrilans: boolean;
+    isSluttdato: boolean;
 };
 
 export type Kurs = {
@@ -737,8 +728,6 @@ export type Kurs = {
 export type OpplæringspengerSøknad = {
     newVersion?: boolean;
     apiDataVersjon?: string;
-    søknadId: string;
-    mottatt: string;
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
@@ -774,8 +763,6 @@ export type SelvstendigNæringsdrivendeOlp = {
 };
 
 export type OmsorgspengerKroniskSyktBarnSøknad = {
-    søknadId: string;
-    mottatt: string;
     språk: string;
     barn: Barn;
     legeerklæring: Array<string>;
@@ -853,9 +840,9 @@ export type Utbetalingsperiode = {
     };
     årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
     aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    isAntallTimerPlanlagtStørreEnnAntallTimerBorte: boolean;
-    isAntallTimerBorte: boolean;
     isAntallTimerPlanlagt: boolean;
+    isAntallTimerBorte: boolean;
+    isAntallTimerPlanlagtStørreEnnAntallTimerBorte: boolean;
     isTilOgMed: boolean;
 };
 
@@ -865,8 +852,6 @@ export type DineBarn = {
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknad = {
-    søknadId: string;
-    mottatt: string;
     språk: string;
     vedlegg: Array<string>;
     søkerNorskIdent?: string;
@@ -888,15 +873,13 @@ export type AnnenForelder = {
     periodeOver6Måneder?: boolean;
     periodeFraOgMed: string;
     periodeTilOgMed?: string;
+    isSituasjonBeskrivelse: boolean;
     isSituasjon_utøver_verneplikt_eller_fengsel: boolean;
     isPeriodeTilOgMed: boolean;
     isSituasjon_innlagt_i_helseinstitusjon_sykdom_eller_annet: boolean;
-    isSituasjonBeskrivelse: boolean;
 };
 
 export type OmsorgspengerMidlertidigAleneSøknad = {
-    søknadId: string;
-    mottatt: string;
     id: string;
     språk: string;
     søkerNorskIdent?: string;
@@ -908,8 +891,6 @@ export type OmsorgspengerMidlertidigAleneSøknad = {
 };
 
 export type OmsorgsdagerAleneOmOmsorgenSøknad = {
-    søknadId: string;
-    mottatt: string;
     språk: string;
     søkerNorskIdent?: string;
     barn: Array<Barn>;
@@ -919,20 +900,10 @@ export type OmsorgsdagerAleneOmOmsorgenSøknad = {
 };
 
 export type Ettersendelse = {
-    søknadId: string;
     språk: string;
-    mottatt: string;
     vedlegg: Array<string>;
     beskrivelse?: string;
-    søknadstype:
-        | 'PLEIEPENGER_SYKT_BARN'
-        | 'PLEIEPENGER_LIVETS_SLUTTFASE'
-        | 'OMP_UT_SNF'
-        | 'OMP_UT_ARBEIDSTAKER'
-        | 'OMP_UTV_KS'
-        | 'OMP_UTV_MA'
-        | 'OMP_UTV_AO'
-        | 'OPPLÆRINGSPENGER';
+    søknadstype: 'PLEIEPENGER_SYKT_BARN' | 'PLEIEPENGER_LIVETS_SLUTTFASE' | 'OMP_UT_SNF' | 'OMP_UT_ARBEIDSTAKER' | 'OMP_UTV_KS' | 'OMP_UTV_MA' | 'OMP_UTV_AO' | 'OPPLÆRINGSPENGER';
     ettersendelsesType: 'LEGEERKLÆRING' | 'ANNET';
     søkerNorskIdent?: string;
     pleietrengende?: Pleietrengende;
@@ -1339,7 +1310,7 @@ export type InntektrapporteringResponses = {
     202: unknown;
 };
 
-export type Innsending1Data = {
+export type InnsendingPleiepengerSyktBarnSøknadData = {
     body: PleiepengerSyktBarnSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1349,7 +1320,7 @@ export type Innsending1Data = {
     url: '/pleiepenger-sykt-barn/innsending';
 };
 
-export type Innsending1Errors = {
+export type InnsendingPleiepengerSyktBarnSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1368,16 +1339,16 @@ export type Innsending1Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending1Error = Innsending1Errors[keyof Innsending1Errors];
+export type InnsendingPleiepengerSyktBarnSøknadError = InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
 
-export type Innsending1Responses = {
+export type InnsendingPleiepengerSyktBarnSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending2Data = {
+export type InnsendingEndringsmeldingData = {
     body: Endringsmelding;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1387,7 +1358,7 @@ export type Innsending2Data = {
     url: '/pleiepenger-sykt-barn/endringsmelding/innsending';
 };
 
-export type Innsending2Errors = {
+export type InnsendingEndringsmeldingErrors = {
     /**
      * Bad Request
      */
@@ -1406,16 +1377,16 @@ export type Innsending2Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending2Error = Innsending2Errors[keyof Innsending2Errors];
+export type InnsendingEndringsmeldingError = InnsendingEndringsmeldingErrors[keyof InnsendingEndringsmeldingErrors];
 
-export type Innsending2Responses = {
+export type InnsendingEndringsmeldingResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending3Data = {
+export type InnsendingPleiepengerILivetsSluttfaseSøknadData = {
     body: PleiepengerILivetsSluttfaseSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1425,7 +1396,7 @@ export type Innsending3Data = {
     url: '/pleiepenger-livets-sluttfase/innsending';
 };
 
-export type Innsending3Errors = {
+export type InnsendingPleiepengerILivetsSluttfaseSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1444,9 +1415,9 @@ export type Innsending3Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending3Error = Innsending3Errors[keyof Innsending3Errors];
+export type InnsendingPleiepengerILivetsSluttfaseSøknadError = InnsendingPleiepengerILivetsSluttfaseSøknadErrors[keyof InnsendingPleiepengerILivetsSluttfaseSøknadErrors];
 
-export type Innsending3Responses = {
+export type InnsendingPleiepengerILivetsSluttfaseSøknadResponses = {
     /**
      * Accepted
      */
@@ -1490,7 +1461,7 @@ export type LagPdfResponses = {
 
 export type LagPdfResponse = LagPdfResponses[keyof LagPdfResponses];
 
-export type Innsending4Data = {
+export type InnsendingOpplæringspengerSøknadData = {
     body: OpplæringspengerSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1500,7 +1471,7 @@ export type Innsending4Data = {
     url: '/opplaringspenger/innsending';
 };
 
-export type Innsending4Errors = {
+export type InnsendingOpplæringspengerSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1519,16 +1490,16 @@ export type Innsending4Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending4Error = Innsending4Errors[keyof Innsending4Errors];
+export type InnsendingOpplæringspengerSøknadError = InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
 
-export type Innsending4Responses = {
+export type InnsendingOpplæringspengerSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending5Data = {
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadData = {
     body: OmsorgspengerKroniskSyktBarnSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1538,7 +1509,7 @@ export type Innsending5Data = {
     url: '/omsorgspenger-utvidet-rett/innsending';
 };
 
-export type Innsending5Errors = {
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1557,16 +1528,16 @@ export type Innsending5Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending5Error = Innsending5Errors[keyof Innsending5Errors];
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError = InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
 
-export type Innsending5Responses = {
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending6Data = {
+export type InnsendingOmsorgspengerutbetalingSnfSøknadData = {
     body: OmsorgspengerutbetalingSnfSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1576,7 +1547,7 @@ export type Innsending6Data = {
     url: '/omsorgspenger-utbetaling-snf/innsending';
 };
 
-export type Innsending6Errors = {
+export type InnsendingOmsorgspengerutbetalingSnfSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1595,16 +1566,16 @@ export type Innsending6Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending6Error = Innsending6Errors[keyof Innsending6Errors];
+export type InnsendingOmsorgspengerutbetalingSnfSøknadError = InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
 
-export type Innsending6Responses = {
+export type InnsendingOmsorgspengerutbetalingSnfSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending7Data = {
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = {
     body: OmsorgspengerutbetalingArbeidstakerSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1614,7 +1585,7 @@ export type Innsending7Data = {
     url: '/omsorgspenger-utbetaling-arbeidstaker/innsending';
 };
 
-export type Innsending7Errors = {
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1633,16 +1604,16 @@ export type Innsending7Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending7Error = Innsending7Errors[keyof Innsending7Errors];
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError = InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
 
-export type Innsending7Responses = {
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending8Data = {
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadData = {
     body: OmsorgspengerMidlertidigAleneSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1652,7 +1623,7 @@ export type Innsending8Data = {
     url: '/omsorgspenger-midlertidig-alene/innsending';
 };
 
-export type Innsending8Errors = {
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1671,16 +1642,16 @@ export type Innsending8Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending8Error = Innsending8Errors[keyof Innsending8Errors];
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadError = InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
 
-export type Innsending8Responses = {
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending9Data = {
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = {
     body: OmsorgsdagerAleneOmOmsorgenSøknad;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1690,7 +1661,7 @@ export type Innsending9Data = {
     url: '/omsorgsdager-aleneomsorg/innsending';
 };
 
-export type Innsending9Errors = {
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors = {
     /**
      * Bad Request
      */
@@ -1709,16 +1680,16 @@ export type Innsending9Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending9Error = Innsending9Errors[keyof Innsending9Errors];
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError = InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
 
-export type Innsending9Responses = {
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses = {
     /**
      * Accepted
      */
     202: unknown;
 };
 
-export type Innsending10Data = {
+export type InnsendingEttersendelseData = {
     body: Ettersendelse;
     headers: {
         'X-Brukerdialog-Git-Sha': string;
@@ -1728,7 +1699,7 @@ export type Innsending10Data = {
     url: '/ettersending/innsending';
 };
 
-export type Innsending10Errors = {
+export type InnsendingEttersendelseErrors = {
     /**
      * Bad Request
      */
@@ -1747,9 +1718,9 @@ export type Innsending10Errors = {
     500: ProblemDetail;
 };
 
-export type Innsending10Error = Innsending10Errors[keyof Innsending10Errors];
+export type InnsendingEttersendelseError = InnsendingEttersendelseErrors[keyof InnsendingEttersendelseErrors];
 
-export type Innsending10Responses = {
+export type InnsendingEttersendelseResponses = {
     /**
      * Accepted
      */
