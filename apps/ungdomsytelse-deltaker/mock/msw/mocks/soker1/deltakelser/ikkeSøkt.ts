@@ -1,9 +1,10 @@
 export const deltakelserIkkeSøkt = [
     {
         id: '123',
-        programperiodeFraOgMed: '2024-07-01',
-        programperiodeTilOgMed: '2025-06-30',
+        fraOgMed: '2024-07-01',
+        tilOgMed: '2025-06-30',
         harSøkt: false,
+        oppgaver: [],
         rapporteringsPerioder: [
             {
                 fraOgMed: '2024-07-01',

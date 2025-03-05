@@ -18,7 +18,7 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgav
                 <Box>
                     <Bleed marginBlock="2 0">
                         <Tag variant="alt1-filled" size="small">
-                            Oppgave
+                            Varsel om endring
                         </Tag>
                     </Bleed>
                 </Box>
@@ -41,7 +41,7 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgav
                         <ExpansionCard.Title size="small">
                             <HStack gap="2" align={'center'}>
                                 <ClipboardCheckmarkIcon />
-                                Åpne oppgave
+                                Se mer informasjon om endringen
                             </HStack>
                         </ExpansionCard.Title>
                     </ExpansionCard.Header>

@@ -1,19 +1,30 @@
+import { zHentDeltakerInfoGittDeltakerIdResponse } from '@navikt/ung-deltakelse-opplyser-api';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { z } from 'zod';
 
-export const deltakerSchema = z.object({
-    id: z.string(),
-    deltakerIdent: z.string(),
-    navn: z
-        .object({
-            fornavn: z.string(),
-            etternavn: z.string(),
-            mellomnavn: z
-                .string()
-                .optional()
-                .nullable()
-                .transform((v) => (v === null ? undefined : v)),
-        })
-        .optional(),
-});
+export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
+    .extend({
+        id: z.undefined(),
+    })
+    .transform((dto) => ({
+        ...dto,
+        registrert: false,
+        fødselsdato: ISODateToDate(dto.fødselsdato),
+        førsteMuligeInnmeldingsdato: ISODateToDate(dto.førsteMuligeInnmeldingsdato),
+        sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
+    }));
 
-export type Deltaker = z.infer<typeof deltakerSchema>;
+export const registrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
+    .extend({
+        id: z.string(),
+    })
+    .transform((dto) => ({
+        ...dto,
+        registrert: true,
+        fødselsdato: ISODateToDate(dto.fødselsdato),
+        førsteMuligeInnmeldingsdato: ISODateToDate(dto.førsteMuligeInnmeldingsdato),
+        sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
+    }));
+
+export type UregistrertDeltaker = z.infer<typeof uregistrertDeltakerSchema>;
+export type Deltaker = z.infer<typeof registrertDeltakerSchema>;

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltakelse, Deltaker, NyDeltaker } from '../../api/types';
+import { Deltakelse, Deltaker, UregistrertDeltaker } from '../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -7,15 +7,16 @@ import {
     TypedFormikForm,
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
-import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { veilederService } from '../../api/services/veilederService';
+import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
+import { veilederApiService } from '@navikt/ung-common';
 
 interface Props {
-    deltaker: NyDeltaker | Deltaker;
+    deltaker: UregistrertDeltaker | Deltaker;
     minStartDato?: Date;
     onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;
@@ -31,16 +32,22 @@ interface FormValues {
 
 const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
     const [submitPending, setSubmitPending] = useState(false);
+    const [error, setError] = useState<ApiErrorObject | undefined>();
     const intl = useIntl();
 
     const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
-        const deltakelse = await veilederService.meldInnDeltaker({
-            deltakerIdent: deltaker.deltakerIdent,
-            startdato: values.startDato,
-        });
-        setSubmitPending(false);
-        onDeltakelseRegistrert(deltakelse);
+        try {
+            const deltakelse = await veilederApiService.meldInnDeltaker({
+                deltakerIdent: deltaker.deltakerIdent,
+                startdato: values.startDato,
+            });
+            onDeltakelseRegistrert(deltakelse);
+        } catch (e) {
+            setError(e);
+        } finally {
+            setSubmitPending(false);
+        }
     };
 
     return (
@@ -95,6 +102,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                     Avbryt
                                 </Button>
                             </HStack>
+                            {error ? <Alert variant="error">{error.message}</Alert> : null}
                         </VStack>
                     </TypedFormikForm>
                 );
