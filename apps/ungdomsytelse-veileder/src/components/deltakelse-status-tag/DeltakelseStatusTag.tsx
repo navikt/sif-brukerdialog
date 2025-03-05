@@ -1,6 +1,6 @@
-import { Deltakelse } from '../../api/types';
-import dayjs from 'dayjs';
 import { Tag } from '@navikt/ds-react';
+import { Deltakelse } from '@navikt/ung-common';
+import dayjs from 'dayjs';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -21,11 +21,6 @@ const DeltakelseStatusTag = ({ deltakelse: { fraOgMed } }: Props) => {
             </Tag>
         );
     }
-    // }
-    // if (!erAktiv) {
-    //     if (dayjs(fraOgMed).isAfter(dayjs())) {
-    //     }
-    // }
 };
 
 export default DeltakelseStatusTag;

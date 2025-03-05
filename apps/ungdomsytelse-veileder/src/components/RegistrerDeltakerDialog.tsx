@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { Deltaker } from '../api/types';
+import { Deltaker } from '@navikt/ung-common';
 
 interface Props {
     nyDeltaker: Deltaker;

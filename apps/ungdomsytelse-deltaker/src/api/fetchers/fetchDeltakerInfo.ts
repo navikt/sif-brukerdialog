@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { deltakerApiService } from '@navikt/ung-common';
-import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
+import { DeltakelsePeriode } from '@navikt/ung-common';
+import { deltakerApiService } from '../deltakerApiService';
 
 export type DeltakerInfo = {
     søker: Søker;
