@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Deltakelse, veilederApiService } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
-import { ApiErrorObject, handleError } from '../utils/errorHandlers';
+import { ApiErrorObject, handleError } from '../api/errorHandlers';
 import { ZodError } from 'zod';
 
 export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) => void) => {

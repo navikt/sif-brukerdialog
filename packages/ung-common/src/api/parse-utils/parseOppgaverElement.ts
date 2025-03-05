@@ -7,7 +7,7 @@ import {
     zDeltakelseOpplysningDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { Oppgave } from '../types';
+import { Oppgave } from '../../types';
 import dayjs from 'dayjs';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;

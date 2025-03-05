@@ -10,9 +10,8 @@ import {
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, UregistrertDeltaker, veilederApiService } from '@navikt/ung-common';
+import { ApiErrorObject, Deltakelse, Deltaker, UregistrertDeltaker, veilederApiService } from '@navikt/ung-common';
 import dayjs from 'dayjs';
-import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;

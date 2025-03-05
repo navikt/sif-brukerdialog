@@ -6,7 +6,7 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
 import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';
-import { handleError } from '../utils/errorHandlers';
+import { handleError } from '../api/errorHandlers';
 
 /**
  * Henter enten registrert eller uregistrert deltaker basert på deltakerIdent (fnr/dnr).

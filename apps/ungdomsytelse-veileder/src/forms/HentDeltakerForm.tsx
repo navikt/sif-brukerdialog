@@ -13,12 +13,17 @@ import {
 import { ReactElement, useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, UregistrertDeltaker, veilederApiService } from '@navikt/ung-common';
+import {
+    Deltakelse,
+    Deltaker,
+    UregistrertDeltaker,
+    veilederApiService,
+    fødselsnummerFormatter,
+} from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import DeltakerKort from '../components/DeltakerKort';
-import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
+import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
 import { getAppEnv } from '../utils/appEnv';
-import { fnrFormatter } from '../utils/fnrFormatter';
 import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 
 interface Props {
@@ -36,7 +41,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const [nyDeltaker, setKandidat] = useState<UregistrertDeltaker | undefined>();
     const [registrerNy, setRegistrerNy] = useState<boolean>(false);
 
-    const textFieldFormatter = useTextFieldFormatter(fnrFormatter);
+    const textFieldFormatter = useTextFieldFormatter(fødselsnummerFormatter);
 
     const fetchDeltaker = async () => {
         setError(undefined);
@@ -102,7 +107,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         <HStack gap="2" align={'end'} paddingBlock="2 0">
                             <TextField
                                 name="fnr"
-                                value={hasFocus ? fnrValue || '' : fnrFormatter.applyFormat(fnrValue)}
+                                value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
                                 label="Fødselsnummer/d-nummer:"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);

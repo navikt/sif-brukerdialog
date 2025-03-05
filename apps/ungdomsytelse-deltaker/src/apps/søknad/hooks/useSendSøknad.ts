@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { deltakerApiService } from '@navikt/ung-common';
-import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
 import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ApiErrorObject, deltakerApiService } from '@navikt/ung-common';
 
 export const useSendSøknad = () => {
     const [pending, setPending] = useState(false);

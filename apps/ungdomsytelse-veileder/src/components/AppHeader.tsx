@@ -1,6 +1,6 @@
 import { InternalHeader, Spacer } from '@navikt/ds-react';
+import { formaterNavn } from '@navikt/ung-common';
 import { useVeileder } from '../context/VeilederContext';
-import { formaterNavn } from '../utils/formaterNavn';
 
 const AppHeader = () => {
     const { veileder } = useVeileder();

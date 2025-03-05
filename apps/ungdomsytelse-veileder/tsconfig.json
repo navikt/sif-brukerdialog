@@ -5,5 +5,5 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/**/*", "./mock/msw/**/*"]
+    "include": ["./src/**/*", "./mock/msw/**/*", "../../packages/ung-common/src/hooks/useTextFieldFormatter.ts"]
 }

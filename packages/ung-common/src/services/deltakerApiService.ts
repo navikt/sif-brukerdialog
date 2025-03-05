@@ -1,6 +1,6 @@
 import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 import { DeltakelsePeriode, deltakelsePerioderSchema } from '../types/DeltakelsePeriode';
-import { handleError } from '../utils/errorHandlers';
+import { handleError } from '../api/errorHandlers';
 import {
     UngdomsytelseControllerService,
     UngdomsytelseInntektsrapportering,
