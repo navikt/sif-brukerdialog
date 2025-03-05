@@ -20,8 +20,8 @@ import type {
     LagreVedleggError,
     ValiderFriteksfeltData,
     ValiderFriteksfeltError,
-    InnsendingData,
-    InnsendingError,
+    InnsendingUngdomsytelsesøknadData,
+    InnsendingUngdomsytelsesøknadError,
     OppgavebekreftelseData,
     OppgavebekreftelseError,
     InntektrapporteringData,
@@ -242,8 +242,10 @@ export class FeltValideringControllerService {
 }
 
 export class UngdomsytelseControllerService {
-    public static innsending<ThrowOnError extends boolean = false>(options: Options<InnsendingData, ThrowOnError>) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingError, ThrowOnError>({
+    public static innsendingUngdomsytelsesøknad<ThrowOnError extends boolean = false>(
+        options: Options<InnsendingUngdomsytelsesøknadData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<unknown, InnsendingUngdomsytelsesøknadError, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
