@@ -31,9 +31,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.14.3",
-        "@navikt/ds-react": "7.14.3",
-        "@navikt/ds-tailwind": "7.14.3",
+        "@navikt/ds-css": "7.16.0",
+        "@navikt/ds-react": "7.16.0",
+        "@navikt/ds-tailwind": "7.16.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -77,7 +77,7 @@
         "@types/react-dom": "19.0.4",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
-        "chromatic": "11.26.1",
+        "chromatic": "11.27.0",
         "compression": "1.8.0",
         "cross-env": "7.0.3",
         "dotenv": "16.4.7",
