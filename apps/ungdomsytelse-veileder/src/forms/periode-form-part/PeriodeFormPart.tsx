@@ -5,10 +5,10 @@ import {
     FormikTextarea,
     FormikYesOrNoQuestion,
 } from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getStringValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
+import { getDateValidator, getStringValidator } from '@navikt/sif-validation';
+import { Deltakelse } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
-import { Deltakelse } from '../../api/types';
 import { GYLDIG_PERIODE } from '../../settings';
 
 interface Props {

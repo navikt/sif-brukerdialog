@@ -13,9 +13,8 @@ import {
 import { ReactElement, useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
-import { veilederApiService } from '@navikt/ung-common';
+import { Deltakelse, Deltaker, UregistrertDeltaker, veilederApiService } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
-import { Deltakelse, Deltaker, UregistrertDeltaker } from '../api/types';
 import DeltakerKort from '../components/DeltakerKort';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { getAppEnv } from '../utils/appEnv';

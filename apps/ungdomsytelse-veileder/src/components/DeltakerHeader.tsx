@@ -1,9 +1,9 @@
 import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '../api/types';
-import PersonNøytral from '../illustrations/PersonNøytral';
-import Fødselsnummer from './Fødselsnummer';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import PersonNøytral from '../illustrations/PersonNøytral';
+import Fødselsnummer from './Fødselsnummer';
 
 interface Props {
     deltaker: Deltaker;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Deltakelse } from '../api/types';
-import { veilederApiService } from '@navikt/ung-common';
+import { Deltakelse, veilederApiService } from '@navikt/ung-common';
 
 export const useSlettDeltakelse = (onDeltakelseSlettet: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState(false);

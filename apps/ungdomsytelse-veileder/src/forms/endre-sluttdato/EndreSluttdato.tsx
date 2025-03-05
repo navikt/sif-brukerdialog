@@ -1,12 +1,9 @@
 import { BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { Deltakelse } from '../../api/types';
+import { Deltakelse, EndreSluttdatoOppgave, Oppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-
 import EndreSluttdatoInfo from './EndreSluttdatoInfo';
-import { EndreSluttdatoOppgave, Oppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 
 export type EndreSluttdatoFormValues = {
     id: string;
