@@ -12,7 +12,7 @@ interface Props {
 }
 
 const DeltakelseContent = ({ deltakelse }: Props) => {
-    const { rapporteringsPerioder, oppgaver, programPeriode } = deltakelse;
+    const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
     const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
 
@@ -22,7 +22,7 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
     return (
         <VStack gap="8">
             {uløsteOppgaver.map((oppgave, index) => (
-                <OppgavePanel key={index} oppgave={oppgave} programPeriode={programPeriode} />
+                <OppgavePanel key={index} oppgave={oppgave} deltakelseId={id} programPeriode={programPeriode} />
             ))}
 
             {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}

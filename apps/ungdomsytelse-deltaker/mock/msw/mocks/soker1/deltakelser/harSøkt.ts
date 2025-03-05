@@ -9,12 +9,12 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
         oppgaver: [
             {
                 id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-                oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                 oppgavetypeData: {
                     type: 'BEKREFT_ENDRET_STARTDATO',
-                    nyStartdato: '2025-01-01',
+                    nySluttdato: '2026-01-01',
                     veilederRef: 'Pål Hønesen, Andeby',
-                    meldingFraVeileder: 'Jeg endrer startdatoen som vi avtalte på møtet forrige uke.',
+                    meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
                 },
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
