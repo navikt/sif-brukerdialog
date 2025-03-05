@@ -1,11 +1,10 @@
-import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
-import { DeltakelsePeriode, deltakelsePerioderSchema } from '../types/DeltakelsePeriode';
-import { handleError } from '../api/errorHandlers';
 import {
     UngdomsytelseControllerService,
     UngdomsytelseInntektsrapportering,
     Ungdomsytelsesøknad,
 } from '@navikt/k9-brukerdialog-prosessering-api';
+import { DeltakelsePeriode, deltakelsePerioderSchema, handleError } from '@navikt/ung-common';
+import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Påkrevde headers settes andre steder, dette er bare en mock for å tilfredstille typescript

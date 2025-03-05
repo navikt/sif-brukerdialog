@@ -13,16 +13,11 @@ import {
 import { ReactElement, useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
-import {
-    Deltakelse,
-    Deltaker,
-    UregistrertDeltaker,
-    veilederApiService,
-    fødselsnummerFormatter,
-} from '@navikt/ung-common';
+import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
-import DeltakerKort from '../components/DeltakerKort';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
+import DeltakerKort from '../components/DeltakerKort';
+import { veilederApiService } from '../api/veilederApiService';
 import { getAppEnv } from '../utils/appEnv';
 import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 
