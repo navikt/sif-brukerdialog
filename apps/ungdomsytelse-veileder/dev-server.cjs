@@ -72,7 +72,7 @@ const startServer = async () => {
         root: __dirname,
         server: {
             middlewareMode: true,
-            port: 8080,
+            port: 8088,
             open: './index-decorated.html',
         },
     });
@@ -89,7 +89,7 @@ const startServer = async () => {
 
     server.use(vite.middlewares);
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 8088;
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);
     });

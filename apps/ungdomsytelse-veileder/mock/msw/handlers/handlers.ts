@@ -1,15 +1,27 @@
 import { delay, http, HttpResponse } from 'msw';
-import { getDeltakelser, getDeltakerByDeltakerId, getDeltakerByDeltakerIdent } from '../mocks/mockUtils';
+import {
+    getDeltakelser,
+    getDeltakerByDeltakerId,
+    findDeltaker,
+    deltakelseDNMock,
+    veilederMock,
+} from '../mocks/mockUtils';
+import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
     http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
+    /** TODO - Bruker søker endepunkt enn så lenge for å hente mock veileder */
+    http.get<any, any>('**/oppslag/soker', async () => {
+        return HttpResponse.json(veilederMock);
+    }),
+
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
-        const data = getDeltakerByDeltakerIdent(deltakerIdent);
+        const data = findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),
 
@@ -27,17 +39,28 @@ export const handlers = [
 
     http.post<any, any>('**/veileder/register/deltaker/innmelding', async ({ request }) => {
         const { deltakerIdent, startdato } = await request.json();
-        const response = {
-            id: 'd-n',
+        const response: DeltakelseOpplysningDto = {
+            ...deltakelseDNMock,
             deltaker: {
-                id: 'd-n',
+                ...deltakelseDNMock.deltaker,
                 deltakerIdent,
             },
-            oppgaver: [],
-            harSøkt: false,
             fraOgMed: startdato,
         };
         await delay(250);
         return HttpResponse.json(response);
+    }),
+
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
+    }),
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
+        const { dato, meldingFraVeileder, veilederRef } = await request.json();
+        console.log({ dato, meldingFraVeileder, veilederRef });
+        await delay(250);
+        return HttpResponse.json({});
     }),
 ];

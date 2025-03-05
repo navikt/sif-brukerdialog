@@ -3,13 +3,16 @@ import { useState } from 'react';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { RapporterInntektDTO } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormFields, InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 import InntektKompaktForm from './varianter/InntektKompaktForm';
+import {
+    UngdomsytelseInntektsrapportering,
+    zUngdomsytelseInntektsrapportering,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 
 interface Props {
     periode: DateRange;
@@ -26,7 +29,7 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values, true);
-        const data: RapporterInntektDTO = {
+        const data: UngdomsytelseInntektsrapportering = zUngdomsytelseInntektsrapportering.parse({
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
                     fraOgMed: dateToISODate(periode.from),
@@ -37,7 +40,7 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
                 inntektFraYtelse: inntekt.inntektFraYtelse,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
-        };
+        });
         rapporterInntekt(data);
     };
 

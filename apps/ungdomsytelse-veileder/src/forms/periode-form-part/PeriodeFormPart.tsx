@@ -5,12 +5,7 @@ import {
     FormikTextarea,
     FormikYesOrNoQuestion,
 } from '@navikt/sif-common-formik-ds';
-import {
-    getCheckedValidator,
-    getDateValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-} from '@navikt/sif-validation';
+import { getDateValidator, getStringValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { max, min } from 'date-fns';
 import { Deltakelse } from '../../api/types';
@@ -83,14 +78,14 @@ const PeriodeFormPart = ({
             />
             <FormikYesOrNoQuestion
                 name="deltakerInformert"
-                legend={`Er ${deltakernavn} er informert om endringen?`}
-                validate={getRequiredFieldValidator()}
+                legend={`Er ${deltakernavn} informert om endringen?`}
+                // validate={getRequiredFieldValidator()}
             />
 
             <FormikConfirmationCheckbox
                 name="bekrefterEndring"
                 label="Bekreft endring av deltakerperiode"
-                validate={getCheckedValidator()}
+                // validate={getCheckedValidator()}
             />
             <Alert variant="info" inline={true}>
                 Oppgaven vil bli merket med navnet ditt (<strong>Navn Veiledersen</strong>).

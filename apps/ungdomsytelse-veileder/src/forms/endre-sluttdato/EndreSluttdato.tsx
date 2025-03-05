@@ -4,25 +4,34 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
+
 import EndreSluttdatoInfo from './EndreSluttdatoInfo';
+import { EndreSluttdatoOppgave, Oppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 
 export type EndreSluttdatoFormValues = {
     id: string;
     fnr: string;
     fom: string;
     tom?: string;
+    melding?: string;
 };
 
 interface Props {
+    oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onChange: () => void;
 }
 
-const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Props) => {
+const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
     const { pending: endreDeltakelsePending, endreSluttdato } = useEndreDeltakelse(onChange || (() => {}));
+
+    const åpneOppgaver = oppgaver.filter(
+        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    ) as EndreSluttdatoOppgave[];
+
+    const åpenOppgave: EndreSluttdatoOppgave | undefined = åpneOppgaver.length > 0 ? åpneOppgaver[0] : undefined;
 
     const getInitialValues = (d: Deltakelse): EndreSluttdatoFormValues => {
         return {
@@ -30,6 +39,7 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Pro
             id: d.id,
             fom: dateToISODate(d.fraOgMed),
             tom: d.tilOgMed ? dateToISODate(d.tilOgMed) : '',
+            melding: åpenOppgave?.oppgavetypeData.meldingFraVeileder,
         };
     };
 
@@ -38,7 +48,8 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Pro
             <TypedFormikWrapper<EndreSluttdatoFormValues>
                 initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
                 onSubmit={(values) => {
-                    endreSluttdato(deltakelse, ISODateToDate(values.tom));
+                    const melding = values.melding ? values.melding.trim() : undefined;
+                    endreSluttdato(deltakelse, ISODateToDate(values.tom), melding);
                 }}
                 renderForm={({ values }) => {
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;

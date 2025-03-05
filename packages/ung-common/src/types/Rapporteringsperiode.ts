@@ -1,16 +1,14 @@
-import { z } from 'zod';
 import { DateRange } from '@navikt/sif-common-utils';
-import { rapporteringsperiodeDTOSchema } from './dto/RapporteringsperiodeDTO';
 
-export const rapporteringsperiodeSchema = rapporteringsperiodeDTOSchema.transform((data) => {
-    const { fraOgMed, tilOgMed, ...rest } = data;
-    return {
-        ...rest,
-        periode: <DateRange>{
-            from: fraOgMed,
-            to: tilOgMed,
-        },
+export interface Rapporteringsperiode {
+    periode: DateRange;
+    harRapportert: boolean;
+    kanRapportere: boolean;
+    fristForRapportering: Date;
+    inntekt: {
+        arbeidstakerOgFrilansInntekt: number;
+        næringsinntekt: number;
+        inntektFraYtelse: number;
+        summertInntekt: number;
     };
-});
-
-export type Rapporteringsperiode = z.infer<typeof rapporteringsperiodeSchema>;
+}

@@ -11,11 +11,11 @@ import {
     VStack,
 } from '@navikt/ds-react';
 import { ReactElement, useState } from 'react';
-import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { getFødselsnummerValidator } from '@navikt/sif-validation';
+import { veilederApiService } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
-import { veilederService } from '../api/services/veilederService';
-import { Deltakelse, Deltaker, isDeltaker, NyDeltaker } from '../api/types';
+import { Deltakelse, Deltaker, UregistrertDeltaker } from '../api/types';
 import DeltakerKort from '../components/DeltakerKort';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { getAppEnv } from '../utils/appEnv';
@@ -34,7 +34,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [pending, setPending] = useState<boolean>(false);
-    const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | undefined>();
+    const [nyDeltaker, setKandidat] = useState<UregistrertDeltaker | undefined>();
     const [registrerNy, setRegistrerNy] = useState<boolean>(false);
 
     const textFieldFormatter = useTextFieldFormatter(fnrFormatter);
@@ -45,15 +45,15 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
         setValidationError(fnrError);
         if (fnrValue && fnrError === undefined) {
             setPending(true);
-            setNyDeltaker(undefined);
+            setKandidat(undefined);
             try {
-                const deltaker = await veilederService.findDeltaker(fnrValue);
-                if (isDeltaker(deltaker)) {
+                const deltakerEllerKandidat = await veilederApiService.findDeltakerByDeltakerIdent(fnrValue);
+                if (deltakerEllerKandidat.id !== undefined) {
                     setPending(false);
-                    onDeltakerFetched(deltaker);
+                    onDeltakerFetched(deltakerEllerKandidat);
                 } else {
                     setPending(false);
-                    setNyDeltaker(deltaker);
+                    setKandidat(deltakerEllerKandidat);
                 }
             } catch (e) {
                 setPending(false);
@@ -84,7 +84,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
     const resetForm = () => {
-        setNyDeltaker(undefined);
+        setKandidat(undefined);
         setFnrValue(undefined);
         setValidationError(undefined);
         setError(undefined);
@@ -107,7 +107,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                                 label="Fødselsnummer/d-nummer:"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);
-                                    setNyDeltaker(undefined);
+                                    setKandidat(undefined);
                                 }}
                                 size="medium"
                                 maxLength={11}

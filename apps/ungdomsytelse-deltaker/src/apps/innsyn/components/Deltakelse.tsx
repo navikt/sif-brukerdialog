@@ -5,9 +5,10 @@ import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInnte
 import OppgavePanel from './oppgaver/OppgavePanel';
 import Periodeliste from './Periodeliste';
 import LøsteOppgaver from './løste-oppgaver/LøsteOppgaver';
+import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
 
 interface Props {
-    deltakelse: Deltakelse;
+    deltakelse: DeltakelsePeriode;
 }
 
 const Deltakelse = ({ deltakelse }: Props) => {

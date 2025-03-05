@@ -26,7 +26,6 @@ const SøknadApp = () => {
                         søker={søker}
                         barn={barn}
                         startdato={deltakelse.programPeriode.from}
-                        deltakelseId={deltakelse.id}
                         onSøknadSendt={handleOnSøknadSendt}
                     />
                     <InformasjonOmUngdomsytelsen />

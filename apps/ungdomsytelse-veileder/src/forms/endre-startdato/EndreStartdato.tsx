@@ -1,48 +1,57 @@
-import { BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-
-import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Oppgave, EndreStartdatoOppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
 import { Deltakelse } from '../../api/types';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
 
 export type EndreStartdatoFormValues = {
     id: string;
     fnr: string;
     fom: string;
+    melding?: string;
 };
 
 interface Props {
+    oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onChange: () => void;
 }
 
-const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Props) => {
-    const { pending: endreDeltakelsePending, endreStartdato } = useEndreDeltakelse(onChange || (() => {}));
+const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
+    const { pending: endreDeltakelsePending, endreStartdato, error } = useEndreDeltakelse(onChange || (() => {}));
 
-    const getInitialValues = (d: Deltakelse): EndreStartdatoFormValues => {
-        return {
-            fnr: d.deltaker.deltakerIdent,
-            id: d.id,
-            fom: dateToISODate(d.fraOgMed),
-        };
-    };
+    const åpenOppgaver = oppgaver.filter(
+        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    ) as EndreStartdatoOppgave[];
+
+    const åpenOppgave: EndreStartdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
 
     return (
         <Box>
             <TypedFormikWrapper<EndreStartdatoFormValues>
-                initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
-                onSubmit={(values) => {
-                    endreStartdato(deltakelse, ISODateToDate(values.fom));
+                initialValues={{}}
+                onSubmit={(values: EndreStartdatoFormValues) => {
+                    const melding = values.melding ? values.melding.trim() : undefined;
+                    endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
                 }}
                 renderForm={({ values }) => {
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
                     return (
                         <HGrid columns={'2fr 1fr'} gap="6">
                             <VStack gap="4">
+                                {åpenOppgave ? (
+                                    <Box marginBlock="0 4">
+                                        <Alert variant="warning">
+                                            Det eksisterer allerede en oppgave på endring av startdato. Hvis du
+                                            registrerer en ny endring i startdato, vil denne oppgaven lukkes og bli
+                                            erstattet med den nye.
+                                        </Alert>
+                                    </Box>
+                                ) : null}
                                 <Heading level="3" size="medium">
                                     Endre startdato
                                 </Heading>
@@ -77,6 +86,7 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, onChange }: Pro
                                                 Send oppgave til {deltakernavn}
                                             </Button>
                                         </HStack>
+                                        {error ? <Alert variant="error">{error.message}</Alert> : null}
                                     </VStack>
                                 </TypedFormikForm>
                             </VStack>

@@ -1,7 +1,7 @@
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
-import EndretSluttdatoOppgave from './EndretSluttdatoOppgave';
-import EndretStartdatoOppgave from './EndretStartdatoOppgave';
+import EndretSluttdatoOppgaveForm from './EndretSluttdatoOppgaveForm';
+import EndretStartdatoOppgaveForm from './EndretStartdatoOppgaveForm';
 
 interface Props {
     programPeriode: OpenDateRange;
@@ -11,9 +11,9 @@ interface Props {
 const OppgavePanel = ({ oppgave, programPeriode }: Props) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgave oppgave={oppgave} opprinneligStartdato={programPeriode.from} />;
+            return <EndretStartdatoOppgaveForm oppgave={oppgave} opprinneligStartdato={programPeriode.from} />;
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgave oppgave={oppgave} opprinneligSluttdato={programPeriode.to} />;
+            return <EndretSluttdatoOppgaveForm oppgave={oppgave} opprinneligSluttdato={programPeriode.to} />;
     }
 };
 
