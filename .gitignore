@@ -15,6 +15,7 @@ coverage
 index-decorated.html
 .idea
 .sanity
+**/*/.code-workspace
 
 
 server/dist
