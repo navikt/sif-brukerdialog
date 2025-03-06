@@ -7,11 +7,12 @@ interface Props {
     tittel: string;
     svarfrist?: Date;
     beskrivelse: React.ReactNode;
+    besvart?: boolean;
     children: React.ReactNode;
     onÅpneOppgave?: () => void;
 }
 
-const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgave }: Props) => {
+const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, besvart, onÅpneOppgave }: Props) => {
     return (
         <BlueBox>
             <VStack gap="6">
@@ -36,17 +37,21 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, onÅpneOppgav
                         Hvis du ikke svarer innen fristen, godkjennes oppgaven automatisk.
                     </Alert>
                 ) : null}
-                <ExpansionCard aria-label="Demo med bare tittel" size="small" onChange={onÅpneOppgave}>
-                    <ExpansionCard.Header>
-                        <ExpansionCard.Title size="small">
-                            <HStack gap="2" align={'center'}>
-                                <ClipboardCheckmarkIcon />
-                                Se mer informasjon om endringen
-                            </HStack>
-                        </ExpansionCard.Title>
-                    </ExpansionCard.Header>
-                    <ExpansionCard.Content>{children}</ExpansionCard.Content>
-                </ExpansionCard>
+                {besvart ? (
+                    <Alert variant="success">Besvart</Alert>
+                ) : (
+                    <ExpansionCard aria-label="Demo med bare tittel" size="small" onChange={onÅpneOppgave}>
+                        <ExpansionCard.Header>
+                            <ExpansionCard.Title size="small">
+                                <HStack gap="2" align={'center'}>
+                                    <ClipboardCheckmarkIcon />
+                                    Se mer informasjon om endringen
+                                </HStack>
+                            </ExpansionCard.Title>
+                        </ExpansionCard.Header>
+                        <ExpansionCard.Content>{children}</ExpansionCard.Content>
+                    </ExpansionCard>
+                )}
             </VStack>
         </BlueBox>
     );

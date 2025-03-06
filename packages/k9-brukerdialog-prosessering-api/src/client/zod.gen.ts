@@ -38,7 +38,7 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),
+            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
         }),
     )
     .merge(
@@ -62,7 +62,7 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
+            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
         }),
     )
     .merge(

@@ -43,7 +43,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DatePicker } = getTypedF
 
 const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, error, pending } = useBesvarOppgave();
+    const { sendSvar, error, pending, besvart } = useBesvarOppgave();
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
 
     const handleSubmit = async (values: FormValues) => {
@@ -71,6 +71,7 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
     return (
         <OppgaveLayout
             tittel="Din deltakerperiode blir endret"
+            besvart={besvart}
             beskrivelse={
                 <>
                     <BodyShort>
