@@ -40,7 +40,7 @@ export const zDeltakelseOpplysningDto = z.object({
                     }),
                 ),
             ]),
-            status: z.enum(['LØST', 'ULØST']),
+            status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
             opprettetDato: z.string().datetime(),
             løstDato: z.string().datetime().optional(),
         }),
@@ -72,12 +72,12 @@ export const zOppgaveDto = z.object({
     id: z.string().uuid(),
     oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO']),
     oppgavetypeData: z.union([zEndretSluttdatoOppgavetypeDataDto, zEndretStartdatoOppgavetypeDataDto]),
-    status: z.enum(['LØST', 'ULØST']),
+    status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),
 });
 
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST']);
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'KANSELLERT']);
 
 export const zOppgavetype = z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO']);
 

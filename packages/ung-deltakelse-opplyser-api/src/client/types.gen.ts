@@ -51,6 +51,7 @@ export type OppgaveDto = {
 export enum OppgaveStatus {
     LØST = 'LØST',
     ULØST = 'ULØST',
+    KANSELLERT = 'KANSELLERT',
 }
 
 export enum Oppgavetype {

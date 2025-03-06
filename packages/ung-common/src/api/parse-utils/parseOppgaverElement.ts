@@ -13,6 +13,19 @@ import dayjs from 'dayjs';
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
 
+const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
+    switch (status) {
+        case 'LØST':
+            return OppgaveStatus.LØST;
+        case 'ULØST':
+            return OppgaveStatus.ULØST;
+        case 'KANSELLERT':
+            return OppgaveStatus.KANSELLERT;
+        default:
+            throw new Error(`Ukjent oppgavestatus: ${status}`);
+    }
+};
+
 export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
@@ -21,7 +34,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 const endreStartdatoData = oppgave.oppgavetypeData as EndretStartdatoOppgavetypeDataDto;
                 const endretStartdatoOppgave: Oppgave = {
                     id: oppgave.id,
-                    status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
+                    status: getOppgaveStatusEnum(oppgave.status),
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -38,7 +51,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 const endreSluttdatoData = oppgave.oppgavetypeData as EndretSluttdatoOppgavetypeDataDto;
                 const endretSluttdatoOppgave: Oppgave = {
                     id: oppgave.id,
-                    status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
+                    status: getOppgaveStatusEnum(oppgave.status),
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
                     svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
