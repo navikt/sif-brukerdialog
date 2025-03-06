@@ -88,7 +88,7 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
                                         />
                                         <HStack gap="2">
                                             <Button type="submit" loading={endreDeltakelsePending} variant="primary">
-                                                Endre sluttdato og varsle {deltakernavn}
+                                                Endre sluttdato og send varsel til {deltakernavn}
                                             </Button>
                                         </HStack>
                                         {error ? (
