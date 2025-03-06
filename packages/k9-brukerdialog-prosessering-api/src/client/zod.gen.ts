@@ -909,7 +909,7 @@ export const zEndringsmelding = z.object({
                     z.object({
                         ansettelsePeriode: z.string(),
                         land: z.string(),
-                        arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
+                        arbeidsgiversnavn: z.string(),
                     }),
                 ),
                 andreAktiviteter: z.array(zAnnenAktivitet),
@@ -975,7 +975,7 @@ export const zOpptjeningAktivitet = z.object({
         z.object({
             ansettelsePeriode: z.string(),
             land: z.string(),
-            arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
+            arbeidsgiversnavn: z.string(),
         }),
     ),
     andreAktiviteter: z.array(zAnnenAktivitet),
@@ -1041,7 +1041,7 @@ export const zTilsynsordning = z.object({
 export const zUtenlandskArbeidsforhold = z.object({
     ansettelsePeriode: z.string(),
     land: z.string(),
-    arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
+    arbeidsgiversnavn: z.string(),
 });
 
 export const zUttak = z.object({
