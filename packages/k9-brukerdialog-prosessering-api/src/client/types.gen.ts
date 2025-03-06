@@ -26,13 +26,13 @@ export type Ungdomsytelsesøknad = {
 };
 
 export type EndretSluttdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'EndretSluttdatoUngdomsytelseOppgaveDTO';
+    type: 'BEKREFT_ENDRET_SLUTTDATO';
 } & {
     nySluttdato: string;
 };
 
 export type EndretStartdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'EndretStartdatoUngdomsytelseOppgaveDTO';
+    type: 'BEKREFT_ENDRET_STARTDATO';
 } & {
     nyStartdato: string;
 };

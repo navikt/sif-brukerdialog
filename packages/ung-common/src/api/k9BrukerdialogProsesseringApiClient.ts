@@ -3,7 +3,7 @@ import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/client/client.gen';
 import { v4 } from 'uuid';
 
-export const initK9BrukerdialogProsesseringClient = () => {
+export const initK9BrukerdialogProsesseringApiClient = () => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,

@@ -1,6 +1,6 @@
 import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { EndreStartdatoOppgave } from '@navikt/ung-common';
+import { EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
 import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 import dayjs from 'dayjs';
@@ -62,7 +62,7 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                           korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: 'EndretStartdatoUngdomsytelseOppgaveDTO',
+                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
             },
         };
         await sendSvar(dto);
