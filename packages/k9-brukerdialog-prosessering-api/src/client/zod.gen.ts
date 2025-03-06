@@ -38,7 +38,7 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
+            type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),
         }),
     )
     .merge(
@@ -62,7 +62,7 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
+            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
         }),
     )
     .merge(
@@ -909,7 +909,7 @@ export const zEndringsmelding = z.object({
                     z.object({
                         ansettelsePeriode: z.string(),
                         land: z.string(),
-                        arbeidsgiversnavn: z.string(),
+                        arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
                     }),
                 ),
                 andreAktiviteter: z.array(zAnnenAktivitet),
@@ -975,7 +975,7 @@ export const zOpptjeningAktivitet = z.object({
         z.object({
             ansettelsePeriode: z.string(),
             land: z.string(),
-            arbeidsgiversnavn: z.string(),
+            arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
         }),
     ),
     andreAktiviteter: z.array(zAnnenAktivitet),
@@ -1041,7 +1041,7 @@ export const zTilsynsordning = z.object({
 export const zUtenlandskArbeidsforhold = z.object({
     ansettelsePeriode: z.string(),
     land: z.string(),
-    arbeidsgiversnavn: z.string(),
+    arbeidsgiversnavn: z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/),
 });
 
 export const zUttak = z.object({

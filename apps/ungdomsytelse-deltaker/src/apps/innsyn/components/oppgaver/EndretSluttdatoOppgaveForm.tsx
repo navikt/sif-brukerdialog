@@ -62,7 +62,7 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
                           korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO as any,
             },
         };
         await sendSvar(dto);
