@@ -10,12 +10,12 @@ export default defineConfig({
     },
     plugins: [
         ...defaultPlugins,
-        '@hey-api/client-axios',
         'zod',
         { asClass: true, name: '@hey-api/sdk', validator: true },
         {
             enums: 'typescript', // default
             name: '@hey-api/typescript',
         },
+        { name: '@hey-api/client-axios', throwOnError: true },
     ],
 });

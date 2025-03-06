@@ -55,8 +55,18 @@ export const handlers = [
         const { dato, meldingFraVeileder, veilederRef } = await request.json();
         console.log({ dato, meldingFraVeileder, veilederRef });
         await delay(250);
-        return HttpResponse.json({});
+        // const errors_409 = {
+        //     type: '/problem-details/duplikat-uløst-oppgavetype',
+        //     title: 'Det finnes allerede en oppgave av samme type som er uløst',
+        //     status: 409,
+        //     detail: 'Key (deltakelse_id, oppgavetype)=(a3bed73f-d5d7-4aac-9c3b-3134c8394dac, BEKREFT_ENDRET_STARTDATO) already exists.',
+        //     instance:
+        //         'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/deltakelse/a3bed73f-d5d7-4aac-9c3b-3134c8394dac/endre/startdato',
+        // };
+        return new HttpResponse(null, { status: 409 });
+        // return HttpResponse.json({ status: 409, errors_409 });
     }),
+
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
         const { dato, meldingFraVeileder, veilederRef } = await request.json();
         console.log({ dato, meldingFraVeileder, veilederRef });

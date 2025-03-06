@@ -94,7 +94,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 export class MellomlagringControllerService {
-    public static deleteMellomlagring<ThrowOnError extends boolean = false>(
+    public static deleteMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<DeleteMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).delete<unknown, DeleteMellomlagringError, ThrowOnError>({
@@ -109,7 +109,7 @@ export class MellomlagringControllerService {
         });
     }
 
-    public static getMellomlagring<ThrowOnError extends boolean = false>(
+    public static getMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<GetMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<GetMellomlagringResponse, GetMellomlagringError, ThrowOnError>({
@@ -127,7 +127,7 @@ export class MellomlagringControllerService {
         });
     }
 
-    public static createMellomlagring<ThrowOnError extends boolean = false>(
+    public static createMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<CreateMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, CreateMellomlagringError, ThrowOnError>({
@@ -146,7 +146,7 @@ export class MellomlagringControllerService {
         });
     }
 
-    public static updateMellomlagring<ThrowOnError extends boolean = false>(
+    public static updateMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<UpdateMellomlagringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<unknown, UpdateMellomlagringError, ThrowOnError>({
@@ -167,9 +167,7 @@ export class MellomlagringControllerService {
 }
 
 export class VedleggControllerService {
-    public static lagreVedlegg<ThrowOnError extends boolean = false>(
-        options?: Options<LagreVedleggData, ThrowOnError>,
-    ) {
+    public static lagreVedlegg<ThrowOnError extends boolean = true>(options?: Options<LagreVedleggData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).post<unknown, LagreVedleggError, ThrowOnError>({
             ...formDataBodySerializer,
             security: [
@@ -187,7 +185,7 @@ export class VedleggControllerService {
         });
     }
 
-    public static slettVedlegg<ThrowOnError extends boolean = false>(options: Options<SlettVedleggData, ThrowOnError>) {
+    public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).delete<SlettVedleggResponse, SlettVedleggError, ThrowOnError>({
             security: [
                 {
@@ -203,7 +201,7 @@ export class VedleggControllerService {
         });
     }
 
-    public static hentVedlegg<ThrowOnError extends boolean = false>(options: Options<HentVedleggData, ThrowOnError>) {
+    public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).get<HentVedleggResponse, HentVedleggError, ThrowOnError>({
             security: [
                 {
@@ -221,7 +219,7 @@ export class VedleggControllerService {
 }
 
 export class FeltValideringControllerService {
-    public static validerFriteksfelt<ThrowOnError extends boolean = false>(
+    public static validerFriteksfelt<ThrowOnError extends boolean = true>(
         options: Options<ValiderFriteksfeltData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, ValiderFriteksfeltError, ThrowOnError>({
@@ -242,7 +240,7 @@ export class FeltValideringControllerService {
 }
 
 export class UngdomsytelseControllerService {
-    public static innsendingUngdomsytelsesøknad<ThrowOnError extends boolean = false>(
+    public static innsendingUngdomsytelsesøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingUngdomsytelsesøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InnsendingUngdomsytelsesøknadError, ThrowOnError>({
@@ -261,7 +259,7 @@ export class UngdomsytelseControllerService {
         });
     }
 
-    public static oppgavebekreftelse<ThrowOnError extends boolean = false>(
+    public static oppgavebekreftelse<ThrowOnError extends boolean = true>(
         options: Options<OppgavebekreftelseData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, OppgavebekreftelseError, ThrowOnError>({
@@ -280,7 +278,7 @@ export class UngdomsytelseControllerService {
         });
     }
 
-    public static inntektrapportering<ThrowOnError extends boolean = false>(
+    public static inntektrapportering<ThrowOnError extends boolean = true>(
         options: Options<InntektrapporteringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InntektrapporteringError, ThrowOnError>({
@@ -301,7 +299,7 @@ export class UngdomsytelseControllerService {
 }
 
 export class PleiepengerSyktBarnControllerService {
-    public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerSyktBarnSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InnsendingPleiepengerSyktBarnSøknadError, ThrowOnError>({
@@ -322,7 +320,7 @@ export class PleiepengerSyktBarnControllerService {
 }
 
 export class EndringsmeldingControllerService {
-    public static innsendingEndringsmelding<ThrowOnError extends boolean = false>(
+    public static innsendingEndringsmelding<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEndringsmeldingData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InnsendingEndringsmeldingError, ThrowOnError>({
@@ -343,7 +341,7 @@ export class EndringsmeldingControllerService {
 }
 
 export class PleiepengerLivetsSluttfaseControllerService {
-    public static innsendingPleiepengerILivetsSluttfaseSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingPleiepengerILivetsSluttfaseSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerILivetsSluttfaseSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -368,7 +366,7 @@ export class PleiepengerLivetsSluttfaseControllerService {
 }
 
 export class PdfControllerService {
-    public static lagPdf<ThrowOnError extends boolean = false>(options: Options<LagPdfData, ThrowOnError>) {
+    public static lagPdf<ThrowOnError extends boolean = true>(options: Options<LagPdfData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).post<LagPdfResponse, LagPdfError, ThrowOnError>({
             responseType: 'blob',
             security: [
@@ -391,7 +389,7 @@ export class PdfControllerService {
 }
 
 export class OpplÆringspengerSØknadControllerService {
-    public static innsendingOpplæringspengerSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOpplæringspengerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOpplæringspengerSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InnsendingOpplæringspengerSøknadError, ThrowOnError>({
@@ -412,7 +410,7 @@ export class OpplÆringspengerSØknadControllerService {
 }
 
 export class OmsorgspengerUtvidetRettControllerService {
-    public static innsendingOmsorgspengerKroniskSyktBarnSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOmsorgspengerKroniskSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerKroniskSyktBarnSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -437,7 +435,7 @@ export class OmsorgspengerUtvidetRettControllerService {
 }
 
 export class OmsorgspengerUtbetalingSnfControllerService {
-    public static innsendingOmsorgspengerutbetalingSnfSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOmsorgspengerutbetalingSnfSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingSnfSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -462,7 +460,7 @@ export class OmsorgspengerUtbetalingSnfControllerService {
 }
 
 export class OmsorgspengerUtbetalingArbeidstakerControllerService {
-    public static innsendingOmsorgspengerutbetalingArbeidstakerSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOmsorgspengerutbetalingArbeidstakerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -487,7 +485,7 @@ export class OmsorgspengerUtbetalingArbeidstakerControllerService {
 }
 
 export class OmsorgspengerMidlertidigAleneControllerService {
-    public static innsendingOmsorgspengerMidlertidigAleneSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOmsorgspengerMidlertidigAleneSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerMidlertidigAleneSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -512,7 +510,7 @@ export class OmsorgspengerMidlertidigAleneControllerService {
 }
 
 export class OmsorgsdagerAleneomsorgControllerService {
-    public static innsendingOmsorgsdagerAleneOmOmsorgenSøknad<ThrowOnError extends boolean = false>(
+    public static innsendingOmsorgsdagerAleneOmOmsorgenSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgsdagerAleneOmOmsorgenSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -537,7 +535,7 @@ export class OmsorgsdagerAleneomsorgControllerService {
 }
 
 export class EttersendingControllerService {
-    public static innsendingEttersendelse<ThrowOnError extends boolean = false>(
+    public static innsendingEttersendelse<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEttersendelseData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<unknown, InnsendingEttersendelseError, ThrowOnError>({
@@ -558,7 +556,7 @@ export class EttersendingControllerService {
 }
 
 export class SØkerControllerService {
-    public static hentSøker<ThrowOnError extends boolean = false>(options?: Options<HentSøkerData, ThrowOnError>) {
+    public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).get<HentSøkerResponse, HentSøkerError, ThrowOnError>({
             security: [
                 {
@@ -576,7 +574,7 @@ export class SØkerControllerService {
 }
 
 export class BarnControllerService {
-    public static hentBarn<ThrowOnError extends boolean = false>(options?: Options<HentBarnData, ThrowOnError>) {
+    public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).get<HentBarnResponse, HentBarnError, ThrowOnError>({
             security: [
                 {
@@ -594,7 +592,7 @@ export class BarnControllerService {
 }
 
 export class ArbeidsgivereControllerService {
-    public static hentArbeidsgivere<ThrowOnError extends boolean = false>(
+    public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
         options: Options<HentArbeidsgivereData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<HentArbeidsgivereResponse, HentArbeidsgivereError, ThrowOnError>({

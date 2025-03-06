@@ -101,7 +101,11 @@ const endreStartdatoForDeltakelse = async (
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
     try {
-        const { data } = await VeilederService.endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
+        const { data } = await VeilederService.endreStartdato({
+            path: { deltakelseId },
+            body: endrePeriodeData,
+            throwOnError: true,
+        });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);

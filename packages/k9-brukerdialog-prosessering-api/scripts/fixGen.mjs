@@ -13,7 +13,7 @@ const directoryPath = path.join(__dirname, '../src/client');
 
 const replacements = [
     {
-        source: 'z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/)',
+        source: `z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/)`,
         replacement: 'z.string()',
     },
     {
