@@ -29,7 +29,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                     veilederRef: 'Pål Hønesen, Andeby',
                     meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
                 },
-                status: OppgaveStatus.KANSELLERT,
+                status: OppgaveStatus.LØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
                 løstDato: '2025-02-23T05:00:12.048157Z',
             },

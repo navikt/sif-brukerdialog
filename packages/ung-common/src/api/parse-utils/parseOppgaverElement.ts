@@ -19,8 +19,6 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.LØST;
         case 'ULØST':
             return OppgaveStatus.ULØST;
-        case 'KANSELLERT':
-            return OppgaveStatus.KANSELLERT;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
