@@ -54,7 +54,6 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
             oppgave: {
                 oppgaveId: oppgave.id,
                 bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                nyStartdato: dateToISODate(oppgave.oppgavetypeData.nyStartdato),
                 ikkeGodkjentResponse: godkjennerOppgave
                     ? undefined
                     : {
@@ -62,7 +61,7 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                           korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO as any,
+                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
             },
         };
         await sendSvar(dto);

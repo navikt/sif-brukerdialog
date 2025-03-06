@@ -54,7 +54,6 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
             oppgave: {
                 oppgaveId: oppgave.id,
                 bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                nySluttdato: dateToISODate(oppgave.oppgavetypeData.nySluttdato),
                 ikkeGodkjentResponse: godkjennerOppgave
                     ? undefined
                     : {
@@ -62,7 +61,7 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
                           korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO as any,
+                type: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
             },
         };
         await sendSvar(dto);
