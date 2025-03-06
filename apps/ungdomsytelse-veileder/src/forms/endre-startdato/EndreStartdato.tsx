@@ -5,6 +5,7 @@ import { Deltakelse, EndreStartdatoOppgave, Oppgave, Oppgavetype } from '@navikt
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
+import { Veileder } from '../../types/Veileder';
 
 export type EndreStartdatoFormValues = {
     id: string;
@@ -14,6 +15,7 @@ export type EndreStartdatoFormValues = {
 };
 
 interface Props {
+    veileder: Veileder;
     oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
@@ -21,7 +23,7 @@ interface Props {
     onChange: () => void;
 }
 
-const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
+const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veileder, onChange }: Props) => {
     const { pending: endreDeltakelsePending, endreStartdato, error } = useEndreDeltakelse(onChange || (() => {}));
 
     const åpenOppgaver = oppgaver.filter(
@@ -74,6 +76,7 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                     showButtonArrows={false}>
                                     <VStack gap="6">
                                         <PeriodeFormPart
+                                            veileder={veileder}
                                             deltakernavn={deltakernavn}
                                             visSluttdato={false}
                                             visStartdato={true}

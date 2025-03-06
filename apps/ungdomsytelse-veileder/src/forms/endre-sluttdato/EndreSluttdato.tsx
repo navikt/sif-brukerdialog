@@ -1,10 +1,11 @@
-import { BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, EndreSluttdatoOppgave, Oppgave, Oppgavetype } from '@navikt/ung-common';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreSluttdatoInfo from './EndreSluttdatoInfo';
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
+import { Veileder } from '../../types/Veileder';
 
 export type EndreSluttdatoFormValues = {
     id: string;
@@ -15,6 +16,7 @@ export type EndreSluttdatoFormValues = {
 };
 
 interface Props {
+    veileder: Veileder;
     oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
@@ -22,8 +24,8 @@ interface Props {
     onChange: () => void;
 }
 
-const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
-    const { pending: endreDeltakelsePending, endreSluttdato } = useEndreDeltakelse(onChange || (() => {}));
+const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veileder, onChange }: Props) => {
+    const { pending: endreDeltakelsePending, error, endreSluttdato } = useEndreDeltakelse(onChange || (() => {}));
 
     const åpneOppgaver = oppgaver.filter(
         (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
@@ -76,6 +78,7 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                     showButtonArrows={false}>
                                     <VStack gap="6">
                                         <PeriodeFormPart
+                                            veileder={veileder}
                                             deltakernavn={deltakernavn}
                                             visSluttdato={true}
                                             visStartdato={false}
@@ -85,9 +88,16 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                         />
                                         <HStack gap="2">
                                             <Button type="submit" loading={endreDeltakelsePending} variant="primary">
-                                                Send oppgave til {deltakernavn}
+                                                Endre sluttdato og varsle {deltakernavn}
                                             </Button>
                                         </HStack>
+                                        {error ? (
+                                            <Alert variant="error">
+                                                {error.type}
+                                                <br />
+                                                {error.message}
+                                            </Alert>
+                                        ) : null}
                                     </VStack>
                                 </TypedFormikForm>
                             </VStack>

@@ -6,12 +6,19 @@ import {
     FormikYesOrNoQuestion,
 } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
-import { getDateValidator, getStringValidator } from '@navikt/sif-validation';
-import { Deltakelse } from '@navikt/ung-common';
+import {
+    getCheckedValidator,
+    getDateValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+} from '@navikt/sif-validation';
+import { Deltakelse, formaterNavn } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
 import { GYLDIG_PERIODE } from '../../settings';
+import { Veileder } from '../../types/Veileder';
 
 interface Props {
+    veileder: Veileder;
     deltakernavn: string;
     visStartdato?: boolean;
     visSluttdato?: boolean;
@@ -22,9 +29,10 @@ interface Props {
 }
 
 const MELDING_MAX_LENGTH = 250;
-const MELDING_MIN_LENGTH = 10;
+const MELDING_MIN_LENGTH = 5;
 
 const PeriodeFormPart = ({
+    veileder,
     deltakernavn,
     fomDate,
     tomDate,
@@ -79,16 +87,16 @@ const PeriodeFormPart = ({
             <FormikYesOrNoQuestion
                 name="deltakerInformert"
                 legend={`Er ${deltakernavn} informert om endringen?`}
-                // validate={getRequiredFieldValidator()}
+                validate={getRequiredFieldValidator()}
             />
 
             <FormikConfirmationCheckbox
                 name="bekrefterEndring"
                 label="Bekreft endring av deltakerperiode"
-                // validate={getCheckedValidator()}
+                validate={getCheckedValidator()}
             />
             <Alert variant="info" inline={true}>
-                Oppgaven vil bli merket med navnet ditt (<strong>Navn Veiledersen</strong>).
+                Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
             </Alert>
         </VStack>
     );

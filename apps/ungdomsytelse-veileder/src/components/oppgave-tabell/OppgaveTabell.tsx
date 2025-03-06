@@ -81,7 +81,6 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                     <Table.HeaderCell>Opprettet</Table.HeaderCell>
                     <Table.HeaderCell>Type</Table.HeaderCell>
                     <Table.HeaderCell>Svarfrist</Table.HeaderCell>
-                    <Table.HeaderCell>Åpnet</Table.HeaderCell>
                     <Table.HeaderCell>Status</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
