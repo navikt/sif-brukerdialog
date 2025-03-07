@@ -5,6 +5,7 @@ import {
     findDeltaker,
     deltakelseDNMock,
     veilederMock,
+    registrertDeltakerId,
 } from '../mocks/mockUtils';
 import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 
@@ -55,6 +56,9 @@ export const handlers = [
         const { dato, meldingFraVeileder, veilederRef } = await request.json();
         console.log({ dato, meldingFraVeileder, veilederRef });
         await delay(250);
+        const data = getDeltakelser(registrertDeltakerId)[0];
+        return HttpResponse.json(data);
+
         // const errors_409 = {
         //     type: '/problem-details/duplikat-uløst-oppgavetype',
         //     title: 'Det finnes allerede en oppgave av samme type som er uløst',
@@ -63,14 +67,14 @@ export const handlers = [
         //     instance:
         //         'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/deltakelse/a3bed73f-d5d7-4aac-9c3b-3134c8394dac/endre/startdato',
         // };
-        return new HttpResponse(null, { status: 409 });
-        // return HttpResponse.json({ status: 409, errors_409 });
+        // return new HttpResponse(null, { status: 409 });
     }),
 
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
         const { dato, meldingFraVeileder, veilederRef } = await request.json();
         console.log({ dato, meldingFraVeileder, veilederRef });
         await delay(250);
-        return HttpResponse.json({});
+        const data = getDeltakelser(registrertDeltakerId)[0];
+        return HttpResponse.json(data);
     }),
 ];

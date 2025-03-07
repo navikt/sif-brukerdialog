@@ -83,7 +83,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                             deltakelser={alleDeltakelser}
                             deltakernavn={deltaker.navn.fornavn}
                             oppgaver={deltakelse.oppgaver}
-                            onChange={onChange}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
@@ -95,7 +95,7 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                             deltakelser={alleDeltakelser}
                             deltakernavn={deltaker.navn.fornavn}
                             oppgaver={deltakelse.oppgaver}
-                            onChange={onChange}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>

@@ -3,7 +3,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
-const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
+export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
 
 /** Fnr */
 export const findDeltaker = (deltakerIdent) => {
