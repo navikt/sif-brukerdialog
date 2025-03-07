@@ -34,13 +34,19 @@ interface SoknadTemporaryStorage
     rehydrate: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
 }
 
-const getMellomlagringApiEndpoint = (søknadstype: Søknadstype) => {
+const getMellomlagringApiEndpoint = (søknadstype: Søknadstype): string => {
     switch (søknadstype) {
         case Søknadstype.pleiepengerSyktBarn:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_SYKT_BARN;
         case Søknadstype.pleiepengerLivetsSluttfase:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE;
-        default:
+        case Søknadstype.opplaringspenger:
+            return ApiEndpoint.MELLOMLAGRING_OPPLARINGSPENGER;
+        case Søknadstype.ekstraomsorgsdager:
+        case Søknadstype.omsorgspenger:
+        case Søknadstype.regnetsomalene:
+        case Søknadstype.utbetaling:
+        case Søknadstype.utbetalingarbeidstaker:
             return ApiEndpoint.MELLOMLAGRING_OMP;
     }
 };
