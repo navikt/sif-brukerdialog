@@ -31,6 +31,7 @@ server.use((req, res, next) => {
 const MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON = `${os.tmpdir()}/sif-ettersending-pp-mellomlagring.json`;
 const MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON = `${os.tmpdir()}/sif-ettersending-pils-mellomlagring.json`;
 const MELLOMLAGRING_OMP_JSON = `${os.tmpdir()}/sif-ettersending-omp-mellomlagring.json`;
+const MELLOMLAGRING_OPPLARINGSPENGER_JSON = `${os.tmpdir()}/sif-ettersending-opplaringspenger-mellomlagring.json`;
 
 const isJSON = (str) => {
     try {
@@ -148,6 +149,14 @@ const startServer = () => {
             res.send({});
         }
     });
+    server.get('/mellomlagring/ETTERSENDING_OPPLARINGSPENGER', (req, res) => {
+        if (existsSync(MELLOMLAGRING_OPPLARINGSPENGER_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_OPPLARINGSPENGER_JSON);
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
     server.post('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
@@ -166,6 +175,12 @@ const startServer = () => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+    server.post('/mellomlagring/ETTERSENDING_OPPLARINGSPENGER', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_OPPLARINGSPENGER_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
