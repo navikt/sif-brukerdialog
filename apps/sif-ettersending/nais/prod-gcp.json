@@ -29,6 +29,7 @@
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.nav.no/minside",
         "SIF_PUBLIC_PLEIEPENGER_SYKT_BARN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger",
         "SIF_PUBLIC_FEATURE_NYNORSK": "off",
+        "SIF_PUBLIC_FEATURE_OPPLARINGSPENGER": "off",
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",

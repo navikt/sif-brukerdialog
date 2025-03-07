@@ -9,6 +9,7 @@ import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
+import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 
 enum PageFormField {
     'søknadstype' = 'søknadstype',
@@ -36,6 +37,26 @@ const IntroPage = () => {
                     }
                 }}
                 renderForm={() => {
+                    const radios = [
+                        {
+                            value: Søknadstype.pleiepengerSyktBarn,
+                            label: text('page.intro.type.pleiepenger'),
+                        },
+                        {
+                            value: Søknadstype.pleiepengerLivetsSluttfase,
+                            label: text('page.intro.type.pleiepenger_livets_sluttfase'),
+                        },
+                        {
+                            value: Søknadstype.omsorgspenger,
+                            label: text('page.intro.type.omsorgspenger'),
+                        },
+                    ];
+                    if (isFeatureEnabled(Feature.OPPLARINGSPENGER)) {
+                        radios.push({
+                            value: Søknadstype.opplaringspenger,
+                            label: text('page.intro.type.opplaringspenger'),
+                        });
+                    }
                     return (
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}
@@ -44,20 +65,7 @@ const IntroPage = () => {
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
                                     legend={text('page.intro.hvilkenTypeSøknad')}
-                                    radios={[
-                                        {
-                                            value: Søknadstype.pleiepengerSyktBarn,
-                                            label: text('page.intro.type.pleiepenger'),
-                                        },
-                                        {
-                                            value: Søknadstype.pleiepengerLivetsSluttfase,
-                                            label: text('page.intro.type.pleiepenger_livets_sluttfase'),
-                                        },
-                                        {
-                                            value: Søknadstype.omsorgspenger,
-                                            label: text('page.intro.type.omsorgspenger'),
-                                        },
-                                    ]}
+                                    radios={radios}
                                     validate={getRequiredFieldValidator()}
                                 />
                             </Block>

@@ -1,6 +1,6 @@
-import { IntlShape } from 'react-intl';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { IntlShape } from 'react-intl';
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
@@ -20,6 +20,8 @@ const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
             return YtelseTypeApi.OMP_UT_ARBEIDSTAKER;
         case YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn:
             return YtelseTypeApi.OMP_UTV_MA;
+        case YtelseKey.opplaringspenger:
+            return YtelseTypeApi.OPPLÆRINGSPENGER;
     }
 };
 

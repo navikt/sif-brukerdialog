@@ -27,6 +27,7 @@ const nb = {
         'Ettersendelse av dokumentasjon - Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
     'application.title.regnetsomalene':
         'Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+    'application.title.opplaringspenger': 'Søknad om opplæringspengar',
 
     'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
     'modal.personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
@@ -154,6 +155,7 @@ const nb = {
     'page.intro.type.pleiepenger': 'Pleiepenger for sykt barn',
     'page.intro.type.pleiepenger_livets_sluttfase': 'Pleiepenger i livets sluttfase',
     'page.intro.type.omsorgspenger': 'Omsorgspenger',
+    'page.intro.type.opplaringspenger': 'Opplæringspenger',
 
     'page.ikkeTilgang.tekst': 'Du har ikke tilgang til denne siden.',
 
@@ -240,6 +242,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Ettersending av dokumentasjon - Søknad om utbetaling av omsorgspengar når arbeidsgivar ikkje betaler ut',
     'application.title.regnetsomalene':
         'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
+    'application.title.opplaringspenger': 'Søknad om opplæringspengar',
 
     'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysningar',
     'modal.personopplysninger.1': 'Slik behandlar Nav personopplysningane dine',
@@ -366,6 +369,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.intro.type.pleiepenger': 'Pleiepengar for sjukt barn',
     'page.intro.type.pleiepenger_livets_sluttfase': 'Pleiepengar i livets sluttfase',
     'page.intro.type.omsorgspenger': 'Omsorgspengar',
+    'page.intro.type.opplaringspenger': 'Opplæringspengar',
 
     'page.ikkeTilgang.tekst': 'Du har ikkje tilgang til denne sida.',
 
