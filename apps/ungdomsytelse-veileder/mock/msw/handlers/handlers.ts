@@ -1,13 +1,13 @@
+import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { delay, http, HttpResponse } from 'msw';
 import {
+    deltakelseDNMock,
+    findDeltaker,
     getDeltakelser,
     getDeltakerByDeltakerId,
-    findDeltaker,
-    deltakelseDNMock,
-    veilederMock,
     registrertDeltakerId,
+    veilederMock,
 } from '../mocks/mockUtils';
-import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const handlers = [
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),

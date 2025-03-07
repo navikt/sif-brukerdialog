@@ -1,13 +1,8 @@
-import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
-import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
-import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
-import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
-import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
-import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
-import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import { useVeileder } from '../../context/VeilederContext';
+import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
+import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
+import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
 
 interface Props {
     deltaker: Deltaker;
@@ -15,105 +10,20 @@ interface Props {
     alleDeltakelser: Deltakelse[];
     onChange: () => void;
 }
-const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
-    const { veileder } = useVeileder();
-    const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
+const DeltakelseContent = ({ deltakelse }: Props) => {
     return (
-        <Box className="pb-20">
-            <Tabs defaultValue="oversikt">
-                <Tabs.List>
-                    <Tabs.Tab value="oversikt" label="Oversikt" />
-                    <Tabs.Tab
-                        value="oppgaver"
-                        label={
-                            <HStack gap="1">
-                                <Box>Deltakervarsler</Box>
-                                <Box
-                                    className="rounded-full bg-icon-warning text-white w-6 h-6 relative"
-                                    style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
-                                    {deltakelse.oppgaver.length}
-                                </Box>
-                            </HStack>
-                        }
-                    />
-                    <Tabs.Tab value="endreStartdato" label="Endre startdato" />
-                    <Tabs.Tab value="endreSluttdato" label="Endre sluttdato" />
-                    {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
-                </Tabs.List>
-                <Tabs.Panel value="oversikt">
-                    <HGrid columns={'1fr 1fr 1fr'} gap="2" paddingBlock={'6'}>
-                        <DeltakelseStatusContent deltakelse={deltakelse} deltaker={deltaker} />
-                        <VStack gap="4" className="rounded p-5 bg-gray-50">
-                            <Heading level="3" size="medium">
-                                Inntektsperioder
-                            </Heading>
-                            <Alert variant="warning" inline>
-                                Skal vi vise noe av deltakerens data her, rapportert inntekt/status på inntektsperioder?
-                            </Alert>
-                        </VStack>
-                        <VStack gap="4" className="rounded p-5 bg-gray-50">
-                            <Heading level="3" size="medium">
-                                Uløste oppgaver
-                            </Heading>
+        <Box className="pb-8 pt-4">
+            <VStack gap="8">
+                {deltakelse.harSøkt === false ? (
+                    <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                ) : null}
 
-                            {åpneOppgaver.length > 0 ? (
-                                åpneOppgaver.map((oppgave) => (
-                                    <Alert key={oppgave.id} variant="warning" inline>
-                                        <Box>{oppgave.oppgavetype}</Box>
-                                    </Alert>
-                                ))
-                            ) : (
-                                <Alert variant="info" inline>
-                                    Ingen oppgaver registrert
-                                </Alert>
-                            )}
-                        </VStack>
-                    </HGrid>
-                </Tabs.Panel>
-                <Tabs.Panel value="oppgaver">
-                    <Box paddingBlock="8 0">
-                        <DeltakelseOppgaver oppgaver={deltakelse.oppgaver} />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="endreStartdato">
-                    <Box paddingBlock="8 0">
-                        <EndreStartdato
-                            veileder={veileder}
-                            deltakelse={deltakelse}
-                            deltakelser={alleDeltakelser}
-                            deltakernavn={deltaker.navn.fornavn}
-                            oppgaver={deltakelse.oppgaver}
-                            onDeltakelseChanged={onChange}
-                        />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="endreSluttdato">
-                    <Box paddingBlock="8 0">
-                        <EndreSluttdato
-                            veileder={veileder}
-                            deltakelse={deltakelse}
-                            deltakelser={alleDeltakelser}
-                            deltakernavn={deltaker.navn.fornavn}
-                            oppgaver={deltakelse.oppgaver}
-                            onDeltakelseChanged={onChange}
-                        />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="avslutt">
-                    <Box padding="5" paddingBlock="8 0">
-                        <AvsluttDeltakelseForm
-                            deltakelse={deltakelse}
-                            onDeltakelseAvsluttet={onChange}
-                            onCancel={() => console.log('avbryt')}
-                        />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="slett">
-                    <Box padding="5" paddingBlock="8 8">
-                        <SlettDeltakelseForm deltakelse={deltakelse} onDeltakelseSlettet={onChange} />
-                    </Box>
-                </Tabs.Panel>
-            </Tabs>
+                <DeltakelsePeriodeInfo deltakelse={deltakelse} />
+
+                <DeltakelseHandlinger deltakelse={deltakelse} />
+
+                <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />
+            </VStack>
         </Box>
     );
 };
