@@ -51,7 +51,7 @@
         "@mswjs/data": "0.16.2",
         "@navikt/ds-tailwind": "7.16.1",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@playwright/test": "1.50.1",
+        "@playwright/test": "1.51.0",
         "@sentry/vite-plugin": "3.2.2",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-actions": "8.6.3",

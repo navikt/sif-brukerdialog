@@ -46,7 +46,7 @@
         "@babel/preset-env": "7.26.9",
         "@babel/preset-react": "7.26.3",
         "@babel/preset-typescript": "7.26.0",
-        "@playwright/test": "1.50.1",
+        "@playwright/test": "1.51.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "8.6.3",
         "@storybook/addon-actions": "8.6.3",
