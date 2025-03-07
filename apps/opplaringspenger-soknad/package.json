@@ -44,7 +44,7 @@
         "react-dom": "19.0.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.6",
-        "react-router-dom": "7.2.0",
+        "react-router-dom": "7.3.0",
         "uuid": "11.1.0",
         "zod": "3.24.2"
     },
