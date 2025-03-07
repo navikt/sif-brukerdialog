@@ -9,7 +9,7 @@
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.2",
-        "vitest": "3.0.7",
+        "vitest": "3.0.8",
         "zod": "3.24.2"
     },
     "peerDependencies": {
