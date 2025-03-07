@@ -1,7 +1,7 @@
 import { DateRange, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import { RapportPeriodeinfoDto } from '@navikt/ung-deltakelse-opplyser-api';
-import { Rapporteringsperiode } from '../types';
 import dayjs from 'dayjs';
+import { Rapporteringsperiode } from '../../types';
 
 const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): boolean => {
     return dayjs(dato).isSame(programStartdato, 'month');

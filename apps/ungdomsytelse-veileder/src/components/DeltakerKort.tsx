@@ -1,7 +1,7 @@
 import { Bleed, BodyShort, Box, Button, HStack, Tag, VStack } from '@navikt/ds-react';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { Deltaker, UregistrertDeltaker } from '../api/types';
+import { Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import PersonNøytral from '../illustrations/PersonNøytral';
 import Fødselsnummer from './Fødselsnummer';
 

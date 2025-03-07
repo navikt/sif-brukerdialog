@@ -1,8 +1,9 @@
-import { BodyShort, Box, Button, ExpansionCard, HStack, List, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Add } from '@navikt/ds-icons';
 import { Oppgave } from '@navikt/ung-common';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -42,7 +43,10 @@ const LøsteOppgaver = ({ oppgaver }: Props) => {
                         ref={index === focusIndex ? ref : undefined}>
                         <ExpansionCard.Header>
                             <VStack gap="2">
-                                <ExpansionCard.Title size="small">{oppgave.oppgavetype}</ExpansionCard.Title>
+                                <ExpansionCard.Title size="small">
+                                    <AppText id={`oppgavetype.${oppgave.oppgavetype}`} /> -{' '}
+                                    <AppText id={`oppgavestatus.${oppgave.status}`} />
+                                </ExpansionCard.Title>
                                 <BodyShort as="div" size="small">
                                     <HStack gap="4">
                                         <Box>
@@ -54,13 +58,7 @@ const LøsteOppgaver = ({ oppgaver }: Props) => {
                                 </BodyShort>
                             </VStack>
                         </ExpansionCard.Header>
-                        <ExpansionCard.Content>
-                            <List>
-                                {/* <List.Item>Løsningstype: {oppgave.løsningstype}</List.Item> */}
-                                <List.Item>TO</List.Item>
-                                <List.Item>DO</List.Item>
-                            </List>
-                        </ExpansionCard.Content>
+                        <ExpansionCard.Content>TODO</ExpansionCard.Content>
                     </ExpansionCard>
                 );
             })}

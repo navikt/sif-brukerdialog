@@ -4,9 +4,14 @@ import {
     OppslagService,
     VeilederService,
 } from '@navikt/ung-deltakelse-opplyser-api';
-import { Deltaker, registrertDeltakerSchema, UregistrertDeltaker, uregistrertDeltakerSchema } from '../types';
-import { Deltakelse, deltakelserSchema, deltakelseSchema } from '../types/Deltakelse';
-import { handleError } from '../utils/errorHandlers';
+import { handleError } from '@navikt/ung-common/src/api/errorHandlers';
+import {
+    Deltaker,
+    registrertDeltakerSchema,
+    UregistrertDeltaker,
+    uregistrertDeltakerSchema,
+} from '@navikt/ung-common/src/types';
+import { Deltakelse, deltakelserSchema, deltakelseSchema } from '@navikt/ung-common/src/types/Deltakelse';
 
 /**
  * Henter enten registrert eller uregistrert deltaker basert på deltakerIdent (fnr/dnr).
@@ -96,7 +101,11 @@ const endreStartdatoForDeltakelse = async (
     endrePeriodeData: EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
     try {
-        const { data } = await VeilederService.endreStartdato({ path: { deltakelseId }, body: endrePeriodeData });
+        const { data } = await VeilederService.endreStartdato({
+            path: { deltakelseId },
+            body: endrePeriodeData,
+            throwOnError: true,
+        });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleError(e);

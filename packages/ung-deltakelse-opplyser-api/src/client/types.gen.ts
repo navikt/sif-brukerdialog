@@ -50,7 +50,8 @@ export type OppgaveDto = {
 
 export enum OppgaveStatus {
     LØST = 'LØST',
-    ULØST = 'ULØST'
+    ULØST = 'ULØST',
+    KANSELLERT = 'KANSELLERT'
 }
 
 export enum Oppgavetype {
@@ -492,6 +493,42 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse = HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+
+export type HentOppgaveForDeltakelseData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+        oppgaveId: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveId}';
+};
+
+export type HentOppgaveForDeltakelseErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentOppgaveForDeltakelseError = HentOppgaveForDeltakelseErrors[keyof HentOppgaveForDeltakelseErrors];
+
+export type HentOppgaveForDeltakelseResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type HentOppgaveForDeltakelseResponse = HentOppgaveForDeltakelseResponses[keyof HentOppgaveForDeltakelseResponses];
 
 export type HentAlleMineDeltakelserData = {
     body?: never;

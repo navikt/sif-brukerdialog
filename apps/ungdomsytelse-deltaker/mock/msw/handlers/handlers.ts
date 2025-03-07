@@ -25,10 +25,13 @@ export const handlers = [
         return HttpResponse.json({});
     }),
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        return new HttpResponse(null, { status: 500 });
+        return new HttpResponse(null, { status: 200 });
+    }),
+    http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', () => {
+        return new HttpResponse(null, { status: 200 });
     }),
     http.post('**/ungdomsytelse/inntektsrapportering/innsending', () => {
-        return HttpResponse.json({});
+        return new HttpResponse(null, { status: 200 });
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

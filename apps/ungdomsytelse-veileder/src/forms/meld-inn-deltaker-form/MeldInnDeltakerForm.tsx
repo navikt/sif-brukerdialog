@@ -1,19 +1,18 @@
-import dayjs from 'dayjs';
-import { Deltakelse, Deltaker, UregistrertDeltaker } from '../../api/types';
+import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
     FormikConfirmationCheckbox,
     FormikDatepicker,
+    getIntlFormErrorHandler,
     TypedFormikForm,
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
-import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { ApiErrorObject } from '@navikt/ung-common/src/utils/errorHandlers';
-import { veilederApiService } from '@navikt/ung-common';
+import { ApiErrorObject, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
+import dayjs from 'dayjs';
+import { veilederApiService } from '../../api/veilederApiService';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;

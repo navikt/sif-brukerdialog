@@ -40,7 +40,8 @@ export const zDeltakelseOpplysningDto = z.object({
         ]),
         status: z.enum([
             'LØST',
-            'ULØST'
+            'ULØST',
+            'KANSELLERT'
         ]),
         opprettetDato: z.string().datetime(),
         'løstDato': z.string().datetime().optional()
@@ -76,7 +77,8 @@ export const zOppgaveDto = z.object({
     ]),
     status: z.enum([
         'LØST',
-        'ULØST'
+        'ULØST',
+        'KANSELLERT'
     ]),
     opprettetDato: z.string().datetime(),
     'løstDato': z.string().datetime().optional()
@@ -84,7 +86,8 @@ export const zOppgaveDto = z.object({
 
 export const zOppgaveStatus = z.enum([
     'LØST',
-    'ULØST'
+    'ULØST',
+    'KANSELLERT'
 ]);
 
 export const zOppgavetype = z.enum([
@@ -178,6 +181,8 @@ export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonlia;
+
+export const zHentOppgaveForDeltakelseResponse = zOppgaveDto;
 
 export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelsePeriodInfo);
 

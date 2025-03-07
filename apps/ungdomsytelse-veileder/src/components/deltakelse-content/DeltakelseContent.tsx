@@ -7,6 +7,7 @@ import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakel
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { useVeileder } from '../../context/VeilederContext';
 
 interface Props {
     deltaker: Deltaker;
@@ -15,6 +16,7 @@ interface Props {
     onChange: () => void;
 }
 const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
+    const { veileder } = useVeileder();
     const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
     return (
         <Box className="pb-20">
@@ -76,22 +78,24 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                 <Tabs.Panel value="endreStartdato">
                     <Box paddingBlock="8 0">
                         <EndreStartdato
+                            veileder={veileder}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
                             deltakernavn={deltaker.navn.fornavn}
                             oppgaver={deltakelse.oppgaver}
-                            onChange={onChange}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="endreSluttdato">
                     <Box paddingBlock="8 0">
                         <EndreSluttdato
+                            veileder={veileder}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
                             deltakernavn={deltaker.navn.fornavn}
                             oppgaver={deltakelse.oppgaver}
-                            onChange={onChange}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
