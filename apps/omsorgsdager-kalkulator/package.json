@@ -31,7 +31,7 @@
         "next": "15.2.1",
         "node-fetch": "3.3.2",
         "react": "19.0.0",
-        "react-day-picker": "9.5.1",
+        "react-day-picker": "9.6.1",
         "react-dom": "19.0.0",
         "react-intl": "7.1.6",
         "uuid": "11.1.0"
