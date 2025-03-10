@@ -4,7 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 
 interface Props {
-    tag: string;
+    tag: React.ReactNode;
     tittel: string;
     svarfrist?: Date;
     beskrivelse: React.ReactNode;

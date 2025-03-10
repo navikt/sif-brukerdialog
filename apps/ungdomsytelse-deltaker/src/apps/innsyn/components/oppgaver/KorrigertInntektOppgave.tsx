@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
@@ -14,6 +14,7 @@ import { getNumberValidator, getStringValidator, getYesOrNoValidator } from '@na
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
 import { FormattedNumber } from 'react-intl';
+import { WalletIcon } from '@navikt/aksel-icons';
 
 interface Props {
     deltakelseId: string;
@@ -72,7 +73,12 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
 
     return (
         <OppgaveLayout
-            tag="Avvik i inntekt"
+            tag={
+                <HStack gap="2">
+                    <WalletIcon />
+                    Avvik i inntekt
+                </HStack>
+            }
             tittel={`Inntekt stemmer ikke med registrert inntekt`}
             besvart={besvart}
             beskrivelse={
