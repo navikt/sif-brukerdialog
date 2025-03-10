@@ -23,14 +23,14 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
         (oppgave) => oppgave.løstDato !== undefined && oppgave.status !== OppgaveStatus.ULØST,
     );
 
+    console.log(uløsteOppgaver);
+
     return (
         <VStack gap="8">
             {uløsteOppgaver.map((oppgave, index) => (
                 <OppgavePanel key={index} oppgave={oppgave} deltakelseId={id} programPeriode={programPeriode} />
             ))}
-
             {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}
-
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     Perioder og inntekt

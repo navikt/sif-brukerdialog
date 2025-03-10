@@ -110,7 +110,6 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
 
 export const zOppgittInntektForPeriode = z.object({
     arbeidstakerOgFrilansInntekt: z.number().int().optional(),
-    næringsinntekt: z.number().int().optional(),
     inntektFraYtelse: z.number().int().optional(),
     periodeForInntekt: z.object({
         fraOgMed: z.string().date(),

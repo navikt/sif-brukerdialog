@@ -1,8 +1,7 @@
 import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
-import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 import dayjs from 'dayjs';
 import {
     getIntlFormErrorHandler,
@@ -11,40 +10,36 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { useAppIntl } from '../../../../i18n';
-import { getDateValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getNumberValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
 
 interface Props {
     deltakelseId: string;
-    oppgave: EndreStartdatoOppgave;
-    opprinneligStartdato: Date;
+    oppgave: KorrigertInntektOppgave;
 }
 
 enum FormFields {
-    harKontaktetVeileder = 'harKontaktetVeileder',
-    korrigertDato = 'korrigertDato',
+    korrigertInntekt = 'korrigertInntekt',
     godkjenner = 'godkjenner',
     begrunnelse = 'begrunnelse',
 }
 
 type FormValues = Partial<{
-    [FormFields.korrigertDato]: Date;
-    [FormFields.harKontaktetVeileder]: YesOrNo;
+    [FormFields.korrigertInntekt]: string;
     [FormFields.begrunnelse]: string;
     [FormFields.godkjenner]: YesOrNo;
 }>;
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DatePicker } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Textarea, NumberInput } = getTypedFormComponents<
     FormFields,
     FormValues,
     ValidationError
 >();
 
-const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
+const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, error, pending, besvart } = useBesvarOppgave();
-    const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
@@ -57,11 +52,10 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                 ikkeGodkjentResponse: godkjennerOppgave
                     ? undefined
                     : {
-                          kontaktVeilederSvar: values[FormFields.harKontaktetVeileder] === YesOrNo.YES,
-                          korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
+                          korrigertInntekt: parseInt(values[FormFields.korrigertInntekt]!, 10),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+                type: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
             },
         };
         await sendSvar(dto);
@@ -69,34 +63,23 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
 
     return (
         <OppgaveLayout
-            tag="Endret deltakerperiode"
-            tittel="Din deltakerperiode blir endret"
+            tag="Avvik i inntekt"
+            tittel="Inntekt stemmer ikke med registrert inntekt"
             besvart={besvart}
             beskrivelse={
                 <>
                     <BodyShort>
-                        Veileder har registrert at datoen du startet i ungdomsprogrammet vil bli endret til{' '}
-                        <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                            {nyStartdatoTekst}
-                        </BodyShort>
-                        .
+                        Inntekt vi har fått rapportert gjennom a-inntekt stemmer ikke overens med den inntekten du har
+                        oppgitt. Vennligst se over inntekten og bekreft om den er korrekt. Du må gjøre dette innen
+                        utgangen av {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}.
                     </BodyShort>
-                    <BodyShort>
-                        Du kan bekrefte eller kommentere denne endringen frem til og med{' '}
-                        {dateFormatter.compact(oppgave.svarfrist)}. Endringen vil tre i kraft når du bekrefter
-                        endringen, eller senest {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}
-                        .
+                    <BodyShort spacing={true}>
+                        Hvis du ikke besvarer denne oppgaven, vil vi ta utgangspunkt i inntekten vi har fått fra
+                        a-inntekt.
                     </BodyShort>
                 </>
             }>
             <VStack gap="4">
-                {oppgave.oppgavetypeData.meldingFraVeileder ? (
-                    <MeldingFraVeileder
-                        tekst={oppgave.oppgavetypeData.meldingFraVeileder}
-                        avsender={oppgave.oppgavetypeData.veilederRef}
-                    />
-                ) : null}
-
                 <FormikWrapper
                     initialValues={{}}
                     onSubmit={handleSubmit}
@@ -111,7 +94,7 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                                 <VStack gap="6" marginBlock="2 0">
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Godkjenner du at startdato endres til ${nyStartdatoTekst}?`}
+                                        legend={`Godkjenner du endret inntekt?`}
                                         validate={getYesOrNoValidator()}
                                         description={
                                             <>
@@ -126,22 +109,10 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                                     />
                                     {values[FormFields.godkjenner] === YesOrNo.NO ? (
                                         <>
-                                            <YesOrNoQuestion
-                                                name={FormFields.harKontaktetVeileder}
-                                                legend="Har du hatt kontakt med veileder for å diskutere hvorfor du ikke ønsker å godkjenne denne endringen?"
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                            {values.harKontaktetVeileder === YesOrNo.NO ? (
-                                                <Alert variant="info">
-                                                    Vi anbefaler deg å ta kontakt med veileder for å se om dere kan
-                                                    oppklare hvorfor du ikke ønsker å godkjenne. Da kan veileder evt.
-                                                    endre datoen til den dere blir enig om.
-                                                </Alert>
-                                            ) : null}
-                                            <DatePicker
-                                                name={FormFields.korrigertDato}
-                                                label="Hvilken dato mener du er korrekt?"
-                                                validate={getDateValidator({ required: true })}
+                                            <NumberInput
+                                                name={FormFields.korrigertInntekt}
+                                                label="Hvilken inntekt mener du er korrekt?"
+                                                validate={getNumberValidator({ required: true })}
                                             />
                                             <Textarea
                                                 name={FormFields.begrunnelse}
@@ -162,4 +133,4 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
     );
 };
 
-export default EndretStartdatoOppgaveForm;
+export default KorrigertInntektOppgave;

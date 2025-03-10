@@ -2,6 +2,7 @@ import { OpenDateRange } from '@navikt/sif-common-formik-ds';
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import EndretSluttdatoOppgaveForm from './EndretSluttdatoOppgaveForm';
 import EndretStartdatoOppgaveForm from './EndretStartdatoOppgaveForm';
+import KorrigertInntektOppgave from './KorrigertInntektOppgave';
 
 interface Props {
     programPeriode: OpenDateRange;
@@ -28,7 +29,7 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.R
                 />
             );
         case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
-            return <>Korrigert inntekt</>;
+            return <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />;
     }
 };
 

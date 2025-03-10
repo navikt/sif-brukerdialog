@@ -29,6 +29,7 @@ export interface EndreSluttdatoOppgave extends oppgaveBase {
 export interface KorrigertInntektOppgave extends oppgaveBase {
     oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT;
     oppgavetypeData: {
+        rapportertInntekt?: number;
         korrigertInntekt: number;
         fraOgMed: Date;
         tilOgMed: Date;

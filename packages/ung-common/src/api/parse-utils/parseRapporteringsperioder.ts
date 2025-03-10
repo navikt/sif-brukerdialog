@@ -28,7 +28,6 @@ export const parseRapporteringsperioder = (
             inntekt: {
                 // TODO
                 arbeidstakerOgFrilansInntekt: 0,
-                næringsinntekt: 0,
                 inntektFraYtelse: 0,
                 summertInntekt: 0,
             },

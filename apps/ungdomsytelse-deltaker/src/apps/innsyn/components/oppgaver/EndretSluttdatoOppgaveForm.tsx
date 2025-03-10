@@ -69,6 +69,7 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
 
     return (
         <OppgaveLayout
+            tag="Endret deltakerperiode"
             tittel="Din deltakerperiode blir endret"
             besvart={besvart}
             beskrivelse={

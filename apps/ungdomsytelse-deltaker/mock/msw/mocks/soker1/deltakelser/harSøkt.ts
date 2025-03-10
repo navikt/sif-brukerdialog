@@ -38,13 +38,14 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                 oppgavetypeData: {
                     type: 'BEKREFT_KORRIGERT_INNTEKT',
+                    rapportertInntekt: 0,
                     korrigertInntekt: 12345,
                     fraOgMed: '2026-01-01',
                     tilOgMed: '2026-01-31',
                 },
-                status: OppgaveStatus.LØST,
+                status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
-                løstDato: '2025-02-23T05:00:12.048157Z',
+                løstDato: undefined,
             },
         ],
         rapporteringsPerioder: [

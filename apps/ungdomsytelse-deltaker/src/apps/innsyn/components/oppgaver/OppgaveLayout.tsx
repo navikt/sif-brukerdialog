@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 
 interface Props {
+    tag: string;
     tittel: string;
     svarfrist?: Date;
     beskrivelse: React.ReactNode;
@@ -12,14 +13,14 @@ interface Props {
     onÅpneOppgave?: () => void;
 }
 
-const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, besvart, onÅpneOppgave }: Props) => {
+const OppgaveLayout = ({ tag, tittel, svarfrist, beskrivelse, children, besvart, onÅpneOppgave }: Props) => {
     return (
         <BlueBox>
             <VStack gap="6">
                 <Box>
                     <Bleed marginBlock="2 0">
                         <Tag variant="alt1-filled" size="small">
-                            Varsel om endring
+                            {tag}
                         </Tag>
                     </Bleed>
                 </Box>
@@ -45,7 +46,7 @@ const OppgaveLayout = ({ tittel, svarfrist, beskrivelse, children, besvart, onÅ
                             <ExpansionCard.Title size="small">
                                 <HStack gap="2" align={'center'}>
                                     <ClipboardCheckmarkIcon />
-                                    Se mer informasjon om endringen
+                                    Besvar oppgave
                                 </HStack>
                             </ExpansionCard.Title>
                         </ExpansionCard.Header>

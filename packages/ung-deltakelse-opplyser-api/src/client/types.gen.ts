@@ -40,6 +40,7 @@ export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
 };
 
 export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
+    rapportertInntekt?: number;
     korrigertInntekt: number;
     fraOgMed: string;
     tilOgMed: string;

@@ -65,7 +65,6 @@ export type UngdomsytelseOppgavebekreftelse = {
 
 export type OppgittInntektForPeriode = {
     arbeidstakerOgFrilansInntekt?: number;
-    næringsinntekt?: number;
     inntektFraYtelse?: number;
     periodeForInntekt: UngPeriode;
 };
