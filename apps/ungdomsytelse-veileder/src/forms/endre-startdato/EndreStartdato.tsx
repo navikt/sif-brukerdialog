@@ -102,7 +102,11 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
                                                 />
                                                 <HStack gap="2">
                                                     <Button type="submit" loading={pending} variant="primary">
-                                                        Endre startdato og send varsel til {deltakernavn}
+                                                        {deltakelse.harSøkt ? (
+                                                            <>Endre startdato og send varsel til {deltakernavn}</>
+                                                        ) : (
+                                                            <>Endre startdato</>
+                                                        )}
                                                     </Button>
                                                 </HStack>
                                                 {error ? <Alert variant="error">{error.message}</Alert> : null}

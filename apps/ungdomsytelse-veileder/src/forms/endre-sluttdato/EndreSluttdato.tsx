@@ -106,7 +106,11 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
                                                         type="submit"
                                                         loading={endreDeltakelsePending}
                                                         variant="primary">
-                                                        Endre sluttdato og send varsel til {deltakernavn}
+                                                        {deltakelse.harSøkt ? (
+                                                            <>Endre sluttdato og send varsel til {deltakernavn}</>
+                                                        ) : (
+                                                            <>Endre sluttdato</>
+                                                        )}
                                                     </Button>
                                                 </HStack>
                                                 {error ? (
