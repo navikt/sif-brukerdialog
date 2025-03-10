@@ -28,7 +28,7 @@ export const handlers = [
 
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
-        const data = getDeltakerByDeltakerId(id);
+        const data = getDeltakerByDeltakerId(id as string);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 

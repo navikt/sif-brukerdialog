@@ -63,56 +63,62 @@ const EndreSluttdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
                                         </Alert>
                                     </Box>
                                 ) : null}
-                                <Heading level="3" size="medium">
-                                    Endre sluttdato
-                                </Heading>
-                                {deltakelse.harSøkt ? (
-                                    <BodyLong spacing={true}>
-                                        Når sluttdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
-                                        nye datoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
-                                        deltaker".
-                                    </BodyLong>
-                                ) : (
-                                    <BodyLong spacing={true}>
-                                        Deltaker har ikke søkt enda. Du kan endre sluttdatoen uten at det uløser blir
-                                        noen oppgave til deltaker.
-                                    </BodyLong>
-                                )}
+
                                 {oppdatert ? (
-                                    <Alert variant="success">Startdato er oppdatert</Alert>
+                                    <Alert variant="success">Sluttdato er oppdatert</Alert>
                                 ) : (
-                                    <TypedFormikForm
-                                        submitPending={endreDeltakelsePending}
-                                        showSubmitButton={false}
-                                        submitButtonLabel="Endre"
-                                        showButtonArrows={false}>
-                                        <VStack gap="6">
-                                            <PeriodeFormPart
-                                                veileder={veileder}
-                                                deltakernavn={deltakernavn}
-                                                visSluttdato={true}
-                                                visStartdato={false}
-                                                tomDate={tomDate}
-                                                deltakelser={deltakelser}
-                                                deltakelseId={deltakelse.id}
-                                            />
-                                            <HStack gap="2">
-                                                <Button
-                                                    type="submit"
-                                                    loading={endreDeltakelsePending}
-                                                    variant="primary">
-                                                    Endre sluttdato og send varsel til {deltakernavn}
-                                                </Button>
-                                            </HStack>
-                                            {error ? (
-                                                <Alert variant="error">
-                                                    {error.type}
-                                                    <br />
-                                                    {error.message}
+                                    <>
+                                        <VStack gap="2">
+                                            <Heading level="3" size="medium">
+                                                Endre sluttdato
+                                            </Heading>
+                                            {deltakelse.harSøkt ? (
+                                                <BodyLong spacing={true}>
+                                                    Når sluttdato endres, opprettes en oppgave til deltaker hvor hen må
+                                                    bekrefte den nye datoen. Oppgaven vil også bli synlig for deg under
+                                                    fanen "Oppgaver til deltaker".
+                                                </BodyLong>
+                                            ) : (
+                                                <Alert variant="info">
+                                                    Deltaker har ikke søkt enda. Du kan endre sluttdatoen uten at det
+                                                    uløser blir noen oppgave til deltaker.
                                                 </Alert>
-                                            ) : null}
+                                            )}
                                         </VStack>
-                                    </TypedFormikForm>
+                                        <TypedFormikForm
+                                            submitPending={endreDeltakelsePending}
+                                            showSubmitButton={false}
+                                            submitButtonLabel="Endre"
+                                            showButtonArrows={false}>
+                                            <VStack gap="6">
+                                                <PeriodeFormPart
+                                                    harSøkt={deltakelse.harSøkt}
+                                                    veileder={veileder}
+                                                    deltakernavn={deltakernavn}
+                                                    visSluttdato={true}
+                                                    visStartdato={false}
+                                                    tomDate={tomDate}
+                                                    deltakelser={deltakelser}
+                                                    deltakelseId={deltakelse.id}
+                                                />
+                                                <HStack gap="2">
+                                                    <Button
+                                                        type="submit"
+                                                        loading={endreDeltakelsePending}
+                                                        variant="primary">
+                                                        Endre sluttdato og send varsel til {deltakernavn}
+                                                    </Button>
+                                                </HStack>
+                                                {error ? (
+                                                    <Alert variant="error">
+                                                        {error.type}
+                                                        <br />
+                                                        {error.message}
+                                                    </Alert>
+                                                ) : null}
+                                            </VStack>
+                                        </TypedFormikForm>
+                                    </>
                                 )}
                             </VStack>
                             <VStack className="bg-deepblue-50 p-5 rounded-md">

@@ -62,49 +62,53 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
                                         </Alert>
                                     </Box>
                                 ) : null}
-                                <VStack gap="2">
-                                    <Heading level="3" size="medium">
-                                        Endre startdato
-                                    </Heading>
-                                    {deltakelse.harSøkt ? (
-                                        <BodyLong>
-                                            Når startdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte
-                                            den nye startdatoen. Oppgaven vil også bli synlig for deg under fanen
-                                            "Oppgaver til deltaker".
-                                        </BodyLong>
-                                    ) : (
-                                        <BodyLong>
-                                            Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det uløser
-                                            blir noen oppgave til deltaker.
-                                        </BodyLong>
-                                    )}
-                                </VStack>
+
                                 {oppdatert ? (
                                     <Alert variant="success">Startdato er oppdatert</Alert>
                                 ) : (
-                                    <TypedFormikForm
-                                        submitPending={pending}
-                                        showSubmitButton={false}
-                                        submitButtonLabel="Endre"
-                                        showButtonArrows={false}>
-                                        <VStack gap="6">
-                                            <PeriodeFormPart
-                                                veileder={veileder}
-                                                deltakernavn={deltakernavn}
-                                                visSluttdato={false}
-                                                visStartdato={true}
-                                                fomDate={fomDate}
-                                                deltakelser={deltakelser}
-                                                deltakelseId={deltakelse.id}
-                                            />
-                                            <HStack gap="2">
-                                                <Button type="submit" loading={pending} variant="primary">
-                                                    Endre startdato og send varsel til {deltakernavn}
-                                                </Button>
-                                            </HStack>
-                                            {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                    <>
+                                        <VStack gap="2">
+                                            <Heading level="3" size="medium">
+                                                Endre startdato
+                                            </Heading>
+                                            {deltakelse.harSøkt ? (
+                                                <BodyLong>
+                                                    Når startdato endres, opprettes en oppgave til deltaker hvor hen må
+                                                    bekrefte den nye startdatoen. Oppgaven vil også bli synlig for deg
+                                                    under fanen "Oppgaver til deltaker".
+                                                </BodyLong>
+                                            ) : (
+                                                <Alert variant="info">
+                                                    Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det
+                                                    uløser blir noen oppgave til deltaker.
+                                                </Alert>
+                                            )}
                                         </VStack>
-                                    </TypedFormikForm>
+                                        <TypedFormikForm
+                                            submitPending={pending}
+                                            showSubmitButton={false}
+                                            submitButtonLabel="Endre"
+                                            showButtonArrows={false}>
+                                            <VStack gap="6">
+                                                <PeriodeFormPart
+                                                    harSøkt={deltakelse.harSøkt}
+                                                    veileder={veileder}
+                                                    deltakernavn={deltakernavn}
+                                                    visSluttdato={false}
+                                                    visStartdato={true}
+                                                    fomDate={fomDate}
+                                                    deltakelser={deltakelser}
+                                                    deltakelseId={deltakelse.id}
+                                                />
+                                                <HStack gap="2">
+                                                    <Button type="submit" loading={pending} variant="primary">
+                                                        Endre startdato og send varsel til {deltakernavn}
+                                                    </Button>
+                                                </HStack>
+                                                {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                            </VStack>
+                                        </TypedFormikForm>
+                                    </>
                                 )}
                             </VStack>
 
