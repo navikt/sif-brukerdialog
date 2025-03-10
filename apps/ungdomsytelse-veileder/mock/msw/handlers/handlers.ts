@@ -28,12 +28,12 @@ export const handlers = [
 
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
-        const data = getDeltakerByDeltakerId(id);
+        const data = getDeltakerByDeltakerId(id as string);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
-        const data = getDeltakelser(params.deltakerId);
+        const data = getDeltakelser(params.deltakerId as string);
         await delay(250);
         return HttpResponse.json(data);
     }),

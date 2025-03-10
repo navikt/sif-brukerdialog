@@ -1,15 +1,12 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../../context/DeltakerContext';
+import { DeltakelseProvider } from '../../context/DeltakelseContext';
 import DeltakelseContent from '../../components/deltakelse-content/DeltakelseContent';
 
 const DeltakerPageContent = () => {
-    const { deltaker, deltakelserPending, deltakelser = [], refetchDeltakelser } = useDeltaker();
+    const { deltaker, deltakelserPending, deltakelser = [] } = useDeltaker();
     const aktiveDeltakelser = deltakelser;
-
-    const handleOnDeltakelseChange = () => {
-        refetchDeltakelser();
-    };
 
     if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {
         return (
@@ -40,13 +37,9 @@ const DeltakerPageContent = () => {
     const deltakelse = deltakelser[0];
 
     return (
-        <DeltakelseContent
-            key={deltakelse.id}
-            deltakelse={deltakelse}
-            deltaker={deltaker}
-            alleDeltakelser={deltakelser}
-            onChange={handleOnDeltakelseChange}
-        />
+        <DeltakelseProvider deltakelse={deltakelse} deltaker={deltaker}>
+            <DeltakelseContent />
+        </DeltakelseProvider>
     );
 };
 

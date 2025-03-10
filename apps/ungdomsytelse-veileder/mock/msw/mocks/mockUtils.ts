@@ -6,7 +6,7 @@ const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
 
 /** Fnr */
-export const findDeltaker = (deltakerIdent) => {
+export const findDeltaker = (deltakerIdent: string) => {
     switch (deltakerIdent) {
         case nyDeltakerMock.deltakerIdent:
             return nyDeltakerMock;
@@ -19,7 +19,7 @@ export const findDeltaker = (deltakerIdent) => {
 };
 
 /** Registrert id som deltake */
-export const getDeltakerByDeltakerId = (deltakerId) => {
+export const getDeltakerByDeltakerId = (deltakerId: string) => {
     if (deltakerId) {
         console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {

@@ -1,16 +1,11 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
 import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
 import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
+import { useDeltakelse } from '../../context/DeltakelseContext';
 
-interface Props {
-    deltaker: Deltaker;
-    deltakelse: Deltakelse;
-    alleDeltakelser: Deltakelse[];
-    onChange: () => void;
-}
-const DeltakelseContent = ({ deltakelse }: Props) => {
+const DeltakelseContent = () => {
+    const { deltakelse, deltaker } = useDeltakelse();
     return (
         <Box className="pb-8 pt-4">
             <VStack gap="8">
@@ -20,7 +15,7 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} />
 
-                <DeltakelseHandlinger deltakelse={deltakelse} />
+                <DeltakelseHandlinger deltakelse={deltakelse} deltaker={deltaker} />
 
                 <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />
             </VStack>

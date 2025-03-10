@@ -1,12 +1,12 @@
 import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Deltakelse, EndreStartdatoOppgave, Oppgave, Oppgavetype } from '@navikt/ung-common';
+import { Deltakelse, Deltaker, EndreStartdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
-import { Veileder } from '../../types/Veileder';
 import { useState } from 'react';
+import { useVeileder } from '../../context/VeilederContext';
 
 export type EndreStartdatoFormValues = {
     id: string;
@@ -16,28 +16,31 @@ export type EndreStartdatoFormValues = {
 };
 
 interface Props {
-    veileder: Veileder;
-    oppgaver: Oppgave[];
-    deltakernavn: string;
+    // veileder: Veileder;
+    deltaker: Deltaker;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
-    onDeltakelseChanged: () => void;
+    onClose: () => void;
+    // onDeltakelseChanged: () => void;
 }
 
-const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veileder, onDeltakelseChanged }: Props) => {
+const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onClose }: Props) => {
     const [oppdatert, setOppdatert] = useState(false);
+    const { veileder } = useVeileder();
 
     const handleOnDeltakelseChanged = () => {
         setOppdatert(true);
-        onDeltakelseChanged();
+        // onDeltakelseChanged();
     };
+
     const { endreStartdato, pending, error } = useEndreDeltakelse(handleOnDeltakelseChanged);
 
-    const åpenOppgaver = oppgaver.filter(
+    const åpenOppgaver = deltakelse.oppgaver.filter(
         (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     ) as EndreStartdatoOppgave[];
 
     const åpenOppgave: EndreStartdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
+    const deltakernavn = formaterNavn(deltaker.navn);
 
     return (
         <Box>
@@ -119,4 +122,4 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veile
     );
 };
 
-export default EndreStartdato;
+export default EndreStartdatoForm;
