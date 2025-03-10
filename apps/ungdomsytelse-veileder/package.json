@@ -54,7 +54,7 @@
         "@vitejs/plugin-react": "4.3.4",
         "autoprefixer": "10.4.20",
         "compression": "1.8.0",
-        "eslint": "9.21.0",
+        "eslint": "9.22.0",
         "eslint-plugin-prettier": "5.2.3",
         "eslint-plugin-react": "7.37.4",
         "eslint-plugin-simple-import-sort": "12.1.1",
