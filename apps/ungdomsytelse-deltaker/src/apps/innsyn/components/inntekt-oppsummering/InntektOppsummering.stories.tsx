@@ -13,7 +13,6 @@ const meta: Meta<typeof InntektOppsummering> = {
         periode: ISODateRangeToDateRange('2024-01-01/2024-12-31'),
         inntekt: {
             arbeidstakerOgFrilansInntekt: 123,
-            næringsinntekt: 123,
             inntektFraYtelse: 0,
             summertInntekt: 0,
         },

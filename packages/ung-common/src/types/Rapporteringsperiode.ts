@@ -7,7 +7,6 @@ export interface Rapporteringsperiode {
     fristForRapportering: Date;
     inntekt: {
         arbeidstakerOgFrilansInntekt: number;
-        næringsinntekt: number;
         inntektFraYtelse: number;
         summertInntekt: number;
     };

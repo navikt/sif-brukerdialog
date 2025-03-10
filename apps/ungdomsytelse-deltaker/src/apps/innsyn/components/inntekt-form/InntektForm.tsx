@@ -46,7 +46,6 @@ const InntektForm = ({
                 },
                 arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
                 inntektFraYtelse: inntekt.inntektFraYtelse,
-                næringsinntekt: inntekt.næringsinntekt,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         });
@@ -56,10 +55,8 @@ const InntektForm = ({
     const initialValues: Partial<InntektFormValues> = inntekt
         ? {
               harArbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              harNæringsinntekt: inntekt.næringsinntekt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
               harInntektFraYtelse: inntekt.inntektFraYtelse || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
               ansattInntekt: `${inntekt.arbeidstakerOgFrilansInntekt}`,
-              snInntekt: `${inntekt.næringsinntekt}`,
               ytelseInntekt: `${inntekt.inntektFraYtelse}`,
           }
         : {};

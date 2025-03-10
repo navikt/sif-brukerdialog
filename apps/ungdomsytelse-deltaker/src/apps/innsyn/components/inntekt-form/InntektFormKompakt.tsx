@@ -36,7 +36,6 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
                     tilOgMed: dateToISODate(periode.to),
                 },
                 arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
-                næringsinntekt: inntekt.næringsinntekt,
                 inntektFraYtelse: inntekt.inntektFraYtelse,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
