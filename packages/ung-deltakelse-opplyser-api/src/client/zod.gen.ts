@@ -75,10 +75,22 @@ export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
     }),
 );
 
+export const zKorrigertOppgavetypeDataDto = z.object({}).merge(
+    z.object({
+        korrigertInntekt: z.number(),
+        fraOgMed: z.string().date(),
+        tilOgMed: z.string().date(),
+    }),
+);
+
 export const zOppgaveDto = z.object({
     id: z.string().uuid(),
-    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO']),
-    oppgavetypeData: z.union([zEndretSluttdatoOppgavetypeDataDto, zEndretStartdatoOppgavetypeDataDto]),
+    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_KORRIGERT_INNTEKT']),
+    oppgavetypeData: z.union([
+        zEndretSluttdatoOppgavetypeDataDto,
+        zEndretStartdatoOppgavetypeDataDto,
+        zKorrigertOppgavetypeDataDto,
+    ]),
     status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),

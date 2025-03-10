@@ -61,22 +61,51 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
         }),
     );
 
+export const zBekreftKorrigertInntektOppgaveDto = z
+    .object({
+        oppgaveId: z.string(),
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        ikkeGodkjentResponse: z
+            .object({
+                korrigertInntekt: z.number(),
+                meldingFraDeltaker: z.string(),
+            })
+            .optional(),
+        type: z.string(),
+    })
+    .merge(
+        z.object({
+            type: z.literal('BEKREFT_KORRIGERT_INNTEKT'),
+        }),
+    );
+
 export const zUngdomsytelseIkkeGodkjentResponse = z.object({
     korrigertDato: z.string().date(),
     kontaktVeilederSvar: z.boolean(),
     meldingFraDeltaker: z.string(),
 });
 
+export const zUngdomsytelseIkkeGodkjentInntektResponse = z.object({
+    korrigertInntekt: z.number(),
+    meldingFraDeltaker: z.string(),
+});
+
 export const zUngdomsytelseOppgaveDto = z.object({
     oppgaveId: z.string(),
     bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-    ikkeGodkjentResponse: zUngdomsytelseIkkeGodkjentResponse.optional(),
+    ikkeGodkjentResponse: z
+        .union([zUngdomsytelseIkkeGodkjentResponse, zUngdomsytelseIkkeGodkjentInntektResponse])
+        .optional(),
     type: z.string(),
 });
 
 export const zUngdomsytelseOppgavebekreftelse = z.object({
     deltakelseId: z.string().uuid(),
-    oppgave: z.union([zEndretSluttdatoUngdomsytelseOppgaveDto, zEndretStartdatoUngdomsytelseOppgaveDto]),
+    oppgave: z.discriminatedUnion('type', [
+        zEndretSluttdatoUngdomsytelseOppgaveDto,
+        zEndretStartdatoUngdomsytelseOppgaveDto,
+        zBekreftKorrigertInntektOppgaveDto,
+    ]),
 });
 
 export const zOppgittInntektForPeriode = z.object({

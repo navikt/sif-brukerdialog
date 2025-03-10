@@ -48,7 +48,10 @@ export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
 export type OppgaveDto = {
     id: string;
     oppgavetype: Oppgavetype;
-    oppgavetypeData: EndretSluttdatoOppgavetypeDataDto | EndretStartdatoOppgavetypeDataDto;
+    oppgavetypeData:
+        | EndretSluttdatoOppgavetypeDataDto
+        | EndretStartdatoOppgavetypeDataDto
+        | KorrigertInntektOppgavetypeDataDto;
     status: OppgaveStatus;
     opprettetDato: string;
     løstDato?: string;
