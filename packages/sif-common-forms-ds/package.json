@@ -58,7 +58,7 @@
         "intl": "1.2.5",
         "jsdom": "26.0.0",
         "react": "19.0.0",
-        "react-day-picker": "9.5.1",
+        "react-day-picker": "9.6.1",
         "react-dom": "19.0.0",
         "react-intl": "7.1.6",
         "react-json-view": "1.21.3",
