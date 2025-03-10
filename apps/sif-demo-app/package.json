@@ -27,7 +27,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "clsx": "2.1.1",
-        "csp-header": "6.0.1",
+        "csp-header": "6.1.0",
         "date-fns": "4.1.0",
         "html-react-parser": "5.2.2",
         "jsdom": "26.0.0",
