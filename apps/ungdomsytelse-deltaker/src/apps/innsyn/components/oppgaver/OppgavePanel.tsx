@@ -9,7 +9,7 @@ interface Props {
     oppgave: Oppgave;
 }
 
-const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props) => {
+const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.ReactNode => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return (
@@ -27,6 +27,8 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props) => {
                     opprinneligSluttdato={programPeriode.to}
                 />
             );
+        case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+            return <>Korrigert inntekt</>;
     }
 };
 

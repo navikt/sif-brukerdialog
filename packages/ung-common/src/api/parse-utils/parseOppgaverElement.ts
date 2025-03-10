@@ -2,6 +2,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     EndretSluttdatoOppgavetypeDataDto,
     EndretStartdatoOppgavetypeDataDto,
+    KorrigertInntektOppgavetypeDataDto,
     OppgaveStatus,
     Oppgavetype,
     zDeltakelseOpplysningDto,
@@ -63,6 +64,24 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     },
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);
+                return;
+            case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+                const korrigertInntektData = oppgave.oppgavetypeData as KorrigertInntektOppgavetypeDataDto;
+                const korrigertInntektOppgave: Oppgave = {
+                    id: oppgave.id,
+                    status: getOppgaveStatusEnum(oppgave.status),
+                    løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
+                    opprettetDato: ISODateToDate(oppgave.opprettetDato),
+                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
+                    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                    oppgavetypeData: {
+                        korrigertInntekt: korrigertInntektData.korrigertInntekt,
+                        fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
+                        tilOgMed: ISODateToDate(korrigertInntektData.tilOgMed),
+                    },
+                };
+                parsedOppgaver.push(korrigertInntektOppgave);
+                return;
         }
     });
     return parsedOppgaver;
