@@ -34,7 +34,7 @@
         "@trpc/server": "10.45.2",
         "axios": "1.8.2",
         "clsx": "2.1.1",
-        "csp-header": "6.0.1",
+        "csp-header": "6.1.0",
         "dayjs": "1.11.13",
         "html-react-parser": "5.2.2",
         "jsdom": "26.0.0",

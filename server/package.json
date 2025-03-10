@@ -14,7 +14,7 @@
         "@navikt/oasis": "3.7.0",
         "@navikt/sif-common-env": "workspace:*",
         "cookie-parser": "1.4.7",
-        "csp-header": "6.0.1",
+        "csp-header": "6.1.0",
         "express": "4.21.2",
         "html-react-parser": "5.2.2",
         "http-proxy-middleware": "3.0.3",
