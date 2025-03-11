@@ -71,6 +71,24 @@ const readMockFile = (file, responseObject) => {
     }
 };
 
+const ugyldigeTegnRespons = {
+    violations: [
+        {
+            invalidValue:
+                '• (Bullet) – U+2022\n✓ (Check mark) – U+2713\n★ (Black Star) – U+2605\n⚡ (High Voltage) – U+26A1\n∞ (Infinity) – U+221E\n\uD834\uDD1E (Musical G Clef) – U+1D11E',
+            parameterName: 'høyereRisikoForFraværBeskrivelse',
+            parameterType: 'ENTITY',
+            reason: "Matcher ikke tillatt mønster: '^[\\p{Punct}\\p{L}\\p{M}\\p{N}\\p{Sc}\\p{Space}«»–§�\\u2018\\u2019\\u201a\\u201b\\u201c\\u201d\\u201e\\u201f\\u00b4\\u2026]*$'",
+        },
+    ],
+    detail: 'Forespørselen inneholder valideringsfeil',
+    instance: 'https://omsorgspengesoknad.intern.dev.nav.no/omsorgspenger-utvidet-rett/innsending',
+    properties: null,
+    status: 400,
+    title: 'invalid-request-parameters',
+    type: '/problem-details/invalid-request-parameters',
+};
+
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
@@ -83,6 +101,12 @@ const startExpressServer = () => {
     server.get('/oppslag/barn', (req, res) => {
         setTimeout(() => {
             readMockFile(barnFileName, res);
+        }, 250);
+    });
+
+    server.post('/valider/fritekstfelt', (req, res) => {
+        setTimeout(() => {
+            res.status(400).send(ugyldigeTegnRespons);
         }, 250);
     });
 
@@ -106,28 +130,12 @@ const startExpressServer = () => {
     //         'høyereRisikoForFraværBeskrivelse matcher ikke tilatt møønster: ^[\\p{Punct}\\p{L}\\p{M}\\p{N}\\p{Sc}\\p{Space}«»–§�\\u2018\\u2019\\u201a\\u201b\\u201c\\u201d\\u201e\\u201f\\u00b4\\u2026]*$',
     //     ],
     // };
-    const errorResponse = {
-        violations: [
-            {
-                invalidValue:
-                    '• (Bullet) – U+2022\n✓ (Check mark) – U+2713\n★ (Black Star) – U+2605\n⚡ (High Voltage) – U+26A1\n∞ (Infinity) – U+221E\n\uD834\uDD1E (Musical G Clef) – U+1D11E',
-                parameterName: 'høyereRisikoForFraværBeskrivelse',
-                parameterType: 'ENTITY',
-                reason: "Matcher ikke tillatt mønster: '^[\\p{Punct}\\p{L}\\p{M}\\p{N}\\p{Sc}\\p{Space}«»–§�\\u2018\\u2019\\u201a\\u201b\\u201c\\u201d\\u201e\\u201f\\u00b4\\u2026]*$'",
-            },
-        ],
-        detail: 'Forespørselen inneholder valideringsfeil',
-        instance: 'https://omsorgspengesoknad.intern.dev.nav.no/omsorgspenger-utvidet-rett/innsending',
-        properties: null,
-        status: 400,
-        title: 'invalid-request-parameters',
-        type: '/problem-details/invalid-request-parameters',
-    };
+
     server.post('/omsorgspenger-utvidet-rett/innsending', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
-            res.status(400).send(errorResponse);
+            res.status(400).send(ugyldigeTegnRespons);
         }, 100);
     });
 
