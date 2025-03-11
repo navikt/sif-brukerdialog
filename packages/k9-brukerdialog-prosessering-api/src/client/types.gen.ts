@@ -44,7 +44,8 @@ export type UngdomsytelseIkkeGodkjentResponse = {
 };
 
 export type UngdomsytelseIkkeGodkjentInntektResponse = {
-    korrigertInntekt: number;
+    arbeidstakerOgFrilansInntekt?: number;
+    inntektFraYtelse?: number;
     meldingFraDeltaker: string;
 };
 

@@ -23,8 +23,6 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
         (oppgave) => oppgave.løstDato !== undefined && oppgave.status !== OppgaveStatus.ULØST,
     );
 
-    console.log(uløsteOppgaver);
-
     return (
         <VStack gap="8">
             {uløsteOppgaver.map((oppgave, index) => (
@@ -52,15 +50,5 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
         </VStack>
     );
 };
-
-// const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
-//     switch (oppgave.oppgavetype) {
-//         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-//         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-//             return true;
-//         default:
-//             return false;
-//     }
-// };
 
 export default DeltakelseContent;

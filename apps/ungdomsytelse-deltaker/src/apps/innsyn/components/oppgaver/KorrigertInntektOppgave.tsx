@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, HStack, List, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
@@ -22,18 +22,22 @@ interface Props {
 }
 
 enum FormFields {
-    korrigertInntekt = 'korrigertInntekt',
+    arbeidstakerOgFrilansInntekt = 'arbeidstakerOgFrilansInntekt',
+    inntektFraYtelse = 'inntektFraYtelse',
     godkjenner = 'godkjenner',
     begrunnelse = 'begrunnelse',
+    bekrefterOpplysninger = 'bekrefterOpplysninger',
 }
 
 type FormValues = Partial<{
-    [FormFields.korrigertInntekt]: string;
+    [FormFields.arbeidstakerOgFrilansInntekt]?: string;
+    [FormFields.inntektFraYtelse]?: string;
     [FormFields.begrunnelse]: string;
     [FormFields.godkjenner]: YesOrNo;
+    [FormFields.bekrefterOpplysninger]: boolean;
 }>;
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea, NumberInput } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Textarea, NumberInput, ConfirmationCheckbox } = getTypedFormComponents<
     FormFields,
     FormValues,
     ValidationError
@@ -54,7 +58,8 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                 ikkeGodkjentResponse: godkjennerOppgave
                     ? undefined
                     : {
-                          korrigertInntekt: parseInt(values[FormFields.korrigertInntekt]!, 10),
+                          arbeidstakerOgFrilansInntekt: parseInt(values[FormFields.arbeidstakerOgFrilansInntekt]!, 10),
+                          inntektFraYtelse: parseInt(values[FormFields.inntektFraYtelse]!, 10),
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
                 type: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
@@ -63,10 +68,11 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
         await sendSvar(dto);
     };
 
+    const { inntektFraDeltaker, periodeForInntekt, inntektFraAinntekt } = oppgave.oppgavetypeData;
     const periodetekst = dateRangeFormatter.getDateRangeText(
         {
-            from: oppgave.oppgavetypeData.fraOgMed,
-            to: oppgave.oppgavetypeData.tilOgMed,
+            from: periodeForInntekt.fraOgMed,
+            to: periodeForInntekt.tilOgMed,
         },
         intl.locale,
     );
@@ -79,19 +85,23 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                     Avvik i inntekt
                 </HStack>
             }
-            tittel={`Inntekt stemmer ikke med registrert inntekt`}
+            tittel={`Inntekt du har opplyst stemmer ikke med registrert inntekt i a-ordningen`}
             besvart={besvart}
             beskrivelse={
                 <>
+                    <ReadMore header="Hva er a-ordningen?">
+                        A-ordningen er en samordnet måte for arbeidsgivere å rapportere opplysninger om inntekt og
+                        ansatte til NAV, SSB og Skatteetaten. Ordningen er digital. Opplysningene blir sendt
+                        elektronisk, enten via arbeidsgivers lønnssystem eller via en tjeneste i Altinn.
+                    </ReadMore>
                     <BodyShort>Gjelder perioden {periodetekst}</BodyShort>
                     <BodyShort>
-                        Inntekt vi har fått gjennom a-inntekt stemmer ikke overens med inntekten du har oppgitt her.
-                        Vennligst se over inntekten og bekreft om den er korrekt. Du må gjøre dette innen utgangen av{' '}
-                        {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}.
+                        Inntekt vi har fått fra <strong>a-ordningen</strong> stemmer ikke overens med inntekten vi har
+                        fått av deg. Vennligst se over og send inn hvilken inntekt som er den riktige. Frist for å svare
+                        på denne oppgaven er {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}.
                     </BodyShort>
                     <BodyShort spacing={true}>
-                        Hvis du ikke besvarer denne oppgaven, vil vi ta utgangspunkt i inntekten vi har fått fra
-                        a-inntekt.
+                        Hvis du ikke sender inn et svar, vil vi bruke inntekten vi har fått fra a-ordningen.
                     </BodyShort>
                 </>
             }>
@@ -110,7 +120,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 <VStack gap="6" marginBlock="2 0">
                                     <VStack gap="2">
                                         <Heading level="3" size="xsmall">
-                                            Periode
+                                            Inntektsperiode
                                         </Heading>
                                         <BodyShort>{periodetekst}</BodyShort>
                                     </VStack>
@@ -118,14 +128,31 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                         <Heading level="3" size="xsmall">
                                             Inntekt du har oppgitt
                                         </Heading>
-                                        <BodyShort>
-                                            {oppgave.oppgavetypeData.rapportertInntekt ? (
-                                                <>
-                                                    <FormattedNumber
-                                                        value={oppgave.oppgavetypeData.rapportertInntekt}
-                                                    />{' '}
-                                                    kroner
-                                                </>
+                                        <BodyShort as="div">
+                                            {inntektFraDeltaker ? (
+                                                <List>
+                                                    <List.Item title="Arbeidstaker/frilans">
+                                                        <FormattedNumber
+                                                            value={inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0}
+                                                        />{' '}
+                                                        kroner
+                                                    </List.Item>
+                                                    <List.Item title="Ytelser fra Nav">
+                                                        <FormattedNumber
+                                                            value={inntektFraDeltaker.inntektFraYtelse || 0}
+                                                        />{' '}
+                                                        kroner
+                                                    </List.Item>
+                                                    <List.Item title="Samlet inntekt">
+                                                        <FormattedNumber
+                                                            value={
+                                                                (inntektFraDeltaker.inntektFraYtelse || 0) +
+                                                                (inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0)
+                                                            }
+                                                        />{' '}
+                                                        kroner
+                                                    </List.Item>
+                                                </List>
                                             ) : (
                                                 <>Du har ikke oppgitt inntekt for denne perioden</>
                                             )}
@@ -133,44 +160,87 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                     </VStack>
                                     <VStack gap="2">
                                         <Heading level="3" size="xsmall">
-                                            Inntekt vi var har mottatt gjennom a-inntekt
+                                            Inntekt vi var har fått fra a-ordningen
                                         </Heading>
 
                                         <BodyShort>
-                                            <FormattedNumber value={oppgave.oppgavetypeData.korrigertInntekt} /> kroner
+                                            <FormattedNumber value={inntektFraAinntekt} /> kroner
                                         </BodyShort>
                                     </VStack>
 
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Stemmer inntekten vi har mottatt fra a-inntekt for perioden ${periodetekst}?`}
+                                        legend={`Er inntekten vi har fått fra a-ordningen korrekt?`}
                                         validate={getYesOrNoValidator()}
                                         description={
-                                            <>
-                                                <ReadMore header="Jeg forstår ikke dette">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-                                                    corporis quasi id fugiat eveniet quisquam quia quam voluptate
-                                                    officiis dolores quidem sunt velit, cum nemo, minima eligendi.
-                                                    Temporibus, dolores facere.
-                                                </ReadMore>
-                                            </>
+                                            <ReadMore header="Jeg forstår ikke hvorfor inntekten er forskjellig">
+                                                <Box marginBlock="2 0">
+                                                    <Heading level="3" size="xsmall">
+                                                        Mulige årsaker
+                                                    </Heading>
+                                                    <List>
+                                                        <List.Item>
+                                                            Du har ikke tatt med alle inntektene i perioden, eller
+                                                            oppgitt feil inntekt
+                                                        </List.Item>
+                                                        <List.Item>
+                                                            Arbeidsgiver har rapportert feil inntekt til a-ordningen
+                                                        </List.Item>
+                                                        <List.Item>Kan en ytelse fra Nav være feil?</List.Item>
+                                                    </List>
+                                                    <Heading level="3" size="xsmall">
+                                                        Hva kan du gjøre?
+                                                    </Heading>
+                                                    <List>
+                                                        <List.Item>
+                                                            Se over inntekten for perioden på nytt og se om det er noe
+                                                            du har glemt eller oppgitt feil
+                                                        </List.Item>
+                                                        <List.Item>
+                                                            Ta kontakt med arbeidsgiver og se om de har oppgitt riktig
+                                                            inntekt
+                                                        </List.Item>
+                                                        <List.Item>Ta kontakt med din veileder?</List.Item>
+                                                    </List>
+                                                </Box>
+                                            </ReadMore>
                                         }
                                     />
                                     {values[FormFields.godkjenner] === YesOrNo.NO ? (
                                         <>
+                                            <Alert variant="info">
+                                                Når du mener inntekten fra a-ordningen ikke er korrekt, må du oppgi
+                                                hvilken inntekt du mener er den riktige og begrunne hvorfor inntekten er
+                                                forskjellig.
+                                            </Alert>
                                             <NumberInput
-                                                name={FormFields.korrigertInntekt}
-                                                label="Hvilken inntekt mener du er korrekt?"
+                                                name={FormFields.arbeidstakerOgFrilansInntekt}
+                                                label="Oppgi inntekt fra arbeidsgiver/frilans i perioden"
+                                                validate={getNumberValidator({ required: true })}
+                                            />
+                                            <NumberInput
+                                                name={FormFields.inntektFraYtelse}
+                                                label="Oppgi inntekt fra ytelser i perioden"
                                                 validate={getNumberValidator({ required: true })}
                                             />
                                             <Textarea
                                                 name={FormFields.begrunnelse}
-                                                label="Skriv en kort begrunnelse for hvorfor inntekten ikke stemmer med a-inntekt "
+                                                label="Skriv en kort begrunnelse for hvorfor inntekten er annerledes enn den vi har fra a-ordningen"
                                                 maxLength={250}
+                                                description={
+                                                    <ReadMore header="Hva skal jeg skrive her?">
+                                                        Hvis du har en klar årsak, skriv den. Hvis du er usikker skriver
+                                                        det du tror kan forårsake dette.
+                                                    </ReadMore>
+                                                }
                                                 validate={getStringValidator({ required: true, maxLength: 250 })}
                                             />
                                         </>
                                     ) : null}
+                                    <ConfirmationCheckbox
+                                        name={FormFields.bekrefterOpplysninger}
+                                        label="Jeg bekrefter at ..."
+                                    />
                                     {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
                                 </VStack>
                             </Form>

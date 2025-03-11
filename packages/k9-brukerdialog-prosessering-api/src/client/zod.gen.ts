@@ -67,7 +67,8 @@ export const zBekreftKorrigertInntektOppgaveDto = z
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
-                korrigertInntekt: z.number(),
+                arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+                inntektFraYtelse: z.number().int().optional(),
                 meldingFraDeltaker: z.string(),
             })
             .optional(),
@@ -86,7 +87,8 @@ export const zUngdomsytelseIkkeGodkjentResponse = z.object({
 });
 
 export const zUngdomsytelseIkkeGodkjentInntektResponse = z.object({
-    korrigertInntekt: z.number(),
+    arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+    inntektFraYtelse: z.number().int().optional(),
     meldingFraDeltaker: z.string(),
 });
 

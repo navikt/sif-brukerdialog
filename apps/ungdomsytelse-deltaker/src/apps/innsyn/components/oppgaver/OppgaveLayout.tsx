@@ -19,9 +19,7 @@ const OppgaveLayout = ({ tag, tittel, svarfrist, beskrivelse, children, besvart,
             <VStack gap="6">
                 <Box>
                     <Bleed marginBlock="2 0">
-                        <Tag variant="alt1-filled" size="small">
-                            {tag}
-                        </Tag>
+                        <Tag variant="alt1-filled">{tag}</Tag>
                     </Bleed>
                 </Box>
                 <Heading level="2" size="medium" spacing={true}>

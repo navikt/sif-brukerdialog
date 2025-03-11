@@ -41,9 +41,15 @@ export const zDeltakelseOpplysningDto = z.object({
                 ),
                 z.object({}).merge(
                     z.object({
-                        korrigertInntekt: z.number(),
-                        fraOgMed: z.string().date(),
-                        tilOgMed: z.string().date(),
+                        inntektFraAinntekt: z.number(),
+                        inntektFraDeltaker: z.object({
+                            arbeidstakerOgFrilansInntekt: z.number().optional(),
+                            inntektFraYtelse: z.number().optional(),
+                        }),
+                        periodeForInntekt: z.object({
+                            fraOgMed: z.string().date(),
+                            tilOgMed: z.string().date(),
+                        }),
                     }),
                 ),
             ]),
@@ -77,9 +83,15 @@ export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
 
 export const zKorrigertOppgavetypeDataDto = z.object({}).merge(
     z.object({
-        korrigertInntekt: z.number(),
-        fraOgMed: z.string().date(),
-        tilOgMed: z.string().date(),
+        inntektFraAinntekt: z.number(),
+        inntektFraDeltaker: z.object({
+            arbeidstakerOgFrilansInntekt: z.number().optional(),
+            inntektFraYtelse: z.number().optional(),
+        }),
+        periodeForInntekt: z.object({
+            fraOgMed: z.string().date(),
+            tilOgMed: z.string().date(),
+        }),
     }),
 );
 

@@ -38,10 +38,15 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                 oppgavetypeData: {
                     type: 'BEKREFT_KORRIGERT_INNTEKT',
-                    rapportertInntekt: 0,
-                    korrigertInntekt: 12345,
-                    fraOgMed: '2026-01-01',
-                    tilOgMed: '2026-01-31',
+                    periodeForInntekt: {
+                        fraOgMed: '2026-01-01',
+                        tilOgMed: '2026-01-31',
+                    },
+                    inntektFraAinntekt: 8799,
+                    inntektFraDeltaker: {
+                        arbeidstakerOgFrilansInntekt: undefined,
+                        inntektFraYtelse: undefined,
+                    },
                 },
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
