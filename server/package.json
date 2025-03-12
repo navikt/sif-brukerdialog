@@ -28,7 +28,7 @@
         "@types/morgan": "1.9.9",
         "@types/node": "22.13.10",
         "@vercel/ncc": "0.38.3",
-        "axios": "1.8.2",
+        "axios": "1.8.3",
         "morgan": "1.10.0",
         "prettier": "3.5.3",
         "typescript": "5.8.2",
