@@ -9,11 +9,21 @@ interface Props {
     svarfrist?: Date;
     beskrivelse: React.ReactNode;
     besvart?: boolean;
+    visOppgaveTittel?: string;
     children: React.ReactNode;
     onÅpneOppgave?: () => void;
 }
 
-const OppgaveLayout = ({ tag, tittel, svarfrist, beskrivelse, children, besvart, onÅpneOppgave }: Props) => {
+const OppgaveLayout = ({
+    tag,
+    tittel,
+    svarfrist,
+    beskrivelse,
+    children,
+    besvart,
+    visOppgaveTittel = 'Besvar oppgave',
+    onÅpneOppgave,
+}: Props) => {
     return (
         <BlueBox>
             <VStack gap="6">
@@ -44,7 +54,7 @@ const OppgaveLayout = ({ tag, tittel, svarfrist, beskrivelse, children, besvart,
                             <ExpansionCard.Title size="small">
                                 <HStack gap="2" align={'center'}>
                                     <ClipboardCheckmarkIcon />
-                                    Besvar oppgave
+                                    {visOppgaveTittel}
                                 </HStack>
                             </ExpansionCard.Title>
                         </ExpansionCard.Header>
