@@ -29,9 +29,9 @@
         "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
-        "@navikt/ds-css": "7.17.0",
-        "@navikt/ds-react": "7.17.0",
-        "@navikt/ds-tailwind": "7.17.0",
+        "@navikt/ds-css": "7.17.1",
+        "@navikt/ds-react": "7.17.1",
+        "@navikt/ds-tailwind": "7.17.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -47,7 +47,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.2.0",
         "axios": "1.8.2",
-        "csp-header": "6.0.1",
+        "csp-header": "6.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
         "html-react-parser": "5.2.2",

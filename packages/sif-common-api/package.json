@@ -6,9 +6,9 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.17.0",
+        "@navikt/ds-css": "7.17.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.17.0",
+        "@navikt/ds-react": "7.17.1",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -16,7 +16,7 @@
         "axios": "1.8.2",
         "classnames": "2.5.1",
         "dayjs": "1.11.13",
-        "react-day-picker": "9.5.1",
+        "react-day-picker": "9.6.1",
         "zod": "3.24.2"
     },
     "devDependencies": {
