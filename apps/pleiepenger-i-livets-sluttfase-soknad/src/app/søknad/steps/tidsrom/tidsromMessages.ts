@@ -5,7 +5,7 @@ const nb = {
     'step.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
     'step.tidsrom.counsellorPanel.avsnitt.2.3mnd':
         'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
-    'step.tidsrom.counsellorPanel.avsnitt.2.3år':
+    'step.tidsrom.counsellorPanel.avsnitt.2.6mnd':
         'Du kan søke tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
@@ -67,7 +67,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'step.tidsrom.counsellorPanel.avsnitt.2.3mnd':
         'Du kan søkje tre månader tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
-    'step.tidsrom.counsellorPanel.avsnitt.2.3år':
+    'step.tidsrom.counsellorPanel.avsnitt.2.6mnd':
         'Du kan søkje opptil tre år tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Hugs at det ikkje er rett til pleiepengar på dagar der personen er innlagt på sjukehus eller ein annan institusjon.',
