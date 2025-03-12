@@ -42,7 +42,10 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                         fraOgMed: '2026-01-01',
                         tilOgMed: '2026-01-31',
                     },
-                    inntektFraAinntekt: 8799,
+                    inntektFraAinntekt: {
+                        arbeidstakerOgFrilansInntekt: 7500,
+                        inntektFraYtelse: 1500,
+                    },
                     inntektFraDeltaker: {
                         arbeidstakerOgFrilansInntekt: undefined,
                         inntektFraYtelse: undefined,

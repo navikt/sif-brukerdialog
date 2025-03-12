@@ -143,15 +143,6 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                                         />{' '}
                                                         kroner
                                                     </List.Item>
-                                                    <List.Item title="Samlet inntekt">
-                                                        <FormattedNumber
-                                                            value={
-                                                                (inntektFraDeltaker.inntektFraYtelse || 0) +
-                                                                (inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0)
-                                                            }
-                                                        />{' '}
-                                                        kroner
-                                                    </List.Item>
                                                 </List>
                                             ) : (
                                                 <>Du har ikke oppgitt inntekt for denne perioden</>
@@ -163,9 +154,18 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                             Inntekt vi var har fått fra a-ordningen
                                         </Heading>
 
-                                        <BodyShort>
-                                            <FormattedNumber value={inntektFraAinntekt} /> kroner
-                                        </BodyShort>
+                                        <List>
+                                            <List.Item title="Arbeidstaker/frilans">
+                                                <FormattedNumber
+                                                    value={inntektFraAinntekt.arbeidstakerOgFrilansInntekt || 0}
+                                                />{' '}
+                                                kroner
+                                            </List.Item>
+                                            <List.Item title="Ytelser fra Nav">
+                                                <FormattedNumber value={inntektFraAinntekt.inntektFraYtelse || 0} />{' '}
+                                                kroner
+                                            </List.Item>
+                                        </List>
                                     </VStack>
 
                                     <YesOrNoQuestion

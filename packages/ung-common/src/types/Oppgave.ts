@@ -33,7 +33,10 @@ export interface KorrigertInntektOppgave extends oppgaveBase {
             fraOgMed: Date;
             tilOgMed: Date;
         };
-        inntektFraAinntekt: number;
+        inntektFraAinntekt: {
+            arbeidstakerOgFrilansInntekt: number;
+            inntektFraYtelse: number;
+        };
         inntektFraDeltaker?: {
             arbeidstakerOgFrilansInntekt?: number;
             inntektFraYtelse?: number;

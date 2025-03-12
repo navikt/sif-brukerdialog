@@ -75,7 +75,11 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
                     oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                     oppgavetypeData: {
-                        inntektFraAinntekt: korrigertInntektData.inntektFraAinntekt,
+                        inntektFraAinntekt: {
+                            arbeidstakerOgFrilansInntekt:
+                                korrigertInntektData.inntektFraAinntekt.arbeidstakerOgFrilansInntekt,
+                            inntektFraYtelse: korrigertInntektData.inntektFraAinntekt.inntektFraYtelse,
+                        },
                         periodeForInntekt: {
                             fraOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.fraOgMed),
                             tilOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.tilOgMed),
