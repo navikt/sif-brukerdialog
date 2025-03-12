@@ -1,8 +1,7 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import { zDeltakelsePeriodInfo } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { parseOppgaverElement } from '../utils/parseOppgaverElement';
-import { parseRapporteringsperioder } from '../utils/parseRapporteringsperioder';
+import { parseOppgaverElement, parseRapporteringsperioder } from '../api';
 
 export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
     .extend({

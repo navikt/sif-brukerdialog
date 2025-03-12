@@ -10,10 +10,10 @@ import {
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
 import { DateValidationOptions, getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
+import { Deltakelse } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import dayjs from 'dayjs';
-import { Deltakelse } from '../../api/types';
-import { veilederApiService } from '@navikt/ung-common';
+import { veilederApiService } from '../../api/veilederApiService';
 
 interface Props {
     deltakelse: Deltakelse;

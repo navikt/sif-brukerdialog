@@ -1,7 +1,7 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { parseOppgaverElement } from '../utils/parseOppgaverElement';
+import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 
 export const deltakelseSchema = zDeltakelseOpplysningDto
     .extend({

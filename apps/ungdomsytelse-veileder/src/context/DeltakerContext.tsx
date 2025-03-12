@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker, veilederApiService } from '@navikt/ung-common';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { veilederApiService } from '../api/veilederApiService';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface DeltakerContextProps {

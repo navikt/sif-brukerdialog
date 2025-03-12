@@ -39,10 +39,28 @@ export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     meldingFraVeileder?: string;
 };
 
+export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
+    periodeForInntekt: {
+        fraOgMed: string;
+        tilOgMed: string;
+    };
+    inntektFraAinntekt: {
+        arbeidstakerOgFrilansInntekt: number;
+        inntektFraYtelse: number;
+    };
+    inntektFraDeltaker?: {
+        arbeidstakerOgFrilansInntekt?: number;
+        inntektFraYtelse?: number;
+    };
+};
+
 export type OppgaveDto = {
     id: string;
     oppgavetype: Oppgavetype;
-    oppgavetypeData: EndretSluttdatoOppgavetypeDataDto | EndretStartdatoOppgavetypeDataDto;
+    oppgavetypeData:
+        | EndretSluttdatoOppgavetypeDataDto
+        | EndretStartdatoOppgavetypeDataDto
+        | KorrigertInntektOppgavetypeDataDto;
     status: OppgaveStatus;
     opprettetDato: string;
     løstDato?: string;
@@ -50,12 +68,14 @@ export type OppgaveDto = {
 
 export enum OppgaveStatus {
     LØST = 'LØST',
-    ULØST = 'ULØST'
+    ULØST = 'ULØST',
+    KANSELLERT = 'KANSELLERT',
 }
 
 export enum Oppgavetype {
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
-    BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO'
+    BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
+    BEKREFT_KORRIGERT_INNTEKT = 'BEKREFT_KORRIGERT_INNTEKT',
 }
 
 export type OppgavetypeDataDto = {
@@ -379,7 +399,8 @@ export type HentAlleDeltakelserGittDeltakerAktørErrors = {
     500: ProblemDetail;
 };
 
-export type HentAlleDeltakelserGittDeltakerAktørError = HentAlleDeltakelserGittDeltakerAktørErrors[keyof HentAlleDeltakelserGittDeltakerAktørErrors];
+export type HentAlleDeltakelserGittDeltakerAktørError =
+    HentAlleDeltakelserGittDeltakerAktørErrors[keyof HentAlleDeltakelserGittDeltakerAktørErrors];
 
 export type HentAlleDeltakelserGittDeltakerAktørResponses = {
     /**
@@ -388,7 +409,8 @@ export type HentAlleDeltakelserGittDeltakerAktørResponses = {
     200: DeltakerOpplysningerDto;
 };
 
-export type HentAlleDeltakelserGittDeltakerAktørResponse = HentAlleDeltakelserGittDeltakerAktørResponses[keyof HentAlleDeltakelserGittDeltakerAktørResponses];
+export type HentAlleDeltakelserGittDeltakerAktørResponse =
+    HentAlleDeltakelserGittDeltakerAktørResponses[keyof HentAlleDeltakelserGittDeltakerAktørResponses];
 
 export type HentDeltakerInfoGittDeltakerData = {
     body: DeltakerDto;
@@ -412,7 +434,8 @@ export type HentDeltakerInfoGittDeltakerErrors = {
     500: ProblemDetail;
 };
 
-export type HentDeltakerInfoGittDeltakerError = HentDeltakerInfoGittDeltakerErrors[keyof HentDeltakerInfoGittDeltakerErrors];
+export type HentDeltakerInfoGittDeltakerError =
+    HentDeltakerInfoGittDeltakerErrors[keyof HentDeltakerInfoGittDeltakerErrors];
 
 export type HentDeltakerInfoGittDeltakerResponses = {
     /**
@@ -421,7 +444,8 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     200: DeltakerPersonlia;
 };
 
-export type HentDeltakerInfoGittDeltakerResponse = HentDeltakerInfoGittDeltakerResponses[keyof HentDeltakerInfoGittDeltakerResponses];
+export type HentDeltakerInfoGittDeltakerResponse =
+    HentDeltakerInfoGittDeltakerResponses[keyof HentDeltakerInfoGittDeltakerResponses];
 
 export type HentAlleDeltakelserGittDeltakerIdData = {
     body?: never;
@@ -447,7 +471,8 @@ export type HentAlleDeltakelserGittDeltakerIdErrors = {
     500: ProblemDetail;
 };
 
-export type HentAlleDeltakelserGittDeltakerIdError = HentAlleDeltakelserGittDeltakerIdErrors[keyof HentAlleDeltakelserGittDeltakerIdErrors];
+export type HentAlleDeltakelserGittDeltakerIdError =
+    HentAlleDeltakelserGittDeltakerIdErrors[keyof HentAlleDeltakelserGittDeltakerIdErrors];
 
 export type HentAlleDeltakelserGittDeltakerIdResponses = {
     /**
@@ -456,7 +481,8 @@ export type HentAlleDeltakelserGittDeltakerIdResponses = {
     200: Array<DeltakelseOpplysningDto>;
 };
 
-export type HentAlleDeltakelserGittDeltakerIdResponse = HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
+export type HentAlleDeltakelserGittDeltakerIdResponse =
+    HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
 
 export type HentDeltakerInfoGittDeltakerIdData = {
     body?: never;
@@ -482,7 +508,8 @@ export type HentDeltakerInfoGittDeltakerIdErrors = {
     500: ProblemDetail;
 };
 
-export type HentDeltakerInfoGittDeltakerIdError = HentDeltakerInfoGittDeltakerIdErrors[keyof HentDeltakerInfoGittDeltakerIdErrors];
+export type HentDeltakerInfoGittDeltakerIdError =
+    HentDeltakerInfoGittDeltakerIdErrors[keyof HentDeltakerInfoGittDeltakerIdErrors];
 
 export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
@@ -491,7 +518,45 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     200: DeltakerPersonlia;
 };
 
-export type HentDeltakerInfoGittDeltakerIdResponse = HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+export type HentDeltakerInfoGittDeltakerIdResponse =
+    HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+
+export type HentOppgaveForDeltakelseData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+        oppgaveId: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveId}';
+};
+
+export type HentOppgaveForDeltakelseErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentOppgaveForDeltakelseError = HentOppgaveForDeltakelseErrors[keyof HentOppgaveForDeltakelseErrors];
+
+export type HentOppgaveForDeltakelseResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type HentOppgaveForDeltakelseResponse =
+    HentOppgaveForDeltakelseResponses[keyof HentOppgaveForDeltakelseResponses];
 
 export type HentAlleMineDeltakelserData = {
     body?: never;

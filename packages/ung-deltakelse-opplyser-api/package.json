@@ -25,7 +25,8 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "test": "vitest run",
-        "openapi-ts": "openapi-ts"
+        "openapi-ts": "openapi-ts",
+        "gen": "openapi-ts"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.6.2",

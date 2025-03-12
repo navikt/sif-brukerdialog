@@ -1,6 +1,6 @@
 import { BodyShort, Heading, HGrid, HStack, Tag } from '@navikt/ds-react';
-import { Deltakelse } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 interface Props {

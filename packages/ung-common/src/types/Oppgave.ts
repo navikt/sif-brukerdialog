@@ -1,12 +1,12 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface oppgaveBase {
+    oppgavetype: Oppgavetype;
     id: string;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
     svarfrist: Date;
-    oppgavetype: Oppgavetype;
 }
 
 export interface EndreStartdatoOppgave extends oppgaveBase {
@@ -26,4 +26,22 @@ export interface EndreSluttdatoOppgave extends oppgaveBase {
     };
 }
 
-export type Oppgave = EndreStartdatoOppgave | EndreSluttdatoOppgave;
+export interface KorrigertInntektOppgave extends oppgaveBase {
+    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT;
+    oppgavetypeData: {
+        periodeForInntekt: {
+            fraOgMed: Date;
+            tilOgMed: Date;
+        };
+        inntektFraAinntekt: {
+            arbeidstakerOgFrilansInntekt: number;
+            inntektFraYtelse: number;
+        };
+        inntektFraDeltaker?: {
+            arbeidstakerOgFrilansInntekt?: number;
+            inntektFraYtelse?: number;
+        };
+    };
+}
+
+export type Oppgave = EndreStartdatoOppgave | EndreSluttdatoOppgave | KorrigertInntektOppgave;

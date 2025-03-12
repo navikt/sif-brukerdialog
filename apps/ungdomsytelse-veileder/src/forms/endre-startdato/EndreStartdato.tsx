@@ -1,10 +1,12 @@
 import { Alert, BodyLong, Box, Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Oppgave, EndreStartdatoOppgave, Oppgavetype, useEndreDeltakelse } from '@navikt/ung-common';
-import { Deltakelse } from '../../api/types';
+import { Deltakelse, EndreStartdatoOppgave, Oppgave, Oppgavetype } from '@navikt/ung-common';
+import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import EndreStartdatoInfo from './EndreStartdatoInfo';
+import { Veileder } from '../../types/Veileder';
+import { useState } from 'react';
 
 export type EndreStartdatoFormValues = {
     id: string;
@@ -14,15 +16,22 @@ export type EndreStartdatoFormValues = {
 };
 
 interface Props {
+    veileder: Veileder;
     oppgaver: Oppgave[];
     deltakernavn: string;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
-    onChange: () => void;
+    onDeltakelseChanged: () => void;
 }
 
-const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onChange }: Props) => {
-    const { pending: endreDeltakelsePending, endreStartdato, error } = useEndreDeltakelse(onChange || (() => {}));
+const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, veileder, onDeltakelseChanged }: Props) => {
+    const [oppdatert, setOppdatert] = useState(false);
+
+    const handleOnDeltakelseChanged = () => {
+        setOppdatert(true);
+        onDeltakelseChanged();
+    };
+    const { endreStartdato, pending, error } = useEndreDeltakelse(handleOnDeltakelseChanged);
 
     const åpenOppgaver = oppgaver.filter(
         (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -36,6 +45,7 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                 initialValues={{}}
                 onSubmit={(values: EndreStartdatoFormValues) => {
                     const melding = values.melding ? values.melding.trim() : undefined;
+                    setOppdatert(false);
                     endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
                 }}
                 renderForm={({ values }) => {
@@ -52,43 +62,58 @@ const EndreStartdato = ({ deltakelse, deltakelser, deltakernavn, oppgaver, onCha
                                         </Alert>
                                     </Box>
                                 ) : null}
-                                <Heading level="3" size="medium">
-                                    Endre startdato
-                                </Heading>
-                                {deltakelse.harSøkt ? (
-                                    <BodyLong spacing={true}>
-                                        Når startdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
-                                        nye startdatoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
-                                        deltaker".
-                                    </BodyLong>
+
+                                {oppdatert ? (
+                                    <Alert variant="success">Startdato er oppdatert</Alert>
                                 ) : (
-                                    <BodyLong spacing={true}>
-                                        Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det uløser blir
-                                        noen oppgave til deltaker.
-                                    </BodyLong>
+                                    <>
+                                        <VStack gap="2">
+                                            <Heading level="3" size="medium">
+                                                Endre startdato
+                                            </Heading>
+                                            {deltakelse.harSøkt ? (
+                                                <BodyLong>
+                                                    Når startdato endres, opprettes en oppgave til deltaker hvor hen må
+                                                    bekrefte den nye startdatoen. Oppgaven vil også bli synlig for deg
+                                                    under fanen "Oppgaver til deltaker".
+                                                </BodyLong>
+                                            ) : (
+                                                <Alert variant="info">
+                                                    Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det
+                                                    uløser blir noen oppgave til deltaker.
+                                                </Alert>
+                                            )}
+                                        </VStack>
+                                        <TypedFormikForm
+                                            submitPending={pending}
+                                            showSubmitButton={false}
+                                            submitButtonLabel="Endre"
+                                            showButtonArrows={false}>
+                                            <VStack gap="6">
+                                                <PeriodeFormPart
+                                                    harSøkt={deltakelse.harSøkt}
+                                                    veileder={veileder}
+                                                    deltakernavn={deltakernavn}
+                                                    visSluttdato={false}
+                                                    visStartdato={true}
+                                                    fomDate={fomDate}
+                                                    deltakelser={deltakelser}
+                                                    deltakelseId={deltakelse.id}
+                                                />
+                                                <HStack gap="2">
+                                                    <Button type="submit" loading={pending} variant="primary">
+                                                        {deltakelse.harSøkt ? (
+                                                            <>Endre startdato og send varsel til {deltakernavn}</>
+                                                        ) : (
+                                                            <>Endre startdato</>
+                                                        )}
+                                                    </Button>
+                                                </HStack>
+                                                {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                            </VStack>
+                                        </TypedFormikForm>
+                                    </>
                                 )}
-                                <TypedFormikForm
-                                    submitPending={endreDeltakelsePending}
-                                    showSubmitButton={false}
-                                    submitButtonLabel="Endre"
-                                    showButtonArrows={false}>
-                                    <VStack gap="6">
-                                        <PeriodeFormPart
-                                            deltakernavn={deltakernavn}
-                                            visSluttdato={false}
-                                            visStartdato={true}
-                                            fomDate={fomDate}
-                                            deltakelser={deltakelser}
-                                            deltakelseId={deltakelse.id}
-                                        />
-                                        <HStack gap="2">
-                                            <Button type="submit" loading={endreDeltakelsePending} variant="primary">
-                                                Send oppgave til {deltakernavn}
-                                            </Button>
-                                        </HStack>
-                                        {error ? <Alert variant="error">{error.message}</Alert> : null}
-                                    </VStack>
-                                </TypedFormikForm>
                             </VStack>
 
                             <VStack className="bg-deepblue-50 p-5 rounded-md">

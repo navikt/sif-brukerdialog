@@ -1,26 +1,26 @@
 import { useState } from 'react';
-import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
+import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { deltakerApiService } from '../../../api/deltakerApiService';
 
-export const useRapporterInntekt = () => {
+export const useBesvarOppgave = () => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [inntektSendt, setInntektSendt] = useState(false);
+    const [besvart, setBesvart] = useState(false);
 
-    const rapporterInntekt = (inntekt: UngdomsytelseInntektsrapportering) => {
+    const sendSvar = (svar: UngdomsytelseOppgavebekreftelse) => {
         setPending(true);
         return deltakerApiService
-            .rapporterInntekt(inntekt)
+            .sendOppgavebekreftelse(svar)
             .then(() => {
-                setInntektSendt(true);
+                setBesvart(true);
             })
             .catch((error) => {
-                setError('Rapporter inntekt feilet');
+                setError('Besvar endret oppgave feiler');
                 console.log(error);
             })
             .finally(() => {
                 setPending(false);
             });
     };
-    return { rapporterInntekt, inntektSendt, pending, error };
+    return { sendSvar, besvart, pending, error };
 };

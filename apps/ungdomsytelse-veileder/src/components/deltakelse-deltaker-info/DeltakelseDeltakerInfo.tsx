@@ -1,5 +1,5 @@
 import { Alert, Heading, Table, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '../../api/types';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { FormattedNumber } from 'react-intl';
 
 interface Props {

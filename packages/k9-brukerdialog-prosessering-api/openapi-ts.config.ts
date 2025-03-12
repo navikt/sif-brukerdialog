@@ -10,7 +10,7 @@ export default defineConfig({
     },
     plugins: [
         ...defaultPlugins,
-        '@hey-api/client-axios',
+        { name: '@hey-api/client-axios', throwOnError: true },
         'zod',
         { asClass: true, name: '@hey-api/sdk', validator: true },
         {

@@ -2,16 +2,30 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     EndretSluttdatoOppgavetypeDataDto,
     EndretStartdatoOppgavetypeDataDto,
+    KorrigertInntektOppgavetypeDataDto,
     OppgaveStatus,
     Oppgavetype,
     zDeltakelseOpplysningDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { Oppgave } from '../types';
+import { EndreSluttdatoOppgave, EndreStartdatoOppgave, KorrigertInntektOppgave, Oppgave } from '../../types';
 import dayjs from 'dayjs';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
+
+const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
+    switch (status) {
+        case 'LØST':
+            return OppgaveStatus.LØST;
+        case 'ULØST':
+            return OppgaveStatus.ULØST;
+        case 'KANSELLERT':
+            return OppgaveStatus.KANSELLERT;
+        default:
+            throw new Error(`Ukjent oppgavestatus: ${status}`);
+    }
+};
 
 export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
@@ -19,9 +33,9 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
         switch (oppgave.oppgavetype) {
             case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
                 const endreStartdatoData = oppgave.oppgavetypeData as EndretStartdatoOppgavetypeDataDto;
-                const endretStartdatoOppgave: Oppgave = {
+                const endretStartdatoOppgave: EndreStartdatoOppgave = {
                     id: oppgave.id,
-                    status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
+                    status: getOppgaveStatusEnum(oppgave.status),
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -36,9 +50,9 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 return;
             case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
                 const endreSluttdatoData = oppgave.oppgavetypeData as EndretSluttdatoOppgavetypeDataDto;
-                const endretSluttdatoOppgave: Oppgave = {
+                const endretSluttdatoOppgave: EndreSluttdatoOppgave = {
                     id: oppgave.id,
-                    status: oppgave.status === 'LØST' ? OppgaveStatus.LØST : OppgaveStatus.ULØST,
+                    status: getOppgaveStatusEnum(oppgave.status),
                     løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
                     opprettetDato: ISODateToDate(oppgave.opprettetDato),
                     svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
@@ -50,6 +64,31 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     },
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);
+                return;
+            case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+                const korrigertInntektData = oppgave.oppgavetypeData as KorrigertInntektOppgavetypeDataDto;
+                const korrigertInntektOppgave: KorrigertInntektOppgave = {
+                    id: oppgave.id,
+                    status: getOppgaveStatusEnum(oppgave.status),
+                    løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
+                    opprettetDato: ISODateToDate(oppgave.opprettetDato),
+                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
+                    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                    oppgavetypeData: {
+                        inntektFraAinntekt: {
+                            arbeidstakerOgFrilansInntekt:
+                                korrigertInntektData.inntektFraAinntekt.arbeidstakerOgFrilansInntekt,
+                            inntektFraYtelse: korrigertInntektData.inntektFraAinntekt.inntektFraYtelse,
+                        },
+                        periodeForInntekt: {
+                            fraOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.fraOgMed),
+                            tilOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.tilOgMed),
+                        },
+                        inntektFraDeltaker: korrigertInntektData.inntektFraDeltaker,
+                    },
+                };
+                parsedOppgaver.push(korrigertInntektOppgave);
+                return;
         }
     });
     return parsedOppgaver;

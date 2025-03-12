@@ -3,7 +3,7 @@ import { TextfieldFormatter } from '../hooks/useTextFieldFormatter';
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
-const formatFnr = (value?: string): string => {
+const formaterFødselsnummer = (value?: string): string => {
     const fnr = value ? value.replace(/[^0-9]/g, '') : '';
     const err = fnrValidator(fnr);
     if (!err) {
@@ -11,7 +11,7 @@ const formatFnr = (value?: string): string => {
     }
     return value || '';
 };
-const clearFnrFormat = (value?: string): string => {
+const clearFødselsnummerFormat = (value?: string): string => {
     const fnr = value ? value.replace(/[^0-9]/g, '') : '';
     const err = fnrValidator(fnr);
     if (!err) {
@@ -20,7 +20,7 @@ const clearFnrFormat = (value?: string): string => {
     return value || '';
 };
 
-export const fnrFormatter: TextfieldFormatter = {
-    applyFormat: formatFnr,
-    clearFormat: clearFnrFormat,
+export const fødselsnummerFormatter: TextfieldFormatter = {
+    applyFormat: formaterFødselsnummer,
+    clearFormat: clearFødselsnummerFormat,
 };

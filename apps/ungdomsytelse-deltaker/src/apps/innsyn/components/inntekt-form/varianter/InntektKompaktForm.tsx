@@ -23,12 +23,6 @@ const InntektKompaktForm = ({ values }: Props) => {
                 validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
             />
             <NumberInput
-                name={InntektFormFields.snInntekt}
-                label="Inntekt som selvstendig næringsdrivende:"
-                integerValue={true}
-                validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
-            />
-            <NumberInput
                 name={InntektFormFields.ytelseInntekt}
                 label="Ytelse fra Nav:"
                 integerValue={true}

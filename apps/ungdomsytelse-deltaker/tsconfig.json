@@ -5,6 +5,6 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/types"],
         "baseUrl": "./"
     },
-    "exclude": ["node_modules", "src/build", "_src/**/*", "**.js", "dist"],
+    "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*"]
 }

@@ -34,12 +34,6 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                                 </VStack>
                             </List.Item>
                         </List>
-                        <Heading level="3" size="small">
-                            Respons fra deltaker
-                        </Heading>
-                        <List>
-                            <List.Item>Deltaker har ikke åpnet oppgaven</List.Item>
-                        </List>
                     </VStack>
                     <VStack>
                         <Heading level="3" size="small">
@@ -49,13 +43,6 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                             <List.Item>Type: {oppgave.oppgavetype}</List.Item>
                             <List.Item>Opprettet: {dateFormatter.compactWithTime(oppgave.opprettetDato)}</List.Item>
                             <List.Item>Svarfrist: {dateFormatter.compactWithTime(oppgave.svarfrist)}</List.Item>
-                            {/* <List.Item>Åpnet av deltaker: {oppgave.åpnetAvDeltaker ? 'Ja' : 'Nei'}</List.Item> */}
-                            {/* {oppgave.løstDato && oppgave.løsningstype ? (
-                                <>
-                                    <List.Item>Løst: Ja</List.Item>
-                                    <List.Item>Løsningstype: {oppgave.løsningstype}</List.Item>
-                                </>
-                            ) : null} */}
                         </List>
                     </VStack>
                 </HGrid>
@@ -73,6 +60,10 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
             </Alert>
         );
     }
+    const sortedOppgaver = [...oppgaver].sort(
+        (a, b) => new Date(b.opprettetDato).getTime() - new Date(a.opprettetDato).getTime(),
+    );
+
     return (
         <Table zebraStripes={true}>
             <Table.Header>
@@ -81,12 +72,11 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                     <Table.HeaderCell>Opprettet</Table.HeaderCell>
                     <Table.HeaderCell>Type</Table.HeaderCell>
                     <Table.HeaderCell>Svarfrist</Table.HeaderCell>
-                    <Table.HeaderCell>Åpnet</Table.HeaderCell>
                     <Table.HeaderCell>Status</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {oppgaver.map((oppgave, index) => (
+                {sortedOppgaver.map((oppgave, index) => (
                     <Table.ExpandableRow
                         key={index}
                         content={

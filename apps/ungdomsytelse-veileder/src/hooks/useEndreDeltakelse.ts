@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Deltakelse, veilederApiService } from '@navikt/ung-common';
+import { Deltakelse, formaterNavn } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
-import { ApiErrorObject, handleError } from '../utils/errorHandlers';
 import { ZodError } from 'zod';
+import { ApiErrorObject, handleError } from '@navikt/ung-common/src/api/errorHandlers';
+import { veilederApiService } from '../api/veilederApiService';
+import { useVeileder } from '../context/VeilederContext';
 
 export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState<boolean>(false);
     const [error, setError] = useState<ApiErrorObject | undefined>();
+    const { veileder } = useVeileder();
 
     const handleEndreDato = async (
         deltakelse: Deltakelse,
@@ -21,7 +24,7 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             const dto = zEndrePeriodeDatoDto.parse({
                 dato: dateToISODate(dato),
                 meldingFraVeileder: meldingFraVeileder,
-                veilederRef: 'Navn Veiledersen [todo]',
+                veilederRef: formaterNavn(veileder),
             });
             const oppdatertDeltakelse = await endreDatoForDeltakelse(deltakelse.id, dto);
             onDeltakelseEndret(oppdatertDeltakelse);
