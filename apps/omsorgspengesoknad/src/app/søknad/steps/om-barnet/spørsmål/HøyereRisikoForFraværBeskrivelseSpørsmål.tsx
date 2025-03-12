@@ -14,17 +14,20 @@ export const HøyereRisikoForFraværBeskrivelseValidationErrorKeys = [
 
 const HøyereRisikoForFraværBeskrivelseSpørsmål = () => {
     const { text } = useAppIntl();
+
     return (
         <Textarea
             name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
-            validate={(value) => {
+            validate={async (value) => {
                 const error = getStringValidator({
+                    required: true,
                     minLength: 5,
                     maxLength: 1000,
-                    required: true,
+                    noUnicodeCharacters: true,
                 })(value);
-
-                return error;
+                if (error) {
+                    return error;
+                }
             }}
             maxLength={1000}
             label={text('steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label')}

@@ -107,7 +107,7 @@ const startExpressServer = () => {
     server.post('/valider/fritekstfelt', (req, res) => {
         setTimeout(() => {
             res.status(400).send(ugyldigeTegnRespons);
-        }, 250);
+        }, 1200);
     });
 
     /** --- Send søknad ---------- */
