@@ -53,26 +53,6 @@ const InntektTableForm = ({ inntekt }: Props) => {
                         </Table.DataCell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.DataCell>Selvstendig næringsdrivende</Table.DataCell>
-                        <Table.DataCell>
-                            <NumberInput
-                                name={InntektFormFields.snInntekt}
-                                label="Inntekt som selvstendig næringsdrivende"
-                                integerValue={true}
-                                hideLabel={true}
-                                max={999999}
-                                min={0}
-                                maxLength={6}
-                                validate={getNumberValidator({
-                                    min: 0,
-                                    max: 999999,
-                                    required: false,
-                                    allowDecimals: false,
-                                })}
-                            />
-                        </Table.DataCell>
-                    </Table.Row>
-                    <Table.Row>
                         <Table.DataCell>Ytelser fra Nav</Table.DataCell>
                         <Table.DataCell>
                             <NumberInput

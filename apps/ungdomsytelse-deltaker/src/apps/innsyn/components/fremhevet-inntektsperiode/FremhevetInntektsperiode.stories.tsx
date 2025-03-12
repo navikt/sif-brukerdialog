@@ -13,6 +13,11 @@ const rapporteringsperiode: Rapporteringsperiode = {
         from: ISODateToDate('2025-01-01'),
         to: ISODateToDate('2025-01-31'),
     },
+    inntekt: {
+        arbeidstakerOgFrilansInntekt: 0,
+        inntektFraYtelse: 0,
+        summertInntekt: 0,
+    },
 };
 
 const meta: Meta<typeof FremhevetInntektsperiode> = {
@@ -46,7 +51,6 @@ export const RapportertPeriode: Story = {
             kanRapportere: true,
             inntekt: {
                 arbeidstakerOgFrilansInntekt: 1500,
-                næringsinntekt: 0,
                 inntektFraYtelse: 0,
                 summertInntekt: 1500,
             },

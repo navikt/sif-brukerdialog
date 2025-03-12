@@ -1,19 +1,35 @@
 import { OpenDateRange } from '@navikt/sif-common-formik-ds';
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
-import EndretSluttdatoOppgave from './EndretSluttdatoOppgave';
-import EndretStartdatoOppgave from './EndretStartdatoOppgave';
+import EndretSluttdatoOppgaveForm from './EndretSluttdatoOppgaveForm';
+import EndretStartdatoOppgaveForm from './EndretStartdatoOppgaveForm';
+import KorrigertInntektOppgave from './KorrigertInntektOppgave';
 
 interface Props {
     programPeriode: OpenDateRange;
+    deltakelseId: string;
     oppgave: Oppgave;
 }
 
-const OppgavePanel = ({ oppgave, programPeriode }: Props) => {
+const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.ReactNode => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgave oppgave={oppgave} opprinneligStartdato={programPeriode.from} />;
+            return (
+                <EndretStartdatoOppgaveForm
+                    oppgave={oppgave}
+                    deltakelseId={deltakelseId}
+                    opprinneligStartdato={programPeriode.from}
+                />
+            );
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgave oppgave={oppgave} opprinneligSluttdato={programPeriode.to} />;
+            return (
+                <EndretSluttdatoOppgaveForm
+                    oppgave={oppgave}
+                    deltakelseId={deltakelseId}
+                    opprinneligSluttdato={programPeriode.to}
+                />
+            );
+        case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+            return <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />;
     }
 };
 

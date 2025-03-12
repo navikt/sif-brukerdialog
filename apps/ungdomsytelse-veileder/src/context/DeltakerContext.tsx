@@ -1,12 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { veilederService } from '../api/services/veilederService';
-import { Deltakelser, Deltaker } from '../api/types';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { veilederApiService } from '../api/veilederApiService';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface DeltakerContextProps {
     deltaker?: Deltaker;
-    deltakelser?: Deltakelser;
+    deltakelser?: Deltakelse[];
     setDeltaker: (deltaker: Deltaker) => void;
     closeDeltaker: () => void;
     refetchDeltakelser: () => void;
@@ -22,17 +22,17 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
     const navigate = useNavigate();
 
     const [deltaker, setDeltaker] = useState<Deltaker>();
-    const [deltakelser, setDeltakelser] = useState<Deltakelser>([]);
+    const [deltakelser, setDeltakelser] = useState<Deltakelse[]>([]);
 
     const fetchDeltakelser = async (deltakerId: string) => {
-        const oppdaterteDeltakelser = await veilederService.getDeltakelser(deltakerId);
-        setDeltakelser(oppdaterteDeltakelser);
+        const deltakelser = await veilederApiService.getDeltakelser(deltakerId);
+        setDeltakelser(deltakelser);
     };
 
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
             try {
-                const deltaker = await veilederService.getDeltaker(deltakerId);
+                const deltaker = await veilederApiService.getDeltakerByDeltakerId(deltakerId);
                 setDeltaker(deltaker);
             } catch (e) {
                 getZodErrorsInfo(e);
@@ -47,7 +47,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const refetchDeltakelser = async () => {
         if (deltaker) {
-            const oppdaterteDeltakelser = await veilederService.getDeltakelser(deltaker.id);
+            const oppdaterteDeltakelser = await veilederApiService.getDeltakelser(deltaker.id);
             setDeltakelser(oppdaterteDeltakelser);
         }
     };

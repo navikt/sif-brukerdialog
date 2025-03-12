@@ -1,51 +1,53 @@
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
-    OppgaveEndretSluttdato,
-    OppgaveEndretStartdato,
-    deltakelseSchema,
-    Oppgavestatus,
+    DeltakelsePeriode,
+    deltakelsePeriodeSchema,
+    EndreSluttdatoOppgave,
+    EndreStartdatoOppgave,
+    OppgaveStatus,
     Oppgavetype,
 } from '@navikt/ung-common';
 import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakelser/harSøkt';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
-import Deltakelse from './Deltakelse';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-
-const endretStartdatoOppgave: OppgaveEndretStartdato = {
+import DeltakelseContent from './DeltakelseContent';
+const endretStartdatoOppgave: EndreStartdatoOppgave = {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
-    status: Oppgavestatus.ULØST,
+    status: OppgaveStatus.ULØST,
     oppgavetypeData: {
+        veilederRef: 'Ref',
         nyStartdato: ISODateToDate('2024-07-01'),
     },
     svarfrist: ISODateToDate('2024-07-31'),
 };
 
-const endretSluttdatoOppgave: OppgaveEndretSluttdato = {
+const endretSluttdatoOppgave: EndreSluttdatoOppgave = {
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
-    status: Oppgavestatus.ULØST,
+    status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
+        veilederRef: 'Ref',
         nySluttdato: ISODateToDate('2024-07-01'),
     },
     svarfrist: ISODateToDate('2024-07-31'),
 };
 
-const meta: Meta<typeof Deltakelse> = {
-    component: Deltakelse,
-    title: 'Deltakelse',
+const meta: Meta<typeof DeltakelseContent> = {
+    component: DeltakelseContent,
+    title: 'DeltakelseContent',
     parameters: {},
     decorators: [withPageWidth, withIntl],
 };
 export default meta;
 
-type Story = StoryObj<typeof Deltakelse>;
+type Story = StoryObj<typeof DeltakelseContent>;
 
-const deltakelse = deltakelseSchema.parse(deltakelserHarSøkt[0]);
+const deltakelse: DeltakelsePeriode = deltakelsePeriodeSchema.parse(deltakelserHarSøkt[0]);
 
 export const DeltakelseUtenOppgaver: Story = {
     name: 'Åpen timerapportering',

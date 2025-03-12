@@ -1,10 +1,11 @@
 import { cache } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { Deltakelse, deltakerService } from '@navikt/ung-common';
+import { DeltakelsePeriode } from '@navikt/ung-common';
+import { deltakerApiService } from '../deltakerApiService';
 
 export type DeltakerInfo = {
     søker: Søker;
-    deltakelser: Deltakelse[];
+    deltakelser: DeltakelsePeriode[];
     barn: RegistrertBarn[];
 };
 
@@ -17,7 +18,7 @@ export const fetchDeltakerInfo = cache(async (): Promise<DeltakerInfo> => {
 
     const [søker, deltakelser, barn] = await Promise.all([
         fetchSøker(),
-        deltakerService.fetchDeltakelser(),
+        deltakerApiService.getAlleMineDeltakelser(),
         fetchBarn(),
     ]);
 

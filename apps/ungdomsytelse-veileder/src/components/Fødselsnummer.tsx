@@ -1,5 +1,5 @@
 import { CopyButton, HStack } from '@navikt/ds-react';
-import { fnrFormatter } from '../utils/fnrFormatter';
+import { fødselsnummerFormatter } from '@navikt/ung-common';
 
 interface Props {
     fnr: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const Fødselsnummer = ({ fnr, copyEnabled }: Props) => (
     <HStack gap="2" align={'center'}>
-        {fnrFormatter.applyFormat(fnr)}
+        {fødselsnummerFormatter.applyFormat(fnr)}
         {copyEnabled ? <CopyButton size="small" copyText={fnr} /> : null}
     </HStack>
 );

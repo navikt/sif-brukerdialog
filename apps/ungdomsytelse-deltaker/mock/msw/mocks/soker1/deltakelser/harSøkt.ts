@@ -1,46 +1,79 @@
-export const deltakelserHarSøkt = [
+import { DeltakelsePeriodInfo, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+
+export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
     {
-        id: '695262f7-7dc8-4b55-bb28-549385b59d21',
-        programperiodeFraOgMed: '2025-01-10',
-        programperiodeTilOgMed: null,
+        id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
+        fraOgMed: '2024-12-02',
+        tilOgMed: undefined,
         harSøkt: true,
+        oppgaver: [
+            {
+                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+                oppgavetypeData: {
+                    type: 'BEKREFT_ENDRET_STARTDATO',
+                    nySluttdato: '2026-01-01',
+                    veilederRef: 'Pål Hønesen, Andeby',
+                    meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-02-22T11:43:29.048157Z',
+                løstDato: undefined,
+            },
+            {
+                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+                oppgavetypeData: {
+                    type: 'BEKREFT_ENDRET_STARTDATO',
+                    nySluttdato: '2026-01-01',
+                    veilederRef: 'Pål Hønesen, Andeby',
+                    meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
+                },
+                status: OppgaveStatus.LØST,
+                opprettetDato: '2025-02-22T11:43:29.048157Z',
+                løstDato: '2025-02-23T05:00:12.048157Z',
+            },
+            {
+                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                oppgavetypeData: {
+                    type: 'BEKREFT_KORRIGERT_INNTEKT',
+                    periodeForInntekt: {
+                        fraOgMed: '2026-01-01',
+                        tilOgMed: '2026-01-31',
+                    },
+                    inntektFraAinntekt: {
+                        arbeidstakerOgFrilansInntekt: 7500,
+                        inntektFraYtelse: 1500,
+                    },
+                    inntektFraDeltaker: {
+                        arbeidstakerOgFrilansInntekt: undefined,
+                        inntektFraYtelse: undefined,
+                    },
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-02-22T11:43:29.048157Z',
+                løstDato: undefined,
+            },
+        ],
         rapporteringsPerioder: [
             {
-                fraOgMed: '2025-01-10',
+                fraOgMed: '2024-12-02',
+                tilOgMed: '2024-12-31',
+                harRapportert: false,
+                inntekt: undefined,
+            },
+            {
+                fraOgMed: '2025-01-01',
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
-                inntekt: null,
+                inntekt: undefined,
             },
             {
                 fraOgMed: '2025-02-01',
-                tilOgMed: '2025-02-19',
+                tilOgMed: '2025-02-26',
                 harRapportert: false,
-                inntekt: null,
-            },
-        ],
-        oppgaver: [
-            {
-                id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-                oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
-                status: 'ULØST',
-                opprettetDato: '2025-02-19T13:29:14.553804Z',
-                // løstDato: null,
-                // veilederReferanse: 'Pål Hønesen',
-                // svarfrist: '2025-03-01',
-                oppgavetypeData: {
-                    nyStartdato: '2025-01-01',
-                },
-            },
-            {
-                id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-                oppgavetype: 'BEKREFT_ENDRET_SLUTTDATO',
-                status: 'LØST',
-                opprettetDato: '2025-02-19T13:29:14.553804Z',
-                løstDato: '2025-02-19T13:29:14.553804Z',
-                løsningstype: 'GODKJENT_AV_DELTAKER',
-                oppgavetypeData: {
-                    nySluttdato: '2026-03-15',
-                },
+                inntekt: undefined,
             },
         ],
     },

@@ -1,20 +1,20 @@
 import { Bleed, BodyShort, Box, Button, HStack, Tag, VStack } from '@navikt/ds-react';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { Deltaker, NyDeltaker } from '../api/types';
+import { Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import PersonNøytral from '../illustrations/PersonNøytral';
 import Fødselsnummer from './Fødselsnummer';
 
 interface Props {
-    deltaker: Deltaker | NyDeltaker;
+    deltaker: Deltaker | UregistrertDeltaker;
     onClose?: () => void;
 }
 
 const DeltakerKort = ({
     deltaker: {
+        registrert,
         navn: { etternavn, fornavn, mellomnavn },
         deltakerIdent,
-        id,
     },
     onClose,
 }: Props) => (
@@ -23,13 +23,13 @@ const DeltakerKort = ({
         <VStack gap="2" flexGrow={'2'}>
             <VStack>
                 <BodyShort size="medium" weight="semibold">
-                    {etternavn}, {mellomnavn} {fornavn} 
+                    {etternavn}, {mellomnavn} {fornavn}
                 </BodyShort>
                 <HStack gap="2">
                     Ident: <Fødselsnummer fnr={deltakerIdent} />
                 </HStack>
             </VStack>
-            {!id ? (
+            {!registrert ? (
                 <Box>
                     <Tag variant="warning" size="small">
                         Ikke registrert som deltaker

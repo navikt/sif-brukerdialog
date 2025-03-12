@@ -33,7 +33,6 @@ const ValgOmsTypeStep = ({ søknadstype }: Props) => {
                         getYtelseRadio(YtelseKey.omsorgsdagerKroniskSyk),
                         getYtelseRadio(YtelseKey.omsorgspengerutbetalingSNFri),
                         getYtelseRadio(YtelseKey.omsorgspengerutbetalingArbeidstaker),
-                        // getYtelseRadio(YtelseKey.omsorgsdagerAleneomsorg), Midlertidig tatt bort frem til backend støtter denne
                         getYtelseRadio(YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn),
                     ]}
                 />

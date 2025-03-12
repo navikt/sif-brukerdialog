@@ -1,6 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
 import { søker1Mock } from '../mocks/soker1';
-import { deltakelserIkkeSøkt } from '../mocks/soker1/deltakelser/ikkeSøkt';
 import { deltakelserHarSøkt } from '../mocks/soker1/deltakelser/harSøkt';
 
 const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse-deltaker-soknad';
@@ -19,17 +18,20 @@ export const handlers = [
         return HttpResponse.json(søker1Mock.arbeidsgiver);
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        const harSøkt = true;
-        return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
+        return HttpResponse.json(deltakelserHarSøkt);
+        // return HttpResponse.json(deltakelserIkkeSøkt);
     }),
     http.post('**/marker-har-sokt', () => {
         return HttpResponse.json({});
     }),
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        return new HttpResponse(null, { status: 500 });
+        return new HttpResponse(null, { status: 200 });
+    }),
+    http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', () => {
+        return new HttpResponse(null, { status: 200 });
     }),
     http.post('**/ungdomsytelse/inntektsrapportering/innsending', () => {
-        return HttpResponse.json({});
+        return new HttpResponse(null, { status: 200 });
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

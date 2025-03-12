@@ -1,14 +1,13 @@
 import { Alert, Box, Heading, HGrid, HStack, Tabs, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { Oppgavestatus } from '@navikt/ung-common';
-import { Deltakelse, Deltaker } from '../../api/types';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import EndreSluttdato from '../../forms/endre-sluttdato/EndreSluttdato';
 import EndreStartdato from '../../forms/endre-startdato/EndreStartdato';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
 import DeltakelseOppgaver from '../deltakelse-oppgaver/DeltakelseOppgaver';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
-import { OppgaveInfo } from '../oppgave-tabell/OppgaveTabell';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { useVeileder } from '../../context/VeilederContext';
 
 interface Props {
     deltaker: Deltaker;
@@ -17,7 +16,8 @@ interface Props {
     onChange: () => void;
 }
 const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
-    const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === Oppgavestatus.ULØST);
+    const { veileder } = useVeileder();
+    const åpneOppgaver = deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
     return (
         <Box className="pb-20">
             <Tabs defaultValue="oversikt">
@@ -27,12 +27,14 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                         value="oppgaver"
                         label={
                             <HStack gap="1">
-                                <Box>Deltakeroppgaver</Box>
-                                <Box
-                                    className="rounded-full bg-data-surface-2 text-white w-6 h-6 relative"
-                                    style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
-                                    {deltakelse.oppgaver.length}
-                                </Box>
+                                <Box>Deltakervarsler</Box>
+                                {deltakelse.oppgaver.length > 0 ? (
+                                    <Box
+                                        className="rounded-full bg-icon-warning text-white w-6 h-6 relative"
+                                        style={{ marginTop: '-0.25rem', position: 'relative', zoom: 0.75 }}>
+                                        {deltakelse.oppgaver.length}
+                                    </Box>
+                                ) : null}
                             </HStack>
                         }
                     />
@@ -60,11 +62,6 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                                 åpneOppgaver.map((oppgave) => (
                                     <Alert key={oppgave.id} variant="warning" inline>
                                         <Box>{oppgave.oppgavetype}</Box>
-                                        <OppgaveInfo oppgave={oppgave} />
-                                        <Box>
-                                            Frist:{' '}
-                                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
-                                        </Box>
                                     </Alert>
                                 ))
                             ) : (
@@ -83,20 +80,24 @@ const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: 
                 <Tabs.Panel value="endreStartdato">
                     <Box paddingBlock="8 0">
                         <EndreStartdato
+                            veileder={veileder}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
-                            onChange={onChange}
                             deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="endreSluttdato">
                     <Box paddingBlock="8 0">
                         <EndreSluttdato
-                            deltakernavn={deltaker.navn.fornavn}
+                            veileder={veileder}
                             deltakelse={deltakelse}
                             deltakelser={alleDeltakelser}
-                            onChange={onChange}
+                            deltakernavn={deltaker.navn.fornavn}
+                            oppgaver={deltakelse.oppgaver}
+                            onDeltakelseChanged={onChange}
                         />
                     </Box>
                 </Tabs.Panel>

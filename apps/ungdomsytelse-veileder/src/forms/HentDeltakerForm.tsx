@@ -11,15 +11,14 @@ import {
     VStack,
 } from '@navikt/ds-react';
 import { ReactElement, useState } from 'react';
-import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { getFødselsnummerValidator } from '@navikt/sif-validation';
+import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
-import { veilederService } from '../api/services/veilederService';
-import { Deltakelse, Deltaker, isDeltaker, NyDeltaker } from '../api/types';
+import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
 import DeltakerKort from '../components/DeltakerKort';
-import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
+import { veilederApiService } from '../api/veilederApiService';
 import { getAppEnv } from '../utils/appEnv';
-import { fnrFormatter } from '../utils/fnrFormatter';
 import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 
 interface Props {
@@ -34,10 +33,10 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [pending, setPending] = useState<boolean>(false);
-    const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | undefined>();
+    const [nyDeltaker, setKandidat] = useState<UregistrertDeltaker | undefined>();
     const [registrerNy, setRegistrerNy] = useState<boolean>(false);
 
-    const textFieldFormatter = useTextFieldFormatter(fnrFormatter);
+    const textFieldFormatter = useTextFieldFormatter(fødselsnummerFormatter);
 
     const fetchDeltaker = async () => {
         setError(undefined);
@@ -45,15 +44,15 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
         setValidationError(fnrError);
         if (fnrValue && fnrError === undefined) {
             setPending(true);
-            setNyDeltaker(undefined);
+            setKandidat(undefined);
             try {
-                const deltaker = await veilederService.findDeltaker(fnrValue);
-                if (isDeltaker(deltaker)) {
+                const deltakerEllerKandidat = await veilederApiService.findDeltakerByDeltakerIdent(fnrValue);
+                if (deltakerEllerKandidat.id !== undefined) {
                     setPending(false);
-                    onDeltakerFetched(deltaker);
+                    onDeltakerFetched(deltakerEllerKandidat);
                 } else {
                     setPending(false);
-                    setNyDeltaker(deltaker);
+                    setKandidat(deltakerEllerKandidat);
                 }
             } catch (e) {
                 setPending(false);
@@ -84,7 +83,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
     const resetForm = () => {
-        setNyDeltaker(undefined);
+        setKandidat(undefined);
         setFnrValue(undefined);
         setValidationError(undefined);
         setError(undefined);
@@ -103,11 +102,11 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         <HStack gap="2" align={'end'} paddingBlock="2 0">
                             <TextField
                                 name="fnr"
-                                value={hasFocus ? fnrValue || '' : fnrFormatter.applyFormat(fnrValue)}
+                                value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
                                 label="Fødselsnummer/d-nummer:"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);
-                                    setNyDeltaker(undefined);
+                                    setKandidat(undefined);
                                 }}
                                 size="medium"
                                 maxLength={11}

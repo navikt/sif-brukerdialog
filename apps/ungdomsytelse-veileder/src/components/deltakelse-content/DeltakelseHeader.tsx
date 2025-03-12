@@ -1,6 +1,6 @@
 import { BodyShort, Heading, HGrid, HStack, Tag } from '@navikt/ds-react';
-import { Deltakelse } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -27,16 +27,6 @@ const getDeltakelseStatus = (deltakelse: Deltakelse) => {
         return (
             <Tag variant="alt3-filled" size="small">
                 Avsluttet
-            </Tag>
-        );
-    }
-    if (
-        (dayjs().isSameOrAfter(deltakelse.fraOgMed) && !!deltakelse.fraOgMed) ||
-        dayjs().isSameOrBefore(deltakelse.tilOgMed)
-    ) {
-        return (
-            <Tag variant="success-filled" size="small">
-                Aktiv
             </Tag>
         );
     }

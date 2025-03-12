@@ -59,6 +59,8 @@ const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => 
             return YtelseKey.omsorgspengerutbetalingSNFri;
         case Søknadstype.utbetalingarbeidstaker:
             return YtelseKey.omsorgspengerutbetalingArbeidstaker;
+        case Søknadstype.opplaringspenger:
+            return YtelseKey.opplaringspenger;
     }
 };
 

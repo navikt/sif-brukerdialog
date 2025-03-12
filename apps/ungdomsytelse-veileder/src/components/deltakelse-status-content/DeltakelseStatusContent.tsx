@@ -1,6 +1,6 @@
 import { Box, Heading, List, Tag, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 
 interface Props {
     deltaker: Deltaker;
