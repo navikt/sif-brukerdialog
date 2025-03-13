@@ -35,7 +35,7 @@
         "lodash": "4.17.21",
         "object-hash": "3.0.0",
         "react": "19.0.0",
-        "react-day-picker": "9.6.1",
+        "react-day-picker": "9.6.2",
         "react-dom": "19.0.0",
         "react-intl": "7.1.6",
         "react-router-dom": "7.3.0"
