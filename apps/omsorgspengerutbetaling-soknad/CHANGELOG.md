@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.24.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 1.24.1
 
 ### Patch Changes

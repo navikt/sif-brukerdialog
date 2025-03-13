@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.37.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 2.37.1
 
 ### Patch Changes

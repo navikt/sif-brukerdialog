@@ -4,6 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
+    "version": "0.0.1",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.64.11",
         "@sif/eslint-config": "workspace:*",

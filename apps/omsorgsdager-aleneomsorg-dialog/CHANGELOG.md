@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.26.3
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 2.26.2
 
 ### Patch Changes
