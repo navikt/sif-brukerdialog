@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 1.9.1
 
 ### Patch Changes
