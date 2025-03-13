@@ -16,7 +16,7 @@
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "husky": "9.1.7",
-        "lint-staged": "15.4.3",
+        "lint-staged": "15.5.0",
         "prettier": "3.5.3",
         "typescript": "5.8.2"
     },
