@@ -35,7 +35,7 @@ const getAlleMineDeltakelser = async (): Promise<DeltakelsePeriode[]> => {
  */
 const sendOppgavebekreftelse = async (oppgave: UngdomsytelseOppgavebekreftelse): Promise<void> => {
     try {
-        const body: UngdomsytelseOppgavebekreftelse = zUngdomsytelseOppgavebekreftelse.parse(oppgave) as any;
+        const body: UngdomsytelseOppgavebekreftelse = zUngdomsytelseOppgavebekreftelse.parse(oppgave);
         await UngdomsytelseControllerService.oppgavebekreftelse({ body, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
