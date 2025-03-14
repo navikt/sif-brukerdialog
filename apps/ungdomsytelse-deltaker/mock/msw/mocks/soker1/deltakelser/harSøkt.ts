@@ -33,6 +33,28 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
                 løstDato: '2025-02-23T05:00:12.048157Z',
             },
+            {
+                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                oppgavetypeData: {
+                    type: 'BEKREFT_KORRIGERT_INNTEKT',
+                    periodeForInntekt: {
+                        fraOgMed: '2026-01-01',
+                        tilOgMed: '2026-01-31',
+                    },
+                    inntektFraAinntekt: {
+                        arbeidstakerOgFrilansInntekt: 7500,
+                        inntektFraYtelse: 1500,
+                    },
+                    inntektFraDeltaker: {
+                        arbeidstakerOgFrilansInntekt: undefined,
+                        inntektFraYtelse: undefined,
+                    },
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-02-22T11:43:29.048157Z',
+                løstDato: undefined,
+            },
         ],
         rapporteringsPerioder: [
             {

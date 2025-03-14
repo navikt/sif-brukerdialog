@@ -16,7 +16,6 @@ const rapporteringsperiode: Rapporteringsperiode = {
     inntekt: {
         arbeidstakerOgFrilansInntekt: 0,
         inntektFraYtelse: 0,
-        næringsinntekt: 0,
         summertInntekt: 0,
     },
 };
@@ -52,7 +51,6 @@ export const RapportertPeriode: Story = {
             kanRapportere: true,
             inntekt: {
                 arbeidstakerOgFrilansInntekt: 1500,
-                næringsinntekt: 0,
                 inntektFraYtelse: 0,
                 summertInntekt: 1500,
             },

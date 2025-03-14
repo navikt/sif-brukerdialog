@@ -1,4 +1,4 @@
-import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { EndreSluttdatoOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
@@ -14,6 +14,7 @@ import { useAppIntl } from '../../../../i18n';
 import { getDateValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
+import { CalendarIcon } from '@navikt/aksel-icons';
 
 interface Props {
     deltakelseId: string;
@@ -69,6 +70,12 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
 
     return (
         <OppgaveLayout
+            tag={
+                <HStack gap="2">
+                    <CalendarIcon />
+                    Endret deltakerperiode
+                </HStack>
+            }
             tittel="Din deltakerperiode blir endret"
             besvart={besvart}
             beskrivelse={

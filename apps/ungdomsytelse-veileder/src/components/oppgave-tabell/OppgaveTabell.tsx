@@ -60,6 +60,10 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
             </Alert>
         );
     }
+    const sortedOppgaver = [...oppgaver].sort(
+        (a, b) => new Date(b.opprettetDato).getTime() - new Date(a.opprettetDato).getTime(),
+    );
+
     return (
         <Table zebraStripes={true}>
             <Table.Header>
@@ -72,7 +76,7 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {oppgaver.map((oppgave, index) => (
+                {sortedOppgaver.map((oppgave, index) => (
                     <Table.ExpandableRow
                         key={index}
                         content={

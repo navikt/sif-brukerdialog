@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.0.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 1.18.1
 
 ### Patch Changes

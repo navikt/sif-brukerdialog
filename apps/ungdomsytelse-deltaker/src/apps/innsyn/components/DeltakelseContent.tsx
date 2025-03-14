@@ -28,9 +28,7 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
             {uløsteOppgaver.map((oppgave, index) => (
                 <OppgavePanel key={index} oppgave={oppgave} deltakelseId={id} programPeriode={programPeriode} />
             ))}
-
             {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}
-
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     Perioder og inntekt
@@ -52,15 +50,5 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
         </VStack>
     );
 };
-
-// const sperrerOppgaveAndreEndringer = (oppgave: Oppgave): boolean => {
-//     switch (oppgave.oppgavetype) {
-//         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-//         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-//             return true;
-//         default:
-//             return false;
-//     }
-// };
 
 export default DeltakelseContent;

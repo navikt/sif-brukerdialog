@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.9.3
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 4.9.2
 
 ### Patch Changes

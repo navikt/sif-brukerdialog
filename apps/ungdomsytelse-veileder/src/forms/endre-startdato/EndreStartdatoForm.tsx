@@ -40,6 +40,7 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onDeltakelseCha
                 initialValues={{}}
                 onSubmit={(values: EndreStartdatoFormValues) => {
                     const melding = values.melding ? values.melding.trim() : undefined;
+                    // setOppdatert(false);
                     endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
                 }}
                 renderForm={({ values }) => {
@@ -80,6 +81,7 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onDeltakelseCha
                                             visSluttdato={false}
                                             visStartdato={true}
                                             fomDate={fomDate}
+                                            harSøkt={deltakelse.harSøkt}
                                             deltakelser={deltakelser}
                                             deltakelseId={deltakelse.id}
                                         />

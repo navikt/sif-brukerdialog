@@ -45,19 +45,27 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
 export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     .object({
         oppgaveId: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
+        veilederRef: z.string(),
+        meldingFraVeileder: z.string().optional(),
         type: z.string(),
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
+            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
+        }),
+    )
+    .merge(
+        z.object({
+            nyStartdato: z.string().date(),
+            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+            ikkeGodkjentResponse: z
+                .object({
+                    korrigertDato: z.string().date(),
+                    kontaktVeilederSvar: z.boolean(),
+                    meldingFraDeltaker: z.string(),
+                })
+                .optional(),
+            isIkkeGodkjentResponseValid: z.boolean(),
         }),
     );
 
@@ -67,10 +75,16 @@ export const zUngdomsytelseIkkeGodkjentResponse = z.object({
     meldingFraDeltaker: z.string(),
 });
 
+export const zUngdomsytelseIkkeGodkjentInntektResponse = z.object({
+    arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+    inntektFraYtelse: z.number().int().optional(),
+    meldingFraDeltaker: z.string(),
+});
+
 export const zUngdomsytelseOppgaveDto = z.object({
     oppgaveId: z.string(),
-    bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-    ikkeGodkjentResponse: zUngdomsytelseIkkeGodkjentResponse.optional(),
+    veilederRef: z.string(),
+    meldingFraVeileder: z.string().optional(),
     type: z.string(),
 });
 
@@ -81,7 +95,6 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
 
 export const zOppgittInntektForPeriode = z.object({
     arbeidstakerOgFrilansInntekt: z.number().int().optional(),
-    næringsinntekt: z.number().int().optional(),
     inntektFraYtelse: z.number().int().optional(),
     periodeForInntekt: z.object({
         fraOgMed: z.string().date(),

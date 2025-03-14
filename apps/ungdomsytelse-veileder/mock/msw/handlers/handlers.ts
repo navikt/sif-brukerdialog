@@ -5,8 +5,8 @@ import {
     findDeltaker,
     getDeltakelser,
     getDeltakerByDeltakerId,
-    registrertDeltakerId,
     veilederMock,
+    registrertDeltakerId,
 } from '../mocks/mockUtils';
 
 export const handlers = [

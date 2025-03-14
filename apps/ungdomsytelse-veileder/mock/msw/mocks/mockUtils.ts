@@ -65,7 +65,7 @@ const registrertDeltaker: DeltakerPersonlia = {
     sisteMuligeInnmeldingsdato: '2024-12-31',
 };
 
-const oppgave: OppgaveDto = {
+export const mockOppgave: OppgaveDto = {
     id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     status: OppgaveStatus.ULØST,
@@ -86,7 +86,7 @@ const deltakelseDR = {
     fraOgMed: '2025-01-01',
     tilOgMed: '2025-05-01',
     harSøkt: true,
-    oppgaver: [oppgave],
+    oppgaver: [mockOppgave],
 };
 
 export const deltakelseDNMock = {

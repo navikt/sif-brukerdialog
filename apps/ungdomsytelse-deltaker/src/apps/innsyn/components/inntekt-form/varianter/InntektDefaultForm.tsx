@@ -1,6 +1,5 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import ArbeidstakerFrilanserSpørsmål from '../spørsmål/ArbeidstakerFrilanserSpørsmål';
-import SelvstendigNæringsdrivendeSpørsmål from '../spørsmål/SelvstendigNæringsdrivendeSpørsmål';
 import YtelseSpørsmål from '../spørsmål/YtelseSpørsmål';
 import { InntektFormFields, InntektFormValues } from '../types';
 import {
@@ -21,7 +20,6 @@ interface Props {
 const InntektDefaultForm = ({ periode, values }: Props) => {
     const { ConfirmationCheckbox } = inntektFormComponents;
     const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
-    const harNæringsinntekt = values[InntektFormFields.harNæringsinntekt] === YesOrNo.YES;
     const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse] === YesOrNo.YES;
 
     const inntekt = erAlleInntektSpørsmålBesvartOgGyldig(values) ? getInntektFromFormValues(values) : undefined;
@@ -29,8 +27,6 @@ const InntektDefaultForm = ({ periode, values }: Props) => {
     return (
         <FormLayout.Questions>
             <ArbeidstakerFrilanserSpørsmål harArbeidstakerOgFrilansInntekt={harArbeidstakerOgFrilansInntekt} />
-
-            <SelvstendigNæringsdrivendeSpørsmål harNæringsinntekt={harNæringsinntekt} />
 
             <YtelseSpørsmål harInntektFraYtelse={harInntektFraYtelse} />
 

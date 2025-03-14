@@ -22,6 +22,7 @@ interface Props {
     deltakernavn: string;
     visStartdato?: boolean;
     visSluttdato?: boolean;
+    harSøkt: boolean;
     tomDate?: Date;
     fomDate?: Date;
     deltakelser: Deltakelse[];
@@ -35,6 +36,7 @@ const PeriodeFormPart = ({
     veileder,
     deltakernavn,
     fomDate,
+    harSøkt,
     tomDate,
     deltakelser = [],
     deltakelseId,
@@ -60,18 +62,41 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
-            {visSluttdato ? (
-                <FormikDatepicker
-                    name="tom"
-                    label="Ny sluttdato"
-                    minDate={max([fomDate || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from])}
-                    maxDate={GYLDIG_PERIODE.to}
-                    disabledDateRanges={periodeSomIkkeKanVelges}
-                    defaultMonth={tomDate || fomDate || new Date()}
-                    validate={getDateValidator({
-                        min: fomDate || GYLDIG_PERIODE.from,
-                    })}
-                />
+            {harSøkt ? (
+                <>
+                    {visSluttdato ? (
+                        <FormikDatepicker
+                            name="tom"
+                            label="Ny sluttdato"
+                            minDate={max([fomDate || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from])}
+                            maxDate={GYLDIG_PERIODE.to}
+                            disabledDateRanges={periodeSomIkkeKanVelges}
+                            defaultMonth={tomDate || fomDate || new Date()}
+                            validate={getDateValidator({
+                                min: fomDate || GYLDIG_PERIODE.from,
+                            })}
+                        />
+                    ) : null}
+                    <FormikTextarea
+                        name="melding"
+                        label="Melding til deltaker (valgfritt)"
+                        maxLength={MELDING_MAX_LENGTH}
+                        minLength={MELDING_MIN_LENGTH}
+                        validate={getStringValidator({
+                            required: false,
+                            maxLength: MELDING_MAX_LENGTH,
+                            minLength: MELDING_MIN_LENGTH,
+                        })}
+                    />
+                    <FormikYesOrNoQuestion
+                        name="deltakerInformert"
+                        legend={`Er ${deltakernavn} informert om endringen?`}
+                        validate={getRequiredFieldValidator()}
+                    />
+                    <Alert variant="info" inline={true}>
+                        Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
+                    </Alert>
+                </>
             ) : null}
             <FormikTextarea
                 name="melding"

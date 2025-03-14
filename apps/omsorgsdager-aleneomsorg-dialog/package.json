@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.26.2",
+    "version": "2.26.3",
     "private": true,
     "type": "module",
     "scripts": {
@@ -29,9 +29,9 @@
         "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
-        "@navikt/ds-css": "7.17.0",
-        "@navikt/ds-react": "7.17.0",
-        "@navikt/ds-tailwind": "7.17.0",
+        "@navikt/ds-css": "7.17.2",
+        "@navikt/ds-react": "7.17.2",
+        "@navikt/ds-tailwind": "7.17.2",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -46,8 +46,8 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.2.0",
-        "axios": "1.8.2",
-        "csp-header": "6.0.1",
+        "axios": "1.8.3",
+        "csp-header": "6.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
         "html-react-parser": "5.2.2",
@@ -62,7 +62,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
-        "@babel/core": "7.26.9",
+        "@babel/core": "7.26.10",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.26.3",
         "@babel/preset-env": "7.26.9",
