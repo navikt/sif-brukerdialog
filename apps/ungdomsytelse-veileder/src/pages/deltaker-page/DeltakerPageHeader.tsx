@@ -1,5 +1,5 @@
-import { useDeltaker } from '../context/DeltakerContext';
-import DeltakerHeader from './DeltakerHeader';
+import { useDeltaker } from '../../context/DeltakerContext';
+import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
 
 const DeltakerPageHeader = () => {
     const { deltaker, closeDeltaker: lukkDeltaker } = useDeltaker();

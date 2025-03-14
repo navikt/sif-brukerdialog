@@ -6,7 +6,6 @@ const EndreStartdatoInfo = () => {
             <Heading level="3" size="medium" spacing={true}>
                 Om å endre startdato
             </Heading>
-            <BodyLong spacing={true}>Her kan det ligge litt kort info om det å endre startdato.</BodyLong>
             <VStack gap="2">
                 <ReadMore header="Hva skjer når jeg endrer startdato?">
                     <BodyLong>

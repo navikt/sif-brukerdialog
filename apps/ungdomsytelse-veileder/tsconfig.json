@@ -1,6 +1,7 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        // "strict": true,
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },

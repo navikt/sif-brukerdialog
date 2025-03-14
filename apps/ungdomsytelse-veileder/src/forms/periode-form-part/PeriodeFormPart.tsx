@@ -1,17 +1,7 @@
-import { Alert, VStack } from '@navikt/ds-react';
-import {
-    FormikConfirmationCheckbox,
-    FormikDatepicker,
-    FormikTextarea,
-    FormikYesOrNoQuestion,
-} from '@navikt/sif-common-formik-ds';
+import { Alert, Button, HStack, VStack } from '@navikt/ds-react';
+import { FormikDatepicker, FormikTextarea, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
-import {
-    getCheckedValidator,
-    getDateValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-} from '@navikt/sif-validation';
+import { getDateValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
 import { Deltakelse, formaterNavn } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
 import { GYLDIG_PERIODE } from '../../settings';
@@ -27,6 +17,8 @@ interface Props {
     fomDate?: Date;
     deltakelser: Deltakelse[];
     deltakelseId?: string;
+    pending?: boolean;
+    onCancel?: () => void;
 }
 
 const MELDING_MAX_LENGTH = 250;
@@ -36,12 +28,14 @@ const PeriodeFormPart = ({
     veileder,
     deltakernavn,
     fomDate,
-    harSøkt,
+    // harSøkt,
     tomDate,
     deltakelser = [],
     deltakelseId,
     visStartdato = true,
     visSluttdato = true,
+    pending,
+    onCancel,
 }: Props) => {
     const periodeSomIkkeKanVelges: DateRange[] = deltakelser
         .filter((d) => d.id !== deltakelseId && d.tilOgMed !== undefined)
@@ -62,48 +56,48 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
-            {harSøkt ? (
-                <>
-                    {visSluttdato ? (
-                        <FormikDatepicker
-                            name="tom"
-                            label="Ny sluttdato"
-                            minDate={max([fomDate || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from])}
-                            maxDate={GYLDIG_PERIODE.to}
-                            disabledDateRanges={periodeSomIkkeKanVelges}
-                            defaultMonth={tomDate || fomDate || new Date()}
-                            validate={getDateValidator({
-                                min: fomDate || GYLDIG_PERIODE.from,
-                            })}
-                        />
-                    ) : null}
-                    <FormikTextarea
-                        name="melding"
-                        label="Melding til deltaker (valgfritt)"
-                        maxLength={MELDING_MAX_LENGTH}
-                        minLength={MELDING_MIN_LENGTH}
-                        validate={getStringValidator({
-                            required: false,
-                            maxLength: MELDING_MAX_LENGTH,
-                            minLength: MELDING_MIN_LENGTH,
-                        })}
-                    />
-                    <FormikYesOrNoQuestion
-                        name="deltakerInformert"
-                        legend={`Er ${deltakernavn} informert om endringen?`}
-                        validate={getRequiredFieldValidator()}
-                    />
-                    <Alert variant="info" inline={true}>
-                        Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
-                    </Alert>
-                </>
+            {visSluttdato ? (
+                <FormikDatepicker
+                    name="tom"
+                    label="Ny sluttdato"
+                    minDate={max([fomDate || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from])}
+                    maxDate={GYLDIG_PERIODE.to}
+                    disabledDateRanges={periodeSomIkkeKanVelges}
+                    defaultMonth={tomDate || fomDate || new Date()}
+                    validate={getDateValidator({
+                        min: fomDate || GYLDIG_PERIODE.from,
+                    })}
+                />
             ) : null}
-
-            <FormikConfirmationCheckbox
-                name="bekrefterEndring"
-                label="Bekreft endring av deltakerperiode"
-                validate={getCheckedValidator()}
+            <FormikTextarea
+                name="melding"
+                label="Melding til deltaker (valgfritt)"
+                maxLength={MELDING_MAX_LENGTH}
+                minLength={MELDING_MIN_LENGTH}
+                validate={getStringValidator({
+                    required: false,
+                    maxLength: MELDING_MAX_LENGTH,
+                    minLength: MELDING_MIN_LENGTH,
+                })}
             />
+            <FormikYesOrNoQuestion
+                name="deltakerInformert"
+                legend={`Er ${deltakernavn} informert om endringen?`}
+                validate={getRequiredFieldValidator()}
+            />
+            <Alert variant="info" inline={true}>
+                Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
+            </Alert>
+            <HStack gap="4">
+                <Button type="submit" loading={pending} variant="primary">
+                    Lagre endring
+                </Button>
+                {onCancel ? (
+                    <Button type="button" variant="secondary" onClick={onCancel}>
+                        Avbryt
+                    </Button>
+                ) : null}
+            </HStack>
         </VStack>
     );
 };
