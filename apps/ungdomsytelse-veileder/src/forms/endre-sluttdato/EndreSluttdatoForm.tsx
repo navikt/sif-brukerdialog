@@ -1,20 +1,20 @@
 import { Alert, BodyLong, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Deltakelse, Deltaker, EndreStartdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
-import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
+import { Deltakelse, Deltaker, EndreSluttdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
+import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import { useVeileder } from '../../context/VeilederContext';
 
-export type EndreStartdatoFormValues = {
+export type EndreSluttdatoFormValues = {
     id: string;
     fnr: string;
     fom: string;
+    tom?: string;
     melding?: string;
 };
 
 interface Props {
-    // veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
@@ -22,28 +22,28 @@ interface Props {
     onDeltakelseChanged: () => void;
 }
 
-const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreSluttdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const { veileder } = useVeileder();
 
-    const { endreStartdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
+    const { endreSluttdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
 
     const åpenOppgaver = deltakelse.oppgaver.filter(
-        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
-    ) as EndreStartdatoOppgave[];
+        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    ) as EndreSluttdatoOppgave[];
 
-    const åpenOppgave: EndreStartdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
+    const åpenOppgave: EndreSluttdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
     const deltakernavn = formaterNavn(deltaker.navn);
 
     return (
         <Box>
-            <TypedFormikWrapper<EndreStartdatoFormValues>
+            <TypedFormikWrapper<EndreSluttdatoFormValues>
                 initialValues={{}}
-                onSubmit={(values: EndreStartdatoFormValues) => {
+                onSubmit={(values) => {
                     const melding = values.melding ? values.melding.trim() : undefined;
-                    endreStartdato(deltakelse, ISODateToDate(values.fom), melding);
+                    endreSluttdato(deltakelse, ISODateToDate(values.tom), melding);
                 }}
                 renderForm={({ values }) => {
-                    const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
+                    const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
                         <VStack gap="4">
                             {åpenOppgave ? (
@@ -52,20 +52,13 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDel
                                     du registrerer en ny endring, vil den forrige endringen bli erstattet av denne.
                                 </Alert>
                             ) : null}
-                            <VStack gap="2">
-                                {deltakelse.harSøkt ? (
-                                    <BodyLong>
-                                        Når startdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
-                                        nye startdatoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
-                                        deltaker".
-                                    </BodyLong>
-                                ) : (
-                                    <BodyLong>
-                                        Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det utløser blir
-                                        noen oppgave til deltaker.
-                                    </BodyLong>
-                                )}
-                            </VStack>
+                            {deltakelse.harSøkt ? (
+                                <BodyLong>
+                                    Når sluttdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den nye
+                                    datoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til deltaker".
+                                </BodyLong>
+                            ) : null}
+
                             <TypedFormikForm
                                 submitPending={pending}
                                 showSubmitButton={false}
@@ -75,17 +68,22 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDel
                                     <PeriodeFormPart
                                         veileder={veileder}
                                         deltakernavn={deltakernavn}
-                                        visSluttdato={false}
-                                        visStartdato={true}
-                                        fomDate={fomDate}
+                                        visSluttdato={true}
+                                        visStartdato={false}
+                                        tomDate={tomDate}
                                         harSøkt={deltakelse.harSøkt}
                                         deltakelser={deltakelser}
                                         deltakelseId={deltakelse.id}
                                         pending={pending}
                                         onCancel={onCancel}
                                     />
-
-                                    {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                    {error ? (
+                                        <Alert variant="error">
+                                            {error.type}
+                                            <br />
+                                            {error.message}
+                                        </Alert>
+                                    ) : null}
                                 </VStack>
                             </TypedFormikForm>
                         </VStack>
@@ -96,4 +94,4 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDel
     );
 };
 
-export default EndreStartdatoForm;
+export default EndreSluttdatoForm;

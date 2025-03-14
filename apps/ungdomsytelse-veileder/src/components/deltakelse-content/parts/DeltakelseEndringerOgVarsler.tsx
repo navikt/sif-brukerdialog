@@ -8,8 +8,8 @@ interface Props {
 const DeltakelseEndringerOgVarsler = ({ deltakelse }: Props) => {
     return (
         <VStack gap="4">
-            <Heading level="3" size="small">
-                Historikk, endringer og varsler
+            <Heading level="3" size="medium">
+                Historikk
             </Heading>
             <VStack className="bg-gray-50 p-5 rounded-md" gap="2">
                 <OppgaveTabell oppgaver={deltakelse.oppgaver} />

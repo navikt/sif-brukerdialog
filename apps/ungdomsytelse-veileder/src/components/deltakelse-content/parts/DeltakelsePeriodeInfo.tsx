@@ -33,7 +33,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse }: Props) => {
                         <BodyShort as="span">Antall dager brukt</BodyShort>
                     </Heading>
                     <BodyShort size="large" weight="semibold" className="text-2xl">
-                        0 (TODO)
+                        -
                     </BodyShort>
                 </VStack>
             </HGrid>

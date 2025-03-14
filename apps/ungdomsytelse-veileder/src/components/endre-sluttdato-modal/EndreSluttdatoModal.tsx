@@ -1,8 +1,8 @@
 import { Alert, BodyShort, Button, Heading, List, Modal, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import EndreStartdatoForm from '../../forms/endre-startdato/EndreStartdatoForm';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import EndreSluttdatoForm from '../../forms/endre-sluttdato/EndreSluttdatoForm';
 
 interface Props {
     deltaker: Deltaker;
@@ -10,7 +10,7 @@ interface Props {
     onClose: () => void;
 }
 
-const EndreStartdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
+const EndreSluttdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
     const [endret, setEndret] = useState(false);
     return (
         <Modal
@@ -20,7 +20,7 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
             width={endret ? 'medium' : '800px'}>
             <Modal.Header closeButton={endret === false}>
                 <Heading level="1" size="large" id="oppgave-modal-heading">
-                    Endre startdato
+                    Endre sluttdato
                 </Heading>
             </Modal.Header>
             <Modal.Body>
@@ -28,7 +28,7 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
                     {endret ? (
                         <VStack gap="8">
                             <Alert variant="success">
-                                Startdato for deltakelsen er endret til{' '}
+                                Sluttdato for deltakelsen er endret til{' '}
                                 <BodyShort weight="semibold" as="span">
                                     {dateFormatter.full(deltakelse.fraOgMed)}
                                 </BodyShort>
@@ -52,11 +52,11 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
                             </VStack>
                         </VStack>
                     ) : (
-                        <EndreStartdatoForm
+                        <EndreSluttdatoForm
                             deltakelse={deltakelse}
                             deltakelser={[]}
                             deltaker={deltaker}
-                            onCancel={() => onClose()}
+                            onCancel={onClose}
                             onDeltakelseChanged={() => setEndret(true)}
                         />
                     )}
@@ -73,4 +73,4 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
     );
 };
 
-export default EndreStartdatoModal;
+export default EndreSluttdatoModal;
