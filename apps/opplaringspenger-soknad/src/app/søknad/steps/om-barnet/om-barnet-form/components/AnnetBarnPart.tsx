@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -24,7 +24,7 @@ import { OmBarnetFormFields, OmBarnetFormValues, RelasjonTilBarnet } from '../ty
 import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetManglerIdentitetsnummer';
 import FødselsattestPart from './FødselsattestPart';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { nYearsAgo } from '../utils/omBarnetFormUtils';
+import { getBarnetsAlder, nYearsAgo } from '../utils/omBarnetFormUtils';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 interface Props {
@@ -42,6 +42,16 @@ const { TextField, DatePicker, Checkbox, RadioGroup, Textarea } = getTypedFormCo
     ValidationError
 >();
 
+const Aldersvarsel = () => (
+    <FormLayout.QuestionBleedTop>
+        <Alert variant="info">
+            For å få opplæringspenger for barn over 18 år, må barnet fortsatt være under omsorgen til den som får
+            opplæring. Det gis vanligvis ikke opplæringspenger for pårørende til voksne, for eksempel ektefeller som er
+            blitt syke.
+        </Alert>
+    </FormLayout.QuestionBleedTop>
+);
+
 const AnnetBarnPart: React.FC<Props> = ({
     formValues,
     ettersendelseURL,
@@ -54,6 +64,8 @@ const AnnetBarnPart: React.FC<Props> = ({
     const { values, setFieldValue } = useFormikContext<OmBarnetFormValues>();
 
     const { barnetHarIkkeFnr, årsakManglerIdentitetsnummer } = values;
+    const barnetsAlder = getBarnetsAlder(formValues);
+    const barnErOver18År = barnetsAlder !== undefined && barnetsAlder >= 18;
 
     return (
         <SkjemagruppeQuestion
@@ -119,6 +131,8 @@ const AnnetBarnPart: React.FC<Props> = ({
                     />
                 )}
 
+                {barnetHarIkkeFnr === undefined && barnErOver18År ? <Aldersvarsel /> : null}
+
                 <TextField
                     label={text('omBarnetForm.navn')}
                     name={OmBarnetFormFields.barnetsNavn}
@@ -133,6 +147,7 @@ const AnnetBarnPart: React.FC<Props> = ({
                         validate={(value) => {
                             const dateError = getDateValidator({
                                 required: true,
+                                min: nYearsAgo(18),
                                 max: getDateToday(),
                             })(value);
                             if (dateError === ValidateDateError.dateIsBeforeMin) {
@@ -148,6 +163,8 @@ const AnnetBarnPart: React.FC<Props> = ({
                         dropdownCaption={true}
                     />
                 )}
+
+                {barnetHarIkkeFnr === true && barnErOver18År ? <Aldersvarsel /> : null}
 
                 <RadioGroup
                     legend={text('omBarnetForm.relasjon.spm')}

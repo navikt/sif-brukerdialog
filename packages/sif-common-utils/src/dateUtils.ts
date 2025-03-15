@@ -110,12 +110,51 @@ export const sortDates = (d1: Date, d2: Date) => {
     return d1.getTime() - d2.getTime();
 };
 
+/**
+ * Obs! Denne kan feile hvis fødselsnummeret er syntetisk. Det er også tilfeller hvor dato ikke
+ * er helt korrekt - men dette er sjelden.
+ * @param fnr Fødselsnummer
+ * @returns fødselsdatoen eller null hvis fødselsnummeret er ugyldig
+ */
+export const getFødselsdatoFromFødselsnummer = (fnr?: string): Date | undefined => {
+    if (fnr === undefined || !/^\d{11}$/.test(fnr)) {
+        return undefined;
+        // throw new Error('Ugyldig fødselsnummer. Må bestå av 11 siffer.');
+    }
+
+    const day = parseInt(fnr.substring(0, 2), 10);
+    const month = parseInt(fnr.substring(2, 4), 10);
+    const yearPart = parseInt(fnr.substring(4, 6), 10);
+    const individnummer = parseInt(fnr.substring(6, 9), 10);
+
+    let year: number;
+
+    if (individnummer >= 0 && individnummer <= 499) {
+        year = 1900 + yearPart;
+    } else if (individnummer >= 500 && individnummer <= 749 && yearPart >= 0 && yearPart <= 39) {
+        year = 2000 + yearPart;
+    } else if (individnummer >= 900 && individnummer <= 999 && yearPart >= 0 && yearPart <= 39) {
+        year = 1900 + yearPart;
+    } else if (individnummer >= 500 && individnummer <= 999 && yearPart >= 40 && yearPart <= 99) {
+        year = 1900 + yearPart;
+    } else {
+        return undefined; // Ugyldig fødselsnummer
+    }
+
+    try {
+        return dayjs.utc(new Date(year, month - 1, day)).toDate();
+    } catch {
+        return undefined;
+    }
+};
+
 export const dateUtils = {
     getDateToday: getDateToday(),
     dateToISODate,
     getDatesInMonth,
     getFirstOfTwoDates,
     getFirstWeekDayInMonth,
+    getFødselsdatoFromFødselsnummer,
     getLastOfTwoDates,
     getISOWeekdayFromISODate,
     getLastWeekDayInMonth,

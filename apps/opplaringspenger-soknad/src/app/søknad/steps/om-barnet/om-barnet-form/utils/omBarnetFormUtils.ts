@@ -1,9 +1,10 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateToISODate, dateUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 
 export const omBarnetFormDefaultValues: OmBarnetFormValues = {
     barnetSøknadenGjelder: undefined,
@@ -125,4 +126,16 @@ export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: RelasjonTilBarnet
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
+};
+
+export const getBarnetsAlder = (values: OmBarnetFormValues): number | undefined => {
+    const fdato =
+        values.barnetHarIkkeFnr === true
+            ? datepickerUtils.getDateFromDateString(values.barnetsFødselsdato)
+            : dateUtils.getFødselsdatoFromFødselsnummer(values.barnetsFødselsnummer);
+
+    if (!fdato) {
+        return;
+    }
+    return dayjs().diff(fdato, 'years');
 };
