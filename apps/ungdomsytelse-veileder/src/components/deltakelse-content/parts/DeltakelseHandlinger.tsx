@@ -3,7 +3,6 @@ import { Deltakelse, Deltaker, Oppgavetype } from '@navikt/ung-common';
 import { useState } from 'react';
 import EndreStartdatoModal from '../../endre-startdato-modal/EndreStartdatoModal';
 import SectionContainer from '../../section-container/SectionContainer';
-import HandlingerInfo from '../../../info/HandlingerInfo';
 import EndreSluttdatoModal from '../../endre-sluttdato-modal/EndreSluttdatoModal';
 
 interface Props {
@@ -16,7 +15,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
 
     return (
         <>
-            <SectionContainer header="Handlinger" info={<HandlingerInfo />}>
+            <SectionContainer header="Handlinger">
                 <Button variant="secondary" onClick={() => setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_STARTDATO)}>
                     Endre startdato
                 </Button>
@@ -32,6 +31,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     onClose={() => setVisOppgaveDialog(null)}
                 />
             ) : null}
+
             {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO ? (
                 <EndreSluttdatoModal
                     deltaker={deltaker}

@@ -2,9 +2,11 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         // "strict": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/**/*", "./mock/msw/**/*"]
+    "include": ["./src/**/*", "./mock/msw/**/*", "./vite-env.d.ts"]
 }
