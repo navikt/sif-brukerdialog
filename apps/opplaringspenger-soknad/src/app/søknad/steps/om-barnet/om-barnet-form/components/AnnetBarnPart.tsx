@@ -65,7 +65,7 @@ const AnnetBarnPart: React.FC<Props> = ({
 
     const { barnetHarIkkeFnr, årsakManglerIdentitetsnummer } = values;
     const barnetsAlder = getBarnetsAlder(formValues);
-    const barnErOver18År = barnetsAlder !== undefined && barnetsAlder >= 18;
+    const barnErOver20År = barnetsAlder !== undefined && barnetsAlder >= 20;
 
     return (
         <SkjemagruppeQuestion
@@ -131,7 +131,7 @@ const AnnetBarnPart: React.FC<Props> = ({
                     />
                 )}
 
-                {(barnetHarIkkeFnr === undefined || barnetHarIkkeFnr === false) && barnErOver18År ? (
+                {(barnetHarIkkeFnr === undefined || barnetHarIkkeFnr === false) && barnErOver20År ? (
                     <Aldersvarsel />
                 ) : null}
 
@@ -166,7 +166,7 @@ const AnnetBarnPart: React.FC<Props> = ({
                     />
                 )}
 
-                {barnetHarIkkeFnr === true && barnErOver18År ? <Aldersvarsel /> : null}
+                {barnetHarIkkeFnr === true && barnErOver20År ? <Aldersvarsel /> : null}
 
                 <RadioGroup
                     legend={text('omBarnetForm.relasjon.spm')}

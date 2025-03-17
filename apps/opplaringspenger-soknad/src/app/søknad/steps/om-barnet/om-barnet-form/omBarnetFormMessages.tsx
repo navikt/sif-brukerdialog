@@ -51,7 +51,6 @@ const nb = {
         'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
-    'omBarnetForm.validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
     'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
@@ -127,7 +126,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikkje vere etter dagens dato. Skriv inn eller vel dato frå datoveljar.',
-    'omBarnetForm.validation.barnetsFødselsdato.barnOver18år': 'Det blir ikkje gitt omsorgsdagar til barn over 18 år.',
     'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets namn.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong':
         'Namnet på barnet kan ikkje innehalde meir enn {maks} teikn.',
