@@ -5621,7 +5621,7 @@ __metadata:
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
     react-hook-form: "npm:7.54.2"
-    stylelint: "npm:16.15.0"
+    stylelint: "npm:16.16.0"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
     typescript-eslint: "npm:8.26.1"
@@ -5845,7 +5845,7 @@ __metadata:
     react-intl: "npm:7.1.6"
     react-router-dom: "npm:7.3.0"
     storybook: "npm:8.6.4"
-    stylelint: "npm:16.15.0"
+    stylelint: "npm:16.16.0"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
     typescript-eslint: "npm:8.26.1"
@@ -5906,7 +5906,7 @@ __metadata:
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
     react-hook-form: "npm:7.54.2"
-    stylelint: "npm:16.15.0"
+    stylelint: "npm:16.16.0"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
     typescript-eslint: "npm:8.26.1"
@@ -17183,7 +17183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-entry-cache@npm:^10.0.6":
+"file-entry-cache@npm:^10.0.7":
   version: 10.0.7
   resolution: "file-entry-cache@npm:10.0.7"
   dependencies:
@@ -27976,9 +27976,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:16.15.0":
-  version: 16.15.0
-  resolution: "stylelint@npm:16.15.0"
+"stylelint@npm:16.16.0":
+  version: 16.16.0
+  resolution: "stylelint@npm:16.16.0"
   dependencies:
     "@csstools/css-parser-algorithms": "npm:^3.0.4"
     "@csstools/css-tokenizer": "npm:^3.0.3"
@@ -27993,7 +27993,7 @@ __metadata:
     debug: "npm:^4.3.7"
     fast-glob: "npm:^3.3.3"
     fastest-levenshtein: "npm:^1.0.16"
-    file-entry-cache: "npm:^10.0.6"
+    file-entry-cache: "npm:^10.0.7"
     global-modules: "npm:^2.0.0"
     globby: "npm:^11.1.0"
     globjoin: "npm:^0.1.4"
@@ -28020,7 +28020,7 @@ __metadata:
     write-file-atomic: "npm:^5.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10/890a5f3b419aecafa3b527cb4844ab23a249d357c86bc716802b01f917570606a4efb73cb182d04a9218d6d85750a73f72f0b7b4181f375a6fc5cb51af41f8ad
+  checksum: 10/b4457f0158aec42f72e6334fe87b48b136e1272a58328d1df336538fc1e89312a97da6595062a84bf6cc6fa5862f0bb355390ad6430c4f597bf120742f8dedb3
   languageName: node
   linkType: hard
 
