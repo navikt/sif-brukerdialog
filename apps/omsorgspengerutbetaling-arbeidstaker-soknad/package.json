@@ -43,7 +43,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.6",
         "react-router-dom": "7.3.0",
-        "ulid": "2.3.0",
+        "ulid": "2.4.0",
         "uuid": "11.1.0"
     },
     "devDependencies": {
