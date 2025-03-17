@@ -113,36 +113,54 @@ export const sortDates = (d1: Date, d2: Date) => {
 /**
  * Obs! Denne kan feile hvis fødselsnummeret er syntetisk. Det er også tilfeller hvor dato ikke
  * er helt korrekt - men dette er sjelden.
- * @param fnr Fødselsnummer
- * @returns fødselsdatoen eller null hvis fødselsnummeret er ugyldig
+ * @param idnr fnr/dnr
+ * @returns fødselsdatoen eller null hvis fødselsnummeret er ugyldig eller ikke støttet
  */
-export const getFødselsdatoFromFødselsnummer = (fnr?: string): Date | undefined => {
-    if (fnr === undefined || !/^\d{11}$/.test(fnr)) {
+export const getFødselsdatoFromIdNr = (idnr?: string): Date | undefined => {
+    if (idnr === undefined || !/^\d{11}$/.test(idnr)) {
         return undefined;
-        // throw new Error('Ugyldig fødselsnummer. Må bestå av 11 siffer.');
+    }
+    let day = parseInt(idnr.substring(0, 2), 10);
+    let month = parseInt(idnr.substring(2, 4), 10);
+    const yearPart = parseInt(idnr.substring(4, 6), 10);
+    const individnummer = parseInt(idnr.substring(6, 9), 10);
+
+    // D-nummer: dag 41–71 → trekk 40
+    if (day >= 41 && day <= 71) {
+        day -= 40;
     }
 
-    const day = parseInt(fnr.substring(0, 2), 10);
-    const month = parseInt(fnr.substring(2, 4), 10);
-    const yearPart = parseInt(fnr.substring(4, 6), 10);
-    const individnummer = parseInt(fnr.substring(6, 9), 10);
+    // NAV-syntetisk: måned 41–52 → trekk 40
+    if (month >= 41 && month <= 52) {
+        month -= 40;
+    }
+
+    // Skatt-syntetisk: måned 81–92 → trekk 80
+    if (month >= 81 && month <= 92) {
+        month -= 80;
+    }
+
+    // Valider dag/måned etter justering
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+        return undefined;
+    }
 
     let year: number;
 
     if (individnummer >= 0 && individnummer <= 499) {
         year = 1900 + yearPart;
-    } else if (individnummer >= 500 && individnummer <= 749 && yearPart >= 0 && yearPart <= 39) {
+    } else if (individnummer >= 500 && individnummer <= 749 && yearPart >= 54 && yearPart <= 99) {
+        year = 1800 + yearPart;
+    } else if (individnummer >= 900 && individnummer <= 999 && yearPart >= 40 && yearPart <= 99) {
+        year = 1900 + yearPart;
+    } else if (individnummer >= 500 && individnummer <= 999 && yearPart >= 0 && yearPart <= 39) {
         year = 2000 + yearPart;
-    } else if (individnummer >= 900 && individnummer <= 999 && yearPart >= 0 && yearPart <= 39) {
-        year = 1900 + yearPart;
-    } else if (individnummer >= 500 && individnummer <= 999 && yearPart >= 40 && yearPart <= 99) {
-        year = 1900 + yearPart;
     } else {
-        return undefined; // Ugyldig fødselsnummer
+        return undefined;
     }
 
     try {
-        return dayjs.utc(new Date(year, month - 1, day)).toDate();
+        return new Date(year, month - 1, day);
     } catch {
         return undefined;
     }
@@ -154,7 +172,7 @@ export const dateUtils = {
     getDatesInMonth,
     getFirstOfTwoDates,
     getFirstWeekDayInMonth,
-    getFødselsdatoFromFødselsnummer,
+    getFødselsdatoFromIdNr,
     getLastOfTwoDates,
     getISOWeekdayFromISODate,
     getLastWeekDayInMonth,

@@ -132,7 +132,7 @@ export const getBarnetsAlder = (values: OmBarnetFormValues): number | undefined 
     const fdato =
         values.barnetHarIkkeFnr === true
             ? datepickerUtils.getDateFromDateString(values.barnetsFødselsdato)
-            : dateUtils.getFødselsdatoFromFødselsnummer(values.barnetsFødselsnummer);
+            : dateUtils.getFødselsdatoFromIdNr(values.barnetsFødselsnummer);
 
     if (!fdato) {
         return;
