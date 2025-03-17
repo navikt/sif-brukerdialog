@@ -9,6 +9,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
+import { VStack } from '@navikt/ds-react';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
@@ -32,15 +33,17 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
-                    {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                    {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
-                        <AnnetBarnPart
-                            formValues={values}
-                            søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                            fødselsattester={fødselsattester}
-                            harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
-                        />
-                    )}
+                    <VStack gap="6">
+                        {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
+                        {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                            <AnnetBarnPart
+                                formValues={values}
+                                søkersFødselsnummer={søkerdata.søker.fødselsnummer}
+                                fødselsattester={fødselsattester}
+                                harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
+                            />
+                        )}
+                    </VStack>
                 </div>
             )}
         </SøknadFormStep>
