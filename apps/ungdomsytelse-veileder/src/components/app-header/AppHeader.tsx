@@ -1,12 +1,11 @@
-import { InternalHeader, Spacer } from '@navikt/ds-react';
+import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 import { formaterNavn } from '@navikt/ung-common';
 import { useVeileder } from '../../context/VeilederContext';
-import { InformationSquareFillIcon } from '@navikt/aksel-icons';
+import { InformationSquareIcon, MenuGridIcon, PersonIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
 
 const AppHeader = () => {
     const { veileder } = useVeileder();
-    const iconWidth: string = '1.8rem';
 
     const navigate = useNavigate();
 
@@ -14,9 +13,21 @@ const AppHeader = () => {
         <InternalHeader>
             <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
             <Spacer />
-            <InternalHeader.Button onClick={() => navigate('/informasjon')}>
-                <InformationSquareFillIcon width={iconWidth} height={iconWidth} /> Informasjon
-            </InternalHeader.Button>
+            <ActionMenu>
+                <ActionMenu.Trigger>
+                    <InternalHeader.Button>
+                        <MenuGridIcon fontSize="1.5rem" title="Innhold i veilederapplikasjonen" />
+                    </InternalHeader.Button>
+                </ActionMenu.Trigger>
+                <ActionMenu.Content>
+                    <ActionMenu.Item onSelect={() => navigate('/')} icon={<PersonIcon />}>
+                        Finn deltaker
+                    </ActionMenu.Item>
+                    <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
+                        Informasjon
+                    </ActionMenu.Item>
+                </ActionMenu.Content>
+            </ActionMenu>
             <InternalHeader.User name={formaterNavn({ ...veileder })} />
         </InternalHeader>
     );
