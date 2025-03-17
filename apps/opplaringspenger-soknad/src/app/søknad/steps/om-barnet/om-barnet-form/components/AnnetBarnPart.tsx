@@ -131,7 +131,9 @@ const AnnetBarnPart: React.FC<Props> = ({
                     />
                 )}
 
-                {barnetHarIkkeFnr === undefined && barnErOver18År ? <Aldersvarsel /> : null}
+                {(barnetHarIkkeFnr === undefined || barnetHarIkkeFnr === false) && barnErOver18År ? (
+                    <Aldersvarsel />
+                ) : null}
 
                 <TextField
                     label={text('omBarnetForm.navn')}
