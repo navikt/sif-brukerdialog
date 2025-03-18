@@ -4,6 +4,7 @@ import { useState } from 'react';
 import EndreStartdatoModal from '../../endre-startdato-modal/EndreStartdatoModal';
 import SectionContainer from '../../section-container/SectionContainer';
 import EndreSluttdatoModal from '../../endre-sluttdato-modal/EndreSluttdatoModal';
+import { useDeltaker } from '../../../context/DeltakerContext';
 
 interface Props {
     deltaker: Deltaker;
@@ -12,6 +13,7 @@ interface Props {
 
 const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | null>(null);
+    const { refetchDeltakelser } = useDeltaker();
 
     return (
         <>
@@ -29,6 +31,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     deltaker={deltaker}
                     deltakelse={deltakelse}
                     onClose={() => setVisOppgaveDialog(null)}
+                    onChanged={refetchDeltakelser}
                 />
             ) : null}
 
@@ -37,6 +40,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     deltaker={deltaker}
                     deltakelse={deltakelse}
                     onClose={() => setVisOppgaveDialog(null)}
+                    onChanged={refetchDeltakelser}
                 />
             ) : null}
         </>

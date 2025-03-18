@@ -8,29 +8,30 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onClose: () => void;
+    onChanged: () => void;
 }
 
-const EndreSluttdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
-    const [endret, setEndret] = useState(false);
+const EndreSluttdatoModal = ({ deltakelse, deltaker, onClose, onChanged }: Props) => {
+    const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | undefined>(undefined);
     return (
         <Modal
             open={true}
             onClose={() => onClose()}
             aria-labelledby="oppgave-modal-heading"
-            width={endret ? 'medium' : '800px'}>
-            <Modal.Header closeButton={endret === false}>
+            width={endretDeltakelse ? 'medium' : '800px'}>
+            <Modal.Header closeButton={endretDeltakelse === undefined}>
                 <Heading level="1" size="large" id="oppgave-modal-heading">
                     Endre sluttdato
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 <VStack gap="4" style={{ minWidth: '600px' }}>
-                    {endret ? (
+                    {endretDeltakelse ? (
                         <VStack gap="8">
                             <Alert variant="success">
                                 Sluttdato for deltakelsen er endret til{' '}
                                 <BodyShort weight="semibold" as="span">
-                                    {dateFormatter.full(deltakelse.fraOgMed)}
+                                    {dateFormatter.full(endretDeltakelse.fraOgMed)}
                                 </BodyShort>
                                 .
                             </Alert>
@@ -57,14 +58,19 @@ const EndreSluttdatoModal = ({ deltakelse, deltaker, onClose }: Props) => {
                             deltakelser={[]}
                             deltaker={deltaker}
                             onCancel={onClose}
-                            onDeltakelseChanged={() => setEndret(true)}
+                            onDeltakelseChanged={(deltakelse) => setEndretDeltakelse(deltakelse)}
                         />
                     )}
                 </VStack>
             </Modal.Body>
-            {endret ? (
+            {endretDeltakelse ? (
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => onClose()}>
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            onChanged();
+                            onClose();
+                        }}>
                         Ok, lukk
                     </Button>
                 </Modal.Footer>

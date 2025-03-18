@@ -57,7 +57,7 @@ export const handlers = [
         console.log({ dato, meldingFraVeileder, veilederRef });
         await delay(250);
         const data = getDeltakelser(registrertDeltakerId)[0];
-        return HttpResponse.json(data);
+        return HttpResponse.json({ ...data, fraOgMed: dato });
 
         // const errors_409 = {
         //     type: '/problem-details/duplikat-uløst-oppgavetype',
@@ -75,6 +75,6 @@ export const handlers = [
         console.log({ dato, meldingFraVeileder, veilederRef });
         await delay(250);
         const data = getDeltakelser(registrertDeltakerId)[0];
-        return HttpResponse.json(data);
+        return HttpResponse.json({ ...data, fraOgMed: dato });
     }),
 ];

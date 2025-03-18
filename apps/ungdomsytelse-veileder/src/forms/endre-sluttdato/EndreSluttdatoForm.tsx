@@ -19,7 +19,7 @@ interface Props {
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
     onCancel?: () => void;
-    onDeltakelseChanged: () => void;
+    onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
 const EndreSluttdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDeltakelseChanged }: Props) => {
