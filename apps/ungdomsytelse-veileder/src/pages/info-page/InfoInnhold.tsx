@@ -52,7 +52,7 @@ const InfoInnhold = ({}: Props) => {
             </Box>
             <Box>
                 <Routes>
-                    <Route path="*" element={<ArticleContent articleList={articleList} />} />
+                    <Route index element={<ArticleContent articleList={articleList} />} />
                     <Route path=":articleId" element={<ArticleContent articleList={articleList} />} />
                 </Routes>
             </Box>
