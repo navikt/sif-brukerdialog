@@ -1,4 +1,4 @@
-import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, HStack, Tag } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
@@ -18,6 +18,8 @@ const DeltakerHeader = ({
     deltakelser = [],
     onLukkDeltaker,
 }: Props) => {
+    const deltakelse = deltakelser.length === 1 ? deltakelser[0] : undefined;
+
     return (
         <Box className="p-3 bg-deepblue-100 w-full rounded-md mt-4 rounded-b-none  border-b-2 border-gray-700">
             <HStack gap="6" align="center" justify={'space-between'}>
@@ -27,12 +29,20 @@ const DeltakerHeader = ({
                         {fornavn} {etternavn}
                     </BodyShort>
                     <Fødselsnummer fnr={fødselsnummer} copyEnabled={true} />
+                    {deltakelse ? (
+                        <>
+                            {deltakelse.harSøkt ? (
+                                <Tag size="small" variant="success">
+                                    Søknad mottatt
+                                </Tag>
+                            ) : (
+                                <Tag size="small" variant="warning">
+                                    Søknad ikke mottatt
+                                </Tag>
+                            )}
+                        </>
+                    ) : null}
                 </HStack>
-                {deltakelser && deltakelser?.length > 1 ? (
-                    <>
-                        |<BodyShort>Deltakelser: {deltakelser.length}</BodyShort>
-                    </>
-                ) : null}
                 <Button
                     variant="tertiary-neutral"
                     onClick={onLukkDeltaker}
