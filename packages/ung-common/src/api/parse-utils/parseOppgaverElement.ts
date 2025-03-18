@@ -30,16 +30,20 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
 export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
+        const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
+        const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
+        const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate();
+
         switch (oppgave.oppgavetype) {
             case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
                 const endreStartdatoData = oppgave.oppgavetypeData as EndretStartdatoOppgavetypeDataDto;
                 const endretStartdatoOppgave: EndreStartdatoOppgave = {
                     id: oppgave.id,
                     status: getOppgaveStatusEnum(oppgave.status),
-                    løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
-                    opprettetDato: ISODateToDate(oppgave.opprettetDato),
+                    opprettetDato,
+                    svarfrist,
+                    løstDato,
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
-                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
                     oppgavetypeData: {
                         nyStartdato: ISODateToDate(endreStartdatoData.nyStartdato),
                         veilederRef: endreStartdatoData.veilederRef,
@@ -53,9 +57,9 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 const endretSluttdatoOppgave: EndreSluttdatoOppgave = {
                     id: oppgave.id,
                     status: getOppgaveStatusEnum(oppgave.status),
-                    løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
-                    opprettetDato: ISODateToDate(oppgave.opprettetDato),
-                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
+                    opprettetDato,
+                    svarfrist,
+                    løstDato,
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                     oppgavetypeData: {
                         nySluttdato: ISODateToDate(endreSluttdatoData.nySluttdato),
@@ -70,9 +74,9 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
                     id: oppgave.id,
                     status: getOppgaveStatusEnum(oppgave.status),
-                    løstDato: oppgave.løstDato ? ISODateToDate(oppgave.løstDato) : undefined,
-                    opprettetDato: ISODateToDate(oppgave.opprettetDato),
-                    svarfrist: dayjs(ISODateToDate(oppgave.opprettetDato)).add(2, 'weeks').toDate(),
+                    opprettetDato,
+                    svarfrist,
+                    løstDato,
                     oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                     oppgavetypeData: {
                         inntektFraAinntekt: {

@@ -77,6 +77,48 @@ export const mockOppgave: OppgaveDto = {
     },
 };
 
+const oppgaver = [
+    {
+        id: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
+        oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+        oppgavetypeData: {
+            type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            nyStartdato: '2025-01-01',
+            veilederRef: 'Pål  Veileder Hønesen',
+            meldingFraVeileder: '2025sdf',
+        },
+        status: 'KANSELLERT',
+        opprettetDato: '2025-03-18T12:46:08.782385Z',
+        løstDato: '2025-03-18T13:31:05.656698Z',
+    },
+    {
+        id: '37bcca77-9df0-4454-a697-5ba14f87a0a1',
+        oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+        oppgavetypeData: {
+            type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            nyStartdato: '2025-03-03',
+            veilederRef: 'Pål  Veileder Hønesen',
+            meldingFraVeileder: 'asdfasdfasdf',
+        },
+        status: 'ULØST',
+        opprettetDato: '2025-03-18T13:31:05.668281Z',
+        løstDato: null,
+    },
+    {
+        id: 'ee45c5a3-95b9-4538-b6c1-3be1462c20ae',
+        oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+        oppgavetypeData: {
+            type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            nyStartdato: '2024-12-02',
+            veilederRef: 'Pål  Veileder Hønesen',
+            meldingFraVeileder: 'En del tekst',
+        },
+        status: 'KANSELLERT',
+        opprettetDato: '2025-03-18T12:18:22.025109Z',
+        løstDato: '2025-03-18T12:46:08.773477Z',
+    },
+];
+
 const deltakelseDR = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
@@ -86,7 +128,7 @@ const deltakelseDR = {
     fraOgMed: '2025-01-01',
     tilOgMed: '2025-05-01',
     harSøkt: true,
-    oppgaver: [mockOppgave],
+    oppgaver: [...oppgaver],
 };
 
 export const deltakelseDNMock = {

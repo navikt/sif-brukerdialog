@@ -85,14 +85,13 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                             </>
                         }>
                         <Table.DataCell>
-                            {dateFormatter.compact(oppgave.opprettetDato)} -
+                            {dateFormatter.compact(oppgave.opprettetDato)}{' '}
                             {dayjs(oppgave.opprettetDato).format('HH:MM')}
                         </Table.DataCell>
                         <Table.DataCell>{oppgave.oppgavetype}</Table.DataCell>
                         <Table.DataCell>
-                            {/* {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'} */}
+                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
                         </Table.DataCell>
-                        {/* <Table.DataCell>{oppgave.åpnetAvDeltaker ? 'Ja' : 'Nei'}</Table.DataCell> */}
                         <Table.DataCell>{oppgave.status}</Table.DataCell>
                     </Table.ExpandableRow>
                 ))}
