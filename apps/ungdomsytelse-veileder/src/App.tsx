@@ -21,7 +21,7 @@ const App = () => {
                     <Routes>
                         <Route path="" element={<StartPage />}></Route>
                         <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
-                        <Route path="informasjon" element={<InfoPage />} />
+                        <Route path="informasjon/*" element={<InfoPage />} />
                     </Routes>
                 </Page>
             </IntlProvider>
