@@ -24,8 +24,7 @@ const InfoPage = () => {
                         </Button>
                     </HGrid>
                     <Routes>
-                        <Route path="/" element={<InfoInnhold />} />
-                        <Route path="/:articleId/*" element={<InfoInnhold />} />
+                        <Route path="/*" element={<InfoInnhold />} />
                     </Routes>
                 </VStack>
             </Page.Block>

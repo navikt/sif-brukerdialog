@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const ArticleContent = ({ articleList }: { articleList: any }) => {
     const { articleId } = useParams();
-    const paramsArticle = articleList.find((a) => a.id === articleId);
-    const article = paramsArticle || articleList[0];
+    const article = articleId === undefined ? articleList[0] : articleList.find((a) => a.id === articleId);
 
     if (!article) {
         return <div>Artikkel ikke funnet</div>;
