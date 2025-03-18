@@ -5,7 +5,6 @@ export const institusjoner: Institusjon[] = [
     { navn: 'Barnas Fysioterapisenter i Bergen' },
     { navn: 'Barnas språksenter' },
     { navn: 'Beitostølen Helsesportsenter' },
-    { navn: 'Bredtvet Kompetansesenter' },
     { navn: 'Bufetat Midt' },
     { navn: 'Bufetat Nord' },
     { navn: 'Bufetat Sør' },
