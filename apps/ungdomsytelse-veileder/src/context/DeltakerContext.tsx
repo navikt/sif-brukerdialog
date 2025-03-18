@@ -60,6 +60,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         setDeltaker(undefined);
         navigate('/');
     };
+
     return (
         <DeltakerContext.Provider
             value={{
