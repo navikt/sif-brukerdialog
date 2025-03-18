@@ -7,9 +7,9 @@ import {
     Oppgavetype,
     zDeltakelseOpplysningDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
+import dayjs from 'dayjs';
 import { z } from 'zod';
 import { EndreSluttdatoOppgave, EndreStartdatoOppgave, KorrigertInntektOppgave, Oppgave } from '../../types';
-import dayjs from 'dayjs';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;

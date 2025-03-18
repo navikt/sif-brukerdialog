@@ -493,34 +493,6 @@ export type HentDeltakerInfoGittDeltakerIdData = {
     url: '/oppslag/deltaker/{id}';
 };
 
-export type HentDeltakerInfoGittDeltakerIdErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type HentDeltakerInfoGittDeltakerIdError =
-    HentDeltakerInfoGittDeltakerIdErrors[keyof HentDeltakerInfoGittDeltakerIdErrors];
-
-export type HentDeltakerInfoGittDeltakerIdResponses = {
-    /**
-     * OK
-     */
-    200: DeltakerPersonlia;
-};
-
-export type HentDeltakerInfoGittDeltakerIdResponse =
-    HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
-
 export type HentOppgaveForDeltakelseData = {
     body?: never;
     path: {
@@ -557,6 +529,34 @@ export type HentOppgaveForDeltakelseResponses = {
 
 export type HentOppgaveForDeltakelseResponse =
     HentOppgaveForDeltakelseResponses[keyof HentOppgaveForDeltakelseResponses];
+
+export type HentDeltakerInfoGittDeltakerIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentDeltakerInfoGittDeltakerIdError =
+    HentDeltakerInfoGittDeltakerIdErrors[keyof HentDeltakerInfoGittDeltakerIdErrors];
+
+export type HentDeltakerInfoGittDeltakerIdResponses = {
+    /**
+     * OK
+     */
+    200: DeltakerPersonlia;
+};
+
+export type HentDeltakerInfoGittDeltakerIdResponse =
+    HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
 
 export type HentAlleMineDeltakelserData = {
     body?: never;

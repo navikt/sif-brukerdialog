@@ -1,4 +1,4 @@
-import { Box, HStack } from '@navikt/ds-react';
+import { HStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode } from '@navikt/ung-common';
 import YtelseHeader from '../../../components/ytelse-header/YtelseHeader';
@@ -13,10 +13,7 @@ const DeltakelseHeader = ({ deltakelse }: Props) => {
             title="Din ungdomsytelse"
             description={
                 <HStack gap="2">
-                    <Box>
-                        Deltakerperiode startet {dateFormatter.dateShortMonthYear(deltakelse.programPeriode.from)}.
-                    </Box>
-                    |<Box>x av 265 dager brukt.</Box>
+                    Deltakerperioden startet {dateFormatter.dateShortMonthYear(deltakelse.programPeriode.from)}.
                 </HStack>
             }
         />

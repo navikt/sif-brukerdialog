@@ -16,7 +16,7 @@ import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
-import DeltakerKort from '../components/DeltakerKort';
+import DeltakerKort from '../components/deltaker-kort/DeltakerKort';
 import { veilederApiService } from '../api/veilederApiService';
 import { getAppEnv } from '../utils/appEnv';
 import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';

@@ -120,10 +120,10 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
 
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Stemmer inntektsopplysningene vi har mottatt fra a-ordningen?`}
+                                        legend={`Stemmer inntektsopplysningene vi har mottatt fra a-ordningen, og at vi skal bruke dette for å beregne ytelse?`}
                                         validate={getYesOrNoValidator()}
                                         labels={{
-                                            yes: 'Ja',
+                                            yes: 'Ja, bruk inntekten fra a-ordningen',
                                         }}
                                     />
                                     {values[FormFields.godkjenner] === YesOrNo.NO ? (
