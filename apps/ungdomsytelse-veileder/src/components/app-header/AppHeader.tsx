@@ -23,8 +23,9 @@ const AppHeader = () => {
                     <ActionMenu.Item onSelect={() => navigate('/')} icon={<PersonIcon />}>
                         Finn deltaker
                     </ActionMenu.Item>
+                    <ActionMenu.Divider />
                     <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
-                        Informasjon
+                        Informasjon og veiledning
                     </ActionMenu.Item>
                 </ActionMenu.Content>
             </ActionMenu>
