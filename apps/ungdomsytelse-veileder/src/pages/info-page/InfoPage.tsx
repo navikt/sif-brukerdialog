@@ -1,7 +1,7 @@
 import { Box, Button, Heading, HGrid, Page, VStack } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import InfoInnhold from './InfoInnhold';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 const InfoPage = () => {
     const navigate = useNavigate();
@@ -23,8 +23,10 @@ const InfoPage = () => {
                             Lukk informasjon
                         </Button>
                     </HGrid>
-
-                    <InfoInnhold />
+                    <Routes>
+                        <Route path="/" element={<InfoInnhold />} />
+                        <Route path="/:articleId/*" element={<InfoInnhold />} />
+                    </Routes>
                 </VStack>
             </Page.Block>
         </Box>
