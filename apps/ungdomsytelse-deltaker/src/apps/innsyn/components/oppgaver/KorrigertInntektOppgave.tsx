@@ -79,10 +79,9 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
         inntektFraDeltaker?.arbeidstakerOgFrilansInntekt !== undefined ||
         inntektFraDeltaker?.inntektFraYtelse !== undefined;
 
-    const summertInntektFraAinntekt = inntektFraAinntekt.arbeidsgivere.reduce(
-        (acc, arbeidsgiver) => acc + arbeidsgiver.beløp,
-        0,
-    );
+    const summertInntektFraAinntekt =
+        inntektFraAinntekt.arbeidsgivere.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.beløp, 0) +
+        inntektFraAinntekt.ytelser.reduce((acc, yelse) => acc + yelse.beløp, 0);
 
     const summertInntektFraDeltaker = inntektFraDeltaker
         ? (inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0) + (inntektFraDeltaker.inntektFraYtelse || 0)
@@ -104,37 +103,41 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
             visOppgaveTittel="Vis endret inntekt"
             besvart={besvart}
             beskrivelse={
-                <>
-                    <BodyShort>
+                <BodyShort as="div">
+                    <>
                         {harOppgittInntekt ? (
                             <>
-                                Vi har mottatt inntektsopplysninger fra a-ordningen som avviker fra beløpet du har
-                                oppgitt. Du har oppgitt{' '}
-                                <strong>
-                                    <FormattedNumber value={summertInntektFraDeltaker} /> kroner
-                                </strong>
-                                , mens vi har mottatt{' '}
-                                <strong>
-                                    <FormattedNumber value={summertInntektFraAinntekt} /> kroner
-                                </strong>{' '}
-                                fra A-ordningen. Derfor vil vi bruke inntekten fra A-ordningen som grunnlag for
-                                beregning av ytelsen din.
+                                <p>
+                                    Vi har mottatt inntektsopplysninger fra a-ordningen som avviker fra beløpet du har
+                                    oppgitt. Du har oppgitt{' '}
+                                    <strong>
+                                        <FormattedNumber value={summertInntektFraDeltaker} /> kroner
+                                    </strong>
+                                    , mens vi har mottatt{' '}
+                                    <strong>
+                                        <FormattedNumber value={summertInntektFraAinntekt} /> kroner
+                                    </strong>{' '}
+                                    fra A-ordningen.
+                                </p>
+                                <p>
+                                    Vil vil bruke inntekten fra A-ordningen som grunnlag for beregning av ytelsen din.
+                                </p>
                             </>
                         ) : (
-                            <>
+                            <p>
                                 Du har ikke rapportert inntekt for denne perioden. Vi har nå mottatt
                                 inntektsopplysninger fra A-ordningen som vi vil bruke som grunnlag for beregning av
                                 ytelsen din.
-                            </>
+                            </p>
                         )}
-                    </BodyShort>
-                    <BodyShort spacing={true}>
+                    </>
+                    <p>
                         For at vi skal kunne behandle saken din, må du bekrefte at den inntekten vi har registrert er
                         den korrekte innen <strong>{svarfristTekst}</strong>. Hvis vi ikke mottar en bekreftelse innen
                         fristen, vil vi automatisk bruke inntektsopplysningene fra a-ordningen. Eventuell utbetaling vil
                         bli satt på vent til du har bekreftet endringen, eller fristen har passert.
-                    </BodyShort>
-                </>
+                    </p>
+                </BodyShort>
             }>
             <VStack gap="4">
                 <FormikWrapper

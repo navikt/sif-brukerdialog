@@ -37,7 +37,6 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
                 oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                 oppgavetypeData: {
-                    type: 'BEKREFT_KORRIGERT_INNTEKT',
                     periodeForInntekt: {
                         fraOgMed: '2026-01-01',
                         tilOgMed: '2026-01-31',
