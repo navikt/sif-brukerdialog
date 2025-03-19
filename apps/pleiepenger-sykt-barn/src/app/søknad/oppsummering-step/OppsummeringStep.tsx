@@ -44,6 +44,7 @@ import PeriodeSummary from './periode-summary/PeriodeSummary';
 import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
 import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
+import { isAxiosError } from 'axios';
 
 interface Props {
     values: SøknadFormValues;
@@ -86,9 +87,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             setSoknadSent(true);
             onApplicationSent(apiValues, søkerdata);
         } catch (error: any) {
-            if (isInvalidParameterErrorResponse(error)) {
+            if (isAxiosError(error) && isInvalidParameterErrorResponse(error.response?.data)) {
                 setSendingInProgress(false);
-                setInvalidParameters(error.response.data.invalid_parameters);
+                setInvalidParameters(error.response.data.violations);
                 appSentryLogger.logApiError(error as any);
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');

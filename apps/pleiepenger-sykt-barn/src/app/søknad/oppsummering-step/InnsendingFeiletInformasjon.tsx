@@ -2,7 +2,8 @@ import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { InvalidParameter, K9Valideringsfeil } from './invalidParameter';
+import { InvalidParameter } from './invalidParameter';
+import { FritekstfeltValideringsfeil } from '@navikt/sif-common-api';
 
 const visFlereMeldinger = false;
 
@@ -10,13 +11,22 @@ interface Props {
     invalidParameter: InvalidParameter[];
 }
 
-const getInvalidPatternMelding = (feil: K9Valideringsfeil): string | undefined => {
-    if (feil.name.includes('selvstendigNæringsdrivende')) {
-        if (feil.name.includes('regnskapsførerTlf')) {
-            return 'Telefonnummeret til regnskapsføreren din inneholder ugyldige tegn.';
+enum HåndterteFeilFelter {
+    REGNSKAPSFØRER_TLF = 'regnskapsførerTlf',
+    REGNSKAPSFØRER_NAVN = 'regnskapsførerNavn',
+    ENDRING_BEGRUNNELSE = 'endringBegrunnelse',
+}
+
+const getFeltFraValideringsfeil = (feil: FritekstfeltValideringsfeil): HåndterteFeilFelter | undefined => {
+    if (feil.parameterName.includes('selvstendigNæringsdrivende')) {
+        if (feil.parameterName.includes('regnskapsførerTlf')) {
+            return HåndterteFeilFelter.REGNSKAPSFØRER_TLF;
         }
-        if (feil.name.includes('endringBegrunnelse')) {
-            return 'Informasjonen for hva som har endret seg i din virksomhet inneholder ugyldige tegn.';
+        if (feil.parameterName.includes('regnskapsførerNavn')) {
+            return HåndterteFeilFelter.REGNSKAPSFØRER_NAVN;
+        }
+        if (feil.parameterName.includes('endringBegrunnelse')) {
+            return HåndterteFeilFelter.ENDRING_BEGRUNNELSE;
         }
     }
 };
@@ -27,26 +37,63 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
     }
     /** Ugyldig format på tekst */
     const { reason } = invalidParameter;
+
     if (reason.includes('tillatt pattern')) {
-        const kjentFeltMelding = getInvalidPatternMelding(invalidParameter);
-        if (kjentFeltMelding) {
-            return (
-                <>
-                    <List>
-                        <List.Item>
-                            <p>{kjentFeltMelding}</p>
-                        </List.Item>
-                    </List>
-                    <p>
-                        Dette kan skje hvis du kopierer telefonnummeret fra et annet sted og limer det inn i søknaden,
-                        da kan det komme med tegn som ikke er den del av telefonnummeret.
-                    </p>
-                    <p>
-                        Gå tilbake til steg 3 i søknaden, og skriv inn telefonnummeret uten å kopiere det fra et annet
-                        sted.
-                    </p>
-                </>
-            );
+        const felt = getFeltFraValideringsfeil(invalidParameter);
+        const tegn = invalidParameter.reason.split('matcher')[0];
+        switch (felt) {
+            case HåndterteFeilFelter.REGNSKAPSFØRER_TLF:
+                return (
+                    <>
+                        <List>
+                            <List.Item>Telefonnummeret til regnskapsføreren din inneholder ugyldige tegn.</List.Item>
+                            <List.Item>Tekst med ugyldige tegn: {tegn}</List.Item>
+                        </List>
+                        <p>
+                            Dette kan skje hvis du kopierer telefonnummeret fra et annet sted og limer det inn i
+                            søknaden, da kan det komme med tegn som ikke er den del av telefonnummeret.
+                        </p>
+                        <p>
+                            Gå tilbake til steg 3 i søknaden, og skriv inn telefonnummeret uten å kopiere det fra et
+                            annet sted.
+                        </p>
+                    </>
+                );
+            case HåndterteFeilFelter.REGNSKAPSFØRER_NAVN:
+                return (
+                    <>
+                        <List>
+                            <List.Item>Navnet til regnskapsføreren din inneholder ugyldige tegn.</List.Item>
+                            <List.Item>Tekst med ugyldige tegn: {tegn}</List.Item>
+                        </List>
+                        <p>
+                            Dette kan skje hvis du kopierer teksten fra et annet sted og limer det inn i søknaden, da
+                            kan det komme med tegn som ikke er den del av navnet.
+                        </p>
+                        <p>
+                            Gå tilbake til steg 3 i søknaden, og skriv inn navnet uten å kopiere det fra et annet sted.
+                        </p>
+                    </>
+                );
+            case HåndterteFeilFelter.ENDRING_BEGRUNNELSE:
+                return (
+                    <>
+                        <List>
+                            <List.Item>
+                                Informasjonen for hva som har endret seg i din virksomhet inneholder ugyldige tegn.
+                            </List.Item>
+                            <List.Item>Tekst med ugyldige tegn: {tegn}</List.Item>
+                        </List>
+                        <p>
+                            Dette kan skje hvis du kopierer teksten fra et annet sted og limer det inn i søknaden, da
+                            kan det komme med tegn som ikke er gyldige.
+                        </p>
+                        <p>
+                            Gå tilbake til steg 3 i søknaden, og kontroller feltet, eventuelt skriv inn informasjonen på
+                            nytt.
+                        </p>
+                    </>
+                );
         }
     }
     return (
@@ -71,7 +118,7 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
                 <span style={{ whiteSpace: 'nowrap' }}>55 55 33 33</span> for videre veiledning.
             </p>
             <ExpandableInfo title="Detaljert info (teknisk)">
-                <p style={{ wordBreak: 'break-word' }}>{invalidParameter.name}</p>
+                <p style={{ wordBreak: 'break-word' }}>{invalidParameter.parameterName}</p>
                 <p style={{ wordBreak: 'break-word' }}>{invalidParameter.reason}</p>
             </ExpandableInfo>
         </>
