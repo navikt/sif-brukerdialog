@@ -1,23 +1,19 @@
 import { Table } from '@navikt/ds-react';
+import { InntektFraAInntekt } from '@navikt/ung-common';
 import { FormattedNumber } from 'react-intl';
 
-interface Props {}
+interface Props {
+    inntekt: InntektFraAInntekt;
+}
 
-const InntektTabell = ({}: Props) => {
-    const data = [
-        {
-            navn: 'Godlia video og persienner',
-            inntekt: 213,
-        },
-        {
-            navn: 'Mix kiosk',
-            inntekt: 3500,
-        },
-        {
-            navn: 'Sykepenger',
-            inntekt: 500,
-        },
-    ];
+const InntektTabell = ({ inntekt }: Props) => {
+    const data: Array<{ navn: string; inntekt: number }> = [];
+    inntekt.arbeidsgivere.forEach((arbeidsgiver) => {
+        data.push({ navn: arbeidsgiver.navn, inntekt: arbeidsgiver.beløp });
+    });
+    inntekt.ytelser.forEach((ytelse) => {
+        data.push({ navn: ytelse.navn, inntekt: ytelse.beløp });
+    });
     return (
         <Table zebraStripes>
             <Table.Header>

@@ -42,8 +42,18 @@ export const zDeltakelseOpplysningDto = z.object({
                 z.object({}).merge(
                     z.object({
                         inntektFraAinntekt: z.object({
-                            arbeidstakerOgFrilansInntekt: z.number().optional(),
-                            inntektFraYtelse: z.number().optional(),
+                            arbeidsgivere: z.array(
+                                z.object({
+                                    navn: z.string(),
+                                    beløp: z.number(),
+                                }),
+                            ),
+                            ytelser: z.array(
+                                z.object({
+                                    navn: z.string(),
+                                    beløp: z.number(),
+                                }),
+                            ),
                         }),
                         inntektFraDeltaker: z.object({
                             arbeidstakerOgFrilansInntekt: z.number().optional(),
@@ -87,8 +97,18 @@ export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
 export const zKorrigertOppgavetypeDataDto = z.object({}).merge(
     z.object({
         inntektFraAinntekt: z.object({
-            arbeidstakerOgFrilansInntekt: z.number().optional(),
-            inntektFraYtelse: z.number().optional(),
+            arbeidsgivere: z.array(
+                z.object({
+                    navn: z.string(),
+                    beløp: z.number(),
+                }),
+            ),
+            ytelser: z.array(
+                z.object({
+                    navn: z.string(),
+                    beløp: z.number(),
+                }),
+            ),
         }),
         inntektFraDeltaker: z.object({
             arbeidstakerOgFrilansInntekt: z.number().optional(),

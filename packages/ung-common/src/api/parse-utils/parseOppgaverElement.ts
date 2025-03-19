@@ -80,9 +80,8 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                     oppgavetypeData: {
                         inntektFraAinntekt: {
-                            arbeidstakerOgFrilansInntekt:
-                                korrigertInntektData.inntektFraAinntekt.arbeidstakerOgFrilansInntekt,
-                            inntektFraYtelse: korrigertInntektData.inntektFraAinntekt.inntektFraYtelse,
+                            arbeidsgivere: korrigertInntektData.inntektFraAinntekt.arbeidsgivere,
+                            ytelser: korrigertInntektData.inntektFraAinntekt.ytelser,
                         },
                         periodeForInntekt: {
                             fraOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.fraOgMed),

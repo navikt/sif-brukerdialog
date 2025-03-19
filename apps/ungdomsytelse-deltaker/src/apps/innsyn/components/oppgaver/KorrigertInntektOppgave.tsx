@@ -3,13 +3,14 @@ import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
 import {
+    FormikConfirmationCheckbox,
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { useAppIntl } from '../../../../i18n';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
 import { WalletIcon } from '@navikt/aksel-icons';
@@ -90,10 +91,10 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                         Derfor vil vi bruke inntekten fra a-ordningen som grunnlag for beregning av ytelsen din.
                     </BodyShort>
                     <BodyShort spacing={true}>
-                        For at vi skal kunne behandle saken din, må du bekrefte denne endringen innen{' '}
-                        <strong>{svarfristTekst}</strong>. Hvis vi ikke mottar en bekreftelse innen fristen, vil vi
-                        automatisk bruke inntektsopplysningene fra a-ordningen. Eventuell utbetaling vil bli satt på
-                        vent til du har bekreftet endringen, eller fristen har passert.
+                        For at vi skal kunne behandle saken din, må du bekrefte at den inntekten vi har registrert er
+                        den korrekte innen <strong>{svarfristTekst}</strong>. Hvis vi ikke mottar en bekreftelse innen
+                        fristen, vil vi automatisk bruke inntektsopplysningene fra a-ordningen. Eventuell utbetaling vil
+                        bli satt på vent til du har bekreftet endringen, eller fristen har passert.
                     </BodyShort>
                 </>
             }>
@@ -112,25 +113,33 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 <VStack gap="8" marginBlock="2 0">
                                     <VStack gap="2">
                                         <Heading level="3" size="small">
-                                            Inntekt registrert i a-ordningen
-                                            {/* Registrert inntekt */}
+                                            Registrert inntekt
                                         </Heading>
-                                        <InntektTabell />
+                                        <InntektTabell inntekt={oppgave.oppgavetypeData.inntektFraAinntekt} />
                                     </VStack>
 
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Stemmer inntektsopplysningene vi har mottatt fra a-ordningen, og at vi skal bruke dette for å beregne ytelse?`}
+                                        legend={`Er inntektsopplysningene over korrekte?`}
                                         validate={getYesOrNoValidator()}
                                         labels={{
-                                            yes: 'Ja, bruk inntekten fra a-ordningen',
+                                            yes: 'Ja, inntekten er korrekt',
                                         }}
                                     />
+                                    {values[FormFields.godkjenner] === YesOrNo.YES ? (
+                                        <>
+                                            <FormikConfirmationCheckbox
+                                                name={FormFields.bekrefterOpplysninger}
+                                                label="Jeg bekrefter at inntekten over skal brukes for å beregne min ytelse"
+                                                validate={getCheckedValidator()}
+                                            />
+                                        </>
+                                    ) : null}
                                     {values[FormFields.godkjenner] === YesOrNo.NO ? (
                                         <>
                                             <Textarea
                                                 name={FormFields.begrunnelse}
-                                                label="Hvorfor skal vi ikke bruke inntekten vi har mottatt fra a-ordningen?"
+                                                label="Hvorfor stemmer ikke inntekten vi har fått fra a-ordningen?"
                                                 maxLength={250}
                                                 description={
                                                     <ReadMore header="Hva skal jeg skrive her?">

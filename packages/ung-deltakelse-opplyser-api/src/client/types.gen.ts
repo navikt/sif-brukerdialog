@@ -45,8 +45,14 @@ export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
         tilOgMed: string;
     };
     inntektFraAinntekt: {
-        arbeidstakerOgFrilansInntekt: number;
-        inntektFraYtelse: number;
+        arbeidsgivere: Array<{
+            navn: string;
+            beløp: number;
+        }>;
+        ytelser: Array<{
+            navn: string;
+            beløp: number;
+        }>;
     };
     inntektFraDeltaker?: {
         arbeidstakerOgFrilansInntekt?: number;

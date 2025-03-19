@@ -49,7 +49,7 @@ const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker>
  * @returns {Promise<Deltakelse[]>}
  * @throws {ApiErrorObject}
  */
-const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
+const getDeltakelserForDeltaker = async (deltakerId: string): Promise<Deltakelse[]> => {
     try {
         const { data } = await VeilederService.hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
         return deltakelserSchema.parse(data);
@@ -148,7 +148,7 @@ const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
 export const veilederApiService = {
     findDeltakerByDeltakerIdent,
     getDeltakerByDeltakerId,
-    getDeltakelser,
+    getDeltakelser: getDeltakelserForDeltaker,
     endreStartdatoForDeltakelse,
     endreSluttdatoForDeltakelse,
     fjernDeltakelse,

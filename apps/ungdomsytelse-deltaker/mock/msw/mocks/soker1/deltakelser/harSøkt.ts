@@ -43,8 +43,22 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                         tilOgMed: '2026-01-31',
                     },
                     inntektFraAinntekt: {
-                        arbeidstakerOgFrilansInntekt: 7500,
-                        inntektFraYtelse: 1500,
+                        arbeidsgivere: [
+                            {
+                                navn: 'Flåklypa barteservice',
+                                beløp: 1232,
+                            },
+                            {
+                                navn: 'Hopen klyp og klem',
+                                beløp: 50,
+                            },
+                        ],
+                        ytelser: [
+                            {
+                                navn: 'Sykepenger',
+                                beløp: 4200,
+                            },
+                        ],
                     },
                     inntektFraDeltaker: {
                         arbeidstakerOgFrilansInntekt: undefined,
