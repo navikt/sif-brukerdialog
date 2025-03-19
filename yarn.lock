@@ -5904,7 +5904,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@navikt/ung-common": "workspace:*"
-    "@tanstack/react-form": "npm:1.0.5"
+    "@tanstack/react-form": "npm:1.1.0"
     "@types/node": "npm:22.13.10"
     "@types/react": "npm:19.0.10"
     "@types/react-dom": "npm:19.0.4"
@@ -10272,12 +10272,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/form-core@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@tanstack/form-core@npm:1.0.5"
+"@tanstack/form-core@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@tanstack/form-core@npm:1.1.0"
   dependencies:
     "@tanstack/store": "npm:^0.7.0"
-  checksum: 10/f26fef6a6041618b37ab9ab1eaca262f112a0f607c8b5ce581da4ce55024cb4ff0c52c5ac1f266c6a5b0b317c1ed15d1f402d93b6136681ff400c24b8504f88e
+  checksum: 10/f3fbba2ee3aec353f06e9bafcd68f91b7f14238b000b91932d839c4f6d053e2f0ed9fb79ef34a9c39273c24b8dd055a6864c11e97d9dd4dcf141d2bdcfcacbf9
   languageName: node
   linkType: hard
 
@@ -10288,12 +10288,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-form@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@tanstack/react-form@npm:1.0.5"
+"@tanstack/react-form@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@tanstack/react-form@npm:1.1.0"
   dependencies:
     "@remix-run/node": "npm:^2.15.3"
-    "@tanstack/form-core": "npm:1.0.5"
+    "@tanstack/form-core": "npm:1.1.0"
     "@tanstack/react-store": "npm:^0.7.0"
     decode-formdata: "npm:^0.8.0"
   peerDependencies:
@@ -10305,7 +10305,7 @@ __metadata:
       optional: true
     vinxi:
       optional: true
-  checksum: 10/d5a8c8631fc27e4f439560aaf8bd3f444ad87979bc62be96957805b64da9bb7667af5b94443bc5ab766bc908cd8d1cb7ed0dc4d4363b9548df9bfd7f6056a2ba
+  checksum: 10/4b41407573768d28caa76df9e5a57459a54760b7885ce8977819f5d1ce866f97d760da314cc6ac4ab71af26e83dce729510c291fb87cbe25a355f479884de081
   languageName: node
   linkType: hard
 
