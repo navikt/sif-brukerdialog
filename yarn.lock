@@ -8718,7 +8718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/ui@npm:^2.15.2, @sanity/ui@npm:^2.15.6":
+"@sanity/ui@npm:^2.15.2, @sanity/ui@npm:^2.15.6, @sanity/ui@npm:^2.15.7":
   version: 2.15.7
   resolution: "@sanity/ui@npm:2.15.7"
   dependencies:
@@ -8776,9 +8776,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.79.0":
-  version: 3.79.0
-  resolution: "@sanity/vision@npm:3.79.0"
+"@sanity/vision@npm:3.80.1":
+  version: 3.80.1
+  resolution: "@sanity/vision@npm:3.80.1"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8793,19 +8793,19 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
     "@sanity/icons": "npm:^3.7.0"
-    "@sanity/ui": "npm:^2.15.2"
+    "@sanity/ui": "npm:^2.15.7"
     "@uiw/react-codemirror": "npm:^4.11.4"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.0.0-beta-40c6c23-20250301"
+    react-compiler-runtime: "npm:19.0.0-beta-3229e95-20250315"
     react-fast-compare: "npm:^3.2.2"
   peerDependencies:
     react: ^18 || ^19.0.0
-    styled-components: ^6.1
-  checksum: 10/f609c34c330704af243a34a93fbd3337f7a198678c5c4c1f311cbbdf50d507582dd17437903db00ef7dd46cc3c641878101de5c94a348dd96faedacdc92f330d
+    styled-components: ^6.1.15
+  checksum: 10/e067816c4d7be9e8ede2324c330f9bcb1b0a61abf3d05a0d832fe06a5221fa6805af42f394549fac384e65540c534661ee41c1fc0cd75169c4de1b66b8729c0a
   languageName: node
   linkType: hard
 
@@ -12365,7 +12365,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:3.79.0"
+    "@sanity/vision": "npm:3.80.1"
     "@types/react": "npm:19.0.10"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.22.0"
