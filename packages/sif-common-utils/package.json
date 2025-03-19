@@ -18,7 +18,7 @@
         "@babel/preset-react": "7.26.3",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.13.10",
-        "@types/react": "19.0.10",
+        "@types/react": "19.0.11",
         "@types/react-dom": "19.0.4",
         "@types/uuid": "10.0.0",
         "config": "workspace:*",
@@ -28,7 +28,7 @@
         "react-dom": "19.0.0",
         "react-intl": "7.1.6",
         "typescript": "5.8.2",
-        "vitest": "3.0.8"
+        "vitest": "3.0.9"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
