@@ -1,4 +1,4 @@
-import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
@@ -103,11 +103,11 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
             visOppgaveTittel="Vis endret inntekt"
             besvart={besvart}
             beskrivelse={
-                <BodyShort as="div">
+                <BodyLong as="div">
                     <>
                         {harOppgittInntekt ? (
                             <>
-                                <p>
+                                <p className="mt-0">
                                     Vi har mottatt inntektsopplysninger fra a-ordningen som avviker fra beløpet du har
                                     oppgitt. Du har oppgitt{' '}
                                     <strong>
@@ -124,7 +124,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 </p>
                             </>
                         ) : (
-                            <p>
+                            <p className="mt-0">
                                 Du har ikke rapportert inntekt for denne perioden. Vi har nå mottatt
                                 inntektsopplysninger fra A-ordningen som vi vil bruke som grunnlag for beregning av
                                 ytelsen din.
@@ -137,7 +137,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                         fristen, vil vi automatisk bruke inntektsopplysningene fra a-ordningen. Eventuell utbetaling vil
                         bli satt på vent til du har bekreftet endringen, eller fristen har passert.
                     </p>
-                </BodyShort>
+                </BodyLong>
             }>
             <VStack gap="4">
                 <FormikWrapper
