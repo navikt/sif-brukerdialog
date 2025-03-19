@@ -32,6 +32,7 @@ import {
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '../../../i18n';
+import { appEnv } from '../../../utils/appEnv';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
@@ -116,7 +117,11 @@ const TidsromStep = () => {
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
                                     <p>
-                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.2" />
+                                        {appEnv.SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE === 'on' ? (
+                                            <AppText id="step.tidsrom.counsellorPanel.avsnitt.2.6mnd" />
+                                        ) : (
+                                            <AppText id="step.tidsrom.counsellorPanel.avsnitt.2.3mnd" />
+                                        )}
                                     </p>
                                     <p>
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.3" />

@@ -1,37 +1,41 @@
-import { Alert, VStack } from '@navikt/ds-react';
-import {
-    FormikConfirmationCheckbox,
-    FormikDatepicker,
-    FormikTextarea,
-    FormikYesOrNoQuestion,
-} from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getStringValidator } from '@navikt/sif-validation';
+import { Alert, Button, HStack, VStack } from '@navikt/ds-react';
+import { FormikDatepicker, FormikTextarea, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
+import { getDateValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { Deltakelse, formaterNavn } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
-import { Deltakelse } from '../../api/types';
 import { GYLDIG_PERIODE } from '../../settings';
+import { Veileder } from '../../types/Veileder';
 
 interface Props {
+    veileder: Veileder;
     deltakernavn: string;
     visStartdato?: boolean;
     visSluttdato?: boolean;
+    harSøkt: boolean;
     tomDate?: Date;
     fomDate?: Date;
     deltakelser: Deltakelse[];
     deltakelseId?: string;
+    pending?: boolean;
+    onCancel?: () => void;
 }
 
 const MELDING_MAX_LENGTH = 250;
-const MELDING_MIN_LENGTH = 10;
+const MELDING_MIN_LENGTH = 5;
 
 const PeriodeFormPart = ({
+    veileder,
     deltakernavn,
     fomDate,
+    // harSøkt,
     tomDate,
     deltakelser = [],
     deltakelseId,
     visStartdato = true,
     visSluttdato = true,
+    pending,
+    onCancel,
 }: Props) => {
     const periodeSomIkkeKanVelges: DateRange[] = deltakelser
         .filter((d) => d.id !== deltakelseId && d.tilOgMed !== undefined)
@@ -79,17 +83,21 @@ const PeriodeFormPart = ({
             <FormikYesOrNoQuestion
                 name="deltakerInformert"
                 legend={`Er ${deltakernavn} informert om endringen?`}
-                // validate={getRequiredFieldValidator()}
-            />
-
-            <FormikConfirmationCheckbox
-                name="bekrefterEndring"
-                label="Bekreft endring av deltakerperiode"
-                // validate={getCheckedValidator()}
+                validate={getRequiredFieldValidator()}
             />
             <Alert variant="info" inline={true}>
-                Oppgaven vil bli merket med navnet ditt (<strong>Navn Veiledersen</strong>).
+                Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
             </Alert>
+            <HStack gap="4">
+                <Button type="submit" loading={pending} variant="primary">
+                    Lagre endring
+                </Button>
+                {onCancel ? (
+                    <Button type="button" variant="secondary" onClick={onCancel}>
+                        Avbryt
+                    </Button>
+                ) : null}
+            </HStack>
         </VStack>
     );
 };

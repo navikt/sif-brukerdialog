@@ -41,6 +41,9 @@ import type {
     FjernFraProgramData,
     FjernFraProgramResponse,
     FjernFraProgramError,
+    HentOppgaveForDeltakelseData,
+    HentOppgaveForDeltakelseResponse,
+    HentOppgaveForDeltakelseError,
 } from './types.gen';
 import {
     zOppdaterFraProgramResponse,
@@ -54,6 +57,7 @@ import {
     zHentDeltakerInfoGittDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentOppgaveForDeltakelseResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
 } from './zod.gen';
@@ -81,7 +85,7 @@ export class VeilederService {
      * @deprecated
      * Oppdater opplysninger for en eksisterende deltakelse i ungdomsprogrammet
      */
-    public static oppdaterFraProgram<ThrowOnError extends boolean = false>(
+    public static oppdaterFraProgram<ThrowOnError extends boolean = true>(
         options: Options<OppdaterFraProgramData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<OppdaterFraProgramResponse, OppdaterFraProgramError, ThrowOnError>(
@@ -108,7 +112,7 @@ export class VeilederService {
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
-    public static endreStartdato<ThrowOnError extends boolean = false>(
+    public static endreStartdato<ThrowOnError extends boolean = true>(
         options: Options<EndreStartdatoData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<EndreStartdatoResponse, EndreStartdatoError, ThrowOnError>({
@@ -133,7 +137,7 @@ export class VeilederService {
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
-    public static endreSluttdato<ThrowOnError extends boolean = false>(
+    public static endreSluttdato<ThrowOnError extends boolean = true>(
         options: Options<EndreSluttdatoData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<EndreSluttdatoResponse, EndreSluttdatoError, ThrowOnError>({
@@ -158,7 +162,7 @@ export class VeilederService {
     /**
      * Avslutter en deltakelse i ungdomsprogrammet
      */
-    public static meldUtDeltaker<ThrowOnError extends boolean = false>(
+    public static meldUtDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldUtDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<MeldUtDeltakerResponse, MeldUtDeltakerError, ThrowOnError>({
@@ -184,7 +188,7 @@ export class VeilederService {
      * @deprecated
      * Legg til en ny deltakelse i ungdomsprogrammet
      */
-    public static leggTilIProgram<ThrowOnError extends boolean = false>(
+    public static leggTilIProgram<ThrowOnError extends boolean = true>(
         options: Options<LeggTilIProgramData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<LeggTilIProgramResponse, LeggTilIProgramError, ThrowOnError>({
@@ -209,7 +213,7 @@ export class VeilederService {
     /**
      * Meld inn en deltaker i ungdomsprogrammet.
      */
-    public static meldInnDeltaker<ThrowOnError extends boolean = false>(
+    public static meldInnDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldInnDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<MeldInnDeltakerResponse, MeldInnDeltakerError, ThrowOnError>({
@@ -234,7 +238,7 @@ export class VeilederService {
     /**
      * Hent alle deltakelser for en deltaker i ungdomsprogrammet
      */
-    public static hentAlleDeltakelserGittDeltakerId<ThrowOnError extends boolean = false>(
+    public static hentAlleDeltakelserGittDeltakerId<ThrowOnError extends boolean = true>(
         options: Options<HentAlleDeltakelserGittDeltakerIdData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
@@ -259,7 +263,7 @@ export class VeilederService {
     /**
      * Fjern en deltakelse fra ungdomsprogrammet
      */
-    public static fjernFraProgram<ThrowOnError extends boolean = false>(
+    public static fjernFraProgram<ThrowOnError extends boolean = true>(
         options: Options<FjernFraProgramData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).delete<FjernFraProgramResponse, FjernFraProgramError, ThrowOnError>({
@@ -282,7 +286,7 @@ export class DeltakelseService {
     /**
      * Markerer at deltakelsen er søkt om
      */
-    public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = false>(
+    public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = true>(
         options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<
@@ -305,9 +309,34 @@ export class DeltakelseService {
     }
 
     /**
+     * Henter en oppgave for en gitt deltakelse
+     */
+    public static hentOppgaveForDeltakelse<ThrowOnError extends boolean = true>(
+        options: Options<HentOppgaveForDeltakelseData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            HentOppgaveForDeltakelseResponse,
+            HentOppgaveForDeltakelseError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zHentOppgaveForDeltakelseResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveId}',
+            ...options,
+        });
+    }
+
+    /**
      * Henter alle deltakelser for en deltaker i ungdomsprogrammet
      */
-    public static hentAlleMineDeltakelser<ThrowOnError extends boolean = false>(
+    public static hentAlleMineDeltakelser<ThrowOnError extends boolean = true>(
         options?: Options<HentAlleMineDeltakelserData, ThrowOnError>,
     ) {
         return (options?.client ?? _heyApiClient).get<
@@ -334,7 +363,7 @@ export class LesRegisterDataService {
     /**
      * Hent alle deltakelser for en deltaker i ungdomsprogrammet
      */
-    public static hentAlleDeltakelserGittDeltakerAktør<ThrowOnError extends boolean = false>(
+    public static hentAlleDeltakelserGittDeltakerAktør<ThrowOnError extends boolean = true>(
         options: Options<HentAlleDeltakelserGittDeltakerAktørData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -365,7 +394,7 @@ export class OppslagService {
     /**
      * Hent personlia for en deltaker
      */
-    public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = false>(
+    public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = true>(
         options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
@@ -394,7 +423,7 @@ export class OppslagService {
     /**
      * Hent personlia for en deltaker gitt en UUID
      */
-    public static hentDeltakerInfoGittDeltakerId<ThrowOnError extends boolean = false>(
+    public static hentDeltakerInfoGittDeltakerId<ThrowOnError extends boolean = true>(
         options: Options<HentDeltakerInfoGittDeltakerIdData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<

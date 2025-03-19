@@ -1,6 +1,6 @@
 import { HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker } from '../../api/types';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import HentDeltakerForm from '../../forms/HentDeltakerForm';
 
 const StartPage = () => {

@@ -26,54 +26,57 @@ export const zUngdomsytelsesøknad = z.object({
 export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     .object({
         oppgaveId: z.string(),
-        veilederRef: z.string(),
-        meldingFraVeileder: z.string().optional(),
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        ikkeGodkjentResponse: z
+            .object({
+                korrigertDato: z.string().date(),
+                kontaktVeilederSvar: z.boolean(),
+                meldingFraDeltaker: z.string(),
+            })
+            .optional(),
         type: z.string(),
     })
     .merge(
         z.object({
-            type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),
-        }),
-    )
-    .merge(
-        z.object({
-            nySluttdato: z.string().date(),
-            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-            ikkeGodkjentResponse: z
-                .object({
-                    korrigertDato: z.string().date(),
-                    kontaktVeilederSvar: z.boolean(),
-                    meldingFraDeltaker: z.string(),
-                })
-                .optional(),
-            isIkkeGodkjentResponseValid: z.boolean(),
+            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
         }),
     );
 
 export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     .object({
         oppgaveId: z.string(),
-        veilederRef: z.string(),
-        meldingFraVeileder: z.string().optional(),
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        ikkeGodkjentResponse: z
+            .object({
+                korrigertDato: z.string().date(),
+                kontaktVeilederSvar: z.boolean(),
+                meldingFraDeltaker: z.string(),
+            })
+            .optional(),
         type: z.string(),
     })
     .merge(
         z.object({
-            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
+            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
         }),
-    )
+    );
+
+export const zBekreftKorrigertInntektOppgaveDto = z
+    .object({
+        oppgaveId: z.string(),
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        ikkeGodkjentResponse: z
+            .object({
+                arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+                inntektFraYtelse: z.number().int().optional(),
+                meldingFraDeltaker: z.string(),
+            })
+            .optional(),
+        type: z.string(),
+    })
     .merge(
         z.object({
-            nyStartdato: z.string().date(),
-            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-            ikkeGodkjentResponse: z
-                .object({
-                    korrigertDato: z.string().date(),
-                    kontaktVeilederSvar: z.boolean(),
-                    meldingFraDeltaker: z.string(),
-                })
-                .optional(),
-            isIkkeGodkjentResponseValid: z.boolean(),
+            type: z.literal('BEKREFT_KORRIGERT_INNTEKT'),
         }),
     );
 
@@ -83,25 +86,32 @@ export const zUngdomsytelseIkkeGodkjentResponse = z.object({
     meldingFraDeltaker: z.string(),
 });
 
+export const zUngdomsytelseIkkeGodkjentInntektResponse = z.object({
+    arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+    inntektFraYtelse: z.number().int().optional(),
+    meldingFraDeltaker: z.string(),
+});
+
 export const zUngdomsytelseOppgaveDto = z.object({
     oppgaveId: z.string(),
-    veilederRef: z.string(),
-    meldingFraVeileder: z.string().optional(),
+    bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+    ikkeGodkjentResponse: z
+        .union([zUngdomsytelseIkkeGodkjentResponse, zUngdomsytelseIkkeGodkjentInntektResponse])
+        .optional(),
     type: z.string(),
 });
 
 export const zUngdomsytelseOppgavebekreftelse = z.object({
     deltakelseId: z.string().uuid(),
-    oppgave: z.union([
-        zUngdomsytelseOppgaveDto,
+    oppgave: z.discriminatedUnion('type', [
         zEndretSluttdatoUngdomsytelseOppgaveDto,
         zEndretStartdatoUngdomsytelseOppgaveDto,
+        zBekreftKorrigertInntektOppgaveDto,
     ]),
 });
 
 export const zOppgittInntektForPeriode = z.object({
     arbeidstakerOgFrilansInntekt: z.number().int().optional(),
-    næringsinntekt: z.number().int().optional(),
     inntektFraYtelse: z.number().int().optional(),
     periodeForInntekt: z.object({
         fraOgMed: z.string().date(),
@@ -169,12 +179,8 @@ export const zArbeidIPeriode = z.object({
                     }),
                 )
                 .optional(),
-            isProsentAvNormalt: z.boolean(),
-            isTimerPerUke: z.boolean(),
-            isArbeidsuker: z.boolean(),
         })
         .optional(),
-    isArbeiderRedusert: z.boolean(),
 });
 
 export const zArbeidsRedusert = z.object({
@@ -224,9 +230,6 @@ export const zArbeidsRedusert = z.object({
             }),
         )
         .optional(),
-    isProsentAvNormalt: z.boolean(),
-    isTimerPerUke: z.boolean(),
-    isArbeidsuker: z.boolean(),
 });
 
 export const zArbeidsUke = z.object({
@@ -288,8 +291,6 @@ export const zBarnDetaljer = z.object({
     aktørId: z.string().optional(),
     navn: z.string(),
     getårsakManglerIdentitetsnummer: z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET']).optional(),
-    isFødselsDato: z.boolean(),
-    isÅrsakManglerIdentitetsnummer: z.boolean(),
 });
 
 export const zBeredskap = z.object({
@@ -680,23 +681,14 @@ export const zPleiepengerSyktBarnSøknad = z.object({
                     .optional(),
                 erNyoppstartet: z.boolean(),
                 harFlereAktiveVirksomheter: z.boolean(),
-                isRegistrertIUtlandet: z.boolean(),
-                isOrganisasjonsnummer: z.boolean(),
-                isFiskerErPåBladB: z.boolean(),
-                isErNyoppstartet: z.boolean(),
-                isErIkkeNyoppstartet: z.boolean(),
-                isTilOgMed: z.boolean(),
             })
             .optional(),
         arbeidsforhold: zArbeidsforhold.optional(),
-        isArbeidsforhold: z.boolean(),
-        isVirksomhet: z.boolean(),
     }),
     barnRelasjon: z.enum(['MOR', 'MEDMOR', 'FAR', 'FOSTERFORELDER', 'ANNET']).optional(),
     barnRelasjonBeskrivelse: z.string().optional(),
     harVærtEllerErVernepliktig: z.boolean().optional(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    isBarnRelasjonBeskrivelse: z.boolean(),
 });
 
 export const zRegnskapsfører = z.object({
@@ -732,17 +724,9 @@ export const zSelvstendigNæringsdrivende = z.object({
             regnskapsfører: zRegnskapsfører.optional(),
             erNyoppstartet: z.boolean(),
             harFlereAktiveVirksomheter: z.boolean(),
-            isRegistrertIUtlandet: z.boolean(),
-            isOrganisasjonsnummer: z.boolean(),
-            isFiskerErPåBladB: z.boolean(),
-            isErNyoppstartet: z.boolean(),
-            isErIkkeNyoppstartet: z.boolean(),
-            isTilOgMed: z.boolean(),
         })
         .optional(),
     arbeidsforhold: zArbeidsforhold.optional(),
-    isArbeidsforhold: z.boolean(),
-    isVirksomhet: z.boolean(),
 });
 
 export const zStønadGodtgjørelse = z.object({
@@ -808,12 +792,6 @@ export const zVirksomhet = z.object({
     regnskapsfører: zRegnskapsfører.optional(),
     erNyoppstartet: z.boolean(),
     harFlereAktiveVirksomheter: z.boolean(),
-    isRegistrertIUtlandet: z.boolean(),
-    isOrganisasjonsnummer: z.boolean(),
-    isFiskerErPåBladB: z.boolean(),
-    isErNyoppstartet: z.boolean(),
-    isErIkkeNyoppstartet: z.boolean(),
-    isTilOgMed: z.boolean(),
 });
 
 export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
@@ -1119,13 +1097,11 @@ export const zUttakPeriodeInfo = z.object({
 });
 
 export const zPleiepengerILivetsSluttfaseSøknad = z.object({
-    søknadId: z.string().optional(),
     språk: z.string(),
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     skalJobbeOgPleieSammeDag: z.boolean(),
     dagerMedPleie: z.array(z.string().date()),
-    mottatt: z.string().datetime(),
     vedleggUrls: z.array(z.string()),
     opplastetIdVedleggUrls: z.array(z.string()),
     pleietrengende: z.object({
@@ -1133,8 +1109,6 @@ export const zPleiepengerILivetsSluttfaseSøknad = z.object({
         fødselsdato: z.string().date().optional(),
         navn: z.string(),
         getårsakManglerIdentitetsnummer: z.enum(['BOR_I_UTLANDET', 'ANNET']).optional(),
-        isFødselsdato: z.boolean(),
-        isÅrsakManglerIdentitetsnummer: z.boolean(),
     }),
     medlemskap: zMedlemskap,
     utenlandsoppholdIPerioden: zUtenlandsoppholdIPerioden,
@@ -1150,7 +1124,6 @@ export const zPleiepengerILivetsSluttfaseSøknad = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
     flereSokere: z.enum(['JA', 'NEI', 'USIKKER']).optional(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    søknadId$k9_brukerdialog_prosessering: z.string(),
 });
 
 export const zPleietrengende = z.object({
@@ -1158,8 +1131,6 @@ export const zPleietrengende = z.object({
     fødselsdato: z.string().date().optional(),
     navn: z.string(),
     getårsakManglerIdentitetsnummer: z.enum(['BOR_I_UTLANDET', 'ANNET']).optional(),
-    isFødselsdato: z.boolean(),
-    isÅrsakManglerIdentitetsnummer: z.boolean(),
 });
 
 export const zFamiliePdfPostRequest = z.object({
@@ -1210,9 +1181,6 @@ export const zFrilansOlp = z.object({
     jobberFortsattSomFrilans: z.boolean(),
     arbeidsforhold: zArbeidsforholdOlp.optional(),
     harHattInntektSomFrilanser: z.boolean(),
-    isSluttdatoEtterStartdato: z.boolean(),
-    isJobberFortsattSomFrilans: z.boolean(),
-    isSluttdato: z.boolean(),
 });
 
 export const zKurs = z.object({
@@ -1222,8 +1190,6 @@ export const zKurs = z.object({
         reiserUtenforKursdager: z.boolean(),
         reisedager: z.array(z.string().date()).optional(),
         reisedagerBeskrivelse: z.string().optional(),
-        isReisedagerMedDager: z.boolean(),
-        isReisedagerMedBeskrivelse: z.boolean(),
     }),
 });
 
@@ -1260,8 +1226,6 @@ export const zReise = z.object({
     reiserUtenforKursdager: z.boolean(),
     reisedager: z.array(z.string().date()).optional(),
     reisedagerBeskrivelse: z.string().optional(),
-    isReisedagerMedDager: z.boolean(),
-    isReisedagerMedBeskrivelse: z.boolean(),
 });
 
 export const zSelvstendigNæringsdrivendeOlp = z.object({
@@ -1283,7 +1247,6 @@ export const zOmsorgspengerKroniskSyktBarnSøknad = z.object({
     høyereRisikoForFravær: z.boolean().optional(),
     høyereRisikoForFraværBeskrivelse: z.string().min(1).max(1000).optional(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    isHøyereRisikoForFraværBeskrivelse: z.boolean(),
 });
 
 export const zBekreftelser = z.object({
@@ -1292,8 +1255,6 @@ export const zBekreftelser = z.object({
 });
 
 export const zOmsorgspengerutbetalingSnfSøknad = z.object({
-    søknadId: z.string().optional(),
-    mottatt: z.string().datetime(),
     språk: z.string(),
     søkerNorskIdent: z.string().optional(),
     bosteder: z.array(zBosted),
@@ -1350,10 +1311,6 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
                 .optional(),
             årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
             aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
-            isAntallTimerPlanlagt: z.boolean(),
-            isAntallTimerBorte: z.boolean(),
-            isAntallTimerPlanlagtStørreEnnAntallTimerBorte: z.boolean(),
-            isTilOgMed: z.boolean(),
         }),
     ),
     barn: z.array(zBarn),
@@ -1362,7 +1319,6 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
     erArbeidstakerOgså: z.boolean(),
     vedlegg: z.array(z.string()),
     dataBruktTilUtledningAnnetData: z.string().optional(),
-    søknadId$k9_brukerdialog_prosessering: z.string(),
 });
 
 export const zSpørsmålOgSvar = z.object({
@@ -1411,10 +1367,6 @@ export const zUtbetalingsperiode = z.object({
         .optional(),
     årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
     aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
-    isAntallTimerPlanlagt: z.boolean(),
-    isAntallTimerBorte: z.boolean(),
-    isAntallTimerPlanlagtStørreEnnAntallTimerBorte: z.boolean(),
-    isTilOgMed: z.boolean(),
 });
 
 export const zDineBarn = z.object({
@@ -1444,10 +1396,6 @@ export const zAnnenForelder = z.object({
     periodeOver6Måneder: z.boolean().optional(),
     periodeFraOgMed: z.string().date(),
     periodeTilOgMed: z.string().date().optional(),
-    isSituasjonBeskrivelse: z.boolean(),
-    isSituasjon_utøver_verneplikt_eller_fengsel: z.boolean(),
-    isPeriodeTilOgMed: z.boolean(),
-    isSituasjon_innlagt_i_helseinstitusjon_sykdom_eller_annet: z.boolean(),
 });
 
 export const zOmsorgspengerMidlertidigAleneSøknad = z.object({

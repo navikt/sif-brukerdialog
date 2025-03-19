@@ -102,11 +102,6 @@ const Periodeliste = ({ perioder, programperiodeStartDato, erLåstForEndring }: 
                                                     ,-
                                                 </Box>
                                                 <Box>
-                                                    Selvstendig næringsdrivende:{' '}
-                                                    <FormattedNumber value={inntekt?.næringsinntekt || 0} />
-                                                    ,-
-                                                </Box>
-                                                <Box>
                                                     Ytelse fra Nav:{' '}
                                                     <FormattedNumber value={inntekt?.inntektFraYtelse || 0} />
                                                     ,-

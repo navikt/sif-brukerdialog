@@ -1,6 +1,6 @@
-import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { EndreStartdatoOppgave } from '@navikt/ung-common';
+import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
+import { EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
 import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 import dayjs from 'dayjs';
@@ -11,53 +11,73 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { useAppIntl } from '../../../../i18n';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { EndretStartdatoUngdomsytelseOppgaveDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { getDateValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
+import { CalendarIcon } from '@navikt/aksel-icons';
 
 interface Props {
+    deltakelseId: string;
     oppgave: EndreStartdatoOppgave;
     opprinneligStartdato: Date;
 }
 
 enum FormFields {
     harKontaktetVeileder = 'harKontaktetVeileder',
+    korrigertDato = 'korrigertDato',
     godkjenner = 'godkjenner',
     begrunnelse = 'begrunnelse',
 }
 
 type FormValues = Partial<{
-    [FormFields.godkjenner]: YesOrNo;
+    [FormFields.korrigertDato]: Date;
     [FormFields.harKontaktetVeileder]: YesOrNo;
-    [FormFields.begrunnelse]: boolean;
+    [FormFields.begrunnelse]: string;
+    [FormFields.godkjenner]: YesOrNo;
 }>;
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DatePicker } = getTypedFormComponents<
     FormFields,
     FormValues,
     ValidationError
 >();
 
-const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
+const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
+    const { sendSvar, error, pending, besvart } = useBesvarOppgave();
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
-    // const opprinneligStartdatoTekst = dateFormatter.dayDateMonthYear(opprinneligStartdato);
 
-    const handleSubmit = (values: FormValues) => {
-        const dto: EndretStartdatoUngdomsytelseOppgaveDto = {
-            // ...oppgave,
-            bekreftelseSvar: values[FormFields.godkjenner] === YesOrNo.YES ? 'GODTAR' : 'AVSLÅR',
-            oppgaveId: oppgave.id,
-            veilederRef: oppgave.oppgavetypeData.veilederRef,
-            nyStartdato: 'sdf',
-            isIkkeGodkjentResponseValid: false,
-            type: 'EndretStartdatoUngdomsytelseOppgaveDTO',
+    const handleSubmit = async (values: FormValues) => {
+        const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
+
+        const dto: UngdomsytelseOppgavebekreftelse = {
+            deltakelseId,
+            oppgave: {
+                oppgaveId: oppgave.id,
+                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+                ikkeGodkjentResponse: godkjennerOppgave
+                    ? undefined
+                    : {
+                          kontaktVeilederSvar: values[FormFields.harKontaktetVeileder] === YesOrNo.YES,
+                          korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
+                          meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                      },
+                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            },
         };
-        console.log(dto);
+        await sendSvar(dto);
     };
 
     return (
         <OppgaveLayout
+            tag={
+                <HStack gap="2">
+                    <CalendarIcon />
+                    Endret deltakerperiode
+                </HStack>
+            }
             tittel="Din deltakerperiode blir endret"
+            besvart={besvart}
             beskrivelse={
                 <>
                     <BodyShort>
@@ -87,13 +107,12 @@ const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
                     initialValues={{}}
                     onSubmit={handleSubmit}
                     renderForm={({ values }) => {
-                        // const godkjenner = values[FormFields.godkjenner] === YesOrNo.YES;
                         return (
                             <Form
-                                submitButtonLabel="Send inn inntekt"
+                                submitButtonLabel="Send inn svar"
                                 cancelButtonLabel="Avbryt"
+                                submitPending={pending}
                                 includeValidationSummary={true}
-                                // submitPending={pending}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                 <VStack gap="6" marginBlock="2 0">
                                     <YesOrNoQuestion
@@ -113,49 +132,37 @@ const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
                                     />
                                     {values[FormFields.godkjenner] === YesOrNo.NO ? (
                                         <>
-                                            <Alert variant="info">
-                                                <BodyShort spacing={true}>
-                                                    Når du ikke ønsker å godkjenne, bør du først ta kontakt med veileder
-                                                    for å se om dere kan oppklare hvorfor du ikke ønsker å godkjenne.
-                                                </BodyShort>
-                                                <BodyShort>
-                                                    Hvis du allerede har vært i kontakt med din veileder om dette, kan
-                                                    du sende inn at du ikke godkjenner endringen, men du må gi en kort
-                                                    beskrivelse av hvorfor du ikke ønsker å godkjenne.
-                                                </BodyShort>
-                                            </Alert>
-
                                             <YesOrNoQuestion
                                                 name={FormFields.harKontaktetVeileder}
                                                 legend="Har du hatt kontakt med veileder for å diskutere hvorfor du ikke ønsker å godkjenne denne endringen?"
                                                 validate={getYesOrNoValidator()}
                                             />
+                                            {values.harKontaktetVeileder === YesOrNo.NO ? (
+                                                <Alert variant="info">
+                                                    Vi anbefaler deg å ta kontakt med veileder for å se om dere kan
+                                                    oppklare hvorfor du ikke ønsker å godkjenne. Da kan veileder evt.
+                                                    endre datoen til den dere blir enig om.
+                                                </Alert>
+                                            ) : null}
+                                            <DatePicker
+                                                name={FormFields.korrigertDato}
+                                                label="Hvilken dato mener du er korrekt?"
+                                                validate={getDateValidator({ required: true })}
+                                            />
                                             <Textarea
                                                 name={FormFields.begrunnelse}
-                                                label="Skriv en kort begrunnelse for hvorfor du ikke ønsker å godkjenne"
+                                                label="Skriv en kort begrunnelse for hvorfor du ikke ønsker å godkjenne denne endringen. "
                                                 maxLength={250}
                                                 validate={getStringValidator({ required: true, maxLength: 250 })}
                                             />
                                         </>
                                     ) : null}
+                                    {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
                                 </VStack>
                             </Form>
                         );
                     }}
                 />
-                {/* <HStack gap="4">
-                    <Button
-                        variant="primary"
-                        type="button"
-                        icon={<PaperplaneIcon />}
-                        onClick={(evt) => {
-                            evt.preventDefault();
-                            evt.stopPropagation();
-                            alert('TODO');
-                        }}>
-                        Send svar
-                    </Button>
-                </HStack> */}
             </VStack>
         </OppgaveLayout>
     );

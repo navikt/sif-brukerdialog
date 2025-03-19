@@ -4,8 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
+    "version": "0.0.1",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.64.10",
+        "@hey-api/openapi-ts": "0.64.12",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.2",
@@ -25,7 +26,9 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "test": "vitest run",
-        "openapi-ts": "openapi-ts"
+        "openapi-ts": "openapi-ts",
+        "fix": "node ./scripts/fixGen.mjs",
+        "generate-and-fix": "yarn openapi-ts && yarn fix"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.6.2",

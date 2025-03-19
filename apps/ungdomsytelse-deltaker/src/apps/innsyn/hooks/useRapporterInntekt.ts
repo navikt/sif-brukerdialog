@@ -1,6 +1,6 @@
-import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
-import { deltakerApiService } from '@navikt/ung-common';
 import { useState } from 'react';
+import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
+import { deltakerApiService } from '../../../api/deltakerApiService';
 
 export const useRapporterInntekt = () => {
     const [pending, setPending] = useState(false);

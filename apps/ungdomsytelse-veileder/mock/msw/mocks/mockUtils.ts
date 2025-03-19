@@ -3,10 +3,10 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
-const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
+export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
 
 /** Fnr */
-export const findDeltaker = (deltakerIdent) => {
+export const findDeltaker = (deltakerIdent: string) => {
     switch (deltakerIdent) {
         case nyDeltakerMock.deltakerIdent:
             return nyDeltakerMock;
@@ -19,7 +19,7 @@ export const findDeltaker = (deltakerIdent) => {
 };
 
 /** Registrert id som deltake */
-export const getDeltakerByDeltakerId = (deltakerId) => {
+export const getDeltakerByDeltakerId = (deltakerId: string) => {
     if (deltakerId) {
         console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
@@ -65,7 +65,7 @@ const registrertDeltaker: DeltakerPersonlia = {
     sisteMuligeInnmeldingsdato: '2024-12-31',
 };
 
-const oppgave: OppgaveDto = {
+export const mockOppgave: OppgaveDto = {
     id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     status: OppgaveStatus.ULØST,
@@ -75,7 +75,6 @@ const oppgave: OppgaveDto = {
         veilederRef: 'Veil Veiledersen',
         meldingFraVeileder: 'Hei, dette',
     },
-    // veilederReferanse: 'Pål Hønesen',
 };
 
 const deltakelseDR = {
@@ -87,7 +86,7 @@ const deltakelseDR = {
     fraOgMed: '2025-01-01',
     tilOgMed: '2025-05-01',
     harSøkt: true,
-    oppgaver: [oppgave],
+    oppgaver: [mockOppgave],
 };
 
 export const deltakelseDNMock = {

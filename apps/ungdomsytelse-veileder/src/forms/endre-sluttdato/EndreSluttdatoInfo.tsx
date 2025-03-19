@@ -4,9 +4,8 @@ const EndreSluttdatoInfo = () => {
     return (
         <VStack>
             <Heading level="3" size="medium" spacing={true}>
-                Om å endre sluttdato
+                Om å endre avslutte/endre sluttdato
             </Heading>
-            <BodyLong spacing={true}>Her kan det ligge litt kort info om det å endre sluttdato.</BodyLong>
             <VStack gap="2">
                 <ReadMore header="Hva skjer når jeg endrer sluttdato?">
                     <BodyLong>

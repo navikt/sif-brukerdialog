@@ -1,11 +1,13 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker, veilederApiService } from '@navikt/ung-common';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { veilederApiService } from '../api/veilederApiService';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface DeltakerContextProps {
     deltaker?: Deltaker;
     deltakelser?: Deltakelse[];
+    deltakelserPending?: boolean;
     setDeltaker: (deltaker: Deltaker) => void;
     closeDeltaker: () => void;
     refetchDeltakelser: () => void;
@@ -22,10 +24,13 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const [deltaker, setDeltaker] = useState<Deltaker>();
     const [deltakelser, setDeltakelser] = useState<Deltakelse[]>([]);
+    const [deltakelserPending, setDeltakelserPending] = useState(false);
 
     const fetchDeltakelser = async (deltakerId: string) => {
+        setDeltakelserPending(true);
         const deltakelser = await veilederApiService.getDeltakelser(deltakerId);
         setDeltakelser(deltakelser);
+        setDeltakelserPending(false);
     };
 
     useEffect(() => {
@@ -55,11 +60,13 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         setDeltaker(undefined);
         navigate('/');
     };
+
     return (
         <DeltakerContext.Provider
             value={{
                 deltaker,
                 deltakelser,
+                deltakelserPending,
                 setDeltaker,
                 closeDeltaker,
                 refetchDeltakelser,

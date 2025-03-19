@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.38.3
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 1.38.2
 
 ### Patch Changes
