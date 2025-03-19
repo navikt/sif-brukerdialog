@@ -76,6 +76,7 @@ export enum OppgaveStatus {
     LØST = 'LØST',
     ULØST = 'ULØST',
     KANSELLERT = 'KANSELLERT',
+    UTLØPT = 'UTLØPT',
 }
 
 export enum Oppgavetype {
@@ -139,7 +140,8 @@ export type RapportPeriodeinfoDto = {
     fraOgMed: string;
     tilOgMed: string;
     harRapportert: boolean;
-    inntekt?: number;
+    arbeidstakerOgFrilansInntekt?: number;
+    inntektFraYtelse?: number;
 };
 
 export type OppdaterFraProgramData = {

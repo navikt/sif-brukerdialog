@@ -14,12 +14,8 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
     const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
 
-    const uløsteOppgaver = oppgaver.filter(
-        (oppgave) => oppgave.løstDato === undefined && oppgave.status === OppgaveStatus.ULØST,
-    );
-    const løsteOppgaver = oppgaver.filter(
-        (oppgave) => oppgave.løstDato !== undefined && oppgave.status !== OppgaveStatus.ULØST,
-    );
+    const uløsteOppgaver = oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
+    const løsteOppgaver = oppgaver.filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST);
 
     return (
         <VStack gap="8">

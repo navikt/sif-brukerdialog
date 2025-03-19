@@ -66,7 +66,7 @@ export const zDeltakelseOpplysningDto = z.object({
                     }),
                 ),
             ]),
-            status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
+            status: z.enum(['LØST', 'ULØST', 'KANSELLERT', 'UTLØPT']),
             opprettetDato: z.string().datetime(),
             løstDato: z.string().datetime().optional(),
         }),
@@ -129,12 +129,12 @@ export const zOppgaveDto = z.object({
         zEndretStartdatoOppgavetypeDataDto,
         zKorrigertOppgavetypeDataDto,
     ]),
-    status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
+    status: z.enum(['LØST', 'ULØST', 'KANSELLERT', 'UTLØPT']),
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),
 });
 
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'KANSELLERT']);
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'KANSELLERT', 'UTLØPT']);
 
 export const zOppgavetype = z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO']);
 
@@ -193,7 +193,8 @@ export const zDeltakelsePeriodInfo = z.object({
             fraOgMed: z.string().date(),
             tilOgMed: z.string().date(),
             harRapportert: z.boolean(),
-            inntekt: z.number().optional(),
+            arbeidstakerOgFrilansInntekt: z.number().optional(),
+            inntektFraYtelse: z.number().optional(),
         }),
     ),
 });
@@ -202,7 +203,8 @@ export const zRapportPeriodeinfoDto = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     harRapportert: z.boolean(),
-    inntekt: z.number().optional(),
+    arbeidstakerOgFrilansInntekt: z.number().optional(),
+    inntektFraYtelse: z.number().optional(),
 });
 
 export const zOppdaterFraProgramResponse = zDeltakelseOpplysningDto;
