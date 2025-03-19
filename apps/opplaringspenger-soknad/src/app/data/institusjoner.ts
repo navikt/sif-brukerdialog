@@ -18,7 +18,6 @@ export const institusjoner: Institusjon[] = [
     { navn: 'Evjeklinikken' },
     { navn: 'Family Hope Center' },
     { navn: 'Finnmarkssykehuset HF' },
-    { navn: 'Folloklinikken' },
     { navn: 'Frambu kompetansesenter for sjeldne diagnoser' },
     { navn: 'Geilomo barnesykehus' },
     { navn: 'Haukeland universitetssykehus' },
