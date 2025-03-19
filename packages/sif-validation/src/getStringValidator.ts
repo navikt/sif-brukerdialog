@@ -28,28 +28,12 @@ interface Options {
     minLength?: number;
     maxLength?: number;
     formatRegExp?: RegExp;
-    noUnicodeCharacters?: boolean;
-    /** Deprecated */
     disallowUnicodeCharacters?: boolean;
 }
 
 const containsNonLatinCodepoints = (s: string): boolean => {
     return /[^u0000-\u00ff\s]/.test(s);
 };
-
-const containsUnwantedCharacters = (s: string): boolean => {
-    return /[^\p{L}\p{N}\p{P}\p{Z}\p{M}«»§\n\r~]/gu.test(s);
-    // return /^[\p{L}\p{N}\p{P}\p{Z}\p{M}«»§]+$/u.test(s) === false; // /^[A-Za-z0-9\u00C0-\u024F\u1E00-\u1EFF\s\p{Pd}\p{Ps}\p{Pe}«»"§]+$/u.test(s) === false;
-};
-
-const supportsUnicodeRegex = (() => {
-    try {
-        new RegExp('\\p{L}', 'u');
-        return true;
-    } catch {
-        return false;
-    }
-})();
 
 const getStringValidator =
     (options: Options = {}): ValidationFunction<StringValidationResult> =>
@@ -75,11 +59,6 @@ const getStringValidator =
             if (formatRegExp !== undefined) {
                 if (formatRegExp.test(value) === false) {
                     return ValidateStringError.stringHasInvalidFormat;
-                }
-            }
-            if (options.noUnicodeCharacters) {
-                if (supportsUnicodeRegex && containsUnwantedCharacters(value)) {
-                    return ValidateStringError.stringContainsUnicodeChacters;
                 }
             }
             if (options.disallowUnicodeCharacters) {

@@ -18,16 +18,13 @@ const HøyereRisikoForFraværBeskrivelseSpørsmål = () => {
     return (
         <Textarea
             name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
-            validate={async (value) => {
+            validate={(value) => {
                 const error = getStringValidator({
                     required: true,
                     minLength: 5,
                     maxLength: 1000,
-                    noUnicodeCharacters: true,
                 })(value);
-                if (error) {
-                    return error;
-                }
+                return error;
             }}
             maxLength={1000}
             label={text('steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label')}
