@@ -9,7 +9,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
-import { VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, Link, VStack } from '@navikt/ds-react';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
@@ -34,15 +34,29 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
                     <VStack gap="6">
-                        {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                        {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
-                            <AnnetBarnPart
-                                formValues={values}
-                                søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                                fødselsattester={fødselsattester}
-                                harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
-                            />
-                        )}
+                        <Alert variant="info">
+                            <Heading level="3" size="xsmall" spacing={true} className="mt-1">
+                                Nye retningslinjer hvis du pleier flere barn
+                            </Heading>
+                            <BodyShort spacing>
+                                Hvis du pleier flere barn samtidig, er det nå nye retningslinjer for hvordan du søker.
+                            </BodyShort>
+                            <Link href="https://www.nav.no/pleiepenger-barn#flere-barn" target="_blank">
+                                Les mer om hvordan du søker her
+                            </Link>
+                            .
+                        </Alert>
+                        <Box marginBlock="2 0">
+                            {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
+                            {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                                <AnnetBarnPart
+                                    formValues={values}
+                                    søkersFødselsnummer={søkerdata.søker.fødselsnummer}
+                                    fødselsattester={fødselsattester}
+                                    harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
+                                />
+                            )}
+                        </Box>
                     </VStack>
                 </div>
             )}
