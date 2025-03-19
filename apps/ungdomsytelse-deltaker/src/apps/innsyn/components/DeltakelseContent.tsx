@@ -1,7 +1,6 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
 import { Deltakelse as DeltakelseContent, OppgaveStatus } from '@navikt/ung-common';
-import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
-import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
+import { getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
 import OppgavePanel from './oppgaver/OppgavePanel';
 import Periodeliste from './Periodeliste';
 import LøsteOppgaver from './løste-oppgaver/LøsteOppgaver';
@@ -13,7 +12,6 @@ interface Props {
 
 const DeltakelseContent = ({ deltakelse }: Props) => {
     const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
-    const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
     const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
 
     const uløsteOppgaver = oppgaver.filter(
@@ -28,7 +26,6 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
             {uløsteOppgaver.map((oppgave, index) => (
                 <OppgavePanel key={index} oppgave={oppgave} deltakelseId={id} programPeriode={programPeriode} />
             ))}
-            {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     Perioder og inntekt

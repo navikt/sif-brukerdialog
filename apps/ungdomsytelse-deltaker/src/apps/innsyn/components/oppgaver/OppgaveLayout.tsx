@@ -49,7 +49,10 @@ const OppgaveLayout = ({
                 {besvart ? (
                     <Alert variant="success">Besvart</Alert>
                 ) : (
-                    <ExpansionCard aria-label="Demo med bare tittel" size="small" onChange={onÅpneOppgave}>
+                    <ExpansionCard
+                        aria-label="Demo med bare tittel"
+                        size="small"
+                        onToggle={(open) => (open && onÅpneOppgave ? onÅpneOppgave() : null)}>
                         <ExpansionCard.Header>
                             <ExpansionCard.Title size="small">
                                 <HStack gap="2" align={'center'}>
