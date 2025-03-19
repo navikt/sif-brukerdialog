@@ -9,8 +9,7 @@ export type InvalidParameter = string | FritekstfeltValideringsfeil;
 export const isInvalidParameterErrorResponse = (data: any): data is FritekstfeltValideringsfeilResponse => {
     try {
         return fritekstValideringsfeilResponseSchema.parse(data) !== undefined;
-    } catch (e) {
-        console.log(e);
+    } catch {
         return false;
     }
 };

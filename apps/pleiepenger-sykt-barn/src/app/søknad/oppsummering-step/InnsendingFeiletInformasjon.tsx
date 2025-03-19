@@ -21,11 +21,9 @@ const getFeltFraValideringsfeil = (feil: FritekstfeltValideringsfeil): Håndtert
     if (feil.parameterName.includes('selvstendigNæringsdrivende')) {
         if (feil.parameterName.includes('regnskapsførerTlf')) {
             return HåndterteFeilFelter.REGNSKAPSFØRER_TLF;
-            // return 'Telefonnummeret til regnskapsføreren din inneholder ugyldige tegn.';
         }
         if (feil.parameterName.includes('regnskapsførerNavn')) {
             return HåndterteFeilFelter.REGNSKAPSFØRER_NAVN;
-            // return 'Navnet til regnskapsføreren din inneholder ugyldige tegn.';
         }
         if (feil.parameterName.includes('endringBegrunnelse')) {
             return HåndterteFeilFelter.ENDRING_BEGRUNNELSE;
