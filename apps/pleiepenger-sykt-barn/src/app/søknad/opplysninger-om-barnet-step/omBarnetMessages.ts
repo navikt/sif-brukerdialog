@@ -41,9 +41,12 @@ const nb = {
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
-
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
+
+    'infoSøskensaker.tittel': 'Nye retningslinjer hvis du pleier flere barn',
+    'infoSøskensaker.info.1': 'Hvis du pleier flere barn samtidig, er det nå nye retningslinjer for hvordan du søker.',
+    'infoSøskensaker.lenke': 'Les mer om hvordan du søker her.',
 
     'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn navnet på barnet.',
@@ -117,9 +120,13 @@ const nn: Record<keyof typeof nb, string> = {
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
         'Viss du og mora til barnet er gifte, blir du automatisk registrert som far til barnet. Viss de ikkje er gifte, må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
-
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av kva situasjonen din er, kan du fortsette å fylle ut søknaden og sende han inn.',
+
+    'infoSøskensaker.tittel': 'Nye retningsliner viss du pleier fleire barn',
+    'infoSøskensaker.info.1':
+        'Viss du pleier fleire barn samstundes, er det no nye retningsliner for korleis du søkjer.',
+    'infoSøskensaker.lenke': 'Les meir om korleis du søkjer her.',
 
     'validation.barnetSøknadenGjelder.noValue': 'Du må velje kva for eit barn søknaden gjeld.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn namnet på barnet.',
