@@ -50,7 +50,6 @@ export const institusjoner: Institusjon[] = [
     { navn: 'Senter for sjeldne diagnoser - SSD (OUS)' },
     { navn: 'Signo kompetansesenter' },
     { navn: 'Ski Sykehus' },
-    { navn: 'Skådalen Kompetansesenter' },
     { navn: 'Spesialsykehuset for epilepsi (SSE)' },
     { navn: 'St. Olavs Hospital HF' },
     { navn: 'Statped' },
