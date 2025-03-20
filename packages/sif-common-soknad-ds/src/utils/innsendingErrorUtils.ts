@@ -15,7 +15,7 @@ export const isInvalidParameterErrorResponse = (data: AxiosError<any> | any): da
 
 export const getInvalidParametersFromAxiosError = (error: AxiosError<any>): InvalidParameterViolation[] => {
     if (isInvalidParameterErrorResponse(error.response?.data)) {
-        return error.response?.data.violations.map((violation) => violation);
+        return error.response?.data.violations;
     }
     return [];
 };
