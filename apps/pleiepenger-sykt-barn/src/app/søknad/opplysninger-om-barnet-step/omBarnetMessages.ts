@@ -4,13 +4,6 @@ const nb = {
     'step.opplysninger-om-barnet.stepIndicatorLabel': 'Om barnet',
 
     'steg.omBarnet.hvilketBarn.spm': 'Velg hvilket barn søknaden gjelder',
-    'steg.omBarnet.hvilketBarn.description.tittel': 'Hva gjør jeg når jeg pleier flere barn samtidig?',
-    'steg.omBarnet.hvilketBarn.description.info.1':
-        'Når du pleier flere barn samtidig, skal du sende én søknad som gjelder samlet for barna du pleier. Vi registrerer og behandler søknaden din basert kun på ett av barna, selv om du pleier flere. Derfor kan du kun krysse av for ett av barna her.',
-    'steg.omBarnet.hvilketBarn.description.info.2':
-        'Hvis barna har forskjellig pleiebehov krysser du av for det barnet som har lengst pleiebehov. Hvis barna har samme pleiebehov, eller du ikke vet, krysser du bare av for ett av barna.',
-    'steg.omBarnet.hvilketBarn.description.info.3':
-        'Hvis du senere skal søke om forlengelse, eller det er andre som skal søke pleiepenger i samme sak, er det viktig at det krysses av for det samme barnet som i denne søknaden.',
     'steg.omBarnet.hvilketBarn.født': 'Født {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
     'steg.omBarnet.annetBarn.tittel': 'Annet barn',
@@ -83,13 +76,6 @@ const nn: Record<keyof typeof nb, string> = {
     'step.opplysninger-om-barnet.stepIndicatorLabel': 'Om barnet',
 
     'steg.omBarnet.hvilketBarn.spm': 'Vel kva for eit barn søknaden gjeld',
-    'steg.omBarnet.hvilketBarn.description.tittel': 'Kva gjer eg når eg pleier fleire barn samtidig?',
-    'steg.omBarnet.hvilketBarn.description.info.1':
-        'Når du pleier fleire barn samtidig, skal du sende éin søknad som gjeld samla for barna du pleier. Me registrerer og behandlar søknaden din basert kun på eitt av barna, sjølv om du pleier fleire. Difor kan du berre krysse av for eitt av barna her.',
-    'steg.omBarnet.hvilketBarn.description.info.2':
-        'Viss barna har forskjellig pleiebehov, kryssar du av for det barnet som har lengst pleiebehov. Viss barna har same pleiebehov, eller du ikkje veit, kryssar du berre av for eitt av barna.',
-    'steg.omBarnet.hvilketBarn.description.info.3':
-        'Viss du seinare skal søkje om forlenging, eller det er andre som skal søkje pleiepengar i same sak, er det viktig at det blir kryssa av for det same barnet som i denne søknaden.',
     'steg.omBarnet.hvilketBarn.født': 'Fødd {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjeld eit anna barn',
     'steg.omBarnet.annetBarn.tittel': 'Anna barn',
