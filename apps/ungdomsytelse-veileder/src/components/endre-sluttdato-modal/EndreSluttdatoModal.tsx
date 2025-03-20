@@ -2,7 +2,7 @@ import { Alert, BodyShort, Button, Heading, List, Modal, VStack } from '@navikt/
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import EndreSluttdatoForm from '../../forms/endre-sluttdato/EndreSluttdatoForm';
+import EndreSluttdatoForm from '../../forms/endre-sluttdato-form/EndreSluttdatoForm';
 
 interface Props {
     deltaker: Deltaker;
@@ -55,7 +55,6 @@ const EndreSluttdatoModal = ({ deltakelse, deltaker, onClose, onChanged }: Props
                     ) : (
                         <EndreSluttdatoForm
                             deltakelse={deltakelse}
-                            deltakelser={[]}
                             deltaker={deltaker}
                             onCancel={onClose}
                             onDeltakelseChanged={(deltakelse) => setEndretDeltakelse(deltakelse)}

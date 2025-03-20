@@ -132,12 +132,12 @@ const endreSluttdatoForDeltakelse = async (
 };
 
 /**
- * Sletter en deltakelse
+ * Sletter en deltakelse - ikke i bruk
  * @param deltakelseId
  * @returns {Promise<void>}
  * @throws {ApiErrorObject}
  */
-const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
+const ikke_brukt_fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
     try {
         await VeilederService.fjernFraProgram({ path: { deltakelseId } });
     } catch (e) {
@@ -151,7 +151,7 @@ export const veilederApiService = {
     getDeltakelser: getDeltakelserForDeltaker,
     endreStartdatoForDeltakelse,
     endreSluttdatoForDeltakelse,
-    fjernDeltakelse,
     meldInnDeltaker,
     meldUtDeltaker,
+    ikke_brukt_fjernDeltakelse,
 };

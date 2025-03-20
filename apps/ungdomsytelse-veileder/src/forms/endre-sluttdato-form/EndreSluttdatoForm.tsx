@@ -2,9 +2,9 @@ import { Alert, BodyLong, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, EndreSluttdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
-import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import { useVeileder } from '../../context/VeilederContext';
+import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
+import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 
 export type EndreSluttdatoFormValues = {
     id: string;
@@ -17,12 +17,11 @@ export type EndreSluttdatoFormValues = {
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    deltakelser: Deltakelse[];
     onCancel?: () => void;
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
-const EndreSluttdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const { veileder } = useVeileder();
 
     const { endreSluttdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
@@ -71,9 +70,6 @@ const EndreSluttdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDel
                                         visSluttdato={true}
                                         visStartdato={false}
                                         tomDate={tomDate}
-                                        harSøkt={deltakelse.harSøkt}
-                                        deltakelser={deltakelser}
-                                        deltakelseId={deltakelse.id}
                                         pending={pending}
                                         onCancel={onCancel}
                                     />

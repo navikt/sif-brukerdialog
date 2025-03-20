@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Button, Heading, List, Modal, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import EndreStartdatoForm from '../../forms/endre-startdato/EndreStartdatoForm';
+import EndreStartdatoForm from '../../forms/endre-startdato-form/EndreStartdatoForm';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
@@ -55,7 +55,6 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose, onChanged }: Props
                     ) : (
                         <EndreStartdatoForm
                             deltakelse={deltakelse}
-                            deltakelser={[]}
                             deltaker={deltaker}
                             onCancel={() => onClose()}
                             onDeltakelseChanged={(deltakelse) => setEndretDeltakelse(deltakelse)}
