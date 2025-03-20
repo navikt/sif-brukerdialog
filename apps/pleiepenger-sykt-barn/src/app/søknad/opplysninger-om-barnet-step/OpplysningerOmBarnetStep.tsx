@@ -9,6 +9,8 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
+import { Box, VStack } from '@navikt/ds-react';
+import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
@@ -32,15 +34,21 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
-                    {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                    {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
-                        <AnnetBarnPart
-                            formValues={values}
-                            søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                            fødselsattester={fødselsattester}
-                            harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
-                        />
-                    )}
+                    <VStack gap="6">
+                        <InfoRetningslinjerSøskensaker />
+
+                        <Box marginBlock="2 0">
+                            {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
+                            {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                                <AnnetBarnPart
+                                    formValues={values}
+                                    søkersFødselsnummer={søkerdata.søker.fødselsnummer}
+                                    fødselsattester={fødselsattester}
+                                    harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
+                                />
+                            )}
+                        </Box>
+                    </VStack>
                 </div>
             )}
         </SøknadFormStep>
