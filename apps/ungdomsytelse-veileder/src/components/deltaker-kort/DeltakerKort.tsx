@@ -2,7 +2,7 @@ import { Bleed, BodyShort, Box, Button, HStack, Tag, VStack } from '@navikt/ds-r
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
-import PersonNøytral from '../../illustrations/PersonNøytral';
+import PersonNøytral from '../../atoms/PersonNøytral';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
 
 interface Props {
