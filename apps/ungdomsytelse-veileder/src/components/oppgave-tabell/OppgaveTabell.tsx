@@ -3,7 +3,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
-import Melding from '../melding/Melding';
+import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -27,7 +27,7 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                                 <VStack gap="2" marginBlock={'0 4'}>
                                     <Box>Melding til bruker: </Box>
                                     {meldingFraVeileder ? (
-                                        <Melding tekst={meldingFraVeileder} avsender={veilederRef} />
+                                        <MeldingFraVeileder tekst={meldingFraVeileder} avsender={veilederRef} />
                                     ) : (
                                         'Ingen melding'
                                     )}
