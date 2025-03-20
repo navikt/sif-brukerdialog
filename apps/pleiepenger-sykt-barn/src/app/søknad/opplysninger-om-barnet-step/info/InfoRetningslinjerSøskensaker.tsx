@@ -9,7 +9,7 @@ const InfoRetningslinjerSøskensaker = () => (
         <BodyShort spacing>
             <AppText id="infoSøskensaker.info.1" />
         </BodyShort>
-        <Link href="https://www.nav.no/pleiepenger-barn#flere-barn" target="_blank">
+        <Link href="https://www.nav.no/pleiepenger-barn#flere-barn">
             <AppText id="infoSøskensaker.lenke" />
         </Link>
     </Alert>
