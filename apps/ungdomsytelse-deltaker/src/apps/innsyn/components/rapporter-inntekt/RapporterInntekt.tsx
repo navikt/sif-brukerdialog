@@ -1,9 +1,8 @@
-import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
-import EndreInntektPart from './EndreInntektPart';
 import RapporterInntektPart from './RapporterInntektPart';
 
 interface Props {
@@ -28,14 +27,7 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
                     Inntekt {månedÅrNavn}
                 </Heading>
                 {harRapportert ? (
-                    <EndreInntektPart
-                        visSkjema={visSkjema}
-                        månedNavn={månedNavn}
-                        onEndreInntekt={() => setVisSkjema(true)}
-                        kanRapportere={kanRapportere}
-                        fristForRapportering={fristForRapportering}
-                        inntekt={rapporteringsperiode.inntekt}
-                    />
+                    <BodyLong>Inntekt er rapportert for denne perioden</BodyLong>
                 ) : (
                     <RapporterInntektPart
                         visSkjema={visSkjema}

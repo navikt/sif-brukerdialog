@@ -77,6 +77,7 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
                 </HStack>
             }
             tittel="Din deltakerperiode blir endret"
+            svarfrist={oppgave.svarfrist}
             besvart={besvart}
             beskrivelse={
                 <>

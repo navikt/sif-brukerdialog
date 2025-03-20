@@ -100,6 +100,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                     ? `Endret inntekt for perioden ${periodetekst}`
                     : `Inntekt for perioden ${periodetekst}`
             }
+            svarfrist={oppgave.svarfrist}
             visOppgaveTittel="Vis endret inntekt"
             besvart={besvart}
             beskrivelse={

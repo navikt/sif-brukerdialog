@@ -6,7 +6,7 @@ import BlueBox from '../../../../components/blue-box/BlueBox';
 interface Props {
     tag: React.ReactNode;
     tittel: string;
-    svarfrist?: Date;
+    svarfrist: Date;
     beskrivelse: React.ReactNode;
     besvart?: boolean;
     visOppgaveTittel?: string;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const OppgaveLayout = ({
-    tag,
+    // tag,
     tittel,
     svarfrist,
     beskrivelse,
@@ -29,7 +29,7 @@ const OppgaveLayout = ({
             <VStack gap="6">
                 <Box>
                     <Bleed marginBlock="2 0">
-                        <Tag variant="alt1-filled">{tag}</Tag>
+                        <Tag variant="alt1-filled">Oppgave</Tag>
                     </Bleed>
                 </Box>
                 <Heading level="2" size="medium" spacing={true}>
