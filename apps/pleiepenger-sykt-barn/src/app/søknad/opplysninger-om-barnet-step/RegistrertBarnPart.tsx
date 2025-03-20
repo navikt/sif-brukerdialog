@@ -11,7 +11,6 @@ import { useFormikContext } from 'formik';
 import { AppText } from '../../i18n';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
-import InfoPleierFlereBarnSamtidig from './info/InfoPleierFlereBarnSamtidig';
 
 interface Props {
     søkersBarn: RegistrertBarn[];
@@ -33,7 +32,6 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
                         {text('steg.omBarnet.hvilketBarn.spm')}
                     </RegistrerteBarnListeHeading>
                 }
-                description={<InfoPleierFlereBarnSamtidig />}
                 radios={søkersBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
