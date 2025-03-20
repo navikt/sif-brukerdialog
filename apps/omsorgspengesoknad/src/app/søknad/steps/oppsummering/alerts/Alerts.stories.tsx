@@ -13,7 +13,7 @@ const Template: StoryFn = () => {
     return (
         <VStack gap="8">
             <AlertStoryWrapper title="Feilmelding når innsending feiler" intlScope="innsendingFeilet.">
-                <InnsendingFeiletAlert invalidParameter={['enVerdiSomFeilet']} />
+                <InnsendingFeiletAlert invalidParameter={[{ parameterName: 'enVerdiSomFeilet' } as any]} />
             </AlertStoryWrapper>
         </VStack>
     );

@@ -1,6 +1,7 @@
+import { VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
+import { useAppIntl } from '@i18n/index';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -8,13 +9,17 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { isInvalidParameterErrorResponse } from '@navikt/sif-common-soknad-ds/src/utils/innsendingErrorUtils';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import { isAxiosError } from 'axios';
 import { purge, sendApplication } from '../../api/api';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
+import { AppText } from '../../i18n';
 import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
@@ -34,17 +39,13 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
-import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
-import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import './oppsummeringStep.less';
-import { AppText } from '../../i18n';
-import SøkerSummary from './søker-summary/SøkerSummary';
-import { VStack } from '@navikt/ds-react';
-import PeriodeSummary from './periode-summary/PeriodeSummary';
-import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
 import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
-import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
-import { isAxiosError } from 'axios';
+import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
+import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
+import PeriodeSummary from './periode-summary/PeriodeSummary';
+import SøkerSummary from './søker-summary/SøkerSummary';
+import './oppsummeringStep.less';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
 
 interface Props {
     values: SøknadFormValues;
@@ -55,7 +56,7 @@ interface Props {
 const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
-    const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
+    const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>();
 
     const appIntl = useAppIntl();
     const { text, intl, locale } = appIntl;
