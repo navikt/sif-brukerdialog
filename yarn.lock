@@ -4106,7 +4106,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.6.7"
     typescript: "npm:5.8.2"
@@ -4194,7 +4194,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-intl: "npm:7.1.6"
     react-responsive: "npm:10.0.1"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     storybook-addon-mock: "npm:5.0.0"
     tailwindcss: "npm:3.4.17"
@@ -4336,7 +4336,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     typescript: "npm:5.8.2"
     uuid: "npm:11.1.0"
@@ -4456,7 +4456,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     storybook-addon-mock: "npm:5.0.0"
     tailwindcss: "npm:3.4.17"
@@ -4537,7 +4537,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
@@ -4616,7 +4616,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
@@ -4698,7 +4698,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
@@ -4779,7 +4779,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     storybook-addon-mock: "npm:5.0.0"
     typescript: "npm:5.8.2"
@@ -4864,7 +4864,7 @@ __metadata:
     react-day-picker: "npm:9.6.2"
     react-dom: "npm:19.0.0"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     storybook-addon-mock: "npm:5.0.0"
     typescript: "npm:5.8.2"
@@ -5169,7 +5169,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-intl: "npm:7.1.6"
     react-json-view: "npm:1.21.3"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.6.7"
     typescript: "npm:5.8.2"
@@ -5284,7 +5284,7 @@ __metadata:
     react-day-picker: "npm:9.6.2"
     react-dom: "npm:19.0.0"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.5"
     storybook: "npm:8.6.7"
@@ -5491,7 +5491,7 @@ __metadata:
     react-day-picker: "npm:9.6.2"
     react-dom: "npm:19.0.0"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.8.2"
     uuid: "npm:11.1.0"
@@ -5643,7 +5643,7 @@ __metadata:
     react-error-boundary: "npm:5.0.0"
     react-hook-form: "npm:7.54.2"
     react-intl: "npm:7.1.6"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     storybook: "npm:8.6.7"
     stylelint: "npm:16.16.0"
     tailwindcss: "npm:3.4.17"
@@ -5708,7 +5708,7 @@ __metadata:
     react-dom: "npm:19.0.0"
     react-hook-form: "npm:7.54.2"
     react-markdown: "npm:10.1.0"
-    react-router-dom: "npm:7.3.0"
+    react-router-dom: "npm:7.4.0"
     remark-gfm: "npm:4.0.1"
     stylelint: "npm:16.16.0"
     tailwindcss: "npm:3.4.17"
@@ -25851,21 +25851,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:7.3.0":
-  version: 7.3.0
-  resolution: "react-router-dom@npm:7.3.0"
+"react-router-dom@npm:7.4.0":
+  version: 7.4.0
+  resolution: "react-router-dom@npm:7.4.0"
   dependencies:
-    react-router: "npm:7.3.0"
+    react-router: "npm:7.4.0"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/4c6ba00cd50af810e75dbb4fe2d5de7491ccf2b4089ff4b61e1c6831f80f4e670a38920532b2fb92bd171d4aa73c37e9ceebfb42fd83a7e7bb9159b0d55f5fa5
+  checksum: 10/3b4fe2d851ffa9d19a6ec66b8e8eef806184baa96961dce63ebf6ad8c2b06282621660c791300ac401d42728b6ff3cf327d205ebd1c6aef4f32732bb6fa3143c
   languageName: node
   linkType: hard
 
-"react-router@npm:7.3.0":
-  version: 7.3.0
-  resolution: "react-router@npm:7.3.0"
+"react-router@npm:7.4.0":
+  version: 7.4.0
+  resolution: "react-router@npm:7.4.0"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^1.0.1"
@@ -25877,7 +25877,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/f7694785f95b989e55c0ae058c36c5f523e318109aea26f4e1567a3c50dcbff769417c54451d976990c507f83499bfe7bc4ec9bea52b2fabab4e6da57d21b231
+  checksum: 10/e7c9fe14d9b624f425ba89b904f47b571087978d46d6d9d865f03619851c8ef43525f4731fccc7bf00896043da208e444a167f5449a38794e70c98aeb78bdbf8
   languageName: node
   linkType: hard
 
