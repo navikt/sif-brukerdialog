@@ -1,14 +1,13 @@
 import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { InvalidParameter } from './invalidParameter';
-import { FritekstfeltValideringsfeil } from '@navikt/sif-common-api';
 
 const visFlereMeldinger = false;
 
 interface Props {
-    invalidParameter: InvalidParameter[];
+    invalidParameter: InvalidParameterViolation[];
 }
 
 enum HåndterteFeilFelter {
@@ -17,7 +16,7 @@ enum HåndterteFeilFelter {
     ENDRING_BEGRUNNELSE = 'endringBegrunnelse',
 }
 
-const getFeltFraValideringsfeil = (feil: FritekstfeltValideringsfeil): HåndterteFeilFelter | undefined => {
+const getFeltFraValideringsfeil = (feil: InvalidParameterViolation): HåndterteFeilFelter | undefined => {
     if (feil.parameterName.includes('selvstendigNæringsdrivende')) {
         if (feil.parameterName.includes('regnskapsførerTlf')) {
             return HåndterteFeilFelter.REGNSKAPSFØRER_TLF;
@@ -31,10 +30,7 @@ const getFeltFraValideringsfeil = (feil: FritekstfeltValideringsfeil): Håndtert
     }
 };
 
-const renderFeilmelding = (invalidParameter: InvalidParameter) => {
-    if (typeof invalidParameter === 'string') {
-        return <>{invalidParameter}</>;
-    }
+const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
     /** Ugyldig format på tekst */
     const { reason } = invalidParameter;
 
