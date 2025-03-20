@@ -13,8 +13,8 @@ import {
 import { useAppIntl } from '../../../../i18n';
 import { getDateValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
 import { CalendarIcon } from '@navikt/aksel-icons';
+import { useOppgaveContext } from '../oppgave/OppgaveContext';
 
 interface Props {
     deltakelseId: string;
@@ -44,7 +44,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DatePicker } = getTypedF
 
 const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, error, pending, besvart } = useBesvarOppgave();
+    const { sendSvar, error, pending, setVisSkjema } = useOppgaveContext();
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
 
     const handleSubmit = async (values: FormValues) => {
@@ -78,7 +78,6 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
             }
             svarfrist={oppgave.svarfrist}
             tittel="Din deltakerperiode blir endret"
-            besvart={besvart}
             beskrivelse={
                 <>
                     <BodyShort>
@@ -107,11 +106,15 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                 <FormikWrapper
                     initialValues={{}}
                     onSubmit={handleSubmit}
-                    renderForm={({ values }) => {
+                    renderForm={({ values, resetForm }) => {
                         return (
                             <Form
-                                submitButtonLabel="Send inn svar"
+                                submitButtonLabel="Send"
                                 cancelButtonLabel="Avbryt"
+                                onCancel={() => {
+                                    resetForm();
+                                    setVisSkjema(false);
+                                }}
                                 submitPending={pending}
                                 includeValidationSummary={true}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>

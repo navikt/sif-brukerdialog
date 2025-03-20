@@ -1,37 +1,40 @@
-import { Alert, Bleed, Box, ExpansionCard, Heading, HStack, Tag, VStack } from '@navikt/ds-react';
-import { ClipboardCheckmarkIcon } from '@navikt/aksel-icons';
+import { Alert, Bleed, Box, Button, Heading, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import BlueBox from '../../../../components/blue-box/BlueBox';
+import { useOppgaveContext } from '../oppgave/OppgaveContext';
 
 interface Props {
     tag: React.ReactNode;
     tittel: string;
     svarfrist: Date;
     beskrivelse: React.ReactNode;
-    besvart?: boolean;
     visOppgaveTittel?: string;
     children: React.ReactNode;
     onÅpneOppgave?: () => void;
+    visTag?: boolean;
 }
 
 const OppgaveLayout = ({
-    // tag,
+    tag,
     tittel,
     svarfrist,
     beskrivelse,
     children,
-    besvart,
-    visOppgaveTittel = 'Besvar oppgave',
+    visOppgaveTittel = 'Vis svarskjema',
+    visTag,
     onÅpneOppgave,
 }: Props) => {
+    const { erBesvart, visSkjema, setVisSkjema } = useOppgaveContext();
     return (
         <BlueBox>
             <VStack gap="6">
-                <Box>
-                    <Bleed marginBlock="2 0">
-                        <Tag variant="alt1-filled">Oppgave</Tag>
-                    </Bleed>
-                </Box>
+                {visTag ? (
+                    <Box>
+                        <Bleed marginBlock="2 0">
+                            <Tag variant="alt1-filled">{tag}</Tag>
+                        </Bleed>
+                    </Box>
+                ) : null}
                 <Heading level="2" size="medium" spacing={true}>
                     {tittel}
                 </Heading>
@@ -39,30 +42,44 @@ const OppgaveLayout = ({
             <VStack gap="6" className="pb-6">
                 {beskrivelse}
                 {svarfrist ? (
-                    <Alert variant="info" inline>
-                        <Box>
-                            Frist for å svare er <strong>{dateFormatter.full(svarfrist)}</strong>.
-                        </Box>
-                        Hvis du ikke svarer innen fristen, godkjennes oppgaven automatisk.
-                    </Alert>
+                    <Box>
+                        <Heading level="3" size="xsmall" spacing={true}>
+                            Svarfrist
+                        </Heading>
+                        Frist for å svare er <strong>{dateFormatter.full(svarfrist)}</strong>. Hvis du ikke svarer innen
+                        fristen, godkjennes oppgaven automatisk.
+                    </Box>
                 ) : null}
-                {besvart ? (
+                {erBesvart ? (
                     <Alert variant="success">Besvart</Alert>
                 ) : (
-                    <ExpansionCard
-                        aria-label="Demo med bare tittel"
-                        size="small"
-                        onToggle={(open) => (open && onÅpneOppgave ? onÅpneOppgave() : null)}>
-                        <ExpansionCard.Header>
-                            <ExpansionCard.Title size="small">
-                                <HStack gap="2" align={'center'}>
-                                    <ClipboardCheckmarkIcon />
+                    <>
+                        {visSkjema ? (
+                            <Box className="mt-4">
+                                <Bleed marginInline="5">
+                                    <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
+                                        <Heading size="medium" level="2">
+                                            Svarskjema
+                                        </Heading>
+                                        {children}
+                                    </VStack>
+                                </Bleed>
+                            </Box>
+                        ) : (
+                            <Box>
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        setVisSkjema(true);
+                                        if (onÅpneOppgave) {
+                                            onÅpneOppgave();
+                                        }
+                                    }}>
                                     {visOppgaveTittel}
-                                </HStack>
-                            </ExpansionCard.Title>
-                        </ExpansionCard.Header>
-                        <ExpansionCard.Content>{children}</ExpansionCard.Content>
-                    </ExpansionCard>
+                                </Button>
+                            </Box>
+                        )}
+                    </>
                 )}
             </VStack>
         </BlueBox>

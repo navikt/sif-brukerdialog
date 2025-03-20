@@ -12,11 +12,11 @@ import {
 import { useAppIntl } from '../../../../i18n';
 import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { useBesvarOppgave } from '../../hooks/useBesvarOppgave';
 import { WalletIcon } from '@navikt/aksel-icons';
 import dayjs from 'dayjs';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
 import { FormattedNumber } from 'react-intl';
+import { useOppgaveContext } from '../oppgave/OppgaveContext';
 
 interface Props {
     deltakelseId: string;
@@ -43,7 +43,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 
 const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, error, pending, besvart } = useBesvarOppgave();
+    const { sendSvar, setVisSkjema, error, pending } = useOppgaveContext();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
@@ -101,8 +101,6 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                     : `Inntekt for perioden ${periodetekst}`
             }
             svarfrist={oppgave.svarfrist}
-            visOppgaveTittel="Vis endret inntekt"
-            besvart={besvart}
             beskrivelse={
                 <BodyLong as="div">
                     <>
@@ -132,7 +130,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                             </p>
                         )}
                     </>
-                    <p>
+                    <p className="mb-0">
                         For at vi skal kunne behandle saken din, må du bekrefte at den inntekten vi har registrert er
                         den korrekte innen <strong>{svarfristTekst}</strong>. Hvis vi ikke mottar en bekreftelse innen
                         fristen, vil vi automatisk bruke inntektsopplysningene fra a-ordningen. Eventuell utbetaling vil
@@ -151,6 +149,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 cancelButtonLabel="Avbryt"
                                 onCancel={() => {
                                     resetForm();
+                                    setVisSkjema(false);
                                 }}
                                 submitPending={pending}
                                 includeValidationSummary={true}
