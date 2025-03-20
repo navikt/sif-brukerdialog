@@ -4,13 +4,6 @@ const nb = {
     'step.opplysninger-om-barnet.stepIndicatorLabel': 'Om barnet',
 
     'steg.omBarnet.hvilketBarn.spm': 'Velg hvilket barn søknaden gjelder',
-    'steg.omBarnet.hvilketBarn.description.tittel': 'Hva gjør jeg når jeg pleier flere barn samtidig?',
-    'steg.omBarnet.hvilketBarn.description.info.1':
-        'Når du pleier flere barn samtidig, skal du sende én søknad som gjelder samlet for barna du pleier. Vi registrerer og behandler søknaden din basert kun på ett av barna, selv om du pleier flere. Derfor kan du kun krysse av for ett av barna her.',
-    'steg.omBarnet.hvilketBarn.description.info.2':
-        'Hvis barna har forskjellig pleiebehov krysser du av for det barnet som har lengst pleiebehov. Hvis barna har samme pleiebehov, eller du ikke vet, krysser du bare av for ett av barna.',
-    'steg.omBarnet.hvilketBarn.description.info.3':
-        'Hvis du senere skal søke om forlengelse, eller det er andre som skal søke pleiepenger i samme sak, er det viktig at det krysses av for det samme barnet som i denne søknaden.',
     'steg.omBarnet.hvilketBarn.født': 'Født {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
     'steg.omBarnet.annetBarn.tittel': 'Annet barn',
@@ -41,9 +34,12 @@ const nb = {
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
-
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
+
+    'infoSøskensaker.tittel': 'Nye retningslinjer hvis du pleier flere barn',
+    'infoSøskensaker.info.1': 'Hvis du pleier flere barn samtidig, er det nå nye retningslinjer for hvordan du søker.',
+    'infoSøskensaker.lenke': 'Les mer om hvordan du søker her.',
 
     'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn navnet på barnet.',
@@ -80,13 +76,6 @@ const nn: Record<keyof typeof nb, string> = {
     'step.opplysninger-om-barnet.stepIndicatorLabel': 'Om barnet',
 
     'steg.omBarnet.hvilketBarn.spm': 'Vel kva for eit barn søknaden gjeld',
-    'steg.omBarnet.hvilketBarn.description.tittel': 'Kva gjer eg når eg pleier fleire barn samtidig?',
-    'steg.omBarnet.hvilketBarn.description.info.1':
-        'Når du pleier fleire barn samtidig, skal du sende éin søknad som gjeld samla for barna du pleier. Me registrerer og behandlar søknaden din basert kun på eitt av barna, sjølv om du pleier fleire. Difor kan du berre krysse av for eitt av barna her.',
-    'steg.omBarnet.hvilketBarn.description.info.2':
-        'Viss barna har forskjellig pleiebehov, kryssar du av for det barnet som har lengst pleiebehov. Viss barna har same pleiebehov, eller du ikkje veit, kryssar du berre av for eitt av barna.',
-    'steg.omBarnet.hvilketBarn.description.info.3':
-        'Viss du seinare skal søkje om forlenging, eller det er andre som skal søkje pleiepengar i same sak, er det viktig at det blir kryssa av for det same barnet som i denne søknaden.',
     'steg.omBarnet.hvilketBarn.født': 'Fødd {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjeld eit anna barn',
     'steg.omBarnet.annetBarn.tittel': 'Anna barn',
@@ -117,9 +106,13 @@ const nn: Record<keyof typeof nb, string> = {
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
         'Viss du og mora til barnet er gifte, blir du automatisk registrert som far til barnet. Viss de ikkje er gifte, må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
-
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av kva situasjonen din er, kan du fortsette å fylle ut søknaden og sende han inn.',
+
+    'infoSøskensaker.tittel': 'Nye retningsliner viss du pleier fleire barn',
+    'infoSøskensaker.info.1':
+        'Viss du pleier fleire barn samstundes, er det no nye retningsliner for korleis du søkjer.',
+    'infoSøskensaker.lenke': 'Les meir om korleis du søkjer her.',
 
     'validation.barnetSøknadenGjelder.noValue': 'Du må velje kva for eit barn søknaden gjeld.',
     'validation.barnetsNavn.stringHasNoValue': 'Du må skrive inn namnet på barnet.',

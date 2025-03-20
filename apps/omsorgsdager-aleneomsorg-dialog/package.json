@@ -29,9 +29,9 @@
         "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
-        "@navikt/ds-css": "7.17.3",
-        "@navikt/ds-react": "7.17.3",
-        "@navikt/ds-tailwind": "7.17.3",
+        "@navikt/ds-css": "7.17.4",
+        "@navikt/ds-react": "7.17.4",
+        "@navikt/ds-tailwind": "7.17.4",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -46,7 +46,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.2.0",
-        "axios": "1.8.3",
+        "axios": "1.8.4",
         "csp-header": "6.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
@@ -57,7 +57,7 @@
         "react-dom": "19.0.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.6",
-        "react-router-dom": "7.3.0",
+        "react-router-dom": "7.4.0",
         "uuid": "11.1.0"
     },
     "devDependencies": {
@@ -79,7 +79,7 @@
         "@storybook/test": "8.6.7",
         "@testing-library/dom": "10.4.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.0.11",
+        "@types/react": "19.0.12",
         "@types/react-dom": "19.0.4",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.3.4",
