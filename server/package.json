@@ -24,11 +24,11 @@
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.8",
-        "@types/express": "5.0.0",
+        "@types/express": "5.0.1",
         "@types/morgan": "1.9.9",
         "@types/node": "22.13.10",
         "@vercel/ncc": "0.38.3",
-        "axios": "1.8.3",
+        "axios": "1.8.4",
         "morgan": "1.10.0",
         "prettier": "3.5.3",
         "typescript": "5.8.2",

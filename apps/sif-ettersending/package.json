@@ -8,10 +8,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.17.3",
+        "@navikt/ds-css": "7.17.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.17.3",
-        "@navikt/ds-tailwind": "7.17.3",
+        "@navikt/ds-react": "7.17.4",
+        "@navikt/ds-tailwind": "7.17.4",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
@@ -26,7 +26,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.2.0",
-        "axios": "1.8.3",
+        "axios": "1.8.4",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
@@ -36,9 +36,9 @@
         "jsdom": "26.0.0",
         "lodash": "4.17.21",
         "react": "19.0.0",
-        "react-day-picker": "9.6.2",
+        "react-day-picker": "9.6.3",
         "react-intl": "7.1.6",
-        "react-router-dom": "7.3.0"
+        "react-router-dom": "7.4.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
@@ -48,7 +48,7 @@
         "@playwright/test": "1.51.1",
         "@sif/eslint-config": "workspace:*",
         "@testing-library/dom": "10.4.0",
-        "@types/react": "19.0.11",
+        "@types/react": "19.0.12",
         "@types/react-dom": "19.0.4",
         "@types/react-router-dom": "5.3.3",
         "@types/uuid": "10.0.0",

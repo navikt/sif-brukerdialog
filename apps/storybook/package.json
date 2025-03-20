@@ -6,15 +6,15 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.17.3",
+        "@navikt/ds-css": "7.17.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.17.3",
+        "@navikt/ds-react": "7.17.4",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "9.6.2"
+        "react-day-picker": "9.6.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -28,7 +28,7 @@
         "@storybook/node-logger": "8.6.7",
         "@storybook/react": "8.6.7",
         "@storybook/testing-library": "0.2.2",
-        "@types/react": "19.0.11",
+        "@types/react": "19.0.12",
         "chromatic": "11.27.0",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
