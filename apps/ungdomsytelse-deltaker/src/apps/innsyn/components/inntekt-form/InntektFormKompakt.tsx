@@ -16,12 +16,11 @@ import {
 
 interface Props {
     periode: DateRange;
-    gjelderEndring?: boolean;
     variant?: 'kompakt' | 'vanlig';
     onCancel: () => void;
 }
 
-const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCancel }: Props) => {
+const InntektFormKompakt = ({ periode, variant = 'kompakt', onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
     const [kompakt, setKompakt] = useState(variant === 'kompakt');
@@ -48,7 +47,7 @@ const InntektFormKompakt = ({ periode, gjelderEndring, variant = 'kompakt', onCa
             <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
                 <VStack gap="2">
                     <Heading level="2" size="medium">
-                        Inntektskjema {gjelderEndring ? '(endring)' : null}
+                        Inntektskjema
                     </Heading>
                     <Switch
                         size="small"

@@ -49,7 +49,6 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
                         <InntektForm
-                            gjelderEndring={harRapportert}
                             periode={periode}
                             onCancel={() => {
                                 setVisSkjema(false);

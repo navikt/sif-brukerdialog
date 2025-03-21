@@ -7,28 +7,44 @@ import {
     getInntektFromFormValues,
     inntektFormComponents,
 } from '../inntektFormUtils';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import InntektOppsummering from '../../inntekt-oppsummering/InntektOppsummering';
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { useAppIntl } from '../../../../../i18n';
 
 interface Props {
     periode: DateRange;
     values: InntektFormValues;
 }
 
+const { YesOrNoQuestion } = inntektFormComponents;
+
 const InntektDefaultForm = ({ periode, values }: Props) => {
+    const { intl } = useAppIntl();
     const { ConfirmationCheckbox } = inntektFormComponents;
     const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
     const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse] === YesOrNo.YES;
 
     const inntekt = erAlleInntektSpørsmålBesvartOgGyldig(values) ? getInntektFromFormValues(values) : undefined;
 
+    const harHattInntekt = values[InntektFormFields.harHattInntekt] === YesOrNo.YES;
+    const periodetekst = dateRangeFormatter.getDateRangeText(periode, intl.locale);
+
     return (
         <FormLayout.Questions>
-            <ArbeidstakerFrilanserSpørsmål harArbeidstakerOgFrilansInntekt={harArbeidstakerOgFrilansInntekt} />
+            <YesOrNoQuestion
+                name={InntektFormFields.harHattInntekt}
+                legend={`Har du hatt inntekt eller mottatt ytelser fra Nav i perioden ${periodetekst}?`}
+                validate={getYesOrNoValidator()}
+            />
+            {harHattInntekt ? (
+                <>
+                    <ArbeidstakerFrilanserSpørsmål harArbeidstakerOgFrilansInntekt={harArbeidstakerOgFrilansInntekt} />
 
-            <YtelseSpørsmål harInntektFraYtelse={harInntektFraYtelse} />
+                    <YtelseSpørsmål harInntektFraYtelse={harInntektFraYtelse} />
+                </>
+            ) : null}
 
             {inntekt ? (
                 <ConfirmationCheckbox

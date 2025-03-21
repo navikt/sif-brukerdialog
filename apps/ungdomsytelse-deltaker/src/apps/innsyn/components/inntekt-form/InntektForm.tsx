@@ -1,14 +1,12 @@
-import { Alert, BodyShort, Box, Button, Heading, ReadMore, Switch, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { Alert, Box, Button, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { DateRange, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { Inntekt } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
-import InntektTableForm from './varianter/InntektTableForm';
 import {
     UngdomsytelseInntektsrapportering,
     zUngdomsytelseInntektsrapportering,
@@ -17,27 +15,16 @@ import {
 interface Props {
     inntekt?: Inntekt;
     periode: DateRange;
-    gjelderEndring?: boolean;
-    variant?: 'kompakt' | 'vanlig';
-    kanEndreVariant?: boolean;
     onCancel: () => void;
 }
 
-const InntektForm = ({
-    periode,
-    inntekt,
-    gjelderEndring,
-    variant = 'vanlig',
-    kanEndreVariant = true,
-    onCancel,
-}: Props) => {
+const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
-    const [kompakt, setKompakt] = useState(variant === 'kompakt');
     const { FormikWrapper, Form } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const inntekt = getInntektFromFormValues(values, kompakt);
+        const inntekt = getInntektFromFormValues(values, false);
         const data: UngdomsytelseInntektsrapportering = zUngdomsytelseInntektsrapportering.parse({
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
@@ -63,25 +50,6 @@ const InntektForm = ({
 
     return (
         <VStack gap="6">
-            <VStack gap="2">
-                {/* {kompakt ? null : ( */}
-                <Heading level="2" size="small">
-                    Inntektskjema {gjelderEndring ? '(endring)' : null}
-                </Heading>
-                {/* )} */}
-
-                {kanEndreVariant ? (
-                    <Switch
-                        size="small"
-                        value="kompakt"
-                        onChange={(evt) => {
-                            setKompakt(evt.target.checked);
-                        }}
-                        checked={kompakt}>
-                        Vis kompakt skjema
-                    </Switch>
-                ) : null}
-            </VStack>
             {inntektSendt ? (
                 <VStack gap="8">
                     <Alert variant="success">Inntekt for perioden er sendt</Alert>
@@ -93,46 +61,21 @@ const InntektForm = ({
                 </VStack>
             ) : (
                 <VStack gap="8">
-                    {!kompakt ? (
-                        <VStack gap="2">
-                            <BodyShort>
-                                Spørsmålene nedenfor gjelder for perioden{' '}
-                                {dateRangeFormatter.getDateRangeText(periode, intl.locale)}.
-                            </BodyShort>
-                            <ReadMore header="Les mer om inntekt">
-                                Inntekten du skal oppgi er hva du har tjent i perioden. Dette er ikke det samme som hva
-                                du har fått utbetalt. Hvis du er usikker på hva du skal oppgi, kan du se på lønnsslippen
-                                din eller kontakte arbeidsgiveren din.
-                            </ReadMore>
-                        </VStack>
-                    ) : null}
-
                     <FormikWrapper
                         initialValues={initialValues}
                         onSubmit={handleSubmit}
                         renderForm={({ values }) => {
                             return (
                                 <Form
-                                    submitButtonLabel="Send inn inntekt"
+                                    submitButtonLabel="Send inn"
+                                    showButtonArrows={true}
                                     onCancel={onCancel}
                                     cancelButtonLabel="Avbryt"
                                     includeValidationSummary={true}
                                     submitPending={pending}
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                     <VStack gap="4">
-                                        {kompakt ? (
-                                            <InntektTableForm inntekt={getInntektFromFormValues(values, true)} />
-                                        ) : (
-                                            <InntektDefaultForm values={values} periode={periode} />
-                                        )}
-
-                                        {inntekt ? (
-                                            <Alert variant="info" inline={true}>
-                                                Når du endrer inntekt på tidligere perioder, vil Lorem ipsum dolor sit
-                                                amet consectetur adipisicing elit. Voluptas cumque quo sunt.
-                                            </Alert>
-                                        ) : null}
-
+                                        <InntektDefaultForm values={values} periode={periode} />
                                         {error ? <Alert variant="error">{error}</Alert> : null}
                                     </VStack>
                                 </Form>
