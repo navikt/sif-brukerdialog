@@ -41,6 +41,42 @@ const endretStartdato: Oppgave = {
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
+const korrigertInntekt: Oppgave = {
+    id: '123',
+    opprettetDato: ISODateToDate('2024-07-01'),
+    status: OppgaveStatus.ULØST,
+    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+    oppgavetypeData: {
+        periodeForInntekt: {
+            fraOgMed: ISODateToDate('2026-01-01'),
+            tilOgMed: ISODateToDate('2026-01-31'),
+        },
+        inntektFraAinntekt: {
+            arbeidsgivere: [
+                {
+                    navn: 'Flåklypa barteservice',
+                    beløp: 1232,
+                },
+                {
+                    navn: 'Hopen klyp og klem',
+                    beløp: 50,
+                },
+            ],
+            ytelser: [
+                {
+                    navn: 'Sykepenger',
+                    beløp: 4200,
+                },
+            ],
+        },
+        inntektFraDeltaker: {
+            arbeidstakerOgFrilansInntekt: undefined,
+            inntektFraYtelse: undefined,
+        },
+    },
+    svarfrist: dayjs().add(1, 'day').toDate(),
+};
+
 export const EndretSluttdato: Story = {
     args: {
         oppgave: endretSluttdato,
@@ -53,6 +89,33 @@ export const EndretSluttdato: Story = {
 export const EndretStartdato: Story = {
     args: {
         oppgave: endretStartdato,
+        programPeriode: {
+            from: dayjs().subtract(1, 'day').toDate(),
+            to: dayjs().add(1, 'day').toDate(),
+        },
+    },
+};
+export const BekreftKorrigertInntektOppgittInntekt: Story = {
+    args: {
+        oppgave: {
+            ...korrigertInntekt,
+            oppgavetypeData: {
+                ...korrigertInntekt.oppgavetypeData,
+                inntektFraDeltaker: {
+                    arbeidstakerOgFrilansInntekt: 1200,
+                    inntektFraYtelse: 550,
+                },
+            },
+        },
+        programPeriode: {
+            from: dayjs().subtract(1, 'day').toDate(),
+            to: dayjs().add(1, 'day').toDate(),
+        },
+    },
+};
+export const BekreftKorrigertInntekt: Story = {
+    args: {
+        oppgave: korrigertInntekt,
         programPeriode: {
             from: dayjs().subtract(1, 'day').toDate(),
             to: dayjs().add(1, 'day').toDate(),

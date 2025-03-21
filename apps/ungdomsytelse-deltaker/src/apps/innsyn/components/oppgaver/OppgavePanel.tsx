@@ -3,6 +3,7 @@ import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import EndretSluttdatoOppgaveForm from './EndretSluttdatoOppgaveForm';
 import EndretStartdatoOppgaveForm from './EndretStartdatoOppgaveForm';
 import KorrigertInntektOppgave from './KorrigertInntektOppgave';
+import { OppgaveProvider } from '../oppgave/OppgaveContext';
 
 interface Props {
     programPeriode: OpenDateRange;
@@ -14,22 +15,30 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.R
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return (
-                <EndretStartdatoOppgaveForm
-                    oppgave={oppgave}
-                    deltakelseId={deltakelseId}
-                    opprinneligStartdato={programPeriode.from}
-                />
+                <OppgaveProvider>
+                    <EndretStartdatoOppgaveForm
+                        oppgave={oppgave}
+                        deltakelseId={deltakelseId}
+                        opprinneligStartdato={programPeriode.from}
+                    />
+                </OppgaveProvider>
             );
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return (
-                <EndretSluttdatoOppgaveForm
-                    oppgave={oppgave}
-                    deltakelseId={deltakelseId}
-                    opprinneligSluttdato={programPeriode.to}
-                />
+                <OppgaveProvider>
+                    <EndretSluttdatoOppgaveForm
+                        oppgave={oppgave}
+                        deltakelseId={deltakelseId}
+                        opprinneligSluttdato={programPeriode.to}
+                    />
+                </OppgaveProvider>
             );
         case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
-            return <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />;
+            return (
+                <OppgaveProvider>
+                    <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />
+                </OppgaveProvider>
+            );
     }
 };
 

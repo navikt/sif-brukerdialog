@@ -3,7 +3,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
-import FremhevetInntektsperiode from './FremhevetInntektsperiode';
+import FremhevetInntektsperiode from './RapporterInntekt';
 
 const rapporteringsperiode: Rapporteringsperiode = {
     harRapportert: true,

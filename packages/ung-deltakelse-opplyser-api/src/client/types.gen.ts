@@ -45,8 +45,14 @@ export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
         tilOgMed: string;
     };
     inntektFraAinntekt: {
-        arbeidstakerOgFrilansInntekt: number;
-        inntektFraYtelse: number;
+        arbeidsgivere: Array<{
+            navn: string;
+            beløp: number;
+        }>;
+        ytelser: Array<{
+            navn: string;
+            beløp: number;
+        }>;
     };
     inntektFraDeltaker?: {
         arbeidstakerOgFrilansInntekt?: number;
@@ -70,6 +76,7 @@ export enum OppgaveStatus {
     LØST = 'LØST',
     ULØST = 'ULØST',
     KANSELLERT = 'KANSELLERT',
+    UTLØPT = 'UTLØPT',
 }
 
 export enum Oppgavetype {
@@ -133,7 +140,8 @@ export type RapportPeriodeinfoDto = {
     fraOgMed: string;
     tilOgMed: string;
     harRapportert: boolean;
-    inntekt?: number;
+    arbeidstakerOgFrilansInntekt?: number;
+    inntektFraYtelse?: number;
 };
 
 export type OppdaterFraProgramData = {

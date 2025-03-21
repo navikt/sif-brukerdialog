@@ -11,11 +11,7 @@ const InnsynApp = () => {
     return (
         <Page title="Din ungdomsytelse">
             <VStack gap="8">
-                <VStack gap="8">
-                    <VStack gap="2">
-                        <DeltakelseHeader deltakelse={deltakelse} />
-                    </VStack>
-                </VStack>
+                <DeltakelseHeader deltakelse={deltakelse} />
 
                 <DeltakelseContent deltakelse={deltakelse} />
 

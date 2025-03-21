@@ -18,7 +18,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 },
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
-                løstDato: undefined,
+                løstDato: '2025-02-23T05:00:12.048157Z',
             },
             {
                 id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
@@ -29,7 +29,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                     veilederRef: 'Pål Hønesen, Andeby',
                     meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
                 },
-                status: OppgaveStatus.LØST,
+                status: OppgaveStatus.UTLØPT,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
                 løstDato: '2025-02-23T05:00:12.048157Z',
             },
@@ -37,14 +37,27 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
                 oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
                 oppgavetypeData: {
-                    type: 'BEKREFT_KORRIGERT_INNTEKT',
                     periodeForInntekt: {
                         fraOgMed: '2026-01-01',
                         tilOgMed: '2026-01-31',
                     },
                     inntektFraAinntekt: {
-                        arbeidstakerOgFrilansInntekt: 7500,
-                        inntektFraYtelse: 1500,
+                        arbeidsgivere: [
+                            {
+                                navn: 'Flåklypa barteservice',
+                                beløp: 1232,
+                            },
+                            {
+                                navn: 'Hopen klyp og klem',
+                                beløp: 50,
+                            },
+                        ],
+                        ytelser: [
+                            {
+                                navn: 'Sykepenger',
+                                beløp: 4200,
+                            },
+                        ],
                     },
                     inntektFraDeltaker: {
                         arbeidstakerOgFrilansInntekt: undefined,
@@ -53,7 +66,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 },
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-02-22T11:43:29.048157Z',
-                løstDato: undefined,
+                løstDato: '2025-02-23T05:00:12.048157Z',
             },
         ],
         rapporteringsPerioder: [
@@ -61,19 +74,36 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 fraOgMed: '2024-12-02',
                 tilOgMed: '2024-12-31',
                 harRapportert: false,
-                inntekt: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
             },
             {
                 fraOgMed: '2025-01-01',
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
-                inntekt: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
             },
             {
                 fraOgMed: '2025-02-01',
                 tilOgMed: '2025-02-26',
                 harRapportert: false,
-                inntekt: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+            },
+            {
+                fraOgMed: '2025-03-01',
+                tilOgMed: '2025-03-31',
+                harRapportert: false,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+            },
+            {
+                fraOgMed: '2025-04-01',
+                tilOgMed: '2025-04-30',
+                harRapportert: false,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
             },
         ],
     },

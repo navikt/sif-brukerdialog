@@ -11,10 +11,10 @@ export const rapporteringsperiodeErTidligerePeriode = (rapporteringsperiode: Rap
     return dayjs(periode.to).isBefore(dayjs(), 'day');
 };
 
-export const getGjeldendeRapporteringsperiode = (
+export const getPeriodeÅpenForInntektsrapportering = (
     rapporteringsperioder: Rapporteringsperiode[],
 ): Rapporteringsperiode | undefined => {
-    return rapporteringsperioder.find((p) => datoErIRapporteringsperiode(new Date(), p));
+    return rapporteringsperioder.find((p) => datoErIRapporteringsperiode(new Date(), p) && p.harRapportert === false);
 };
 
 export const getTidligereRapporteringsperioder = (

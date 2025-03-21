@@ -14,15 +14,13 @@ export type EndreStartdatoFormValues = {
 };
 
 interface Props {
-    // veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    deltakelser: Deltakelse[];
     onCancel?: () => void;
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const { veileder } = useVeileder();
 
     const { endreStartdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
@@ -78,9 +76,6 @@ const EndreStartdatoForm = ({ deltakelse, deltakelser, deltaker, onCancel, onDel
                                         visSluttdato={false}
                                         visStartdato={true}
                                         fomDate={fomDate}
-                                        harSøkt={deltakelse.harSøkt}
-                                        deltakelser={deltakelser}
-                                        deltakelseId={deltakelse.id}
                                         pending={pending}
                                         onCancel={onCancel}
                                     />

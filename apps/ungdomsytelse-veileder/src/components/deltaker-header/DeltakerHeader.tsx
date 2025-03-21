@@ -2,7 +2,7 @@ import { BodyShort, Box, Button, HStack, Tag } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
-import PersonNøytral from '../../illustrations/PersonNøytral';
+import PersonNøytral from '../../atoms/PersonNøytral';
 
 interface Props {
     deltaker: Deltaker;

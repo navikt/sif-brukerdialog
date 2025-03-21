@@ -16,10 +16,10 @@ import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
-import DeltakerKort from '../components/deltaker-kort/DeltakerKort';
-import { veilederApiService } from '../api/veilederApiService';
-import { getAppEnv } from '../utils/appEnv';
-import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
+import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
+import { veilederApiService } from '../../api/veilederApiService';
+import { getAppEnv } from '../../utils/appEnv';
+import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -28,7 +28,7 @@ interface Props {
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
-const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) => {
+const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const [fnrValue, setFnrValue] = useState<string | undefined>();
@@ -158,4 +158,4 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     );
 };
 
-export default HentDeltakerForm;
+export default FinnDeltakerForm;

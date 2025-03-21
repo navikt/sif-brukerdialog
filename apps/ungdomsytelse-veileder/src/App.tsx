@@ -17,7 +17,7 @@ const App = () => {
         <VeilederProvider veileder={{ fornavn: 'Pål', etternavn: 'Veileder Hønesen' }}>
             <IntlProvider locale="nb" messages={appMessages.nb}>
                 <AppHeader />
-                <Page className="bg-gray-300">
+                <Page className="bg-gray-300" style={{ minHeight: 'calc(100lvh - 3rem)' }}>
                     <Routes>
                         <Route path="" element={<StartPage />}></Route>
                         <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />

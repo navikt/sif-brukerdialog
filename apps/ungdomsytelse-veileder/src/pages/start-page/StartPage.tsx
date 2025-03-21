@@ -1,7 +1,7 @@
 import { HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import HentDeltakerForm from '../../forms/HentDeltakerForm';
+import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const StartPage = () => {
                 <VStack
                     className="rounded-md bg-gray-50 p-8 pt-8 pb-8 items-center w-full drop-shadow-2xl"
                     maxWidth={'30rem'}>
-                    <HentDeltakerForm
+                    <FinnDeltakerForm
                         onDeltakerFetched={handleDeltakerFetched}
                         onDeltakelseRegistrert={handleDeltakelseRegistrert}
                     />

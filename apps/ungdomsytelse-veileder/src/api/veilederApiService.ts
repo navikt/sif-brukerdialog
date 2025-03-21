@@ -49,7 +49,7 @@ const getDeltakerByDeltakerId = async (deltakerIdent: string): Promise<Deltaker>
  * @returns {Promise<Deltakelse[]>}
  * @throws {ApiErrorObject}
  */
-const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
+const getDeltakelserForDeltaker = async (deltakerId: string): Promise<Deltakelse[]> => {
     try {
         const { data } = await VeilederService.hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
         return deltakelserSchema.parse(data);
@@ -132,12 +132,12 @@ const endreSluttdatoForDeltakelse = async (
 };
 
 /**
- * Sletter en deltakelse
+ * Sletter en deltakelse - ikke i bruk
  * @param deltakelseId
  * @returns {Promise<void>}
  * @throws {ApiErrorObject}
  */
-const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
+const ikke_brukt_fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
     try {
         await VeilederService.fjernFraProgram({ path: { deltakelseId } });
     } catch (e) {
@@ -148,10 +148,10 @@ const fjernDeltakelse = async (deltakelseId: string): Promise<void> => {
 export const veilederApiService = {
     findDeltakerByDeltakerIdent,
     getDeltakerByDeltakerId,
-    getDeltakelser,
+    getDeltakelser: getDeltakelserForDeltaker,
     endreStartdatoForDeltakelse,
     endreSluttdatoForDeltakelse,
-    fjernDeltakelse,
     meldInnDeltaker,
     meldUtDeltaker,
+    ikke_brukt_fjernDeltakelse,
 };

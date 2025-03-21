@@ -1,11 +1,10 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
 import { Deltakelse as DeltakelseContent, OppgaveStatus } from '@navikt/ung-common';
-import { getGjeldendeRapporteringsperiode, getTidligereRapporteringsperioder } from '../utils/deltakelseUtils';
-import FremhevetInntektsperiode from './fremhevet-inntektsperiode/FremhevetInntektsperiode';
+import { getPeriodeÅpenForInntektsrapportering } from '../utils/deltakelseUtils';
 import OppgavePanel from './oppgaver/OppgavePanel';
-import Periodeliste from './Periodeliste';
 import LøsteOppgaver from './løste-oppgaver/LøsteOppgaver';
 import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
+import RapporterInntekt from './rapporter-inntekt/RapporterInntekt';
 
 interface Props {
     deltakelse: DeltakelsePeriode;
@@ -13,23 +12,20 @@ interface Props {
 
 const DeltakelseContent = ({ deltakelse }: Props) => {
     const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
-    const gjeldendePeriode = getGjeldendeRapporteringsperiode(rapporteringsPerioder || []);
-    const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
+    // const tidligerePerioder = getTidligereRapporteringsperioder(rapporteringsPerioder || []);
+    const rapporterInntektPeriode = getPeriodeÅpenForInntektsrapportering(rapporteringsPerioder || []);
 
-    const uløsteOppgaver = oppgaver.filter(
-        (oppgave) => oppgave.løstDato === undefined && oppgave.status === OppgaveStatus.ULØST,
-    );
-    const løsteOppgaver = oppgaver.filter(
-        (oppgave) => oppgave.løstDato !== undefined && oppgave.status !== OppgaveStatus.ULØST,
-    );
+    const uløsteOppgaver = oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
+    const løsteOppgaver = oppgaver.filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST);
 
     return (
         <VStack gap="8">
             {uløsteOppgaver.map((oppgave, index) => (
                 <OppgavePanel key={index} oppgave={oppgave} deltakelseId={id} programPeriode={programPeriode} />
             ))}
-            {gjeldendePeriode ? <FremhevetInntektsperiode rapporteringsperiode={gjeldendePeriode} /> : null}
-            <Box>
+            {rapporterInntektPeriode ? <RapporterInntekt rapporteringsperiode={rapporterInntektPeriode} /> : null}
+
+            {/* <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     Perioder og inntekt
                 </Heading>
@@ -38,11 +34,11 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
                     perioder={tidligerePerioder || []}
                     programperiodeStartDato={deltakelse.programPeriode.from}
                 />
-            </Box>
+            </Box> */}
             {løsteOppgaver.length > 0 ? (
                 <Box>
                     <Heading level="2" size="medium" spacing={true}>
-                        Tidligere oppgaver
+                        Historikk
                     </Heading>
                     <LøsteOppgaver oppgaver={løsteOppgaver} />
                 </Box>
