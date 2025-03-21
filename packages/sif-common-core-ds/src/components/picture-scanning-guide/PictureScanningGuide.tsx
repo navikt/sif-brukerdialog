@@ -96,11 +96,11 @@ const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
                                 </div>
                                 <div className={bem.element('cell')}>
                                     <PictureScanningExample
-                                        image={<ScanningIcon status="shadow-2xs" height={svgIconHeight} />}
+                                        image={<ScanningIcon status="shadow" height={svgIconHeight} />}
                                         status="feil"
                                         headingLevel={exampleHeadingLevel}
                                         statusText={text('@core.psg.bad')}
-                                        description={text('@core.psg.icon.label.shadow-2xs')}
+                                        description={text('@core.psg.icon.label.shadow')}
                                     />
                                 </div>
                             </div>

@@ -26,7 +26,7 @@ const nb = {
     '@core.psg.icon.label.good': 'Dokumentet fyller hele bildet',
     '@core.psg.icon.label.keystone': 'Bildet er ikke tatt rett ovenfra',
     '@core.psg.icon.label.horizontal': 'Bildet har ikke riktig retning',
-    '@core.psg.icon.label.shadow-2xs': 'Bildet har skygge på dokumentet',
+    '@core.psg.icon.label.shadow': 'Bildet har skygge på dokumentet',
     '@core.psg.lenkepanel.url': 'https://www.nav.no/brukerstotte#sende-soknad-pa-nett',
     '@core.psg.lenkepanel.text': 'Mer hjelp til å laste opp vedlegg (åpnes i et nytt vindu).',
 };
@@ -56,7 +56,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@core.psg.icon.label.good': 'Dokumentet fyller heile biletet',
     '@core.psg.icon.label.keystone': 'Biletet er ikkje teke rett ovanfrå.',
     '@core.psg.icon.label.horizontal': 'Biletet har ikkje rett retning',
-    '@core.psg.icon.label.shadow-2xs': 'Biletet har skugge oppå dokumentet',
+    '@core.psg.icon.label.shadow': 'Biletet har skugge oppå dokumentet',
     '@core.psg.lenkepanel.url': 'https://www.nav.no/brukerstotte#sende-soknad-pa-nett',
     '@core.psg.lenkepanel.text': 'Meir hjelp til opplasting av vedlegg (vert åpna i nytt vindauge).',
 };

@@ -3,7 +3,7 @@ interface ScanProps {
     height?: number;
 }
 
-type ScanIconStatusKey = 'good' | 'keystone' | 'horizontal' | 'shadow-2xs';
+type ScanIconStatusKey = 'good' | 'keystone' | 'horizontal' | 'shadow';
 
 export interface Props extends ScanProps {
     status: ScanIconStatusKey;
@@ -156,7 +156,7 @@ const ScanningIkon = (props: Props) => {
             return <KeystoneScanning title={title} height={height} />;
         case 'horizontal':
             return <HorizontalScanning title={title} height={height} />;
-        case 'shadow-2xs':
+        case 'shadow':
             return <ShadowScanning title={title} height={height} />;
         default:
             return <GoodScanning title={title} height={height} />;
