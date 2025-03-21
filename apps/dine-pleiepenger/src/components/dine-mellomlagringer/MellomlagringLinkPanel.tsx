@@ -19,7 +19,7 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
                 bg-transparent
                 text-white
                 hover:bg-deepblue-700
-                hover:outline-none
+                hover:outline-hidden
                 hover:border-transparent
                 focus-within:shadow-focus
                 focus-within:bg-deepblue-700

@@ -18,7 +18,7 @@ const NyDeltakelse = ({ deltaker, onDeltakelseRegistrert }: Props) => {
             </Button>
         </Box>
     ) : (
-        <Box className="rounded bg-gray-100 pb-10">
+        <Box className="rounded-xs bg-gray-100 pb-10">
             <Box className=" p-3 pr-6 pl-6 border-b-2 border-b-gray-300 max-w-lg">
                 <MeldInnDeltakerForm
                     deltaker={deltaker}
