@@ -5218,7 +5218,7 @@ __metadata:
   dependencies:
     "@sentry/browser": "npm:9.7.0"
     "@sentry/react": "npm:9.7.0"
-    "@sentry/types": "npm:9.7.0"
+    "@sentry/types": "npm:9.8.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:22.13.11"
     axios: "npm:1.8.4"
@@ -8576,6 +8576,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/core@npm:9.8.0":
+  version: 9.8.0
+  resolution: "@sentry/core@npm:9.8.0"
+  checksum: 10/845b893a29cc74a876957fd3b05f62fffeaa686c42bf9b25341601354993650996dd1bfd136c7bdc1a7635f88503be0c46aef3d88e7f93bfd66f9a76b382a06a
+  languageName: node
+  linkType: hard
+
 "@sentry/react@npm:9.7.0":
   version: 9.7.0
   resolution: "@sentry/react@npm:9.7.0"
@@ -8602,12 +8609,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:9.7.0":
-  version: 9.7.0
-  resolution: "@sentry/types@npm:9.7.0"
+"@sentry/types@npm:9.8.0":
+  version: 9.8.0
+  resolution: "@sentry/types@npm:9.8.0"
   dependencies:
-    "@sentry/core": "npm:9.7.0"
-  checksum: 10/58a53996c4f563e68924ae832ec4af3954327b2354e2fe340c74bd7b3fbb84b361de687d41edbc2c2a2eed398d3708332984b00e04076ecdf91b4a1b6c5cc67d
+    "@sentry/core": "npm:9.8.0"
+  checksum: 10/745093f3455320737572896dcc6419ee44171d70538639c497d05f8e66d40a45bf332d11072fabd4272cecccf9d3437e98bcab3799a2d18f7e621c94a61bb1e4
   languageName: node
   linkType: hard
 
