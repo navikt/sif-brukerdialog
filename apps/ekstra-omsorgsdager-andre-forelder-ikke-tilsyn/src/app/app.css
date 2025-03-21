@@ -1,3 +1,5 @@
-/* @tailwind base; */
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '@navikt/ds-css' layer(components);
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(utilities);
+
+@config '../../tailwind.config.js';
