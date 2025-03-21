@@ -31,7 +31,7 @@ const PeriodeFormPart = ({
     onCancel,
 }: Props) => {
     return (
-        <VStack gap="8" className="rounded bg-bg-subtle p-5">
+        <VStack gap="8" className="rounded-xs bg-bg-subtle p-5">
             {visStartdato ? (
                 <FormikDatepicker
                     name="fom"
