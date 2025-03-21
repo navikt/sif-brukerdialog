@@ -62,7 +62,7 @@ const InntektForm = ({
         : {};
 
     return (
-        <>
+        <VStack gap="6">
             <VStack gap="2">
                 {/* {kompakt ? null : ( */}
                 <Heading level="2" size="small">
@@ -141,7 +141,7 @@ const InntektForm = ({
                     />
                 </VStack>
             )}
-        </>
+        </VStack>
     );
 };
 

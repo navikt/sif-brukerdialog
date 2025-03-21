@@ -1,16 +1,15 @@
-import { Bleed, BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
-import RapporterInntektPart from './RapporterInntektPart';
 
 interface Props {
     rapporteringsperiode: Rapporteringsperiode;
 }
 
 const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
-    const { periode, harRapportert, kanRapportere, fristForRapportering } = rapporteringsperiode;
+    const { periode, harRapportert, fristForRapportering } = rapporteringsperiode;
 
     if (!fristForRapportering) {
         return null;
@@ -29,30 +28,35 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
                 {harRapportert ? (
                     <BodyLong>Inntekt er rapportert for denne perioden</BodyLong>
                 ) : (
-                    <RapporterInntektPart
-                        visSkjema={visSkjema}
-                        månedNavn={månedNavn}
-                        fristForRapportering={fristForRapportering}
-                        kanRapportere={kanRapportere}
-                        onRapporterInntekt={() => setVisSkjema(true)}
-                    />
+                    <>
+                        <BodyShort>
+                            Hvis du har inntekt i {månedNavn}, må du oppgi denne innen utgangen av{' '}
+                            <strong>{dateFormatter.dayDateMonth(fristForRapportering)}</strong>. Hvis du ikke har noe
+                            inntekt denne måneden, trenger du ikke melde fra.
+                        </BodyShort>
+                    </>
                 )}
 
-                {visSkjema ? (
-                    <Box className="mt-4">
-                        <Bleed marginInline="5">
-                            <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
-                                <InntektForm
-                                    gjelderEndring={harRapportert}
-                                    periode={periode}
-                                    onCancel={() => {
-                                        setVisSkjema(false);
-                                    }}
-                                />
-                            </VStack>
-                        </Bleed>
-                    </Box>
-                ) : null}
+                <ExpansionCard
+                    size="small"
+                    aria-label="Small-variant"
+                    open={visSkjema}
+                    onToggle={(isOpen) => {
+                        setVisSkjema(isOpen);
+                    }}>
+                    <ExpansionCard.Header>
+                        <ExpansionCard.Title size="small">Vis skjema</ExpansionCard.Title>
+                    </ExpansionCard.Header>
+                    <ExpansionCard.Content>
+                        <InntektForm
+                            gjelderEndring={harRapportert}
+                            periode={periode}
+                            onCancel={() => {
+                                setVisSkjema(false);
+                            }}
+                        />
+                    </ExpansionCard.Content>
+                </ExpansionCard>
             </VStack>
         </Box>
     );
