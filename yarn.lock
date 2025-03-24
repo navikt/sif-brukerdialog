@@ -5629,7 +5629,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.69.0"
     "@trpc/client": "npm:10.45.2"
     "@trpc/react-query": "npm:10.45.2"
-    "@trpc/server": "npm:10.45.2"
+    "@trpc/server": "npm:11.0.0"
     "@types/node": "npm:22.13.11"
     "@types/react": "npm:19.0.12"
     "@types/react-dom": "npm:19.0.4"
@@ -10280,10 +10280,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/server@npm:10.45.2":
-  version: 10.45.2
-  resolution: "@trpc/server@npm:10.45.2"
-  checksum: 10/0f3fdb5cd505c9f6947e00d67d61663cf87c51c9a591e5f3443f62b37b7d78e1f729cc6784090ec46e4a3c38e73277170590be8eeb8c4ee3dffcc80a3557c1a4
+"@trpc/server@npm:11.0.0":
+  version: 11.0.0
+  resolution: "@trpc/server@npm:11.0.0"
+  peerDependencies:
+    typescript: ">=5.7.2"
+  checksum: 10/be059353a8ff6bf4db650233da48a973c5453bb60a0b0a1ce973e7770fab4712916cc47e5c7104f914dd31486519c869d85c6b0d245d397e955d0d3f0f8a3c0d
   languageName: node
   linkType: hard
 
