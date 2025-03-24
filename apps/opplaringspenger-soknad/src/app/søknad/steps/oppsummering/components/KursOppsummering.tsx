@@ -34,7 +34,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                         <FormSummary.Label>
                             <AppText id="oppsummering.kurs.institusjon" />
                         </FormSummary.Label>
-                        <FormSummary.Value>{kursholder}</FormSummary.Value>
+                        <FormSummary.Value>{kursholder.navn}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>

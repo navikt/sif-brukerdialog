@@ -6,8 +6,13 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
+interface KursholderApiData {
+    id?: string;
+    navn: string;
+}
+
 export interface KursApiData {
-    kursholder: string;
+    kursholder: KursholderApiData;
     reise:
         | {
               reiserUtenforKursdager: true;
