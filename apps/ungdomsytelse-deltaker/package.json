@@ -30,7 +30,7 @@
         "@navikt/ung-common": "workspace:*",
         "@tanstack/react-query": "5.69.0",
         "@trpc/client": "10.45.2",
-        "@trpc/react-query": "10.45.2",
+        "@trpc/react-query": "11.0.0",
         "@trpc/server": "10.45.2",
         "axios": "1.8.4",
         "clsx": "2.1.1",

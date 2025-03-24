@@ -5628,7 +5628,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.0.15"
     "@tanstack/react-query": "npm:5.69.0"
     "@trpc/client": "npm:10.45.2"
-    "@trpc/react-query": "npm:10.45.2"
+    "@trpc/react-query": "npm:11.0.0"
     "@trpc/server": "npm:10.45.2"
     "@types/node": "npm:22.13.11"
     "@types/react": "npm:19.0.12"
@@ -10267,16 +10267,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/react-query@npm:10.45.2":
-  version: 10.45.2
-  resolution: "@trpc/react-query@npm:10.45.2"
+"@trpc/react-query@npm:11.0.0":
+  version: 11.0.0
+  resolution: "@trpc/react-query@npm:11.0.0"
   peerDependencies:
-    "@tanstack/react-query": ^4.18.0
-    "@trpc/client": 10.45.2
-    "@trpc/server": 10.45.2
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10/c7ea51e6a9e2be539e7a5b9323d134250dd45b40d715aa25aa6e6d5c8a22f7a0fae787e19353d6cd467a5d049c6a9f48a2c564edd71cadd191086d2d70212301
+    "@tanstack/react-query": ^5.67.1
+    "@trpc/client": 11.0.0
+    "@trpc/server": 11.0.0
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+    typescript: ">=5.7.2"
+  checksum: 10/3ecc97ba1991913c193ee7eb2287b94d03d2942049814ff8c9f605a07b1845a368205eb3f3328c6135cd03c58c050cccbfd9c8ee9c6fefea0bccf4ec849d960e
   languageName: node
   linkType: hard
 
