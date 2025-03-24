@@ -7,7 +7,7 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 export * from './OmBarnetApiData';
 
 interface KursholderApiData {
-    id?: string;
+    uuid?: string;
     navn: string;
 }
 

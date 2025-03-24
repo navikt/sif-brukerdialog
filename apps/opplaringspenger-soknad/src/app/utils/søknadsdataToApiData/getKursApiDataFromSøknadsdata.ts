@@ -11,7 +11,7 @@ export const getKursApiDataFromSøknadsdata = (
 
     const apiData: KursApiData = {
         kursholder: {
-            id: valgtInstitusjon?.uuid,
+            uuid: valgtInstitusjon?.uuid,
             navn: kursholder,
         },
         kursperioder: kursperioder.map((p) => dateRangeToISODateRange(p.periode)),

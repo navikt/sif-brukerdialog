@@ -1,6 +1,6 @@
-import { Institusjon } from '../api/institusjonService';
+import { Institusjon } from '../../app/api/institusjonService';
 
-export const institusjoner: Institusjon[] = [
+export const institusjonerMock: Institusjon[] = [
     { uuid: '1', navn: 'Ahus (Akershus universitetssykehus)' },
     { uuid: '2', navn: 'Barnas Fysioterapisenter i Bergen' },
     { uuid: '3', navn: 'Barnas språksenter' },

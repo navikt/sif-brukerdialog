@@ -1,182 +1,78 @@
 [
-    {
-        "uuid": "bcbc78d9-465b-48c6-913a-bf9b1eeb0faf",
-        "navn": "Stavanger Universitetssykehus",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "8671b60e-fd47-4097-b005-c376ea0fa240",
-        "navn": "St. Olavs Hospital",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "053a0d6d-37bc-4618-8dff-b6321e927534",
-        "navn": "Sunnaas sykehus",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "e381480a-a0e8-4199-b963-82ef5ebbb9f3",
-        "navn": "Sykehus Asker/Bærum",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "503c6d3d-6c97-4de6-9ce8-5d3fbc45488c",
-        "navn": "Sykehuset Buskerud (Drammen sykehus)",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "b2c5b913-40ed-4557-93cc-08f525bee5a9",
-        "navn": "Sykehuset i Vestfold",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "45ac3eda-6e3e-45f5-99d3-670fbc9aaf52",
-        "navn": "Sykehuset Innlandet Elverum",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "d0cd1cca-261a-48b2-bf03-65cfad35a810",
-        "navn": "Sykehuset Innlandet Gjøvik",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "b0e72be4-ac00-4dda-bfb6-1f19e2435d47",
-        "navn": "Sykehuset Innlandet Hamar",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "b0a41fdf-05a9-4998-8415-8503b6beb70b",
-        "navn": "Sykehuset Innlandet Kongsvinger",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "739ba29f-eaf9-46f9-8e15-e1e48e030211",
-        "navn": "Sykehuset Innlandet Lillehammer",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "2c8424c3-8210-45ed-a982-3938a8afedc3",
-        "navn": "Sykehuset Innlandet Tynset",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "a97e9ab3-1c88-446a-9f44-eed058becff1",
-        "navn": "Sykehuset Telemark",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "ea2cb9d3-add5-41fc-b16f-947a2855f6d2",
-        "navn": "Sykehuset Østfold",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "8a839290-d91b-423c-82f7-4b69559791d5",
-        "navn": "Sørlandet sykehus, Arendal",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "4c10bc2d-2f2b-47a8-ab3b-64bdb5b12e50",
-        "navn": "Sørlandet sykehus, Farsund",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "829dd08f-a6f2-4d42-a318-127057dad1fb",
-        "navn": "Sørlandet sykehus, Kristiansand",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    },
-    {
-        "uuid": "877cc841-a837-4619-8f53-7ee29775de66",
-        "navn": "Sørlandet sykehus, Mandal",
-        "perioder": [
-            {
-                "fom": "2000-01-01",
-                "tom": "2100-01-01"
-            }
-        ]
-    }
+    { "uuid": "1", "navn": "Ahus (Akershus universitetssykehus)" },
+    { "uuid": "2", "navn": "Barnas Fysioterapisenter i Bergen" },
+    { "uuid": "3", "navn": "Barnas språksenter" },
+    { "uuid": "4", "navn": "Beitostølen Helsesportsenter" },
+    { "uuid": "5", "navn": "Bufetat Midt" },
+    { "uuid": "6", "navn": "Bufetat Nord" },
+    { "uuid": "7", "navn": "Bufetat Sør" },
+    { "uuid": "8", "navn": "Bufetat Vest" },
+    { "uuid": "9", "navn": "Bufetat Øst" },
+    { "uuid": "10", "navn": "Bærum sykehus" },
+    { "uuid": "11", "navn": "Capio Anoreksi Senter" },
+    { "uuid": "12", "navn": "CatoSenteret" },
+    { "uuid": "13", "navn": "Doman International" },
+    { "uuid": "14", "navn": "Drammen sykehus" },
+    { "uuid": "15", "navn": "Evjeklinikken" },
+    { "uuid": "16", "navn": "Family Hope Center" },
+    { "uuid": "17", "navn": "Finnmarkssykehuset HF" },
+    { "uuid": "18", "navn": "Frambu kompetansesenter for sjeldne diagnoser" },
+    { "uuid": "19", "navn": "Geilomo barnesykehus" },
+    { "uuid": "20", "navn": "Haukeland universitetssykehus" },
+    { "uuid": "21", "navn": "Helse Bergen HF" },
+    { "uuid": "22", "navn": "Helse Fonna HF" },
+    { "uuid": "23", "navn": "Helse Førde HF" },
+    { "uuid": "24", "navn": "Helse Nord-Trøndelag HF" },
+    { "uuid": "25", "navn": "Kongsvinger sykehus" },
+    { "uuid": "26", "navn": "Kristiansund Sjukehus" },
+    { "uuid": "27", "navn": "Larkollen behandlingssenter" },
+    { "uuid": "28", "navn": "Levanger Sykehus" },
+    { "uuid": "29", "navn": "Lovisenberg diakonale sykehus" },
+    { "uuid": "30", "navn": "Martina Hansens Hospital" },
+    { "uuid": "31", "navn": "Meråker kurbad AS" },
+    { "uuid": "32", "navn": "Montebellosenteret" },
+    { "uuid": "33", "navn": "Muritunet AS" },
+    { "uuid": "34", "navn": "Nasjonalt kompetansesenter for porfyrisykdommer - NAPOS" },
+    { "uuid": "35", "navn": "Nasjonalt kompetansesenter for sjeldne epilepsirelaterte diagnoser" },
+    { "uuid": "36", "navn": "Nevromuskulært kompetansesenter" },
+    { "uuid": "37", "navn": "NevSom" },
+    { "uuid": "38", "navn": "Nordlandssykehuset HF" },
+    { "uuid": "39", "navn": "Nordre Aasen Habiliteringssenter" },
+    { "uuid": "40", "navn": "Norsk senter for cystisk fibrose - NSCF (OUS)" },
+    { "uuid": "41", "navn": "Oslo Universitetssykehus" },
+    { "uuid": "42", "navn": "PTØ Gardermoen" },
+    { "uuid": "43", "navn": "PTØ Stavanger" },
+    { "uuid": "44", "navn": "Radiumhospitalet" },
+    { "uuid": "45", "navn": "Rikshospitalet" },
+    { "uuid": "46", "navn": "Røde Kors Haugland Rehabiliteringssenter" },
+    { "uuid": "47", "navn": "Senter for sjeldne diagnoser - SSD (OUS)" },
+    { "uuid": "48", "navn": "Signo kompetansesenter" },
+    { "uuid": "49", "navn": "Ski Sykehus" },
+    { "uuid": "50", "navn": "Spesialsykehuset for epilepsi (SSE)" },
+    { "uuid": "51", "navn": "St. Olavs Hospital HF" },
+    { "uuid": "52", "navn": "Statped" },
+    { "uuid": "53", "navn": "Stavanger Universitetssykehus HF" },
+    { "uuid": "54", "navn": "Sunnaas sykehus HF" },
+    { "uuid": "55", "navn": "Sykehuset i Elverum" },
+    { "uuid": "56", "navn": "Sykehuset i Gjøvik" },
+    { "uuid": "57", "navn": "Sykehuset i Hamar" },
+    { "uuid": "58", "navn": "Sykehuset i Lillehammer" },
+    { "uuid": "59", "navn": "Sykehuset i Vestfold HF" },
+    { "uuid": "60", "navn": "Sykehuset på Tynset" },
+    { "uuid": "61", "navn": "Sykehuset Telemark HF" },
+    { "uuid": "62", "navn": "Sykehuset Østfold HF" },
+    { "uuid": "63", "navn": "Sørlandet sykehus Arendal" },
+    { "uuid": "64", "navn": "Sørlandet sykehus HF" },
+    { "uuid": "65", "navn": "Sørlandet sykehus Kristiansand" },
+    { "uuid": "66", "navn": "TAKO-senteret" },
+    { "uuid": "67", "navn": "TRS kompetansesenter for sjeldne diagnoser" },
+    { "uuid": "68", "navn": "Ullevål sykehus" },
+    { "uuid": "69", "navn": "Unicare Friskvern" },
+    { "uuid": "70", "navn": "Unicare Helsefort" },
+    { "uuid": "71", "navn": "Universitetssykehus Nord Norge" },
+    { "uuid": "72", "navn": "Valnesfjord Helsesportsenter" },
+    { "uuid": "73", "navn": "Vestre Viken HF (Bærum sykehus)" },
+    { "uuid": "74", "navn": "Østbytunet" },
+    { "uuid": "75", "navn": "Ål folkehøgskole og kurssenter for døve" },
+    { "uuid": "76", "navn": "Ålesund Sjukehus" }
 ]
