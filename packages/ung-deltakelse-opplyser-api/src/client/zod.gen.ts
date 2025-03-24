@@ -23,7 +23,11 @@ export const zDeltakelseOpplysningDto = z.object({
     oppgaver: z.array(
         z.object({
             id: z.string().uuid(),
-            oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_KORRIGERT_INNTEKT']),
+            oppgavetype: z.enum([
+                'BEKREFT_ENDRET_STARTDATO',
+                'BEKREFT_ENDRET_SLUTTDATO',
+                'BEKREFT_AVVIK_REGISTERINNTEKT',
+            ]),
             oppgavetypeData: z.union([
                 z.object({}).merge(
                     z.object({
@@ -41,27 +45,21 @@ export const zDeltakelseOpplysningDto = z.object({
                 ),
                 z.object({}).merge(
                     z.object({
-                        inntektFraAinntekt: z.object({
-                            arbeidsgivere: z.array(
+                        fraOgMed: z.string().date(),
+                        tilOgMed: z.string().date(),
+                        registerinntekt: z.object({
+                            arbeidOgFrilansInntekter: z.array(
                                 z.object({
-                                    navn: z.string(),
-                                    beløp: z.number(),
+                                    arbeidsgiver: z.string(),
+                                    inntekt: z.number(),
                                 }),
                             ),
-                            ytelser: z.array(
+                            ytelseInntekter: z.array(
                                 z.object({
-                                    navn: z.string(),
-                                    beløp: z.number(),
+                                    ytelsetype: z.string(),
+                                    inntekt: z.number(),
                                 }),
                             ),
-                        }),
-                        inntektFraDeltaker: z.object({
-                            arbeidstakerOgFrilansInntekt: z.number().optional(),
-                            inntektFraYtelse: z.number().optional(),
-                        }),
-                        periodeForInntekt: z.object({
-                            fraOgMed: z.string().date(),
-                            tilOgMed: z.string().date(),
                         }),
                     }),
                 ),
@@ -96,34 +94,28 @@ export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
 
 export const zKorrigertOppgavetypeDataDto = z.object({}).merge(
     z.object({
-        inntektFraAinntekt: z.object({
-            arbeidsgivere: z.array(
+        fraOgMed: z.string().date(),
+        tilOgMed: z.string().date(),
+        registerinntekt: z.object({
+            arbeidOgFrilansInntekter: z.array(
                 z.object({
-                    navn: z.string(),
-                    beløp: z.number(),
+                    arbeidsgiver: z.string(),
+                    inntekt: z.number(),
                 }),
             ),
-            ytelser: z.array(
+            ytelseInntekter: z.array(
                 z.object({
-                    navn: z.string(),
-                    beløp: z.number(),
+                    ytelsetype: z.string(),
+                    inntekt: z.number(),
                 }),
             ),
-        }),
-        inntektFraDeltaker: z.object({
-            arbeidstakerOgFrilansInntekt: z.number().optional(),
-            inntektFraYtelse: z.number().optional(),
-        }),
-        periodeForInntekt: z.object({
-            fraOgMed: z.string().date(),
-            tilOgMed: z.string().date(),
         }),
     }),
 );
 
 export const zOppgaveDto = z.object({
     id: z.string().uuid(),
-    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_KORRIGERT_INNTEKT']),
+    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_AVVIK_REGISTERINNTEKT']),
     oppgavetypeData: z.union([
         zEndretSluttdatoOppgavetypeDataDto,
         zEndretStartdatoOppgavetypeDataDto,

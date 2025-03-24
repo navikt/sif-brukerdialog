@@ -5,7 +5,7 @@ const nb = {
     'oppgavestatus.UTLØPT': 'Utløpt',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO': 'Endret startdato',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO': 'Endret sluttdato',
-    'oppgavetype.BEKREFT_KORRIGERT_INNTEKT': 'Endret inntekt',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT': 'Endret inntekt',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

@@ -34,7 +34,7 @@ export type EndretStartdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
 };
 
 export type BekreftKorrigertInntektOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_KORRIGERT_INNTEKT';
+    type: 'BEKREFT_AVVIK_REGISTERINNTEKT';
 };
 
 export type UngdomsytelseIkkeGodkjentResponse = {

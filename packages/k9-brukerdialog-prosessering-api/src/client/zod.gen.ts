@@ -76,7 +76,7 @@ export const zBekreftKorrigertInntektOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_KORRIGERT_INNTEKT'),
+            type: z.literal('BEKREFT_AVVIK_REGISTERINNTEKT'),
         }),
     );
 

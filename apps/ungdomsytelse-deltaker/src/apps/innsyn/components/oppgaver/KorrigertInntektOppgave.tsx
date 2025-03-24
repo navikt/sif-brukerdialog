@@ -58,34 +58,34 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                     : {
                           meldingFraDeltaker: values[FormFields.begrunnelse]!,
                       },
-                type: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                type: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
             },
         };
         await sendSvar(dto);
     };
 
-    const { periodeForInntekt } = oppgave.oppgavetypeData;
+    const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
     const periodetekst = dateRangeFormatter.getDateRangeText(
         {
-            from: periodeForInntekt.fraOgMed,
-            to: periodeForInntekt.tilOgMed,
+            from: fraOgMed,
+            to: tilOgMed,
         },
         intl.locale,
     );
     const svarfristTekst = dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate());
-    const { inntektFraAinntekt, inntektFraDeltaker } = oppgave.oppgavetypeData;
+    const {
+        registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
+    } = oppgave.oppgavetypeData;
 
-    const harOppgittInntekt =
-        inntektFraDeltaker?.arbeidstakerOgFrilansInntekt !== undefined ||
-        inntektFraDeltaker?.inntektFraYtelse !== undefined;
+    const harOppgittInntekt = false; //
+    // inntektFraDeltaker?.arbeidstakerOgFrilansInntekt !== undefined ||
+    // inntektFraDeltaker?.inntektFraYtelse !== undefined;
 
     const summertInntektFraAinntekt =
-        inntektFraAinntekt.arbeidsgivere.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.beløp, 0) +
-        inntektFraAinntekt.ytelser.reduce((acc, yelse) => acc + yelse.beløp, 0);
+        arbeidOgFrilansInntekter.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.inntekt, 0) +
+        ytelseInntekter.reduce((acc, yelse) => acc + yelse.inntekt, 0);
 
-    const summertInntektFraDeltaker = inntektFraDeltaker
-        ? (inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0) + (inntektFraDeltaker.inntektFraYtelse || 0)
-        : 0;
+    const summertInntektFraDeltaker = 0;
 
     return (
         <OppgaveLayout
@@ -156,17 +156,28 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                 <VStack gap="8" marginBlock="2 0">
                                     <VStack gap="4">
-                                        {inntektFraAinntekt.arbeidsgivere.length > 0 ? (
+                                        {arbeidOgFrilansInntekter.length > 0 ? (
                                             <>
                                                 <InntektTabell
                                                     header="Arbeidstaker/frilanser"
-                                                    inntekt={inntektFraAinntekt.arbeidsgivere}
+                                                    inntekt={arbeidOgFrilansInntekter.map(
+                                                        ({ arbeidsgiver, inntekt }) => ({
+                                                            beløp: inntekt,
+                                                            navn: arbeidsgiver,
+                                                        }),
+                                                    )}
                                                 />
                                             </>
                                         ) : null}
-                                        {inntektFraAinntekt.ytelser.length > 0 ? (
+                                        {ytelseInntekter.length > 0 ? (
                                             <>
-                                                <InntektTabell header="Ytelser" inntekt={inntektFraAinntekt.ytelser} />
+                                                <InntektTabell
+                                                    header="Ytelser"
+                                                    inntekt={ytelseInntekter.map((y) => ({
+                                                        beløp: y.inntekt,
+                                                        navn: y.ytelsetype,
+                                                    }))}
+                                                />
                                             </>
                                         ) : null}
                                     </VStack>

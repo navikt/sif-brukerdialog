@@ -40,23 +40,17 @@ export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
 };
 
 export type KorrigertInntektOppgavetypeDataDto = OppgavetypeDataDto & {
-    periodeForInntekt: {
-        fraOgMed: string;
-        tilOgMed: string;
-    };
-    inntektFraAinntekt: {
-        arbeidsgivere: Array<{
-            navn: string;
-            beløp: number;
+    fraOgMed: string;
+    tilOgMed: string;
+    registerinntekt: {
+        arbeidOgFrilansInntekter: Array<{
+            arbeidsgiver: string;
+            inntekt: number;
         }>;
-        ytelser: Array<{
-            navn: string;
-            beløp: number;
+        ytelseInntekter: Array<{
+            ytelsetype: string;
+            inntekt: number;
         }>;
-    };
-    inntektFraDeltaker?: {
-        arbeidstakerOgFrilansInntekt?: number;
-        inntektFraYtelse?: number;
     };
 };
 
@@ -82,7 +76,7 @@ export enum OppgaveStatus {
 export enum Oppgavetype {
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
-    BEKREFT_KORRIGERT_INNTEKT = 'BEKREFT_KORRIGERT_INNTEKT',
+    BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
 }
 
 export type OppgavetypeDataDto = {

@@ -26,28 +26,22 @@ export interface EndreSluttdatoOppgave extends oppgaveBase {
     };
 }
 
-export interface InntektFraAInntekt {
-    arbeidsgivere: Array<{
-        navn: string;
-        beløp: number;
+export interface Registerinntekt {
+    arbeidOgFrilansInntekter: Array<{
+        arbeidsgiver: string;
+        inntekt: number;
     }>;
-    ytelser: Array<{
-        navn: string;
-        beløp: number;
+    ytelseInntekter: Array<{
+        ytelsetype: string;
+        inntekt: number;
     }>;
 }
 export interface KorrigertInntektOppgave extends oppgaveBase {
-    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT;
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
-        periodeForInntekt: {
-            fraOgMed: Date;
-            tilOgMed: Date;
-        };
-        inntektFraAinntekt: InntektFraAInntekt;
-        inntektFraDeltaker?: {
-            arbeidstakerOgFrilansInntekt?: number;
-            inntektFraYtelse?: number;
-        };
+        fraOgMed: Date;
+        tilOgMed: Date;
+        registerinntekt: Registerinntekt;
     };
 }
 

@@ -71,7 +71,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);
                 return;
-            case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+            case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
                 const korrigertInntektData = oppgave.oppgavetypeData as KorrigertInntektOppgavetypeDataDto;
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
                     id: oppgave.id,
@@ -79,17 +79,14 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     opprettetDato,
                     svarfrist,
                     løstDato,
-                    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
-                        inntektFraAinntekt: {
-                            arbeidsgivere: korrigertInntektData.inntektFraAinntekt.arbeidsgivere,
-                            ytelser: korrigertInntektData.inntektFraAinntekt.ytelser,
+                        fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
+                        tilOgMed: ISODateToDate(korrigertInntektData.tilOgMed),
+                        registerinntekt: {
+                            arbeidOgFrilansInntekter: korrigertInntektData.registerinntekt.arbeidOgFrilansInntekter,
+                            ytelseInntekter: korrigertInntektData.registerinntekt.ytelseInntekter,
                         },
-                        periodeForInntekt: {
-                            fraOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.fraOgMed),
-                            tilOgMed: ISODateToDate(korrigertInntektData.periodeForInntekt.tilOgMed),
-                        },
-                        inntektFraDeltaker: korrigertInntektData.inntektFraDeltaker,
                     },
                 };
                 parsedOppgaver.push(korrigertInntektOppgave);

@@ -35,27 +35,25 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             },
             {
                 id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-                oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+                oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                 oppgavetypeData: {
-                    periodeForInntekt: {
-                        fraOgMed: '2026-01-01',
-                        tilOgMed: '2026-01-31',
-                    },
-                    inntektFraAinntekt: {
-                        arbeidsgivere: [
+                    fraOgMed: '2026-01-01',
+                    tilOgMed: '2026-01-31',
+                    registerinntekt: {
+                        arbeidOgFrilansInntekter: [
                             {
-                                navn: 'Flåklypa barteservice',
-                                beløp: 1232,
+                                arbeidsgiver: 'Flåklypa barteservice',
+                                inntekt: 1232,
                             },
                             {
-                                navn: 'Hopen klyp og klem',
-                                beløp: 50,
+                                arbeidsgiver: 'Hopen klyp og klem',
+                                inntekt: 50,
                             },
                         ],
-                        ytelser: [
+                        ytelseInntekter: [
                             {
-                                navn: 'Sykepenger',
-                                beløp: 4200,
+                                ytelsetype: 'Sykepenger',
+                                inntekt: 4200,
                             },
                         ],
                     },
