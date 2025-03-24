@@ -5627,7 +5627,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.0.15"
     "@tailwindcss/vite": "npm:4.0.15"
     "@tanstack/react-query": "npm:5.69.0"
-    "@trpc/client": "npm:10.45.2"
+    "@trpc/client": "npm:11.0.0"
     "@trpc/react-query": "npm:10.45.2"
     "@trpc/server": "npm:10.45.2"
     "@types/node": "npm:22.13.11"
@@ -10258,12 +10258,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/client@npm:10.45.2":
-  version: 10.45.2
-  resolution: "@trpc/client@npm:10.45.2"
+"@trpc/client@npm:11.0.0":
+  version: 11.0.0
+  resolution: "@trpc/client@npm:11.0.0"
   peerDependencies:
-    "@trpc/server": 10.45.2
-  checksum: 10/a772f7ed529d1753412f04abbd84432e49eadec626fc568354349832995aa06f41d42f434ec4152f2531d125a719a332b935ae2adbbc262e2a6e569ec761f260
+    "@trpc/server": 11.0.0
+    typescript: ">=5.7.2"
+  checksum: 10/0434f4c53e5ed3280bc39357abda2c0c30d24f170306ca6a38661dbcd545d8123399e9809090ccee2f126bd978bbde8ec5e0c0775c59db27e5a990f16740c13c
   languageName: node
   linkType: hard
 
