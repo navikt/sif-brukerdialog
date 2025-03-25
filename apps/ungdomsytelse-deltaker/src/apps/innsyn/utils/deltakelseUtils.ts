@@ -14,7 +14,9 @@ export const rapporteringsperiodeErTidligerePeriode = (rapporteringsperiode: Rap
 export const getPeriodeÅpenForInntektsrapportering = (
     rapporteringsperioder: Rapporteringsperiode[],
 ): Rapporteringsperiode | undefined => {
-    return rapporteringsperioder.find((p) => datoErIRapporteringsperiode(new Date(), p) && p.harRapportert === false);
+    return rapporteringsperioder.find(
+        (p) => datoErIRapporteringsperiode(new Date(), p) && p.harRapportert === false && p.kanRapportere === true,
+    );
 };
 
 export const getTidligereRapporteringsperioder = (
