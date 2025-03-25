@@ -64,6 +64,8 @@ class MyDocument extends Document<Props> {
         return (
             <Html lang={language || 'no'}>
                 <Head>
+                    <style>@layer base, dekorator-utilities, dekorator-base, components, utilities;</style>
+
                     <Decorator.HeadAssets />
                     <link
                         rel="preload"
