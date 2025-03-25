@@ -10,7 +10,7 @@ const SkrivTilOssLenker = () => {
         <section>
             <VStack gap="4">
                 <Heading level="2" size="medium" className="text-deepblue-800">
-                    Lurer du på noe om saken din?
+                    Har du spørsmål om saken din?
                 </Heading>
                 <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
                     <SnarveiLinkPanel
