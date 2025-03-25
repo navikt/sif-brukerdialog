@@ -8,7 +8,7 @@ import DefaultPageLayout from '../../components/page-layout/default-page-layout/
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
-import Snarveier from '../../components/snarveier/Snarveier';
+import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
@@ -19,6 +19,7 @@ import { Sak } from '../../server/api-models/SakSchema';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -75,7 +76,10 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                     </div>
                 </Box>
                 <Box>
-                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                    <OppdatereSakLenker />
+                </Box>
+                <Box>
+                    <SkrivTilOssLenker />
                 </Box>
                 <Box className="mb-10">
                     <SnarveierSak />

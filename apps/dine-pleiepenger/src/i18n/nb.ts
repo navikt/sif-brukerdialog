@@ -23,12 +23,14 @@ export const nb = {
 
     'barn.navn.anonymisert': 'Pleietrengende',
 
-    'snarveier.endring.tittel': 'Meld fra om endring',
-    'snarveier.endring.tekst': 'Ved endringer i arbeidstid og ferie i din pleiepengeperiode.',
+    'snarveier.endringsmelding.tittel': 'Meld fra om endring i arbeidstid og ferie',
+    'snarveier.endringsmelding.tekst': 'Ved endringer i arbeidstid og ferie i din pleiepengeperiode.',
+    'snarveier.beskjed.tittel': 'Meld fra om andre endringer',
+    'snarveier.beskjed.tekst': 'Ved endringer om annet enn jobb og ferie kan du sende oss en beskjed her.',
     'snarveier.ettersend.tittel': 'Ettersend dokumenter',
     'snarveier.ettersend.tekst': 'Ettersend legeerklæring eller andre dokumenter til din sak.',
     'snarveier.skrivTilOss.tittel': 'Skriv til oss',
-    'snarveier.skrivTilOss.tekst': 'Har du spørsmål til saken din eller vil melde fra om annet enn jobb og ferie?',
+    'snarveier.skrivTilOss.tekst': 'Har du spørsmål til saken din kan du skrive til oss her.',
     'snarveier.nySøknad.tittel': 'Ny pleiepengesøknad',
     'snarveier.nySøknad.tekst': 'Ved forlengelser, nye arbeidsforhold eller større endringer i perioden.',
     'snarveier.omPleiepenger': 'Om pleiepenger for sykt barn',

@@ -7,7 +7,7 @@ import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 import IngenSakEllerSøknadPage from '../components/ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
-import Snarveier from '../components/snarveier/Snarveier';
+import OppdatereSakLenker from '../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
@@ -18,6 +18,7 @@ import { Søker } from '../server/api-models/SøkerSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/InnsendtSøknad';
 import { browserEnv } from '../utils/env';
 import SakPage from './sak/SakPage';
+import SkrivTilOssLenker from '../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -83,7 +84,10 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                 </Box>
                 <Box>
-                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                    <OppdatereSakLenker />
+                </Box>
+                <Box>
+                    <SkrivTilOssLenker />
                 </Box>
                 <Box className="mt-4">
                     <HvaSkjer />
