@@ -17,7 +17,7 @@ const SkrivTilOssLenker = () => {
                         href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS_URL}
                         icon={<Dialog role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                         title={text('snarveier.skrivTilOss.tittel')}
-                        description={text('snarveier.skrivTilOss.tekst')}
+                        // description={text('snarveier.skrivTilOss.tekst')}
                     />
                 </HGrid>
             </VStack>
