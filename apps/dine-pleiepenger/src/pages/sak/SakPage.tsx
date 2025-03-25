@@ -4,11 +4,12 @@ import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-modul
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
+import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
+import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
-import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
@@ -19,7 +20,6 @@ import { Sak } from '../../server/api-models/SakSchema';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
-import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 
 interface Props {
     pleietrengende: Pleietrengende;
