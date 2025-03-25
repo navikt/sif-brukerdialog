@@ -16,7 +16,14 @@ export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
         return {
             ...rest,
             programPeriode,
-            rapporteringsPerioder: parseRapporteringsperioder(programPeriode, data.rapporteringsPerioder),
+            rapporteringsPerioder: parseRapporteringsperioder(
+                programPeriode,
+                data.rapporteringsPerioder.map((periode) => ({
+                    ...periode,
+                    ytelseInntekter: periode.ytelseInntekter ?? 0,
+                    arbeidOgFrilansInntekter: periode.arbeidOgFrilansInntekter ?? 0,
+                })),
+            ),
             oppgaver: parseOppgaverElement(data.oppgaver),
         };
     });

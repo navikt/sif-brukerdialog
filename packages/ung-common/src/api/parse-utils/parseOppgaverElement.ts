@@ -2,7 +2,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     EndretSluttdatoOppgavetypeDataDto,
     EndretStartdatoOppgavetypeDataDto,
-    KorrigertInntektOppgavetypeDataDto,
+    KontrollerRegisterinntektOppgavetypeDataDto,
     OppgaveStatus,
     Oppgavetype,
     zDeltakelseOpplysningDto,
@@ -22,8 +22,8 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.ULØST;
         case 'KANSELLERT':
             return OppgaveStatus.KANSELLERT;
-        case 'UTLØPT':
-            return OppgaveStatus.UTLØPT;
+        // case 'UTLØPT':
+        //     return OppgaveStatus.UTLØPT;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
@@ -72,7 +72,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 parsedOppgaver.push(endretSluttdatoOppgave);
                 return;
             case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-                const korrigertInntektData = oppgave.oppgavetypeData as KorrigertInntektOppgavetypeDataDto;
+                const korrigertInntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
                     id: oppgave.id,
                     status: getOppgaveStatusEnum(oppgave.status),

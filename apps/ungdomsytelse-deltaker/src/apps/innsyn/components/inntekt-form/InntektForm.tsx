@@ -31,8 +31,8 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
                     fraOgMed: dateToISODate(periode.from),
                     tilOgMed: dateToISODate(periode.to),
                 },
-                arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
-                inntektFraYtelse: inntekt.inntektFraYtelse,
+                arbeidOgFrilansInntekter: inntekt.arbeidOgFrilansInntekter,
+                ytelseInntekter: inntekt.ytelseInntekter,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         });
@@ -41,10 +41,10 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
 
     const initialValues: Partial<InntektFormValues> = inntekt
         ? {
-              harArbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              harInntektFraYtelse: inntekt.inntektFraYtelse || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
-              ansattInntekt: `${inntekt.arbeidstakerOgFrilansInntekt}`,
-              ytelseInntekt: `${inntekt.inntektFraYtelse}`,
+              harArbeidstakerOgFrilansInntekt: inntekt.arbeidOgFrilansInntekter || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              harInntektFraYtelse: inntekt.ytelseInntekter || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
+              ansattInntekt: `${inntekt.arbeidOgFrilansInntekter}`,
+              ytelseInntekt: `${inntekt.ytelseInntekter}`,
           }
         : {};
 

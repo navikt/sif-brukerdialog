@@ -16,7 +16,7 @@ export const parseRapporteringsperioder = (
     rapporteringsperioder: RapportPeriodeinfoDto[],
 ): Rapporteringsperiode[] => {
     return rapporteringsperioder.map((data) => {
-        const { arbeidstakerOgFrilansInntekt = 0, inntektFraYtelse = 0 } = data;
+        const { arbeidOgFrilansInntekter = 0, ytelseInntekter = 0 } = data;
 
         const periode: DateRange = {
             from: ISODateToDate(data.fraOgMed),
@@ -28,9 +28,9 @@ export const parseRapporteringsperioder = (
             kanRapportere: kanBrukerRapportereInntektForPeriode(periode, programPeriode.from),
             fristForRapportering: dayjs().endOf('month').toDate(), // TODO
             inntekt: {
-                arbeidstakerOgFrilansInntekt,
-                inntektFraYtelse,
-                summertInntekt: arbeidstakerOgFrilansInntekt + inntektFraYtelse,
+                arbeidOgFrilansInntekter,
+                ytelseInntekter,
+                summertInntekt: arbeidOgFrilansInntekter + ytelseInntekter,
             },
         };
     });

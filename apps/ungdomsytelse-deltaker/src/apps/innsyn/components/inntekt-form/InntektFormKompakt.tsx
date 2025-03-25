@@ -34,8 +34,8 @@ const InntektFormKompakt = ({ periode, variant = 'kompakt', onCancel }: Props) =
                     fraOgMed: dateToISODate(periode.from),
                     tilOgMed: dateToISODate(periode.to),
                 },
-                arbeidstakerOgFrilansInntekt: inntekt.arbeidstakerOgFrilansInntekt,
-                inntektFraYtelse: inntekt.inntektFraYtelse,
+                arbeidOgFrilansInntekter: inntekt.arbeidOgFrilansInntekter,
+                ytelseInntekter: inntekt.ytelseInntekter,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         });

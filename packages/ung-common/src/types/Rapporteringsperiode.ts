@@ -6,8 +6,8 @@ export interface Rapporteringsperiode {
     kanRapportere: boolean;
     fristForRapportering: Date;
     inntekt: {
-        arbeidstakerOgFrilansInntekt: number;
-        inntektFraYtelse: number;
+        arbeidOgFrilansInntekter: number;
+        ytelseInntekter: number;
         summertInntekt: number;
     };
 }

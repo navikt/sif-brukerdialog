@@ -78,8 +78,8 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
     } = oppgave.oppgavetypeData;
 
     const harOppgittInntekt = false; //
-    // inntektFraDeltaker?.arbeidstakerOgFrilansInntekt !== undefined ||
-    // inntektFraDeltaker?.inntektFraYtelse !== undefined;
+    // inntektFraDeltaker?.arbeidOgFrilansInntekter !== undefined ||
+    // inntektFraDeltaker?.ytelseInntekter !== undefined;
 
     const summertInntektFraAinntekt =
         arbeidOgFrilansInntekter.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.inntekt, 0) +

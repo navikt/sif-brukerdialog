@@ -44,8 +44,8 @@ export type UngdomsytelseIkkeGodkjentResponse = {
 };
 
 export type UngdomsytelseIkkeGodkjentInntektResponse = {
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
+    arbeidOgFrilansInntekter?: number;
+    ytelseInntekter?: number;
     meldingFraDeltaker: string;
 };
 
@@ -65,8 +65,8 @@ export type UngdomsytelseOppgavebekreftelse = {
 };
 
 export type OppgittInntektForPeriode = {
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
+    arbeidOgFrilansInntekter?: number;
+    ytelseInntekter?: number;
     periodeForInntekt: UngPeriode;
 };
 
