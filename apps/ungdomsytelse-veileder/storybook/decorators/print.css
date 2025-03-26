@@ -1,0 +1,17 @@
+@media print {
+    .navds-progress-bar {
+        display: none;
+    }
+    .navds-form-progress__collapsible {
+        display: none !important;
+    }
+    #decorator-header {
+        display: none !important;
+    }
+    #decorator-footer {
+        display: none !important;
+    }
+    .navds-tabs__tablist-wrapper {
+        display: none !important;
+    }
+}
