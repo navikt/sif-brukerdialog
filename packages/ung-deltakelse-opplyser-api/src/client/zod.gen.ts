@@ -241,8 +241,9 @@ export const zDeltakelsePeriodInfo = z.object({
             fraOgMed: z.string().date(),
             tilOgMed: z.string().date(),
             harRapportert: z.boolean(),
-            arbeidOgFrilansInntekter: z.number().optional(),
-            ytelseInntekter: z.number().optional(),
+            arbeidstakerOgFrilansInntekt: z.number().optional(),
+            inntektFraYtelse: z.number().optional(),
+            summertInntekt: z.number(),
         }),
     ),
 });
@@ -251,7 +252,9 @@ export const zRapportPeriodeinfoDto = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     harRapportert: z.boolean(),
-    inntekt: z.number().optional(),
+    arbeidstakerOgFrilansInntekt: z.number().optional(),
+    inntektFraYtelse: z.number().optional(),
+    summertInntekt: z.number(),
 });
 
 export const zOppdaterFraProgramResponse = zDeltakelseOpplysningDto;

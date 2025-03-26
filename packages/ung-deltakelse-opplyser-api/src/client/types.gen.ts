@@ -167,8 +167,9 @@ export type RapportPeriodeinfoDto = {
     fraOgMed: string;
     tilOgMed: string;
     harRapportert: boolean;
-    arbeidOgFrilansInntekter?: number;
-    ytelseInntekter?: number;
+    arbeidstakerOgFrilansInntekt?: number;
+    inntektFraYtelse?: number;
+    summertInntekt: number;
 };
 
 export type OppdaterFraProgramData = {
