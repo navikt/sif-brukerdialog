@@ -38,23 +38,6 @@ describe('tilgangskontroll', () => {
     });
 });
 
-describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
-    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
-            [arbeidsgiver3],
-            [arbeidstaker1, arbeidstaker2],
-        );
-        expect(result).toBeTruthy();
-    });
-    it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
-            [arbeidsgiver1, arbeidsgiver2],
-            [arbeidstaker1, arbeidstaker2],
-        );
-        expect(result).toBeFalsy();
-    });
-});
-
 describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     const tillatEndringsperiode = ISODateRangeToDateRange('2022-01-02/2022-02-01');
     const søknadsperiodeUtenfor: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');

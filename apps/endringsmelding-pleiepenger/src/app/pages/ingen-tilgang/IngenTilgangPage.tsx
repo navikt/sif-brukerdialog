@@ -57,20 +57,6 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
-            return (
-                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
-                    <p>
-                        <AppText id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1" />
-                    </p>
-                    <p>
-                        <AppText
-                            id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
-                        />
-                    </p>
-                </BodyLong>
-            );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
                 <BodyLong as="div" data-testid="erSN">
