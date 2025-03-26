@@ -3,15 +3,17 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import EndreStartdatoForm from '../../forms/endre-startdato-form/EndreStartdatoForm';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Veileder } from '../../types/Veileder';
 
 interface Props {
+    veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onClose: () => void;
     onChanged: () => void;
 }
 
-const EndreStartdatoModal = ({ deltakelse, deltaker, onClose, onChanged }: Props) => {
+const EndreStartdatoModal = ({ veileder, deltakelse, deltaker, onClose, onChanged }: Props) => {
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | undefined>(undefined);
     return (
         <Modal
@@ -54,6 +56,7 @@ const EndreStartdatoModal = ({ deltakelse, deltaker, onClose, onChanged }: Props
                         </VStack>
                     ) : (
                         <EndreStartdatoForm
+                            veileder={veileder}
                             deltakelse={deltakelse}
                             deltaker={deltaker}
                             onCancel={() => onClose()}

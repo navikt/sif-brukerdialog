@@ -4,16 +4,17 @@ import { useState } from 'react';
 import EndreStartdatoModal from '../../endre-startdato-modal/EndreStartdatoModal';
 import SectionContainer from '../../section-container/SectionContainer';
 import EndreSluttdatoModal from '../../endre-sluttdato-modal/EndreSluttdatoModal';
-import { useDeltaker } from '../../../context/DeltakerContext';
+import { Veileder } from '../../../types/Veileder';
 
 interface Props {
+    veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
+    onDeltakelseChanged: () => void;
 }
 
-const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
+const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChanged }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | null>(null);
-    const { refetchDeltakelser } = useDeltaker();
 
     return (
         <>
@@ -28,19 +29,21 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
 
             {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_STARTDATO ? (
                 <EndreStartdatoModal
+                    veileder={veileder}
                     deltaker={deltaker}
                     deltakelse={deltakelse}
                     onClose={() => setVisOppgaveDialog(null)}
-                    onChanged={refetchDeltakelser}
+                    onChanged={onDeltakelseChanged}
                 />
             ) : null}
 
             {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO ? (
                 <EndreSluttdatoModal
+                    veileder={veileder}
                     deltaker={deltaker}
                     deltakelse={deltakelse}
                     onClose={() => setVisOppgaveDialog(null)}
-                    onChanged={refetchDeltakelser}
+                    onChanged={onDeltakelseChanged}
                 />
             ) : null}
         </>

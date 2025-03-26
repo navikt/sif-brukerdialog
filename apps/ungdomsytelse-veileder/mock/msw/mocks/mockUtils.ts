@@ -1,6 +1,8 @@
 import { Søker } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import { Veileder } from '../../../src/types/Veileder';
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
@@ -10,8 +12,8 @@ export const findDeltaker = (deltakerIdent: string) => {
     switch (deltakerIdent) {
         case nyDeltakerMock.deltakerIdent:
             return nyDeltakerMock;
-        case registrertDeltaker.deltakerIdent:
-            return registrertDeltaker;
+        case registrertDeltakerMock.deltakerIdent:
+            return registrertDeltakerMock;
         default:
             console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
             return null;
@@ -23,8 +25,8 @@ export const getDeltakerByDeltakerId = (deltakerId: string) => {
     if (deltakerId) {
         console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
-            case registrertDeltaker.id:
-                return registrertDeltaker;
+            case registrertDeltakerMock.id:
+                return registrertDeltakerMock;
             case nyDeltakerRegistrert.id:
                 return nyDeltakerRegistrert;
             default:
@@ -52,18 +54,19 @@ const nyDeltakerRegistrert = {
     id: nyDeltakerId,
 };
 
-const registrertDeltaker: DeltakerPersonlia = {
+export const registrertDeltakerMock: DeltakerPersonlia = {
     id: registrertDeltakerId,
     deltakerIdent: '03867198392',
     navn: {
         fornavn: 'PRESENTABEL',
-        mellomnavn: null as any,
+        // mellomnavn: null as any,
         etternavn: 'HOFTE',
     },
     fødselsdato: '1998-12-31',
     førsteMuligeInnmeldingsdato: '2024-01-01',
     sisteMuligeInnmeldingsdato: '2024-12-31',
 };
+export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 
 export const mockOppgave: OppgaveDto = {
     id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
@@ -122,7 +125,7 @@ const oppgaver: OppgaveDto[] = [
     },
 ];
 
-const deltakelseDR = {
+export const deltakelseDRMock = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
         id: registrertDeltakerId,
@@ -133,6 +136,7 @@ const deltakelseDR = {
     harSøkt: true,
     oppgaver: [...oppgaver],
 };
+export const parsedMockDeltakelse = deltakelseSchema.parse(deltakelseDRMock);
 
 export const deltakelseDNMock = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
@@ -147,7 +151,7 @@ export const deltakelseDNMock = {
 };
 
 export const getDeltakelser = (id) => {
-    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDR];
+    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDRMock];
 };
 
 export const veilederMock: Søker = {
@@ -156,4 +160,9 @@ export const veilederMock: Søker = {
     aktørId: '123456789',
     fødselsdato: ISODateToDate('1990-01-01'),
     fødselsnummer: 'w34',
+};
+
+export const parsedVeilederMock: Veileder = {
+    fornavn: 'Pål',
+    etternavn: 'Hønesen',
 };
