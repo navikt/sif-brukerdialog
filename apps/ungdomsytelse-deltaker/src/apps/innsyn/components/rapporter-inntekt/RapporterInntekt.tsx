@@ -8,7 +8,7 @@ interface Props {
     rapporteringsperiode: Rapporteringsperiode;
 }
 
-const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
+const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
     const { periode, harRapportert, fristForRapportering } = rapporteringsperiode;
 
     if (!fristForRapportering) {
@@ -61,4 +61,4 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
     );
 };
 
-export default FremhevetInntektsperiode;
+export default RapporterInntekt;

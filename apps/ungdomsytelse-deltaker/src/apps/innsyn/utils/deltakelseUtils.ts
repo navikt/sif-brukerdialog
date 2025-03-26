@@ -6,23 +6,12 @@ const datoErIRapporteringsperiode = (dato: Date, periode: Rapporteringsperiode):
     return isDateInDateRange(dato, periode.periode);
 };
 
-export const rapporteringsperiodeErTidligerePeriode = (rapporteringsperiode: Rapporteringsperiode): boolean => {
-    const { periode } = rapporteringsperiode;
-    return dayjs(periode.to).isBefore(dayjs(), 'day');
-};
-
 export const getPeriodeÅpenForInntektsrapportering = (
     rapporteringsperioder: Rapporteringsperiode[],
 ): Rapporteringsperiode | undefined => {
     return rapporteringsperioder.find(
         (p) => datoErIRapporteringsperiode(new Date(), p) && p.harRapportert === false && p.kanRapportere === true,
     );
-};
-
-export const getTidligereRapporteringsperioder = (
-    rapporteringsperioder: Rapporteringsperiode[],
-): Rapporteringsperiode[] => {
-    return rapporteringsperioder.filter(rapporteringsperiodeErTidligerePeriode).sort(sorterRapporteringsperioderDesc);
 };
 
 export const sorterRapporteringsperioderDesc = (r1: Rapporteringsperiode, r2: Rapporteringsperiode): number => {

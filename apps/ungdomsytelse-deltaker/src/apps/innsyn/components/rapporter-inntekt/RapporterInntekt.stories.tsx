@@ -3,7 +3,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
-import FremhevetInntektsperiode from './RapporterInntekt';
+import RapporterInntekt from './RapporterInntekt';
 
 const rapporteringsperiode: Rapporteringsperiode = {
     harRapportert: true,
@@ -20,17 +20,17 @@ const rapporteringsperiode: Rapporteringsperiode = {
     },
 };
 
-const meta: Meta<typeof FremhevetInntektsperiode> = {
+const meta: Meta<typeof RapporterInntekt> = {
     title: 'Komponenter/Fremhevet inntektsperiode',
-    component: FremhevetInntektsperiode,
+    component: RapporterInntekt,
     decorators: [withIntl, withPageWidth],
     args: {
-        rapporteringsperiode,
+        rapporteringsperiode: rapporteringsperiode,
     },
 };
 export default meta;
 
-type Story = StoryObj<typeof FremhevetInntektsperiode>;
+type Story = StoryObj<typeof RapporterInntekt>;
 
 export const IkkeRapportertPeriode: Story = {
     name: 'Åpen - uten inntekt',

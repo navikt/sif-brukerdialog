@@ -10,9 +10,10 @@ import {
 import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakelser/harSøkt';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
+import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import DeltakelseContent from './DeltakelseContent';
+
 const endretStartdatoOppgave: EndreStartdatoOppgave = {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     id: '123',
