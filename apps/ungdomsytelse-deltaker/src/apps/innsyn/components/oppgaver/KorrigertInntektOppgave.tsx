@@ -1,7 +1,11 @@
 import { Alert, BodyLong, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
-import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
-import OppgaveLayout from './OppgaveLayout';
+import { useState } from 'react';
+import { FormattedNumber } from 'react-intl';
+import { WalletIcon } from '@navikt/aksel-icons';
+import {
+    UngdomsytelseOppgavebekreftelse,
+    zBekreftKorrigertInntektOppgaveDto,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     FormikConfirmationCheckbox,
     getIntlFormErrorHandler,
@@ -9,14 +13,14 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { useAppIntl } from '../../../../i18n';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { WalletIcon } from '@navikt/aksel-icons';
+import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
+import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
-import { FormattedNumber } from 'react-intl';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
+import OppgaveLayout from './OppgaveLayout';
 
 interface Props {
     deltakelseId: string;
@@ -44,24 +48,31 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, setVisSkjema, error, pending } = useOppgaveContext();
+    const [parseError, setParseError] = useState<string | undefined>();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
+        const parsedOppgaveDto = zBekreftKorrigertInntektOppgaveDto.safeParse({
+            oppgaveId: oppgave.id,
+            bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+            ikkeGodkjentResponse: godkjennerOppgave
+                ? undefined
+                : {
+                      meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                  },
+            type: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+        });
 
-        const dto: UngdomsytelseOppgavebekreftelse = {
-            deltakelseId,
-            oppgave: {
-                oppgaveId: oppgave.id,
-                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                ikkeGodkjentResponse: godkjennerOppgave
-                    ? undefined
-                    : {
-                          meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                      },
-                type: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-            },
-        };
-        await sendSvar(dto);
+        if (parsedOppgaveDto.success === true) {
+            const dto: UngdomsytelseOppgavebekreftelse = {
+                deltakelseId,
+                oppgave: parsedOppgaveDto.data,
+            };
+            await sendSvar(dto);
+        } else {
+            console.error(parsedOppgaveDto.error);
+            setParseError('Det oppstod en feil da vi skulle sende svaret ditt.');
+        }
     };
 
     const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
@@ -224,7 +235,9 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                         </>
                                     ) : null}
 
-                                    {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
+                                    {error || parseError ? (
+                                        <Alert variant="error">{error ? JSON.stringify(error) : parseError}</Alert>
+                                    ) : null}
                                 </VStack>
                             </Form>
                         );
