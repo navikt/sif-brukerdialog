@@ -41,7 +41,7 @@
         "postcss": "8.5.3",
         "react": "19.0.0",
         "react-dom": "19.0.0",
-        "react-intl": "7.1.9",
+        "react-intl": "7.1.10",
         "storybook": "8.6.9",
         "typescript": "5.8.2",
         "webpack": "5.98.0"
