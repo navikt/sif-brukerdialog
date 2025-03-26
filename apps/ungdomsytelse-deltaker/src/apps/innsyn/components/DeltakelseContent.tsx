@@ -3,13 +3,29 @@ import { Deltakelse as DeltakelseContent, OppgaveStatus } from '@navikt/ung-comm
 import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
 import RapporterInntekt from './rapporter-inntekt/RapporterInntekt';
 import UløsteOppgaverList from './oppgaver/UløsteOppgaverList';
-import { getPeriodeÅpenForInntektsrapportering } from '../utils/deltakelseUtils';
+import {
+    erDeltakelseAvsluttet,
+    erDeltakelseStartet,
+    getPeriodeÅpenForInntektsrapportering,
+} from '../utils/deltakelseUtils';
+import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
+import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
+import RapporterInntektIkkeTilgjengeligInfo from './rapporter-inntekt/RapporterInntektIkkeTilgjengeligInfo';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 interface Props {
     deltakelse: DeltakelsePeriode;
 }
 
 const DeltakelseContent = ({ deltakelse }: Props) => {
+    if (erDeltakelseStartet(deltakelse) === false) {
+        return <DeltakelseIkkeStartetInfo />;
+    }
+
+    if (erDeltakelseAvsluttet(deltakelse)) {
+        return <DeltakelseAvsluttetInfo />;
+    }
+
     const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
     const uløsteOppgaver = oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
     const åpenInntektsperiode = getPeriodeÅpenForInntektsrapportering(rapporteringsPerioder);
@@ -19,7 +35,11 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
             {uløsteOppgaver.length === 0 ? null : (
                 <UløsteOppgaverList uløsteOppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
             )}
-            {åpenInntektsperiode ? <RapporterInntekt rapporteringsperiode={åpenInntektsperiode} /> : null}
+            {åpenInntektsperiode ? (
+                <RapporterInntekt rapporteringsperiode={åpenInntektsperiode} />
+            ) : (
+                <RapporterInntektIkkeTilgjengeligInfo inntektsmåned={getDateToday()} />
+            )}
         </VStack>
     );
 };

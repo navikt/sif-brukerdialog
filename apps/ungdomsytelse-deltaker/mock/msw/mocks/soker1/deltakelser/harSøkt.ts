@@ -43,7 +43,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //         fraOgMed: '2026-01-01',
             //         tilOgMed: '2026-01-31',
             //         registerinntekt: {
-            //             arbeidOgFrilansInntekter: [
+            //             arbeidstakerOgFrilansInntekt: [
             //                 {
             //                     arbeidsgiver: 'Flåklypa barteservice',
             //                     inntekt: 1200,
@@ -53,7 +53,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //                     inntekt: 50,
             //                 },
             //             ],
-            //             ytelseInntekter: [
+            //             inntektFraYtelse: [
             //                 {
             //                     ytelsetype: 'Sykepenger',
             //                     inntekt: 4000,
@@ -74,36 +74,41 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 fraOgMed: '2024-12-02',
                 tilOgMed: '2024-12-31',
                 harRapportert: false,
-                arbeidOgFrilansInntekter: undefined,
-                ytelseInntekter: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+                summertInntekt: 0,
             },
             {
                 fraOgMed: '2025-01-01',
                 tilOgMed: '2025-01-31',
                 harRapportert: false,
-                arbeidOgFrilansInntekter: undefined,
-                ytelseInntekter: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+                summertInntekt: 0,
             },
             {
                 fraOgMed: '2025-02-01',
                 tilOgMed: '2025-02-26',
                 harRapportert: false,
-                arbeidOgFrilansInntekter: undefined,
-                ytelseInntekter: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+                summertInntekt: 0,
             },
             {
                 fraOgMed: '2025-03-01',
                 tilOgMed: '2025-03-31',
                 harRapportert: false,
-                arbeidOgFrilansInntekter: undefined,
-                ytelseInntekter: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+                summertInntekt: 0,
             },
             {
                 fraOgMed: '2025-04-01',
                 tilOgMed: '2025-04-30',
                 harRapportert: false,
-                arbeidOgFrilansInntekter: undefined,
-                ytelseInntekter: undefined,
+                arbeidstakerOgFrilansInntekt: undefined,
+                inntektFraYtelse: undefined,
+                summertInntekt: 0,
             },
         ],
     },

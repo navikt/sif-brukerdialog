@@ -26,22 +26,20 @@ export const parseRapporteringsperioder = (
     rapporteringsperioder: RapportPeriodeinfoDto[],
 ): Rapporteringsperiode[] => {
     return rapporteringsperioder.map((data) => {
-        const { arbeidOgFrilansInntekter = 0, ytelseInntekter = 0 } = data;
+        const { arbeidstakerOgFrilansInntekt = 0, inntektFraYtelse = 0, summertInntekt } = data;
 
         const periode: DateRange = {
             from: ISODateToDate(data.fraOgMed),
             to: ISODateToDate(data.tilOgMed),
         };
-        return {
+        const rapporteringsperiode: Rapporteringsperiode = {
             periode,
             harRapportert: data.harRapportert,
-            kanRapportere: !!data.harRapportert && kanBrukerRapportereInntektForPeriode(periode, programPeriode.from),
-            fristForRapportering: dayjs().endOf('month').toDate(), // TODO
-            inntekt: {
-                arbeidOgFrilansInntekter,
-                ytelseInntekter,
-                summertInntekt: arbeidOgFrilansInntekter + ytelseInntekter,
-            },
+            arbeidstakerOgFrilansInntekt,
+            inntektFraYtelse,
+            summertInntekt,
+            erÅpenRapporteringsperiode: kanBrukerRapportereInntektForPeriode(periode, programPeriode.from),
         };
+        return rapporteringsperiode;
     });
 };

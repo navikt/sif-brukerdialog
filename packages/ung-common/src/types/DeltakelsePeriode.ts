@@ -20,8 +20,8 @@ export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
                 programPeriode,
                 data.rapporteringsPerioder.map((periode) => ({
                     ...periode,
-                    ytelseInntekter: periode.ytelseInntekter ?? 0,
-                    arbeidOgFrilansInntekter: periode.arbeidOgFrilansInntekter ?? 0,
+                    ytelseInntekter: periode.inntektFraYtelse ?? 0,
+                    arbeidOgFrilansInntekter: periode.arbeidstakerOgFrilansInntekt ?? 0,
                 })),
             ),
             oppgaver: parseOppgaverElement(data.oppgaver),

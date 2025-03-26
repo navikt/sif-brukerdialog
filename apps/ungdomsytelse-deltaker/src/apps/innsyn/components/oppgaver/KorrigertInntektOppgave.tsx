@@ -77,7 +77,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
         registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
     } = oppgave.oppgavetypeData;
 
-    const harOppgittInntekt = false; //
+    const harOppgittInntekt = false; // TODO
     // inntektFraDeltaker?.arbeidOgFrilansInntekter !== undefined ||
     // inntektFraDeltaker?.ytelseInntekter !== undefined;
 

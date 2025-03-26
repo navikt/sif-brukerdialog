@@ -6,22 +6,19 @@ import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth
 import RapporterInntekt from './RapporterInntekt';
 
 const rapporteringsperiode: Rapporteringsperiode = {
-    harRapportert: true,
-    kanRapportere: true,
-    fristForRapportering: ISODateToDate('2025-01-31'),
+    harRapportert: false,
     periode: {
         from: ISODateToDate('2025-01-01'),
         to: ISODateToDate('2025-01-31'),
     },
-    inntekt: {
-        arbeidOgFrilansInntekter: 0,
-        ytelseInntekter: 0,
-        summertInntekt: 0,
-    },
+    arbeidstakerOgFrilansInntekt: 0,
+    erÅpenRapporteringsperiode: false,
+    inntektFraYtelse: 0,
+    summertInntekt: 0,
 };
 
 const meta: Meta<typeof RapporterInntekt> = {
-    title: 'Komponenter/Fremhevet inntektsperiode',
+    title: 'Komponenter/Rapporter inntekt',
     component: RapporterInntekt,
     decorators: [withIntl, withPageWidth],
     args: {
@@ -33,7 +30,7 @@ export default meta;
 type Story = StoryObj<typeof RapporterInntekt>;
 
 export const IkkeRapportertPeriode: Story = {
-    name: 'Åpen - uten inntekt',
+    name: 'Inntekt ikke rapportert',
     args: {
         rapporteringsperiode: {
             ...rapporteringsperiode,
@@ -43,17 +40,14 @@ export const IkkeRapportertPeriode: Story = {
 };
 
 export const RapportertPeriode: Story = {
-    name: 'Åpen - med inntekt',
+    name: 'Inntekt rapportert',
     args: {
         rapporteringsperiode: {
             ...rapporteringsperiode,
             harRapportert: true,
-            kanRapportere: true,
-            inntekt: {
-                arbeidOgFrilansInntekter: 1500,
-                ytelseInntekter: 0,
-                summertInntekt: 1500,
-            },
+            arbeidstakerOgFrilansInntekt: 1500,
+            inntektFraYtelse: 0,
+            summertInntekt: 1500,
         },
     },
 };

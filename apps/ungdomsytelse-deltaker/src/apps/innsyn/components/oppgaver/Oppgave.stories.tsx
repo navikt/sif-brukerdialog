@@ -49,7 +49,6 @@ const korrigertInntekt: Oppgave = {
     oppgavetypeData: {
         fraOgMed: ISODateToDate('2026-01-01'),
         tilOgMed: ISODateToDate('2026-01-31'),
-
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
