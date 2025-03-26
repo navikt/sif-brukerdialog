@@ -9,7 +9,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { IngenTilgangÅrsak } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { AppText, useAppIntl } from '../../i18n';
-import { SkrivTilOssLink } from '../../lenker';
+import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
@@ -20,11 +20,11 @@ export interface IngenTilgangPageProps {
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
-    const skrivTilOssGenerell = (
+    const beskjedTilOssGenerell = (
         <AppText
-            id="ingenTilgangPage.skrivTilOssGenerell"
+            id="ingenTilgangPage.beskjedTilOssGenerell"
             values={{
-                SkrivTilOssLink: <SkrivTilOssLink />,
+                SendBeskjedLink: <SendBeskjedLink />,
             }}
         />
     );
@@ -35,7 +35,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harUgyldigK9FormatSak.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
 
@@ -49,7 +49,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.harIngenSak.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{ SendBeskjedLink: <SendBeskjedLink /> }}
                         />
                     </p>
                     <p>
@@ -63,7 +63,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
@@ -72,7 +72,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harMerEnnEnSak.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
@@ -81,7 +81,10 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.utenforEndringsperiode.1"
-                            values={{ ANTALL_MÅNEDER_TILLATT_FOR_ENDRING, SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{
+                                ANTALL_MÅNEDER_TILLATT_FOR_ENDRING,
+                                SendBeskjedLink: <SendBeskjedLink />,
+                            }}
                         />
                     </p>
                     <p>
