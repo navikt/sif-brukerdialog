@@ -22,7 +22,7 @@ function delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const Default: Story = {
+export const UregistrertDeltaker: Story = {
     render: () => (
         <BrowserRouter>
             <StartPage />
