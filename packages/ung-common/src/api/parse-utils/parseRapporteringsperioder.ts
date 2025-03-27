@@ -11,7 +11,7 @@ const getTillattRapporteringsperiodeForMåned = (dato: Date): DateRange => {
     return { from: dayjs(dato).startOf('month').toDate(), to: dayjs(dato).add(6, 'days').toDate() };
 };
 
-const kanBrukerRapportereInntektForPeriode = (periode: DateRange, programStartdato: Date): boolean => {
+const erPeriodeInnforTillattRapporteringstidsrom = (periode: DateRange, programStartdato: Date): boolean => {
     /** Skal ikke rapportere for første måned */
     if (erDatoIFørsteMånedIProgrammet(periode.from, programStartdato)) {
         return false;
@@ -38,7 +38,9 @@ export const parseRapporteringsperioder = (
             arbeidstakerOgFrilansInntekt,
             inntektFraYtelse,
             summertInntekt,
-            erÅpenRapporteringsperiode: kanBrukerRapportereInntektForPeriode(periode, programPeriode.from),
+            erÅpenRapporteringsperiode:
+                erPeriodeInnforTillattRapporteringstidsrom(periode, programPeriode.from) &&
+                data.harRapportert === false,
         };
         return rapporteringsperiode;
     });

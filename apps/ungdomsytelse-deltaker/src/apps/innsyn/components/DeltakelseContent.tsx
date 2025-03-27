@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import { Deltakelse as DeltakelseContent, OppgaveStatus } from '@navikt/ung-common';
 import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
 import RapporterInntekt from './rapporter-inntekt/RapporterInntekt';
@@ -11,7 +11,7 @@ import {
 import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import RapporterInntektIkkeTilgjengeligInfo from './rapporter-inntekt/RapporterInntektIkkeTilgjengeligInfo';
-import { getDateToday } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, getDateToday, sortDateRange } from '@navikt/sif-common-utils';
 
 interface Props {
     deltakelse: DeltakelsePeriode;
@@ -40,6 +40,18 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
             ) : (
                 <RapporterInntektIkkeTilgjengeligInfo inntektsmåned={getDateToday()} />
             )}
+            <Heading level="2" size="large">
+                Kun for testing
+            </Heading>
+            <VStack gap="2">
+                {rapporteringsPerioder
+                    .sort((p1, p2) => sortDateRange(p1.periode, p2.periode))
+                    .reverse()
+                    .filter((p) => p.harRapportert === false)
+                    .map((p) => (
+                        <RapporterInntekt key={dateRangeToISODateRange(p.periode)} rapporteringsperiode={p} />
+                    ))}
+            </VStack>
         </VStack>
     );
 };
