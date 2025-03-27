@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Box, VStack } from '@navikt/ds-react';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, EndreStartdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
@@ -42,27 +42,27 @@ const EndreStartdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
                 renderForm={({ values }) => {
                     const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
                     return (
-                        <VStack gap="4">
+                        <VStack gap="6">
                             {åpenOppgave ? (
                                 <Alert variant="info">
                                     Det finnes allerede en endring av startdato som deltaker ikke har besvart enda. Hvis
                                     du registrerer en ny endring, vil den forrige endringen bli erstattet av denne.
                                 </Alert>
                             ) : null}
-                            <VStack gap="2">
+                            <Box>
                                 {deltakelse.harSøkt ? (
-                                    <BodyLong>
+                                    <>
                                         Når startdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den
                                         nye startdatoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til
                                         deltaker".
-                                    </BodyLong>
+                                    </>
                                 ) : (
-                                    <BodyLong>
+                                    <>
                                         Deltaker har ikke søkt enda. Du kan endre startdatoen uten at det utløser blir
                                         noen oppgave til deltaker.
-                                    </BodyLong>
+                                    </>
                                 )}
-                            </VStack>
+                            </Box>
                             <TypedFormikForm
                                 submitPending={pending}
                                 showSubmitButton={false}

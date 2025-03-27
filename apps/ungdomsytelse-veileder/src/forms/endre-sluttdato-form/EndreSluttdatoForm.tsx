@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Box, VStack } from '@navikt/ds-react';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, EndreSluttdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
@@ -43,7 +43,7 @@ const EndreSluttdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
                 renderForm={({ values }) => {
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
-                        <VStack gap="4">
+                        <VStack gap="6">
                             {åpenOppgave ? (
                                 <Alert variant="info">
                                     Det finnes allerede en endring av startdato som deltaker ikke har besvart enda. Hvis
@@ -51,10 +51,10 @@ const EndreSluttdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
                                 </Alert>
                             ) : null}
                             {deltakelse.harSøkt ? (
-                                <BodyLong>
+                                <Box>
                                     Når sluttdato endres, opprettes en oppgave til deltaker hvor hen må bekrefte den nye
                                     datoen. Oppgaven vil også bli synlig for deg under fanen "Oppgaver til deltaker".
-                                </BodyLong>
+                                </Box>
                             ) : null}
 
                             <TypedFormikForm

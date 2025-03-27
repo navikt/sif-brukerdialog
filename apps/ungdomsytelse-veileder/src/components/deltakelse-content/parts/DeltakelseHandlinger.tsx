@@ -1,10 +1,11 @@
 import { Button } from '@navikt/ds-react';
 import { Deltakelse, Deltaker, Oppgavetype } from '@navikt/ung-common';
 import { useState } from 'react';
-import EndreStartdatoModal from '../../endre-startdato-modal/EndreStartdatoModal';
 import SectionContainer from '../../section-container/SectionContainer';
-import EndreSluttdatoModal from '../../endre-sluttdato-modal/EndreSluttdatoModal';
 import { Veileder } from '../../../types/Veileder';
+import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
+import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
+import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
 
 interface Props {
     veileder: Veileder;
@@ -14,12 +15,22 @@ interface Props {
 }
 
 const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChanged }: Props) => {
-    const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | null>(null);
+    const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | undefined>(undefined);
+    const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
+    const handleOnClose = () => {
+        setVisOppgaveDialog(undefined);
+        setEndretDeltakelse(undefined);
+    };
     return (
         <>
             <SectionContainer header="Handlinger">
-                <Button variant="secondary" onClick={() => setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_STARTDATO)}>
+                <Button
+                    variant="secondary"
+                    onClick={() => {
+                        setEndretDeltakelse(undefined);
+                        setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_STARTDATO);
+                    }}>
                     Endre startdato
                 </Button>
                 <Button variant="secondary" onClick={() => setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_SLUTTDATO)}>
@@ -28,23 +39,36 @@ const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChan
             </SectionContainer>
 
             {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_STARTDATO ? (
-                <EndreStartdatoModal
-                    veileder={veileder}
-                    deltaker={deltaker}
-                    deltakelse={deltakelse}
-                    onClose={() => setVisOppgaveDialog(null)}
-                    onChanged={onDeltakelseChanged}
-                />
+                <EndreDeltakelseModal
+                    header="Endre startdato"
+                    onClose={handleOnClose}
+                    deltakelseChanged={endretDeltakelse !== undefined}>
+                    <EndreStartdatoForm
+                        veileder={veileder}
+                        deltakelse={deltakelse}
+                        deltaker={deltaker}
+                        onCancel={handleOnClose}
+                        onDeltakelseChanged={(deltakelse) => {
+                            setEndretDeltakelse(deltakelse);
+                            onDeltakelseChanged();
+                        }}
+                    />
+                </EndreDeltakelseModal>
             ) : null}
 
             {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO ? (
-                <EndreSluttdatoModal
-                    veileder={veileder}
-                    deltaker={deltaker}
-                    deltakelse={deltakelse}
-                    onClose={() => setVisOppgaveDialog(null)}
-                    onChanged={onDeltakelseChanged}
-                />
+                <EndreDeltakelseModal
+                    header="Endre sluttdato"
+                    onClose={handleOnClose}
+                    deltakelseChanged={endretDeltakelse !== undefined}>
+                    <EndreSluttdatoForm
+                        veileder={veileder}
+                        deltakelse={deltakelse}
+                        deltaker={deltaker}
+                        onCancel={handleOnClose}
+                        onDeltakelseChanged={(deltakelse) => setEndretDeltakelse(deltakelse)}
+                    />
+                </EndreDeltakelseModal>
             ) : null}
         </>
     );
