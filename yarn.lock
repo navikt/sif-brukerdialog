@@ -6046,6 +6046,8 @@ __metadata:
     html-react-parser: "npm:5.2.2"
     http-proxy-middleware: "npm:3.0.3"
     jsdom: "npm:26.0.0"
+    msw: "npm:^2.7.3"
+    msw-storybook-addon: "npm:^2.0.4"
     mustache-express: "npm:1.3.2"
     playwright: "npm:^1.51.1"
     postcss: "npm:8.5.3"
@@ -23534,7 +23536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw-storybook-addon@npm:2.0.4":
+"msw-storybook-addon@npm:2.0.4, msw-storybook-addon@npm:^2.0.4":
   version: 2.0.4
   resolution: "msw-storybook-addon@npm:2.0.4"
   dependencies:
