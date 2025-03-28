@@ -1,14 +1,13 @@
-import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
-import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
-import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { SøknadRoutes } from '../../app/types/SøknadRoutes';
-
-import { Kursperiode } from '../../app/types/Kursperiode';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
-import { institusjoner } from '../../app/data/institusjoner';
+import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
+import { Kursperiode } from '../../app/types/Kursperiode';
+import { SøknadContextState } from '../../app/types/SøknadContextState';
+import { SøknadRoutes } from '../../app/types/SøknadRoutes';
+import { institusjonerMock } from './institusjonerMock';
 
 const kursperioder: Kursperiode[] = [
     {
@@ -47,7 +46,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-    institusjoner: institusjoner,
+    institusjoner: institusjonerMock,
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',

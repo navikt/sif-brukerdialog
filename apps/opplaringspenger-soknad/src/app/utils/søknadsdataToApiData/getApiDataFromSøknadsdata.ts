@@ -1,19 +1,20 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { Institusjoner } from '../../api/institusjonService';
+import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
+import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
+import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
+import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
-import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
-import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
-import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
-import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -34,6 +35,7 @@ export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[],
+    institusjoner: Institusjoner,
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -61,7 +63,7 @@ export const getApiDataFromSøknadsdata = (
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
-        kurs: getKursApiDataFromSøknadsdata(kurs),
+        kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
