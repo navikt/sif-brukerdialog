@@ -20,14 +20,6 @@ export default meta;
 
 type Story = StoryObj<typeof IngenTilgangPage>;
 
-export const Default: Story = {
-    name: 'harArbeidsgiverUtenArbeidsaktivitet',
-    args: {
-        søker,
-        årsak: [IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet],
-    },
-};
-
 export const ArbeidstidSomSelvstendigNæringsdrivende: Story = {
     name: 'harArbeidstidSomSelvstendigNæringsdrivende',
     args: {
