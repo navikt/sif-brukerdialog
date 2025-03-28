@@ -4,7 +4,7 @@ import React from 'react';
 interface Props extends LinkPanelProps {
     icon?: React.ReactNode;
     title: string;
-    description: React.ReactNode;
+    description?: React.ReactNode;
 }
 
 const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, description, ...rest }) => {
@@ -16,9 +16,11 @@ const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, descrip
                     <Heading as="div" level="3" size="small" className="mb-1">
                         {title}
                     </Heading>
-                    <BodyShort as="div" className="text-grayalpha-700">
-                        {description}
-                    </BodyShort>
+                    {description ? (
+                        <BodyShort as="div" className="text-grayalpha-700">
+                            {description}
+                        </BodyShort>
+                    ) : null}
                 </Box>
             </HStack>
         </LinkPanel>
