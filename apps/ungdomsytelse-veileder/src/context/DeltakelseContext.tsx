@@ -5,7 +5,7 @@ import { useDeltaker } from './DeltakerContext';
 interface DeltakelseContextProps {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    onDeltakelseChange: () => void;
+    onDeltakelseChanged: () => void;
 }
 
 const DeltakelseContext = createContext<DeltakelseContextProps | undefined>(undefined);
@@ -23,7 +23,7 @@ export const DeltakelseProvider = ({ children, deltaker, deltakelse }: Deltakels
             value={{
                 deltaker,
                 deltakelse,
-                onDeltakelseChange: refetchDeltakelser,
+                onDeltakelseChanged: refetchDeltakelser,
             }}>
             {children}
         </DeltakelseContext.Provider>

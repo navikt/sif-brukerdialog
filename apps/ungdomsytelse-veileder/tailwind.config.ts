@@ -3,5 +3,5 @@ import type { Config } from 'tailwindcss';
 
 export default {
     presets: [dsTailwind],
-    content: ['./src/**'],
+    content: ['./src/**', './storybook/**'],
 } satisfies Config;

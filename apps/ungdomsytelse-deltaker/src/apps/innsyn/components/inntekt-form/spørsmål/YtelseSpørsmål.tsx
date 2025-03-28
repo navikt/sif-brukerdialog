@@ -1,4 +1,4 @@
-import { Box, ReadMore } from '@navikt/ds-react';
+import { Box, List, ReadMore } from '@navikt/ds-react';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { inntektFormComponents } from '../inntektFormUtils';
@@ -16,11 +16,17 @@ const YtelseSpørsmål = ({ harInntektFraYtelse }: Props) => {
                 name={InntektFormFields.harInntektFraYtelse}
                 legend="Har du hatt mottatt ytelser fra Nav i denne perioden?"
                 description={
-                    <ReadMore header="Om Nav-ytelser som inntekt og hvilke ytelser som skal tas med">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nam quisquam eum enim cum.
-                        Consequuntur aspernatur itaque quasi porro! Optio tempora a, id ipsa incidunt aliquid sequi aut
-                        non deserunt?
-                    </ReadMore>
+                    <>
+                        <ReadMore header="Hvilke ytelser skal regnes med?">
+                            <List>
+                                <List.Item>sykepenger</List.Item>
+                                <List.Item>omsorgspenger</List.Item>
+                                <List.Item>pleiepenger sykt barn</List.Item>
+                                <List.Item>pleiepenger i livets sluttfase</List.Item>
+                                <List.Item>opplæringspenger</List.Item>
+                            </List>
+                        </ReadMore>
+                    </>
                 }
                 validate={getYesOrNoValidator()}
             />

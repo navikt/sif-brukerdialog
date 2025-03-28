@@ -25,13 +25,13 @@ const InntektOppsummering = ({ periode, inntekt }: Props) => {
                 <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-divider p-2">
                     <BodyShort>Arbeidsgiver/&shy;frilanser</BodyShort>
                     <BodyShort>
-                        <FormattedNumber value={inntekt.arbeidstakerOgFrilansInntekt || 0} />
+                        <FormattedNumber value={inntekt.arbeidOgFrilansInntekter || 0} />
                     </BodyShort>
                 </HGrid>
                 <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-default p-2">
                     <BodyShort>Ytelse fra Nav</BodyShort>
                     <BodyShort>
-                        <FormattedNumber value={inntekt.inntektFraYtelse || 0} />
+                        <FormattedNumber value={inntekt.ytelseInntekter || 0} />
                     </BodyShort>
                 </HGrid>
                 <HGrid

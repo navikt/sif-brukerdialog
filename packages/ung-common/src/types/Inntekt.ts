@@ -1,5 +1,5 @@
 export interface Inntekt {
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
+    arbeidOgFrilansInntekter?: number;
+    ytelseInntekter?: number;
     summertInntekt: number;
 }

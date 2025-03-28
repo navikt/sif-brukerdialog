@@ -90,70 +90,72 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     };
 
     return (
-        <VStack gap="3" className="hentDeltakerForm w-full">
-            <form
-                onSubmit={(evt) => {
-                    evt.stopPropagation();
-                    evt.preventDefault();
-                    fetchDeltaker();
-                }}>
-                <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
-                    <HStack gap="2" align={'end'} paddingBlock="2 0">
+        <VStack className="rounded-md bg-gray-50 p-8 pt-8 pb-8 items-center w-full drop-shadow-2xl" maxWidth={'30rem'}>
+            <VStack gap="3" className="hentDeltakerForm w-full">
+                <form
+                    onSubmit={(evt) => {
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                        fetchDeltaker();
+                    }}>
+                    <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
                         <HStack gap="2" align={'end'} paddingBlock="2 0">
-                            <TextField
-                                name="fnr"
-                                value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
-                                label="Fødselsnummer/d-nummer:"
-                                onChange={(evt) => {
-                                    setFnrValue(evt.target.value);
-                                    setKandidat(undefined);
-                                }}
-                                size="medium"
-                                maxLength={11}
-                                {...textFieldFormatterProps}
-                            />
-                            <Box>
-                                <Button type="submit" variant="primary" loading={pending}>
-                                    Hent
-                                </Button>
-                            </Box>
+                            <HStack gap="2" align={'end'} paddingBlock="2 0">
+                                <TextField
+                                    name="fnr"
+                                    value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
+                                    label="Fødselsnummer/d-nummer:"
+                                    onChange={(evt) => {
+                                        setFnrValue(evt.target.value);
+                                        setKandidat(undefined);
+                                    }}
+                                    size="medium"
+                                    maxLength={11}
+                                    {...textFieldFormatterProps}
+                                />
+                                <Box>
+                                    <Button type="submit" variant="primary" loading={pending}>
+                                        Hent
+                                    </Button>
+                                </Box>
+                            </HStack>
                         </HStack>
-                    </HStack>
-                </Fieldset>
-            </form>
-            {error ? <Alert variant="error">{error}</Alert> : null}
-            {nyDeltaker ? (
-                <VStack gap="2">
-                    <Box className="rounded-md bg-surface-default p-4 items-center w-full">
-                        <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
+                    </Fieldset>
+                </form>
+                {error ? <Alert variant="error">{error}</Alert> : null}
+                {nyDeltaker ? (
+                    <VStack gap="2">
+                        <Box className="rounded-md bg-surface-default p-4 items-center w-full">
+                            <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
+                        </Box>
+                        <Checkbox checked={registrerNy} onChange={(evt) => setRegistrerNy(evt.target.checked)}>
+                            Registrer som ny deltaker
+                        </Checkbox>
+                    </VStack>
+                ) : (
+                    <Box height={'1rem'} />
+                )}
+                {registrerNy && nyDeltaker ? (
+                    <Box marginBlock="4 0">
+                        <MeldInnDeltakerForm
+                            deltaker={nyDeltaker}
+                            onCancel={() => setRegistrerNy(false)}
+                            onDeltakelseRegistrert={onDeltakelseRegistrert}
+                        />
                     </Box>
-                    <Checkbox checked={registrerNy} onChange={(evt) => setRegistrerNy(evt.target.checked)}>
-                        Registrer som ny deltaker
-                    </Checkbox>
-                </VStack>
-            ) : (
-                <Box height={'1rem'} />
-            )}
-            {registrerNy && nyDeltaker ? (
-                <Box marginBlock="4 0">
-                    <MeldInnDeltakerForm
-                        deltaker={nyDeltaker}
-                        onCancel={() => setRegistrerNy(false)}
-                        onDeltakelseRegistrert={onDeltakelseRegistrert}
-                    />
-                </Box>
-            ) : null}
-            {getAppEnv().isLocal ? (
-                <VStack>
-                    Testbrukere lokalt:
-                    <HStack gap="2" align={'center'}>
-                        <CopyButton copyText="03867198392" size="small" /> 03867198392
-                    </HStack>
-                    <HStack gap="2" align={'center'}>
-                        <CopyButton copyText="56857102105" size="small" /> 56857102105
-                    </HStack>
-                </VStack>
-            ) : null}
+                ) : null}
+                {getAppEnv().isLocal ? (
+                    <VStack>
+                        Testbrukere lokalt:
+                        <HStack gap="2" align={'center'}>
+                            <CopyButton copyText="03867198392" size="small" /> 03867198392
+                        </HStack>
+                        <HStack gap="2" align={'center'}>
+                            <CopyButton copyText="56857102105" size="small" /> 56857102105
+                        </HStack>
+                    </VStack>
+                ) : null}
+            </VStack>
         </VStack>
     );
 };

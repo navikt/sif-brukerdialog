@@ -1,6 +1,8 @@
 import { Søker } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import { Veileder } from '../../../src/types/Veileder';
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
@@ -10,8 +12,8 @@ export const findDeltaker = (deltakerIdent: string) => {
     switch (deltakerIdent) {
         case nyDeltakerMock.deltakerIdent:
             return nyDeltakerMock;
-        case registrertDeltaker.deltakerIdent:
-            return registrertDeltaker;
+        case registrertDeltakerMock.deltakerIdent:
+            return registrertDeltakerMock;
         default:
             console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
             return null;
@@ -23,8 +25,8 @@ export const getDeltakerByDeltakerId = (deltakerId: string) => {
     if (deltakerId) {
         console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
-            case registrertDeltaker.id:
-                return registrertDeltaker;
+            case registrertDeltakerMock.id:
+                return registrertDeltakerMock;
             case nyDeltakerRegistrert.id:
                 return nyDeltakerRegistrert;
             default:
@@ -52,24 +54,26 @@ const nyDeltakerRegistrert = {
     id: nyDeltakerId,
 };
 
-const registrertDeltaker: DeltakerPersonlia = {
+export const registrertDeltakerMock: DeltakerPersonlia = {
     id: registrertDeltakerId,
     deltakerIdent: '03867198392',
     navn: {
         fornavn: 'PRESENTABEL',
-        mellomnavn: null as any,
+        // mellomnavn: null as any,
         etternavn: 'HOFTE',
     },
     fødselsdato: '1998-12-31',
     førsteMuligeInnmeldingsdato: '2024-01-01',
     sisteMuligeInnmeldingsdato: '2024-12-31',
 };
+export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 
 export const mockOppgave: OppgaveDto = {
     id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-02-19T13:29:14.553804Z',
+    eksternReferanse: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetypeData: {
         nyStartdato: '2025-01-10',
         veilederRef: 'Veil Veiledersen',
@@ -77,9 +81,10 @@ export const mockOppgave: OppgaveDto = {
     },
 };
 
-const oppgaver = [
+const oppgaver: OppgaveDto[] = [
     {
         id: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
+        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -87,12 +92,13 @@ const oppgaver = [
             veilederRef: 'Pål  Veileder Hønesen',
             meldingFraVeileder: '2025sdf',
         },
-        status: 'KANSELLERT',
+        status: OppgaveStatus.KANSELLERT,
         opprettetDato: '2025-03-18T12:46:08.782385Z',
         løstDato: '2025-03-18T13:31:05.656698Z',
     },
     {
         id: '37bcca77-9df0-4454-a697-5ba14f87a0a1',
+        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -100,12 +106,12 @@ const oppgaver = [
             veilederRef: 'Pål  Veileder Hønesen',
             meldingFraVeileder: 'asdfasdfasdf',
         },
-        status: 'ULØST',
+        status: OppgaveStatus.ULØST,
         opprettetDato: '2025-03-18T13:31:05.668281Z',
-        løstDato: null,
     },
     {
         id: 'ee45c5a3-95b9-4538-b6c1-3be1462c20ae',
+        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -113,13 +119,13 @@ const oppgaver = [
             veilederRef: 'Pål  Veileder Hønesen',
             meldingFraVeileder: 'En del tekst',
         },
-        status: 'KANSELLERT',
+        status: OppgaveStatus.KANSELLERT,
         opprettetDato: '2025-03-18T12:18:22.025109Z',
         løstDato: '2025-03-18T12:46:08.773477Z',
     },
 ];
 
-const deltakelseDR = {
+export const deltakelseDRMock = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
     deltaker: {
         id: registrertDeltakerId,
@@ -130,6 +136,7 @@ const deltakelseDR = {
     harSøkt: true,
     oppgaver: [...oppgaver],
 };
+export const parsedMockDeltakelse = deltakelseSchema.parse(deltakelseDRMock);
 
 export const deltakelseDNMock = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
@@ -144,7 +151,7 @@ export const deltakelseDNMock = {
 };
 
 export const getDeltakelser = (id) => {
-    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDR];
+    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDRMock];
 };
 
 export const veilederMock: Søker = {
@@ -153,4 +160,9 @@ export const veilederMock: Søker = {
     aktørId: '123456789',
     fødselsdato: ISODateToDate('1990-01-01'),
     fødselsnummer: 'w34',
+};
+
+export const parsedVeilederMock: Veileder = {
+    fornavn: 'Pål',
+    etternavn: 'Hønesen',
 };

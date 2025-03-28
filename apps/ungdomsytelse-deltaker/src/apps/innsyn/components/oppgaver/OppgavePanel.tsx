@@ -33,7 +33,7 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.R
                     />
                 </OppgaveProvider>
             );
-        case Oppgavetype.BEKREFT_KORRIGERT_INNTEKT:
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return (
                 <OppgaveProvider>
                     <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />
