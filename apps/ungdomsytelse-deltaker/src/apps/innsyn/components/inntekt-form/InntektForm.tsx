@@ -11,6 +11,7 @@ import {
     UngdomsytelseInntektsrapportering,
     zUngdomsytelseInntektsrapportering,
 } from '@navikt/k9-brukerdialog-prosessering-api';
+import { useEffect, useRef } from 'react';
 
 interface Props {
     inntekt?: Inntekt;
@@ -22,6 +23,8 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
     const { FormikWrapper, Form } = inntektFormComponents;
+
+    const okButtonRef = useRef<HTMLButtonElement>(null);
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values, false);
@@ -39,6 +42,13 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
         rapporterInntekt(data);
     };
 
+    useEffect(() => {
+        // Sett fokus på okButton når inntektSendt er true
+        if (inntektSendt && okButtonRef.current) {
+            okButtonRef.current.focus();
+        }
+    }, [inntektSendt]);
+
     const initialValues: Partial<InntektFormValues> = inntekt
         ? {
               harArbeidstakerOgFrilansInntekt: inntekt.arbeidOgFrilansInntekter || 0 > 0 ? YesOrNo.YES : YesOrNo.NO,
@@ -54,7 +64,7 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
                 <VStack gap="8">
                     <Alert variant="success">Inntekt for perioden er sendt</Alert>
                     <Box>
-                        <Button variant="tertiary" onClick={() => window.location.reload()}>
+                        <Button ref={okButtonRef} variant="tertiary" onClick={() => window.location.reload()}>
                             Ok, oppdater side
                         </Button>
                     </Box>
