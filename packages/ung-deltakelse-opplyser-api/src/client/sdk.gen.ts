@@ -14,6 +14,9 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerResponse,
     MeldUtDeltakerError,
+    OppdaterOppgaveStatusData,
+    OppdaterOppgaveStatusResponse,
+    OppdaterOppgaveStatusError,
     MarkerDeltakelseSomSøktData,
     MarkerDeltakelseSomSøktResponse,
     MarkerDeltakelseSomSøktError,
@@ -32,6 +35,8 @@ import type {
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
+    AvbrytOppgaveData,
+    AvbrytOppgaveError,
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdResponse,
     HentAlleDeltakelserGittDeltakerIdError,
@@ -53,6 +58,7 @@ import {
     zEndreStartdatoResponse,
     zEndreSluttdatoResponse,
     zMeldUtDeltakerResponse,
+    zOppdaterOppgaveStatusResponse,
     zMarkerDeltakelseSomSøktResponse,
     zLeggTilIProgramResponse,
     zMeldInnDeltakerResponse,
@@ -286,6 +292,88 @@ export class VeilederService {
     }
 }
 
+export class OppretterOgEndrerPåOppgaverService {
+    /**
+     * Oppdaterer status på en oppgave
+     */
+    public static oppdaterOppgaveStatus<ThrowOnError extends boolean = true>(
+        options: Options<OppdaterOppgaveStatusData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).put<
+            OppdaterOppgaveStatusResponse,
+            OppdaterOppgaveStatusError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOppdaterOppgaveStatusResponse.parseAsync(data);
+            },
+            url: '/oppgave/{oppgaveId}/status',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Oppretter oppgave
+     */
+    public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForKontrollAvRegisterinntektResponse,
+            OpprettOppgaveForKontrollAvRegisterinntektError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Avbryter oppgave
+     */
+    public static avbrytOppgave<ThrowOnError extends boolean = true>(
+        options: Options<AvbrytOppgaveData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<unknown, AvbrytOppgaveError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/oppgave/avbryt',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+}
+
 export class DeltakelseService {
     /**
      * Markerer at deltakelsen er søkt om
@@ -446,37 +534,6 @@ export class OppslagService {
             },
             url: '/oppslag/deltaker/{id}',
             ...options,
-        });
-    }
-}
-
-export class OppretterOgEndrerPåOppgaverService {
-    /**
-     * Oppretter oppgave
-     */
-    public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
-        options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForKontrollAvRegisterinntektResponse,
-            OpprettOppgaveForKontrollAvRegisterinntektError,
-            ThrowOnError
-        >({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
-            },
-            url: '/oppgave/opprett',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers,
-            },
         });
     }
 }

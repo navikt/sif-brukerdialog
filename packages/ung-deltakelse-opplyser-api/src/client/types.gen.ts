@@ -66,7 +66,7 @@ export type OppgaveDto = {
 export enum OppgaveStatus {
     LØST = 'LØST',
     ULØST = 'ULØST',
-    KANSELLERT = 'KANSELLERT',
+    AVBRUTT = 'AVBRUTT',
 }
 
 export enum Oppgavetype {
@@ -100,6 +100,10 @@ export type EndrePeriodeDatoDto = {
 
 export type DeltakelseUtmeldingDto = {
     utmeldingsdato: string;
+};
+
+export type OppdaterOppgaveStatusDto = {
+    status: OppgaveStatus;
 };
 
 export type DeltakelseInnmeldingDto = {
@@ -169,7 +173,7 @@ export type RapportPeriodeinfoDto = {
     harRapportert: boolean;
     arbeidstakerOgFrilansInntekt?: number;
     inntektFraYtelse?: number;
-    summertInntekt: number;
+    summertInntekt?: number;
 };
 
 export type OppdaterFraProgramData = {
@@ -311,6 +315,41 @@ export type MeldUtDeltakerResponses = {
 };
 
 export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
+
+export type OppdaterOppgaveStatusData = {
+    body: OppdaterOppgaveStatusDto;
+    path: {
+        oppgaveId: string;
+    };
+    query?: never;
+    url: '/oppgave/{oppgaveId}/status';
+};
+
+export type OppdaterOppgaveStatusErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type OppdaterOppgaveStatusError = OppdaterOppgaveStatusErrors[keyof OppdaterOppgaveStatusErrors];
+
+export type OppdaterOppgaveStatusResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseOpplysningDto;
+};
+
+export type OppdaterOppgaveStatusResponse = OppdaterOppgaveStatusResponses[keyof OppdaterOppgaveStatusResponses];
 
 export type MarkerDeltakelseSomSøktData = {
     body?: never;
@@ -517,6 +556,37 @@ export type OpprettOppgaveForKontrollAvRegisterinntektResponses = {
 
 export type OpprettOppgaveForKontrollAvRegisterinntektResponse =
     OpprettOppgaveForKontrollAvRegisterinntektResponses[keyof OpprettOppgaveForKontrollAvRegisterinntektResponses];
+
+export type AvbrytOppgaveData = {
+    body: string;
+    path?: never;
+    query?: never;
+    url: '/oppgave/avbryt';
+};
+
+export type AvbrytOppgaveErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type AvbrytOppgaveError = AvbrytOppgaveErrors[keyof AvbrytOppgaveErrors];
+
+export type AvbrytOppgaveResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type HentAlleDeltakelserGittDeltakerIdData = {
     body?: never;

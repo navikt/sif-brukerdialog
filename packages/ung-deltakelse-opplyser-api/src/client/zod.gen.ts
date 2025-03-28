@@ -68,7 +68,7 @@ export const zDeltakelseOpplysningDto = z.object({
                     }),
                 ),
             ]),
-            status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
+            status: z.enum(['LØST', 'ULØST', 'AVBRUTT']),
             opprettetDato: z.string().datetime(),
             løstDato: z.string().datetime().optional(),
         }),
@@ -124,12 +124,12 @@ export const zOppgaveDto = z.object({
         zEndretStartdatoOppgavetypeDataDto,
         zKontrollerRegisterinntektOppgavetypeDataDto,
     ]),
-    status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
+    status: z.enum(['LØST', 'ULØST', 'AVBRUTT']),
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),
 });
 
-export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'KANSELLERT']);
+export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT']);
 
 export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
@@ -165,6 +165,10 @@ export const zEndrePeriodeDatoDto = z.object({
 
 export const zDeltakelseUtmeldingDto = z.object({
     utmeldingsdato: z.string().date(),
+});
+
+export const zOppdaterOppgaveStatusDto = z.object({
+    status: zOppgaveStatus,
 });
 
 export const zDeltakelseInnmeldingDto = z.object({
@@ -243,7 +247,7 @@ export const zDeltakelsePeriodInfo = z.object({
             harRapportert: z.boolean(),
             arbeidstakerOgFrilansInntekt: z.number().optional(),
             inntektFraYtelse: z.number().optional(),
-            summertInntekt: z.number(),
+            summertInntekt: z.number().optional(),
         }),
     ),
 });
@@ -254,7 +258,7 @@ export const zRapportPeriodeinfoDto = z.object({
     harRapportert: z.boolean(),
     arbeidstakerOgFrilansInntekt: z.number().optional(),
     inntektFraYtelse: z.number().optional(),
-    summertInntekt: z.number(),
+    summertInntekt: z.number().optional(),
 });
 
 export const zOppdaterFraProgramResponse = zDeltakelseOpplysningDto;
@@ -264,6 +268,8 @@ export const zEndreStartdatoResponse = zDeltakelseOpplysningDto;
 export const zEndreSluttdatoResponse = zDeltakelseOpplysningDto;
 
 export const zMeldUtDeltakerResponse = zDeltakelseOpplysningDto;
+
+export const zOppdaterOppgaveStatusResponse = zDeltakelseOpplysningDto;
 
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseOpplysningDto;
 
