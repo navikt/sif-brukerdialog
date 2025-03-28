@@ -1,14 +1,7 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
+import { K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 import { vi } from 'vitest';
-
-const arbeidsgiver1: Arbeidsgiver = { key: 'a_1', organisasjonsnummer: '1' } as Arbeidsgiver;
-const arbeidsgiver2: Arbeidsgiver = { key: 'a_2', organisasjonsnummer: '2' } as Arbeidsgiver;
-const arbeidsgiver3: Arbeidsgiver = { key: 'a_3', organisasjonsnummer: '3' } as Arbeidsgiver;
-
-const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
-const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;
 
 vi.mock('@navikt/sif-common-env', () => ({
     getRequiredEnv: () => {
@@ -35,23 +28,6 @@ describe('tilgangskontroll', () => {
     it('stopper hvis bruker har flere enn én sak', () => {
         const result = tilgangskontroll([true, false] as any, tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
-    });
-});
-
-describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
-    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
-            [arbeidsgiver3],
-            [arbeidstaker1, arbeidstaker2],
-        );
-        expect(result).toBeTruthy();
-    });
-    it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
-            [arbeidsgiver1, arbeidsgiver2],
-            [arbeidstaker1, arbeidstaker2],
-        );
-        expect(result).toBeFalsy();
     });
 });
 
