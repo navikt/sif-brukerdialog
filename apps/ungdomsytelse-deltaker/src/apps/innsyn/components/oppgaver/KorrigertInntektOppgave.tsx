@@ -1,7 +1,11 @@
 import { Alert, BodyLong, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
-import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
-import OppgaveLayout from './OppgaveLayout';
+import { useState } from 'react';
+import { FormattedNumber } from 'react-intl';
+import { WalletIcon } from '@navikt/aksel-icons';
+import {
+    UngdomsytelseOppgavebekreftelse,
+    zBekreftKorrigertInntektOppgaveDto,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     FormikConfirmationCheckbox,
     getIntlFormErrorHandler,
@@ -9,14 +13,14 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { useAppIntl } from '../../../../i18n';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { WalletIcon } from '@navikt/aksel-icons';
+import { KorrigertInntektOppgave, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
+import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
-import { FormattedNumber } from 'react-intl';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
+import OppgaveLayout from './OppgaveLayout';
 
 interface Props {
     deltakelseId: string;
@@ -44,48 +48,55 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, setVisSkjema, error, pending } = useOppgaveContext();
+    const [parseError, setParseError] = useState<string | undefined>();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
+        const parsedOppgaveDto = zBekreftKorrigertInntektOppgaveDto.safeParse({
+            oppgaveId: oppgave.id,
+            bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+            ikkeGodkjentResponse: godkjennerOppgave
+                ? undefined
+                : {
+                      meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                  },
+            type: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+        });
 
-        const dto: UngdomsytelseOppgavebekreftelse = {
-            deltakelseId,
-            oppgave: {
-                oppgaveId: oppgave.id,
-                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                ikkeGodkjentResponse: godkjennerOppgave
-                    ? undefined
-                    : {
-                          meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                      },
-                type: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
-            },
-        };
-        await sendSvar(dto);
+        if (parsedOppgaveDto.success === true) {
+            const dto: UngdomsytelseOppgavebekreftelse = {
+                deltakelseId,
+                oppgave: parsedOppgaveDto.data,
+            };
+            await sendSvar(dto);
+        } else {
+            console.error(parsedOppgaveDto.error);
+            setParseError('Det oppstod en feil da vi skulle sende svaret ditt.');
+        }
     };
 
-    const { periodeForInntekt } = oppgave.oppgavetypeData;
+    const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
     const periodetekst = dateRangeFormatter.getDateRangeText(
         {
-            from: periodeForInntekt.fraOgMed,
-            to: periodeForInntekt.tilOgMed,
+            from: fraOgMed,
+            to: tilOgMed,
         },
         intl.locale,
     );
     const svarfristTekst = dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate());
-    const { inntektFraAinntekt, inntektFraDeltaker } = oppgave.oppgavetypeData;
+    const {
+        registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
+    } = oppgave.oppgavetypeData;
 
-    const harOppgittInntekt =
-        inntektFraDeltaker?.arbeidstakerOgFrilansInntekt !== undefined ||
-        inntektFraDeltaker?.inntektFraYtelse !== undefined;
+    const harOppgittInntekt = false; // TODO
+    // inntektFraDeltaker?.arbeidOgFrilansInntekter !== undefined ||
+    // inntektFraDeltaker?.ytelseInntekter !== undefined;
 
     const summertInntektFraAinntekt =
-        inntektFraAinntekt.arbeidsgivere.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.beløp, 0) +
-        inntektFraAinntekt.ytelser.reduce((acc, yelse) => acc + yelse.beløp, 0);
+        arbeidOgFrilansInntekter.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.inntekt, 0) +
+        ytelseInntekter.reduce((acc, yelse) => acc + yelse.inntekt, 0);
 
-    const summertInntektFraDeltaker = inntektFraDeltaker
-        ? (inntektFraDeltaker.arbeidstakerOgFrilansInntekt || 0) + (inntektFraDeltaker.inntektFraYtelse || 0)
-        : 0;
+    const summertInntektFraDeltaker = 0;
 
     return (
         <OppgaveLayout
@@ -156,17 +167,28 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                 <VStack gap="8" marginBlock="2 0">
                                     <VStack gap="4">
-                                        {inntektFraAinntekt.arbeidsgivere.length > 0 ? (
+                                        {arbeidOgFrilansInntekter.length > 0 ? (
                                             <>
                                                 <InntektTabell
                                                     header="Arbeidstaker/frilanser"
-                                                    inntekt={inntektFraAinntekt.arbeidsgivere}
+                                                    inntekt={arbeidOgFrilansInntekter.map(
+                                                        ({ arbeidsgiver, inntekt }) => ({
+                                                            beløp: inntekt,
+                                                            navn: arbeidsgiver,
+                                                        }),
+                                                    )}
                                                 />
                                             </>
                                         ) : null}
-                                        {inntektFraAinntekt.ytelser.length > 0 ? (
+                                        {ytelseInntekter.length > 0 ? (
                                             <>
-                                                <InntektTabell header="Ytelser" inntekt={inntektFraAinntekt.ytelser} />
+                                                <InntektTabell
+                                                    header="Ytelser"
+                                                    inntekt={ytelseInntekter.map((y) => ({
+                                                        beløp: y.inntekt,
+                                                        navn: y.ytelsetype,
+                                                    }))}
+                                                />
                                             </>
                                         ) : null}
                                     </VStack>
@@ -213,7 +235,9 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                                         </>
                                     ) : null}
 
-                                    {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
+                                    {error || parseError ? (
+                                        <Alert variant="error">{error ? JSON.stringify(error) : parseError}</Alert>
+                                    ) : null}
                                 </VStack>
                             </Form>
                         );

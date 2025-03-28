@@ -13,21 +13,21 @@ export const getInntektFromFormValues = (values: InntektFormValues, ignoreYesNoQ
     const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
     const harInntektFraYtelse = values[InntektFormFields.harInntektFraYtelse] === YesOrNo.YES;
 
-    const arbeidstakerOgFrilansInntekt =
+    const arbeidOgFrilansInntekter =
         ignoreYesNoQuestions || harArbeidstakerOgFrilansInntekt
             ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
             : 0;
 
-    const inntektFraYtelse =
+    const ytelseInntekter =
         ignoreYesNoQuestions || harInntektFraYtelse
             ? getNumberFromNumberInputValue(values[InntektFormFields.ytelseInntekt]) || 0
             : 0;
 
     return {
-        arbeidstakerOgFrilansInntekt,
+        arbeidOgFrilansInntekter,
 
-        inntektFraYtelse,
-        summertInntekt: arbeidstakerOgFrilansInntekt + inntektFraYtelse,
+        ytelseInntekter,
+        summertInntekt: arbeidOgFrilansInntekter + ytelseInntekter,
     };
 };
 

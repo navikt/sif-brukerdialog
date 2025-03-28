@@ -29,21 +29,24 @@ import type {
     HentDeltakerInfoGittDeltakerData,
     HentDeltakerInfoGittDeltakerResponse,
     HentDeltakerInfoGittDeltakerError,
+    OpprettOppgaveForKontrollAvRegisterinntektData,
+    OpprettOppgaveForKontrollAvRegisterinntektResponse,
+    OpprettOppgaveForKontrollAvRegisterinntektError,
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdResponse,
     HentAlleDeltakelserGittDeltakerIdError,
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
+    HentOppgaveForDeltakelseData,
+    HentOppgaveForDeltakelseResponse,
+    HentOppgaveForDeltakelseError,
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserResponse,
     HentAlleMineDeltakelserError,
     FjernFraProgramData,
     FjernFraProgramResponse,
     FjernFraProgramError,
-    HentOppgaveForDeltakelseData,
-    HentOppgaveForDeltakelseResponse,
-    HentOppgaveForDeltakelseError,
 } from './types.gen';
 import {
     zOppdaterFraProgramResponse,
@@ -55,6 +58,7 @@ import {
     zMeldInnDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerAktørResponse,
     zHentDeltakerInfoGittDeltakerResponse,
+    zOpprettOppgaveForKontrollAvRegisterinntektResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentOppgaveForDeltakelseResponse,
@@ -442,6 +446,37 @@ export class OppslagService {
             },
             url: '/oppslag/deltaker/{id}',
             ...options,
+        });
+    }
+}
+
+export class OppretterOgEndrerPåOppgaverService {
+    /**
+     * Oppretter oppgave
+     */
+    public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForKontrollAvRegisterinntektResponse,
+            OpprettOppgaveForKontrollAvRegisterinntektError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
         });
     }
 }

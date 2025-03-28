@@ -45,33 +45,27 @@ const korrigertInntekt: Oppgave = {
     id: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
-    oppgavetype: Oppgavetype.BEKREFT_KORRIGERT_INNTEKT,
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        periodeForInntekt: {
-            fraOgMed: ISODateToDate('2026-01-01'),
-            tilOgMed: ISODateToDate('2026-01-31'),
-        },
-        inntektFraAinntekt: {
-            arbeidsgivere: [
+        fraOgMed: ISODateToDate('2026-01-01'),
+        tilOgMed: ISODateToDate('2026-01-31'),
+        registerinntekt: {
+            arbeidOgFrilansInntekter: [
                 {
-                    navn: 'Flåklypa barteservice',
-                    beløp: 1232,
+                    arbeidsgiver: 'Flåklypa barteservice',
+                    inntekt: 1232,
                 },
                 {
-                    navn: 'Hopen klyp og klem',
-                    beløp: 50,
+                    arbeidsgiver: 'Hopen klyp og klem',
+                    inntekt: 50,
                 },
             ],
-            ytelser: [
+            ytelseInntekter: [
                 {
-                    navn: 'Sykepenger',
-                    beløp: 4200,
+                    ytelsetype: 'Sykepenger',
+                    inntekt: 4200,
                 },
             ],
-        },
-        inntektFraDeltaker: {
-            arbeidstakerOgFrilansInntekt: undefined,
-            inntektFraYtelse: undefined,
         },
     },
     svarfrist: dayjs().add(1, 'day').toDate(),
@@ -101,10 +95,6 @@ export const BekreftKorrigertInntektOppgittInntekt: Story = {
             ...korrigertInntekt,
             oppgavetypeData: {
                 ...korrigertInntekt.oppgavetypeData,
-                inntektFraDeltaker: {
-                    arbeidstakerOgFrilansInntekt: 1200,
-                    inntektFraYtelse: 550,
-                },
             },
         },
         programPeriode: {

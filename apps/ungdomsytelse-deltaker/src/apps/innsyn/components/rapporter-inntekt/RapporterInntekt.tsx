@@ -1,24 +1,22 @@
-import { Bleed, BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
-import RapporterInntektPart from './RapporterInntektPart';
+import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
 
 interface Props {
     rapporteringsperiode: Rapporteringsperiode;
 }
 
-const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
-    const { periode, harRapportert, kanRapportere, fristForRapportering } = rapporteringsperiode;
-
-    if (!fristForRapportering) {
-        return null;
-    }
+const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
+    const { periode, harRapportert } = rapporteringsperiode;
 
     const [visSkjema, setVisSkjema] = useState(false);
     const månedNavn = dateFormatter.month(periode.from);
     const månedÅrNavn = dateFormatter.monthFullYear(periode.from);
+
+    const fristForRapportering = getFristForRapporteringsperiode(periode);
 
     return (
         <Box className="bg-deepblue-50 p-8 rounded-md">
@@ -29,33 +27,36 @@ const FremhevetInntektsperiode = ({ rapporteringsperiode }: Props) => {
                 {harRapportert ? (
                     <BodyLong>Inntekt er rapportert for denne perioden</BodyLong>
                 ) : (
-                    <RapporterInntektPart
-                        visSkjema={visSkjema}
-                        månedNavn={månedNavn}
-                        fristForRapportering={fristForRapportering}
-                        kanRapportere={kanRapportere}
-                        onRapporterInntekt={() => setVisSkjema(true)}
-                    />
-                )}
-
-                {visSkjema ? (
-                    <Box className="mt-4">
-                        <Bleed marginInline="5">
-                            <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
+                    <>
+                        <BodyShort>
+                            Hvis du har inntekt i {månedNavn}, må du oppgi denne innen utgangen av{' '}
+                            <strong>{dateFormatter.dayDateMonth(fristForRapportering)}</strong>. Hvis du ikke har noe
+                            inntekt denne måneden, trenger du ikke melde fra.
+                        </BodyShort>
+                        <ExpansionCard
+                            size="small"
+                            aria-label="Small-variant"
+                            open={visSkjema}
+                            onToggle={(isOpen) => {
+                                setVisSkjema(isOpen);
+                            }}>
+                            <ExpansionCard.Header>
+                                <ExpansionCard.Title size="small">Vis skjema</ExpansionCard.Title>
+                            </ExpansionCard.Header>
+                            <ExpansionCard.Content>
                                 <InntektForm
-                                    gjelderEndring={harRapportert}
                                     periode={periode}
                                     onCancel={() => {
                                         setVisSkjema(false);
                                     }}
                                 />
-                            </VStack>
-                        </Bleed>
-                    </Box>
-                ) : null}
+                            </ExpansionCard.Content>
+                        </ExpansionCard>
+                    </>
+                )}
             </VStack>
         </Box>
     );
 };
 
-export default FremhevetInntektsperiode;
+export default RapporterInntekt;

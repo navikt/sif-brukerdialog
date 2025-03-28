@@ -1,4 +1,4 @@
-import { Alert, Bleed, Box, Button, Heading, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, Box, ExpansionCard, Heading, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
@@ -53,33 +53,21 @@ const OppgaveLayout = ({
                 {erBesvart ? (
                     <Alert variant="success">Besvart</Alert>
                 ) : (
-                    <>
-                        {visSkjema ? (
-                            <Box className="mt-4">
-                                <Bleed marginInline="5">
-                                    <VStack gap="4" className="rounded-md bg-white p-8 shadow-small">
-                                        <Heading size="medium" level="2">
-                                            Svarskjema
-                                        </Heading>
-                                        {children}
-                                    </VStack>
-                                </Bleed>
-                            </Box>
-                        ) : (
-                            <Box>
-                                <Button
-                                    type="button"
-                                    onClick={() => {
-                                        setVisSkjema(true);
-                                        if (onÅpneOppgave) {
-                                            onÅpneOppgave();
-                                        }
-                                    }}>
-                                    {visOppgaveTittel}
-                                </Button>
-                            </Box>
-                        )}
-                    </>
+                    <ExpansionCard
+                        size="small"
+                        aria-label="Small-variant"
+                        open={visSkjema}
+                        onToggle={(isOpen) => {
+                            setVisSkjema(isOpen);
+                            if (isOpen && onÅpneOppgave) {
+                                onÅpneOppgave();
+                            }
+                        }}>
+                        <ExpansionCard.Header>
+                            <ExpansionCard.Title size="small">{visOppgaveTittel}</ExpansionCard.Title>
+                        </ExpansionCard.Header>
+                        <ExpansionCard.Content>{children}</ExpansionCard.Content>
+                    </ExpansionCard>
                 )}
             </VStack>
         </BlueBox>
