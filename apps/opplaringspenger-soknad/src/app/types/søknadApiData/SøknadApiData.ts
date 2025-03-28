@@ -12,7 +12,7 @@ interface KursholderApiData {
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData;
+    kursholder: KursholderApiData | string;
     reise:
         | {
               reiserUtenforKursdager: true;

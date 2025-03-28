@@ -1,4 +1,5 @@
-import { k9BrukerdialogApiClient, parseMaybeDateStringToDate } from '@navikt/sif-common-api';
+import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
+import { k9SakApiClient } from '@navikt/sif-common-api/src/api/k9SakApiClient';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { z } from 'zod';
 
@@ -21,7 +22,7 @@ export type Institusjon = z.infer<typeof institusjonSchema>;
 export type Institusjoner = z.infer<typeof institusjonerSchema>;
 
 export const fetchInstitusjoner = async (): Promise<Institusjon[]> => {
-    const response = await k9BrukerdialogApiClient.get(`/k9sak/opplaringsinstitusjoner`);
+    const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner`);
     try {
         return institusjonerSchema.parse(response.data);
     } catch (e) {
