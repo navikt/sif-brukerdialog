@@ -28,7 +28,9 @@ const InntektDefaultForm = ({ periode, values }: Props) => {
 
     const inntekt = erAlleInntektSpørsmålBesvartOgGyldig(values) ? getInntektFromFormValues(values) : undefined;
 
-    const harHattInntekt = values[InntektFormFields.harHattInntekt] === YesOrNo.YES;
+    const harHattInntektSvar = values[InntektFormFields.harHattInntekt];
+    const harHattInntekt = harHattInntektSvar === YesOrNo.YES;
+    const harIkkeHattInntekt = harHattInntektSvar === YesOrNo.NO;
     const periodetekst = dateRangeFormatter.getDateRangeText(periode, intl.locale);
 
     return (
@@ -46,12 +48,14 @@ const InntektDefaultForm = ({ periode, values }: Props) => {
                 </>
             ) : null}
 
-            {inntekt ? (
+            {inntekt || harIkkeHattInntekt ? (
                 <ConfirmationCheckbox
                     name={InntektFormFields.bekrefterInntekt}
                     label="Jeg bekrefter at opplysningene er korrekte"
                     validate={getCheckedValidator()}>
-                    <InntektOppsummering periode={periode} inntekt={getInntektFromFormValues(values)} />
+                    {inntekt ? (
+                        <InntektOppsummering periode={periode} inntekt={getInntektFromFormValues(values)} />
+                    ) : null}
                 </ConfirmationCheckbox>
             ) : null}
         </FormLayout.Questions>
