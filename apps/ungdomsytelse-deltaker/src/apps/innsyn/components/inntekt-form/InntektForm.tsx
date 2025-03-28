@@ -60,16 +60,19 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
 
     return (
         <VStack gap="6">
-            {inntektSendt ? (
-                <VStack gap="8">
-                    <Alert variant="success">Inntekt for perioden er sendt</Alert>
-                    <Box>
-                        <Button ref={okButtonRef} variant="tertiary" onClick={() => window.location.reload()}>
-                            Ok, oppdater side
-                        </Button>
-                    </Box>
-                </VStack>
-            ) : (
+            <VStack gap="8" aria-live="polite">
+                {inntektSendt ? (
+                    <>
+                        <Alert variant="success">Inntekt for perioden er sendt</Alert>
+                        <Box>
+                            <Button ref={okButtonRef} variant="tertiary" onClick={() => window.location.reload()}>
+                                Ok, oppdater side
+                            </Button>
+                        </Box>
+                    </>
+                ) : null}
+            </VStack>
+            {inntektSendt ? null : (
                 <VStack gap="8">
                     <FormikWrapper
                         initialValues={initialValues}
