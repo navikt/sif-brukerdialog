@@ -7,20 +7,23 @@ import { useAppIntl } from '../../../../i18n';
 interface Props {
     periode: DateRange;
     inntekt: Inntekt;
+    visHeading?: boolean;
 }
 
-const InntektOppsummering = ({ periode, inntekt }: Props) => {
+const InntektOppsummering = ({ visHeading = true, periode, inntekt }: Props) => {
     const { intl } = useAppIntl();
     return (
         <VStack gap="4">
-            <VStack gap="1">
-                <Heading level="3" size="small">
-                    Oppsummering av din inntekt
-                </Heading>
-                <BodyShort size="small" className="text-text-subtle">
-                    {dateRangeFormatter.getDateRangeText(periode, intl.locale)}
-                </BodyShort>
-            </VStack>
+            {visHeading ? (
+                <VStack gap="1">
+                    <Heading level="3" size="small">
+                        Oppsummering av din inntekt
+                    </Heading>
+                    <BodyShort size="small" className="text-text-subtle">
+                        {dateRangeFormatter.getDateRangeText(periode, intl.locale)}
+                    </BodyShort>
+                </VStack>
+            ) : null}
             <VStack className="border-t-2 border-t-border-divider border-b-border-default border-b-2">
                 <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-divider p-2">
                     <BodyShort>Arbeidsgiver/&shy;frilanser</BodyShort>

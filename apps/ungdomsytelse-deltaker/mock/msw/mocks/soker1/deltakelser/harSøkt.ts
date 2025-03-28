@@ -73,10 +73,10 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             {
                 fraOgMed: '2024-12-02',
                 tilOgMed: '2024-12-31',
-                harRapportert: false,
-                arbeidstakerOgFrilansInntekt: undefined,
-                inntektFraYtelse: undefined,
-                summertInntekt: 0,
+                harRapportert: true,
+                arbeidstakerOgFrilansInntekt: 200,
+                inntektFraYtelse: 0,
+                summertInntekt: 200,
             },
             {
                 fraOgMed: '2025-01-01',

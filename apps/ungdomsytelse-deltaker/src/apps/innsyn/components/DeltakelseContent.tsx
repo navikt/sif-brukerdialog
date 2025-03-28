@@ -55,7 +55,7 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
                         {rapporteringsPerioder
                             .sort((p1, p2) => sortDateRange(p1.periode, p2.periode))
                             .reverse()
-                            .filter((p) => p.harRapportert === false)
+                            // .filter((p) => p.harRapportert === false)
                             .map((p) => (
                                 <RapporterInntekt key={dateRangeToISODateRange(p.periode)} rapporteringsperiode={p} />
                             ))}

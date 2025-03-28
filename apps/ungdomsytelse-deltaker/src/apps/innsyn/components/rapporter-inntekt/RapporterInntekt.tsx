@@ -4,6 +4,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
+import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
 
 interface Props {
     rapporteringsperiode: Rapporteringsperiode;
@@ -25,7 +26,18 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                     Inntekt {månedÅrNavn}
                 </Heading>
                 {harRapportert ? (
-                    <BodyLong>Inntekt er rapportert for denne perioden</BodyLong>
+                    <VStack gap="4">
+                        <BodyLong>Inntekt er rapportert for denne perioden:</BodyLong>
+                        <InntektOppsummering
+                            visHeading={false}
+                            periode={periode}
+                            inntekt={{
+                                summertInntekt: rapporteringsperiode.summertInntekt || 0,
+                                arbeidOgFrilansInntekter: rapporteringsperiode.arbeidstakerOgFrilansInntekt || 0,
+                                ytelseInntekter: rapporteringsperiode.inntektFraYtelse || 0,
+                            }}
+                        />
+                    </VStack>
                 ) : (
                     <>
                         <BodyShort>
