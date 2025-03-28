@@ -6,7 +6,7 @@
     "type": "module",
     "version": "0.0.1",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.64.13",
+        "@hey-api/openapi-ts": "0.64.15",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.2",
@@ -30,7 +30,7 @@
         "gen": "openapi-ts"
     },
     "dependencies": {
-        "@hey-api/client-axios": "0.6.2",
-        "@hey-api/client-fetch": "0.8.3"
+        "@hey-api/client-axios": "0.6.3",
+        "@hey-api/client-fetch": "0.8.4"
     }
 }
