@@ -1,16 +1,18 @@
 import { BodyLong, BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
 import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     rapporteringsperiode: Rapporteringsperiode;
 }
 
 const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
+    const { intl } = useAppIntl();
     const { periode, harRapportert } = rapporteringsperiode;
 
     const [visSkjema, setVisSkjema] = useState(false);
@@ -27,7 +29,10 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                 </Heading>
                 {harRapportert ? (
                     <VStack gap="4">
-                        <BodyLong>Inntekt er rapportert for denne perioden:</BodyLong>
+                        <BodyLong>
+                            Inntekt er rapportert for denne perioden (
+                            {dateRangeFormatter.getDateRangeText(periode, intl.locale)}).
+                        </BodyLong>
                         <InntektOppsummering
                             visHeading={false}
                             periode={periode}
