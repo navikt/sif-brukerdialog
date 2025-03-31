@@ -16,10 +16,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.17.4",
+        "@navikt/ds-css": "7.18.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.17.4",
-        "@navikt/ds-tailwind": "7.17.4",
+        "@navikt/ds-react": "7.18.0",
+        "@navikt/ds-tailwind": "7.18.0",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
@@ -30,9 +30,9 @@
         "jsdom": "26.0.0",
         "next": "15.2.4",
         "node-fetch": "3.3.2",
-        "react": "19.0.0",
-        "react-day-picker": "9.6.3",
-        "react-dom": "19.0.0",
+        "react": "19.1.0",
+        "react-day-picker": "9.6.4",
+        "react-dom": "19.1.0",
         "react-intl": "7.1.10",
         "uuid": "11.1.0"
     },
