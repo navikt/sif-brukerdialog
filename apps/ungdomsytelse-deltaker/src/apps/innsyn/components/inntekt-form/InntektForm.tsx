@@ -7,10 +7,7 @@ import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
-import {
-    UngdomsytelseInntektsrapportering,
-    zUngdomsytelseInntektsrapportering,
-} from '@navikt/k9-brukerdialog-prosessering-api';
+import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useEffect, useRef } from 'react';
 
 interface Props {
@@ -28,17 +25,17 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
 
     const handleSubmit = (values: InntektFormValues) => {
         const inntekt = getInntektFromFormValues(values, false);
-        const data: UngdomsytelseInntektsrapportering = zUngdomsytelseInntektsrapportering.parse({
+        const data: UngdomsytelseInntektsrapportering = {
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
                     fraOgMed: dateToISODate(periode.from),
                     tilOgMed: dateToISODate(periode.to),
                 },
-                arbeidOgFrilansInntekter: inntekt.arbeidOgFrilansInntekter,
-                ytelseInntekter: inntekt.ytelseInntekter,
+                arbeidstakerOgFrilansInntekt: inntekt.arbeidOgFrilansInntekter,
+                inntektFraYtelse: inntekt.ytelseInntekter,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
-        });
+        };
         rapporterInntekt(data);
     };
 

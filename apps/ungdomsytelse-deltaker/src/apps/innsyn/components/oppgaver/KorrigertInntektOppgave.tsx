@@ -4,7 +4,7 @@ import { FormattedNumber } from 'react-intl';
 import { WalletIcon } from '@navikt/aksel-icons';
 import {
     UngdomsytelseOppgavebekreftelse,
-    zBekreftKorrigertInntektOppgaveDto,
+    zKontrollerRegisterinntektOppgavetypeDataDto,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     FormikConfirmationCheckbox,
@@ -52,7 +52,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
-        const parsedOppgaveDto = zBekreftKorrigertInntektOppgaveDto.safeParse({
+        const parsedOppgaveDto = zKontrollerRegisterinntektOppgavetypeDataDto.safeParse({
             oppgaveId: oppgave.id,
             bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
             ikkeGodkjentResponse: godkjennerOppgave
