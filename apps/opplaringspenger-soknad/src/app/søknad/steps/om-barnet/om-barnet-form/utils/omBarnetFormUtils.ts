@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { dateToISODate, dateUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
@@ -36,6 +36,7 @@ export const getOmBarnetFormInitialValues = (
                     ...omBarnetFormDefaultValues,
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsFødselsnummer: søknadsdata.barnetsFødselsnummer,
+                    barnetsFødselsdato: dateToISODate(søknadsdata.barnetsFødselsdato),
                     barnetsNavn: søknadsdata.barnetsNavn,
                     relasjonTilBarnet: søknadsdata.relasjonTilBarnet,
                     relasjonTilBarnetBeskrivelse:
@@ -75,7 +76,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         };
     }
 
-    if (!values.barnetSøknadenGjelder && values.barnetsNavn && values.relasjonTilBarnet) {
+    if (!values.barnetSøknadenGjelder && values.barnetsNavn && values.relasjonTilBarnet && values.barnetsFødselsdato) {
         const relasjonTilBarnetSøknadsdata: RelasjonTilBarnetSøknadsdataBase = {
             relasjonTilBarnet: values.relasjonTilBarnet,
             relasjonTilBarnetBeskrivelse:
@@ -88,6 +89,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             return {
                 type: 'annetBarn',
                 barnetsNavn: values.barnetsNavn,
+                barnetsFødselsdato: ISODateToDate(values.barnetsFødselsdato),
                 barnetsFødselsnummer: values.barnetsFødselsnummer,
                 ...relasjonTilBarnetSøknadsdata,
             };
@@ -129,10 +131,7 @@ export const nYearsAgo = (years: number): Date => {
 };
 
 export const getBarnetsAlder = (values: OmBarnetFormValues): number | undefined => {
-    const fdato =
-        values.barnetHarIkkeFnr === true
-            ? datepickerUtils.getDateFromDateString(values.barnetsFødselsdato)
-            : dateUtils.getFødselsdatoFromIdNr(values.barnetsFødselsnummer);
+    const fdato = datepickerUtils.getDateFromDateString(values.barnetsFødselsdato);
 
     if (!fdato) {
         return;

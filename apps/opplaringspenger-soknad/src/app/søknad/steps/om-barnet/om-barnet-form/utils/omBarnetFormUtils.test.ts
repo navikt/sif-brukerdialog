@@ -70,6 +70,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2019-06-08'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.MOR,
             barnetsNavn: 'Navn',
@@ -82,6 +83,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2019-06-08'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.FAR,
             barnetsNavn: 'Navn',

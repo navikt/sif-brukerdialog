@@ -77,6 +77,30 @@ const AnnetBarnPart: React.FC<Props> = ({
                 ) : undefined
             }>
             <FormLayout.Questions>
+                <DatePicker
+                    name={OmBarnetFormFields.barnetsFødselsdato}
+                    label={text('omBarnetForm.fødselsdato')}
+                    validate={(value) => {
+                        const dateError = getDateValidator({
+                            required: true,
+                            min: nYearsAgo(100),
+                            max: getDateToday(),
+                        })(value);
+                        if (dateError === ValidateDateError.dateIsBeforeMin) {
+                            return {
+                                key: dateError,
+                                values: { dato: prettifyDate(nYearsAgo(18)) },
+                            };
+                        }
+                        return dateError;
+                    }}
+                    minDate={nYearsAgo(100)}
+                    maxDate={getDateToday()}
+                    dropdownCaption={true}
+                />
+
+                {barnErOver20År ? <Aldersvarsel /> : null}
+
                 <TextField
                     label={text('omBarnetForm.fnr.spm')}
                     name={OmBarnetFormFields.barnetsFødselsnummer}
@@ -131,42 +155,12 @@ const AnnetBarnPart: React.FC<Props> = ({
                     />
                 )}
 
-                {(barnetHarIkkeFnr === undefined || barnetHarIkkeFnr === false) && barnErOver20År ? (
-                    <Aldersvarsel />
-                ) : null}
-
                 <TextField
                     label={text('omBarnetForm.navn')}
                     name={OmBarnetFormFields.barnetsNavn}
                     validate={getStringValidator({ required: true, maxLength: 50 })}
                     width="xl"
                 />
-
-                {barnetHarIkkeFnr && (
-                    <DatePicker
-                        name={OmBarnetFormFields.barnetsFødselsdato}
-                        label={text('omBarnetForm.fødselsdato')}
-                        validate={(value) => {
-                            const dateError = getDateValidator({
-                                required: true,
-                                min: nYearsAgo(18),
-                                max: getDateToday(),
-                            })(value);
-                            if (dateError === ValidateDateError.dateIsBeforeMin) {
-                                return {
-                                    key: dateError,
-                                    values: { dato: prettifyDate(nYearsAgo(18)) },
-                                };
-                            }
-                            return dateError;
-                        }}
-                        minDate={nYearsAgo(18)}
-                        maxDate={getDateToday()}
-                        dropdownCaption={true}
-                    />
-                )}
-
-                {barnetHarIkkeFnr === true && barnErOver20År ? <Aldersvarsel /> : null}
 
                 <RadioGroup
                     legend={text('omBarnetForm.relasjon.spm')}
