@@ -38,7 +38,7 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),
+            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
         }),
     );
 
@@ -57,7 +57,7 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
+            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
         }),
     );
 
@@ -76,7 +76,7 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z
     })
     .merge(
         z.object({
-            type: z.literal('KontrollerRegisterinntektOppgavetypeDataDTO'),
+            type: z.literal('BEKREFT_AVVIK_REGISTERINNTEKT'),
         }),
     );
 
