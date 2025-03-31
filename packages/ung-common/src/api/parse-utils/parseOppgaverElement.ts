@@ -20,7 +20,7 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.LØST;
         case 'ULØST':
             return OppgaveStatus.ULØST;
-        case 'KANSELLERT':
+        case 'AVBRUTT':
             return OppgaveStatus.AVBRUTT;
         // case 'UTLØPT':
         //     return OppgaveStatus.UTLØPT;
