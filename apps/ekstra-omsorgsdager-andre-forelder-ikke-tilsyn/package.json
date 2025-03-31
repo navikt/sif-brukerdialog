@@ -54,8 +54,8 @@
         "html-react-parser": "5.2.2",
         "jsdom": "26.0.0",
         "object-hash": "3.0.0",
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.10",
         "react-router-dom": "7.4.0"
