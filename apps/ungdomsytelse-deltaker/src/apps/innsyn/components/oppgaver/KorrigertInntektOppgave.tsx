@@ -57,7 +57,7 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
                       korrigertDato: '',
                       meldingFraDeltaker: values[FormFields.begrunnelse]!,
                   },
-            type: 'KontrollerRegisterinntektOppgavetypeDataDTO',
+            type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
         };
 
         await sendSvar({
