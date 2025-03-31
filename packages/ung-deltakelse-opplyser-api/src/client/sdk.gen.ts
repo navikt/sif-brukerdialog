@@ -14,8 +14,6 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerResponse,
     MeldUtDeltakerError,
-    AvbrytOppgaveData,
-    AvbrytOppgaveError,
     MarkerDeltakelseSomSøktData,
     MarkerDeltakelseSomSøktResponse,
     MarkerDeltakelseSomSøktError,
@@ -34,6 +32,8 @@ import type {
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
+    AvbrytOppgaveData,
+    AvbrytOppgaveError,
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdResponse,
     HentAlleDeltakelserGittDeltakerIdError,
@@ -288,55 +288,6 @@ export class VeilederService {
     }
 }
 
-export class OppretterOgEndrerPåOppgaverService {
-    /**
-     * Avbryter oppgave
-     */
-    public static avbrytOppgave<ThrowOnError extends boolean = true>(
-        options: Options<AvbrytOppgaveData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).put<unknown, AvbrytOppgaveError, ThrowOnError>({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            url: '/oppgave/{oppgaveReferanse}/avbryt',
-            ...options,
-        });
-    }
-
-    /**
-     * Oppretter oppgave
-     */
-    public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
-        options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForKontrollAvRegisterinntektResponse,
-            OpprettOppgaveForKontrollAvRegisterinntektError,
-            ThrowOnError
-        >({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
-            },
-            url: '/oppgave/opprett',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers,
-            },
-        });
-    }
-}
-
 export class DeltakelseService {
     /**
      * Markerer at deltakelsen er søkt om
@@ -497,6 +448,59 @@ export class OppslagService {
             },
             url: '/oppslag/deltaker/{id}',
             ...options,
+        });
+    }
+}
+
+export class OppretterOgEndrerPåOppgaverService {
+    /**
+     * Oppretter oppgave
+     */
+    public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForKontrollAvRegisterinntektResponse,
+            OpprettOppgaveForKontrollAvRegisterinntektError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Avbryter oppgave
+     */
+    public static avbrytOppgave<ThrowOnError extends boolean = true>(
+        options: Options<AvbrytOppgaveData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<unknown, AvbrytOppgaveError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/oppgave/avbryt',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
         });
     }
 }

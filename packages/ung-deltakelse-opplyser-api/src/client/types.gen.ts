@@ -311,39 +311,6 @@ export type MeldUtDeltakerResponses = {
 
 export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
 
-export type AvbrytOppgaveData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/oppgave/{oppgaveReferanse}/avbryt';
-};
-
-export type AvbrytOppgaveErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type AvbrytOppgaveError = AvbrytOppgaveErrors[keyof AvbrytOppgaveErrors];
-
-export type AvbrytOppgaveResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type MarkerDeltakelseSomSøktData = {
     body?: never;
     path: {
@@ -549,6 +516,37 @@ export type OpprettOppgaveForKontrollAvRegisterinntektResponses = {
 
 export type OpprettOppgaveForKontrollAvRegisterinntektResponse =
     OpprettOppgaveForKontrollAvRegisterinntektResponses[keyof OpprettOppgaveForKontrollAvRegisterinntektResponses];
+
+export type AvbrytOppgaveData = {
+    body: string;
+    path?: never;
+    query?: never;
+    url: '/oppgave/avbryt';
+};
+
+export type AvbrytOppgaveErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type AvbrytOppgaveError = AvbrytOppgaveErrors[keyof AvbrytOppgaveErrors];
+
+export type AvbrytOppgaveResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type HentAlleDeltakelserGittDeltakerIdData = {
     body?: never;
