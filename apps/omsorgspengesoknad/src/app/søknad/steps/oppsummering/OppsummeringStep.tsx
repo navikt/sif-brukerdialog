@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
-import { ErrorPage, getInvalidParametersFromInnsendingError } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -56,7 +56,7 @@ const OppsummeringStep = () => {
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
-    const invalidParameters = sendSøknadError ? getInvalidParametersFromInnsendingError(sendSøknadError) : undefined;
+    const invalidParameters = sendSøknadError ? getInvalidParametersFromAxiosError(sendSøknadError) : undefined;
 
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {

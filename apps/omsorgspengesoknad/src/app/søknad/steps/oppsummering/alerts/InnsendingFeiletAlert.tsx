@@ -2,9 +2,10 @@ import { Alert, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../../i18n';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
 
-const renderFeilmelding = (invalidParameter: string) => {
-    const erBeskrivelseFeil = invalidParameter === 'høyereRisikoForFraværBeskrivelse';
+const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
+    const erBeskrivelseFeil = invalidParameter.parameterName === 'høyereRisikoForFraværBeskrivelse';
     return (
         <>
             {erBeskrivelseFeil ? (
@@ -33,7 +34,7 @@ const renderFeilmelding = (invalidParameter: string) => {
 
             {!erBeskrivelseFeil && (
                 <ExpandableInfo title="Detaljert info (teknisk)">
-                    <p style={{ wordBreak: 'break-word' }}>{invalidParameter}</p>
+                    <p style={{ wordBreak: 'break-word' }}>{invalidParameter.parameterName}</p>
                 </ExpandableInfo>
             )}
         </>
@@ -41,7 +42,7 @@ const renderFeilmelding = (invalidParameter: string) => {
 };
 
 interface Props {
-    invalidParameter: string[];
+    invalidParameter: InvalidParameterViolation[];
 }
 
 const InnsendingFeiletAlert = ({ invalidParameter }: Props) => {

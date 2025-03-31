@@ -16,19 +16,19 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "3.79.0",
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
-        "sanity": "3.79.0",
-        "styled-components": "6.1.15"
+        "@sanity/vision": "3.81.0",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "sanity": "3.81.0",
+        "styled-components": "6.1.16"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "5.0.2",
-        "@types/react": "19.0.10",
+        "@types/react": "19.0.12",
         "dayjs": "1.11.13",
-        "eslint": "9.22.0",
+        "eslint": "9.23.0",
         "prettier": "3.5.3",
-        "react-is": "19.0.0",
+        "react-is": "19.1.0",
         "typescript": "5.8.2"
     },
     "prettier": {

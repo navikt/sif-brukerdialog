@@ -11,6 +11,11 @@ export const zProblemDetail = z.object({
     properties: z.object({}).optional(),
 });
 
+export const zArbeidOgFrilansRegisterInntektDto = z.object({
+    inntekt: z.number().int(),
+    arbeidsgiver: z.string(),
+});
+
 export const zDeltakelseOpplysningDto = z.object({
     id: z.string().uuid().optional(),
     deltaker: z.object({
@@ -23,7 +28,12 @@ export const zDeltakelseOpplysningDto = z.object({
     oppgaver: z.array(
         z.object({
             id: z.string().uuid(),
-            oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_KORRIGERT_INNTEKT']),
+            eksternReferanse: z.string().uuid(),
+            oppgavetype: z.enum([
+                'BEKREFT_ENDRET_STARTDATO',
+                'BEKREFT_ENDRET_SLUTTDATO',
+                'BEKREFT_AVVIK_REGISTERINNTEKT',
+            ]),
             oppgavetypeData: z.union([
                 z.object({}).merge(
                     z.object({
@@ -41,17 +51,19 @@ export const zDeltakelseOpplysningDto = z.object({
                 ),
                 z.object({}).merge(
                     z.object({
-                        inntektFraAinntekt: z.object({
-                            arbeidstakerOgFrilansInntekt: z.number().optional(),
-                            inntektFraYtelse: z.number().optional(),
-                        }),
-                        inntektFraDeltaker: z.object({
-                            arbeidstakerOgFrilansInntekt: z.number().optional(),
-                            inntektFraYtelse: z.number().optional(),
-                        }),
-                        periodeForInntekt: z.object({
-                            fraOgMed: z.string().date(),
-                            tilOgMed: z.string().date(),
+                        fraOgMed: z.string().date(),
+                        tilOgMed: z.string().date(),
+                        registerinntekt: z.object({
+                            arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
+                            ytelseInntekter: z.array(
+                                z.object({
+                                    inntekt: z.number().int(),
+                                    ytelsetype: z.string(),
+                                }),
+                            ),
+                            totalInntektArbeidOgFrilans: z.number().int(),
+                            totalInntektYtelse: z.number().int(),
+                            totalInntekt: z.number().int(),
                         }),
                     }),
                 ),
@@ -84,30 +96,33 @@ export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
     }),
 );
 
-export const zKorrigertOppgavetypeDataDto = z.object({}).merge(
+export const zKontrollerRegisterinntektOppgavetypeDataDto = z.object({}).merge(
     z.object({
-        inntektFraAinntekt: z.object({
-            arbeidstakerOgFrilansInntekt: z.number().optional(),
-            inntektFraYtelse: z.number().optional(),
-        }),
-        inntektFraDeltaker: z.object({
-            arbeidstakerOgFrilansInntekt: z.number().optional(),
-            inntektFraYtelse: z.number().optional(),
-        }),
-        periodeForInntekt: z.object({
-            fraOgMed: z.string().date(),
-            tilOgMed: z.string().date(),
+        fraOgMed: z.string().date(),
+        tilOgMed: z.string().date(),
+        registerinntekt: z.object({
+            arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
+            ytelseInntekter: z.array(
+                z.object({
+                    inntekt: z.number().int(),
+                    ytelsetype: z.string(),
+                }),
+            ),
+            totalInntektArbeidOgFrilans: z.number().int(),
+            totalInntektYtelse: z.number().int(),
+            totalInntekt: z.number().int(),
         }),
     }),
 );
 
 export const zOppgaveDto = z.object({
     id: z.string().uuid(),
-    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_KORRIGERT_INNTEKT']),
+    eksternReferanse: z.string().uuid(),
+    oppgavetype: z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO', 'BEKREFT_AVVIK_REGISTERINNTEKT']),
     oppgavetypeData: z.union([
         zEndretSluttdatoOppgavetypeDataDto,
         zEndretStartdatoOppgavetypeDataDto,
-        zKorrigertOppgavetypeDataDto,
+        zKontrollerRegisterinntektOppgavetypeDataDto,
     ]),
     status: z.enum(['LØST', 'ULØST', 'KANSELLERT']),
     opprettetDato: z.string().datetime(),
@@ -116,9 +131,31 @@ export const zOppgaveDto = z.object({
 
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'KANSELLERT']);
 
-export const zOppgavetype = z.enum(['BEKREFT_ENDRET_STARTDATO', 'BEKREFT_ENDRET_SLUTTDATO']);
+export const zOppgavetype = z.enum([
+    'BEKREFT_ENDRET_STARTDATO',
+    'BEKREFT_ENDRET_SLUTTDATO',
+    'BEKREFT_AVVIK_REGISTERINNTEKT',
+]);
 
 export const zOppgavetypeDataDto = z.object({});
+
+export const zRegisterinntektDto = z.object({
+    arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
+    ytelseInntekter: z.array(
+        z.object({
+            inntekt: z.number().int(),
+            ytelsetype: z.string(),
+        }),
+    ),
+    totalInntektArbeidOgFrilans: z.number().int(),
+    totalInntektYtelse: z.number().int(),
+    totalInntekt: z.number().int(),
+});
+
+export const zYtelseRegisterInntektDto = z.object({
+    inntekt: z.number().int(),
+    ytelsetype: z.string(),
+});
 
 export const zEndrePeriodeDatoDto = z.object({
     dato: z.string().date(),
@@ -152,14 +189,45 @@ export const zDeltakerPersonlia = z.object({
         etternavn: z.string(),
     }),
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zNavn = z.object({
     fornavn: z.string(),
     mellomnavn: z.string().optional(),
     etternavn: z.string(),
+});
+
+export const zRegisterInntektArbeidOgFrilansDto = z.object({
+    beløp: z.number().int(),
+    arbeidsgiverIdent: z.string(),
+});
+
+export const zRegisterInntektDto = z.object({
+    registerinntekterForArbeidOgFrilans: z.array(zRegisterInntektArbeidOgFrilansDto).optional(),
+    registerinntekterForYtelse: z
+        .array(
+            z.object({
+                beløp: z.number().int(),
+                ytelseType: z.string(),
+            }),
+        )
+        .optional(),
+});
+
+export const zRegisterInntektOppgaveDto = z.object({
+    aktørId: z.string(),
+    referanse: z.string().uuid(),
+    frist: z.string().datetime(),
+    fomDato: z.string().date(),
+    tomDato: z.string().date(),
+    registerInntekter: zRegisterInntektDto,
+});
+
+export const zRegisterInntektYtelseDto = z.object({
+    beløp: z.number().int(),
+    ytelseType: z.string(),
 });
 
 export const zDeltakelsePeriodInfo = z.object({
@@ -173,7 +241,9 @@ export const zDeltakelsePeriodInfo = z.object({
             fraOgMed: z.string().date(),
             tilOgMed: z.string().date(),
             harRapportert: z.boolean(),
-            inntekt: z.number().optional(),
+            arbeidstakerOgFrilansInntekt: z.number().optional(),
+            inntektFraYtelse: z.number().optional(),
+            summertInntekt: z.number(),
         }),
     ),
 });
@@ -182,7 +252,9 @@ export const zRapportPeriodeinfoDto = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     harRapportert: z.boolean(),
-    inntekt: z.number().optional(),
+    arbeidstakerOgFrilansInntekt: z.number().optional(),
+    inntektFraYtelse: z.number().optional(),
+    summertInntekt: z.number(),
 });
 
 export const zOppdaterFraProgramResponse = zDeltakelseOpplysningDto;
@@ -202,6 +274,8 @@ export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
 
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
+
+export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zDeltakelseOpplysningDto;
 
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 

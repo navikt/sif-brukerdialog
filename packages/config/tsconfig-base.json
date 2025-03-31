@@ -19,7 +19,7 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "strictNullChecks": true,
-        "target": "es5"
+        "target": "ES6"
     },
     "exclude": ["node_modules"]
 }

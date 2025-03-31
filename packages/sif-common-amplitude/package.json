@@ -11,16 +11,16 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "2.11.13"
+        "@amplitude/analytics-browser": "2.12.2"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "22.13.10",
-        "@types/react": "19.0.10",
+        "@types/node": "22.13.14",
+        "@types/react": "19.0.12",
         "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.3.0",
-        "react": "19.0.0",
+        "react": "19.1.0",
         "rimraf": "6.0.1",
         "typescript": "5.8.2"
     },

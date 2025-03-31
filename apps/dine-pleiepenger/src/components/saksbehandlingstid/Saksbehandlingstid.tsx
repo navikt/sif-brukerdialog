@@ -79,7 +79,7 @@ const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
                 <AppText id="svarfrist.tittel" />
             </Heading>
-            <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
+            <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded-xs">
                 <Box className="mb-4">
                     <SaksbehandlingstidMelding
                         frist={frist}

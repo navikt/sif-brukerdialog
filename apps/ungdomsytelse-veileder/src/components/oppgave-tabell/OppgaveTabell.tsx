@@ -3,7 +3,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
-import Melding from '../melding/Melding';
+import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -27,7 +27,7 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                                 <VStack gap="2" marginBlock={'0 4'}>
                                     <Box>Melding til bruker: </Box>
                                     {meldingFraVeileder ? (
-                                        <Melding tekst={meldingFraVeileder} avsender={veilederRef} />
+                                        <MeldingFraVeileder tekst={meldingFraVeileder} avsender={veilederRef} />
                                     ) : (
                                         'Ingen melding'
                                     )}
@@ -85,14 +85,13 @@ const OppgaveTabell = ({ oppgaver }: Props) => {
                             </>
                         }>
                         <Table.DataCell>
-                            {dateFormatter.compact(oppgave.opprettetDato)} -
+                            {dateFormatter.compact(oppgave.opprettetDato)}{' '}
                             {dayjs(oppgave.opprettetDato).format('HH:MM')}
                         </Table.DataCell>
                         <Table.DataCell>{oppgave.oppgavetype}</Table.DataCell>
                         <Table.DataCell>
-                            {/* {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'} */}
+                            {oppgave.svarfrist ? dateFormatter.compact(oppgave.svarfrist) : 'ikke satt'}
                         </Table.DataCell>
-                        {/* <Table.DataCell>{oppgave.åpnetAvDeltaker ? 'Ja' : 'Nei'}</Table.DataCell> */}
                         <Table.DataCell>{oppgave.status}</Table.DataCell>
                     </Table.ExpandableRow>
                 ))}

@@ -16,7 +16,7 @@ const PageHeader: React.FunctionComponent<Props> = ({
     documentTitle,
 }) => {
     return (
-        <div className="bg-[--a-deepblue-50]">
+        <div className="bg-(--a-deepblue-50)">
             {documentTitle ? (
                 <Head>
                     <title>{documentTitle}</title>

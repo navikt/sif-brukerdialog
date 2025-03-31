@@ -1,38 +1,36 @@
-import { Table } from '@navikt/ds-react';
+import { BodyShort, Table } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
 
-interface Props {}
+export interface InntektTabellRad {
+    navn: string;
+    beløp: number;
+}
 
-const InntektTabell = ({}: Props) => {
-    const data = [
-        {
-            navn: 'Godlia video og persienner',
-            inntekt: 213,
-        },
-        {
-            navn: 'Mix kiosk',
-            inntekt: 3500,
-        },
-        {
-            navn: 'Sykepenger',
-            inntekt: 500,
-        },
-    ];
+interface Props {
+    header: string;
+    inntekt: InntektTabellRad[];
+}
+
+const InntektTabell = ({ header, inntekt }: Props) => {
     return (
         <Table zebraStripes>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell scope="col">Arbeidsgiver/ytelse</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Inntekt</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">{header}</Table.HeaderCell>
+                    <Table.HeaderCell scope="col" className="w-16 text-right text-nowrap">
+                        Inntekt
+                    </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {data.map(({ navn, inntekt }, i) => {
+                {inntekt.map(({ navn, beløp }, i) => {
                     return (
                         <Table.Row key={i + navn}>
-                            <Table.HeaderCell scope="row">{navn}</Table.HeaderCell>
-                            <Table.DataCell>
-                                <FormattedNumber value={inntekt} />
+                            <Table.HeaderCell scope="row">
+                                <BodyShort weight="regular">{navn}</BodyShort>
+                            </Table.HeaderCell>
+                            <Table.DataCell className="w-16 text-right text-nowrap">
+                                <FormattedNumber value={beløp} />
                             </Table.DataCell>
                         </Table.Row>
                     );

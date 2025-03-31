@@ -1,8 +1,7 @@
-import { BodyShort, VStack } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
@@ -32,21 +31,6 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
                     <RegistrerteBarnListeHeading level="2" size="xsmall">
                         {text('steg.omBarnet.hvilketBarn.spm')}
                     </RegistrerteBarnListeHeading>
-                }
-                description={
-                    <VStack gap="0">
-                        <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
-                            </p>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.2'} />
-                            </p>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.3'} />
-                            </p>
-                        </ExpandableInfo>
-                    </VStack>
                 }
                 radios={søkersBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;

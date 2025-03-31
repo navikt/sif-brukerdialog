@@ -6,11 +6,11 @@
     "type": "module",
     "version": "0.0.1",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.64.11",
+        "@hey-api/openapi-ts": "0.64.15",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.2",
-        "vitest": "3.0.8",
+        "vitest": "3.0.9",
         "zod": "3.24.2"
     },
     "peerDependencies": {
@@ -31,7 +31,7 @@
         "generate-and-fix": "yarn openapi-ts && yarn fix"
     },
     "dependencies": {
-        "@hey-api/client-axios": "0.6.2",
-        "@hey-api/client-fetch": "0.8.3"
+        "@hey-api/client-axios": "0.6.3",
+        "@hey-api/client-fetch": "0.8.4"
     }
 }

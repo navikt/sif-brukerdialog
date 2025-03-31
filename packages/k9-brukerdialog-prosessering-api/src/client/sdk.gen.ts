@@ -184,7 +184,6 @@ export class VedleggControllerService {
             },
         });
     }
-
     public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).delete<SlettVedleggResponse, SlettVedleggError, ThrowOnError>({
             security: [
@@ -200,7 +199,6 @@ export class VedleggControllerService {
             ...options,
         });
     }
-
     public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).get<HentVedleggResponse, HentVedleggError, ThrowOnError>({
             security: [

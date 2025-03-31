@@ -34,7 +34,7 @@ export type EndretStartdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
 };
 
 export type BekreftKorrigertInntektOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_KORRIGERT_INNTEKT';
+    type: 'BEKREFT_AVVIK_REGISTERINNTEKT';
 };
 
 export type UngdomsytelseIkkeGodkjentResponse = {
@@ -44,8 +44,8 @@ export type UngdomsytelseIkkeGodkjentResponse = {
 };
 
 export type UngdomsytelseIkkeGodkjentInntektResponse = {
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
+    arbeidOgFrilansInntekter?: number;
+    ytelseInntekter?: number;
     meldingFraDeltaker: string;
 };
 
@@ -65,8 +65,8 @@ export type UngdomsytelseOppgavebekreftelse = {
 };
 
 export type OppgittInntektForPeriode = {
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
+    arbeidOgFrilansInntekter?: number;
+    ytelseInntekter?: number;
     periodeForInntekt: UngPeriode;
 };
 
