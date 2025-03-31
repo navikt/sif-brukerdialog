@@ -36,9 +36,8 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //     løstDato: '2025-02-23T05:00:12.048157Z',
             // },
             {
-                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgaveReferanse: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
                 oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-                eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
                 oppgavetypeData: {
                     fraOgMed: '2026-01-01',
                     tilOgMed: '2026-01-31',

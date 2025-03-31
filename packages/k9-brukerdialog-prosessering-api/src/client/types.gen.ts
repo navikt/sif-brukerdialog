@@ -44,7 +44,7 @@ export type UngdomsytelseIkkeGodkjentResponse = {
 };
 
 export type UngdomsytelseOppgaveDto = {
-    oppgaveId: string;
+    oppgaveReferanse: string;
     bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
     ikkeGodkjentResponse?: UngdomsytelseIkkeGodkjentResponse;
     type: string;

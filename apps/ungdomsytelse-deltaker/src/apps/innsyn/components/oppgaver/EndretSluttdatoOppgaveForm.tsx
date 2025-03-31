@@ -53,7 +53,7 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
         const dto: UngdomsytelseOppgavebekreftelse = {
             deltakelseId,
             oppgave: {
-                oppgaveId: oppgave.id,
+                oppgaveReferanse: oppgave.oppgaveReferanse,
                 bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
                 ikkeGodkjentResponse: godkjennerOppgave
                     ? undefined

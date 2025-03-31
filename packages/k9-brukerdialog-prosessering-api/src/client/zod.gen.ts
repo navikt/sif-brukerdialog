@@ -25,7 +25,7 @@ export const zUngdomsytelsesøknad = z.object({
 
 export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     .object({
-        oppgaveId: z.string(),
+        oppgaveReferanse: z.string(),
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
@@ -38,13 +38,13 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
+            type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),
         }),
     );
 
 export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     .object({
-        oppgaveId: z.string(),
+        oppgaveReferanse: z.string(),
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
@@ -57,13 +57,13 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     })
     .merge(
         z.object({
-            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
+            type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),
         }),
     );
 
 export const zKontrollerRegisterinntektOppgavetypeDataDto = z
     .object({
-        oppgaveId: z.string(),
+        oppgaveReferanse: z.string(),
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
@@ -87,7 +87,7 @@ export const zUngdomsytelseIkkeGodkjentResponse = z.object({
 });
 
 export const zUngdomsytelseOppgaveDto = z.object({
-    oppgaveId: z.string(),
+    oppgaveReferanse: z.string(),
     bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
     ikkeGodkjentResponse: zUngdomsytelseIkkeGodkjentResponse.optional(),
     type: z.string(),

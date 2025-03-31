@@ -69,11 +69,10 @@ export const registrertDeltakerMock: DeltakerPersonlia = {
 export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 
 export const mockOppgave: OppgaveDto = {
-    id: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
+    oppgaveReferanse: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-02-19T13:29:14.553804Z',
-    eksternReferanse: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
     oppgavetypeData: {
         nyStartdato: '2025-01-10',
         veilederRef: 'Veil Veiledersen',
@@ -83,8 +82,7 @@ export const mockOppgave: OppgaveDto = {
 
 const oppgaver: OppgaveDto[] = [
     {
-        id: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
-        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
+        oppgaveReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -92,13 +90,12 @@ const oppgaver: OppgaveDto[] = [
             veilederRef: 'Pål  Veileder Hønesen',
             meldingFraVeileder: '2025sdf',
         },
-        status: OppgaveStatus.KANSELLERT,
+        status: OppgaveStatus.AVBRUTT,
         opprettetDato: '2025-03-18T12:46:08.782385Z',
         løstDato: '2025-03-18T13:31:05.656698Z',
     },
     {
-        id: '37bcca77-9df0-4454-a697-5ba14f87a0a1',
-        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
+        oppgaveReferanse: '37bcca77-9df0-4454-a697-5ba14f87a0a1',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -110,8 +107,7 @@ const oppgaver: OppgaveDto[] = [
         opprettetDato: '2025-03-18T13:31:05.668281Z',
     },
     {
-        id: 'ee45c5a3-95b9-4538-b6c1-3be1462c20ae',
-        eksternReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
+        oppgaveReferanse: 'ee45c5a3-95b9-4538-b6c1-3be1462c20ae',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -119,7 +115,7 @@ const oppgaver: OppgaveDto[] = [
             veilederRef: 'Pål  Veileder Hønesen',
             meldingFraVeileder: 'En del tekst',
         },
-        status: OppgaveStatus.KANSELLERT,
+        status: OppgaveStatus.AVBRUTT,
         opprettetDato: '2025-03-18T12:18:22.025109Z',
         løstDato: '2025-03-18T12:46:08.773477Z',
     },
