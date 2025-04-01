@@ -30,7 +30,7 @@
         "gen": "openapi-ts"
     },
     "dependencies": {
-        "@hey-api/client-axios": "0.6.3",
+        "@hey-api/client-axios": "0.7.0",
         "@hey-api/client-fetch": "0.8.4"
     }
 }
