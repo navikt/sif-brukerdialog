@@ -57,6 +57,9 @@ export const setupMockRoutes = async (
             },
         });
     });
+    await page.route('**/k9sak/opplaringsinstitusjoner', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.institusjonerMock) });
+    });
     await page.route('**/innsending', async (route) => {
         await route.fulfill({ status: 200 });
     });
