@@ -76,7 +76,7 @@
         "dotenv": "16.4.7",
         "eslint": "9.23.0",
         "eslint-plugin-storybook": "0.12.0",
-        "express": "4.21.2",
+        "express": "5.1.0",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.3",
         "mockdate": "3.0.5",
@@ -86,9 +86,9 @@
         "storybook": "8.6.11",
         "tailwindcss": "4.0.17",
         "typescript": "5.8.2",
-        "vite": "6.2.3",
+        "vite": "6.2.4",
         "vite-plugin-checker": "0.9.1",
-        "vitest": "3.0.9"
+        "vitest": "3.1.1"
     },
     "scripts": {
         "build-storybook": "storybook build",
