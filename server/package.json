@@ -15,7 +15,7 @@
         "@navikt/sif-common-env": "workspace:*",
         "cookie-parser": "1.4.7",
         "csp-header": "6.1.0",
-        "express": "4.21.2",
+        "express": "5.1.0",
         "html-react-parser": "5.2.2",
         "http-proxy-middleware": "3.0.3",
         "jsdom": "26.0.0",
