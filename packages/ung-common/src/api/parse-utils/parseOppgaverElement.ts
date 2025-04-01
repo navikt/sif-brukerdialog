@@ -48,8 +48,6 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
                     oppgavetypeData: {
                         nyStartdato: ISODateToDate(endreStartdatoData.nyStartdato),
-                        veilederRef: endreStartdatoData.veilederRef,
-                        meldingFraVeileder: endreStartdatoData.meldingFraVeileder,
                     },
                 };
                 parsedOppgaver.push(endretStartdatoOppgave);
@@ -65,8 +63,6 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                     oppgavetypeData: {
                         nySluttdato: ISODateToDate(endreSluttdatoData.nySluttdato),
-                        veilederRef: endreSluttdatoData.veilederRef,
-                        meldingFraVeileder: endreSluttdatoData.meldingFraVeileder,
                     },
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);

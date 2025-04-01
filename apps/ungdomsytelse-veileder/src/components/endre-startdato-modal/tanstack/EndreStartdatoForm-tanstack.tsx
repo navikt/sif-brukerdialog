@@ -1,9 +1,8 @@
-import { Button, Radio, RadioGroup, Textarea, VStack } from '@navikt/ds-react';
+import { Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useForm } from '@tanstack/react-form';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import DateInputAndPicker from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/date-input-and-picker/DateInputAndPicker';
-import { getStringValidator } from '@navikt/sif-validation';
 
 interface Props {
     deltaker: Deltaker;
@@ -14,17 +13,8 @@ const EndreStartdatoFormTanstack = ({}: Props) => {
     const form = useForm({
         defaultValues: {
             startdato: dateToISOString(new Date()),
-            melding: '',
             deltakerInformert: '',
         },
-        // validators: {
-        //     // Pass a schema or function to validate
-        //     onChange: z.object({
-        //         startdato: z.string().min(8),
-        //         melding: z.string().min(5),
-        //         deltakerInformert: z.string().min(1),
-        //     }),
-        // },
         onSubmit: async ({ value }) => {
             console.log(JSON.stringify(value, null, 2));
         },
@@ -47,24 +37,6 @@ const EndreStartdatoFormTanstack = ({}: Props) => {
                     )}
                 />
 
-                <form.Field
-                    name="melding"
-                    validators={{
-                        onSubmit: ({ value }) => {
-                            return getStringValidator({ required: true, minLength: 5 })(value);
-                        },
-                    }}
-                    children={(field) => (
-                        <Textarea
-                            label="Melding til deltaker"
-                            name={field.name}
-                            value={field.state.value}
-                            onBlur={field.handleBlur}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                            error={field.state.meta.errors.length > 0 ? field.state.meta.errors[0] : undefined}
-                        />
-                    )}
-                />
                 <form.Field
                     name="deltakerInformert"
                     children={(field) => (

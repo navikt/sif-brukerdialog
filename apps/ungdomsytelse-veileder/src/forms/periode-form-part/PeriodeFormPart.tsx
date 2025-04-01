@@ -1,6 +1,6 @@
 import { Alert, Button, HStack, VStack } from '@navikt/ds-react';
-import { FormikDatepicker, FormikTextarea, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { FormikDatepicker, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { formaterNavn } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
 import { GYLDIG_PERIODE } from '../../settings';
@@ -16,9 +16,6 @@ interface Props {
     pending?: boolean;
     onCancel?: () => void;
 }
-
-const MELDING_MAX_LENGTH = 250;
-const MELDING_MIN_LENGTH = 5;
 
 const PeriodeFormPart = ({
     veileder,
@@ -57,17 +54,6 @@ const PeriodeFormPart = ({
                     })}
                 />
             ) : null}
-            <FormikTextarea
-                name="melding"
-                label="Melding til deltaker (valgfritt)"
-                maxLength={MELDING_MAX_LENGTH}
-                minLength={MELDING_MIN_LENGTH}
-                validate={getStringValidator({
-                    required: false,
-                    maxLength: MELDING_MAX_LENGTH,
-                    minLength: MELDING_MIN_LENGTH,
-                })}
-            />
             <FormikYesOrNoQuestion
                 name="deltakerInformert"
                 legend={`Er ${deltakernavn} informert om endringen?`}

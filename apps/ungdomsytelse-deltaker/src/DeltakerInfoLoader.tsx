@@ -6,25 +6,14 @@ import { DeltakerContextProvider } from './context/DeltakerContext';
 import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
 import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
 import { useQuery } from '@tanstack/react-query';
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { deltakerApiService } from './api/deltakerApiService';
-import { DeltakelsePeriode } from '@navikt/ung-common';
+import { fetchSøkerQueryOptions } from './queries/fetchSøkerQueryOptions';
+import { fetchDeltakelserQueryOptions } from './queries/fetchDeltakelserQueryOptions';
+import { fetchBarnQueryOptions } from './queries/fetchBarnQueryOptions';
 
 const DeltakerInfoLoader = () => {
-    const søker = useQuery<Søker>({
-        queryKey: ['søker'],
-        queryFn: fetchSøker,
-    });
-
-    const deltakelser = useQuery<DeltakelsePeriode[]>({
-        queryKey: ['deltakelser'],
-        queryFn: deltakerApiService.getAlleMineDeltakelser,
-    });
-
-    const barn = useQuery<RegistrertBarn[]>({
-        queryKey: ['deltakelser'],
-        queryFn: fetchBarn,
-    });
+    const søker = useQuery(fetchSøkerQueryOptions());
+    const deltakelser = useQuery(fetchDeltakelserQueryOptions());
+    const barn = useQuery(fetchBarnQueryOptions());
 
     const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading;
     const error = søker.isError || deltakelser.isError || barn.isError;

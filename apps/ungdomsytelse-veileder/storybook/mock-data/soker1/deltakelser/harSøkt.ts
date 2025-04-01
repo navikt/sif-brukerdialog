@@ -14,8 +14,6 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //     oppgavetypeData: {
             //         type: 'BEKREFT_ENDRET_STARTDATO',
             //         nySluttdato: '2026-01-01',
-            //         veilederRef: 'Pål Hønesen, Andeby',
-            //         meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
             //     },
             //     status: OppgaveStatus.ULØST,
             //     opprettetDato: '2025-02-22T11:43:29.048157Z',
@@ -28,8 +26,6 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //     oppgavetypeData: {
             //         type: 'BEKREFT_ENDRET_STARTDATO',
             //         nySluttdato: '2026-01-01',
-            //         veilederRef: 'Pål Hønesen, Andeby',
-            //         meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
             //     },
             //     status: OppgaveStatus.UTLØPT,
             //     opprettetDato: '2025-02-22T11:43:29.048157Z',

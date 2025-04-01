@@ -2,7 +2,6 @@ import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { EndreSluttdatoOppgave } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
-import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 import dayjs from 'dayjs';
 import {
     getIntlFormErrorHandler,
@@ -108,13 +107,6 @@ const EndretSluttdatoOppgaveForm = ({ deltakelseId, oppgave, opprinneligSluttdat
                 </>
             }>
             <VStack gap="4">
-                {oppgave.oppgavetypeData.meldingFraVeileder ? (
-                    <MeldingFraVeileder
-                        tekst={oppgave.oppgavetypeData.meldingFraVeileder}
-                        avsender={oppgave.oppgavetypeData.veilederRef}
-                    />
-                ) : null}
-
                 <FormikWrapper
                     initialValues={{}}
                     onSubmit={handleSubmit}

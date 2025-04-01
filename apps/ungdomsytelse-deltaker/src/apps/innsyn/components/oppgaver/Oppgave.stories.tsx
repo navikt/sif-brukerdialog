@@ -23,7 +23,6 @@ const endretSluttdato: Oppgave = {
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
-        veilederRef: 'Ref',
         nySluttdato: ISODateToDate('2024-07-01'),
     },
     svarfrist: dayjs().add(1, 'day').toDate(),
@@ -35,7 +34,6 @@ const endretStartdato: Oppgave = {
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        veilederRef: 'Ref',
         nyStartdato: dayjs().add(1, 'day').toDate(),
     },
     svarfrist: dayjs().add(1, 'day').toDate(),

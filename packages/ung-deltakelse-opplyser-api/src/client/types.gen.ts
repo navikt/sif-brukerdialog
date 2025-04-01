@@ -34,14 +34,10 @@ export type DeltakerDto = {
 
 export type EndretSluttdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nySluttdato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nyStartdato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
@@ -93,8 +89,6 @@ export type YtelseRegisterInntektDto = {
 
 export type EndrePeriodeDatoDto = {
     dato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type DeltakelseUtmeldingDto = {

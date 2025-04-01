@@ -3,7 +3,6 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
-import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -12,9 +11,8 @@ interface Props {
 export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            const { meldingFraVeileder = 'Hei, jeg endrer startdatoen som avtalt i møtet vårt.', nyStartdato } =
-                oppgave.oppgavetypeData;
-            const { veilederRef } = oppgave.oppgavetypeData;
+            const { nyStartdato } = oppgave.oppgavetypeData;
+
             return (
                 <HGrid columns="1fr 1fr" gap="10">
                     <VStack>
@@ -23,16 +21,6 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                         </Heading>
                         <List>
                             <List.Item>Startdato endret til: {dateFormatter.compact(nyStartdato)}</List.Item>
-                            <List.Item>
-                                <VStack gap="2" marginBlock={'0 4'}>
-                                    <Box>Melding til bruker: </Box>
-                                    {meldingFraVeileder ? (
-                                        <MeldingFraVeileder tekst={meldingFraVeileder} avsender={veilederRef} />
-                                    ) : (
-                                        'Ingen melding'
-                                    )}
-                                </VStack>
-                            </List.Item>
                         </List>
                     </VStack>
                     <VStack>
