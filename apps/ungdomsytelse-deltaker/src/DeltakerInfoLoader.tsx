@@ -40,7 +40,11 @@ const DeltakerInfoLoader = () => {
 
     const deltakelse = deltakelser.data[0];
     return (
-        <DeltakerContextProvider søker={søker.data} deltakelse={deltakelse} barn={barn.data}>
+        <DeltakerContextProvider
+            søker={søker.data}
+            deltakelse={deltakelse}
+            barn={barn.data}
+            refetchDeltakelser={deltakelser.refetch}>
             {deltakelse.harSøkt ? <InnsynApp /> : <SøknadApp />}
         </DeltakerContextProvider>
     );

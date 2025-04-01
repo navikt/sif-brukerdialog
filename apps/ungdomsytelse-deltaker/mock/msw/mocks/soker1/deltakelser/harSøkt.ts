@@ -36,6 +36,29 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                 oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                 oppgavetypeData: {
                     type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
+                    fraOgMed: '2025-01-01',
+                    tilOgMed: '2025-01-28',
+                    registerinntekt: {
+                        arbeidOgFrilansInntekter: [
+                            {
+                                inntekt: 10000,
+                                arbeidsgiver: '896929119',
+                            },
+                        ],
+                        ytelseInntekter: [],
+                        totalInntektArbeidOgFrilans: 10000,
+                        totalInntektYtelse: 0,
+                        totalInntekt: 10000,
+                    },
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-03-31T10:19:04.095497Z',
+            },
+            {
+                oppgaveReferanse: '4b4d23e6-e6f5-4ded-8228-5d2177374bab',
+                oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+                oppgavetypeData: {
+                    type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
                     fraOgMed: '2025-02-01',
                     tilOgMed: '2025-02-28',
                     registerinntekt: {
@@ -52,7 +75,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                     },
                 },
                 status: OppgaveStatus.ULØST,
-                opprettetDato: '2025-03-31T10:19:04.095497Z',
+                opprettetDato: '2024-03-31T10:19:04.095497Z',
             },
             {
                 oppgaveReferanse: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',

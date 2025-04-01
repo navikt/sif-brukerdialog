@@ -11,7 +11,7 @@ import {
 import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import RapporterInntektIkkeTilgjengeligInfo from './rapporter-inntekt/RapporterInntektIkkeTilgjengeligInfo';
-import { dateRangeToISODateRange, getDateToday, sortDateRange } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, getDateToday, sortDateRange, sortDates } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 interface Props {
@@ -30,7 +30,10 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
     }
 
     const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
-    const uløsteOppgaver = oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST);
+    const uløsteOppgaver = oppgaver
+        .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
+        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+
     const åpenInntektsperiode = getPeriodeÅpenForInntektsrapportering(rapporteringsPerioder);
 
     return (
@@ -55,7 +58,6 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
                         {rapporteringsPerioder
                             .sort((p1, p2) => sortDateRange(p1.periode, p2.periode))
                             .reverse()
-                            // .filter((p) => p.harRapportert === false)
                             .map((p) => (
                                 <RapporterInntekt key={dateRangeToISODateRange(p.periode)} rapporteringsperiode={p} />
                             ))}

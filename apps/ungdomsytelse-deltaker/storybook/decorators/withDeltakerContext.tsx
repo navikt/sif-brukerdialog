@@ -10,7 +10,7 @@ export const withDeltakerContext = (Story) => {
     const deltakelse = deltakelsePeriodeSchema.parse(deltakelserHarSøkt[0]);
     const barn = barnResponseSchema.parse(barnMock).barn;
     return (
-        <DeltakerContextProvider søker={søker} deltakelse={deltakelse} barn={barn}>
+        <DeltakerContextProvider søker={søker} deltakelse={deltakelse} barn={barn} refetchDeltakelser={() => {}}>
             <Story />
         </DeltakerContextProvider>
     );

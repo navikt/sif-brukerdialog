@@ -9,6 +9,7 @@ import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useEffect, useRef } from 'react';
+import { useDeltakerContext } from '../../../../context/DeltakerContext';
 
 interface Props {
     inntekt?: Inntekt;
@@ -20,6 +21,8 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
     const { intl } = useAppIntl();
     const { error, inntektSendt, pending, rapporterInntekt } = useRapporterInntekt();
     const { FormikWrapper, Form } = inntektFormComponents;
+
+    const { refetchDeltakelser } = useDeltakerContext();
 
     const okButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -62,7 +65,7 @@ const InntektForm = ({ periode, inntekt, onCancel }: Props) => {
                     <>
                         <Alert variant="success">Inntekt for perioden er sendt</Alert>
                         <Box>
-                            <Button ref={okButtonRef} variant="tertiary" onClick={() => window.location.reload()}>
+                            <Button ref={okButtonRef} variant="tertiary" onClick={() => refetchDeltakelser()}>
                                 Ok, oppdater side
                             </Button>
                         </Box>
