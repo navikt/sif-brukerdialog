@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { DeltakerInfo, fetchDeltakerInfo } from './api/fetchers/fetchDeltakerInfo';
 import HentDeltakerErrorPage from './components/pages/HentDeltakerErrorPage';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import InnsynApp from './apps/innsyn/InnsynApp';
@@ -7,51 +5,53 @@ import SøknadApp from './apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from './context/DeltakerContext';
 import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
 import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
+import { useQuery } from '@tanstack/react-query';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { deltakerApiService } from './api/deltakerApiService';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 
 const DeltakerInfoLoader = () => {
-    const [deltakerInfo, setDeltakerInfo] = useState<DeltakerInfo | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    const hentDeltakerInfo = async () => {
-        try {
-            const info = await fetchDeltakerInfo();
-            setDeltakerInfo(info);
-            setLoading(false);
-        } catch (err) {
-            setError('Kunne ikke laste data.');
-        }
-    };
-
-    useEffect(() => {
-        hentDeltakerInfo();
+    const søker = useQuery<Søker>({
+        queryKey: ['søker'],
+        queryFn: fetchSøker,
     });
 
-    if (loading) {
+    const deltakelser = useQuery<DeltakelsePeriode[]>({
+        queryKey: ['deltakelser'],
+        queryFn: deltakerApiService.getAlleMineDeltakelser,
+    });
+
+    const barn = useQuery<RegistrertBarn[]>({
+        queryKey: ['deltakelser'],
+        queryFn: fetchBarn,
+    });
+
+    const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading;
+    const error = søker.isError || deltakelser.isError || barn.isError;
+
+    if (isLoading) {
         return <LoadingPage />;
     }
 
     if (error) {
-        return <HentDeltakerErrorPage error={error} />;
+        return <HentDeltakerErrorPage error={'Feil ved lasting'} />;
     }
 
-    if (!deltakerInfo) {
+    if (!deltakelser.data || !søker.data || !barn.data) {
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
-    const { deltakelser, søker, barn } = deltakerInfo;
-
-    if (deltakelser.length === 0) {
+    if (deltakelser.data.length === 0) {
         return <IngenDeltakelsePage />;
     }
 
-    if (deltakelser.length > 1) {
+    if (deltakelser.data.length > 1) {
         return <FlereDeltakelserPage />;
     }
 
-    const deltakelse = deltakerInfo.deltakelser[0];
+    const deltakelse = deltakelser.data[0];
     return (
-        <DeltakerContextProvider søker={søker} deltakelse={deltakelse} barn={barn}>
+        <DeltakerContextProvider søker={søker.data} deltakelse={deltakelse} barn={barn.data}>
             {deltakelse.harSøkt ? <InnsynApp /> : <SøknadApp />}
         </DeltakerContextProvider>
     );
