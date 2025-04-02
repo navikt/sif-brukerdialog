@@ -59,7 +59,7 @@
         "@storybook/react": "8.6.11",
         "@storybook/react-vite": "8.6.11",
         "@storybook/test": "8.6.11",
-        "@tailwindcss/postcss": "4.0.17",
+        "@tailwindcss/postcss": "4.1.0",
         "@tailwindcss/vite": "4.0.17",
         "@types/node": "22.13.14",
         "@types/react": "19.0.12",
