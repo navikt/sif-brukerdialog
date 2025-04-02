@@ -1,6 +1,6 @@
 @import 'tailwindcss' layer(base);
 @import '@navikt/ds-css' layer(components);
-@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(utilities);
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(components);
 @import 'react-loading-skeleton/dist/skeleton.css' layer(utilities);
 
 @config '../tailwind.config.ts';

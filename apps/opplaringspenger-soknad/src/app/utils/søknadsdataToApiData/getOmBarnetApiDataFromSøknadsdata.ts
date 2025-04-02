@@ -37,6 +37,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (
                 _type: 'annetBarn',
                 _harFødselsnummer: true,
                 navn: omBarnetSøknadsdata.barnetsNavn,
+                fødselsdato: dateToISODate(omBarnetSøknadsdata.barnetsFødselsdato),
                 norskIdentifikator: omBarnetSøknadsdata.barnetsFødselsnummer,
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
                 relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
