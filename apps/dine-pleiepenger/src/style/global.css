@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import 'tailwindcss' layer(base);
 @import '@navikt/ds-css' layer(components);
 @import '../components/page-layout/sak-page-header/sakPageHeader.css' layer(utilities);
 
