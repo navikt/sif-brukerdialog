@@ -26,6 +26,7 @@ import FødselsattestPart from './FødselsattestPart';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getBarnetsAlder, nYearsAgo } from '../utils/omBarnetFormUtils';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { AppText } from '../../../../../i18n';
 
 interface Props {
     formValues: Partial<OmBarnetFormValues>;
@@ -45,9 +46,7 @@ const { TextField, DatePicker, Checkbox, RadioGroup, Textarea } = getTypedFormCo
 const Aldersvarsel = () => (
     <FormLayout.QuestionBleedTop>
         <Alert variant="info">
-            For å få opplæringspenger for barn over 18 år, må barnet fortsatt være under omsorgen til den som får
-            opplæring. Det gis vanligvis ikke opplæringspenger for pårørende til voksne, for eksempel ektefeller som er
-            blitt syke.
+            <AppText id="omBarnetForm.varsel20år" />
         </Alert>
     </FormLayout.QuestionBleedTop>
 );

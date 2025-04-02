@@ -74,6 +74,9 @@ const nb = {
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
     'omBarnetForm.infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
+
+    'omBarnetForm.varsel20år':
+        'For å få opplæringspenger for barn over 18 år, må barnet fortsatt være under omsorgen til den som får opplæring. Det gis vanligvis ikke opplæringspenger for pårørende til voksne, for eksempel ektefeller som er blitt syke.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -150,6 +153,9 @@ const nn: Record<keyof typeof nb, string> = {
         'Dersom du og mora til barnet er gift, blir du automatisk registrert som far til barnet. Dersom de ikkje er gift, må du erklære farskap for å bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
     'omBarnetForm.infoForFarVedNyttBarn.info.2':
         'Uavhengig av kva situasjon du er i, kan du halde fram med å fylle ut søknaden og sende den inn.',
+
+    'omBarnetForm.varsel20år':
+        'For å få opplæringspengar for barn over 18 år, må barnet framleis vere under omsorga til den som får opplæring. Det blir vanlegvis ikkje gitt opplæringspengar til pårørande av vaksne, til dømes ektefellar som har blitt sjuke.',
 };
 
 export type OmBarnetFormMessageKeys = keyof typeof nb;
