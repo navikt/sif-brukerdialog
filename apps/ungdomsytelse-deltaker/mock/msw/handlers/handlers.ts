@@ -1,13 +1,11 @@
 import { http, HttpResponse } from 'msw';
 import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
-
-// const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse-deltaker-soknad';
-// let harSøkt = false;
+import { deltakelserMockStorage } from './deltakelseMockStorage';
 
 export const getHandlers = () => {
     const scenario = getScenarioFromLocalStorage();
-    const { barn, arbeidsgiver, søker, deltakelser } = getScenarioMockData(scenario.value);
+    const { barn, arbeidsgiver, søker } = getScenarioMockData(scenario.value);
 
     return [
         http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -24,39 +22,30 @@ export const getHandlers = () => {
             return HttpResponse.json(arbeidsgiver);
         }),
         http.get('**/deltakelse/register/hent/alle', () => {
-            return HttpResponse.json(deltakelser);
+            return HttpResponse.json(deltakelserMockStorage.get());
         }),
         http.post('**/marker-har-sokt', () => {
             return HttpResponse.json({});
         }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
+            deltakelserMockStorage.actions.setDeltakelseSøktFor();
             return new HttpResponse(null, { status: 200 });
         }),
-        http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', () => {
+        http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
+            const text = await request.text();
+            try {
+                // const data = zUngdomsytelseOppgavebekreftelse.parse(JSON.parse(text));
+                deltakelserMockStorage.actions.setOppgavebekreftelse(JSON.parse(text));
+            } catch (e) {
+                console.log(e);
+            }
             return new HttpResponse(null, { status: 200 });
         }),
-        http.post('**/ungdomsytelse/inntektsrapportering/innsending', () => {
-            return new HttpResponse(null, { status: 200 });
+        http.post('**/ungdomsytelse/inntektsrapportering/innsending', async ({ request }) => {
+            const text = await request.text();
+            // const data = zUngdomsytelseInntektsrapportering.parse(JSON.parse(text));
+            deltakelserMockStorage.actions.setInntektRapportert(JSON.parse(text).oppgittInntektForPeriode);
+            return Promise.resolve(new HttpResponse(null, { status: 200 }));
         }),
-        // http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
-        //     const data = localStorage.getItem(MellomlagringStorageKey);
-        //     const jsonData = JSON.parse(JSON.stringify(data) || '{}');
-        //     await delay(350);
-        //     return new HttpResponse(jsonData, { status: 200 });
-        // }),
-        // http.post(`**/mellomlagring/UNGDOMSYTELSE`, async ({ request }) => {
-        //     const data = await request.text();
-        //     localStorage.setItem(MellomlagringStorageKey, data);
-        //     return new HttpResponse(null, { status: 200 });
-        // }),
-        // http.put(`**/mellomlagring/UNGDOMSYTELSE`, async ({ request }) => {
-        //     const data = await request.text();
-        //     localStorage.setItem(MellomlagringStorageKey, data);
-        //     return new HttpResponse(null, { status: 200 });
-        // }),
-        // http.delete(`**/mellomlagring/UNGDOMSYTELSE`, () => {
-        //     localStorage.setItem(MellomlagringStorageKey, '');
-        //     return new HttpResponse(null, { status: 200 });
-        // }),
     ];
 };

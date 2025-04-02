@@ -29,8 +29,6 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
                 meldingFraDeltaker: z.string(),
             })
             .optional(),
@@ -48,8 +46,6 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
                 meldingFraDeltaker: z.string(),
             })
             .optional(),
@@ -67,8 +63,6 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         ikkeGodkjentResponse: z
             .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
                 meldingFraDeltaker: z.string(),
             })
             .optional(),
@@ -81,8 +75,6 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z
     );
 
 export const zUngdomsytelseIkkeGodkjentResponse = z.object({
-    korrigertDato: z.string().date(),
-    kontaktVeilederSvar: z.boolean(),
     meldingFraDeltaker: z.string(),
 });
 

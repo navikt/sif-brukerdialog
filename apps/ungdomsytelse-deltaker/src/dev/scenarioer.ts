@@ -1,6 +1,8 @@
+// import { deltakelserMockStorage } from '../../mock/msw/handlers/mockStorage';
+
 export enum ScenarioType {
-    'harSøkt' = 'harSøkt',
     'harIkkeSøkt' = 'harIkkeSøkt',
+    'harSøkt' = 'harSøkt',
 }
 
 export interface Scenario {

@@ -53,8 +53,6 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
             ikkeGodkjentResponse: godkjennerOppgave
                 ? undefined
                 : {
-                      kontaktVeilederSvar: true,
-                      korrigertDato: '',
                       meldingFraDeltaker: values[FormFields.begrunnelse]!,
                   },
             type: 'BEKREFT_AVVIK_REGISTERINNTEKT',

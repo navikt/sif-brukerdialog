@@ -1,6 +1,5 @@
 import { Heading, Switch, VStack } from '@navikt/ds-react';
-import { Deltakelse as DeltakelseContent, OppgaveStatus } from '@navikt/ung-common';
-import { DeltakelsePeriode } from '@navikt/ung-common/src/types/DeltakelsePeriode';
+import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import RapporterInntekt from './rapporter-inntekt/RapporterInntekt';
 import UløsteOppgaverList from './oppgaver/UløsteOppgaverList';
 import {

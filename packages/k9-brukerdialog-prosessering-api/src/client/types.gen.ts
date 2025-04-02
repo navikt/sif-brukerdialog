@@ -38,8 +38,6 @@ export type KontrollerRegisterinntektOppgavetypeDataDto = UngdomsytelseOppgaveDt
 };
 
 export type UngdomsytelseIkkeGodkjentResponse = {
-    korrigertDato: string;
-    kontaktVeilederSvar: boolean;
     meldingFraDeltaker: string;
 };
 

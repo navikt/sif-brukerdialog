@@ -4,6 +4,7 @@ import { Settings } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
+import { deltakelserMockStorage } from '../../mock/msw/handlers/deltakelseMockStorage';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
@@ -61,6 +62,7 @@ const DevFooter: React.FunctionComponent = () => {
                             type="button"
                             onClick={() => {
                                 saveScenarioToLocalStorage(scenario);
+                                deltakelserMockStorage.reset();
                                 window.location.reload();
                             }}>
                             Velg
