@@ -41,14 +41,13 @@ const RegistrertBarn = ({ barn }: { barn: RegistrertBarn }) => (
 
 const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApiData; fødselsattester: Vedlegg[] }) => (
     <>
-        {!apiData._harFødselsnummer ? (
-            <FormSummary.Answer>
-                <FormSummary.Label>
-                    <AppText id="steg.oppsummering.barnet.fødselsdato" />
-                </FormSummary.Label>
-                <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
-            </FormSummary.Answer>
-        ) : null}
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <AppText id="steg.oppsummering.barnet.fødselsdato" />
+            </FormSummary.Label>
+            <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
+        </FormSummary.Answer>
+
         {apiData._harFødselsnummer ? (
             <FormSummary.Answer>
                 <FormSummary.Label>

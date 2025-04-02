@@ -10,6 +10,7 @@ export interface RelasjonTilBarnetSøknadsdataBase {
 interface OmBarnetFormSøknadsdata_AnnetBarn extends RelasjonTilBarnetSøknadsdataBase {
     type: 'annetBarn';
     barnetsNavn: string;
+    barnetsFødselsdato: Date;
     barnetsFødselsnummer: string;
 }
 

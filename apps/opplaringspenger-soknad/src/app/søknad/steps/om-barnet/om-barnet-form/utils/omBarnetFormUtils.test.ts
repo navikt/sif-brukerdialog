@@ -48,7 +48,6 @@ const formValuesBarnUtenFnr: OmBarnetFormValues = {
     barnetsNavn: 'Navn',
     fødselsattest: [],
     relasjonTilBarnet: RelasjonTilBarnet.MEDMOR,
-
     årsakManglerIdentitetsnummer: ÅrsakBarnetManglerIdentitetsnummer.NYFØDT,
 };
 
@@ -66,10 +65,12 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     annetBarnMor: {
         formValues: {
             ...formValuesMedFnr,
+            barnetsFødselsdato: '2020-01-01',
             relasjonTilBarnet: RelasjonTilBarnet.MOR,
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.MOR,
             barnetsNavn: 'Navn',
@@ -78,10 +79,12 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     annetBarnFar: {
         formValues: {
             ...formValuesMedFnr,
+            barnetsFødselsdato: '2020-01-01',
             relasjonTilBarnet: RelasjonTilBarnet.FAR,
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.FAR,
             barnetsNavn: 'Navn',
