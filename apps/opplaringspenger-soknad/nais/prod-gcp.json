@@ -5,7 +5,10 @@
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"],
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "minReplicas": 2,
