@@ -26,7 +26,7 @@ interface Props {
 const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, children }: Props) => {
     const { text } = useSoknadIntl();
     return (
-        <Page title={title}>
+        <Page title={title} className="soknad-velkommen-page">
             <VStack gap="8">
                 <VelkommenPageHeader title={title} />
 
