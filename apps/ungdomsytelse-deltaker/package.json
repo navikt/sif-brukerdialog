@@ -5,7 +5,6 @@
     "version": "0.6.1",
     "scripts": {
         "dev": "node ./dev-server.cjs",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/ungdomsytelse-deltaker",

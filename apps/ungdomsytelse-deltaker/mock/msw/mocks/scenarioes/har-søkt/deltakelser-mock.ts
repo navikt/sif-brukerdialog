@@ -1,6 +1,6 @@
 import { DeltakelsePeriodInfo, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
-export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
+const deltakelser: DeltakelsePeriodInfo[] = [
     {
         id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
         fraOgMed: '2024-12-02',
@@ -154,3 +154,5 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
         ],
     },
 ];
+
+export default deltakelser;

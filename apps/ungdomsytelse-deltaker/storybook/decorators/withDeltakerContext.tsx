@@ -1,16 +1,11 @@
-import { barnResponseSchema, søkerResponseSchema } from '@navikt/sif-common-api';
-import { deltakelsePeriodeSchema } from '@navikt/ung-common';
-import { søker1Mock } from '../../mock/msw/mocks/soker1';
-import { barnMock } from '../../mock/msw/mocks/soker1/barnMock';
-import { deltakelserHarSøkt } from '../../mock/msw/mocks/soker1/deltakelser/harSøkt';
 import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
+import { getScenarioMockData } from '../../mock/msw/mocks/scenarioes';
+import { ScenarioType } from '../../src/dev/scenarioer';
 
 export const withDeltakerContext = (Story) => {
-    const søker = søkerResponseSchema.parse(søker1Mock);
-    const deltakelse = deltakelsePeriodeSchema.parse(deltakelserHarSøkt[0]);
-    const barn = barnResponseSchema.parse(barnMock).barn;
+    const { barn, søker, deltakelser } = getScenarioMockData(ScenarioType.harSøkt);
     return (
-        <DeltakerContextProvider søker={søker} deltakelse={deltakelse} barn={barn} refetchDeltakelser={() => {}}>
+        <DeltakerContextProvider søker={søker} deltakelse={deltakelser[0]} barn={barn} refetchDeltakelser={() => {}}>
             <Story />
         </DeltakerContextProvider>
     );

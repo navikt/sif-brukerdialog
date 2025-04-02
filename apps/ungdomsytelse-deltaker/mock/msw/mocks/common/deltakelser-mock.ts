@@ -1,4 +1,4 @@
-export const deltakelserIkkeSøkt = [
+export default [
     {
         id: '123',
         fraOgMed: '2024-07-01',
