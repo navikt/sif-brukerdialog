@@ -3188,12 +3188,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/client-fetch@npm:0.9.0":
-  version: 0.9.0
-  resolution: "@hey-api/client-fetch@npm:0.9.0"
+"@hey-api/client-fetch@npm:0.10.0":
+  version: 0.10.0
+  resolution: "@hey-api/client-fetch@npm:0.10.0"
   peerDependencies:
     "@hey-api/openapi-ts": < 2
-  checksum: 10/1649585722d6450f6ec3507c37463ccece87abf9be808c03b968bd9dce109a53197f56ba7600bb9e861fb2411992e6cb24609c84c215791ed2848344e58cb6ca
+  checksum: 10/f77dc512047f2fcbba4a1be079020c6c821391b34da426079e1e306ee2ee9f83e7f1130ad7a697a340f2e29bde1e0ce8af3b88a4f8631b849426bd7b2cc24fb9
   languageName: node
   linkType: hard
 
@@ -4525,7 +4525,7 @@ __metadata:
   resolution: "@navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering-api"
   dependencies:
     "@hey-api/client-axios": "npm:0.7.0"
-    "@hey-api/client-fetch": "npm:0.9.0"
+    "@hey-api/client-fetch": "npm:0.10.0"
     "@hey-api/openapi-ts": "npm:0.65.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
@@ -5889,7 +5889,7 @@ __metadata:
   resolution: "@navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api"
   dependencies:
     "@hey-api/client-axios": "npm:0.7.0"
-    "@hey-api/client-fetch": "npm:0.9.0"
+    "@hey-api/client-fetch": "npm:0.10.0"
     "@hey-api/openapi-ts": "npm:0.65.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
