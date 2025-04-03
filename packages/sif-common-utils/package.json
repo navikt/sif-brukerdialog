@@ -18,7 +18,7 @@
         "@babel/preset-react": "7.26.3",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.13.14",
-        "@types/react": "19.0.12",
+        "@types/react": "19.1.0",
         "@types/react-dom": "19.0.4",
         "@types/uuid": "10.0.0",
         "config": "workspace:*",

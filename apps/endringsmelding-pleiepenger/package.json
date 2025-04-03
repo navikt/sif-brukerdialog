@@ -69,7 +69,7 @@
         "@types/intl": "1.2.2",
         "@types/js-cookie": "3.0.6",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.0.12",
+        "@types/react": "19.1.0",
         "@types/react-document-title": "2.0.10",
         "@types/react-dom": "19.0.4",
         "@types/react-router-dom": "5.3.3",

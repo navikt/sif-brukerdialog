@@ -63,7 +63,7 @@
         "@storybook/test": "8.6.11",
         "@tailwindcss/postcss": "4.0.17",
         "@tailwindcss/vite": "4.0.17",
-        "@types/react": "19.0.12",
+        "@types/react": "19.1.0",
         "classnames": "2.5.1",
         "dayjs": "1.11.13",
         "eslint": "9.23.0",
