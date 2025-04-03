@@ -37,15 +37,15 @@ export type KontrollerRegisterinntektOppgavetypeDataDto = UngdomsytelseOppgaveDt
     type: 'BEKREFT_AVVIK_REGISTERINNTEKT';
 };
 
-export type UngdomsytelseIkkeGodkjentResponse = {
-    meldingFraDeltaker: string;
-};
-
 export type UngdomsytelseOppgaveDto = {
     oppgaveReferanse: string;
-    bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
-    ikkeGodkjentResponse?: UngdomsytelseIkkeGodkjentResponse;
+    uttalelse: UngdomsytelseOppgaveUttalelseDto;
     type: string;
+};
+
+export type UngdomsytelseOppgaveUttalelseDto = {
+    bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
+    meldingFraDeltaker?: string;
 };
 
 export type UngdomsytelseOppgavebekreftelse = {
@@ -523,9 +523,14 @@ export type FrilansOlp = {
 };
 
 export type Kurs = {
-    kursholder: string;
+    kursholder: Kursholder;
     kursperioder: Array<string>;
     reise: Reise;
+};
+
+export type Kursholder = {
+    uuid?: string;
+    navn: string;
 };
 
 export type OpplæringspengerSøknad = {

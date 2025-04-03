@@ -13,6 +13,12 @@ export type ProblemDetail = {
     };
 };
 
+export type EndrePeriodeDatoDto = {
+    dato: string;
+    veilederRef: string;
+    meldingFraVeileder?: string;
+};
+
 export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
     arbeidsgiver: string;
@@ -34,10 +40,14 @@ export type DeltakerDto = {
 
 export type EndretSluttdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nySluttdato: string;
+    veilederRef: string;
+    meldingFraVeileder?: string;
 };
 
 export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nyStartdato: string;
+    veilederRef: string;
+    meldingFraVeileder?: string;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
@@ -87,10 +97,6 @@ export type YtelseRegisterInntektDto = {
     ytelsetype: string;
 };
 
-export type EndrePeriodeDatoDto = {
-    dato: string;
-};
-
 export type DeltakelseUtmeldingDto = {
     utmeldingsdato: string;
 };
@@ -134,7 +140,7 @@ export type RegisterInntektDto = {
 };
 
 export type RegisterInntektOppgaveDto = {
-    aktørId: string;
+    deltakerIdent: string;
     referanse: string;
     frist: string;
     fomDato: string;
@@ -164,41 +170,6 @@ export type RapportPeriodeinfoDto = {
     inntektFraYtelse?: number;
     summertInntekt?: number;
 };
-
-export type OppdaterFraProgramData = {
-    body: DeltakelseOpplysningDto;
-    path: {
-        deltakelseId: string;
-    };
-    query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/oppdater';
-};
-
-export type OppdaterFraProgramErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type OppdaterFraProgramError = OppdaterFraProgramErrors[keyof OppdaterFraProgramErrors];
-
-export type OppdaterFraProgramResponses = {
-    /**
-     * OK
-     */
-    200: DeltakelseOpplysningDto;
-};
-
-export type OppdaterFraProgramResponse = OppdaterFraProgramResponses[keyof OppdaterFraProgramResponses];
 
 export type EndreStartdatoData = {
     body: EndrePeriodeDatoDto;
@@ -340,39 +311,6 @@ export type MarkerDeltakelseSomSøktResponses = {
 
 export type MarkerDeltakelseSomSøktResponse = MarkerDeltakelseSomSøktResponses[keyof MarkerDeltakelseSomSøktResponses];
 
-export type LeggTilIProgramData = {
-    body: DeltakelseOpplysningDto;
-    path?: never;
-    query?: never;
-    url: '/veileder/register/legg-til';
-};
-
-export type LeggTilIProgramErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type LeggTilIProgramError = LeggTilIProgramErrors[keyof LeggTilIProgramErrors];
-
-export type LeggTilIProgramResponses = {
-    /**
-     * Created
-     */
-    201: DeltakelseOpplysningDto;
-};
-
-export type LeggTilIProgramResponse = LeggTilIProgramResponses[keyof LeggTilIProgramResponses];
-
 export type MeldInnDeltakerData = {
     body: DeltakelseInnmeldingDto;
     path?: never;
@@ -505,7 +443,7 @@ export type OpprettOppgaveForKontrollAvRegisterinntektResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: OppgaveDto;
 };
 
 export type OpprettOppgaveForKontrollAvRegisterinntektResponse =
@@ -616,17 +554,16 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
 export type HentDeltakerInfoGittDeltakerIdResponse =
     HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
 
-export type HentOppgaveForDeltakelseData = {
+export type HentDeltakersOppgaveData = {
     body?: never;
     path: {
-        deltakelseId: string;
         oppgaveReferanse: string;
     };
     query?: never;
-    url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveReferanse}';
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}';
 };
 
-export type HentOppgaveForDeltakelseErrors = {
+export type HentDeltakersOppgaveErrors = {
     /**
      * Unauthorized
      */
@@ -641,17 +578,16 @@ export type HentOppgaveForDeltakelseErrors = {
     500: ProblemDetail;
 };
 
-export type HentOppgaveForDeltakelseError = HentOppgaveForDeltakelseErrors[keyof HentOppgaveForDeltakelseErrors];
+export type HentDeltakersOppgaveError = HentDeltakersOppgaveErrors[keyof HentDeltakersOppgaveErrors];
 
-export type HentOppgaveForDeltakelseResponses = {
+export type HentDeltakersOppgaveResponses = {
     /**
      * OK
      */
     200: OppgaveDto;
 };
 
-export type HentOppgaveForDeltakelseResponse =
-    HentOppgaveForDeltakelseResponses[keyof HentOppgaveForDeltakelseResponses];
+export type HentDeltakersOppgaveResponse = HentDeltakersOppgaveResponses[keyof HentDeltakersOppgaveResponses];
 
 export type HentAlleMineDeltakelserData = {
     body?: never;

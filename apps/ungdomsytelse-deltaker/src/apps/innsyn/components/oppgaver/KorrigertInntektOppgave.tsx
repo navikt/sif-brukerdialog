@@ -49,12 +49,10 @@ const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
         const oppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
             oppgaveReferanse: oppgave.oppgaveReferanse,
-            bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-            ikkeGodkjentResponse: godkjennerOppgave
-                ? undefined
-                : {
-                      meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                  },
+            uttalelse: {
+                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+                meldingFraDeltaker: values[FormFields.begrunnelse],
+            },
             type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
         };
 

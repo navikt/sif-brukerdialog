@@ -74,6 +74,8 @@ export const mockOppgave: OppgaveDto = {
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-02-19T13:29:14.553804Z',
     oppgavetypeData: {
+        veilederRef: '',
+        meldingFraVeileder: '',
         nyStartdato: '2025-01-10',
     },
 };
@@ -83,8 +85,9 @@ const oppgaver: OppgaveDto[] = [
         oppgaveReferanse: 'eedc9be0-5cd7-4eb8-8cde-1cf9375e6eb5',
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
-            type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
             nyStartdato: '2025-01-01',
+            veilederRef: '',
+            meldingFraVeileder: '',
         },
         status: OppgaveStatus.AVBRUTT,
         opprettetDato: '2025-03-18T12:46:08.782385Z',
@@ -95,6 +98,8 @@ const oppgaver: OppgaveDto[] = [
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            veilederRef: '',
+            meldingFraVeileder: '',
             nyStartdato: '2025-03-03',
         },
         status: OppgaveStatus.ULØST,
@@ -105,6 +110,9 @@ const oppgaver: OppgaveDto[] = [
         oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
         oppgavetypeData: {
             type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+            veilederRef: '',
+            meldingFraVeileder: '',
+
             nyStartdato: '2024-12-02',
         },
         status: OppgaveStatus.AVBRUTT,

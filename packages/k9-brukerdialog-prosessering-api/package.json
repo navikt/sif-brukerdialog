@@ -28,7 +28,7 @@
         "test": "vitest run",
         "openapi-ts": "openapi-ts",
         "fix": "node ./scripts/fixGen.mjs",
-        "generate-and-fix": "yarn openapi-ts && yarn fix"
+        "gen-types": "yarn openapi-ts && yarn fix"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.7.0",

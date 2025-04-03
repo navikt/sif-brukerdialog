@@ -51,12 +51,10 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
             deltakelseId,
             oppgave: {
                 oppgaveReferanse: oppgave.oppgaveReferanse,
-                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                ikkeGodkjentResponse: godkjennerOppgave
-                    ? undefined
-                    : {
-                          meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                      },
+                uttalelse: {
+                    bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+                    meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                },
                 type: 'BEKREFT_ENDRET_STARTDATO',
             },
         };

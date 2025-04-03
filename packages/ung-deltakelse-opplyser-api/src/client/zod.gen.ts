@@ -11,6 +11,12 @@ export const zProblemDetail = z.object({
     properties: z.object({}).optional(),
 });
 
+export const zEndrePeriodeDatoDto = z.object({
+    dato: z.string().date(),
+    veilederRef: z.string(),
+    meldingFraVeileder: z.string().optional(),
+});
+
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
     inntekt: z.number().int(),
     arbeidsgiver: z.string(),
@@ -37,11 +43,15 @@ export const zDeltakelseOpplysningDto = z.object({
                 z.object({}).merge(
                     z.object({
                         nySluttdato: z.string().date(),
+                        veilederRef: z.string(),
+                        meldingFraVeileder: z.string().optional(),
                     }),
                 ),
                 z.object({}).merge(
                     z.object({
                         nyStartdato: z.string().date(),
+                        veilederRef: z.string(),
+                        meldingFraVeileder: z.string().optional(),
                     }),
                 ),
                 z.object({}).merge(
@@ -78,12 +88,16 @@ export const zDeltakerDto = z.object({
 export const zEndretSluttdatoOppgavetypeDataDto = z.object({}).merge(
     z.object({
         nySluttdato: z.string().date(),
+        veilederRef: z.string(),
+        meldingFraVeileder: z.string().optional(),
     }),
 );
 
 export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
     z.object({
         nyStartdato: z.string().date(),
+        veilederRef: z.string(),
+        meldingFraVeileder: z.string().optional(),
     }),
 );
 
@@ -147,10 +161,6 @@ export const zYtelseRegisterInntektDto = z.object({
     ytelsetype: z.string(),
 });
 
-export const zEndrePeriodeDatoDto = z.object({
-    dato: z.string().date(),
-});
-
 export const zDeltakelseUtmeldingDto = z.object({
     utmeldingsdato: z.string().date(),
 });
@@ -205,7 +215,7 @@ export const zRegisterInntektDto = z.object({
 });
 
 export const zRegisterInntektOppgaveDto = z.object({
-    aktørId: z.string(),
+    deltakerIdent: z.string(),
     referanse: z.string().uuid(),
     frist: z.string().datetime(),
     fomDato: z.string().date(),
@@ -245,8 +255,6 @@ export const zRapportPeriodeinfoDto = z.object({
     summertInntekt: z.number().optional(),
 });
 
-export const zOppdaterFraProgramResponse = zDeltakelseOpplysningDto;
-
 export const zEndreStartdatoResponse = zDeltakelseOpplysningDto;
 
 export const zEndreSluttdatoResponse = zDeltakelseOpplysningDto;
@@ -255,21 +263,19 @@ export const zMeldUtDeltakerResponse = zDeltakelseOpplysningDto;
 
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseOpplysningDto;
 
-export const zLeggTilIProgramResponse = zDeltakelseOpplysningDto;
-
 export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
 
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
 
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
 
-export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zDeltakelseOpplysningDto;
+export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zOppgaveDto;
 
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonlia;
 
-export const zHentOppgaveForDeltakelseResponse = zOppgaveDto;
+export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
 export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelsePeriodInfo);
 

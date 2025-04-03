@@ -1,11 +1,12 @@
-import { BodyLong, BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { Alert, BodyLong, BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
+import { useRef, useState } from 'react';
 import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
 import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
 import { useAppIntl } from '../../../../i18n';
+import { useDeltakerContext } from '../../../../context/DeltakerContext';
 
 interface Props {
     rapporteringsperiode: Rapporteringsperiode;
@@ -14,6 +15,10 @@ interface Props {
 const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
     const { intl } = useAppIntl();
     const { periode, harRapportert } = rapporteringsperiode;
+    const [inntektFormSent, setInntektFormSent] = useState(false);
+    const { refetchDeltakelser } = useDeltakerContext();
+
+    const meldingRef = useRef<HTMLDivElement>(null);
 
     const [visSkjema, setVisSkjema] = useState(false);
     const månedNavn = dateFormatter.month(periode.from);
@@ -42,6 +47,13 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                                 ytelseInntekter: rapporteringsperiode.inntektFraYtelse || 0,
                             }}
                         />
+                        <div role="status" aria-live="assertive">
+                            {inntektFormSent && (
+                                <Alert variant="success" ref={meldingRef} tabIndex={-1}>
+                                    Inntekt er rapportert
+                                </Alert>
+                            )}
+                        </div>
                     </VStack>
                 ) : (
                     <>
@@ -63,6 +75,13 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                             <ExpansionCard.Content>
                                 <InntektForm
                                     periode={periode}
+                                    onSuccess={() => {
+                                        setInntektFormSent(true);
+                                        refetchDeltakelser();
+                                        setTimeout(() => {
+                                            meldingRef.current?.focus();
+                                        }, 20);
+                                    }}
                                     onCancel={() => {
                                         setVisSkjema(false);
                                     }}

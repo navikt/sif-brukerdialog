@@ -9,8 +9,7 @@ import {
 } from '../utils/deltakelseUtils';
 import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
-import RapporterInntektIkkeTilgjengeligInfo from './rapporter-inntekt/RapporterInntektIkkeTilgjengeligInfo';
-import { dateRangeToISODateRange, getDateToday, sortDateRange, sortDates } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, sortDateRange, sortDates } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 }
 
 const DeltakelseContent = ({ deltakelse }: Props) => {
-    const [visTest, setVisTest] = useState(false);
+    const [visTest, setVisTest] = useState(true);
 
     if (erDeltakelseStartet(deltakelse) === false) {
         return <DeltakelseIkkeStartetInfo />;
@@ -40,11 +39,8 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
             {uløsteOppgaver.length === 0 ? null : (
                 <UløsteOppgaverList uløsteOppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
             )}
-            {åpenInntektsperiode ? (
-                <RapporterInntekt rapporteringsperiode={åpenInntektsperiode} />
-            ) : (
-                <RapporterInntektIkkeTilgjengeligInfo inntektsmåned={getDateToday()} />
-            )}
+            {åpenInntektsperiode ? <RapporterInntekt rapporteringsperiode={åpenInntektsperiode} /> : null}
+
             <Switch checked={visTest} onChange={(e) => setVisTest(e.target.checked)}>
                 Testfunksjonalitet
             </Switch>

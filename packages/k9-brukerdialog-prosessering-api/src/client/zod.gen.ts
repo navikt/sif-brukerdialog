@@ -26,12 +26,10 @@ export const zUngdomsytelsesøknad = z.object({
 export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
     .object({
         oppgaveReferanse: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
+        uttalelse: z.object({
+            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+            meldingFraDeltaker: z.string().optional(),
+        }),
         type: z.string(),
     })
     .merge(
@@ -43,12 +41,10 @@ export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
 export const zEndretStartdatoUngdomsytelseOppgaveDto = z
     .object({
         oppgaveReferanse: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
+        uttalelse: z.object({
+            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+            meldingFraDeltaker: z.string().optional(),
+        }),
         type: z.string(),
     })
     .merge(
@@ -60,12 +56,10 @@ export const zEndretStartdatoUngdomsytelseOppgaveDto = z
 export const zKontrollerRegisterinntektOppgavetypeDataDto = z
     .object({
         oppgaveReferanse: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
+        uttalelse: z.object({
+            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+            meldingFraDeltaker: z.string().optional(),
+        }),
         type: z.string(),
     })
     .merge(
@@ -74,15 +68,18 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z
         }),
     );
 
-export const zUngdomsytelseIkkeGodkjentResponse = z.object({
-    meldingFraDeltaker: z.string(),
-});
-
 export const zUngdomsytelseOppgaveDto = z.object({
     oppgaveReferanse: z.string(),
-    bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-    ikkeGodkjentResponse: zUngdomsytelseIkkeGodkjentResponse.optional(),
+    uttalelse: z.object({
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        meldingFraDeltaker: z.string().optional(),
+    }),
     type: z.string(),
+});
+
+export const zUngdomsytelseOppgaveUttalelseDto = z.object({
+    bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+    meldingFraDeltaker: z.string().optional(),
 });
 
 export const zUngdomsytelseOppgavebekreftelse = z.object({
@@ -778,13 +775,21 @@ export const zFrilansOlp = z.object({
 });
 
 export const zKurs = z.object({
-    kursholder: z.string().min(1),
+    kursholder: z.object({
+        uuid: z.string().uuid().optional(),
+        navn: z.string().min(1),
+    }),
     kursperioder: z.array(z.string()).min(1),
     reise: z.object({
         reiserUtenforKursdager: z.boolean(),
         reisedager: z.array(z.string().date()).optional(),
         reisedagerBeskrivelse: z.string().optional(),
     }),
+});
+
+export const zKursholder = z.object({
+    uuid: z.string().uuid().optional(),
+    navn: z.string().min(1),
 });
 
 export const zOpplæringspengerSøknad = z.object({
