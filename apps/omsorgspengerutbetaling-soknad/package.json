@@ -58,7 +58,7 @@
         "@storybook/react": "8.6.11",
         "@storybook/react-vite": "8.6.11",
         "@storybook/test": "8.6.11",
-        "@tailwindcss/postcss": "4.0.17",
+        "@tailwindcss/postcss": "4.1.1",
         "@tailwindcss/vite": "4.0.17",
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.2.0",
