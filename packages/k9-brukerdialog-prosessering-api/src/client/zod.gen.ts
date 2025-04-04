@@ -23,58 +23,12 @@ export const zUngdomsytelsesøknad = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
-export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
-    .object({
-        oppgaveReferanse: z.string(),
-        uttalelse: z.object({
-            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-            meldingFraDeltaker: z.string().optional(),
-        }),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
-        }),
-    );
-
-export const zEndretStartdatoUngdomsytelseOppgaveDto = z
-    .object({
-        oppgaveReferanse: z.string(),
-        uttalelse: z.object({
-            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-            meldingFraDeltaker: z.string().optional(),
-        }),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
-        }),
-    );
-
-export const zKontrollerRegisterinntektOppgavetypeDataDto = z
-    .object({
-        oppgaveReferanse: z.string(),
-        uttalelse: z.object({
-            bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-            meldingFraDeltaker: z.string().optional(),
-        }),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_AVVIK_REGISTERINNTEKT'),
-        }),
-    );
-
 export const zUngdomsytelseOppgaveDto = z.object({
     oppgaveReferanse: z.string(),
     uttalelse: z.object({
         bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
         meldingFraDeltaker: z.string().optional(),
     }),
-    type: z.string(),
 });
 
 export const zUngdomsytelseOppgaveUttalelseDto = z.object({
@@ -83,12 +37,7 @@ export const zUngdomsytelseOppgaveUttalelseDto = z.object({
 });
 
 export const zUngdomsytelseOppgavebekreftelse = z.object({
-    deltakelseId: z.string().uuid(),
-    oppgave: z.union([
-        zEndretSluttdatoUngdomsytelseOppgaveDto,
-        zEndretStartdatoUngdomsytelseOppgaveDto,
-        zKontrollerRegisterinntektOppgavetypeDataDto,
-    ]),
+    oppgave: zUngdomsytelseOppgaveDto,
 });
 
 export const zOppgittInntektForPeriode = z.object({

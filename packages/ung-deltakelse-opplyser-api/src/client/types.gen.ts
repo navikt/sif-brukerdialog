@@ -15,8 +15,6 @@ export type ProblemDetail = {
 
 export type EndrePeriodeDatoDto = {
     dato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type ArbeidOgFrilansRegisterInntektDto = {
@@ -40,14 +38,10 @@ export type DeltakerDto = {
 
 export type EndretSluttdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nySluttdato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
     nyStartdato: string;
-    veilederRef: string;
-    meldingFraVeileder?: string;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {

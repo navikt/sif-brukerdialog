@@ -13,8 +13,6 @@ export const zProblemDetail = z.object({
 
 export const zEndrePeriodeDatoDto = z.object({
     dato: z.string().date(),
-    veilederRef: z.string(),
-    meldingFraVeileder: z.string().optional(),
 });
 
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
@@ -43,15 +41,11 @@ export const zDeltakelseOpplysningDto = z.object({
                 z.object({}).merge(
                     z.object({
                         nySluttdato: z.string().date(),
-                        veilederRef: z.string(),
-                        meldingFraVeileder: z.string().optional(),
                     }),
                 ),
                 z.object({}).merge(
                     z.object({
                         nyStartdato: z.string().date(),
-                        veilederRef: z.string(),
-                        meldingFraVeileder: z.string().optional(),
                     }),
                 ),
                 z.object({}).merge(
@@ -88,16 +82,12 @@ export const zDeltakerDto = z.object({
 export const zEndretSluttdatoOppgavetypeDataDto = z.object({}).merge(
     z.object({
         nySluttdato: z.string().date(),
-        veilederRef: z.string(),
-        meldingFraVeileder: z.string().optional(),
     }),
 );
 
 export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
     z.object({
         nyStartdato: z.string().date(),
-        veilederRef: z.string(),
-        meldingFraVeileder: z.string().optional(),
     }),
 );
 

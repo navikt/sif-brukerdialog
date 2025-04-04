@@ -25,22 +25,9 @@ export type Ungdomsytelsesøknad = {
     harForståttRettigheterOgPlikter: boolean;
 };
 
-export type EndretSluttdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_ENDRET_SLUTTDATO';
-};
-
-export type EndretStartdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_ENDRET_STARTDATO';
-};
-
-export type KontrollerRegisterinntektOppgavetypeDataDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_AVVIK_REGISTERINNTEKT';
-};
-
 export type UngdomsytelseOppgaveDto = {
     oppgaveReferanse: string;
     uttalelse: UngdomsytelseOppgaveUttalelseDto;
-    type: string;
 };
 
 export type UngdomsytelseOppgaveUttalelseDto = {
@@ -49,11 +36,7 @@ export type UngdomsytelseOppgaveUttalelseDto = {
 };
 
 export type UngdomsytelseOppgavebekreftelse = {
-    deltakelseId: string;
-    oppgave:
-        | EndretSluttdatoUngdomsytelseOppgaveDto
-        | EndretStartdatoUngdomsytelseOppgaveDto
-        | KontrollerRegisterinntektOppgavetypeDataDto;
+    oppgave: UngdomsytelseOppgaveDto;
 };
 
 export type OppgittInntektForPeriode = {

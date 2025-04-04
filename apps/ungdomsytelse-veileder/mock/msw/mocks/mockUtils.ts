@@ -74,8 +74,6 @@ export const mockOppgave: OppgaveDto = {
     status: OppgaveStatus.ULØST,
     opprettetDato: '2025-02-19T13:29:14.553804Z',
     oppgavetypeData: {
-        veilederRef: '',
-        meldingFraVeileder: '',
         nyStartdato: '2025-01-10',
     },
 };

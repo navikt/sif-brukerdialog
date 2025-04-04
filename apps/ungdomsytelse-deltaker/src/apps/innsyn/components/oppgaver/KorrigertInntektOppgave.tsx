@@ -1,7 +1,7 @@
 import { Alert, BodyLong, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
 import { WalletIcon } from '@navikt/aksel-icons';
-import { KontrollerRegisterinntektOppgavetypeDataDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { UngdomsytelseOppgaveDto } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     FormikConfirmationCheckbox,
     getIntlFormErrorHandler,
@@ -41,23 +41,21 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const KorrigertInntektOppgave = ({ deltakelseId, oppgave }: Props) => {
+const KorrigertInntektOppgave = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, setVisSkjema, error, pending } = useOppgaveContext();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
-        const oppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
+        const oppgaveDto: UngdomsytelseOppgaveDto = {
             oppgaveReferanse: oppgave.oppgaveReferanse,
             uttalelse: {
                 bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
                 meldingFraDeltaker: values[FormFields.begrunnelse],
             },
-            type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
         };
 
         await sendSvar({
-            deltakelseId,
             oppgave: oppgaveDto,
         });
     };

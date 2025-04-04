@@ -39,7 +39,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
+const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, error, pending, setVisSkjema } = useOppgaveContext();
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
@@ -48,14 +48,12 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
-            deltakelseId,
             oppgave: {
                 oppgaveReferanse: oppgave.oppgaveReferanse,
                 uttalelse: {
                     bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
                     meldingFraDeltaker: values[FormFields.begrunnelse]!,
                 },
-                type: 'BEKREFT_ENDRET_STARTDATO',
             },
         };
         await sendSvar(dto);
