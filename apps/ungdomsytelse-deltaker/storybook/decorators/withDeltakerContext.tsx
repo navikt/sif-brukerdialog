@@ -5,7 +5,11 @@ import { ScenarioType } from '../../src/dev/scenarioer';
 export const withDeltakerContext = (Story) => {
     const { barn, søker, deltakelser } = getScenarioMockData(ScenarioType.harSøkt);
     return (
-        <DeltakerContextProvider søker={søker} deltakelse={deltakelser[0]} barn={barn} refetchDeltakelser={() => {}}>
+        <DeltakerContextProvider
+            søker={søker}
+            deltakelse={deltakelser[0]}
+            barn={barn}
+            refetchDeltakelser={async () => {}}>
             <Story />
         </DeltakerContextProvider>
     );

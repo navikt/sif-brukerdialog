@@ -15,7 +15,8 @@ interface Props {
 const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
     const { intl } = useAppIntl();
     const { periode, harRapportert } = rapporteringsperiode;
-    const [inntektFormSent, setInntektFormSent] = useState(false);
+    const [oppdatertPeriode, setOppdatertPeriode] = useState<Rapporteringsperiode | null>(null);
+    const [periodeErOppdatert, setPeriodeErOppdatert] = useState(false);
     const { refetchDeltakelser } = useDeltakerContext();
 
     const meldingRef = useRef<HTMLDivElement>(null);
@@ -25,6 +26,7 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
     const månedÅrNavn = dateFormatter.monthFullYear(periode.from);
 
     const fristForRapportering = getFristForRapporteringsperiode(periode);
+    const synligPeriode = oppdatertPeriode || rapporteringsperiode;
 
     return (
         <Box className="bg-deepblue-50 p-8 rounded-md">
@@ -40,15 +42,15 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                         </BodyLong>
                         <InntektOppsummering
                             visHeading={false}
-                            periode={periode}
+                            periode={synligPeriode.periode}
                             inntekt={{
-                                summertInntekt: rapporteringsperiode.summertInntekt || 0,
-                                arbeidOgFrilansInntekter: rapporteringsperiode.arbeidstakerOgFrilansInntekt || 0,
-                                ytelseInntekter: rapporteringsperiode.inntektFraYtelse || 0,
+                                summertInntekt: synligPeriode.summertInntekt || 0,
+                                arbeidOgFrilansInntekter: synligPeriode.arbeidstakerOgFrilansInntekt || 0,
+                                ytelseInntekter: synligPeriode.inntektFraYtelse || 0,
                             }}
                         />
                         <div role="status" aria-live="assertive">
-                            {inntektFormSent && (
+                            {periodeErOppdatert && (
                                 <Alert variant="success" ref={meldingRef} tabIndex={-1}>
                                     Inntekt er rapportert
                                 </Alert>
@@ -75,11 +77,22 @@ const RapporterInntekt = ({ rapporteringsperiode }: Props) => {
                             <ExpansionCard.Content>
                                 <InntektForm
                                     periode={periode}
-                                    onSuccess={() => {
-                                        setInntektFormSent(true);
-                                        refetchDeltakelser();
+                                    onSuccess={(data) => {
+                                        setOppdatertPeriode({
+                                            ...rapporteringsperiode,
+                                            arbeidstakerOgFrilansInntekt:
+                                                data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt,
+                                            inntektFraYtelse: data.oppgittInntektForPeriode.inntektFraYtelse,
+                                            summertInntekt:
+                                                (data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt || 0) +
+                                                (data.oppgittInntektForPeriode.inntektFraYtelse || 0),
+                                        });
+                                        setPeriodeErOppdatert(true);
                                         setTimeout(() => {
-                                            meldingRef.current?.focus();
+                                            refetchDeltakelser().then(() => {
+                                                meldingRef.current?.focus();
+                                                setOppdatertPeriode(null);
+                                            });
                                         }, 20);
                                     }}
                                     onCancel={() => {
