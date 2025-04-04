@@ -57,7 +57,7 @@
         "@storybook/react": "8.6.11",
         "@storybook/testing-library": "0.2.2",
         "@tailwindcss/postcss": "4.0.17",
-        "@tailwindcss/vite": "4.0.17",
+        "@tailwindcss/vite": "4.1.2",
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.2.0",
         "@types/object-hash": "3.0.6",
