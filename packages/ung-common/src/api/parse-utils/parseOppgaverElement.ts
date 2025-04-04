@@ -20,8 +20,8 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.LØST;
         case 'ULØST':
             return OppgaveStatus.ULØST;
-        case 'KANSELLERT':
-            return OppgaveStatus.KANSELLERT;
+        case 'AVBRUTT':
+            return OppgaveStatus.AVBRUTT;
         // case 'UTLØPT':
         //     return OppgaveStatus.UTLØPT;
         default:
@@ -40,7 +40,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
             case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
                 const endreStartdatoData = oppgave.oppgavetypeData as EndretStartdatoOppgavetypeDataDto;
                 const endretStartdatoOppgave: EndreStartdatoOppgave = {
-                    id: oppgave.id,
+                    oppgaveReferanse: oppgave.oppgaveReferanse,
                     status: getOppgaveStatusEnum(oppgave.status),
                     opprettetDato,
                     svarfrist,
@@ -48,8 +48,6 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
                     oppgavetypeData: {
                         nyStartdato: ISODateToDate(endreStartdatoData.nyStartdato),
-                        veilederRef: endreStartdatoData.veilederRef,
-                        meldingFraVeileder: endreStartdatoData.meldingFraVeileder,
                     },
                 };
                 parsedOppgaver.push(endretStartdatoOppgave);
@@ -57,7 +55,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
             case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
                 const endreSluttdatoData = oppgave.oppgavetypeData as EndretSluttdatoOppgavetypeDataDto;
                 const endretSluttdatoOppgave: EndreSluttdatoOppgave = {
-                    id: oppgave.id,
+                    oppgaveReferanse: oppgave.oppgaveReferanse,
                     status: getOppgaveStatusEnum(oppgave.status),
                     opprettetDato,
                     svarfrist,
@@ -65,8 +63,6 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                     oppgavetypeData: {
                         nySluttdato: ISODateToDate(endreSluttdatoData.nySluttdato),
-                        veilederRef: endreSluttdatoData.veilederRef,
-                        meldingFraVeileder: endreSluttdatoData.meldingFraVeileder,
                     },
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);
@@ -74,7 +70,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
             case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
                 const korrigertInntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
-                    id: oppgave.id,
+                    oppgaveReferanse: oppgave.oppgaveReferanse,
                     status: getOppgaveStatusEnum(oppgave.status),
                     opprettetDato,
                     svarfrist,

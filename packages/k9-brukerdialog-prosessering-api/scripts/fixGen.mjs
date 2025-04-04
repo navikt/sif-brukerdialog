@@ -13,24 +13,28 @@ const directoryPath = path.join(__dirname, '../src/client');
 
 const replacements = [
     {
-        source: `z.string().regex(/^[\p{Graph}\p{Space}\p{Sc}\p{L}\p{M}\p{N}]+$/)`,
-        replacement: 'z.string()',
+        source: `type: 'EndretSluttdatoUngdomsytelseOppgaveDTO'`,
+        replacement: `type: 'BEKREFT_ENDRET_SLUTTDATO'`,
     },
     {
-        source: `type: 'EndretSluttdatoUngdomsytelseOppgaveDTO';`,
-        replacement: `type: 'BEKREFT_ENDRET_SLUTTDATO';`,
+        source: "type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO')",
+        replacement: `type: z.literal('BEKREFT_ENDRET_SLUTTDATO')`,
     },
     {
-        source: "type: z.literal('EndretSluttdatoUngdomsytelseOppgaveDTO'),",
-        replacement: `type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),`,
+        source: `type: 'EndretStartdatoUngdomsytelseOppgaveDTO'`,
+        replacement: `type: 'BEKREFT_ENDRET_STARTDATO'`,
     },
     {
-        source: `type: 'EndretStartdatoUngdomsytelseOppgaveDTO';`,
-        replacement: `type: 'BEKREFT_ENDRET_STARTDATO';`,
+        source: "type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO')",
+        replacement: `type: z.literal('BEKREFT_ENDRET_STARTDATO')`,
     },
     {
-        source: "type: z.literal('EndretStartdatoUngdomsytelseOppgaveDTO'),",
-        replacement: `type: z.literal('BEKREFT_ENDRET_STARTDATO'),`,
+        source: `type: 'KontrollerRegisterinntektOppgavetypeDataDTO'`,
+        replacement: `type: 'BEKREFT_AVVIK_REGISTERINNTEKT'`,
+    },
+    {
+        source: "type: z.literal('KontrollerRegisterinntektOppgavetypeDataDTO')",
+        replacement: `type: z.literal('BEKREFT_AVVIK_REGISTERINNTEKT')`,
     },
 ];
 

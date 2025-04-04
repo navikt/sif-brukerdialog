@@ -1,8 +1,7 @@
 import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { EndreStartdatoOppgave, Oppgavetype } from '@navikt/ung-common';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { EndreStartdatoOppgave } from '@navikt/ung-common';
 import OppgaveLayout from './OppgaveLayout';
-import MeldingFraVeileder from '../melding-fra-veileder/MeldingFraVeileder';
 import dayjs from 'dayjs';
 import {
     getIntlFormErrorHandler,
@@ -11,7 +10,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { useAppIntl } from '../../../../i18n';
-import { getDateValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { CalendarIcon } from '@navikt/aksel-icons';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
@@ -24,25 +23,23 @@ interface Props {
 
 enum FormFields {
     harKontaktetVeileder = 'harKontaktetVeileder',
-    korrigertDato = 'korrigertDato',
     godkjenner = 'godkjenner',
     begrunnelse = 'begrunnelse',
 }
 
 type FormValues = Partial<{
-    [FormFields.korrigertDato]: Date;
     [FormFields.harKontaktetVeileder]: YesOrNo;
     [FormFields.begrunnelse]: string;
     [FormFields.godkjenner]: YesOrNo;
 }>;
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DatePicker } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
     FormFields,
     FormValues,
     ValidationError
 >();
 
-const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
+const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
     const { sendSvar, error, pending, setVisSkjema } = useOppgaveContext();
     const nyStartdatoTekst = dateFormatter.dayDateMonthYear(oppgave.oppgavetypeData.nyStartdato);
@@ -51,18 +48,12 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
-            deltakelseId,
             oppgave: {
-                oppgaveId: oppgave.id,
-                bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                ikkeGodkjentResponse: godkjennerOppgave
-                    ? undefined
-                    : {
-                          kontaktVeilederSvar: values[FormFields.harKontaktetVeileder] === YesOrNo.YES,
-                          korrigertDato: dateToISODate(values[FormFields.korrigertDato]!),
-                          meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                      },
-                type: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+                oppgaveReferanse: oppgave.oppgaveReferanse,
+                uttalelse: {
+                    bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+                    meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                },
             },
         };
         await sendSvar(dto);
@@ -96,13 +87,6 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                 </>
             }>
             <VStack gap="4">
-                {oppgave.oppgavetypeData.meldingFraVeileder ? (
-                    <MeldingFraVeileder
-                        tekst={oppgave.oppgavetypeData.meldingFraVeileder}
-                        avsender={oppgave.oppgavetypeData.veilederRef}
-                    />
-                ) : null}
-
                 <FormikWrapper
                     initialValues={{}}
                     onSubmit={handleSubmit}
@@ -148,11 +132,7 @@ const EndretStartdatoOppgaveForm = ({ deltakelseId, oppgave }: Props) => {
                                                     endre datoen til den dere blir enig om.
                                                 </Alert>
                                             ) : null}
-                                            <DatePicker
-                                                name={FormFields.korrigertDato}
-                                                label="Hvilken dato mener du er korrekt?"
-                                                validate={getDateValidator({ required: true })}
-                                            />
+
                                             <Textarea
                                                 name={FormFields.begrunnelse}
                                                 label="Skriv en kort begrunnelse for hvorfor du ikke ønsker å godkjenne denne endringen. "

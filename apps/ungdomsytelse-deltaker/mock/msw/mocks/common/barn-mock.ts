@@ -1,4 +1,4 @@
-export const barnMock = {
+export default {
     barn: [
         {
             fornavn: 'ALFABETISK',

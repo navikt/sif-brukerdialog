@@ -1,12 +1,11 @@
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@navikt/ung-common';
-import { deltakelserHarSøkt } from '../../../../mock/msw/mocks/soker1/deltakelser/harSøkt';
+import dayjs from 'dayjs';
+import { harSøktMock } from '../../../../mock/msw/mocks/scenarioes/har-søkt';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import dayjs from 'dayjs';
-
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'DeltakelseContent',
@@ -17,7 +16,7 @@ export default meta;
 
 type Story = StoryObj<typeof DeltakelseContent>;
 
-const deltakelse: DeltakelsePeriode = deltakelsePeriodeSchema.parse(deltakelserHarSøkt[0]);
+const deltakelse: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
 
 export const DeltakelseIkkeStartet: Story = {
     name: 'Deltakelse ikke startet',

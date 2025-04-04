@@ -7,7 +7,7 @@ export const useRapporterInntekt = () => {
     const [error, setError] = useState<string | null>(null);
     const [inntektSendt, setInntektSendt] = useState(false);
 
-    const rapporterInntekt = (inntekt: UngdomsytelseInntektsrapportering) => {
+    const rapporterInntekt = async (inntekt: UngdomsytelseInntektsrapportering) => {
         setPending(true);
         return deltakerApiService
             .rapporterInntekt(inntekt)
@@ -16,7 +16,7 @@ export const useRapporterInntekt = () => {
             })
             .catch((error) => {
                 setError('Rapporter inntekt feilet');
-                console.log(error);
+                console.error(error);
             })
             .finally(() => {
                 setPending(false);

@@ -11,7 +11,6 @@ export type EndreSluttdatoFormValues = {
     fnr: string;
     fom: string;
     tom?: string;
-    melding?: string;
 };
 
 interface Props {
@@ -37,8 +36,7 @@ const EndreSluttdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
             <TypedFormikWrapper<EndreSluttdatoFormValues>
                 initialValues={{}}
                 onSubmit={(values) => {
-                    const melding = values.melding ? values.melding.trim() : undefined;
-                    endreSluttdato(deltakelse, ISODateToDate(values.tom), melding);
+                    endreSluttdato(deltakelse, ISODateToDate(values.tom));
                 }}
                 renderForm={({ values }) => {
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;

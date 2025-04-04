@@ -6,6 +6,7 @@ interface DeltakerContextType {
     søker: Søker;
     deltakelse: DeltakelsePeriode;
     barn: RegistrertBarn[];
+    refetchDeltakelser: () => void;
 }
 
 export const DeltakerContext = createContext<DeltakerContextType>(null!);
@@ -14,8 +15,18 @@ interface DeltakerContextProviderProps extends DeltakerContextType {
     children: React.ReactNode;
 }
 
-export const DeltakerContextProvider = ({ children, søker, barn, deltakelse }: DeltakerContextProviderProps) => {
-    return <DeltakerContext.Provider value={{ søker, deltakelse, barn }}>{children}</DeltakerContext.Provider>;
+export const DeltakerContextProvider = ({
+    children,
+    søker,
+    barn,
+    deltakelse,
+    refetchDeltakelser,
+}: DeltakerContextProviderProps) => {
+    return (
+        <DeltakerContext.Provider value={{ søker, deltakelse, barn, refetchDeltakelser }}>
+            {children}
+        </DeltakerContext.Provider>
+    );
 };
 
 export const useDeltakerContext = (): DeltakerContextType => {

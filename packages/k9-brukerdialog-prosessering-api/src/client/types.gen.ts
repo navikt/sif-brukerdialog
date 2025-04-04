@@ -25,48 +25,23 @@ export type Ungdomsytelsesøknad = {
     harForståttRettigheterOgPlikter: boolean;
 };
 
-export type EndretSluttdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_ENDRET_SLUTTDATO';
-};
-
-export type EndretStartdatoUngdomsytelseOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_ENDRET_STARTDATO';
-};
-
-export type BekreftKorrigertInntektOppgaveDto = UngdomsytelseOppgaveDto & {
-    type: 'BEKREFT_AVVIK_REGISTERINNTEKT';
-};
-
-export type UngdomsytelseIkkeGodkjentResponse = {
-    korrigertDato: string;
-    kontaktVeilederSvar: boolean;
-    meldingFraDeltaker: string;
-};
-
-export type UngdomsytelseIkkeGodkjentInntektResponse = {
-    arbeidOgFrilansInntekter?: number;
-    ytelseInntekter?: number;
-    meldingFraDeltaker: string;
-};
-
 export type UngdomsytelseOppgaveDto = {
-    oppgaveId: string;
+    oppgaveReferanse: string;
+    uttalelse: UngdomsytelseOppgaveUttalelseDto;
+};
+
+export type UngdomsytelseOppgaveUttalelseDto = {
     bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
-    ikkeGodkjentResponse?: UngdomsytelseIkkeGodkjentResponse | UngdomsytelseIkkeGodkjentInntektResponse;
-    type: string;
+    meldingFraDeltaker?: string;
 };
 
 export type UngdomsytelseOppgavebekreftelse = {
-    deltakelseId: string;
-    oppgave:
-        | EndretSluttdatoUngdomsytelseOppgaveDto
-        | EndretStartdatoUngdomsytelseOppgaveDto
-        | BekreftKorrigertInntektOppgaveDto;
+    oppgave: UngdomsytelseOppgaveDto;
 };
 
 export type OppgittInntektForPeriode = {
-    arbeidOgFrilansInntekter?: number;
-    ytelseInntekter?: number;
+    arbeidstakerOgFrilansInntekt?: number;
+    inntektFraYtelse?: number;
     periodeForInntekt: UngPeriode;
 };
 
@@ -88,35 +63,13 @@ export type ArbeidIPeriode = {
 export type ArbeidsRedusert = {
     type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
     prosentAvNormalt?: number;
-    timerPerUke?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    timerPerUke?: string;
     arbeidsuker?: Array<ArbeidsUke>;
 };
 
 export type ArbeidsUke = {
     periode: Periode;
-    timer: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    timer: string;
 };
 
 export type Arbeidsforhold = {
@@ -154,18 +107,7 @@ export type Bosted = {
 
 export type Enkeltdag = {
     dato: string;
-    tid: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    tid: string;
 };
 
 export type Ferieuttak = {
@@ -207,18 +149,7 @@ export type Nattevåk = {
 };
 
 export type NormalArbeidstid = {
-    timerPerUkeISnitt: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    timerPerUkeISnitt: string;
 };
 
 export type Omsorgstilbud = {
@@ -243,66 +174,11 @@ export type Periode = {
 };
 
 export type PlanUkedager = {
-    mandag?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    tirsdag?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    onsdag?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    torsdag?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    fredag?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    mandag?: string;
+    tirsdag?: string;
+    onsdag?: string;
+    torsdag?: string;
+    fredag?: string;
 };
 
 export type PleiepengerSyktBarnSøknad = {
@@ -433,44 +309,8 @@ export type ArbeidstidInfo = {
 };
 
 export type ArbeidstidPeriodeInfo = {
-    jobberNormaltTimerPerDag: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            duration?: {
-                seconds?: number;
-                zero?: boolean;
-                nano?: number;
-                negative?: boolean;
-                positive?: boolean;
-            };
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    faktiskArbeidTimerPerDag: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            duration?: {
-                seconds?: number;
-                zero?: boolean;
-                nano?: number;
-                negative?: boolean;
-                positive?: boolean;
-            };
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    jobberNormaltTimerPerDag: string;
+    faktiskArbeidTimerPerDag: string;
 };
 
 export type Barn = {
@@ -568,25 +408,7 @@ export type PleiepengerSyktBarn = {
 };
 
 export type TilsynPeriodeInfo = {
-    etablertTilsynTimerPerDag: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            duration?: {
-                seconds?: number;
-                zero?: boolean;
-                nano?: number;
-                negative?: boolean;
-                positive?: boolean;
-            };
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    etablertTilsynTimerPerDag: string;
 };
 
 export type Tilsynsordning = {
@@ -608,25 +430,7 @@ export type Uttak = {
 };
 
 export type UttakPeriodeInfo = {
-    timerPleieAvBarnetPerDag: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            duration?: {
-                seconds?: number;
-                zero?: boolean;
-                nano?: number;
-                negative?: boolean;
-                positive?: boolean;
-            };
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    timerPleieAvBarnetPerDag: string;
 };
 
 export type PleiepengerILivetsSluttfaseSøknad = {
@@ -702,9 +506,14 @@ export type FrilansOlp = {
 };
 
 export type Kurs = {
-    kursholder: string;
+    kursholder: Kursholder;
     kursperioder: Array<string>;
     reise: Reise;
+};
+
+export type Kursholder = {
+    uuid?: string;
+    navn: string;
 };
 
 export type OpplæringspengerSøknad = {
@@ -790,30 +599,8 @@ export type SpørsmålOgSvar = {
 export type Utbetalingsperiode = {
     fraOgMed?: string;
     tilOgMed?: string;
-    antallTimerBorte?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
-    antallTimerPlanlagt?: {
-        seconds?: number;
-        zero?: boolean;
-        nano?: number;
-        negative?: boolean;
-        positive?: boolean;
-        units?: Array<{
-            durationEstimated?: boolean;
-            timeBased?: boolean;
-            dateBased?: boolean;
-        }>;
-    };
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
     årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
     aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
 };

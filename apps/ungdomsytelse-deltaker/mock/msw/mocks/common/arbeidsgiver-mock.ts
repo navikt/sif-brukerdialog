@@ -1,4 +1,4 @@
-export const arbeidsgiverMock = {
+export default {
     organisasjoner: [
         {
             navn: 'HAUGEN AS',

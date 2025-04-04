@@ -23,96 +23,26 @@ export const zUngdomsytelsesøknad = z.object({
     harForståttRettigheterOgPlikter: z.boolean(),
 });
 
-export const zEndretSluttdatoUngdomsytelseOppgaveDto = z
-    .object({
-        oppgaveId: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_ENDRET_SLUTTDATO'),
-        }),
-    );
-
-export const zEndretStartdatoUngdomsytelseOppgaveDto = z
-    .object({
-        oppgaveId: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                korrigertDato: z.string().date(),
-                kontaktVeilederSvar: z.boolean(),
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_ENDRET_STARTDATO'),
-        }),
-    );
-
-export const zBekreftKorrigertInntektOppgaveDto = z
-    .object({
-        oppgaveId: z.string(),
-        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-        ikkeGodkjentResponse: z
-            .object({
-                arbeidOgFrilansInntekter: z.number().int().optional(),
-                ytelseInntekter: z.number().int().optional(),
-                meldingFraDeltaker: z.string(),
-            })
-            .optional(),
-        type: z.string(),
-    })
-    .merge(
-        z.object({
-            type: z.literal('BEKREFT_AVVIK_REGISTERINNTEKT'),
-        }),
-    );
-
-export const zUngdomsytelseIkkeGodkjentResponse = z.object({
-    korrigertDato: z.string().date(),
-    kontaktVeilederSvar: z.boolean(),
-    meldingFraDeltaker: z.string(),
-});
-
-export const zUngdomsytelseIkkeGodkjentInntektResponse = z.object({
-    arbeidOgFrilansInntekter: z.number().int().optional(),
-    ytelseInntekter: z.number().int().optional(),
-    meldingFraDeltaker: z.string(),
-});
-
 export const zUngdomsytelseOppgaveDto = z.object({
-    oppgaveId: z.string(),
+    oppgaveReferanse: z.string(),
+    uttalelse: z.object({
+        bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
+        meldingFraDeltaker: z.string().optional(),
+    }),
+});
+
+export const zUngdomsytelseOppgaveUttalelseDto = z.object({
     bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-    ikkeGodkjentResponse: z
-        .union([zUngdomsytelseIkkeGodkjentResponse, zUngdomsytelseIkkeGodkjentInntektResponse])
-        .optional(),
-    type: z.string(),
+    meldingFraDeltaker: z.string().optional(),
 });
 
 export const zUngdomsytelseOppgavebekreftelse = z.object({
-    deltakelseId: z.string().uuid(),
-    oppgave: z.discriminatedUnion('type', [
-        zEndretSluttdatoUngdomsytelseOppgaveDto,
-        zEndretStartdatoUngdomsytelseOppgaveDto,
-        zBekreftKorrigertInntektOppgaveDto,
-    ]),
+    oppgave: zUngdomsytelseOppgaveDto,
 });
 
 export const zOppgittInntektForPeriode = z.object({
-    arbeidOgFrilansInntekter: z.number().int().optional(),
-    ytelseInntekter: z.number().int().optional(),
+    arbeidstakerOgFrilansInntekt: z.number().int().optional(),
+    inntektFraYtelse: z.number().int().optional(),
     periodeForInntekt: z.object({
         fraOgMed: z.string().date(),
         tilOgMed: z.string().date(),
@@ -135,24 +65,7 @@ export const zArbeidIPeriode = z.object({
         .object({
             type: z.enum(['PROSENT_AV_NORMALT', 'TIMER_I_SNITT_PER_UKE', 'ULIKE_UKER_TIMER']),
             prosentAvNormalt: z.number().optional(),
-            timerPerUke: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
+            timerPerUke: z.string().optional(),
             arbeidsuker: z
                 .array(
                     z.object({
@@ -160,22 +73,7 @@ export const zArbeidIPeriode = z.object({
                             fraOgMed: z.string().date(),
                             tilOgMed: z.string().date(),
                         }),
-                        timer: z.object({
-                            seconds: z.coerce.bigint().optional(),
-                            zero: z.boolean().optional(),
-                            nano: z.number().int().optional(),
-                            negative: z.boolean().optional(),
-                            positive: z.boolean().optional(),
-                            units: z
-                                .array(
-                                    z.object({
-                                        durationEstimated: z.boolean().optional(),
-                                        timeBased: z.boolean().optional(),
-                                        dateBased: z.boolean().optional(),
-                                    }),
-                                )
-                                .optional(),
-                        }),
+                        timer: z.string(),
                     }),
                 )
                 .optional(),
@@ -186,24 +84,7 @@ export const zArbeidIPeriode = z.object({
 export const zArbeidsRedusert = z.object({
     type: z.enum(['PROSENT_AV_NORMALT', 'TIMER_I_SNITT_PER_UKE', 'ULIKE_UKER_TIMER']),
     prosentAvNormalt: z.number().optional(),
-    timerPerUke: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
+    timerPerUke: z.string().optional(),
     arbeidsuker: z
         .array(
             z.object({
@@ -211,22 +92,7 @@ export const zArbeidsRedusert = z.object({
                     fraOgMed: z.string().date(),
                     tilOgMed: z.string().date(),
                 }),
-                timer: z.object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                }),
+                timer: z.string(),
             }),
         )
         .optional(),
@@ -237,49 +103,19 @@ export const zArbeidsUke = z.object({
         fraOgMed: z.string().date(),
         tilOgMed: z.string().date(),
     }),
-    timer: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    timer: z.string(),
 });
 
 export const zArbeidsforhold = z.object({
     normalarbeidstid: z.object({
-        timerPerUkeISnitt: z.object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        }),
+        timerPerUkeISnitt: z.string(),
     }),
     arbeidIPeriode: zArbeidIPeriode,
 });
 
 export const zArbeidsgiver = z.object({
     organisasjonsnummer: z.string().min(0).max(20).regex(/^\d+$/),
-    navn: z.string(),
+    navn: z.string().min(1),
     erAnsatt: z.boolean(),
     sluttetFørSøknadsperiode: z.boolean().optional(),
     arbeidsforhold: zArbeidsforhold.optional(),
@@ -289,7 +125,7 @@ export const zBarnDetaljer = z.object({
     fødselsnummer: z.string().length(11).regex(/^\d+$/).optional(),
     fødselsdato: z.string().date().optional(),
     aktørId: z.string().optional(),
-    navn: z.string(),
+    navn: z.string().min(1),
     getårsakManglerIdentitetsnummer: z.enum(['NYFØDT', 'BARNET_BOR_I_UTLANDET', 'ANNET']).optional(),
 });
 
@@ -301,28 +137,13 @@ export const zBeredskap = z.object({
 export const zBosted = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
-    landkode: z.string(),
+    landkode: z.string().min(1),
     landnavn: z.string(),
 });
 
 export const zEnkeltdag = z.object({
     dato: z.string().date(),
-    tid: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    tid: z.string(),
 });
 
 export const zFerieuttak = z.object({
@@ -347,8 +168,8 @@ export const zFrilans = z.object({
 });
 
 export const zLand = z.object({
-    landkode: z.string(),
-    landnavn: z.string(),
+    landkode: z.string().min(1),
+    landnavn: z.string().min(1),
 });
 
 export const zMedlemskap = z.object({
@@ -364,22 +185,7 @@ export const zNattevåk = z.object({
 });
 
 export const zNormalArbeidstid = z.object({
-    timerPerUkeISnitt: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    timerPerUkeISnitt: z.string(),
 });
 
 export const zOmsorgstilbud = z.object({
@@ -389,96 +195,11 @@ export const zOmsorgstilbud = z.object({
     enkeltdager: z.array(zEnkeltdag).optional(),
     ukedager: z
         .object({
-            mandag: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
-            tirsdag: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
-            onsdag: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
-            torsdag: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
-            fredag: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
+            mandag: z.string().optional(),
+            tirsdag: z.string().optional(),
+            onsdag: z.string().optional(),
+            torsdag: z.string().optional(),
+            fredag: z.string().optional(),
         })
         .optional(),
 });
@@ -497,96 +218,11 @@ export const zPeriode = z.object({
 });
 
 export const zPlanUkedager = z.object({
-    mandag: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
-    tirsdag: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
-    onsdag: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
-    torsdag: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
-    fredag: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
+    mandag: z.string().optional(),
+    tirsdag: z.string().optional(),
+    onsdag: z.string().optional(),
+    torsdag: z.string().optional(),
+    fredag: z.string().optional(),
 });
 
 export const zPleiepengerSyktBarnSøknad = z.object({
@@ -607,7 +243,7 @@ export const zPleiepengerSyktBarnSøknad = z.object({
             z.object({
                 fraOgMed: z.string().date(),
                 tilOgMed: z.string().date(),
-                landkode: z.string(),
+                landkode: z.string().min(1),
                 landnavn: z.string(),
                 erUtenforEøs: z.boolean().optional(),
                 erSammenMedBarnet: z.boolean().optional(),
@@ -747,7 +383,7 @@ export const zUtenlandskNæring = z.object({
 export const zUtenlandsopphold = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
-    landkode: z.string(),
+    landkode: z.string().min(1),
     landnavn: z.string(),
     erUtenforEøs: z.boolean().optional(),
     erSammenMedBarnet: z.boolean().optional(),
@@ -831,56 +467,8 @@ export const zArbeidstidInfo = z.object({
 });
 
 export const zArbeidstidPeriodeInfo = z.object({
-    jobberNormaltTimerPerDag: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    duration: z
-                        .object({
-                            seconds: z.coerce.bigint().optional(),
-                            zero: z.boolean().optional(),
-                            nano: z.number().int().optional(),
-                            negative: z.boolean().optional(),
-                            positive: z.boolean().optional(),
-                        })
-                        .optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
-    faktiskArbeidTimerPerDag: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    duration: z
-                        .object({
-                            seconds: z.coerce.bigint().optional(),
-                            zero: z.boolean().optional(),
-                            nano: z.number().int().optional(),
-                            negative: z.boolean().optional(),
-                            positive: z.boolean().optional(),
-                        })
-                        .optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    jobberNormaltTimerPerDag: z.string(),
+    faktiskArbeidTimerPerDag: z.string(),
 });
 
 export const zBarn = z.object({
@@ -1027,31 +615,7 @@ export const zPleiepengerSyktBarn = z.object({
 });
 
 export const zTilsynPeriodeInfo = z.object({
-    etablertTilsynTimerPerDag: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    duration: z
-                        .object({
-                            seconds: z.coerce.bigint().optional(),
-                            zero: z.boolean().optional(),
-                            nano: z.number().int().optional(),
-                            negative: z.boolean().optional(),
-                            positive: z.boolean().optional(),
-                        })
-                        .optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    etablertTilsynTimerPerDag: z.string(),
 });
 
 export const zTilsynsordning = z.object({
@@ -1069,31 +633,7 @@ export const zUttak = z.object({
 });
 
 export const zUttakPeriodeInfo = z.object({
-    timerPleieAvBarnetPerDag: z.object({
-        seconds: z.coerce.bigint().optional(),
-        zero: z.boolean().optional(),
-        nano: z.number().int().optional(),
-        negative: z.boolean().optional(),
-        positive: z.boolean().optional(),
-        units: z
-            .array(
-                z.object({
-                    durationEstimated: z.boolean().optional(),
-                    duration: z
-                        .object({
-                            seconds: z.coerce.bigint().optional(),
-                            zero: z.boolean().optional(),
-                            nano: z.number().int().optional(),
-                            negative: z.boolean().optional(),
-                            positive: z.boolean().optional(),
-                        })
-                        .optional(),
-                    timeBased: z.boolean().optional(),
-                    dateBased: z.boolean().optional(),
-                }),
-            )
-            .optional(),
-    }),
+    timerPleieAvBarnetPerDag: z.string(),
 });
 
 export const zPleiepengerILivetsSluttfaseSøknad = z.object({
@@ -1107,7 +647,7 @@ export const zPleiepengerILivetsSluttfaseSøknad = z.object({
     pleietrengende: z.object({
         norskIdentitetsnummer: z.string().length(11).regex(/^\d+$/).optional(),
         fødselsdato: z.string().date().optional(),
-        navn: z.string(),
+        navn: z.string().min(1),
         getårsakManglerIdentitetsnummer: z.enum(['BOR_I_UTLANDET', 'ANNET']).optional(),
     }),
     medlemskap: zMedlemskap,
@@ -1129,7 +669,7 @@ export const zPleiepengerILivetsSluttfaseSøknad = z.object({
 export const zPleietrengende = z.object({
     norskIdentitetsnummer: z.string().length(11).regex(/^\d+$/).optional(),
     fødselsdato: z.string().date().optional(),
-    navn: z.string(),
+    navn: z.string().min(1),
     getårsakManglerIdentitetsnummer: z.enum(['BOR_I_UTLANDET', 'ANNET']).optional(),
 });
 
@@ -1184,13 +724,21 @@ export const zFrilansOlp = z.object({
 });
 
 export const zKurs = z.object({
-    kursholder: z.string(),
-    kursperioder: z.array(z.string()),
+    kursholder: z.object({
+        uuid: z.string().uuid().optional(),
+        navn: z.string().min(1),
+    }),
+    kursperioder: z.array(z.string()).min(1),
     reise: z.object({
         reiserUtenforKursdager: z.boolean(),
         reisedager: z.array(z.string().date()).optional(),
         reisedagerBeskrivelse: z.string().optional(),
     }),
+});
+
+export const zKursholder = z.object({
+    uuid: z.string().uuid().optional(),
+    navn: z.string().min(1),
 });
 
 export const zOpplæringspengerSøknad = z.object({
@@ -1273,42 +821,8 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
         z.object({
             fraOgMed: z.string().date().optional(),
             tilOgMed: z.string().date().optional(),
-            antallTimerBorte: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
-            antallTimerPlanlagt: z
-                .object({
-                    seconds: z.coerce.bigint().optional(),
-                    zero: z.boolean().optional(),
-                    nano: z.number().int().optional(),
-                    negative: z.boolean().optional(),
-                    positive: z.boolean().optional(),
-                    units: z
-                        .array(
-                            z.object({
-                                durationEstimated: z.boolean().optional(),
-                                timeBased: z.boolean().optional(),
-                                dateBased: z.boolean().optional(),
-                            }),
-                        )
-                        .optional(),
-                })
-                .optional(),
+            antallTimerBorte: z.string().optional(),
+            antallTimerPlanlagt: z.string().optional(),
             årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
             aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
         }),
@@ -1329,42 +843,8 @@ export const zSpørsmålOgSvar = z.object({
 export const zUtbetalingsperiode = z.object({
     fraOgMed: z.string().date().optional(),
     tilOgMed: z.string().date().optional(),
-    antallTimerBorte: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
-    antallTimerPlanlagt: z
-        .object({
-            seconds: z.coerce.bigint().optional(),
-            zero: z.boolean().optional(),
-            nano: z.number().int().optional(),
-            negative: z.boolean().optional(),
-            positive: z.boolean().optional(),
-            units: z
-                .array(
-                    z.object({
-                        durationEstimated: z.boolean().optional(),
-                        timeBased: z.boolean().optional(),
-                        dateBased: z.boolean().optional(),
-                    }),
-                )
-                .optional(),
-        })
-        .optional(),
+    antallTimerBorte: z.string().optional(),
+    antallTimerPlanlagt: z.string().optional(),
     årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
     aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
 });
@@ -1390,7 +870,7 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknad = z.object({
 
 export const zAnnenForelder = z.object({
     fnr: z.string().length(11).regex(/^\d+$/),
-    navn: z.string(),
+    navn: z.string().min(1),
     situasjon: z.enum(['INNLAGT_I_HELSEINSTITUSJON', 'UTØVER_VERNEPLIKT', 'FENGSEL', 'SYKDOM', 'ANNET']),
     situasjonBeskrivelse: z.string().optional(),
     periodeOver6Måneder: z.boolean().optional(),
@@ -1403,7 +883,7 @@ export const zOmsorgspengerMidlertidigAleneSøknad = z.object({
     språk: z.string(),
     søkerNorskIdent: z.string().optional(),
     annenForelder: zAnnenForelder,
-    barn: z.array(zBarn),
+    barn: z.array(zBarn).min(1),
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
@@ -1412,7 +892,7 @@ export const zOmsorgspengerMidlertidigAleneSøknad = z.object({
 export const zOmsorgsdagerAleneOmOmsorgenSøknad = z.object({
     språk: z.string(),
     søkerNorskIdent: z.string().optional(),
-    barn: z.array(zBarn),
+    barn: z.array(zBarn).min(1),
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
@@ -1420,7 +900,7 @@ export const zOmsorgsdagerAleneOmOmsorgenSøknad = z.object({
 
 export const zEttersendelse = z.object({
     språk: z.string(),
-    vedlegg: z.array(z.string()),
+    vedlegg: z.array(z.string()).min(1),
     beskrivelse: z.string().optional(),
     søknadstype: z.enum([
         'PLEIEPENGER_SYKT_BARN',

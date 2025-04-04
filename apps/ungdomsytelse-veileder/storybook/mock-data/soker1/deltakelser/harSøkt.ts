@@ -14,8 +14,6 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //     oppgavetypeData: {
             //         type: 'BEKREFT_ENDRET_STARTDATO',
             //         nySluttdato: '2026-01-01',
-            //         veilederRef: 'Pål Hønesen, Andeby',
-            //         meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
             //     },
             //     status: OppgaveStatus.ULØST,
             //     opprettetDato: '2025-02-22T11:43:29.048157Z',
@@ -28,17 +26,14 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
             //     oppgavetypeData: {
             //         type: 'BEKREFT_ENDRET_STARTDATO',
             //         nySluttdato: '2026-01-01',
-            //         veilederRef: 'Pål Hønesen, Andeby',
-            //         meldingFraVeileder: 'Jeg endrer sluttdatoen som vi avtalte på møtet forrige uke.',
             //     },
             //     status: OppgaveStatus.UTLØPT,
             //     opprettetDato: '2025-02-22T11:43:29.048157Z',
             //     løstDato: '2025-02-23T05:00:12.048157Z',
             // },
             {
-                id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
+                oppgaveReferanse: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
                 oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-                eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
                 oppgavetypeData: {
                     fraOgMed: '2026-01-01',
                     tilOgMed: '2026-01-31',

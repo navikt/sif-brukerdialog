@@ -2,9 +2,6 @@
 
 import type { Options as ClientOptions, TDataShape, Client } from '@hey-api/client-axios';
 import type {
-    OppdaterFraProgramData,
-    OppdaterFraProgramResponse,
-    OppdaterFraProgramError,
     EndreStartdatoData,
     EndreStartdatoResponse,
     EndreStartdatoError,
@@ -17,9 +14,6 @@ import type {
     MarkerDeltakelseSomSøktData,
     MarkerDeltakelseSomSøktResponse,
     MarkerDeltakelseSomSøktError,
-    LeggTilIProgramData,
-    LeggTilIProgramResponse,
-    LeggTilIProgramError,
     MeldInnDeltakerData,
     MeldInnDeltakerResponse,
     MeldInnDeltakerError,
@@ -32,15 +26,17 @@ import type {
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
+    AvbrytOppgaveData,
+    AvbrytOppgaveError,
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdResponse,
     HentAlleDeltakelserGittDeltakerIdError,
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
-    HentOppgaveForDeltakelseData,
-    HentOppgaveForDeltakelseResponse,
-    HentOppgaveForDeltakelseError,
+    HentDeltakersOppgaveData,
+    HentDeltakersOppgaveResponse,
+    HentDeltakersOppgaveError,
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserResponse,
     HentAlleMineDeltakelserError,
@@ -49,19 +45,17 @@ import type {
     FjernFraProgramError,
 } from './types.gen';
 import {
-    zOppdaterFraProgramResponse,
     zEndreStartdatoResponse,
     zEndreSluttdatoResponse,
     zMeldUtDeltakerResponse,
     zMarkerDeltakelseSomSøktResponse,
-    zLeggTilIProgramResponse,
     zMeldInnDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerAktørResponse,
     zHentDeltakerInfoGittDeltakerResponse,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
-    zHentOppgaveForDeltakelseResponse,
+    zHentDeltakersOppgaveResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
 } from './zod.gen';
@@ -85,34 +79,6 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 export class VeilederService {
-    /**
-     * @deprecated
-     * Oppdater opplysninger for en eksisterende deltakelse i ungdomsprogrammet
-     */
-    public static oppdaterFraProgram<ThrowOnError extends boolean = true>(
-        options: Options<OppdaterFraProgramData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).put<OppdaterFraProgramResponse, OppdaterFraProgramError, ThrowOnError>(
-            {
-                security: [
-                    {
-                        scheme: 'bearer',
-                        type: 'http',
-                    },
-                ],
-                responseValidator: async (data) => {
-                    return await zOppdaterFraProgramResponse.parseAsync(data);
-                },
-                url: '/veileder/register/deltakelse/{deltakelseId}/oppdater',
-                ...options,
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...options?.headers,
-                },
-            },
-        );
-    }
-
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
@@ -180,32 +146,6 @@ export class VeilederService {
                 return await zMeldUtDeltakerResponse.parseAsync(data);
             },
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers,
-            },
-        });
-    }
-
-    /**
-     * @deprecated
-     * Legg til en ny deltakelse i ungdomsprogrammet
-     */
-    public static leggTilIProgram<ThrowOnError extends boolean = true>(
-        options: Options<LeggTilIProgramData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).post<LeggTilIProgramResponse, LeggTilIProgramError, ThrowOnError>({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zLeggTilIProgramResponse.parseAsync(data);
-            },
-            url: '/veileder/register/legg-til',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
@@ -315,12 +255,12 @@ export class DeltakelseService {
     /**
      * Henter en oppgave for en gitt deltakelse
      */
-    public static hentOppgaveForDeltakelse<ThrowOnError extends boolean = true>(
-        options: Options<HentOppgaveForDeltakelseData, ThrowOnError>,
+    public static hentDeltakersOppgave<ThrowOnError extends boolean = true>(
+        options: Options<HentDeltakersOppgaveData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            HentOppgaveForDeltakelseResponse,
-            HentOppgaveForDeltakelseError,
+            HentDeltakersOppgaveResponse,
+            HentDeltakersOppgaveError,
             ThrowOnError
         >({
             security: [
@@ -330,9 +270,9 @@ export class DeltakelseService {
                 },
             ],
             responseValidator: async (data) => {
-                return await zHentOppgaveForDeltakelseResponse.parseAsync(data);
+                return await zHentDeltakersOppgaveResponse.parseAsync(data);
             },
-            url: '/deltakelse/register/{deltakelseId}/oppgave/{oppgaveId}',
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
             ...options,
         });
     }
@@ -472,6 +412,28 @@ export class OppretterOgEndrerPåOppgaverService {
                 return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
             },
             url: '/oppgave/opprett',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Avbryter oppgave
+     */
+    public static avbrytOppgave<ThrowOnError extends boolean = true>(
+        options: Options<AvbrytOppgaveData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<unknown, AvbrytOppgaveError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/oppgave/avbryt',
             ...options,
             headers: {
                 'Content-Type': 'application/json',

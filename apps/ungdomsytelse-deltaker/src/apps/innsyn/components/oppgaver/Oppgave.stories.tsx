@@ -18,31 +18,29 @@ export default meta;
 type Story = StoryObj<typeof OppgavePanel>;
 
 const endretSluttdato: Oppgave = {
-    id: '123',
+    oppgaveReferanse: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
-        veilederRef: 'Ref',
         nySluttdato: ISODateToDate('2024-07-01'),
     },
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
 const endretStartdato: Oppgave = {
-    id: '123',
+    oppgaveReferanse: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        veilederRef: 'Ref',
         nyStartdato: dayjs().add(1, 'day').toDate(),
     },
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
 
 const korrigertInntekt: Oppgave = {
-    id: '123',
+    oppgaveReferanse: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
