@@ -33,7 +33,7 @@ test.describe('Fosterhjemsgodtgjørelse eller omsorgsstønad ', () => {
             .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
             .getByRole('button')
             .click();
-        await page.getByTestId('stønadGodtgjørelse-sluttdato').getByLabel('tirsdag 3', { exact: true }).click();
+        await page.getByTestId('omsorgsstønad-sluttdato').getByLabel('tirsdag 3', { exact: true }).click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
 
         const summary = await page.getByText(

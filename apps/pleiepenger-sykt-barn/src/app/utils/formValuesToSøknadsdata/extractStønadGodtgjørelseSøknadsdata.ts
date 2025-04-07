@@ -3,35 +3,35 @@ import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/Støn
 import { StønadGodtgjørelseFormValues } from '../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 
 export const extractStønadGodtgjørelseSøknadsdata = (
-    stønadGodtgjørelse: StønadGodtgjørelseFormValues,
+    omsorgsstønad: StønadGodtgjørelseFormValues,
 ): StønadGodtgjørelseSøknadsdata | undefined => {
     const {
-        mottarStønadGodtgjørelse,
+        mottarOmsorgsstønad,
         mottarStønadGodtgjørelseIHelePerioden,
         starterUndeveis,
         startdato,
         slutterUnderveis,
         sluttdato,
-    } = stønadGodtgjørelse;
-    if (mottarStønadGodtgjørelse === YesOrNo.NO) {
+    } = omsorgsstønad;
+    if (mottarOmsorgsstønad === YesOrNo.NO) {
         return {
             type: 'mottarIkke',
-            mottarStønadGodtgjørelse,
+            mottarOmsorgsstønad,
         };
     }
 
-    if (mottarStønadGodtgjørelse === YesOrNo.YES) {
+    if (mottarOmsorgsstønad === YesOrNo.YES) {
         if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
             return {
                 type: 'mottarIHelePeroden',
-                mottarStønadGodtgjørelse: YesOrNo.YES,
+                mottarOmsorgsstønad: YesOrNo.YES,
                 mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES,
             };
         }
         if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
             return {
                 type: 'mottarIDelerAvPeroden',
-                mottarStønadGodtgjørelse: YesOrNo.YES,
+                mottarOmsorgsstønad: YesOrNo.YES,
                 mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
                 starterUndeveis,
                 startdato: starterUndeveis === YesOrNo.YES ? startdato : undefined,

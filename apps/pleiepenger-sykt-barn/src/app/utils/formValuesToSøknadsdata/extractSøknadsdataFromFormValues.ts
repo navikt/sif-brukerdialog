@@ -27,7 +27,7 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
-        stønadGodtgjørelse: extractStønadGodtgjørelseSøknadsdata(values.stønadGodtgjørelse),
+        omsorgsstønad: extractStønadGodtgjørelseSøknadsdata(values.omsorgsstønad),
         harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormValues(values),
         omsorgstibud: extractOmsorgstibudSøknadsdata(values.omsorgstilbud),
         nattevåk: extractNattevåkSøknadsdata(values),

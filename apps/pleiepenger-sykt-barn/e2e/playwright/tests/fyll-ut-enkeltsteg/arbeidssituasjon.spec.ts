@@ -30,7 +30,7 @@ test.describe('Arbeidssituasjon', () => {
             .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
             .getByRole('button')
             .click();
-        await page.getByTestId('stønadGodtgjørelse-sluttdato').getByLabel('fredag 13').click();
+        await page.getByTestId('omsorgsstønad-sluttdato').getByLabel('fredag 13').click();
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();

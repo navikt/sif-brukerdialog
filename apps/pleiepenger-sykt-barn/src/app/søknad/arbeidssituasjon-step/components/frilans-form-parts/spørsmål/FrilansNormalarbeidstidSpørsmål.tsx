@@ -15,7 +15,7 @@ interface Props {
     erAktivtArbeidsforhold: boolean;
     frilanstype: Frilanstype;
     misterHonorar?: YesOrNo;
-    mottarStønadGodtgjørelse?: boolean;
+    mottarOmsorgsstønad?: boolean;
     inputTestId?: string;
 }
 
@@ -26,7 +26,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     erAktivtArbeidsforhold,
     frilanstype,
     arbeidsforhold,
-    mottarStønadGodtgjørelse,
+    mottarOmsorgsstønad,
     inputTestId,
 }) => {
     const appIntl = useAppIntl();
@@ -41,7 +41,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     return (
         <FormComponents.NumberInput
             label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, {
-                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : '',
+                infoStønadGodtgjørelse: mottarOmsorgsstønad ? tekstStønadGodtgjørelse : '',
                 hvor: 'som frilanser',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
@@ -51,7 +51,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
             description={
                 <InfoArbeiderNormaltTimerFrilanser
                     frilanstype={frilanstype}
-                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={mottarStønadGodtgjørelse}
+                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={mottarOmsorgsstønad}
                 />
             }
             width="xs"

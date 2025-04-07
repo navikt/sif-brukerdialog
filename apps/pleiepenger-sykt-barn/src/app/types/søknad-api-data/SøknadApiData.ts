@@ -18,7 +18,7 @@ export * from './ArbeidsforholdApiData';
 export * from './SelvstendigApiData';
 export * from './FrilansApiData';
 
-export const SøknadApiDataVersjon = 'Søknad-1.1.0';
+export const SøknadApiDataVersjon = 'Søknad-1.2.0';
 
 export interface PeriodeApiData {
     fraOgMed: ISODate;
@@ -162,7 +162,7 @@ export interface SøknadApiData {
     beredskap?: BeredskapApiData;
     arbeidsgivere: ArbeidsgiverAnsattApiData[];
     frilans: FrilansApiData;
-    stønadGodtgjørelse: StønadGodtgjørelseApiData;
+    omsorgsstønad: StønadGodtgjørelseApiData;
     selvstendigNæringsdrivende: SelvstendigApiData;
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApiData[];

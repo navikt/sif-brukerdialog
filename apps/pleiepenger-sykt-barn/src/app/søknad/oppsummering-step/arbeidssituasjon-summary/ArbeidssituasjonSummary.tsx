@@ -28,7 +28,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
         harVærtEllerErVernepliktig,
         opptjeningIUtlandet,
         utenlandskNæring,
-        stønadGodtgjørelse,
+        omsorgsstønad,
     },
     søknadsperiode,
     frilansoppdrag,
@@ -46,7 +46,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
                 <FormSummary.Answers>
                     <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
-                    <StønadGodtgjørelseSummary stønadGodtgjørelse={stønadGodtgjørelse} />
+                    <StønadGodtgjørelseSummary omsorgsstønad={omsorgsstønad} />
 
                     <ArbeidssituasjonFrilansSummary
                         frilans={frilans}

@@ -81,8 +81,8 @@ export const formikValues: SøknadFormValues = {
     fosterhjemsgodtgjørelse: {
         mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
     },
-    stønadGodtgjørelse: {
-        mottarStønadGodtgjørelse: YesOrNo.NO,
+    omsorgsstønad: {
+        mottarOmsorgsstønad: YesOrNo.NO,
     },
     selvstendig: {
         harHattInntektSomSN: YesOrNo.NO,

@@ -32,59 +32,57 @@ interface Props {
 const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const { text } = useAppIntl();
     const {
-        values: { stønadGodtgjørelse },
+        values: { omsorgsstønad },
     } = useFormikContext<SøknadFormValues>();
 
     return (
         <FormBlock>
             <StønadGodtgjørelseFormComponents.YesOrNoQuestion
-                name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelse}
-                legend={text('steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm')}
+                name={StønadGodtgjørelseFormField.mottarOmsorgsstønad}
+                legend={text('steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm')}
                 validate={getYesOrNoValidator()}
                 description={
                     <ExpandableInfo
-                        title={text(
-                            'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel',
-                        )}>
-                        <AppText id="steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description" />
+                        title={text('steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description.tittel')}>
+                        <AppText id="steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description" />
                     </ExpandableInfo>
                 }
             />
-            {stønadGodtgjørelse && stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES && (
+            {omsorgsstønad && omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES && (
                 <FormBlock>
                     <ResponsivePanel border={true}>
                         <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                             name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePerioden}
                             legend={text(
-                                'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm',
+                                'steg.arbeidssituasjon.omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden.spm',
                             )}
                             validate={getRequiredFieldValidator()}
-                            value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden}
+                            value={omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden}
                         />
 
-                        {stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && (
+                        {omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && (
                             <>
                                 <FormBlock>
                                     <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                                         name={StønadGodtgjørelseFormField.starterUndeveis}
-                                        legend={text('steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm')}
+                                        legend={text('steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm')}
                                         validate={getRequiredFieldValidator()}
-                                        value={stønadGodtgjørelse.starterUndeveis}
+                                        value={omsorgsstønad.starterUndeveis}
                                     />
-                                    {stønadGodtgjørelse.starterUndeveis === YesOrNo.YES && (
+                                    {omsorgsstønad.starterUndeveis === YesOrNo.YES && (
                                         <FormBlock margin="m">
                                             <StønadGodtgjørelseFormComponents.DatePicker
                                                 name={StønadGodtgjørelseFormField.startdato}
                                                 label={text(
-                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato',
+                                                    'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.startdato',
                                                 )}
                                                 dropdownCaption={true}
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
-                                                data-testid="stønadGodtgjørelse-startdato"
+                                                data-testid="omsorgsstønad-startdato"
                                                 validate={getStønadGodtgjørelseStartdatoValidator(
-                                                    stønadGodtgjørelse,
+                                                    omsorgsstønad,
                                                     søknadsperiode,
                                                 )}
                                             />
@@ -94,34 +92,31 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                 <FormBlock>
                                     <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                                         name={StønadGodtgjørelseFormField.slutterUnderveis}
-                                        legend={text('steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm')}
+                                        legend={text('steg.arbeidssituasjon.omsorgsstønad.slutterUndeveis.spm')}
                                         validate={(value) => {
-                                            if (
-                                                value === YesOrNo.NO &&
-                                                stønadGodtgjørelse.starterUndeveis === YesOrNo.NO
-                                            ) {
+                                            if (value === YesOrNo.NO && omsorgsstønad.starterUndeveis === YesOrNo.NO) {
                                                 return AppFieldValidationErrors.starter_slutter_undeveis_nei;
                                             }
 
                                             return getRequiredFieldValidator()(value);
                                         }}
-                                        value={stønadGodtgjørelse.slutterUnderveis}
+                                        value={omsorgsstønad.slutterUnderveis}
                                     />
 
-                                    {stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES && (
+                                    {omsorgsstønad.slutterUnderveis === YesOrNo.YES && (
                                         <FormBlock margin="m">
                                             <StønadGodtgjørelseFormComponents.DatePicker
                                                 name={StønadGodtgjørelseFormField.sluttdato}
                                                 label={text(
-                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato',
+                                                    'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.sluttdato',
                                                 )}
                                                 dropdownCaption={true}
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
-                                                data-testid="stønadGodtgjørelse-sluttdato"
+                                                data-testid="omsorgsstønad-sluttdato"
                                                 validate={getStønadGodtgjørelseSluttdatoValidator(
-                                                    stønadGodtgjørelse,
+                                                    omsorgsstønad,
                                                     søknadsperiode,
                                                 )}
                                             />

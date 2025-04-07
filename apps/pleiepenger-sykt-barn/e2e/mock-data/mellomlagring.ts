@@ -36,7 +36,7 @@ export const mellomlagringMock = {
         harNattevåk: 'unanswered',
         harBeredskap: 'unanswered',
         frilans: { harHattInntektSomFrilanser: 'no' },
-        stønadGodtgjørelse: { mottarStønadGodtgjørelse: 'no' },
+        omsorgsstønad: { mottarOmsorgsstønad: 'no' },
         selvstendig: { harHattInntektSomSN: 'no' },
         frilansoppdrag: [],
         harOpptjeningUtland: 'no',

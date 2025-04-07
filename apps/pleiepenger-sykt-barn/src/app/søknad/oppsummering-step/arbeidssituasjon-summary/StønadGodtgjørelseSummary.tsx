@@ -4,20 +4,20 @@ import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 
 interface Props {
-    stønadGodtgjørelse: StønadGodtgjørelseApiData;
+    omsorgsstønad: StønadGodtgjørelseApiData;
 }
 
-const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
+const StønadGodtgjørelseSummary = ({ omsorgsstønad }: Props) => {
     const {
-        mottarStønadGodtgjørelse,
+        mottarOmsorgsstønad,
         _mottarStønadGodtgjørelseIHelePeroden: mottarStønadGodtgjørelseIHelePerioden,
         _starterUndeveis,
         startdato,
         _slutterUnderveis,
         sluttdato,
-    } = stønadGodtgjørelse;
+    } = omsorgsstønad;
 
-    if (mottarStønadGodtgjørelse === false) {
+    if (mottarOmsorgsstønad === false) {
         return (
             <FormSummary.Answer data-testid="omsorgsstønad">
                 <FormSummary.Label>

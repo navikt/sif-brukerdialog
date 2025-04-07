@@ -2,43 +2,41 @@ import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
-type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'stønadGodtgjørelse'>;
+type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
 
 export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
-    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata,
+    omsorgsstønad?: StønadGodtgjørelseSøknadsdata,
 ): StønadGodtgjørelseApiData => {
-    if (stønadGodtgjørelse === undefined) {
-        throw Error('stønadGodtgjørelse undefined');
+    if (omsorgsstønad === undefined) {
+        throw Error('omsorgsstønad undefined');
     }
-    switch (stønadGodtgjørelse?.type) {
+    switch (omsorgsstønad?.type) {
         case 'mottarIkke':
             return {
-                stønadGodtgjørelse: {
-                    mottarStønadGodtgjørelse: false,
+                omsorgsstønad: {
+                    mottarOmsorgsstønad: false,
                 },
             };
 
         case 'mottarIHelePeroden':
             return {
-                stønadGodtgjørelse: {
-                    mottarStønadGodtgjørelse: true,
+                omsorgsstønad: {
+                    mottarOmsorgsstønad: true,
                     _mottarStønadGodtgjørelseIHelePeroden: true,
                 },
             };
 
         case 'mottarIDelerAvPeroden':
             return {
-                stønadGodtgjørelse: {
-                    mottarStønadGodtgjørelse: true,
+                omsorgsstønad: {
+                    mottarOmsorgsstønad: true,
                     _mottarStønadGodtgjørelseIHelePeroden: false,
 
-                    _starterUndeveis: stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? true : false,
-                    startdato:
-                        stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? stønadGodtgjørelse.startdato : undefined,
+                    _starterUndeveis: omsorgsstønad.starterUndeveis === YesOrNo.YES ? true : false,
+                    startdato: omsorgsstønad.starterUndeveis === YesOrNo.YES ? omsorgsstønad.startdato : undefined,
 
-                    _slutterUnderveis: stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? true : false,
-                    sluttdato:
-                        stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? stønadGodtgjørelse.sluttdato : undefined,
+                    _slutterUnderveis: omsorgsstønad.slutterUnderveis === YesOrNo.YES ? true : false,
+                    sluttdato: omsorgsstønad.slutterUnderveis === YesOrNo.YES ? omsorgsstønad.sluttdato : undefined,
                 },
             };
     }

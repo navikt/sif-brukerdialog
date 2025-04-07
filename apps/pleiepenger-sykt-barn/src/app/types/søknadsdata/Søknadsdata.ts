@@ -39,5 +39,5 @@ export interface Søknadsdata {
     beredskap?: BeredskapSøknadsdata;
     medlemskap?: MedlemskapSøknadsdata;
     legeerklæring?: Vedlegg[];
-    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata;
+    omsorgsstønad?: StønadGodtgjørelseSøknadsdata;
 }

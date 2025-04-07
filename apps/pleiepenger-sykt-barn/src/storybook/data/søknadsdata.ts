@@ -95,9 +95,9 @@ export const søknadsdata: Søknadsdata = {
             },
         },
     },
-    stønadGodtgjørelse: {
+    omsorgsstønad: {
         type: 'mottarIkke',
-        mottarStønadGodtgjørelse: YesOrNo.NO,
+        mottarOmsorgsstønad: YesOrNo.NO,
     },
     omsorgstibud: {
         type: 'erIOmsorgstilbudFasteDager',

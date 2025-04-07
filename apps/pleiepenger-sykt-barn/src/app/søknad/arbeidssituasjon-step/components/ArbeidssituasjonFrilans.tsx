@@ -20,7 +20,7 @@ interface Props {
 
 const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
-    const { frilansoppdrag, stønadGodtgjørelse } = values;
+    const { frilansoppdrag, omsorgsstønad } = values;
 
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
 
@@ -65,7 +65,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
 
             {frilansoppdrag.length > 0 &&
                 values.frilans.harHattInntektSomFrilanser === YesOrNo.NO &&
-                stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO && (
+                omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO && (
                     <Block margin="l">
                         <Alert variant="info">
                             <AppText id={'frilanser.ingenFrilans.info'} />

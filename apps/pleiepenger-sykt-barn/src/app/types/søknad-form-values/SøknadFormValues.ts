@@ -56,7 +56,7 @@ export enum SøknadFormField {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
     harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
     frilans = 'frilans',
-    stønadGodtgjørelse = 'stønadGodtgjørelse',
+    omsorgsstønad = 'omsorgsstønad',
     fosterhjemsgodtgjørelse = 'fosterhjemsgodtgjørelse',
     selvstendig = 'selvstendig',
     frilansoppdrag = 'frilansoppdrag',
@@ -101,7 +101,7 @@ export interface SøknadFormValues {
     [SøknadFormField.frilans]: FrilansFormValues;
     [SøknadFormField.selvstendig]: SelvstendigFormValues;
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
-    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormValues;
+    [SøknadFormField.omsorgsstønad]: StønadGodtgjørelseFormValues;
     [SøknadFormField.fosterhjemsgodtgjørelse]: FosterhjemsgodtgjørelseFormValues;
     [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;
@@ -139,8 +139,8 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.frilans]: {
         harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
     },
-    [SøknadFormField.stønadGodtgjørelse]: {
-        mottarStønadGodtgjørelse: YesOrNo.UNANSWERED,
+    [SøknadFormField.omsorgsstønad]: {
+        mottarOmsorgsstønad: YesOrNo.UNANSWERED,
     },
     [SøknadFormField.fosterhjemsgodtgjørelse]: {
         mottarFosterhjemsgodtgjørelse: YesOrNo.UNANSWERED,

@@ -3,18 +3,18 @@ import { ISODate } from '@navikt/sif-common-utils';
 
 export interface MottarIkkeStønadGodtgjørelse {
     type: 'mottarIkke';
-    mottarStønadGodtgjørelse: YesOrNo.NO;
+    mottarOmsorgsstønad: YesOrNo.NO;
 }
 
 export interface MottarStønadGodtgjørelseIHelePeroden {
     type: 'mottarIHelePeroden';
-    mottarStønadGodtgjørelse: YesOrNo.YES;
+    mottarOmsorgsstønad: YesOrNo.YES;
     mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES;
 }
 
 export interface MottarStønadGodtgjørelseIDelerAvPeroden {
     type: 'mottarIDelerAvPeroden';
-    mottarStønadGodtgjørelse: YesOrNo.YES;
+    mottarOmsorgsstønad: YesOrNo.YES;
     mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO;
     starterUndeveis: YesOrNo;
     startdato?: ISODate;
