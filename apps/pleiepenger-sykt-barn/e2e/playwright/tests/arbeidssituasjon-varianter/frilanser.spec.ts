@@ -15,37 +15,69 @@ test.beforeEach(async ({ page, context }) => {
 });
 
 test.describe('Fosterhjemsgodtgjørelse ', () => {
-    // TODO
-    // test('Mottar ikke fosterhjemsgodtgjørelse eller omsorgsstønad', async ({ page }) => {
-    //     await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
-    //     await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
-    //     await expect(page.getByText('Mottar ikke fosterhjemsgodtgjø')).toBeVisible();
-    // });
-    // test('Starter og slutter å motta i perioden', async ({ page }) => {
-    //     await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-    //     await page.getByRole('group', { name: 'Mottar du denne stønaden' }).getByLabel('Ja').check();
-    //     await page.getByRole('group', { name: 'Mottar du denne stønaden' }).getByLabel('Nei').check();
-    //     await page.getByRole('group', { name: 'Starter omsorgsstønaden' }).getByLabel('Ja').check();
-    //     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    //     await page.getByLabel('mandag 2', { exact: true }).click();
-    //     await page.getByRole('group', { name: 'Stopper omsorgsstønaden' }).getByLabel('Ja').check();
-    //     await page
-    //         .locator('div')
-    //         .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
-    //         .getByRole('button')
-    //         .click();
-    //     await page.getByTestId('omsorgsstønad-sluttdato').getByLabel('tirsdag 3', { exact: true }).click();
-    //     await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
-    //     const summary = await page.getByText(
-    //         'Omsorgsstønad eller fosterhjemsgodtgjørelseMottar stønad eller godtgjørelsen i',
-    //     );
-    //     await expect(
-    //         summary.getByText('Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om'),
-    //     ).toBeVisible();
-    //     await expect(summary.getByText('Startet 2. januar')).toBeVisible();
-    //     await expect(summary.getByText('Sluttet 3. januar')).toBeVisible();
-    // });
+    test('Mottar ikke fosterhjemsgodtgjørelse', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        await expect(page.getByText('Mottar ikke fosterhjemsgodtgjø')).toBeVisible();
+    });
+    test('Mottar fosterhjemsgodtgjørelse, men er ikke frikjøpt ', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        await expect(page.getByText('Mottar fosterhjemsgodtgjø')).toBeVisible();
+        await expect(page.getByText('Er ikke frikjøpt fra jobb')).toBeVisible();
+    });
+    test('Mottar fosterhjemsgodtgjørelse og er frikjøpt ', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
+        await page.getByLabel('Oppgi prosent', { exact: true }).fill('25');
+        await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Ja').check();
+    });
+    test('Starter og slutter å motta i perioden', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
+        await page.getByLabel('Oppgi prosent', { exact: true }).fill('25');
+        await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
+        await page.getByRole('group', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).click();
+        await page.getByLabel('mandag 2', { exact: true }).click();
+        await page.getByRole('group', { name: 'Stopper godtgjørelsen' }).getByLabel('Ja').check();
+        await page
+            .locator('div')
+            .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
+            .getByRole('button')
+            .click();
+        await page.getByTestId('fosterhjemsgodtgjørelse-sluttdato').getByLabel('tirsdag 3', { exact: true }).click();
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        const summary = await page.getByText('FosterhjemsgodtgjørelseMottar');
+        await expect(
+            summary.getByText('Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om'),
+        ).toBeVisible();
+        await expect(summary.getByText('Startet 2. januar')).toBeVisible();
+        await expect(summary.getByText('Sluttet 3. januar')).toBeVisible();
+    });
 });
+
+test.describe('Omsorgsstønad', () => {
+    test('Mottar ikke omsorgsstønad', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Nei').check();
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        await expect(page.getByText('Mottar ikke omsorgss')).toBeVisible();
+    });
+    test('Mottar omsorgsstønad i hele perioden', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
+        await page.getByRole('textbox', { name: 'Hvor mange timer mottar du' }).fill('5');
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        await expect(
+            page.getByText('Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om'),
+        ).toBeVisible();
+        await expect(page.getByText('Mottar 5 timer per uken i snitt')).toBeVisible();
+    });
+});
+
 test.describe('Frilanser', () => {
     test('Er ikke frilanser', async ({ page }) => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei', { exact: true }).nth(1).click();

@@ -5,7 +5,6 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds'
 import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-/** TODO: avklare hvilket tidsrom en faktisk kan oppgi her og i sluttdato - innenfor dagens dato, eller periode? */
 export const getFrilanserStartdatoValidator =
     (startdato: ISODate | undefined, søknadsperiode: DateRange, max: Date, min: Date) =>
     (value: string): ValidationResult<ValidationError> => {

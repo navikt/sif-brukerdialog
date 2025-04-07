@@ -44,7 +44,9 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                             )}
                         </List.Item>
                         {mottarFosterhjemsgodtgjørelse && !erFrikjøptFraJobb ? (
-                            <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.ikkeFrikjøpt" />
+                            <List.Item>
+                                <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.ikkeFrikjøpt" />
+                            </List.Item>
                         ) : null}
                     </List>
                 </FormSummary.Value>

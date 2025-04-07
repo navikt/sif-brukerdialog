@@ -37,6 +37,7 @@ export const mellomlagringMock = {
         harBeredskap: 'unanswered',
         frilans: { harHattInntektSomFrilanser: 'no' },
         omsorgsstønad: { mottarOmsorgsstønad: 'no' },
+        fosterhjemsgodtgjørelse: { mottarFosterhjemsgodtgjørelse: 'no' },
         selvstendig: { harHattInntektSomSN: 'no' },
         frilansoppdrag: [],
         harOpptjeningUtland: 'no',
@@ -46,7 +47,7 @@ export const mellomlagringMock = {
     },
     metadata: {
         lastStepID: 'medlemskap',
-        version: '14.1.0',
+        version: '14.2.0',
         updatedTimestemp: '2023-01-01T00:00:00.000Z',
         featureToggles: {
             spørOmSluttetISøknadsperiode: false,

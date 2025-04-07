@@ -15,6 +15,9 @@ export const extractOmsorgsstønadSøknadsdata = (
         sluttdato,
         antallTimer,
     } = omsorgsstønad;
+    if (mottarOmsorgsstønad === YesOrNo.UNANSWERED) {
+        return undefined;
+    }
     if (mottarOmsorgsstønad === YesOrNo.NO) {
         return {
             type: 'mottarIkke',
