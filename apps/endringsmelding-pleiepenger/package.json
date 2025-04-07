@@ -52,7 +52,7 @@
         "@navikt/ds-tailwind": "7.18.0",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@playwright/test": "1.51.1",
-        "@sentry/vite-plugin": "3.2.4",
+        "@sentry/vite-plugin": "3.3.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-actions": "8.6.12",
         "@storybook/addon-essentials": "8.6.12",

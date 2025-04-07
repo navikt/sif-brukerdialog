@@ -4460,7 +4460,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@playwright/test": "npm:1.51.1"
-    "@sentry/vite-plugin": "npm:3.2.4"
+    "@sentry/vite-plugin": "npm:3.3.1"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-actions": "npm:8.6.12"
     "@storybook/addon-essentials": "npm:8.6.12"
@@ -5146,7 +5146,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@playwright/test": "npm:1.51.1"
-    "@sentry/vite-plugin": "npm:3.2.4"
+    "@sentry/vite-plugin": "npm:3.3.1"
     "@sif/eslint-config": "workspace:*"
     "@storybook/addon-essentials": "npm:8.6.12"
     "@storybook/addon-interactions": "npm:8.6.12"
@@ -8812,10 +8812,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/babel-plugin-component-annotate@npm:3.2.4":
-  version: 3.2.4
-  resolution: "@sentry/babel-plugin-component-annotate@npm:3.2.4"
-  checksum: 10/ff32f13a775e1d38ed5ad6a1fae8efd0628cd76e14ac691347a8f6738e405ac5849310793538ccd4b98059346f54b7b00d4b531d9f6794d7bfc4147c14df7be3
+"@sentry/babel-plugin-component-annotate@npm:3.3.1":
+  version: 3.3.1
+  resolution: "@sentry/babel-plugin-component-annotate@npm:3.3.1"
+  checksum: 10/6bbbacfa1bc1da19a6f47a4fd98c9df29acfabf5681d000fdc057af153de19119bd26fb3cd83789c0d553db72957e03ef78e96d14f9d3bc936ed7ceb3879c65b
   languageName: node
   linkType: hard
 
@@ -8845,19 +8845,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/bundler-plugin-core@npm:3.2.4":
-  version: 3.2.4
-  resolution: "@sentry/bundler-plugin-core@npm:3.2.4"
+"@sentry/bundler-plugin-core@npm:3.3.1":
+  version: 3.3.1
+  resolution: "@sentry/bundler-plugin-core@npm:3.3.1"
   dependencies:
     "@babel/core": "npm:^7.18.5"
-    "@sentry/babel-plugin-component-annotate": "npm:3.2.4"
+    "@sentry/babel-plugin-component-annotate": "npm:3.3.1"
     "@sentry/cli": "npm:2.42.2"
     dotenv: "npm:^16.3.1"
     find-up: "npm:^5.0.0"
     glob: "npm:^9.3.2"
     magic-string: "npm:0.30.8"
     unplugin: "npm:1.0.1"
-  checksum: 10/c8cffddd23c41fe3775581d6f7ee0f3e7f608d9df9318ca19d5d937a7129f9c05bdd53267ea6f63d08925c4c9f5722a69f883d321ee372961413a0cda04f9000
+  checksum: 10/61244c8d3bf12e7a72b6b281b1e5f5fcc83bb7eda09dd48dec9a288ec354dd57a446b9df997530cad2a060bb77e4c621d2278d2988ca78e264b0714cd0827ff4
   languageName: node
   linkType: hard
 
@@ -8996,13 +8996,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/vite-plugin@npm:3.2.4":
-  version: 3.2.4
-  resolution: "@sentry/vite-plugin@npm:3.2.4"
+"@sentry/vite-plugin@npm:3.3.1":
+  version: 3.3.1
+  resolution: "@sentry/vite-plugin@npm:3.3.1"
   dependencies:
-    "@sentry/bundler-plugin-core": "npm:3.2.4"
+    "@sentry/bundler-plugin-core": "npm:3.3.1"
     unplugin: "npm:1.0.1"
-  checksum: 10/ff440603e342037893da38931126256f9fa4acf5e1cc87d21c2f91bb4a715501a59e73a75ec3fa28e931c32be3bcbdcb5aba631b4db63d19510310e1007d3b86
+  checksum: 10/9776f1287f291904c8e8ac30d535c7ba877f6dfd5f4f14d2cacfad26494dced4104e88c0116be00bed8bfb64da6323f454bd13254efae475b26b1bd0d8bcc437
   languageName: node
   linkType: hard
 
