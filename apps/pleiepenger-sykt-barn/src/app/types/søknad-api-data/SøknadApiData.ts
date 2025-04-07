@@ -10,6 +10,7 @@ import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
+import { FosterhjemsgodtgjørelseApiData } from './FosterhjemsgodtgjørelseApiData';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';
@@ -163,6 +164,7 @@ export interface SøknadApiData {
     arbeidsgivere: ArbeidsgiverAnsattApiData[];
     frilans: FrilansApiData;
     omsorgsstønad: OmsorgsstønadApiData;
+    fosterhjemsgodtgjørelse: FosterhjemsgodtgjørelseApiData;
     selvstendigNæringsdrivende: SelvstendigApiData;
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApiData[];

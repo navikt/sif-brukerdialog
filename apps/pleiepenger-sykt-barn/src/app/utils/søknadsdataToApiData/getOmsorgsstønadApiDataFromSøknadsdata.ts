@@ -23,6 +23,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
             return {
                 omsorgsstønad: {
                     mottarOmsorgsstønad: true,
+                    antallTimer: omsorgsstønad.antallTimer,
                     _mottarOmsorgsstønadIHelePeroden: true,
                 },
             };
@@ -31,6 +32,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
             return {
                 omsorgsstønad: {
                     mottarOmsorgsstønad: true,
+                    antallTimer: omsorgsstønad.antallTimer,
                     _mottarOmsorgsstønadIHelePeroden: false,
 
                     _starterUndeveis: omsorgsstønad.starterUndeveis === YesOrNo.YES ? true : false,

@@ -8,7 +8,7 @@ import { useFormikContext } from 'formik';
 import { AppText } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
-import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodgjørelse-form-part/FosterhjemsgodgjørelseFormPart';
+import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodtgjørelse-form-part/FosterhjemsgodtgjørelseFormPart';
 import FrilanserFormPart from './frilans-form-part/FrilanserFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import OmsorgsstønadFormPart from './omsorgsstønad-form-part/OmsorgsstønadFormPart';

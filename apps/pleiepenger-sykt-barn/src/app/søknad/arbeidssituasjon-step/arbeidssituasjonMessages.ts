@@ -23,10 +23,12 @@ const nb = {
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description':
         'Omsorgsstønad regnes som frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm':
-        'Mottar du denne stønaden gjennom hele perioden du søker om?',
-    'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm': 'Starter stønaden underveis i pleiepengeperioden din?',
+        'Mottar du denne omsorgsstønaden gjennom hele perioden du søker om?',
+    'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm':
+        'Starter omsorgsstønaden underveis i pleiepengeperioden din?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.startdato': 'Startdato:',
-    'steg.arbeidssituasjon.omsorgsstønad.slutterUndeveis.spm': 'Stopper stønaden underveis i pleiepengeperioden din?',
+    'steg.arbeidssituasjon.omsorgsstønad.slutterUndeveis.spm':
+        'Stopper omsorgsstønaden underveis i pleiepengeperioden din?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.sluttdato': 'Sluttdato:',
 
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
@@ -56,7 +58,7 @@ const nb = {
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
         'Hvor mange timer {jobber} du vanligvis {hvor}? Oppgi tiden i et snitt per uke:',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad':
-        'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemgodtgjørelse.',
+        'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemsgodtgjørelse.',
 
     'arbeidsforhold.ansatt.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',
     'arbeidsforhold.selvstendig.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',

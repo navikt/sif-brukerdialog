@@ -13,6 +13,7 @@ import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
 
 import VernepliktSummary from './VernepliktSummary';
 import OmsorgsstønadSummary from './OmsorgsstønadSummary';
+import FosterhjemsgodtgjørelseSummary from './FosterhjemsgodtgjørelseSummary';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -30,6 +31,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
         opptjeningIUtlandet,
         utenlandskNæring,
         omsorgsstønad,
+        fosterhjemsgodtgjørelse,
     },
     søknadsperiode,
     frilansoppdrag,
@@ -46,6 +48,8 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
+
+                    <FosterhjemsgodtgjørelseSummary fosterhjemsgodtgjørelse={fosterhjemsgodtgjørelse} />
 
                     <OmsorgsstønadSummary omsorgsstønad={omsorgsstønad} />
 

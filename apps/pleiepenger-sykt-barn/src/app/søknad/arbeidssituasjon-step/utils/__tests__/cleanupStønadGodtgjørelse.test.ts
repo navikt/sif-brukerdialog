@@ -20,7 +20,7 @@ vi.mock('@navikt/sif-common-env', () => {
 });
 
 describe('cleanupOmsorgsstønad', () => {
-    it('mottar ikke omsorgsstønad eller fosterhjemsgodgjørelse', () => {
+    it('mottar ikke omsorgsstønad eller fosterhjemsgodtgjørelse', () => {
         const { mottarOmsorgsstønad, ...rest } = cleanupOmsorgsstønad({
             ...formValues,
             mottarOmsorgsstønad: YesOrNo.NO,
@@ -28,7 +28,7 @@ describe('cleanupOmsorgsstønad', () => {
         expect(mottarOmsorgsstønad).toEqual(YesOrNo.NO);
         expect(rest).toEqual({});
     });
-    describe('mottar omsorgsstønad eller fosterhjemsgodgjørelse', () => {
+    describe('mottar omsorgsstønad eller fosterhjemsgodtgjørelse', () => {
         it('mottar hele perioden', () => {
             const { mottarOmsorgsstønad, mottarOmsorgsstønadIHelePerioden, ...rest } = cleanupOmsorgsstønad({
                 ...formValues,

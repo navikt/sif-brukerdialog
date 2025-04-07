@@ -120,7 +120,6 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                             </>
                         )}
                         <FormBlock>
-                            {' '}
                             <FormComponents.NumberInput
                                 label="Hvor mange timer mottar du normalt i omsorgsstønad? Oppgi tiden i et snitt per uke:"
                                 name={OmsorgsstønadFormField.antallTimer}

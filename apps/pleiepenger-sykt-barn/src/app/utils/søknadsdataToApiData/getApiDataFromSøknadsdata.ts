@@ -24,6 +24,7 @@ import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFr
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
 import { getOmsorgsstønadApiDataFromSøknadsdata } from './getOmsorgsstønadApiDataFromSøknadsdata';
+import { getFosterhjemsgodtgjørelseApiDataFromSøknadsdata } from './getFosterhjemsgodtgjørelseApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -72,6 +73,7 @@ export const getApiDataFromSøknadsdata = (
                     locale,
                 ),
                 ...getOmsorgsstønadApiDataFromSøknadsdata(søknadsdata.omsorgsstønad),
+                ...getFosterhjemsgodtgjørelseApiDataFromSøknadsdata(søknadsdata.fosterhjemsgodtgjørelse),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
                     sprak,
                     søknadsdata.arbeidssituasjon?.opptjeningUtland,

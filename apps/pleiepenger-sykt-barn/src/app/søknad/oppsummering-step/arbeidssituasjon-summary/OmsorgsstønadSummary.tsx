@@ -22,13 +22,13 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
             <FormSummary.Answer data-testid="omsorgsstønad">
                 <FormSummary.Label>
                     <Heading level="3" size="small">
-                        <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                        <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.title" />
                     </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke" />
+                            <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarIkke" />
                         </List.Item>
                     </List>
                 </FormSummary.Value>
@@ -40,7 +40,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
         <FormSummary.Answer>
             <FormSummary.Label>
                 <Heading level="3" size="small">
-                    <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                    <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.title" />
                 </Heading>
             </FormSummary.Label>
             <FormSummary.Value>
@@ -56,6 +56,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
                     {mottarOmsorgsstønadIHelePerioden === false && _slutterUnderveis && sluttdato && (
                         <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
                     )}
+                    <List.Item>Mottar {omsorgsstønad.antallTimer} timer per uken i snitt</List.Item>
                 </List>
             </FormSummary.Value>
         </FormSummary.Answer>
