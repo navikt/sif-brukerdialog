@@ -186,10 +186,10 @@ const nn: Record<keyof typeof nb, string> = {
         'Hvis du i perioden du søkjer for er, eller var, ansatt hos en arbeidsgivar som ikkje vises her, må du be arbeidsgivaren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
 
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm':
-        'Mottar du fosterheimsgodtgjersle eller omsorgsstønad frå kommunen?',
+        'Mottar du fosterhjemsgodtgjørelse eller omsorgsstønad frå kommunen?',
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel': 'Kva betyr dette?',
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description':
-        'Fosterheimsgodtgjersle og omsorgsstønad blir rekna som frilansinntekt og kan påverke kor mykje du får i pleiepengar.',
+        'fosterhjemsgodtgjørelse og omsorgsstønad blir rekna som frilansinntekt og kan påverke kor mykje du får i pleiepengar.',
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm':
         'Mottar du denne stønaden eller godtgjersla gjennom heile perioden du søkjer om?',
     'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm':
@@ -225,12 +225,12 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
         'Kor mange timar {jobber} du vanlegvis {hvor}? Oppgi tida som eit snitt per veke:',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse':
-        'Du skal ikkje inkludere timar for omsorgsstønad/fosterheimsgodtgjersle.',
+        'Du skal ikkje inkludere timar for omsorgsstønad/fosterhjemsgodtgjørelse.',
 
     'arbeidsforhold.ansatt.normalTimer.info.tittel': 'Kva om eg jobbar turnus eller varierande?',
     'arbeidsforhold.selvstendig.normalTimer.info.tittel': 'Kva om eg jobbar turnus eller varierande?',
     'arbeidsforhold.frilanser.normalTimer.frilans.omsorgsstønad':
-        'Du skal ikkje inkludere timar for fosterheimsgodtgjersle og omsorgsstønad.',
+        'Du skal ikkje inkludere timar for fosterhjemsgodtgjørelse og omsorgsstønad.',
     'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel': 'Korleis reknar eg ut eit snitt?',
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS.info.1':
         'Du reknar ut eit snitt ved å legge saman alle timane du har jobba som frilanser dei siste 12 vekene, og deler dette på 12. Då får du eit snitt per veke.',
@@ -302,7 +302,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'frilanser.harDuHattInntekt.spm': 'Jobbar du som frilanser eller mottar du honorar?',
     'frilanser.harDuHattInntekt.omsorgsstønad':
-        'Viss du berre mottar fosterheimsgodtgjersle eller omsorgsstønad, skal du svare nei på dette spørsmålet.',
+        'Viss du berre mottar fosterhjemsgodtgjørelse eller omsorgsstønad, skal du svare nei på dette spørsmålet.',
     'frilanser.harDuHattInntekt.hvaBetyr.spm': 'Kva betyr dette?',
     'frilanser.harDuHattInntekt.hvaBetyr.info.1':
         'Du skal svare ja på dette spørsmålet viss du jobbar som frilanser og/eller mottar honorar for utførte oppdrag. Du kan få kompensert eit eventuelt tap av denne inntekta.',
@@ -330,7 +330,24 @@ const nn: Record<keyof typeof nb, string> = {
     'verneplikt.summary.harIkkeVærtVernepliktig': 'Utøvde ikkje verneplikt på tidspunktet det søkes pleiepenger fra',
 };
 
+const fosterhjem = {
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm':
+        'Mottar du fosterhjemsgodtgjørelse fra kommunen?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm.description.tittel':
+        'Hva betyr dette?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm.description':
+        'Fosterhjemsgodtgjørelse regnes som et frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.spm':
+        'Mottar du denne godtgjørelsen gjennom hele perioden du søker om?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.spm':
+        'Starter godtgjørelsen underveis i pleiepengeperioden din?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.startdato': 'Startdato:',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.slutterUndeveis.spm':
+        'Stopper godtgjørelsen underveis i pleiepengeperioden din?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.sluttdato': 'Sluttdato:',
+};
+
 export const arbeidssituasjonMessages = {
-    nb,
-    nn,
+    nb: { ...nb, ...fosterhjem },
+    nn: { ...nn, ...fosterhjem },
 };

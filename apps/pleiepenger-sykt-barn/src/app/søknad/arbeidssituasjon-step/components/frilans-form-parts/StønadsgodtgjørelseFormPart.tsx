@@ -15,8 +15,8 @@ import {
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
 import {
     AppFieldValidationErrors,
-    getstønadGodtgjørelseSluttdatoValidator,
-    getstønadGodtgjørelseStartdatoValidator,
+    getStønadGodtgjørelseSluttdatoValidator,
+    getStønadGodtgjørelseStartdatoValidator,
 } from '../../../../validation/fieldValidations';
 
 const StønadGodtgjørelseFormComponents = getTypedFormComponents<
@@ -83,7 +83,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="stønadGodtgjørelse-startdato"
-                                                validate={getstønadGodtgjørelseStartdatoValidator(
+                                                validate={getStønadGodtgjørelseStartdatoValidator(
                                                     stønadGodtgjørelse,
                                                     søknadsperiode,
                                                 )}
@@ -120,7 +120,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="stønadGodtgjørelse-sluttdato"
-                                                validate={getstønadGodtgjørelseSluttdatoValidator(
+                                                validate={getStønadGodtgjørelseSluttdatoValidator(
                                                     stønadGodtgjørelse,
                                                     søknadsperiode,
                                                 )}

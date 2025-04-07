@@ -174,7 +174,7 @@ export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: Date
     return undefined;
 };
 
-export const getstønadGodtgjørelseStartdatoValidator =
+export const getStønadGodtgjørelseStartdatoValidator =
     (formValues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
@@ -189,7 +189,7 @@ export const getstønadGodtgjørelseStartdatoValidator =
         return undefined;
     };
 
-export const getstønadGodtgjørelseSluttdatoValidator =
+export const getStønadGodtgjørelseSluttdatoValidator =
     (formVaues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);

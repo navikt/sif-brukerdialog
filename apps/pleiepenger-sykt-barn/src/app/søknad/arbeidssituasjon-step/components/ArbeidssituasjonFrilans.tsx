@@ -11,6 +11,7 @@ import StønadsgodtgjørelseFormPart from './frilans-form-parts/Stønadsgodtgjø
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../i18n';
+import FosterhjemsgodtgjørelseFormPart from './frilans-form-parts/FosterhjemsgodgjørelsePart';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -47,6 +48,9 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                 </p>
             </ExpandableInfo>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
+            <FormBlock>
+                <FosterhjemsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
+            </FormBlock>
             <FormBlock>
                 <StønadsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>

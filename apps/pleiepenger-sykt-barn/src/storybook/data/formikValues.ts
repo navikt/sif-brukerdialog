@@ -78,6 +78,9 @@ export const formikValues: SøknadFormValues = {
             },
         },
     },
+    fosterhjemsgodtgjørelse: {
+        mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
+    },
     stønadGodtgjørelse: {
         mottarStønadGodtgjørelse: YesOrNo.NO,
     },
