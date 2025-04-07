@@ -10,12 +10,14 @@ export interface MottarOmsorgsstønadIHelePeroden {
     type: 'mottarIHelePeroden';
     mottarOmsorgsstønad: YesOrNo.YES;
     mottarOmsorgsstønadIHelePerioden: YesOrNo.YES;
+    antallTimer: number;
 }
 
 export interface MottarOmsorgsstønadIDelerAvPeroden {
     type: 'mottarIDelerAvPeroden';
     mottarOmsorgsstønad: YesOrNo.YES;
     mottarOmsorgsstønadIHelePerioden: YesOrNo.NO;
+    antallTimer: number;
     starterUndeveis: YesOrNo;
     startdato?: ISODate;
     slutterUnderveis: YesOrNo;

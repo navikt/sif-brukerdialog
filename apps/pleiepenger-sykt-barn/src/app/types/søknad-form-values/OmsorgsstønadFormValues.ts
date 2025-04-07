@@ -8,7 +8,7 @@ export enum OmsorgsstønadFormField {
     startdato = 'omsorgsstønad.startdato',
     slutterUnderveis = 'omsorgsstønad.slutterUnderveis',
     sluttdato = 'omsorgsstønad.sluttdato',
-    timer = 'omsorgsstønad.timer',
+    antallTimer = 'omsorgsstønad.antallTimer',
 }
 
 export interface OmsorgsstønadFormValues {
@@ -18,5 +18,5 @@ export interface OmsorgsstønadFormValues {
     startdato?: ISODate;
     slutterUnderveis?: YesOrNo;
     sluttdato?: ISODate;
-    timer?: string;
+    antallTimer?: string;
 }

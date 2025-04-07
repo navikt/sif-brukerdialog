@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { OmsorgsstønadSøknadsdata } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 import { OmsorgsstønadFormValues } from '../../types/søknad-form-values/OmsorgsstønadFormValues';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 
 export const extractOmsorgsstønadSøknadsdata = (
     omsorgsstønad: OmsorgsstønadFormValues,
@@ -12,6 +13,7 @@ export const extractOmsorgsstønadSøknadsdata = (
         startdato,
         slutterUnderveis,
         sluttdato,
+        antallTimer,
     } = omsorgsstønad;
     if (mottarOmsorgsstønad === YesOrNo.NO) {
         return {
@@ -20,12 +22,18 @@ export const extractOmsorgsstønadSøknadsdata = (
         };
     }
 
+    const timer = getNumberFromNumberInputValue(antallTimer);
+    if (timer === undefined) {
+        throw 'extractOmsorgsstønadSøknadsdata. Antall timer er undefined';
+    }
+
     if (mottarOmsorgsstønad === YesOrNo.YES) {
         if (mottarOmsorgsstønadIHelePerioden === YesOrNo.YES) {
             return {
                 type: 'mottarIHelePeroden',
                 mottarOmsorgsstønad: YesOrNo.YES,
                 mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
+                antallTimer: timer,
             };
         }
         if (mottarOmsorgsstønadIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
@@ -37,6 +45,7 @@ export const extractOmsorgsstønadSøknadsdata = (
                 startdato: starterUndeveis === YesOrNo.YES ? startdato : undefined,
                 slutterUnderveis,
                 sluttdato: slutterUnderveis === YesOrNo.YES ? sluttdato : undefined,
+                antallTimer: timer,
             };
         }
     }

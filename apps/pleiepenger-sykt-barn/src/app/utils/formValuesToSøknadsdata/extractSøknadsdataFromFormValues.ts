@@ -6,6 +6,7 @@ import { extractArbeidstidSøknadsdata } from './extractArbeidstidSøknadsdata';
 import { extractBarnSøknadsdata } from './extractBarnSøknadsdata';
 import { extractBeredskapSøknadsdata } from './extractBeredskapSøknadsdata';
 import { extractFerieuttakIPeriodenSøknadsdata } from './extractFerieuttakIPeriodenSøknadsdata';
+import { extractFosterhjemsgodtgjørelseSøknadsdata } from './extractFosterhjemsgodtgjørelseSøknadsdata';
 import { extractMedlemskapSøknadsdata } from './extractMedlemskapSøknadsdata';
 import { extractNattevåkSøknadsdata } from './extractNattevåkSøknadsdata';
 import { extractOmsorgsstønadSøknadsdata } from './extractOmsorgsstønadSøknadsdata';
@@ -28,6 +29,7 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
         omsorgsstønad: extractOmsorgsstønadSøknadsdata(values.omsorgsstønad),
+        fosterhjemsgodtgjørelse: extractFosterhjemsgodtgjørelseSøknadsdata(values.fosterhjemsgodtgjørelse),
         harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormValues(values),
         omsorgstibud: extractOmsorgstibudSøknadsdata(values.omsorgstilbud),
         nattevåk: extractNattevåkSøknadsdata(values),

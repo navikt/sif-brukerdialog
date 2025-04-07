@@ -1,17 +1,17 @@
 import { Alert } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import { AppText } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
-import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
-import OmsorgsstønadFormPart from './omsorgsstønad/OmsorgsstønadFormPart';
+import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodgjørelse-form-part/FosterhjemsgodgjørelseFormPart';
+import FrilanserFormPart from './frilans-form-part/FrilanserFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { AppText } from '../../../i18n';
-import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodgjørelse/FosterhjemsgodgjørelseFormPart';
+import OmsorgsstønadFormPart from './omsorgsstønad-form-part/OmsorgsstønadFormPart';
 
 interface Props {
     søknadsperiode: DateRange;

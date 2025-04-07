@@ -4,11 +4,12 @@ import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
+import { FosterhjemsgodtgjørelseSøknadsdata } from './FosterhjemsgodtgjørelseSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemsskapSøknadsdata';
 import { NattevåkSøknadsdata } from './NattevåkSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
-import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
 import { OmsorgsstønadSøknadsdata } from './OmsorgsstønadSøknadsdata';
+import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriodenSøknadsdata';
 
 export * from './OmBarnetSøknadsdata';
@@ -40,4 +41,5 @@ export interface Søknadsdata {
     medlemskap?: MedlemskapSøknadsdata;
     legeerklæring?: Vedlegg[];
     omsorgsstønad?: OmsorgsstønadSøknadsdata;
+    fosterhjemsgodtgjørelse?: FosterhjemsgodtgjørelseSøknadsdata;
 }
