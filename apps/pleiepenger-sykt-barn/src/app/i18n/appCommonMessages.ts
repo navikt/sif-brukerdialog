@@ -142,7 +142,7 @@ const nb = {
     'validation.utenlandskNæring.listIsEmpty':
         'Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
-    'validation.omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden.noValue':
+    'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottar stønad/godtgjørelse i hele perioden du søker for.',
     'validation.omsorgsstønad.starterUndeveis.noValue':
         'Du må svare Ja eller Nei på om du starter å motta stønad/godtgjørelse underveis i perioden du søker for.',
@@ -324,7 +324,7 @@ const nn: Record<keyof typeof nb, string> = {
     'validation.utenlandskNæring.listIsEmpty':
         'Du må legge til jobb som sjølvstendig næringsdrivande i eit anna EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
-    'validation.omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden.noValue':
+    'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottek stønad/godtgjersle i heile perioden du søkjer for.',
     'validation.omsorgsstønad.starterUndeveis.noValue':
         'Du må svare ja eller nei på om du startar å motta stønad/godtgjersle undervegs i perioden du søkjer for.',

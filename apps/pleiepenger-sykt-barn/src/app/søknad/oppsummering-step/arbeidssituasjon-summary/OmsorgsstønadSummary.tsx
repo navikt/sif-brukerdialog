@@ -1,16 +1,16 @@
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
 import { FormSummary, Heading, List } from '@navikt/ds-react';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
+import { OmsorgsstønadApiData } from '../../../types/søknad-api-data/OmsorgsstønadApiData';
 
 interface Props {
-    omsorgsstønad: StønadGodtgjørelseApiData;
+    omsorgsstønad: OmsorgsstønadApiData;
 }
 
-const StønadGodtgjørelseSummary = ({ omsorgsstønad }: Props) => {
+const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
     const {
         mottarOmsorgsstønad,
-        _mottarStønadGodtgjørelseIHelePeroden: mottarStønadGodtgjørelseIHelePerioden,
+        _mottarOmsorgsstønadIHelePeroden: mottarOmsorgsstønadIHelePerioden,
         _starterUndeveis,
         startdato,
         _slutterUnderveis,
@@ -45,15 +45,15 @@ const StønadGodtgjørelseSummary = ({ omsorgsstønad }: Props) => {
             </FormSummary.Label>
             <FormSummary.Value>
                 <List>
-                    {mottarStønadGodtgjørelseIHelePerioden ? (
+                    {mottarOmsorgsstønadIHelePerioden ? (
                         <List.Item>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</List.Item>
                     ) : (
                         <List.Item>Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</List.Item>
                     )}
-                    {mottarStønadGodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
+                    {mottarOmsorgsstønadIHelePerioden === false && _starterUndeveis && startdato && (
                         <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
                     )}
-                    {mottarStønadGodtgjørelseIHelePerioden === false && _slutterUnderveis && sluttdato && (
+                    {mottarOmsorgsstønadIHelePerioden === false && _slutterUnderveis && sluttdato && (
                         <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
                     )}
                 </List>
@@ -62,4 +62,4 @@ const StønadGodtgjørelseSummary = ({ omsorgsstønad }: Props) => {
     );
 };
 
-export default StønadGodtgjørelseSummary;
+export default OmsorgsstønadSummary;

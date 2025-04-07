@@ -9,27 +9,23 @@ import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../../../i18n';
 import {
-    StønadGodtgjørelseFormField,
-    StønadGodtgjørelseFormValues,
-} from '../../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
+    OmsorgsstønadFormField,
+    OmsorgsstønadFormValues,
+} from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
 import {
     AppFieldValidationErrors,
-    getStønadGodtgjørelseSluttdatoValidator,
-    getStønadGodtgjørelseStartdatoValidator,
+    // getOmsorgsstønadSluttdatoValidator,
+    // getOmsorgsstønadStartdatoValidator,
 } from '../../../../validation/fieldValidations';
 
-const StønadGodtgjørelseFormComponents = getTypedFormComponents<
-    StønadGodtgjørelseFormField,
-    StønadGodtgjørelseFormValues,
-    ValidationError
->();
+const FormComponents = getTypedFormComponents<OmsorgsstønadFormField, OmsorgsstønadFormValues, ValidationError>();
 
 interface Props {
     søknadsperiode: DateRange;
 }
 
-const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const { text } = useAppIntl();
     const {
         values: { omsorgsstønad },
@@ -37,8 +33,8 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
 
     return (
         <FormBlock>
-            <StønadGodtgjørelseFormComponents.YesOrNoQuestion
-                name={StønadGodtgjørelseFormField.mottarOmsorgsstønad}
+            <FormComponents.YesOrNoQuestion
+                name={OmsorgsstønadFormField.mottarOmsorgsstønad}
                 legend={text('steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm')}
                 validate={getYesOrNoValidator()}
                 description={
@@ -51,28 +47,26 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
             {omsorgsstønad && omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES && (
                 <FormBlock>
                     <ResponsivePanel border={true}>
-                        <StønadGodtgjørelseFormComponents.YesOrNoQuestion
-                            name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePerioden}
-                            legend={text(
-                                'steg.arbeidssituasjon.omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden.spm',
-                            )}
+                        <FormComponents.YesOrNoQuestion
+                            name={OmsorgsstønadFormField.mottarOmsorgsstønadIHelePerioden}
+                            legend={text('steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm')}
                             validate={getRequiredFieldValidator()}
-                            value={omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden}
+                            value={omsorgsstønad.mottarOmsorgsstønadIHelePerioden}
                         />
 
-                        {omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && (
+                        {omsorgsstønad.mottarOmsorgsstønadIHelePerioden === YesOrNo.NO && (
                             <>
                                 <FormBlock>
-                                    <StønadGodtgjørelseFormComponents.YesOrNoQuestion
-                                        name={StønadGodtgjørelseFormField.starterUndeveis}
+                                    <FormComponents.YesOrNoQuestion
+                                        name={OmsorgsstønadFormField.starterUndeveis}
                                         legend={text('steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm')}
                                         validate={getRequiredFieldValidator()}
                                         value={omsorgsstønad.starterUndeveis}
                                     />
                                     {omsorgsstønad.starterUndeveis === YesOrNo.YES && (
                                         <FormBlock margin="m">
-                                            <StønadGodtgjørelseFormComponents.DatePicker
-                                                name={StønadGodtgjørelseFormField.startdato}
+                                            <FormComponents.DatePicker
+                                                name={OmsorgsstønadFormField.startdato}
                                                 label={text(
                                                     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.startdato',
                                                 )}
@@ -81,17 +75,17 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="omsorgsstønad-startdato"
-                                                validate={getStønadGodtgjørelseStartdatoValidator(
-                                                    omsorgsstønad,
-                                                    søknadsperiode,
-                                                )}
+                                                // validate={getOmsorgsstønadStartdatoValidator(
+                                                //     omsorgsstønad,
+                                                //     søknadsperiode,
+                                                // )}
                                             />
                                         </FormBlock>
                                     )}
                                 </FormBlock>
                                 <FormBlock>
-                                    <StønadGodtgjørelseFormComponents.YesOrNoQuestion
-                                        name={StønadGodtgjørelseFormField.slutterUnderveis}
+                                    <FormComponents.YesOrNoQuestion
+                                        name={OmsorgsstønadFormField.slutterUnderveis}
                                         legend={text('steg.arbeidssituasjon.omsorgsstønad.slutterUndeveis.spm')}
                                         validate={(value) => {
                                             if (value === YesOrNo.NO && omsorgsstønad.starterUndeveis === YesOrNo.NO) {
@@ -105,8 +99,8 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
 
                                     {omsorgsstønad.slutterUnderveis === YesOrNo.YES && (
                                         <FormBlock margin="m">
-                                            <StønadGodtgjørelseFormComponents.DatePicker
-                                                name={StønadGodtgjørelseFormField.sluttdato}
+                                            <FormComponents.DatePicker
+                                                name={OmsorgsstønadFormField.sluttdato}
                                                 label={text(
                                                     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.sluttdato',
                                                 )}
@@ -115,10 +109,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="omsorgsstønad-sluttdato"
-                                                validate={getStønadGodtgjørelseSluttdatoValidator(
-                                                    omsorgsstønad,
-                                                    søknadsperiode,
-                                                )}
+                                                // validate={getOmsorgsstønadSluttdatoValidator(
+                                                //     omsorgsstønad,
+                                                //     søknadsperiode,
+                                                // )}
                                             />
                                         </FormBlock>
                                     )}
@@ -132,4 +126,4 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
     );
 };
 
-export default StønadsgodtgjørelseFormPart;
+export default OmsorgsstønadFormPart;

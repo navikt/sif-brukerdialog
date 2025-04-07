@@ -18,12 +18,11 @@ const nb = {
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
         'Hvis du i perioden du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
 
-    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm':
-        'Mottar du fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen?',
+    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm': 'Mottar du omsorgsstønad fra kommunen?',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description.tittel': 'Hva betyr dette?',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description':
         'Omsorgsstønad regnes som frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ',
-    'steg.arbeidssituasjon.omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden.spm':
+    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm':
         'Mottar du denne stønaden gjennom hele perioden du søker om?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm': 'Starter stønaden underveis i pleiepengeperioden din?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.startdato': 'Startdato:',
@@ -56,7 +55,7 @@ const nb = {
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
         'Hvor mange timer {jobber} du vanligvis {hvor}? Oppgi tiden i et snitt per uke:',
-    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse':
+    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad':
         'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemgodtgjørelse.',
 
     'arbeidsforhold.ansatt.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',

@@ -13,8 +13,8 @@ import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
 import { FrilansFormValues } from './FrilansFormValues';
 import { OmsorgstilbudFormValues } from './OmsorgtilbudFormValues';
 import { SelvstendigFormValues } from './SelvstendigFormValues';
-import { StønadGodtgjørelseFormValues } from './StønadGodtgjørelseFormValues';
 import { FosterhjemsgodtgjørelseFormValues } from './FosterhjemsgodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from './OmsorgsstønadFormValues';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -101,7 +101,7 @@ export interface SøknadFormValues {
     [SøknadFormField.frilans]: FrilansFormValues;
     [SøknadFormField.selvstendig]: SelvstendigFormValues;
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
-    [SøknadFormField.omsorgsstønad]: StønadGodtgjørelseFormValues;
+    [SøknadFormField.omsorgsstønad]: OmsorgsstønadFormValues;
     [SøknadFormField.fosterhjemsgodtgjørelse]: FosterhjemsgodtgjørelseFormValues;
     [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;

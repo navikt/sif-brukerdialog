@@ -3,7 +3,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
-import { StønadGodtgjørelseFormValues } from '../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from '../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
@@ -76,17 +76,17 @@ export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormValues
     return selvstendig;
 };
 
-export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormValues): StønadGodtgjørelseFormValues => {
-    const omsorgsstønad: StønadGodtgjørelseFormValues = { ...values };
+export const cleanupOmsorgsstønad = (values: OmsorgsstønadFormValues): OmsorgsstønadFormValues => {
+    const omsorgsstønad: OmsorgsstønadFormValues = { ...values };
     if (omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO) {
-        omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden = undefined;
+        omsorgsstønad.mottarOmsorgsstønadIHelePerioden = undefined;
         omsorgsstønad.starterUndeveis = undefined;
         omsorgsstønad.startdato = undefined;
         omsorgsstønad.slutterUnderveis = undefined;
         omsorgsstønad.sluttdato = undefined;
     }
 
-    if (omsorgsstønad.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
+    if (omsorgsstønad.mottarOmsorgsstønadIHelePerioden === YesOrNo.YES) {
         omsorgsstønad.starterUndeveis = undefined;
         omsorgsstønad.startdato = undefined;
         omsorgsstønad.slutterUnderveis = undefined;
@@ -113,7 +113,7 @@ export const cleanupArbeidssituasjonStep = (
     values.ansatt_arbeidsforhold = values.ansatt_arbeidsforhold.map(cleanupAnsattArbeidsforhold);
     values.frilans = cleanupFrilansArbeidssituasjon(søknadsperiode, values.frilans);
     values.selvstendig = cleanupSelvstendigArbeidssituasjon(values.selvstendig);
-    values.omsorgsstønad = cleanupStønadGodtgjørelse(values.omsorgsstønad);
+    values.omsorgsstønad = cleanupOmsorgsstønad(values.omsorgsstønad);
 
     if (values.harOpptjeningUtland === YesOrNo.NO) {
         values.opptjeningUtland = [];

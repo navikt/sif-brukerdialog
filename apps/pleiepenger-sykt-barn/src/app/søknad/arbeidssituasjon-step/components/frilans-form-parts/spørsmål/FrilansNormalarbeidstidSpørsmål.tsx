@@ -37,11 +37,11 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
         },
     });
 
-    const tekstStønadGodtgjørelse = text('arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse');
+    const tekstOmsorgsstønad = text('arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad');
     return (
         <FormComponents.NumberInput
             label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, {
-                infoStønadGodtgjørelse: mottarOmsorgsstønad ? tekstStønadGodtgjørelse : '',
+                infoOmsorgsstønad: mottarOmsorgsstønad ? tekstOmsorgsstønad : '',
                 hvor: 'som frilanser',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',

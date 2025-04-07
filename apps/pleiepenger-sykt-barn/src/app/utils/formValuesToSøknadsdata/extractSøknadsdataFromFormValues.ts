@@ -8,8 +8,8 @@ import { extractBeredskapSøknadsdata } from './extractBeredskapSøknadsdata';
 import { extractFerieuttakIPeriodenSøknadsdata } from './extractFerieuttakIPeriodenSøknadsdata';
 import { extractMedlemskapSøknadsdata } from './extractMedlemskapSøknadsdata';
 import { extractNattevåkSøknadsdata } from './extractNattevåkSøknadsdata';
+import { extractOmsorgsstønadSøknadsdata } from './extractOmsorgsstønadSøknadsdata';
 import { extractOmsorgstibudSøknadsdata } from './extractOmsorgstibudSøknadsdata';
-import { extractStønadGodtgjørelseSøknadsdata } from './extractStønadGodtgjørelseSøknadsdata';
 import { extractUtenlandsoppholdIPeriodenSøknadsdata } from './extractUtenlandsoppholdIPeriodenSøknadsdata';
 
 export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): Søknadsdata => {
@@ -27,7 +27,7 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
-        omsorgsstønad: extractStønadGodtgjørelseSøknadsdata(values.omsorgsstønad),
+        omsorgsstønad: extractOmsorgsstønadSøknadsdata(values.omsorgsstønad),
         harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormValues(values),
         omsorgstibud: extractOmsorgstibudSøknadsdata(values.omsorgstilbud),
         nattevåk: extractNattevåkSøknadsdata(values),

@@ -1,12 +1,13 @@
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
+
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { OmsorgsstønadSøknadsdata } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 
-type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
+type OmsorgsstønadApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
 
-export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
-    omsorgsstønad?: StønadGodtgjørelseSøknadsdata,
-): StønadGodtgjørelseApiData => {
+export const getOmsorgsstønadApiDataFromSøknadsdata = (
+    omsorgsstønad?: OmsorgsstønadSøknadsdata,
+): OmsorgsstønadApiData => {
     if (omsorgsstønad === undefined) {
         throw Error('omsorgsstønad undefined');
     }
@@ -22,7 +23,7 @@ export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
             return {
                 omsorgsstønad: {
                     mottarOmsorgsstønad: true,
-                    _mottarStønadGodtgjørelseIHelePeroden: true,
+                    _mottarOmsorgsstønadIHelePeroden: true,
                 },
             };
 
@@ -30,7 +31,7 @@ export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
             return {
                 omsorgsstønad: {
                     mottarOmsorgsstønad: true,
-                    _mottarStønadGodtgjørelseIHelePeroden: false,
+                    _mottarOmsorgsstønadIHelePeroden: false,
 
                     _starterUndeveis: omsorgsstønad.starterUndeveis === YesOrNo.YES ? true : false,
                     startdato: omsorgsstønad.starterUndeveis === YesOrNo.YES ? omsorgsstønad.startdato : undefined,

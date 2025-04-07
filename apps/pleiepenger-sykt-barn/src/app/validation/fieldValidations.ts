@@ -26,7 +26,7 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
-import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from '../types/søknad-form-values/OmsorgsstønadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
 
 dayjs.extend(minMax);
@@ -174,8 +174,8 @@ export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: Date
     return undefined;
 };
 
-export const getStønadGodtgjørelseStartdatoValidator =
-    (formValues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadStartdatoValidator =
+    (formValues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
@@ -189,8 +189,8 @@ export const getStønadGodtgjørelseStartdatoValidator =
         return undefined;
     };
 
-export const getStønadGodtgjørelseSluttdatoValidator =
-    (formVaues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadSluttdatoValidator =
+    (formVaues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {

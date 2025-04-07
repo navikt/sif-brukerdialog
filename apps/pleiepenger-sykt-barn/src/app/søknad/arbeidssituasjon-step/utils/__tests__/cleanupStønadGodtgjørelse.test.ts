@@ -1,14 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { StønadGodtgjørelseFormValues } from '../../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
-import { cleanupStønadGodtgjørelse } from '../cleanupArbeidssituasjonStep';
+import { OmsorgsstønadFormValues } from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
+import { cleanupOmsorgsstønad } from '../cleanupArbeidssituasjonStep';
 import { vi } from 'vitest';
 
 const ISOStartdato = '2021-01-01';
 const ISOSluttdato = '2022-01-01';
 
-const formValues: StønadGodtgjørelseFormValues = {
+const formValues: OmsorgsstønadFormValues = {
     mottarOmsorgsstønad: YesOrNo.YES,
-    mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
+    mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
     startdato: ISOStartdato,
     sluttdato: ISOSluttdato,
     slutterUnderveis: YesOrNo.YES,
@@ -19,9 +19,9 @@ vi.mock('@navikt/sif-common-env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 
-describe('cleanupStønadGodtgjørelse', () => {
+describe('cleanupOmsorgsstønad', () => {
     it('mottar ikke omsorgsstønad eller fosterhjemsgodgjørelse', () => {
-        const { mottarOmsorgsstønad, ...rest } = cleanupStønadGodtgjørelse({
+        const { mottarOmsorgsstønad, ...rest } = cleanupOmsorgsstønad({
             ...formValues,
             mottarOmsorgsstønad: YesOrNo.NO,
         });
@@ -30,30 +30,30 @@ describe('cleanupStønadGodtgjørelse', () => {
     });
     describe('mottar omsorgsstønad eller fosterhjemsgodgjørelse', () => {
         it('mottar hele perioden', () => {
-            const { mottarOmsorgsstønad, mottarStønadGodtgjørelseIHelePerioden, ...rest } = cleanupStønadGodtgjørelse({
+            const { mottarOmsorgsstønad, mottarOmsorgsstønadIHelePerioden, ...rest } = cleanupOmsorgsstønad({
                 ...formValues,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
             });
             expect(mottarOmsorgsstønad).toEqual(YesOrNo.YES);
-            expect(mottarStønadGodtgjørelseIHelePerioden).toEqual(YesOrNo.YES);
+            expect(mottarOmsorgsstønadIHelePerioden).toEqual(YesOrNo.YES);
             expect(rest).toEqual({});
         });
         it('starter i perioden', () => {
             const {
                 mottarOmsorgsstønad,
-                mottarStønadGodtgjørelseIHelePerioden,
+                mottarOmsorgsstønadIHelePerioden,
                 starterUndeveis,
                 slutterUnderveis,
                 startdato,
                 ...rest
-            } = cleanupStønadGodtgjørelse({
+            } = cleanupOmsorgsstønad({
                 ...formValues,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
                 starterUndeveis: YesOrNo.YES,
                 slutterUnderveis: YesOrNo.NO,
             });
             expect(mottarOmsorgsstønad).toEqual(YesOrNo.YES);
-            expect(mottarStønadGodtgjørelseIHelePerioden).toEqual(YesOrNo.NO);
+            expect(mottarOmsorgsstønadIHelePerioden).toEqual(YesOrNo.NO);
             expect(starterUndeveis).toEqual(YesOrNo.YES);
             expect(slutterUnderveis).toEqual(YesOrNo.NO);
             expect(startdato).toEqual(ISOStartdato);
@@ -62,19 +62,19 @@ describe('cleanupStønadGodtgjørelse', () => {
         it('slutter i perioden', () => {
             const {
                 mottarOmsorgsstønad,
-                mottarStønadGodtgjørelseIHelePerioden,
+                mottarOmsorgsstønadIHelePerioden,
                 sluttdato,
                 slutterUnderveis,
                 starterUndeveis,
                 ...rest
-            } = cleanupStønadGodtgjørelse({
+            } = cleanupOmsorgsstønad({
                 ...formValues,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
                 starterUndeveis: YesOrNo.NO,
                 slutterUnderveis: YesOrNo.YES,
             });
             expect(mottarOmsorgsstønad).toEqual(YesOrNo.YES);
-            expect(mottarStønadGodtgjørelseIHelePerioden).toEqual(YesOrNo.NO);
+            expect(mottarOmsorgsstønadIHelePerioden).toEqual(YesOrNo.NO);
             expect(starterUndeveis).toEqual(YesOrNo.NO);
             expect(slutterUnderveis).toEqual(YesOrNo.YES);
             expect(sluttdato).toEqual(ISOSluttdato);
@@ -83,20 +83,20 @@ describe('cleanupStønadGodtgjørelse', () => {
         it('starter og slutter i perioden', () => {
             const {
                 mottarOmsorgsstønad,
-                mottarStønadGodtgjørelseIHelePerioden,
+                mottarOmsorgsstønadIHelePerioden,
                 sluttdato,
                 startdato,
                 slutterUnderveis,
                 starterUndeveis,
                 ...rest
-            } = cleanupStønadGodtgjørelse({
+            } = cleanupOmsorgsstønad({
                 ...formValues,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
                 starterUndeveis: YesOrNo.YES,
                 slutterUnderveis: YesOrNo.YES,
             });
             expect(mottarOmsorgsstønad).toEqual(YesOrNo.YES);
-            expect(mottarStønadGodtgjørelseIHelePerioden).toEqual(YesOrNo.NO);
+            expect(mottarOmsorgsstønadIHelePerioden).toEqual(YesOrNo.NO);
             expect(starterUndeveis).toEqual(YesOrNo.YES);
             expect(slutterUnderveis).toEqual(YesOrNo.YES);
             expect(startdato).toEqual(ISOStartdato);

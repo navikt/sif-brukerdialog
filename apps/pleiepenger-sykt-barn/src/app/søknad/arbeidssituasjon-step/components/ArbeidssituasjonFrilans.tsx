@@ -7,11 +7,11 @@ import { useFormikContext } from 'formik';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
-import StønadsgodtgjørelseFormPart from './frilans-form-parts/StønadsgodtgjørelseFormPart';
+import OmsorgsstønadFormPart from './omsorgsstønad/OmsorgsstønadFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../i18n';
-import FosterhjemsgodtgjørelseFormPart from './frilans-form-parts/FosterhjemsgodgjørelsePart';
+import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodgjørelse/FosterhjemsgodgjørelseFormPart';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -52,7 +52,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                 <FosterhjemsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
             <FormBlock>
-                <StønadsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
+                <OmsorgsstønadFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
 
             <FormBlock>

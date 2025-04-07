@@ -1,13 +1,13 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
-import { StønadGodtgjørelseFormValues } from '../../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import { OmsorgsstønadSøknadsdata } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
+import { OmsorgsstønadFormValues } from '../../types/søknad-form-values/OmsorgsstønadFormValues';
 
-export const extractStønadGodtgjørelseSøknadsdata = (
-    omsorgsstønad: StønadGodtgjørelseFormValues,
-): StønadGodtgjørelseSøknadsdata | undefined => {
+export const extractOmsorgsstønadSøknadsdata = (
+    omsorgsstønad: OmsorgsstønadFormValues,
+): OmsorgsstønadSøknadsdata | undefined => {
     const {
         mottarOmsorgsstønad,
-        mottarStønadGodtgjørelseIHelePerioden,
+        mottarOmsorgsstønadIHelePerioden,
         starterUndeveis,
         startdato,
         slutterUnderveis,
@@ -21,18 +21,18 @@ export const extractStønadGodtgjørelseSøknadsdata = (
     }
 
     if (mottarOmsorgsstønad === YesOrNo.YES) {
-        if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
+        if (mottarOmsorgsstønadIHelePerioden === YesOrNo.YES) {
             return {
                 type: 'mottarIHelePeroden',
                 mottarOmsorgsstønad: YesOrNo.YES,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
             };
         }
-        if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
+        if (mottarOmsorgsstønadIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
             return {
                 type: 'mottarIDelerAvPeroden',
                 mottarOmsorgsstønad: YesOrNo.YES,
-                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
+                mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
                 starterUndeveis,
                 startdato: starterUndeveis === YesOrNo.YES ? startdato : undefined,
                 slutterUnderveis,

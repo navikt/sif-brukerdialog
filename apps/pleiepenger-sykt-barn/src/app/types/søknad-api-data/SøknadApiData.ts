@@ -1,15 +1,15 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { ISODateString } from '@navikt/sif-common-formik-ds';
+import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
 import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
 import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '..';
+import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
 import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
-import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
-import { ISODateString } from '@navikt/sif-common-formik-ds';
-import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
+import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';
@@ -162,7 +162,7 @@ export interface SøknadApiData {
     beredskap?: BeredskapApiData;
     arbeidsgivere: ArbeidsgiverAnsattApiData[];
     frilans: FrilansApiData;
-    omsorgsstønad: StønadGodtgjørelseApiData;
+    omsorgsstønad: OmsorgsstønadApiData;
     selvstendigNæringsdrivende: SelvstendigApiData;
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApiData[];

@@ -21,9 +21,9 @@ import { getNattevåkApiDataFromSøknadsdata } from './getNattevåkApiDataFromS�
 import { getOmsorgstilbudApiDataFromSøknadsdata } from './getOmsorgstibudApiDataFromSøknadsdata';
 import { getOpptjeningIUtlandetSøknadsdata } from './getOpptjeningIUtlandetSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
-import { getStønadGodtgjørelseApiDataFromSøknadsdata } from './getStønadGodtgjørelseApiDataFromSøknadsdata';
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
+import { getOmsorgsstønadApiDataFromSøknadsdata } from './getOmsorgsstønadApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -71,7 +71,7 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.arbeidstidIPerioden?.selvstendig,
                     locale,
                 ),
-                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsdata.omsorgsstønad),
+                ...getOmsorgsstønadApiDataFromSøknadsdata(søknadsdata.omsorgsstønad),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
                     sprak,
                     søknadsdata.arbeidssituasjon?.opptjeningUtland,
