@@ -1,6 +1,5 @@
-import { Alert, BodyLong, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
-import { WalletIcon } from '@navikt/aksel-icons';
 import { UngdomsytelseOppgaveDto } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     FormikConfirmationCheckbox,
@@ -16,7 +15,9 @@ import dayjs from 'dayjs';
 import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
-import OppgaveLayout from './OppgaveLayout';
+import PageOppgaveLayout from './PageOppgaveLayout';
+import { useDeltakerContext } from '../../../../context/DeltakerContext';
+import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 interface Props {
     deltakelseId: string;
@@ -43,7 +44,8 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 
 const KorrigertInntektOppgave = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, setVisSkjema, error, pending } = useOppgaveContext();
+    const { refetchDeltakelser } = useDeltakerContext();
+    const { sendSvar, setVisSkjema, error, pending, erBesvart } = useOppgaveContext();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
@@ -58,6 +60,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
         await sendSvar({
             oppgave: oppgaveDto,
         });
+        refetchDeltakelser();
     };
 
     const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
@@ -83,14 +86,12 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
 
     const summertInntektFraDeltaker = 0;
 
+    if (erBesvart) {
+        return <Kvittering tittel="Ditt svar er mottatt">sdf</Kvittering>;
+    }
+
     return (
-        <OppgaveLayout
-            tag={
-                <HStack gap="2">
-                    <WalletIcon />
-                    Inntekt
-                </HStack>
-            }
+        <PageOppgaveLayout
             tittel={
                 harOppgittInntekt
                     ? `Endret inntekt for perioden ${periodetekst}`
@@ -227,7 +228,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
                     }}
                 />
             </VStack>
-        </OppgaveLayout>
+        </PageOppgaveLayout>
     );
 };
 
