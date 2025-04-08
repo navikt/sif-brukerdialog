@@ -10,6 +10,7 @@ export const getHandlers = () => {
     return [
         http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
+        http.post('*nav.no/dekoratoren*', () => new HttpResponse(null, { status: 200 })),
         http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
         http.get('**/oppslag/soker', () => {
