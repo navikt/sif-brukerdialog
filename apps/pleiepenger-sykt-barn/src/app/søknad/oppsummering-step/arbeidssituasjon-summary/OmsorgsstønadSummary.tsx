@@ -46,9 +46,9 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
             <FormSummary.Value>
                 <List>
                     {mottarOmsorgsstønadIHelePerioden ? (
-                        <List.Item>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</List.Item>
+                        <List.Item>Mottar omsorgsstønaden gjennom gjennom hele perioden jeg søker om</List.Item>
                     ) : (
-                        <List.Item>Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</List.Item>
+                        <List.Item>Mottar omsorgsstønaden gjennom i deler av perioden jeg søker om</List.Item>
                     )}
                     {mottarOmsorgsstønadIHelePerioden === false && _starterUndeveis && startdato && (
                         <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>

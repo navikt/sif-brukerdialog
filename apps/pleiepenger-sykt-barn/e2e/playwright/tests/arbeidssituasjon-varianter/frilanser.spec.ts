@@ -71,9 +71,7 @@ test.describe('Omsorgsstønad', () => {
         await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
         await page.getByRole('textbox', { name: 'Hvor mange timer mottar du' }).fill('5');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
-        await expect(
-            page.getByText('Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om'),
-        ).toBeVisible();
+        await expect(page.getByText('Mottar omsorgsstønaden gjennom hele perioden jeg søker om')).toBeVisible();
         await expect(page.getByText('Mottar 5 timer per uken i snitt')).toBeVisible();
     });
 });
