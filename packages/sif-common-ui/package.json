@@ -13,7 +13,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "9.6.4"
+        "react-day-picker": "9.6.5"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -33,14 +33,14 @@
         "dayjs": "1.11.13",
         "globals": "16.0.0",
         "intl": "1.2.5",
-        "less": "4.2.2",
+        "less": "4.3.0",
         "postcss": "8.5.3",
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-intl": "7.1.10",
         "storybook": "8.6.12",
-        "typescript": "5.8.2",
-        "webpack": "5.98.0"
+        "typescript": "5.8.3",
+        "webpack": "5.99.1"
     },
     "scripts": {
         "build-storybook": "storybook build ",
