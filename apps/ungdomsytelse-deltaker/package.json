@@ -27,7 +27,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/ung-common": "workspace:*",
-        "@tanstack/react-query": "5.71.5",
+        "@tanstack/react-query": "5.72.0",
         "axios": "1.8.4",
         "clsx": "2.1.1",
         "csp-header": "6.1.0",
