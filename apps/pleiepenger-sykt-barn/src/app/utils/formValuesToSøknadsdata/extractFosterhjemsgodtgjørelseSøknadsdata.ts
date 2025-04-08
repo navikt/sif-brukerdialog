@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { FosterhjemsgodtgjørelseFormValues } from '../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 import { FosterhjemsgodtgjørelseSøknadsdata } from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 
 export const extractFosterhjemsgodtgjørelseSøknadsdata = (
     godtgjørelse: FosterhjemsgodtgjørelseFormValues,
@@ -42,8 +43,8 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
                 erFrikjøptFraJobb,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,
                 frikjøptTimerEllerProsent,
-                frikjøptTimer,
-                frikjøptProsent,
+                frikjøptTimer: getNumberFromNumberInputValue(frikjøptTimer),
+                frikjøptProsent: getNumberFromNumberInputValue(frikjøptProsent),
             };
         }
         if (mottarFosterhjemsgodtgjørelseIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
@@ -53,8 +54,8 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
                 erFrikjøptFraJobb,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,
                 frikjøptTimerEllerProsent,
-                frikjøptTimer,
-                frikjøptProsent,
+                frikjøptTimer: getNumberFromNumberInputValue(frikjøptTimer),
+                frikjøptProsent: getNumberFromNumberInputValue(frikjøptProsent),
                 starterUndeveis,
                 startdato: starterUndeveis === YesOrNo.YES ? startdato : undefined,
                 slutterUnderveis,

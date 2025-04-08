@@ -3,10 +3,11 @@ import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
-import { OmsorgsstønadFormValues } from '../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
+import { cleanupOmsorgsstønad } from './cleanupOmsorgsstønad';
+import { cleanupFosterhjemsgodtgjørelse } from './cleanupFosterhjemsgodtgjørelse';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
     const cleanedArbeidsforhold = { ...arbeidsforhold };
@@ -76,34 +77,6 @@ export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormValues
     return selvstendig;
 };
 
-export const cleanupOmsorgsstønad = (values: OmsorgsstønadFormValues): OmsorgsstønadFormValues => {
-    const omsorgsstønad: OmsorgsstønadFormValues = { ...values };
-    if (omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO) {
-        omsorgsstønad.mottarOmsorgsstønadIHelePerioden = undefined;
-        omsorgsstønad.starterUndeveis = undefined;
-        omsorgsstønad.startdato = undefined;
-        omsorgsstønad.slutterUnderveis = undefined;
-        omsorgsstønad.sluttdato = undefined;
-    }
-
-    if (omsorgsstønad.mottarOmsorgsstønadIHelePerioden === YesOrNo.YES) {
-        omsorgsstønad.starterUndeveis = undefined;
-        omsorgsstønad.startdato = undefined;
-        omsorgsstønad.slutterUnderveis = undefined;
-        omsorgsstønad.sluttdato = undefined;
-    }
-
-    if (omsorgsstønad.starterUndeveis === YesOrNo.NO) {
-        omsorgsstønad.startdato = undefined;
-    }
-
-    if (omsorgsstønad.slutterUnderveis === YesOrNo.NO) {
-        omsorgsstønad.sluttdato = undefined;
-    }
-
-    return omsorgsstønad;
-};
-
 export const cleanupArbeidssituasjonStep = (
     formValues: SøknadFormValues,
     søknadsperiode: DateRange,
@@ -114,6 +87,7 @@ export const cleanupArbeidssituasjonStep = (
     values.frilans = cleanupFrilansArbeidssituasjon(søknadsperiode, values.frilans);
     values.selvstendig = cleanupSelvstendigArbeidssituasjon(values.selvstendig);
     values.omsorgsstønad = cleanupOmsorgsstønad(values.omsorgsstønad);
+    values.fosterhjemsgodtgjørelse = cleanupFosterhjemsgodtgjørelse(values.fosterhjemsgodtgjørelse);
 
     if (values.harOpptjeningUtland === YesOrNo.NO) {
         values.opptjeningUtland = [];

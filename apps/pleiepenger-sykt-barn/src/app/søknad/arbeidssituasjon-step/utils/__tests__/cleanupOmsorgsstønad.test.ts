@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { OmsorgsstønadFormValues } from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
-import { cleanupOmsorgsstønad } from '../cleanupArbeidssituasjonStep';
 import { vi } from 'vitest';
+import { cleanupOmsorgsstønad } from '../cleanupOmsorgsstønad';
 
 const ISOStartdato = '2021-01-01';
 const ISOSluttdato = '2022-01-01';
@@ -13,6 +13,7 @@ const formValues: OmsorgsstønadFormValues = {
     sluttdato: ISOSluttdato,
     slutterUnderveis: YesOrNo.YES,
     starterUndeveis: YesOrNo.YES,
+    antallTimer: '10',
 };
 
 vi.mock('@navikt/sif-common-env', () => {
@@ -20,7 +21,7 @@ vi.mock('@navikt/sif-common-env', () => {
 });
 
 describe('cleanupOmsorgsstønad', () => {
-    it('mottar ikke omsorgsstønad eller fosterhjemsgodtgjørelse', () => {
+    it('mottar ikke omsorgsstønad', () => {
         const { mottarOmsorgsstønad, ...rest } = cleanupOmsorgsstønad({
             ...formValues,
             mottarOmsorgsstønad: YesOrNo.NO,
@@ -28,14 +29,16 @@ describe('cleanupOmsorgsstønad', () => {
         expect(mottarOmsorgsstønad).toEqual(YesOrNo.NO);
         expect(rest).toEqual({});
     });
-    describe('mottar omsorgsstønad eller fosterhjemsgodtgjørelse', () => {
+    describe('mottar omsorgsstønad', () => {
         it('mottar hele perioden', () => {
-            const { mottarOmsorgsstønad, mottarOmsorgsstønadIHelePerioden, ...rest } = cleanupOmsorgsstønad({
-                ...formValues,
-                mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
-            });
+            const { mottarOmsorgsstønad, mottarOmsorgsstønadIHelePerioden, antallTimer, ...rest } =
+                cleanupOmsorgsstønad({
+                    ...formValues,
+                    mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
+                });
             expect(mottarOmsorgsstønad).toEqual(YesOrNo.YES);
             expect(mottarOmsorgsstønadIHelePerioden).toEqual(YesOrNo.YES);
+            expect(antallTimer).toEqual('10');
             expect(rest).toEqual({});
         });
         it('starter i perioden', () => {
@@ -45,6 +48,7 @@ describe('cleanupOmsorgsstønad', () => {
                 starterUndeveis,
                 slutterUnderveis,
                 startdato,
+                antallTimer,
                 ...rest
             } = cleanupOmsorgsstønad({
                 ...formValues,
@@ -57,6 +61,7 @@ describe('cleanupOmsorgsstønad', () => {
             expect(starterUndeveis).toEqual(YesOrNo.YES);
             expect(slutterUnderveis).toEqual(YesOrNo.NO);
             expect(startdato).toEqual(ISOStartdato);
+            expect(antallTimer).toEqual('10');
             expect(rest).toEqual({});
         });
         it('slutter i perioden', () => {
@@ -66,6 +71,7 @@ describe('cleanupOmsorgsstønad', () => {
                 sluttdato,
                 slutterUnderveis,
                 starterUndeveis,
+                antallTimer,
                 ...rest
             } = cleanupOmsorgsstønad({
                 ...formValues,
@@ -78,6 +84,7 @@ describe('cleanupOmsorgsstønad', () => {
             expect(starterUndeveis).toEqual(YesOrNo.NO);
             expect(slutterUnderveis).toEqual(YesOrNo.YES);
             expect(sluttdato).toEqual(ISOSluttdato);
+            expect(antallTimer).toEqual('10');
             expect(rest).toEqual({});
         });
         it('starter og slutter i perioden', () => {
@@ -88,6 +95,7 @@ describe('cleanupOmsorgsstønad', () => {
                 startdato,
                 slutterUnderveis,
                 starterUndeveis,
+                antallTimer,
                 ...rest
             } = cleanupOmsorgsstønad({
                 ...formValues,
@@ -101,6 +109,7 @@ describe('cleanupOmsorgsstønad', () => {
             expect(slutterUnderveis).toEqual(YesOrNo.YES);
             expect(startdato).toEqual(ISOStartdato);
             expect(sluttdato).toEqual(ISOSluttdato);
+            expect(antallTimer).toEqual('10');
             expect(rest).toEqual({});
         });
     });

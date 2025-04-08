@@ -19,8 +19,8 @@ export interface FosterhjemsgodtgjørelseFormValues {
     mottarFosterhjemsgodtgjørelse: YesOrNo;
     erFrikjøptFraJobb?: YesOrNo;
     frikjøptTimerEllerProsent?: TimerEllerProsent;
-    frikjøptTimer?: number;
-    frikjøptProsent?: number;
+    frikjøptTimer?: string;
+    frikjøptProsent?: string;
     mottarFosterhjemsgodtgjørelseIHelePerioden?: YesOrNo;
     starterUndeveis?: YesOrNo;
     startdato?: ISODate;

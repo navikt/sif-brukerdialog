@@ -32,7 +32,6 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
         values: { fosterhjemsgodtgjørelse },
     } = useFormikContext<SøknadFormValues>();
 
-    console.log('render');
     return (
         <FormBlock>
             <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
@@ -49,7 +48,7 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                 }
             />
             {fosterhjemsgodtgjørelse && fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse === YesOrNo.YES && (
-                <FormBlock>
+                <FormBlock margin="l">
                     <ResponsivePanel border={true}>
                         <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
                             name={FosterhjemsgodtgjørelseFormField.erFrikjøptFraJobb}

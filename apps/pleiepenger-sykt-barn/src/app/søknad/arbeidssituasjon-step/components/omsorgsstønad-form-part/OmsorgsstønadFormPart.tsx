@@ -45,7 +45,7 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                 }
             />
             {omsorgsstønad && omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES && (
-                <FormBlock>
+                <FormBlock margin="l">
                     <ResponsivePanel border={true}>
                         <FormComponents.YesOrNoQuestion
                             name={OmsorgsstønadFormField.mottarOmsorgsstønadIHelePerioden}
