@@ -1,0 +1,36 @@
+name: Deploy app to dev
+run-name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
+
+on:
+    workflow_dispatch:
+        inputs:
+            app-name:
+                description: Choose application
+                type: choice
+                options:
+                    - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                    - endringsmelding-pleiepenger
+                    - omsorgsdager-aleneomsorg-dialog
+                    - omsorgsdager-kalkulator
+                    - omsorgspengerutbetaling-arbeidstaker-soknad
+                    - omsorgspengerutbetaling-soknad
+                    - omsorgspengesoknad
+                    - opplaringspenger-soknad
+                    - pleiepenger-i-livets-sluttfase-soknad
+                    - pleiepenger-sykt-barn
+                    - sif-demo-app
+                    - sif-ettersending
+                    - ungdomsytelse-deltaker
+                    - ungdomsytelse-veileder
+                required: true
+
+jobs:
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: '${{ inputs.app-name }}'
+            working-directory: 'apps/${{ inputs.app-name }}'
