@@ -17,7 +17,8 @@
         "copy-mockServiceWorker": "cp ./mockServiceWorker.js ./dist-demo/",
         "copy-index": "cp ./dist-demo/demo/index.html ./dist-demo/index.html",
         "build-demo": "yarn build-demo-app && yarn copy-index && yarn copy-mockServiceWorker",
-        "demo": "vite preview --base /sif-brukerdialog/ungdomsytelse-deltaker --outDir dist-demo --config vite.demo.config.ts"
+        "demo": "vite preview --base /sif-brukerdialog/ungdomsytelse-deltaker --outDir dist-demo --config vite.demo.config.ts",
+        "copy-to-gh-pages": "cp -r ./dist-demo ../../gh-pages/ungdomsytelse-deltaker"
     },
     "dependencies": {
         "@navikt/aksel-icons": "7.18.0",
