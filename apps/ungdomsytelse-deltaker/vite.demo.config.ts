@@ -30,7 +30,7 @@ export default defineConfig({
             },
         },
     },
-    base: '/ungdomsytelse-deltaker',
+    base: '/ungdomsytelse-deltaker/',
     build: {
         sourcemap: true,
         rollupOptions: {
