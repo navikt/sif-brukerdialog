@@ -17,7 +17,7 @@ export default defineConfig({
         proxy: {
             '/mockServiceWorker.js': {
                 target: 'http://localhost:8080', // Adjust target URL if needed
-                rewrite: () => '/ungdomsytelse-deltaker/mockServiceWorker.js',
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
             },
         },
     },
@@ -26,11 +26,11 @@ export default defineConfig({
         proxy: {
             '/mockServiceWorker.js': {
                 target: 'http://localhost:8080', // Adjust target URL if needed
-                rewrite: () => '/ungdomsytelse-deltaker/mockServiceWorker.js',
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
             },
         },
     },
-    base: '/ungdomsytelse-deltaker/',
+    base: '/sif-brukerdialog/ungdomsytelse-deltaker/',
     build: {
         sourcemap: true,
         rollupOptions: {
