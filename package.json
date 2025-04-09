@@ -16,6 +16,7 @@
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
+        "gh-pages": "^6.3.0",
         "husky": "9.1.7",
         "lint-staged": "15.5.0",
         "prettier": "3.5.3",
@@ -39,7 +40,8 @@
         "lint:eslint": "turbo lint:eslint",
         "lint:tsc": "turbo lint:tsc",
         "prepare": "husky install",
-        "test": "turbo test"
+        "test": "turbo test",
+        "deploy-gh-pages": "gh-pages -d gh-pages"
     },
     "workspaces": [
         "apps/*",
