@@ -8609,7 +8609,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/ui@npm:^2.15.10":
+"@sanity/ui@npm:^2.15.10, @sanity/ui@npm:^2.15.12":
   version: 2.15.12
   resolution: "@sanity/ui@npm:2.15.12"
   dependencies:
@@ -8689,9 +8689,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.82.0":
-  version: 3.82.0
-  resolution: "@sanity/vision@npm:3.82.0"
+"@sanity/vision@npm:3.83.0":
+  version: 3.83.0
+  resolution: "@sanity/vision@npm:3.83.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8706,20 +8706,20 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
     "@sanity/icons": "npm:^3.7.0"
-    "@sanity/ui": "npm:^2.15.10"
+    "@sanity/ui": "npm:^2.15.12"
     "@uiw/react-codemirror": "npm:^4.23.8"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.0.0-beta-e993439-20250328"
+    react-compiler-runtime: "npm:19.0.0-beta-e993439-20250405"
     react-fast-compare: "npm:^3.2.2"
     use-effect-event: "npm:^1.0.2"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/8201636df0970a8071e2ec585462d2b5af16d510f1fb77c38a910ee3c1374dd6695b0dcf2d0c4976c97632b497af1dc5452d080382b6027d505b3328bbaa2e1e
+  checksum: 10/428b72c5442e28f9e6a014805bf2c9961850a80812d8ef6c70ef54ec9e73243def19b5baeb83ac456899b1c0a18d2b8f3a629a932f7a2bab7db7725b5b409370
   languageName: node
   linkType: hard
 
@@ -12617,7 +12617,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:3.82.0"
+    "@sanity/vision": "npm:3.83.0"
     "@types/react": "npm:19.1.0"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.24.0"
@@ -26328,6 +26328,15 @@ __metadata:
   peerDependencies:
     react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
   checksum: 10/c617222e58d3c1fc2ed4b3b80bc91069d76e01e3f01129cd4350e119ad2b403aa70be545c98a0f650a23b61f3a5e46ab93d79b6dfbca3c69c2f45260e050629c
+  languageName: node
+  linkType: hard
+
+"react-compiler-runtime@npm:19.0.0-beta-e993439-20250405":
+  version: 19.0.0-beta-e993439-20250405
+  resolution: "react-compiler-runtime@npm:19.0.0-beta-e993439-20250405"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
+  checksum: 10/2c4f9da4da2714bafe663d683947d36c7d2bec889be5c882f6b5bd8cbede65224c4d04121943dad83f5e8c454566d99829b2d352bae6c5ce8bbae697f857cef7
   languageName: node
   linkType: hard
 
