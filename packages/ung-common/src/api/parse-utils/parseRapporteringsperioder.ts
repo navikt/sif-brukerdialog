@@ -7,18 +7,25 @@ const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): bo
     return dayjs(dato).isSame(programStartdato, 'month');
 };
 
-const getTillattRapporteringsperiodeForMåned = (dato: Date): DateRange => {
-    return { from: dayjs(dato).startOf('month').toDate(), to: dayjs(dato).add(6, 'days').toDate() };
+const erDatoISisteMånedIProgrammet = (dato: Date, programSluttdato: Date): boolean => {
+    return dayjs(dato).isSame(programSluttdato, 'month');
 };
 
-const erPeriodeInnforTillattRapporteringstidsrom = (periode: DateRange, programStartdato: Date): boolean => {
+export const getTillattRapporteringsperiodeForMåned = (dato: Date): DateRange => {
+    const from = dayjs(dato).set('date', 1).toDate();
+    const to = dayjs(dato).set('date', 16).toDate();
+    return { from, to };
+};
+
+const erPeriodeInnforTillattRapporteringstidsrom = (periode: DateRange, programPeriode: OpenDateRange): boolean => {
     /** Skal ikke rapportere for første måned */
-    if (erDatoIFørsteMånedIProgrammet(periode.from, programStartdato)) {
+    if (erDatoIFørsteMånedIProgrammet(periode.from, programPeriode.from)) {
         return false;
     }
-    /** Kan rapportere hvis dagens dato er innenfor tillatt rapporteringsperiode for måned */
-    const rapporteringsperiodeIMåned = getTillattRapporteringsperiodeForMåned(periode.from);
-    return isDateInDateRange(getDateToday(), rapporteringsperiodeIMåned);
+    if (programPeriode.to && erDatoISisteMånedIProgrammet(periode.to, programPeriode.to)) {
+        return false;
+    }
+    return isDateInDateRange(getDateToday(), getTillattRapporteringsperiodeForMåned(periode.from));
 };
 
 export const parseRapporteringsperioder = (
@@ -39,8 +46,7 @@ export const parseRapporteringsperioder = (
             inntektFraYtelse,
             summertInntekt,
             erÅpenRapporteringsperiode:
-                erPeriodeInnforTillattRapporteringstidsrom(periode, programPeriode.from) &&
-                data.harRapportert === false,
+                erPeriodeInnforTillattRapporteringstidsrom(periode, programPeriode) && data.harRapportert === false,
         };
         return rapporteringsperiode;
     });

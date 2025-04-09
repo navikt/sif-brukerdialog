@@ -37,9 +37,26 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
     return (
         <VStack gap="8">
             {uløsteOppgaver.length === 0 ? null : (
-                <UløsteOppgaverList uløsteOppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                <VStack gap="4" marginBlock="4 0">
+                    <Heading level="2" size="medium">
+                        Endringer i din sak
+                    </Heading>
+
+                    <UløsteOppgaverList
+                        uløsteOppgaver={uløsteOppgaver}
+                        programPeriode={programPeriode}
+                        deltakelseId={id}
+                    />
+                </VStack>
             )}
-            {åpenInntektsperiode ? <RapporterInntekt rapporteringsperiode={åpenInntektsperiode} /> : null}
+            {åpenInntektsperiode ? (
+                <VStack gap="4">
+                    <Heading level="2" size="medium">
+                        Meld fra om inntekt
+                    </Heading>
+                    <RapporterInntekt linkMode={true} rapporteringsperiode={åpenInntektsperiode} />
+                </VStack>
+            ) : null}
 
             <Switch checked={visTest} onChange={(e) => setVisTest(e.target.checked)}>
                 Testfunksjonalitet
@@ -54,7 +71,11 @@ const DeltakelseContent = ({ deltakelse }: Props) => {
                             .sort((p1, p2) => sortDateRange(p1.periode, p2.periode))
                             .reverse()
                             .map((p) => (
-                                <RapporterInntekt key={dateRangeToISODateRange(p.periode)} rapporteringsperiode={p} />
+                                <RapporterInntekt
+                                    linkMode={false}
+                                    key={dateRangeToISODateRange(p.periode)}
+                                    rapporteringsperiode={p}
+                                />
                             ))}
                     </VStack>
                 </VStack>

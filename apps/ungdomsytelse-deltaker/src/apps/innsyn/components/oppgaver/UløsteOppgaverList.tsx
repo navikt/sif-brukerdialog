@@ -1,7 +1,7 @@
-import { VStack } from '@navikt/ds-react';
-import { OpenDateRange } from '@navikt/sif-common-utils';
+import { BodyShort, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { dateFormatter, OpenDateRange } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
-import OppgavePanel from './OppgavePanel';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     uløsteOppgaver: Oppgave[];
@@ -9,16 +9,26 @@ interface Props {
     deltakelseId: string;
 }
 
-const UløsteOppgaverList = ({ deltakelseId, uløsteOppgaver, programPeriode }: Props) => {
+const UløsteOppgaverList = ({ uløsteOppgaver }: Props) => {
+    const navigate = useNavigate();
+
     return (
-        <VStack gap="8">
+        <VStack gap="4">
             {uløsteOppgaver.map((oppgave, index) => (
-                <OppgavePanel
+                <LinkPanel
+                    href="#"
                     key={index}
-                    oppgave={oppgave}
-                    deltakelseId={deltakelseId}
-                    programPeriode={programPeriode}
-                />
+                    className="w-full"
+                    onClick={(evt) => {
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                        navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
+                    }}>
+                    <Heading level="2" size="medium" spacing={true}>
+                        {oppgave.oppgavetype}
+                    </Heading>
+                    <BodyShort>Opprettet {dateFormatter.compact(oppgave.opprettetDato)}</BodyShort>
+                </LinkPanel>
             ))}
         </VStack>
     );

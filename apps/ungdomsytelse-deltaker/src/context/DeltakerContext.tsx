@@ -6,7 +6,7 @@ interface DeltakerContextType {
     søker: Søker;
     deltakelse: DeltakelsePeriode;
     barn: RegistrertBarn[];
-    refetchDeltakelser: () => void;
+    refetchDeltakelser: () => Promise<any>;
 }
 
 export const DeltakerContext = createContext<DeltakerContextType>(null!);

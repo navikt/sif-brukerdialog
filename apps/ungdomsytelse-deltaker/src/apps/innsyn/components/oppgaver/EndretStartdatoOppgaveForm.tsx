@@ -1,7 +1,6 @@
-import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { EndreStartdatoOppgave } from '@navikt/ung-common';
-import OppgaveLayout from './OppgaveLayout';
 import dayjs from 'dayjs';
 import {
     getIntlFormErrorHandler,
@@ -12,8 +11,8 @@ import {
 import { useAppIntl } from '../../../../i18n';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { CalendarIcon } from '@navikt/aksel-icons';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
+import PageOppgaveLayout from './PageOppgaveLayout';
 
 interface Props {
     deltakelseId: string;
@@ -60,13 +59,7 @@ const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
     };
 
     return (
-        <OppgaveLayout
-            tag={
-                <HStack gap="2">
-                    <CalendarIcon />
-                    Endret deltakerperiode
-                </HStack>
-            }
+        <PageOppgaveLayout
             svarfrist={oppgave.svarfrist}
             tittel="Din deltakerperiode blir endret"
             beskrivelse={
@@ -148,7 +141,7 @@ const EndretStartdatoOppgaveForm = ({ oppgave }: Props) => {
                     }}
                 />
             </VStack>
-        </OppgaveLayout>
+        </PageOppgaveLayout>
     );
 };
 
