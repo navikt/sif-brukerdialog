@@ -13,11 +13,11 @@
         "lint": "eslint",
         "storybook": "storybook dev -p 6006",
         "lint:fix": "eslint --fix",
-        "build-demo-app": "vite build --mode demo --config vite.demo.config.ts",
+        "build-demo-app": "vite build --config vite.demo.config.ts",
         "copy-mockServiceWorker": "cp ./mockServiceWorker.js ./dist-demo/",
         "copy-index": "cp ./dist-demo/demo/index.html ./dist-demo/index.html",
         "build-demo": "yarn build-demo-app && yarn copy-index && yarn copy-mockServiceWorker",
-        "demo": "vite preview --base /ungdomsytelse-deltaker --outDir dist-demo --config vite.demo.config.ts --mode demo"
+        "demo": "vite preview --base /ungdomsytelse-deltaker --outDir dist-demo --config vite.demo.config.ts"
     },
     "dependencies": {
         "@navikt/aksel-icons": "7.18.0",
