@@ -9,8 +9,8 @@ export const addUserInfoToRequest = async (request: Request, response: Response,
         if (parse.ok) {
             console.log(`Bruker: ${parse.preferred_username} (${parse.NAVident})`);
             // Legg til preferred_username og NAVident i headeren
-            request.headers['X-Preferred-Username'] = parse.preferred_username;
-            request.headers['X-NAVident'] = parse.NAVident;
+            response.setHeader('X-Preferred-Username', parse.preferred_username);
+            response.setHeader('X-NAVident', parse.NAVident);
         } else {
             console.error('Failed to parse Azure user token', parse.error);
         }
