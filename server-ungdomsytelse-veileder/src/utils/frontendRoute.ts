@@ -1,6 +1,7 @@
 import { Express } from 'express';
 import path from 'node:path';
 import fs from 'fs';
+import { getToken, parseAzureUserToken } from '@navikt/oasis';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -26,7 +27,22 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const renderedHtml = html;
 
-    app.get(/^\/(?!.*dist).*$/, async (_request, response) => {
+    app.get(/^\/(?!.*dist).*$/, async (request, response) => {
+        const token = getToken(request);
+        let userInfo = {};
+        if (token) {
+            const parse = parseAzureUserToken(token);
+            if (parse.ok) {
+                userInfo = {
+                    preferred_username: parse.preferred_username,
+                    NAVident: parse.NAVident,
+                };
+            } else {
+                console.error('Failed to parse Azure user token', parse.error);
+            }
+        }
+        const renderedHtml = html.replace('{{{APP_SETTINGS}}}', JSON.stringify(userInfo));
+
         return response.send(renderedHtml);
     });
 };
