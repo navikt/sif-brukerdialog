@@ -1,5 +1,3 @@
-import { Søker } from '@navikt/sif-common-api';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import { Veileder } from '../../../src/types/Veileder';
@@ -148,15 +146,12 @@ export const getDeltakelser = (id) => {
     return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDRMock];
 };
 
-export const veilederMock: Søker = {
-    fornavn: 'Pål',
-    etternavn: 'Hønesen',
-    aktørId: '123456789',
-    fødselsdato: ISODateToDate('1990-01-01'),
-    fødselsnummer: 'w34',
+export const veilederMock: Veileder = {
+    name: 'Pål',
+    NAVIdent: 'Z999999',
 };
 
 export const parsedVeilederMock: Veileder = {
-    fornavn: 'Pål',
-    etternavn: 'Hønesen',
+    name: 'Pål',
+    NAVIdent: 'Z999999',
 };

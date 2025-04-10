@@ -57,6 +57,7 @@ export const setupAndServeHtml = async (app: Express) => {
                 console.error('Failed to parse Azure user token', parse.error);
             }
         }
-        return response.send(renderedHtml);
+        const responseHtml = renderedHtml.replaceAll('{{{USER_INFO}}}', JSON.stringify(userInfo));
+        return response.send(responseHtml);
     });
 };

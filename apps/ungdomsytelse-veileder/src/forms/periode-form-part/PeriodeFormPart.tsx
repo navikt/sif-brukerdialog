@@ -1,13 +1,10 @@
-import { Alert, Button, HStack, VStack } from '@navikt/ds-react';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import { FormikDatepicker, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
-import { formaterNavn } from '@navikt/ung-common';
 import { max, min } from 'date-fns';
 import { GYLDIG_PERIODE } from '../../settings';
-import { Veileder } from '../../types/Veileder';
 
 interface Props {
-    veileder: Veileder;
     deltakernavn: string;
     visStartdato?: boolean;
     visSluttdato?: boolean;
@@ -18,7 +15,6 @@ interface Props {
 }
 
 const PeriodeFormPart = ({
-    veileder,
     deltakernavn,
     fomDate,
     tomDate,
@@ -59,9 +55,6 @@ const PeriodeFormPart = ({
                 legend={`Er ${deltakernavn} informert om endringen?`}
                 validate={getRequiredFieldValidator()}
             />
-            <Alert variant="info" inline={true}>
-                Oppgaven vil bli merket med navnet ditt (<strong>{formaterNavn(veileder)}</strong>).
-            </Alert>
             <HStack gap="4">
                 <Button type="submit" loading={pending} variant="primary">
                     Lagre endring

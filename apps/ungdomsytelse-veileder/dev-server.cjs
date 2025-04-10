@@ -45,14 +45,22 @@ const startServer = async () => {
 
     const html = fs.readFileSync(indexHtmlPath, 'utf-8');
 
-    const renderedHtml = html.replaceAll(
-        '{{{APP_SETTINGS}}}',
-        JSON.stringify({
-            APP_VERSION: `${process.env.APP_VERSION}`,
-            PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-            ...getAppSettings(),
-        }),
-    );
+    const renderedHtml = html
+        .replaceAll(
+            '{{{APP_SETTINGS}}}',
+            JSON.stringify({
+                APP_VERSION: `${process.env.APP_VERSION}`,
+                PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+                ...getAppSettings(),
+            }),
+        )
+        .replaceAll(
+            '{{{USER_INFO}}}',
+            JSON.stringify({
+                name: 'Pål',
+                NAVIdent: 'Z999999',
+            }),
+        );
 
     server.use(
         '/api/ung-deltakelse-opplyser',

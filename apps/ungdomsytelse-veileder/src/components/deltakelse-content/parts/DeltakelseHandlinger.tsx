@@ -2,19 +2,17 @@ import { Button } from '@navikt/ds-react';
 import { Deltakelse, Deltaker, Oppgavetype } from '@navikt/ung-common';
 import { useState } from 'react';
 import SectionContainer from '../../section-container/SectionContainer';
-import { Veileder } from '../../../types/Veileder';
 import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
 import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
 
 interface Props {
-    veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onDeltakelseChanged: () => void;
 }
 
-const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChanged }: Props) => {
+const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
@@ -44,7 +42,6 @@ const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChan
                     onClose={handleOnClose}
                     deltakelseChanged={endretDeltakelse !== undefined}>
                     <EndreStartdatoForm
-                        veileder={veileder}
                         deltakelse={deltakelse}
                         deltaker={deltaker}
                         onCancel={handleOnClose}
@@ -62,7 +59,6 @@ const DeltakelseHandlinger = ({ veileder, deltakelse, deltaker, onDeltakelseChan
                     onClose={handleOnClose}
                     deltakelseChanged={endretDeltakelse !== undefined}>
                     <EndreSluttdatoForm
-                        veileder={veileder}
                         deltakelse={deltakelse}
                         deltaker={deltaker}
                         onCancel={handleOnClose}

@@ -1,5 +1,4 @@
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
-import { formaterNavn } from '@navikt/ung-common';
 import { useVeileder } from '../../context/VeilederContext';
 import { InformationSquareIcon, MenuGridIcon, PersonIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +28,7 @@ const AppHeader = () => {
                     </ActionMenu.Item>
                 </ActionMenu.Content>
             </ActionMenu>
-            <InternalHeader.User name={formaterNavn({ ...veileder })} />
+            <InternalHeader.User name={veileder.name} />
         </InternalHeader>
     );
 };
