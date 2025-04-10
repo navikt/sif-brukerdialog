@@ -1,4 +1,4 @@
-import { getToken, requestOboToken } from '@navikt/oasis';
+import { getToken, parseAzureUserToken, requestOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
@@ -54,6 +54,12 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
             const obo = await requestOboToken(token, scope);
             if (obo.ok) {
                 request.headers['obo-token'] = obo.token;
+
+                const parse = parseAzureUserToken(token);
+                if (parse.ok) {
+                    console.log(`Bruker: ${parse.preferred_username} (${parse.NAVident})`);
+                }
+
                 return next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
