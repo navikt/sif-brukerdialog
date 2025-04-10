@@ -58,7 +58,7 @@ const startServer = async () => {
             '{{{USER_INFO}}}',
             JSON.stringify({
                 name: 'Pål',
-                NAVIdent: 'Z999999',
+                NAVident: 'Z999999',
             }),
         );
 
