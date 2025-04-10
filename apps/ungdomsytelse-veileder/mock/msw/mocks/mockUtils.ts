@@ -147,11 +147,11 @@ export const getDeltakelser = (id) => {
 };
 
 export const veilederMock: Veileder = {
-    name: 'Pål',
+    preferred_username: 'Pål',
     NAVIdent: 'Z999999',
 };
 
 export const parsedVeilederMock: Veileder = {
-    name: 'Pål',
+    preferred_username: 'Pål',
     NAVIdent: 'Z999999',
 };

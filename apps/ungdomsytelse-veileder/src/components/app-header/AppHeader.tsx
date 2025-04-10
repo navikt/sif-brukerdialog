@@ -28,7 +28,7 @@ const AppHeader = () => {
                     </ActionMenu.Item>
                 </ActionMenu.Content>
             </ActionMenu>
-            <InternalHeader.User name={veileder.name} />
+            <InternalHeader.User name={veileder.NAVIdent} />
         </InternalHeader>
     );
 };

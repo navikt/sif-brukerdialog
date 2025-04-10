@@ -1,4 +1,4 @@
 export type Veileder = {
-    name: string;
+    preferred_username: string;
     NAVIdent: string;
 };
