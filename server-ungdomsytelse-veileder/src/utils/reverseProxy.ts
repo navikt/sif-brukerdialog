@@ -1,4 +1,4 @@
-import { getToken, requestTokenxOboToken } from '@navikt/oasis';
+import { getToken, requestOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
@@ -51,9 +51,9 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
                 console.error('[addProxyHandler] No token found in request');
                 return response.status(401).send();
             }
-            const obo = await requestTokenxOboToken(token, scope);
+            const obo = await requestOboToken(token, scope);
             if (obo.ok) {
-                request.headers['obo-token'] = obo.token;
+                request.headers['Authorization'] = `Bearer ${obo.token}`;
                 return next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
