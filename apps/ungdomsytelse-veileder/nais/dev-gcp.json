@@ -1,8 +1,8 @@
 {
-    "app": "ungdomsytelse-veileder",
+    "app": "ungdomsytelse-veileder-dev",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://ungdomsytelse-veileder.intern.dev.nav.no"],
+    "ingresses": ["https://ungdomsytelse-veileder-dev.intern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": [],
@@ -17,7 +17,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
 
-        "SIF_PUBLIC_LOGIN_URL": "https://ungdomsytelse-veileder.intern.dev.nav.no/oauth2/login?redirect=/",
+        "SIF_PUBLIC_LOGIN_URL": "https://ungdomsytelse-veileder-dev.intern.dev.nav.no/oauth2/login?redirect=/",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
