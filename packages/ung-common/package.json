@@ -18,6 +18,7 @@
         "zod": "3.24.2"
     },
     "peerDependencies": {
+        "axios": "*",
         "dayjs": "*",
         "uuid": "*"
     },

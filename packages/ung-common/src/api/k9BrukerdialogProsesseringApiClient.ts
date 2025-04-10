@@ -1,7 +1,7 @@
-import { isUnauthorized } from '@navikt/sif-common-api';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/client/client.gen';
 import { v4 } from 'uuid';
+import { isUnauthorized } from './';
 
 export const initK9BrukerdialogProsesseringApiClient = () => {
     /** Set config for generert klient */
