@@ -59,7 +59,7 @@ jobs:
               uses: nais/deploy/actions/deploy@v2
               env:
                   CLUSTER: dev-gcp
-                  RESOURCE: apps/${{ env.APP_NAME }}/nais.yml
+                  RESOURCE: apps/${{ env.APP_NAME }}/nais/nais.yml
                   VARS: apps/${{ env.APP_NAME }}/nais/dev-gcp.json
                   VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
