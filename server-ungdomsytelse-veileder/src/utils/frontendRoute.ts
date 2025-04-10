@@ -1,4 +1,3 @@
-import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import cookieParser from 'cookie-parser';
 import { Express, Response } from 'express';
 import path from 'node:path';
@@ -14,7 +13,8 @@ export const setupAndServeHtml = async (app: Express) => {
         addLocalViteServerHandlerWithDecorator(app);
     }
 
-    const html = config.app.skipDecorator ? fs.readFileSync(spaFilePath, 'utf-8') : await injectDecorator(spaFilePath);
+    // const html = config.app.skipDecorator ? fs.readFileSync(spaFilePath, 'utf-8') : await injectDecorator(spaFilePath);
+    const html = fs.readFileSync(spaFilePath, 'utf-8');
 
     // const envs = appEnvSchema.safeParse({
     //     ENV: `${config.app.env}`,
@@ -39,15 +39,15 @@ export const setupAndServeHtml = async (app: Express) => {
     });
 };
 
-async function injectDecorator(filePath: string) {
-    return injectDecoratorServerSide({
-        env: config.app.env,
-        filePath,
-        params: {
-            simple: true,
-        },
-    });
-}
+// async function injectDecorator(filePath: string) {
+//     return injectDecoratorServerSide({
+//         env: config.app.env,
+//         filePath,
+//         params: {
+//             simple: true,
+//         },
+//     });
+// }
 
 function addLocalViteServerHandlerWithDecorator(app: Express) {
     const viteDevelopmentServerPath = path.resolve('.', 'vite-dev-server.html');
