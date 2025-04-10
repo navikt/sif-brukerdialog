@@ -53,7 +53,7 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
             }
             const obo = await requestOboToken(token, scope);
             if (obo.ok) {
-                request.headers['Authorization'] = `Bearer ${obo.token}`;
+                request.headers['obo-token'] = obo.token;
                 return next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
