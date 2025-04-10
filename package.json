@@ -46,7 +46,8 @@
     "workspaces": [
         "apps/*",
         "packages/*",
-        "server"
+        "server",
+        "server-ungdomsytelse-veileder"
     ],
     "overrides": {
         "glob-parent": ">=5.1.2"

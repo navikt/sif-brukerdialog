@@ -5202,6 +5202,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/server-ungdomsytelse-veileder@workspace:server-ungdomsytelse-veileder":
+  version: 0.0.0-use.local
+  resolution: "@navikt/server-ungdomsytelse-veileder@workspace:server-ungdomsytelse-veileder"
+  dependencies:
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/oasis": "npm:3.7.0"
+    "@navikt/sif-common-env": "workspace:*"
+    "@types/cookie-parser": "npm:1.4.8"
+    "@types/express": "npm:5.0.1"
+    "@types/morgan": "npm:1.9.9"
+    "@types/node": "npm:22.14.0"
+    "@vercel/ncc": "npm:0.38.3"
+    axios: "npm:1.8.4"
+    cookie-parser: "npm:1.4.7"
+    csp-header: "npm:6.1.0"
+    express: "npm:4.21.2"
+    html-react-parser: "npm:5.2.3"
+    http-proxy-middleware: "npm:3.0.3"
+    jsdom: "npm:26.0.0"
+    morgan: "npm:1.10.0"
+    prettier: "npm:3.5.3"
+    react: "npm:19.1.0"
+    typescript: "npm:5.8.3"
+    winston: "npm:3.17.0"
+    zod: "npm:3.24.2"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-app-register@workspace:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-app-register@workspace:packages/sif-app-register"
