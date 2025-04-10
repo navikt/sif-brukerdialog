@@ -54,12 +54,15 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
             const obo = await requestOboToken(token, scope);
             if (obo.ok) {
                 request.headers['obo-token'] = obo.token;
-
                 const parse = parseAzureUserToken(token);
                 if (parse.ok) {
                     console.log(`Bruker: ${parse.preferred_username} (${parse.NAVident})`);
+                    // Legg til preferred_username og NAVident i headeren
+                    request.headers['X-Preferred-Username'] = parse.preferred_username;
+                    request.headers['X-NAVident'] = parse.NAVident;
+                } else {
+                    console.error('Failed to parse Azure user token', parse.error);
                 }
-
                 return next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
