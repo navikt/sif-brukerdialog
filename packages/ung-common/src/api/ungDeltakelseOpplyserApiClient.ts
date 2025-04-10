@@ -1,7 +1,10 @@
-import { isUnauthorized } from '@navikt/sif-common-api';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
+import { AxiosError, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
+
+export const isUnauthorized = (error: AxiosError): boolean =>
+    error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
 
 export const initUngDeltakelseOpplyserApiClient = () => {
     /** Set config for generert klient */
