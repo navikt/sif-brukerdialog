@@ -48,6 +48,7 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
 
             const token = getToken(request);
             if (!token) {
+                console.error('[addProxyHandler] No token found in request');
                 return response.status(401).send();
             }
             const obo = await requestTokenxOboToken(token, scope);

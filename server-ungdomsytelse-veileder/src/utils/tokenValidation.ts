@@ -5,6 +5,7 @@ export const verifyToken = async (request: Request, response: Response, next: Ne
     const token = getToken(request);
 
     if (!token) {
+        console.error('No token found in request');
         return response.status(401).send();
     }
 
