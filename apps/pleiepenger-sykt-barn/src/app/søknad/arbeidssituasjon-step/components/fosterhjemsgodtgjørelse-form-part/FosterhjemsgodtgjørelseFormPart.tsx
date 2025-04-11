@@ -13,7 +13,11 @@ import {
     FosterhjemsgodtgjørelseFormValues,
 } from '../../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
-import { AppFieldValidationErrors } from '../../../../validation/fieldValidations';
+import {
+    AppFieldValidationErrors,
+    getFosterhjemsgodtgjørelseSluttdatoValidator,
+    getFosterhjemsgodtgjørelseStartdatoValidator,
+} from '../../../../validation/fieldValidations';
 import { TimerEllerProsent } from '../../../../types';
 
 const FosterhjemsgodtgjørelseComponents = getTypedFormComponents<
@@ -148,10 +152,10 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                                     maxDate={søknadsperiode.to}
                                                     defaultMonth={søknadsperiode.to}
                                                     data-testid="fosterhjemsgodtgjørelse-startdato"
-                                                    // validate={getfosterhjemsgodtgjørelseStartdatoValidator(
-                                                    //     fosterhjemsgodtgjørelse,
-                                                    //     søknadsperiode,
-                                                    // )}
+                                                    validate={getFosterhjemsgodtgjørelseStartdatoValidator(
+                                                        fosterhjemsgodtgjørelse,
+                                                        søknadsperiode,
+                                                    )}
                                                 />
                                             </FormBlock>
                                         )}
@@ -187,10 +191,10 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                                     maxDate={søknadsperiode.to}
                                                     defaultMonth={søknadsperiode.to}
                                                     data-testid="fosterhjemsgodtgjørelse-sluttdato"
-                                                    // validate={getfosterhjemsgodtgjørelseSluttdatoValidator(
-                                                    //     fosterhjemsgodtgjørelse,
-                                                    //     søknadsperiode,
-                                                    // )}
+                                                    validate={getFosterhjemsgodtgjørelseSluttdatoValidator(
+                                                        fosterhjemsgodtgjørelse,
+                                                        søknadsperiode,
+                                                    )}
                                                 />
                                             </FormBlock>
                                         )}

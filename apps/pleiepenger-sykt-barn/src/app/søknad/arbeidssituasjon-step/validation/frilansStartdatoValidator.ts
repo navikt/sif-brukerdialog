@@ -5,7 +5,7 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds'
 import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-export const getFrilanserStartdatoValidator =
+export const getFrilansStartdatoValidator =
     (startdato: ISODate | undefined, søknadsperiode: DateRange, max: Date, min: Date) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, max, min })(value);

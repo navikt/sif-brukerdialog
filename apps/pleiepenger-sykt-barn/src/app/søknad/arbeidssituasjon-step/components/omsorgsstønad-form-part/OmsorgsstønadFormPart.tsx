@@ -15,8 +15,8 @@ import {
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
 import {
     AppFieldValidationErrors,
-    // getOmsorgsstønadSluttdatoValidator,
-    // getOmsorgsstønadStartdatoValidator,
+    getOmsorgsstønadSluttdatoValidator,
+    getOmsorgsstønadStartdatoValidator,
 } from '../../../../validation/fieldValidations';
 
 const FormComponents = getTypedFormComponents<OmsorgsstønadFormField, OmsorgsstønadFormValues, ValidationError>();
@@ -75,10 +75,10 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="omsorgsstønad-startdato"
-                                                // validate={getOmsorgsstønadStartdatoValidator(
-                                                //     omsorgsstønad,
-                                                //     søknadsperiode,
-                                                // )}
+                                                validate={getOmsorgsstønadStartdatoValidator(
+                                                    omsorgsstønad,
+                                                    søknadsperiode,
+                                                )}
                                             />
                                         </FormBlock>
                                     )}
@@ -109,10 +109,10 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
                                                 data-testid="omsorgsstønad-sluttdato"
-                                                // validate={getOmsorgsstønadSluttdatoValidator(
-                                                //     omsorgsstønad,
-                                                //     søknadsperiode,
-                                                // )}
+                                                validate={getOmsorgsstønadSluttdatoValidator(
+                                                    omsorgsstønad,
+                                                    søknadsperiode,
+                                                )}
                                             />
                                         </FormBlock>
                                     )}

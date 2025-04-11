@@ -3,7 +3,7 @@ import { useAppIntl } from '@i18n/index';
 import { dateFormatter, DateRange, ISODate } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
-import { getFrilanserStartdatoValidator } from '../../../validation/frilansStartdatoValidator';
+import { getFrilansStartdatoValidator } from '../../../validation/frilansStartdatoValidator';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
@@ -24,7 +24,7 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoV
             minDate={minDato}
             defaultMonth={søknadsperiode.to}
             validate={(value) => {
-                const error = getFrilanserStartdatoValidator(
+                const error = getFrilansStartdatoValidator(
                     startdatoValue,
                     søknadsperiode,
                     søknadsperiode.to,
