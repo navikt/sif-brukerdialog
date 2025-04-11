@@ -11,6 +11,14 @@
     "maxReplicas": 1,
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
+    "azure": {
+        "groups": [
+            {
+                "name": "0000-CA-ung-programveileder",
+                "objectId": "37538533-e91c-4a53-b155-f4448dcada0d"
+            }
+        ]
+    },
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",

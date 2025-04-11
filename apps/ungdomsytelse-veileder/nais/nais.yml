@@ -66,9 +66,18 @@ spec:
        value: {{GITHUB_REF_NAME}}
 
     azure:
-        application:
-            enabled: true
-            allowAllUsers: true
         sidecar:
             enabled: true
             autoLogin: true
+        application:
+            enabled: true
+            allowAllUsers: false
+            singlePageApplication: true
+            claims:
+                extra:
+                    - "NAVident"
+                    - "azp_name"
+                groups:
+                    {{#each azure.groups as |group|}}
+                    - id: {{group.objectId }}
+                    {{/each}}
