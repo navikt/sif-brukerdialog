@@ -188,6 +188,12 @@ const fosterhjem = {
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.sluttdato': 'Sluttdato:',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.prosent': 'Prosent',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.timer': 'Timer',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimer.label': 'Oppgi timer du er frikjøpt',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptProsent.label': 'Oppgi prosent du er frikjøpt',
+
+    'steg.arbeidssituasjon.frilansoppdragListe.tittel': 'Frilansoppdrag registrert på deg:',
+    'steg.arbeidssituasjon.frilansoppdragListe.tekst':
+        'Dette er informasjon hentet fra AA-registeret. Det kan være jobb som frilanser, eller andre oppdrag som regnes som frilansoppdrag: honorar, fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.',
 };
 
 export const arbeidssituasjonMessages = {

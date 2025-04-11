@@ -86,7 +86,9 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                     <FormBlock>
                                         <FosterhjemsgodtgjørelseComponents.NumberInput
                                             name={FosterhjemsgodtgjørelseFormField.frikjøptProsent}
-                                            label="Oppgi prosent"
+                                            label={text(
+                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptProsent.label',
+                                            )}
                                             validate={getNumberValidator({ max: 100, min: 0, required: true })}
                                             width="xs"
                                             maxLength={4}
@@ -98,7 +100,9 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                         <FosterhjemsgodtgjørelseComponents.NumberInput
                                             className="arbeidstidUkeInput"
                                             name={FosterhjemsgodtgjørelseFormField.frikjøptTimer}
-                                            label="Oppgi antall timer"
+                                            label={text(
+                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimer.label',
+                                            )}
                                             validate={getNumberValidator({ min: 0, max: 37.5, required: true })}
                                             width="xs"
                                             maxLength={5}
