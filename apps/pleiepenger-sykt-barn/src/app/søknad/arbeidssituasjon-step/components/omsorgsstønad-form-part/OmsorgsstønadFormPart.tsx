@@ -3,7 +3,7 @@ import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getNumberValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
@@ -125,6 +125,19 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                 name={OmsorgsstønadFormField.antallTimer}
                                 width="xs"
                                 maxLength={5}
+                                validate={(value) => {
+                                    const minMaxOptions = {
+                                        min: 1,
+                                        max: 100,
+                                    };
+                                    const error = getNumberValidator({ ...minMaxOptions, required: true })(value);
+                                    return error
+                                        ? {
+                                              key: error,
+                                              values: { ...minMaxOptions },
+                                          }
+                                        : undefined;
+                                }}
                             />
                         </FormBlock>
                     </ResponsivePanel>

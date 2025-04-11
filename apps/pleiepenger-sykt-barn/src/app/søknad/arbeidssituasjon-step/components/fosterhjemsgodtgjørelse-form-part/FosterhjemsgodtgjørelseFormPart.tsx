@@ -93,7 +93,21 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                             label={text(
                                                 'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptProsent.label',
                                             )}
-                                            validate={getNumberValidator({ max: 100, min: 0, required: true })}
+                                            validate={(value) => {
+                                                const minMaxOptions = {
+                                                    min: 0,
+                                                    max: 100,
+                                                };
+                                                const error = getNumberValidator({ ...minMaxOptions, required: true })(
+                                                    value,
+                                                );
+                                                return error
+                                                    ? {
+                                                          key: error,
+                                                          values: { ...minMaxOptions },
+                                                      }
+                                                    : undefined;
+                                            }}
                                             width="xs"
                                             maxLength={4}
                                         />
@@ -107,7 +121,21 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                             label={text(
                                                 'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimer.label',
                                             )}
-                                            validate={getNumberValidator({ min: 0, max: 37.5, required: true })}
+                                            validate={(value) => {
+                                                const minMaxOptions = {
+                                                    min: 0,
+                                                    max: 100,
+                                                };
+                                                const error = getNumberValidator({ ...minMaxOptions, required: true })(
+                                                    value,
+                                                );
+                                                return error
+                                                    ? {
+                                                          key: error,
+                                                          values: { ...minMaxOptions },
+                                                      }
+                                                    : undefined;
+                                            }}
                                             width="xs"
                                             maxLength={5}
                                         />
