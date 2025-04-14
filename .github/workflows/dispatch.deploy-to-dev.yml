@@ -21,7 +21,6 @@ on:
                     - sif-demo-app
                     - sif-ettersending
                     - ungdomsytelse-deltaker
-                    - ungdomsytelse-veileder
                 required: true
 
 jobs:
