@@ -39,6 +39,8 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.R
                     <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelseId} />
                 </OppgaveProvider>
             );
+        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+            return <OppgaveProvider>Endret programperiode</OppgaveProvider>;
     }
 };
 

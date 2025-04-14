@@ -6,6 +6,7 @@ const nb = {
     'oppgavetype.BEKREFT_ENDRET_STARTDATO': 'Endret startdato',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO': 'Endret sluttdato',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT': 'Endret inntekt',
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE': 'Endret programperiode',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
