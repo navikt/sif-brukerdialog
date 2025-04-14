@@ -64,6 +64,30 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                         {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES && (
                             <>
                                 <FormBlock>
+                                    {/* <FosterhjemsgodtgjørelseComponents.InputGroup
+                                        name={FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent}
+                                        legend={text(
+                                            'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.spm',
+                                        )}>
+                                        <ToggleGroup
+                                            defaultValue={
+                                                fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent ||
+                                                TimerEllerProsent.TIMER
+                                            }
+                                            onChange={(value) =>
+                                                setFieldValue(
+                                                    FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent,
+                                                    value,
+                                                )
+                                            }>
+                                            <ToggleGroupItem value={TimerEllerProsent.TIMER}>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.timer" />
+                                            </ToggleGroupItem>
+                                            <ToggleGroupItem value={TimerEllerProsent.PROSENT}>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.prosent" />
+                                            </ToggleGroupItem>
+                                        </ToggleGroup>
+                                    </FosterhjemsgodtgjørelseComponents.InputGroup> */}
                                     <FosterhjemsgodtgjørelseComponents.RadioGroup
                                         name={FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent}
                                         legend={text(

@@ -18,6 +18,7 @@ import {
     getOmsorgsstønadSluttdatoValidator,
     getOmsorgsstønadStartdatoValidator,
 } from '../../../../validation/fieldValidations';
+import { ReadMore } from '@navikt/ds-react';
 
 const FormComponents = getTypedFormComponents<OmsorgsstønadFormField, OmsorgsstønadFormValues, ValidationError>();
 
@@ -47,12 +48,40 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
             {omsorgsstønad && omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES && (
                 <FormBlock margin="l">
                     <ResponsivePanel border={true}>
-                        <FormComponents.YesOrNoQuestion
-                            name={OmsorgsstønadFormField.mottarOmsorgsstønadIHelePerioden}
-                            legend={text('steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm')}
-                            validate={getRequiredFieldValidator()}
-                            value={omsorgsstønad.mottarOmsorgsstønadIHelePerioden}
+                        <FormComponents.NumberInput
+                            label={text('steg.arbeidssituasjon.omsorgsstønad.antallTimer.spm')}
+                            name={OmsorgsstønadFormField.antallTimer}
+                            description={
+                                <ReadMore header={text('steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tittel')}>
+                                    <AppText id="steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tekst" />
+                                </ReadMore>
+                            }
+                            width="xs"
+                            maxLength={5}
+                            validate={(value) => {
+                                const minMaxOptions = {
+                                    min: 1,
+                                    max: 100,
+                                };
+                                const error = getNumberValidator({ ...minMaxOptions, required: true })(value);
+                                return error
+                                    ? {
+                                          key: error,
+                                          values: { ...minMaxOptions },
+                                      }
+                                    : undefined;
+                            }}
                         />
+                        <FormBlock>
+                            <FormComponents.YesOrNoQuestion
+                                name={OmsorgsstønadFormField.mottarOmsorgsstønadIHelePerioden}
+                                legend={text(
+                                    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm',
+                                )}
+                                validate={getRequiredFieldValidator()}
+                                value={omsorgsstønad.mottarOmsorgsstønadIHelePerioden}
+                            />
+                        </FormBlock>
 
                         {omsorgsstønad.mottarOmsorgsstønadIHelePerioden === YesOrNo.NO && (
                             <>
@@ -119,27 +148,6 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                 </FormBlock>
                             </>
                         )}
-                        <FormBlock>
-                            <FormComponents.NumberInput
-                                label="Hvor mange timer mottar du normalt i omsorgsstønad? Oppgi tiden i et snitt per uke:"
-                                name={OmsorgsstønadFormField.antallTimer}
-                                width="xs"
-                                maxLength={5}
-                                validate={(value) => {
-                                    const minMaxOptions = {
-                                        min: 1,
-                                        max: 100,
-                                    };
-                                    const error = getNumberValidator({ ...minMaxOptions, required: true })(value);
-                                    return error
-                                        ? {
-                                              key: error,
-                                              values: { ...minMaxOptions },
-                                          }
-                                        : undefined;
-                                }}
-                            />
-                        </FormBlock>
                     </ResponsivePanel>
                 </FormBlock>
             )}

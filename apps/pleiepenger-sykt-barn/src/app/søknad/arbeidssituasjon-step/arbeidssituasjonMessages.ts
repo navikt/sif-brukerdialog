@@ -22,13 +22,17 @@ const nb = {
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description.tittel': 'Hva betyr dette?',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description':
         'Omsorgsstønad regnes som frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ',
+    'steg.arbeidssituasjon.omsorgsstønad.antallTimer.spm': 'Hvor mange	timer i uken har du vedtak om omsorgsstønad?',
+    'steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tittel': 'Hva betyr dette?',
+    'steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tekst':
+        'Når kommunen godkjenner søknaden din, regner de ut omsorgsstønaden ut fra hvor mange timer med omsorgsarbeid stønaden skal dekke. Du finner vanligvis timeantallet i vedtaket om omsorgsstønad. Er du usikker, må du avklare dette med kommunen. Hvis vedtaket oppgir timer pr. måned, deler du timeantallet med fire for å få timer pr uke.',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm':
         'Mottar du denne omsorgsstønaden gjennom hele perioden du søker om?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.spm':
-        'Starter omsorgsstønaden underveis i pleiepengeperioden din?',
+        'Starter omsorgsstønaden underveis i pleiepengeperioden?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.startdato': 'Startdato:',
     'steg.arbeidssituasjon.omsorgsstønad.slutterUndeveis.spm':
-        'Stopper omsorgsstønaden underveis i pleiepengeperioden din?',
+        'Stopper omsorgsstønaden underveis i pleiepengeperioden?',
     'steg.arbeidssituasjon.omsorgsstønad.starterUndeveis.sluttdato': 'Sluttdato:',
 
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
