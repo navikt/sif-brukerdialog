@@ -2,7 +2,7 @@
     "app": "ungdomsytelse-veileder",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://ungdomsytelse-veileder-dev.intern.dev.nav.no"],
+    "ingresses": ["https://ungdomsytelse-veileder.intern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": [],
