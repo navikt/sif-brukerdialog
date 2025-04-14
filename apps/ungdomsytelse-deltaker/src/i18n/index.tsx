@@ -5,7 +5,7 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
 import { inntektFormMessages } from '../apps/innsyn/components/inntekt-form/inntektFormMessages';
-import { enumMessages } from './enums';
+import { enumMessages } from './enumMessages';
 
 export const libMessages = {
     nb: {
