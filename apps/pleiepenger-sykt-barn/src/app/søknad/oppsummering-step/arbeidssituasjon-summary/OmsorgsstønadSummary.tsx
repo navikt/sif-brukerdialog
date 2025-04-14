@@ -46,7 +46,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
             <FormSummary.Value>
                 <List>
                     {mottarOmsorgsstønadIHelePerioden ? (
-                        <List.Item>Mottar omsorgsstønaden gjennom gjennom hele perioden jeg søker om</List.Item>
+                        <List.Item>Mottar omsorgsstønaden gjennom hele perioden jeg søker om</List.Item>
                     ) : (
                         <List.Item>Mottar omsorgsstønaden gjennom i deler av perioden jeg søker om</List.Item>
                     )}

@@ -31,14 +31,14 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
-        await page.getByLabel('Oppgi prosent', { exact: true }).fill('25');
+        await page.getByLabel('Oppgi prosent du er frikjøpt', { exact: true }).fill('25');
         await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Ja').check();
     });
     test('Starter og slutter å motta i perioden', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
-        await page.getByLabel('Oppgi prosent', { exact: true }).fill('25');
+        await page.getByLabel('Oppgi prosent du er frikjøpt', { exact: true }).fill('25');
         await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
@@ -69,7 +69,7 @@ test.describe('Omsorgsstønad', () => {
     test('Mottar omsorgsstønad i hele perioden', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
-        await page.getByRole('textbox', { name: 'Hvor mange timer mottar du' }).fill('5');
+        await page.getByRole('textbox', { name: 'Hvor mange timer i uken har' }).fill('5');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar omsorgsstønaden gjennom hele perioden jeg søker om')).toBeVisible();
         await expect(page.getByText('Mottar 5 timer per uken i snitt')).toBeVisible();
