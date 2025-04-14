@@ -4,7 +4,7 @@ on:
     workflow_call:
     push:
         branches:
-            - ung-veileder-server
+            - '*-veilder-dev'
 
 env:
     APP_NAME: ungdomsytelse-veileder
