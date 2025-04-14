@@ -4,6 +4,7 @@ import EndretSluttdatoOppgaveForm from './EndretSluttdatoOppgaveForm';
 import EndretStartdatoOppgaveForm from './EndretStartdatoOppgaveForm';
 import KorrigertInntektOppgave from './KorrigertInntektOppgave';
 import { OppgaveProvider } from '../oppgave/OppgaveContext';
+import EndretProgramperiodeOppgaveForm from './EndretProgramperiodeOppgave';
 
 interface Props {
     programPeriode: OpenDateRange;
@@ -40,7 +41,11 @@ const OppgavePanel = ({ oppgave, deltakelseId, programPeriode }: Props): React.R
                 </OppgaveProvider>
             );
         case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-            return <OppgaveProvider>Endret programperiode</OppgaveProvider>;
+            return (
+                <OppgaveProvider>
+                    <EndretProgramperiodeOppgaveForm oppgave={oppgave} deltakelseId={deltakelseId} />
+                </OppgaveProvider>
+            );
     }
 };
 
