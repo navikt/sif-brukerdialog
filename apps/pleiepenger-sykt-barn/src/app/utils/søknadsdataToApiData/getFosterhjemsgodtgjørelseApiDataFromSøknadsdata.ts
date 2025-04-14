@@ -31,6 +31,7 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
                 fosterhjemsgodtgjørelse: {
                     mottarFosterhjemsgodtgjørelse: true,
                     erFrikjøptFraJobb: true,
+                    frikjøptArbeidsgiverNavn: fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: true,
                     antallTimer: fosterhjemsgodtgjørelse.frikjøptTimer,
                     prosent: fosterhjemsgodtgjørelse.frikjøptProsent,
@@ -43,6 +44,7 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
                 fosterhjemsgodtgjørelse: {
                     mottarFosterhjemsgodtgjørelse: true,
                     erFrikjøptFraJobb: true,
+                    frikjøptArbeidsgiverNavn: fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: false,
                     antallTimer: fosterhjemsgodtgjørelse.frikjøptTimer,
                     prosent: fosterhjemsgodtgjørelse.frikjøptProsent,

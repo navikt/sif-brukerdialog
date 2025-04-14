@@ -4,6 +4,7 @@ import { TimerEllerProsent } from '../TimerEllerProsent';
 export interface FosterhjemsgodtgjørelseApiData {
     mottarFosterhjemsgodtgjørelse: boolean;
     erFrikjøptFraJobb?: boolean;
+    frikjøptArbeidsgiverNavn?: string[];
     timerEllerProsent?: TimerEllerProsent;
     antallTimer?: number;
     prosent?: number;

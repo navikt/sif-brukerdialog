@@ -39,6 +39,9 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
 
     const { values } = formikProps;
     const { isLoading, isLoaded } = loadState;
+    const arbeidsgivere = values.ansatt_arbeidsforhold
+        .filter((a) => a.arbeidsgiver !== undefined)
+        .map((a) => a.arbeidsgiver);
 
     useEffectOnce(() => {
         const fetchData = async () => {
@@ -68,7 +71,11 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                     </FormSection>
 
                     <FormSection title={text('steg.arbeidssituasjon.frilanser.tittel')} titleLevel="2">
-                        <ArbeidssituasjonFrilans søknadsperiode={søknadsperiode} søknadsdato={søknadsdato} />
+                        <ArbeidssituasjonFrilans
+                            arbeidsgivere={arbeidsgivere}
+                            søknadsperiode={søknadsperiode}
+                            søknadsdato={søknadsdato}
+                        />
                     </FormSection>
 
                     <FormSection title={text('steg.arbeidssituasjon.sn.tittel')} titleLevel="2">

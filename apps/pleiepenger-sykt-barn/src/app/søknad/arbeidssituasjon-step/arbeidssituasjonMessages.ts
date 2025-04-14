@@ -38,6 +38,17 @@ const nb = {
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
     'steg.arbeidssituasjon.sn.tittel': 'Selvstendig næringsdrivende',
 
+    'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro':
+        'I tillegg til å jobbe som frilanser, er det andre oppdrag som regnes som frilansoppdrag. Les mer om hvilke frilansoppdrag som må oppgis i denne søknaden:',
+    'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tittel':
+        'Om frilans, honorar, fosterhjemsgodtgjørelse og omsorgsstønad',
+    'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.1':
+        'Du er frilanser når du mottar lønn som en vanlig ansatt, <strong>uten</strong> å være ansatt hos den du utfører arbeidet for. Som frilanser betaler du skatt på samme måte som en arbeidstaker, og leverer skattemelding som arbeidstaker.',
+    'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.2':
+        'Du regnes også som frilanser når du mottar <strong>honorar</strong> for et utført oppdrag. Det kan for eksempel være utbetalt honorar i forbindelse med et styreverv i borettslaget, eller som trener for et håndball-lag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og kunstnere.',
+    'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.3':
+        'I tillegg er <strong>fosterhjemsgodtgjørelse</strong> og <strong>omsorgsstønad</strong> fra kommunen også regnet som frilansoppdrag.',
+
     'steg.arbeidssituasjon.opptjeningUtland.tittel': 'Jobbet i et annet EØS-land',
     'steg.arbeidssituasjon.opptjeningUtland.spm':
         'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
@@ -182,6 +193,7 @@ const fosterhjem = {
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.spm':
         'Mottar du denne godtgjørelsen gjennom hele perioden du søker om?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.spm': 'Er du frikjøpt fra jobb?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.spm': 'Velg arbeidsgiver du er frikjøpt fra:',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.spm':
         'Ønsker du å oppgi hvor mye du er frikjøpt i timer eller prosent?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.spm':

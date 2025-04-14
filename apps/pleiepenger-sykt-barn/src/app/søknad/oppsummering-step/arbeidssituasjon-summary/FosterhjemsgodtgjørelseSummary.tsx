@@ -13,6 +13,7 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
     const {
         mottarFosterhjemsgodtgjørelse,
         timerEllerProsent,
+        frikjøptArbeidsgiverNavn,
         prosent,
         antallTimer,
         erFrikjøptFraJobb,
@@ -78,7 +79,7 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                         {timerEllerProsent === TimerEllerProsent.TIMER ? (
                             <AppText
                                 id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.timer"
-                                values={{ antallTimer }}
+                                values={{ timer: antallTimer }}
                             />
                         ) : (
                             <AppText
@@ -87,6 +88,20 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                             />
                         )}
                     </ListItem>
+                    {frikjøptArbeidsgiverNavn && (
+                        <List.Item>
+                            {frikjøptArbeidsgiverNavn.length > 0 ? (
+                                <>
+                                    Er frikjøpt fra:
+                                    <List>
+                                        {frikjøptArbeidsgiverNavn.map((navn) => (
+                                            <List.Item>{navn}</List.Item>
+                                        ))}
+                                    </List>
+                                </>
+                            ) : null}
+                        </List.Item>
+                    )}
                 </List>
             </FormSummary.Value>
         </FormSummary.Answer>

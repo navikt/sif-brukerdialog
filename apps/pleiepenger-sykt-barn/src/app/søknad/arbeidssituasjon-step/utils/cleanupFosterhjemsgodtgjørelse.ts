@@ -4,6 +4,7 @@ import { TimerEllerProsent } from '../../../types';
 
 export const cleanupFosterhjemsgodtgjørelse = (
     values: FosterhjemsgodtgjørelseFormValues,
+    arbeidsgivereNavn: string[],
 ): FosterhjemsgodtgjørelseFormValues => {
     const fosterhjemsgodtgjørelse: FosterhjemsgodtgjørelseFormValues = { ...values };
     if (fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse === YesOrNo.NO) {
@@ -13,12 +14,22 @@ export const cleanupFosterhjemsgodtgjørelse = (
         fosterhjemsgodtgjørelse.erFrikjøptFraJobb === undefined ||
         fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.NO
     ) {
+        fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn = undefined;
         fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent = undefined;
         fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden = undefined;
         fosterhjemsgodtgjørelse.starterUndeveis = undefined;
         fosterhjemsgodtgjørelse.startdato = undefined;
         fosterhjemsgodtgjørelse.slutterUnderveis = undefined;
         fosterhjemsgodtgjørelse.sluttdato = undefined;
+    }
+    if (
+        fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES &&
+        fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn &&
+        fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn.length > 0
+    ) {
+        fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn = fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn.filter(
+            (navn) => arbeidsgivereNavn.find((a) => a === navn),
+        );
     }
     if (fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent === undefined) {
         fosterhjemsgodtgjørelse.frikjøptTimer = undefined;

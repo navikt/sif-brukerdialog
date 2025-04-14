@@ -5,6 +5,7 @@ import { TimerEllerProsent } from '../TimerEllerProsent';
 export enum FosterhjemsgodtgjørelseFormField {
     mottarFosterhjemsgodtgjørelse = 'fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse',
     erFrikjøptFraJobb = 'fosterhjemsgodtgjørelse.erFrikjøptFraJobb',
+    frikjøptArbeidsgiverNavn = 'fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn',
     frikjøptTimerEllerProsent = 'fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent',
     frikjøptTimer = 'fosterhjemsgodtgjørelse.frikjøptTimer',
     frikjøptProsent = 'fosterhjemsgodtgjørelse.frikjøptProsent',
@@ -18,6 +19,7 @@ export enum FosterhjemsgodtgjørelseFormField {
 export interface FosterhjemsgodtgjørelseFormValues {
     mottarFosterhjemsgodtgjørelse: YesOrNo;
     erFrikjøptFraJobb?: YesOrNo;
+    frikjøptArbeidsgiverNavn?: string[];
     frikjøptTimerEllerProsent?: TimerEllerProsent;
     frikjøptTimer?: string;
     frikjøptProsent?: string;

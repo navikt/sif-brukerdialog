@@ -84,6 +84,10 @@ const nb = {
         'Du må svare ja eller nei på om du mottar fosterhjemsgodtgjørelse.',
     'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
         'Du må svare ja eller nei på om du er frikjøpt fra jobb',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
+        'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':
+        'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
     'validation.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.noValue':
         'Du må svare på om du ønsker å oppgi hvor mye du er frikjøpt i timer eller prosent',
     'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.noValue':

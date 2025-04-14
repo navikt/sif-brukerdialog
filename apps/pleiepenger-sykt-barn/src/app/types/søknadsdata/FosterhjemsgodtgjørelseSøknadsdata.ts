@@ -17,6 +17,7 @@ export interface MottarFosterhjemsgodtgjørelseIHelePeroden {
     type: 'mottarIHelePeroden';
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
     erFrikjøptFraJobb: YesOrNo.YES;
+    frikjøptArbeidsgiverNavn: string[];
     frikjøptTimerEllerProsent: TimerEllerProsent;
     frikjøptTimer?: number;
     frikjøptProsent?: number;
@@ -27,6 +28,7 @@ export interface MottarFosterhjemsgodtgjørelseIDelerAvPeroden {
     type: 'mottarIDelerAvPeroden';
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
     erFrikjøptFraJobb: YesOrNo.YES;
+    frikjøptArbeidsgiverNavn: string[];
     frikjøptTimerEllerProsent: TimerEllerProsent;
     frikjøptTimer?: number;
     frikjøptProsent?: number;

@@ -4,7 +4,12 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
-import { getNumberValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import {
+    getListValidator,
+    getNumberValidator,
+    getRequiredFieldValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../../../i18n';
@@ -18,7 +23,7 @@ import {
     getFosterhjemsgodtgjørelseSluttdatoValidator,
     getFosterhjemsgodtgjørelseStartdatoValidator,
 } from '../../../../validation/fieldValidations';
-import { TimerEllerProsent } from '../../../../types';
+import { Arbeidsgiver, TimerEllerProsent } from '../../../../types';
 
 const FosterhjemsgodtgjørelseComponents = getTypedFormComponents<
     FosterhjemsgodtgjørelseFormField,
@@ -28,9 +33,10 @@ const FosterhjemsgodtgjørelseComponents = getTypedFormComponents<
 
 interface Props {
     søknadsperiode: DateRange;
+    arbeidsgivere: Arbeidsgiver[];
 }
 
-const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, arbeidsgivere }) => {
     const { text } = useAppIntl();
     const {
         values: { fosterhjemsgodtgjørelse },
@@ -60,6 +66,22 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                             validate={getRequiredFieldValidator()}
                             value={fosterhjemsgodtgjørelse.erFrikjøptFraJobb}
                         />
+
+                        {arbeidsgivere.length > 1 && fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES && (
+                            <FormBlock>
+                                <FosterhjemsgodtgjørelseComponents.CheckboxGroup
+                                    name={FosterhjemsgodtgjørelseFormField.frikjøptArbeidsgiverNavn}
+                                    legend={text(
+                                        'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.spm',
+                                    )}
+                                    validate={getListValidator({ required: true, minItems: 1 })}
+                                    checkboxes={arbeidsgivere.map((arbeidsgiver) => ({
+                                        value: arbeidsgiver.navn,
+                                        label: arbeidsgiver.navn,
+                                    }))}
+                                />
+                            </FormBlock>
+                        )}
 
                         {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES && (
                             <>

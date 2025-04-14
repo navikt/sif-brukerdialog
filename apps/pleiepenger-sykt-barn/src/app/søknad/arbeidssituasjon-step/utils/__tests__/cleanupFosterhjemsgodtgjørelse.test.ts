@@ -11,6 +11,7 @@ const formValues: FosterhjemsgodtgjørelseFormValues = {
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES,
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
     erFrikjøptFraJobb: YesOrNo.YES,
+    frikjøptArbeidsgiverNavn: ['NAV'],
     frikjøptTimerEllerProsent: TimerEllerProsent.PROSENT,
     frikjøptProsent: '50',
     startdato: ISOStartdato,
@@ -25,19 +26,25 @@ vi.mock('@navikt/sif-common-env', () => {
 
 describe('cleanupFosterhjemsgodtgjørelse', () => {
     it('mottar ikke Fosterhjemsgodtgjørelse', () => {
-        const { mottarFosterhjemsgodtgjørelse, ...rest } = cleanupFosterhjemsgodtgjørelse({
-            ...formValues,
-            mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
-        });
+        const { mottarFosterhjemsgodtgjørelse, ...rest } = cleanupFosterhjemsgodtgjørelse(
+            {
+                ...formValues,
+                mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
+            },
+            [],
+        );
         expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.NO);
         expect(rest).toEqual({});
     });
     it('mottar Fosterhjemsgodtgjørelse men er ikke frikjøpt', () => {
-        const { mottarFosterhjemsgodtgjørelse, erFrikjøptFraJobb, ...rest } = cleanupFosterhjemsgodtgjørelse({
-            ...formValues,
-            mottarFosterhjemsgodtgjørelse: YesOrNo.YES,
-            erFrikjøptFraJobb: YesOrNo.NO,
-        });
+        const { mottarFosterhjemsgodtgjørelse, erFrikjøptFraJobb, ...rest } = cleanupFosterhjemsgodtgjørelse(
+            {
+                ...formValues,
+                mottarFosterhjemsgodtgjørelse: YesOrNo.YES,
+                erFrikjøptFraJobb: YesOrNo.NO,
+            },
+            [],
+        );
         expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
         expect(erFrikjøptFraJobb).toEqual(YesOrNo.NO);
         expect(rest).toEqual({});
@@ -46,20 +53,25 @@ describe('cleanupFosterhjemsgodtgjørelse', () => {
         it('mottar hele perioden - oppgir timer', () => {
             const {
                 mottarFosterhjemsgodtgjørelse,
+                frikjøptArbeidsgiverNavn,
                 erFrikjøptFraJobb,
                 frikjøptTimerEllerProsent,
                 frikjøptTimer,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,
                 ...rest
-            } = cleanupFosterhjemsgodtgjørelse({
-                ...formValues,
-                frikjøptTimer: '10',
-                frikjøptTimerEllerProsent: TimerEllerProsent.TIMER,
-                mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES,
-                erFrikjøptFraJobb: YesOrNo.YES,
-            });
+            } = cleanupFosterhjemsgodtgjørelse(
+                {
+                    ...formValues,
+                    frikjøptTimer: '10',
+                    frikjøptTimerEllerProsent: TimerEllerProsent.TIMER,
+                    mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES,
+                    erFrikjøptFraJobb: YesOrNo.YES,
+                },
+                ['NAV'],
+            );
             expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
             expect(erFrikjøptFraJobb).toEqual(YesOrNo.YES);
+            expect(frikjøptArbeidsgiverNavn).toEqual(['NAV']);
             expect(mottarFosterhjemsgodtgjørelseIHelePerioden).toEqual(YesOrNo.YES);
             expect(frikjøptTimerEllerProsent).toEqual(TimerEllerProsent.TIMER);
             expect(frikjøptTimer).toEqual('10');
@@ -75,14 +87,18 @@ describe('cleanupFosterhjemsgodtgjørelse', () => {
                 sluttdato,
                 erFrikjøptFraJobb,
                 frikjøptProsent,
+                frikjøptArbeidsgiverNavn,
                 frikjøptTimerEllerProsent,
                 ...rest
-            } = cleanupFosterhjemsgodtgjørelse({
-                ...formValues,
-                mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
-                starterUndeveis: YesOrNo.YES,
-                slutterUnderveis: YesOrNo.YES,
-            });
+            } = cleanupFosterhjemsgodtgjørelse(
+                {
+                    ...formValues,
+                    mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
+                    starterUndeveis: YesOrNo.YES,
+                    slutterUnderveis: YesOrNo.YES,
+                },
+                ['NAV'],
+            );
             expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
             expect(mottarFosterhjemsgodtgjørelseIHelePerioden).toEqual(YesOrNo.NO);
             expect(starterUndeveis).toEqual(YesOrNo.YES);
@@ -91,6 +107,7 @@ describe('cleanupFosterhjemsgodtgjørelse', () => {
             expect(sluttdato).toEqual(ISOSluttdato);
             expect(frikjøptTimerEllerProsent).toEqual(TimerEllerProsent.PROSENT);
             expect(frikjøptProsent).toEqual('50');
+            expect(frikjøptArbeidsgiverNavn).toEqual(['NAV']);
             expect(rest).toEqual({});
         });
     });

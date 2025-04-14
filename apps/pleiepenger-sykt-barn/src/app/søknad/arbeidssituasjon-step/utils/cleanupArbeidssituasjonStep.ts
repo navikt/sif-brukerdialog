@@ -87,7 +87,10 @@ export const cleanupArbeidssituasjonStep = (
     values.frilans = cleanupFrilansArbeidssituasjon(søknadsperiode, values.frilans);
     values.selvstendig = cleanupSelvstendigArbeidssituasjon(values.selvstendig);
     values.omsorgsstønad = cleanupOmsorgsstønad(values.omsorgsstønad);
-    values.fosterhjemsgodtgjørelse = cleanupFosterhjemsgodtgjørelse(values.fosterhjemsgodtgjørelse);
+    values.fosterhjemsgodtgjørelse = cleanupFosterhjemsgodtgjørelse(
+        values.fosterhjemsgodtgjørelse,
+        values.ansatt_arbeidsforhold.map((a) => a.arbeidsgiver.navn),
+    );
 
     if (values.harOpptjeningUtland === YesOrNo.NO) {
         values.opptjeningUtland = [];
