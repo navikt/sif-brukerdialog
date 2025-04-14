@@ -1,5 +1,6 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
+    EndretProgramperiodeDataDto,
     EndretSluttdatoOppgavetypeDataDto,
     EndretStartdatoOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
@@ -9,7 +10,13 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import { z } from 'zod';
-import { EndreSluttdatoOppgave, EndreStartdatoOppgave, KorrigertInntektOppgave, Oppgave } from '../../types';
+import {
+    EndreSluttdatoOppgave,
+    EndreStartdatoOppgave,
+    EndretProgramperiodeOppgave,
+    KorrigertInntektOppgave,
+    Oppgave,
+} from '../../types';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
@@ -22,8 +29,8 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.ULØST;
         case 'AVBRUTT':
             return OppgaveStatus.AVBRUTT;
-        // case 'UTLØPT':
-        //     return OppgaveStatus.UTLØPT;
+        case 'UTLØPT':
+            return OppgaveStatus.UTLØPT;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
@@ -87,6 +94,27 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 };
                 parsedOppgaver.push(korrigertInntektOppgave);
                 return;
+            case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+                const endretProgramperiodeData = oppgave.oppgavetypeData as EndretProgramperiodeDataDto;
+                const endretProgramperiodeOppgave: EndretProgramperiodeOppgave = {
+                    oppgaveReferanse: oppgave.oppgaveReferanse,
+                    status: getOppgaveStatusEnum(oppgave.status),
+                    opprettetDato,
+                    svarfrist,
+                    løstDato,
+                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+                    oppgavetypeData: {
+                        fraOgMed: ISODateToDate(endretProgramperiodeData.fraOgMed),
+                        tilOgMed: endretProgramperiodeData.tilOgMed
+                            ? ISODateToDate(endretProgramperiodeData.tilOgMed)
+                            : undefined,
+                    },
+                };
+                parsedOppgaver.push(endretProgramperiodeOppgave);
+                return;
+            default:
+                console.error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
+                throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
         }
     });
     return parsedOppgaver;

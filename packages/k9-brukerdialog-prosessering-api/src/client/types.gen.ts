@@ -246,10 +246,7 @@ export type Utenlandsopphold = {
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: Array<Periode>;
-    getårsak?:
-        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
-        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
-        | 'ANNET';
+    getårsak?: 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING' | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD' | 'ANNET';
 };
 
 export type UtenlandsoppholdIPerioden = {
@@ -658,15 +655,7 @@ export type Ettersendelse = {
     språk: string;
     vedlegg: Array<string>;
     beskrivelse?: string;
-    søknadstype:
-        | 'PLEIEPENGER_SYKT_BARN'
-        | 'PLEIEPENGER_LIVETS_SLUTTFASE'
-        | 'OMP_UT_SNF'
-        | 'OMP_UT_ARBEIDSTAKER'
-        | 'OMP_UTV_KS'
-        | 'OMP_UTV_MA'
-        | 'OMP_UTV_AO'
-        | 'OPPLÆRINGSPENGER';
+    søknadstype: 'PLEIEPENGER_SYKT_BARN' | 'PLEIEPENGER_LIVETS_SLUTTFASE' | 'OMP_UT_SNF' | 'OMP_UT_ARBEIDSTAKER' | 'OMP_UTV_KS' | 'OMP_UTV_MA' | 'OMP_UTV_AO' | 'OPPLÆRINGSPENGER';
     ettersendelsesType: 'LEGEERKLÆRING' | 'ANNET';
     søkerNorskIdent?: string;
     pleietrengende?: Pleietrengende;
@@ -984,8 +973,7 @@ export type InnsendingUngdomsytelsesøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingUngdomsytelsesøknadError =
-    InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
+export type InnsendingUngdomsytelsesøknadError = InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
 
 export type InnsendingUngdomsytelsesøknadResponses = {
     /**
@@ -1103,8 +1091,7 @@ export type InnsendingPleiepengerSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingPleiepengerSyktBarnSøknadError =
-    InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
+export type InnsendingPleiepengerSyktBarnSøknadError = InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
 
 export type InnsendingPleiepengerSyktBarnSøknadResponses = {
     /**
@@ -1180,8 +1167,7 @@ export type InnsendingPleiepengerILivetsSluttfaseSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingPleiepengerILivetsSluttfaseSøknadError =
-    InnsendingPleiepengerILivetsSluttfaseSøknadErrors[keyof InnsendingPleiepengerILivetsSluttfaseSøknadErrors];
+export type InnsendingPleiepengerILivetsSluttfaseSøknadError = InnsendingPleiepengerILivetsSluttfaseSøknadErrors[keyof InnsendingPleiepengerILivetsSluttfaseSøknadErrors];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadResponses = {
     /**
@@ -1256,8 +1242,7 @@ export type InnsendingOpplæringspengerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOpplæringspengerSøknadError =
-    InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
+export type InnsendingOpplæringspengerSøknadError = InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
 
 export type InnsendingOpplæringspengerSøknadResponses = {
     /**
@@ -1295,8 +1280,7 @@ export type InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError =
-    InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError = InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
 
 export type InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses = {
     /**
@@ -1334,8 +1318,7 @@ export type InnsendingOmsorgspengerutbetalingSnfSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingSnfSøknadError =
-    InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingSnfSøknadError = InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingSnfSøknadResponses = {
     /**
@@ -1373,8 +1356,7 @@ export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError =
-    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError = InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses = {
     /**
@@ -1412,8 +1394,7 @@ export type InnsendingOmsorgspengerMidlertidigAleneSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadError =
-    InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadError = InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
 
 export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
     /**
@@ -1451,8 +1432,7 @@ export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError =
-    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError = InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
 
 export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses = {
     /**

@@ -4,7 +4,6 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, EndreStartdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
-import { Veileder } from '../../types/Veileder';
 
 export type EndreStartdatoFormValues = {
     id: string;
@@ -13,14 +12,13 @@ export type EndreStartdatoFormValues = {
 };
 
 interface Props {
-    veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onCancel?: () => void;
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const EndreStartdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const { endreStartdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
 
     const åpenOppgaver = deltakelse.oppgaver.filter(
@@ -68,7 +66,6 @@ const EndreStartdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
                                 showButtonArrows={false}>
                                 <VStack gap="6">
                                     <PeriodeFormPart
-                                        veileder={veileder}
                                         deltakernavn={deltakernavn}
                                         visSluttdato={false}
                                         visStartdato={true}

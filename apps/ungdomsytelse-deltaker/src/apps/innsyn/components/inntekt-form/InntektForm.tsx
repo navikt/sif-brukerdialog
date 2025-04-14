@@ -12,7 +12,7 @@ import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prose
 interface Props {
     inntekt?: Inntekt;
     periode: DateRange;
-    onSuccess: () => void;
+    onSuccess: (data: UngdomsytelseInntektsrapportering) => void;
     onCancel: () => void;
 }
 
@@ -34,7 +34,7 @@ const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };
-        rapporterInntekt(data).then(onSuccess);
+        rapporterInntekt(data).then(() => onSuccess(data));
     };
 
     const initialValues: Partial<InntektFormValues> = inntekt
