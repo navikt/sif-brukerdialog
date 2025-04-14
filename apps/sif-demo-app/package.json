@@ -30,7 +30,7 @@
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
         "html-react-parser": "5.2.3",
-        "jsdom": "26.0.0",
+        "jsdom": "26.1.0",
         "postcss": "8.5.3",
         "react": "19.1.0",
         "react-dom": "19.1.0",
