@@ -20,28 +20,4 @@ export default defineWorkspace([
     './packages/sif-common-forms-ds/vitest.config.ts',
     './packages/sif-common-formik-ds/vitest.config.ts',
     './packages/sif-common-utils/vitest.config.ts',
-    // {
-    //     extends: 'apps/ungdomsytelse-veileder/vite.config.ts',
-    //     plugins: [
-    //         // The plugin will run tests for the stories defined in your Storybook config
-    //         // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
-    //         storybookTest({
-    //             configDir: path.join(dirname, '.storybook'),
-    //         }),
-    //     ],
-    //     test: {
-    //         name: 'storybook',
-    //         browser: {
-    //             enabled: true,
-    //             headless: true,
-    //             provider: 'playwright',
-    //             instances: [
-    //                 {
-    //                     browser: 'chromium',
-    //                 },
-    //             ],
-    //         },
-    //         setupFiles: ['apps/ungdomsytelse-veileder/.storybook/vitest.setup.ts'],
-    //     },
-    // },
 ]);
