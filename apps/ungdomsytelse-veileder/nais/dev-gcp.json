@@ -1,5 +1,5 @@
 {
-    "app": "ungdomsytelse-veileder-dev",
+    "app": "ungdomsytelse-veileder",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://ungdomsytelse-veileder-dev.intern.dev.nav.no"],
