@@ -23,9 +23,23 @@ import type {
     HentDeltakerInfoGittDeltakerData,
     HentDeltakerInfoGittDeltakerResponse,
     HentDeltakerInfoGittDeltakerError,
+    UtløperOppgaveData,
+    UtløperOppgaveError,
+    KontrollAvRegisterinntektData,
+    KontrollAvRegisterinntektResponse,
+    KontrollAvRegisterinntektError,
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
+    OpprettOppgaveForEndretStartdatoData,
+    OpprettOppgaveForEndretStartdatoResponse,
+    OpprettOppgaveForEndretStartdatoError,
+    OpprettOppgaveForEndretSluttdatoData,
+    OpprettOppgaveForEndretSluttdatoResponse,
+    OpprettOppgaveForEndretSluttdatoError,
+    OpprettOppgaveForEndretProgramperiodeData,
+    OpprettOppgaveForEndretProgramperiodeResponse,
+    OpprettOppgaveForEndretProgramperiodeError,
     AvbrytOppgaveData,
     AvbrytOppgaveError,
     HentAlleDeltakelserGittDeltakerIdData,
@@ -52,7 +66,11 @@ import {
     zMeldInnDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerAktørResponse,
     zHentDeltakerInfoGittDeltakerResponse,
+    zKontrollAvRegisterinntektResponse,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
+    zOpprettOppgaveForEndretStartdatoResponse,
+    zOpprettOppgaveForEndretSluttdatoResponse,
+    zOpprettOppgaveForEndretProgramperiodeResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentDeltakersOppgaveResponse,
@@ -91,6 +109,10 @@ export class VeilederService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zEndreStartdatoResponse.parseAsync(data);
@@ -112,6 +134,10 @@ export class VeilederService {
     ) {
         return (options.client ?? _heyApiClient).put<EndreSluttdatoResponse, EndreSluttdatoError, ThrowOnError>({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
@@ -141,6 +167,10 @@ export class VeilederService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zMeldUtDeltakerResponse.parseAsync(data);
@@ -162,6 +192,10 @@ export class VeilederService {
     ) {
         return (options.client ?? _heyApiClient).post<MeldInnDeltakerResponse, MeldInnDeltakerError, ThrowOnError>({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
@@ -195,6 +229,10 @@ export class VeilederService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data);
@@ -212,6 +250,10 @@ export class VeilederService {
     ) {
         return (options.client ?? _heyApiClient).delete<FjernFraProgramResponse, FjernFraProgramError, ThrowOnError>({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
@@ -243,6 +285,10 @@ export class DeltakelseService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zMarkerDeltakelseSomSøktResponse.parseAsync(data);
@@ -268,6 +314,10 @@ export class DeltakelseService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zHentDeltakersOppgaveResponse.parseAsync(data);
@@ -289,6 +339,10 @@ export class DeltakelseService {
             ThrowOnError
         >({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
@@ -320,6 +374,10 @@ export class LesRegisterDataService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zHentAlleDeltakelserGittDeltakerAktørResponse.parseAsync(data);
@@ -336,7 +394,7 @@ export class LesRegisterDataService {
 
 export class OppslagService {
     /**
-     * Hent personlia for en deltaker
+     * Hent personalia for en deltaker
      */
     public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = true>(
         options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>,
@@ -347,6 +405,10 @@ export class OppslagService {
             ThrowOnError
         >({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
@@ -380,6 +442,10 @@ export class OppslagService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data);
@@ -392,7 +458,67 @@ export class OppslagService {
 
 export class OppretterOgEndrerPåOppgaverService {
     /**
+     * Setter oppgave til utløpt
+     */
+    public static utløperOppgave<ThrowOnError extends boolean = true>(
+        options: Options<UtløperOppgaveData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<unknown, UtløperOppgaveError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/oppgave/utløpt',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * @deprecated
      * Oppretter oppgave
+     */
+    public static kontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
+        options: Options<KontrollAvRegisterinntektData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            KontrollAvRegisterinntektResponse,
+            KontrollAvRegisterinntektError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zKontrollAvRegisterinntektResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Oppretter oppgave for kontroll av registerinntekt
      */
     public static opprettOppgaveForKontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
         options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
@@ -407,11 +533,116 @@ export class OppretterOgEndrerPåOppgaverService {
                     scheme: 'bearer',
                     type: 'http',
                 },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             responseValidator: async (data) => {
                 return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
             },
-            url: '/oppgave/opprett',
+            url: '/oppgave/opprett/kontroll/registerinntekt',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * @deprecated
+     * Oppretter oppgave for endret startdato
+     */
+    public static opprettOppgaveForEndretStartdato<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForEndretStartdatoData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForEndretStartdatoResponse,
+            OpprettOppgaveForEndretStartdatoError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretStartdatoResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett/endre/startdato',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * @deprecated
+     * Oppretter oppgave for endret sluttdato
+     */
+    public static opprettOppgaveForEndretSluttdato<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForEndretSluttdatoData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForEndretSluttdatoResponse,
+            OpprettOppgaveForEndretSluttdatoError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretSluttdatoResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett/endre/sluttdato',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Oppretter oppgave for endret programperiode
+     */
+    public static opprettOppgaveForEndretProgramperiode<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForEndretProgramperiodeData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForEndretProgramperiodeResponse,
+            OpprettOppgaveForEndretProgramperiodeError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretProgramperiodeResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett/endre/programperiode',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
@@ -428,6 +659,10 @@ export class OppretterOgEndrerPåOppgaverService {
     ) {
         return (options.client ?? _heyApiClient).post<unknown, AvbrytOppgaveError, ThrowOnError>({
             security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
                 {
                     scheme: 'bearer',
                     type: 'http',
