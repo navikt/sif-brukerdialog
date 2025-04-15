@@ -70,7 +70,7 @@ test.describe('Omsorgsstønad', () => {
         await page.getByRole('textbox', { name: 'Hvor mange timer i uken har' }).fill('5');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar omsorgsstønaden gjennom hele perioden jeg søker om')).toBeVisible();
-        await expect(page.getByText('Mottar 5 timer per uken i snitt')).toBeVisible();
+        await expect(page.getByText('omsorgsstønad: 5')).toBeVisible();
     });
 });
 

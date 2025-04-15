@@ -61,7 +61,9 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
                         omsorgsstønad.sluttdato && (
                             <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(omsorgsstønad.sluttdato))}`}</List.Item>
                         )}
-                    <List.Item>Mottar {omsorgsstønad.antallTimer} timer per uken i snitt</List.Item>
+                    <List.Item>
+                        Antall timer i uken du har vedtak om omsorgsstønad: {omsorgsstønad.antallTimer}
+                    </List.Item>
                 </List>
             </FormSummary.Value>
         </FormSummary.Answer>
