@@ -28,14 +28,18 @@ const DeltakelsePeriodeInfo = ({ deltakelse }: Props) => {
                         {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
                     </BodyShort>
                 </VStack>
-                <VStack className="bg-gray-50 p-5 rounded-md" gap="2">
-                    <Heading level="3" size="xsmall">
-                        <BodyShort as="span">Antall dager brukt</BodyShort>
-                    </Heading>
-                    <BodyShort size="large" weight="semibold" className="text-2xl">
-                        -
-                    </BodyShort>
-                </VStack>
+                {deltakelse.harSøkt === false ? (
+                    <VStack className="bg-gray-50 p-5 rounded-md" gap="2"></VStack>
+                ) : (
+                    <VStack className="bg-gray-50 p-5 rounded-md" gap="2">
+                        <Heading level="3" size="xsmall">
+                            <BodyShort as="span">Antall dager brukt</BodyShort>
+                        </Heading>
+                        <BodyShort size="large" weight="semibold" className="text-2xl">
+                            -
+                        </BodyShort>
+                    </VStack>
+                )}
             </HGrid>
         </VStack>
     );

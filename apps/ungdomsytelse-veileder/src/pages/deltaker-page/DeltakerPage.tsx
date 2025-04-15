@@ -22,7 +22,7 @@ const Content = () => {
 
     return (
         <Page.Block width="xl" gutters={true}>
-            <VStack className="shadow-xl">
+            <VStack className=" mt-4 rounded-lg">
                 <DeltakerPageHeader />
                 <Box className="bg-white rounded-b-lg p-3 pr-6 pl-6">
                     <DeltakerPageContent />
