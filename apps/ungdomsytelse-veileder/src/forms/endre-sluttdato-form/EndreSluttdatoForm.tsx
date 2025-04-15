@@ -1,7 +1,7 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Deltakelse, Deltaker, EndreSluttdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
+import { Deltakelse, Deltaker, EndretProgramperiodeOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 
@@ -23,10 +23,10 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     const { endreSluttdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
 
     const åpenOppgaver = deltakelse.oppgaver.filter(
-        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-    ) as EndreSluttdatoOppgave[];
+        (oppgave) => oppgave.status === 'ULØST' && oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+    ) as EndretProgramperiodeOppgave[];
 
-    const åpenOppgave: EndreSluttdatoOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
+    const åpenOppgave: EndretProgramperiodeOppgave | undefined = åpenOppgaver.length > 0 ? åpenOppgaver[0] : undefined;
     const deltakernavn = formaterNavn(deltaker.navn);
 
     return (

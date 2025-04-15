@@ -1,5 +1,5 @@
 import { Button } from '@navikt/ds-react';
-import { Deltakelse, Deltaker, Oppgavetype } from '@navikt/ung-common';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import SectionContainer from '../../section-container/SectionContainer';
 import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
@@ -12,8 +12,13 @@ interface Props {
     onDeltakelseChanged: () => void;
 }
 
+enum EndrePeriodeDialogType {
+    'startdato' = 'startdato',
+    'sluttdato' = 'sluttdato',
+}
+
 const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Props) => {
-    const [visOppgaveDialog, setVisOppgaveDialog] = useState<Oppgavetype | undefined>(undefined);
+    const [visOppgaveDialog, setVisOppgaveDialog] = useState<EndrePeriodeDialogType | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
     const handleOnClose = () => {
@@ -27,16 +32,16 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Pro
                     variant="secondary"
                     onClick={() => {
                         setEndretDeltakelse(undefined);
-                        setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_STARTDATO);
+                        setVisOppgaveDialog(EndrePeriodeDialogType.startdato);
                     }}>
                     Endre startdato
                 </Button>
-                <Button variant="secondary" onClick={() => setVisOppgaveDialog(Oppgavetype.BEKREFT_ENDRET_SLUTTDATO)}>
+                <Button variant="secondary" onClick={() => setVisOppgaveDialog(EndrePeriodeDialogType.sluttdato)}>
                     Endre sluttdato
                 </Button>
             </SectionContainer>
 
-            {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_STARTDATO ? (
+            {visOppgaveDialog === EndrePeriodeDialogType.startdato ? (
                 <EndreDeltakelseModal
                     header="Endre startdato"
                     onClose={handleOnClose}
@@ -53,7 +58,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Pro
                 </EndreDeltakelseModal>
             ) : null}
 
-            {visOppgaveDialog === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO ? (
+            {visOppgaveDialog === EndrePeriodeDialogType.sluttdato ? (
                 <EndreDeltakelseModal
                     header="Endre sluttdato"
                     onClose={handleOnClose}

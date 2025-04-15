@@ -10,8 +10,8 @@ interface Props {
 
 export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
     switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            const { nyStartdato } = oppgave.oppgavetypeData;
+        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+            const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
 
             return (
                 <HGrid columns="1fr 1fr" gap="10">
@@ -20,7 +20,14 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                             Innhold
                         </Heading>
                         <List>
-                            <List.Item>Startdato endret til: {dateFormatter.compact(nyStartdato)}</List.Item>
+                            {tilOgMed ? (
+                                <List.Item>
+                                    Periode endret til: {dateFormatter.compact(fraOgMed)} -{' '}
+                                    {dateFormatter.compact(tilOgMed)}
+                                </List.Item>
+                            ) : (
+                                <List.Item>Startdato endret til: {dateFormatter.compact(fraOgMed)}</List.Item>
+                            )}
                         </List>
                     </VStack>
                     <VStack>
@@ -35,8 +42,8 @@ export const OppgaveInfo = ({ oppgave }: { oppgave: Oppgave }) => {
                     </VStack>
                 </HGrid>
             );
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <Box>Sluttdato endret til: {dateFormatter.compact(oppgave.oppgavetypeData.nySluttdato)}</Box>;
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            return <Box>Korrigert inntekt</Box>;
     }
 };
 

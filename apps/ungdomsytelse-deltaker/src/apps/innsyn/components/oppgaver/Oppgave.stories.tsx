@@ -17,24 +17,14 @@ export default meta;
 
 type Story = StoryObj<typeof OppgavePanel>;
 
-const endretSluttdato: Oppgave = {
+const endretProgramperiode: Oppgave = {
     oppgaveReferanse: '123',
     opprettetDato: ISODateToDate('2024-07-01'),
     status: OppgaveStatus.ULØST,
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
     oppgavetypeData: {
-        nySluttdato: ISODateToDate('2024-07-01'),
-    },
-    svarfrist: dayjs().add(1, 'day').toDate(),
-};
-
-const endretStartdato: Oppgave = {
-    oppgaveReferanse: '123',
-    opprettetDato: ISODateToDate('2024-07-01'),
-    status: OppgaveStatus.ULØST,
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
-    oppgavetypeData: {
-        nyStartdato: dayjs().add(1, 'day').toDate(),
+        fraOgMed: ISODateToDate('2024-06-01'),
+        tilOgMed: ISODateToDate('2024-07-01'),
     },
     svarfrist: dayjs().add(1, 'day').toDate(),
 };
@@ -71,22 +61,14 @@ const korrigertInntekt: Oppgave = {
 
 export const EndretSluttdato: Story = {
     args: {
-        oppgave: endretSluttdato,
+        oppgave: endretProgramperiode,
         programPeriode: {
             from: dayjs().subtract(1, 'day').toDate(),
             to: dayjs().add(1, 'day').toDate(),
         },
     },
 };
-export const EndretStartdato: Story = {
-    args: {
-        oppgave: endretStartdato,
-        programPeriode: {
-            from: dayjs().subtract(1, 'day').toDate(),
-            to: dayjs().add(1, 'day').toDate(),
-        },
-    },
-};
+
 export const BekreftKorrigertInntektOppgittInntekt: Story = {
     args: {
         oppgave: {
