@@ -41,4 +41,16 @@ export interface KorrigertInntektOppgave extends oppgaveBase {
     };
 }
 
-export type Oppgave = EndreStartdatoOppgave | EndreSluttdatoOppgave | KorrigertInntektOppgave;
+export interface EndretProgramperiodeOppgave extends oppgaveBase {
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE;
+    oppgavetypeData: {
+        fraOgMed: Date;
+        tilOgMed?: Date;
+    };
+}
+
+export type Oppgave =
+    | EndreStartdatoOppgave
+    | EndreSluttdatoOppgave
+    | KorrigertInntektOppgave
+    | EndretProgramperiodeOppgave;

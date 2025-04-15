@@ -3,11 +3,10 @@ import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
 import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
 import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
 import { useDeltakelse } from '../../context/DeltakelseContext';
-import { useVeileder } from '../../context/VeilederContext';
 
 const DeltakelseContent = () => {
     const { deltakelse, deltaker, onDeltakelseChanged: onDeltakelseChange } = useDeltakelse();
-    const { veileder } = useVeileder();
+
     return (
         <Box className="pb-8 pt-4">
             <VStack gap="8">
@@ -20,7 +19,6 @@ const DeltakelseContent = () => {
                 <DeltakelseHandlinger
                     deltakelse={deltakelse}
                     deltaker={deltaker}
-                    veileder={veileder}
                     onDeltakelseChanged={onDeltakelseChange}
                 />
 

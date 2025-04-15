@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { parsedMockDeltakelse, parsedMockDeltaker, parsedVeilederMock } from '../../../mock/msw/mocks/mockUtils';
+import { parsedMockDeltakelse, parsedMockDeltaker } from '../../../mock/msw/mocks/mockUtils';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
@@ -16,5 +16,5 @@ export default meta;
 type Story = StoryObj<typeof EndreSluttdatoForm>;
 
 export const Default: Story = {
-    args: { veileder: parsedVeilederMock, deltakelse: parsedMockDeltakelse, deltaker: parsedMockDeltaker },
+    args: { deltakelse: parsedMockDeltakelse, deltaker: parsedMockDeltaker },
 };

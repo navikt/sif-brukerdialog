@@ -3,7 +3,6 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, EndreSluttdatoOppgave, formaterNavn, Oppgavetype } from '@navikt/ung-common';
 import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
-import { Veileder } from '../../types/Veileder';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 
 export type EndreSluttdatoFormValues = {
@@ -14,14 +13,13 @@ export type EndreSluttdatoFormValues = {
 };
 
 interface Props {
-    veileder: Veileder;
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     onCancel?: () => void;
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
 }
 
-const EndreSluttdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const { endreSluttdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
 
     const åpenOppgaver = deltakelse.oppgaver.filter(
@@ -62,7 +60,6 @@ const EndreSluttdatoForm = ({ veileder, deltakelse, deltaker, onCancel, onDeltak
                                 showButtonArrows={false}>
                                 <VStack gap="6">
                                     <PeriodeFormPart
-                                        veileder={veileder}
                                         deltakernavn={deltakernavn}
                                         visSluttdato={true}
                                         visStartdato={false}

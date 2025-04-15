@@ -28,107 +28,17 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         tilOgMed: undefined,
         harSøkt: true,
         oppgaver: [
-            // {
-            //     id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-            //     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-            //     eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
-            //     oppgavetypeData: {
-            //         type: 'BEKREFT_ENDRET_STARTDATO',
-            //         nySluttdato: '2026-01-01',
-            //     },
-            //     status: OppgaveStatus.ULØST,
-            //     opprettetDato: '2025-02-22T11:43:29.048157Z',
-            //     løstDato: '2025-02-23T05:00:12.048157Z',
-            // },
-            // {
-            //     id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-            //     eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
-            //     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-            //     oppgavetypeData: {
-            //         type: 'BEKREFT_ENDRET_STARTDATO',
-            //         nySluttdato: '2026-01-01',
-            //     },
-            //     status: OppgaveStatus.UTLØPT,
-            //     opprettetDato: '2025-02-22T11:43:29.048157Z',
-            //     løstDato: '2025-02-23T05:00:12.048157Z',
-            // },
             {
-                oppgaveReferanse: '74085d1a-cdfb-4a9e-9565-037171510473',
-                oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+                oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {
-                    type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
-                    fraOgMed: '2025-01-01',
-                    tilOgMed: '2025-01-28',
-                    registerinntekt: {
-                        arbeidOgFrilansInntekter: [
-                            {
-                                inntekt: 10000,
-                                arbeidsgiver: '896929119',
-                            },
-                        ],
-                        ytelseInntekter: [],
-                        totalInntektArbeidOgFrilans: 10000,
-                        totalInntektYtelse: 0,
-                        totalInntekt: 10000,
-                    },
-                },
-                status: OppgaveStatus.ULØST,
-                opprettetDato: '2025-03-31T10:19:04.095497Z',
-            },
-            {
-                oppgaveReferanse: '0dc07e3f-13dc-4a75-9315-bf155e924cbc',
-                oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-                oppgavetypeData: {
-                    type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
+                    type: 'BEKREFT_ENDRET_PROGRAMPERIODE',
                     fraOgMed: '2025-02-01',
-                    tilOgMed: '2025-02-28',
-                    registerinntekt: {
-                        arbeidOgFrilansInntekter: [
-                            {
-                                inntekt: 10000,
-                                arbeidsgiver: '896929119',
-                            },
-                        ],
-                        ytelseInntekter: [],
-                        totalInntektArbeidOgFrilans: 10000,
-                        totalInntektYtelse: 0,
-                        totalInntekt: 10000,
-                    },
+                    tilOgMed: '2025-03-31',
                 },
                 status: OppgaveStatus.ULØST,
-                opprettetDato: '2024-03-31T10:19:04.095497Z',
-            },
-            {
-                oppgaveReferanse: '0dcfa426-487f-497f-9cbb-c17060ab5cd5',
-                oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-                oppgavetypeData: {
-                    fraOgMed: '2026-01-01',
-                    tilOgMed: '2026-01-31',
-                    registerinntekt: {
-                        arbeidOgFrilansInntekter: [
-                            {
-                                arbeidsgiver: 'Flåklypa barteservice',
-                                inntekt: 1200,
-                            },
-                            {
-                                arbeidsgiver: 'Hopen klyp og klem',
-                                inntekt: 50,
-                            },
-                        ],
-                        ytelseInntekter: [
-                            {
-                                ytelsetype: 'Sykepenger',
-                                inntekt: 4000,
-                            },
-                        ],
-                        totalInntektArbeidOgFrilans: 1250,
-                        totalInntektYtelse: 5000,
-                        totalInntekt: 5250,
-                    },
-                },
-                status: OppgaveStatus.LØST,
-                opprettetDato: '2025-02-22T11:43:29.048157Z',
-                løstDato: '2025-02-23T05:00:12.048157Z',
+                opprettetDato: '2025-04-14T08:08:15.984057Z',
+                løstDato: undefined,
             },
         ],
         rapporteringsPerioder: [

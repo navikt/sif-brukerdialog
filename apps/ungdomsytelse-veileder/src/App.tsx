@@ -14,7 +14,7 @@ initUngDeltakelseOpplyserApiClient();
 
 const App = () => {
     return (
-        <VeilederProvider veileder={{ fornavn: 'Pål', etternavn: 'Veileder Hønesen' }}>
+        <VeilederProvider>
             <IntlProvider locale="nb" messages={appMessages.nb}>
                 <AppHeader />
                 <Page style={{ minHeight: 'calc(100lvh - 3rem)', backgroundColor: 'var(--a-gray-300)' }}>

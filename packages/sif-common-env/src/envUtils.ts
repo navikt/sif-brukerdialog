@@ -1,4 +1,5 @@
 import {
+    BaseEnv,
     CommonEnv,
     EnvKey,
     K9SakInnsynBrowserEnv,
@@ -37,6 +38,15 @@ export const getMaybeEnv = (key: EnvKey | string): string | undefined => {
 
 export const isDevMode = () => getMaybeEnv('APP_VERSION') === 'dev';
 export const isProd = () => getMaybeEnv('APP_VERSION') === 'prod';
+
+export const getBaseEnv = (): BaseEnv => {
+    return {
+        [EnvKey.ENV]: getRequiredEnv(EnvKey.ENV),
+        [EnvKey.APP_VERSION]: getRequiredEnv(EnvKey.APP_VERSION),
+        [EnvKey.PUBLIC_PATH]: getRequiredEnv(EnvKey.PUBLIC_PATH),
+        [EnvKey.GITHUB_REF_NAME]: getRequiredEnv(EnvKey.GITHUB_REF_NAME),
+    };
+};
 
 export const getCommonEnv = (): CommonEnv => {
     return {

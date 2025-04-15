@@ -30,11 +30,14 @@ export enum EnvKey {
  * ZOD schemas
  */
 
-export const commonEnvSchema = z.object({
+export const baseEnvSchema = z.object({
     [EnvKey.ENV]: z.string(), //.min(1),
     [EnvKey.APP_VERSION]: z.string().min(1),
     [EnvKey.PUBLIC_PATH]: z.string().min(1),
     [EnvKey.GITHUB_REF_NAME]: z.string().min(1),
+});
+
+export const commonEnvSchema = baseEnvSchema.extend({
     [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string().min(1),
@@ -47,6 +50,7 @@ export const commonEnvSchema = z.object({
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string().min(1),
 });
 
+export type BaseEnv = z.infer<typeof baseEnvSchema>;
 export type CommonEnv = z.infer<typeof commonEnvSchema>;
 
 /**
