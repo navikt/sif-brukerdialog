@@ -29,7 +29,7 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                         ) : (
                             <>
                                 <List.Item>
-                                    <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarIkke" />
+                                    <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottar" />
                                 </List.Item>
 
                                 {type === FosterhjemsgodtgjørelseType.mottarFrikjøpt ? (
