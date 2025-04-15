@@ -122,6 +122,10 @@ const nb = {
         'Datoen for når godtgjørelsen starter kan ikke være etter dagens dato, eller etter perioden du søker for.',
     'validation.fosterhjemsgodtgjørelse.startdato.dateIsBeforeMin':
         'Datoen for når godtgjørelsen starter kan ikke være før perioden du søker for. Dersom den startet før dette, må du svare nei på om den starter underveis i pleiepengeperioden.',
+    'validation.fosterhjemsgodtgjørelse.startdato.startetEtterSluttDato':
+        'Startdatoen for godtgjørelsen kan ikke være etter sluttdatoen. Skriv inn eller velg dato fra kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.startdato.sluttetFørStartDato':
+        'Sluttdatoen for godtgjørelsen kan ikke være før startdatoen. Skriv inn eller velg dato fra kalenderen.',
 
     'validation.fosterhjemsgodtgjørelse.slutterUnderveis.noValue':
         'Du må svare på om godtgjørelsen slutter underveis i pleiepengeperioden din',
@@ -133,6 +137,8 @@ const nb = {
         'Hvis datoen for når godtgjørelsen slutter er etter perioden du søker for, må du svare nei på om den slutter underveis i pleiepengeperioden.',
     'validation.fosterhjemsgodtgjørelse.sluttdato.dateIsBeforeMin':
         'Datoen for når godtgjørelsen slutter kan ikke være før perioden du søker for, eller før godtgjørelsen starter.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.sluttetFørStartDato':
+        'Datoen for når godtgjørelsen slutter kan ikke være før godtgjørelsen starter.',
 
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
@@ -196,6 +202,7 @@ const nb = {
     'validation.utenlandskNæring.listIsEmpty':
         'Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
+
     'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottar stønad/godtgjørelse i hele perioden du søker for.',
     'validation.omsorgsstønad.starterUndeveis.noValue':
@@ -213,8 +220,6 @@ const nb = {
         'Start datoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.startdato.dateHasInvalidFormat':
         'Du må oppgi start datoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'validation.omsorgsstønad.startdato.startetEtterSluttDato':
-        'Start-datoen kan ikke være etter slutt-datoen. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.dateHasNoValue': 'Du må fylle ut dato når du sluttet å motta omsorgsstønad.',
     'validation.omsorgsstønad.sluttdato.dateIsAfterMax':
         'Sluttdatoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
@@ -222,8 +227,10 @@ const nb = {
         'Sluttdatoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.dateHasInvalidFormat':
         'Du må oppgi sluttdatoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
+    'validation.omsorgsstønad.startdato.startetEtterSluttDato':
+        'Startdatoen for omsorgstønad kan ikke være etter sluttdatoen. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.sluttetFørStartDato':
-        'Slutt-datoen kan ikke være før start-datoen. Skriv inn eller velg dato fra kalenderen.',
+        'Sluttdatoen for omsorgstønad kan ikke være før startdatoen. Skriv inn eller velg dato fra kalenderen.',
 
     'validation.omsorgsstønad.antallTimer.numberHasNoValue':
         'Du må oppgi antall timer du mottar normalt i omsorgsstønad.',
