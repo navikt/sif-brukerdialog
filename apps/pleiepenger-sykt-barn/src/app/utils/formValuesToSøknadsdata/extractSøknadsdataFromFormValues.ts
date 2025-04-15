@@ -6,10 +6,11 @@ import { extractArbeidstidSøknadsdata } from './extractArbeidstidSøknadsdata';
 import { extractBarnSøknadsdata } from './extractBarnSøknadsdata';
 import { extractBeredskapSøknadsdata } from './extractBeredskapSøknadsdata';
 import { extractFerieuttakIPeriodenSøknadsdata } from './extractFerieuttakIPeriodenSøknadsdata';
+import { extractFosterhjemsgodtgjørelseSøknadsdata } from './extractFosterhjemsgodtgjørelseSøknadsdata';
 import { extractMedlemskapSøknadsdata } from './extractMedlemskapSøknadsdata';
 import { extractNattevåkSøknadsdata } from './extractNattevåkSøknadsdata';
+import { extractOmsorgsstønadSøknadsdata } from './extractOmsorgsstønadSøknadsdata';
 import { extractOmsorgstibudSøknadsdata } from './extractOmsorgstibudSøknadsdata';
-import { extractStønadGodtgjørelseSøknadsdata } from './extractStønadGodtgjørelseSøknadsdata';
 import { extractUtenlandsoppholdIPeriodenSøknadsdata } from './extractUtenlandsoppholdIPeriodenSøknadsdata';
 
 export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): Søknadsdata => {
@@ -27,7 +28,8 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
-        stønadGodtgjørelse: extractStønadGodtgjørelseSøknadsdata(values.stønadGodtgjørelse),
+        omsorgsstønad: extractOmsorgsstønadSøknadsdata(values.omsorgsstønad),
+        fosterhjemsgodtgjørelse: extractFosterhjemsgodtgjørelseSøknadsdata(values.fosterhjemsgodtgjørelse),
         harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormValues(values),
         omsorgstibud: extractOmsorgstibudSøknadsdata(values.omsorgstilbud),
         nattevåk: extractNattevåkSøknadsdata(values),

@@ -1,16 +1,17 @@
 import { Alert } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import { AppText, useAppIntl } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
-import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
-import StønadsgodtgjørelseFormPart from './frilans-form-parts/StønadsgodtgjørelseFormPart';
+import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodtgjørelse-form-part/FosterhjemsgodtgjørelseFormPart';
+import FrilanserFormPart from './frilans-form-part/FrilanserFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { AppText } from '../../../i18n';
+import OmsorgsstønadFormPart from './omsorgsstønad-form-part/OmsorgsstønadFormPart';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -18,37 +19,43 @@ interface Props {
 }
 
 const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
+    const { text } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
-    const { frilansoppdrag, stønadGodtgjørelse } = values;
+    const { frilansoppdrag, omsorgsstønad } = values;
 
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
 
     return (
         <div data-testid="arbeidssituasjonFrilanser">
             <p>
-                I tillegg til å jobbe som frilanser, er det andre oppdrag som regnes som frilansoppdrag. Les mer om
-                hvilke frilansoppdrag som må oppgis i denne søknaden:
+                <AppText id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro'} />
             </p>
-            <ExpandableInfo title="Om frilans, honorar, fosterhjemsgodtgjørelse og omsorgsstønad">
+            <ExpandableInfo title={text('steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tittel')}>
                 <p>
-                    Du er frilanser når du mottar lønn som en vanlig ansatt, <strong>uten</strong> å være ansatt hos den
-                    du utfører arbeidet for. Som frilanser betaler du skatt på samme måte som en arbeidstaker, og
-                    leverer skattemelding som arbeidstaker.
+                    <AppText
+                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.1'}
+                        values={{ strong: (txt) => <strong>{txt}</strong> }}
+                    />
                 </p>
                 <p>
-                    Du regnes også som frilanser når du mottar <strong>honorar</strong> for et utført oppdrag. Det kan
-                    for eksempel være utbetalt honorar i forbindelse med et styreverv i borettslaget, eller som trener
-                    for et håndball-lag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og
-                    kunstnere.
+                    <AppText
+                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.2'}
+                        values={{ strong: (txt) => <strong>{txt}</strong> }}
+                    />
                 </p>
                 <p>
-                    I tillegg er <strong>fosterhjemsgodtgjørelse</strong> og <strong>omsorgsstønad</strong> fra kommunen
-                    også regnet som frilansoppdrag.
+                    <AppText
+                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.3'}
+                        values={{ strong: (txt) => <strong>{txt}</strong> }}
+                    />
                 </p>
             </ExpandableInfo>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             <FormBlock>
-                <StønadsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
+                <FosterhjemsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
+            </FormBlock>
+            <FormBlock>
+                <OmsorgsstønadFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
 
             <FormBlock>
@@ -61,7 +68,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
 
             {frilansoppdrag.length > 0 &&
                 values.frilans.harHattInntektSomFrilanser === YesOrNo.NO &&
-                stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO && (
+                omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO && (
                     <Block margin="l">
                         <Alert variant="info">
                             <AppText id={'frilanser.ingenFrilans.info'} />

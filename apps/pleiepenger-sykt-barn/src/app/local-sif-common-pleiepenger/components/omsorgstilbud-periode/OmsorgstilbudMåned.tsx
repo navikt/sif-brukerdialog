@@ -60,7 +60,6 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
                     </BodyShort>
                 </Heading>
             </ExpansionCardHeader>
-            <></>
             <ExpansionCardContent>
                 <TidsbrukKalender
                     periode={måned}

@@ -20,7 +20,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 
     const {
-        søknadsdata: { arbeidssituasjon, søknadsperiode, stønadGodtgjørelse },
+        søknadsdata: { arbeidssituasjon, søknadsperiode, omsorgsstønad },
     } = useSøknadsdataContext();
 
     if (!arbeidssituasjon || !søknadsperiode) {
@@ -96,7 +96,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                             arbeidIPeriode={values.frilans.arbeidsforhold?.arbeidIPeriode}
                             normalarbeidstid={frilans.normalarbeidstid.timerPerUkeISnitt}
                             søkerFremITid={søkerFremITid}
-                            mottarOmsorgsstønad={stønadGodtgjørelse?.mottarStønadGodtgjørelse === YesOrNo.YES}
+                            mottarOmsorgsstønad={omsorgsstønad?.mottarOmsorgsstønad === YesOrNo.YES}
                         />
                     </FormBlock>
                 )}

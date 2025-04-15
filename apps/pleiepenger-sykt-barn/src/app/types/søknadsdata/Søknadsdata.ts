@@ -4,11 +4,12 @@ import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
+import { FosterhjemsgodtgjørelseSøknadsdata } from './FosterhjemsgodtgjørelseSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemsskapSøknadsdata';
 import { NattevåkSøknadsdata } from './NattevåkSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
+import { OmsorgsstønadSøknadsdata } from './OmsorgsstønadSøknadsdata';
 import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
-import { StønadGodtgjørelseSøknadsdata } from './StønadGodtgjørelseSøknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriodenSøknadsdata';
 
 export * from './OmBarnetSøknadsdata';
@@ -22,7 +23,7 @@ export * from './FerieuttakIPeriodenSøknadsdata';
 export * from './NattevåkSøknadsdata';
 export * from './BeredskapSøknadsdata';
 export * from './OmsorgstilbudSøknadsdata';
-export * from './StønadGodtgjørelseSøknadsdata';
+export * from './OmsorgsstønadSøknadsdata';
 
 export interface Søknadsdata {
     isInitialized: boolean;
@@ -39,5 +40,6 @@ export interface Søknadsdata {
     beredskap?: BeredskapSøknadsdata;
     medlemskap?: MedlemskapSøknadsdata;
     legeerklæring?: Vedlegg[];
-    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata;
+    omsorgsstønad?: OmsorgsstønadSøknadsdata;
+    fosterhjemsgodtgjørelse?: FosterhjemsgodtgjørelseSøknadsdata;
 }
