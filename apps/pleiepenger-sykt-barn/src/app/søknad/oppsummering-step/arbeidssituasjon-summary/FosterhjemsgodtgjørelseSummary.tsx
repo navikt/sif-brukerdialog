@@ -3,22 +3,14 @@ import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { FosterhjemsgodtgjørelseApiData } from '../../../types/søknad-api-data/FosterhjemsgodtgjørelseApiData';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { FosterhjemsgodtgjørelseType } from '../../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
 
 interface Props {
     fosterhjemsgodtgjørelse: FosterhjemsgodtgjørelseApiData;
 }
 
 const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Props) => {
-    const {
-        mottarFosterhjemsgodtgjørelse,
-        erFrikjøptFraJobb,
-        frikjøptBeskrivelse,
-        _mottarFosterhjemsgodtgjørelseIHelePerioden,
-        _starterUndeveis,
-        startdato,
-        _slutterUnderveis,
-        sluttdato,
-    } = data;
+    const { type } = data;
 
     return (
         <>
@@ -31,13 +23,13 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            {mottarFosterhjemsgodtgjørelse ? (
+                            {data.mottarFosterhjemsgodtgjørelse ? (
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottar" />
                             ) : (
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarIkke" />
                             )}
                         </List.Item>
-                        {erFrikjøptFraJobb ? (
+                        {type === FosterhjemsgodtgjørelseType.mottarFrikjøpt ? (
                             <List.Item>
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøpt" />
                             </List.Item>
@@ -46,9 +38,10 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.ikkeFrikjøpt" />
                             </List.Item>
                         )}
-                        {erFrikjøptFraJobb === false ? (
+                        {type === FosterhjemsgodtgjørelseType.mottarIDelerAvPerioden ||
+                        type === FosterhjemsgodtgjørelseType.mottarIHelePerioden ? (
                             <>
-                                {_mottarFosterhjemsgodtgjørelseIHelePerioden ? (
+                                {data._mottarFosterhjemsgodtgjørelseIHelePerioden ? (
                                     <List.Item>
                                         <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarHelePerioden" />
                                     </List.Item>
@@ -57,27 +50,28 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                                         <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarDelerAvPerioden" />
                                     </List.Item>
                                 )}
-                                {_mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
-                                    _starterUndeveis &&
-                                    startdato && (
-                                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
+                                {data._mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
+                                    data._starterUndeveis &&
+                                    data.startdato && (
+                                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(data.startdato))}`}</List.Item>
                                     )}
-                                {_mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
-                                    _slutterUnderveis &&
-                                    sluttdato && (
-                                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
+                                {data._mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
+                                    data._slutterUnderveis &&
+                                    data.sluttdato && (
+                                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(data.sluttdato))}`}</List.Item>
                                     )}
                             </>
-                        ) : (
+                        ) : null}
+                        {type === FosterhjemsgodtgjørelseType.mottarFrikjøpt ? (
                             <List.Item>
                                 <BodyShort>
                                     <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.tittel" />
                                 </BodyShort>
                                 <Sitat>
-                                    <TextareaSvar text={frikjøptBeskrivelse} />
+                                    <TextareaSvar text={data.frikjøptBeskrivelse} />
                                 </Sitat>
                             </List.Item>
-                        )}
+                        ) : null}
                     </List>
                 </FormSummary.Value>
             </FormSummary.Answer>

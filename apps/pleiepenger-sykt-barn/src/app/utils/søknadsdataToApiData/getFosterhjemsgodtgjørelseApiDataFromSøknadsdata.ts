@@ -1,6 +1,9 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { FosterhjemsgodtgjørelseSøknadsdata } from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
+import {
+    FosterhjemsgodtgjørelseSøknadsdata,
+    FosterhjemsgodtgjørelseType,
+} from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
 
 type FosterhjemsgodtgjørelseApiDataPart = Pick<SøknadApiData, 'fosterhjemsgodtgjørelse'>;
 
@@ -10,35 +13,40 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
     if (fosterhjemsgodtgjørelse === undefined) {
         throw Error('fosterhjemsgodtgjørelse undefined');
     }
-    switch (fosterhjemsgodtgjørelse?.type) {
-        case 'mottarIkke':
+    const { type } = fosterhjemsgodtgjørelse;
+    switch (type) {
+        case FosterhjemsgodtgjørelseType.mottarIkke:
             return {
                 fosterhjemsgodtgjørelse: {
+                    type,
                     mottarFosterhjemsgodtgjørelse: false,
                 },
             };
 
-        case 'mottarFrikjøpt':
+        case FosterhjemsgodtgjørelseType.mottarFrikjøpt:
             return {
                 fosterhjemsgodtgjørelse: {
+                    type,
                     mottarFosterhjemsgodtgjørelse: true,
                     erFrikjøptFraJobb: true,
                     frikjøptBeskrivelse: fosterhjemsgodtgjørelse.frikjøptBeskrivelse,
                 },
             };
 
-        case 'mottarIHelePeroden':
+        case FosterhjemsgodtgjørelseType.mottarIHelePerioden:
             return {
                 fosterhjemsgodtgjørelse: {
+                    type,
                     mottarFosterhjemsgodtgjørelse: true,
                     erFrikjøptFraJobb: false,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: true,
                 },
             };
 
-        case 'mottarIDelerAvPeroden':
+        case FosterhjemsgodtgjørelseType.mottarIDelerAvPerioden:
             return {
                 fosterhjemsgodtgjørelse: {
+                    type,
                     mottarFosterhjemsgodtgjørelse: true,
                     erFrikjøptFraJobb: false,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: false,

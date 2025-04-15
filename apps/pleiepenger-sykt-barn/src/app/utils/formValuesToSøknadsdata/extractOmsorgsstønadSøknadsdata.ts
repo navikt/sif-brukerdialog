@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { OmsorgsstønadSøknadsdata } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
+import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 import { OmsorgsstønadFormValues } from '../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 
@@ -20,7 +20,7 @@ export const extractOmsorgsstønadSøknadsdata = (
     }
     if (mottarOmsorgsstønad === YesOrNo.NO) {
         return {
-            type: 'mottarIkke',
+            type: OmsorgsstønadType.mottarIkke,
             mottarOmsorgsstønad,
         };
     }
@@ -33,7 +33,7 @@ export const extractOmsorgsstønadSøknadsdata = (
     if (mottarOmsorgsstønad === YesOrNo.YES) {
         if (mottarOmsorgsstønadIHelePerioden === YesOrNo.YES) {
             return {
-                type: 'mottarIHelePeroden',
+                type: OmsorgsstønadType.mottarIHelePerioden,
                 mottarOmsorgsstønad: YesOrNo.YES,
                 mottarOmsorgsstønadIHelePerioden: YesOrNo.YES,
                 antallTimer: timer,
@@ -41,7 +41,7 @@ export const extractOmsorgsstønadSøknadsdata = (
         }
         if (mottarOmsorgsstønadIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
             return {
-                type: 'mottarIDelerAvPeroden',
+                type: OmsorgsstønadType.mottarIDelerAvPerioden,
                 mottarOmsorgsstønad: YesOrNo.YES,
                 mottarOmsorgsstønadIHelePerioden: YesOrNo.NO,
                 starterUndeveis,

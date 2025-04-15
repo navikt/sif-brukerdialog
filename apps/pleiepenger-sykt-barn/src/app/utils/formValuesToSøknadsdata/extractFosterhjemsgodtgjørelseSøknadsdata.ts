@@ -1,6 +1,9 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { FosterhjemsgodtgjørelseFormValues } from '../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
-import { FosterhjemsgodtgjørelseSøknadsdata } from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
+import {
+    FosterhjemsgodtgjørelseSøknadsdata,
+    FosterhjemsgodtgjørelseType,
+} from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
 
 export const extractFosterhjemsgodtgjørelseSøknadsdata = (
     godtgjørelse: FosterhjemsgodtgjørelseFormValues,
@@ -17,7 +20,7 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
     } = godtgjørelse;
     if (mottarFosterhjemsgodtgjørelse === YesOrNo.NO) {
         return {
-            type: 'mottarIkke',
+            type: FosterhjemsgodtgjørelseType.mottarIkke,
             mottarFosterhjemsgodtgjørelse,
         };
     }
@@ -27,7 +30,7 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
             throw new Error('frikjøptBeskrivelse undefined');
         }
         return {
-            type: 'mottarFrikjøpt',
+            type: FosterhjemsgodtgjørelseType.mottarFrikjøpt,
             mottarFosterhjemsgodtgjørelse,
             erFrikjøptFraJobb,
             frikjøptBeskrivelse,
@@ -37,7 +40,7 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
     if (mottarFosterhjemsgodtgjørelse === YesOrNo.YES && erFrikjøptFraJobb === YesOrNo.NO) {
         if (mottarFosterhjemsgodtgjørelseIHelePerioden === YesOrNo.YES) {
             return {
-                type: 'mottarIHelePeroden',
+                type: FosterhjemsgodtgjørelseType.mottarIHelePerioden,
                 erFrikjøptFraJobb,
                 mottarFosterhjemsgodtgjørelse,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,
@@ -45,7 +48,7 @@ export const extractFosterhjemsgodtgjørelseSøknadsdata = (
         }
         if (mottarFosterhjemsgodtgjørelseIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
             return {
-                type: 'mottarIDelerAvPeroden',
+                type: FosterhjemsgodtgjørelseType.mottarIDelerAvPerioden,
                 erFrikjøptFraJobb,
                 mottarFosterhjemsgodtgjørelse,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,

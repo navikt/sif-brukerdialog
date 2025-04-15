@@ -1,27 +1,34 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODate } from '@navikt/sif-common-utils';
 
+export enum FosterhjemsgodtgjørelseType {
+    'mottarIkke' = 'mottarIkke',
+    'mottarFrikjøpt' = 'mottarFrikjøpt',
+    'mottarIHelePerioden' = 'mottarIHelePerioden',
+    'mottarIDelerAvPerioden' = 'mottarIDelerAvPerioden',
+}
+
 export interface MottarIkkeFosterhjemsgodtgjørelse {
-    type: 'mottarIkke';
+    type: FosterhjemsgodtgjørelseType.mottarIkke;
     mottarFosterhjemsgodtgjørelse: YesOrNo.NO;
 }
 
 export interface FosterhjemsgodtgjørelseFrikjøpt {
-    type: 'mottarFrikjøpt';
+    type: FosterhjemsgodtgjørelseType.mottarFrikjøpt;
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
     erFrikjøptFraJobb: YesOrNo.YES;
     frikjøptBeskrivelse: string;
 }
 
 export interface MottarFosterhjemsgodtgjørelseIHelePeroden {
-    type: 'mottarIHelePeroden';
+    type: FosterhjemsgodtgjørelseType.mottarIHelePerioden;
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
     erFrikjøptFraJobb: YesOrNo.NO;
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES;
 }
 
 export interface MottarFosterhjemsgodtgjørelseIDelerAvPeroden {
-    type: 'mottarIDelerAvPeroden';
+    type: FosterhjemsgodtgjørelseType.mottarIDelerAvPerioden;
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
     erFrikjøptFraJobb: YesOrNo.NO;
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO;

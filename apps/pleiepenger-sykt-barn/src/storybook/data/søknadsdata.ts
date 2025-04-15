@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ArbeidIPeriodeSøknadsdata, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
+import { ArbeidIPeriodeSøknadsdata, OmsorgsstønadType, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
 import { ArbeidIPeriodeType } from '../../app/types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../app/types/RedusertArbeidstidType';
@@ -96,7 +96,7 @@ export const søknadsdata: Søknadsdata = {
         },
     },
     omsorgsstønad: {
-        type: 'mottarIkke',
+        type: OmsorgsstønadType.mottarIkke,
         mottarOmsorgsstønad: YesOrNo.NO,
     },
     omsorgstibud: {

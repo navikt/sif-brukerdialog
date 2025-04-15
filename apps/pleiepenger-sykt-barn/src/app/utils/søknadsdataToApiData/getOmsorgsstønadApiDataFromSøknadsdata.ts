@@ -1,7 +1,7 @@
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { OmsorgsstønadSøknadsdata } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
+import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 
 type OmsorgsstønadApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
 
@@ -11,26 +11,27 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
     if (omsorgsstønad === undefined) {
         throw Error('omsorgsstønad undefined');
     }
-    switch (omsorgsstønad?.type) {
-        case 'mottarIkke':
+    const { type } = omsorgsstønad;
+    switch (type) {
+        case OmsorgsstønadType.mottarIkke:
             return {
-                omsorgsstønad: {
-                    mottarOmsorgsstønad: false,
-                },
+                omsorgsstønad: { type, mottarOmsorgsstønad: false },
             };
 
-        case 'mottarIHelePeroden':
+        case OmsorgsstønadType.mottarIHelePerioden:
             return {
                 omsorgsstønad: {
+                    type,
                     mottarOmsorgsstønad: true,
                     antallTimer: omsorgsstønad.antallTimer,
                     _mottarOmsorgsstønadIHelePeroden: true,
                 },
             };
 
-        case 'mottarIDelerAvPeroden':
+        case OmsorgsstønadType.mottarIDelerAvPerioden:
             return {
                 omsorgsstønad: {
+                    type,
                     mottarOmsorgsstønad: true,
                     antallTimer: omsorgsstønad.antallTimer,
                     _mottarOmsorgsstønadIHelePeroden: false,
