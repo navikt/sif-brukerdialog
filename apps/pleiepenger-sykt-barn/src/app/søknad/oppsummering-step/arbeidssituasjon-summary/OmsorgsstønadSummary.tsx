@@ -1,8 +1,8 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { OmsorgsstønadApiData } from '../../../types/søknad-api-data/OmsorgsstønadApiData';
 import { OmsorgsstønadType } from '../../../types/søknadsdata/OmsorgsstønadSøknadsdata';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 
 interface Props {
     omsorgsstønad: OmsorgsstønadApiData;
@@ -46,24 +46,45 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
             </FormSummary.Label>
             <FormSummary.Value>
                 <List>
+                    <List.Item>
+                        <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottar" />
+                    </List.Item>
+                    <List.Item>
+                        <AppText
+                            id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.antallTimer"
+                            values={{ antallTimer: omsorgsstønad.antallTimer }}
+                        />
+                    </List.Item>
                     {omsorgsstønad.type === OmsorgsstønadType.mottarIHelePerioden ? (
-                        <List.Item>Mottar omsorgsstønaden gjennom hele perioden jeg søker om</List.Item>
+                        <List.Item>
+                            <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarHelePerioden" />
+                        </List.Item>
                     ) : (
-                        <List.Item>Mottar omsorgsstønaden gjennom i deler av perioden jeg søker om</List.Item>
+                        <List.Item>
+                            <AppText id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarDelerAvPerioden" />
+                        </List.Item>
                     )}
+
                     {omsorgsstønad.type === OmsorgsstønadType.mottarIDelerAvPerioden &&
                         omsorgsstønad._starterUndeveis &&
                         omsorgsstønad.startdato && (
-                            <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(omsorgsstønad.startdato))}`}</List.Item>
+                            <List.Item>
+                                <AppText
+                                    id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.startet"
+                                    values={{ startdato: dateFormatter.full(ISODateToDate(omsorgsstønad.startdato)) }}
+                                />
+                            </List.Item>
                         )}
                     {omsorgsstønad.type === OmsorgsstønadType.mottarIDelerAvPerioden &&
                         omsorgsstønad._slutterUnderveis &&
                         omsorgsstønad.sluttdato && (
-                            <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(omsorgsstønad.sluttdato))}`}</List.Item>
+                            <List.Item>
+                                <AppText
+                                    id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.sluttet"
+                                    values={{ sluttdato: dateFormatter.full(ISODateToDate(omsorgsstønad.sluttdato)) }}
+                                />
+                            </List.Item>
                         )}
-                    <List.Item>
-                        Antall timer i uken du har vedtak om omsorgsstønad: {omsorgsstønad.antallTimer}
-                    </List.Item>
                 </List>
             </FormSummary.Value>
         </FormSummary.Answer>

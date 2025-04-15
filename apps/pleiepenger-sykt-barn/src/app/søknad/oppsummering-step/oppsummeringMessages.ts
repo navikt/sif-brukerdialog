@@ -70,6 +70,15 @@ const nb = {
     'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.title': 'Omsorgsstønad',
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarIkke': 'Mottar ikke omsorgsstønad fra kommunen',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottar': 'Mottar omsorgsstønad fra kommunen',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarHelePerioden':
+        'Mottar omsorgsstønaden gjennom hele perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarDelerAvPerioden':
+        'Mottar omsorgsstønaden gjennom i deler av perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.antallTimer':
+        'Antall timer i uken du har vedtak om omsorgsstønad: {antallTimer}',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.startet': 'Starter {startdato}',
+    'steg.oppsummering.arbeidssituasjon.omsorgsstønad.sluttet': 'Slutter {sluttdato}',
 
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.title': 'Fosterhjemsgodtgjørelse',
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottar': 'Mottar fosterhjemsgodtgjørelse fra kommunen',
@@ -81,6 +90,8 @@ const nb = {
         'Mottar fosterhjemsgodtgjørelsen gjennom hele perioden jeg søker om',
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarDelerAvPerioden':
         'Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.startet': 'Starter {startdato}',
+    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.sluttet': 'Slutter {sluttdato}',
 
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.tittel':
         'Detaljer om frikjøp og fosterhjemsgodtgjørelse:',

@@ -53,12 +53,26 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                                 {data._mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
                                     data._starterUndeveis &&
                                     data.startdato && (
-                                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(data.startdato))}`}</List.Item>
+                                        <List.Item>
+                                            <AppText
+                                                id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.startet"
+                                                values={{
+                                                    startdato: dateFormatter.full(ISODateToDate(data.startdato)),
+                                                }}
+                                            />
+                                        </List.Item>
                                     )}
                                 {data._mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
                                     data._slutterUnderveis &&
                                     data.sluttdato && (
-                                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(data.sluttdato))}`}</List.Item>
+                                        <List.Item>
+                                            <AppText
+                                                id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.sluttet"
+                                                values={{
+                                                    sluttdato: dateFormatter.full(ISODateToDate(data.sluttdato)),
+                                                }}
+                                            />
+                                        </List.Item>
                                     )}
                             </>
                         ) : null}
