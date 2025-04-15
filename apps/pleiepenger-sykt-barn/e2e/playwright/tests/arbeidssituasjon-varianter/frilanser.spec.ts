@@ -53,8 +53,8 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await expect(
             summary.getByText('Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om'),
         ).toBeVisible();
-        await expect(summary.getByText('Startet 2. januar')).toBeVisible();
-        await expect(summary.getByText('Sluttet 3. januar')).toBeVisible();
+        await expect(summary.getByText('Starter 2. januar')).toBeVisible();
+        await expect(summary.getByText('Slutter 3. januar')).toBeVisible();
     });
 });
 
