@@ -217,11 +217,11 @@ const nb = {
         'Start-datoen kan ikke være etter slutt-datoen. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.dateHasNoValue': 'Du må fylle ut dato når du sluttet å motta omsorgsstønad.',
     'validation.omsorgsstønad.sluttdato.dateIsAfterMax':
-        'Slutt datoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
+        'Sluttdatoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.dateIsBeforeMin':
-        'Slutt datoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
+        'Sluttdatoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
     'validation.omsorgsstønad.sluttdato.dateHasInvalidFormat':
-        'Du må oppgi slutt datoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
+        'Du må oppgi sluttdatoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'validation.omsorgsstønad.sluttdato.sluttetFørStartDato':
         'Slutt-datoen kan ikke være før start-datoen. Skriv inn eller velg dato fra kalenderen.',
 
