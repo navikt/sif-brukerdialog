@@ -1,9 +1,8 @@
-import { FormSummary, Heading, List } from '@navikt/ds-react';
-import { ListItem } from '@navikt/ds-react/List';
+import { BodyShort, FormSummary, Heading, List } from '@navikt/ds-react';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
-import { TimerEllerProsent } from '../../../types';
 import { FosterhjemsgodtgjørelseApiData } from '../../../types/søknad-api-data/FosterhjemsgodtgjørelseApiData';
+import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     fosterhjemsgodtgjørelse: FosterhjemsgodtgjørelseApiData;
@@ -12,11 +11,8 @@ interface Props {
 const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Props) => {
     const {
         mottarFosterhjemsgodtgjørelse,
-        timerEllerProsent,
-        frikjøptArbeidsgiverNavn,
-        prosent,
-        antallTimer,
         erFrikjøptFraJobb,
+        frikjøptBeskrivelse,
         _mottarFosterhjemsgodtgjørelseIHelePerioden,
         _starterUndeveis,
         startdato,
@@ -24,11 +20,8 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
         sluttdato,
     } = data;
 
-    if (
-        mottarFosterhjemsgodtgjørelse === false ||
-        (mottarFosterhjemsgodtgjørelse === true && erFrikjøptFraJobb === false)
-    ) {
-        return (
+    return (
+        <>
             <FormSummary.Answer>
                 <FormSummary.Label>
                     <Heading level="3" size="small">
@@ -44,67 +37,51 @@ const FosterhjemsgodtgjørelseSummary = ({ fosterhjemsgodtgjørelse: data }: Pro
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarIkke" />
                             )}
                         </List.Item>
-                        {mottarFosterhjemsgodtgjørelse && !erFrikjøptFraJobb ? (
+                        {erFrikjøptFraJobb ? (
+                            <List.Item>
+                                <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøpt" />
+                            </List.Item>
+                        ) : (
                             <List.Item>
                                 <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.ikkeFrikjøpt" />
                             </List.Item>
-                        ) : null}
+                        )}
+                        {erFrikjøptFraJobb === false ? (
+                            <>
+                                {_mottarFosterhjemsgodtgjørelseIHelePerioden ? (
+                                    <List.Item>
+                                        <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarHelePerioden" />
+                                    </List.Item>
+                                ) : (
+                                    <List.Item>
+                                        <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarDelerAvPerioden" />
+                                    </List.Item>
+                                )}
+                                {_mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
+                                    _starterUndeveis &&
+                                    startdato && (
+                                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
+                                    )}
+                                {_mottarFosterhjemsgodtgjørelseIHelePerioden === false &&
+                                    _slutterUnderveis &&
+                                    sluttdato && (
+                                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
+                                    )}
+                            </>
+                        ) : (
+                            <List.Item>
+                                <BodyShort>
+                                    <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.tittel" />
+                                </BodyShort>
+                                <Sitat>
+                                    <TextareaSvar text={frikjøptBeskrivelse} />
+                                </Sitat>
+                            </List.Item>
+                        )}
                     </List>
                 </FormSummary.Value>
             </FormSummary.Answer>
-        );
-    }
-
-    return (
-        <FormSummary.Answer>
-            <FormSummary.Label>
-                <Heading level="3" size="small">
-                    <AppText id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.title" />
-                </Heading>
-            </FormSummary.Label>
-            <FormSummary.Value>
-                <List>
-                    {_mottarFosterhjemsgodtgjørelseIHelePerioden ? (
-                        <List.Item>Mottar fosterhjemsgodtgjørelsen gjennom hele perioden jeg søker om</List.Item>
-                    ) : (
-                        <List.Item>Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om</List.Item>
-                    )}
-                    {_mottarFosterhjemsgodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
-                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
-                    )}
-                    {_mottarFosterhjemsgodtgjørelseIHelePerioden === false && _slutterUnderveis && sluttdato && (
-                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
-                    )}
-                    <ListItem>
-                        {timerEllerProsent === TimerEllerProsent.TIMER ? (
-                            <AppText
-                                id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.timer"
-                                values={{ timer: antallTimer }}
-                            />
-                        ) : (
-                            <AppText
-                                id="steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.prosent"
-                                values={{ prosent }}
-                            />
-                        )}
-                    </ListItem>
-                    {frikjøptArbeidsgiverNavn && (
-                        <List.Item>
-                            {frikjøptArbeidsgiverNavn.length > 0 ? (
-                                <>
-                                    Er frikjøpt fra:
-                                    <List>
-                                        {frikjøptArbeidsgiverNavn.map((navn) => (
-                                            <List.Item>{navn}</List.Item>
-                                        ))}
-                                    </List>
-                                </>
-                            ) : null}
-                        </List.Item>
-                    )}
-                </List>
-            </FormSummary.Value>
-        </FormSummary.Answer>
+        </>
     );
 };
 

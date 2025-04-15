@@ -20,25 +20,23 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar ikke fosterhjemsgodtgjø')).toBeVisible();
     });
-    test('Mottar fosterhjemsgodtgjørelse, men er ikke frikjøpt ', async ({ page }) => {
+    test('Mottar fosterhjemsgodtgjørelse, er frikjøpt ', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
+        await page.getByRole('textbox', { name: 'Beskriv detaljer om frikjøp' }).fill('detaljer om frikjøp');
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Mottar fosterhjemsgodtgjø')).toBeVisible();
-        await expect(page.getByText('Er ikke frikjøpt fra jobb')).toBeVisible();
+        await expect(page.getByText('Er frikjøpt fra jobb')).toBeVisible();
+        await expect(page.getByText('detaljer om frikjøp', { exact: true })).toBeVisible();
     });
-    test('Mottar fosterhjemsgodtgjørelse og er frikjøpt ', async ({ page }) => {
+    test('Mottar fosterhjemsgodtgjørelse - er ikke frikjøpt - mottar hele perioden', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
-        await page.getByLabel('Oppgi prosent du er frikjøpt', { exact: true }).fill('25');
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Ja').check();
     });
-    test('Starter og slutter å motta i perioden', async ({ page }) => {
+    test('Mottar fosterhjemsgodtgjørelse - er ikke frikjøpt - mottar deler av perioden', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Ønsker du å oppgi hvor ' }).getByLabel('Prosent').check();
-        await page.getByLabel('Oppgi prosent du er frikjøpt', { exact: true }).fill('25');
+        await page.getByRole('group', { name: 'Er du frikjøpt' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();

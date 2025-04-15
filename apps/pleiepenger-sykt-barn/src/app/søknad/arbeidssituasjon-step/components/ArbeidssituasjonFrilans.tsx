@@ -12,15 +12,13 @@ import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodtgjørelse-form-pa
 import FrilanserFormPart from './frilans-form-part/FrilanserFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import OmsorgsstønadFormPart from './omsorgsstønad-form-part/OmsorgsstønadFormPart';
-import { Arbeidsgiver } from '../../../types';
 
 interface Props {
     søknadsperiode: DateRange;
     søknadsdato: Date;
-    arbeidsgivere: Arbeidsgiver[];
 }
 
-const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato, arbeidsgivere }: Props) => {
+const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     const { text } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
     const { frilansoppdrag, omsorgsstønad } = values;
@@ -54,7 +52,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato, arbeidsgivere 
             </ExpandableInfo>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             <FormBlock>
-                <FosterhjemsgodtgjørelseFormPart arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
+                <FosterhjemsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
             <FormBlock>
                 <OmsorgsstønadFormPart søknadsperiode={søknadsperiode} />

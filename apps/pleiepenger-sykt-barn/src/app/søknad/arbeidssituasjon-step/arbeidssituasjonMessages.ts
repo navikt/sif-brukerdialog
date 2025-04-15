@@ -193,19 +193,21 @@ const fosterhjem = {
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.spm':
         'Mottar du denne godtgjørelsen gjennom hele perioden du søker om?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.spm': 'Er du frikjøpt fra jobb?',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.spm': 'Velg arbeidsgiver du er frikjøpt fra:',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.spm':
-        'Ønsker du å oppgi hvor mye du er frikjøpt i timer eller prosent?',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.beskrivelse.label':
+        'Beskriv detaljer om frikjøp og fosterhjemsgodtgjørelse:',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.1':
+        'Hvor mange prosent eller timer du er frikjøpt fra jobb',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.2':
+        'Om du er frikjøpt fra en eller flere arbeidsgivere',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.3': 'Hvilken periode du er frikjøpt',
+    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.4':
+        'Om du mister eller får redusert fosterhjemsgodtgjørelse i perioden du søker om',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.spm':
         'Starter godtgjørelsen underveis i pleiepengeperioden din?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.startdato': 'Startdato:',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.slutterUndeveis.spm':
         'Stopper godtgjørelsen underveis i pleiepengeperioden din?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.sluttdato': 'Sluttdato:',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.prosent': 'Prosent',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.timer': 'Timer',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimer.label': 'Oppgi timer du er frikjøpt',
-    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptProsent.label': 'Oppgi prosent du er frikjøpt',
 
     'steg.arbeidssituasjon.frilansoppdragListe.tittel': 'Frilansoppdrag registrert på deg:',
     'steg.arbeidssituasjon.frilansoppdragListe.tekst':

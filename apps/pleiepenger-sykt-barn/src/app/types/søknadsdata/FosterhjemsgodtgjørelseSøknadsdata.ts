@@ -1,37 +1,29 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODate } from '@navikt/sif-common-utils';
-import { TimerEllerProsent } from '../TimerEllerProsent';
 
 export interface MottarIkkeFosterhjemsgodtgjørelse {
     type: 'mottarIkke';
     mottarFosterhjemsgodtgjørelse: YesOrNo.NO;
 }
 
-export interface FosterhjemsgodtgjørelseIkkeFrikjøpt {
-    type: 'mottarMenIkkeFrikjøpt';
+export interface FosterhjemsgodtgjørelseFrikjøpt {
+    type: 'mottarFrikjøpt';
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
-    erFrikjøptFraJobb: YesOrNo.NO;
+    erFrikjøptFraJobb: YesOrNo.YES;
+    frikjøptBeskrivelse: string;
 }
 
 export interface MottarFosterhjemsgodtgjørelseIHelePeroden {
     type: 'mottarIHelePeroden';
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
-    erFrikjøptFraJobb: YesOrNo.YES;
-    frikjøptArbeidsgiverNavn: string[];
-    frikjøptTimerEllerProsent: TimerEllerProsent;
-    frikjøptTimer?: number;
-    frikjøptProsent?: number;
+    erFrikjøptFraJobb: YesOrNo.NO;
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES;
 }
 
 export interface MottarFosterhjemsgodtgjørelseIDelerAvPeroden {
     type: 'mottarIDelerAvPeroden';
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES;
-    erFrikjøptFraJobb: YesOrNo.YES;
-    frikjøptArbeidsgiverNavn: string[];
-    frikjøptTimerEllerProsent: TimerEllerProsent;
-    frikjøptTimer?: number;
-    frikjøptProsent?: number;
+    erFrikjøptFraJobb: YesOrNo.NO;
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO;
     starterUndeveis: YesOrNo;
     startdato?: ISODate;
@@ -41,6 +33,6 @@ export interface MottarFosterhjemsgodtgjørelseIDelerAvPeroden {
 
 export type FosterhjemsgodtgjørelseSøknadsdata =
     | MottarFosterhjemsgodtgjørelseIHelePeroden
-    | FosterhjemsgodtgjørelseIkkeFrikjøpt
+    | FosterhjemsgodtgjørelseFrikjøpt
     | MottarIkkeFosterhjemsgodtgjørelse
     | MottarFosterhjemsgodtgjørelseIDelerAvPeroden;

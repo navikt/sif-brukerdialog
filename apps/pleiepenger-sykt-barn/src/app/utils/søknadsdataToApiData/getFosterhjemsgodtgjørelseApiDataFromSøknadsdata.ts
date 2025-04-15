@@ -2,11 +2,11 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { FosterhjemsgodtgjørelseSøknadsdata } from '../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
 
-type FosterhjemsgodtgjørelseApiData = Pick<SøknadApiData, 'fosterhjemsgodtgjørelse'>;
+type FosterhjemsgodtgjørelseApiDataPart = Pick<SøknadApiData, 'fosterhjemsgodtgjørelse'>;
 
 export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
     fosterhjemsgodtgjørelse?: FosterhjemsgodtgjørelseSøknadsdata,
-): FosterhjemsgodtgjørelseApiData => {
+): FosterhjemsgodtgjørelseApiDataPart => {
     if (fosterhjemsgodtgjørelse === undefined) {
         throw Error('fosterhjemsgodtgjørelse undefined');
     }
@@ -18,11 +18,12 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
                 },
             };
 
-        case 'mottarMenIkkeFrikjøpt':
+        case 'mottarFrikjøpt':
             return {
                 fosterhjemsgodtgjørelse: {
                     mottarFosterhjemsgodtgjørelse: true,
-                    erFrikjøptFraJobb: false,
+                    erFrikjøptFraJobb: true,
+                    frikjøptBeskrivelse: fosterhjemsgodtgjørelse.frikjøptBeskrivelse,
                 },
             };
 
@@ -30,12 +31,8 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
             return {
                 fosterhjemsgodtgjørelse: {
                     mottarFosterhjemsgodtgjørelse: true,
-                    erFrikjøptFraJobb: true,
-                    frikjøptArbeidsgiverNavn: fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn,
+                    erFrikjøptFraJobb: false,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: true,
-                    antallTimer: fosterhjemsgodtgjørelse.frikjøptTimer,
-                    prosent: fosterhjemsgodtgjørelse.frikjøptProsent,
-                    timerEllerProsent: fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent,
                 },
             };
 
@@ -43,12 +40,8 @@ export const getFosterhjemsgodtgjørelseApiDataFromSøknadsdata = (
             return {
                 fosterhjemsgodtgjørelse: {
                     mottarFosterhjemsgodtgjørelse: true,
-                    erFrikjøptFraJobb: true,
-                    frikjøptArbeidsgiverNavn: fosterhjemsgodtgjørelse.frikjøptArbeidsgiverNavn,
+                    erFrikjøptFraJobb: false,
                     _mottarFosterhjemsgodtgjørelseIHelePerioden: false,
-                    antallTimer: fosterhjemsgodtgjørelse.frikjøptTimer,
-                    prosent: fosterhjemsgodtgjørelse.frikjøptProsent,
-                    timerEllerProsent: fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent,
                     _starterUndeveis: fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.YES ? true : false,
                     startdato:
                         fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.YES

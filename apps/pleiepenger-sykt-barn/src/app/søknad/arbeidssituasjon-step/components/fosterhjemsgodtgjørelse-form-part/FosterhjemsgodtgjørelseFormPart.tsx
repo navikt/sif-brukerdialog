@@ -4,12 +4,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
-import {
-    getListValidator,
-    getNumberValidator,
-    getRequiredFieldValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../../../i18n';
@@ -23,7 +18,7 @@ import {
     getFosterhjemsgodtgjørelseSluttdatoValidator,
     getFosterhjemsgodtgjørelseStartdatoValidator,
 } from '../../../../validation/fieldValidations';
-import { Arbeidsgiver, TimerEllerProsent } from '../../../../types';
+import { List } from '@navikt/ds-react';
 
 const FosterhjemsgodtgjørelseComponents = getTypedFormComponents<
     FosterhjemsgodtgjørelseFormField,
@@ -33,10 +28,9 @@ const FosterhjemsgodtgjørelseComponents = getTypedFormComponents<
 
 interface Props {
     søknadsperiode: DateRange;
-    arbeidsgivere: Arbeidsgiver[];
 }
 
-const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, arbeidsgivere }) => {
+const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const { text } = useAppIntl();
     const {
         values: { fosterhjemsgodtgjørelse },
@@ -66,127 +60,41 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                             validate={getRequiredFieldValidator()}
                             value={fosterhjemsgodtgjørelse.erFrikjøptFraJobb}
                         />
-
-                        {arbeidsgivere.length > 1 && fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES && (
+                        {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES ? (
                             <FormBlock>
-                                <FosterhjemsgodtgjørelseComponents.CheckboxGroup
-                                    name={FosterhjemsgodtgjørelseFormField.frikjøptArbeidsgiverNavn}
-                                    legend={text(
-                                        'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.spm',
-                                    )}
-                                    validate={getListValidator({ required: true, minItems: 1 })}
-                                    checkboxes={arbeidsgivere.map((arbeidsgiver) => ({
-                                        value: arbeidsgiver.navn,
-                                        label: arbeidsgiver.navn,
-                                    }))}
+                                <FosterhjemsgodtgjørelseComponents.Textarea
+                                    name={FosterhjemsgodtgjørelseFormField.frikjøptBeskrivelse}
+                                    label={
+                                        <AppText
+                                            id={
+                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.beskrivelse.label'
+                                            }
+                                        />
+                                    }
+                                    description={
+                                        <List>
+                                            <List.Item>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.1" />
+                                            </List.Item>
+                                            <List.Item>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.2" />
+                                            </List.Item>
+                                            <List.Item>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.3" />
+                                            </List.Item>
+                                            <List.Item>
+                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.info.4" />
+                                            </List.Item>
+                                        </List>
+                                    }
+                                    validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                    maxLength={1000}
                                 />
                             </FormBlock>
-                        )}
+                        ) : null}
 
-                        {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES && (
+                        {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.NO ? (
                             <>
-                                <FormBlock>
-                                    {/* <FosterhjemsgodtgjørelseComponents.InputGroup
-                                        name={FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent}
-                                        legend={text(
-                                            'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.spm',
-                                        )}>
-                                        <ToggleGroup
-                                            defaultValue={
-                                                fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent ||
-                                                TimerEllerProsent.TIMER
-                                            }
-                                            onChange={(value) =>
-                                                setFieldValue(
-                                                    FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent,
-                                                    value,
-                                                )
-                                            }>
-                                            <ToggleGroupItem value={TimerEllerProsent.TIMER}>
-                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.timer" />
-                                            </ToggleGroupItem>
-                                            <ToggleGroupItem value={TimerEllerProsent.PROSENT}>
-                                                <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.prosent" />
-                                            </ToggleGroupItem>
-                                        </ToggleGroup>
-                                    </FosterhjemsgodtgjørelseComponents.InputGroup> */}
-                                    <FosterhjemsgodtgjørelseComponents.RadioGroup
-                                        name={FosterhjemsgodtgjørelseFormField.frikjøptTimerEllerProsent}
-                                        legend={text(
-                                            'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.spm',
-                                        )}
-                                        radios={[
-                                            {
-                                                label: text(
-                                                    `steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.prosent`,
-                                                ),
-                                                value: TimerEllerProsent.PROSENT,
-                                            },
-                                            {
-                                                label: text(
-                                                    `steg.arbeidssituasjon.fosterhjemsgodtgjørelse.timerEllerProsent.timer`,
-                                                ),
-                                                value: TimerEllerProsent.TIMER,
-                                            },
-                                        ]}
-                                        validate={getRequiredFieldValidator()}
-                                    />
-                                </FormBlock>
-                                {fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent === TimerEllerProsent.PROSENT && (
-                                    <FormBlock>
-                                        <FosterhjemsgodtgjørelseComponents.NumberInput
-                                            name={FosterhjemsgodtgjørelseFormField.frikjøptProsent}
-                                            label={text(
-                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptProsent.label',
-                                            )}
-                                            validate={(value) => {
-                                                const minMaxOptions = {
-                                                    min: 0,
-                                                    max: 100,
-                                                };
-                                                const error = getNumberValidator({ ...minMaxOptions, required: true })(
-                                                    value,
-                                                );
-                                                return error
-                                                    ? {
-                                                          key: error,
-                                                          values: { ...minMaxOptions },
-                                                      }
-                                                    : undefined;
-                                            }}
-                                            width="xs"
-                                            maxLength={4}
-                                        />
-                                    </FormBlock>
-                                )}
-                                {fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent === TimerEllerProsent.TIMER && (
-                                    <FormBlock>
-                                        <FosterhjemsgodtgjørelseComponents.NumberInput
-                                            className="arbeidstidUkeInput"
-                                            name={FosterhjemsgodtgjørelseFormField.frikjøptTimer}
-                                            label={text(
-                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptTimer.label',
-                                            )}
-                                            validate={(value) => {
-                                                const minMaxOptions = {
-                                                    min: 0,
-                                                    max: 100,
-                                                };
-                                                const error = getNumberValidator({ ...minMaxOptions, required: true })(
-                                                    value,
-                                                );
-                                                return error
-                                                    ? {
-                                                          key: error,
-                                                          values: { ...minMaxOptions },
-                                                      }
-                                                    : undefined;
-                                            }}
-                                            width="xs"
-                                            maxLength={5}
-                                        />
-                                    </FormBlock>
-                                )}
                                 <FormBlock>
                                     <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
                                         name={
@@ -199,82 +107,81 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                         value={fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden}
                                     />
                                 </FormBlock>
+
+                                {fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden === YesOrNo.NO && (
+                                    <>
+                                        <FormBlock>
+                                            <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
+                                                name={FosterhjemsgodtgjørelseFormField.starterUndeveis}
+                                                legend={text(
+                                                    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.spm',
+                                                )}
+                                                validate={getRequiredFieldValidator()}
+                                                value={fosterhjemsgodtgjørelse.starterUndeveis}
+                                            />
+                                            {fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.YES && (
+                                                <FormBlock margin="m">
+                                                    <FosterhjemsgodtgjørelseComponents.DatePicker
+                                                        name={FosterhjemsgodtgjørelseFormField.startdato}
+                                                        label={text(
+                                                            'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.startdato',
+                                                        )}
+                                                        dropdownCaption={true}
+                                                        minDate={søknadsperiode.from}
+                                                        maxDate={søknadsperiode.to}
+                                                        defaultMonth={søknadsperiode.to}
+                                                        data-testid="fosterhjemsgodtgjørelse-startdato"
+                                                        validate={getFosterhjemsgodtgjørelseStartdatoValidator(
+                                                            fosterhjemsgodtgjørelse,
+                                                            søknadsperiode,
+                                                        )}
+                                                    />
+                                                </FormBlock>
+                                            )}
+                                        </FormBlock>
+                                        <FormBlock>
+                                            <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
+                                                name={FosterhjemsgodtgjørelseFormField.slutterUnderveis}
+                                                legend={text(
+                                                    'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.slutterUndeveis.spm',
+                                                )}
+                                                validate={(value) => {
+                                                    if (
+                                                        value === YesOrNo.NO &&
+                                                        fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.NO
+                                                    ) {
+                                                        return AppFieldValidationErrors.starter_slutter_undeveis_nei;
+                                                    }
+
+                                                    return getRequiredFieldValidator()(value);
+                                                }}
+                                                value={fosterhjemsgodtgjørelse.slutterUnderveis}
+                                            />
+
+                                            {fosterhjemsgodtgjørelse.slutterUnderveis === YesOrNo.YES && (
+                                                <FormBlock margin="m">
+                                                    <FosterhjemsgodtgjørelseComponents.DatePicker
+                                                        name={FosterhjemsgodtgjørelseFormField.sluttdato}
+                                                        label={text(
+                                                            'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.sluttdato',
+                                                        )}
+                                                        dropdownCaption={true}
+                                                        minDate={søknadsperiode.from}
+                                                        maxDate={søknadsperiode.to}
+                                                        defaultMonth={søknadsperiode.to}
+                                                        data-testid="fosterhjemsgodtgjørelse-sluttdato"
+                                                        validate={getFosterhjemsgodtgjørelseSluttdatoValidator(
+                                                            fosterhjemsgodtgjørelse,
+                                                            søknadsperiode,
+                                                        )}
+                                                    />
+                                                </FormBlock>
+                                            )}
+                                        </FormBlock>
+                                    </>
+                                )}
                             </>
-                        )}
-
-                        {fosterhjemsgodtgjørelse.erFrikjøptFraJobb === YesOrNo.YES &&
-                            fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden === YesOrNo.NO && (
-                                <>
-                                    <FormBlock>
-                                        <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
-                                            name={FosterhjemsgodtgjørelseFormField.starterUndeveis}
-                                            legend={text(
-                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.spm',
-                                            )}
-                                            validate={getRequiredFieldValidator()}
-                                            value={fosterhjemsgodtgjørelse.starterUndeveis}
-                                        />
-                                        {fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.YES && (
-                                            <FormBlock margin="m">
-                                                <FosterhjemsgodtgjørelseComponents.DatePicker
-                                                    name={FosterhjemsgodtgjørelseFormField.startdato}
-                                                    label={text(
-                                                        'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.startdato',
-                                                    )}
-                                                    dropdownCaption={true}
-                                                    minDate={søknadsperiode.from}
-                                                    maxDate={søknadsperiode.to}
-                                                    defaultMonth={søknadsperiode.to}
-                                                    data-testid="fosterhjemsgodtgjørelse-startdato"
-                                                    validate={getFosterhjemsgodtgjørelseStartdatoValidator(
-                                                        fosterhjemsgodtgjørelse,
-                                                        søknadsperiode,
-                                                    )}
-                                                />
-                                            </FormBlock>
-                                        )}
-                                    </FormBlock>
-                                    <FormBlock>
-                                        <FosterhjemsgodtgjørelseComponents.YesOrNoQuestion
-                                            name={FosterhjemsgodtgjørelseFormField.slutterUnderveis}
-                                            legend={text(
-                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.slutterUndeveis.spm',
-                                            )}
-                                            validate={(value) => {
-                                                if (
-                                                    value === YesOrNo.NO &&
-                                                    fosterhjemsgodtgjørelse.starterUndeveis === YesOrNo.NO
-                                                ) {
-                                                    return AppFieldValidationErrors.starter_slutter_undeveis_nei;
-                                                }
-
-                                                return getRequiredFieldValidator()(value);
-                                            }}
-                                            value={fosterhjemsgodtgjørelse.slutterUnderveis}
-                                        />
-
-                                        {fosterhjemsgodtgjørelse.slutterUnderveis === YesOrNo.YES && (
-                                            <FormBlock margin="m">
-                                                <FosterhjemsgodtgjørelseComponents.DatePicker
-                                                    name={FosterhjemsgodtgjørelseFormField.sluttdato}
-                                                    label={text(
-                                                        'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.starterUndeveis.sluttdato',
-                                                    )}
-                                                    dropdownCaption={true}
-                                                    minDate={søknadsperiode.from}
-                                                    maxDate={søknadsperiode.to}
-                                                    defaultMonth={søknadsperiode.to}
-                                                    data-testid="fosterhjemsgodtgjørelse-sluttdato"
-                                                    validate={getFosterhjemsgodtgjørelseSluttdatoValidator(
-                                                        fosterhjemsgodtgjørelse,
-                                                        søknadsperiode,
-                                                    )}
-                                                />
-                                            </FormBlock>
-                                        )}
-                                    </FormBlock>
-                                </>
-                            )}
+                        ) : null}
                     </ResponsivePanel>
                 </FormBlock>
             )}

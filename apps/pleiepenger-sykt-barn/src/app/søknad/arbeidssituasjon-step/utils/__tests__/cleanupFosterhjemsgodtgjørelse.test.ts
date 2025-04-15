@@ -1,8 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { vi } from 'vitest';
-import { cleanupFosterhjemsgodtgjørelse } from '../cleanupFosterhjemsgodtgjørelse';
 import { FosterhjemsgodtgjørelseFormValues } from '../../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
-import { TimerEllerProsent } from '../../../../types';
+import { cleanupFosterhjemsgodtgjørelse } from '../cleanupFosterhjemsgodtgjørelse';
 
 const ISOStartdato = '2021-01-01';
 const ISOSluttdato = '2022-01-01';
@@ -11,9 +10,7 @@ const formValues: FosterhjemsgodtgjørelseFormValues = {
     mottarFosterhjemsgodtgjørelse: YesOrNo.YES,
     mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
     erFrikjøptFraJobb: YesOrNo.YES,
-    frikjøptArbeidsgiverNavn: ['NAV'],
-    frikjøptTimerEllerProsent: TimerEllerProsent.PROSENT,
-    frikjøptProsent: '50',
+    frikjøptBeskrivelse: 'Info',
     startdato: ISOStartdato,
     sluttdato: ISOSluttdato,
     slutterUnderveis: YesOrNo.YES,
@@ -26,55 +23,42 @@ vi.mock('@navikt/sif-common-env', () => {
 
 describe('cleanupFosterhjemsgodtgjørelse', () => {
     it('mottar ikke Fosterhjemsgodtgjørelse', () => {
-        const { mottarFosterhjemsgodtgjørelse, ...rest } = cleanupFosterhjemsgodtgjørelse(
-            {
-                ...formValues,
-                mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
-            },
-            [],
-        );
+        const { mottarFosterhjemsgodtgjørelse, ...rest } = cleanupFosterhjemsgodtgjørelse({
+            ...formValues,
+            mottarFosterhjemsgodtgjørelse: YesOrNo.NO,
+        });
         expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.NO);
         expect(rest).toEqual({});
     });
-    it('mottar Fosterhjemsgodtgjørelse men er ikke frikjøpt', () => {
-        const { mottarFosterhjemsgodtgjørelse, erFrikjøptFraJobb, ...rest } = cleanupFosterhjemsgodtgjørelse(
-            {
+    it('mottar Fosterhjemsgodtgjørelse - frikjøpt', () => {
+        const { mottarFosterhjemsgodtgjørelse, erFrikjøptFraJobb, frikjøptBeskrivelse, ...rest } =
+            cleanupFosterhjemsgodtgjørelse({
                 ...formValues,
                 mottarFosterhjemsgodtgjørelse: YesOrNo.YES,
-                erFrikjøptFraJobb: YesOrNo.NO,
-            },
-            [],
-        );
+                erFrikjøptFraJobb: YesOrNo.YES,
+            });
         expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
-        expect(erFrikjøptFraJobb).toEqual(YesOrNo.NO);
+        expect(erFrikjøptFraJobb).toEqual(YesOrNo.YES);
+        expect(frikjøptBeskrivelse).toEqual('Info');
         expect(rest).toEqual({});
     });
     describe('mottar Fosterhjemsgodtgjørelse', () => {
-        it('mottar hele perioden - oppgir timer', () => {
+        it('mottar hele perioden', () => {
             const {
                 mottarFosterhjemsgodtgjørelse,
-                frikjøptArbeidsgiverNavn,
+                frikjøptBeskrivelse,
                 erFrikjøptFraJobb,
-                frikjøptTimerEllerProsent,
-                frikjøptTimer,
                 mottarFosterhjemsgodtgjørelseIHelePerioden,
                 ...rest
-            } = cleanupFosterhjemsgodtgjørelse(
-                {
-                    ...formValues,
-                    frikjøptTimer: '10',
-                    frikjøptTimerEllerProsent: TimerEllerProsent.TIMER,
-                    mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES,
-                    erFrikjøptFraJobb: YesOrNo.YES,
-                },
-                ['NAV'],
-            );
+            } = cleanupFosterhjemsgodtgjørelse({
+                ...formValues,
+                mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.YES,
+                erFrikjøptFraJobb: YesOrNo.NO,
+            });
             expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
-            expect(erFrikjøptFraJobb).toEqual(YesOrNo.YES);
-            expect(frikjøptArbeidsgiverNavn).toEqual(['NAV']);
+            expect(erFrikjøptFraJobb).toEqual(YesOrNo.NO);
+            expect(frikjøptBeskrivelse).toBeUndefined();
             expect(mottarFosterhjemsgodtgjørelseIHelePerioden).toEqual(YesOrNo.YES);
-            expect(frikjøptTimerEllerProsent).toEqual(TimerEllerProsent.TIMER);
-            expect(frikjøptTimer).toEqual('10');
             expect(rest).toEqual({});
         });
         it('starter og slutter i perioden', () => {
@@ -86,28 +70,23 @@ describe('cleanupFosterhjemsgodtgjørelse', () => {
                 startdato,
                 sluttdato,
                 erFrikjøptFraJobb,
-                frikjøptProsent,
-                frikjøptArbeidsgiverNavn,
-                frikjøptTimerEllerProsent,
+                frikjøptBeskrivelse,
                 ...rest
-            } = cleanupFosterhjemsgodtgjørelse(
-                {
-                    ...formValues,
-                    mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
-                    starterUndeveis: YesOrNo.YES,
-                    slutterUnderveis: YesOrNo.YES,
-                },
-                ['NAV'],
-            );
+            } = cleanupFosterhjemsgodtgjørelse({
+                ...formValues,
+                mottarFosterhjemsgodtgjørelseIHelePerioden: YesOrNo.NO,
+                starterUndeveis: YesOrNo.YES,
+                slutterUnderveis: YesOrNo.YES,
+                erFrikjøptFraJobb: YesOrNo.NO,
+            });
             expect(mottarFosterhjemsgodtgjørelse).toEqual(YesOrNo.YES);
             expect(mottarFosterhjemsgodtgjørelseIHelePerioden).toEqual(YesOrNo.NO);
             expect(starterUndeveis).toEqual(YesOrNo.YES);
             expect(slutterUnderveis).toEqual(YesOrNo.YES);
             expect(startdato).toEqual(ISOStartdato);
             expect(sluttdato).toEqual(ISOSluttdato);
-            expect(frikjøptTimerEllerProsent).toEqual(TimerEllerProsent.PROSENT);
-            expect(frikjøptProsent).toEqual('50');
-            expect(frikjøptArbeidsgiverNavn).toEqual(['NAV']);
+            expect(erFrikjøptFraJobb).toEqual(YesOrNo.NO);
+            expect(frikjøptBeskrivelse).toBeUndefined();
             expect(rest).toEqual({});
         });
     });

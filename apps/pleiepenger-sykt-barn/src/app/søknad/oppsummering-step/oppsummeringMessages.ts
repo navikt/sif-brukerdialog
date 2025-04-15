@@ -77,9 +77,13 @@ const nb = {
         'Mottar ikke fosterhjemsgodtgjørelse fra kommunen',
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøpt': 'Er frikjøpt fra jobb',
     'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.ikkeFrikjøpt': 'Er ikke frikjøpt fra jobb',
+    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarHelePerioden':
+        'Mottar fosterhjemsgodtgjørelsen gjennom hele perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarDelerAvPerioden':
+        'Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om',
 
-    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.timer': 'Er frikjøpt {timer} timer per uke',
-    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.prosent': 'Er frikjøpt {prosent} prosent fra jobb',
+    'steg.oppsummering.arbeidssituasjon.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.tittel':
+        'Detaljer om frikjøp og fosterhjemsgodtgjørelse:',
 
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
     'steg.oppsummering.vedlegg.listTitle': 'Dokumenter lastet opp',
