@@ -71,7 +71,7 @@
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "4.3.4",
+        "@vitejs/plugin-react": "4.4.0",
         "babel-polyfill": "6.26.0",
         "chromatic": "11.28.0",
         "compression": "1.8.0",
