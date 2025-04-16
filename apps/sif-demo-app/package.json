@@ -47,7 +47,7 @@
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@typescript-eslint/parser": "8.30.1",
-        "@vitejs/plugin-react": "4.3.4",
+        "@vitejs/plugin-react": "4.4.0",
         "compression": "1.8.0",
         "eslint": "9.24.0",
         "eslint-plugin-prettier": "5.2.6",
