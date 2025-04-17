@@ -5,7 +5,7 @@ import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
 import { useDeltakelse } from '../../context/DeltakelseContext';
 
 const DeltakelseContent = () => {
-    const { deltakelse, deltaker, onDeltakelseChanged: onDeltakelseChange } = useDeltakelse();
+    const { deltakelse, deltaker } = useDeltakelse();
 
     return (
         <Box className="pb-8 pt-4">
@@ -19,7 +19,7 @@ const DeltakelseContent = () => {
                 <DeltakelseHandlinger
                     deltakelse={deltakelse}
                     deltaker={deltaker}
-                    onDeltakelseChanged={onDeltakelseChange}
+                    // onDeltakelseChanged={onDeltakelseChange}
                 />
 
                 <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />

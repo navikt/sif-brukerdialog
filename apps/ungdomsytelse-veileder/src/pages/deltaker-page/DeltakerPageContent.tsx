@@ -1,10 +1,10 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
-import { useDeltaker } from '../../context/DeltakerContext';
+import { useDeltakerContext } from '../../context/DeltakerContext';
 import { DeltakelseProvider } from '../../context/DeltakelseContext';
 import DeltakelseContent from '../../components/deltakelse-content/DeltakelseContent';
 
 const DeltakerPageContent = () => {
-    const { deltaker, deltakelser = [] } = useDeltaker();
+    const { deltaker, deltakelser = [] } = useDeltakerContext();
     const aktiveDeltakelser = deltakelser;
 
     if (!deltaker) {

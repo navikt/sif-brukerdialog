@@ -1,11 +1,9 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import { useDeltaker } from './DeltakerContext';
 
 interface DeltakelseContextProps {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    onDeltakelseChanged: () => void;
 }
 
 const DeltakelseContext = createContext<DeltakelseContextProps | undefined>(undefined);
@@ -17,13 +15,11 @@ interface DeltakelseProviderProps {
 }
 
 export const DeltakelseProvider = ({ children, deltaker, deltakelse }: DeltakelseProviderProps) => {
-    const { refetchDeltakelser } = useDeltaker();
     return (
         <DeltakelseContext.Provider
             value={{
                 deltaker,
                 deltakelse,
-                onDeltakelseChanged: refetchDeltakelser,
             }}>
             {children}
         </DeltakelseContext.Provider>

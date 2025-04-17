@@ -5,11 +5,12 @@ import SectionContainer from '../../section-container/SectionContainer';
 import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
 import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
+import { useDeltakelserForDeltaker } from '../../../hooks/useDeltakelserForDeltaker';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    onDeltakelseChanged: () => void;
+    // onDeltakelseChanged: () => void;
 }
 
 enum EndrePeriodeDialogType {
@@ -17,13 +18,20 @@ enum EndrePeriodeDialogType {
     'sluttdato' = 'sluttdato',
 }
 
-const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Props) => {
+const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<EndrePeriodeDialogType | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
+
+    const { refetch } = useDeltakelserForDeltaker(deltaker.id);
 
     const handleOnClose = () => {
         setVisOppgaveDialog(undefined);
         setEndretDeltakelse(undefined);
+    };
+
+    const handleOnDeltakelseChanged = (deltakelse: Deltakelse) => {
+        setEndretDeltakelse(deltakelse);
+        refetch();
     };
     return (
         <>
@@ -50,10 +58,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Pro
                         deltakelse={deltakelse}
                         deltaker={deltaker}
                         onCancel={handleOnClose}
-                        onDeltakelseChanged={(deltakelse) => {
-                            setEndretDeltakelse(deltakelse);
-                            onDeltakelseChanged();
-                        }}
+                        onDeltakelseChanged={handleOnDeltakelseChanged}
                     />
                 </EndreDeltakelseModal>
             ) : null}
@@ -67,7 +72,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker, onDeltakelseChanged }: Pro
                         deltakelse={deltakelse}
                         deltaker={deltaker}
                         onCancel={handleOnClose}
-                        onDeltakelseChanged={(deltakelse) => setEndretDeltakelse(deltakelse)}
+                        onDeltakelseChanged={handleOnDeltakelseChanged}
                     />
                 </EndreDeltakelseModal>
             ) : null}

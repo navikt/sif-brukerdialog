@@ -1,33 +1,23 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import { useDeltakelserForDeltaker } from '../hooks/useDeltakelserForDeltaker';
-import { useRegistrertDeltaker } from '../hooks/useRegistrertDeltaker';
 
 interface DeltakerContextProps {
-    deltaker?: Deltaker;
-    deltakelser?: Deltakelse[];
-    deltakelserPending?: boolean;
+    deltaker: Deltaker;
+    deltakelser: Deltakelse[];
     closeDeltaker: () => void;
-    refetchDeltakelser: () => void;
+    // refetchDeltakelser: () => void;
 }
 
 const DeltakerContext = createContext<DeltakerContextProps | undefined>(undefined);
 
 interface DeltakerProviderProps {
     children: ReactNode;
-    deltakerId: string;
+    deltaker: Deltaker;
+    deltakelser: Deltakelse[];
 }
-export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps) => {
+export const DeltakerProvider = ({ children, deltaker, deltakelser }: DeltakerProviderProps) => {
     const navigate = useNavigate();
-
-    const { data: deltaker, isLoading: deltakerPending } = useRegistrertDeltaker(deltakerId || '');
-
-    const {
-        data: deltakelser,
-        isLoading: deltakelserPending,
-        refetch: refetchDeltakelser,
-    } = useDeltakelserForDeltaker(deltakerId || '');
 
     const closeDeltaker = () => {
         navigate('/');
@@ -38,16 +28,14 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
             value={{
                 deltaker,
                 deltakelser,
-                deltakelserPending: deltakerPending || deltakelserPending,
                 closeDeltaker,
-                refetchDeltakelser,
             }}>
             {children}
         </DeltakerContext.Provider>
     );
 };
 
-export const useDeltaker = () => {
+export const useDeltakerContext = () => {
     const context = useContext(DeltakerContext);
     if (context === undefined) {
         throw new Error('useDeltaker must be used within a DeltakerProvider');
