@@ -10,16 +10,20 @@ import {
     TextField,
     VStack,
 } from '@navikt/ds-react';
-import { ReactElement, useState } from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getFødselsnummerValidator } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
-import { isAxiosError } from 'axios';
+import { ReactElement, useEffect, useState } from 'react';
+import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
+import {
+    Deltakelse,
+    Deltaker,
+    fødselsnummerFormatter,
+    isApiErrorObject,
+    UregistrertDeltaker,
+} from '@navikt/ung-common';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
-import { veilederApiService } from '../../api/veilederApiService';
 import { getAppEnv } from '../../utils/appEnv';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
+import { findDeltakerByIdent, isFindDeltakerError } from '../../api/deltaker/findDeltaker';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -28,12 +32,20 @@ interface Props {
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
+const fnrValideringsmeldinger = {
+    [ValidateFødselsnummerError.fødselsnummerHasNoValue]: 'Fødselsnummer har ikke verdi',
+    [ValidateFødselsnummerError.fødselsnummerIsNot11Chars]: 'Fødselsnummer må være 11 tegn',
+    [ValidateFødselsnummerError.fødselsnummerIsInvalid]: 'Fødselsnummer er ugyldig',
+    [ValidateFødselsnummerError.fødselsnummerAsHnrIsNotAllowed]: 'Fødselsnummer kan ikke være HNR',
+    [ValidateFødselsnummerError.fødselsnummerIsNotAllowed]: 'Fødselsnummeret er ikke tillatt',
+};
+
 const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [pending, setPending] = useState<boolean>(false);
-    const [nyDeltaker, setKandidat] = useState<UregistrertDeltaker | undefined>();
+    const [nyDeltaker, setNyDeltaker] = useState<UregistrertDeltaker | undefined>();
     const [registrerNy, setRegistrerNy] = useState<boolean>(false);
 
     const textFieldFormatter = useTextFieldFormatter(fødselsnummerFormatter);
@@ -41,27 +53,29 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const fetchDeltaker = async () => {
         setError(undefined);
         const fnrError = fnrValidator(fnrValue);
-        setValidationError(fnrError);
+        setValidationError(fnrError ? fnrValideringsmeldinger[fnrError] : undefined);
         if (fnrValue && fnrError === undefined) {
             setPending(true);
-            setKandidat(undefined);
+            setNyDeltaker(undefined);
             try {
-                const deltakerEllerKandidat = await veilederApiService.findDeltakerByDeltakerIdent(fnrValue);
+                const deltakerEllerKandidat = await findDeltakerByIdent(fnrValue);
                 if (deltakerEllerKandidat.id !== undefined) {
                     setPending(false);
                     onDeltakerFetched(deltakerEllerKandidat);
                 } else {
                     setPending(false);
-                    setKandidat(deltakerEllerKandidat);
+                    setNyDeltaker(deltakerEllerKandidat);
                 }
             } catch (e) {
                 setPending(false);
-                if (isAxiosError(e)) {
+                if (isFindDeltakerError(e)) {
+                    setError(e.message);
+                } else if (isApiErrorObject(e)) {
                     setError(
                         <VStack gap="6">
                             <BodyShort>En feil oppstod ved henting av deltaker. Vennligst prøv på nytt</BodyShort>
                             <BodyShort size="small">
-                                {e.code}: {e.message}
+                                {e.error.code}: {e.error.message}
                             </BodyShort>
                         </VStack>,
                     );
@@ -74,16 +88,17 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
         }
     };
 
-    useEffectOnce(() => {
-        if (fnrValue) {
-            fetchDeltaker();
-        }
-    });
-
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
+    useEffect(() => {
+        if (validationError) {
+            const fnrError = fnrValidator(fnrValue);
+            setValidationError(fnrError ? fnrValideringsmeldinger[fnrError] : undefined);
+        }
+    }, [validationError, fnrValue]);
+
     const resetForm = () => {
-        setKandidat(undefined);
+        setNyDeltaker(undefined);
         setFnrValue(undefined);
         setValidationError(undefined);
         setError(undefined);
@@ -107,7 +122,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                                     label="Fødselsnummer/d-nummer:"
                                     onChange={(evt) => {
                                         setFnrValue(evt.target.value);
-                                        setKandidat(undefined);
+                                        setNyDeltaker(undefined);
                                     }}
                                     size="medium"
                                     maxLength={11}

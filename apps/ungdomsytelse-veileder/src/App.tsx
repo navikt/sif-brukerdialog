@@ -9,22 +9,26 @@ import DeltakerPage from './pages/deltaker-page/DeltakerPage';
 import InfoPage from './pages/info-page/InfoPage';
 import StartPage from './pages/start-page/StartPage';
 import './app.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 initUngDeltakelseOpplyserApiClient();
+const queryClient = new QueryClient();
 
 const App = () => {
     return (
         <VeilederProvider>
-            <IntlProvider locale="nb" messages={appMessages.nb}>
-                <AppHeader />
-                <Page style={{ minHeight: 'calc(100lvh - 3rem)', backgroundColor: 'var(--a-gray-300)' }}>
-                    <Routes>
-                        <Route path="" element={<StartPage />}></Route>
-                        <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
-                        <Route path="informasjon/*" element={<InfoPage />} />
-                    </Routes>
-                </Page>
-            </IntlProvider>
+            <QueryClientProvider client={queryClient}>
+                <IntlProvider locale="nb" messages={appMessages.nb}>
+                    <AppHeader />
+                    <Page style={{ minHeight: 'calc(100lvh - 3rem)', backgroundColor: 'var(--a-gray-300)' }}>
+                        <Routes>
+                            <Route path="" element={<StartPage />}></Route>
+                            <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
+                            <Route path="informasjon/*" element={<InfoPage />} />
+                        </Routes>
+                    </Page>
+                </IntlProvider>
+            </QueryClientProvider>
         </VeilederProvider>
     );
 };

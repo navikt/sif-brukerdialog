@@ -3,12 +3,13 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { ZodError } from 'zod';
-import { ApiErrorObject, handleError } from '@navikt/ung-common/src/api/errorHandlers';
-import { veilederApiService } from '../api/veilederApiService';
+import { ApiError, handleApiError } from '@navikt/ung-common/src/api/errorHandlers';
+import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';
+import { endreStartdatoForDeltakelse } from '../api/deltakelse/endreStartdatoForDeltakelse';
 
 export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState<boolean>(false);
-    const [error, setError] = useState<ApiErrorObject | undefined>();
+    const [error, setError] = useState<ApiError | undefined>();
 
     const handleEndreDato = async (
         deltakelse: Deltakelse,
@@ -25,7 +26,7 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
             onDeltakelseEndret(oppdatertDeltakelse);
         } catch (e) {
             if (e instanceof ZodError) {
-                setError(handleError(e));
+                setError(handleApiError(e, 'useEndreDeltakelse'));
             } else {
                 setError(e);
             }
@@ -35,11 +36,11 @@ export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) 
     };
 
     const endreStartdato = (deltakelse: Deltakelse, startdato: Date) => {
-        return handleEndreDato(deltakelse, startdato, veilederApiService.endreStartdatoForDeltakelse);
+        return handleEndreDato(deltakelse, startdato, endreStartdatoForDeltakelse);
     };
 
     const endreSluttdato = (deltakelse: Deltakelse, sluttdato: Date) => {
-        return handleEndreDato(deltakelse, sluttdato, veilederApiService.endreSluttdatoForDeltakelse);
+        return handleEndreDato(deltakelse, sluttdato, endreSluttdatoForDeltakelse);
     };
 
     return {

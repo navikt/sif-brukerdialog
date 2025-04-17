@@ -69,9 +69,11 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                     />
                                     {error ? (
                                         <Alert variant="error">
-                                            {error.type}
-                                            <br />
-                                            {error.message}
+                                            <>
+                                                {error.error.type}
+                                                <br />
+                                                {error.error.message}
+                                            </>
                                         </Alert>
                                     ) : null}
                                 </VStack>

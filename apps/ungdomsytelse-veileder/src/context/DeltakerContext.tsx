@@ -1,8 +1,9 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import { veilederApiService } from '../api/veilederApiService';
 import { getZodErrorsInfo } from '../utils/zodUtils';
+import { getDeltakerById } from '../api/deltaker/getDeltaker';
+import { getDeltakelserForDeltaker } from '../api/deltakelse/getDeltakelserForDeltaker';
 
 interface DeltakerContextProps {
     deltaker?: Deltaker;
@@ -28,7 +29,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const fetchDeltakelser = async (deltakerId: string) => {
         setDeltakelserPending(true);
-        const deltakelser = await veilederApiService.getDeltakelser(deltakerId);
+        const deltakelser = await getDeltakelserForDeltaker(deltakerId);
         setDeltakelser(deltakelser);
         setDeltakelserPending(false);
     };
@@ -36,7 +37,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
             try {
-                const deltaker = await veilederApiService.getDeltakerByDeltakerId(deltakerId);
+                const deltaker = await getDeltakerById(deltakerId);
                 setDeltaker(deltaker);
             } catch (e) {
                 getZodErrorsInfo(e);
@@ -51,7 +52,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const refetchDeltakelser = async () => {
         if (deltaker) {
-            const oppdaterteDeltakelser = await veilederApiService.getDeltakelser(deltaker.id);
+            const oppdaterteDeltakelser = await getDeltakelserForDeltaker(deltaker.id);
             setDeltakelser(oppdaterteDeltakelser);
         }
     };

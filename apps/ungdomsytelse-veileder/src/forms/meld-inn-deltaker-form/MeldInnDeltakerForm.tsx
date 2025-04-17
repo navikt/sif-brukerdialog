@@ -10,9 +10,9 @@ import {
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { ApiErrorObject, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
+import { ApiError, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
-import { veilederApiService } from '../../api/veilederApiService';
+import { meldInnDeltaker } from '../../api/deltakelse/meldInnDeltaker';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -31,13 +31,13 @@ interface FormValues {
 
 const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
     const [submitPending, setSubmitPending] = useState(false);
-    const [error, setError] = useState<ApiErrorObject | undefined>();
+    const [error, setError] = useState<ApiError | undefined>();
     const intl = useIntl();
 
     const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
         try {
-            const deltakelse = await veilederApiService.meldInnDeltaker({
+            const deltakelse = await meldInnDeltaker({
                 deltakerIdent: deltaker.deltakerIdent,
                 startdato: values.startDato,
             });
@@ -78,16 +78,11 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                     })}
                                 />
                                 <FormikConfirmationCheckbox
-                                    label={
-                                        <>
-                                            <BodyShort>Bekreft deltakelse</BodyShort>
-                                        </>
-                                    }
+                                    label={<BodyShort>Bekreft deltakelse</BodyShort>}
                                     name="bekreftRegistrering"
                                     validate={getCheckedValidator()}
                                 />
                             </VStack>
-
                             <HStack gap="2">
                                 <Button
                                     type="submit"
@@ -101,7 +96,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                     Avbryt
                                 </Button>
                             </HStack>
-                            {error ? <Alert variant="error">{error.message}</Alert> : null}
+                            {error ? <Alert variant="error">{error.error.message}</Alert> : null}
                         </VStack>
                     </TypedFormikForm>
                 );

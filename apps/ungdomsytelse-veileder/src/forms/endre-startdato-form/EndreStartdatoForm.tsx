@@ -74,7 +74,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         onCancel={onCancel}
                                     />
 
-                                    {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                    {error ? <Alert variant="error">{error.error.message}</Alert> : null}
                                 </VStack>
                             </TypedFormikForm>
                         </VStack>
