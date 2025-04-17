@@ -3015,7 +3015,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grafana/faro-web-sdk@npm:1.16.0, @grafana/faro-web-sdk@npm:^1.16.0":
+"@grafana/faro-core@npm:^1.17.0":
+  version: 1.17.0
+  resolution: "@grafana/faro-core@npm:1.17.0"
+  dependencies:
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/otlp-transformer": "npm:^0.200.0"
+  checksum: 10/99ab90d2cf9459536e9337c4776d82ba0f34defac867d326064774ea997af373ca96bee721775d0f7a9e3eb159712882e67165326e14a7f13d3a048df4a4648c
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-web-sdk@npm:1.17.0":
+  version: 1.17.0
+  resolution: "@grafana/faro-web-sdk@npm:1.17.0"
+  dependencies:
+    "@grafana/faro-core": "npm:^1.17.0"
+    ua-parser-js: "npm:^1.0.32"
+    web-vitals: "npm:^4.0.1"
+  checksum: 10/9d40aff67d3d479231802d09bb4dd5a30729f0bbc8efd81b124ec09942f57a980648717eb324fb980acf348338437550f6adf2011a1c9739cc7bda21d4edc79d
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-web-sdk@npm:^1.16.0":
   version: 1.16.0
   resolution: "@grafana/faro-web-sdk@npm:1.16.0"
   dependencies:
@@ -4301,7 +4322,7 @@ __metadata:
   resolution: "@navikt/dine-pleiepenger@workspace:apps/dine-pleiepenger"
   dependencies:
     "@axe-core/playwright": "npm:4.10.1"
-    "@grafana/faro-web-sdk": "npm:1.16.0"
+    "@grafana/faro-web-sdk": "npm:1.17.0"
     "@grafana/faro-web-tracing": "npm:1.16.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.20.0"
@@ -5377,7 +5398,7 @@ __metadata:
     "@babel/preset-env": "npm:7.26.9"
     "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.27.0"
-    "@grafana/faro-web-sdk": "npm:1.16.0"
+    "@grafana/faro-web-sdk": "npm:1.17.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.20.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -5449,7 +5470,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-faro@workspace:packages/sif-common-faro"
   dependencies:
-    "@grafana/faro-web-sdk": "npm:1.16.0"
+    "@grafana/faro-web-sdk": "npm:1.17.0"
     constate: "npm:3.3.3"
     react: "npm:19.1.0"
   peerDependencies:
