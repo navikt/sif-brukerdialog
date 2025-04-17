@@ -35,6 +35,9 @@ const Content = () => {
 const DeltakerPage = () => {
     const { deltakerId } = useParams<DeltakerPageParams>();
 
+    if (!deltakerId) {
+        return <div>Ingen deltakerId</div>;
+    }
     return (
         <DeltakerProvider deltakerId={deltakerId}>
             <Content />

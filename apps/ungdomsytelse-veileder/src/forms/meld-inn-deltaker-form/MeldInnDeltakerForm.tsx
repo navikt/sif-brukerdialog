@@ -1,5 +1,4 @@
 import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
@@ -10,9 +9,9 @@ import {
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { ApiError, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
+import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
-import { meldInnDeltaker } from '../../api/deltakelse/meldInnDeltaker';
+import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -30,23 +29,16 @@ interface FormValues {
 }
 
 const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
-    const [submitPending, setSubmitPending] = useState(false);
-    const [error, setError] = useState<ApiError | undefined>();
     const intl = useIntl();
 
+    const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
+
     const handleOnSubmit = async (values: FormValues) => {
-        setSubmitPending(true);
-        try {
-            const deltakelse = await meldInnDeltaker({
-                deltakerIdent: deltaker.deltakerIdent,
-                startdato: values.startDato,
-            });
-            onDeltakelseRegistrert(deltakelse);
-        } catch (e) {
-            setError(e);
-        } finally {
-            setSubmitPending(false);
-        }
+        const deltakelse = await mutateAsync({
+            deltakerIdent: deltaker.deltakerIdent,
+            startdato: values.startDato,
+        });
+        onDeltakelseRegistrert(deltakelse);
     };
 
     return (
@@ -87,7 +79,7 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                 <Button
                                     type="submit"
                                     variant="primary"
-                                    loading={submitPending}
+                                    loading={isPending}
                                     iconPosition="right"
                                     icon={<PaperplaneIcon aria-hidden />}>
                                     Registrer
