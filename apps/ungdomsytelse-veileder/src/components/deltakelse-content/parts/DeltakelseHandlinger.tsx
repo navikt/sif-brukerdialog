@@ -37,15 +37,15 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
         <>
             <SectionContainer header="Handlinger">
                 <Button
-                    variant="secondary"
+                    variant="primary"
                     onClick={() => {
                         setEndretDeltakelse(undefined);
                         setVisOppgaveDialog(EndrePeriodeDialogType.startdato);
                     }}>
                     Endre startdato
                 </Button>
-                <Button variant="secondary" onClick={() => setVisOppgaveDialog(EndrePeriodeDialogType.sluttdato)}>
-                    Endre sluttdato
+                <Button variant="primary" onClick={() => setVisOppgaveDialog(EndrePeriodeDialogType.sluttdato)}>
+                    {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Sett sluttdato'}
                 </Button>
             </SectionContainer>
 

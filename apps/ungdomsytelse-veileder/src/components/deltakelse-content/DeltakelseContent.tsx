@@ -16,11 +16,7 @@ const DeltakelseContent = () => {
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} />
 
-                <DeltakelseHandlinger
-                    deltakelse={deltakelse}
-                    deltaker={deltaker}
-                    // onDeltakelseChanged={onDeltakelseChange}
-                />
+                <DeltakelseHandlinger deltakelse={deltakelse} deltaker={deltaker} />
 
                 <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />
             </VStack>

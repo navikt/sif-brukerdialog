@@ -87,7 +87,7 @@ export const deltakelseDRMock = {
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-01-01',
-    tilOgMed: '2025-05-01',
+
     harSøkt: true,
     oppgaver: [...oppgaver],
 };
@@ -100,7 +100,7 @@ export const deltakelseDNMock = {
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-01-01',
-    tilOgMed: null as any,
+
     harSøkt: false,
     oppgaver: [],
 };
