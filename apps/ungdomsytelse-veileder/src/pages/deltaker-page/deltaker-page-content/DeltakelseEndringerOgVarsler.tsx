@@ -1,6 +1,6 @@
 import { Deltakelse } from '@navikt/ung-common';
-import OppgaveTabell from '../../oppgave-tabell/OppgaveTabell';
-import SectionContainer from '../../section-container/SectionContainer';
+import SectionContainer from '../../../components/section-container/SectionContainer';
+import OppgaveTabell from '../../../components/oppgave-tabell/OppgaveTabell';
 
 interface Props {
     deltakelse: Deltakelse;

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { parsedMockDeltakelse } from '../../../../mock/msw/mocks/mockUtils';
-import { withIntl } from '../../../../storybook/decorators/withIntl';
-import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import DeltakelseEndringerOgVarsler from './DeltakelseEndringerOgVarsler';
+import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withVeilederContext } from '../../../../storybook/decorators/withVeilederContext';
+import { parsedMockDeltakelse } from '../../../../mock/msw/mocks/mockUtils';
 
 const meta: Meta<typeof DeltakelseEndringerOgVarsler> = {
     component: DeltakelseEndringerOgVarsler,

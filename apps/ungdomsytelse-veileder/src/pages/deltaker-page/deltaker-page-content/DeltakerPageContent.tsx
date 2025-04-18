@@ -1,7 +1,8 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
-import { useDeltakerContext } from '../../context/DeltakerContext';
-import { DeltakelseProvider } from '../../context/DeltakelseContext';
-import DeltakelseContent from '../../components/deltakelse-content/DeltakelseContent';
+import { useDeltakerContext } from '../../../context/DeltakerContext';
+import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
+import DeltakelseHandlinger from './DeltakelseHandlinger';
+import DeltakelseEndringerOgVarsler from './DeltakelseEndringerOgVarsler';
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [] } = useDeltakerContext();
@@ -33,9 +34,19 @@ const DeltakerPageContent = () => {
     const deltakelse = deltakelser[0];
 
     return (
-        <DeltakelseProvider deltakelse={deltakelse} deltaker={deltaker}>
-            <DeltakelseContent />
-        </DeltakelseProvider>
+        <Box className="pb-8 pt-4">
+            <VStack gap="8">
+                {deltakelse.harSøkt === false ? (
+                    <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                ) : null}
+
+                <DeltakelsePeriodeInfo deltakelse={deltakelse} />
+
+                <DeltakelseHandlinger deltakelse={deltakelse} deltaker={deltaker} />
+
+                <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />
+            </VStack>
+        </Box>
     );
 };
 

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { DeltakerProvider } from '../../context/DeltakerContext';
 import DeltakerPageHeader from './DeltakerPageHeader';
-import DeltakerPageContent from './DeltakerPageContent';
+import DeltakerPageContent from './deltaker-page-content/DeltakerPageContent';
 import { Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';

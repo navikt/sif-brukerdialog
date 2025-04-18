@@ -1,15 +1,14 @@
 import { Button } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
-import SectionContainer from '../../section-container/SectionContainer';
-import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
+import SectionContainer from '../../../components/section-container/SectionContainer';
+import EndreDeltakelseModal from '../../../components/endre-deltakelse-modal/EndreDeltakelseModal';
 import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    // onDeltakelseChanged: () => void;
 }
 
 enum EndrePeriodeDialogType {
@@ -20,8 +19,6 @@ enum EndrePeriodeDialogType {
 const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<EndrePeriodeDialogType | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
-
-    // const { refetch } = useDeltakelserForDeltaker(deltaker.id);
 
     const handleOnClose = () => {
         setVisOppgaveDialog(undefined);
