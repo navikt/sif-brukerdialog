@@ -5,7 +5,6 @@ import SectionContainer from '../../section-container/SectionContainer';
 import EndreDeltakelseModal from '../../endre-deltakelse-modal/EndreDeltakelseModal';
 import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
-import { useDeltakelserForDeltaker } from '../../../hooks/useDeltakelserForDeltaker';
 
 interface Props {
     deltaker: Deltaker;
@@ -22,7 +21,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const [visOppgaveDialog, setVisOppgaveDialog] = useState<EndrePeriodeDialogType | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
-    const { refetch } = useDeltakelserForDeltaker(deltaker.id);
+    // const { refetch } = useDeltakelserForDeltaker(deltaker.id);
 
     const handleOnClose = () => {
         setVisOppgaveDialog(undefined);
@@ -31,7 +30,6 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
 
     const handleOnDeltakelseChanged = (deltakelse: Deltakelse) => {
         setEndretDeltakelse(deltakelse);
-        refetch();
     };
     return (
         <>

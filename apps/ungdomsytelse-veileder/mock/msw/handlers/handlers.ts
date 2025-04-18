@@ -50,6 +50,9 @@ export const handlers = [
         const { dato } = await request.json();
         await delay(250);
         const data = getDeltakelser(registrertDeltakerId)[0];
+        if (1 + 1 === 3) {
+            return new HttpResponse(null, { status: 500 });
+        }
         return HttpResponse.json({ ...data, fraOgMed: dato });
     }),
 

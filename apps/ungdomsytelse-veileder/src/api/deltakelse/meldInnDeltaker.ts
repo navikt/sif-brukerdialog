@@ -1,5 +1,9 @@
 import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
-import { DeltakelseInnmeldingDto, VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    DeltakelseInnmeldingDto,
+    VeilederService,
+    zDeltakelseInnmeldingDto,
+} from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Melder inn en bruker til deltakelse
@@ -9,7 +13,8 @@ import { DeltakelseInnmeldingDto, VeilederService } from '@navikt/ung-deltakelse
  */
 export const meldInnDeltaker = async (dto: DeltakelseInnmeldingDto): Promise<Deltakelse> => {
     try {
-        const { data } = await VeilederService.meldInnDeltaker({ body: dto });
+        const body = zDeltakelseInnmeldingDto.parse(dto);
+        const { data } = await VeilederService.meldInnDeltaker({ body });
         return deltakelseSchema.parse(data);
     } catch (e) {
         throw handleApiError(e, 'medlInnDeltaker');

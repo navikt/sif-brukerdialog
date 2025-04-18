@@ -1,9 +1,9 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
-import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
+import { useEndreStartdatoForDeltakelse } from '../../hooks/useEndreStartdatoForDeltakelse';
 
 export type EndreStartdatoFormValues = {
     id: string;
@@ -19,7 +19,10 @@ interface Props {
 }
 
 const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
-    const { endreStartdato, pending, error } = useEndreDeltakelse(onDeltakelseChanged);
+    const { mutate, isPending, error } = useEndreStartdatoForDeltakelse({
+        deltakelseId: deltakelse.id,
+        deltakerId: deltaker.id,
+    });
 
     const deltakernavn = formaterNavn(deltaker.navn);
 
@@ -30,13 +33,25 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                     fom: dateToISODate(deltakelse.fraOgMed),
                 }}
                 onSubmit={(values: EndreStartdatoFormValues) => {
-                    endreStartdato(deltakelse, ISODateToDate(values.fom));
+                    if (!values.fom) {
+                        return;
+                    }
+                    mutate(
+                        {
+                            dato: values.fom,
+                        },
+                        {
+                            onSuccess: (deltakelse) => {
+                                onDeltakelseChanged(deltakelse);
+                            },
+                        },
+                    );
                 }}
                 renderForm={() => {
                     return (
                         <VStack gap="6">
                             <TypedFormikForm
-                                submitPending={pending}
+                                submitPending={isPending}
                                 showSubmitButton={false}
                                 submitButtonLabel="Endre"
                                 showButtonArrows={false}>
@@ -46,7 +61,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         visSluttdato={false}
                                         visStartdato={true}
                                         tomDate={deltakelse.tilOgMed}
-                                        pending={pending}
+                                        pending={isPending}
                                         onCancel={onCancel}
                                     />
 
