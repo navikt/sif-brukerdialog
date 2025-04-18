@@ -67,20 +67,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:2.13.3":
-  version: 2.13.3
-  resolution: "@amplitude/analytics-browser@npm:2.13.3"
+"@amplitude/analytics-browser@npm:2.15.0":
+  version: 2.15.0
+  resolution: "@amplitude/analytics-browser@npm:2.15.0"
   dependencies:
-    "@amplitude/analytics-core": "npm:^2.8.1"
+    "@amplitude/analytics-core": "npm:^2.10.0"
     "@amplitude/analytics-remote-config": "npm:^0.4.0"
-    "@amplitude/plugin-autocapture-browser": "npm:^1.1.6"
-    "@amplitude/plugin-page-view-tracking-browser": "npm:^2.3.16"
+    "@amplitude/plugin-autocapture-browser": "npm:^1.1.8"
+    "@amplitude/plugin-page-view-tracking-browser": "npm:^2.3.18"
     tslib: "npm:^2.4.1"
-  checksum: 10/5ffdb2c9e6dd9aa95f1b3e93d624a382c62f6fbf5a688251d394510ef21b6064102e3df51894f07e129959d1051b34f79f2faf10274b3590e9fc06ef716ed656
+  checksum: 10/5d900cd3f6ae3dda8cde7f8c7ed9e312f9a4548f02a2edbc7f6b311de691bac34eea7814f4b9670cf33ae94a43522769a24e2a4716ee3f73ee4b627783286dae
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-client-common@npm:>=1 <3, @amplitude/analytics-client-common@npm:^2.3.14":
+"@amplitude/analytics-client-common@npm:>=1 <3":
   version: 2.3.14
   resolution: "@amplitude/analytics-client-common@npm:2.3.14"
   dependencies:
@@ -89,6 +89,18 @@ __metadata:
     "@amplitude/analytics-types": "npm:^2.9.1"
     tslib: "npm:^2.4.1"
   checksum: 10/50ca90089d2f6d1b8f71d2ccb36e15ae2965a3500932fa6a77aa18eef34b33a9fb198eab24a21f4658991ffb6ba2537e5e66d004bed8c18a38d25db206c6e4d5
+  languageName: node
+  linkType: hard
+
+"@amplitude/analytics-client-common@npm:^2.3.16":
+  version: 2.3.16
+  resolution: "@amplitude/analytics-client-common@npm:2.3.16"
+  dependencies:
+    "@amplitude/analytics-connector": "npm:^1.4.8"
+    "@amplitude/analytics-core": "npm:^2.10.0"
+    "@amplitude/analytics-types": "npm:^2.9.1"
+    tslib: "npm:^2.4.1"
+  checksum: 10/6f1c4ef88d8ba45b778cd4f3a8c188ed1a49ccaef770186e41946592457165ccaf03ee414a6e4761dba81df1e3abffc8091c324cee4223c937d8415349fdd879
   languageName: node
   linkType: hard
 
@@ -105,6 +117,15 @@ __metadata:
   dependencies:
     tslib: "npm:^2.4.1"
   checksum: 10/e552976af0da4a82e3b3cafd5e3facd434bc026fab64cb5437f43ae65caac821a3100def422249adf13a47aa5fd60765a4fc90519572d14fdeb70660648f38aa
+  languageName: node
+  linkType: hard
+
+"@amplitude/analytics-core@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "@amplitude/analytics-core@npm:2.10.0"
+  dependencies:
+    tslib: "npm:^2.4.1"
+  checksum: 10/9295cf3b14170f1b93f87ed87fab618996dc1ecfd2c082d8c0fe27e37db59f5a3f0866f5ac08140c586e7725ab0ed35cbc50fcc7785c7d9415b71948149ce2d6
   languageName: node
   linkType: hard
 
@@ -127,25 +148,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-autocapture-browser@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "@amplitude/plugin-autocapture-browser@npm:1.1.6"
+"@amplitude/plugin-autocapture-browser@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "@amplitude/plugin-autocapture-browser@npm:1.1.8"
   dependencies:
-    "@amplitude/analytics-core": "npm:^2.8.1"
+    "@amplitude/analytics-core": "npm:^2.10.0"
     rxjs: "npm:^7.8.1"
     tslib: "npm:^2.4.1"
-  checksum: 10/297e0462275771c8b54945e96a994278e4d6c7fc204566f729a6139e2a14f851f3b3fd5270ac49da6d7e2de9c2977258bee955b807d717d2ec510ba3fb719b8c
+  checksum: 10/dbfcebc290a76cb53a3ab2dff529dbc528bbf044221f80c58882c56ed37ab7065296e5cffad791a2ae2442289e9681e98589bb22c95f89dda83a9615e72139c9
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-page-view-tracking-browser@npm:^2.3.16":
-  version: 2.3.16
-  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.3.16"
+"@amplitude/plugin-page-view-tracking-browser@npm:^2.3.18":
+  version: 2.3.18
+  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.3.18"
   dependencies:
-    "@amplitude/analytics-client-common": "npm:^2.3.14"
+    "@amplitude/analytics-client-common": "npm:^2.3.16"
     "@amplitude/analytics-types": "npm:^2.9.1"
     tslib: "npm:^2.4.1"
-  checksum: 10/74c065e9e6d435710e628f3ef0fbe5d8f803386d3ec8d817c76463035ae7e2455cd37f48638fe71de247bcb4aa51b6f16def94cf30a9d292dc0bfc529a5b082b
+  checksum: 10/62a41bb4864baa82eddaed2a48125e7e22af4db0c8144e20259fe878ace3ebd166e5ce272aa96711c90c76c305fa06affb6e45947bc026cf235a528e2e0b5b9b
   languageName: node
   linkType: hard
 
@@ -5310,7 +5331,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@amplitude/analytics-browser": "npm:2.13.3"
+    "@amplitude/analytics-browser": "npm:2.15.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:22.14.1"
     "@types/react": "npm:19.1.2"
