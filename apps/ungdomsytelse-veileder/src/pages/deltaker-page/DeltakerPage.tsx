@@ -1,12 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { DeltakerProvider } from '../../context/DeltakerContext';
-import DeltakerPageHeader from './DeltakerPageHeader';
-import DeltakerPageContent from './deltaker-page-content/DeltakerPageContent';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker';
 import ErrorPageContent from '../error-page/ErrorPageContent';
+import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
+import DeltakerPageContent from './DeltakerPageContent';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -14,6 +13,7 @@ type DeltakerPageParams = {
 
 const DeltakerPage = () => {
     const { deltakerId } = useParams<DeltakerPageParams>();
+    const navigate = useNavigate();
 
     if (!deltakerId) {
         return <div>Ingen deltakerId</div>;
@@ -30,6 +30,10 @@ const DeltakerPage = () => {
         isLoading: deltakelserPending,
         error: deltakelserError,
     } = useDeltakelserForDeltaker(deltakerId || '');
+
+    const closeDeltaker = () => {
+        navigate('/');
+    };
 
     if (deltakerPending || deltakelserPending) {
         return (
@@ -51,16 +55,14 @@ const DeltakerPage = () => {
 
     if (deltakelser && deltaker) {
         return (
-            <DeltakerProvider deltaker={deltaker} deltakelser={deltakelser}>
-                <Page.Block width="xl" gutters={true}>
-                    <VStack className="rounded-lg">
-                        <DeltakerPageHeader />
-                        <Box className="bg-white rounded-b-lg p-3 pr-6 pl-6">
-                            <DeltakerPageContent />
-                        </Box>
-                    </VStack>
-                </Page.Block>
-            </DeltakerProvider>
+            <Page.Block width="xl" gutters={true}>
+                <VStack className="rounded-lg">
+                    <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
+                    <Box className="bg-white rounded-b-lg p-3 pr-6 pl-6">
+                        <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
+                    </Box>
+                </VStack>
+            </Page.Block>
         );
     }
 };

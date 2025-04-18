@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
+import DeltakelsePeriodeInfo from '../parts/DeltakelsePeriodeInfo';
 import { deltakelseSchema } from '@navikt/ung-common';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import { withIntl } from '../../../../storybook/decorators/withIntl';

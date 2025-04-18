@@ -1,11 +1,15 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
-import DeltakelseHandlinger from './DeltakelseHandlinger';
-import DeltakelseEndringerOgVarsler from './DeltakelseEndringerOgVarsler';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
+import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
+import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
 
-const DeltakerPageContent = () => {
-    const { deltaker, deltakelser = [] } = useDeltakerContext();
+interface Props {
+    deltaker: Deltaker;
+    deltakelser: Deltakelse[];
+}
+
+const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
     const aktiveDeltakelser = deltakelser;
 
     if (!deltaker) {

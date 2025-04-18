@@ -14,7 +14,6 @@ const DeltakerHeader = ({
         navn: { fornavn, etternavn },
         deltakerIdent: fødselsnummer,
     },
-
     onLukkDeltaker,
 }: Props) => {
     return (
