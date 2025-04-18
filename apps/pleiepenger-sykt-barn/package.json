@@ -48,7 +48,7 @@
         "@babel/preset-env": "7.26.9",
         "@babel/preset-react": "7.26.3",
         "@chromatic-com/storybook": "3.2.6",
-        "@playwright/test": "1.51.1",
+        "@playwright/test": "1.52.0",
         "@sentry/vite-plugin": "3.3.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.6.12",
