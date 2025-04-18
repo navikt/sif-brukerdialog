@@ -82,7 +82,7 @@
         "msw": "2.7.4",
         "msw-storybook-addon": "2.0.4",
         "mustache-express": "1.3.2",
-        "playwright": "1.51.1",
+        "playwright": "1.52.0",
         "postcss-import": "16.1.0",
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.5.3",
