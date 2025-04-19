@@ -18,7 +18,7 @@ export enum ApiErrorCode {
 export interface ApiErrorObject {
     type: ApiErrorType;
     code: ApiErrorCode;
-    error: unknown;
+    originalError: unknown;
     message: string;
 }
 
@@ -53,22 +53,22 @@ const handleError = (error: unknown): ApiErrorObject => {
         return {
             type: ApiErrorType.ValidationError,
             code: ApiErrorCode.VALIDATION_ERROR,
-            error,
-            message: 'Valideringsfeil: ' + error.errors.map((err) => err.message).join(', '),
+            originalError: error,
+            message: error.errors.map((err) => err.message).join(', '),
         };
     } else if (axios.isAxiosError(error)) {
         return {
             type: ApiErrorType.NetworkError,
             code: ApiErrorCode.NETWORK_ERROR,
-            error,
-            message: 'Nettverksfeil: ' + error.message,
+            originalError: error,
+            message: error.message,
         };
     } else {
         return {
             type: ApiErrorType.UnknownError,
             code: ApiErrorCode.UNKNOWN_ERROR,
-            error,
-            message: 'Ukjent feil: ' + (error as Error).message,
+            originalError: error,
+            message: (error as Error).message,
         };
     }
 };

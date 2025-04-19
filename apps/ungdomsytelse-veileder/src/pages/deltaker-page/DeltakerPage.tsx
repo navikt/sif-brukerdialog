@@ -3,9 +3,9 @@ import { Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker';
-import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
 import DeltakerPageContent from './DeltakerPageContent';
+import ErrorPageContent from '../error-page/ErrorPageContent';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -43,11 +43,13 @@ const DeltakerPage = () => {
         );
     }
 
-    if (deltakelserError || deltakerError) {
+    const error = [deltakerError, deltakelserError].find((e) => e && e !== null);
+
+    if (error) {
         return (
             <Page.Block width="xl" gutters={true}>
                 <Box className="bg-white rounded-b-lg p-3">
-                    <ErrorPageContent error={deltakerError || deltakelserError} />
+                    <ErrorPageContent error={error} />
                 </Box>
             </Page.Block>
         );

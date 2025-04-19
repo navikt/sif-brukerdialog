@@ -1,5 +1,6 @@
 import { BodyShort, Box, Heading, HGrid, Link, List, VStack } from '@navikt/ds-react';
 import { ApiError } from '@navikt/ung-common';
+import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 
 interface Props {
     error: ApiError | null;
@@ -10,15 +11,17 @@ const ErrorPageContent = ({ error }: Props) => (
     <Box className="p-10">
         <HGrid columns="minmax(auto,600px)">
             <VStack gap="16">
-                <VStack gap="12" align="start">
+                <VStack gap="12">
                     <div>
-                        <BodyShort textColor="subtle" size="small">
-                            {error ? error.type : 'Ukjent feil'}
-                        </BodyShort>
                         <Heading level="1" size="large" spacing>
                             Beklager, noe gikk galt.
                         </Heading>
-                        <BodyShort spacing>Informasjon om feil</BodyShort>
+                        {error && error !== null ? (
+                            <Box marginBlock={'4'}>
+                                <ApiErrorInfo apiError={error} />
+                            </Box>
+                        ) : null}
+
                         <BodyShort>Du kan prøve å</BodyShort>
                         <List>
                             <List.Item>
@@ -35,9 +38,9 @@ const ErrorPageContent = ({ error }: Props) => (
                             </List.Item>
                         </List>
                     </div>
-                    <BodyShort size="small" textColor="subtle">
+                    {/* <BodyShort size="small" textColor="subtle">
                         Feil-id: Feilkode
-                    </BodyShort>
+                    </BodyShort> */}
                 </VStack>
             </VStack>
         </HGrid>
