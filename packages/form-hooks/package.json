@@ -1,0 +1,57 @@
+{
+    "name": "@navikt/form-wrappers",
+    "description": "Overbygg over react-hook-form. Tilbyr form-komponenter som radioknapp og textarea",
+    "main": "index.ts",
+    "type": "module",
+    "types": "index.ts",
+    "scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest --watch=true",
+        "test:coverage": "vitest --coverage",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:tsc": "tsc --noEmit",
+        "lint:fix": "eslint --fix './src/**/*.{js,ts,tsx}' --color",
+        "prettier": "prettier --write src",
+        "build-storybook": "storybook build -o .storybook-static-build",
+        "storybook": "storybook dev --quiet -p 7003"
+    },
+    "dependencies": {
+        "@hookform/error-message": "2.0.1",
+        "@navikt/aksel-icons": "7.20.0",
+        "@navikt/ds-css": "7.20.0",
+        "@navikt/ds-icons": "3.4.3",
+        "@navikt/ds-react": "7.20.0",
+        "@types/react": "19.0.7",
+        "@types/react-dom": "19.0.3",
+        "dayjs": "1.11.12",
+        "react": "19.0.0",
+        "react-dom": "19.0.0",
+        "react-hook-form": "7.54.2",
+        "react-intl": "7.1.11"
+    },
+    "devDependencies": {
+        "@originjs/vite-plugin-commonjs": "1.0.3",
+        "@sif/eslint-config": "workspace:*",
+        "@storybook/addon-essentials": "8.5.0",
+        "@storybook/addon-interactions": "8.5.0",
+        "@storybook/addon-links": "8.5.0",
+        "@storybook/builder-vite": "8.5.0",
+        "@storybook/react": "8.5.0",
+        "@testing-library/jest-dom": "6.6.3",
+        "@testing-library/react": "16.2.0",
+        "@testing-library/user-event": "14.6.0",
+        "@types/react-dom": "18.2.23",
+        "@vitejs/plugin-react": "4.3.4",
+        "cross-env": "7.0.3",
+        "storybook": "8.5.0",
+        "storybook-react-intl": "3.2.3",
+        "typescript": "5.7.3",
+        "vite": "6.0.10",
+        "vite-plugin-checker": "0.8.0",
+        "vitest": "3.0.2"
+    },
+    "peerDependencies": {
+        "react": "18.2.0"
+    },
+    "packageManager": "yarn@4.5.3"
+}
