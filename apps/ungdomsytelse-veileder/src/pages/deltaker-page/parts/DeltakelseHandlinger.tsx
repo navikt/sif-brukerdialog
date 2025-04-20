@@ -3,8 +3,8 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import SectionContainer from '../../../components/section-container/SectionContainer';
 import EndreDeltakelseModal from '../../../components/endre-deltakelse-modal/EndreDeltakelseModal';
-import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
+import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
 
 interface Props {
     deltaker: Deltaker;

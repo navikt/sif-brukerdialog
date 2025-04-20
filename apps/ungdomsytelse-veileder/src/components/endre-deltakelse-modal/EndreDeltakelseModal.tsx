@@ -9,11 +9,7 @@ interface Props {
 
 const EndreDeltakelseModal = ({ header, children, onClose, deltakelseChanged }: Props) => {
     return (
-        <Modal
-            open={true}
-            onClose={() => onClose()}
-            aria-labelledby="oppgave-modal-heading"
-            width={deltakelseChanged ? 'medium' : '800px'}>
+        <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width={'medium'}>
             <Modal.Header closeButton={!!deltakelseChanged}>
                 <Heading level="1" size="large" id="oppgave-modal-heading">
                     {header}
