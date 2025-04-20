@@ -2,12 +2,11 @@ import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, { JSX, ReactNode, useCallback, useMemo, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
+import { DateRange } from '@navikt/sif-common-utils';
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 
-import { DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT, TIDENES_ENDE, TIDENES_MORGEN } from '@navikt/fp-constants';
-
 import { getError, getValidationRules } from './formUtils';
+import { DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT, TIDENES_ENDE, TIDENES_MORGEN } from '../fp/dates';
 
 dayjs.extend(customParseFormat);
 
@@ -15,7 +14,7 @@ const INVALID_DATE = 'Invalid Date';
 const isValidDateString = (date: string): boolean => date !== INVALID_DATE;
 
 const findDisabledDays = (minDate?: Date, maxDate?: Date): Array<{ from: Date; to?: Date }> => {
-    const disabledDays = [];
+    const disabledDays: DateRange[] = [];
     if (minDate) {
         disabledDays.push({
             from: dayjs(TIDENES_MORGEN).toDate(),

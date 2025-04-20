@@ -12,8 +12,6 @@ interface Props {
     errors: ErrorSummaryError[];
 }
 
-//TODO Fjern FP postfix. Er litt misvisande da det kan sjå ut som denne er spesifikk for FP-appen
-
 export const ErrorSummaryFp = ({ errorRef, errors }: Props) => {
     return (
         <ErrorSummary
