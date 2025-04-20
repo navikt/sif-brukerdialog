@@ -3082,9 +3082,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.66.4":
-  version: 0.66.4
-  resolution: "@hey-api/openapi-ts@npm:0.66.4"
+"@hey-api/openapi-ts@npm:0.66.5":
+  version: 0.66.5
+  resolution: "@hey-api/openapi-ts@npm:0.66.5"
   dependencies:
     "@hey-api/json-schema-ref-parser": "npm:1.0.4"
     c12: "npm:2.0.1"
@@ -3094,7 +3094,7 @@ __metadata:
     typescript: ^5.5.3
   bin:
     openapi-ts: bin/index.cjs
-  checksum: 10/e29a58581897c570adedefb1654dd49293ab62481c878df8e5918d2a62d50d64da2bed0fb5d9b924e6d9ab6ed0350ac90568aba20917d9b0931bfa420cb2b163
+  checksum: 10/ef31b5689bd333f246c55b50a63f9a9677dbb661685aac98c180c6cf2b69a277bbd7c36e5b38c6bfd50eaac564e6a0e3b8b882a2e84c54389cd7dde7c8b57e50
   languageName: node
   linkType: hard
 
@@ -4575,7 +4575,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.7.0"
     "@hey-api/client-fetch": "npm:0.10.0"
-    "@hey-api/openapi-ts": "npm:0.66.4"
+    "@hey-api/openapi-ts": "npm:0.66.5"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.8.3"
@@ -5818,7 +5818,7 @@ __metadata:
     prettier: "npm:3.5.3"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
-    react-hook-form: "npm:7.55.0"
+    react-hook-form: "npm:7.56.0"
     stylelint: "npm:16.18.0"
     tailwindcss: "npm:4.1.4"
     typescript: "npm:5.8.3"
@@ -5969,7 +5969,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.7.0"
     "@hey-api/client-fetch": "npm:0.10.0"
-    "@hey-api/openapi-ts": "npm:0.66.4"
+    "@hey-api/openapi-ts": "npm:0.66.5"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.8.3"
@@ -25279,12 +25279,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.55.0":
-  version: 7.55.0
-  resolution: "react-hook-form@npm:7.55.0"
+"react-hook-form@npm:7.56.0":
+  version: 7.56.0
+  resolution: "react-hook-form@npm:7.56.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/900e06064c1b4977f2e3e249a0f91742ae6bd1f2109701b80a9280b1c2b4bee8aac26aed7104371101eadad724f0bbe0215499e84623e6375007489ae850fe8e
+  checksum: 10/8612266afb8e6d43ddab265c3452880e07392bfce85dbcdb63f35b235bff226156dc315adac4519a16ae01e11edc3b6b8d352eab52eae07ed804b601ecd83e74
   languageName: node
   linkType: hard
 
