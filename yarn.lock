@@ -4580,46 +4580,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/form-wrappers@workspace:packages/form-hooks":
-  version: 0.0.0-use.local
-  resolution: "@navikt/form-wrappers@workspace:packages/form-hooks"
-  dependencies:
-    "@hookform/error-message": "npm:2.0.1"
-    "@navikt/aksel-icons": "npm:7.20.0"
-    "@navikt/ds-css": "npm:7.20.0"
-    "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:7.20.0"
-    "@navikt/sif-common-utils": "workspace:*"
-    "@originjs/vite-plugin-commonjs": "npm:1.0.3"
-    "@sif/eslint-config": "workspace:*"
-    "@storybook/addon-essentials": "npm:8.6.12"
-    "@storybook/addon-interactions": "npm:8.6.12"
-    "@storybook/addon-links": "npm:8.6.12"
-    "@storybook/builder-vite": "npm:8.6.12"
-    "@storybook/react": "npm:8.6.12"
-    "@testing-library/jest-dom": "npm:6.6.3"
-    "@testing-library/react": "npm:16.3.0"
-    "@testing-library/user-event": "npm:14.6.1"
-    "@types/react": "npm:19.1.2"
-    "@types/react-dom": "npm:19.1.2"
-    "@vitejs/plugin-react": "npm:4.4.1"
-    cross-env: "npm:7.0.3"
-    dayjs: "npm:1.11.13"
-    react: "npm:19.1.0"
-    react-dom: "npm:19.1.0"
-    react-hook-form: "npm:7.55.0"
-    react-intl: "npm:7.1.11"
-    storybook: "npm:8.6.12"
-    storybook-react-intl: "npm:3.2.3"
-    typescript: "npm:5.8.3"
-    vite: "npm:6.3.2"
-    vite-plugin-checker: "npm:0.9.1"
-    vitest: "npm:3.1.1"
-  peerDependencies:
-    react: 18.2.0
-  languageName: unknown
-  linkType: soft
-
 "@navikt/k9-brukerdialog-prosessering-api@workspace:*, @navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering-api":
   version: 0.0.0-use.local
   resolution: "@navikt/k9-brukerdialog-prosessering-api@workspace:packages/k9-brukerdialog-prosessering-api"
@@ -5950,6 +5910,46 @@ __metadata:
     vite-plugin-checker: "npm:0.9.1"
     vitest: "npm:3.1.1"
     zod: "npm:3.24.3"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers"
+  dependencies:
+    "@hookform/error-message": "npm:2.0.1"
+    "@navikt/aksel-icons": "npm:7.20.0"
+    "@navikt/ds-css": "npm:7.20.0"
+    "@navikt/ds-icons": "npm:3.4.3"
+    "@navikt/ds-react": "npm:7.20.0"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@originjs/vite-plugin-commonjs": "npm:1.0.3"
+    "@sif/eslint-config": "workspace:*"
+    "@storybook/addon-essentials": "npm:8.6.12"
+    "@storybook/addon-interactions": "npm:8.6.12"
+    "@storybook/addon-links": "npm:8.6.12"
+    "@storybook/builder-vite": "npm:8.6.12"
+    "@storybook/react": "npm:8.6.12"
+    "@testing-library/jest-dom": "npm:6.6.3"
+    "@testing-library/react": "npm:16.3.0"
+    "@testing-library/user-event": "npm:14.6.1"
+    "@types/react": "npm:19.1.2"
+    "@types/react-dom": "npm:19.1.2"
+    "@vitejs/plugin-react": "npm:4.4.1"
+    cross-env: "npm:7.0.3"
+    dayjs: "npm:1.11.13"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    react-hook-form: "npm:7.55.0"
+    react-intl: "npm:7.1.11"
+    storybook: "npm:8.6.12"
+    storybook-react-intl: "npm:3.2.3"
+    typescript: "npm:5.8.3"
+    vite: "npm:6.3.2"
+    vite-plugin-checker: "npm:0.9.1"
+    vitest: "npm:3.1.1"
+  peerDependencies:
+    react: 18.2.0
   languageName: unknown
   linkType: soft
 

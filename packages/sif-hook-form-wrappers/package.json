@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/form-wrappers",
+    "name": "@navikt/sif-hook-form-wrappers",
     "description": "Overbygg over react-hook-form. Tilbyr form-komponenter som radioknapp og textarea",
     "main": "index.ts",
     "type": "module",

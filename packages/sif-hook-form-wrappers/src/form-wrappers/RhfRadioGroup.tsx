@@ -1,8 +1,6 @@
+import { RadioGroup } from '@navikt/ds-react';
 import React, { ReactElement, ReactNode } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
-import { RadioGroup } from '@navikt/ds-react';
-
 import { getError, getValidationRules } from './formUtils';
 
 interface Props {

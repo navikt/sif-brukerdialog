@@ -1,8 +1,6 @@
+import { ConfirmationPanel } from '@navikt/ds-react';
 import { ReactNode, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
-import { ConfirmationPanel } from '@navikt/ds-react';
-
 import { getError, getValidationRules } from './formUtils';
 
 export interface Props {

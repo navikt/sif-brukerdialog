@@ -1,10 +1,8 @@
+import { Textarea } from '@navikt/ds-react';
 import { ChangeEvent, ReactNode, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
-import { Textarea } from '@navikt/ds-react';
-
-import { getError, getValidationRules } from './formUtils';
 import { replaceInvisibleCharsWithSpace } from '../fp/utils';
+import { getError, getValidationRules } from './formUtils';
 
 interface Props {
     name: string;

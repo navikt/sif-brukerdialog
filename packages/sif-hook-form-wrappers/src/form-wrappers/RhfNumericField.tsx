@@ -1,42 +1,32 @@
+import { TextField } from '@navikt/ds-react';
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
-import { TextFieldProps as DsTextFieldProps, TextField } from '@navikt/ds-react';
-
 import { getError, getValidationRules } from './formUtils';
-import { replaceInvisibleCharsWithSpace } from '../fp/utils';
 
-type Props = {
+interface Props {
     name: string;
-    label?: string | ReactNode;
+    label: string | ReactNode;
     validate?: Array<(value: string) => any> | Array<(value: number) => any>;
     description?: string;
     onChange?: (value: any) => void;
     autoFocus?: boolean;
+    maxLength?: number;
     disabled?: boolean;
-    type?: 'email' | 'password' | 'tel' | 'text' | 'url';
     className?: string;
     style?: CSSProperties;
-    shouldReplaceInvisibleChars?: boolean;
-    autofocusWhenEmpty?: boolean;
-    customErrorFormatter?: (error: string | undefined) => ReactNode;
-} & DsTextFieldProps;
+}
 
-export const RhfTextField = ({
+export const RhfNumericField = ({
     name,
     label,
     validate = [],
-    type,
     onChange,
     description,
     autoFocus,
+    maxLength,
     disabled,
     className,
     style,
-    shouldReplaceInvisibleChars = false,
-    autofocusWhenEmpty,
-    customErrorFormatter,
-    ...rest
 }: Props) => {
     const {
         formState: { errors },
@@ -44,7 +34,6 @@ export const RhfTextField = ({
 
     const { field } = useController({
         name,
-        disabled,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
         },
@@ -52,17 +41,12 @@ export const RhfTextField = ({
 
     const onChangeFn = useCallback(
         (evt: React.ChangeEvent<HTMLInputElement>) => {
-            const parsedValues = shouldReplaceInvisibleChars
-                ? replaceInvisibleCharsWithSpace(evt.currentTarget.value)
-                : evt.currentTarget.value;
-
-            field.onChange(parsedValues);
-
+            field.onChange(evt);
             if (onChange) {
-                onChange(parsedValues);
+                onChange(evt.currentTarget.value);
             }
         },
-        [field, onChange, shouldReplaceInvisibleChars],
+        [field, onChange],
     );
 
     return (
@@ -71,15 +55,16 @@ export const RhfTextField = ({
             value={field.value || ''}
             label={label}
             description={description}
-            type={type}
-            error={customErrorFormatter ? customErrorFormatter(getError(errors, name)) : getError(errors, name)}
-            autoFocus={autoFocus || (autofocusWhenEmpty && field.value === undefined)}
+            type="text"
+            inputMode="numeric"
+            error={getError(errors, name)}
+            autoFocus={autoFocus}
             autoComplete="off"
+            maxLength={maxLength}
             disabled={disabled}
             className={className}
             style={style}
             onChange={onChangeFn}
-            {...rest}
         />
     );
 };

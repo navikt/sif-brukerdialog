@@ -1,6 +1,5 @@
-import { FormattedMessage } from 'react-intl';
-
 import { ErrorSummary } from '@navikt/ds-react';
+import { FormattedMessage } from 'react-intl';
 
 export type ErrorSummaryError = {
     message?: string;
