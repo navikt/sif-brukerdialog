@@ -7,12 +7,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
 import { nyDeltakerMock } from '../../../mock/msw/mocks/mockUtils';
+import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 
 const meta: Meta<typeof StartPage> = {
     component: StartPage,
     title: 'Pages/Startside',
     parameters: {},
-    decorators: [withPageWidth, withDarkBg, withIntl, withVeilederContext],
+    decorators: [withPageWidth, withDarkBg, withIntl, withVeilederContext, withQueryClientProvider],
 };
 export default meta;
 

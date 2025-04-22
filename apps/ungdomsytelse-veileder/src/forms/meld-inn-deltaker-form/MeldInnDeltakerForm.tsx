@@ -10,25 +10,24 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
-import dayjs from 'dayjs';
+
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
+import { GYLDIG_PERIODE } from '../../settings';
+import dayjs from 'dayjs';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
-    minStartDato?: Date;
     onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;
 }
-
-const maxDate = dayjs().add(2, 'years').endOf('month').toDate();
-const minDate = dayjs().subtract(2, 'years').startOf('month').toDate();
 
 interface FormValues {
     startDato: string;
     bekreftRegistrering: boolean;
 }
 
-const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseRegistrert }: Props) => {
+const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Props) => {
     const intl = useIntl();
 
     const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
@@ -59,15 +58,26 @@ const MeldInnDeltakerForm = ({ deltaker, minStartDato, onCancel, onDeltakelseReg
                                     name="startDato"
                                     label={`Når starter deltakelsen?`}
                                     disableWeekends={true}
-                                    minDate={minStartDato || minDate}
-                                    maxDate={maxDate}
-                                    defaultMonth={minStartDato}
-                                    validate={getDateValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        onlyWeekdays: true,
-                                    })}
+                                    minDate={GYLDIG_PERIODE.from}
+                                    maxDate={GYLDIG_PERIODE.to}
+                                    defaultMonth={dayjs.max([dayjs(GYLDIG_PERIODE.from), dayjs()]).toDate()}
+                                    validate={(value) => {
+                                        const error = getDateValidator({
+                                            required: true,
+                                            min: GYLDIG_PERIODE.from,
+                                            max: GYLDIG_PERIODE.to,
+                                            onlyWeekdays: true,
+                                        })(value);
+                                        return error
+                                            ? {
+                                                  key: error,
+                                                  values: {
+                                                      min: dateFormatter.compact(GYLDIG_PERIODE.from),
+                                                      max: dateFormatter.compact(GYLDIG_PERIODE.to),
+                                                  },
+                                              }
+                                            : undefined;
+                                    }}
                                 />
                                 <FormikConfirmationCheckbox
                                     label={<BodyShort>Bekreft deltakelse</BodyShort>}

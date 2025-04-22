@@ -35,7 +35,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     Endre startdato
                 </Button>
                 <Button variant="primary" onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
-                    {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Sett sluttdato'}
+                    {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
                 </Button>
             </SectionContainer>
 

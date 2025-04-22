@@ -5,8 +5,6 @@ export const queryKeys = {
 };
 
 export const queries = {
-    // deltakelser: () => ['deltakelser'] as const,
-    // deltakelseById: (deltakelseId?: string) => ['deltakelseById', deltakelseId] as const,
     deltakelserForDeltaker: (deltakerId: string) => ({
         queryKey: queryKeys.deltakelserForDeltaker(deltakerId),
     }),
