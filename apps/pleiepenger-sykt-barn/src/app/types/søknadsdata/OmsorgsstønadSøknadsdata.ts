@@ -2,9 +2,9 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODate } from '@navikt/sif-common-utils';
 
 export enum OmsorgsstønadType {
-    mottarIkke = 'mottarIkke',
-    mottarIDelerAvPerioden = 'mottarIDelerAvPerioden',
-    mottarIHelePerioden = 'mottarIHelePerioden',
+    mottarIkke = 'MOTTAR_IKKE',
+    mottarIDelerAvPerioden = 'MOTTAR_I_DELER_AV_PERIODEN',
+    mottarIHelePerioden = 'MOTTAR_I_HELE_PERIODEN',
 }
 
 export interface MottarIkkeOmsorgsstønad {
