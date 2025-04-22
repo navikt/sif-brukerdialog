@@ -15,6 +15,8 @@ import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 import { GYLDIG_PERIODE } from '../../settings';
 import dayjs from 'dayjs';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import ToDo from '../../dev-components/ToDo';
+import { ToDoKeys } from '../../dev-components/ToDos';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -54,10 +56,12 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                 <Heading level="2" size="small" spacing={false}>
                                     Registrer ny deltakelse
                                 </Heading>
+
                                 <FormikDatepicker
                                     name="startDato"
                                     label={`Når starter deltakelsen?`}
                                     disableWeekends={true}
+                                    description={<ToDo todo={ToDoKeys.henteGyldigPeriodeForDeltakelser} />}
                                     minDate={GYLDIG_PERIODE.from}
                                     maxDate={GYLDIG_PERIODE.to}
                                     defaultMonth={dayjs.max([dayjs(GYLDIG_PERIODE.from), dayjs()]).toDate()}

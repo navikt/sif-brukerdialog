@@ -33,7 +33,7 @@ export const UregistrertDeltaker: Story = {
         msw: {
             handlers: [
                 http.post('http://localhost:6006/api/ung-deltakelse-opplyser/oppslag/deltaker', async () => {
-                    await delay(1000);
+                    await delay(200);
                     return HttpResponse.json(nyDeltakerMock);
                 }),
             ],

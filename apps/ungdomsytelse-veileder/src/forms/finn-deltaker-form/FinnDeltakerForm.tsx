@@ -9,12 +9,14 @@ import {
     UregistrertDeltaker,
 } from '@navikt/ung-common';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
-import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
-import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
-import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
-import DevUserList from './DevUserList';
 import { isFinnDeltakerError } from '../../api/deltaker/findDeltaker';
 import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
+import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
+import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
+import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
+import DevUserList from '../../dev-components/DevUserList';
+import ToDo from '../../dev-components/ToDo';
+import { ToDoKeys } from '../../dev-components/ToDos';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -107,6 +109,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                             </HStack>
                         </Fieldset>
                     </form>
+                    <ToDo todo={ToDoKeys.begrenseOppslagPåDeltaker} />
                     {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
 

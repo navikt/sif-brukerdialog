@@ -1,5 +1,5 @@
 import { CopyButton, HStack, VStack } from '@navikt/ds-react';
-import { getAppEnv } from '../../utils/appEnv';
+import { getAppEnv } from '../utils/appEnv';
 
 const DevUserList = () => {
     return getAppEnv().isLocal ? (
