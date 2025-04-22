@@ -22,13 +22,6 @@ const InntektKompaktForm = ({ values }: Props) => {
                 integerValue={true}
                 validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
             />
-            <NumberInput
-                name={InntektFormFields.ytelseInntekt}
-                label="Ytelse fra Nav:"
-                integerValue={true}
-                validate={getNumberValidator({ min: 1, required: true, allowDecimals: false })}
-            />
-
             {inntekt ? (
                 <ConfirmationCheckbox
                     name={InntektFormFields.bekrefterInntekt}

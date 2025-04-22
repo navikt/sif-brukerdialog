@@ -3,18 +3,23 @@ import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation'
 import { FormLayout } from '@navikt/sif-common-ui';
 import { inntektFormComponents } from '../inntektFormUtils';
 import { InntektFormFields } from '../types';
+import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
+import { useAppIntl } from '../../../../../i18n';
 
 interface Props {
     harArbeidstakerOgFrilansInntekt: boolean;
+    periode: DateRange;
 }
 
-const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerOgFrilansInntekt }: Props) => {
+const ArbeidstakerFrilanserSpørsmål = ({ harArbeidstakerOgFrilansInntekt, periode }: Props) => {
+    const { intl } = useAppIntl();
     const { YesOrNoQuestion, NumberInput } = inntektFormComponents;
+    const periodetekst = dateRangeFormatter.getDateRangeText(periode, intl.locale);
     return (
         <>
             <YesOrNoQuestion
                 name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
-                legend="Har du hatt inntekt som arbeidstaker eller frilanser i denne perioden?"
+                legend={`Har du hatt inntekt som arbeidstaker eller frilanser i perioden ${periodetekst}?`}
                 validate={getYesOrNoValidator()}
                 description={
                     <ReadMore header="Hva er inntekt som arbeidstaker eller frilanser?">

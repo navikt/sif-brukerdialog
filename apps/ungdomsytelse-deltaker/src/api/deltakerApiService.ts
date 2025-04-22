@@ -4,7 +4,7 @@ import {
     UngdomsytelseOppgavebekreftelse,
     Ungdomsytelsesøknad,
 } from '@navikt/k9-brukerdialog-prosessering-api';
-import { DeltakelsePeriode, deltakelsePerioderSchema, handleError } from '@navikt/ung-common';
+import { DeltakelsePeriode, deltakelsePerioderSchema, handleApiError } from '@navikt/ung-common';
 import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
@@ -23,7 +23,7 @@ const getAlleMineDeltakelser = async (): Promise<DeltakelsePeriode[]> => {
         const { data } = await DeltakelseService.hentAlleMineDeltakelser();
         return deltakelsePerioderSchema.parse(data);
     } catch (e) {
-        throw handleError(e);
+        throw handleApiError(e, 'getAlleMineDeltakelser');
     }
 };
 
@@ -37,7 +37,7 @@ const sendOppgavebekreftelse = async (oppgave: UngdomsytelseOppgavebekreftelse):
         await UngdomsytelseControllerService.oppgavebekreftelse({ body: oppgave, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
-        throw handleError(e);
+        throw handleApiError(e, 'sendOppgavebekreftelse');
     }
 };
 
@@ -52,7 +52,7 @@ const markerDeltakelseSomSøkt = async (id: string): Promise<void> => {
         await DeltakelseService.markerDeltakelseSomSøkt({ path: { id } });
         return Promise.resolve();
     } catch (e) {
-        throw handleError(e);
+        throw handleApiError(e, '');
     }
 };
 
@@ -61,7 +61,7 @@ const sendSøknad = async (data: Ungdomsytelsesøknad): Promise<any> => {
         await UngdomsytelseControllerService.innsendingUngdomsytelsesøknad({ body: data, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
-        throw handleError(e);
+        throw handleApiError(e, '');
     }
 };
 
@@ -70,7 +70,7 @@ const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promis
         await UngdomsytelseControllerService.inntektrapportering({ body: data, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
-        throw handleError(e);
+        throw handleApiError(e, '');
     }
 };
 

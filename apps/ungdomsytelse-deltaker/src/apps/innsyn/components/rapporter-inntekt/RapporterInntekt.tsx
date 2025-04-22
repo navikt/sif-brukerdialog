@@ -68,9 +68,7 @@ const RapporterInntekt = ({ rapporteringsperiode, linkMode }: Props) => {
                             visHeading={false}
                             periode={synligPeriode.periode}
                             inntekt={{
-                                summertInntekt: synligPeriode.summertInntekt || 0,
                                 arbeidOgFrilansInntekter: synligPeriode.arbeidstakerOgFrilansInntekt || 0,
-                                ytelseInntekter: synligPeriode.inntektFraYtelse || 0,
                             }}
                         />
                         <div role="status" aria-live="assertive">
