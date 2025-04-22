@@ -1,13 +1,20 @@
 import { Alert, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
+import {
+    Deltakelse,
+    Deltaker,
+    fødselsnummerFormatter,
+    isApiErrorObject,
+    UregistrertDeltaker,
+} from '@navikt/ung-common';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
-import FinnDeltakerErrorMessage from './FinnDeltakerErrorMessage';
 import DevUserList from './DevUserList';
+import { isFinnDeltakerError } from '../../api/deltaker/findDeltaker';
+import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -100,12 +107,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                             </HStack>
                         </Fieldset>
                     </form>
-
-                    {error ? (
-                        <Alert variant="error">
-                            <FinnDeltakerErrorMessage error={error} />
-                        </Alert>
-                    ) : null}
+                    {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
 
                 {nyDeltaker ? (
@@ -134,6 +136,16 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
             </VStack>
         </VStack>
     );
+};
+
+const getErrorMessage = (error: unknown) => {
+    if (isFinnDeltakerError(error)) {
+        return error.message;
+    } else if (isApiErrorObject(error)) {
+        return <ApiErrorInfo apiError={error} />;
+    } else {
+        return 'En feil oppstod ved henting av deltaker';
+    }
 };
 
 export default FinnDeltakerForm;
