@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, HGrid, Link, List, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Heading, HGrid, Link, List, VStack } from '@navikt/ds-react';
 import { ApiError } from '@navikt/ung-common';
 import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 
@@ -18,7 +18,9 @@ const ErrorPageContent = ({ error }: Props) => (
                         </Heading>
                         {error && error !== null ? (
                             <Box marginBlock={'4'}>
-                                <ApiErrorInfo apiError={error} />
+                                <Alert variant="error">
+                                    <ApiErrorInfo apiError={error} />
+                                </Alert>
                             </Box>
                         ) : null}
 

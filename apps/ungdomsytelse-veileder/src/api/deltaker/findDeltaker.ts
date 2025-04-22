@@ -1,6 +1,11 @@
 import { OppslagService } from '@navikt/ung-deltakelse-opplyser-api';
 import axios from 'axios';
-import { registrertDeltakerSchema, uregistrertDeltakerSchema } from '@navikt/ung-common/src/types';
+import {
+    Deltaker,
+    registrertDeltakerSchema,
+    UregistrertDeltaker,
+    uregistrertDeltakerSchema,
+} from '@navikt/ung-common/src/types';
 import { ApiError, ErrorObject, handleApiError } from '@navikt/ung-common';
 
 const FinnDeltakerErrorType = 'finnDeltakerError';
@@ -16,7 +21,7 @@ export type FinnDeltakerError = ErrorObject<'finnDeltakerError', FinnDeltakerErr
  * @param error Feilen som skal sjekkes.
  * @returns True hvis feilen er en FinnDeltakerError, ellers false.
  */
-export const isFindDeltakerError = (error: unknown): error is FinnDeltakerError => {
+export const isFinnDeltakerError = (error: unknown): error is FinnDeltakerError => {
     return typeof error === 'object' && error !== null && (error as FinnDeltakerError).type === FinnDeltakerErrorType;
 };
 
@@ -27,7 +32,7 @@ export const isFindDeltakerError = (error: unknown): error is FinnDeltakerError 
  * @returns Et validert deltakerobjekt (registrert eller uregistrert).
  * @throws Kaster en FinnDeltakerError eller ApiError hvis noe går galt.
  */
-export const findDeltakerByIdent = async (ident: string) => {
+export const findDeltakerByIdent = async (ident: string): Promise<Deltaker | UregistrertDeltaker> => {
     try {
         const { data } = await OppslagService.hentDeltakerInfoGittDeltaker({ body: { deltakerIdent: ident } });
         return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
@@ -49,7 +54,7 @@ const interpretFindDeltakerError = (error: unknown): FinnDeltakerError | ApiErro
             return {
                 type: FinnDeltakerErrorType,
                 code: FinnDeltakerErrorCode.DELTAKER_IKKE_FUNNET,
-                message: 'Deltaker ikke funnet',
+                message: 'Person ikke funnet med oppgitt ident',
             };
         }
     });

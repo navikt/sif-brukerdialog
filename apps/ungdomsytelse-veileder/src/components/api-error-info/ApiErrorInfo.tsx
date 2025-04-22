@@ -1,4 +1,4 @@
-import { Alert, BodyShort, VStack } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ApiError, ApiErrorType } from '@navikt/ung-common';
 
 interface Props {
@@ -30,15 +30,13 @@ const getTexts = ({ error, context }: ApiError) => {
 const ApiErrorInfo = ({ apiError }: Props) => {
     const texts = getTexts(apiError);
     return (
-        <Alert variant="error" size="small">
-            <VStack gap="2" className="pb-2">
-                <BodyShort weight="semibold">{texts.title}</BodyShort>
-                <BodyShort>{texts.message}</BodyShort>
-                <BodyShort textColor="subtle" size="small">
-                    [{texts.context}]
-                </BodyShort>
-            </VStack>
-        </Alert>
+        <VStack gap="2" className="pb-2">
+            <BodyShort weight="semibold">{texts.title}</BodyShort>
+            <BodyShort>{texts.message}</BodyShort>
+            <BodyShort textColor="subtle" size="small">
+                [{texts.context}]
+            </BodyShort>
+        </VStack>
     );
 };
 
