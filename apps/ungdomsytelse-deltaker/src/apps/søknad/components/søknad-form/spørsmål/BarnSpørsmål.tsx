@@ -24,7 +24,7 @@ const BarnSpørsmål = ({ barn, barnStemmerIkke, disabled }: Props) => {
                 legend={
                     barn.length === 0
                         ? `Vi har ikke registrert noen barn på deg. Er dette riktig?`
-                        : 'Stemmer informasjonen om alle barn?'
+                        : 'Stemmer informasjonen om barn?'
                 }
                 name={SøknadFormFields.barnErRiktig}
                 validate={getYesOrNoValidator()}
