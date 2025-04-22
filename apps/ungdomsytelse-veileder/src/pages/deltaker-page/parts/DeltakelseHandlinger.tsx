@@ -3,25 +3,20 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import SectionContainer from '../../../components/section-container/SectionContainer';
 import EndreDeltakelseModal from '../../../components/endre-deltakelse-modal/EndreDeltakelseModal';
-import EndreSluttdatoForm from '../../../forms/endre-sluttdato-form/EndreSluttdatoForm';
-import EndreStartdatoForm from '../../../forms/endre-startdato-form/EndreStartdatoForm';
+import EndrePeriodeForm from '../../../forms/endre-periode-form/EndrePeriodeForm';
+import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
 }
 
-enum EndrePeriodeDialogType {
-    'startdato' = 'startdato',
-    'sluttdato' = 'sluttdato',
-}
-
 const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
-    const [visOppgaveDialog, setVisOppgaveDialog] = useState<EndrePeriodeDialogType | undefined>(undefined);
+    const [formVariant, setFormVariant] = useState<EndrePeriodeVariant | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
 
     const handleOnClose = () => {
-        setVisOppgaveDialog(undefined);
+        setFormVariant(undefined);
         setEndretDeltakelse(undefined);
     };
 
@@ -35,35 +30,22 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     variant="primary"
                     onClick={() => {
                         setEndretDeltakelse(undefined);
-                        setVisOppgaveDialog(EndrePeriodeDialogType.startdato);
+                        setFormVariant(EndrePeriodeVariant.startdato);
                     }}>
                     Endre startdato
                 </Button>
-                <Button variant="primary" onClick={() => setVisOppgaveDialog(EndrePeriodeDialogType.sluttdato)}>
+                <Button variant="primary" onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
                     {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Sett sluttdato'}
                 </Button>
             </SectionContainer>
 
-            {visOppgaveDialog === EndrePeriodeDialogType.startdato ? (
+            {formVariant ? (
                 <EndreDeltakelseModal
-                    header="Endre startdato"
+                    header={formVariant === EndrePeriodeVariant.startdato ? 'Endre startdato' : 'Endre sluttdato'}
                     onClose={handleOnClose}
                     deltakelseChanged={endretDeltakelse !== undefined}>
-                    <EndreStartdatoForm
-                        deltakelse={deltakelse}
-                        deltaker={deltaker}
-                        onCancel={handleOnClose}
-                        onDeltakelseChanged={handleOnDeltakelseChanged}
-                    />
-                </EndreDeltakelseModal>
-            ) : null}
-
-            {visOppgaveDialog === EndrePeriodeDialogType.sluttdato ? (
-                <EndreDeltakelseModal
-                    header="Endre sluttdato"
-                    onClose={handleOnClose}
-                    deltakelseChanged={endretDeltakelse !== undefined}>
-                    <EndreSluttdatoForm
+                    <EndrePeriodeForm
+                        variant={formVariant}
                         deltakelse={deltakelse}
                         deltaker={deltaker}
                         onCancel={handleOnClose}
