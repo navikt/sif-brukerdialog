@@ -61,7 +61,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     name="startDato"
                                     label={`Når starter deltakelsen?`}
                                     disableWeekends={true}
-                                    description={<ToDo todo={ToDoKeys.henteGyldigPeriodeForDeltakelser} />}
+                                    description={<ToDo id={ToDoKeys.gyldigPeriodeForDeltakelser} />}
                                     minDate={GYLDIG_PERIODE.from}
                                     maxDate={GYLDIG_PERIODE.to}
                                     defaultMonth={dayjs.max([dayjs(GYLDIG_PERIODE.from), dayjs()]).toDate()}

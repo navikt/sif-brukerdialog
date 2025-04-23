@@ -109,7 +109,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                             </HStack>
                         </Fieldset>
                     </form>
-                    <ToDo todo={ToDoKeys.begrenseOppslagPåDeltaker} />
+                    <ToDo id={ToDoKeys.begrenseOppslagPåDeltaker} />
                     {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
 

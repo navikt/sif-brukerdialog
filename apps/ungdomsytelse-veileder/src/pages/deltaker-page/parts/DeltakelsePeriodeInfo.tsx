@@ -1,6 +1,8 @@
 import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
+import ToDo from '../../../dev-components/ToDo';
+import { ToDoKeys } from '../../../dev-components/ToDos';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -38,6 +40,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse }: Props) => {
                         <BodyShort size="large" weight="semibold" className="text-2xl">
                             -
                         </BodyShort>
+                        <ToDo id={ToDoKeys.antallDagerBrukt} />
                     </VStack>
                 )}
             </HGrid>

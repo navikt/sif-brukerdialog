@@ -12,6 +12,8 @@ import { max, min } from 'date-fns';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { ToDoKeys } from '../../dev-components/ToDos';
+import ToDo from '../../dev-components/ToDo';
 
 export type EndrePeriodeFormValues = {
     id: string;
@@ -80,21 +82,25 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                             <VStack gap="6">
                                 <VStack gap="8" className="rounded-xs">
                                     {variant === EndrePeriodeVariant.startdato ? (
-                                        <FormikDatepicker
-                                            name="fom"
-                                            label="Ny startdato"
-                                            minDate={startdatoMinMax.min}
-                                            maxDate={startdatoMinMax.max}
-                                            defaultMonth={deltakelse.fraOgMed}
-                                            validate={getDateValidator({
-                                                required: true,
-                                                ...startdatoMinMax,
-                                            })}
-                                        />
+                                        <>
+                                            <FormikDatepicker
+                                                name="fom"
+                                                label="Ny startdato"
+                                                description={<ToDo id={ToDoKeys.endreStartdato} />}
+                                                minDate={startdatoMinMax.min}
+                                                maxDate={startdatoMinMax.max}
+                                                defaultMonth={deltakelse.fraOgMed}
+                                                validate={getDateValidator({
+                                                    required: true,
+                                                    ...startdatoMinMax,
+                                                })}
+                                            />
+                                        </>
                                     ) : (
                                         <FormikDatepicker
                                             name="tom"
                                             label="Ny sluttdato"
+                                            description={<ToDo id={ToDoKeys.endreSluttdato} />}
                                             minDate={sluttdatoMinMax.min}
                                             maxDate={sluttdatoMinMax.max}
                                             defaultMonth={deltakelse.tilOgMed}
@@ -107,8 +113,10 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                     <FormikYesOrNoQuestion
                                         name="deltakerInformert"
                                         legend={`Er ${deltakernavn} informert om endringen?`}
+                                        description={<ToDo id={ToDoKeys.erDeltakerInformert} />}
                                         validate={getRequiredFieldValidator()}
                                     />
+                                    <ToDo id={ToDoKeys.bekreftEndrePeriode} />
                                     <HStack gap="4">
                                         <Button type="submit" loading={isPending} variant="primary">
                                             Lagre endring

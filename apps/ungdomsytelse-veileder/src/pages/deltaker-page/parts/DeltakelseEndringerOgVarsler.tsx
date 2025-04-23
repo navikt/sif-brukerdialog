@@ -1,6 +1,9 @@
 import { Deltakelse } from '@navikt/ung-common';
 import SectionContainer from '../../../components/section-container/SectionContainer';
 import OppgaveTabell from '../../../components/oppgave-tabell/OppgaveTabell';
+import ToDo from '../../../dev-components/ToDo';
+import { ToDoKeys } from '../../../dev-components/ToDos';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -8,7 +11,10 @@ interface Props {
 const DeltakelseEndringerOgVarsler = ({ deltakelse }: Props) => {
     return (
         <SectionContainer header="Historikk">
-            <OppgaveTabell oppgaver={deltakelse.oppgaver} />
+            <VStack gap="4">
+                <OppgaveTabell oppgaver={deltakelse.oppgaver} />
+                <ToDo id={ToDoKeys.historikk} />
+            </VStack>
         </SectionContainer>
     );
 };
