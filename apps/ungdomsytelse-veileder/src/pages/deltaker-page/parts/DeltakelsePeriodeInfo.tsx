@@ -1,12 +1,11 @@
 import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
-import ToDo from '../../../dev-components/ToDo';
-import { ToDoKeys } from '../../../dev-components/ToDos';
 
 interface Props {
     deltakelse: Deltakelse;
 }
+
 const DeltakelsePeriodeInfo = ({ deltakelse }: Props) => {
     return (
         <VStack gap="2">
@@ -30,19 +29,6 @@ const DeltakelsePeriodeInfo = ({ deltakelse }: Props) => {
                         {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
                     </BodyShort>
                 </VStack>
-                {deltakelse.harSøkt === false ? (
-                    <VStack className="bg-gray-50 p-5 rounded-md" gap="2"></VStack>
-                ) : (
-                    <VStack className="bg-gray-50 p-5 rounded-md" gap="2">
-                        <Heading level="3" size="xsmall">
-                            <BodyShort as="span">Antall dager brukt</BodyShort>
-                        </Heading>
-                        <BodyShort size="large" weight="semibold" className="text-2xl">
-                            -
-                        </BodyShort>
-                        <ToDo id={ToDoKeys.antallDagerBrukt} />
-                    </VStack>
-                )}
             </HGrid>
         </VStack>
     );

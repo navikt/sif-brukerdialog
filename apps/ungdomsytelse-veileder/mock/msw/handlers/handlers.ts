@@ -16,6 +16,11 @@ export const handlers = [
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
+
+        /** Kode 6/7 */
+        if (deltakerIdent === '09847696068') {
+            return new HttpResponse(null, { status: 403 });
+        }
         const data = findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),

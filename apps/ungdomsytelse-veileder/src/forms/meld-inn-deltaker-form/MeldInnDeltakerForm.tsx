@@ -12,11 +12,10 @@ import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
-import { GYLDIG_PERIODE } from '../../settings';
 import dayjs from 'dayjs';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import ToDo from '../../dev-components/ToDo';
-import { ToDoKeys } from '../../dev-components/ToDos';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import { GYLDIG_PERIODE } from '../../settings';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -42,6 +41,21 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
         onDeltakelseRegistrert(deltakelse);
     };
 
+    const startdatoMinMax = getStartdatobegrensningForDeltaker(
+        deltaker.førsteMuligeInnmeldingsdato,
+        deltaker.sisteMuligeInnmeldingsdato,
+        GYLDIG_PERIODE.from,
+        getDateToday(),
+    );
+
+    if (startdatoMinMax === 'fomFørTom') {
+        return (
+            <Alert variant="error">
+                Deltaker kan ikke meldes inn fordi perioden deltakeren kan meldes inn ikke er gyldig.
+            </Alert>
+        );
+    }
+
     return (
         <TypedFormikWrapper<FormValues>
             initialValues={{}}
@@ -61,23 +75,25 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     name="startDato"
                                     label={`Når starter deltakelsen?`}
                                     disableWeekends={true}
-                                    description={<ToDo id={ToDoKeys.gyldigPeriodeForDeltakelser} />}
-                                    minDate={GYLDIG_PERIODE.from}
-                                    maxDate={GYLDIG_PERIODE.to}
-                                    defaultMonth={dayjs.max([dayjs(GYLDIG_PERIODE.from), dayjs()]).toDate()}
+                                    description={
+                                        <>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>
+                                    }
+                                    minDate={startdatoMinMax.from}
+                                    maxDate={startdatoMinMax.to}
+                                    defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
                                     validate={(value) => {
                                         const error = getDateValidator({
                                             required: true,
-                                            min: GYLDIG_PERIODE.from,
-                                            max: GYLDIG_PERIODE.to,
+                                            min: startdatoMinMax.from,
+                                            max: startdatoMinMax.to,
                                             onlyWeekdays: true,
                                         })(value);
                                         return error
                                             ? {
                                                   key: error,
                                                   values: {
-                                                      min: dateFormatter.compact(GYLDIG_PERIODE.from),
-                                                      max: dateFormatter.compact(GYLDIG_PERIODE.to),
+                                                      min: dateFormatter.compact(startdatoMinMax.from),
+                                                      max: dateFormatter.compact(startdatoMinMax.to),
                                                   },
                                               }
                                             : undefined;

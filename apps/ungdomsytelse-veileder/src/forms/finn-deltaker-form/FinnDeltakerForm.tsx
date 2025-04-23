@@ -115,9 +115,8 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
                 {nyDeltaker ? (
                     <VStack gap="2">
-                        <Box className="rounded-md bg-surface-default p-4 items-center w-full">
-                            <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
-                        </Box>
+                        <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
+
                         <Checkbox
                             checked={visRegistrerNySkjema}
                             onChange={(evt) => setVisRegistrerNySkjema(evt.target.checked)}>

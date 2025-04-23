@@ -12,6 +12,7 @@ const FinnDeltakerErrorType = 'finnDeltakerError';
 
 export enum FinnDeltakerErrorCode {
     'DELTAKER_IKKE_FUNNET' = 'DELTAKER_IKKE_FUNNET',
+    'DELTAKER_FORBIDDEN' = 'DELTAKER_FORBIDDEN',
 }
 
 export type FinnDeltakerError = ErrorObject<'finnDeltakerError', FinnDeltakerErrorCode>;
@@ -45,16 +46,25 @@ export const findDeltakerByIdent = async (ident: string): Promise<Deltaker | Ure
  * Tolker og håndterer feil som oppstår under henting av deltakerinformasjon.
  *
  * @param error Feilen som skal tolkes.
- * @returns En spesifikk FinnDeltakerError hvis feilen er en 404 (deltaker ikke funnet),
- *          eller en generell ApiError for andre typer feil.
+ * @returns En spesifikk FinnDeltakerError hvis den er mappet opp
  */
 const interpretFindDeltakerError = (error: unknown): FinnDeltakerError | ApiError => {
     return handleApiError<FinnDeltakerError>(error, 'findDeltakerByIdent', () => {
-        if (axios.isAxiosError(error) && error.response?.status === 404) {
+        if (!axios.isAxiosError(error)) {
+            return;
+        }
+        if (error.response?.status === 403) {
+            return {
+                type: FinnDeltakerErrorType,
+                code: FinnDeltakerErrorCode.DELTAKER_FORBIDDEN,
+                message: 'Person kan ikke meldes inn i programmet på grunn av skjermingsregler.',
+            };
+        }
+        if (error.response?.status === 404) {
             return {
                 type: FinnDeltakerErrorType,
                 code: FinnDeltakerErrorCode.DELTAKER_IKKE_FUNNET,
-                message: 'Person ikke funnet med oppgitt ident',
+                message: 'Person ikke funnet med oppgitt ident.',
             };
         }
     });

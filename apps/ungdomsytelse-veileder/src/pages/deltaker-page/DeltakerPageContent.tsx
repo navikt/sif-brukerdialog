@@ -1,6 +1,5 @@
 import { Alert, Box, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import DeltakelseEndringerOgVarsler from './parts/DeltakelseEndringerOgVarsler';
 import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
 import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
 
@@ -47,8 +46,6 @@ const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} />
 
                 <DeltakelseHandlinger deltakelse={deltakelse} deltaker={deltaker} />
-
-                <DeltakelseEndringerOgVarsler deltakelse={deltakelse} />
             </VStack>
         </Box>
     );

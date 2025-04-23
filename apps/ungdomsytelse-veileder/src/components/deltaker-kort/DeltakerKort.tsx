@@ -1,9 +1,11 @@
-import { Bleed, BodyShort, Box, Button, HStack, Tag, VStack } from '@navikt/ds-react';
+import { Bleed, BodyShort, Box, Button, HGrid, HStack, Tag, VStack } from '@navikt/ds-react';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import PersonNøytral from '../../atoms/PersonNøytral';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
+import dayjs from 'dayjs';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     deltaker: Deltaker | UregistrertDeltaker;
@@ -15,42 +17,51 @@ const DeltakerKort = ({
         registrert,
         navn: { etternavn, fornavn, mellomnavn },
         deltakerIdent,
+        fødselsdato,
     },
     onClose,
-}: Props) => (
-    <HStack align={'start'} gap="4">
-        <PersonNøytral width="4.5rem" height={'4.5rem'} />
-        <VStack gap="2" flexGrow={'2'}>
-            <VStack>
-                <BodyShort size="medium" weight="semibold">
-                    {etternavn}, {mellomnavn} {fornavn}
-                </BodyShort>
-                <HStack gap="2">
-                    Ident: <Fødselsnummer fnr={deltakerIdent} />
-                </HStack>
-            </VStack>
-            {!registrert ? (
-                <Box>
-                    <Tag variant="warning" size="small">
-                        Ikke registrert som deltaker
-                    </Tag>
-                </Box>
-            ) : null}
-        </VStack>
-        {onClose ? (
-            <Bleed marginBlock="2 0" marginInline="0 2">
-                <Button
-                    variant="tertiary-neutral"
-                    size="small"
-                    icon={<XMarkIcon width="1.5rem" height="1.5rem" />}
-                    aria-label={`Lukk ${fornavn}`}
-                    onClick={onClose}
-                />
-            </Bleed>
-        ) : null}
-    </HStack>
-);
+}: Props) => {
+    const alder = dayjs().diff(dayjs(fødselsdato), 'year');
 
+    return (
+        <Box className="rounded-md bg-surface-default p-4 items-center w-full">
+            <HGrid columns={'4.5rem auto 2rem'} align={'start'} gap="4">
+                <PersonNøytral width="4.5rem" height={'4.5rem'} />
+                <VStack gap="2" flexGrow={'2'}>
+                    <VStack>
+                        <BodyShort size="medium" weight="semibold">
+                            {etternavn}, {mellomnavn} {fornavn}
+                        </BodyShort>
+                        <HStack gap="2">
+                            Ident: <Fødselsnummer fnr={deltakerIdent} />
+                        </HStack>
+                        <HStack gap="2">
+                            Født: {dateFormatter.compact(fødselsdato)} ({alder} år){' '}
+                        </HStack>
+                    </VStack>
+                    {!registrert ? (
+                        <Box>
+                            <Tag variant="warning" size="small">
+                                Ikke registrert som deltaker
+                            </Tag>
+                        </Box>
+                    ) : null}
+                </VStack>
+                {onClose ? (
+                    <Bleed marginBlock="2 0" marginInline="0 2">
+                        <Button
+                            variant="tertiary-neutral"
+                            size="small"
+                            icon={<XMarkIcon width="1.5rem" height="1.5rem" />}
+                            aria-label={`Lukk ${fornavn}`}
+                            onClick={onClose}
+                        />
+                    </Bleed>
+                ) : null}
+            </HGrid>
+        </Box>
+    );
+};
 export const DeltakerKortSkeleton = () => (
     <Skeleton height="4.2rem" enableAnimation={true} borderRadius={6} highlightColor="#CBCFD5" baseColor="#ffffff" />
 );

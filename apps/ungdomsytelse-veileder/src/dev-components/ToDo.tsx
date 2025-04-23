@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, HStack, Popover, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, HGrid, Popover, VStack } from '@navikt/ds-react';
 import { getToDo, ToDoKeys } from './ToDos';
 import { useToDoContext } from './ToDo/ToDoContext';
 import { useRef, useState } from 'react';
@@ -49,7 +49,7 @@ const ToDo = ({ id }: Props) => {
                     {comment && comment.length > 0 && (
                         <VStack gap="2" className="mt-2 pt-2 mb-2">
                             {comment.map((c, index) => (
-                                <HStack key={index} align={'center'} gap="2">
+                                <HGrid columns={'1.5rem auto'} gap="2" key={index}>
                                     {typeof c === 'string' ? (
                                         <>
                                             <CircleIcon />
@@ -64,12 +64,14 @@ const ToDo = ({ id }: Props) => {
                                                     color="#06893A"
                                                 />
                                             ) : (
-                                                <>-</>
+                                                <>
+                                                    <CircleIcon />
+                                                </>
                                             )}
                                             <BodyShort size="small">{c.text}</BodyShort>
                                         </>
                                     )}
-                                </HStack>
+                                </HGrid>
                             ))}
                         </VStack>
                     )}

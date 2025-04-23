@@ -43,8 +43,8 @@ export const nyDeltakerMock: DeltakerPersonlia = {
         etternavn: 'TØFFEL',
     },
     fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2024-01-01',
-    sisteMuligeInnmeldingsdato: '2024-12-31',
+    førsteMuligeInnmeldingsdato: '2025-01-01',
+    sisteMuligeInnmeldingsdato: '2029-12-31',
 };
 
 const nyDeltakerRegistrert = {
@@ -57,12 +57,11 @@ export const registrertDeltakerMock: DeltakerPersonlia = {
     deltakerIdent: '03867198392',
     navn: {
         fornavn: 'PRESENTABEL',
-        // mellomnavn: null as any,
         etternavn: 'HOFTE',
     },
     fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2024-01-01',
-    sisteMuligeInnmeldingsdato: '2024-12-31',
+    førsteMuligeInnmeldingsdato: '2025-01-01',
+    sisteMuligeInnmeldingsdato: '2029-12-31',
 };
 export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 
@@ -87,7 +86,6 @@ export const deltakelseDRMock = {
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-01-01',
-
     harSøkt: true,
     oppgaver: [...oppgaver],
 };

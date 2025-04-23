@@ -14,6 +14,9 @@ const DevUserList = () => {
             <HStack gap="2" align={'center'}>
                 <CopyButton copyText="27857798800" size="small" /> 27857798800 - finnes ikke
             </HStack>
+            <HStack gap="2" align={'center'}>
+                <CopyButton copyText="09847696068" size="small" /> 09847696068 - kode 6/7
+            </HStack>
         </VStack>
     ) : null;
 };

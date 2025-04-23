@@ -112,7 +112,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                     )}
                                     <FormikYesOrNoQuestion
                                         name="deltakerInformert"
-                                        legend={`Er ${deltakernavn} informert om endringen?`}
+                                        legend={`Er denne endringen avklart med ${deltakernavn}?`}
                                         description={<ToDo id={ToDoKeys.erDeltakerInformert} />}
                                         validate={getRequiredFieldValidator()}
                                     />
