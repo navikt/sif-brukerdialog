@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { OmsorgsstønadType } from '../søknadsdata/OmsorgsstønadSøknadsdata';
 
 type OmsorgsstønadMottarIkkeApiData = {
@@ -10,7 +10,7 @@ type OmsorgsstønadMottarDelerAvPeriodenApiData = {
     mottarOmsorgsstønad: boolean;
     startdato?: ISODate /** dato settes hvis bruker har valgt ja på at det starter i perioden */;
     sluttdato?: ISODate /** dato settes hvis bruker har valgt nei på at det starter i perioden  */;
-    antallTimer: number /** Antall timer i uken en mottar omsorgsstønad */;
+    antallTimer: ISODuration /** Antall timer i uken en mottar omsorgsstønad */;
     /** felter som ignoreres av apiet  */
     _mottarOmsorgsstønadIHelePeroden: false;
     _starterUndeveis?: boolean;
@@ -19,7 +19,7 @@ type OmsorgsstønadMottarDelerAvPeriodenApiData = {
 type OmsorgsstønadMottarHelePeriodenApiData = {
     type: OmsorgsstønadType.mottarIHelePerioden;
     mottarOmsorgsstønad: boolean;
-    antallTimer: number /** Antall timer i uken en mottar omsorgsstønad */;
+    antallTimer: ISODuration /** Antall timer i uken en mottar omsorgsstønad */;
     _mottarOmsorgsstønadIHelePeroden: true /** feltet ignoreres av apiet  */;
 };
 

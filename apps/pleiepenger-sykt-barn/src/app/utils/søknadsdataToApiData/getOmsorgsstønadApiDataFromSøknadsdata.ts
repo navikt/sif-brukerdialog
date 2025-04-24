@@ -2,6 +2,7 @@ import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
+import { decimalDurationToISODuration } from '@navikt/sif-common-utils';
 
 type OmsorgsstønadApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
 
@@ -23,7 +24,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
                 omsorgsstønad: {
                     type,
                     mottarOmsorgsstønad: true,
-                    antallTimer: omsorgsstønad.antallTimer,
+                    antallTimer: decimalDurationToISODuration(omsorgsstønad.antallTimer),
                     _mottarOmsorgsstønadIHelePeroden: true,
                 },
             };
@@ -33,7 +34,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
                 omsorgsstønad: {
                     type,
                     mottarOmsorgsstønad: true,
-                    antallTimer: omsorgsstønad.antallTimer,
+                    antallTimer: decimalDurationToISODuration(omsorgsstønad.antallTimer),
                     _mottarOmsorgsstønadIHelePeroden: false,
 
                     _starterUndeveis: omsorgsstønad.starterUndeveis === YesOrNo.YES ? true : false,
