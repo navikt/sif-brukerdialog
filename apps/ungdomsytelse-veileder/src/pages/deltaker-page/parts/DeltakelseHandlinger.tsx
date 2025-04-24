@@ -2,11 +2,11 @@ import { Button, HStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import SectionContainer from '../../../components/section-container/SectionContainer';
-import EndreDeltakelseModal from '../../../components/endre-deltakelse-modal/EndreDeltakelseModal';
-import EndrePeriodeForm from '../../../forms/endre-periode-form/EndrePeriodeForm';
+import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import ToDo from '../../../dev-components/ToDo';
 import { ToDoKeys } from '../../../dev-components/ToDos';
+import { kanEndreSluttdato } from '../../../utils/deltakelseUtils';
 
 interface Props {
     deltaker: Deltaker;
@@ -37,26 +37,24 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                         }}>
                         Endre startdato
                     </Button>
-                    <Button variant="primary" onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
-                        {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
-                    </Button>
+                    {kanEndreSluttdato(deltakelse) && (
+                        <Button variant="primary" onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
+                            {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
+                        </Button>
+                    )}
                 </HStack>
                 <ToDo id={ToDoKeys.handlinger} />
             </SectionContainer>
 
             {formVariant ? (
-                <EndreDeltakelseModal
-                    header={formVariant === EndrePeriodeVariant.startdato ? 'Endre startdato' : 'Endre sluttdato'}
+                <EndrePeriodeModal
                     onClose={handleOnClose}
-                    deltakelseChanged={endretDeltakelse !== undefined}>
-                    <EndrePeriodeForm
-                        variant={formVariant}
-                        deltakelse={deltakelse}
-                        deltaker={deltaker}
-                        onCancel={handleOnClose}
-                        onDeltakelseChanged={handleOnDeltakelseChanged}
-                    />
-                </EndreDeltakelseModal>
+                    variant={formVariant}
+                    deltakelse={deltakelse}
+                    deltaker={deltaker}
+                    onDeltakelseChanged={handleOnDeltakelseChanged}
+                    deltakelseChanged={endretDeltakelse !== undefined}
+                />
             ) : null}
         </>
     );

@@ -8,12 +8,24 @@ import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
 import { nyDeltakerMock } from '../../../mock/msw/mocks/mockUtils';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
+import { ToDoProvider } from '../../dev-components/ToDo/ToDoContext';
 
 const meta: Meta<typeof StartPage> = {
     component: StartPage,
     title: 'Pages/Startside',
     parameters: {},
-    decorators: [withPageWidth, withDarkBg, withIntl, withVeilederContext, withQueryClientProvider],
+    decorators: [
+        withPageWidth,
+        withDarkBg,
+        withIntl,
+        withVeilederContext,
+        withQueryClientProvider,
+        (Story) => (
+            <ToDoProvider>
+                <Story />
+            </ToDoProvider>
+        ),
+    ],
 };
 export default meta;
 

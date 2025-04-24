@@ -15,8 +15,6 @@ import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import DevUserList from '../../dev-components/DevUserList';
-import ToDo from '../../dev-components/ToDo';
-import { ToDoKeys } from '../../dev-components/ToDos';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -109,7 +107,6 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                             </HStack>
                         </Fieldset>
                     </form>
-                    <ToDo id={ToDoKeys.begrenseOppslagPåDeltaker} />
                     {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
 

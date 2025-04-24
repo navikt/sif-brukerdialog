@@ -1,8 +1,9 @@
 import { DateRange } from '@navikt/sif-common-utils';
+import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 /**
- * Henter gyldig periode for startdato for deltaker.
+ * Henter første og siste dato en deltaker kan meldes inn i programmet
  * @param deltaker
  * @returns
  */
@@ -39,4 +40,8 @@ export const getFørsteMuligeInnmeldingsdato = (
 export const getSisteMuligeInnmeldingsdato = (sisteMuligeInnmeldingsdato: Date, today: Date): Date => {
     const todayJs = dayjs(today);
     return dayjs.min([dayjs(sisteMuligeInnmeldingsdato), todayJs.add(6, 'months')]).toDate();
+};
+
+export const kanEndreSluttdato = (deltakelse: Deltakelse): boolean => {
+    return deltakelse.harSøkt;
 };
