@@ -6,7 +6,8 @@ import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeri
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import ToDo from '../../../dev-components/ToDo';
 import { ToDoKeys } from '../../../dev-components/ToDos';
-import { kanEndreSluttdato } from '../../../utils/deltakelseUtils';
+import { kanEndreSluttdato, kanSletteDeltakelse } from '../../../utils/deltakelseUtils';
+import SlettDeltakelseModal from '../../../components/slett-deltakelse-modal/SlettDeltakelseModal';
 
 interface Props {
     deltaker: Deltaker;
@@ -16,6 +17,7 @@ interface Props {
 const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const [formVariant, setFormVariant] = useState<EndrePeriodeVariant | undefined>(undefined);
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse | null>();
+    const [visSlettDeltakelseModal, setVisSlettDeltakelseModal] = useState(false);
 
     const handleOnClose = () => {
         setFormVariant(undefined);
@@ -25,6 +27,7 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const handleOnDeltakelseChanged = (deltakelse: Deltakelse) => {
         setEndretDeltakelse(deltakelse);
     };
+
     return (
         <>
             <SectionContainer header="Handlinger">
@@ -42,6 +45,11 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                             {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
                         </Button>
                     )}
+                    {kanSletteDeltakelse(deltakelse) && (
+                        <Button variant="primary" onClick={() => setVisSlettDeltakelseModal(true)}>
+                            Slett deltakelse
+                        </Button>
+                    )}
                 </HStack>
                 <ToDo id={ToDoKeys.handlinger} />
             </SectionContainer>
@@ -56,6 +64,14 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
                     deltakelseChanged={endretDeltakelse !== undefined}
                 />
             ) : null}
+
+            {visSlettDeltakelseModal && (
+                <SlettDeltakelseModal
+                    deltakelse={deltakelse}
+                    deltaker={deltaker}
+                    onCancel={() => setVisSlettDeltakelseModal(false)}
+                />
+            )}
         </>
     );
 };

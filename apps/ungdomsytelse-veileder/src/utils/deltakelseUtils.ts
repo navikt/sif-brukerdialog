@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { Deltakelse } from '@navikt/ung-common';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 /**
@@ -44,4 +44,14 @@ export const getSisteMuligeInnmeldingsdato = (sisteMuligeInnmeldingsdato: Date, 
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse): boolean => {
     return deltakelse.harSøkt;
+};
+
+export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
+    return !deltakelse.harSøkt;
+};
+
+export const kontrollerDeltakelseOgDeltaker = (deltakelse: Deltakelse, deltaker: Deltaker): string | undefined => {
+    /** Kontroller første og siste innmeldingsdag */
+    console.log({ deltakelse, deltaker });
+    return;
 };

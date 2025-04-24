@@ -60,8 +60,8 @@ export const registrertDeltakerMock: DeltakerPersonlia = {
         etternavn: 'HOFTE',
     },
     fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2025-01-01',
-    sisteMuligeInnmeldingsdato: '2029-12-31',
+    førsteMuligeInnmeldingsdato: '2013-05-10',
+    sisteMuligeInnmeldingsdato: '2024-04-10',
 };
 export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 

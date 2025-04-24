@@ -30,6 +30,9 @@ export const handlers = [
         const data = getDeltakerByDeltakerId(id as string);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
+    http.delete('**/veileder/register/deltakelse/:deltakelseId/fjern', async () => {
+        return new HttpResponse(null, { status: 202 });
+    }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = getDeltakelser(params.deltakerId as string);
