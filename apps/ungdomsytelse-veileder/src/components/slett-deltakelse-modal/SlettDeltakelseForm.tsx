@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltakelse(deltaker.id, deltakelse.id);
+    const { error, isPending, mutate } = useSlettDeltakelse(deltakelse.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
 
