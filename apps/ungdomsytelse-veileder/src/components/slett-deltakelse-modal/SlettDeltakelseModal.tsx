@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import SlettDeltakelseForm from './SlettDeltakelseForm';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     deltaker: Deltaker;
@@ -19,7 +20,9 @@ const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
 
     const navigate = useNavigate();
 
+    const queryClient = useQueryClient();
     const gåTilForsiden = () => {
+        queryClient.resetQueries();
         navigate('/');
     };
 

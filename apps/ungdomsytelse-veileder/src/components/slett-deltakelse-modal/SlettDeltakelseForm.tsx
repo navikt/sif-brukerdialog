@@ -1,7 +1,9 @@
 import { Alert, BodyShort, Box, Button, ConfirmationPanel, List, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
+import { Deltakelse, Deltaker, formaterNavn, isApiErrorObject } from '@navikt/ung-common';
 import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
 import { useState } from 'react';
+import { isSlettDeltakerError } from '../../api/deltakelse/slettDeltakelse';
+import ApiErrorInfo from '../api-error-info/ApiErrorInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -10,7 +12,7 @@ interface Props {
 }
 
 const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltakelse(deltakelse.id);
+    const { error, isPending, mutate } = useSlettDeltakelse(deltaker.id, deltakelse.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
 
@@ -59,11 +61,21 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Prop
                             Slett deltakelse (kan ikke angres)
                         </Button>
                     </Box>
-                    {error ? <Alert variant="error">{error.error.message}</Alert> : null}
+                    {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
             </form>
         </>
     );
+};
+
+const getErrorMessage = (error: unknown) => {
+    if (isSlettDeltakerError(error)) {
+        return error.message;
+    } else if (isApiErrorObject(error)) {
+        return <ApiErrorInfo apiError={error} />;
+    } else {
+        return 'En feil oppstod ved henting av deltaker';
+    }
 };
 
 export default SlettDeltakelseForm;
