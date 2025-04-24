@@ -48,7 +48,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
                     <List.Item>
                         <AppText
                             id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.antallTimer"
-                            values={{ antallTimer }}
+                            values={{ timer: antallTimer }}
                         />
                     </List.Item>
                     {omsorgsstønad.type === OmsorgsstønadType.mottarIHelePerioden ? (

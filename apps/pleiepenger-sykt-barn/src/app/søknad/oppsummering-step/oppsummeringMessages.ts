@@ -76,7 +76,7 @@ const nb = {
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.mottarDelerAvPerioden':
         'Mottar omsorgsstønaden gjennom i deler av perioden jeg søker om',
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.antallTimer':
-        'Antall timer i uken du har vedtak om omsorgsstønad: {antallTimer}',
+        'Antall timer i uken du har vedtak om omsorgsstønad: {timer, plural, one {# time} other {# timer}}',
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.startet': 'Starter {startdato}',
     'steg.oppsummering.arbeidssituasjon.omsorgsstønad.sluttet': 'Slutter {sluttdato}',
 
