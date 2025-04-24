@@ -152,6 +152,8 @@ const nb = {
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mer enn {max}.',
+    'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansOgOmsorgsstønad.numberIsTooLarge':
+        'Antall timer du normalt {jobber} per uke som frilanser og mottar i omsorgsstønad kan ikke være mer enn {max} timer til sammen.',
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du jobber som frilanser, eller om du mottar honorar.',
     'validation.frilans.frilanstype.notChecked': 'Du må velge hva som er din situasjon som frilanser.',
@@ -343,6 +345,8 @@ const nn: Record<keyof typeof nb, string> = {
         'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':
         'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere meir enn {max}.',
+    'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansOgOmsorgsstønad.numberIsTooLarge':
+        'Antall timar du normalt {jobber} per veke som frilanser og mottar i omsorgsstønad kan ikkje vere meir enn {max} timar til saman.',
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du jobbar som frilanser, eller om du mottek honorar.',
     'validation.frilans.frilanstype.notChecked': 'Du må velje kva som er situasjonen din som frilanser.',

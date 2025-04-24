@@ -3,6 +3,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../../i18n';
@@ -50,10 +51,13 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                     />
                 </p>
             </ExpandableInfo>
+
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
+
             <FormBlock>
                 <FosterhjemsgodtgjørelseFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
+
             <FormBlock>
                 <OmsorgsstønadFormPart søknadsperiode={søknadsperiode} />
             </FormBlock>
@@ -63,6 +67,11 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                     søknadsperiode={søknadsperiode}
                     søknadsdato={søknadsdato}
                     søkerHarFrilansoppdrag={søkerHarFrilansoppdrag}
+                    timerOmsorgsstønad={
+                        values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES
+                            ? getNumberFromNumberInputValue(values.omsorgsstønad.antallTimer)
+                            : undefined
+                    }
                 />
             </FormBlock>
 

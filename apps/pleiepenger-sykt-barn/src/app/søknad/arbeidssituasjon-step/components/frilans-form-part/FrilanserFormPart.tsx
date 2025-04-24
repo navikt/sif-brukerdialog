@@ -18,9 +18,9 @@ import FrilansertypeSpørsmål from './spørsmål/FrilansertypeSpørsmål';
 import FrilansNormalarbeidstidSpørsmål from './spørsmål/FrilansNormalarbeidstidSpørsmål';
 import FrilansSluttdatoSpørsmål from './spørsmål/FrilansSluttdatoSpørsmål';
 import FrilansStartdatoSpørsmål from './spørsmål/FrilansStartdatoSpørsmål';
+import FrilansStartetFørSisteTreHeleMånederSpørsmål from './spørsmål/FrilansStartetFørSisteTreHeleMånederSpørsmål';
 import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSomFrilanserSpørsmål';
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
-import FrilansStartetFørSisteTreHeleMånederSpørsmål from './spørsmål/FrilansStartetFørSisteTreHeleMånederSpørsmål';
 
 export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormValues, ValidationError>();
 
@@ -28,9 +28,15 @@ interface Props {
     søknadsperiode: DateRange;
     søknadsdato: Date;
     søkerHarFrilansoppdrag: boolean;
+    timerOmsorgsstønad?: number;
 }
 
-const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsdato }) => {
+const FrilanserFormPart: React.FunctionComponent<Props> = ({
+    søknadsperiode,
+    søkerHarFrilansoppdrag,
+    søknadsdato,
+    timerOmsorgsstønad,
+}) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { harHattInntektSomFrilanser, misterHonorar, erFortsattFrilanser, frilanstype } = values.frilans;
     const { omsorgsstønad } = values;
@@ -126,6 +132,7 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                         erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
                                         misterHonorar={misterHonorar}
                                         mottarOmsorgsstønad={values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES}
+                                        timerOmsorgsstønad={timerOmsorgsstønad}
                                     />
                                 </FormBlock>
                             </>
