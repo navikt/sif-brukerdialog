@@ -41,8 +41,10 @@ class MyDocument extends Document<Props> {
         const showDecorator = true;
         return (
             <Html lang={language || 'no'}>
-                <style>@layer base, dekorator-utilities, dekorator-base, components, utilities;</style>
-                <Head>{showDecorator && <Decorator.HeadAssets />}</Head>
+                <Head>
+                    <style>@layer base, dekorator-base, dekorator-utilities, theme, components, utilities;</style>
+                    {showDecorator && <Decorator.HeadAssets />}
+                </Head>
                 <body>
                     {showDecorator && <Decorator.Header />}
                     <Main />
