@@ -8481,9 +8481,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.85.1":
-  version: 3.85.1
-  resolution: "@sanity/vision@npm:3.85.1"
+"@sanity/vision@npm:3.86.1":
+  version: 3.86.1
+  resolution: "@sanity/vision@npm:3.86.1"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8511,7 +8511,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/ed25c1aa01dfaa0896a2c38b17e0fa14415fba34865509e40665e7f3965ce3ef2f227dc5b736fd915ac1c1b33566d94a7e5b7d9efbdcba64ed3c0128eb9c4e49
+  checksum: 10/a7d57930550fe83b5928278d466a535a8bb94893e3a80aaebd4988e4bdd618197d38c34a5ab82e6b565124a30ac62185f7cdce0b40b91e5d0df9ec6614f4b7da
   languageName: node
   linkType: hard
 
@@ -12322,7 +12322,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:3.85.1"
+    "@sanity/vision": "npm:3.86.1"
     "@types/react": "npm:19.1.2"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.25.1"
