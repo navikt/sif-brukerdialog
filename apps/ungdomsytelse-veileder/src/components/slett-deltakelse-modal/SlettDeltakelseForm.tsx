@@ -59,9 +59,9 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Prop
                             Slett deltakelse (kan ikke angres)
                         </Button>
                     </Box>
+                    {error ? <Alert variant="error">{error.error.message}</Alert> : null}
                 </VStack>
             </form>
-            {error ? <Alert variant="error">{error.error.message}</Alert> : null}
         </>
     );
 };

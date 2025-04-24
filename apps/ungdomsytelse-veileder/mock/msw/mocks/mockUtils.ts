@@ -21,7 +21,6 @@ export const findDeltaker = (deltakerIdent: string) => {
 /** Registrert id som deltake */
 export const getDeltakerByDeltakerId = (deltakerId: string) => {
     if (deltakerId) {
-        console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
             case registrertDeltakerMock.id:
                 return registrertDeltakerMock;

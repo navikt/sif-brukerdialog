@@ -31,7 +31,7 @@ export const handlers = [
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
     http.delete('**/veileder/register/deltakelse/:deltakelseId/fjern', async () => {
-        return new HttpResponse(null, { status: 202 });
+        return new HttpResponse(null, { status: 401 });
     }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
