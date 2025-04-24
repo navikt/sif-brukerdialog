@@ -10,6 +10,7 @@ export const useSlettDeltakelse = (deltakerId: string, deltakelseId: string) => 
         mutationFn: () => slettDeltakelse(deltakelseId),
         onSuccess: () => {
             queryClient.invalidateQueries(queries.finnDeltaker(deltakerId));
+            queryClient.invalidateQueries(queries.deltakelserForDeltaker(deltakerId));
         },
         onError: (error) => {
             console.error('Error while deleting participation:', error);
