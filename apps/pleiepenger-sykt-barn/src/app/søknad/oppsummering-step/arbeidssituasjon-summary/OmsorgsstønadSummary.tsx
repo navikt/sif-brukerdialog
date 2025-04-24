@@ -2,21 +2,15 @@ import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 import { OmsorgsstønadApiData } from '../../../types/søknad-api-data/OmsorgsstønadApiData';
 import { OmsorgsstønadType } from '../../../types/søknadsdata/OmsorgsstønadSøknadsdata';
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODateToDate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 
 interface Props {
     omsorgsstønad: OmsorgsstønadApiData;
 }
 
 const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
-    const {
-        mottarOmsorgsstønad,
-        // _mottarOmsorgsstønadIHelePeroden: mottarOmsorgsstønadIHelePerioden,
-        // _starterUndeveis,
-        // startdato,
-        // _slutterUnderveis,
-        // sluttdato,
-    } = omsorgsstønad;
+    // const appIntl = useAppIntl();
+    const { mottarOmsorgsstønad } = omsorgsstønad;
 
     if (mottarOmsorgsstønad === false) {
         return (
@@ -37,6 +31,8 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
         );
     }
 
+    const antallTimer = ISODurationToDecimalDuration(omsorgsstønad.antallTimer);
+
     return (
         <FormSummary.Answer>
             <FormSummary.Label>
@@ -52,7 +48,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
                     <List.Item>
                         <AppText
                             id="steg.oppsummering.arbeidssituasjon.omsorgsstønad.antallTimer"
-                            values={{ antallTimer: omsorgsstønad.antallTimer }}
+                            values={{ antallTimer }}
                         />
                     </List.Item>
                     {omsorgsstønad.type === OmsorgsstønadType.mottarIHelePerioden ? (
