@@ -9,7 +9,6 @@ import {
     UregistrertDeltaker,
 } from '@navikt/ung-common';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
-import { isFinnDeltakerError } from '../../api/deltaker/findDeltaker';
 import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
@@ -138,9 +137,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 };
 
 const getErrorMessage = (error: unknown) => {
-    if (isFinnDeltakerError(error)) {
-        return error.message;
-    } else if (isApiErrorObject(error)) {
+    if (isApiErrorObject(error)) {
         return <ApiErrorInfo apiError={error} />;
     } else {
         return 'En feil oppstod ved henting av deltaker';

@@ -8,30 +8,25 @@ export enum ApiErrorType {
     UnknownError = 'UnknownError',
 }
 
-export enum ApiErrorCode {
-    NETWORK_ERROR = 'NETWORK_ERROR',
-    VALIDATION_ERROR = 'VALIDATION_ERROR',
-    UNKNOWN_ERROR = 'UNKNOWN_ERROR',
-}
-
-// Feilkoder
-export interface ApiErrorObject {
-    type: ApiErrorType;
-    code: ApiErrorCode;
-    originalError: unknown;
-    message: string;
-}
-
 export type ApiError = {
-    type: 'apiError';
+    type: ApiErrorType;
     context: string;
-    error: ApiErrorObject;
+    message: string;
+    originalError: unknown;
 };
 
-export type ErrorObject<T, C> = {
-    type: T;
-    code: C;
-    message: string;
+export const createApiError = (
+    type: ApiErrorType,
+    context: string,
+    message: string,
+    originalError: unknown,
+): ApiError => {
+    return {
+        type,
+        context,
+        message,
+        originalError,
+    };
 };
 
 // Funksjon for å sjekke om objektet er ApiError
@@ -39,7 +34,11 @@ export const isApiErrorObject = (error: unknown): error is ApiError => {
     if (!error) {
         return false;
     }
-    return (error as ApiError).type === 'apiError';
+    return (
+        (error as ApiError).type === ApiErrorType.ValidationError ||
+        (error as ApiError).type === ApiErrorType.NetworkError ||
+        (error as ApiError).type === ApiErrorType.UnknownError
+    );
 };
 
 /**
@@ -47,52 +46,57 @@ export const isApiErrorObject = (error: unknown): error is ApiError => {
  * @param error
  * @returns
  */
-const handleError = (error: unknown): ApiErrorObject => {
-    if (error instanceof ZodError) {
-        console.warn('Valideringsfeil:', error);
-        return {
-            type: ApiErrorType.ValidationError,
-            code: ApiErrorCode.VALIDATION_ERROR,
-            originalError: error,
-            message: error.errors.map((err) => err.message).join(', '),
-        };
-    } else if (axios.isAxiosError(error)) {
-        return {
-            type: ApiErrorType.NetworkError,
-            code: ApiErrorCode.NETWORK_ERROR,
-            originalError: error,
-            message: error.message,
-        };
-    } else {
-        return {
-            type: ApiErrorType.UnknownError,
-            code: ApiErrorCode.UNKNOWN_ERROR,
-            originalError: error,
-            message: (error as Error).message,
-        };
-    }
-};
-
-/**
- * Håndterer og returnerer ApiError
- * @param error
- * @returns
- */
-
-export const handleApiError = <T>(
+export const handleApiError = (
     error: unknown,
-    context: string,
-    customHandler?: (error: unknown) => T | undefined,
-): T | ApiError => {
-    if (customHandler) {
-        const customError = customHandler(error);
+    context: string = '',
+    customErrorHandler?: () => ApiError | void,
+): ApiError => {
+    if (customErrorHandler) {
+        const customError = customErrorHandler();
         if (customError) {
             return customError;
         }
     }
-    return {
-        type: 'apiError',
-        context,
-        error: handleError(error),
-    };
+    if (error instanceof ZodError) {
+        return {
+            type: ApiErrorType.ValidationError,
+            context,
+            message: error.errors.map((err) => err.message).join(', '),
+            originalError: error,
+        };
+    } else if (axios.isAxiosError(error)) {
+        return {
+            type: ApiErrorType.NetworkError,
+            context,
+            message: error.message,
+            originalError: error,
+        };
+    } else {
+        return {
+            type: ApiErrorType.UnknownError,
+            context,
+            message: (error as Error).message,
+            originalError: error,
+        };
+    }
 };
+
+// /**
+//  * Håndterer og returnerer ApiError
+//  * @param error
+//  * @returns
+//  */
+
+// export const handleApiError = (
+//     error: unknown,
+//     context: string,
+//     customHandler?: (error: unknown) => ApiError | undefined,
+// ): ApiError => {
+//     if (customHandler) {
+//         const customError = customHandler(error);
+//         if (customError) {
+//             return customError;
+//         }
+//     }
+//     return handleError(error, context);
+// };

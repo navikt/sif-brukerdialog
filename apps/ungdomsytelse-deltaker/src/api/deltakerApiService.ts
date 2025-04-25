@@ -16,7 +16,7 @@ const k9RequestHeader = {} as any;
 /**
  * Henter alle deltakelser til innlogget bruker
  * @returns {Promise<DeltakelsePeriode[]>}
- * @throws {ApiErrorObject}
+
  */
 const getAlleMineDeltakelser = async (): Promise<DeltakelsePeriode[]> => {
     try {
@@ -30,7 +30,6 @@ const getAlleMineDeltakelser = async (): Promise<DeltakelsePeriode[]> => {
 /**
  * Sender inn svar på en oppgave
  * @returns {Promise<void>}
- * @throws {ApiErrorObject}
  */
 const sendOppgavebekreftelse = async (oppgave: UngdomsytelseOppgavebekreftelse): Promise<void> => {
     try {
@@ -52,7 +51,7 @@ const markerDeltakelseSomSøkt = async (id: string): Promise<void> => {
         await DeltakelseService.markerDeltakelseSomSøkt({ path: { id } });
         return Promise.resolve();
     } catch (e) {
-        throw handleApiError(e, '');
+        throw handleApiError(e, 'markerDeltakelseSomSøkt');
     }
 };
 
@@ -61,7 +60,7 @@ const sendSøknad = async (data: Ungdomsytelsesøknad): Promise<any> => {
         await UngdomsytelseControllerService.innsendingUngdomsytelsesøknad({ body: data, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
-        throw handleApiError(e, '');
+        throw handleApiError(e, 'sendSøknad');
     }
 };
 
@@ -70,7 +69,7 @@ const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promis
         await UngdomsytelseControllerService.inntektrapportering({ body: data, headers: k9RequestHeader });
         return Promise.resolve();
     } catch (e) {
-        throw handleApiError(e, '');
+        throw handleApiError(e, 'rapporterInntekt');
     }
 };
 

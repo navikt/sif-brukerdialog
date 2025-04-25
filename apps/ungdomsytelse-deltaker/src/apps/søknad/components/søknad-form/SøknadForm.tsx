@@ -118,7 +118,7 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
                                         <Alert variant="error">
                                             Det oppstod en feil:
                                             <br />
-                                            {error.message}
+                                            {error.errorInfo.message}
                                         </Alert>
                                     )}
                                 </VStack>

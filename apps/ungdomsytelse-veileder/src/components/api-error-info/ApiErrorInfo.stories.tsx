@@ -4,7 +4,7 @@ import { withVeilederContext } from '../../../storybook/decorators/withVeilederC
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 import ApiErrorInfo from './ApiErrorInfo';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
-import { ApiError, ApiErrorCode, ApiErrorType } from '@navikt/ung-common';
+import { ApiError, ApiErrorType } from '@navikt/ung-common';
 import { AxiosError } from 'axios';
 
 const meta: Meta<typeof ApiErrorInfo> = {
@@ -34,13 +34,9 @@ const axiosError: AxiosError = {
 };
 
 const error: ApiError = {
-    type: 'apiError',
-    error: {
-        message: 'Feilmelding',
-        code: ApiErrorCode.NETWORK_ERROR,
-        type: ApiErrorType.NetworkError,
-        originalError: axiosError,
-    },
+    message: 'Feilmelding',
+    type: ApiErrorType.NetworkError,
+    originalError: axiosError,
     context: 'Context',
 };
 

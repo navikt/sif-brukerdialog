@@ -1,15 +1,7 @@
-import { ApiError, ErrorObject, handleApiError } from '@navikt/ung-common';
+import { ApiError, ApiErrorType, createApiError, handleApiError } from '@navikt/ung-common';
 import { OppslagService } from '@navikt/ung-deltakelse-opplyser-api';
 import { registrertDeltakerSchema } from '@navikt/ung-common/src/types';
 import axios from 'axios';
-
-const getDeltakerErrorType = 'getDeltakerError';
-
-export enum GetDeltakerErrorCode {
-    DELTAKER_IKKE_FUNNET = 'deltaker-ikke-funnet',
-}
-
-export type GetDeltakerError = ErrorObject<'getDeltakerError', GetDeltakerErrorCode>;
 
 export const getDeltakerById = async (deltakerId: string) => {
     try {
@@ -22,14 +14,14 @@ export const getDeltakerById = async (deltakerId: string) => {
     }
 };
 
-const interpretGetDeltakerError = (error: unknown): GetDeltakerError | ApiError => {
-    return handleApiError<GetDeltakerError>(error, 'getDeltakerById', () => {
-        if (axios.isAxiosError(error) && error.response?.status === 404) {
-            return {
-                type: getDeltakerErrorType,
-                code: GetDeltakerErrorCode.DELTAKER_IKKE_FUNNET,
-                message: 'Deltaker ikke funnet',
-            };
+const interpretGetDeltakerError = (error: unknown): ApiError | undefined => {
+    const context = 'getDeltakerById';
+    return handleApiError(error, context, () => {
+        if (!axios.isAxiosError(error)) {
+            return;
+        }
+        if (error.response?.status === 404) {
+            return createApiError(ApiErrorType.NetworkError, context, 'Deltaker ikke funnet', error);
         }
     });
 };

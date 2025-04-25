@@ -6,25 +6,7 @@ import {
     UregistrertDeltaker,
     uregistrertDeltakerSchema,
 } from '@navikt/ung-common/src/types';
-import { ApiError, ErrorObject, handleApiError } from '@navikt/ung-common';
-
-const FinnDeltakerErrorType = 'finnDeltakerError';
-
-export enum FinnDeltakerErrorCode {
-    'DELTAKER_IKKE_FUNNET' = 'DELTAKER_IKKE_FUNNET',
-    'DELTAKER_FORBIDDEN' = 'DELTAKER_FORBIDDEN',
-}
-
-export type FinnDeltakerError = ErrorObject<'finnDeltakerError', FinnDeltakerErrorCode>;
-
-/**
- * Sjekker om en feil er av typen FinnDeltakerError.
- * @param error Feilen som skal sjekkes.
- * @returns True hvis feilen er en FinnDeltakerError, ellers false.
- */
-export const isFinnDeltakerError = (error: unknown): error is FinnDeltakerError => {
-    return typeof error === 'object' && error !== null && (error as FinnDeltakerError).type === FinnDeltakerErrorType;
-};
+import { ApiError, ApiErrorType, createApiError, handleApiError } from '@navikt/ung-common';
 
 /**
  * Henter informasjon om en deltaker basert på ident (fnr/dnr).
@@ -42,30 +24,22 @@ export const findDeltakerByIdent = async (ident: string): Promise<Deltaker | Ure
     }
 };
 
-/**
- * Tolker og håndterer feil som oppstår under henting av deltakerinformasjon.
- *
- * @param error Feilen som skal tolkes.
- * @returns En spesifikk FinnDeltakerError hvis den er mappet opp
- */
-const interpretFindDeltakerError = (error: unknown): FinnDeltakerError | ApiError => {
-    return handleApiError<FinnDeltakerError>(error, 'findDeltakerByIdent', () => {
+const interpretFindDeltakerError = (error: unknown): ApiError | undefined => {
+    const context = 'findDeltakerByIdent';
+    return handleApiError(error, context, () => {
         if (!axios.isAxiosError(error)) {
             return;
         }
         if (error.response?.status === 403) {
-            return {
-                type: FinnDeltakerErrorType,
-                code: FinnDeltakerErrorCode.DELTAKER_FORBIDDEN,
-                message: 'Person kan ikke meldes inn i programmet på grunn av skjermingsregler.',
-            };
+            return createApiError(
+                ApiErrorType.NetworkError,
+                context,
+                'Person kan ikke meldes inn i programmet på grunn av skjermingsregler.',
+                error,
+            );
         }
         if (error.response?.status === 404) {
-            return {
-                type: FinnDeltakerErrorType,
-                code: FinnDeltakerErrorCode.DELTAKER_IKKE_FUNNET,
-                message: 'Person ikke funnet med oppgitt ident.',
-            };
+            return createApiError(ApiErrorType.NetworkError, context, 'Person ikke funnet med oppgitt ident.', error);
         }
     });
 };

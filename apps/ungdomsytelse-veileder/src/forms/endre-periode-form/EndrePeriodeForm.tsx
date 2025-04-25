@@ -177,7 +177,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                         <Alert variant="warning">Dato er ikke endret fra opprinnelig dato</Alert>
                                     ) : null}
                                 </VStack>
-                                {error ? <Alert variant="error">{error.error.message}</Alert> : null}
+                                {error ? <Alert variant="error">{error.message}</Alert> : null}
                             </VStack>
                         </Form>
                     </VStack>

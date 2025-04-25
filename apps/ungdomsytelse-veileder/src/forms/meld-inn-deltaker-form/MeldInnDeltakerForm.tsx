@@ -118,7 +118,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     Avbryt
                                 </Button>
                             </HStack>
-                            {error ? <Alert variant="error">{error.error.message}</Alert> : null}
+                            {error ? <Alert variant="error">{error.message}</Alert> : null}
                         </VStack>
                     </TypedFormikForm>
                 );

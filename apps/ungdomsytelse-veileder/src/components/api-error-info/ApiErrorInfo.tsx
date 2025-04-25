@@ -5,24 +5,24 @@ interface Props {
     apiError: ApiError;
 }
 
-const getTexts = ({ error, context }: ApiError) => {
-    switch (error.type) {
+const getTexts = ({ type, context, message, originalError }: ApiError) => {
+    switch (type) {
         case ApiErrorType.NetworkError:
             return {
-                title: 'Feil ved henting av data',
-                message: error.message,
+                // title: 'Feil ved henting av data',
+                message: message,
                 context: context,
             };
         case ApiErrorType.ValidationError:
             return {
                 title: 'Feil format på data',
-                message: error.message,
-                details: error.originalError,
+                message: message,
+                details: originalError,
             };
         case ApiErrorType.UnknownError:
             return {
                 title: 'Ukjent feil',
-                message: error.message,
+                message: message,
             };
     }
 };
@@ -30,12 +30,12 @@ const getTexts = ({ error, context }: ApiError) => {
 const ApiErrorInfo = ({ apiError }: Props) => {
     const texts = getTexts(apiError);
     return (
-        <VStack gap="2" className="pb-2">
-            <BodyShort weight="semibold">{texts.title}</BodyShort>
+        <VStack gap="2">
+            {texts.title && <BodyShort weight="semibold">{texts.title}</BodyShort>}
             <BodyShort>{texts.message}</BodyShort>
-            <BodyShort textColor="subtle" size="small">
+            {/* <BodyShort textColor="subtle" size="small">
                 [{texts.context}]
-            </BodyShort>
+            </BodyShort> */}
         </VStack>
     );
 };

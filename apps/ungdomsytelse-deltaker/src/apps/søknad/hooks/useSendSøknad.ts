@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
-import { ApiErrorObject } from '@navikt/ung-common';
+import { ApiError } from '@navikt/ung-common';
 import { deltakerApiService } from '../../../api/deltakerApiService';
 
 export const useSendSøknad = () => {
     const [pending, setPending] = useState(false);
-    const [error, setError] = useState<ApiErrorObject | undefined>();
+    const [error, setError] = useState<ApiError | undefined>();
     const [søknadSendt, setSøknadSendt] = useState(false);
 
     const sendSøknad = async (søknad: Ungdomsytelsesøknad) => {
