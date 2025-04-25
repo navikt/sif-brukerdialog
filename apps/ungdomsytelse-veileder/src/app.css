@@ -33,22 +33,28 @@
     }
 }
 
-.definitionList {
+.deltakerInfoList {
     display: grid;
-    grid-template-columns: auto 1fr; /* Tittel og verdi i to kolonner */
-    gap: 0.5rem 1rem; /* Avstand mellom rader og kolonner */
+    grid-template-columns: 40% 60%;
+    gap: 0.5rem 1rem;
     margin: 0;
     padding: 0;
-
+    line-height: 1.75rem;
     dt {
         margin: 0;
-        line-height: 1.75rem;
     }
     dd {
         margin: 0;
         font-weight: bolder;
-        line-height: 1.75rem;
-
         word-wrap: break-word; /* Bryt lange ord */
+    }
+}
+@media screen and (max-width: 768px) {
+    .definitionList {
+        grid-template-columns: 1fr;
+        line-height: 1.5rem;
+        dd {
+            margin-bottom: 0.75rem;
+        }
     }
 }
