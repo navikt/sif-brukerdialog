@@ -31,7 +31,7 @@ const OmsorgsstønadSummary = ({ omsorgsstønad }: Props) => {
         );
     }
 
-    const antallTimer = ISODurationToDecimalDuration(omsorgsstønad.antallTimer);
+    const antallTimer = ISODurationToDecimalDuration(omsorgsstønad.antallTimerIUken);
 
     return (
         <FormSummary.Answer>

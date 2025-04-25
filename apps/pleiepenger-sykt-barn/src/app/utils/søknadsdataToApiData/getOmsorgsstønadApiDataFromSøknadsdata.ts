@@ -24,7 +24,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
                 omsorgsstønad: {
                     type,
                     mottarOmsorgsstønad: true,
-                    antallTimer: decimalDurationToISODuration(omsorgsstønad.antallTimer),
+                    antallTimerIUken: decimalDurationToISODuration(omsorgsstønad.antallTimer),
                     _mottarOmsorgsstønadIHelePeroden: true,
                 },
             };
@@ -34,7 +34,7 @@ export const getOmsorgsstønadApiDataFromSøknadsdata = (
                 omsorgsstønad: {
                     type,
                     mottarOmsorgsstønad: true,
-                    antallTimer: decimalDurationToISODuration(omsorgsstønad.antallTimer),
+                    antallTimerIUken: decimalDurationToISODuration(omsorgsstønad.antallTimer),
                     _mottarOmsorgsstønadIHelePeroden: false,
 
                     _starterUndeveis: omsorgsstønad.starterUndeveis === YesOrNo.YES ? true : false,
