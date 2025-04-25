@@ -29,60 +29,44 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
     return (
         <>
-            <VStack gap="2">
+            <VStack gap="3">
                 <Heading level="2" size="medium">
                     Deltakerperiode
                 </Heading>
                 <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
-                    <VStack className="bg-gray-50 p-5 rounded-md" gap="1">
-                        <Heading level="3" size="xsmall">
-                            <BodyShort as="span">Startdato</BodyShort>
-                        </Heading>
-                        <BodyShort size="large" weight="semibold" className="text-2xl" spacing>
-                            {dateFormatter.compact(deltakelse.fraOgMed)}
-                        </BodyShort>
-                        {kanEndreStartdato(deltakelse, tillattEndringsperiode) ? (
-                            <Box>
-                                <Button
-                                    variant="primary"
-                                    size="small"
-                                    icon={<PencilFillIcon />}
-                                    onClick={() => {
-                                        setEndretDeltakelse(undefined);
-                                        setFormVariant(EndrePeriodeVariant.startdato);
-                                    }}>
-                                    Endre startdato
-                                </Button>
-                            </Box>
-                        ) : (
-                            <Alert variant="info" size="small" inline>
-                                Startdato kan ikke endres
-                            </Alert>
-                        )}
-                    </VStack>
-                    <VStack className="bg-gray-50 p-5 rounded-md" gap="1">
-                        <Heading level="3" size="xsmall">
-                            <BodyShort as="span">Sluttdato</BodyShort>
-                        </Heading>
-                        <BodyShort size="large" weight="semibold" className="text-2xl" spacing>
-                            {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
-                        </BodyShort>
-                        {kanEndreSluttdato(deltakelse, tillattEndringsperiode) ? (
-                            <Box>
-                                <Button
-                                    variant="primary"
-                                    size="small"
-                                    icon={<PencilFillIcon />}
-                                    onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
-                                    {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
-                                </Button>
-                            </Box>
-                        ) : (
-                            <Alert variant="info" size="small" inline>
-                                Sluttdato kan ikke endres
-                            </Alert>
-                        )}
-                    </VStack>
+                    <DatoBoks
+                        tittel="Startdato"
+                        dato={deltakelse.fraOgMed}
+                        endre={
+                            kanEndreStartdato(deltakelse, tillattEndringsperiode)
+                                ? {
+                                      label: 'Endre startdato',
+                                      onClick: () => {
+                                          setEndretDeltakelse(undefined);
+                                          setFormVariant(EndrePeriodeVariant.startdato);
+                                      },
+                                  }
+                                : undefined
+                        }
+                        kanIkkeEndreTekst="Startdato kan ikke endres"
+                    />
+
+                    <DatoBoks
+                        tittel="Sluttdato"
+                        dato={deltakelse.tilOgMed}
+                        endre={
+                            kanEndreSluttdato(deltakelse, tillattEndringsperiode)
+                                ? {
+                                      label: 'Endre sluttdato',
+                                      onClick: () => {
+                                          setEndretDeltakelse(undefined);
+                                          setFormVariant(EndrePeriodeVariant.sluttdato);
+                                      },
+                                  }
+                                : undefined
+                        }
+                        kanIkkeEndreTekst="Sluttdato kan ikke endres"
+                    />
                 </HGrid>
             </VStack>
             {formVariant ? (
@@ -96,6 +80,39 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 />
             ) : null}
         </>
+    );
+};
+interface DatoBoksProps {
+    tittel: string;
+    dato?: Date;
+    endre?: {
+        label: string;
+        onClick: () => void;
+    };
+    kanIkkeEndreTekst: string;
+}
+
+const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
+    return (
+        <VStack className="bg-gray-50 p-5 rounded-md" gap="1">
+            <Heading level="3" size="xsmall">
+                <BodyShort as="span">{tittel}</BodyShort>
+            </Heading>
+            <BodyShort size="large" weight="semibold" className="text-2xl capitalize" spacing>
+                {dato ? dateFormatter.dayCompactDate(dato) : '-'}
+            </BodyShort>
+            {endre ? (
+                <Box>
+                    <Button variant="primary" size="small" icon={<PencilFillIcon />} onClick={endre.onClick}>
+                        {endre.label}
+                    </Button>
+                </Box>
+            ) : (
+                <Alert variant="info" inline>
+                    {kanIkkeEndreTekst}
+                </Alert>
+            )}
+        </VStack>
     );
 };
 
