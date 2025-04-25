@@ -43,7 +43,7 @@
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@tailwindcss/postcss": "4.1.4",
         "@tailwindcss/vite": "4.1.4",
-        "@types/node": "22.14.1",
+        "@types/node": "22.15.0",
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@typescript-eslint/parser": "8.31.0",

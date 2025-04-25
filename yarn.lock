@@ -4294,7 +4294,7 @@ __metadata:
     "@portabletext/react": "npm:3.2.1"
     "@sanity/client": "npm:6.29.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     config: "workspace:*"
@@ -4736,7 +4736,7 @@ __metadata:
     "@playwright/test": "npm:1.52.0"
     "@tailwindcss/postcss": "npm:4.1.4"
     "@tailwindcss/vite": "npm:4.1.4"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@types/uuid": "npm:10.0.0"
@@ -4807,7 +4807,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.4"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
@@ -4890,7 +4890,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.4"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
@@ -5050,7 +5050,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.4"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
@@ -5273,7 +5273,7 @@ __metadata:
     "@types/cookie-parser": "npm:1.4.8"
     "@types/express": "npm:5.0.1"
     "@types/morgan": "npm:1.9.9"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@vercel/ncc": "npm:0.38.3"
     axios: "npm:1.8.4"
     cookie-parser: "npm:1.4.7"
@@ -5324,7 +5324,7 @@ __metadata:
   dependencies:
     "@amplitude/analytics-browser": "npm:2.15.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     config: "workspace:*"
     constate: "npm:3.3.3"
@@ -5413,7 +5413,7 @@ __metadata:
     "@storybook/react": "npm:8.6.12"
     "@storybook/react-vite": "npm:8.6.12"
     "@storybook/testing-library": "npm:0.2.2"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@vitejs/plugin-react": "npm:4.4.1"
@@ -5499,7 +5499,7 @@ __metadata:
     "@storybook/test-runner": "npm:0.22.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:29.5.14"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@types/uuid": "npm:10.0.0"
@@ -5568,7 +5568,7 @@ __metadata:
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@vitejs/plugin-react": "npm:4.4.1"
@@ -5623,7 +5623,7 @@ __metadata:
     "@sentry/react": "npm:9.13.0"
     "@sentry/types": "npm:9.13.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     axios: "npm:1.8.4"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -5675,7 +5675,7 @@ __metadata:
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/jest": "npm:29.5.14"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@vitejs/plugin-react": "npm:4.4.1"
@@ -5775,7 +5775,7 @@ __metadata:
     "@babel/preset-env": "npm:7.26.9"
     "@babel/preset-react": "npm:7.26.3"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@types/uuid": "npm:10.0.0"
@@ -5814,7 +5814,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@tailwindcss/postcss": "npm:4.1.4"
     "@tailwindcss/vite": "npm:4.1.4"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@typescript-eslint/parser": "npm:8.31.0"
@@ -5933,7 +5933,7 @@ __metadata:
     "@types/cookie-parser": "npm:1.4.8"
     "@types/express": "npm:5.0.1"
     "@types/morgan": "npm:1.9.9"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@vercel/ncc": "npm:0.38.3"
     axios: "npm:1.8.4"
     cookie-parser: "npm:1.4.7"
@@ -6032,7 +6032,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.4"
     "@tanstack/react-query": "npm:5.74.4"
     "@types/gh-pages": "npm:6.1.0"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@typescript-eslint/parser": "npm:8.31.0"
@@ -6108,7 +6108,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.1.4"
     "@tailwindcss/vite": "npm:4.1.4"
     "@tanstack/react-form": "npm:1.6.3"
-    "@types/node": "npm:22.14.1"
+    "@types/node": "npm:22.15.0"
     "@types/react": "npm:19.1.2"
     "@types/react-dom": "npm:19.1.2"
     "@typescript-eslint/parser": "npm:8.31.0"
@@ -10808,12 +10808,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:22.14.1, @types/node@npm:>=13.7.0":
+"@types/node@npm:*, @types/node@npm:>=13.7.0":
   version: 22.14.1
   resolution: "@types/node@npm:22.14.1"
   dependencies:
     undici-types: "npm:~6.21.0"
   checksum: 10/561b1ad98ef5176d6da856ffbbe494f16655149f6a7d561de0423c8784910c81267d7d6459f59d68a97b3cbae9b5996b3b5dfe64f4de3de2239d295dcf4a4dcc
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:22.15.0":
+  version: 22.15.0
+  resolution: "@types/node@npm:22.15.0"
+  dependencies:
+    undici-types: "npm:~6.21.0"
+  checksum: 10/96911bc8bcebd32e96d0d6b46214f5b935e47ff3dac1fc6cf6a5256ebdd01dfecf689a41b3e3a1f35385c3341e0b79e0cf42a6409ce81e6b5fb9b3d7317fedbb
   languageName: node
   linkType: hard
 
