@@ -48,7 +48,7 @@
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@vitejs/plugin-react": "4.4.1",
-        "axios": "1.8.4",
+        "axios": "1.9.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "formik": "2.4.6",

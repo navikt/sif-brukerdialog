@@ -32,7 +32,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@tanstack/react-form": "1.6.3",
-        "axios": "1.8.4",
+        "axios": "1.9.0",
         "clsx": "2.1.1",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
