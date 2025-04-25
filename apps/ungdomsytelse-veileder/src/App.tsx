@@ -16,7 +16,11 @@ import { ToDoProvider } from './dev-components/ToDo/ToDoContext';
 import { getAppEnv } from './utils/appEnv';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 
-initUngDeltakelseOpplyserApiClient();
+initUngDeltakelseOpplyserApiClient({
+    onUnAuthorized: () => {
+        window.location.reload();
+    },
+});
 const queryClient = new QueryClient();
 
 const App = () => {
