@@ -25,7 +25,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "axios": "1.8.4",
+        "axios": "1.9.0",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
@@ -37,7 +37,7 @@
         "mockdate": "3.0.5",
         "react": "19.1.0",
         "react-day-picker": "9.6.7",
-        "react-router-dom": "7.5.1",
+        "react-router-dom": "7.5.2",
         "uuid": "11.1.0"
     },
     "devDependencies": {
@@ -85,7 +85,7 @@
         "storybook": "8.6.12",
         "storybook-addon-mock": "5.0.0",
         "typescript": "5.8.3",
-        "vite": "6.3.2",
+        "vite": "6.3.3",
         "vite-plugin-checker": "0.9.1",
         "vitest": "3.1.2"
     },
