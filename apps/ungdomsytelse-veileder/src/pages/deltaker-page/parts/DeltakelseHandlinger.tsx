@@ -6,8 +6,14 @@ import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeri
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import ToDo from '../../../dev-components/ToDo';
 import { ToDoKeys } from '../../../dev-components/ToDos';
-import { kanEndreSluttdato, kanSletteDeltakelse } from '../../../utils/deltakelseUtils';
+import {
+    getTillattEndringsperiode,
+    kanEndreSluttdato,
+    kanEndreStartdato,
+    kanSletteDeltakelse,
+} from '../../../utils/deltakelseUtils';
 import SlettDeltakelseModal from '../../../components/slett-deltakelse-modal/SlettDeltakelseModal';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 interface Props {
     deltaker: Deltaker;
@@ -27,20 +33,23 @@ const DeltakelseHandlinger = ({ deltakelse, deltaker }: Props) => {
     const handleOnDeltakelseChanged = (deltakelse: Deltakelse) => {
         setEndretDeltakelse(deltakelse);
     };
+    const tillattEndringsperiode = getTillattEndringsperiode(getDateToday());
 
     return (
         <>
             <SectionContainer header="Handlinger">
                 <HStack gap="4">
-                    <Button
-                        variant="primary"
-                        onClick={() => {
-                            setEndretDeltakelse(undefined);
-                            setFormVariant(EndrePeriodeVariant.startdato);
-                        }}>
-                        Endre startdato
-                    </Button>
-                    {kanEndreSluttdato(deltakelse) && (
+                    {kanEndreStartdato(deltakelse, tillattEndringsperiode) && (
+                        <Button
+                            variant="primary"
+                            onClick={() => {
+                                setEndretDeltakelse(undefined);
+                                setFormVariant(EndrePeriodeVariant.startdato);
+                            }}>
+                            Endre startdato
+                        </Button>
+                    )}
+                    {kanEndreSluttdato(deltakelse, tillattEndringsperiode) && (
                         <Button variant="primary" onClick={() => setFormVariant(EndrePeriodeVariant.sluttdato)}>
                             {deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato'}
                         </Button>

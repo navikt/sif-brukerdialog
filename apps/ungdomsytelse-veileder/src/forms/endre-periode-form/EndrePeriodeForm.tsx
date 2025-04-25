@@ -13,7 +13,11 @@ import { useIntl } from 'react-intl';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { GYLDIG_PERIODE } from '../../settings';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import {
+    getStartdatobegrensningForDeltaker,
+    getTillattEndringsperiode,
+    kanEndreStartdato,
+} from '../../utils/deltakelseUtils';
 import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeFormUtils';
 import dayjs from 'dayjs';
 import BekreftEndretStartdatoInfo from './parts/BekreftEndretStartdatoInfo';
@@ -64,8 +68,13 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         getDateToday(),
     );
 
-    if (startdatoMinMax === 'fomFørTom') {
-        return <Alert variant="error">Startdato kan ikke være før sluttdato</Alert>;
+    if (variant === EndrePeriodeVariant.startdato && startdatoMinMax === 'fomFørTom') {
+        return (
+            <Alert variant="info">
+                Deltakers først eller siste mulige innmeldingsdato er utenfor tillatt endringsperiode som er 6 måneder
+                før og etter dagens dato.
+            </Alert>
+        );
     }
 
     const sluttdatoMinMax = {
@@ -87,6 +96,18 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
             },
         );
     };
+
+    if (
+        variant === EndrePeriodeVariant.startdato &&
+        kanEndreStartdato(deltakelse, getTillattEndringsperiode(getDateToday())) === false
+    ) {
+        return (
+            <Alert variant="info">
+                Startdato kan ikke endres. Deltakelse er registrert med startdato{' '}
+                {deltakelse.fraOgMed.toLocaleDateString()}.
+            </Alert>
+        );
+    }
 
     return (
         <FormikWrapper
@@ -114,6 +135,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
 
                 return (
                     <VStack gap="6">
+                        {/* {variant === EndrePeriodeVariant.startdato && <TillattStartdatoInfo deltaker={deltaker} />} */}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
@@ -125,7 +147,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                             showButtonArrows={false}>
                             <VStack gap="6">
                                 <VStack gap="8" className="rounded-xs">
-                                    {variant === EndrePeriodeVariant.startdato ? (
+                                    {variant === EndrePeriodeVariant.startdato && startdatoMinMax !== 'fomFørTom' ? (
                                         <DatePicker
                                             name={FieldNames.fom}
                                             label={`Oppgi startdato:`}

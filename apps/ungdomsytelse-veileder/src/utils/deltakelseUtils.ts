@@ -1,5 +1,5 @@
-import { DateRange } from '@navikt/sif-common-utils';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 /**
@@ -13,8 +13,14 @@ export const getStartdatobegrensningForDeltaker = (
     programperiodeStart: Date,
     today: Date,
 ): DateRange | 'fomFørTom' => {
-    const from = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, programperiodeStart, today);
-    const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, today);
+    const tillattEndringsperiode = getTillattEndringsperiode(today);
+
+    const from = getFørsteMuligeInnmeldingsdato(
+        førsteMuligeInnmeldingsdato,
+        programperiodeStart,
+        tillattEndringsperiode,
+    );
+    const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
 
     if (dayjs(from).isAfter(to)) {
         return 'fomFørTom';
@@ -29,29 +35,36 @@ export const getStartdatobegrensningForDeltaker = (
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
     programperiodeStart: Date,
-    today: Date,
+    tillattEndringsperiode: DateRange,
 ): Date => {
-    const todayJs = dayjs(today);
     return dayjs
-        .max([dayjs(programperiodeStart), dayjs(førsteMuligeInnmeldingsdato), todayJs.subtract(6, 'months')])
+        .max([dayjs(programperiodeStart), dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)])
         .toDate();
 };
 
-export const getSisteMuligeInnmeldingsdato = (sisteMuligeInnmeldingsdato: Date, today: Date): Date => {
-    const todayJs = dayjs(today);
-    return dayjs.min([dayjs(sisteMuligeInnmeldingsdato), todayJs.add(6, 'months')]).toDate();
+/** Tillat periode for endring basert på dagens dato. 6 måned før og etter dagens dato. */
+export const getTillattEndringsperiode = (today: Date): DateRange => ({
+    from: dayjs(today).subtract(6, 'months').toDate(),
+    to: dayjs(today).add(6, 'months').toDate(),
+});
+
+export const getSisteMuligeInnmeldingsdato = (
+    sisteMuligeInnmeldingsdato: Date,
+    tillattEndringsperiode: DateRange,
+): Date => {
+    return dayjs.min([dayjs(sisteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.to)]).toDate();
 };
 
-export const kanEndreSluttdato = (deltakelse: Deltakelse): boolean => {
-    return deltakelse.harSøkt;
+export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
+    return dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, tillattEndringsperiode);
+};
+
+export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
+    return deltakelse.harSøkt && deltakelse.tilOgMed
+        ? dateRangeUtils.isDateInDateRange(deltakelse.tilOgMed, tillattEndringsperiode)
+        : true;
 };
 
 export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
     return !deltakelse.harSøkt;
-};
-
-export const kontrollerDeltakelseOgDeltaker = (deltakelse: Deltakelse, deltaker: Deltaker): string | undefined => {
-    /** Kontroller første og siste innmeldingsdag */
-    console.log({ deltakelse, deltaker });
-    return;
 };
