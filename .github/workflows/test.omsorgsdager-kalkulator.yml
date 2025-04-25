@@ -16,6 +16,9 @@ on:
 env:
     APP_NAME: 'omsorgsdager-kalkulator'
 
+permissions:
+    contents: read
+
 jobs:
     run-script-tests:
         if: "!contains(github.event.head_commit.message, '[ci skip]')"
