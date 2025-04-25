@@ -35,7 +35,7 @@
 
 .deltakerInfoList {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: auto 1fr;
     gap: 0.5rem 1rem;
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@
     }
 }
 @media screen and (max-width: 768px) {
-    .definitionList {
+    .deltakerInfoList {
         grid-template-columns: 1fr;
         line-height: 1.5rem;
         dd {
