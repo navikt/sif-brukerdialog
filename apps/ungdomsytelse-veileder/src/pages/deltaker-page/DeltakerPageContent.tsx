@@ -1,7 +1,8 @@
-import { Alert, Box, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import DeltakelseHandlinger from './parts/DeltakelseHandlinger';
 import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
+import SlettDeltakelseInfo from './parts/SlettDeltakelseInfo';
+import DeltakerInfo from './parts/DeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -38,14 +39,18 @@ const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
 
     return (
         <Box className="pb-8 pt-4">
-            <VStack gap="8">
+            <VStack gap="10">
                 {deltakelse.harSøkt === false ? (
-                    <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                    <HStack>
+                        <Alert variant="info">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                    </HStack>
                 ) : null}
 
-                <DeltakelsePeriodeInfo deltakelse={deltakelse} />
+                <DeltakerInfo deltaker={deltaker} />
 
-                <DeltakelseHandlinger deltakelse={deltakelse} deltaker={deltaker} />
+                <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
+
+                <SlettDeltakelseInfo deltakelse={deltakelse} deltaker={deltaker} />
             </VStack>
         </Box>
     );

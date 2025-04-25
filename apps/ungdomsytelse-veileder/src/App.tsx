@@ -32,7 +32,7 @@ const App = () => {
                         <IntlProvider locale="nb" messages={appMessages.nb}>
                             <VStack gap="4" className="bg-gray-300">
                                 <AppHeader />
-                                <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} className="bg-gray-300">
+                                <Page style={{ minHeight: 'calc(100lvh - 4rem)' }} className="bg-gray-300">
                                     <Routes>
                                         <Route path="" element={<StartPage />}></Route>
                                         <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />

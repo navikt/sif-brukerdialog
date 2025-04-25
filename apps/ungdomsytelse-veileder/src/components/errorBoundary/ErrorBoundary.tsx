@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     render() {
         if (this.state.hasError) {
             return (
-                <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} className="bg-gray-300 p-10">
+                <Page style={{ minHeight: 'calc(100lvh - 4rem)' }} className="bg-gray-300 p-10">
                     <Block margin="xxxl">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">

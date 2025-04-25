@@ -32,3 +32,23 @@
         font-size: 1.4rem;
     }
 }
+
+.definitionList {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Tittel og verdi i to kolonner */
+    gap: 0.5rem 1rem; /* Avstand mellom rader og kolonner */
+    margin: 0;
+    padding: 0;
+
+    dt {
+        margin: 0;
+        line-height: 1.75rem;
+    }
+    dd {
+        margin: 0;
+        font-weight: bolder;
+        line-height: 1.75rem;
+
+        word-wrap: break-word; /* Bryt lange ord */
+    }
+}

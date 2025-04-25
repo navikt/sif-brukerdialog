@@ -84,7 +84,7 @@ export const deltakelseDRMock = {
         id: registrertDeltakerId,
         deltakerIdent: '03867198392',
     },
-    fraOgMed: '2024-01-01',
+    fraOgMed: '2025-01-01',
     harSøkt: true,
     oppgaver: [...oppgaver],
 };

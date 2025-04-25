@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, ConfirmationPanel, List, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker, formaterNavn, isApiErrorObject } from '@navikt/ung-common';
 import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
 import { useState } from 'react';
@@ -7,10 +7,11 @@ import ApiErrorInfo from '../api-error-info/ApiErrorInfo';
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
+    onCancel: () => void;
     onDeltakelseSlettet: () => void;
 }
 
-const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Props) => {
+const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlettet }: Props) => {
     const { error, isPending, mutate } = useSlettDeltakelse(deltaker.id, deltakelse.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
@@ -55,11 +56,14 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onDeltakelseSlettet }: Prop
                             setValidationError(undefined);
                         }}
                     />
-                    <Box>
+                    <HStack gap="4">
                         <Button type="submit" variant="primary" loading={isPending}>
                             Slett deltakelse (kan ikke angres)
                         </Button>
-                    </Box>
+                        <Button type="button" variant="secondary" onClick={onCancel}>
+                            Avbryt
+                        </Button>
+                    </HStack>
                     {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
                 </VStack>
             </form>

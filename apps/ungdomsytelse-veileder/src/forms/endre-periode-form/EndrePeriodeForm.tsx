@@ -134,6 +134,9 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                     tomDato !== undefined &&
                     !dayjs(tomDato).isSame(deltakelse.tilOgMed, 'date');
 
+                const datoErValgt =
+                    (variant === EndrePeriodeVariant.startdato && !!fomDato) ||
+                    (EndrePeriodeVariant.sluttdato && !!tomDato);
                 const datoErEndret = startdatoErEndret || sluttdatoErEndret;
 
                 return (
@@ -198,7 +201,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                         </ConfirmationCheckbox>
                                     ) : null}
 
-                                    {deltakerInformertBesvart && !datoErEndret ? (
+                                    {deltakerInformertBesvart && datoErValgt && !datoErEndret ? (
                                         <Alert variant="warning">Dato er ikke endret fra opprinnelig dato</Alert>
                                     ) : null}
                                 </VStack>

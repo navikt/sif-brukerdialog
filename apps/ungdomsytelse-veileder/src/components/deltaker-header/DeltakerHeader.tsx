@@ -1,7 +1,6 @@
 import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltaker } from '@navikt/ung-common';
-import Fødselsnummer from '../../atoms/Fødselsnummer';
 import PersonNøytral from '../../atoms/PersonNøytral';
 
 interface Props {
@@ -12,19 +11,17 @@ interface Props {
 const DeltakerHeader = ({
     deltaker: {
         navn: { fornavn, etternavn },
-        deltakerIdent: fødselsnummer,
     },
     onLukkDeltaker,
 }: Props) => {
     return (
         <Box className="p-3 bg-deepblue-100 w-full rounded-md rounded-b-none  border-b-2 border-gray-700">
             <HStack gap="6" align="center" justify={'space-between'}>
-                <HStack align={'center'} gap="4">
+                <HStack align={'center'} gap="4" className="nowrap">
                     <PersonNøytral width="2.5rem" height={'2.5rem'} />
                     <BodyShort size="large" weight="semibold">
                         {fornavn} {etternavn}
                     </BodyShort>
-                    <Fødselsnummer fnr={fødselsnummer} copyEnabled={true} />
                 </HStack>
                 <Button
                     variant="tertiary-neutral"

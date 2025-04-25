@@ -45,6 +45,7 @@ const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
                         <SlettDeltakelseForm
                             deltakelse={deltakelse}
                             deltaker={deltaker}
+                            onCancel={onCancel}
                             onDeltakelseSlettet={handleOnDeltakelseSlettet}
                         />
                     )}
