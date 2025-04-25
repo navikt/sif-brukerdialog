@@ -1,11 +1,11 @@
+import { Box, HStack, Page } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
-import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
-import DeltakerPageContent from './DeltakerPageContent';
+import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker';
+import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPageContent from '../error-page/ErrorPageContent';
+import DeltakerPageContent from './DeltakerPageContent';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -58,12 +58,12 @@ const DeltakerPage = () => {
     if (deltakelser && deltaker) {
         return (
             <Page.Block width="xl" gutters={true}>
-                <VStack className="rounded-lg">
+                <Box className="rounded-lg">
                     <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
                     <Box className="bg-white rounded-b-lg p-3 pr-6 pl-6">
                         <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
                     </Box>
-                </VStack>
+                </Box>
             </Page.Block>
         );
     }
