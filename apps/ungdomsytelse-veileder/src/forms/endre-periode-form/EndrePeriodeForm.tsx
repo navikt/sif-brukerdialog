@@ -16,6 +16,7 @@ import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import {
     getStartdatobegrensningForDeltaker,
     getTillattEndringsperiode,
+    kanEndreSluttdato,
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeFormUtils';
@@ -101,12 +102,14 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         variant === EndrePeriodeVariant.startdato &&
         kanEndreStartdato(deltakelse, getTillattEndringsperiode(getDateToday())) === false
     ) {
-        return (
-            <Alert variant="info">
-                Startdato kan ikke endres. Deltakelse er registrert med startdato{' '}
-                {deltakelse.fraOgMed.toLocaleDateString()}.
-            </Alert>
-        );
+        return <Alert variant="info">Startdato kan ikke endres.</Alert>;
+    }
+
+    if (
+        variant === EndrePeriodeVariant.sluttdato &&
+        kanEndreSluttdato(deltakelse, getTillattEndringsperiode(getDateToday())) === false
+    ) {
+        return <Alert variant="info">Sluttdato kan ikke endres.</Alert>;
     }
 
     return (
