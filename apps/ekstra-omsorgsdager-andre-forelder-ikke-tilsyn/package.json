@@ -47,7 +47,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@testing-library/react": "16.3.0",
-        "axios": "1.8.4",
+        "axios": "1.9.0",
         "csp-header": "6.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
@@ -58,7 +58,7 @@
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.5.1"
+        "react-router-dom": "7.5.2"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
@@ -89,7 +89,7 @@
         "rimraf": "6.0.1",
         "storybook": "8.6.12",
         "typescript": "5.8.3",
-        "vite": "6.3.2",
+        "vite": "6.3.3",
         "vite-plugin-checker": "0.9.1",
         "vitest": "3.1.2"
     },
