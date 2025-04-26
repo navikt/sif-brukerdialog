@@ -10,29 +10,17 @@ interface Props {
 }
 
 const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
-    const aktiveDeltakelser = deltakelser;
-
-    if (!deltaker) {
-        return null;
-    }
-
-    if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {
+    if (deltakelser.length === 0) {
         return (
-            <VStack maxWidth="30rem">
-                <Alert variant="warning">Deltaker har flere aktive perioder</Alert>
+            <VStack maxWidth="30rem pb-8 pt-8">
+                <Alert variant="info">Ingen deltakelser funnet</Alert>
             </VStack>
         );
     }
-
-    if (!deltakelser) {
-        return <Box>Ingen deltakelser funnet</Box>;
-    }
-
-    if (deltakelser.length === 0) {
-        return <Box>Ingen deltakelse funnet</Box>;
-    }
     if (deltakelser.length > 1) {
-        return <Box>Kun en deltakelse støttes</Box>;
+        <VStack maxWidth="30rem pb-8 pt-8">
+            <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
+        </VStack>;
     }
 
     const deltakelse = deltakelser[0];
