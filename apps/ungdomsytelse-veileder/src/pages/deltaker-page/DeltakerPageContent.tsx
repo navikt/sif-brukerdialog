@@ -38,7 +38,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
     const deltakelse = deltakelser[0];
 
     return (
-        <Box className="pb-8 pt-4">
+        <Box className="pb-8 pt-8">
             <VStack gap="10">
                 {deltakelse.harSøkt === false ? (
                     <HStack>

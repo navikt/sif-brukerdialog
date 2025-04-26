@@ -78,7 +78,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     };
 
     return (
-        <VStack className="rounded-md bg-gray-50 p-8 pt-8 pb-8 items-center w-full drop-shadow-2xl" maxWidth={'30rem'}>
+        <VStack className="rounded-md bg-white p-8 pt-8 pb-14 items-center w-full drop-shadow-xl" maxWidth={'30rem'}>
             <VStack gap="4" className="hentDeltakerForm w-full">
                 <VStack gap="2">
                     <form onSubmit={handleSubmit}>
@@ -99,7 +99,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                                     />
                                     <Box>
                                         <Button type="submit" variant="primary" loading={isLoading}>
-                                            Hent
+                                            Søk
                                         </Button>
                                     </Box>
                                 </HStack>

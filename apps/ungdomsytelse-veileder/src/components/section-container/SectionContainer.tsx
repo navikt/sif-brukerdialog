@@ -7,7 +7,7 @@ interface Props {
 
 const SectionContainer = ({ header, children }: Props) => {
     return (
-        <VStack gap="3">
+        <VStack gap="4">
             <HGrid columns="1fr auto" align="center">
                 <Heading level="3" size="medium">
                     {header}

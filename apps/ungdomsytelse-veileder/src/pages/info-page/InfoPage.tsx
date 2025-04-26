@@ -7,26 +7,28 @@ const InfoPage = () => {
     const navigate = useNavigate();
 
     return (
-        <Page.Block width="xl" gutters={true} className="pt-10 pb-20 bg-white mb-40 shadow-lg">
-            <VStack gap="8">
-                <HGrid columns={'1fr auto'} className="border-b-2 border-b-gray-500 pb-2">
-                    <Heading size="large" level="1">
-                        Informasjon
-                    </Heading>
-                    <Button
-                        variant="tertiary-neutral"
-                        icon={<XMarkIcon />}
-                        onClick={() => {
-                            navigate('/');
-                        }}>
-                        Lukk informasjon
-                    </Button>
-                </HGrid>
-                <Routes>
-                    <Route path="/*" element={<InfoInnhold />} />
-                </Routes>
-            </VStack>
-        </Page.Block>
+        <Page>
+            <Page.Block width="xl" gutters={true} className="pt-5">
+                <VStack gap="8">
+                    <HGrid columns={'1fr auto'} className="border-b-2 border-b-gray-500 pb-2">
+                        <Heading size="large" level="1">
+                            Informasjon
+                        </Heading>
+                        <Button
+                            variant="tertiary-neutral"
+                            icon={<XMarkIcon />}
+                            onClick={() => {
+                                navigate('/');
+                            }}>
+                            Lukk informasjon
+                        </Button>
+                    </HGrid>
+                    <Routes>
+                        <Route path="/*" element={<InfoInnhold />} />
+                    </Routes>
+                </VStack>
+            </Page.Block>
+        </Page>
     );
 };
 

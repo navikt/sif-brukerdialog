@@ -35,7 +35,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 </Heading>
                 <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <DatoBoks
-                        tittel="Startdato"
+                        tittel="Startdato:"
                         dato={deltakelse.fraOgMed}
                         endre={
                             kanEndreStartdato(deltakelse, tillattEndringsperiode)
@@ -52,7 +52,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     />
 
                     <DatoBoks
-                        tittel="Sluttdato"
+                        tittel="Sluttdato:"
                         dato={deltakelse.tilOgMed}
                         endre={
                             kanEndreSluttdato(deltakelse, tillattEndringsperiode)

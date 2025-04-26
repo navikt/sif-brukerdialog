@@ -6,6 +6,7 @@ import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakerPageContent from './DeltakerPageContent';
+import DeltakerPageFooter from './parts/DeltakerPageFooter';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -37,9 +38,11 @@ const DeltakerPage = () => {
 
     if (deltakerPending || deltakelserPending) {
         return (
-            <HStack paddingBlock={'10'} paddingInline={'6'} justify="center">
-                <LoadingSpinner size="3xlarge" title="Henter deltaker" />
-            </HStack>
+            <Page>
+                <HStack paddingBlock={'10'} paddingInline={'6'} justify="center">
+                    <LoadingSpinner size="3xlarge" title="Henter deltaker" />
+                </HStack>
+            </Page>
         );
     }
 
@@ -47,24 +50,29 @@ const DeltakerPage = () => {
 
     if (error) {
         return (
-            <Page.Block width="xl" gutters={true}>
-                <Box className="bg-white rounded-b-lg p-3">
-                    <ErrorPageContent error={error} />
-                </Box>
-            </Page.Block>
+            <Page>
+                <Page.Block width="xl" gutters={true}>
+                    <Box className="bg-white rounded-b-lg p-3">
+                        <ErrorPageContent error={error} />
+                    </Box>
+                </Page.Block>
+            </Page>
         );
     }
 
     if (deltakelser && deltaker) {
         return (
-            <Page.Block width="xl" gutters={true}>
-                <Box className="rounded-lg">
+            <Page>
+                <Page.Block width="xl" gutters={true} className="pt-7 pb-5 bg-deepblue-100">
                     <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
-                    <Box className="bg-white rounded-b-lg p-3 pr-6 pl-6">
-                        <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
-                    </Box>
-                </Box>
-            </Page.Block>
+                </Page.Block>
+                <Page.Block width="xl" gutters={true}>
+                    <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
+                </Page.Block>
+                <Page.Block width="xl" gutters={true}>
+                    <DeltakerPageFooter />
+                </Page.Block>
+            </Page>
         );
     }
 };

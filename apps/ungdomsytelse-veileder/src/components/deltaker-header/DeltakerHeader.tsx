@@ -1,4 +1,4 @@
-import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Heading, HGrid, Hide, HStack, VStack } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltaker } from '@navikt/ung-common';
 import PersonNøytral from '../../atoms/PersonNøytral';
@@ -15,14 +15,19 @@ const DeltakerHeader = ({
     onLukkDeltaker,
 }: Props) => {
     return (
-        <Box className="p-3 bg-deepblue-100 w-full rounded-md rounded-b-none  border-b-2 border-gray-700">
-            <HStack gap="6" align="center" justify={'space-between'}>
-                <HStack align={'center'} gap="4" className="nowrap">
-                    <PersonNøytral width="2.5rem" height={'2.5rem'} />
-                    <BodyShort size="large" weight="semibold">
+        <HGrid columns="1fr auto">
+            <HStack align={'center'} gap="4" className="nowrap">
+                <Hide below="md">
+                    <PersonNøytral width="3.5rem" height="3.5rem" />
+                </Hide>
+                <VStack gap="0">
+                    <BodyShort size="small">Deltaker</BodyShort>
+                    <Heading level="2" size="medium">
                         {fornavn} {etternavn}
-                    </BodyShort>
-                </HStack>
+                    </Heading>
+                </VStack>
+            </HStack>
+            <Box>
                 <Button
                     variant="tertiary-neutral"
                     onClick={onLukkDeltaker}
@@ -30,8 +35,8 @@ const DeltakerHeader = ({
                     icon={<XMarkIcon aria-hidden={true} />}>
                     Lukk deltaker
                 </Button>
-            </HStack>
-        </Box>
+            </Box>
+        </HGrid>
     );
 };
 

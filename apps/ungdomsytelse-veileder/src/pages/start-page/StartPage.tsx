@@ -1,10 +1,17 @@
-import { HStack } from '@navikt/ds-react';
+import { HStack, Page } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const StartPage = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
+    useEffect(() => {
+        queryClient.resetQueries();
+    }, []);
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
         navigate(`/deltaker/${deltaker.id}`);
@@ -15,14 +22,16 @@ const StartPage = () => {
     };
 
     return (
-        <>
-            <HStack align={'center'} justify={'center'} paddingBlock="20">
-                <FinnDeltakerForm
-                    onDeltakerFetched={handleDeltakerFetched}
-                    onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                />
-            </HStack>
-        </>
+        <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} className="bg-deepblue-50">
+            <Page.Block gutters={true}>
+                <HStack align={'center'} justify={'center'} paddingBlock="20">
+                    <FinnDeltakerForm
+                        onDeltakerFetched={handleDeltakerFetched}
+                        onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                    />
+                </HStack>
+            </Page.Block>
+        </Page>
     );
 };
 
