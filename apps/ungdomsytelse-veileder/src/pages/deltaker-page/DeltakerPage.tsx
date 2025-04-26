@@ -65,7 +65,7 @@ const DeltakerPage = () => {
     if (deltakelser && deltaker) {
         return (
             <Page>
-                <BoxNew background="info-moderateA">
+                <BoxNew background="neutral-moderate">
                     <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                         <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
                     </Page.Block>

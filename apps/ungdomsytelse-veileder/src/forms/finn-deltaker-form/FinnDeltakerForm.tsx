@@ -79,7 +79,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
     return (
         <BoxNew
-            background="info-moderate"
+            background="neutral-moderate"
             borderRadius="medium"
             shadow="dialog"
             className="p-8 pt-8 pb-14 items-center w-full"
