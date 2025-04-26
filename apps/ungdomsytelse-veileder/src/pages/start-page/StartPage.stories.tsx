@@ -8,7 +8,7 @@ import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
 import { nyDeltakerMock } from '../../../mock/msw/mocks/mockUtils';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
-import { ToDoProvider } from '../../dev-components/ToDo/ToDoContext';
+import { DevProvider } from '../../dev-components/dev-context/DevContext';
 
 const meta: Meta<typeof StartPage> = {
     component: StartPage,
@@ -21,9 +21,9 @@ const meta: Meta<typeof StartPage> = {
         withVeilederContext,
         withQueryClientProvider,
         (Story) => (
-            <ToDoProvider>
+            <DevProvider>
                 <Story />
-            </ToDoProvider>
+            </DevProvider>
         ),
     ],
 };

@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Alert, Box, BoxNew, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
 import {
@@ -78,7 +78,11 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     };
 
     return (
-        <VStack className="rounded-md bg-white p-8 pt-8 pb-14 items-center w-full drop-shadow-xl" maxWidth={'30rem'}>
+        <BoxNew
+            background="accent-soft"
+            borderRadius={'medium'}
+            className="p-8 pt-8 pb-14 items-center w-full drop-shadow-xl"
+            maxWidth={'30rem'}>
             <VStack gap="4" className="hentDeltakerForm w-full">
                 <VStack gap="2">
                     <form onSubmit={handleSubmit}>
@@ -132,7 +136,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                 ) : null}
                 <DevUserList />
             </VStack>
-        </VStack>
+        </BoxNew>
     );
 };
 

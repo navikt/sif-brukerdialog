@@ -1,10 +1,12 @@
-import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
+import { ActionMenu, Box, InternalHeader, Spacer, Switch } from '@navikt/ds-react';
 import { useVeileder } from '../../context/VeilederContext';
 import { InformationSquareIcon, MenuGridIcon, PersonIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
+import { useDevContext } from '../../dev-components/dev-context/DevContext';
 
 const AppHeader = () => {
     const { veileder } = useVeileder();
+    const { setDarkMode, darkMode } = useDevContext();
 
     const navigate = useNavigate();
 
@@ -12,6 +14,11 @@ const AppHeader = () => {
         <InternalHeader>
             <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
             <Spacer />
+            <Box marginBlock={'2 0'} paddingInline={'5'}>
+                <Switch checked={darkMode} size="small" onChange={(e) => setDarkMode(e.target.checked)}>
+                    <span style={{ fontSize: '0.8rem' }}>Dark mode</span>
+                </Switch>
+            </Box>
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button>

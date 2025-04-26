@@ -1,4 +1,3 @@
-import { Theme } from '@navikt/ds-react/Theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
 import { Route, Routes } from 'react-router-dom';
@@ -7,7 +6,7 @@ import AppHeader from './components/app-header/AppHeader';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { VeilederProvider } from './context/VeilederContext';
 import DevFooter from './dev-components/DevFooter';
-import { ToDoProvider } from './dev-components/ToDo/ToDoContext';
+import { DevProvider } from './dev-components/dev-context/DevContext';
 import { appMessages } from './i18n';
 import DeltakerPage from './pages/deltaker-page/DeltakerPage';
 import InfoPage from './pages/info-page/InfoPage';
@@ -26,26 +25,24 @@ const queryClient = new QueryClient();
 
 const App = () => {
     return (
-        <Theme theme="light">
+        <DevProvider>
             <VeilederProvider>
-                <ToDoProvider>
-                    <ErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
-                        <QueryClientProvider client={queryClient}>
-                            <IntlProvider locale="nb" messages={appMessages.nb}>
-                                <AppHeader />
-                                <Routes>
-                                    <Route path="" element={<StartPage />}></Route>
-                                    <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
-                                    <Route path="informasjon/*" element={<InfoPage />} />
-                                    <Route path="*" element={<NotFoundPage />} />
-                                </Routes>
-                            </IntlProvider>
-                        </QueryClientProvider>
-                    </ErrorBoundary>
-                    {getAppEnv()['ENV'] === 'development' ? <DevFooter /> : null}
-                </ToDoProvider>
+                <ErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
+                    <QueryClientProvider client={queryClient}>
+                        <IntlProvider locale="nb" messages={appMessages.nb}>
+                            <AppHeader />
+                            <Routes>
+                                <Route path="" element={<StartPage />}></Route>
+                                <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
+                                <Route path="informasjon/*" element={<InfoPage />} />
+                                <Route path="*" element={<NotFoundPage />} />
+                            </Routes>
+                        </IntlProvider>
+                    </QueryClientProvider>
+                </ErrorBoundary>
+                {getAppEnv()['ENV'] === 'development' ? <DevFooter /> : null}
             </VeilederProvider>
-        </Theme>
+        </DevProvider>
     );
 };
 

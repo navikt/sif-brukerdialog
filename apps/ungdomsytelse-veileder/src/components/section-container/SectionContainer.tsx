@@ -1,4 +1,4 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { BoxNew, Heading, HGrid, VStack } from '@navikt/ds-react';
 
 interface Props {
     children: React.ReactNode;
@@ -13,9 +13,9 @@ const SectionContainer = ({ header, children }: Props) => {
                     {header}
                 </Heading>
             </HGrid>
-            <VStack className="bg-gray-50 p-5 rounded-md" gap="4">
-                {children}
-            </VStack>
+            <BoxNew background="info-soft" padding="5" borderRadius={'medium'}>
+                <VStack gap="4">{children}</VStack>
+            </BoxNew>
         </VStack>
     );
 };

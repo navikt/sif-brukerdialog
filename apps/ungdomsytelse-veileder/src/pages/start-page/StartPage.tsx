@@ -1,4 +1,4 @@
-import { HStack, Page } from '@navikt/ds-react';
+import { BoxNew, HStack, Page } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
@@ -22,16 +22,18 @@ const StartPage = () => {
     };
 
     return (
-        <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} className="bg-deepblue-50">
-            <Page.Block gutters={true}>
-                <HStack align={'center'} justify={'center'} paddingBlock="20">
-                    <FinnDeltakerForm
-                        onDeltakerFetched={handleDeltakerFetched}
-                        onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                    />
-                </HStack>
-            </Page.Block>
-        </Page>
+        <BoxNew background="default">
+            <Page style={{ minHeight: 'calc(100lvh - 3rem)' }}>
+                <Page.Block gutters={true}>
+                    <HStack align={'center'} justify={'center'} paddingBlock="20">
+                        <FinnDeltakerForm
+                            onDeltakerFetched={handleDeltakerFetched}
+                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                        />
+                    </HStack>
+                </Page.Block>
+            </Page>
+        </BoxNew>
     );
 };
 

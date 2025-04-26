@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, Heading, HGrid, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, BoxNew, Button, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
@@ -94,25 +94,27 @@ interface DatoBoksProps {
 
 const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
     return (
-        <VStack className="bg-gray-50 p-5 rounded-md" gap="1">
-            <Heading level="3" size="xsmall">
-                <BodyShort as="span">{tittel}</BodyShort>
-            </Heading>
-            <BodyShort size="large" weight="semibold" className="text-2xl capitalize" spacing>
-                {dato ? dateFormatter.dayCompactDate(dato) : '-'}
-            </BodyShort>
-            {endre ? (
-                <Box>
-                    <Button variant="primary" size="small" icon={<PencilFillIcon />} onClick={endre.onClick}>
-                        {endre.label}
-                    </Button>
-                </Box>
-            ) : (
-                <Alert variant="info" inline>
-                    {kanIkkeEndreTekst}
-                </Alert>
-            )}
-        </VStack>
+        <BoxNew background="info-soft" padding="5" borderRadius={'medium'}>
+            <VStack gap="1">
+                <Heading level="3" size="xsmall">
+                    <BodyShort as="span">{tittel}</BodyShort>
+                </Heading>
+                <BodyShort size="large" weight="semibold" className="text-2xl capitalize" spacing>
+                    {dato ? dateFormatter.dayCompactDate(dato) : '-'}
+                </BodyShort>
+                {endre ? (
+                    <Box>
+                        <Button variant="primary" size="small" icon={<PencilFillIcon />} onClick={endre.onClick}>
+                            {endre.label}
+                        </Button>
+                    </Box>
+                ) : (
+                    <Alert variant="info" inline>
+                        {kanIkkeEndreTekst}
+                    </Alert>
+                )}
+            </VStack>
+        </BoxNew>
     );
 };
 

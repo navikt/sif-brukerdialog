@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Box, Button, HGrid, Popover, VStack } from '@navikt/ds-react';
 import { getToDo, ToDoKeys } from './ToDos';
-import { useToDoContext } from './ToDo/ToDoContext';
+import { useDevContext } from './dev-context/DevContext';
 import { useRef, useState } from 'react';
 import { CheckmarkCircleFillIcon, CircleIcon, QuestionmarkCircleFillIcon } from '@navikt/aksel-icons';
 
@@ -9,11 +9,11 @@ interface Props {
 }
 
 const ToDo = ({ id }: Props) => {
-    const { isToDosVisible } = useToDoContext();
+    const { todosVisible: isTodosVisible } = useDevContext();
     const triggerRef = useRef<HTMLButtonElement>(null);
-    const [isOpen, setIsOpen] = useState<boolean>(isToDosVisible);
+    const [isOpen, setIsOpen] = useState<boolean>(isTodosVisible);
 
-    if (!isToDosVisible) {
+    if (!isTodosVisible) {
         return null;
     }
 

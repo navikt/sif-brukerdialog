@@ -1,4 +1,4 @@
-import { Box, HStack, Page } from '@navikt/ds-react';
+import { BoxNew, HStack, Page } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
@@ -52,9 +52,9 @@ const DeltakerPage = () => {
         return (
             <Page>
                 <Page.Block width="xl" gutters={true}>
-                    <Box className="bg-white rounded-b-lg p-3">
+                    <BoxNew background="info-moderateA" borderRadius={'medium'} marginBlock={'3'}>
                         <ErrorPageContent error={error} />
-                    </Box>
+                    </BoxNew>
                 </Page.Block>
             </Page>
         );
@@ -63,9 +63,11 @@ const DeltakerPage = () => {
     if (deltakelser && deltaker) {
         return (
             <Page>
-                <Page.Block width="xl" gutters={true} className="pt-7 pb-5 bg-deepblue-100">
-                    <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
-                </Page.Block>
+                <BoxNew background="info-moderateA">
+                    <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
+                        <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
+                    </Page.Block>
+                </BoxNew>
                 <Page.Block width="xl" gutters={true}>
                     <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
                 </Page.Block>
