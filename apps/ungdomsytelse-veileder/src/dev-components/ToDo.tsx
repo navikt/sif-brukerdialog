@@ -49,7 +49,7 @@ const ToDo = ({ id }: Props) => {
                     {comment && comment.length > 0 && (
                         <VStack gap="2" className="mt-2 pt-2 mb-2">
                             {comment.map((c, index) => (
-                                <HGrid columns={'1.5rem auto'} gap="2" key={index}>
+                                <HGrid columns="1.5rem auto" gap="2" key={index}>
                                     {typeof c === 'string' ? (
                                         <>
                                             <CircleIcon />
@@ -59,8 +59,8 @@ const ToDo = ({ id }: Props) => {
                                         <>
                                             {c.type === 'checked' ? (
                                                 <CheckmarkCircleFillIcon
-                                                    width={'1.5rem'}
-                                                    height={'1.5rem'}
+                                                    width="1.5rem"
+                                                    height="1.5rem"
                                                     color="#06893A"
                                                 />
                                             ) : (

@@ -1,6 +1,6 @@
-import { ActionMenu, Box, InternalHeader, Spacer, Switch } from '@navikt/ds-react';
+import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 import { useVeileder } from '../../context/VeilederContext';
-import { InformationSquareIcon, MenuGridIcon, PersonIcon } from '@navikt/aksel-icons';
+import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
 import { useDevContext } from '../../dev-components/dev-context/DevContext';
 
@@ -14,11 +14,13 @@ const AppHeader = () => {
         <InternalHeader>
             <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
             <Spacer />
-            <Box marginBlock={'2 0'} paddingInline={'5'}>
-                <Switch checked={darkMode} size="small" onChange={(e) => setDarkMode(e.target.checked)}>
-                    <span style={{ fontSize: '0.8rem' }}>Dark mode</span>
-                </Switch>
-            </Box>
+            <InternalHeader.Button
+                onClick={(e) => {
+                    e.preventDefault();
+                    setDarkMode(!darkMode);
+                }}>
+                {darkMode ? <MoonFillIcon /> : <SunFillIcon />}
+            </InternalHeader.Button>
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button>

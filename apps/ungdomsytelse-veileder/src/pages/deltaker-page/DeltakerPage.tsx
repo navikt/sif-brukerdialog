@@ -24,12 +24,14 @@ const DeltakerPage = () => {
         data: deltaker,
         isLoading: deltakerPending,
         error: deltakerError,
+        // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useRegistrertDeltaker(deltakerId || '');
 
     const {
         data: deltakelser,
         isLoading: deltakelserPending,
         error: deltakelserError,
+        // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useDeltakelserForDeltaker(deltakerId || '');
 
     const closeDeltaker = () => {
@@ -39,7 +41,7 @@ const DeltakerPage = () => {
     if (deltakerPending || deltakelserPending) {
         return (
             <Page>
-                <HStack paddingBlock={'10'} paddingInline={'6'} justify="center">
+                <HStack paddingBlock="10" paddingInline="6" justify="center">
                     <LoadingSpinner size="3xlarge" title="Henter deltaker" />
                 </HStack>
             </Page>
@@ -52,7 +54,7 @@ const DeltakerPage = () => {
         return (
             <Page>
                 <Page.Block width="xl" gutters={true}>
-                    <BoxNew background="info-moderateA" borderRadius={'medium'} marginBlock={'3'}>
+                    <BoxNew background="info-moderateA" borderRadius="medium" marginBlock="3">
                         <ErrorPageContent error={error} />
                     </BoxNew>
                 </Page.Block>

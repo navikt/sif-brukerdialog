@@ -80,15 +80,16 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     return (
         <BoxNew
             background="accent-soft"
-            borderRadius={'medium'}
-            className="p-8 pt-8 pb-14 items-center w-full drop-shadow-xl"
-            maxWidth={'30rem'}>
+            borderRadius="medium"
+            shadow="dialog"
+            className="p-8 pt-8 pb-14 items-center w-full"
+            maxWidth="30rem">
             <VStack gap="4" className="hentDeltakerForm w-full">
                 <VStack gap="2">
                     <form onSubmit={handleSubmit}>
                         <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
-                            <HStack gap="2" align={'end'} paddingBlock="2 0">
-                                <HStack gap="2" align={'end'} paddingBlock="2 0">
+                            <HStack gap="2" align="end" paddingBlock="2 0">
+                                <HStack gap="2" align="end" paddingBlock="2 0">
                                     <TextField
                                         name="fnr"
                                         value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}

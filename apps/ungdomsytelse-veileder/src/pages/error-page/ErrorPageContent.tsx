@@ -20,7 +20,7 @@ const ErrorPageContent = ({ error }: Props) => {
                                 Beklager, noe gikk galt.
                             </Heading>
                             {error && error !== null ? (
-                                <Box marginBlock={'4'}>
+                                <Box marginBlock="4">
                                     <Alert variant="error">
                                         <ApiErrorInfo apiError={error} />
                                     </Alert>

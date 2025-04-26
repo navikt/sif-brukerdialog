@@ -18,7 +18,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
 
     if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {
         return (
-            <VStack maxWidth={'30rem'}>
+            <VStack maxWidth="30rem">
                 <Alert variant="warning">Deltaker har flere aktive perioder</Alert>
             </VStack>
         );

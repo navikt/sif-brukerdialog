@@ -31,7 +31,7 @@ const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
             open={true}
             onClose={deltakelseSlettet ? gåTilForsiden : onCancel}
             aria-labelledby="slett-modal-heading"
-            width={'medium'}>
+            width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
                     Slett deltakelse

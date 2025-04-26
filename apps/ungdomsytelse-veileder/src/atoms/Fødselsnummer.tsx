@@ -7,10 +7,10 @@ interface Props {
 }
 
 const Fødselsnummer = ({ fnr, copyEnabled }: Props) => (
-    <HStack gap="1" align={'center'}>
+    <HStack gap="1" align="center">
         {fødselsnummerFormatter.applyFormat(fnr)}
         {copyEnabled ? (
-            <Bleed marginBlock={'3 2'}>
+            <Bleed marginBlock="3 2">
                 <CopyButton size="small" copyText={fnr} />
             </Bleed>
         ) : null}

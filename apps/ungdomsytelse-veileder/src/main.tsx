@@ -16,7 +16,7 @@ async function enableMocking() {
 enableMocking().then(() =>
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
-            <BrowserRouter basename={'/'}>
+            <BrowserRouter basename="/">
                 <App />
             </BrowserRouter>
         </StrictMode>,

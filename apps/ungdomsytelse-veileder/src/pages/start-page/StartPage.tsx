@@ -25,7 +25,7 @@ const StartPage = () => {
         <BoxNew background="default">
             <Page style={{ minHeight: 'calc(100lvh - 3rem)' }}>
                 <Page.Block gutters={true}>
-                    <HStack align={'center'} justify={'center'} paddingBlock="20">
+                    <HStack align="center" justify="center" paddingBlock="20">
                         <FinnDeltakerForm
                             onDeltakerFetched={handleDeltakerFetched}
                             onDeltakelseRegistrert={handleDeltakelseRegistrert}

@@ -24,10 +24,10 @@ const DeltakerKort = ({
     const alder = dayjs().diff(dayjs(fødselsdato), 'year');
 
     return (
-        <Box className="rounded-md bg-surface-default p-4 items-center w-full">
-            <HGrid columns={'4.5rem auto 2rem'} align={'start'} gap="4">
-                <PersonNøytral width="4.5rem" height={'4.5rem'} />
-                <VStack gap="2" flexGrow={'2'}>
+        <Box.New className="rounded-md p-4 items-center w-full" background="accent-moderateA">
+            <HGrid columns="4.5rem auto 2rem" align="start" gap="4">
+                <PersonNøytral width="4.5rem" height="4.5rem" />
+                <VStack gap="2" flexGrow="2">
                     <VStack>
                         <BodyShort size="medium" weight="semibold">
                             {etternavn}, {mellomnavn} {fornavn}
@@ -59,7 +59,7 @@ const DeltakerKort = ({
                     </Bleed>
                 ) : null}
             </HGrid>
-        </Box>
+        </Box.New>
     );
 };
 export const DeltakerKortSkeleton = () => (

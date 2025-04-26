@@ -21,8 +21,8 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
         setEndretDeltakelse(undefined);
     };
 
-    const handleOnDeltakelseChanged = (deltakelse: Deltakelse) => {
-        setEndretDeltakelse(deltakelse);
+    const handleOnDeltakelseChanged = (d: Deltakelse) => {
+        setEndretDeltakelse(d);
     };
 
     const tillattEndringsperiode = getTillattEndringsperiode(getDateToday());
@@ -94,7 +94,7 @@ interface DatoBoksProps {
 
 const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
     return (
-        <BoxNew background="info-soft" padding="5" borderRadius={'medium'}>
+        <BoxNew background="info-soft" padding="5" borderRadius="medium">
             <VStack gap="1">
                 <Heading level="3" size="xsmall">
                     <BodyShort as="span">{tittel}</BodyShort>

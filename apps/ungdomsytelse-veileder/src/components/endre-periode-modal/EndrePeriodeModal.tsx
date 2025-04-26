@@ -21,7 +21,7 @@ const EndrePeriodeModal = ({
     deltakelseChanged,
 }: Props) => {
     return (
-        <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width={'medium'}>
+        <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width="medium">
             <Modal.Header closeButton={!!deltakelseChanged}>
                 <Heading level="1" size="large" id="oppgave-modal-heading">
                     {getModalHeader(variant, deltakelse)}

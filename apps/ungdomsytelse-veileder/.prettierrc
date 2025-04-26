@@ -7,6 +7,5 @@
     "singleQuote": true,
     "jsxSingleQuote": false,
     "printWidth": 120,
-    "ordered-imports": false,
-    "jsx-quotes": ["error", "prefer-double"]
+    "ordered-imports": false
 }

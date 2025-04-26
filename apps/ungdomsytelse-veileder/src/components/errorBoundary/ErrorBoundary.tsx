@@ -26,6 +26,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
+            // eslint-disable-next-line no-console
             console.error(errorInfo);
             // if (this.props.appKey) {
             //     getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
@@ -51,7 +52,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                             </Heading>
 
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
-                            <Box marginBlock={'4 0'}>
+                            <Box marginBlock="4 0">
                                 {this.props.onResetSoknad && (
                                     <Button
                                         type="button"

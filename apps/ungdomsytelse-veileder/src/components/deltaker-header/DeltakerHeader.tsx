@@ -16,7 +16,7 @@ const DeltakerHeader = ({
 }: Props) => {
     return (
         <HGrid columns="1fr auto">
-            <HStack align={'center'} gap="4" className="nowrap">
+            <HStack align="center" gap="4" className="nowrap">
                 <Hide below="md">
                     <PersonNøytral width="3.5rem" height="3.5rem" />
                 </Hide>
