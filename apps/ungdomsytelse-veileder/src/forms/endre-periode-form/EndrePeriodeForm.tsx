@@ -6,7 +6,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
 import { max } from 'date-fns';
 import { useIntl } from 'react-intl';
@@ -156,7 +156,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                     {variant === EndrePeriodeVariant.startdato && startdatoMinMax !== 'fomFørTom' ? (
                                         <DatePicker
                                             name={FieldNames.fom}
-                                            label={`Oppgi startdato:`}
+                                            label="Oppgi startdato:"
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
@@ -165,7 +165,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                     ) : (
                                         <DatePicker
                                             name={FieldNames.tom}
-                                            label={`Oppgi sluttdato:`}
+                                            label="Oppgi sluttdato:"
                                             minDate={sluttdatoMinMax.from}
                                             maxDate={sluttdatoMinMax.to}
                                             defaultMonth={deltakelse.tilOgMed}
@@ -182,8 +182,8 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                     {deltakerInformertBesvart && datoErEndret ? (
                                         <ConfirmationCheckbox
                                             name={FieldNames.bekrefterEndring}
-                                            label={`Dette er riktig`}
-                                            validate={getRequiredFieldValidator()}>
+                                            label="Dette er riktig"
+                                            validate={getCheckedValidator()}>
                                             {variant === EndrePeriodeVariant.startdato && fomDato ? (
                                                 <BekreftEndretStartdatoInfo
                                                     deltakernavn={deltakernavn}

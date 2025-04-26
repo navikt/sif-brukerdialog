@@ -94,7 +94,7 @@ interface DatoBoksProps {
 
 const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
     return (
-        <BoxNew background="info-soft" padding="5" borderRadius="medium">
+        <BoxNew background="info-moderate" padding="5" borderRadius="medium">
             <VStack gap="1">
                 <Heading level="3" size="xsmall">
                     <BodyShort as="span">{tittel}</BodyShort>

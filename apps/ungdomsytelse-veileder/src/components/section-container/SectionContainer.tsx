@@ -13,7 +13,7 @@ const SectionContainer = ({ header, children }: Props) => {
                     {header}
                 </Heading>
             </HGrid>
-            <BoxNew background="info-soft" padding="5" borderRadius="medium">
+            <BoxNew background="info-moderate" padding="5" borderRadius="medium">
                 <VStack gap="4">{children}</VStack>
             </BoxNew>
         </VStack>

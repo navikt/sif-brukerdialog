@@ -42,7 +42,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
             <VStack gap="10">
                 {deltakelse.harSøkt === false ? (
                     <HStack>
-                        <Alert variant="info">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                        <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
                 ) : null}
 

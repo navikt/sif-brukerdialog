@@ -24,7 +24,11 @@ const DeltakerKort = ({
     const alder = dayjs().diff(dayjs(fødselsdato), 'year');
 
     return (
-        <Box.New className="rounded-md p-4 items-center w-full" background="accent-moderateA">
+        <Box.New
+            className="rounded-md p-4 items-center w-full"
+            background="info-soft"
+            borderColor="info-subtle"
+            borderWidth="2">
             <HGrid columns="4.5rem auto 2rem" align="start" gap="4">
                 <PersonNøytral width="4.5rem" height="4.5rem" />
                 <VStack gap="2" flexGrow="2">

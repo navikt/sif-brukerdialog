@@ -4,7 +4,7 @@ const nb = {
         'Du må oppgi startdatoen i et gyldig format. Gyldig format er dd.mm.åååå.',
     'meldInnDeltakerForm.startDato.dateIsAfterMax': 'Startdatoen kan ikke være etter {max}.',
     'meldInnDeltakerForm.startDato.dateIsBeforeMin': 'Startdatoen kan ikke være før {min}.',
-    'meldInnDeltakerForm.bekreftRegistrering.notChecked': 'Du må bekrefte deltakselsen',
+    'meldInnDeltakerForm.bekreftRegistrering.notChecked': 'Du må bekrefte deltakelsen',
 };
 export const meldInnDeltakerFormMessages = {
     nb,
