@@ -47,6 +47,7 @@
         "react-markdown": "10.1.0",
         "react-router-dom": "7.5.2",
         "remark-gfm": "4.0.1",
+        "uuid": "11.1.0",
         "zod": "3.24.3"
     },
     "devDependencies": {

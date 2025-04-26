@@ -1,8 +1,9 @@
-import { Box, Button, Heading, Page } from '@navikt/ds-react';
+import { Box, Button, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 // import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import AppPage from '../app-page/AppPage';
 
 interface State {
     eventId: string | null;
@@ -44,7 +45,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     render() {
         if (this.state.hasError) {
             return (
-                <Page style={{ minHeight: 'calc(100lvh - 4rem)' }} className="bg-gray-300 p-10">
+                <AppPage>
                     <Block margin="xxxl">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
@@ -66,7 +67,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                             </Box>
                         </SifGuidePanel>
                     </Block>
-                </Page>
+                </AppPage>
             );
         }
         return this.props.children;

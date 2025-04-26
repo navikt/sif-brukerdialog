@@ -6132,6 +6132,7 @@ __metadata:
     tailwindcss: "npm:4.1.4"
     typescript: "npm:5.8.3"
     typescript-eslint: "npm:8.31.0"
+    uuid: "npm:11.1.0"
     vite: "npm:6.3.3"
     vite-plugin-checker: "npm:0.9.1"
     vitest: "npm:3.1.2"

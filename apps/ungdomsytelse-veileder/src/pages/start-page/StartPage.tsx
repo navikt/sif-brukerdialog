@@ -4,6 +4,8 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import BorderBox from '../../components/border-box/BorderBox';
+import AppPage from '../../components/app-page/AppPage';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -22,17 +24,19 @@ const StartPage = () => {
     };
 
     return (
-        <BoxNew background="neutral-strong">
-            <Page style={{ minHeight: 'calc(100lvh - 3rem)' }}>
+        <BoxNew background="default" paddingBlock="0">
+            <AppPage>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="20">
-                        <FinnDeltakerForm
-                            onDeltakerFetched={handleDeltakerFetched}
-                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                        />
+                        <BorderBox className="p-8 pt-8 pb-14 items-center w-full" maxWidth="30rem">
+                            <FinnDeltakerForm
+                                onDeltakerFetched={handleDeltakerFetched}
+                                onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                            />
+                        </BorderBox>
                     </HStack>
                 </Page.Block>
-            </Page>
+            </AppPage>
         </BoxNew>
     );
 };

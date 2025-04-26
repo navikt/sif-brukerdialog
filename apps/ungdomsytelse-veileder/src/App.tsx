@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import AppHeader from './components/app-header/AppHeader';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
@@ -31,6 +31,7 @@ const App = () => {
                             <AppHeader />
                             <Routes>
                                 <Route path="" element={<StartPage />}></Route>
+                                <Route path="deltaker/" element={<Navigate to="/" />} />
                                 <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
                                 <Route path="informasjon/*" element={<InfoPage />} />
                                 <Route path="*" element={<NotFoundPage />} />

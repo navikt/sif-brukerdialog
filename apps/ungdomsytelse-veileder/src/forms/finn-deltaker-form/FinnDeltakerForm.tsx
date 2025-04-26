@@ -1,4 +1,4 @@
-import { Alert, Box, BoxNew, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
 import {
@@ -78,68 +78,59 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     };
 
     return (
-        <BoxNew
-            background="neutral-moderate"
-            borderRadius="xlarge"
-            shadow="dialog"
-            // borderColor="neutral-subtle"
-            // borderWidth="2"
-            className="p-8 pt-8 pb-14 items-center w-full"
-            maxWidth="30rem">
-            <VStack gap="4" className="hentDeltakerForm w-full">
-                <VStack gap="2">
-                    <form onSubmit={handleSubmit}>
-                        <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
+        <VStack gap="4" className="hentDeltakerForm w-full">
+            <VStack gap="2">
+                <form onSubmit={handleSubmit}>
+                    <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
+                        <HStack gap="2" align="end" paddingBlock="2 0">
                             <HStack gap="2" align="end" paddingBlock="2 0">
-                                <HStack gap="2" align="end" paddingBlock="2 0">
-                                    <TextField
-                                        name="fnr"
-                                        value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
-                                        label="Fødselsnummer/d-nummer:"
-                                        onChange={(evt) => {
-                                            setFnrValue(evt.target.value);
-                                            setNyDeltaker(undefined);
-                                        }}
-                                        size="medium"
-                                        maxLength={11}
-                                        {...textFieldFormatterProps}
-                                    />
-                                    <Box>
-                                        <Button type="submit" variant="primary" loading={isLoading}>
-                                            Søk
-                                        </Button>
-                                    </Box>
-                                </HStack>
+                                <TextField
+                                    name="fnr"
+                                    value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
+                                    label="Fødselsnummer/d-nummer:"
+                                    onChange={(evt) => {
+                                        setFnrValue(evt.target.value);
+                                        setNyDeltaker(undefined);
+                                    }}
+                                    size="medium"
+                                    maxLength={11}
+                                    {...textFieldFormatterProps}
+                                />
+                                <Box>
+                                    <Button type="submit" variant="primary" loading={isLoading}>
+                                        Søk
+                                    </Button>
+                                </Box>
                             </HStack>
-                        </Fieldset>
-                    </form>
-                    {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
-                </VStack>
-
-                {nyDeltaker ? (
-                    <VStack gap="2">
-                        <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
-
-                        <Checkbox
-                            checked={visRegistrerNySkjema}
-                            onChange={(evt) => setVisRegistrerNySkjema(evt.target.checked)}>
-                            Registrer som ny deltaker
-                        </Checkbox>
-                    </VStack>
-                ) : null}
-
-                {visRegistrerNySkjema && nyDeltaker ? (
-                    <MeldInnDeltakerForm
-                        deltaker={nyDeltaker}
-                        onCancel={() => {
-                            setVisRegistrerNySkjema(false);
-                        }}
-                        onDeltakelseRegistrert={onDeltakelseRegistrert}
-                    />
-                ) : null}
-                <DevUserList />
+                        </HStack>
+                    </Fieldset>
+                </form>
+                {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
             </VStack>
-        </BoxNew>
+
+            {nyDeltaker ? (
+                <VStack gap="2">
+                    <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
+
+                    <Checkbox
+                        checked={visRegistrerNySkjema}
+                        onChange={(evt) => setVisRegistrerNySkjema(evt.target.checked)}>
+                        Registrer som ny deltaker
+                    </Checkbox>
+                </VStack>
+            ) : null}
+
+            {visRegistrerNySkjema && nyDeltaker ? (
+                <MeldInnDeltakerForm
+                    deltaker={nyDeltaker}
+                    onCancel={() => {
+                        setVisRegistrerNySkjema(false);
+                    }}
+                    onDeltakelseRegistrert={onDeltakelseRegistrert}
+                />
+            ) : null}
+            <DevUserList />
+        </VStack>
     );
 };
 

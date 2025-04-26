@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { delay, http, HttpResponse } from 'msw';
 import {
