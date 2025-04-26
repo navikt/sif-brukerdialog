@@ -1,12 +1,12 @@
+import { ThemeProvider } from '../../src/context/ThemeContext';
 import { VeilederProvider } from '../../src/context/VeilederContext';
-import { DevProvider } from '../../src/dev-components/dev-context/DevContext';
 
 export const withVeilederContext = (Story) => {
     return (
         <VeilederProvider>
-            <DevProvider>
+            <ThemeProvider>
                 <Story />
-            </DevProvider>
+            </ThemeProvider>
         </VeilederProvider>
     );
 };

@@ -5,16 +5,14 @@ import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import AppHeader from './components/app-header/AppHeader';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { VeilederProvider } from './context/VeilederContext';
-import DevFooter from './dev-components/DevFooter';
-import { DevProvider } from './dev-components/dev-context/DevContext';
 import { appMessages } from './i18n';
 import DeltakerPage from './pages/deltaker-page/DeltakerPage';
 import InfoPage from './pages/info-page/InfoPage';
 import NotFoundPage from './pages/page-not-found/PageNotFound';
 import StartPage from './pages/start-page/StartPage';
-import { getAppEnv } from './utils/appEnv';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import { ThemeProvider } from './context/ThemeContext';
 
 initUngDeltakelseOpplyserApiClient({
     onUnAuthorized: () => {
@@ -25,7 +23,7 @@ const queryClient = new QueryClient();
 
 const App = () => {
     return (
-        <DevProvider>
+        <ThemeProvider>
             <VeilederProvider>
                 <ErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
                     <QueryClientProvider client={queryClient}>
@@ -40,9 +38,8 @@ const App = () => {
                         </IntlProvider>
                     </QueryClientProvider>
                 </ErrorBoundary>
-                {getAppEnv()['ENV'] === 'development' ? <DevFooter /> : null}
             </VeilederProvider>
-        </DevProvider>
+        </ThemeProvider>
     );
 };
 

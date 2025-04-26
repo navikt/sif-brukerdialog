@@ -6,7 +6,7 @@ import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakerPageContent from './DeltakerPageContent';
-import DeltakerPageFooter from './parts/DeltakerPageFooter';
+import AppFooter from '../../components/app-footer/AppFooter';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -40,45 +40,44 @@ const DeltakerPage = () => {
 
     if (deltakerPending || deltakelserPending) {
         return (
-            <Page>
-                <HStack paddingBlock="10" paddingInline="6" justify="center">
-                    <LoadingSpinner size="3xlarge" title="Henter deltaker" />
-                </HStack>
-            </Page>
+            <HStack paddingBlock="10" paddingInline="6" justify="center">
+                <LoadingSpinner size="3xlarge" title="Henter deltaker" />
+            </HStack>
         );
     }
 
     const error = [deltakerError, deltakelserError].find((e) => e && e !== null);
 
-    if (error) {
-        return (
-            <Page>
-                <Page.Block width="xl" gutters={true}>
-                    <BoxNew background="info-moderateA" borderRadius="medium" marginBlock="3">
-                        <ErrorPageContent error={error} />
-                    </BoxNew>
-                </Page.Block>
-            </Page>
-        );
-    }
-
-    if (deltakelser && deltaker) {
-        return (
-            <Page>
-                <BoxNew background="neutral-moderate">
-                    <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
-                        <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
-                    </Page.Block>
+    const renderContent = () => {
+        if (error) {
+            return (
+                <BoxNew background="info-moderateA" borderRadius="medium" marginBlock="3">
+                    <ErrorPageContent error={error} />
                 </BoxNew>
-                <Page.Block width="xl" gutters={true}>
-                    <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
-                </Page.Block>
-                <Page.Block width="xl" gutters={true}>
-                    <DeltakerPageFooter />
-                </Page.Block>
-            </Page>
-        );
-    }
+            );
+        }
+
+        if (deltakelser && deltaker) {
+            return (
+                <>
+                    <BoxNew background="neutral-moderate">
+                        <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
+                            <DeltakerHeader deltaker={deltaker} onLukkDeltaker={closeDeltaker} />
+                        </Page.Block>
+                    </BoxNew>
+                    <Page.Block width="xl" gutters={true}>
+                        <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
+                    </Page.Block>
+                </>
+            );
+        }
+    };
+
+    return (
+        <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} footer={<AppFooter />}>
+            {renderContent()}
+        </Page>
+    );
 };
 
 export default DeltakerPage;

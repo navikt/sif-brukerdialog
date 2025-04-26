@@ -22,7 +22,7 @@ const StartPage = () => {
     };
 
     return (
-        <BoxNew background="default">
+        <BoxNew background="neutral-strong">
             <Page style={{ minHeight: 'calc(100lvh - 3rem)' }}>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="20">

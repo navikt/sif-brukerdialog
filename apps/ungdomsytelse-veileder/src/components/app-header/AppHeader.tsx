@@ -2,11 +2,11 @@ import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 import { useVeileder } from '../../context/VeilederContext';
 import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
-import { useDevContext } from '../../dev-components/dev-context/DevContext';
+import { useThemeContext } from '../../context/ThemeContext';
 
 const AppHeader = () => {
     const { veileder } = useVeileder();
-    const { setDarkMode, darkMode } = useDevContext();
+    const { setDarkMode, darkMode } = useThemeContext();
 
     const navigate = useNavigate();
 

@@ -80,8 +80,10 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     return (
         <BoxNew
             background="neutral-moderate"
-            borderRadius="medium"
+            borderRadius="xlarge"
             shadow="dialog"
+            // borderColor="neutral-subtle"
+            // borderWidth="2"
             className="p-8 pt-8 pb-14 items-center w-full"
             maxWidth="30rem">
             <VStack gap="4" className="hentDeltakerForm w-full">

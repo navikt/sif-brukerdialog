@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
-import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
-import StartPage from './StartPage';
 import { BrowserRouter } from 'react-router-dom';
-import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
 import { nyDeltakerMock } from '../../../mock/msw/mocks/mockUtils';
+import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
-import { DevProvider } from '../../dev-components/dev-context/DevContext';
+import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import { ThemeProvider } from '../../context/ThemeContext';
+import StartPage from './StartPage';
 
 const meta: Meta<typeof StartPage> = {
     component: StartPage,
@@ -21,9 +21,9 @@ const meta: Meta<typeof StartPage> = {
         withVeilederContext,
         withQueryClientProvider,
         (Story) => (
-            <DevProvider>
+            <ThemeProvider>
                 <Story />
-            </DevProvider>
+            </ThemeProvider>
         ),
     ],
 };

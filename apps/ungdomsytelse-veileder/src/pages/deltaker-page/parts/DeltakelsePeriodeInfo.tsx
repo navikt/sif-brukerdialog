@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, BoxNew, Button, Heading, HGrid, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
 import { PencilFillIcon } from '@navikt/aksel-icons';
+import InfoBox from '../../../components/info-box/InfoBox';
 
 interface Props {
     deltaker: Deltaker;
@@ -94,7 +95,7 @@ interface DatoBoksProps {
 
 const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
     return (
-        <BoxNew background="info-moderate" padding="5" borderRadius="medium">
+        <InfoBox>
             <VStack gap="1">
                 <Heading level="3" size="xsmall">
                     <BodyShort as="span">{tittel}</BodyShort>
@@ -114,7 +115,7 @@ const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => 
                     </Alert>
                 )}
             </VStack>
-        </BoxNew>
+        </InfoBox>
     );
 };
 
