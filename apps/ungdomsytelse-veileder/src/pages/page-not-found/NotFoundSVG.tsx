@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const NotFoundSVG = () => (
     <svg
         data-aksel-template="404-v1"

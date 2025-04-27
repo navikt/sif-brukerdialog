@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import AppHeader from './components/app-header/AppHeader';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
 import DeltakerPage from './pages/deltaker-page/DeltakerPage';
@@ -12,7 +13,6 @@ import NotFoundPage from './pages/page-not-found/PageNotFound';
 import StartPage from './pages/start-page/StartPage';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import { ThemeProvider } from './context/ThemeContext';
 
 initUngDeltakelseOpplyserApiClient({
     onUnAuthorized: () => {
