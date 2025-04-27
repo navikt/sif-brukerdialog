@@ -9,12 +9,20 @@ export enum ApiErrorType {
     UnknownError = 'UnknownError',
 }
 
-export type ApiError = {
+type ApiErrorBase = {
     type: ApiErrorType;
     context: string;
     message: string;
     originalError: unknown;
 };
+type ApiAxiosError = {
+    type: ApiErrorType.NetworkError;
+    context: string;
+    message: string;
+    originalError: AxiosError;
+};
+
+export type ApiError = ApiErrorBase | ApiAxiosError;
 
 export type HttpStatusErrorMessages = Record<number, string>;
 
@@ -32,15 +40,13 @@ export const createApiError = (
     };
 };
 
-// Funksjon for å sjekke om objektet er ApiError
-export const isApiErrorObject = (error: unknown): error is ApiError => {
+export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
     if (!error) {
         return false;
     }
     return (
-        (error as ApiError).type === ApiErrorType.ValidationError ||
-        (error as ApiError).type === ApiErrorType.NetworkError ||
-        (error as ApiError).type === ApiErrorType.UnknownError
+        (error as ApiError).type === ApiErrorType.NetworkError &&
+        (error as ApiError).originalError instanceof AxiosError
     );
 };
 

@@ -1,8 +1,8 @@
-import { Alert, BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker, formaterNavn, isApiErrorObject } from '@navikt/ung-common';
+import { BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
+import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
 import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
 import { useState } from 'react';
-import ApiErrorInfo from '../api-error-info/ApiErrorInfo';
+import ApiErrorAlert from '../api-error-alert/ApiErrorAlert';
 
 interface Props {
     deltaker: Deltaker;
@@ -64,19 +64,11 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlett
                             Avbryt
                         </Button>
                     </HStack>
-                    {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
+                    {error ? <ApiErrorAlert error={error} /> : null}
                 </VStack>
             </form>
         </>
     );
-};
-
-const getErrorMessage = (error: unknown) => {
-    if (isApiErrorObject(error)) {
-        return <ApiErrorInfo apiError={error} />;
-    } else {
-        return 'En feil oppstod ved henting av deltaker';
-    }
 };
 
 export default SlettDeltakelseForm;

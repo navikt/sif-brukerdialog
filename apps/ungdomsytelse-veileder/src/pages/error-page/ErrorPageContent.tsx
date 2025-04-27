@@ -1,13 +1,14 @@
 import { Alert, BodyShort, Box, Heading, HGrid, Link, List, VStack } from '@navikt/ds-react';
 import { ApiError } from '@navikt/ung-common';
-import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 import { useNavigate } from 'react-router-dom';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 interface Props {
     error: ApiError | string;
     visTips?: boolean;
 }
 
+/** Denne er ikke bra - må fikses */
 const ErrorPageContent = ({ error, visTips }: Props) => {
     const navigate = useNavigate();
     return (
@@ -20,13 +21,13 @@ const ErrorPageContent = ({ error, visTips }: Props) => {
                             <Heading level="1" size="large" spacing>
                                 Beklager, noe gikk galt.
                             </Heading>
-                            {error && error !== null ? (
-                                <Box marginBlock="4">
-                                    <Alert variant="error">
-                                        {typeof error === 'string' ? error : <ApiErrorInfo apiError={error} />}
-                                    </Alert>
-                                </Box>
-                            ) : null}
+                            <Box marginBlock="4">
+                                {typeof error === 'string' ? (
+                                    <Alert variant="error">{error}</Alert>
+                                ) : (
+                                    <ApiErrorAlert error={error} detaljert={true} />
+                                )}
+                            </Box>
                         </div>
                         {visTips && (
                             <VStack gap="4">

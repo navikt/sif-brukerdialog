@@ -19,7 +19,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
             <InfoBox>
                 <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
                     <VStack gap="4">
-                        <dl className="deltakerInfoList">
+                        <dl className="ungDefList">
                             <dt>Navn:</dt>
                             <dd>{formaterNavn(deltaker.navn)}</dd>
                             <dt>Fødselsnummer:</dt>
@@ -33,7 +33,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                         </dl>
                     </VStack>
                     <VStack gap="4">
-                        <dl className="deltakerInfoList">
+                        <dl className="ungDefList">
                             <dt>Første mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
                             <dt>Siste mulige innmeldingsdato:</dt>

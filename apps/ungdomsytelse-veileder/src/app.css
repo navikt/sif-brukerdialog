@@ -33,7 +33,7 @@
     }
 }
 
-.deltakerInfoList {
+.ungDefList {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.5rem 1rem;
@@ -50,7 +50,7 @@
     }
 }
 @media screen and (max-width: 768px) {
-    .deltakerInfoList {
+    .ungDefList {
         grid-template-columns: 1fr;
         line-height: 1.5rem;
         dd {

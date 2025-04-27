@@ -13,6 +13,6 @@ export const useDeltakelserForDeltaker = (deltakerId: string, enabled = true) =>
         queryKey: queryKeys.deltakelserForDeltaker(deltakerId),
         queryFn: () => getDeltakelserForDeltaker(deltakerId),
         enabled: enabled && !!deltakerId,
-        retry: 2,
+        retry: 0,
     });
 };

@@ -16,6 +16,7 @@ import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils'
 import { getStartdatoValidator } from './endrePeriodeFormUtils';
 import dayjs from 'dayjs';
 import Dato from '../../atoms/Dato';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 type FormValues = {
     fom?: string;
@@ -91,7 +92,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 return (
                     <VStack gap="6">
                         {startdatoMinMax === 'fomFørTom' ? (
-                            <>dsf</>
+                            <>Ugyldig startdato - maks startdato er utenfor tillatt endringsperiode</>
                         ) : (
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
@@ -106,7 +107,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                     <VStack gap="8" className="rounded-xs">
                                         <DatePicker
                                             name={FieldNames.fom}
-                                            label={`Oppgi startdato:`}
+                                            label="Oppgi startdato:"
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
@@ -122,7 +123,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         {deltakerInformertBesvart && datoErEndret && fomDato ? (
                                             <ConfirmationCheckbox
                                                 name={FieldNames.bekrefterEndring}
-                                                label={`Dette er riktig`}
+                                                label="Dette er riktig"
                                                 validate={getRequiredFieldValidator()}>
                                                 <VStack gap="2">
                                                     <BodyShort weight="semibold">
@@ -141,7 +142,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                             <Alert variant="warning">Dato er ikke endret fra opprinnelig dato</Alert>
                                         ) : null}
                                     </VStack>
-                                    {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                    {error ? <ApiErrorAlert error={error} /> : null}
                                 </VStack>
                             </Form>
                         )}

@@ -8,14 +8,14 @@ import {
     TypedFormikForm,
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
-
-import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 import dayjs from 'dayjs';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
-import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 import { GYLDIG_PERIODE } from '../../settings';
+import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -73,7 +73,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
                                 <FormikDatepicker
                                     name="startDato"
-                                    label={`Når starter deltakelsen?`}
+                                    label="Når starter deltakelsen?"
                                     disableWeekends={true}
                                     description={
                                         <>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>
@@ -82,15 +82,15 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     maxDate={startdatoMinMax.to}
                                     defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
                                     validate={(value) => {
-                                        const error = getDateValidator({
+                                        const e = getDateValidator({
                                             required: true,
                                             min: startdatoMinMax.from,
                                             max: startdatoMinMax.to,
                                             onlyWeekdays: true,
                                         })(value);
-                                        return error
+                                        return e
                                             ? {
-                                                  key: error,
+                                                  key: e,
                                                   values: {
                                                       min: dateFormatter.compact(startdatoMinMax.from),
                                                       max: dateFormatter.compact(startdatoMinMax.to),
@@ -118,7 +118,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     Avbryt
                                 </Button>
                             </HStack>
-                            {error ? <Alert variant="error">{error.message}</Alert> : null}
+                            {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>
                     </TypedFormikForm>
                 );

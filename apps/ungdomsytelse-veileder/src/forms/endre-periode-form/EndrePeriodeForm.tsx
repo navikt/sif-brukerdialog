@@ -23,6 +23,7 @@ import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeForm
 import dayjs from 'dayjs';
 import BekreftEndretStartdatoInfo from './parts/BekreftEndretStartdatoInfo';
 import BekreftEndretSluttdatoInfo from './parts/BekreftEndretSluttdatoInfo';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 type FormValues = {
     fom?: string;
@@ -205,7 +206,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                         <Alert variant="warning">Dato er ikke endret fra opprinnelig dato</Alert>
                                     ) : null}
                                 </VStack>
-                                {error ? <Alert variant="error">{error.message}</Alert> : null}
+                                {error ? <ApiErrorAlert error={error} /> : null}
                             </VStack>
                         </Form>
                     </VStack>

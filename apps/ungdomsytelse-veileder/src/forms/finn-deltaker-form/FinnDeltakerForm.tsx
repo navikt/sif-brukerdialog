@@ -1,19 +1,13 @@
-import { Alert, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
-import {
-    Deltakelse,
-    Deltaker,
-    fødselsnummerFormatter,
-    isApiErrorObject,
-    UregistrertDeltaker,
-} from '@navikt/ung-common';
+import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
 import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
-import ApiErrorInfo from '../../components/api-error-info/ApiErrorInfo';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import DevUserList from '../../dev-components/DevUserList';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -105,7 +99,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         </HStack>
                     </Fieldset>
                 </form>
-                {error ? <Alert variant="error">{getErrorMessage(error)}</Alert> : null}
+                {error ? <ApiErrorAlert error={error} /> : null}
             </VStack>
 
             {nyDeltaker ? (
@@ -132,14 +126,6 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
             <DevUserList />
         </VStack>
     );
-};
-
-const getErrorMessage = (error: unknown) => {
-    if (isApiErrorObject(error)) {
-        return <ApiErrorInfo apiError={error} />;
-    } else {
-        return 'En feil oppstod ved henting av deltaker';
-    }
 };
 
 export default FinnDeltakerForm;
