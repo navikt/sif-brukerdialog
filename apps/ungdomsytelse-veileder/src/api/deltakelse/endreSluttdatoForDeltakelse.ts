@@ -17,6 +17,6 @@ export const endreSluttdatoForDeltakelse = async (
         const { data } = await VeilederService.endreSluttdato({ path: { deltakelseId }, body });
         return deltakelseSchema.parse(data);
     } catch (e) {
-        throw handleApiError(e, 'enderSluttdatoForDeltakelse');
+        throw handleApiError(e, 'endreSluttdatoForDeltakelse');
     }
 };

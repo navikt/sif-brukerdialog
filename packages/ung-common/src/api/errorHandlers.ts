@@ -1,4 +1,5 @@
-import axios from 'axios';
+import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api';
+import axios, { AxiosError } from 'axios';
 import { ZodError } from 'zod';
 
 // Generelle feiltyper
@@ -14,6 +15,8 @@ export type ApiError = {
     message: string;
     originalError: unknown;
 };
+
+export type HttpStatusErrorMessages = Record<number, string>;
 
 export const createApiError = (
     type: ApiErrorType,
@@ -50,6 +53,7 @@ export const handleApiError = (
     error: unknown,
     context: string = '',
     customErrorHandler?: () => ApiError | void,
+    httpStatusMessages?: HttpStatusErrorMessages,
 ): ApiError => {
     if (customErrorHandler) {
         const customError = customErrorHandler();
@@ -68,7 +72,7 @@ export const handleApiError = (
         return {
             type: ApiErrorType.NetworkError,
             context,
-            message: error.message,
+            message: getNetworkErrorMessage(error, httpStatusMessages),
             originalError: error,
         };
     } else {
@@ -81,22 +85,28 @@ export const handleApiError = (
     }
 };
 
-// /**
-//  * Håndterer og returnerer ApiError
-//  * @param error
-//  * @returns
-//  */
+const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStatusErrorMessages): string => {
+    // Sjekk om det er spesifikk ProblemDetail fra opplyser-tjenesten
+    if (isProblemDetail(error.response?.data)) {
+        const { title, detail } = error.response.data;
+        return detail || title || 'Ukjent feil oppstod under nettverksforespørselen.';
+    }
 
-// export const handleApiError = (
-//     error: unknown,
-//     context: string,
-//     customHandler?: (error: unknown) => ApiError | undefined,
-// ): ApiError => {
-//     if (customHandler) {
-//         const customError = customHandler(error);
-//         if (customError) {
-//             return customError;
-//         }
-//     }
-//     return handleError(error, context);
-// };
+    // Hent statuskode og tilhørende melding
+    const statusCode = error.response?.status;
+    if (httpStatusMessages && statusCode && httpStatusMessages[statusCode]) {
+        return httpStatusMessages[statusCode];
+    }
+
+    // Håndter tilfeller der statuskode mangler
+    if (!statusCode) {
+        return 'Ukjent nettverksfeil. Ingen statuskode tilgjengelig.';
+    }
+
+    // Fallback til Axios-feilmelding
+    return error.message || 'En ukjent feil oppstod under nettverksforespørselen.';
+};
+
+export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
+    return zProblemDetail.safeParse(obj).success;
+};
