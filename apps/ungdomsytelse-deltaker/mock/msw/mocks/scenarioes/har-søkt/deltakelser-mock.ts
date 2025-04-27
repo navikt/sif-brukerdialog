@@ -32,9 +32,10 @@ const deltakelser: DeltakelsePeriodInfo[] = [
                 oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
                 oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {
-                    type: 'BEKREFT_ENDRET_PROGRAMPERIODE',
-                    fraOgMed: '2025-02-01',
-                    tilOgMed: '2025-03-31',
+                    programperiode: {
+                        fomDato: '2025-02-01',
+                        tomDato: '2025-03-31',
+                    },
                 },
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-04-14T08:08:15.984057Z',

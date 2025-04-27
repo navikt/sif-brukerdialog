@@ -77,11 +77,11 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
 
                     const startdatoStemmerIkke = startdatoSvar === YesOrNo.NO;
                     const kontonummerStemmerIkke = kontonummerSvar === YesOrNo.NO;
-                    const submitDisabled = startdatoStemmerIkke || kontonummerStemmerIkke;
+
+                    const submitDisabled = startdatoStemmerIkke;
 
                     const visKontonummerSpørsmål = !!startdatoSvar && startdatoSvar !== YesOrNo.NO;
-                    const visBarnSpørsmål =
-                        visKontonummerSpørsmål && !!kontonummerSvar && kontonummerSvar !== YesOrNo.NO;
+                    const visBarnSpørsmål = visKontonummerSpørsmål && !!kontonummerSvar;
                     const visSamtykkeSpørsmål = visBarnSpørsmål && !!barnSvar && barnSvar !== YesOrNo.NO;
 
                     return (
@@ -106,7 +106,6 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
                                             disabled={pending}
                                         />
                                     )}
-
                                     {visBarnSpørsmål && (
                                         <BarnSpørsmål
                                             barn={barn}
@@ -119,7 +118,7 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
                                         <Alert variant="error">
                                             Det oppstod en feil:
                                             <br />
-                                            {error.message}
+                                            {error.errorInfo.message}
                                         </Alert>
                                     )}
                                 </VStack>

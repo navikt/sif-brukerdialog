@@ -73,7 +73,7 @@ const EndretProgramperiodeOppgaveForm = ({ oppgave }: Props) => {
                     <BodyShort>
                         <>
                             Veileder har endret perioden du er med i programmet. Perioden er nå{' '}
-                            <BodyShort>
+                            <BodyShort as="span">
                                 <>
                                     fra og med{' '}
                                     <BodyShort as="span" className="inline-block nowrap" weight="semibold">

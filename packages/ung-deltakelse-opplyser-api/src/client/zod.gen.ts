@@ -32,27 +32,20 @@ export const zDeltakelseOpplysningDto = z.object({
     oppgaver: z.array(
         z.object({
             oppgaveReferanse: z.string().uuid(),
-            oppgavetype: z.enum([
-                'BEKREFT_ENDRET_STARTDATO',
-                'BEKREFT_ENDRET_SLUTTDATO',
-                'BEKREFT_ENDRET_PROGRAMPERIODE',
-                'BEKREFT_AVVIK_REGISTERINNTEKT',
-            ]),
+            oppgavetype: z.enum(['BEKREFT_ENDRET_PROGRAMPERIODE', 'BEKREFT_AVVIK_REGISTERINNTEKT']),
             oppgavetypeData: z.union([
                 z.object({}).merge(
                     z.object({
-                        fraOgMed: z.string().date(),
-                        tilOgMed: z.string().date().optional(),
-                    }),
-                ),
-                z.object({}).merge(
-                    z.object({
-                        nySluttdato: z.string().date(),
-                    }),
-                ),
-                z.object({}).merge(
-                    z.object({
-                        nyStartdato: z.string().date(),
+                        programperiode: z.object({
+                            fomDato: z.string().date(),
+                            tomDato: z.string().date().optional(),
+                        }),
+                        forrigeProgramperiode: z
+                            .object({
+                                fomDato: z.string().date(),
+                                tomDato: z.string().date().optional(),
+                            })
+                            .optional(),
                     }),
                 ),
                 z.object({}).merge(
@@ -88,20 +81,16 @@ export const zDeltakerDto = z.object({
 
 export const zEndretProgramperiodeDataDto = z.object({}).merge(
     z.object({
-        fraOgMed: z.string().date(),
-        tilOgMed: z.string().date().optional(),
-    }),
-);
-
-export const zEndretSluttdatoOppgavetypeDataDto = z.object({}).merge(
-    z.object({
-        nySluttdato: z.string().date(),
-    }),
-);
-
-export const zEndretStartdatoOppgavetypeDataDto = z.object({}).merge(
-    z.object({
-        nyStartdato: z.string().date(),
+        programperiode: z.object({
+            fomDato: z.string().date(),
+            tomDato: z.string().date().optional(),
+        }),
+        forrigeProgramperiode: z
+            .object({
+                fomDato: z.string().date(),
+                tomDato: z.string().date().optional(),
+            })
+            .optional(),
     }),
 );
 
@@ -126,18 +115,8 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z.object({}).merge(
 
 export const zOppgaveDto = z.object({
     oppgaveReferanse: z.string().uuid(),
-    oppgavetype: z.enum([
-        'BEKREFT_ENDRET_STARTDATO',
-        'BEKREFT_ENDRET_SLUTTDATO',
-        'BEKREFT_ENDRET_PROGRAMPERIODE',
-        'BEKREFT_AVVIK_REGISTERINNTEKT',
-    ]),
-    oppgavetypeData: z.union([
-        zEndretProgramperiodeDataDto,
-        zEndretSluttdatoOppgavetypeDataDto,
-        zEndretStartdatoOppgavetypeDataDto,
-        zKontrollerRegisterinntektOppgavetypeDataDto,
-    ]),
+    oppgavetype: z.enum(['BEKREFT_ENDRET_PROGRAMPERIODE', 'BEKREFT_AVVIK_REGISTERINNTEKT']),
+    oppgavetypeData: z.union([zEndretProgramperiodeDataDto, zKontrollerRegisterinntektOppgavetypeDataDto]),
     status: z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']),
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),
@@ -145,14 +124,14 @@ export const zOppgaveDto = z.object({
 
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
 
-export const zOppgavetype = z.enum([
-    'BEKREFT_ENDRET_STARTDATO',
-    'BEKREFT_ENDRET_SLUTTDATO',
-    'BEKREFT_ENDRET_PROGRAMPERIODE',
-    'BEKREFT_AVVIK_REGISTERINNTEKT',
-]);
+export const zOppgavetype = z.enum(['BEKREFT_ENDRET_PROGRAMPERIODE', 'BEKREFT_AVVIK_REGISTERINNTEKT']);
 
 export const zOppgavetypeDataDto = z.object({});
+
+export const zProgramperiodeDto = z.object({
+    fomDato: z.string().date(),
+    tomDato: z.string().date().optional(),
+});
 
 export const zRegisterinntektDto = z.object({
     arbeidOgFrilansInntekter: z.array(zArbeidOgFrilansRegisterInntektDto),
@@ -239,26 +218,12 @@ export const zRegisterInntektYtelseDto = z.object({
     ytelseType: z.string(),
 });
 
-export const zEndretPeriodeOppgaveDto = z.object({
-    deltakerIdent: z.string(),
-    oppgaveReferanse: z.string().uuid(),
-    frist: z.string().datetime(),
-    programperiodeDato: z.string().date(),
-});
-
 export const zEndretProgamperiodeOppgaveDto = z.object({
     deltakerIdent: z.string(),
     oppgaveReferanse: z.string().uuid(),
     frist: z.string().datetime(),
-    programperiode: z.object({
-        fomDato: z.string().date(),
-        tomDato: z.string().date().optional(),
-    }),
-});
-
-export const zProgramperiodeDto = z.object({
-    fomDato: z.string().date(),
-    tomDato: z.string().date().optional(),
+    programperiode: zProgramperiodeDto,
+    forrigeProgramperiode: zProgramperiodeDto.optional(),
 });
 
 export const zDeltakelsePeriodInfo = z.object({
@@ -305,10 +270,6 @@ export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
 export const zKontrollAvRegisterinntektResponse = zOppgaveDto;
 
 export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zOppgaveDto;
-
-export const zOpprettOppgaveForEndretStartdatoResponse = zOppgaveDto;
-
-export const zOpprettOppgaveForEndretSluttdatoResponse = zOppgaveDto;
 
 export const zOpprettOppgaveForEndretProgramperiodeResponse = zOppgaveDto;
 

@@ -7,30 +7,6 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
         tilOgMed: undefined,
         harSøkt: true,
         oppgaver: [
-            // {
-            //     id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-            //     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-            //     eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
-            //     oppgavetypeData: {
-            //         type: 'BEKREFT_ENDRET_STARTDATO',
-            //         nySluttdato: '2026-01-01',
-            //     },
-            //     status: OppgaveStatus.ULØST,
-            //     opprettetDato: '2025-02-22T11:43:29.048157Z',
-            //     løstDato: '2025-02-23T05:00:12.048157Z',
-            // },
-            // {
-            //     id: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
-            //     eksternReferanse: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
-            //     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
-            //     oppgavetypeData: {
-            //         type: 'BEKREFT_ENDRET_STARTDATO',
-            //         nySluttdato: '2026-01-01',
-            //     },
-            //     status: OppgaveStatus.UTLØPT,
-            //     opprettetDato: '2025-02-22T11:43:29.048157Z',
-            //     løstDato: '2025-02-23T05:00:12.048157Z',
-            // },
             {
                 oppgaveReferanse: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',
                 oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,

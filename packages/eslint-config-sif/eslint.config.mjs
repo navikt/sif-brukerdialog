@@ -65,6 +65,9 @@ export default [
             // TODO (TOR) Ignorert inntil videre grunnet kost/nytte
             '@typescript-eslint/no-explicit-any': OFF,
             '@typescript-eslint/ban-ts-comment': OFF,
+
+            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+            'jsx-quotes': ['error', 'prefer-double'],
         },
     },
 ];

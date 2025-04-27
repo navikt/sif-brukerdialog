@@ -5,6 +5,8 @@
     "tabWidth": 4,
     "arrowParens": "always",
     "singleQuote": true,
+    "jsxSingleQuote": false,
     "printWidth": 120,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "jsx-quotes": ["error", "prefer-double"]
 }

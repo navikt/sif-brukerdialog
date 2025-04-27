@@ -16,13 +16,11 @@ const articleList = Object.keys(articles).map((path) => {
     return { id, title, content: articles[path] as string };
 });
 
-interface Props {}
-
-const InfoInnhold = ({}: Props) => {
+const InfoInnhold = () => {
     const navigate = useNavigate();
 
     return (
-        <HGrid columns={'1fr 4fr'} gap="10">
+        <HGrid columns="1fr 4fr" gap="10">
             <Box>
                 <nav>
                     <Heading level="2" size="small" className="mb-2">
@@ -40,7 +38,7 @@ const InfoInnhold = ({}: Props) => {
                                         evt.preventDefault();
                                         navigate(`/informasjon/${article.id}`);
                                     }}>
-                                    <HGrid columns={'1fr auto'} gap="2" width={'100%'}>
+                                    <HGrid columns="1fr auto" gap="2" width="100%">
                                         <span>{article.title}</span>
                                         <ChevronRightIcon width="1.2rem" height="1.2rem" />
                                     </HGrid>
