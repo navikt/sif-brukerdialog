@@ -44,7 +44,7 @@
         "@storybook/test-runner": "0.22.0",
         "@storybook/testing-library": "0.2.2",
         "@types/jest": "29.5.14",
-        "@types/node": "22.15.1",
+        "@types/node": "22.15.2",
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@types/uuid": "10.0.0",
@@ -70,7 +70,7 @@
         "vite": "6.3.3",
         "vite-plugin-checker": "0.9.1",
         "vitest": "3.1.2",
-        "webpack": "5.99.6"
+        "webpack": "5.99.7"
     },
     "directories": {
         "lib": "lib"
