@@ -13,6 +13,6 @@ export const useRegistrertDeltaker = (deltakerId: string, enabled = true) => {
         queryKey: queryKeys.deltakerById(deltakerId),
         queryFn: () => getDeltakerById(deltakerId),
         enabled: enabled && !!deltakerId,
-        retry: 2,
+        retry: 1,
     });
 };

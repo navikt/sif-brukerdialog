@@ -39,11 +39,12 @@ const DeltakerPage = () => {
     } = useDeltakelserForDeltaker(deltakerId || '');
 
     const error = [deltakerError, deltakelserError].find((e) => e && e !== null);
+    const pending = deltakerPending || deltakelserPending;
 
     return (
         <AppPage>
             {/* Loading */}
-            {deltakerPending || deltakelserPending ? (
+            {pending ? (
                 <HStack paddingBlock="32 0" paddingInline="6" justify="center">
                     <BorderBox padding="12">
                         <VStack gap="5">
@@ -59,7 +60,7 @@ const DeltakerPage = () => {
             ) : null}
 
             {/* Error */}
-            {error ? (
+            {error && !pending ? (
                 <BoxNew>
                     <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                         <ErrorPageContent error={error} />

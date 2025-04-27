@@ -8,6 +8,6 @@ export const useFinnDeltaker = (deltakerIdent: string, enabled = true) => {
         queryKey: queryKeys.finnDeltaker(deltakerIdent),
         queryFn: () => findDeltakerByIdent(deltakerIdent),
         enabled: enabled && !!deltakerIdent,
-        retry: 2,
+        retry: 1,
     });
 };
