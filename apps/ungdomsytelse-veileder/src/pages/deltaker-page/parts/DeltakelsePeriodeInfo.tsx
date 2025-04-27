@@ -51,7 +51,6 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                         }
                         kanIkkeEndreTekst="Startdato kan ikke endres"
                     />
-
                     <DatoBoks
                         tittel="Sluttdato:"
                         dato={deltakelse.tilOgMed}

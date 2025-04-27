@@ -1,15 +1,15 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import DeltakelsePeriodeInfo from './parts/DeltakelsePeriodeInfo';
-import SlettDeltakelseInfo from './parts/SlettDeltakelseInfo';
-import DeltakerInfo from './parts/DeltakerInfo';
+import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
+import SlettDeltakelseInfo from './SlettDeltakelseInfo';
+import DeltakerInfo from './DeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
     deltakelser: Deltakelse[];
 }
 
-const DeltakerPageContent = ({ deltaker, deltakelser = [] }: Props) => {
+const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     if (deltakelser.length === 0) {
         return (
             <VStack maxWidth="30rem pb-8 pt-8">

@@ -7,7 +7,7 @@ interface Props {
     size?: 'medium' | 'small';
 }
 
-const LoadIndicator = ({ title, size = 'medium' }: Props) => {
+const LoadIndicator = ({ title, size = 'small' }: Props) => {
     const small = size === 'small';
 
     return (

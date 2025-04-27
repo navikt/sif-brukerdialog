@@ -39,7 +39,7 @@ export const handlers = [
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = getDeltakelser(params.deltakerId as string);
-        await delay(1500);
+        await delay(1200);
         if (1 + 1 === 3) {
             return HttpResponse.json(
                 {

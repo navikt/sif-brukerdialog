@@ -1,14 +1,12 @@
-import { BoxNew, Page } from '@navikt/ds-react';
+import { BoxNew, Page, Skeleton } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { validate } from 'uuid';
 import AppPage from '../../components/app-page/AppPage';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
-import { useDeltakelserForDeltaker } from '../../hooks/useDeltakelserForDeltaker';
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPage from '../error-page/ErrorPage';
 import ErrorPageContent from '../error-page/ErrorPageContent';
-import DeltakerPageContent from './DeltakerPageContent';
-import LoadIndicator from '../../components/loader-indicator/LoadIndicator';
+import DeltakelseLoader from './parts/DeltakelseLoader';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -26,33 +24,14 @@ const DeltakerPage = () => {
     const {
         data: deltaker,
         isLoading: deltakerPending,
-        error: deltakerError,
+        error,
         // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useRegistrertDeltaker(deltakerId || '');
-
-    const {
-        data: deltakelser,
-        isLoading: deltakelserPending,
-        error: deltakelserError,
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-    } = useDeltakelserForDeltaker(deltakerId || '');
-
-    const error = [deltakerError, deltakelserError].find((e) => e && e !== null);
-    const pending = deltakerPending || deltakelserPending;
 
     return (
         <AppPage>
             {/* Deltaker - spinner */}
-            {deltakerPending ? <LoadIndicator title="Henter deltaker" /> : null}
-
-            {/* Deltaker header */}
-            {deltaker && (
-                <BoxNew background="neutral-moderate">
-                    <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
-                        <DeltakerHeader deltaker={deltaker} onLukkDeltaker={() => navigate('/')} />
-                    </Page.Block>
-                </BoxNew>
-            )}
+            {deltakerPending ? <Skeleton width="100%" height="6.5rem" variant="rectangle" /> : null}
 
             {/* Error */}
             {error && !pending ? (
@@ -63,15 +42,19 @@ const DeltakerPage = () => {
                 </BoxNew>
             ) : null}
 
-            {/* Deltakelser - spinner */}
-            {!deltakerPending && deltakelserPending ? <LoadIndicator size="small" title="Henter deltakelser" /> : null}
-
-            {/* Deltakelser - innhold*/}
-            {deltakelser && deltaker ? (
-                <Page.Block width="xl" gutters={true}>
-                    <DeltakerPageContent deltaker={deltaker} deltakelser={deltakelser} />
-                </Page.Block>
-            ) : null}
+            {/* Deltaker header */}
+            {deltaker && (
+                <>
+                    <BoxNew background="neutral-moderate">
+                        <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
+                            <DeltakerHeader deltaker={deltaker} onLukkDeltaker={() => navigate('/')} />
+                        </Page.Block>
+                    </BoxNew>
+                    <Page.Block width="xl" gutters={true}>
+                        <DeltakelseLoader deltaker={deltaker} />
+                    </Page.Block>
+                </>
+            )}
         </AppPage>
     );
 };
