@@ -105,7 +105,11 @@ const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => 
                 </BodyShort>
                 {endre ? (
                     <Box>
-                        <Button variant="primary" size="small" icon={<PencilFillIcon />} onClick={endre.onClick}>
+                        <Button
+                            variant="primary"
+                            size="small"
+                            icon={<PencilFillIcon role="presentation" />}
+                            onClick={endre.onClick}>
                             {endre.label}
                         </Button>
                     </Box>

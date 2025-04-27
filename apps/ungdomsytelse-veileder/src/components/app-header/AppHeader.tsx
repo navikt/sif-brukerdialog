@@ -1,8 +1,8 @@
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
-import { useVeileder } from '../../context/VeilederContext';
-import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useNavigate } from 'react-router-dom';
+import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useThemeContext } from '../../context/ThemeContext';
+import { useVeileder } from '../../context/VeilederContext';
 
 const AppHeader = () => {
     const { veileder } = useVeileder();
@@ -15,11 +15,16 @@ const AppHeader = () => {
             <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
             <Spacer />
             <InternalHeader.Button
+                aria-label="Bytt mellom lys og mørk modus"
                 onClick={(e) => {
                     e.preventDefault();
                     setDarkMode(!darkMode);
                 }}>
-                {darkMode ? <MoonFillIcon /> : <SunFillIcon />}
+                {darkMode ? (
+                    <MoonFillIcon aria-label="Mørk modus er aktiv" />
+                ) : (
+                    <SunFillIcon aria-label="Lys modus er aktiv" />
+                )}
             </InternalHeader.Button>
             <ActionMenu>
                 <ActionMenu.Trigger>

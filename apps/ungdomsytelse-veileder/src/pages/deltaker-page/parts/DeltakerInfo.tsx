@@ -13,7 +13,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
     const alder = dayjs().diff(dayjs(deltaker.fødselsdato), 'year');
     return (
         <VStack gap="4">
-            <Heading level="3" size="medium">
+            <Heading level="2" size="medium">
                 Om Deltaker
             </Heading>
             <InfoBox>

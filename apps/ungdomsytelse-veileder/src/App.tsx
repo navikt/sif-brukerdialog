@@ -29,13 +29,15 @@ const App = () => {
                     <QueryClientProvider client={queryClient}>
                         <IntlProvider locale="nb" messages={appMessages.nb}>
                             <AppHeader />
-                            <Routes>
-                                <Route path="" element={<StartPage />}></Route>
-                                <Route path="deltaker/" element={<Navigate to="/" />} />
-                                <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
-                                <Route path="informasjon/*" element={<InfoPage />} />
-                                <Route path="*" element={<NotFoundPage />} />
-                            </Routes>
+                            <main>
+                                <Routes>
+                                    <Route path="" element={<StartPage />}></Route>
+                                    <Route path="deltaker/" element={<Navigate to="/" />} />
+                                    <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
+                                    <Route path="informasjon/*" element={<InfoPage />} />
+                                    <Route path="*" element={<NotFoundPage />} />
+                                </Routes>
+                            </main>
                         </IntlProvider>
                     </QueryClientProvider>
                 </ErrorBoundary>
