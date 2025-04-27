@@ -1,6 +1,6 @@
 import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api';
 import axios, { AxiosError } from 'axios';
-import { ZodError } from 'zod';
+import { z, ZodError } from 'zod';
 
 // Generelle feiltyper
 export enum ApiErrorType {
@@ -107,6 +107,16 @@ const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStat
     return error.message || 'En ukjent feil oppstod under nettverksforespørselen.';
 };
 
+/** Overstyrer generert zod schema for å tillate strings som ikke har url format (for lokal utvikling) */
+export const zProblemDetailWithoutUrl = zProblemDetail.omit({ type: true, instance: true }).extend({
+    type: z.string().optional(), // Endrer type til kun string
+    instance: z.string().optional(), // Endrer type til kun string
+});
+
 export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
-    return zProblemDetail.safeParse(obj).success;
+    const result = zProblemDetailWithoutUrl.safeParse(obj);
+    if (result.success) {
+        return true;
+    }
+    return false;
 };

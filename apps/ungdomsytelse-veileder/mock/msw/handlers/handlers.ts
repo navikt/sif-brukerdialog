@@ -40,7 +40,16 @@ export const handlers = [
         const data = getDeltakelser(params.deltakerId as string);
         await delay(250);
         if (1 + 1 === 2) {
-            return new HttpResponse(null, { status: 500 });
+            return HttpResponse.json(
+                {
+                    type: 'about:blank',
+                    title: 'Not Found',
+                    status: 404,
+                    detail: 'Fant ingen deltaker med id 699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
+                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                },
+                { status: 404 },
+            );
         }
         return HttpResponse.json(data);
     }),
