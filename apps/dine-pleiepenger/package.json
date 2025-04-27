@@ -21,7 +21,7 @@
         "@grafana/faro-web-tracing": "1.17.2",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@navikt/next-logger": "2.1.0",
+        "@navikt/next-logger": "2.6.0",
         "@navikt/oasis": "3.8.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
@@ -85,7 +85,7 @@
         "typescript": "5.8.3",
         "uuid": "11.1.0",
         "vitest": "3.1.2",
-        "webpack": "5.99.6"
+        "webpack": "5.99.7"
     },
     "_id": "@navikt/dine-pleiepenger@0.3.1"
 }
