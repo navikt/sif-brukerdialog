@@ -16,6 +16,7 @@ const StartPage = () => {
     }, []);
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
+        queryClient.setQueryData(['deltaker', deltaker.id], deltaker); // Lagre deltaker i cache
         navigate(`/deltaker/${deltaker.id}`);
     };
 

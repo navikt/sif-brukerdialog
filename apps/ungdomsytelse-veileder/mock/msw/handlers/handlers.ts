@@ -29,6 +29,7 @@ export const handlers = [
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
         const data = getDeltakerByDeltakerId(id as string);
+        await delay(250);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
@@ -38,7 +39,7 @@ export const handlers = [
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = getDeltakelser(params.deltakerId as string);
-        await delay(250);
+        await delay(1500);
         if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
