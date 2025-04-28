@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { Steg } from '../types/Steg';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ export type SøknadSvar = {
 interface SøknadContextType {
     svar: SøknadSvar;
     aktivtSteg: Steg;
-    erSendtInn: boolean;
+    søknadSendtInn: boolean;
     oppdaterSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setAktivtSteg: (steg: Steg) => void;
     setErSendtInn: (sendtInn: boolean) => void;
@@ -44,9 +44,14 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const stegIPath = getStegFraPath(pathname);
 
     const [aktivtSteg, setAktivtSteg] = useState<Steg>(stegIPath || Steg.VELKOMMEN);
-    const [erSendtInn, setErSendtInn] = useState(false);
+    const [søknadSendtInn, setSøknadSendtInn] = useState(false);
 
     const navigate = useNavigate();
+
+    if (søknadSendtInn && getStegFraPath(pathname) !== Steg.KVITTERING) {
+        navigate('soknad/kvittering');
+    }
+    useEffect(() => {});
 
     const oppdaterSvar = (key: Spørsmål, value: YesOrNo | undefined) => {
         setSvar((prev) => ({ ...prev, [key]: value }));
@@ -62,7 +67,7 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     const doSetErSendtInn = (sendtInn: boolean) => {
-        setErSendtInn(sendtInn);
+        setSøknadSendtInn(sendtInn);
     };
 
     const sendInnSøknad = () => {};
@@ -81,7 +86,7 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
             value={{
                 svar,
                 aktivtSteg,
-                erSendtInn,
+                søknadSendtInn,
                 oppdaterSvar,
                 setAktivtSteg: doSetAktivtSteg,
                 setErSendtInn: doSetErSendtInn,
