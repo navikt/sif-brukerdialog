@@ -5,7 +5,9 @@ import DeltakerInfoLoader from './DeltakerInfoLoader';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { appEnv } from './utils/appEnv';
+import '@navikt/ds-css/darkside';
 import './app.css';
+import { Theme } from '@navikt/ds-react';
 
 initUngDeltakelseOpplyserApiClient({
     onUnAuthorized: () => {
@@ -16,12 +18,14 @@ initK9BrukerdialogProsesseringApiClient();
 
 function App() {
     return (
-        <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
-            <AppIntlMessageProvider>
-                <DeltakerInfoLoader />
-                {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
-            </AppIntlMessageProvider>
-        </ErrorBoundary>
+        <Theme>
+            <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
+                <AppIntlMessageProvider>
+                    <DeltakerInfoLoader />
+                    {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
+                </AppIntlMessageProvider>
+            </ErrorBoundary>
+        </Theme>
     );
 }
 

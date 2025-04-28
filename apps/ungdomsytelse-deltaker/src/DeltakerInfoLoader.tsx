@@ -23,7 +23,7 @@ const DeltakerInfoLoader = () => {
     }
 
     if (error) {
-        return <HentDeltakerErrorPage error={'Feil ved lasting'} />;
+        return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelser.data || !søker.data || !barn.data) {

@@ -1,41 +1,30 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../context/DeltakerContext';
-import VelkommenMelding from './components/VelkommenMelding';
-import { VStack } from '@navikt/ds-react';
-import SøknadForm from './components/søknad-form/SøknadForm';
-import InformasjonOmUngdomsytelsen from './components/Informasjon';
-import { useState } from 'react';
-import SøknadSendtInformasjon from './components/SøknadSendtInformasjon';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { SøknadProvider } from './context/søknadContext';
+import KvitteringPage from './pages/KvitteringPage';
+import BarnSteg from './steg/barn/BarnSteg';
+import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
+import OppstartSteg from './steg/oppstart/OppstartSteg';
+import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
+import VelkommenSteg from './steg/velkommen/VelkommenSteg';
 
 const SøknadApp = () => {
-    const { søker, deltakelse, barn } = useDeltakerContext();
-    const [søknadSendt, setSøknadSendt] = useState(false);
-
-    const handleOnSøknadSendt = () => {
-        setSøknadSendt(true);
-    };
-
+    const publicPath = getRequiredEnv('PUBLIC_PATH');
     return (
-        <Page title="Søknad om ungdomsytelse">
-            {søknadSendt === false ? (
-                <VStack gap="8">
-                    <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
-
-                    <SøknadForm
-                        kontonummer="TODO"
-                        søker={søker}
-                        barn={barn}
-                        startdato={deltakelse.programPeriode.from}
-                        onSøknadSendt={handleOnSøknadSendt}
-                    />
-                    <InformasjonOmUngdomsytelsen />
-                </VStack>
-            ) : (
-                <VStack gap="8">
-                    <SøknadSendtInformasjon />
-                </VStack>
-            )}
-        </Page>
+        <BrowserRouter basename={publicPath}>
+            <SøknadProvider>
+                <Routes>
+                    <Route index={true} element={<VelkommenSteg />} />
+                    <Route path="soknad" element={<Navigate to="/soknad/barn" replace={true} />} />
+                    <Route path="soknad/barn" element={<BarnSteg />} />
+                    <Route path="soknad/oppstart" element={<OppstartSteg />} />
+                    <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
+                    <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
+                    <Route path="soknad/kvittering" element={<KvitteringPage />} />
+                    <Route path="*" element={<Navigate to="/" replace={true} />} />
+                </Routes>
+            </SøknadProvider>
+        </BrowserRouter>
     );
 };
 

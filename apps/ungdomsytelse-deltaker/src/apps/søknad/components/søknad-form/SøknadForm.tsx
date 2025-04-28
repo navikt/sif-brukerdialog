@@ -1,4 +1,4 @@
-import { Alert, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -6,7 +6,6 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 import BlueBox from '../../../../components/blue-box/BlueBox';
 import { useAppIntl } from '../../../../i18n';
 import { useSendSøknad } from '../../hooks/useSendSøknad';
-import BehandlingAvPersonopplysningerContent from '../BehandlingAvPersonopplysningerContent';
 import BarnSpørsmål from './spørsmål/BarnSpørsmål';
 import KontonummerSpørsmål from './spørsmål/KontonummerSpørsmål';
 import SamtykkeSpørsmål from './spørsmål/SamtykkeSpørsmål';
@@ -38,7 +37,7 @@ interface Props {
     onSøknadSendt: () => void;
 }
 const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: Props) => {
-    const { intl, text } = useAppIntl();
+    const { intl } = useAppIntl();
     const { pending, error, sendSøknad } = useSendSøknad();
 
     const handleSubmit = async (values: SøknadFormValues) => {
@@ -63,9 +62,6 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
                 <Heading level="2" size="medium">
                     Søknadsskjema
                 </Heading>
-                <ReadMore header={text('personopplysninger.accordion.header')}>
-                    <BehandlingAvPersonopplysningerContent />
-                </ReadMore>
             </VStack>
             <FormikWrapper
                 initialValues={{}}
@@ -118,7 +114,7 @@ const SøknadForm = ({ kontonummer, barn, søker, startdato, onSøknadSendt }: P
                                         <Alert variant="error">
                                             Det oppstod en feil:
                                             <br />
-                                            {error.errorInfo.message}
+                                            {error.message}
                                         </Alert>
                                     )}
                                 </VStack>

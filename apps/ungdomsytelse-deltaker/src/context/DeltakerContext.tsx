@@ -5,6 +5,7 @@ import { DeltakelsePeriode } from '@navikt/ung-common';
 interface DeltakerContextType {
     søker: Søker;
     deltakelse: DeltakelsePeriode;
+    kontonummer?: string;
     barn: RegistrertBarn[];
     refetchDeltakelser: () => Promise<any>;
 }
