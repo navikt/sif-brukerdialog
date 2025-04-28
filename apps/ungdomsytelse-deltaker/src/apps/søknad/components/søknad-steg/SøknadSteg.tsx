@@ -5,6 +5,8 @@ import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
 import { getSkjemaStegIndex, skjemaSteg } from '../../utils/stegUtils';
 import { useNavigate } from 'react-router-dom';
 import { useErStegTilgjengelig } from '../../hooks/useErStegTilgjengelig';
+import StegFooter from './StegFooter';
+import { useSøknadContext } from '../../context/søknadContext';
 
 interface Props {
     steg: Steg;
@@ -14,6 +16,8 @@ interface Props {
 
 const SøknadSteg = ({ steg, tittel, children }: Props) => {
     useErStegTilgjengelig(steg);
+
+    const { avbrytOgSlett } = useSøknadContext();
 
     const navigate = useNavigate();
 
@@ -53,6 +57,13 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                 </div>
 
                 <div>{children}</div>
+
+                <StegFooter
+                    slett={{
+                        tittel: 'Avbryt og slett søknad',
+                        onClick: avbrytOgSlett,
+                    }}
+                />
             </VStack>
         </Page>
     );

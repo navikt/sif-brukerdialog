@@ -27,6 +27,7 @@ interface SøknadContextType {
     setErSendtInn: (sendtInn: boolean) => void;
     startSøknad: () => void;
     sendInnSøknad: () => void;
+    avbrytOgSlett: () => void;
 }
 
 const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
@@ -51,19 +52,28 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setSvar((prev) => ({ ...prev, [key]: value }));
     };
 
-    const settAktivtSteg = (steg: Steg) => {
+    const doSetAktivtSteg = (steg: Steg) => {
         setAktivtSteg(steg);
-        navigate(`/soknad/${steg}`);
+        if (steg === Steg.VELKOMMEN) {
+            navigate('../');
+        } else {
+            navigate(`/soknad/${steg}`);
+        }
     };
 
-    const settErSendtInn = (sendtInn: boolean) => {
+    const doSetErSendtInn = (sendtInn: boolean) => {
         setErSendtInn(sendtInn);
     };
 
     const sendInnSøknad = () => {};
 
+    const avbrytOgSlett = () => {
+        setSvar({});
+        doSetAktivtSteg(Steg.VELKOMMEN);
+    };
+
     const startSøknad = () => {
-        settAktivtSteg(Steg.BARN);
+        doSetAktivtSteg(Steg.BARN);
     };
 
     return (
@@ -73,10 +83,11 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 aktivtSteg,
                 erSendtInn,
                 oppdaterSvar,
-                setAktivtSteg: settAktivtSteg,
-                setErSendtInn: settErSendtInn,
+                setAktivtSteg: doSetAktivtSteg,
+                setErSendtInn: doSetErSendtInn,
                 sendInnSøknad,
                 startSøknad,
+                avbrytOgSlett,
             }}>
             {children}
         </SøknadContext.Provider>

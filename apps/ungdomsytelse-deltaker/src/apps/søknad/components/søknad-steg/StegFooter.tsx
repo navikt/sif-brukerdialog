@@ -17,13 +17,23 @@ const StegFooter = ({ fortsettSenere, slett }: Props) => (
         <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
             {fortsettSenere && (
                 <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>
-                    <Button variant="tertiary" icon={<FloppydiskIcon aria-hidden />} iconPosition="left">
+                    <Button
+                        type="button"
+                        onClick={fortsettSenere.onClick}
+                        variant="tertiary"
+                        icon={<FloppydiskIcon aria-hidden />}
+                        iconPosition="left">
                         {fortsettSenere.tittel}
                     </Button>
                 </Box>
             )}
             {slett && (
-                <Button variant="tertiary" icon={<TrashIcon aria-hidden />} iconPosition="left">
+                <Button
+                    type="button"
+                    onClick={slett.onClick}
+                    variant="tertiary"
+                    icon={<TrashIcon aria-hidden />}
+                    iconPosition="left">
                     {slett.tittel}
                 </Button>
             )}
