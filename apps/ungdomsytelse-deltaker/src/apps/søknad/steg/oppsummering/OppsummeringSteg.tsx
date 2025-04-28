@@ -52,7 +52,7 @@ const OppsummeringSteg = () => {
                         </FormSummary.Answer>
                     ) : (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Kontonummer</FormSummary.Label>
+                            <FormSummary.Label>Kontonummer for utbetaling</FormSummary.Label>
                             <FormSummary.Value>Vi har ikke registrert noe kontonummer på deg.</FormSummary.Value>
                         </FormSummary.Answer>
                     )}
