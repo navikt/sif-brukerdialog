@@ -24,8 +24,8 @@ const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startda
 };
 
 const OppsummeringSteg = () => {
-    const { deltakelse, barn, søker, kontonummer } = useDeltakerContext();
-    const { setAktivtSteg, setSøknadSendt } = useSøknadContext();
+    const { deltakelse, søker } = useDeltakerContext();
+    const { setAktivtSteg, setSøknadSendt, kontonummer, barn } = useSøknadContext();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const { svar } = useSøknadContext();

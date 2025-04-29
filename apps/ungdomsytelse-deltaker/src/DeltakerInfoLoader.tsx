@@ -1,23 +1,19 @@
-import HentDeltakerErrorPage from './components/pages/HentDeltakerErrorPage';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import InnsynApp from './apps/innsyn/InnsynApp';
 import SøknadApp from './apps/søknad/SøknadApp';
-import { DeltakerContextProvider } from './context/DeltakerContext';
 import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
+import HentDeltakerErrorPage from './components/pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
-import { useSøker } from './hooks/useSøker';
-import { useKontonummer } from './hooks/useKontonummer';
+import { DeltakerContextProvider } from './context/DeltakerContext';
 import { useDeltakelser } from './hooks/useDeltakelser';
-import { useBarn } from './hooks/useBarn';
+import { useSøker } from './hooks/useSøker';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
-    const kontonummer = useKontonummer();
     const deltakelser = useDeltakelser();
-    const barn = useBarn();
 
-    const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading || kontonummer.isLoading;
-    const error = søker.isError || deltakelser.isError || barn.isError;
+    const isLoading = søker.isLoading || deltakelser.isLoading;
+    const error = søker.isError || deltakelser.isError;
 
     if (isLoading) {
         return <LoadingPage />;
@@ -27,7 +23,7 @@ const DeltakerInfoLoader = () => {
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
-    if (!deltakelser.data || !søker.data || !barn.data) {
+    if (!deltakelser.data || !søker.data) {
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -42,12 +38,7 @@ const DeltakerInfoLoader = () => {
     const deltakelse = deltakelser.data[0];
 
     return (
-        <DeltakerContextProvider
-            kontonummer={kontonummer.isError ? undefined : kontonummer.data?.kontonummer}
-            søker={søker.data}
-            deltakelse={deltakelse}
-            barn={barn.data}
-            refetchDeltakelser={deltakelser.refetch}>
+        <DeltakerContextProvider søker={søker.data} deltakelse={deltakelse} refetchDeltakelser={deltakelser.refetch}>
             {deltakelse.harSøkt ? <InnsynApp /> : <SøknadApp />}
         </DeltakerContextProvider>
     );

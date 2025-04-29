@@ -24,7 +24,11 @@ const SøknadRoutes = () => {
                     <Route path="soknad/oppstart" element={<OppstartSteg />} />
                     <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
                     <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
-                    <Route path="soknad/kvittering" element={<KvitteringPage />} />
+                    {søknadSendtInn === false ? (
+                        <Route path="*" element={<Navigate to="/" replace={true} />} />
+                    ) : (
+                        <Route path="soknad/kvittering" element={<KvitteringPage />} />
+                    )}
                     <Route path="*" element={<Navigate to="/" replace={true} />} />
                 </>
             )}

@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
 import { useSøknadContext } from '../context/søknadContext';
 import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, skjemaSteg } from '../utils/stegUtils';
 import { Steg } from '../types/Steg';
 import { useNavigate } from 'react-router-dom';
 
 export const useErStegTilgjengelig = (steg: Steg) => {
-    const { kontonummer } = useDeltakerContext();
-    const { svar } = useSøknadContext();
+    const { svar, kontonummer } = useSøknadContext();
     const navigate = useNavigate();
 
     useEffect(() => {

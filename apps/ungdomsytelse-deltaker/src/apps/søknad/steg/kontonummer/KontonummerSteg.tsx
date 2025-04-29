@@ -1,7 +1,6 @@
 import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { Steg } from '../../types/Steg';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
 import { useState } from 'react';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
@@ -9,12 +8,11 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 
 const KontonummerSteg = () => {
-    const { kontonummer } = useDeltakerContext();
-    const { oppdaterSvar, setAktivtSteg, svar } = useSøknadContext();
+    const { oppdaterSvar, setAktivtSteg, svar, kontonummer } = useSøknadContext();
     const [infoStemmer, setInfoStemmer] = useState<YesOrNo>(svar[Spørsmål.KONTONUMMER] || YesOrNo.UNANSWERED);
     const [error, setError] = useState<string | undefined>(undefined);
 
-    const harKontonummer = kontonummer !== undefined && kontonummer !== null;
+    const harKontonummer = kontonummer !== undefined;
 
     const handleOnSubmit = () => {
         if (harKontonummer) {

@@ -3,6 +3,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { Steg } from '../types/Steg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getStegFraPath } from '../utils/stegUtils';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
 export enum Spørsmål {
     BEKREFTER = 'bekrefter',
@@ -22,6 +23,8 @@ interface SøknadContextType {
     svar: SøknadSvar;
     aktivtSteg: Steg;
     søknadSendtInn: boolean;
+    kontonummer?: string;
+    barn: RegistrertBarn[];
     oppdaterSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setAktivtSteg: (steg: Steg) => void;
     setSøknadSendt: (sendtInn: boolean) => void;
@@ -32,7 +35,13 @@ interface SøknadContextType {
 
 const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
-export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface SøknadProviderProps {
+    children: React.ReactNode;
+    barn: RegistrertBarn[];
+    kontonummer?: string;
+}
+
+export const SøknadProvider = ({ children, kontonummer, barn }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>({
         // bekrefter: true,
         // barn: YesOrNo.YES,
@@ -86,6 +95,8 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 svar,
                 aktivtSteg,
                 søknadSendtInn: søknadSendt,
+                kontonummer,
+                barn,
                 oppdaterSvar,
                 setAktivtSteg: doSetAktivtSteg,
                 setSøknadSendt: doSetSøknadSendt,

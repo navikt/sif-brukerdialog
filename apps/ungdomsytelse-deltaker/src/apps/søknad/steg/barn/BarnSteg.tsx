@@ -1,7 +1,6 @@
 import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { Steg } from '../../types/Steg';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
 import { useState } from 'react';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
@@ -10,8 +9,7 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import BarnInfo from './BarnInfo';
 
 const BarnSteg = () => {
-    const { barn } = useDeltakerContext();
-    const { oppdaterSvar, setAktivtSteg: setAktivtSteg, svar } = useSøknadContext();
+    const { oppdaterSvar, setAktivtSteg: setAktivtSteg, svar, barn } = useSøknadContext();
 
     const harBarn = barn.length > 0;
 
