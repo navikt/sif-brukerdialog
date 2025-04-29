@@ -90,11 +90,17 @@ const OppsummeringSteg = () => {
                 </Box>
             ) : null}
 
-            <SkjemaFooter
-                pending={pending}
-                forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.KONTONUMMER) }}
-                neste={{ tittel: 'Send søknad', erSendInn: true, onClick: handleOnSubmit }}
-            />
+            <form
+                onSubmit={(evt) => {
+                    evt.preventDefault();
+                    handleOnSubmit();
+                }}>
+                <SkjemaFooter
+                    pending={pending}
+                    forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.KONTONUMMER) }}
+                    submit={{ tittel: 'Send søknad', erSendInn: true }}
+                />
+            </form>
         </SøknadSteg>
     );
 };

@@ -11,6 +11,7 @@ export const useBarn = (enabled = true) => {
         queryKey: queryKeys.barn,
         queryFn: () => fetchBarn(),
         enabled,
+        staleTime: 1000 * 60 * 5, // 5 minutter
         retry: 1,
     });
 };

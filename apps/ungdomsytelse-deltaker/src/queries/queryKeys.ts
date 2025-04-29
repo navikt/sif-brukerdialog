@@ -1,4 +1,5 @@
 export const queryKeys = {
+    getMellomlagring: ['getMellomlagring'],
     barn: ['barn'],
     søker: ['søker'],
     kontonummer: ['kontonummer'],
@@ -7,6 +8,7 @@ export const queryKeys = {
 };
 
 export const queries = {
+    getMellomlagring: { queryKey: queryKeys.getMellomlagring },
     barn: { queryKey: queryKeys.barn },
     søker: { queryKey: queryKeys.søker },
     alleMineDeltakelser: { queryKey: queryKeys.deltakelser },

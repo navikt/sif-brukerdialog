@@ -2,6 +2,9 @@ import { delay, http, HttpResponse } from 'msw';
 import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
 import { deltakelserMockStorage } from './deltakelseMockStorage';
+import { YTELSE } from '../../../src/constants';
+
+const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse';
 
 export const getHandlers = () => {
     const scenario = getScenarioFromLocalStorage();
@@ -14,9 +17,9 @@ export const getHandlers = () => {
         http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
         http.get('**/deltaker/hent-kontonummer', async () => {
-            await delay(3000);
-            return new HttpResponse(null, { status: 404 });
-            // return HttpResponse.json({ kontonummer: '12345678901' });
+            // await delay(3000);
+            // return new HttpResponse(null, { status: 404 });
+            return HttpResponse.json({ kontonummer: '12345678901' });
         }),
         http.get('**/oppslag/soker', () => {
             return HttpResponse.json(søker);
@@ -55,6 +58,25 @@ export const getHandlers = () => {
             // const data = zUngdomsytelseInntektsrapportering.parse(JSON.parse(text));
             deltakelserMockStorage.actions.setInntektRapportert(JSON.parse(text).oppgittInntektForPeriode);
             return Promise.resolve(new HttpResponse(null, { status: 200 }));
+        }),
+        http.get(`**/mellomlagring/${YTELSE}`, () => {
+            const data = localStorage.getItem(MellomlagringStorageKey);
+            const jsonData = JSON.parse(JSON.stringify(data) || '{}');
+            return HttpResponse.json(jsonData || {}, { status: 200 });
+        }),
+        http.post(`**/mellomlagring/${YTELSE}`, async ({ request }) => {
+            const data = await request.text();
+            localStorage.setItem(MellomlagringStorageKey, data);
+            return new HttpResponse(null, { status: 200 });
+        }),
+        http.put(`**/mellomlagring/${YTELSE}`, async ({ request }) => {
+            const data = await request.text();
+            localStorage.setItem(MellomlagringStorageKey, data);
+            return new HttpResponse(null, { status: 200 });
+        }),
+        http.delete(`**/mellomlagring/${YTELSE}`, () => {
+            localStorage.setItem(MellomlagringStorageKey, '');
+            return new HttpResponse(null, { status: 200 });
         }),
     ];
 };

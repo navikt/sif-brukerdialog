@@ -11,6 +11,7 @@ export const useSøker = (enabled = true) => {
         queryKey: queryKeys.søker,
         queryFn: () => fetchSøker(),
         enabled,
+        staleTime: 1000 * 60 * 5, // 5 minutter
         retry: 1,
     });
 };

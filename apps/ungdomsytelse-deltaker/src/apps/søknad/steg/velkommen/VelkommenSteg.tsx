@@ -45,6 +45,7 @@ const VelkommenSteg = () => {
                         <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
                             <Checkbox
                                 checked={infoStemmer}
+                                value="bekrefter"
                                 onChange={(evt) => setInfoStemmer(evt.target.checked)}
                                 error={!!error}>
                                 Jeg bekrefter at jeg vil svare så riktig som jeg kan

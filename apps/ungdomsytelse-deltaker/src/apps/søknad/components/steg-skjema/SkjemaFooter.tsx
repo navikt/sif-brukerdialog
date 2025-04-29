@@ -8,14 +8,13 @@ interface Props {
         tittel: string;
         onClick: () => void;
     };
-    neste?: {
+    submit?: {
         tittel: string;
         erSendInn: boolean;
-        onClick: () => void;
     };
 }
 
-const SkjemaFooter = ({ forrige, neste, pending }: Props) => (
+const SkjemaFooter = ({ forrige, submit, pending }: Props) => (
     <Box marginBlock="8 0">
         <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
             {forrige && (
@@ -29,15 +28,15 @@ const SkjemaFooter = ({ forrige, neste, pending }: Props) => (
                     {forrige.tittel}
                 </Button>
             )}
-            {neste && (
+            {submit && (
                 <Button
+                    type="submit"
                     variant="primary"
-                    onClick={neste.onClick}
                     loading={pending}
                     disabled={pending}
-                    icon={neste.erSendInn ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}
+                    icon={submit.erSendInn ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}
                     iconPosition="right">
-                    {neste.tittel}
+                    {submit.tittel}
                 </Button>
             )}
         </HGrid>

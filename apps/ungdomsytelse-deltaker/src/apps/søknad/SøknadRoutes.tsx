@@ -8,10 +8,10 @@ import VelkommenSteg from './steg/velkommen/VelkommenSteg';
 import { useSøknadContext } from './context/søknadContext';
 
 const SøknadRoutes = () => {
-    const { søknadSendtInn } = useSøknadContext();
+    const { søknadSendt } = useSøknadContext();
     return (
         <Routes>
-            {søknadSendtInn ? (
+            {søknadSendt ? (
                 <>
                     <Route path="soknad/kvittering" element={<KvitteringPage />} />
                     <Route path="*" element={<Navigate to="/soknad/kvittering" replace={true} />} />
@@ -24,7 +24,7 @@ const SøknadRoutes = () => {
                     <Route path="soknad/oppstart" element={<OppstartSteg />} />
                     <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
                     <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
-                    {søknadSendtInn === false ? (
+                    {søknadSendt === false ? (
                         <Route path="*" element={<Navigate to="/" replace={true} />} />
                     ) : (
                         <Route path="soknad/kvittering" element={<KvitteringPage />} />

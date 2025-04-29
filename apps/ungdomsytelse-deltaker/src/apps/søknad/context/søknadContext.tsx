@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { Steg } from '../types/Steg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getStegFraPath } from '../utils/stegUtils';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { MellomlagringDTO } from '../../../api/mellomlagring/mellomlagring';
+import { Steg } from '../types/Steg';
+import { getStegFraPath } from '../utils/stegUtils';
 
 export enum Spørsmål {
     BEKREFTER = 'bekrefter',
@@ -22,7 +23,7 @@ export type SøknadSvar = {
 interface SøknadContextType {
     svar: SøknadSvar;
     aktivtSteg: Steg;
-    søknadSendtInn: boolean;
+    søknadSendt: boolean;
     kontonummer?: string;
     barn: RegistrertBarn[];
     oppdaterSvar: (key: Spørsmål, value: unknown | undefined) => void;
@@ -39,10 +40,12 @@ interface SøknadProviderProps {
     children: React.ReactNode;
     barn: RegistrertBarn[];
     kontonummer?: string;
+    mellomlagring?: MellomlagringDTO;
 }
 
-export const SøknadProvider = ({ children, kontonummer, barn }: SøknadProviderProps) => {
+export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>({
+        ...mellomlagring?.søknad,
         // bekrefter: true,
         // barn: YesOrNo.YES,
         // kontonummer: YesOrNo.YES,
@@ -50,7 +53,6 @@ export const SøknadProvider = ({ children, kontonummer, barn }: SøknadProvider
     });
 
     const { pathname } = useLocation();
-
     const stegIPath = getStegFraPath(pathname);
     const [aktivtSteg, setAktivtSteg] = useState<Steg>(stegIPath || Steg.VELKOMMEN);
     const [søknadSendt, setSøknadSendt] = useState(false);
@@ -86,6 +88,7 @@ export const SøknadProvider = ({ children, kontonummer, barn }: SøknadProvider
     };
 
     const startSøknad = () => {
+        console.log('start');
         doSetAktivtSteg(Steg.OPPSTART);
     };
 
@@ -94,7 +97,7 @@ export const SøknadProvider = ({ children, kontonummer, barn }: SøknadProvider
             value={{
                 svar,
                 aktivtSteg,
-                søknadSendtInn: søknadSendt,
+                søknadSendt,
                 kontonummer,
                 barn,
                 oppdaterSvar,

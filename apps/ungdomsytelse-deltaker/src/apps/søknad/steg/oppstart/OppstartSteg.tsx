@@ -32,6 +32,7 @@ const OppstartSteg = () => {
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
+                    evt.stopPropagation();
                     handleOnSubmit();
                 }}>
                 <VStack gap="10" marginBlock="4 0">
@@ -66,7 +67,7 @@ const OppstartSteg = () => {
                         )}
                     </VStack>
                 </VStack>
-                <SkjemaFooter neste={{ tittel: 'Neste steg', erSendInn: false, onClick: handleOnSubmit }} />
+                <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
             </form>
         </SøknadSteg>
     );

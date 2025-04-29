@@ -10,6 +10,7 @@ export const useDeltakelser = (enabled = true) => {
     return useQuery<DeltakelsePeriode[], ApiError>({
         queryKey: queryKeys.deltakelser,
         queryFn: () => getAlleMineDeltakelser(),
+        staleTime: 1000 * 60 * 5, // 5 minutter
         enabled,
         retry: 1,
     });
