@@ -13,6 +13,7 @@ const InnsynApp = () => {
                 <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
                 <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
                 <Route path="inntekt/:periode/:kvittering?" element={<RapporterInntektPage />} />
+                <Route path="*" element={<Navigate to="/" replace={true} />} />
             </Routes>
         </BrowserRouter>
     );

@@ -1,22 +1,47 @@
-import { FormSummary } from '@navikt/ds-react';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import { Steg } from '../../types/Steg';
-import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { Box, FormSummary } from '@navikt/ds-react';
+import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import BarnInfo from '../barn/BarnInfo';
+import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
+import { useDeltakerContext } from '../../../../context/DeltakerContext';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
+import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
+import { Spørsmål, SøknadSvar, useSøknadContext } from '../../context/søknadContext';
+import { useSendSøknad } from '../../hooks/useSendSøknad';
+
+import { Steg } from '../../types/Steg';
+import BarnInfo from '../barn/BarnInfo';
+import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { useNavigate } from 'react-router-dom';
+
+const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startdato: Date): Ungdomsytelsesøknad => {
+    return {
+        språk: 'nb',
+        harBekreftetOpplysninger: true,
+        harForståttRettigheterOgPlikter: svar[Spørsmål.BEKREFTER] === true,
+        startdato: dateToISODate(startdato),
+        søkerNorskIdent,
+    };
+};
 
 const OppsummeringSteg = () => {
-    const { deltakelse, barn, kontonummer } = useDeltakerContext();
-    const { setAktivtSteg } = useSøknadContext();
+    const { deltakelse, barn, søker, kontonummer } = useDeltakerContext();
+    const { setAktivtSteg, setSøknadSendt } = useSøknadContext();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const { svar } = useSøknadContext();
+    const navigate = useNavigate();
 
-    const handleOnSubmit = () => {
-        alert('Sender inn');
+    const { error, pending, sendSøknad } = useSendSøknad();
+
+    const handleOnSubmit = async () => {
+        const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelse.programPeriode.from);
+
+        await sendSøknad(søknad);
+
+        if (!error) {
+            setSøknadSendt(true);
+            navigate('/soknad/kvittering');
+        }
     };
 
     return (
@@ -58,7 +83,15 @@ const OppsummeringSteg = () => {
                     )}
                 </FormSummary.Answers>
             </FormSummary>
+
+            {error ? (
+                <Box marginBlock={'8 8'}>
+                    <ApiErrorAlert error={error} />
+                </Box>
+            ) : null}
+
             <SkjemaFooter
+                pending={pending}
                 forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.KONTONUMMER) }}
                 neste={{ tittel: 'Send søknad', erSendInn: true, onClick: handleOnSubmit }}
             />

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { Steg } from '../types/Steg';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ interface SøknadContextType {
     søknadSendtInn: boolean;
     oppdaterSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setAktivtSteg: (steg: Steg) => void;
-    setErSendtInn: (sendtInn: boolean) => void;
+    setSøknadSendt: (sendtInn: boolean) => void;
     startSøknad: () => void;
     sendInnSøknad: () => void;
     avbrytOgSlett: () => void;
@@ -34,24 +34,23 @@ const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
 export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [svar, setSvar] = useState<SøknadSvar>({
-        bekrefter: true,
-        barn: YesOrNo.YES,
-        kontonummer: YesOrNo.YES,
-        oppstart: YesOrNo.YES,
+        // bekrefter: true,
+        // barn: YesOrNo.YES,
+        // kontonummer: YesOrNo.YES,
+        // oppstart: YesOrNo.YES,
     });
 
     const { pathname } = useLocation();
-    const stegIPath = getStegFraPath(pathname);
 
+    const stegIPath = getStegFraPath(pathname);
     const [aktivtSteg, setAktivtSteg] = useState<Steg>(stegIPath || Steg.VELKOMMEN);
-    const [søknadSendtInn, setSøknadSendtInn] = useState(false);
+    const [søknadSendt, setSøknadSendt] = useState(false);
 
     const navigate = useNavigate();
 
-    if (søknadSendtInn && getStegFraPath(pathname) !== Steg.KVITTERING) {
+    if (søknadSendt && getStegFraPath(pathname) !== Steg.KVITTERING) {
         navigate('soknad/kvittering');
     }
-    useEffect(() => {});
 
     const oppdaterSvar = (key: Spørsmål, value: YesOrNo | undefined) => {
         setSvar((prev) => ({ ...prev, [key]: value }));
@@ -66,8 +65,8 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
         }
     };
 
-    const doSetErSendtInn = (sendtInn: boolean) => {
-        setSøknadSendtInn(sendtInn);
+    const doSetSøknadSendt = (sendtInn: boolean) => {
+        setSøknadSendt(sendtInn);
     };
 
     const sendInnSøknad = () => {};
@@ -78,7 +77,7 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     const startSøknad = () => {
-        doSetAktivtSteg(Steg.BARN);
+        doSetAktivtSteg(Steg.OPPSTART);
     };
 
     return (
@@ -86,10 +85,10 @@ export const SøknadProvider: React.FC<{ children: React.ReactNode }> = ({ child
             value={{
                 svar,
                 aktivtSteg,
-                søknadSendtInn,
+                søknadSendtInn: søknadSendt,
                 oppdaterSvar,
                 setAktivtSteg: doSetAktivtSteg,
-                setErSendtInn: doSetErSendtInn,
+                setSøknadSendt: doSetSøknadSendt,
                 sendInnSøknad,
                 startSøknad,
                 avbrytOgSlett,

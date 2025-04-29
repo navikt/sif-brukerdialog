@@ -2,6 +2,8 @@ import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-ico
 import { Box, Button, HGrid } from '@navikt/ds-react';
 
 interface Props {
+    pending?: boolean;
+    disabled?: boolean;
     forrige?: {
         tittel: string;
         onClick: () => void;
@@ -13,7 +15,7 @@ interface Props {
     };
 }
 
-const SkjemaFooter = ({ forrige, neste }: Props) => (
+const SkjemaFooter = ({ forrige, neste, pending }: Props) => (
     <Box marginBlock="8 0">
         <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
             {forrige && (
@@ -21,6 +23,7 @@ const SkjemaFooter = ({ forrige, neste }: Props) => (
                     type="button"
                     variant="secondary"
                     onClick={forrige.onClick}
+                    disabled={pending}
                     icon={<ArrowLeftIcon aria-hidden />}
                     iconPosition="left">
                     {forrige.tittel}
@@ -30,6 +33,8 @@ const SkjemaFooter = ({ forrige, neste }: Props) => (
                 <Button
                     variant="primary"
                     onClick={neste.onClick}
+                    loading={pending}
+                    disabled={pending}
                     icon={neste.erSendInn ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}
                     iconPosition="right">
                     {neste.tittel}

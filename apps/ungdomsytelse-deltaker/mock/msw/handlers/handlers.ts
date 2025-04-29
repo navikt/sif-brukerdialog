@@ -30,7 +30,7 @@ export const getHandlers = () => {
         }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
             deltakelserMockStorage.actions.setDeltakelseSøktFor();
-            return new HttpResponse(null, { status: 200 });
+            return new HttpResponse(null, { status: 500 });
         }),
         http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
             const text = await request.text();
