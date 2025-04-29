@@ -60,7 +60,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
 
                 <StegFooter
                     slett={{
-                        tittel: 'Avbryt og slett søknad',
+                        tittel: 'Avbryt søknad',
                         onClick: avbrytOgSlett,
                     }}
                 />

@@ -12,7 +12,7 @@ const KontonummerSteg = () => {
     const { setSpørsmålSvar, svar, kontonummer } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
-    const infoStemmer = svar[Spørsmål.BARN];
+    const infoStemmer = svar[Spørsmål.KONTONUMMER];
     const [error, setError] = useState<string | undefined>(undefined);
 
     const harKontonummer = kontonummer !== undefined;

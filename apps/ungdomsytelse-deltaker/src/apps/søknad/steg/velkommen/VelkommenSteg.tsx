@@ -6,13 +6,21 @@ import { useDeltakerContext } from '../../../../context/DeltakerContext';
 import SøknadHeader from '../../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../../components/VelkommenMelding';
 import { useSøknadContext } from '../../context/søknadContext';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
+import { Steg } from '../../types/Steg';
 
 const VelkommenSteg = () => {
     const { søker, deltakelse } = useDeltakerContext();
     const { startSøknad, svar } = useSøknadContext();
 
+    const { gotoSteg } = useSøknadNavigation();
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar.bekrefter || false);
     const [error, setError] = useState<string | undefined>(undefined);
+
+    /** Se om bruker allerede har vært innom denne siden */
+    if (svar.bekrefter) {
+        gotoSteg(Steg.OPPSTART);
+    }
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -43,7 +51,10 @@ const VelkommenSteg = () => {
                             <Checkbox
                                 checked={infoStemmer}
                                 value="bekrefter"
-                                onChange={(evt) => setInfoStemmer(evt.target.checked)}
+                                onChange={(evt) => {
+                                    setError(undefined);
+                                    setInfoStemmer(evt.target.checked);
+                                }}
                                 error={!!error}>
                                 Jeg bekrefter at jeg vil svare så riktig som jeg kan
                             </Checkbox>

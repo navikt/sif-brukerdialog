@@ -31,7 +31,6 @@ const SøknadApp = () => {
     const gyldigMellomlagring = getGyldigMellomlagring(mellomlagring.data);
 
     if (!inited && gyldigMellomlagring && !pathname.includes(gyldigMellomlagring.meta.aktivtSteg)) {
-        console.log('redirect');
         setInited(true);
         return <Navigate to={`/soknad/${gyldigMellomlagring.meta.aktivtSteg}`} replace />;
     }
