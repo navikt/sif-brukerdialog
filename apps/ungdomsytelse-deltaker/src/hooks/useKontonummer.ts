@@ -12,6 +12,6 @@ export const useKontonummer = (enabled = true) => {
         queryKey: queryKeys.kontonummer,
         queryFn: getKontonummer,
         enabled,
-        retry: 1,
+        retry: 0,
     });
 };
