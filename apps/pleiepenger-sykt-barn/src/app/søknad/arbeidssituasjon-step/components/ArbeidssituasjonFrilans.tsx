@@ -13,6 +13,10 @@ import FosterhjemsgodtgjørelseFormPart from './fosterhjemsgodtgjørelse-form-pa
 import FrilanserFormPart from './frilans-form-part/FrilanserFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import OmsorgsstønadFormPart from './omsorgsstønad-form-part/OmsorgsstønadFormPart';
+import { FrilansFormValues } from '../../../types/søknad-form-values/FrilansFormValues';
+import { Arbeidsgiver } from '../../../types';
+import { OmsorgsstønadFormValues } from '../../../types/søknad-form-values/OmsorgsstønadFormValues';
+import { FosterhjemsgodtgjørelseFormValues } from '../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -75,16 +79,35 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                 />
             </FormBlock>
 
-            {frilansoppdrag.length > 0 &&
-                values.frilans.harHattInntektSomFrilanser === YesOrNo.NO &&
-                omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO && (
-                    <Block margin="l">
-                        <Alert variant="info">
-                            <AppText id={'frilanser.ingenFrilans.info'} />
-                        </Alert>
-                    </Block>
-                )}
+            {visIngenFrilansInformasjon(
+                frilansoppdrag,
+                omsorgsstønad,
+                values.fosterhjemsgodtgjørelse,
+                values.frilans,
+            ) && (
+                <Block margin="l">
+                    <Alert variant="info">
+                        <AppText id={'frilanser.ingenFrilans.info'} />
+                    </Alert>
+                </Block>
+            )}
         </div>
+    );
+};
+
+const visIngenFrilansInformasjon = (
+    frilansoppdrag: Arbeidsgiver[],
+    omsorgsstønad: OmsorgsstønadFormValues,
+    fosterhjem: FosterhjemsgodtgjørelseFormValues,
+    frilans: FrilansFormValues,
+): boolean => {
+    if (frilansoppdrag.length === 0) {
+        return false;
+    }
+    return (
+        frilans.harHattInntektSomFrilanser === YesOrNo.NO &&
+        omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO &&
+        fosterhjem.mottarFosterhjemsgodtgjørelse === YesOrNo.NO
     );
 };
 
