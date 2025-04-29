@@ -1,5 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { Navigate, useLocation } from 'react-router-dom';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
 import { useBarn } from '../../hooks/useBarn';
@@ -8,9 +7,11 @@ import { SøknadProvider } from './context/søknadContext';
 import { useGetMellomlagring } from './hooks/useGetMellomlagring';
 import SøknadRoutes from './SøknadRoutes';
 import { MellomlagringDTO, zMellomlagringSchema } from '../../api/mellomlagring/mellomlagring';
+import { useState } from 'react';
 
 const SøknadApp = () => {
-    const publicPath = getRequiredEnv('PUBLIC_PATH');
+    const { pathname } = useLocation();
+    const [inited, setInited] = useState(false);
 
     const mellomlagring = useGetMellomlagring();
     const kontonummer = useKontonummer();
@@ -29,18 +30,19 @@ const SøknadApp = () => {
 
     const gyldigMellomlagring = getGyldigMellomlagring(mellomlagring.data);
 
-    if (gyldigMellomlagring) {
+    if (!inited && gyldigMellomlagring && !pathname.includes(gyldigMellomlagring.meta.aktivtSteg)) {
+        console.log('redirect');
+        setInited(true);
+        return <Navigate to={`/soknad/${gyldigMellomlagring.meta.aktivtSteg}`} replace />;
     }
 
     return (
-        <BrowserRouter basename={publicPath}>
-            <SøknadProvider
-                mellomlagring={gyldigMellomlagring}
-                kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
-                barn={barn.data || []}>
-                <SøknadRoutes />
-            </SøknadProvider>
-        </BrowserRouter>
+        <SøknadProvider
+            mellomlagring={gyldigMellomlagring}
+            kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
+            barn={barn.data || []}>
+            <SøknadRoutes />
+        </SøknadProvider>
     );
 };
 

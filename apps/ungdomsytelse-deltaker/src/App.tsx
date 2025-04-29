@@ -1,5 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { EnvKey, getCommonEnv } from '@navikt/sif-common-env';
+import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import DeltakerInfoLoader from './DeltakerInfoLoader';
 import DevFooter from './dev/DevFooter';
@@ -8,6 +8,7 @@ import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css/darkside';
 import './app.css';
 import { Theme } from '@navikt/ds-react';
+import { BrowserRouter } from 'react-router-dom';
 
 initUngDeltakelseOpplyserApiClient({
     onUnAuthorized: () => {
@@ -17,11 +18,15 @@ initUngDeltakelseOpplyserApiClient({
 initK9BrukerdialogProsesseringApiClient();
 
 function App() {
+    const publicPath = getRequiredEnv('PUBLIC_PATH');
+
     return (
         <Theme>
             <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
                 <AppIntlMessageProvider>
-                    <DeltakerInfoLoader />
+                    <BrowserRouter basename={publicPath}>
+                        <DeltakerInfoLoader />
+                    </BrowserRouter>
                     {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
                 </AppIntlMessageProvider>
             </ErrorBoundary>
