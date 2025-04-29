@@ -13,9 +13,10 @@ export const getHandlers = () => {
         http.get('*nav.no*', () => new HttpResponse(null, { status: 200 })),
         http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
-        http.get('**/deltaker/hent-kontonummer', () => {
-            // return new HttpResponse(null, { status: 404 });
-            return HttpResponse.json({ kontonummer: '12345678901' });
+        http.get('**/deltaker/hent-kontonummer', async () => {
+            await delay(3000);
+            return new HttpResponse(null, { status: 404 });
+            // return HttpResponse.json({ kontonummer: '12345678901' });
         }),
         http.get('**/oppslag/soker', () => {
             return HttpResponse.json(søker);

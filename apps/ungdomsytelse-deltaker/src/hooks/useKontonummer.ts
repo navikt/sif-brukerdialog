@@ -8,10 +8,11 @@ import { queryKeys } from '../queries/queryKeys';
  * Henter alle deltakelser for innlogget deltaker
  */
 export const useKontonummer = (enabled = true) => {
-    return useQuery<KontonummerDto, ApiError>({
+    return useQuery<KontonummerDto | null, ApiError>({
         queryKey: queryKeys.kontonummer,
         queryFn: getKontonummer,
         enabled,
+        staleTime: 1000 * 60 * 5, // 5 minutter
         retry: 0,
     });
 };

@@ -26,7 +26,10 @@ const SøknadApp = () => {
 
     return (
         <BrowserRouter basename={publicPath}>
-            <SøknadProvider kontonummer={kontonummer.data?.kontonummer} barn={barn.data || []}>
+            <SøknadProvider
+                /** kontonummer.data === null når det kommer 404 fra backend */
+                kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
+                barn={barn.data || []}>
                 <SøknadRoutes />
             </SøknadProvider>
         </BrowserRouter>
