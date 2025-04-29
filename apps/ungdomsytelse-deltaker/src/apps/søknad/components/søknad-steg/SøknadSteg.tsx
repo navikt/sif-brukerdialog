@@ -30,7 +30,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     const activeIndex = getSkjemaStegIndex(steg) + 1;
 
     return (
-        <Page title={tittel}>
+        <Page title={`${tittel} - Søknad om ungdomsytelse`}>
             <VStack gap="8">
                 <SøknadHeader tittel="Søknad om ungdomsytelse" />
                 <div>
