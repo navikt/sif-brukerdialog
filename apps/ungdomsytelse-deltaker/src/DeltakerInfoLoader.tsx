@@ -5,20 +5,19 @@ import SøknadApp from './apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from './context/DeltakerContext';
 import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
 import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
-import { useQuery } from '@tanstack/react-query';
-import { fetchSøkerQueryOptions } from './queries/fetchSøkerQueryOptions';
-import { fetchDeltakelserQueryOptions } from './queries/fetchDeltakelserQueryOptions';
-import { fetchBarnQueryOptions } from './queries/fetchBarnQueryOptions';
-import { fetchDeltakerKontonummerOptions } from './queries/fetchDeltakerKontonummerOptions';
+import { useSøker } from './hooks/useSøker';
+import { useKontonummer } from './hooks/useKontonummer';
+import { useDeltakelser } from './hooks/useDeltakelser';
+import { useBarn } from './hooks/useBarn';
 
 const DeltakerInfoLoader = () => {
-    const søker = useQuery(fetchSøkerQueryOptions());
-    const kontonummer = useQuery(fetchDeltakerKontonummerOptions());
-    const deltakelser = useQuery(fetchDeltakelserQueryOptions());
-    const barn = useQuery(fetchBarnQueryOptions());
+    const søker = useSøker();
+    const kontonummer = useKontonummer();
+    const deltakelser = useDeltakelser();
+    const barn = useBarn();
 
     const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading || kontonummer.isLoading;
-    const error = søker.isError || deltakelser.isError || barn.isError || kontonummer.isError;
+    const error = søker.isError || deltakelser.isError || barn.isError;
 
     if (isLoading) {
         return <LoadingPage />;
@@ -40,11 +39,11 @@ const DeltakerInfoLoader = () => {
         return <FlereDeltakelserPage />;
     }
 
-    console.log(kontonummer.data);
     const deltakelse = deltakelser.data[0];
+
     return (
         <DeltakerContextProvider
-            kontonummer={kontonummer.data?.kontonummer}
+            kontonummer={kontonummer.isError ? undefined : kontonummer.data?.kontonummer}
             søker={søker.data}
             deltakelse={deltakelse}
             barn={barn.data}
