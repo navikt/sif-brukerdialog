@@ -30,7 +30,7 @@ const KontonummerSteg = () => {
     };
 
     return (
-        <SøknadSteg tittel="Kontonummer for utbetaling" steg={Steg.OPPSTART}>
+        <SøknadSteg tittel="Kontonummer for utbetaling" steg={Steg.KONTONUMMER}>
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
