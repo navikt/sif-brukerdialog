@@ -6,10 +6,13 @@ import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 const KontonummerSteg = () => {
-    const { oppdaterSvar, setAktivtSteg, svar, kontonummer } = useSøknadContext();
-    const [infoStemmer, setInfoStemmer] = useState<YesOrNo>(svar[Spørsmål.KONTONUMMER] || YesOrNo.UNANSWERED);
+    const { setSpørsmålSvar, svar, kontonummer } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
+
+    const infoStemmer = svar[Spørsmål.BARN];
     const [error, setError] = useState<string | undefined>(undefined);
 
     const harKontonummer = kontonummer !== undefined;
@@ -22,9 +25,8 @@ const KontonummerSteg = () => {
                 return;
             }
             setError(undefined);
-            oppdaterSvar(Spørsmål.KONTONUMMER, infoStemmer);
         }
-        setAktivtSteg(Steg.OPPSUMMERING);
+        gotoSteg(Steg.OPPSUMMERING);
     };
 
     return (
@@ -45,7 +47,7 @@ const KontonummerSteg = () => {
                                     value={infoStemmer}
                                     onChange={(value: YesOrNo) => {
                                         setError(undefined);
-                                        setInfoStemmer(value);
+                                        setSpørsmålSvar(Spørsmål.KONTONUMMER, value);
                                     }}>
                                     <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
                                         Ja
@@ -86,7 +88,7 @@ const KontonummerSteg = () => {
                     )}
                 </VStack>
                 <SkjemaFooter
-                    forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.BARN) }}
+                    forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
                     submit={{ tittel: 'Neste steg', erSendInn: false }}
                 />
             </form>

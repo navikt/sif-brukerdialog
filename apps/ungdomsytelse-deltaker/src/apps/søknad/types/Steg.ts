@@ -6,3 +6,10 @@ export enum Steg {
     'OPPSUMMERING' = 'oppsummering',
     'KVITTERING' = 'kvittering',
 }
+
+export enum SkjemaSteg {
+    'OPPSTART' = 'oppstart',
+    'BARN' = 'barn',
+    'KONTONUMMER' = 'kontonummer',
+    'OPPSUMMERING' = 'oppsummering',
+}

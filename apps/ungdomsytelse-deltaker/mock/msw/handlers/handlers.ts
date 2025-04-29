@@ -3,6 +3,8 @@ import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
 import { deltakelserMockStorage } from './deltakelseMockStorage';
 import { YTELSE } from '../../../src/constants';
+import { MellomlagringDTO } from '../../../src/api/mellomlagring/mellomlagring';
+import { Steg } from '../../../src/apps/søknad/types/Steg';
 
 const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse';
 
@@ -62,7 +64,16 @@ export const getHandlers = () => {
         http.get(`**/mellomlagring/${YTELSE}`, () => {
             const data = localStorage.getItem(MellomlagringStorageKey);
             const jsonData = JSON.parse(JSON.stringify(data) || '{}');
-            return HttpResponse.json(jsonData || {}, { status: 200 });
+            const returnData: MellomlagringDTO = jsonData || {
+                søknad: {
+                    bekrefter: true,
+                    barn: 'yes',
+                    kontonummer: 'no',
+                    oppstart: 'yes',
+                },
+                meta: { aktivtSteg: Steg.BARN, hash: '' },
+            };
+            return HttpResponse.json(returnData, { status: 200 });
         }),
         http.post(`**/mellomlagring/${YTELSE}`, async ({ request }) => {
             const data = await request.text();

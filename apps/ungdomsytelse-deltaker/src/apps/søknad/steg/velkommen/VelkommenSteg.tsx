@@ -5,16 +5,14 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useDeltakerContext } from '../../../../context/DeltakerContext';
 import SøknadHeader from '../../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../../components/VelkommenMelding';
-import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
+import { useSøknadContext } from '../../context/søknadContext';
 
 const VelkommenSteg = () => {
     const { søker, deltakelse } = useDeltakerContext();
+    const { startSøknad, svar } = useSøknadContext();
 
-    const { oppdaterSvar } = useSøknadContext();
-    const [infoStemmer, setInfoStemmer] = useState<boolean>(false);
+    const [infoStemmer, setInfoStemmer] = useState<boolean>(svar.bekrefter || false);
     const [error, setError] = useState<string | undefined>(undefined);
-
-    const { startSøknad } = useSøknadContext();
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -22,8 +20,7 @@ const VelkommenSteg = () => {
             setError('Du må bekrefte at du vil svare så riktig som du kan.');
             return;
         } else {
-            oppdaterSvar(Spørsmål.BEKREFTER, infoStemmer);
-            startSøknad();
+            startSøknad(infoStemmer);
         }
     };
 

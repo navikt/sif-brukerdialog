@@ -12,6 +12,7 @@ import { Steg } from '../../types/Steg';
 import BarnInfo from '../barn/BarnInfo';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startdato: Date): Ungdomsytelsesøknad => {
     return {
@@ -25,7 +26,8 @@ const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startda
 
 const OppsummeringSteg = () => {
     const { deltakelse, søker } = useDeltakerContext();
-    const { setAktivtSteg, setSøknadSendt, kontonummer, barn } = useSøknadContext();
+    const { setSøknadSendt, kontonummer, barn } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const { svar } = useSøknadContext();
@@ -97,7 +99,7 @@ const OppsummeringSteg = () => {
                 }}>
                 <SkjemaFooter
                     pending={pending}
-                    forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.KONTONUMMER) }}
+                    forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
                     submit={{ tittel: 'Send søknad', erSendInn: true }}
                 />
             </form>

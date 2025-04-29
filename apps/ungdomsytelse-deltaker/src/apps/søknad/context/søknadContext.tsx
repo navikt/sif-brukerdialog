@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { MellomlagringDTO } from '../../../api/mellomlagring/mellomlagring';
+import { useSøknadNavigation } from '../hooks/useSøknadNavigation';
 import { Steg } from '../types/Steg';
-import { getStegFraPath } from '../utils/stegUtils';
+import { MellomlagringDTO } from '../../../api/mellomlagring/mellomlagring';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 export enum Spørsmål {
     BEKREFTER = 'bekrefter',
@@ -22,15 +22,13 @@ export type SøknadSvar = {
 
 interface SøknadContextType {
     svar: SøknadSvar;
-    aktivtSteg: Steg;
+    // aktivtSteg: Steg;
     søknadSendt: boolean;
     kontonummer?: string;
     barn: RegistrertBarn[];
-    oppdaterSvar: (key: Spørsmål, value: unknown | undefined) => void;
-    setAktivtSteg: (steg: Steg) => void;
+    setSpørsmålSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setSøknadSendt: (sendtInn: boolean) => void;
-    startSøknad: () => void;
-    sendInnSøknad: () => void;
+    startSøknad: (bekrefter: true) => void;
     avbrytOgSlett: () => void;
 }
 
@@ -44,66 +42,46 @@ interface SøknadProviderProps {
 }
 
 export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: SøknadProviderProps) => {
-    const [svar, setSvar] = useState<SøknadSvar>({
-        ...mellomlagring?.søknad,
-        // bekrefter: true,
-        // barn: YesOrNo.YES,
-        // kontonummer: YesOrNo.YES,
-        // oppstart: YesOrNo.YES,
+    const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || {});
+    const { gotoSteg } = useSøknadNavigation();
+
+    useEffectOnce(() => {
+        if (mellomlagring) {
+            gotoSteg(mellomlagring.meta.aktivtSteg);
+        }
     });
 
-    const { pathname } = useLocation();
-    const stegIPath = getStegFraPath(pathname);
-    const [aktivtSteg, setAktivtSteg] = useState<Steg>(stegIPath || Steg.VELKOMMEN);
     const [søknadSendt, setSøknadSendt] = useState(false);
 
-    const navigate = useNavigate();
-
-    if (søknadSendt && getStegFraPath(pathname) !== Steg.KVITTERING) {
-        navigate('soknad/kvittering');
-    }
-
-    const oppdaterSvar = (key: Spørsmål, value: YesOrNo | undefined) => {
+    const oppdaterSvar = (key: Spørsmål, value: YesOrNo | boolean | undefined) => {
         setSvar((prev) => ({ ...prev, [key]: value }));
-    };
-
-    const doSetAktivtSteg = (steg: Steg) => {
-        setAktivtSteg(steg);
-        if (steg === Steg.VELKOMMEN) {
-            navigate('../');
-        } else {
-            navigate(`/soknad/${steg}`);
-        }
     };
 
     const doSetSøknadSendt = (sendtInn: boolean) => {
         setSøknadSendt(sendtInn);
     };
 
-    const sendInnSøknad = () => {};
-
     const avbrytOgSlett = () => {
         setSvar({});
-        doSetAktivtSteg(Steg.VELKOMMEN);
+        gotoSteg(Steg.VELKOMMEN);
     };
 
-    const startSøknad = () => {
-        console.log('start');
-        doSetAktivtSteg(Steg.OPPSTART);
+    const startSøknad = (bekrefter: boolean) => {
+        setSvar({
+            bekrefter,
+        });
+        gotoSteg(Steg.OPPSTART);
     };
 
     return (
         <SøknadContext.Provider
             value={{
                 svar,
-                aktivtSteg,
                 søknadSendt,
                 kontonummer,
                 barn,
-                oppdaterSvar,
-                setAktivtSteg: doSetAktivtSteg,
+                setSpørsmålSvar: oppdaterSvar,
                 setSøknadSendt: doSetSøknadSendt,
-                sendInnSøknad,
                 startSøknad,
                 avbrytOgSlett,
             }}>

@@ -7,13 +7,15 @@ import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import BarnInfo from './BarnInfo';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 const BarnSteg = () => {
-    const { oppdaterSvar, setAktivtSteg: setAktivtSteg, svar, barn } = useSøknadContext();
+    const { setSpørsmålSvar, svar, barn } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
 
     const harBarn = barn.length > 0;
 
-    const [infoStemmer, setInfoStemmer] = useState<YesOrNo>(svar[Spørsmål.BARN] || YesOrNo.UNANSWERED);
+    const infoStemmer = svar[Spørsmål.BARN];
     const [error, setError] = useState<string | undefined>(undefined);
 
     const handleOnSubmit = () => {
@@ -23,8 +25,7 @@ const BarnSteg = () => {
             return;
         }
         setError(undefined);
-        oppdaterSvar(Spørsmål.BARN, infoStemmer);
-        setAktivtSteg(Steg.KONTONUMMER);
+        gotoSteg(Steg.KONTONUMMER);
     };
 
     return (
@@ -51,7 +52,7 @@ const BarnSteg = () => {
                             value={infoStemmer}
                             onChange={(value: YesOrNo) => {
                                 setError(undefined);
-                                setInfoStemmer(value);
+                                setSpørsmålSvar(Spørsmål.BARN, value);
                             }}>
                             <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
                                 Ja
@@ -75,7 +76,7 @@ const BarnSteg = () => {
                     </VStack>
                 </VStack>
                 <SkjemaFooter
-                    forrige={{ tittel: 'Forrige steg', onClick: () => setAktivtSteg(Steg.OPPSTART) }}
+                    forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.OPPSTART) }}
                     submit={{ tittel: 'Neste steg', erSendInn: false }}
                 />
             </form>

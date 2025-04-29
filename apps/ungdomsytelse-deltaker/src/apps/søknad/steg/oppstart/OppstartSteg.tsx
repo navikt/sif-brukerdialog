@@ -8,12 +8,14 @@ import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 const OppstartSteg = () => {
     const { deltakelse } = useDeltakerContext();
-    const { oppdaterSvar, setAktivtSteg, svar } = useSøknadContext();
+    const { setSpørsmålSvar, svar } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
 
-    const [infoStemmer, setInfoStemmer] = useState<YesOrNo>(svar[Spørsmål.OPPSTART] || YesOrNo.UNANSWERED);
+    const infoStemmer = svar[Spørsmål.OPPSTART];
     const [error, setError] = useState<string | undefined>(undefined);
 
     const handleOnSubmit = () => {
@@ -23,8 +25,7 @@ const OppstartSteg = () => {
             return;
         }
         setError(undefined);
-        oppdaterSvar(Spørsmål.OPPSTART, infoStemmer);
-        setAktivtSteg(Steg.BARN);
+        gotoSteg(Steg.BARN);
     };
 
     return (
@@ -44,7 +45,7 @@ const OppstartSteg = () => {
                             value={infoStemmer}
                             onChange={(value: YesOrNo) => {
                                 setError(undefined);
-                                setInfoStemmer(value);
+                                setSpørsmålSvar(Spørsmål.OPPSTART, value);
                             }}>
                             <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
                                 Ja

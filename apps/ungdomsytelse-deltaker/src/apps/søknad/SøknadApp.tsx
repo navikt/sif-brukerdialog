@@ -7,6 +7,7 @@ import { useKontonummer } from '../../hooks/useKontonummer';
 import { SøknadProvider } from './context/søknadContext';
 import { useGetMellomlagring } from './hooks/useGetMellomlagring';
 import SøknadRoutes from './SøknadRoutes';
+import { MellomlagringDTO, zMellomlagringSchema } from '../../api/mellomlagring/mellomlagring';
 
 const SøknadApp = () => {
     const publicPath = getRequiredEnv('PUBLIC_PATH');
@@ -26,16 +27,30 @@ const SøknadApp = () => {
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
+    const gyldigMellomlagring = getGyldigMellomlagring(mellomlagring.data);
+
+    if (gyldigMellomlagring) {
+    }
+
     return (
         <BrowserRouter basename={publicPath}>
             <SøknadProvider
-                mellomlagring={mellomlagring.data}
+                mellomlagring={gyldigMellomlagring}
                 kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
                 barn={barn.data || []}>
                 <SøknadRoutes />
             </SøknadProvider>
         </BrowserRouter>
     );
+};
+
+const getGyldigMellomlagring = (mellomlagring: MellomlagringDTO | undefined): MellomlagringDTO | undefined => {
+    const result = zMellomlagringSchema.safeParse(mellomlagring);
+    if (result.success) {
+        return result.data;
+    } else {
+        return undefined;
+    }
 };
 
 export default SøknadApp;
