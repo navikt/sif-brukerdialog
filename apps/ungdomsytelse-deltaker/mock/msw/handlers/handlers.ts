@@ -29,12 +29,14 @@ export const getHandlers = () => {
         http.get('**/deltakelse/register/hent/alle', () => {
             return HttpResponse.json(deltakelserMockStorage.get());
         }),
-        http.post('**/marker-har-sokt', () => {
-            return HttpResponse.json({});
+        http.put('**/deltakelse/register/:id/marker-har-sokt', () => {
+            // return HttpResponse.json({});
+            return new HttpResponse(null, { status: 500 });
         }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
-            deltakelserMockStorage.actions.setDeltakelseSøktFor();
-            return new HttpResponse(null, { status: 500 });
+            // deltakelserMockStorage.actions.setDeltakelseSøktFor();
+            return HttpResponse.json({});
+            // return new HttpResponse(null, { status: 500 });
         }),
         http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
             const text = await request.text();

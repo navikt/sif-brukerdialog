@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { ApiError } from '@navikt/ung-common';
 import { deltakerApiService } from '../../../api/deltakerApiService';
+import { markerDeltakelseSomSøkt } from '../../../api/deltakelse/markerDeltakelseSomSøkt';
 
-export const useSendSøknad = () => {
+export const useSendSøknad = (deltakelseId: string) => {
     const [pending, setPending] = useState(false);
     const [error, setError] = useState<ApiError | undefined>();
     const [søknadSendt, setSøknadSendt] = useState(false);
@@ -13,6 +14,10 @@ export const useSendSøknad = () => {
         setPending(true);
         try {
             await deltakerApiService.sendSøknad(søknad);
+            /** Ignorer hvis denne feiler - settes av ung-sak til slutt */
+            try {
+                await markerDeltakelseSomSøkt(deltakelseId);
+            } catch {}
             setSøknadSendt(true);
         } catch (e) {
             setError(e);

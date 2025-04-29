@@ -7,9 +7,9 @@ export const queryKeys = {
 };
 
 export const queries = {
-    barn: queryKeys.barn,
-    søker: queryKeys.søker,
-    alleMineDeltakelser: queryKeys.deltakelser,
+    barn: { queryKey: queryKeys.barn },
+    søker: { queryKey: queryKeys.søker },
+    alleMineDeltakelser: { queryKey: queryKeys.deltakelser },
     deltakelserForDeltaker: (deltakerId: string) => ({
         queryKey: queryKeys.deltakelserForDeltaker(deltakerId),
     }),

@@ -31,7 +31,7 @@ const OppsummeringSteg = () => {
     const { svar } = useSøknadContext();
     const navigate = useNavigate();
 
-    const { error, pending, sendSøknad } = useSendSøknad();
+    const { error, pending, sendSøknad } = useSendSøknad(deltakelse.id);
 
     const handleOnSubmit = async () => {
         const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelse.programPeriode.from);
