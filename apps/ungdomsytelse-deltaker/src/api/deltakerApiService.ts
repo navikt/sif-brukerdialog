@@ -5,13 +5,27 @@ import {
     Ungdomsytelsesøknad,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { DeltakelsePeriode, deltakelsePerioderSchema, handleApiError } from '@navikt/ung-common';
-import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    DeltakelseService,
+    DeltakerService,
+    KontonummerDto,
+    zKontonummerDto,
+} from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Påkrevde headers settes andre steder, dette er bare en mock for å tilfredstille typescript
  *  */
 
 const k9RequestHeader = {} as any;
+
+const getKontonummer = async (): Promise<KontonummerDto> => {
+    try {
+        const { data } = await DeltakerService.hentKontonummer();
+        return zKontonummerDto.parse(data);
+    } catch (e) {
+        throw handleApiError(e, 'getKontonummer');
+    }
+};
 
 /**
  * Henter alle deltakelser til innlogget bruker
@@ -74,6 +88,7 @@ const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promis
 };
 
 export const deltakerApiService = {
+    getKontonummer,
     getAlleMineDeltakelser,
     markerDeltakelseSomSøkt,
     rapporterInntekt,

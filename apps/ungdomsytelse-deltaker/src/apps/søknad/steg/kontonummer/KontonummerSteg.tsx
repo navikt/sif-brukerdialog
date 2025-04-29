@@ -25,7 +25,6 @@ const KontonummerSteg = () => {
             }
             setError(undefined);
             oppdaterSvar(Spørsmål.KONTONUMMER, infoStemmer);
-            return;
         }
         setAktivtSteg(Steg.OPPSUMMERING);
     };

@@ -9,14 +9,16 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchSøkerQueryOptions } from './queries/fetchSøkerQueryOptions';
 import { fetchDeltakelserQueryOptions } from './queries/fetchDeltakelserQueryOptions';
 import { fetchBarnQueryOptions } from './queries/fetchBarnQueryOptions';
+import { fetchDeltakerKontonummerOptions } from './queries/fetchDeltakerKontonummerOptions';
 
 const DeltakerInfoLoader = () => {
     const søker = useQuery(fetchSøkerQueryOptions());
+    const kontonummer = useQuery(fetchDeltakerKontonummerOptions());
     const deltakelser = useQuery(fetchDeltakelserQueryOptions());
     const barn = useQuery(fetchBarnQueryOptions());
 
-    const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading;
-    const error = søker.isError || deltakelser.isError || barn.isError;
+    const isLoading = søker.isLoading || deltakelser.isLoading || barn.isLoading || kontonummer.isLoading;
+    const error = søker.isError || deltakelser.isError || barn.isError || kontonummer.isError;
 
     if (isLoading) {
         return <LoadingPage />;
@@ -38,9 +40,11 @@ const DeltakerInfoLoader = () => {
         return <FlereDeltakelserPage />;
     }
 
+    console.log(kontonummer.data);
     const deltakelse = deltakelser.data[0];
     return (
         <DeltakerContextProvider
+            kontonummer={kontonummer.data?.kontonummer}
             søker={søker.data}
             deltakelse={deltakelse}
             barn={barn.data}

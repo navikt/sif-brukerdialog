@@ -21,10 +21,11 @@ export const DeltakerContextProvider = ({
     søker,
     barn,
     deltakelse,
+    kontonummer,
     refetchDeltakelser,
 }: DeltakerContextProviderProps) => {
     return (
-        <DeltakerContext.Provider value={{ søker, deltakelse, barn, refetchDeltakelser }}>
+        <DeltakerContext.Provider value={{ søker, deltakelse, barn, kontonummer, refetchDeltakelser }}>
             {children}
         </DeltakerContext.Provider>
     );
