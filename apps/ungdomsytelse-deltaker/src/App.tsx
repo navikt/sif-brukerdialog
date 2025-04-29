@@ -1,4 +1,6 @@
+import { Theme } from '@navikt/ds-react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter } from 'react-router-dom';
 import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import DeltakerInfoLoader from './DeltakerInfoLoader';
@@ -7,8 +9,6 @@ import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import { Theme } from '@navikt/ds-react';
-import { BrowserRouter } from 'react-router-dom';
 
 initUngDeltakelseOpplyserApiClient({
     onUnAuthorized: () => {
