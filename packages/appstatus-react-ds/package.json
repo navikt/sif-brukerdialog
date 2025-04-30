@@ -16,7 +16,7 @@
         "@navikt/ds-css": "7.20.0",
         "@navikt/ds-react": "7.20.0",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "22.15.2",
+        "@types/node": "22.15.3",
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "config": "workspace:*",
