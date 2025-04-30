@@ -91,3 +91,12 @@ export const updateMellomlagring = async (body: MellomlagringDTO): Promise<void>
         throw handleApiError(e, 'updateMellomlagring');
     }
 };
+
+export const getGyldigMellomlagring = (mellomlagring: MellomlagringDTO | undefined): MellomlagringDTO | undefined => {
+    const result = zMellomlagringSchema.safeParse(mellomlagring);
+    if (result.success) {
+        return result.data;
+    } else {
+        return undefined;
+    }
+};

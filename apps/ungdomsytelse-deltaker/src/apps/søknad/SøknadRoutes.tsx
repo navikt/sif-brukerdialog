@@ -24,11 +24,7 @@ const SøknadRoutes = () => {
                     <Route path="soknad/oppstart" element={<OppstartSteg />} />
                     <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
                     <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
-                    {søknadSendt === false ? (
-                        <Route path="*" element={<Navigate to="/" replace={true} />} />
-                    ) : (
-                        <Route path="soknad/kvittering" element={<KvitteringPage />} />
-                    )}
+                    <Route path="soknad/kvittering" element={<KvitteringPage />} />
                     <Route path="*" element={<Navigate to="/" replace={true} />} />
                 </>
             )}
