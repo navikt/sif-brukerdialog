@@ -1,13 +1,13 @@
 import { MellomlagringControllerService } from '@navikt/k9-brukerdialog-prosessering-api';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { jsonSort } from '@navikt/sif-common-utils';
-import hash from 'object-hash';
-import { SøknadSvar } from '../../apps/søknad/context/søknadContext';
-import { handleApiError } from '@navikt/ung-common';
-import { YTELSE } from '../../constants';
-import { SkjemaSteg } from '../../apps/søknad/types/Steg';
-import { z } from 'zod';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { jsonSort } from '@navikt/sif-common-utils';
+import { handleApiError } from '@navikt/ung-common';
+import hash from 'object-hash';
+import { z } from 'zod';
+import { SøknadSvar } from '../../apps/søknad/context/søknadContext';
+import { YTELSE } from '../../constants';
+import { Steg } from '../../apps/søknad/types/Steg';
 
 type MellomlagringHashInfo = {
     barn: Array<Pick<RegistrertBarn, 'fornavn' | 'fødselsdato'>>;
@@ -26,7 +26,7 @@ export const zMellomlagringSchema = z.object({
         kontonummer: z.nativeEnum(YesOrNo).optional(),
     }),
     meta: z.object({
-        aktivtSteg: z.nativeEnum(SkjemaSteg),
+        aktivtSteg: z.nativeEnum(Steg),
         hash: z.string(),
     }),
 });
@@ -35,7 +35,7 @@ export type MellomlagringDTO = z.infer<typeof zMellomlagringSchema>;
 
 export const createMellomlagringDTO = (
     søknad: SøknadSvar,
-    aktivtSteg: SkjemaSteg,
+    aktivtSteg: Steg,
     registrerteBarn: RegistrertBarn[],
     kontonummer?: string,
 ): MellomlagringDTO => {

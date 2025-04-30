@@ -2,11 +2,11 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Steg } from '../../types/Steg';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
-import { getSkjemaStegIndex, skjemaSteg } from '../../utils/stegUtils';
-import { useNavigate } from 'react-router-dom';
+import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import { useErStegTilgjengelig } from '../../hooks/useErStegTilgjengelig';
 import StegFooter from './StegFooter';
 import { useSøknadContext } from '../../context/søknadContext';
+import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 interface Props {
     steg: Steg;
@@ -18,12 +18,11 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     useErStegTilgjengelig(steg);
 
     const { avbrytOgSlett } = useSøknadContext();
-
-    const navigate = useNavigate();
+    const { gotoSteg } = useSøknadNavigation();
 
     const handleOnStepChange = (stegIndex: number) => {
         if (stegIndex > 0) {
-            navigate('/soknad/' + skjemaSteg[stegIndex - 1]);
+            gotoSteg(søknadSteg[stegIndex - 1]);
         }
     };
 
@@ -40,7 +39,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                         </Heading>
                     </Box>
                     <FormProgress
-                        totalSteps={skjemaSteg.length}
+                        totalSteps={søknadSteg.length}
                         activeStep={activeIndex}
                         onStepChange={handleOnStepChange}>
                         <FormProgress.Step completed={activeIndex > 0} interactive={true}>

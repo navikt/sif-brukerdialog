@@ -1,29 +1,34 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getStegFraPath } from '../utils/stegUtils';
 import { useState } from 'react';
-import { SkjemaSteg, Steg } from '../types/Steg';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Steg } from '../types/Steg';
+import { getStegFraPath } from '../utils/stegUtils';
+import { getStegRoute, SøknadRoutes } from '../utils/routeUtils';
 
-export const useSøknadNavigation = (søknadSendt?: boolean) => {
+export const useSøknadNavigation = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
+
     const stegIPath = getStegFraPath(pathname);
-    const [aktivtSteg, setAktivtSteg] = useState<Steg | SkjemaSteg>(stegIPath || Steg.VELKOMMEN);
+    const [aktivtSteg, setAktivtSteg] = useState<Steg | undefined>(stegIPath);
 
-    if (søknadSendt && getStegFraPath(pathname) !== Steg.KVITTERING) {
-        navigate('soknad/kvittering');
-    }
+    const gotoVelkommenPage = () => {
+        navigate(SøknadRoutes.VELKOMMEN);
+    };
 
-    const gotoSteg = (steg: Steg | SkjemaSteg) => {
+    const gotoKvittering = () => {
+        navigate(SøknadRoutes.KVITTERING);
+    };
+
+    const gotoSteg = (steg: Steg, replace?: boolean) => {
         setAktivtSteg(steg);
-        if (steg === Steg.VELKOMMEN) {
-            navigate('../');
-        } else {
-            navigate(`/soknad/${steg}`);
-        }
+        navigate(getStegRoute(steg), replace ? { replace: true } : undefined);
     };
 
     return {
         aktivtSteg,
+        navigate,
         gotoSteg,
+        gotoKvittering,
+        gotoVelkommenPage,
     };
 };

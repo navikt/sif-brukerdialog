@@ -3,7 +3,7 @@ import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage'
 import { useBarn } from '../../hooks/useBarn';
 import { useKontonummer } from '../../hooks/useKontonummer';
 import { SøknadProvider } from './context/søknadContext';
-import SøknadRoutes from './SøknadRoutes';
+import SøknadRouter from './SøknadRouter';
 
 const SøknadApp = () => {
     const kontonummer = useKontonummer();
@@ -24,7 +24,7 @@ const SøknadApp = () => {
         <SøknadProvider
             kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
             barn={barn.data || []}>
-            <SøknadRoutes />
+            <SøknadRouter />
         </SøknadProvider>
     );
 };

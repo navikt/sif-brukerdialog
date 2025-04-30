@@ -1,16 +1,14 @@
 import { Spørsmål, SøknadSvar } from '../context/søknadContext';
 import { Steg } from '../types/Steg';
 
-export const skjemaSteg = [Steg.OPPSTART, Steg.BARN, Steg.KONTONUMMER, Steg.OPPSUMMERING];
-
-export const søknadSteg = [Steg.VELKOMMEN, ...skjemaSteg, Steg.KVITTERING];
+export const søknadSteg = [Steg.OPPSTART, Steg.BARN, Steg.KONTONUMMER, Steg.OPPSUMMERING];
 
 export const getStegIndex = (steg: Steg): number => {
     return søknadSteg.findIndex((s) => s === steg);
 };
 
 export const getSkjemaStegIndex = (steg: Steg): number => {
-    return skjemaSteg.findIndex((s) => s === steg);
+    return søknadSteg.findIndex((s) => s === steg);
 };
 
 export const getStegFraPath = (path: string): Steg | undefined => {
@@ -36,7 +34,7 @@ export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, harKontonummer
 };
 
 export const getTilgjengeligeSteg = (svar: SøknadSvar, harKontonummer: boolean): Steg[] => {
-    const tilgjengeligeSteg: Steg[] = [Steg.VELKOMMEN];
+    const tilgjengeligeSteg: Steg[] = [];
 
     const velkommenOk: boolean = svar[Spørsmål.BEKREFTER] === true;
     const oppstartOk: boolean = velkommenOk && svar[Spørsmål.OPPSTART] !== undefined;

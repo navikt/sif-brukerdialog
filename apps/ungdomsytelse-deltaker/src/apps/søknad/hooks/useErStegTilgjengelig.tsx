@@ -1,25 +1,24 @@
 import { useEffect } from 'react';
 import { useSøknadContext } from '../context/søknadContext';
-import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, skjemaSteg } from '../utils/stegUtils';
 import { Steg } from '../types/Steg';
-import { useNavigate } from 'react-router-dom';
+import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, søknadSteg } from '../utils/stegUtils';
+import { useSøknadNavigation } from './useSøknadNavigation';
 
 export const useErStegTilgjengelig = (steg: Steg) => {
     const { svar, kontonummer } = useSøknadContext();
-    const navigate = useNavigate();
+    const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
     useEffect(() => {
         const activeIndex = getSkjemaStegIndex(steg); // This should be dynamically set based on the current step
         if (!erStegTilgjengelig(steg, svar, kontonummer !== undefined)) {
             if (activeIndex === 0) {
-                navigate('../');
+                gotoVelkommenPage();
             } else {
                 const sisteTilgjengeligeSteg = getTilgjengeligeSteg(svar, kontonummer !== undefined).pop();
-
-                if (!sisteTilgjengeligeSteg || sisteTilgjengeligeSteg === Steg.VELKOMMEN) {
-                    navigate('../');
+                if (!sisteTilgjengeligeSteg) {
+                    gotoVelkommenPage();
                 } else {
-                    navigate('/soknad/' + skjemaSteg[activeIndex - 1]);
+                    gotoSteg(søknadSteg[activeIndex - 1]);
                 }
             }
         }

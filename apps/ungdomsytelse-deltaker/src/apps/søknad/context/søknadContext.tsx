@@ -4,7 +4,6 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { useSøknadNavigation } from '../hooks/useSøknadNavigation';
 import { Steg } from '../types/Steg';
 import { MellomlagringDTO } from '../../../api/mellomlagring/mellomlagring';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 export enum Spørsmål {
     BEKREFTER = 'bekrefter',
@@ -22,7 +21,7 @@ export type SøknadSvar = {
 
 interface SøknadContextType {
     svar: SøknadSvar;
-    // aktivtSteg: Steg;
+    søknadStartet: boolean;
     søknadSendt: boolean;
     kontonummer?: string;
     barn: RegistrertBarn[];
@@ -43,15 +42,10 @@ interface SøknadProviderProps {
 
 export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || {});
-    const { gotoSteg } = useSøknadNavigation();
-
-    useEffectOnce(() => {
-        if (mellomlagring) {
-            gotoSteg(mellomlagring.meta.aktivtSteg);
-        }
-    });
+    const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
+    const [søknadStartet, setSøknadStartet] = useState(false);
 
     const oppdaterSvar = (key: Spørsmål, value: YesOrNo | boolean | undefined) => {
         setSvar((prev) => ({ ...prev, [key]: value }));
@@ -63,13 +57,15 @@ export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: 
 
     const avbrytOgSlett = () => {
         setSvar({});
-        gotoSteg(Steg.VELKOMMEN);
+        setSøknadStartet(false);
+        gotoVelkommenPage();
     };
 
     const startSøknad = (bekrefter: boolean) => {
         setSvar({
             bekrefter,
         });
+        setSøknadStartet(true);
         gotoSteg(Steg.OPPSTART);
     };
 
@@ -80,6 +76,7 @@ export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: 
                 søknadSendt,
                 kontonummer,
                 barn,
+                søknadStartet,
                 setSpørsmålSvar: oppdaterSvar,
                 setSøknadSendt: doSetSøknadSendt,
                 startSøknad,

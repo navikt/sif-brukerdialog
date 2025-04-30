@@ -2,25 +2,17 @@ import { BodyLong, Box, Button, Checkbox, CheckboxGroup, Link, VStack } from '@n
 import { useState } from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
-import SøknadHeader from '../../components/søknad-header/SøknadHeader';
-import VelkommenMelding from '../../components/VelkommenMelding';
-import { useSøknadContext } from '../../context/søknadContext';
-import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
-import { Steg } from '../../types/Steg';
+import { useDeltakerContext } from '../../../context/DeltakerContext';
+import SøknadHeader from '../components/søknad-header/SøknadHeader';
+import VelkommenMelding from '../components/VelkommenMelding';
+import { useSøknadContext } from '../context/søknadContext';
 
 const VelkommenSteg = () => {
     const { søker, deltakelse } = useDeltakerContext();
     const { startSøknad, svar } = useSøknadContext();
 
-    const { gotoSteg } = useSøknadNavigation();
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar.bekrefter || false);
     const [error, setError] = useState<string | undefined>(undefined);
-
-    /** Se om bruker allerede har vært innom denne siden */
-    if (svar.bekrefter) {
-        gotoSteg(Steg.OPPSTART);
-    }
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -33,7 +25,7 @@ const VelkommenSteg = () => {
     };
 
     return (
-        <Page title="Søknad om ungdomsytelse">
+        <Page title="Velkommen - Søknad om ungdomsytelse">
             <VStack gap="8">
                 <SøknadHeader tittel="Søknad om ungdomsytelse" />
 
@@ -49,7 +41,7 @@ const VelkommenSteg = () => {
                     <Box paddingBlock="4 8">
                         <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
                             <Checkbox
-                                checked={infoStemmer}
+                                // checked={infoStemmer}
                                 value="bekrefter"
                                 onChange={(evt) => {
                                     setError(undefined);

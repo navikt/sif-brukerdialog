@@ -11,7 +11,6 @@ import { useSendSøknad } from '../../hooks/useSendSøknad';
 import { Steg } from '../../types/Steg';
 import BarnInfo from '../barn/BarnInfo';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { useNavigate } from 'react-router-dom';
 import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startdato: Date): Ungdomsytelsesøknad => {
@@ -27,11 +26,10 @@ const getSøknadFromSvar = (svar: SøknadSvar, søkerNorskIdent: string, startda
 const OppsummeringSteg = () => {
     const { deltakelse, søker } = useDeltakerContext();
     const { setSøknadSendt, kontonummer, barn } = useSøknadContext();
-    const { gotoSteg } = useSøknadNavigation();
+    const { gotoSteg, gotoKvittering } = useSøknadNavigation();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const { svar } = useSøknadContext();
-    const navigate = useNavigate();
 
     const { error, pending, sendSøknad } = useSendSøknad(deltakelse.id);
 
@@ -42,7 +40,7 @@ const OppsummeringSteg = () => {
 
         if (!error) {
             setSøknadSendt(true);
-            navigate('/soknad/kvittering');
+            gotoKvittering();
         }
     };
 
