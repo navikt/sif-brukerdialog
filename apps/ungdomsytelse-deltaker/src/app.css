@@ -5,11 +5,6 @@
 
 @config '../tailwind.config.ts';
 
-logout-warning::after,
-logout-warning::before {
-    margin: auto;
-}
-
 /** Fikse plasserig av logout-warning dialog */
 @layer utilities {
     logout-warning dialog {
