@@ -14,9 +14,8 @@ export const useRapporterInntekt = () => {
             .then(() => {
                 setInntektSendt(true);
             })
-            .catch((error) => {
+            .catch(() => {
                 setError('Rapporter inntekt feilet');
-                console.error(error);
             })
             .finally(() => {
                 setPending(false);

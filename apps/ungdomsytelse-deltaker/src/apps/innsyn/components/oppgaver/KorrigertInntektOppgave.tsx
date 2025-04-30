@@ -181,7 +181,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
 
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Er inntektsopplysningene fra A-ordningen riktig?`}
+                                        legend="Er inntektsopplysningene fra A-ordningen riktig?"
                                         validate={getYesOrNoValidator()}
                                         labels={{
                                             yes: 'Ja',
@@ -206,7 +206,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
                                         <>
                                             <FormikConfirmationCheckbox
                                                 name={FormFields.bekrefterOpplysninger}
-                                                label={`Jeg bekrefter at denne inntekten skal brukes for å beregne min ytelse for denne perioden.`}
+                                                label="Jeg bekrefter at denne inntekten skal brukes for å beregne min ytelse for denne perioden."
                                                 validate={getCheckedValidator()}
                                             />
                                         </>

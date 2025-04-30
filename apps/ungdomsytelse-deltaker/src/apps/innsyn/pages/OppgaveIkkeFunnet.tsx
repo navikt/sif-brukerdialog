@@ -35,7 +35,7 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
                             {deltakelse.oppgaver.map((o) => (
                                 <ListItem key={o.oppgaveReferanse}>
                                     <Link
-                                        href={`#`}
+                                        href="#"
                                         onClick={(evt) => {
                                             evt.stopPropagation();
                                             evt.preventDefault();

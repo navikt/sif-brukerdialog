@@ -120,7 +120,7 @@ const EndretProgramperiodeOppgaveForm = ({ oppgave }: Props) => {
                                 <VStack gap="6" marginBlock="2 0">
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Godkjenner du endringen i programperioden?`}
+                                        legend="Godkjenner du endringen i programperioden?"
                                         validate={getYesOrNoValidator()}
                                         description={
                                             <>

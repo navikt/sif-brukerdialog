@@ -19,8 +19,8 @@ const OppstartSteg = () => {
     const [error, setError] = useState<string | undefined>(undefined);
 
     const handleOnSubmit = () => {
-        const error = getYesOrNoValidator()(infoStemmer);
-        if (error) {
+        const err = getYesOrNoValidator()(infoStemmer);
+        if (err) {
             setError('Du må svare på spørsmålet');
             return;
         }

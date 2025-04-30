@@ -6,8 +6,8 @@ import { handleApiError } from '@navikt/ung-common';
 import hash from 'object-hash';
 import { z } from 'zod';
 import { SøknadSvar } from '../../apps/søknad/context/søknadContext';
-import { YTELSE } from '../../constants';
 import { Steg } from '../../apps/søknad/types/Steg';
+import { YTELSE } from '../../constants';
 
 type MellomlagringHashInfo = {
     barn: Array<Pick<RegistrertBarn, 'fornavn' | 'fødselsdato'>>;
@@ -43,12 +43,12 @@ export const createMellomlagringDTO = (
         fornavn: b.fornavn,
         fødselsdato: b.fødselsdato,
     }));
-    const hash = createHashString({ barn, kontonummer });
+
     return {
         søknad,
         meta: {
             aktivtSteg,
-            hash,
+            hash: createHashString({ barn, kontonummer }),
         },
     };
 };

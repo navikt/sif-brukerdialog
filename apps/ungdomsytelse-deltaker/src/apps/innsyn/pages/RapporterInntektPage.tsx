@@ -1,13 +1,12 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import { useNavigate, useParams } from 'react-router-dom';
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import InntektOppgave from '../components/oppgaver/InntektOppgave';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
+import { useDeltakerContext } from '../../../context/DeltakerContext';
+import InntektOppgave from '../components/oppgaver/InntektOppgave';
 import { getRapporterInntektUrl } from '../utils/urlUtils';
 
 type OppgavePageParams = {

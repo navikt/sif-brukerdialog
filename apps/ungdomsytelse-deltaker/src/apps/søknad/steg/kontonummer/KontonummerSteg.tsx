@@ -19,8 +19,8 @@ const KontonummerSteg = () => {
 
     const handleOnSubmit = () => {
         if (harKontonummer) {
-            const error = getYesOrNoValidator()(infoStemmer);
-            if (error) {
+            const err = getYesOrNoValidator()(infoStemmer);
+            if (err) {
                 setError('Du må svare på spørsmålet');
                 return;
             }

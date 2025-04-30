@@ -7,7 +7,7 @@ interface Props {
 }
 
 const NumberBox = ({ children, number }: Props) => (
-    <HGrid columns={'2.5rem auto'}>
+    <HGrid columns="2.5rem auto">
         <div style={{ marginTop: '-.1rem', paddingRight: '1rem' }} role="presentation" aria-hidden={true}>
             <NumberCircle number={number} />
         </div>

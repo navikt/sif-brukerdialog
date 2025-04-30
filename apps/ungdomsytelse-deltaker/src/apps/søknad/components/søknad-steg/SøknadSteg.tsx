@@ -49,7 +49,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                             Barn
                         </FormProgress.Step>
                         <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                            Kontonummer
+                            Kontonummer for utbetaling
                         </FormProgress.Step>
                         <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
                     </FormProgress>

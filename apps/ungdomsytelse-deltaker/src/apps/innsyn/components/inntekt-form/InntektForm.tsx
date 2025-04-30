@@ -22,14 +22,14 @@ const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
     const { FormikWrapper, Form } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const inntekt = getInntektFromFormValues(values, false);
+        const nyInntekt = getInntektFromFormValues(values, false);
         const data: UngdomsytelseInntektsrapportering = {
             oppgittInntektForPeriode: {
                 periodeForInntekt: {
                     fraOgMed: dateToISODate(periode.from),
                     tilOgMed: dateToISODate(periode.to),
                 },
-                arbeidstakerOgFrilansInntekt: inntekt.arbeidOgFrilansInntekter,
+                arbeidstakerOgFrilansInntekt: nyInntekt.arbeidOgFrilansInntekter,
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };

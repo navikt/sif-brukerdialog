@@ -14,10 +14,12 @@ export const useSendSøknad = (deltakelseId: string) => {
         setPending(true);
         try {
             await deltakerApiService.sendSøknad(søknad);
-            /** Ignorer hvis denne feiler - settes av ung-sak til slutt */
+
             try {
                 await markerDeltakelseSomSøkt(deltakelseId);
-            } catch {}
+            } catch {
+                /** Ignorer hvis denne feiler - settes av ung-sak til slutt */
+            }
             setSøknadSendt(true);
         } catch (e) {
             setError(e);

@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useState, createContext } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { deltakerApiService } from '../../../../api/deltakerApiService';
 
@@ -27,9 +27,8 @@ export const OppgaveProvider = ({ children }: { children: ReactNode }) => {
             .then(() => {
                 setErBesvart(true);
             })
-            .catch((error) => {
+            .catch(() => {
                 setError('Besvar endret oppgave feiler');
-                console.log(error);
             })
             .finally(() => {
                 setPending(false);
