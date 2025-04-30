@@ -14,9 +14,9 @@ import BarnInfo from '../barn/BarnInfo';
 import { useState } from 'react';
 
 type UngdomsytelsesøknadV2 = Ungdomsytelsesøknad & {
-    oppstartErRiktig: YesOrNo;
-    barnErRiktig: YesOrNo;
-    kontonummerErRiktig?: YesOrNo;
+    oppstartErRiktig: boolean;
+    barnErRiktig: boolean;
+    kontonummerErRiktig?: boolean;
     _harKontonummer: boolean;
 };
 
@@ -30,31 +30,24 @@ const getSøknadFromSvar = (
     startdato: Date,
     harKontonummer: boolean,
 ): Omit<UngdomsytelsesøknadV2, 'harBekreftetOpplysninger'> | undefined => {
-    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-    const oppstartErRiktig = svar[Spørsmål.OPPSTART];
-    const barnErRiktig = svar[Spørsmål.BARN];
-    const kontonummerErRiktig = harKontonummer ? svar[Spørsmål.KONTONUMMER] : undefined;
-
     if (
-        !oppstartErRiktig ||
-        !barnErRiktig ||
-        !isYesOrNoAnswered(oppstartErRiktig) ||
-        !isYesOrNoAnswered(barnErRiktig) ||
-        !harForståttRettigheterOgPlikter
+        (svar[Spørsmål.FORSTÅR_PLIKTER] !== true,
+        !isYesOrNoAnswered(svar[Spørsmål.OPPSTART]) ||
+            !isYesOrNoAnswered(svar[Spørsmål.BARN]) ||
+            (harKontonummer && !isYesOrNoAnswered(svar[Spørsmål.KONTONUMMER])))
     ) {
         return undefined;
     }
-    if (harKontonummer && !kontonummerErRiktig && !isYesOrNoAnswered(kontonummerErRiktig)) {
-        return undefined;
-    }
+
+    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
 
     return {
         språk: 'nb',
         startdato: dateToISODate(startdato),
         harForståttRettigheterOgPlikter,
-        oppstartErRiktig,
-        barnErRiktig,
-        kontonummerErRiktig,
+        oppstartErRiktig: svar[Spørsmål.OPPSTART] === YesOrNo.YES,
+        barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
+        kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
         søkerNorskIdent,
         _harKontonummer: harKontonummer,
     };

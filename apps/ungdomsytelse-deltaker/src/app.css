@@ -5,6 +5,18 @@
 
 @config '../tailwind.config.ts';
 
+logout-warning::after,
+logout-warning::before {
+    margin: auto;
+}
+
+/** Fikse plasserig av logout-warning dialog */
+@layer utilities {
+    logout-warning dialog {
+        margin: auto;
+    }
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still

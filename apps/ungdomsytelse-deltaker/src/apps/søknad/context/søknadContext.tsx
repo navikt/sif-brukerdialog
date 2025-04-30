@@ -41,6 +41,7 @@ interface SøknadProviderProps {
 }
 
 const initialData: SøknadSvar = {};
+// const initialData: SøknadSvar = {
 //     barn: YesOrNo.YES,
 //     kontonummer: YesOrNo.YES,
 //     oppstart: YesOrNo.YES,
