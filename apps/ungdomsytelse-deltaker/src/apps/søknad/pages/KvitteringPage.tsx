@@ -6,13 +6,13 @@ const KvitteringPage = () => {
     return (
         <Page title="Kvittering">
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsytelse" />
+                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
 
                 <Alert variant="success">
                     <Heading level="2" size="small" spacing>
                         Søknad er sendt!
                     </Heading>
-                    <BodyLong>Vi har mottatt din søknad om ungdomsytelse.</BodyLong>
+                    <BodyLong>Vi har mottatt din søknad om ungdomsprogramytelse.</BodyLong>
                 </Alert>
                 <div>
                     <Heading level="3" size="small" spacing>

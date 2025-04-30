@@ -25,9 +25,9 @@ const VelkommenSteg = () => {
     };
 
     return (
-        <Page title="Velkommen - Søknad om ungdomsytelse">
+        <Page title="Velkommen - Søknad om ungdomsprogramytelse">
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsytelse" />
+                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
 
                 <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
 
