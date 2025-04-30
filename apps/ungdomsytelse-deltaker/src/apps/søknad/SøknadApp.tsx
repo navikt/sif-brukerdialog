@@ -1,16 +1,11 @@
-import { useLocation } from 'react-router-dom';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
 import { useBarn } from '../../hooks/useBarn';
 import { useKontonummer } from '../../hooks/useKontonummer';
 import { SøknadProvider } from './context/søknadContext';
 import SøknadRoutes from './SøknadRoutes';
-import { useState } from 'react';
 
 const SøknadApp = () => {
-    const { pathname } = useLocation();
-    const [inited, setInited] = useState(false);
-
     const kontonummer = useKontonummer();
     const barn = useBarn();
 
