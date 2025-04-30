@@ -6,14 +6,14 @@ import { Steg } from '../types/Steg';
 import { MellomlagringDTO } from '../../../api/mellomlagring/mellomlagring';
 
 export enum Spørsmål {
-    BEKREFTER = 'bekrefter',
+    FORSTÅR_PLIKTER = 'harForståttRettigheterOgPlikter',
     OPPSTART = 'oppstart',
     BARN = 'barn',
     KONTONUMMER = 'kontonummer',
 }
 
 export type SøknadSvar = {
-    [Spørsmål.BEKREFTER]?: boolean;
+    [Spørsmål.FORSTÅR_PLIKTER]?: boolean;
     [Spørsmål.OPPSTART]?: YesOrNo;
     [Spørsmål.BARN]?: YesOrNo;
     [Spørsmål.KONTONUMMER]?: YesOrNo;
@@ -40,12 +40,19 @@ interface SøknadProviderProps {
     mellomlagring?: MellomlagringDTO;
 }
 
+const initialData: SøknadSvar = {};
+//     barn: YesOrNo.YES,
+//     kontonummer: YesOrNo.YES,
+//     oppstart: YesOrNo.YES,
+//     harForståttRettigheterOgPlikter: true,
+// };
+
 export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: SøknadProviderProps) => {
-    const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || {});
+    const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
-    const [søknadStartet, setSøknadStartet] = useState(false);
+    const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter ? true : false);
 
     const oppdaterSvar = (key: Spørsmål, value: YesOrNo | boolean | undefined) => {
         setSvar((prev) => ({ ...prev, [key]: value }));
@@ -61,9 +68,9 @@ export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: 
         gotoVelkommenPage();
     };
 
-    const startSøknad = (bekrefter: boolean) => {
+    const startSøknad = (harForståttRettigheterOgPlikter: boolean) => {
         setSvar({
-            bekrefter,
+            harForståttRettigheterOgPlikter,
         });
         setSøknadStartet(true);
         gotoSteg(Steg.OPPSTART);

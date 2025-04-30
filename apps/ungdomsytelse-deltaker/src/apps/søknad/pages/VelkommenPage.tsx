@@ -5,13 +5,13 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useDeltakerContext } from '../../../context/DeltakerContext';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
-import { useSøknadContext } from '../context/søknadContext';
+import { Spørsmål, useSøknadContext } from '../context/søknadContext';
 
 const VelkommenSteg = () => {
     const { søker, deltakelse } = useDeltakerContext();
     const { startSøknad, svar } = useSøknadContext();
 
-    const [infoStemmer, setInfoStemmer] = useState<boolean>(svar.bekrefter || false);
+    const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
     const [error, setError] = useState<string | undefined>(undefined);
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
@@ -41,13 +41,11 @@ const VelkommenSteg = () => {
                     <Box paddingBlock="4 8">
                         <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
                             <Checkbox
-                                // checked={infoStemmer}
                                 value="bekrefter"
                                 onChange={(evt) => {
                                     setError(undefined);
                                     setInfoStemmer(evt.target.checked);
-                                }}
-                                error={!!error}>
+                                }}>
                                 Jeg bekrefter at jeg vil svare så riktig som jeg kan
                             </Checkbox>
                         </CheckboxGroup>

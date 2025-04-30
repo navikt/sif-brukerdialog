@@ -55,7 +55,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                     </FormProgress>
                 </div>
 
-                <div>{children}</div>
+                <Box marginBlock="4 0">{children}</Box>
 
                 <StegFooter
                     slett={{

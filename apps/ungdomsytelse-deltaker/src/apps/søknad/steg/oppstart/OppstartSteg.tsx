@@ -36,7 +36,7 @@ const OppstartSteg = () => {
                     evt.stopPropagation();
                     handleOnSubmit();
                 }}>
-                <VStack gap="10" marginBlock="4 0">
+                <VStack gap="8">
                     <VStack gap="4">
                         <RadioGroup
                             name="barnOk"
@@ -67,8 +67,8 @@ const OppstartSteg = () => {
                             </Alert>
                         )}
                     </VStack>
+                    <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
                 </VStack>
-                <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
             </form>
         </SøknadSteg>
     );

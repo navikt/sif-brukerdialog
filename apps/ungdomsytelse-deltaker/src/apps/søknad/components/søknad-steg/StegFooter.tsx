@@ -19,7 +19,7 @@ const StegFooter = ({ fortsettSenere, slett }: Props) => {
     const [visSlettDialog, setVisSlettDialog] = useState(false);
     return (
         <>
-            <Box marginBlock="8 0">
+            <div>
                 <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                     {fortsettSenere && (
                         <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>
@@ -44,7 +44,7 @@ const StegFooter = ({ fortsettSenere, slett }: Props) => {
                         </Button>
                     )}
                 </HGrid>
-            </Box>
+            </div>
             {fortsettSenere && visFortsettSenereDialog && (
                 <ConfirmationDialog
                     open={true}

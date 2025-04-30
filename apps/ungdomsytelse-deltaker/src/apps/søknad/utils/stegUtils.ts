@@ -36,7 +36,7 @@ export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, harKontonummer
 export const getTilgjengeligeSteg = (svar: SøknadSvar, harKontonummer: boolean): Steg[] => {
     const tilgjengeligeSteg: Steg[] = [];
 
-    const velkommenOk: boolean = svar[Spørsmål.BEKREFTER] === true;
+    const velkommenOk: boolean = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
     const oppstartOk: boolean = velkommenOk && svar[Spørsmål.OPPSTART] !== undefined;
     const barnOk: boolean = oppstartOk && svar[Spørsmål.BARN] !== undefined;
     const kontonummerOk: boolean = barnOk && (harKontonummer ? svar[Spørsmål.KONTONUMMER] !== undefined : true);

@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
-import { Box, Button, HGrid } from '@navikt/ds-react';
+import { Button, HGrid } from '@navikt/ds-react';
 
 interface Props {
     pending?: boolean;
@@ -11,11 +11,12 @@ interface Props {
     submit?: {
         tittel: string;
         erSendInn: boolean;
+        disabled?: boolean;
     };
 }
 
 const SkjemaFooter = ({ forrige, submit, pending }: Props) => (
-    <Box marginBlock="8 0">
+    <div>
         <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
             {forrige && (
                 <Button
@@ -33,14 +34,14 @@ const SkjemaFooter = ({ forrige, submit, pending }: Props) => (
                     type="submit"
                     variant="primary"
                     loading={pending}
-                    disabled={pending}
+                    disabled={submit.disabled || pending}
                     icon={submit.erSendInn ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}
                     iconPosition="right">
                     {submit.tittel}
                 </Button>
             )}
         </HGrid>
-    </Box>
+    </div>
 );
 
 export default SkjemaFooter;

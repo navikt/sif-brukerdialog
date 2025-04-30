@@ -36,7 +36,7 @@ const KontonummerSteg = () => {
                     evt.preventDefault();
                     handleOnSubmit();
                 }}>
-                <VStack gap="10" marginBlock="4 0">
+                <VStack gap="8">
                     {harKontonummer ? (
                         <>
                             <VStack gap="4">
@@ -86,11 +86,11 @@ const KontonummerSteg = () => {
                             </Alert>
                         </>
                     )}
+                    <SkjemaFooter
+                        forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
+                        submit={{ tittel: 'Neste steg', erSendInn: false }}
+                    />
                 </VStack>
-                <SkjemaFooter
-                    forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
-                    submit={{ tittel: 'Neste steg', erSendInn: false }}
-                />
             </form>
         </SøknadSteg>
     );
