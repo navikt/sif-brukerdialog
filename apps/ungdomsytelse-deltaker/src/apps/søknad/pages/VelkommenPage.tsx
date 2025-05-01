@@ -2,15 +2,13 @@ import { BodyLong, Box, Button, Checkbox, CheckboxGroup, Link, VStack } from '@n
 import { useState } from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { Spørsmål } from '../types';
 
 const VelkommenSteg = () => {
-    const { søker, deltakelse } = useDeltakerContext();
-    const { startSøknad, svar } = useSøknadContext();
+    const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
     const [error, setError] = useState<string | undefined>(undefined);
@@ -30,7 +28,7 @@ const VelkommenSteg = () => {
             <VStack gap="8">
                 <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
 
-                <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
+                <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
 
                 <div>
                     <BodyLong>

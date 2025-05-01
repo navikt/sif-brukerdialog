@@ -1,5 +1,5 @@
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
-import { useDeltakelser } from './api/hooks/useDeltakelser';
+import { useDeltakelser as useDeltakelsePerioder } from './api/hooks/useDeltakelser';
 import { useSøker } from './api/hooks/useSøker';
 import InnsynApp from './apps/innsyn/InnsynApp';
 import SøknadApp from './apps/søknad/SøknadApp';
@@ -10,10 +10,10 @@ import { DeltakerContextProvider } from './context/DeltakerContext';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
-    const deltakelser = useDeltakelser();
+    const deltakelsePerioder = useDeltakelsePerioder();
 
-    const isLoading = søker.isLoading || deltakelser.isLoading;
-    const error = søker.isError || deltakelser.isError;
+    const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
+    const error = søker.isError || deltakelsePerioder.isError;
 
     if (isLoading) {
         return <LoadingPage />;
@@ -23,23 +23,30 @@ const DeltakerInfoLoader = () => {
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
-    if (!deltakelser.data || !søker.data) {
+    if (!deltakelsePerioder.data || !søker.data) {
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
-    if (deltakelser.data.length === 0) {
+    if (deltakelsePerioder.data.length === 0) {
         return <IngenDeltakelsePage />;
     }
 
-    if (deltakelser.data.length > 1) {
+    if (deltakelsePerioder.data.length > 1) {
         return <FlereDeltakelserPage />;
     }
 
-    const deltakelse = deltakelser.data[0];
+    const deltakelsePeriode = deltakelsePerioder.data[0];
 
     return (
-        <DeltakerContextProvider søker={søker.data} deltakelse={deltakelse} refetchDeltakelser={deltakelser.refetch}>
-            {deltakelse.harSøkt ? <InnsynApp /> : <SøknadApp />}
+        <DeltakerContextProvider
+            søker={søker.data}
+            deltakelse={deltakelsePeriode}
+            refetchDeltakelser={deltakelsePerioder.refetch}>
+            {deltakelsePeriode.harSøkt ? (
+                <InnsynApp />
+            ) : (
+                <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+            )}
         </DeltakerContextProvider>
     );
 };

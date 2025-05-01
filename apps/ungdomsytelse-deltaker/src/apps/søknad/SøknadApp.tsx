@@ -1,11 +1,18 @@
+import { Søker } from '@navikt/sif-common-api';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
+import { SøknadProvider } from './context/søknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
-import { SøknadProvider } from './context/søknadContext';
 import SøknadRouter from './SøknadRouter';
 
-const SøknadApp = () => {
+interface SøknadAppProps {
+    søker: Søker;
+    deltakelsePeriode: DeltakelsePeriode;
+}
+
+const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     const kontonummer = useKontonummer();
     const barn = useBarn();
 
@@ -22,6 +29,8 @@ const SøknadApp = () => {
 
     return (
         <SøknadProvider
+            søker={søker}
+            deltakelsePeriode={deltakelsePeriode}
             kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
             barn={barn.data || []}>
             <SøknadRouter />

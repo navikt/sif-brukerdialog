@@ -4,7 +4,6 @@ import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
@@ -54,8 +53,7 @@ const getSøknadFromSvar = (
 };
 
 const OppsummeringSteg = () => {
-    const { deltakelse, søker } = useDeltakerContext();
-    const { setSøknadSendt, kontonummer, barn } = useSøknadContext();
+    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
@@ -65,7 +63,7 @@ const OppsummeringSteg = () => {
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelse.programPeriode.from, harKontonummer);
+    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, harKontonummer);
 
     const søknadError = søknad
         ? undefined
@@ -107,7 +105,7 @@ const OppsummeringSteg = () => {
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         Er det riktig at du starter i ungdomsprogrammet{' '}
-                                        {dateFormatter.dayDateMonthYear(deltakelse.programPeriode.from)}?
+                                        {dateFormatter.dayDateMonthYear(deltakelsePeriode.programPeriode.from)}?
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         {svar[Spørsmål.OPPSTART] === YesOrNo.YES ? 'Ja' : 'Nei'}

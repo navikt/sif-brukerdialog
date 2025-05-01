@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -12,6 +13,8 @@ interface SøknadProviderProps {
     barn: RegistrertBarn[];
     kontonummer?: string;
     mellomlagring?: MellomlagringDTO;
+    søker: Søker;
+    deltakelsePeriode: DeltakelsePeriode;
 }
 
 // const initialData: SøknadSvar = {};
@@ -22,7 +25,14 @@ const initialData: SøknadSvar = {
     harForståttRettigheterOgPlikter: true,
 };
 
-export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: SøknadProviderProps) => {
+export const SøknadProvider = ({
+    children,
+    kontonummer,
+    barn,
+    mellomlagring,
+    deltakelsePeriode,
+    søker,
+}: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
@@ -55,6 +65,8 @@ export const SøknadProvider = ({ children, kontonummer, barn, mellomlagring }: 
                 kontonummer,
                 barn,
                 søknadStartet,
+                deltakelsePeriode,
+                søker,
                 setSpørsmålSvar: oppdaterSvar,
                 setSøknadSendt,
                 startSøknad,

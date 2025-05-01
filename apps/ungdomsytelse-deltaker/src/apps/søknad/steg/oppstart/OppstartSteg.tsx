@@ -1,18 +1,16 @@
 import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import { Spørsmål, Steg } from '../../types';
-import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import { useState } from 'react';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
+import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '../../types';
 
 const OppstartSteg = () => {
-    const { deltakelse } = useDeltakerContext();
-    const { setSpørsmålSvar, svar } = useSøknadContext();
+    const { deltakelsePeriode, setSpørsmålSvar, svar } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
     const infoStemmer = svar[Spørsmål.OPPSTART];
@@ -40,7 +38,7 @@ const OppstartSteg = () => {
                     <VStack gap="4">
                         <RadioGroup
                             name="barnOk"
-                            legend={`Er det riktig at du starter i ungdomsprogrammet ${dateFormatter.dayDateMonthYear(deltakelse.programPeriode.from)}?`}
+                            legend={`Er det riktig at du starter i ungdomsprogrammet ${dateFormatter.dayDateMonthYear(deltakelsePeriode.programPeriode.from)}?`}
                             error={error}
                             value={infoStemmer}
                             onChange={(value: YesOrNo) => {
