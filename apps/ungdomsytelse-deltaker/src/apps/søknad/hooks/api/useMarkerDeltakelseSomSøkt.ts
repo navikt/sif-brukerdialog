@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
-import { queries } from '../queries/queryKeys';
-import { markerDeltakelseSomSøkt } from '../api/deltakelse/markerDeltakelseSomSøkt';
+import { markerDeltakelseSomSøkt } from '../../api/deltakelse/markerDeltakelseSomSøkt';
+import { commonQueries } from '../../../../api/queries/commonQueries';
 
 /**
  * Setter en deltakelse som søkt. Brukes for å oppdatere direkte, uten å måtte
@@ -13,7 +13,7 @@ export const useMarkerDeltakelseSomSøkt = ({ deltakelseId }: { deltakelseId: st
     return useMutation<void, ApiError, { deltakelseId: string }>({
         mutationFn: () => markerDeltakelseSomSøkt(deltakelseId),
         onSuccess: () => {
-            queryClient.invalidateQueries(queries.alleMineDeltakelser);
+            queryClient.invalidateQueries(commonQueries.alleMineDeltakelser);
         },
     });
 };

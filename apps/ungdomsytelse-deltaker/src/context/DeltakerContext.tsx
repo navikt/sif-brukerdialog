@@ -1,8 +1,8 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 import { Søker } from '@navikt/sif-common-api';
 import { DeltakelsePeriode } from '@navikt/ung-common';
 
-interface DeltakerContextType {
+export interface DeltakerContextType {
     søker: Søker;
     deltakelse: DeltakelsePeriode;
     refetchDeltakelser: () => Promise<any>;
@@ -25,12 +25,4 @@ export const DeltakerContextProvider = ({
             {children}
         </DeltakerContext.Provider>
     );
-};
-
-export const useDeltakerContext = (): DeltakerContextType => {
-    const context = useContext(DeltakerContext);
-    if (!context) {
-        throw new Error('useDeltakerContext must be used within a DeltakerContextProvider');
-    }
-    return context;
 };

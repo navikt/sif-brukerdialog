@@ -1,12 +1,12 @@
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
+import { useDeltakelser } from './api/hooks/useDeltakelser';
+import { useSøker } from './api/hooks/useSøker';
 import InnsynApp from './apps/innsyn/InnsynApp';
 import SøknadApp from './apps/søknad/SøknadApp';
 import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from './components/pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from './context/DeltakerContext';
-import { useDeltakelser } from './hooks/useDeltakelser';
-import { useSøker } from './hooks/useSøker';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();

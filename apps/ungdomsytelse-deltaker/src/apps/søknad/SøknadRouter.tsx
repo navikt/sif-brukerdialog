@@ -1,15 +1,15 @@
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { useSøknadContext } from './hooks/context/useSøknadContext';
 import KvitteringPage from './pages/KvitteringPage';
+import VelkommenSteg from './pages/VelkommenPage';
 import BarnSteg from './steg/barn/BarnSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppstartSteg from './steg/oppstart/OppstartSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
-import VelkommenSteg from './pages/VelkommenPage';
-import { useSøknadContext } from './context/søknadContext';
-import { useEffect, useState } from 'react';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { Steg } from './types';
 import { getStegRoute, SøknadRoutes } from './utils/routeUtils';
-import { Steg } from './types/Steg';
 
 const SøknadRouter = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();

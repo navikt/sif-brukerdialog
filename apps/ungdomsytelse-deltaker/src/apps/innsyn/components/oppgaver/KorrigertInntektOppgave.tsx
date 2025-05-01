@@ -16,7 +16,7 @@ import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
 import PageOppgaveLayout from './PageOppgaveLayout';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 interface Props {

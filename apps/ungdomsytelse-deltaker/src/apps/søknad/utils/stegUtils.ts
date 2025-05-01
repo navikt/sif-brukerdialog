@@ -1,5 +1,4 @@
-import { Spørsmål, SøknadSvar } from '../context/søknadContext';
-import { Steg } from '../types/Steg';
+import { Spørsmål, Steg, SøknadSvar } from '../types';
 
 export const søknadSteg = [Steg.OPPSTART, Steg.BARN, Steg.KONTONUMMER, Steg.OPPSUMMERING];
 

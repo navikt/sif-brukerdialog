@@ -1,12 +1,12 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { Steg } from '../../types/Steg';
-import SøknadHeader from '../søknad-header/SøknadHeader';
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useErStegTilgjengelig } from '../../hooks/utils/useErStegTilgjengelig';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Steg } from '../../types';
 import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
-import { useErStegTilgjengelig } from '../../hooks/useErStegTilgjengelig';
+import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
-import { useSøknadContext } from '../../context/søknadContext';
-import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
 
 interface Props {
     steg: Steg;

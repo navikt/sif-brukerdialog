@@ -1,13 +1,13 @@
 import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import { Steg } from '../../types/Steg';
+import { Spørsmål, Steg } from '../../types';
 import { useState } from 'react';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
-import { Spørsmål, useSøknadContext } from '../../context/søknadContext';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import BarnInfo from './BarnInfo';
-import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 
 const BarnSteg = () => {
     const { setSpørsmålSvar, svar, barn } = useSøknadContext();

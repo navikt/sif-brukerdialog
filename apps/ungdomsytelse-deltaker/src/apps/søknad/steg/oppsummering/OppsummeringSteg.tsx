@@ -1,17 +1,17 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
 import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import { Spørsmål, SøknadSvar, useSøknadContext } from '../../context/søknadContext';
-import { useSendSøknad } from '../../hooks/useSendSøknad';
-import { useSøknadNavigation } from '../../hooks/useSøknadNavigation';
-import { Steg } from '../../types/Steg';
+import { useSendSøknad } from '../../hooks/api/useSendSøknad';
+import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg, SøknadSvar } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
-import { useState } from 'react';
 
 type UngdomsytelsesøknadV2 = Ungdomsytelsesøknad & {
     oppstartErRiktig: boolean;
@@ -63,7 +63,7 @@ const OppsummeringSteg = () => {
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
-    const { error, pending, sendSøknad } = useSendSøknad(deltakelse.id);
+    const { error, isPending, mutateAsync } = useSendSøknad();
 
     const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelse.programPeriode.from, harKontonummer);
 
@@ -78,12 +78,12 @@ const OppsummeringSteg = () => {
                 setBekreftError('Du må bekrefte at opplysningene er riktige');
                 return;
             }
-
-            await sendSøknad({ ...søknad, harBekreftetOpplysninger: bekrefterOpplysninger });
-
-            if (!error) {
+            try {
+                await mutateAsync({ ...søknad, harBekreftetOpplysninger: bekrefterOpplysninger });
                 setSøknadSendt(true);
                 gotoKvittering();
+            } catch {
+                // Håndteres gjennom error objektet  i useSendSøknad
             }
         }
     };
@@ -183,7 +183,7 @@ const OppsummeringSteg = () => {
                     {error ? <ApiErrorAlert error={error} /> : null}
 
                     <SkjemaFooter
-                        pending={pending}
+                        pending={isPending}
                         forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
                         submit={{ tittel: 'Send søknad', disabled: !!søknadError, erSendInn: true }}
                     />

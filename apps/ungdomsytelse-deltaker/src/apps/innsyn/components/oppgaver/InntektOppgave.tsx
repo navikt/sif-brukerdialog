@@ -4,7 +4,7 @@ import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
 import InntektForm from '../inntekt-form/InntektForm';
 import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import PageOppgaveLayout from './PageOppgaveLayout';
 import { useAppIntl } from '../../../../i18n';
 import { useNavigate } from 'react-router-dom';

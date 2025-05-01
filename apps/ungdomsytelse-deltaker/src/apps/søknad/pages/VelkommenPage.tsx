@@ -2,10 +2,11 @@ import { BodyLong, Box, Button, Checkbox, CheckboxGroup, Link, VStack } from '@n
 import { useState } from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
-import { Spørsmål, useSøknadContext } from '../context/søknadContext';
+import { useSøknadContext } from '../hooks/context/useSøknadContext';
+import { Spørsmål } from '../types';
 
 const VelkommenSteg = () => {
     const { søker, deltakelse } = useDeltakerContext();

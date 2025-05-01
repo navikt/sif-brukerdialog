@@ -5,7 +5,7 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import InntektOppgave from '../components/oppgaver/InntektOppgave';
 import { getRapporterInntektUrl } from '../utils/urlUtils';
 

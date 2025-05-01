@@ -3,8 +3,8 @@ import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
 import { deltakelserMockStorage } from './deltakelseMockStorage';
 import { YTELSE } from '../../../src/constants';
-import { MellomlagringDTO } from '../../../src/api/mellomlagring/mellomlagring';
-import { Steg } from '../../../src/apps/søknad/types/Steg';
+import { Steg } from '../../../src/apps/søknad/types';
+import { MellomlagringDTO } from '../../../src/apps/søknad/api/mellomlagring/mellomlagring';
 
 const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse';
 
@@ -43,8 +43,8 @@ export const getHandlers = () => {
         }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
             // deltakelserMockStorage.actions.setDeltakelseSøktFor();
-            return HttpResponse.json({});
-            // return new HttpResponse(null, { status: 500 });
+            // return HttpResponse.json({});
+            return new HttpResponse(null, { status: 500 });
         }),
         http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
             const text = await request.text();

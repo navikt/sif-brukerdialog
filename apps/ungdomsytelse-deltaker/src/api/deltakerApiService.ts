@@ -2,7 +2,6 @@ import {
     UngdomsytelseControllerService,
     UngdomsytelseInntektsrapportering,
     UngdomsytelseOppgavebekreftelse,
-    Ungdomsytelsesøknad,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { handleApiError } from '@navikt/ung-common';
 
@@ -25,15 +24,6 @@ const sendOppgavebekreftelse = async (oppgave: UngdomsytelseOppgavebekreftelse):
     }
 };
 
-const sendSøknad = async (data: Ungdomsytelsesøknad): Promise<any> => {
-    try {
-        await UngdomsytelseControllerService.innsendingUngdomsytelsesøknad({ body: data, headers: k9RequestHeader });
-        return Promise.resolve();
-    } catch (e) {
-        throw handleApiError(e, 'sendSøknad');
-    }
-};
-
 const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promise<void> => {
     try {
         await UngdomsytelseControllerService.inntektrapportering({ body: data, headers: k9RequestHeader });
@@ -46,5 +36,4 @@ const rapporterInntekt = async (data: UngdomsytelseInntektsrapportering): Promis
 export const deltakerApiService = {
     rapporterInntekt,
     sendOppgavebekreftelse,
-    sendSøknad,
 };

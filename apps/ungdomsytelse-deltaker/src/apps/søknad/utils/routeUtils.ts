@@ -1,4 +1,4 @@
-import { Steg } from '../types/Steg';
+import { Steg } from '../types';
 
 export const SøknadRoutes = {
     OPPSTART: '/soknad/oppstart',

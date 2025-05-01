@@ -1,8 +1,8 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import { useNavigate } from 'react-router-dom';
 import { BodyShort, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
+import { useNavigate } from 'react-router-dom';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 
 interface Props {
     oppgaveReferanse?: string;

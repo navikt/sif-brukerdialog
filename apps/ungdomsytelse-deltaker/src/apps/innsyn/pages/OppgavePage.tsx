@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import OppgavePanel from '../components/oppgaver/OppgavePanel';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 
