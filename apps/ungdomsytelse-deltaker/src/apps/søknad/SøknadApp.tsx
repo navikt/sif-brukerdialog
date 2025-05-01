@@ -1,7 +1,7 @@
 import { Søker } from '@navikt/sif-common-api';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
-import { SøknadProvider } from './context/søknadContext';
+import { SøknadProvider } from './context/SoknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
