@@ -8,7 +8,7 @@ import DeltakelseContent from '../components/DeltakelseContent';
 import DeltakelseHeader from '../components/DeltakelseHeader';
 
 const ForsidePage = () => {
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
 
     useEffectOnce(() => {
         setBreadcrumbs([
@@ -20,9 +20,9 @@ const ForsidePage = () => {
     return (
         <Page title="Din ungdomsytelse">
             <VStack gap="8">
-                <DeltakelseHeader deltakelse={deltakelse} />
+                <DeltakelseHeader deltakelsePeriode={deltakelsePeriode} />
 
-                <DeltakelseContent deltakelse={deltakelse} />
+                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
 
                 <InformasjonOmUngdomsytelsen />
             </VStack>

@@ -9,7 +9,7 @@ export const useSendSøknad = () => {
     return useMutation<void, ApiError, Ungdomsytelsesøknad>({
         mutationFn: (data) => sendSøknad(data),
         onSuccess: () => {
-            queryClient.invalidateQueries(commonQueries.alleMineDeltakelser);
+            queryClient.invalidateQueries(commonQueries.deltakelseperioder);
         },
     });
 };

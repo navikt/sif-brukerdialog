@@ -16,13 +16,13 @@ export default meta;
 
 type Story = StoryObj<typeof DeltakelseContent>;
 
-const deltakelse: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
+const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
 
 export const DeltakelseIkkeStartet: Story = {
     name: 'Deltakelse ikke startet',
     args: {
-        deltakelse: {
-            ...deltakelse,
+        deltakelsePeriode: {
+            ...deltakelsePeriode,
             programPeriode: {
                 from: dayjs().add(2, 'days').toDate(),
                 to: undefined,
@@ -34,8 +34,8 @@ export const DeltakelseIkkeStartet: Story = {
 export const DeltakelseAvsluttet: Story = {
     name: 'Deltakelse er avsluttet',
     args: {
-        deltakelse: {
-            ...deltakelse,
+        deltakelsePeriode: {
+            ...deltakelsePeriode,
             programPeriode: {
                 from: dayjs().subtract(1, 'year').toDate(),
                 to: dayjs().subtract(1, 'day').toDate(),

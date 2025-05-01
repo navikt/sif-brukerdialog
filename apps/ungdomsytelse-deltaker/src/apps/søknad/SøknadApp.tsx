@@ -1,6 +1,5 @@
 import { Søker } from '@navikt/sif-common-api';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
-import { DeltakelsePeriode } from '@navikt/ung-common';
 import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
 import { SøknadProvider } from './context/søknadContext';
 import { useBarn } from './hooks/api/useBarn';
@@ -9,7 +8,7 @@ import SøknadRouter from './SøknadRouter';
 
 interface SøknadAppProps {
     søker: Søker;
-    deltakelsePeriode: DeltakelsePeriode;
+    deltakelsePeriode;
 }
 
 const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {

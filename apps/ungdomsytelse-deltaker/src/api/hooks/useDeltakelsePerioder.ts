@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, DeltakelsePeriode } from '@navikt/ung-common';
-import { getAlleMineDeltakelser } from '../deltakelse/getAlleMineDeltakelser';
+import { getDeltakelsePerioder } from '../deltakelse-perioder/getDeltakelsePerioder';
 import { commonQueryKeys } from '../queries/commonQueries';
 
 /**
  * Henter alle deltakelser for innlogget deltaker
  */
-export const useDeltakelser = (enabled = true) => {
+export const useDeltakelsePerioder = (enabled = true) => {
     return useQuery<DeltakelsePeriode[], ApiError>({
-        queryKey: commonQueryKeys.deltakelser,
-        queryFn: () => getAlleMineDeltakelser(),
+        queryKey: commonQueryKeys.deltakelseperioder,
+        queryFn: () => getDeltakelsePerioder(),
         staleTime: 1000 * 60 * 5, // 5 minutter
         enabled,
         retry: 1,

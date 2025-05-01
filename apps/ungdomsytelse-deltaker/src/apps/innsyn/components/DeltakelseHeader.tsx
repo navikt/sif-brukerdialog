@@ -1,19 +1,18 @@
 import { HStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { DeltakelsePeriode } from '@navikt/ung-common';
 import YtelseHeader from './ytelse-header/YtelseHeader';
 
 interface Props {
-    deltakelse: DeltakelsePeriode;
+    deltakelsePeriode;
 }
 
-const DeltakelseHeader = ({ deltakelse }: Props) => {
+const DeltakelseHeader = ({ deltakelsePeriode }: Props) => {
     return (
         <YtelseHeader
-            title="Din ungdomsytelse"
+            title="Din ungdomsprogramytelse"
             description={
                 <HStack gap="2">
-                    Deltakerperioden startet {dateFormatter.dateShortMonthYear(deltakelse.programPeriode.from)}.
+                    Deltakerperioden startet {dateFormatter.dateShortMonthYear(deltakelsePeriode.programPeriode.from)}.
                 </HStack>
             }
         />

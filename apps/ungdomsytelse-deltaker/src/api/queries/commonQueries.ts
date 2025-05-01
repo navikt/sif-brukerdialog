@@ -1,8 +1,8 @@
 export const commonQueryKeys = {
     søker: ['søker'],
-    deltakelser: ['alleMineDeltakelser'],
+    deltakelseperioder: ['deltakelseperioder'],
 };
 
 export const commonQueries = {
-    alleMineDeltakelser: { queryKey: commonQueryKeys.deltakelser },
+    deltakelseperioder: { queryKey: commonQueryKeys.deltakelseperioder },
 };

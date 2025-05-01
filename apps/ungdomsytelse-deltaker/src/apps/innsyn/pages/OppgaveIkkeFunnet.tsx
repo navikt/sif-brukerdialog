@@ -9,7 +9,7 @@ interface Props {
 }
 
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
     const navigate = useNavigate();
 
     return (
@@ -26,13 +26,13 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
                     )}
                 </VStack>
 
-                {deltakelse.oppgaver.length > 0 ? (
+                {deltakelsePeriode.oppgaver.length > 0 ? (
                     <>
                         <Heading level="2" size="medium">
                             Oppgaver i deltakelse
                         </Heading>
                         <List>
-                            {deltakelse.oppgaver.map((o) => (
+                            {deltakelsePeriode.oppgaver.map((o) => (
                                 <ListItem key={o.oppgaveReferanse}>
                                     <Link
                                         href="#"

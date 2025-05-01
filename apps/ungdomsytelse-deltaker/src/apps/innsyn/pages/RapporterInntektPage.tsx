@@ -16,9 +16,9 @@ type OppgavePageParams = {
 
 const RapporterInntektPage = () => {
     const { periode, kvittering } = useParams<OppgavePageParams>();
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
 
-    const rapporteringsperiode = deltakelse.rapporteringsPerioder.find(
+    const rapporteringsperiode = deltakelsePeriode.rapporteringsPerioder.find(
         (p) => dateRangeToISODateRange(p.periode) === periode,
     );
 

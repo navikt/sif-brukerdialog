@@ -13,8 +13,8 @@ type OppgavePageParams = {
 
 const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
-    const { deltakelse } = useDeltakerContext();
-    const oppgave = deltakelse.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
+    const { deltakelsePeriode } = useDeltakerContext();
+    const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
     const navigate = useNavigate();
 
     useEffectOnce(() => {
@@ -42,8 +42,8 @@ const OppgavePage = () => {
                 </Heading>
                 <OppgavePanel
                     oppgave={oppgave}
-                    deltakelseId={deltakelse.id}
-                    programPeriode={deltakelse.programPeriode}
+                    deltakelseId={deltakelsePeriode.id}
+                    programPeriode={deltakelsePeriode.programPeriode}
                 />
             </VStack>
         </Page>

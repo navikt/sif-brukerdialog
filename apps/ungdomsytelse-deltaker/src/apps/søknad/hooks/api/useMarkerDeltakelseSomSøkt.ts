@@ -13,7 +13,7 @@ export const useMarkerDeltakelseSomSøkt = ({ deltakelseId }: { deltakelseId: st
     return useMutation<void, ApiError, { deltakelseId: string }>({
         mutationFn: () => markerDeltakelseSomSøkt(deltakelseId),
         onSuccess: () => {
-            queryClient.invalidateQueries(commonQueries.alleMineDeltakelser);
+            queryClient.invalidateQueries(commonQueries.deltakelseperioder);
         },
     });
 };

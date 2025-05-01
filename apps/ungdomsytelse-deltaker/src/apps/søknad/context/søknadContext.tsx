@@ -4,7 +4,6 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
-import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -14,7 +13,7 @@ interface SøknadProviderProps {
     kontonummer?: string;
     mellomlagring?: MellomlagringDTO;
     søker: Søker;
-    deltakelsePeriode: DeltakelsePeriode;
+    deltakelsePeriode;
 }
 
 // const initialData: SøknadSvar = {};

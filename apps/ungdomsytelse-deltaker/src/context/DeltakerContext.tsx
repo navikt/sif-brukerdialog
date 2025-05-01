@@ -1,10 +1,9 @@
 import { createContext } from 'react';
 import { Søker } from '@navikt/sif-common-api';
-import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export interface DeltakerContextType {
     søker: Søker;
-    deltakelse: DeltakelsePeriode;
+    deltakelsePeriode;
     refetchDeltakelser: () => Promise<any>;
 }
 
@@ -17,11 +16,11 @@ interface DeltakerContextProviderProps extends DeltakerContextType {
 export const DeltakerContextProvider = ({
     children,
     søker,
-    deltakelse,
+    deltakelsePeriode,
     refetchDeltakelser,
 }: DeltakerContextProviderProps) => {
     return (
-        <DeltakerContext.Provider value={{ søker, deltakelse, refetchDeltakelser }}>
+        <DeltakerContext.Provider value={{ søker, deltakelsePeriode, refetchDeltakelser }}>
             {children}
         </DeltakerContext.Provider>
     );
