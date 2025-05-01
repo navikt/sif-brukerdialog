@@ -4273,7 +4273,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.20.0"
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": "npm:3.2.1"
-    "@sanity/client": "npm:6.29.1"
+    "@sanity/client": "npm:7.0.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:22.15.3"
     "@types/react": "npm:19.1.2"
@@ -8004,7 +8004,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.29.1, @sanity/client@npm:^6.24.1, @sanity/client@npm:^6.28.3, @sanity/client@npm:^6.28.4, @sanity/client@npm:^6.29.0, @sanity/client@npm:^6.29.1":
+"@sanity/client@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@sanity/client@npm:7.0.0"
+  dependencies:
+    "@sanity/eventsource": "npm:^5.0.2"
+    get-it: "npm:^8.6.7"
+    rxjs: "npm:^7.0.0"
+  checksum: 10/b9ea8d05a2fd06d22ff0fcc63ddc6c727ddeb1ac98bdea499b568be031ebe03f3bfdef2e110d1a3ae49a4b0ef04650be59eba72a990d31fe5470cc8eab0d6353
+  languageName: node
+  linkType: hard
+
+"@sanity/client@npm:^6.24.1, @sanity/client@npm:^6.28.3, @sanity/client@npm:^6.28.4, @sanity/client@npm:^6.29.0, @sanity/client@npm:^6.29.1":
   version: 6.29.1
   resolution: "@sanity/client@npm:6.29.1"
   dependencies:
