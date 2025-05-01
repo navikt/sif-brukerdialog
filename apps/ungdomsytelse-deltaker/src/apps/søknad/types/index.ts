@@ -1,5 +1,6 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export enum Steg {
     'OPPSTART' = 'oppstart',
@@ -24,7 +25,7 @@ export type SøknadSvar = {
 
 export interface SøknadContextType {
     søker: Søker;
-    deltakelsePeriode;
+    deltakelsePeriode: DeltakelsePeriode;
     svar: SøknadSvar;
     søknadStartet: boolean;
     søknadSendt: boolean;

@@ -1,5 +1,5 @@
 import { Heading, Switch, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-common';
+import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import RapporterInntekt from './rapporter-inntekt/RapporterInntekt';
 import UløsteOppgaverList from './oppgaver/UløsteOppgaverList';
 import {
@@ -13,7 +13,7 @@ import { dateRangeToISODateRange, sortDateRange, sortDates } from '@navikt/sif-c
 import { useState } from 'react';
 
 interface Props {
-    deltakelsePeriode;
+    deltakelsePeriode: DeltakelsePeriode;
 }
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {

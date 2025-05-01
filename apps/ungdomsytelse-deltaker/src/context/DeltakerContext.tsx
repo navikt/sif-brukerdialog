@@ -1,9 +1,10 @@
 import { createContext } from 'react';
 import { Søker } from '@navikt/sif-common-api';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export interface DeltakerContextType {
     søker: Søker;
-    deltakelsePeriode;
+    deltakelsePeriode: DeltakelsePeriode;
     refetchDeltakelser: () => Promise<any>;
 }
 

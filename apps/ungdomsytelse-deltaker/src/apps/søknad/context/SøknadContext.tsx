@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { DeltakelsePeriode } from '@navikt/ung-common';
+import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
-import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -13,7 +14,7 @@ interface SøknadProviderProps {
     kontonummer?: string;
     mellomlagring?: MellomlagringDTO;
     søker: Søker;
-    deltakelsePeriode;
+    deltakelsePeriode: DeltakelsePeriode;
 }
 
 const initialData: SøknadSvar = {};
