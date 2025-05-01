@@ -1,13 +1,14 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
+import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { Inntekt } from '@navikt/ung-common';
+import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
-import { useRapporterInntekt } from '../../hooks/useRapporterInntekt';
+import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
 import { getInntektFromFormValues, inntektFormComponents } from './inntektFormUtils';
 import { InntektFormValues } from './types';
 import InntektDefaultForm from './varianter/InntektDefaultForm';
-import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 
 interface Props {
     inntekt?: Inntekt;
@@ -18,7 +19,7 @@ interface Props {
 
 const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
     const { intl } = useAppIntl();
-    const { error, pending, rapporterInntekt } = useRapporterInntekt();
+    const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { FormikWrapper, Form } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
@@ -33,7 +34,7 @@ const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
             },
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };
-        rapporterInntekt(data).then(() => onSuccess(data));
+        mutateAsync(data).then(() => onSuccess(data));
     };
 
     const initialValues: Partial<InntektFormValues> = inntekt
@@ -56,11 +57,11 @@ const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
                             onCancel={onCancel}
                             cancelButtonLabel="Avbryt"
                             includeValidationSummary={true}
-                            submitPending={pending}
+                            submitPending={isPending}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                             <VStack gap="4">
                                 <InntektDefaultForm values={values} periode={periode} />
-                                {error ? <Alert variant="error">{error}</Alert> : null}
+                                {error ? <ApiErrorAlert error={error} /> : null}
                             </VStack>
                         </Form>
                     );

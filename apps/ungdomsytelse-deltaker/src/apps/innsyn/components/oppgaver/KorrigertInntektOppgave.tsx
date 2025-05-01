@@ -8,6 +8,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { KorrigertInntektOppgave } from '@navikt/ung-common';
@@ -16,8 +17,6 @@ import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
 import PageOppgaveLayout from './PageOppgaveLayout';
-import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
-import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 interface Props {
     deltakelseId: string;
@@ -44,8 +43,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 
 const KorrigertInntektOppgave = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { refetchDeltakelser } = useDeltakerContext();
-    const { sendSvar, setVisSkjema, error, pending, erBesvart } = useOppgaveContext();
+    const { sendSvar, setVisSkjema, error, isPending, erBesvart } = useOppgaveContext();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
@@ -60,7 +58,6 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
         await sendSvar({
             oppgave: oppgaveDto,
         });
-        refetchDeltakelser();
     };
 
     const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
@@ -77,8 +74,6 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
     } = oppgave.oppgavetypeData;
 
     const harOppgittInntekt = false; // TODO
-    // inntektFraDeltaker?.arbeidOgFrilansInntekter !== undefined ||
-    // inntektFraDeltaker?.ytelseInntekter !== undefined;
 
     const summertInntektFraAinntekt =
         arbeidOgFrilansInntekter.reduce((acc, arbeidsgiver) => acc + arbeidsgiver.inntekt, 0) +
@@ -148,7 +143,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
                                     resetForm();
                                     setVisSkjema(false);
                                 }}
-                                submitPending={pending}
+                                submitPending={isPending}
                                 includeValidationSummary={true}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                 <VStack gap="8" marginBlock="2 0">
