@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.3
+
+### Patch Changes
+
+- 58582b9: Legge til css for å fikse bug i sentrering av logg-ut-varsel dialog
+
 ## 10.2.2
 
 ### Patch Changes
