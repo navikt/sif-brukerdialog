@@ -15,6 +15,7 @@ type ApiErrorBase = {
     message: string;
     originalError: unknown;
 };
+
 type ApiAxiosError = {
     type: ApiErrorType.NetworkError;
     context: string;

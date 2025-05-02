@@ -104,10 +104,6 @@ const RapporterInntekt = ({ rapporteringsperiode, linkMode }: Props) => {
                                             ...rapporteringsperiode,
                                             arbeidstakerOgFrilansInntekt:
                                                 data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt,
-                                            inntektFraYtelse: data.oppgittInntektForPeriode.inntektFraYtelse,
-                                            summertInntekt:
-                                                (data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt || 0) +
-                                                (data.oppgittInntektForPeriode.inntektFraYtelse || 0),
                                         });
                                         setPeriodeErOppdatert(true);
                                         setTimeout(() => {

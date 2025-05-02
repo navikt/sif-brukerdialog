@@ -46,13 +46,11 @@ export const deltakelserMockStorage = {
                             periodeForInntekt.fraOgMed === rapporteringsperiode.fraOgMed &&
                             periodeForInntekt.tilOgMed === rapporteringsperiode.tilOgMed
                         ) {
-                            const { arbeidstakerOgFrilansInntekt = 0, inntektFraYtelse = 0 } = inntekt;
+                            const { arbeidstakerOgFrilansInntekt = 0 } = inntekt;
                             return <RapportPeriodeinfoDto>{
                                 ...rapporteringsperiode,
                                 harRapportert: true,
                                 arbeidstakerOgFrilansInntekt: arbeidstakerOgFrilansInntekt,
-                                inntektFraYtelse: inntektFraYtelse,
-                                summertInntekt: arbeidstakerOgFrilansInntekt + inntektFraYtelse,
                             };
                         }
                         return rapporteringsperiode;

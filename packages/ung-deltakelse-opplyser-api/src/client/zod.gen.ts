@@ -34,7 +34,7 @@ export const zProgramperiodeDto = z.object({
     tomDato: z.string().date().optional(),
 });
 
-export const zEndretProgramperiodeDataDto = zOppgavetypeDataDto.merge(
+export const zEndretProgramperiodeDataDto = zOppgavetypeDataDto.and(
     z.object({
         programperiode: zProgramperiodeDto,
         forrigeProgramperiode: zProgramperiodeDto.optional(),
@@ -54,7 +54,7 @@ export const zRegisterinntektDto = z.object({
     totalInntekt: z.number().int(),
 });
 
-export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.merge(
+export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.and(
     z.object({
         fraOgMed: z.string().date(),
         tilOgMed: z.string().date(),
@@ -110,8 +110,8 @@ export const zDeltakerPersonlia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    førsteMuligeInnmeldingsdato: z.string().date(),
     sisteMuligeInnmeldingsdato: z.string().date(),
+    førsteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zRegisterInntektArbeidOgFrilansDto = z.object({
