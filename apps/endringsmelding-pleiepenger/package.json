@@ -50,7 +50,7 @@
         "@babel/preset-typescript": "7.27.1",
         "@mswjs/data": "0.16.2",
         "@navikt/ds-tailwind": "7.21.0",
-        "@navikt/nav-dekoratoren-moduler": "3.2.2",
+        "@navikt/nav-dekoratoren-moduler": "3.2.3",
         "@playwright/test": "1.52.0",
         "@sentry/vite-plugin": "3.3.1",
         "@sif/eslint-config": "workspace:*",

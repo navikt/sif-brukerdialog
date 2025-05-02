@@ -5444,7 +5444,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/next-logger": "npm:3.0.3"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-app-register": "workspace:*"
@@ -5632,7 +5632,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -5732,9 +5732,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/nav-dekoratoren-moduler@npm:3.2.2":
-  version: 3.2.2
-  resolution: "@navikt/nav-dekoratoren-moduler@npm:3.2.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.2.2%2F75bf1d5df5211c8004befd47e840382398105403"
+"@navikt/nav-dekoratoren-moduler@npm:3.2.3":
+  version: 3.2.3
+  resolution: "@navikt/nav-dekoratoren-moduler@npm:3.2.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.2.3%2F27714473e885ec311e1b91b17bb121750d8d9497"
   dependencies:
     js-cookie: "npm:^3.0.5"
   peerDependencies:
@@ -5742,7 +5742,7 @@ __metadata:
     html-react-parser: ">=5.x"
     jsdom: ">=16.x"
     react: ">=17.x"
-  checksum: 10/9a77e5ba62416ab637d6b06f7de58c3274f10c990c834c40bea9d205ccf3d5d20262f3869892786658dce10c543eba8aa2a4c4bc0ff774f64d4c4ff9180b9199
+  checksum: 10/2797306070db8a2d98fedcbeeebb1cca4bc4337d56c91b9190ef85361a21566a2d0e418aa2012840d6375ad5af20d05907a6bf79d0f320200152c0cc2b3bf834
   languageName: node
   linkType: hard
 
@@ -5857,7 +5857,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@playwright/test": "npm:1.52.0"
     "@tailwindcss/postcss": "npm:4.1.5"
     "@tailwindcss/vite": "npm:4.1.5"
@@ -6332,7 +6332,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.21.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -6406,7 +6406,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/server-ungdomsytelse-veileder@workspace:server-ungdomsytelse-veileder"
   dependencies:
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-common-env": "workspace:*"
     "@types/cookie-parser": "npm:1.4.8"
@@ -6789,7 +6789,7 @@ __metadata:
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.21.0"
     "@navikt/ds-react": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -6943,7 +6943,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.21.0"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -7000,7 +7000,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -7065,7 +7065,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-server@workspace:server"
   dependencies:
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-common-env": "workspace:*"
     "@types/cookie-parser": "npm:1.4.8"
@@ -7150,7 +7150,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.21.0"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -7168,7 +7168,7 @@ __metadata:
     "@storybook/test": "npm:8.6.12"
     "@tailwindcss/postcss": "npm:4.1.5"
     "@tailwindcss/vite": "npm:4.1.5"
-    "@tanstack/react-query": "npm:5.74.11"
+    "@tanstack/react-query": "npm:5.75.0"
     "@types/gh-pages": "npm:6.1.0"
     "@types/node": "npm:22.15.3"
     "@types/react": "npm:19.1.2"
@@ -7213,7 +7213,7 @@ __metadata:
     vite-plugin-checker: "npm:0.9.1"
     vitest: "npm:3.1.2"
     zod: "npm:3.24.3"
-    zustand: "npm:5.0.3"
+    zustand: "npm:5.0.4"
   languageName: unknown
   linkType: soft
 
@@ -7228,7 +7228,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.21.0"
     "@navikt/ds-react": "npm:7.21.0"
     "@navikt/ds-tailwind": "npm:7.21.0"
-    "@navikt/nav-dekoratoren-moduler": "npm:3.2.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.2.3"
     "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -11287,10 +11287,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.74.9":
-  version: 5.74.9
-  resolution: "@tanstack/query-core@npm:5.74.9"
-  checksum: 10/53853e79757a7aeb7f417bbe84c931356d4278d5d38ebf6a632b2c1db01022e065049e9da5bdae24778d85a8c51219f160ae2950dfad55fae8c6da0461673ec5
+"@tanstack/query-core@npm:5.75.0":
+  version: 5.75.0
+  resolution: "@tanstack/query-core@npm:5.75.0"
+  checksum: 10/4dd986efe81a36816998dcf2cc535e6f21b4453d967e568f44999fdc6e022dc5997383bd6fb5a427b1b7d582a468cebdb79cfae09c9d07c7cecd09b596c7bbe4
   languageName: node
   linkType: hard
 
@@ -11315,14 +11315,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.74.11":
-  version: 5.74.11
-  resolution: "@tanstack/react-query@npm:5.74.11"
+"@tanstack/react-query@npm:5.75.0":
+  version: 5.75.0
+  resolution: "@tanstack/react-query@npm:5.75.0"
   dependencies:
-    "@tanstack/query-core": "npm:5.74.9"
+    "@tanstack/query-core": "npm:5.75.0"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/89e1348f6f5a372e86176fb75cd0b73a988c3d506f741e5fe5280e41ea00ccd744f3bf4e87801e2c406f3a3dddeda2e8e27740a9fe6a123c6e2cb0e5060a23d7
+  checksum: 10/362c4144585cf56f66c2384af6cfc60c99d6637b57fcce908b0aa7d4451cfe355de055379dddf8da96e207400b9f1b5a2b905867451a6e9f3601e3c46b6ed5d0
   languageName: node
   linkType: hard
 
@@ -31995,7 +31995,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:5.0.3, zustand@npm:^5.0.3":
+"zustand@npm:5.0.4":
+  version: 5.0.4
+  resolution: "zustand@npm:5.0.4"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    immer: ">=9.0.6"
+    react: ">=18.0.0"
+    use-sync-external-store: ">=1.2.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+    use-sync-external-store:
+      optional: true
+  checksum: 10/aa1eef07766c1dbed0e492239e8083fbb905738a73dc2818e5a5dbf002f28ae5645902d9cc0e867a03d9ad871621185899f4f2799728e83598c30b37127b58f5
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^5.0.3":
   version: 5.0.3
   resolution: "zustand@npm:5.0.3"
   peerDependencies:
