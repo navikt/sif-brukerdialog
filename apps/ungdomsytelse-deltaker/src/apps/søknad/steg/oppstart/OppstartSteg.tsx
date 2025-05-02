@@ -8,6 +8,7 @@ import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
+import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
 
 const OppstartSteg = () => {
     const { deltakelsePeriode, setSpørsmålSvar, svar } = useSøknadContext();
@@ -52,7 +53,7 @@ const OppstartSteg = () => {
                                 Nei
                             </Radio>
                         </RadioGroup>
-                        {infoStemmer === YesOrNo.NO && (
+                        <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                             <Alert variant="info">
                                 <Heading level="3" size="small" spacing>
                                     Ta kontakt veilederen din
@@ -63,7 +64,7 @@ const OppstartSteg = () => {
                                     endrer startdatoen.
                                 </BodyLong>
                             </Alert>
-                        )}
+                        </AriaLiveRegion>
                     </VStack>
                     <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
                 </VStack>

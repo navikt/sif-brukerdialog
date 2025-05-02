@@ -2,6 +2,7 @@ import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
@@ -56,7 +57,7 @@ const KontonummerSteg = () => {
                                         Nei
                                     </Radio>
                                 </RadioGroup>
-                                {infoStemmer === YesOrNo.NO && (
+                                <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                     <Alert variant="info">
                                         <BodyLong spacing>
                                             Gå til personopplysninger på min side for å endre kontonummer.
@@ -66,7 +67,7 @@ const KontonummerSteg = () => {
                                             utbetaling til feil konto.
                                         </BodyLong>
                                     </Alert>
-                                )}
+                                </AriaLiveRegion>
                             </VStack>
                         </>
                     ) : (

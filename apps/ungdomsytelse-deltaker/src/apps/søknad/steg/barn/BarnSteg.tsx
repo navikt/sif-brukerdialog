@@ -1,13 +1,14 @@
 import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import { Spørsmål, Steg } from '../../types';
 import { useState } from 'react';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import BarnInfo from './BarnInfo';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
+import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
+import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '../../types';
+import BarnInfo from './BarnInfo';
 
 const BarnSteg = () => {
     const { setSpørsmålSvar, svar, barn } = useSøknadContext();
@@ -62,7 +63,7 @@ const BarnSteg = () => {
                                     Nei
                                 </Radio>
                             </RadioGroup>
-                            {infoStemmer === YesOrNo.NO && (
+                            <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                 <Alert variant="info">
                                     <Heading level="3" size="small" spacing>
                                         Vi henter opplysninger fra folkeregisteret
@@ -73,7 +74,7 @@ const BarnSteg = () => {
                                         Skatteetaten hvor du kan registrere foreldreansvar.
                                     </BodyLong>
                                 </Alert>
-                            )}
+                            </AriaLiveRegion>
                         </VStack>
                         <SkjemaFooter
                             forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.OPPSTART) }}
