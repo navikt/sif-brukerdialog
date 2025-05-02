@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const SøkerJobbPictogram = ({ style }: { style?: React.CSSProperties }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -28,10 +28,6 @@ export const getForrigeSkjemaSteg = (steg: Steg): Steg | undefined => {
     return index > 0 ? søknadSteg[index - 1] : undefined;
 };
 
-export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, harKontonummer: boolean): boolean => {
-    return getTilgjengeligeSteg(svar, harKontonummer).find((s) => s === steg) !== undefined;
-};
-
 export const getTilgjengeligeSteg = (svar: SøknadSvar, harKontonummer: boolean): Steg[] => {
     const tilgjengeligeSteg: Steg[] = [];
 
@@ -54,4 +50,8 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, harKontonummer: boolean)
     }
 
     return tilgjengeligeSteg;
+};
+
+export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, harKontonummer: boolean): boolean => {
+    return getTilgjengeligeSteg(svar, harKontonummer).find((s) => s === steg) !== undefined;
 };

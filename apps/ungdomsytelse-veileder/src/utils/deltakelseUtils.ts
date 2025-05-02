@@ -2,36 +2,6 @@ import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
-/**
- * Henter første og siste dato en deltaker kan meldes inn i programmet
- * @param deltaker
- * @returns
- */
-export const getStartdatobegrensningForDeltaker = (
-    førsteMuligeInnmeldingsdato: Date,
-    sisteMuligeInnmeldingsdato: Date,
-    programperiodeStart: Date,
-    today: Date,
-): DateRange | 'fomFørTom' => {
-    const tillattEndringsperiode = getTillattEndringsperiode(today);
-
-    const from = getFørsteMuligeInnmeldingsdato(
-        førsteMuligeInnmeldingsdato,
-        programperiodeStart,
-        tillattEndringsperiode,
-    );
-    const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
-
-    if (dayjs(from).isAfter(to)) {
-        return 'fomFørTom';
-    }
-
-    return {
-        from,
-        to,
-    };
-};
-
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
     programperiodeStart: Date,
@@ -72,4 +42,34 @@ export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
 export const isValidUUID = (uuid: string): boolean => {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     return uuidRegex.test(uuid);
+};
+
+/**
+ * Henter første og siste dato en deltaker kan meldes inn i programmet
+ * @param deltaker
+ * @returns
+ */
+export const getStartdatobegrensningForDeltaker = (
+    førsteMuligeInnmeldingsdato: Date,
+    sisteMuligeInnmeldingsdato: Date,
+    programperiodeStart: Date,
+    today: Date,
+): DateRange | 'fomFørTom' => {
+    const tillattEndringsperiode = getTillattEndringsperiode(today);
+
+    const from = getFørsteMuligeInnmeldingsdato(
+        førsteMuligeInnmeldingsdato,
+        programperiodeStart,
+        tillattEndringsperiode,
+    );
+    const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
+
+    if (dayjs(from).isAfter(to)) {
+        return 'fomFørTom';
+    }
+
+    return {
+        from,
+        to,
+    };
 };

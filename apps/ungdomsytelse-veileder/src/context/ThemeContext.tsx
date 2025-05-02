@@ -1,6 +1,8 @@
 import { Theme } from '@navikt/ds-react';
 import { useContext, useState, createContext } from 'react';
 
+const StorageKey = 'veilederTheme';
+
 interface ThemeContextType {
     darkMode: boolean;
     setDarkMode: (darkMode: boolean) => void;
@@ -32,5 +34,3 @@ export const useThemeContext = (): ThemeContextType => {
     }
     return context;
 };
-
-const StorageKey = 'veilederTheme';
