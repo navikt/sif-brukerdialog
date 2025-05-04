@@ -25,7 +25,7 @@ const InntektOppsummering = ({ visHeading = true, periode, inntekt }: Props) => 
                 </VStack>
             ) : null}
             <VStack className="border-t-2 border-t-border-divider border-b-border-default border-b-2">
-                <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-divider p-2">
+                <HGrid columns="1fr auto" gap="4" className="border-b-2 border-border-divider p-2">
                     <BodyShort>Arbeidsgiver/&shy;frilanser</BodyShort>
                     <BodyShort>
                         <FormattedNumber value={inntekt.arbeidOgFrilansInntekter || 0} />

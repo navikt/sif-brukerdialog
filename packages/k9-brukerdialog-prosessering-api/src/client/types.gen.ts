@@ -23,6 +23,10 @@ export type Ungdomsytelsesøknad = {
     søkerNorskIdent: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
+    oppstartErRiktig: boolean;
+    barnErRiktig: boolean;
+    kontonummerErRiktig?: boolean; // undefined hvis søker ikke har kontonummer (_harKontonummer)
+    _harKontonummer: boolean;
 };
 
 export type UngdomsytelseOppgaveDto = {
@@ -41,7 +45,6 @@ export type UngdomsytelseOppgavebekreftelse = {
 
 export type OppgittInntektForPeriode = {
     arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
     periodeForInntekt: UngPeriode;
 };
 
@@ -120,6 +123,30 @@ export type FerieuttakIPerioden = {
     ferieuttak: Array<Ferieuttak>;
 };
 
+export type Fosterhjemgodtgjørelse = {
+    type: 'MOTTAR_IKKE' | 'MOTTAR_FRIKJØPT' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+    mottarFosterhjemsgodtgjørelse: boolean;
+};
+
+export type FosterhjemsgodtgjørelseFrikjøpt = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseFrikjøpt';
+} & {
+    erFrikjøptFraJobb: boolean;
+    frikjøptBeskrivelse: string;
+};
+
+export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
+} & {
+    erFrikjøptFraJobb: boolean;
+    startdato?: string;
+    sluttdato?: string;
+};
+
+export type FosterhjemsgodtgjørelseMottarIkke = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseMottarIkke';
+};
+
 export type Frilans = {
     harInntektSomFrilanser: boolean;
     startetFørSisteTreHeleMåneder?: boolean;
@@ -150,6 +177,29 @@ export type Nattevåk = {
 
 export type NormalArbeidstid = {
     timerPerUkeISnitt: string;
+};
+
+export type Omsorgsstønad = {
+    type: 'MOTTAR_IKKE' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+    mottarOmsorgsstønad: boolean;
+};
+
+export type OmsorgsstønadMottarDelerAvPerioden = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarDelerAvPerioden';
+} & {
+    startdato?: string;
+    sluttdato?: string;
+    antallTimerIUken: string;
+};
+
+export type OmsorgsstønadMottarHelePerioden = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarHelePerioden';
+} & {
+    antallTimerIUken: string;
+};
+
+export type OmsorgsstønadMottarIkke = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarIkke';
 };
 
 export type Omsorgstilbud = {
@@ -203,7 +253,16 @@ export type PleiepengerSyktBarnSøknad = {
     nattevåk?: Nattevåk;
     beredskap?: Beredskap;
     frilans: Frilans;
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
+    fosterhjemgodtgjørelse?:
+        | FosterhjemsgodtgjørelseFrikjøpt
+        | FosterhjemsgodtgjørelseIkkeFrikjøpt
+        | FosterhjemsgodtgjørelseMottarIkke;
+    omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
     barnRelasjonBeskrivelse?: string;

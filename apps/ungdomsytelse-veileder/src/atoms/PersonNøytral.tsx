@@ -6,6 +6,7 @@ const PersonNøytral = ({ ...args }: SVGProps<any>) => {
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
+                // eslint-disable-next-line max-len
                 d="M39.9589 20.0792C39.9589 31.0543 31.062 39.9513 20.087 39.9513C9.11198 39.9513 0.214905 31.0543 0.214905 20.0792C0.214905 9.10446 9.11198 0.207388 20.087 0.207388C31.062 0.207388 39.9589 9.10446 39.9589 20.0792Z"
                 fill="#005077"
             />

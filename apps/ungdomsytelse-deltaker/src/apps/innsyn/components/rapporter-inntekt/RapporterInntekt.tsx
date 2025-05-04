@@ -6,7 +6,7 @@ import InntektForm from '../inntekt-form/InntektForm';
 import { getFristForRapporteringsperiode } from '../../utils/deltakelseUtils';
 import InntektOppsummering from '../inntekt-oppsummering/InntektOppsummering';
 import { useAppIntl } from '../../../../i18n';
-import { useDeltakerContext } from '../../../../context/DeltakerContext';
+import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
 import { useNavigate } from 'react-router-dom';
 import { encodePeriode } from '../../utils/urlUtils';
 
@@ -104,10 +104,6 @@ const RapporterInntekt = ({ rapporteringsperiode, linkMode }: Props) => {
                                             ...rapporteringsperiode,
                                             arbeidstakerOgFrilansInntekt:
                                                 data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt,
-                                            inntektFraYtelse: data.oppgittInntektForPeriode.inntektFraYtelse,
-                                            summertInntekt:
-                                                (data.oppgittInntektForPeriode.arbeidstakerOgFrilansInntekt || 0) +
-                                                (data.oppgittInntektForPeriode.inntektFraYtelse || 0),
                                         });
                                         setPeriodeErOppdatert(true);
                                         setTimeout(() => {

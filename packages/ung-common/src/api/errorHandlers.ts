@@ -1,5 +1,5 @@
 import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
 // Generelle feiltyper
@@ -15,6 +15,7 @@ type ApiErrorBase = {
     message: string;
     originalError: unknown;
 };
+
 type ApiAxiosError = {
     type: ApiErrorType.NetworkError;
     context: string;
@@ -44,10 +45,7 @@ export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
     if (!error) {
         return false;
     }
-    return (
-        (error as ApiError).type === ApiErrorType.NetworkError &&
-        (error as ApiError).originalError instanceof AxiosError
-    );
+    return (error as ApiError).type === ApiErrorType.NetworkError && isAxiosError((error as ApiError).originalError);
 };
 
 /**

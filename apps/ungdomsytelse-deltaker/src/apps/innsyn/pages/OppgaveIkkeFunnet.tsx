@@ -1,15 +1,15 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import { useNavigate } from 'react-router-dom';
 import { BodyShort, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
+import { useNavigate } from 'react-router-dom';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 
 interface Props {
     oppgaveReferanse?: string;
 }
 
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
     const navigate = useNavigate();
 
     return (
@@ -26,16 +26,16 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
                     )}
                 </VStack>
 
-                {deltakelse.oppgaver.length > 0 ? (
+                {deltakelsePeriode.oppgaver.length > 0 ? (
                     <>
                         <Heading level="2" size="medium">
                             Oppgaver i deltakelse
                         </Heading>
                         <List>
-                            {deltakelse.oppgaver.map((o) => (
+                            {deltakelsePeriode.oppgaver.map((o) => (
                                 <ListItem key={o.oppgaveReferanse}>
                                     <Link
-                                        href={`#`}
+                                        href="#"
                                         onClick={(evt) => {
                                             evt.stopPropagation();
                                             evt.preventDefault();

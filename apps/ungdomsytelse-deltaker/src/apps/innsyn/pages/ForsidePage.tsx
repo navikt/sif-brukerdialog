@@ -1,14 +1,14 @@
 import { VStack } from '@navikt/ds-react';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
+import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import InformasjonOmUngdomsytelsen from '../../søknad/components/Informasjon';
 import DeltakelseContent from '../components/DeltakelseContent';
 import DeltakelseHeader from '../components/DeltakelseHeader';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 
 const ForsidePage = () => {
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
 
     useEffectOnce(() => {
         setBreadcrumbs([
@@ -20,9 +20,9 @@ const ForsidePage = () => {
     return (
         <Page title="Din ungdomsytelse">
             <VStack gap="8">
-                <DeltakelseHeader deltakelse={deltakelse} />
+                <DeltakelseHeader deltakelsePeriode={deltakelsePeriode} />
 
-                <DeltakelseContent deltakelse={deltakelse} />
+                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
 
                 <InformasjonOmUngdomsytelsen />
             </VStack>

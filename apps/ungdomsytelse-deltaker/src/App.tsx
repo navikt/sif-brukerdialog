@@ -1,10 +1,13 @@
+import { Theme } from '@navikt/ds-react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { EnvKey, getCommonEnv } from '@navikt/sif-common-env';
+import { BrowserRouter } from 'react-router-dom';
+import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import DeltakerInfoLoader from './DeltakerInfoLoader';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { appEnv } from './utils/appEnv';
+import '@navikt/ds-css/darkside';
 import './app.css';
 
 initUngDeltakelseOpplyserApiClient({
@@ -15,13 +18,19 @@ initUngDeltakelseOpplyserApiClient({
 initK9BrukerdialogProsesseringApiClient();
 
 function App() {
+    const publicPath = getRequiredEnv('PUBLIC_PATH');
+
     return (
-        <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
-            <AppIntlMessageProvider>
-                <DeltakerInfoLoader />
-                {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
-            </AppIntlMessageProvider>
-        </ErrorBoundary>
+        <Theme>
+            <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
+                <AppIntlMessageProvider>
+                    <BrowserRouter basename={publicPath}>
+                        <DeltakerInfoLoader />
+                    </BrowserRouter>
+                    {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
+                </AppIntlMessageProvider>
+            </ErrorBoundary>
+        </Theme>
     );
 }
 

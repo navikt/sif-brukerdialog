@@ -1,19 +1,19 @@
 import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { EndretProgramperiodeOppgave } from '@navikt/ung-common';
-import OppgaveLayout from './OppgaveLayout';
-import dayjs from 'dayjs';
+import { CalendarIcon } from '@navikt/aksel-icons';
+import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { useAppIntl } from '../../../../i18n';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { CalendarIcon } from '@navikt/aksel-icons';
+import { EndretProgramperiodeOppgave } from '@navikt/ung-common';
+import dayjs from 'dayjs';
+import { useAppIntl } from '../../../../i18n';
 import { useOppgaveContext } from '../oppgave/OppgaveContext';
+import OppgaveLayout from './OppgaveLayout';
 
 interface Props {
     deltakelseId: string;
@@ -40,7 +40,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 
 const EndretProgramperiodeOppgaveForm = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, error, pending, setVisSkjema } = useOppgaveContext();
+    const { sendSvar, error, isPending, setVisSkjema } = useOppgaveContext();
     const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
 
     const handleSubmit = async (values: FormValues) => {
@@ -114,13 +114,13 @@ const EndretProgramperiodeOppgaveForm = ({ oppgave }: Props) => {
                                     resetForm();
                                     setVisSkjema(false);
                                 }}
-                                submitPending={pending}
+                                submitPending={isPending}
                                 includeValidationSummary={true}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                                 <VStack gap="6" marginBlock="2 0">
                                     <YesOrNoQuestion
                                         name={FormFields.godkjenner}
-                                        legend={`Godkjenner du endringen i programperioden?`}
+                                        legend="Godkjenner du endringen i programperioden?"
                                         validate={getYesOrNoValidator()}
                                         description={
                                             <>

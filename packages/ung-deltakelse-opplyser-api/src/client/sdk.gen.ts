@@ -42,6 +42,9 @@ import type {
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
+    HentKontonummerData,
+    HentKontonummerResponse,
+    HentKontonummerError,
     HentDeltakersOppgaveData,
     HentDeltakersOppgaveResponse,
     HentDeltakersOppgaveError,
@@ -65,6 +68,7 @@ import {
     zOpprettOppgaveForEndretProgramperiodeResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
@@ -598,6 +602,33 @@ export class OppretterOgEndrerPåOppgaverService {
                 'Content-Type': 'application/json',
                 ...options?.headers,
             },
+        });
+    }
+}
+
+export class DeltakerService {
+    /**
+     * Henter kontonummer for en deltaker i ungdomsprogrammet
+     */
+    public static hentKontonummer<ThrowOnError extends boolean = true>(
+        options?: Options<HentKontonummerData, ThrowOnError>,
+    ) {
+        return (options?.client ?? _heyApiClient).get<HentKontonummerResponse, HentKontonummerError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zHentKontonummerResponse.parseAsync(data);
+            },
+            url: '/deltaker/hent-kontonummer',
+            ...options,
         });
     }
 }

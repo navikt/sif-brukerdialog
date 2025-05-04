@@ -3,13 +3,9 @@ import { getScenarioMockData } from '../../mock/msw/mocks/scenarioes';
 import { ScenarioType } from '../../src/dev/scenarioer';
 
 export const withDeltakerContext = (Story) => {
-    const { barn, søker, deltakelser } = getScenarioMockData(ScenarioType.harSøkt);
+    const { søker, deltakelser } = getScenarioMockData(ScenarioType.harSøkt);
     return (
-        <DeltakerContextProvider
-            søker={søker}
-            deltakelse={deltakelser[0]}
-            barn={barn}
-            refetchDeltakelser={async () => {}}>
+        <DeltakerContextProvider søker={søker} deltakelsePeriode={deltakelser[0]} refetchDeltakelser={async () => {}}>
             <Story />
         </DeltakerContextProvider>
     );

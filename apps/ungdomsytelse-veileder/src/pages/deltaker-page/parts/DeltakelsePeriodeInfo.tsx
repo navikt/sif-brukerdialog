@@ -1,12 +1,11 @@
-import { Alert, BodyShort, Box, Button, Heading, HGrid, VStack } from '@navikt/ds-react';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
-import { PencilFillIcon } from '@navikt/aksel-icons';
-import InfoBox from '../../../components/info-box/InfoBox';
+import DatoBoks from './DatoBoks';
 
 interface Props {
     deltaker: Deltaker;
@@ -80,45 +79,6 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 />
             ) : null}
         </>
-    );
-};
-interface DatoBoksProps {
-    tittel: string;
-    dato?: Date;
-    endre?: {
-        label: string;
-        onClick: () => void;
-    };
-    kanIkkeEndreTekst: string;
-}
-
-const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
-    return (
-        <InfoBox>
-            <VStack gap="1">
-                <Heading level="3" size="xsmall">
-                    <BodyShort as="span">{tittel}</BodyShort>
-                </Heading>
-                <BodyShort size="large" weight="semibold" className="text-2xl capitalize" spacing>
-                    {dato ? dateFormatter.dayCompactDate(dato) : '-'}
-                </BodyShort>
-                {endre ? (
-                    <Box>
-                        <Button
-                            variant="primary"
-                            size="small"
-                            icon={<PencilFillIcon role="presentation" />}
-                            onClick={endre.onClick}>
-                            {endre.label}
-                        </Button>
-                    </Box>
-                ) : (
-                    <Alert variant="info" inline>
-                        {kanIkkeEndreTekst}
-                    </Alert>
-                )}
-            </VStack>
-        </InfoBox>
     );
 };
 

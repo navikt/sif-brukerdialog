@@ -112,8 +112,8 @@ export type DeltakerPersonlia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    førsteMuligeInnmeldingsdato: string;
     sisteMuligeInnmeldingsdato: string;
+    førsteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -152,6 +152,10 @@ export type EndretProgamperiodeOppgaveDto = {
     frist: string;
     programperiode: ProgramperiodeDto;
     forrigeProgramperiode?: ProgramperiodeDto;
+};
+
+export type KontonummerDto = {
+    kontonummer: string;
 };
 
 export type DeltakelsePeriodInfo = {
@@ -654,6 +658,39 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
 
 export type HentDeltakerInfoGittDeltakerIdResponse =
     HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+
+export type HentKontonummerData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/deltaker/hent-kontonummer';
+};
+
+export type HentKontonummerErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentKontonummerError = HentKontonummerErrors[keyof HentKontonummerErrors];
+
+export type HentKontonummerResponses = {
+    /**
+     * OK
+     */
+    200: KontonummerDto;
+};
+
+export type HentKontonummerResponse = HentKontonummerResponses[keyof HentKontonummerResponses];
 
 export type HentDeltakersOppgaveData = {
     body?: never;

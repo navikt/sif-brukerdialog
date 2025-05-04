@@ -1,0 +1,71 @@
+import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useSøknadContext } from '../../hooks/context/useSøknadContext';
+import { useErStegTilgjengelig } from '../../hooks/utils/useErStegTilgjengelig';
+import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
+import { Steg } from '../../types';
+import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
+import SøknadHeader from '../søknad-header/SøknadHeader';
+import StegFooter from './StegFooter';
+
+interface Props {
+    steg: Steg;
+    tittel: string;
+    children: React.ReactNode;
+}
+
+const SøknadSteg = ({ steg, tittel, children }: Props) => {
+    useErStegTilgjengelig(steg);
+
+    const { avbrytOgSlett } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
+
+    const handleOnStepChange = (stegIndex: number) => {
+        if (stegIndex > 0) {
+            gotoSteg(søknadSteg[stegIndex - 1]);
+        }
+    };
+
+    const activeIndex = getSkjemaStegIndex(steg) + 1;
+
+    return (
+        <Page title={`${tittel} - Søknad om ungdomsprogramytelse`}>
+            <VStack gap="8">
+                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
+                <div>
+                    <Box paddingBlock="6 5">
+                        <Heading level="2" size="large">
+                            {tittel}
+                        </Heading>
+                    </Box>
+                    <FormProgress
+                        totalSteps={søknadSteg.length}
+                        activeStep={activeIndex}
+                        onStepChange={handleOnStepChange}>
+                        <FormProgress.Step completed={activeIndex > 0} interactive={true}>
+                            Oppstart
+                        </FormProgress.Step>
+                        <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
+                            Barn
+                        </FormProgress.Step>
+                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
+                            Kontonummer for utbetaling
+                        </FormProgress.Step>
+                        <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
+                    </FormProgress>
+                </div>
+
+                <Box marginBlock="4 0">{children}</Box>
+
+                <StegFooter
+                    slett={{
+                        tittel: 'Avbryt søknad',
+                        onClick: avbrytOgSlett,
+                    }}
+                />
+            </VStack>
+        </Page>
+    );
+};
+
+export default SøknadSteg;

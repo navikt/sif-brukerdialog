@@ -21,12 +21,7 @@ const DeltakerPage = () => {
         return <ErrorPage error="Deltakerident er ikke gyldig" />;
     }
 
-    const {
-        data: deltaker,
-        isLoading: deltakerPending,
-        error,
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-    } = useRegistrertDeltaker(deltakerId || '');
+    const { data: deltaker, isLoading: deltakerPending, error } = useRegistrertDeltaker(deltakerId || '');
 
     return (
         <AppPage>

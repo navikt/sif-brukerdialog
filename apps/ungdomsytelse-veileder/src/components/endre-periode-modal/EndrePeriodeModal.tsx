@@ -3,6 +3,13 @@ import EndrePeriodeForm from '../../forms/endre-periode-form/EndrePeriodeForm';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 
+const getModalHeader = (formVariant: EndrePeriodeVariant, deltakelse: Deltakelse) => {
+    if (formVariant === EndrePeriodeVariant.startdato) {
+        return 'Endre startdato';
+    }
+    return deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato';
+};
+
 interface Props {
     variant: EndrePeriodeVariant;
     deltaker: Deltaker;
@@ -57,10 +64,4 @@ const EndrePeriodeModal = ({
     );
 };
 
-const getModalHeader = (formVariant: EndrePeriodeVariant, deltakelse: Deltakelse) => {
-    if (formVariant === EndrePeriodeVariant.startdato) {
-        return 'Endre startdato';
-    }
-    return deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato';
-};
 export default EndrePeriodeModal;

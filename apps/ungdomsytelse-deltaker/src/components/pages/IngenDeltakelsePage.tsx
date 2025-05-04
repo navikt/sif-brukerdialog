@@ -2,9 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds/src';
 
-interface Props {}
-
-const IngenDeltakelsePage = ({}: Props) => (
+const IngenDeltakelsePage = () => (
     <ErrorPage
         pageTitle="Deltakelse ikke funnet"
         bannerTitle="Ungdomsytelse"

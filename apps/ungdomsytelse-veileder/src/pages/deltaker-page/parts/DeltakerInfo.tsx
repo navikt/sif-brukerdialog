@@ -33,12 +33,12 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                         </dl>
                     </VStack>
                     <VStack gap="4">
-                        <dl className="ungDefList">
+                        {/* <dl className="ungDefList">
                             <dt>Første mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
                             <dt>Siste mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.sisteMuligeInnmeldingsdato)}</dd>
-                        </dl>
+                        </dl> */}
                     </VStack>
                 </HGrid>
             </InfoBox>

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'samtykke.bekreftLabel': 'Jeg bekrefter at jeg har forstått mitt ansvar som søker.',
     'samtykke.ansvar.tittel': 'Ditt ansvar som søker',
