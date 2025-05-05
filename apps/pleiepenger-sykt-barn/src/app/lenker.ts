@@ -1,11 +1,10 @@
 interface Lenker {
     medlemskap: string;
     papirskjemaPrivat: string;
-    vilkårPleiepenger: string;
     personvern: string;
     rettOgPlikt: string;
     saksbehandlingstider: string;
-    dittNAV: string;
+
     skrivTilOss: string;
     innsynSIF: string;
     ettersend: string;
@@ -19,12 +18,9 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     papirskjemaPrivat:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/brev',
-    vilkårPleiepenger: 'https://www.nav.no/familie/sykdom-i-familien/nb/pleiepenger-for-sykt-barn',
-    personvern:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
+    personvern: 'https://www.nav.no/personvernerklaering',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
-    dittNAV: `https://www.nav.no/no/Ditt+NAV`,
+    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
     innsynSIF: `https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn`,
     endringsmelding: 'https://nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     ettersend:
@@ -39,7 +35,6 @@ const LenkerNynorsk: Partial<Lenker> = {
     medlemskap: 'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Nynorsk/medlemskap-i-folketrygda',
     papirskjemaPrivat:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/brev',
-    vilkårPleiepenger: 'https://www.nav.no/familie/sykdom-i-familien/nn/pleiepenger-for-sykt-barn',
     rettOgPlikt:
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Nynorsk/du-har-plikt-til-%C3%A5-gje-nav-riktige-opplysningar',
     ettersend:
