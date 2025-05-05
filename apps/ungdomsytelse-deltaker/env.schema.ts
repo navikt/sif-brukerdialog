@@ -14,6 +14,10 @@ export const appEnvSchema = z
     .object({
         [AppEnvKey.SIF_PUBLIC_PERSONALIA_URL]: z.string().min(1),
         [AppEnvKey.VELG_SCENARIO]: z.string().optional(),
+        [AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT]: z.string(),
+        [AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER]: z.string(),
+        [AppEnvKey.SIF_PUBLIC_URL_PERSONVERN]: z.string(),
+        [AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN]: z.string(),
     })
     .merge(commonEnvSchema)
     .merge(ungDeltakelseOpplyserEnvSchema);
