@@ -17,12 +17,12 @@ interface SøknadProviderProps {
     deltakelsePeriode: DeltakelsePeriode;
 }
 
-// const initialData: SøknadSvar = {};
-const initialData: SøknadSvar = {
-    barn: YesOrNo.YES,
-    kontonummer: YesOrNo.YES,
-    harForståttRettigheterOgPlikter: true,
-};
+const initialData: SøknadSvar = {};
+// const initialData: SøknadSvar = {
+//     barn: YesOrNo.YES,
+//     kontonummer: YesOrNo.YES,
+//     harForståttRettigheterOgPlikter: true,
+// };
 
 export const SøknadProvider = ({
     children,
