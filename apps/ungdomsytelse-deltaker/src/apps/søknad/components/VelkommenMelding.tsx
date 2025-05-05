@@ -1,7 +1,8 @@
-import { BodyLong, BodyShort, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, GuidePanel, Heading, Link, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import { useAppIntl } from '../../../i18n';
+import getLenker from '../../../lenker';
 
 interface Props {
     fornavn: string;
@@ -26,8 +27,8 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                         får du utbetalt penger hver måned så lenge du deltar i programmet.
                     </BodyShort>
                     <BodyShort>
-                        Du søker om ungdomsprogramytelsen ved å fylle ut denne søknaden. Les mer om ungdomsprogrammet og
-                        -ytelsen på nav.no.
+                        Du søker om ungdomsprogramytelsen ved å fylle ut denne søknaden. Les mer om{' '}
+                        <Link href={getLenker().omUngdomsprogramytelsen}>ungdomsprogrammet og -ytelsen på nav.no</Link>.
                     </BodyShort>
                     <VStack gap="0">
                         <ReadMore header="Hva hvis datoen ikke stemmer?">[TODO]</ReadMore>

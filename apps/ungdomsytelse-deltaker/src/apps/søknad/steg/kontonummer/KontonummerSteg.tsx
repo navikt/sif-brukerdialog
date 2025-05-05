@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Link, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -8,6 +8,7 @@ import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
+import getLenker from '../../../../lenker';
 
 const KontonummerSteg = () => {
     const { setSpørsmålSvar, svar, kontonummer } = useSøknadContext();
@@ -63,7 +64,11 @@ const KontonummerSteg = () => {
                                 <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                     <Alert variant="info">
                                         <BodyShort spacing>
-                                            Gå til personopplysninger på Min side for å endre bankkontonummeret ditt.
+                                            Gå til{' '}
+                                            <Link href={getLenker().personopplysninger}>
+                                                personopplysninger på Min side
+                                            </Link>{' '}
+                                            for å endre bankkontonummeret ditt.
                                         </BodyShort>
                                         <BodyShort>
                                             Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden,
