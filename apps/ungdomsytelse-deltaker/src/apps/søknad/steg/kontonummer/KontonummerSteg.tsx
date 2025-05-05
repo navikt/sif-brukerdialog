@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -38,6 +38,9 @@ const KontonummerSteg = () => {
                     handleOnSubmit();
                 }}>
                 <VStack gap="8">
+                    <GuidePanel>
+                        For å få pengene inn på bankkontoen din, må du ha registrert kontonummeret ditt hos Nav.
+                    </GuidePanel>
                     {harKontonummer ? (
                         <>
                             <VStack gap="4">
@@ -59,13 +62,13 @@ const KontonummerSteg = () => {
                                 </RadioGroup>
                                 <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                     <Alert variant="info">
-                                        <BodyLong spacing>
-                                            Gå til personopplysninger på min side for å endre kontonummer.
-                                        </BodyLong>
-                                        <BodyLong>
-                                            Vi anbefaler å endre kontonummer før du sender inn søknaden for å unngå
-                                            utbetaling til feil konto.
-                                        </BodyLong>
+                                        <BodyShort spacing>
+                                            Gå til personopplysninger på Min side for å endre bankkontonummeret ditt.
+                                        </BodyShort>
+                                        <BodyShort>
+                                            Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden,
+                                            slik at pengene ikke blir forsinket.
+                                        </BodyShort>
                                     </Alert>
                                 </AriaLiveRegion>
                             </VStack>
@@ -77,12 +80,12 @@ const KontonummerSteg = () => {
                                     Du har ikke registrert kontonummer hos oss
                                 </Heading>
                                 <BodyLong spacing>
-                                    For å få utbetalt penger til rett konto må du registrere kontonummer hos oss. Gå til
-                                    personopplysninger på min side for å legge inn kontonummeret ditt.
+                                    Registrer bankkontonummeret ditt hos Nav slik at du får pengene utbetalt til rett
+                                    konto. Gå til personopplysninger på Min side for å legge inn kontonummeret ditt.
                                 </BodyLong>
                                 <BodyLong>
-                                    Du kan fremdeles sende inn søknaden, men vi anbefaler å legge inn kontonummer med en
-                                    gang for å unngå forsinkelser i utbetalingen.
+                                    Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret
+                                    med én gang slik at pengene ikke blir forsinket.
                                 </BodyLong>
                             </Alert>
                         </>

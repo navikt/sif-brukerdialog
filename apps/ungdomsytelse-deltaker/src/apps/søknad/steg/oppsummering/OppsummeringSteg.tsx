@@ -11,6 +11,7 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadSvar } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
+import { getBarnSpørsmål } from '../barn/BarnSteg';
 
 type UngdomsytelsesøknadV2 = Ungdomsytelsesøknad & {
     barnErRiktig: boolean;
@@ -130,7 +131,7 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Stemmer informasjonen om barn?</FormSummary.Label>
+                                    <FormSummary.Label>{getBarnSpørsmål(barn.length)}</FormSummary.Label>
                                     <FormSummary.Value>
                                         {svar[Spørsmål.BARN] === YesOrNo.YES ? 'Ja' : 'Nei'}
                                     </FormSummary.Value>
