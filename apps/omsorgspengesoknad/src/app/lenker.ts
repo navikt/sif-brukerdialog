@@ -6,7 +6,7 @@ interface Lenker {
     personvern: string;
     rettOgPlikt: string;
     saksbehandlingstider: string;
-    dittNAV: string;
+
     innsynSIF: string;
     ettersend: string;
     skatteetaten: string;
@@ -20,11 +20,10 @@ const LenkerBokmål: Lenker = {
     papirskjemaPrivat:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/brev',
     vilkårPleiepenger: 'https://www.nav.no/familie/sykdom-i-familien/nb/pleiepenger-for-sykt-barn',
-    personvern:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
+    personvern: 'https://www.nav.no/personvernerklaering',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
-    dittNAV: `https://www.nav.no/no/Ditt+NAV`,
+    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
+
     innsynSIF: `https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn`,
     ettersend: 'https://www.nav.no/ettersende#omsorgspenger-hjemme-med-sykt-barn-dager',
     skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
