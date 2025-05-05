@@ -1,12 +1,11 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import { useNavigate, useParams } from 'react-router-dom';
 import { Heading, VStack } from '@navikt/ds-react';
-import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
+import { useNavigate, useParams } from 'react-router-dom';
+import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import OppgavePanel from '../components/oppgaver/OppgavePanel';
-import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
+import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -14,8 +13,8 @@ type OppgavePageParams = {
 
 const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
-    const { deltakelse } = useDeltakerContext();
-    const oppgave = deltakelse.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
+    const { deltakelsePeriode } = useDeltakerContext();
+    const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
     const navigate = useNavigate();
 
     useEffectOnce(() => {
@@ -43,8 +42,8 @@ const OppgavePage = () => {
                 </Heading>
                 <OppgavePanel
                     oppgave={oppgave}
-                    deltakelseId={deltakelse.id}
-                    programPeriode={deltakelse.programPeriode}
+                    deltakelseId={deltakelsePeriode.id}
+                    programPeriode={deltakelsePeriode.programPeriode}
                 />
             </VStack>
         </Page>

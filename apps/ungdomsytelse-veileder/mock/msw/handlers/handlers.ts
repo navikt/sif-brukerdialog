@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { delay, http, HttpResponse } from 'msw';
 import {
@@ -16,6 +17,11 @@ export const handlers = [
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
+
+        /** Kode 6/7 */
+        if (deltakerIdent === '09847696068') {
+            return new HttpResponse(null, { status: 403 });
+        }
         const data = findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),
@@ -23,12 +29,29 @@ export const handlers = [
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
         const data = getDeltakerByDeltakerId(id as string);
+        await delay(250);
         return data ? HttpResponse.json(data) : HttpResponse.error();
+    }),
+
+    http.delete('**/veileder/register/deltakelse/:deltakelseId/fjern', async () => {
+        return new HttpResponse(null, { status: 403 });
     }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = getDeltakelser(params.deltakerId as string);
-        await delay(250);
+        await delay(1200);
+        if (1 + 1 === 3) {
+            return HttpResponse.json(
+                {
+                    type: 'about:blank',
+                    title: 'Not Found',
+                    status: 404,
+                    detail: 'Fant ingen deltaker med id 699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',
+                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                },
+                { status: 404 },
+            );
+        }
         return HttpResponse.json(data);
     }),
 
@@ -50,17 +73,10 @@ export const handlers = [
         const { dato } = await request.json();
         await delay(250);
         const data = getDeltakelser(registrertDeltakerId)[0];
+        if (1 + 1 === 3) {
+            return new HttpResponse(null, { status: 500 });
+        }
         return HttpResponse.json({ ...data, fraOgMed: dato });
-
-        // const errors_409 = {
-        //     type: '/problem-details/duplikat-uløst-oppgavetype',
-        //     title: 'Det finnes allerede en oppgave av samme type som er uløst',
-        //     status: 409,
-        //     detail: 'Key (deltakelse_id, oppgavetype)=(a3bed73f-d5d7-4aac-9c3b-3134c8394dac, BEKREFT_ENDRET_STARTDATO) already exists.',
-        //     instance:
-        //         'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/deltakelse/a3bed73f-d5d7-4aac-9c3b-3134c8394dac/endre/startdato',
-        // };
-        // return new HttpResponse(null, { status: 409 });
     }),
 
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {

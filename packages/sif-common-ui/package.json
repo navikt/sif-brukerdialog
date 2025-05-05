@@ -1,13 +1,13 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.9.2",
+    "version": "0.9.4",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.20.0",
+        "@navikt/ds-css": "7.21.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.20.0",
+        "@navikt/ds-react": "7.21.0",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -40,7 +40,7 @@
         "react-intl": "7.1.11",
         "storybook": "8.6.12",
         "typescript": "5.8.3",
-        "webpack": "5.99.6"
+        "webpack": "5.99.7"
     },
     "scripts": {
         "build-storybook": "storybook build ",

@@ -1,8 +1,16 @@
 @import 'tailwindcss';
 @import '@navikt/ds-css' layer(components);
 @import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(components);
+@import 'react-loading-skeleton/dist/skeleton.css' layer(utilities);
 
 @config '../tailwind.config.ts';
+
+/** Fikse plasserig av logout-warning dialog */
+@layer utilities {
+    logout-warning dialog {
+        margin: auto;
+    }
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

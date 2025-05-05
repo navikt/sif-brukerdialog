@@ -9,19 +9,6 @@ interface oppgaveBase {
     svarfrist: Date;
 }
 
-export interface EndreStartdatoOppgave extends oppgaveBase {
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO;
-    oppgavetypeData: {
-        nyStartdato: Date;
-    };
-}
-export interface EndreSluttdatoOppgave extends oppgaveBase {
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO;
-    oppgavetypeData: {
-        nySluttdato: Date;
-    };
-}
-
 export interface Registerinntekt {
     arbeidOgFrilansInntekter: Array<{
         arbeidsgiver: string;
@@ -49,8 +36,4 @@ export interface EndretProgramperiodeOppgave extends oppgaveBase {
     };
 }
 
-export type Oppgave =
-    | EndreStartdatoOppgave
-    | EndreSluttdatoOppgave
-    | KorrigertInntektOppgave
-    | EndretProgramperiodeOppgave;
+export type Oppgave = KorrigertInntektOppgave | EndretProgramperiodeOppgave;

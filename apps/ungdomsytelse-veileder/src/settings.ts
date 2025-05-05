@@ -3,5 +3,5 @@ import { add, endOfMonth, startOfMonth, sub } from 'date-fns';
 
 export const GYLDIG_PERIODE: DateRange = {
     from: startOfMonth(sub(new Date(), { months: 3 })),
-    to: endOfMonth(add(new Date(), { months: 12 })),
+    to: endOfMonth(add(new Date(), { months: 18 })),
 };

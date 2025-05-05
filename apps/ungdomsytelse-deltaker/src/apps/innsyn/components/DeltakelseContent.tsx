@@ -13,21 +13,21 @@ import { dateRangeToISODateRange, sortDateRange, sortDates } from '@navikt/sif-c
 import { useState } from 'react';
 
 interface Props {
-    deltakelse: DeltakelsePeriode;
+    deltakelsePeriode: DeltakelsePeriode;
 }
 
-const DeltakelseContent = ({ deltakelse }: Props) => {
+const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const [visTest, setVisTest] = useState(true);
 
-    if (erDeltakelseStartet(deltakelse) === false) {
+    if (erDeltakelseStartet(deltakelsePeriode) === false) {
         return <DeltakelseIkkeStartetInfo />;
     }
 
-    if (erDeltakelseAvsluttet(deltakelse)) {
+    if (erDeltakelseAvsluttet(deltakelsePeriode)) {
         return <DeltakelseAvsluttetInfo />;
     }
 
-    const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelse;
+    const { rapporteringsPerioder, oppgaver, programPeriode, id } = deltakelsePeriode;
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));

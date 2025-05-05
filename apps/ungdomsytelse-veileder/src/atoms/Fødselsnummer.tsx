@@ -1,4 +1,4 @@
-import { CopyButton, HStack } from '@navikt/ds-react';
+import { Bleed, CopyButton, HStack } from '@navikt/ds-react';
 import { fødselsnummerFormatter } from '@navikt/ung-common';
 
 interface Props {
@@ -7,9 +7,13 @@ interface Props {
 }
 
 const Fødselsnummer = ({ fnr, copyEnabled }: Props) => (
-    <HStack gap="2" align={'center'}>
+    <HStack gap="1" align="center">
         {fødselsnummerFormatter.applyFormat(fnr)}
-        {copyEnabled ? <CopyButton size="small" copyText={fnr} /> : null}
+        {copyEnabled ? (
+            <Bleed marginBlock="3 2">
+                <CopyButton size="small" copyText={fnr} />
+            </Bleed>
+        ) : null}
     </HStack>
 );
 

@@ -1,41 +1,40 @@
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useDeltakerContext } from '../../context/DeltakerContext';
-import VelkommenMelding from './components/VelkommenMelding';
-import { VStack } from '@navikt/ds-react';
-import SøknadForm from './components/søknad-form/SøknadForm';
-import InformasjonOmUngdomsytelsen from './components/Informasjon';
-import { useState } from 'react';
-import SøknadSendtInformasjon from './components/SøknadSendtInformasjon';
+import { Søker } from '@navikt/sif-common-api';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
+import { DeltakelsePeriode } from '@navikt/ung-common';
+import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
+import { SøknadProvider } from './context/SøknadContext';
+import { useBarn } from './hooks/api/useBarn';
+import { useKontonummer } from './hooks/api/useKontonummer';
+import SøknadRouter from './SøknadRouter';
 
-const SøknadApp = () => {
-    const { søker, deltakelse, barn } = useDeltakerContext();
-    const [søknadSendt, setSøknadSendt] = useState(false);
+interface SøknadAppProps {
+    søker: Søker;
+    deltakelsePeriode: DeltakelsePeriode;
+}
 
-    const handleOnSøknadSendt = () => {
-        setSøknadSendt(true);
-    };
+const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
+    const kontonummer = useKontonummer();
+    const barn = useBarn();
+
+    const isLoading = barn.isLoading || kontonummer.isLoading;
+    const error = barn.isError;
+
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
+    if (error) {
+        return <HentDeltakerErrorPage error="Feil ved lasting" />;
+    }
 
     return (
-        <Page title="Søknad om ungdomsytelse">
-            {søknadSendt === false ? (
-                <VStack gap="8">
-                    <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelse.programPeriode.from} />
-
-                    <SøknadForm
-                        kontonummer="TODO"
-                        søker={søker}
-                        barn={barn}
-                        startdato={deltakelse.programPeriode.from}
-                        onSøknadSendt={handleOnSøknadSendt}
-                    />
-                    <InformasjonOmUngdomsytelsen />
-                </VStack>
-            ) : (
-                <VStack gap="8">
-                    <SøknadSendtInformasjon />
-                </VStack>
-            )}
-        </Page>
+        <SøknadProvider
+            søker={søker}
+            deltakelsePeriode={deltakelsePeriode}
+            kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
+            barn={barn.data || []}>
+            <SøknadRouter />
+        </SøknadProvider>
     );
 };
 

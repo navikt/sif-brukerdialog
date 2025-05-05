@@ -45,15 +45,15 @@ export const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Da
 
 /**
  * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående
- * @param deltakelse
+ * @param deltakelsePeriode
  * @returns
  */
-export const erDeltakelseAktiv = (deltakelse: DeltakelsePeriode): boolean => {
+export const erDeltakelseAktiv = (deltakelsePeriode): boolean => {
     const today = getDateToday();
-    if (dayjs(today).isBefore(deltakelse.programPeriode.from)) {
+    if (dayjs(today).isBefore(deltakelsePeriode.programPeriode.from)) {
         return false;
     }
-    if (deltakelse.programPeriode.to && dayjs(today).isAfter(deltakelse.programPeriode.to)) {
+    if (deltakelsePeriode.programPeriode.to && dayjs(today).isAfter(deltakelsePeriode.programPeriode.to)) {
         return false;
     }
     return true;
@@ -61,12 +61,12 @@ export const erDeltakelseAktiv = (deltakelse: DeltakelsePeriode): boolean => {
 
 /**
  * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående
- * @param deltakelse
+ * @param deltakelsePeriode
  * @returns
  */
-export const erDeltakelseAvsluttet = (deltakelse: DeltakelsePeriode): boolean => {
+export const erDeltakelseAvsluttet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
     const today = getDateToday();
-    if (deltakelse.programPeriode.to && dayjs(today).isAfter(deltakelse.programPeriode.to)) {
+    if (deltakelsePeriode.programPeriode.to && dayjs(today).isAfter(deltakelsePeriode.programPeriode.to)) {
         return true;
     }
     return false;
@@ -74,12 +74,12 @@ export const erDeltakelseAvsluttet = (deltakelse: DeltakelsePeriode): boolean =>
 
 /**
  * Returnerer true hvis deltakelsen er påbegynt, dvs. den er startet og er pågående
- * @param deltakelse
+ * @param deltakelsePeriode
  * @returns
  */
-export const erDeltakelseStartet = (deltakelse: DeltakelsePeriode): boolean => {
+export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
     const today = getDateToday();
-    if (dayjs(today).isBefore(deltakelse.programPeriode.from)) {
+    if (dayjs(today).isBefore(deltakelsePeriode.programPeriode.from)) {
         return false;
     }
     return true;

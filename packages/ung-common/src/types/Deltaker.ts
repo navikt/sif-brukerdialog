@@ -28,3 +28,13 @@ export const registrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
 
 export type UregistrertDeltaker = z.infer<typeof uregistrertDeltakerSchema>;
 export type Deltaker = z.infer<typeof registrertDeltakerSchema>;
+
+export const isRegistrertDeltaker = (deltaker: Deltaker | UregistrertDeltaker): deltaker is Deltaker => {
+    return deltaker.id !== undefined && deltaker.registrert === true;
+};
+
+export const isUregistrertRegistrertDeltaker = (
+    deltaker: Deltaker | UregistrertDeltaker,
+): deltaker is UregistrertDeltaker => {
+    return deltaker.id === undefined && deltaker.registrert === false;
+};

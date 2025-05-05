@@ -16,6 +16,7 @@ export default defineConfig({
         {
             enums: 'typescript', // default
             name: '@hey-api/typescript',
+            readOnlyWriteOnlyBehavior: 'off',
         },
     ],
 });

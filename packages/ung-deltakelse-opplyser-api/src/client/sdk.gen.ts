@@ -31,12 +31,6 @@ import type {
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
-    OpprettOppgaveForEndretStartdatoData,
-    OpprettOppgaveForEndretStartdatoResponse,
-    OpprettOppgaveForEndretStartdatoError,
-    OpprettOppgaveForEndretSluttdatoData,
-    OpprettOppgaveForEndretSluttdatoResponse,
-    OpprettOppgaveForEndretSluttdatoError,
     OpprettOppgaveForEndretProgramperiodeData,
     OpprettOppgaveForEndretProgramperiodeResponse,
     OpprettOppgaveForEndretProgramperiodeError,
@@ -48,6 +42,9 @@ import type {
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
+    HentKontonummerData,
+    HentKontonummerResponse,
+    HentKontonummerError,
     HentDeltakersOppgaveData,
     HentDeltakersOppgaveResponse,
     HentDeltakersOppgaveError,
@@ -68,11 +65,10 @@ import {
     zHentDeltakerInfoGittDeltakerResponse,
     zKontrollAvRegisterinntektResponse,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
-    zOpprettOppgaveForEndretStartdatoResponse,
-    zOpprettOppgaveForEndretSluttdatoResponse,
     zOpprettOppgaveForEndretProgramperiodeResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
@@ -551,74 +547,6 @@ export class OppretterOgEndrerPåOppgaverService {
     }
 
     /**
-     * @deprecated
-     * Oppretter oppgave for endret startdato
-     */
-    public static opprettOppgaveForEndretStartdato<ThrowOnError extends boolean = true>(
-        options: Options<OpprettOppgaveForEndretStartdatoData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForEndretStartdatoResponse,
-            OpprettOppgaveForEndretStartdatoError,
-            ThrowOnError
-        >({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForEndretStartdatoResponse.parseAsync(data);
-            },
-            url: '/oppgave/opprett/endre/startdato',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers,
-            },
-        });
-    }
-
-    /**
-     * @deprecated
-     * Oppretter oppgave for endret sluttdato
-     */
-    public static opprettOppgaveForEndretSluttdato<ThrowOnError extends boolean = true>(
-        options: Options<OpprettOppgaveForEndretSluttdatoData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForEndretSluttdatoResponse,
-            OpprettOppgaveForEndretSluttdatoError,
-            ThrowOnError
-        >({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForEndretSluttdatoResponse.parseAsync(data);
-            },
-            url: '/oppgave/opprett/endre/sluttdato',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers,
-            },
-        });
-    }
-
-    /**
      * Oppretter oppgave for endret programperiode
      */
     public static opprettOppgaveForEndretProgramperiode<ThrowOnError extends boolean = true>(
@@ -674,6 +602,33 @@ export class OppretterOgEndrerPåOppgaverService {
                 'Content-Type': 'application/json',
                 ...options?.headers,
             },
+        });
+    }
+}
+
+export class DeltakerService {
+    /**
+     * Henter kontonummer for en deltaker i ungdomsprogrammet
+     */
+    public static hentKontonummer<ThrowOnError extends boolean = true>(
+        options?: Options<HentKontonummerData, ThrowOnError>,
+    ) {
+        return (options?.client ?? _heyApiClient).get<HentKontonummerResponse, HentKontonummerError, ThrowOnError>({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zHentKontonummerResponse.parseAsync(data);
+            },
+            url: '/deltaker/hent-kontonummer',
+            ...options,
         });
     }
 }

@@ -1,9 +1,12 @@
+import { ThemeProvider } from '../../src/context/ThemeContext';
 import { VeilederProvider } from '../../src/context/VeilederContext';
 
 export const withVeilederContext = (Story) => {
     return (
         <VeilederProvider>
-            <Story />
+            <ThemeProvider>
+                <Story />
+            </ThemeProvider>
         </VeilederProvider>
     );
 };

@@ -25,26 +25,10 @@ const InntektOppsummering = ({ visHeading = true, periode, inntekt }: Props) => 
                 </VStack>
             ) : null}
             <VStack className="border-t-2 border-t-border-divider border-b-border-default border-b-2">
-                <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-divider p-2">
+                <HGrid columns="1fr auto" gap="4" className="border-b-2 border-border-divider p-2">
                     <BodyShort>Arbeidsgiver/&shy;frilanser</BodyShort>
                     <BodyShort>
                         <FormattedNumber value={inntekt.arbeidOgFrilansInntekter || 0} />
-                    </BodyShort>
-                </HGrid>
-                <HGrid columns={'1fr auto'} gap="4" className="border-b-2 border-border-default p-2">
-                    <BodyShort>Ytelse fra Nav</BodyShort>
-                    <BodyShort>
-                        <FormattedNumber value={inntekt.ytelseInntekter || 0} />
-                    </BodyShort>
-                </HGrid>
-                <HGrid
-                    columns={'1fr auto'}
-                    gap="4"
-                    className="border-b-2 border-border-default p-2"
-                    style={{ marginBottom: '.125rem' }}>
-                    <BodyShort weight="semibold">Samlet inntekt</BodyShort>
-                    <BodyShort weight="semibold">
-                        <FormattedNumber value={inntekt.summertInntekt} />
                     </BodyShort>
                 </HGrid>
             </VStack>

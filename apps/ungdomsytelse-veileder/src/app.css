@@ -32,3 +32,29 @@
         font-size: 1.4rem;
     }
 }
+
+.ungDefList {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.75rem;
+    dt {
+        margin: 0;
+    }
+    dd {
+        margin: 0;
+        font-weight: bolder;
+        word-wrap: break-word; /* Bryt lange ord */
+    }
+}
+@media screen and (max-width: 768px) {
+    .ungDefList {
+        grid-template-columns: 1fr;
+        line-height: 1.5rem;
+        dd {
+            margin-bottom: 0.75rem;
+        }
+    }
+}

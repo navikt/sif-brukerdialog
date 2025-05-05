@@ -1,5 +1,4 @@
 import { BodyShort, Table, VStack } from '@navikt/ds-react';
-import { FormattedNumber } from 'react-intl';
 import { getCheckedValidator, getNumberValidator } from '@navikt/sif-validation';
 import { Inntekt } from '@navikt/ung-common';
 import { inntektFormComponents } from '../inntektFormUtils';
@@ -50,43 +49,6 @@ const InntektTableForm = ({ inntekt }: Props) => {
                                     allowDecimals: false,
                                 })}
                             />
-                        </Table.DataCell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.DataCell>Ytelser fra Nav</Table.DataCell>
-                        <Table.DataCell>
-                            <NumberInput
-                                name={InntektFormFields.ytelseInntekt}
-                                label="Ytelser fra Nav"
-                                integerValue={true}
-                                max={999999}
-                                min={0}
-                                maxLength={6}
-                                hideLabel={true}
-                                validate={getNumberValidator({
-                                    min: 0,
-                                    max: 999999,
-                                    required: false,
-                                    allowDecimals: false,
-                                })}
-                            />
-                        </Table.DataCell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.DataCell className="pt-6 pb-6">
-                            <BodyShort weight="semibold">Samlet inntekt</BodyShort>
-                        </Table.DataCell>
-                        <Table.DataCell className="pt-6 pb-6">
-                            <BodyShort weight="semibold">
-                                {inntekt ? (
-                                    <>
-                                        <FormattedNumber value={inntekt.summertInntekt} />
-                                        ,-
-                                    </>
-                                ) : (
-                                    '-'
-                                )}
-                            </BodyShort>
                         </Table.DataCell>
                     </Table.Row>
                 </Table.Body>

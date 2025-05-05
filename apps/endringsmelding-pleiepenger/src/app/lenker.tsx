@@ -14,8 +14,7 @@ const LenkerBokmål: Lenker = {
     skrivTilOss: 'https://innboks.nav.no/s/skriv-til-oss?category=Pleiepenger',
     kontaktOss: 'https://www.nav.no/kontaktoss',
     beskjedOmFamilie: 'https://www.nav.no/send-beskjed-om-familie',
-    personvern:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
+    personvern: 'https://www.nav.no/personvernerklaering',
 };
 
 export const getLenker = (locale?: string): Lenker => {

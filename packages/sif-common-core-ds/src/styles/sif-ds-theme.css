@@ -3,6 +3,12 @@ body.sif-ds-theme {
     --ac-guide-panel-illustration-bg: var(--a-deepblue-100);
 }
 
+@layer utilities {
+    logout-warning dialog {
+        margin: auto;
+    }
+}
+
 .soknadHeader,
 .decorator-utils-container {
     background-color: white;
