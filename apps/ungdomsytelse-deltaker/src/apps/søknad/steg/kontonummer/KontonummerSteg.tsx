@@ -95,10 +95,7 @@ const KontonummerSteg = () => {
                             </Alert>
                         </>
                     )}
-                    <SkjemaFooter
-                        forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
-                        submit={{ tittel: 'Neste steg', erSendInn: false }}
-                    />
+                    <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
                 </VStack>
             </form>
         </SøknadSteg>

@@ -18,9 +18,9 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                     Hei {fornavn}!
                 </Heading>
                 <VStack gap="4">
-                    <BodyLong size="large">
+                    <BodyLong>
                         Du er meldt inn i ungdomsprogrammet fra{' '}
-                        <strong>{dateFormatter.dateShortMonthYear(startdato)}</strong>.
+                        <strong>{dateFormatter.dayDateMonthYear(startdato)}</strong>.
                     </BodyLong>
                     <BodyShort>
                         Når du er med i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen. Da
