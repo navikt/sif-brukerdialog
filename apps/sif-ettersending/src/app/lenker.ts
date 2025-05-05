@@ -20,10 +20,9 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
     vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger',
-    personvern:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
+    personvern: 'https://www.nav.no/personvernerklaering',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
+    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
     INNSYN_PP: INNSYN_PP,
     pleiepengerSyktBarn: PLEIEPENGER_SYKT_BARN_URL,
     skrivTilOss: 'https://www.nav.no/skriv-til-oss',

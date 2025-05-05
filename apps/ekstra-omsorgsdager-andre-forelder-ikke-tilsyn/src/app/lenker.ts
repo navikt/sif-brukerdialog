@@ -9,8 +9,7 @@ interface Lenker {
 
 const LenkerBokmål: Lenker = {
     navno: 'https://www.nav.no/',
-    personvern:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
+    personvern: 'https://www.nav.no/personvernerklaering',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
     saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
     merOmFastBostedOgSamvær: `https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/`,
