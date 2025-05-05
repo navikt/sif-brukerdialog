@@ -20,7 +20,6 @@ const createHashString = (info: MellomlagringHashInfo) => {
 export const zMellomlagringSchema = z.object({
     søknad: z.object({
         bekrefter: z.boolean().optional(),
-        oppstart: z.nativeEnum(YesOrNo).optional(),
         barn: z.nativeEnum(YesOrNo).optional(),
         kontonummer: z.nativeEnum(YesOrNo).optional(),
     }),

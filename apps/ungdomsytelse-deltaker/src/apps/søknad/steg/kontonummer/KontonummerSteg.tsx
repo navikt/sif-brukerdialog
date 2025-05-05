@@ -27,7 +27,7 @@ const KontonummerSteg = () => {
             }
             setError(undefined);
         }
-        gotoSteg(Steg.OPPSUMMERING);
+        gotoSteg(Steg.BARN);
     };
 
     return (

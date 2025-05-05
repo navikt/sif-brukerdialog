@@ -31,7 +31,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     return (
         <Page title={`${tittel} - Søknad om ungdomsprogramytelse`}>
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
+                <SøknadHeader />
                 <div>
                     <Box paddingBlock="6 5">
                         <Heading level="2" size="large">
@@ -42,14 +42,11 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                         totalSteps={søknadSteg.length}
                         activeStep={activeIndex}
                         onStepChange={handleOnStepChange}>
-                        <FormProgress.Step completed={activeIndex > 0} interactive={true}>
-                            Oppstart
+                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
+                            Kontonummer for utbetaling
                         </FormProgress.Step>
                         <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
                             Barn
-                        </FormProgress.Step>
-                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                            Kontonummer for utbetaling
                         </FormProgress.Step>
                         <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
                     </FormProgress>

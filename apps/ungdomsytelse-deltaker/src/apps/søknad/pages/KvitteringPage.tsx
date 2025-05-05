@@ -6,7 +6,7 @@ const KvitteringPage = () => {
     return (
         <Page title="Kvittering">
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
+                <SøknadHeader />
 
                 <Alert variant="success">
                     <Heading level="2" size="small" spacing>

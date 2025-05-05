@@ -18,17 +18,23 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                 </Heading>
                 <VStack gap="4">
                     <BodyLong size="large">
-                        Veilederen din har meldt deg inn i ungdomsprogrammet fra{' '}
+                        Du er meldt inn i ungdomsprogrammet fra{' '}
                         <strong>{dateFormatter.dateShortMonthYear(startdato)}</strong>.
                     </BodyLong>
                     <BodyShort>
-                        Fordi du er med i ungdomsprogrammet kan du søke om ytelse fra oss. Det sikrer deg inntekt mens
-                        du jobber med å komme i jobb eller utdanning. For å søke om ytelsen, må du fylle ut denne
-                        søknaden. Les mer om ungdomsprogrammet og ytelsen på nav.no[TODO].
+                        Når du er med i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen. Da
+                        får du utbetalt penger hver måned så lenge du deltar i programmet.
                     </BodyShort>
-                    <ReadMore header={text('personopplysninger.accordion.header')}>
-                        <BehandlingAvPersonopplysningerContent />
-                    </ReadMore>
+                    <BodyShort>
+                        Du søker om ungdomsprogramytelsen ved å fylle ut denne søknaden. Les mer om ungdomsprogrammet og
+                        -ytelsen på nav.no.
+                    </BodyShort>
+                    <VStack gap="0">
+                        <ReadMore header="Hva hvis datoen ikke stemmer?">[TODO]</ReadMore>
+                        <ReadMore header={text('personopplysninger.accordion.header')}>
+                            <BehandlingAvPersonopplysningerContent />
+                        </ReadMore>
+                    </VStack>
                 </VStack>
             </Box>
         </GuidePanel>

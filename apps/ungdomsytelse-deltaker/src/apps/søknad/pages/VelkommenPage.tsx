@@ -26,7 +26,7 @@ const VelkommenSteg = () => {
     return (
         <Page title="Velkommen - Søknad om ungdomsprogramytelse">
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
+                <SøknadHeader />
 
                 <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
 
@@ -45,7 +45,7 @@ const VelkommenSteg = () => {
                                     setError(undefined);
                                     setInfoStemmer(evt.target.checked);
                                 }}>
-                                Jeg bekrefter at jeg vil svare så riktig som jeg kan
+                                Jeg vil svare så godt jeg kan på spørsmålene i søknaden.
                             </Checkbox>
                         </CheckboxGroup>
                     </Box>

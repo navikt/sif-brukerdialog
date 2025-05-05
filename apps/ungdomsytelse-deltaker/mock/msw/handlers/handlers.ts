@@ -71,7 +71,6 @@ export const getHandlers = () => {
                     bekrefter: true,
                     barn: 'yes',
                     kontonummer: 'no',
-                    oppstart: 'yes',
                 },
                 meta: { aktivtSteg: Steg.BARN, hash: '' },
             };

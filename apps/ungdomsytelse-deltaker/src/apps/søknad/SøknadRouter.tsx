@@ -6,7 +6,6 @@ import KvitteringPage from './pages/KvitteringPage';
 import VelkommenSteg from './pages/VelkommenPage';
 import BarnSteg from './steg/barn/BarnSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
-import OppstartSteg from './steg/oppstart/OppstartSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
 import { getStegRoute, SøknadRoutes } from './utils/routeUtils';
@@ -24,7 +23,7 @@ const SøknadRouter = () => {
      */
     const determineRedirectPath = (): string | null => {
         if (pathname === SøknadRoutes.VELKOMMEN && søknadStartet && previousSøknadStartet === true) {
-            return getStegRoute(Steg.OPPSTART);
+            return getStegRoute(Steg.KONTONUMMER);
         }
         if (pathname !== SøknadRoutes.KVITTERING && søknadSendt && previousSøknadSendt === true) {
             return SøknadRoutes.KVITTERING;
@@ -66,7 +65,6 @@ const SøknadRouter = () => {
             <Route index={true} element={<VelkommenSteg />} />
             <Route path="soknad" element={<Navigate to="/soknad/barn" replace={true} />} />
             <Route path="soknad/barn" element={<BarnSteg />} />
-            <Route path="soknad/oppstart" element={<OppstartSteg />} />
             <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
             <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
             <Route path="soknad/kvittering" element={<KvitteringPage />} />

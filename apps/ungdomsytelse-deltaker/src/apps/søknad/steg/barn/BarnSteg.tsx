@@ -26,7 +26,7 @@ const BarnSteg = () => {
             return;
         }
         setError(undefined);
-        gotoSteg(Steg.KONTONUMMER);
+        gotoSteg(Steg.OPPSUMMERING);
     };
 
     return (
@@ -77,7 +77,7 @@ const BarnSteg = () => {
                             </AriaLiveRegion>
                         </VStack>
                         <SkjemaFooter
-                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.OPPSTART) }}
+                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
                             submit={{ tittel: 'Neste steg', erSendInn: false }}
                         />
                     </VStack>
