@@ -27,6 +27,8 @@ export const useSendSøknad = () => {
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
+        const meta = getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak);
+        console.log(meta);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)

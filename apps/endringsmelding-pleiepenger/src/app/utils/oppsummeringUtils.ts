@@ -1,6 +1,8 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import {
+    ArbeidsaktivitetType,
     ArbeidstidApiData,
+    ArbeidstidArbeidsaktivitetMapItem,
     LovbestemtFerieApiData,
     LovbestemtFeriePeriode,
     Sak,
@@ -9,6 +11,7 @@ import {
     ValgteEndringer,
 } from '@types';
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
@@ -17,6 +20,8 @@ interface UkjentArbeidsforholdMetadata {
 }
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
+    harEndretFrilans?: boolean;
+    harOmsorgsstønad?: boolean;
 }
 
 interface ArbeidsgiverIkkeIAaregMetadata {
@@ -39,10 +44,19 @@ export type SøknadApiDataMetadata = {
         valgtEndreFerie: boolean;
     };
 
-const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
+const getArbeidstidMetadata = (
+    arbeidstid?: ArbeidstidApiData,
+    frilansArbeidstidAktivitet?: ArbeidstidArbeidsaktivitetMapItem,
+): ArbeidstidMetadata | undefined => {
     return arbeidstid
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
+              ...(frilansArbeidstidAktivitet && frilansArbeidstidAktivitet.mottarOmsorgsstønad !== undefined
+                  ? {
+                        harEndretFrilans: arbeidstid.frilanserArbeidstidInfo !== undefined,
+                        harOmsorgsstønad: frilansArbeidstidAktivitet.mottarOmsorgsstønad === YesOrNo.YES,
+                    }
+                  : {}),
           }
         : {
               endretArbeidstid: false,
@@ -79,6 +93,7 @@ const getArbeidsgiverIkkeIAaregMetadata = (sak: Sak): ArbeidsgiverIkkeIAaregMeta
         antallArbeidsgivereIkkeIAareg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
     };
 };
+
 export const getSøknadApiDataMetadata = (
     apiData: SøknadApiData,
     søknadsdata: Søknadsdata,
@@ -93,7 +108,7 @@ export const getSøknadApiDataMetadata = (
         antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
         ...getUkjentArbeidsforholdMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
-        ...getArbeidstidMetadata(arbeidstid),
+        ...getArbeidstidMetadata(arbeidstid, søknadsdata.arbeidstid?.arbeidsaktivitet[ArbeidsaktivitetType.frilanser]),
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
     };
 };

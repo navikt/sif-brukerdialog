@@ -3,7 +3,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
@@ -33,6 +33,8 @@ export interface ArbeidstidFormValues {
 export interface ArbeidsaktivitetFormValues {
     endringer: ArbeidstidEndringMap;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
+    /** Gjelder for frilans, og er kun for å veileder bruker etter praksisendring mai 2025 */
+    mottarOmsorgsstønad?: YesOrNo;
 }
 
 export enum ArbeidstidFormFields {
@@ -76,12 +78,14 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
         setValues: (values: ArbeidstidFormValues) => void,
     ) => {
         const currentAktivitetValues = (values.arbeidsaktivitet || {})[arbeidsaktivitetKey];
+
         const newValues: ArbeidstidFormValues = {
             arbeidsaktivitet: {
                 ...values.arbeidsaktivitet,
                 [arbeidsaktivitetKey]: {
                     arbeiderIPerioden: currentAktivitetValues?.arbeiderIPerioden,
                     endringer: arbeidstidEndringMap,
+                    mottarOmsorgsstønad: currentAktivitetValues?.mottarOmsorgsstønad,
                 },
             },
         };

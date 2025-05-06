@@ -48,6 +48,7 @@ export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormVa
                 arbeidsaktivitet[key] = {
                     endringer,
                     arbeiderIPerioden: aktivitet.arbeiderIPerioden,
+                    mottarOmsorgsstønad: aktivitet.mottarOmsorgsstønad, // Gjelder kun frilans
                 };
             }
         } else {
@@ -55,6 +56,7 @@ export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormVa
             arbeidsaktivitet[key] = {
                 endringer: {},
                 arbeiderIPerioden: aktivitet.arbeiderIPerioden,
+                mottarOmsorgsstønad: undefined,
             };
         }
     });
