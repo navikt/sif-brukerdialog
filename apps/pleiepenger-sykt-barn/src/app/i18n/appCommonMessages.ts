@@ -78,8 +78,68 @@ const nb = {
     'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
-    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelse.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du mottar omsorgsstønad eller fosterhjemsgodtgjørelse.',
+    'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du mottar omsorgsstønad.',
+    'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du mottar fosterhjemsgodtgjørelse.',
+    'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
+        'Du må svare ja eller nei på om du er frikjøpt fra jobb',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
+        'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':
+        'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.noValue':
+        'Du må svare på om du ønsker å oppgi hvor mye du er frikjøpt i timer eller prosent',
+    'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.noValue':
+        'Du må svare på hvordan du mottar denne godtgjørelsen gjennom hele perioden du søker om.',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasNoValue':
+        'Du må oppgi hvor mange prosent du er frikjøpt',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasInvalidFormat':
+        'Oppgitt prosent for hvor mye du er frikjøpt har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberIsTooSmall':
+        'Oppgitt prosent for hvor mye du er frikjøpt kan ikke være mindre enn {min}.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberIsTooLarge':
+        'Oppgitt prosent for hvor mye du er frikjøpt kan ikke være mer enn enn {max}.',
+    'validation.fosterhjemsgodtgjørelse.slutterUnderveis.starter_slutter_undeveis_nei':
+        'Du har svart nei på både om godtgjørelsen starter og slutter underveis i perioden du søker for. Da må du svare Ja på at du mottar denne godtgjørelsen for hele perioden du søker om.',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberHasNoValue': 'Du må oppgi hvor mange timer du er frikjøpt',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberHasInvalidFormat':
+        'Oppgitt antall timer for hvor mye du er frikjøpt har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberIsTooSmall':
+        'Oppgitt antall timer for hvor mye du er frikjøpt kan ikke være mindre enn {min}.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberIsTooLarge':
+        'Oppgitt antall timer for hvor mye du er frikjøpt kan ikke være mer enn enn {max}.',
+
+    'validation.fosterhjemsgodtgjørelse.starterUndeveis.noValue':
+        'Du må svare på om godtgjørelsen starter underveis i pleiepengeperioden din',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateHasNoValue':
+        'Du må oppgi hvilken dato godtgjørelsen starter. Skriv inn eller velg dato fra kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateHasInvalidFormat':
+        'Du må oppgi datoen for når godtgjørelsen starter i et gyldig format. Gyldig format er dd.mm.åååå.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateIsAfterMax':
+        'Datoen for når godtgjørelsen starter kan ikke være etter dagens dato, eller etter perioden du søker for.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateIsBeforeMin':
+        'Datoen for når godtgjørelsen starter kan ikke være før perioden du søker for. Dersom den startet før dette, må du svare nei på om den starter underveis i pleiepengeperioden.',
+    'validation.fosterhjemsgodtgjørelse.startdato.startetEtterSluttDato':
+        'Startdatoen for godtgjørelsen kan ikke være etter sluttdatoen. Skriv inn eller velg dato fra kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.startdato.sluttetFørStartDato':
+        'Sluttdatoen for godtgjørelsen kan ikke være før startdatoen. Skriv inn eller velg dato fra kalenderen.',
+
+    'validation.fosterhjemsgodtgjørelse.slutterUnderveis.noValue':
+        'Du må svare på om godtgjørelsen slutter underveis i pleiepengeperioden din',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateHasNoValue':
+        'Du må oppgi hvilken dato godtgjørelsen slutter. Skriv inn eller velg dato fra kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateHasInvalidFormat':
+        'Du må oppgi datoen for når godtgjørelsen slutter i et gyldig format. Gyldig format er dd.mm.åååå.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateIsAfterMax':
+        'Hvis datoen for når godtgjørelsen slutter er etter perioden du søker for, må du svare nei på om den slutter underveis i pleiepengeperioden.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateIsBeforeMin':
+        'Datoen for når godtgjørelsen slutter kan ikke være før perioden du søker for, eller før godtgjørelsen starter.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.sluttetFørStartDato':
+        'Datoen for når godtgjørelsen slutter kan ikke være før godtgjørelsen starter.',
+
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
     'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
@@ -92,6 +152,8 @@ const nb = {
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mer enn {max}.',
+    'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansOgOmsorgsstønad.numberIsTooLarge':
+        'Antall timer du normalt {jobber} per uke som frilanser og mottar i omsorgsstønad kan ikke være mer enn {max} timer til sammen.',
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du jobber som frilanser, eller om du mottar honorar.',
     'validation.frilans.frilanstype.notChecked': 'Du må velge hva som er din situasjon som frilanser.',
@@ -106,7 +168,7 @@ const nb = {
     'validation.frilans.startdato.dateIsBeforeMin':
         'Datoen for når du startet å jobbe som frilanser kan ikke være før {minDato}. Dersom du startet før dette, må du svare ja på at du startet før denne datoen.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
-        'Du har oppgitt at du startet startet å jobbe som frilanser etter perioden du søker for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
+        'Du har oppgitt at du startet å jobbe som frilanser etter perioden du søker for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
     'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
         'Du har oppgitt at du sluttet å jobbe som frilanser før perioden du søker for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
     'validation.frilans.sluttdato.dateHasNoValue':
@@ -142,36 +204,44 @@ const nb = {
     'validation.utenlandskNæring.listIsEmpty':
         'Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
-    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.noValue':
+
+    'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottar stønad/godtgjørelse i hele perioden du søker for.',
-    'validation.stønadGodtgjørelse.starterUndeveis.noValue':
+    'validation.omsorgsstønad.starterUndeveis.noValue':
         'Du må svare Ja eller Nei på om du starter å motta stønad/godtgjørelse underveis i perioden du søker for.',
-    'validation.stønadGodtgjørelse.starterUndeveis.starter_slutter_undeveis_nei':
+    'validation.omsorgsstønad.starterUndeveis.starter_slutter_undeveis_nei':
         'Du kan ikke svare Nei samtidig på om du starter og slutter  å motta stønad/godtgjørelse underveis.',
-    'validation.stønadGodtgjørelse.slutterUnderveis.noValue':
+    'validation.omsorgsstønad.slutterUnderveis.noValue':
         'Du må svare Ja eller Nei på om du slutter å motta stønad/godtgjørelse underveis i perioden du søker for.',
-    'validation.stønadGodtgjørelse.slutterUnderveis.starter_slutter_undeveis_nei':
+    'validation.omsorgsstønad.slutterUnderveis.starter_slutter_undeveis_nei':
         'Du kan ikke svare Nei både på at du starter og at du slutter å få stønad/godtgjørelse underveis.',
-    'validation.stønadGodtgjørelse.startdato.dateHasNoValue':
-        'Du må fylle ut dato når du startet å motta omsorgsstønad eller fosterhjemsgodtgjørelse.',
-    'validation.stønadGodtgjørelse.startdato.dateIsAfterMax':
+    'validation.omsorgsstønad.startdato.dateHasNoValue': 'Du må fylle ut dato når du startet å motta omsorgsstønad.',
+    'validation.omsorgsstønad.startdato.dateIsAfterMax':
         'Start datoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
-    'validation.stønadGodtgjørelse.startdato.dateIsBeforeMin':
+    'validation.omsorgsstønad.startdato.dateIsBeforeMin':
         'Start datoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
-    'validation.stønadGodtgjørelse.startdato.dateHasInvalidFormat':
+    'validation.omsorgsstønad.startdato.dateHasInvalidFormat':
         'Du må oppgi start datoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'validation.stønadGodtgjørelse.startdato.startetEtterSluttDato':
-        'Start-datoen kan ikke være etter slutt-datoen. Skriv inn eller velg dato fra kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateHasNoValue':
-        'Du må fylle ut dato når du sluttet å motta omsorgsstønad eller fosterhjemsgodtgjørelse.',
-    'validation.stønadGodtgjørelse.sluttdato.dateIsAfterMax':
-        'Slutt datoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateIsBeforeMin':
-        'Slutt datoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateHasInvalidFormat':
-        'Du må oppgi slutt datoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'validation.stønadGodtgjørelse.sluttdato.sluttetFørStartDato':
-        'Slutt-datoen kan ikke være før start-datoen. Skriv inn eller velg dato fra kalenderen.',
+    'validation.omsorgsstønad.sluttdato.dateHasNoValue': 'Du må fylle ut dato når du sluttet å motta omsorgsstønad.',
+    'validation.omsorgsstønad.sluttdato.dateIsAfterMax':
+        'Sluttdatoen kan ikke være etter søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
+    'validation.omsorgsstønad.sluttdato.dateIsBeforeMin':
+        'Sluttdatoen kan ikke være før søknadsperioden. Skriv inn eller velg dato fra kalenderen.',
+    'validation.omsorgsstønad.sluttdato.dateHasInvalidFormat':
+        'Du må oppgi sluttdatoen i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
+    'validation.omsorgsstønad.startdato.startetEtterSluttDato':
+        'Startdatoen for omsorgstønad kan ikke være etter sluttdatoen. Skriv inn eller velg dato fra kalenderen.',
+    'validation.omsorgsstønad.sluttdato.sluttetFørStartDato':
+        'Sluttdatoen for omsorgstønad kan ikke være før startdatoen. Skriv inn eller velg dato fra kalenderen.',
+
+    'validation.omsorgsstønad.antallTimer.numberHasNoValue':
+        'Du må oppgi antall timer du mottar normalt i omsorgsstønad.',
+    'validation.omsorgsstønad.antallTimer.numberHasInvalidFormat':
+        'Oppgitt antall timer for hvor mye du mottar normalt i omsorgsstønad har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
+    'validation.omsorgsstønad.antallTimer.numberIsTooSmall':
+        'Oppgitt antall timer for hvor mye du mottar normalt i omsorgsstønad kan ikke være mindre enn {min}.',
+    'validation.omsorgsstønad.antallTimer.numberIsTooLarge':
+        'Oppgitt antall timer for hvor mye du mottar normalt i omsorgsstønad kan ikke være mer enn enn {max}.',
 
     'psb.timer': '{timer, plural, one {# time} other {# timer}}',
     'psb.minutter': '{minutter, plural, one {# minutt} other {# minutter}}',
@@ -180,6 +250,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    ...nb,
     'application.title': 'Søknad om pleiepengar for sjukt barn',
     HvaBetyrDette: 'Kva tyder dette?',
 
@@ -260,7 +331,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'validation.harForståttRettigheterOgPlikter.notChecked':
         'Du må stadfeste at du har lese og forstått pliktene dine.',
-    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelse.yesOrNoIsUnanswered':
+    'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du mottek omsorgsstønad eller fosterheimgodtgjersle.',
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er tilsett hos {navn} i perioden du søkjer pleiepengar.',
@@ -274,6 +345,8 @@ const nn: Record<keyof typeof nb, string> = {
         'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':
         'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere meir enn {max}.',
+    'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansOgOmsorgsstønad.numberIsTooLarge':
+        'Antall timar du normalt {jobber} per veke som frilanser og mottar i omsorgsstønad kan ikkje vere meir enn {max} timar til saman.',
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du jobbar som frilanser, eller om du mottek honorar.',
     'validation.frilans.frilanstype.notChecked': 'Du må velje kva som er situasjonen din som frilanser.',
@@ -324,35 +397,35 @@ const nn: Record<keyof typeof nb, string> = {
     'validation.utenlandskNæring.listIsEmpty':
         'Du må legge til jobb som sjølvstendig næringsdrivande i eit anna EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
-    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.noValue':
+    'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottek stønad/godtgjersle i heile perioden du søkjer for.',
-    'validation.stønadGodtgjørelse.starterUndeveis.noValue':
+    'validation.omsorgsstønad.starterUndeveis.noValue':
         'Du må svare ja eller nei på om du startar å motta stønad/godtgjersle undervegs i perioden du søkjer for.',
-    'validation.stønadGodtgjørelse.starterUndeveis.starter_slutter_undeveis_nei':
+    'validation.omsorgsstønad.starterUndeveis.starter_slutter_undeveis_nei':
         'Du kan ikkje svare "Nei" både på om du startar og sluttar å motta stønad/godtgjersle undervegs.',
-    'validation.stønadGodtgjørelse.slutterUnderveis.noValue':
+    'validation.omsorgsstønad.slutterUnderveis.noValue':
         'Du må svare ja eller nei på om du sluttar å motta stønad/godtgjersle undervegs i perioden du søkjer for.',
-    'validation.stønadGodtgjørelse.slutterUnderveis.starter_slutter_undeveis_nei':
+    'validation.omsorgsstønad.slutterUnderveis.starter_slutter_undeveis_nei':
         'Du kan ikkje svare "Nei" både på at du startar og at du sluttar å få stønad/godtgjersle undervegs.',
-    'validation.stønadGodtgjørelse.startdato.dateHasNoValue':
+    'validation.omsorgsstønad.startdato.dateHasNoValue':
         'Du må fylle ut dato når du starta å motta omsorgsstønad eller fosterheimgodtgjersle.',
-    'validation.stønadGodtgjørelse.startdato.dateIsAfterMax':
+    'validation.omsorgsstønad.startdato.dateIsAfterMax':
         'Startdatoen kan ikkje vere etter søknadsperioden. Skriv inn eller vel dato frå kalenderen.',
-    'validation.stønadGodtgjørelse.startdato.dateIsBeforeMin':
+    'validation.omsorgsstønad.startdato.dateIsBeforeMin':
         'Startdatoen kan ikkje vere før søknadsperioden. Skriv inn eller vel dato frå kalenderen.',
-    'validation.stønadGodtgjørelse.startdato.dateHasInvalidFormat':
+    'validation.omsorgsstønad.startdato.dateHasInvalidFormat':
         'Du må oppgje startdatoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'validation.stønadGodtgjørelse.startdato.startetEtterSluttDato':
+    'validation.omsorgsstønad.startdato.startetEtterSluttDato':
         'Startdatoen kan ikkje vere etter sluttdatoen. Skriv inn eller vel dato frå kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateHasNoValue':
+    'validation.omsorgsstønad.sluttdato.dateHasNoValue':
         'Du må fylle ut dato når du slutta å motta omsorgsstønad eller fosterheimgodtgjersle.',
-    'validation.stønadGodtgjørelse.sluttdato.dateIsAfterMax':
+    'validation.omsorgsstønad.sluttdato.dateIsAfterMax':
         'Sluttdatoen kan ikkje vere etter søknadsperioden. Skriv inn eller vel dato frå kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateIsBeforeMin':
+    'validation.omsorgsstønad.sluttdato.dateIsBeforeMin':
         'Sluttdatoen kan ikkje vere før søknadsperioden. Skriv inn eller vel dato frå kalenderen.',
-    'validation.stønadGodtgjørelse.sluttdato.dateHasInvalidFormat':
+    'validation.omsorgsstønad.sluttdato.dateHasInvalidFormat':
         'Du må oppgje sluttdatoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
-    'validation.stønadGodtgjørelse.sluttdato.sluttetFørStartDato':
+    'validation.omsorgsstønad.sluttdato.sluttetFørStartDato':
         'Sluttdatoen kan ikkje vere før startdatoen. Skriv inn eller vel dato frå kalenderen.',
 
     'psb.timer': '{timer, plural, one {# time} other {# timer}}',

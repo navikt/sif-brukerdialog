@@ -13,7 +13,8 @@ import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
 import { FrilansFormValues } from './FrilansFormValues';
 import { OmsorgstilbudFormValues } from './OmsorgtilbudFormValues';
 import { SelvstendigFormValues } from './SelvstendigFormValues';
-import { StønadGodtgjørelseFormValues } from './StønadGodtgjørelseFormValues';
+import { FosterhjemsgodtgjørelseFormValues } from './FosterhjemsgodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from './OmsorgsstønadFormValues';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -55,7 +56,8 @@ export enum SøknadFormField {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
     harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
     frilans = 'frilans',
-    stønadGodtgjørelse = 'stønadGodtgjørelse',
+    omsorgsstønad = 'omsorgsstønad',
+    fosterhjemsgodtgjørelse = 'fosterhjemsgodtgjørelse',
     selvstendig = 'selvstendig',
     frilansoppdrag = 'frilansoppdrag',
     harOpptjeningUtland = 'harOpptjeningUtland',
@@ -99,7 +101,8 @@ export interface SøknadFormValues {
     [SøknadFormField.frilans]: FrilansFormValues;
     [SøknadFormField.selvstendig]: SelvstendigFormValues;
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
-    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormValues;
+    [SøknadFormField.omsorgsstønad]: OmsorgsstønadFormValues;
+    [SøknadFormField.fosterhjemsgodtgjørelse]: FosterhjemsgodtgjørelseFormValues;
     [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;
     [SøknadFormField.opptjeningUtland]: OpptjeningUtland[];
@@ -136,8 +139,11 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.frilans]: {
         harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
     },
-    [SøknadFormField.stønadGodtgjørelse]: {
-        mottarStønadGodtgjørelse: YesOrNo.UNANSWERED,
+    [SøknadFormField.omsorgsstønad]: {
+        mottarOmsorgsstønad: YesOrNo.UNANSWERED,
+    },
+    [SøknadFormField.fosterhjemsgodtgjørelse]: {
+        mottarFosterhjemsgodtgjørelse: YesOrNo.UNANSWERED,
     },
     [SøknadFormField.selvstendig]: {
         harHattInntektSomSN: YesOrNo.UNANSWERED,

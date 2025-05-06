@@ -18,19 +18,8 @@ test.describe('Arbeidssituasjon', () => {
     test('Fyll ut arbeidssituasjon', async ({ page }) => {
         await page.getByTestId('er-ansatt').getByText('Ja').click();
         await page.getByLabel('Hvor mange timer jobber du').fill('20');
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Mottar du denne stønaden' }).getByLabel('Ja').check();
-        await page.getByRole('group', { name: 'Mottar du denne stønaden' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Starter stønaden eller godtgj' }).getByLabel('Ja').check();
-        await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-        await page.getByLabel('tirsdag 3', { exact: true }).click();
-        await page.getByRole('group', { name: 'Stopper stønaden eller godtgj' }).getByLabel('Ja').check();
-        await page
-            .locator('div')
-            .filter({ hasText: /^Sluttdato:Åpne datovelger$/ })
-            .getByRole('button')
-            .click();
-        await page.getByTestId('stønadGodtgjørelse-sluttdato').getByLabel('fredag 13').click();
+        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+        await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();

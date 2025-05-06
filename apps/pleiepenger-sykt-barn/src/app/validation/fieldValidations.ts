@@ -26,8 +26,9 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
-import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from '../types/søknad-form-values/OmsorgsstønadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
+import { FosterhjemsgodtgjørelseFormValues } from '../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);
@@ -174,8 +175,8 @@ export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: Date
     return undefined;
 };
 
-export const getstønadGodtgjørelseStartdatoValidator =
-    (formValues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadStartdatoValidator =
+    (formValues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
@@ -189,8 +190,38 @@ export const getstønadGodtgjørelseStartdatoValidator =
         return undefined;
     };
 
-export const getstønadGodtgjørelseSluttdatoValidator =
-    (formVaues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadSluttdatoValidator =
+    (formVaues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
+    (value: string): ValidationResult<ValidationError> => {
+        const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
+        if (dateError) {
+            return dateError;
+        }
+        const sluttdato = datepickerUtils.getDateFromDateString(formVaues.sluttdato);
+
+        if (sluttdato && formVaues.startdato && dayjs(sluttdato).isBefore(formVaues.startdato, 'day')) {
+            return 'sluttetFørStartDato';
+        }
+        return undefined;
+    };
+
+export const getFosterhjemsgodtgjørelseStartdatoValidator =
+    (formValues: FosterhjemsgodtgjørelseFormValues, søknadsperiode: DateRange) =>
+    (value: string): ValidationResult<ValidationError> => {
+        const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
+        if (dateError) {
+            return dateError;
+        }
+        const startdato = datepickerUtils.getDateFromDateString(formValues.startdato);
+
+        if (startdato && formValues.sluttdato && dayjs(startdato).isAfter(formValues.sluttdato, 'day')) {
+            return 'startetEtterSluttDato';
+        }
+        return undefined;
+    };
+
+export const getFosterhjemsgodtgjørelseSluttdatoValidator =
+    (formVaues: FosterhjemsgodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
