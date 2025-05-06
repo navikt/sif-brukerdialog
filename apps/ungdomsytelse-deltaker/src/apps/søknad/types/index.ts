@@ -3,24 +3,21 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export enum Steg {
-    'OPPSTART' = 'oppstart',
-    'BARN' = 'barn',
     'KONTONUMMER' = 'kontonummer',
+    'BARN' = 'barn',
     'OPPSUMMERING' = 'oppsummering',
 }
 
 export enum Spørsmål {
     FORSTÅR_PLIKTER = 'harForståttRettigheterOgPlikter',
-    OPPSTART = 'oppstart',
-    BARN = 'barn',
     KONTONUMMER = 'kontonummer',
+    BARN = 'barn',
 }
 
 export type SøknadSvar = {
     [Spørsmål.FORSTÅR_PLIKTER]?: boolean;
-    [Spørsmål.OPPSTART]?: YesOrNo;
-    [Spørsmål.BARN]?: YesOrNo;
     [Spørsmål.KONTONUMMER]?: YesOrNo;
+    [Spørsmål.BARN]?: YesOrNo;
 };
 
 export interface SøknadContextType {

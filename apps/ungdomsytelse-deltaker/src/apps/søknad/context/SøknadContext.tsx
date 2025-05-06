@@ -21,7 +21,6 @@ const initialData: SøknadSvar = {};
 // const initialData: SøknadSvar = {
 //     barn: YesOrNo.YES,
 //     kontonummer: YesOrNo.YES,
-//     oppstart: YesOrNo.YES,
 //     harForståttRettigheterOgPlikter: true,
 // };
 
@@ -54,7 +53,7 @@ export const SøknadProvider = ({
             harForståttRettigheterOgPlikter,
         });
         setSøknadStartet(true);
-        gotoSteg(Steg.OPPSTART);
+        gotoSteg(Steg.KONTONUMMER);
     };
 
     return (

@@ -23,7 +23,6 @@ export type Ungdomsytelsesøknad = {
     søkerNorskIdent: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    oppstartErRiktig: boolean;
     barnErRiktig: boolean;
     kontonummerErRiktig?: boolean; // undefined hvis søker ikke har kontonummer (_harKontonummer)
     _harKontonummer: boolean;

@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -9,12 +9,21 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+
+export const getBarnSpørsmål = (antallBarn: number): string => {
+    if (antallBarn === 0) {
+        return 'Stemmer det at du ikke har barn';
+    }
+    if (antallBarn === 1) {
+        return 'Stemmer informasjonen om barnet?';
+    }
+    return 'Stemmer informasjonen om barna?';
+};
 
 const BarnSteg = () => {
     const { setSpørsmålSvar, svar, barn } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
-
-    const harBarn = barn.length > 0;
 
     const infoStemmer = svar[Spørsmål.BARN];
     const [error, setError] = useState<string | undefined>(undefined);
@@ -26,15 +35,13 @@ const BarnSteg = () => {
             return;
         }
         setError(undefined);
-        gotoSteg(Steg.KONTONUMMER);
+        gotoSteg(Steg.OPPSUMMERING);
     };
 
     return (
         <SøknadSteg tittel="Barn" steg={Steg.BARN}>
             <VStack gap="8">
-                <GuidePanel>
-                    Hvis du som deltaker i ungdomsprogrammet forsørger barn, har du rett på ett barnetillegg.
-                </GuidePanel>
+                <GuidePanel>Hvis du deltar i ungdomsprogrammet og har barn, har du rett på et barnetillegg.</GuidePanel>
 
                 <form
                     onSubmit={(evt) => {
@@ -43,13 +50,16 @@ const BarnSteg = () => {
                     }}>
                     <VStack gap="8">
                         <VStack gap="4">
-                            <BodyShort weight="semibold">Barn vi har registrert på deg:</BodyShort>
+                            <RegistrerteBarnListeHeading level="2" size="xsmall">
+                                Barn vi har registrert på deg:
+                            </RegistrerteBarnListeHeading>
+
                             <BarnInfo barn={barn} />
                         </VStack>
                         <VStack gap="4">
                             <RadioGroup
                                 name="barnOk"
-                                legend={harBarn ? 'Stemmer informasjonen om barn?' : 'Stemmer det at du ikke har barn'}
+                                legend={getBarnSpørsmål(barn.length)}
                                 error={error}
                                 value={infoStemmer}
                                 onChange={(value: YesOrNo) => {
@@ -70,14 +80,15 @@ const BarnSteg = () => {
                                     </Heading>
                                     <BodyLong>
                                         Du må være registrert som forelder med foreldreansvar i Folkeregisteret for å ha
-                                        rett på barnetillegg. Mener du opplysningene er feil, må du ta kontakt med
-                                        Skatteetaten hvor du kan registrere foreldreansvar.
+                                        rett på barnetillegg. Hvis du mener opplysningene fra Folkeregisteret er feil,
+                                        må du ta kontakt med Skatteetaten. Hos Skatteetaten kan du registrere
+                                        foreldreansvar.
                                     </BodyLong>
                                 </Alert>
                             </AriaLiveRegion>
                         </VStack>
                         <SkjemaFooter
-                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.OPPSTART) }}
+                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
                             submit={{ tittel: 'Neste steg', erSendInn: false }}
                         />
                     </VStack>

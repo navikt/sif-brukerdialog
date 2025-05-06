@@ -1,11 +1,7 @@
 import { Bleed, Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
 
-interface Props {
-    tittel: string;
-}
-
-const SøknadHeader = ({ tittel }: Props) => {
+const SøknadHeader = () => {
     return (
         <Bleed marginInline={{ lg: '24' }}>
             <Stack
@@ -18,7 +14,7 @@ const SøknadHeader = ({ tittel }: Props) => {
                 </Show>
                 <VStack gap="1">
                     <Heading level="1" size="xlarge">
-                        {tittel}
+                        Søknad om ungdomsprogram&shy;ytelse
                     </Heading>
                 </VStack>
             </Stack>
