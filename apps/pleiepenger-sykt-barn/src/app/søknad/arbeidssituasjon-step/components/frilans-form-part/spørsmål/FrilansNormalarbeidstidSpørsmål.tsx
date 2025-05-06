@@ -6,7 +6,10 @@ import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger'
 import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getArbeidsforholdIntlValues } from '../../../utils/arbeidsforholdIntlValues';
-import { getArbeiderNormaltTimerIUkenValidator } from '../../../validation/arbeiderNormaltTimerIUkenValidator';
+import {
+    getArbeiderNormaltTimerFrilanserIUkenValidator,
+    getArbeiderNormaltTimerIUkenValidator,
+} from '../../../validation/arbeiderNormaltTimerIUkenValidator';
 import { InfoArbeiderNormaltTimerFrilanser } from '../../info/InfoArbeiderNormaltTimerIUken';
 
 interface Props {
@@ -15,8 +18,9 @@ interface Props {
     erAktivtArbeidsforhold: boolean;
     frilanstype: Frilanstype;
     misterHonorar?: YesOrNo;
-    mottarStønadGodtgjørelse?: boolean;
+    mottarOmsorgsstønad?: boolean;
     inputTestId?: string;
+    timerOmsorgsstønad?: number;
 }
 
 const FormComponents = getTypedFormComponents<FrilansFormField, ArbeidsforholdFrilanserFormValues, ValidationError>();
@@ -26,8 +30,9 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     erAktivtArbeidsforhold,
     frilanstype,
     arbeidsforhold,
-    mottarStønadGodtgjørelse,
+    mottarOmsorgsstønad,
     inputTestId,
+    timerOmsorgsstønad,
 }) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
@@ -37,11 +42,11 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
         },
     });
 
-    const tekstStønadGodtgjørelse = text('arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse');
+    const tekstOmsorgsstønad = text('arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad');
     return (
         <FormComponents.NumberInput
             label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, {
-                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : '',
+                infoOmsorgsstønad: mottarOmsorgsstønad ? tekstOmsorgsstønad : '',
                 hvor: 'som frilanser',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
@@ -51,14 +56,21 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
             description={
                 <InfoArbeiderNormaltTimerFrilanser
                     frilanstype={frilanstype}
-                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={mottarStønadGodtgjørelse}
+                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={mottarOmsorgsstønad}
                 />
             }
             width="xs"
-            validate={getArbeiderNormaltTimerIUkenValidator({
-                ...intlValues,
-                jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
-            })}
+            validate={(value) => {
+                return !!timerOmsorgsstønad
+                    ? getArbeiderNormaltTimerFrilanserIUkenValidator({
+                          ...intlValues,
+                          jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
+                      })(value, timerOmsorgsstønad)
+                    : getArbeiderNormaltTimerIUkenValidator({
+                          ...intlValues,
+                          jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
+                      })(value);
+            }}
             maxLength={5}
             value={arbeidsforhold.normalarbeidstid ? arbeidsforhold.normalarbeidstid.timerPerUke || '' : ''}
         />
