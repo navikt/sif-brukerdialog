@@ -25,7 +25,7 @@ export type Ungdomsytelsesøknad = {
     harForståttRettigheterOgPlikter: boolean;
     barnErRiktig: boolean;
     kontonummerErRiktig?: boolean; // undefined hvis søker ikke har kontonummer (_harKontonummer)
-    _harKontonummer: boolean;
+    kontonummerFraRegister?: string;
 };
 
 export type UngdomsytelseOppgaveDto = {

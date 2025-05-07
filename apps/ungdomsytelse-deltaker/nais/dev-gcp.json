@@ -44,6 +44,7 @@
         "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.ansatt.dev.nav.no/endringer",
         "SIF_PUBLIC_URL_PERSONOPPLYSNINGER": "https://www.ansatt.dev.nav.no/person/personopplysninger/nb/",
         "SIF_PUBLIC_URL_PERSONVERN": "https://www.ansatt.dev.nav.no/personvernerklaering",
-        "SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN": "https://www.ansatt.dev.nav.no/personvernerklaering"
+        "SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN": "https://www.ansatt.dev.nav.no/personvernerklaering",
+        "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no"
     }
 }

@@ -10,6 +10,8 @@ import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
 import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+import ExternalLink from '../../components/external-link/ExternalLink';
+import getLenker from '../../../../lenker';
 
 export const getBarnSpørsmål = (antallBarn: number): string => {
     if (antallBarn === 0) {
@@ -81,8 +83,11 @@ const BarnSteg = () => {
                                     <BodyLong>
                                         Du må være registrert som forelder med foreldreansvar i Folkeregisteret for å ha
                                         rett på barnetillegg. Hvis du mener opplysningene fra Folkeregisteret er feil,
-                                        må du ta kontakt med Skatteetaten. Hos Skatteetaten kan du registrere
-                                        foreldreansvar.
+                                        må du ta{' '}
+                                        <ExternalLink href={getLenker().skatteetaten}>
+                                            kontakt med Skatteetaten
+                                        </ExternalLink>
+                                        . Hos Skatteetaten kan du registrere foreldreansvar.
                                     </BodyLong>
                                 </Alert>
                             </AriaLiveRegion>

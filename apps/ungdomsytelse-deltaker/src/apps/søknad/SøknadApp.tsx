@@ -31,7 +31,11 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
         <SøknadProvider
             søker={søker}
             deltakelsePeriode={deltakelsePeriode}
-            kontonummer={kontonummer.data === null ? undefined : kontonummer.data?.kontonummer}
+            kontonummer={
+                kontonummer.data?.harKontonummer === true && kontonummer.data?.kontonummer
+                    ? kontonummer.data.kontonummer
+                    : undefined
+            }
             barn={barn.data || []}>
             <SøknadRouter />
         </SøknadProvider>

@@ -110,8 +110,8 @@ export const zDeltakerPersonlia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zRegisterInntektArbeidOgFrilansDto = z.object({
@@ -147,7 +147,8 @@ export const zEndretProgamperiodeOppgaveDto = z.object({
 });
 
 export const zKontonummerDto = z.object({
-    kontonummer: z.string(),
+    harKontonummer: z.boolean(),
+    kontonummer: z.string().optional(),
 });
 
 export const zRapportPeriodeinfoDto = z.object({
