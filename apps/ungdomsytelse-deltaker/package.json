@@ -12,6 +12,8 @@
         "copy-index": "cp ./dist-demo/demo/index.html ./dist-demo/index.html",
         "copy-mockServiceWorker": "cp ./mockServiceWorker.js ./dist-demo/",
         "copy-to-docs": "cp -r ./dist-demo ../../docs/ungdomsytelse-deltaker",
+        "clean-previous-docs": "rm -rf ../../docs/ungdomsytelse-deltaker",
+        "clean-and-copy-docs": "yarn clean-previous-docs && yarn copy-to-docs",
         "demo": "vite preview --base /sif-brukerdialog/ungdomsytelse-deltaker --outDir dist-demo --config vite.demo.config.ts",
         "dev:debug": "vite --debug",
         "dev:vite": "vite",
