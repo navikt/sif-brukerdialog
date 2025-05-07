@@ -13,7 +13,11 @@ async function enableMocking() {
     if (document.location.pathname === '/') {
         document.location.replace(getRequiredEnv('PUBLIC_PATH'));
     }
-    return worker.start();
+    return worker.start({
+        serviceWorker: {
+            url: getRequiredEnv('PUBLIC_PATH') + '/mockServiceWorker.js',
+        },
+    });
 }
 
 const queryClient = new QueryClient();
