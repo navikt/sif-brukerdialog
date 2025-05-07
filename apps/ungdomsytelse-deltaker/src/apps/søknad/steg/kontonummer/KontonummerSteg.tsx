@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Link, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -9,6 +9,7 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import getLenker from '../../../../lenker';
+import ExternalLink from '../../components/external-link/ExternalLink';
 
 const KontonummerSteg = () => {
     const { setSpørsmålSvar, svar, kontonummer } = useSøknadContext();
@@ -65,9 +66,9 @@ const KontonummerSteg = () => {
                                     <Alert variant="info">
                                         <BodyShort spacing>
                                             Gå til{' '}
-                                            <Link href={getLenker().personopplysninger}>
+                                            <ExternalLink href={getLenker().personopplysninger}>
                                                 personopplysninger på Min side
-                                            </Link>{' '}
+                                            </ExternalLink>{' '}
                                             for å endre bankkontonummeret ditt.
                                         </BodyShort>
                                         <BodyShort>
