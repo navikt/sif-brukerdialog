@@ -1,6 +1,6 @@
 import { Alert, Box, Theme } from '@navikt/ds-react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import DeltakerInfoLoader from './DeltakerInfoLoader';
@@ -18,7 +18,7 @@ initUngDeltakelseOpplyserApiClient({
 });
 initK9BrukerdialogProsesseringApiClient();
 
-const getShowDemoMessage = () => {
+const getIsGithubPages = () => {
     try {
         return __IS_GITHUB_PAGES__ === true;
     } catch {
@@ -38,15 +38,22 @@ const DemoMelding = () => {
 
 function App() {
     const publicPath = getRequiredEnv('PUBLIC_PATH');
+    const isGitHubPages = getIsGithubPages();
 
     return (
         <Theme>
             <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
                 <AppIntlMessageProvider>
-                    <BrowserRouter basename={publicPath}>
-                        {getShowDemoMessage() && <DemoMelding />}
-                        <DeltakerInfoLoader />
-                    </BrowserRouter>
+                    {isGitHubPages ? (
+                        <HashRouter>
+                            {getIsGithubPages() && <DemoMelding />}
+                            <DeltakerInfoLoader />
+                        </HashRouter>
+                    ) : (
+                        <BrowserRouter basename={publicPath}>
+                            <DeltakerInfoLoader />
+                        </BrowserRouter>
+                    )}{' '}
                     {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
                 </AppIntlMessageProvider>
             </ErrorBoundary>
