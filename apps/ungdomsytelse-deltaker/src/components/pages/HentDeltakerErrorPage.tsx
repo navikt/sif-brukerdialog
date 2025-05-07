@@ -10,12 +10,12 @@ const HentDeltakerErrorPage = ({ error }: Props) => {
     return (
         <ErrorPage
             pageTitle="Det oppstod en feil"
-            bannerTitle="sdf"
+            bannerTitle="Søknad om ungdomsprogramytelse"
             contentRenderer={() => {
                 return (
                     <SifGuidePanel mood="uncertain">
-                        <Heading level="2" size="medium">
-                            Det oppstod en feil
+                        <Heading level="2" size="medium" spacing>
+                            Det oppstod en feil under henting av informasjon
                         </Heading>
                         <pre style={{ fontSize: '.8rem', lineHeight: '1rem' }}>{error}</pre>
                     </SifGuidePanel>
