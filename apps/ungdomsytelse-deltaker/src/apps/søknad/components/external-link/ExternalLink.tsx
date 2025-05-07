@@ -1,16 +1,17 @@
-import { HStack, Link, LinkProps } from '@navikt/ds-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Link, LinkProps } from '@navikt/ds-react';
 
 const ExternalLink = ({ children, ...rest }: LinkProps) => {
     return (
         <Link
+            style={{ display: 'inline' }}
             {...rest}
             target={rest.target || '_blank'}
             aria-description={rest['aria-description'] || 'Åpnes i nytt vindu'}>
-            <HStack as="span" gap="1" align="baseline">
-                {children}
+            <span>{children}</span>
+            <span className="inline-block">
                 <ExternalLinkIcon role="presentation" aria-hidden="true" />
-            </HStack>
+            </span>
         </Link>
     );
 };
