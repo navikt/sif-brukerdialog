@@ -9,7 +9,7 @@ const ExternalLink = ({ children, ...rest }: LinkProps) => {
             target={rest.target || '_blank'}
             aria-description={rest['aria-description'] || 'Åpnes i nytt vindu'}>
             <span>{children}</span>
-            <span className="inline-block">
+            <span className="inline-block pl-1">
                 <ExternalLinkIcon role="presentation" aria-hidden="true" />
             </span>
         </Link>
