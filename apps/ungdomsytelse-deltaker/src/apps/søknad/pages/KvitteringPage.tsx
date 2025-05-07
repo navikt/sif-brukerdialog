@@ -1,6 +1,7 @@
 import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
+import getLenker from '../../../lenker';
 
 const KvitteringPage = () => {
     return (
@@ -34,7 +35,7 @@ const KvitteringPage = () => {
                 <BodyLong>Vi ønsker deg lykke til med veien videre!</BodyLong>
 
                 <div>
-                    <Button as="a" href="https://www.nav.no/minside">
+                    <Button as="a" href={getLenker().minSide}>
                         Gå til Min side
                     </Button>
                 </div>

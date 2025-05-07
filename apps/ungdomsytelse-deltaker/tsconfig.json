@@ -6,5 +6,5 @@
         "baseUrl": "./"
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*"]
+    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*", "./vite-demo-env.d.ts"]
 }

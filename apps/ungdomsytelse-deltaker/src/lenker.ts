@@ -6,6 +6,7 @@ interface Lenker {
     personvern: string;
     rettOgPlikt: string;
     personopplysninger: string;
+    minSide: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -13,6 +14,7 @@ const LenkerBokmål: Lenker = {
     personvern: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONVERN),
     rettOgPlikt: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT),
     personopplysninger: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER),
+    minSide: getRequiredEnv(AppEnvKey.SIF_PUBLIC_MINSIDE_URL),
 };
 
 const getLenker = (locale: string = 'nb'): Lenker => {

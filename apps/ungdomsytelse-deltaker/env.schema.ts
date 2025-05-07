@@ -1,6 +1,14 @@
 import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
+/**
+ * For at disse skal bli tilgjengelige i appen, må disse filene oppdateres:
+ * - appEnv.ts - på server
+ * - getAppSettings.cjs (lokalt)
+ *
+ * I tillegg til at env filene må inneholde verdiene
+ */
+
 export enum AppEnvKey {
     'SIF_PUBLIC_PERSONALIA_URL' = 'SIF_PUBLIC_PERSONALIA_URL',
     'VELG_SCENARIO' = 'VELG_SCENARIO',
@@ -8,6 +16,7 @@ export enum AppEnvKey {
     'SIF_PUBLIC_URL_PERSONOPPLYSNINGER' = 'SIF_PUBLIC_URL_PERSONOPPLYSNINGER',
     'SIF_PUBLIC_URL_PERSONVERN' = 'SIF_PUBLIC_URL_PERSONVERN',
     'SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN' = 'SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN',
+    'SIF_PUBLIC_MINSIDE_URL' = 'SIF_PUBLIC_MINSIDE_URL',
 }
 
 export const appEnvSchema = z
@@ -18,6 +27,7 @@ export const appEnvSchema = z
         [AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_PERSONVERN]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN]: z.string(),
+        [AppEnvKey.SIF_PUBLIC_MINSIDE_URL]: z.string(),
     })
     .merge(commonEnvSchema)
     .merge(ungDeltakelseOpplyserEnvSchema);
