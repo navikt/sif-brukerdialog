@@ -16,6 +16,7 @@ async function enableMocking() {
     return worker.start({
         serviceWorker: {
             url: getRequiredEnv('PUBLIC_PATH') + '/mockServiceWorker.js',
+            options: { scope: getRequiredEnv('PUBLIC_PATH') },
         },
     });
 }
