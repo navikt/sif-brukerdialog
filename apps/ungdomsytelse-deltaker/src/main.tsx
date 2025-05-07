@@ -13,11 +13,20 @@ async function enableMocking() {
     if (document.location.pathname === '/') {
         document.location.replace(getRequiredEnv('PUBLIC_PATH'));
     }
-    return worker.start({
-        serviceWorker: {
-            url: getRequiredEnv('PUBLIC_PATH') + '/mockServiceWorker.js',
-        },
-    });
+    try {
+        if (__IS_GITHUB_PAGES__) {
+            return worker.start({
+                serviceWorker: {
+                    url: getRequiredEnv('PUBLIC_PATH') + '/mockServiceWorker.js',
+                },
+            });
+        } else {
+            return worker.start();
+        }
+    } catch {
+        // do nothing
+    }
+    return worker.start();
 }
 
 const queryClient = new QueryClient();

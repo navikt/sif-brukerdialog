@@ -12,6 +12,9 @@ export default defineConfig({
         }),
         checker({ typescript: true }),
     ],
+    define: {
+        __IS_GITHUB_PAGES__: false,
+    },
     server: {
         port: 8080,
     },
