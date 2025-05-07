@@ -13,12 +13,6 @@ import { Spørsmål, Steg, SøknadSvar } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { getBarnSpørsmål } from '../barn/BarnSteg';
 
-type UngdomsytelsesøknadV2 = Ungdomsytelsesøknad & {
-    barnErRiktig: boolean;
-    kontonummerErRiktig?: boolean;
-    _harKontonummer: boolean;
-};
-
 export const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer !== undefined && (answer === YesOrNo.NO || answer === YesOrNo.YES);
 };
@@ -27,8 +21,9 @@ const getSøknadFromSvar = (
     svar: SøknadSvar,
     søkerNorskIdent: string,
     startdato: Date,
-    harKontonummer: boolean,
-): Omit<UngdomsytelsesøknadV2, 'harBekreftetOpplysninger'> | undefined => {
+    kontonummerFraRegister?: string,
+): Omit<Ungdomsytelsesøknad, 'harBekreftetOpplysninger'> | undefined => {
+    const harKontonummer = kontonummerFraRegister !== undefined && kontonummerFraRegister !== null;
     if (
         (svar[Spørsmål.FORSTÅR_PLIKTER] !== true,
         !isYesOrNoAnswered(svar[Spørsmål.BARN]) || (harKontonummer && !isYesOrNoAnswered(svar[Spørsmål.KONTONUMMER])))
@@ -45,22 +40,20 @@ const getSøknadFromSvar = (
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
         kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
         søkerNorskIdent,
-        _harKontonummer: harKontonummer,
+        kontonummerFraRegister,
     };
 };
 
 const OppsummeringSteg = () => {
-    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn } = useSøknadContext();
+    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
     const harKontonummer = kontonummer !== undefined && kontonummer !== null;
-
-    const { svar } = useSøknadContext();
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, harKontonummer);
+    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, kontonummer);
 
     const søknadError = søknad
         ? undefined

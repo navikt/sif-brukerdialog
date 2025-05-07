@@ -112,8 +112,8 @@ export type DeltakerPersonlia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -155,7 +155,8 @@ export type EndretProgamperiodeOppgaveDto = {
 };
 
 export type KontonummerDto = {
-    kontonummer: string;
+    harKontonummer: boolean;
+    kontonummer?: string;
 };
 
 export type DeltakelsePeriodInfo = {
