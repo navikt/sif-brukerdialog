@@ -19,6 +19,10 @@ export default defineConfig({
                 target: 'http://localhost:8080', // Adjust target URL if needed
                 rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
             },
+            '/sif-brukerdialog/mockServiceWorker.js': {
+                target: 'http://localhost:8080', // Adjust target URL if needed
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
+            },
         },
     },
     preview: {
