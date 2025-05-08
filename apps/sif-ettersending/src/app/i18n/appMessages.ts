@@ -219,7 +219,7 @@ const nn: Record<keyof typeof nb, string> = {
 
     'ettersendelse.samtykkeForm.submitButtonLabel': 'Start ettersending',
 
-    'application.cancelOrContinueLaterLabel': 'Avbryt eller fortsett seinare',
+    'application.cancelOrContinueLaterLabel': 'Avbryt eller fortset seinare',
 
     'banner.title': 'Ettersending av dokument',
 
@@ -235,32 +235,32 @@ const nn: Record<keyof typeof nb, string> = {
         'Ettersending av dokumentasjon til søknad om pleiepengar i livets sluttfase',
     'application.title.omsorgspenger': 'Ettersending av dokumentasjon for omsorgspengar',
     'application.title.ekstraomsorgsdager':
-        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonsnedsetjing',
+        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'application.title.utbetaling':
         'Ettersending av dokumentasjon  - Søknad om utbetaling av omsorgspengar for sjølvstendig næringsdrivande og frilansarar',
     'application.title.utbetalingarbeidstaker':
-        'Ettersending av dokumentasjon - Søknad om utbetaling av omsorgspengar når arbeidsgivar ikkje betaler ut',
+        'Ettersending av dokumentasjon - Søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje betaler ut',
     'application.title.regnetsomalene':
         'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
     'application.title.opplaringspenger': 'Søknad om opplæringspengar',
 
-    'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysningar',
-    'modal.personopplysninger.1': 'Slik behandlar Nav personopplysningane dine',
+    'modal.personopplysninger.dialogtittel': 'Slik handsamar Nav personopplysningane dine',
+    'modal.personopplysninger.1': 'Slik handsamar Nav personopplysningane dine',
     'modal.personopplysninger.2':
-        'Vi hentar inn og tek imot opplysningar om deg for å behandle saka di. Det er naudsynt for at du skal få rett teneste.',
+        'Me  innhentar og mottek opplysningar om deg for å handsame saka di. Det er naudsynt for at du skal få rett teneste. Delar av saka di kan bli handsama automatisk.',
     'modal.personopplysninger.3': 'Kva opplysningar hentar vi inn?',
     'modal.personopplysninger.4': 'Opplysningane vi hentar inn kjem anten frå deg eller frå offentlege register:',
     'modal.personopplysninger.4.1': 'kva barn du er registrert som forelder til',
     'modal.personopplysninger.4.1.pleiepengerLivetsSluttfase': 'opplysningar om helsa til den du skal pleie',
-    'modal.personopplysninger.4.2': 'opplysningar om barnets helse',
+    'modal.personopplysninger.4.2': 'opplysninger om barnet si helse',
     'modal.personopplysninger.4.3': 'arbeidsforholda dine og inntekta di',
     'modal.personopplysninger.4.4': 'ytingar du mottar frå Nav',
     'modal.personopplysninger.4.5': 'tilknytinga di til Noreg',
     'modal.personopplysninger.4.6':
-        'trygdeordningar du kan ha rett til i andre land. Vi kan også sende opplysningar om deg til trygdemyndigheiter i andre land.',
+        'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
     'modal.personopplysninger.4.7':
-        'Vi lagrar opplysningar vi får inn om personen du søkjer pleiepengar for. Dette gjer vi for å kunne gjenbruke opplysningane dersom andre søkjer pleiepengar for same person.',
-    'modal.personopplysninger.5.1': 'Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå ',
+        'Me lagrar opplysningar me får inn om personen du søkjer pleiepengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre søkjer pleiepengar for same person.',
+    'modal.personopplysninger.5.1': 'Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå ',
     'modal.personopplysninger.5.2': 'nav.no/personvern',
     'modal.personopplysninger.5.3': '.',
 
@@ -304,7 +304,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.dokumentType.registrertBarnPart.hvilketBarn.født': 'Fødd {dato}',
     'step.dokumentType.barn.info.tittel': 'Hugs søknad, også ved forlengingar',
     'step.dokumentType.barn.info.1.1':
-        'For å behandle di pleiepengesak må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjeld òg ved forlengingar.',
+        'For å handsame saka di om pleiepengar må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjeld òg ved forlengingar.',
     'step.dokumentType.barn.info.lenke': 'søknad om pleiepengar for sjukt barn',
     'step.dokumentType.gjelderAnnetBarn': 'Ettersending gjeld eit anna barn',
     'step.dokumentType.annetBarn.tittel': 'Anna barn',
@@ -314,7 +314,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.dokumentType.dokumentType.ANNET': 'Anna',
     'step.dokumentType.annet.info.1': 'Har vi bede om meir dokumentasjon frå deg?',
     'step.dokumentType.annet.info.2':
-        'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein saksbehandlar har bede om noko konkret frå deg.',
+        'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein sakshandsamar har bede om noko konkret frå deg.',
 
     'step.omsorgspenger_type.stepTitle': 'Kva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspengar type',
@@ -350,7 +350,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.dokumentType.legeerklæring': 'Legeerklæring og andre medisinske opplysningar',
     'steg.oppsummering.dokumenter.header': 'Dokument',
     'steg.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gjeve er riktige, og at eg ikkje har halde tilbake opplysningar som har betyding for mi sak.',
+        'Eg stadfestar at opplysningane eg har gjeve er rette, og at eg ikkje har halde tilbake opplysningar som har noko å seie for saka mi. ',
     'steg.oppsummering.navn': 'Namn',
     'steg.oppsummering.fødselsnummer': 'Fødselsnummer',
 
@@ -358,9 +358,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.typeSøknad.tittel': 'Kva skal du ettersende til?',
 
     'steg.oppsummering.sendMelding.feilmelding.førsteGang':
-        'Det oppstod ein feil under innsending. Venlegst prøv på nytt.',
+        'Det oppstod ein feil under innsending. Ver venleg og prøv på nytt.',
     'steg.oppsummering.sendMelding.feilmelding.andreGang':
-        'Det oppstod framleis ein feil under innsending. Venlegst vent litt og prøv på nytt.',
+        'Det oppstod framleis ein feil under innsending. Ver venleg og prøv på nytt seinare.',
 
     'steg.oppsummering.validering.manglerVedlegg': 'Det er ikkje lasta opp nokre vedlegg.',
     'vedleggsliste.ingenVedleggLastetOpp': 'Ingen dokument er lasta opp',
@@ -388,9 +388,9 @@ const nn: Record<keyof typeof nb, string> = {
     'page.confirmation.generell.sidetittel': 'Vi har motteke ettersendinga av dokument',
     'page.confirmation.generell.tittel': 'Vi har motteke ettersendinga av dokument',
     'page.confirmation.generell.info':
-        'Ein av våre saksbehandlarar vil snart gjennomgå dokumentet ditt, dette kan ta nokre dagar. Vi gir deg beskjed dersom vi treng noko meir frå deg.',
+        'Ein av våre sakshandsamarar vil snart gjennomgå dokumentet ditt, dette kan ta nokre dagar. Vi gjev deg beskjed dersom vi treng noko meir frå deg.',
 
-    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må stadfeste at du har lese og forstått dine plikter',
+    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må stadfeste at du har lese og forstått pliktene dine',
     'validation.registrertBarnAktørId.ANNET.noValue': 'Du må velje kva barn dokumentasjonen gjeld',
     'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velje kva barn legeerklæringa gjeld',
     'validation.dokumenter.noVedleggUploaded': 'Ingen dokument er lasta opp',
@@ -420,11 +420,10 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.omSøknaden.tittel': 'Om ettersendinga',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
-        'Vi tek vare på svara dine i 72 timar. Om du innan den tid for eksempel vil ta ein pause eller vert automatisk logga ut, held du fram der du var når du kjem tilbake.',
+        'Me held på svara dine i 72 timar. Om du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3': 'Du må svare på alle spørsmåla for å kunne gå vidare.',
-
     'page.velkommen.omSøknaden.4':
-        'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til å sjå saka di. Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
 
 export const appMessages = {
