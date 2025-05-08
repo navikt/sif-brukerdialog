@@ -14,6 +14,16 @@ on:
                 required: false
 
 jobs:
+    run-tests:
+        name: Test applikasjon
+        uses: ./.github/workflows/test.app.yml
+        secrets: inherit
+        with:
+            app_name: ${{ inputs.app-name }}
+
+        permissions:
+            contents: read
+
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
         runs-on: ubuntu-latest
