@@ -57,8 +57,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                app: ${{ fromJson(inputs.app-name != '' && format('["{0}"]', inputs.app-name)) }}
-
+                app: ${{ inputs.app-name && fromJson(format('["{0}"]', inputs.app-name)) }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
