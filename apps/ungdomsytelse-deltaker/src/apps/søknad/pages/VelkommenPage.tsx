@@ -35,8 +35,9 @@ const VelkommenSteg = () => {
                     <BodyLong>
                         Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
                         <ExternalLink href="https://www.nav.no/endringer">
-                            Les mer om viktigheten av å gi riktige opplysninger.
+                            Les mer om viktigheten av å gi riktige opplysninger
                         </ExternalLink>
+                        .
                     </BodyLong>
                     <Box paddingBlock="4 8">
                         <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>

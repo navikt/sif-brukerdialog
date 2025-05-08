@@ -17,15 +17,19 @@ export type Friteksfelt = {
     verdi: string;
 };
 
+export type Barn = {
+    navn: string;
+};
+
 export type Ungdomsytelsesøknad = {
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
+    barnErRiktig: boolean;
+    kontonummerFraRegister?: string;
+    kontonummerErRiktig?: boolean;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    barnErRiktig: boolean;
-    kontonummerErRiktig?: boolean; // undefined hvis søker ikke har kontonummer (_harKontonummer)
-    kontonummerFraRegister?: string;
 };
 
 export type UngdomsytelseOppgaveDto = {
@@ -369,11 +373,6 @@ export type ArbeidstidInfo = {
 export type ArbeidstidPeriodeInfo = {
     jobberNormaltTimerPerDag: string;
     faktiskArbeidTimerPerDag: string;
-};
-
-export type Barn = {
-    norskIdentitetsnummer: string;
-    fødselsdato?: string;
 };
 
 export type BostedPeriodeInfo = {

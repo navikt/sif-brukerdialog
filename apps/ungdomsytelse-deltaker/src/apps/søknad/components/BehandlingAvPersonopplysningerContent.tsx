@@ -8,7 +8,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
         <VStack gap="2" paddingBlock="2 0">
             <div>
-                <Heading level="3" size="xsmall" spacing={true}>
+                <Heading level="3" size="xsmall" spacing={true} as="div">
                     <AppText id="personopplysninger.1" />
                 </Heading>
                 <p>
@@ -17,7 +17,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
             </div>
 
             <div>
-                <Heading level="3" size="xsmall">
+                <Heading level="3" size="xsmall" as="div">
                     <AppText id="personopplysninger.3" />
                 </Heading>
                 <p>
