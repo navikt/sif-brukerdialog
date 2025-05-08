@@ -20,13 +20,23 @@ export type SøknadSvar = {
     [Spørsmål.BARN]?: YesOrNo;
 };
 
+type KontonummerInfo =
+    | {
+          harKontonummer: true;
+          kontonummerFraRegister: string;
+          formatertKontonummer?: string;
+      }
+    | {
+          harKontonummer: false;
+      };
+
 export interface SøknadContextType {
     søker: Søker;
     deltakelsePeriode: DeltakelsePeriode;
     svar: SøknadSvar;
     søknadStartet: boolean;
     søknadSendt: boolean;
-    kontonummer?: string;
+    kontonummerInfo: KontonummerInfo;
     barn: RegistrertBarn[];
     setSpørsmålSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setSøknadSendt: (sendtInn: boolean) => void;

@@ -3,25 +3,23 @@ import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
+import getLenker from '../../../../lenker';
+import ExternalLink from '../../components/external-link/ExternalLink';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
-import getLenker from '../../../../lenker';
-import ExternalLink from '../../components/external-link/ExternalLink';
 
 const KontonummerSteg = () => {
-    const { setSpørsmålSvar, svar, kontonummer } = useSøknadContext();
+    const { setSpørsmålSvar, svar, kontonummerInfo } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
     const infoStemmer = svar[Spørsmål.KONTONUMMER];
     const [error, setError] = useState<string | undefined>(undefined);
 
-    const harKontonummer = kontonummer !== undefined;
-
     const handleOnSubmit = () => {
-        if (harKontonummer) {
+        if (kontonummerInfo.harKontonummer) {
             const err = getYesOrNoValidator()(infoStemmer);
             if (err) {
                 setError('Du må svare på spørsmålet');
@@ -43,12 +41,12 @@ const KontonummerSteg = () => {
                     <GuidePanel>
                         For å få pengene inn på bankkontoen din, må du ha registrert kontonummeret ditt hos Nav.
                     </GuidePanel>
-                    {harKontonummer ? (
+                    {kontonummerInfo.harKontonummer ? (
                         <>
                             <VStack gap="4">
                                 <RadioGroup
                                     name="barnOk"
-                                    legend={`Er kontonummeret ditt ${kontonummer}?`}
+                                    legend={`Er kontonummeret ditt ${kontonummerInfo.formatertKontonummer}?`}
                                     error={error}
                                     value={infoStemmer}
                                     onChange={(value: YesOrNo) => {
