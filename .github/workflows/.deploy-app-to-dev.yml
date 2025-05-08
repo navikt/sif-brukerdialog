@@ -14,12 +14,6 @@ on:
                 required: false
 
 jobs:
-    test-app:
-        name: Test applikasjon før deploy
-        uses: ./.github/workflows/test.app.yml
-        with:
-            app-name: ${{ inputs.app-name }}
-
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
         runs-on: ubuntu-latest

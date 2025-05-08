@@ -73,12 +73,6 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install chromium
 
-            - name: Copy .env.dev for next.js build
-              shell: bash
-              run: |
-                  echo "Copying .env.dev to app root"
-                  cp apps/${{ matrix.app }}/nais/envs/.env.dev apps/${{ matrix.app }}/.env.production
-
             - name: Run code tests
               run: yarn test --filter=@navikt/${{ matrix.app }}
 
