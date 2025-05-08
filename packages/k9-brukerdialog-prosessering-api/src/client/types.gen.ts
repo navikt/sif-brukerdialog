@@ -17,10 +17,6 @@ export type Friteksfelt = {
     verdi: string;
 };
 
-export type Barn = {
-    navn: string;
-};
-
 export type Ungdomsytelsesøknad = {
     språk: string;
     startdato: string;
@@ -373,6 +369,11 @@ export type ArbeidstidInfo = {
 export type ArbeidstidPeriodeInfo = {
     jobberNormaltTimerPerDag: string;
     faktiskArbeidTimerPerDag: string;
+};
+
+export type Barn = {
+    norskIdentitetsnummer: string;
+    fødselsdato?: string;
 };
 
 export type BostedPeriodeInfo = {

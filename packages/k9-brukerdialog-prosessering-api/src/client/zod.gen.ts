@@ -15,18 +15,13 @@ export const zFriteksfelt = z.object({
     verdi: z.string(),
 });
 
-export const zBarn = z.object({
-    navn: z.string(),
-});
-
 export const zUngdomsytelsesøknad = z.object({
     språk: z.string(),
     startdato: z.string().date(),
     søkerNorskIdent: z.string(),
-    barn: z.array(zBarn),
     barnErRiktig: z.boolean(),
     kontonummerFraRegister: z.string().optional(),
-    kontonummerErRiktig: z.boolean(),
+    kontonummerErRiktig: z.boolean().optional(),
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
 });
@@ -402,6 +397,11 @@ export const zArbeidstid = z.object({
 export const zArbeidstidPeriodeInfo = z.object({
     jobberNormaltTimerPerDag: z.string(),
     faktiskArbeidTimerPerDag: z.string(),
+});
+
+export const zBarn = z.object({
+    norskIdentitetsnummer: z.string(),
+    fødselsdato: z.string().date().optional(),
 });
 
 export const zBostedPeriodeInfo = z.object({
