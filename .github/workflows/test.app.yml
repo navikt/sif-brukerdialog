@@ -18,14 +18,18 @@ on:
                 type: string
 
     push:
-        branches-ignore:
-            - 'main'
-        paths:
-            - 'apps/**/**/*'
-            - 'nais-config/**/*'
-            - 'packages/**/*'
-            - '.github/workflows/test-apps.yml'
-            - 'yarn.lock'
+        branches:
+            - '*workflows'
+
+            # branches-ignore:
+            #     - 'main'
+
+            # paths:
+            #     - 'apps/**/**/*'
+            #     - 'nais-config/**/*'
+            #     - 'packages/**/*'
+            #     - '.github/workflows/test-apps.yml'
+            #     - 'yarn.lock'
 
 env:
     NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
