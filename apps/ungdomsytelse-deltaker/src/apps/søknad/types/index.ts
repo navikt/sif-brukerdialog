@@ -20,7 +20,7 @@ export type SøknadSvar = {
     [Spørsmål.BARN]?: YesOrNo;
 };
 
-type KontonummerInfo =
+export type KontonummerInfo =
     | {
           harKontonummer: true;
           kontonummerFraRegister: string;
