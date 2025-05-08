@@ -46,9 +46,21 @@ jobs:
     setup-environment:
         name: Setup Environment
         runs-on: ubuntu-latest
+        outputs:
+            cache-key: ${{ steps.cache-deps.outputs.cache-hit }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Cache dependencies
+              id: cache-deps
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-
 
             - name: Setup .yarnrc.yml
               run: |
@@ -76,6 +88,15 @@ jobs:
             matrix:
                 app: ${{ fromJson('["dine-pleiepenger", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",]') }}
         steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Restore dependencies from cache
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      node_modules
+                  key: ${{ needs.setup-environment.outputs.cache-key }}
             - name: Run code tests
               run: yarn test --filter=@navikt/${{ matrix.app }}
 
