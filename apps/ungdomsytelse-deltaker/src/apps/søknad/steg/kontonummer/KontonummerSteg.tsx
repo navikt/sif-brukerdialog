@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Link, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -87,7 +87,9 @@ const KontonummerSteg = () => {
                                 </Heading>
                                 <BodyLong spacing>
                                     Registrer bankkontonummeret ditt hos Nav slik at du får pengene utbetalt til rett
-                                    konto. Gå til personopplysninger på Min side for å legge inn kontonummeret ditt.
+                                    konto. Gå til{' '}
+                                    <Link href={getLenker().endreKontonummer}>personopplysninger på Min side</Link> for
+                                    å legge inn kontonummeret ditt.
                                 </BodyLong>
                                 <BodyLong>
                                     Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret
