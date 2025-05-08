@@ -4,8 +4,6 @@ export const appMessagesNB = {
 
     'ettersendelse.samtykkeForm.submitButtonLabel': 'Start ettersendelse',
 
-    'application.cancelOrContinueLaterLabel': 'Avbryt eller fortsett senere',
-
     'banner.title': 'Ettersending av dokumenter',
 
     'søknadstype.pleiepenger': 'pleiepengesøknad',

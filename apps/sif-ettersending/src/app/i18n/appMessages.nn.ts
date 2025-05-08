@@ -6,8 +6,6 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'ettersendelse.samtykkeForm.submitButtonLabel': 'Start ettersending',
 
-    'application.cancelOrContinueLaterLabel': 'Avbryt eller fortset seinare',
-
     'banner.title': 'Ettersending av dokument',
 
     'søknadstype.pleiepenger': 'pleiepengesøknad',
