@@ -43,13 +43,9 @@ permissions:
     contents: read
 
 jobs:
-    test-apps:
+    setup-environment:
+        name: Setup Environment
         runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                app: ${{ fromJson('["dine-pleiepenger", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",]') }}
-
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -72,7 +68,14 @@ jobs:
 
             - name: Install Playwright Browsers
               run: npx playwright install chromium
-
+    test-apps:
+        name: Run Tests
+        needs: setup-environment
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                app: ${{ fromJson('["dine-pleiepenger", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",]') }}
+        steps:
             - name: Run code tests
               run: yarn test --filter=@navikt/${{ matrix.app }}
 
