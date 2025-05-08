@@ -1,9 +1,6 @@
 name: .Deploy application to dev
 
 on:
-    push:
-        branches:
-            - '*workflows'
     workflow_call:
         inputs:
             working-directory:
@@ -17,15 +14,11 @@ on:
                 required: false
 
 jobs:
-    run-tests:
-        name: Test applikasjon
+    test-app:
+        name: Test applikasjon før deploy
         uses: ./.github/workflows/test.app.yml
-        secrets: inherit
         with:
-            app_name: ${{ inputs.app-name }}
-
-        permissions:
-            contents: read
+            app-name: ${{ inputs.app-name }}
 
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})

@@ -1,6 +1,14 @@
 name: Test en eller alle applikasjoner
 
 on:
+    workflow_call:
+        inputs:
+            app-name:
+                description: 'App som skal testes. Evt. ingen for å teste alle'
+                required: false
+                default: env.APP_LIST
+                type: string
+
     workflow_dispatch:
         inputs:
             app-name:
