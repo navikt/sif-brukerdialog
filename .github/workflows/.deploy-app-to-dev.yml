@@ -1,6 +1,9 @@
 name: .Deploy application to dev
 
 on:
+    push:
+        branches:
+            - '*workflows'
     workflow_call:
         inputs:
             working-directory:
