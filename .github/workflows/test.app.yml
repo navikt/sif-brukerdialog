@@ -21,16 +21,6 @@ on:
         branches:
             - '*workflows'
 
-            # branches-ignore:
-            #     - 'main'
-
-            # paths:
-            #     - 'apps/**/**/*'
-            #     - 'nais-config/**/*'
-            #     - 'packages/**/*'
-            #     - '.github/workflows/test-apps.yml'
-            #     - 'yarn.lock'
-
 env:
     NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
     APP_LIST: |
@@ -55,9 +45,11 @@ permissions:
 jobs:
     test-apps:
         runs-on: ubuntu-latest
+
         strategy:
             matrix:
-                app: ${{ inputs.app-name && fromJson(format('["{0}"]', inputs.app-name)) }}
+                app: ${{ fromJson('["dine-pleiepenger", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",]') }}
+
         steps:
             - name: Checkout
               uses: actions/checkout@v4
