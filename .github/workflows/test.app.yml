@@ -43,26 +43,31 @@ permissions:
     contents: read
 
 jobs:
-    setup-environment:
-        name: Setup Environment
+    test-apps:
+        name: Setup and Test Apps
         runs-on: ubuntu-latest
-        outputs:
-            workspace-path: ${{ steps.upload-workspace.outputs.artifact-path }}
+        strategy:
+            matrix:
+                app:
+                    [
+                        'dine-pleiepenger',
+                        'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
+                        'endringsmelding-pleiepenger',
+                        'omsorgsdager-aleneomsorg-dialog',
+                        'omsorgsdager-kalkulator',
+                        'omsorgspengerutbetaling-arbeidstaker-soknad',
+                        'omsorgspengerutbetaling-soknad',
+                        'omsorgspengesoknad',
+                        'opplaringspenger-soknad',
+                        'pleiepenger-i-livets-sluttfase-soknad',
+                        'pleiepenger-sykt-barn',
+                        'sif-ettersending',
+                    ]
         steps:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Cache dependencies
-              id: cache-deps
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      node_modules
-                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-modules-
-
-            - name: Setup [.yarnrc.yml](http://_vscodecontentref_/2)
+            - name: Setup .yarnrc.yml
               run: |
                   yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
@@ -81,34 +86,10 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install chromium
 
-            - name: Upload workspace
-              id: upload-workspace
-              uses: actions/upload-artifact@v3
-              with:
-                  name: workspace
-                  path: |
-                      node_modules
-                      .yarn
-                      .pnp.*
-
-    test-apps:
-        name: Run Tests
-        needs: setup-environment
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                app: ${{ fromJson('["dine-pleiepenger", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",]') }}
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Download workspace
-              uses: actions/download-artifact@v3
-              with:
-                  name: workspace
-
             - name: Run code tests
+              if: ${{ inputs.app-name == '' || matrix.app == inputs.app-name }}
               run: yarn test --filter=@navikt/${{ matrix.app }}
 
             - name: Run Playwright tests
-              run: yarn turbo playwright-test  matrix--filter=@navikt/${{matrix.app }}
+              if: ${{ inputs.app-name == '' || matrix.app == inputs.app-name }}
+              run: yarn turbo playwright-test --filter=@navikt/${{ matrix.app }}
