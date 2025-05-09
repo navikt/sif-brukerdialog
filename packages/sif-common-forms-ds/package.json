@@ -62,7 +62,7 @@
         "react-dom": "19.1.0",
         "react-intl": "7.1.11",
         "react-json-view": "1.21.3",
-        "react-router-dom": "7.5.3",
+        "react-router-dom": "7.6.0",
         "rimraf": "6.0.1",
         "storybook": "8.6.12",
         "typescript": "5.8.3",
