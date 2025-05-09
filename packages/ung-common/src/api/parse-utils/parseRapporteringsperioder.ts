@@ -13,7 +13,7 @@ const erDatoISisteMånedIProgrammet = (dato: Date, programSluttdato: Date): bool
 
 export const getTillattRapporteringsperiodeForMåned = (dato: Date): DateRange => {
     const from = dayjs(dato).set('date', 1).toDate();
-    const to = dayjs(dato).set('date', 16).toDate();
+    const to = dayjs(dato).set('date', 6).toDate();
     return { from, to };
 };
 

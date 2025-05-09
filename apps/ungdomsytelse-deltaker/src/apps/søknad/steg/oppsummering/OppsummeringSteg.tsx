@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { formaterKontonummer } from '@navikt/ung-common';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
@@ -40,20 +41,24 @@ const getSøknadFromSvar = (
         barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
         kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
         søkerNorskIdent,
-        kontonummerFraRegister,
+        kontonummerFraRegister: formaterKontonummer(kontonummerFraRegister),
     };
 };
 
 const OppsummeringSteg = () => {
-    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn, svar } = useSøknadContext();
+    const { søker, deltakelsePeriode, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
-    const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, kontonummer);
+    const søknad = getSøknadFromSvar(
+        svar,
+        søker.fødselsnummer,
+        deltakelsePeriode.programPeriode.from,
+        kontonummerInfo.harKontonummer ? kontonummerInfo.kontonummerFraRegister : undefined,
+    );
 
     const søknadError = søknad
         ? undefined
@@ -92,10 +97,10 @@ const OppsummeringSteg = () => {
                                 <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
                             </FormSummary.Header>
                             <FormSummary.Answers>
-                                {harKontonummer ? (
+                                {kontonummerInfo.harKontonummer ? (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
-                                            Stemmer det at kontonummeret ditt er {kontonummer}?
+                                            Stemmer det at kontonummeret ditt er {kontonummerInfo.formatertKontonummer}?
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}

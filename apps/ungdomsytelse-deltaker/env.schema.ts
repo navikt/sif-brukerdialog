@@ -18,6 +18,7 @@ export enum AppEnvKey {
     'SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN' = 'SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN',
     'SIF_PUBLIC_URL_SKATTEETATEN' = 'SIF_PUBLIC_URL_SKATTEETATEN',
     'SIF_PUBLIC_MINSIDE_URL' = 'SIF_PUBLIC_MINSIDE_URL',
+    'SIF_PUBLIC_URL_ENDRE_KONTONUMMER' = 'SIF_PUBLIC_URL_ENDRE_KONTONUMMER',
 }
 
 export const appEnvSchema = z
@@ -30,6 +31,7 @@ export const appEnvSchema = z
         [AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN]: z.string(),
         [AppEnvKey.SIF_PUBLIC_MINSIDE_URL]: z.string(),
+        [AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER]: z.string(),
     })
     .merge(commonEnvSchema)
     .merge(ungDeltakelseOpplyserEnvSchema);

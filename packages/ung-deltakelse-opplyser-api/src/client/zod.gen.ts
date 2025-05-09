@@ -20,6 +20,11 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
     arbeidsgiver: z.string(),
 });
 
+export const zBekreftelseDto = z.object({
+    harGodtattEndringen: z.boolean(),
+    uttalelseFraBruker: z.string().optional(),
+});
+
 export const zDeltakerDto = z.object({
     id: z.string().uuid().optional(),
     deltakerIdent: z.string(),
@@ -27,7 +32,7 @@ export const zDeltakerDto = z.object({
 
 export const zOppgavetype = z.enum(['BEKREFT_ENDRET_PROGRAMPERIODE', 'BEKREFT_AVVIK_REGISTERINNTEKT']);
 
-export const zOppgavetypeDataDto = z.object({});
+export const zOppgavetypeDataDto = z.unknown();
 
 export const zProgramperiodeDto = z.object({
     fomDato: z.string().date(),
@@ -68,6 +73,7 @@ export const zOppgaveDto = z.object({
     oppgaveReferanse: z.string().uuid(),
     oppgavetype: zOppgavetype,
     oppgavetypeData: z.union([zEndretProgramperiodeDataDto, zKontrollerRegisterinntektOppgavetypeDataDto]),
+    bekreftelse: zBekreftelseDto.optional(),
     status: zOppgaveStatus,
     opprettetDato: z.string().datetime(),
     løstDato: z.string().datetime().optional(),
@@ -110,8 +116,8 @@ export const zDeltakerPersonlia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    førsteMuligeInnmeldingsdato: z.string().date(),
     sisteMuligeInnmeldingsdato: z.string().date(),
+    førsteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zRegisterInntektArbeidOgFrilansDto = z.object({
