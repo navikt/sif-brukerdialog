@@ -11,7 +11,7 @@ permissions:
     id-token: write
 
 jobs:
-    build-and-deploy-storybook:
+    build-and-deploy-gh-pages-content:
         name: Build and Deploy Storybook
         runs-on: ubuntu-latest
 
