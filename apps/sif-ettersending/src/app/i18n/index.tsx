@@ -6,6 +6,11 @@ import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessagesNB } from './appMessages.nb';
 import { appMessagesNN } from './appMessages.nn';
 
+export const appMessages = {
+    nb: appMessagesNB,
+    nn: appMessagesNN,
+};
+
 export const libMessages = {
     nb: {
         ...commonMessages.nb,
@@ -21,12 +26,12 @@ export const libMessages = {
 
 const nb = {
     ...libMessages.nb,
-    ...appMessagesNB,
+    ...appMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...libMessages.nn,
-    ...appMessagesNN,
+    ...appMessages.nn,
 };
 
 export type AppMessageKeys = keyof typeof nb;
