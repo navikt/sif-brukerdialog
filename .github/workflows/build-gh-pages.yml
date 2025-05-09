@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages
+name: Build and deploy gh-pages
 
 on:
     workflow_dispatch:
