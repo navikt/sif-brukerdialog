@@ -1,9 +1,7 @@
 name: Deploy Storybook to GitHub Pages
 
 on:
-    push:
-        branches:
-            - gh-pages-workflow
+    workflow_dispatch:
 
 permissions:
     contents: read
@@ -11,7 +9,7 @@ permissions:
     id-token: write
 
 jobs:
-    build-and-deploy-storybook:
+    build-and-deploy-gh-pages-content:
         name: Build and Deploy Storybook
         runs-on: ubuntu-latest
 
@@ -36,19 +34,35 @@ jobs:
               run: yarn build-storybook
               working-directory: apps/storybook
 
+            # Flytt Storybook-output til en subfolder
+            - name: Prepare Storybook for deployment
+              run: |
+                  mkdir -p deployment/storybook
+                  mv apps/storybook/storybook-static/* deployment/storybook/
+
+            # Bygg ungdomsytelse-deltaker med gh-pages:rebuild
+            - name: Build ungdomsytelse-deltaker
+              run: yarn gh-pages:rebuild
+              working-directory: apps/ungdomsytelse-deltaker
+
+            # Flytt ungdomsytelse-deltaker-output til en subfolder
+            - name: Prepare ungdomsytelse-deltaker for deployment
+              run: |
+                  mkdir -p deployment/ungdomsytelse-deltaker
+                  mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
+
             # Last opp bygget som en artefakt
             - name: Upload artifact for GitHub Pages
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: apps/storybook/storybook-static
+                  path: deployment
 
     deploy:
         name: Deploy to GitHub Pages
-        needs: build-and-deploy-storybook
+        needs: build-and-deploy-gh-pages-content
         runs-on: ubuntu-latest
         environment:
             name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
         steps:
             - name: Deploy to GitHub Pages
               uses: actions/deploy-pages@v4
