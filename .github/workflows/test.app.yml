@@ -6,7 +6,7 @@ on:
             app-name:
                 description: 'App som skal testes. Evt. ingen for å teste alle'
                 required: false
-                default: env.APP_LIST
+                default: ''
                 type: string
 
     workflow_dispatch:
@@ -14,7 +14,7 @@ on:
             app-name:
                 description: 'App som skal testes. Evt. ingen for å teste alle'
                 required: false
-                default: env.APP_LIST
+                default: ''
                 type: string
 
     push:
@@ -36,7 +36,7 @@ env:
           "opplaringspenger-soknad",
           "pleiepenger-i-livets-sluttfase-soknad",
           "pleiepenger-sykt-barn",
-          "sif-ettersending",
+          "sif-ettersending"
         ]
 
 permissions:
@@ -47,7 +47,7 @@ jobs:
         name: Setup Environment
         runs-on: ubuntu-latest
         outputs:
-            cache-key: ${{ steps.cache-deps.outputs.cache-hit }}
+            workspace-path: ${{ steps.upload-workspace.outputs.artifact-path }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-node-modules-
 
-            - name: Setup .yarnrc.yml
+            - name: Setup [.yarnrc.yml](http://_vscodecontentref_/2)
               run: |
                   yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
@@ -80,6 +80,17 @@ jobs:
 
             - name: Install Playwright Browsers
               run: npx playwright install chromium
+
+            - name: Upload workspace
+              id: upload-workspace
+              uses: actions/upload-artifact@v3
+              with:
+                  name: workspace
+                  path: |
+                      node_modules
+                      .yarn
+                      .pnp.*
+
     test-apps:
         name: Run Tests
         needs: setup-environment
@@ -91,14 +102,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Restore dependencies from cache
-              uses: actions/cache@v3
+            - name: Download workspace
+              uses: actions/download-artifact@v3
               with:
-                  path: |
-                      node_modules
-                  key: ${{ needs.setup-environment.outputs.cache-key }}
+                  name: workspace
+
             - name: Run code tests
               run: yarn test --filter=@navikt/${{ matrix.app }}
 
             - name: Run Playwright tests
-              run: yarn turbo playwright-test --filter=@navikt/${{ matrix.app }}
+              run: yarn turbo playwright-test  matrix--filter=@navikt/${{matrix.app }}
