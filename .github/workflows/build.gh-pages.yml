@@ -1,0 +1,54 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+    push:
+        branches:
+            - *gh-pages-workflow*
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+jobs:
+    build-and-deploy-storybook:
+        name: Build and Deploy Storybook
+        runs-on: ubuntu-latest
+
+        steps:
+            # Sjekk ut koden
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            # Sett opp Node.js
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: 'yarn'
+
+            # Installer avhengigheter
+            - name: Install dependencies
+              run: yarn install
+
+            # Bygg Storybook
+            - name: Build Storybook
+              run: yarn build-storybook
+              working-directory: apps/storybook
+
+            # Last opp bygget som en artefakt
+            - name: Upload artifact for GitHub Pages
+              uses: actions/upload-pages-artifact@v1
+              with:
+                  path: apps/storybook/storybook-static
+
+    deploy:
+        name: Deploy to GitHub Pages
+        needs: build-and-deploy-storybook
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v1
