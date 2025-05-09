@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Tabs } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, HStack, Pagination, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import Block from '../../../atoms/block/Block';
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
@@ -51,34 +51,62 @@ export const MessagesTable = ({
     nbOnly?: boolean;
     keyStrip?: string;
 }) => {
+    const [currentPage, setCurrentPage] = useState(1);
     const allMessages = createMultiLocaleObject(messages);
+
+    const messagesPerPage = 400;
+    const totalMessages = Object.keys(allMessages).length;
+    const totalPages = Math.ceil(totalMessages / messagesPerPage);
+
+    const startIndex = (currentPage - 1) * messagesPerPage;
+    const endIndex = startIndex + messagesPerPage;
+    const currentMessageKeys = Object.keys(allMessages).slice(startIndex, endIndex);
+
     return (
-        <table className="messageList">
-            <thead>
-                <tr>
-                    <th>Kode</th>
-                    <th>Bokmål</th>
-                    <th>Nynorsk (evt. bokmål som fallback)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Object.keys(allMessages).map((key) => {
-                    return (
-                        <tr key={key}>
-                            <th>
-                                <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
-                            </th>
-                            <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
-                                {allMessages[key]['nb']}
-                            </td>
-                            <td key="nn" className={allMessages[key]['nn'] ? '' : 'missingText'}>
-                                {nbOnly ? <>&nbsp;</> : allMessages[key]['nn']}
-                            </td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <VStack gap="4">
+            {messagesPerPage < totalMessages && (
+                <HStack gap="1" align={'center'}>
+                    <BodyShort size="large" weight="semibold">
+                        Sider:
+                    </BodyShort>
+                    <Pagination
+                        page={currentPage}
+                        onPageChange={setCurrentPage}
+                        count={totalPages}
+                        boundaryCount={1}
+                        siblingCount={1}
+                        size="small"
+                    />
+                </HStack>
+            )}
+
+            <table className="messageList">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Bokmål</th>
+                        <th>Nynorsk (evt. bokmål som fallback)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentMessageKeys.map((key) => {
+                        return (
+                            <tr key={key}>
+                                <th>
+                                    <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
+                                </th>
+                                <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
+                                    {allMessages[key]['nb']}
+                                </td>
+                                <td key="nn" className={allMessages[key]['nn'] ? '' : 'missingText'}>
+                                    {nbOnly ? <>&nbsp;</> : allMessages[key]['nn']}
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </VStack>
     );
 };
 
@@ -89,6 +117,7 @@ const MessagesList = ({ messages }: Props) => {
     const numMessages = Object.keys(allMessages).length;
 
     const { translate } = useTranslation();
+
     const oversettAlle = async () => {
         const keys = Object.keys(allMessages);
         const text = keys.map((key) => allMessages[key]['nb']).join(' || ');

@@ -16,4 +16,7 @@ export default {
         name: '@storybook/react-vite',
         options: {},
     },
+    env: {
+        ENV: 'abc',
+    },
 };

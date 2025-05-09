@@ -3,7 +3,13 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
+import { appMessagesNB } from './appMessages.nb';
+import { appMessagesNN } from './appMessages.nn';
+
+export const appMessages = {
+    nb: appMessagesNB,
+    nn: appMessagesNN,
+};
 
 export const libMessages = {
     nb: {
