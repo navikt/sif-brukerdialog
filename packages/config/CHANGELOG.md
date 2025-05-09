@@ -1,5 +1,11 @@
 # config
 
+## 0.10.30
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
 ## 0.10.29
 
 ### Patch Changes
