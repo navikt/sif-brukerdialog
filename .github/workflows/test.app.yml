@@ -43,26 +43,11 @@ permissions:
     contents: read
 
 jobs:
-    test-apps:
-        name: Setup and Test Apps
+    setup-environment:
+        name: Setup Environment
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                app:
-                    [
-                        'dine-pleiepenger',
-                        'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
-                        'endringsmelding-pleiepenger',
-                        'omsorgsdager-aleneomsorg-dialog',
-                        'omsorgsdager-kalkulator',
-                        'omsorgspengerutbetaling-arbeidstaker-soknad',
-                        'omsorgspengerutbetaling-soknad',
-                        'omsorgspengesoknad',
-                        'opplaringspenger-soknad',
-                        'pleiepenger-i-livets-sluttfase-soknad',
-                        'pleiepenger-sykt-barn',
-                        'sif-ettersending',
-                    ]
+        outputs:
+            cache-key: ${{ steps.cache-deps.outputs.cache-hit }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -81,10 +66,45 @@ jobs:
             - run: yarn set version 4.x
 
             - name: Install dependencies
+              id: cache-deps
               run: yarn
 
             - name: Install Playwright Browsers
               run: npx playwright install chromium
+
+            - name: Upload workspace
+              uses: actions/upload-artifact@v3
+              with:
+                  name: workspace
+                  path: .
+
+    test-apps:
+        name: Run Tests
+        needs: setup-environment
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                app:
+                    [
+                        'dine-pleiepenger',
+                        'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
+                        'endringsmelding-pleiepenger',
+                        'omsorgsdager-aleneomsorg-dialog',
+                        'omsorgsdager-kalkulator',
+                        'omsorgspengerutbetaling-arbeidstaker-soknad',
+                        'omsorgspengerutbetaling-soknad',
+                        'omsorgspengesoknad',
+                        'opplaringspenger-soknad',
+                        'pleiepenger-i-livets-sluttfase-soknad',
+                        'pleiepenger-sykt-barn',
+                        'sif-ettersending',
+                    ]
+
+        steps:
+            - name: Download workspace
+              uses: actions/download-artifact@v3
+              with:
+                  name: workspace
 
             - name: Run code tests
               if: ${{ inputs.app-name == '' || matrix.app == inputs.app-name }}
