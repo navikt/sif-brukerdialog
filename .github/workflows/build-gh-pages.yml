@@ -42,6 +42,17 @@ jobs:
                   mkdir -p deployment/storybook
                   mv apps/storybook/storybook-static/* deployment/storybook/
 
+            # Bygg ungdomsytelse-deltaker med gh-pages:rebuild
+            - name: Build ungdomsytelse-deltaker
+              run: yarn gh-pages:rebuild
+              working-directory: apps/ungdomsytelse-deltaker
+
+            # Flytt ungdomsytelse-deltaker-output til en subfolder
+            - name: Prepare ungdomsytelse-deltaker for deployment
+              run: |
+                  mkdir -p deployment/ungdomsytelse-deltaker
+                  mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
+
             # Last opp bygget som en artefakt
             - name: Upload artifact for GitHub Pages
               uses: actions/upload-pages-artifact@v3
