@@ -1,5 +1,5 @@
 # This workflow trigger on push to apps/dine-pleiepenger
-name: test.dine-pleiepenger
+name: test.alle-applikasjoner
 on:
     workflow_call:
 
