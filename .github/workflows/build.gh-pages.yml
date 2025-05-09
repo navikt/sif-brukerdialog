@@ -3,7 +3,7 @@ name: Deploy Storybook to GitHub Pages
 on:
     push:
         branches:
-            - *gh-pages-workflow*
+            - gh-pages-workflow
 
 permissions:
     contents: read
