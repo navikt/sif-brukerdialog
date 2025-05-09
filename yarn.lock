@@ -4667,7 +4667,7 @@ __metadata:
     jsdom: "npm:26.1.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
-    msw: "npm:2.7.6"
+    msw: "npm:2.8.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.52.0"
@@ -5183,7 +5183,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:26.1.0"
     lodash: "npm:4.17.21"
-    msw: "npm:2.7.6"
+    msw: "npm:2.8.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:6.4.2"
@@ -5548,7 +5548,7 @@ __metadata:
     formik: "npm:2.4.6"
     http-status-codes: "npm:2.3.0"
     i18n-iso-countries: "npm:7.14.0"
-    msw: "npm:2.7.6"
+    msw: "npm:2.8.0"
     msw-storybook-addon: "npm:2.0.4"
     postcss: "npm:8.5.3"
     prop-types: "npm:15.8.1"
@@ -6171,7 +6171,7 @@ __metadata:
     html-react-parser: "npm:5.2.3"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:26.1.0"
-    msw: "npm:2.7.6"
+    msw: "npm:2.8.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     postcss: "npm:8.5.3"
@@ -6252,7 +6252,7 @@ __metadata:
     html-react-parser: "npm:5.2.3"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:26.1.0"
-    msw: "npm:2.7.6"
+    msw: "npm:2.8.0"
     msw-storybook-addon: "npm:2.0.4"
     mustache-express: "npm:1.3.2"
     playwright: "npm:1.52.0"
@@ -23130,7 +23130,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.7.6, msw@npm:^2.0.8":
+"msw@npm:2.8.0":
+  version: 2.8.0
+  resolution: "msw@npm:2.8.0"
+  dependencies:
+    "@bundled-es-modules/cookie": "npm:^2.0.1"
+    "@bundled-es-modules/statuses": "npm:^1.0.1"
+    "@bundled-es-modules/tough-cookie": "npm:^0.1.6"
+    "@inquirer/confirm": "npm:^5.0.0"
+    "@mswjs/interceptors": "npm:^0.37.0"
+    "@open-draft/deferred-promise": "npm:^2.2.0"
+    "@open-draft/until": "npm:^2.1.0"
+    "@types/cookie": "npm:^0.6.0"
+    "@types/statuses": "npm:^2.0.4"
+    graphql: "npm:^16.8.1"
+    headers-polyfill: "npm:^4.0.2"
+    is-node-process: "npm:^1.2.0"
+    outvariant: "npm:^1.4.3"
+    path-to-regexp: "npm:^6.3.0"
+    picocolors: "npm:^1.1.1"
+    strict-event-emitter: "npm:^0.5.1"
+    type-fest: "npm:^4.26.1"
+    yargs: "npm:^17.7.2"
+  peerDependencies:
+    typescript: ">= 4.8.x"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    msw: cli/index.js
+  checksum: 10/c64cfd64dfe897ec2e359d91aa74a6cbde5865c027bc7f79e6d9547a65cb0ac7b2c3d4b77364593a673d9d356f6caeafc0a72aecf29e64331e51f794ece5fa24
+  languageName: node
+  linkType: hard
+
+"msw@npm:^2.0.8":
   version: 2.7.6
   resolution: "msw@npm:2.7.6"
   dependencies:
