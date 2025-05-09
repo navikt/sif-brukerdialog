@@ -69,4 +69,4 @@ jobs:
               run: npx playwright install chromium
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=@navikt/dine-pleiepenger
+              run: yarn turbo playwright-test
