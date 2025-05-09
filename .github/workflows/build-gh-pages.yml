@@ -35,11 +35,17 @@ jobs:
               run: yarn build-storybook
               working-directory: apps/storybook
 
+            # Flytt Storybook-output til en subfolder
+            - name: Prepare Storybook for deployment
+              run: |
+                  mkdir -p deployment/storybook
+                  mv apps/storybook/storybook-static/* deployment/storybook/
+
             # Last opp bygget som en artefakt
             - name: Upload artifact for GitHub Pages
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: apps/storybook/storybook-static
+                  path: deployment
 
     deploy:
         name: Deploy to GitHub Pages
