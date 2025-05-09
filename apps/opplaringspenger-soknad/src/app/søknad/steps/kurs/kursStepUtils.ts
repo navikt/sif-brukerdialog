@@ -15,7 +15,7 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
+import { KursSøknadsdata, Opplæringsinstitusjon } from '../../../types/søknadsdata/KursSøknadsdata';
 import { KursFormFields, KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
@@ -24,6 +24,7 @@ import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuest
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
 import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
+import { Institusjon, Institusjoner } from '../../../api/institusjonService';
 
 dayjs.extend(isoWeek);
 
@@ -60,11 +61,38 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
-export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
-    const { opplæringsinstitusjon, kursperioder: kursperioderValues, ferieuttak, skalTaUtFerieIPerioden } = values;
+const getOpplæringsinstitusjon = (
+    { annenInstitusjon, navnAnnenInstitusjon, valgtOpplæringsinstitusjon }: KursFormValues,
+    institusjoner: Institusjon[],
+): Opplæringsinstitusjon | undefined => {
+    if (annenInstitusjon && navnAnnenInstitusjon) {
+        return {
+            navn: navnAnnenInstitusjon,
+        };
+    }
+    if (valgtOpplæringsinstitusjon) {
+        const opplæringsinstitusjon = institusjoner.find((i) => i.navn === valgtOpplæringsinstitusjon);
+        if (opplæringsinstitusjon) {
+            return {
+                uuid: opplæringsinstitusjon.uuid,
+                navn: opplæringsinstitusjon.navn,
+            };
+        }
+    }
+};
+
+export const getKursSøknadsdataFromFormValues = (
+    values: KursFormValues,
+    institusjoner: Institusjoner,
+): KursSøknadsdata | undefined => {
+    const { kursperioder: kursperioderValues, ferieuttak, skalTaUtFerieIPerioden } = values;
+
+    const opplæringsinstitusjon = getOpplæringsinstitusjon(values, institusjoner);
+
     if (!opplæringsinstitusjon || !kursperioderValues) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
+
     const kursperioder = kursperioderValues.map((periode, index) =>
         kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
     );
@@ -73,7 +101,7 @@ export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursS
         søknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode)),
         søknadsdatoer: getDatoerIKursperioder(kursperioder),
         reisedager: extractReisedagerSøknadsdata(values),
-        kursholder: opplæringsinstitusjon,
+        opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
     };
@@ -85,16 +113,17 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     }
 
     const defaultValues: KursFormValues = {
-        opplæringsinstitusjon: '',
+        valgtOpplæringsinstitusjon: '',
+        annenInstitusjon: false,
+        navnAnnenInstitusjon: '',
         kursperioder: [{}],
     };
 
     const { kurs } = søknadsdata;
 
     if (kurs) {
-        return {
+        const values = {
             ...defaultValues,
-            opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
             skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
             ...(kurs.reisedager.reiserUtenforKursdager === true
@@ -111,6 +140,13 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
                     ? kurs.ferieuttakIPerioden.ferieuttak
                     : undefined,
         };
+        if ('uuid' in kurs.opplæringsinstitusjon) {
+            values.valgtOpplæringsinstitusjon = kurs.opplæringsinstitusjon.navn;
+        } else if (kurs.opplæringsinstitusjon.navn) {
+            values.annenInstitusjon = true;
+            values.navnAnnenInstitusjon = kurs.opplæringsinstitusjon.navn;
+        }
+        return values;
     }
 
     return defaultValues;

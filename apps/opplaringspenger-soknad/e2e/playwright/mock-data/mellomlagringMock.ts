@@ -42,7 +42,10 @@ const søknadsdata: Søknadsdata = {
             ],
             reisedagerBeskrivelse: 'Kombinerer med ferie',
         },
-        kursholder: 'Barnas Fysioterapisenter i Bergen',
+        opplæringsinstitusjon: {
+            uuid: 'a3a41532-7db3-409a-9903-3d5b62fdb0ba',
+            navn: 'Barnas Fysioterapisenter i Bergen',
+        },
         kursperioder: [
             {
                 id: '0',

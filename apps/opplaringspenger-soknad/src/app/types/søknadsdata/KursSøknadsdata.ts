@@ -3,11 +3,20 @@ import { Kursperiode } from '../Kursperiode';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
 import { ReisedagerSøknadsdata } from './ReisedagerSøknadsdata';
 
-export interface KursSøknadsdata {
+export type Opplæringsinstitusjon =
+    | {
+          uuid: string;
+          navn: string;
+      }
+    | {
+          navn: string;
+      };
+
+export type KursSøknadsdata = {
     søknadsperiode: DateRange;
     søknadsdatoer: Date[];
     reisedager: ReisedagerSøknadsdata;
-    kursholder: string;
+    opplæringsinstitusjon: Opplæringsinstitusjon;
     kursperioder: Kursperiode[];
     ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata;
-}
+};

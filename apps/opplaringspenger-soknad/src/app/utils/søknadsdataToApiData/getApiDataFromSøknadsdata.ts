@@ -1,7 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Institusjoner } from '../../api/institusjonService';
 import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -35,7 +34,6 @@ export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[],
-    institusjoner: Institusjoner,
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -63,7 +61,7 @@ export const getApiDataFromSøknadsdata = (
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
-        kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
+        kurs: getKursApiDataFromSøknadsdata(kurs),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,

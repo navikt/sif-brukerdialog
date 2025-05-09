@@ -25,6 +25,10 @@ const nb = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
+    'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
+    'steg.kurs.validation.navnAnnenInstitusjon.stringIsTooShort':
+        'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
+    'steg.kurs.validation.navnAnnenInstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':
@@ -39,7 +43,6 @@ const nb = {
         '{antallDager, plural, one {Én reisedag} other {# reisedager}} er utenfor søknadsperioden: {dager}. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Hvis du vil søke om opplæringspenger for disse dagene, må du inkludere dem i perioden du søker om opplæringspenger. Hvis du ikke søker opplæringspenger disse dagene, må du fjerne dem her.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
         'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker. Feriedager utenfor søknadsperiode: {dager}.',
-    'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':
         'Noen av periodene du har lagt til overlapper hverandre. Se over fra og til datoene og korriger. Hvis periodene overlapper, må du slå disse periodene sammen til én.',
@@ -82,7 +85,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringa må vere ved ein godkjend helseinstitusjon eller eit offentleg spesialpedagogisk kompetansesenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Kvar føregår opplæringa?',
-    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkjeriktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkje riktig institusjon',
     'steg.kurs.opplæringsinstitusjon.readMore.content':
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
@@ -101,6 +104,10 @@ const nn: Record<keyof typeof nb, string> = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
+    'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut kvar opplæringa føregår.',
+    'steg.kurs.validation.navnAnnenInstitusjon.stringIsTooShort':
+        'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
+    'steg.kurs.validation.navnAnnenInstitusjon.stringHasNoValue': 'Du må fylle ut kvar opplæringa føregår.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dagar du ikkje har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':
@@ -115,7 +122,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Reisedag er ikkje innanfor dagane du søkjer. Dette kan skje om du har endra kva dagar du søkjer opplæringspengar, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikkje er innanfor dagane du søkjer.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
         'Ferie er ikkje innanfor dagane du søkjer. Dette kan skje om du har endra kva dagar du søkjer opplæringspengar, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikkje er innanfor dagane du søkjer.',
-    'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut kvar opplæringa føregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst éin kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':
         'Nokre av periodane du har lagt til overlappar kvarandre. Sjå over frå- og til-datoane og korriger. Om periodane overlappar, må du slå desse periodane saman til éi.',
