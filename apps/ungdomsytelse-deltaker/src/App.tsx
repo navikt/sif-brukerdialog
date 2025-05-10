@@ -8,6 +8,7 @@ import { useInitApiClients } from './hooks/useInitApiClients';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,9 @@ function App() {
             <ErrorBoundary fallback={<AppErrorFallback />}>
                 <QueryClientProvider client={queryClient}>
                     <AppIntlMessageProvider>
-                        <AppRouter />
+                        <AppRouter>
+                            <DeltakerInfoLoader />
+                        </AppRouter>
                         <DevFooter />
                     </AppIntlMessageProvider>
                 </QueryClientProvider>
