@@ -4,12 +4,12 @@ import { erStegTilgjengelig, getSkjemaStegIndex, getTilgjengeligeSteg, søknadSt
 import { useSøknadContext } from '../context/useSøknadContext';
 import { useSøknadNavigation } from './useSøknadNavigation';
 
-export const useErStegTilgjengelig = (steg: Steg) => {
+export const useKontrollerOmStegErTilgjengelig = (steg: Steg) => {
     const { svar, kontonummerInfo } = useSøknadContext();
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
 
     useEffect(() => {
-        const activeIndex = getSkjemaStegIndex(steg); // This should be dynamically set based on the current step
+        const activeIndex = getSkjemaStegIndex(steg);
         if (!erStegTilgjengelig(steg, svar, kontonummerInfo)) {
             if (activeIndex === 0) {
                 gotoVelkommenPage();

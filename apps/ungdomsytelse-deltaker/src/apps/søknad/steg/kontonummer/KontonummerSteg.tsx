@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
-import getLenker from '../../../../lenker';
+import getLenker from '../../../../utils/lenker';
 import ExternalLink from '../../components/external-link/ExternalLink';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';

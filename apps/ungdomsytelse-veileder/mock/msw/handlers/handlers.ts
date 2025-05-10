@@ -10,6 +10,7 @@ import {
 } from '../mocks/mockUtils';
 
 export const handlers = [
+    http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
     http.get('*login*', () => new HttpResponse(null, { status: 200 })),

@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
@@ -75,7 +75,14 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
         <VStack gap="4" className="hentDeltakerForm w-full">
             <VStack gap="2">
                 <form onSubmit={handleSubmit}>
-                    <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
+                    <Fieldset
+                        error={validationError}
+                        legend={
+                            <Heading level="2" size="medium" as="span">
+                                Finn deltaker
+                            </Heading>
+                        }
+                        hideLegend={false}>
                         <HStack gap="2" align="end" paddingBlock="2 0">
                             <HStack gap="2" align="end" paddingBlock="2 0">
                                 <TextField

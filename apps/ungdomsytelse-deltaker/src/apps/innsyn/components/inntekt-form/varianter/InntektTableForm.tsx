@@ -52,7 +52,7 @@ const InntektTableForm = ({ inntekt }: Props) => {
                         </Table.DataCell>
                     </Table.Row>
                 </Table.Body>
-            </Table>{' '}
+            </Table>
             {inntekt ? (
                 <ConfirmationCheckbox
                     name={InntektFormFields.bekrefterInntekt}

@@ -6,7 +6,7 @@ import { handleApiError } from '@navikt/ung-common';
 import hash from 'object-hash';
 import { z } from 'zod';
 import { Steg, SøknadSvar } from '../../types';
-import { YTELSE } from '../../../../constants';
+import { YTELSE } from '../../../../utils/constants';
 
 type MellomlagringHashInfo = {
     barn: Array<Pick<RegistrertBarn, 'fornavn' | 'fødselsdato'>>;

@@ -111,13 +111,14 @@ export const zNavn = z.object({
     etternavn: z.string(),
 });
 
-export const zDeltakerPersonlia = z.object({
+export const zDeltakerPersonalia = z.object({
     id: z.string().uuid().optional(),
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
+    programOppstartdato: z.string().date().optional(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zRegisterInntektArbeidOgFrilansDto = z.object({
@@ -187,7 +188,7 @@ export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
 
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
 
-export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
+export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
 export const zKontrollAvRegisterinntektResponse = zOppgaveDto;
 
@@ -197,7 +198,7 @@ export const zOpprettOppgaveForEndretProgramperiodeResponse = zOppgaveDto;
 
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 
-export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonlia;
+export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zHentKontonummerResponse = zKontonummerDto;
 

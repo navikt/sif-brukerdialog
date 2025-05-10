@@ -4,7 +4,7 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import BorderBox from '../../components/border-box/BorderBox';
+import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
 
 const StartPage = () => {

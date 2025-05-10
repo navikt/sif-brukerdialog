@@ -8,7 +8,7 @@ import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { Spørsmål } from '../types';
 import ExternalLink from '../components/external-link/ExternalLink';
 
-const VelkommenSteg = () => {
+const VelkommenPage = () => {
     const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
@@ -32,26 +32,28 @@ const VelkommenSteg = () => {
                 <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
 
                 <div>
-                    <BodyLong>
-                        Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
-                        <ExternalLink href="https://www.nav.no/endringer">
-                            Les mer om viktigheten av å gi riktige opplysninger
-                        </ExternalLink>
-                        .
-                    </BodyLong>
-                    <Box paddingBlock="4 8">
-                        <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
-                            <Checkbox
-                                value="bekrefter"
-                                onChange={(evt) => {
-                                    setError(undefined);
-                                    setInfoStemmer(evt.target.checked);
-                                }}>
-                                Jeg vil svare så godt jeg kan på spørsmålene i søknaden.
-                            </Checkbox>
-                        </CheckboxGroup>
-                    </Box>
-                    <form onSubmit={(evt) => handleSubmit(evt)}>
+                    <form onSubmit={handleSubmit}>
+                        <BodyLong>
+                            Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
+                            <ExternalLink href="https://www.nav.no/endringer">
+                                Les mer om viktigheten av å gi riktige opplysninger
+                            </ExternalLink>
+                            .
+                        </BodyLong>
+
+                        <Box paddingBlock="4 8">
+                            <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
+                                <Checkbox
+                                    value="bekrefter"
+                                    onChange={(evt) => {
+                                        setError(undefined);
+                                        setInfoStemmer(evt.target.checked);
+                                    }}>
+                                    Jeg vil svare så godt jeg kan på spørsmålene i søknaden.
+                                </Checkbox>
+                            </CheckboxGroup>
+                        </Box>
+
                         <Button variant="primary" icon={<ArrowRightIcon aria-hidden />} iconPosition="right">
                             Start søknad
                         </Button>
@@ -62,4 +64,4 @@ const VelkommenSteg = () => {
     );
 };
 
-export default VelkommenSteg;
+export default VelkommenPage;

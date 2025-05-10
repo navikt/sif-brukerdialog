@@ -39,11 +39,6 @@ export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
     return !deltakelse.harSøkt;
 };
 
-export const isValidUUID = (uuid: string): boolean => {
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-    return uuidRegex.test(uuid);
-};
-
 /**
  * Henter første og siste dato en deltaker kan meldes inn i programmet
  * @param deltaker

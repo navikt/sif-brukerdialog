@@ -1,15 +1,13 @@
 import { Box, Button, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-// import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AppPage from '../app-page/AppPage';
 
 interface State {
-    eventId: string | null;
     hasError: boolean;
     error: Error | null;
-    resetPending?: boolean;
+    resetPending: boolean;
 }
 
 interface Props {
@@ -18,32 +16,39 @@ interface Props {
     appTitle: string;
     onResetSoknad?: () => void;
 }
-class ErrorBoundary extends React.Component<Props, State> {
+
+class AppErrorBoundary extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.state = { eventId: null, hasError: false, error: null, resetPending: false };
+        this.state = {
+            hasError: false,
+            error: null,
+            resetPending: false,
+        };
     }
 
-    componentDidCatch(error: Error | null, errorInfo: any): void {
-        if (error && error.message !== 'window.hasFocus is not a function') {
-            this.setState({ ...this.state, hasError: true, error });
-            // eslint-disable-next-line no-console
-            console.error(errorInfo);
-            // if (this.props.appKey) {
-            //     getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
-            // }
-        }
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+        this.setState({ hasError: true, error });
+        console.error('Error caught by ErrorBoundary:', error, errorInfo);
+
+        // Eksempel på logging (kan tilpasses med Sentry eller annen logger)
+        // if (this.props.appKey) {
+        //     getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
+        // }
     }
 
-    resetSoknad = async () => {
+    resetSoknad = () => {
         if (this.props.onResetSoknad) {
-            this.setState({ ...this.state, resetPending: true });
+            this.setState({ resetPending: true });
             this.props.onResetSoknad();
         }
     };
 
     render() {
-        if (this.state.hasError) {
+        const { hasError, resetPending } = this.state;
+        const { children, onResetSoknad } = this.props;
+
+        if (hasError) {
             return (
                 <AppPage>
                     <Block margin="xxxl">
@@ -51,15 +56,14 @@ class ErrorBoundary extends React.Component<Props, State> {
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
-
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
                             <Box marginBlock="4 0">
-                                {this.props.onResetSoknad && (
+                                {onResetSoknad && (
                                     <Button
                                         type="button"
                                         onClick={this.resetSoknad}
                                         variant="secondary"
-                                        loading={this.state.resetPending}
+                                        loading={resetPending}
                                         size="small">
                                         Start på nytt
                                     </Button>
@@ -70,7 +74,9 @@ class ErrorBoundary extends React.Component<Props, State> {
                 </AppPage>
             );
         }
-        return this.props.children;
+
+        return children;
     }
 }
-export default ErrorBoundary;
+
+export default AppErrorBoundary;

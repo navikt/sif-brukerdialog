@@ -2,7 +2,7 @@ import { BodyLong, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds
 import { dateFormatter } from '@navikt/sif-common-utils';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import { useAppIntl } from '../../../i18n';
-import getLenker from '../../../lenker';
+import getLenker from '../../../utils/lenker';
 import ExternalLink from './external-link/ExternalLink';
 
 interface Props {

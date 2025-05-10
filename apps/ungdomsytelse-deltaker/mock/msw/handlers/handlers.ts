@@ -3,7 +3,7 @@ import { delay, http, HttpResponse } from 'msw';
 import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
 import { deltakelserMockStorage } from './deltakelseMockStorage';
-import { YTELSE } from '../../../src/constants';
+import { YTELSE } from '../../../src/utils/constants';
 import { Steg } from '../../../src/apps/søknad/types';
 import { MellomlagringDTO } from '../../../src/apps/søknad/api/mellomlagring/mellomlagring';
 
@@ -15,6 +15,7 @@ export const getHandlers = () => {
 
     return [
         http.post('*umami*', () => new HttpResponse(null, { status: 200 })),
+        http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*amplitude.nav.no*', () => new HttpResponse(null, { status: 200 })),
         http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),

@@ -1,10 +1,9 @@
 import { Heading, List, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { AppText } from '../../../i18n';
-import getLenker from '../../../lenker';
+import getLenker from '../../../utils/lenker';
 import ExternalLink from './external-link/ExternalLink';
 
-const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
+const BehandlingAvPersonopplysningerContent = () => {
     return (
         <VStack gap="2" paddingBlock="2 0">
             <div>
