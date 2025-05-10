@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import AppHeader from './components/app-header/AppHeader';
-import ErrorBoundary from './components/error-boundary/ErrorBoundary';
+import AppErrorBoundary from './components/error-boundary/AppErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
@@ -25,7 +25,7 @@ const App = () => {
     return (
         <ThemeProvider>
             <VeilederProvider>
-                <ErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
+                <AppErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
                     <QueryClientProvider client={queryClient}>
                         <IntlProvider locale="nb" messages={appMessages.nb}>
                             <AppHeader />
@@ -40,7 +40,7 @@ const App = () => {
                             </main>
                         </IntlProvider>
                     </QueryClientProvider>
-                </ErrorBoundary>
+                </AppErrorBoundary>
             </VeilederProvider>
         </ThemeProvider>
     );
