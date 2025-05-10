@@ -16,26 +16,22 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     const kontonummer = useKontonummer();
     const barn = useBarn();
 
-    const isLoading = barn.isLoading || kontonummer.isLoading;
-    const error = barn.isError;
-
-    if (isLoading) {
+    if (barn.isLoading || kontonummer.isLoading) {
         return <LoadingPage />;
     }
 
-    if (error) {
-        return <HentDeltakerErrorPage error="Feil ved lasting" />;
+    if (barn.isError || kontonummer.isError) {
+        const errorMessage = barn.isError ? 'Feil ved lasting av barn' : 'Feil ved lasting av kontonummer';
+        return <HentDeltakerErrorPage error={errorMessage} />;
     }
+
+    const kontonummerData = kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined;
 
     return (
         <SøknadProvider
             søker={søker}
             deltakelsePeriode={deltakelsePeriode}
-            kontonummer={
-                kontonummer.data?.harKontonummer === true && kontonummer.data?.kontonummer
-                    ? kontonummer.data.kontonummer
-                    : undefined
-            }
+            kontonummer={kontonummerData}
             barn={barn.data || []}>
             <SøknadRouter />
         </SøknadProvider>

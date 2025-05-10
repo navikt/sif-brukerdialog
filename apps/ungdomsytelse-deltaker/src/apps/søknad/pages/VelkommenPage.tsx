@@ -8,7 +8,7 @@ import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { Spørsmål } from '../types';
 import ExternalLink from '../components/external-link/ExternalLink';
 
-const VelkommenSteg = () => {
+const VelkommenPage = () => {
     const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
@@ -62,4 +62,4 @@ const VelkommenSteg = () => {
     );
 };
 
-export default VelkommenSteg;
+export default VelkommenPage;
