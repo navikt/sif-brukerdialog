@@ -1,13 +1,18 @@
 import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
 import { deltakelserMockStorage } from '../../mock/msw/handlers/deltakelseMockStorage';
+import { getAppEnv } from '../utils/appEnv';
+import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
 
-const DevFooter: React.FunctionComponent = () => {
+const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
     const [scenario, setScenario] = useState<Scenario>(getScenarioFromLocalStorage());
+
+    if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
+        return null;
+    }
 
     const setScenarioFromValue = (value: string) => {
         const scenarioFromValue = scenarioer.find((s) => s.value === value);

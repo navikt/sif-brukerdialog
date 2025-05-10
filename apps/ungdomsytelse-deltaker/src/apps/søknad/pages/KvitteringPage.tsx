@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
-import getLenker from '../../../lenker';
+import getLenker from '../../../utils/lenker';
 
 const KvitteringPage = () => {
     return (
