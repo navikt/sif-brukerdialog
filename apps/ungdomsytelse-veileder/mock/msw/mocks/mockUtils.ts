@@ -1,37 +1,18 @@
+/* eslint-disable no-console */
 import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
-import { DeltakerPersonlia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    DeltakerPersonaliaReadable,
+    DeltakerPersonaliaWritable,
+    OppgaveDto,
+    OppgaveStatus,
+    Oppgavetype,
+} from '@navikt/ung-deltakelse-opplyser-api';
 import { Veileder } from '../../../src/types/Veileder';
+
+type DeltakerPersonlia = DeltakerPersonaliaReadable | DeltakerPersonaliaWritable;
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
-
-/** Fnr */
-export const findDeltaker = (deltakerIdent: string) => {
-    switch (deltakerIdent) {
-        case nyDeltakerMock.deltakerIdent:
-            return nyDeltakerMock;
-        case registrertDeltakerMock.deltakerIdent:
-            return registrertDeltakerMock;
-        default:
-            console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
-            return null;
-    }
-};
-
-/** Registrert id som deltake */
-export const getDeltakerByDeltakerId = (deltakerId: string) => {
-    if (deltakerId) {
-        switch (deltakerId) {
-            case registrertDeltakerMock.id:
-                return registrertDeltakerMock;
-            case nyDeltakerRegistrert.id:
-                return nyDeltakerRegistrert;
-            default:
-                console.log('fant ikke deltaker med id', deltakerId);
-                return null;
-        }
-    }
-};
 
 export const nyDeltakerMock: DeltakerPersonlia = {
     id: null as any,
@@ -62,6 +43,35 @@ export const registrertDeltakerMock: DeltakerPersonlia = {
     førsteMuligeInnmeldingsdato: '2013-05-10',
     sisteMuligeInnmeldingsdato: '2025-04-10',
 };
+
+/** Fnr */
+export const findDeltaker = (deltakerIdent: string) => {
+    switch (deltakerIdent) {
+        case nyDeltakerMock.deltakerIdent:
+            return nyDeltakerMock;
+        case registrertDeltakerMock.deltakerIdent:
+            return registrertDeltakerMock;
+        default:
+            console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
+            return null;
+    }
+};
+
+/** Registrert id som deltake */
+export const getDeltakerByDeltakerId = (deltakerId: string) => {
+    if (deltakerId) {
+        switch (deltakerId) {
+            case registrertDeltakerMock.id:
+                return registrertDeltakerMock;
+            case nyDeltakerRegistrert.id:
+                return nyDeltakerRegistrert;
+            default:
+                console.log('fant ikke deltaker med id', deltakerId);
+                return null;
+        }
+    }
+};
+
 export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
 
 export const mockOppgave: OppgaveDto = {
