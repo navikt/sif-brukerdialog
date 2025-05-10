@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import AppHeader from './components/app-header/AppHeader';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';

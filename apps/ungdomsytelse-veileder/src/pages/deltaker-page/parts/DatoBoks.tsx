@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
-import InfoBox from '../../../components/info-box/InfoBox';
+import InfoBox from '../../../atoms/InfoBox';
 import { PencilFillIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
