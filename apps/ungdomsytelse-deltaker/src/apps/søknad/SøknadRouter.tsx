@@ -53,7 +53,7 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index={true} element={<VelkommenPage />} />
-            <Route path="soknad" element={<Navigate to="/soknad/barn" replace={true} />} />
+            <Route path="soknad" element={<Navigate to="/soknad/kontonummer" replace={true} />} />
             <Route path="soknad/barn" element={<BarnSteg />} />
             <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
             <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />

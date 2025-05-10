@@ -2,10 +2,6 @@ import { KontonummerInfo, Spørsmål, Steg, SøknadSvar } from '../types';
 
 export const søknadSteg = [Steg.KONTONUMMER, Steg.BARN, Steg.OPPSUMMERING];
 
-export const getStegIndex = (steg: Steg): number => {
-    return søknadSteg.findIndex((s) => s === steg);
-};
-
 export const getSkjemaStegIndex = (steg: Steg): number => {
     return søknadSteg.findIndex((s) => s === steg);
 };
@@ -16,16 +12,6 @@ export const getStegFraPath = (path: string): Steg | undefined => {
         return steg;
     }
     return;
-};
-
-export const getNesteSkjemaSteg = (steg: Steg): Steg | undefined => {
-    const index = getSkjemaStegIndex(steg);
-    return index > steg.length - 1 ? søknadSteg[index + 1] : undefined;
-};
-
-export const getForrigeSkjemaSteg = (steg: Steg): Steg | undefined => {
-    const index = getSkjemaStegIndex(steg);
-    return index > 0 ? søknadSteg[index - 1] : undefined;
 };
 
 export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: KontonummerInfo): Steg[] => {
