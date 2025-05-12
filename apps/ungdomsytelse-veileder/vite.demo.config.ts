@@ -8,7 +8,7 @@ import { AppEnv } from './env.schema';
 
 dotenv.config();
 
-const appSettings: AppEnv = {
+const appSettings: AppEnv & { IS_LOCAL: string } = {
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
@@ -16,6 +16,8 @@ const appSettings: AppEnv = {
     UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
+
+    IS_LOCAL: `${process.env.IS_LOCAL}`,
 };
 
 const veileder = { name: 'Pål', NAVident: 'Z999999' };
