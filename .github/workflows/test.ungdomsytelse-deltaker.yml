@@ -78,7 +78,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application for testing
-              run: yarn demo:build --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn turbo demo:build --filter=@navikt/ungdomsytelse-deltaker
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-deltaker

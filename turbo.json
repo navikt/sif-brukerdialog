@@ -2,6 +2,9 @@
     "$schema": "https://turborepo.org/schema.json",
     "globalEnv": [],
     "tasks": {
+        "demo:build": {
+            "outputs": ["dist-demo/**"]
+        },
         "build-demo": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-demo"]
