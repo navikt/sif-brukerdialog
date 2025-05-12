@@ -37,9 +37,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
         rollupOptions: {
-            input: {
-                standalone: './demo/index.html',
-            },
+            input: './demo/index.html',
         },
         outDir: './dist-demo',
         emptyOutDir: true,

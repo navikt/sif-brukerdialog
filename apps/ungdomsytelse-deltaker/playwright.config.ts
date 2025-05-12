@@ -22,7 +22,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn start:dist-demo',
+        command: 'yarn demo:start',
         url: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-deltaker/',
         reuseExistingServer: true,
         env: playwrightEnv,
