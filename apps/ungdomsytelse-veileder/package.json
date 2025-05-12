@@ -7,8 +7,7 @@
     "private": true,
     "version": "0.5.4",
     "scripts": {
-        "dev": "node ./dev-server.cjs",
-        "dev:vite": "vite",
+        "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.demo.config.ts --port 8088",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/",
         "check:types": "tsc --noemit",
