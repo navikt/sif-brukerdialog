@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import App from './App';
 
 async function enableMocking() {
@@ -16,7 +16,7 @@ async function enableMocking() {
 enableMocking().then(() =>
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
-            <BrowserRouter basename="/">
+            <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
                 <App />
             </BrowserRouter>
         </StrictMode>,
