@@ -16,7 +16,7 @@ const queryClient = new QueryClient();
 
 initApiClients();
 
-if (getMaybeEnv('VITE')) {
+if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
