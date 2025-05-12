@@ -10,7 +10,7 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.2.1",
-        "@sanity/client": "7.1.0"
+        "@sanity/client": "7.2.1"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.21.1",
