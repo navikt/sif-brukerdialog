@@ -1,20 +1,12 @@
 /* eslint-disable no-console */
 import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
-import {
-    DeltakerPersonaliaReadable,
-    DeltakerPersonaliaWritable,
-    OppgaveDto,
-    OppgaveStatus,
-    Oppgavetype,
-} from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakerPersonalia, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 import { Veileder } from '../../../src/types/Veileder';
-
-type DeltakerPersonlia = DeltakerPersonaliaReadable | DeltakerPersonaliaWritable;
 
 const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
 export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
 
-export const nyDeltakerMock: DeltakerPersonlia = {
+export const nyDeltakerMock: DeltakerPersonalia = {
     id: null as any,
     deltakerIdent: '56857102105',
     navn: {
@@ -32,7 +24,7 @@ const nyDeltakerRegistrert = {
     id: nyDeltakerId,
 };
 
-export const registrertDeltakerMock: DeltakerPersonlia = {
+export const registrertDeltakerMock: DeltakerPersonalia = {
     id: registrertDeltakerId,
     deltakerIdent: '03867198392',
     navn: {
