@@ -1,34 +1,31 @@
 import { Theme } from '@navikt/ds-react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router-dom';
-import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
-import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
-import DeltakerInfoLoader from './DeltakerInfoLoader';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AppRouter from './AppRouter';
+import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
+import AppErrorFallback from './components/error-boundary/AppErrorFallback';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
+import { initApiClients } from './hooks/useInitApiClients';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css/darkside';
 import './app.css';
 
-initUngDeltakelseOpplyserApiClient({
-    onUnAuthorized: () => {
-        window.location.assign(getCommonEnv()[EnvKey.SIF_PUBLIC_LOGIN_URL]);
-    },
-});
-initK9BrukerdialogProsesseringApiClient();
+const queryClient = new QueryClient();
+
+initApiClients();
 
 function App() {
-    const publicPath = getRequiredEnv('PUBLIC_PATH');
-
     return (
         <Theme>
-            <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
-                <AppIntlMessageProvider>
-                    <BrowserRouter basename={publicPath}>
-                        <DeltakerInfoLoader />
-                    </BrowserRouter>
-                    {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
-                </AppIntlMessageProvider>
+            <ErrorBoundary fallback={<AppErrorFallback />}>
+                <QueryClientProvider client={queryClient}>
+                    <AppIntlMessageProvider>
+                        <AppRouter>
+                            <DeltakerInfoLoader />
+                        </AppRouter>
+                        <DevFooter />
+                    </AppIntlMessageProvider>
+                </QueryClientProvider>
             </ErrorBoundary>
         </Theme>
     );

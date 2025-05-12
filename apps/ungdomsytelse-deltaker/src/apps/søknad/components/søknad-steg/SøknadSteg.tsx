@@ -1,7 +1,7 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useErStegTilgjengelig } from '../../hooks/utils/useErStegTilgjengelig';
+import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Steg } from '../../types';
 import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
@@ -15,12 +15,12 @@ interface Props {
 }
 
 const SøknadSteg = ({ steg, tittel, children }: Props) => {
-    useErStegTilgjengelig(steg);
+    useKontrollerOmStegErTilgjengelig(steg);
 
     const { avbrytOgSlett } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
-    const handleOnStepChange = (stegIndex: number) => {
+    const handleOnProgressStepChange = (stegIndex: number) => {
         if (stegIndex > 0) {
             gotoSteg(søknadSteg[stegIndex - 1]);
         }
@@ -31,7 +31,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     return (
         <Page title={`${tittel} - Søknad om ungdomsprogramytelse`}>
             <VStack gap="8">
-                <SøknadHeader tittel="Søknad om ungdomsprogramytelse" />
+                <SøknadHeader />
                 <div>
                     <Box paddingBlock="6 5">
                         <Heading level="2" size="large">
@@ -41,15 +41,12 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                     <FormProgress
                         totalSteps={søknadSteg.length}
                         activeStep={activeIndex}
-                        onStepChange={handleOnStepChange}>
-                        <FormProgress.Step completed={activeIndex > 0} interactive={true}>
-                            Oppstart
+                        onStepChange={handleOnProgressStepChange}>
+                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
+                            Kontonummer for utbetaling
                         </FormProgress.Step>
                         <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
                             Barn
-                        </FormProgress.Step>
-                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                            Kontonummer for utbetaling
                         </FormProgress.Step>
                         <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
                     </FormProgress>

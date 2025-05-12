@@ -39,6 +39,13 @@
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
-        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
+
+        "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.ansatt.dev.nav.no/endringer",
+        "SIF_PUBLIC_URL_PERSONOPPLYSNINGER": "https://www.ansatt.dev.nav.no/person/personopplysninger/nb/",
+        "SIF_PUBLIC_URL_PERSONVERN": "https://www.ansatt.dev.nav.no/personvernerklaering",
+        "SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN": "https://www.ansatt.dev.nav.no/personvernerklaering",
+        "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no",
+        "SIF_PUBLIC_URL_ENDRE_KONTONUMMER": "https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer"
     }
 }

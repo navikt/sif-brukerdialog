@@ -5,6 +5,6 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/types"],
         "baseUrl": "./"
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*"]
+    "exclude": ["node_modules", "src/build", "**.js", "dist", "dist-demo", "demo"],
+    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*", "./vite-demo-env.d.ts", "./e2e/playwright/**/*"]
 }

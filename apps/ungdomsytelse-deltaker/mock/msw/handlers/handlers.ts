@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import { delay, http, HttpResponse } from 'msw';
 import { getScenarioFromLocalStorage } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from '../mocks/scenarioes';
 import { deltakelserMockStorage } from './deltakelseMockStorage';
-import { YTELSE } from '../../../src/constants';
+import { YTELSE } from '../../../src/utils/constants';
 import { Steg } from '../../../src/apps/søknad/types';
 import { MellomlagringDTO } from '../../../src/apps/søknad/api/mellomlagring/mellomlagring';
 
@@ -14,16 +15,18 @@ export const getHandlers = () => {
 
     return [
         http.post('*umami*', () => new HttpResponse(null, { status: 200 })),
+        http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*amplitude.nav.no*', () => new HttpResponse(null, { status: 200 })),
         http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
         http.get('*nav.no*', () => new HttpResponse(null, { status: 200 })),
+        http.get('*www.nav.no/dekoratoren*', () => new HttpResponse(null, { status: 200 })),
         http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
         http.get('**/deltaker/hent-kontonummer', async () => {
             // await delay(3000);
             // return new HttpResponse(null, { status: 404 });
-            return HttpResponse.json({ kontonummer: '12345678901' });
+            return HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' });
         }),
         http.get('**/oppslag/soker', () => {
             return HttpResponse.json(søker);
@@ -43,8 +46,8 @@ export const getHandlers = () => {
         }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
             // deltakelserMockStorage.actions.setDeltakelseSøktFor();
-            // return HttpResponse.json({});
-            return new HttpResponse(null, { status: 500 });
+            return HttpResponse.json({});
+            // return new HttpResponse(null, { status: 500 });
         }),
         http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
             const text = await request.text();
@@ -71,7 +74,6 @@ export const getHandlers = () => {
                     bekrefter: true,
                     barn: 'yes',
                     kontonummer: 'no',
-                    oppstart: 'yes',
                 },
                 meta: { aktivtSteg: Steg.BARN, hash: '' },
             };

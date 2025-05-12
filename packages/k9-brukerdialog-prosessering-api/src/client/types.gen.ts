@@ -21,12 +21,11 @@ export type Ungdomsytelsesøknad = {
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
+    barnErRiktig: boolean;
+    kontonummerFraRegister?: string;
+    kontonummerErRiktig?: boolean;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    oppstartErRiktig: boolean;
-    barnErRiktig: boolean;
-    kontonummerErRiktig?: boolean; // undefined hvis søker ikke har kontonummer (_harKontonummer)
-    _harKontonummer: boolean;
 };
 
 export type UngdomsytelseOppgaveDto = {

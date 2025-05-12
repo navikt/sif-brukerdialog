@@ -1,7 +1,9 @@
-import { BodyLong, BodyShort, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import { useAppIntl } from '../../../i18n';
+import getLenker from '../../../utils/lenker';
+import ExternalLink from './external-link/ExternalLink';
 
 interface Props {
     fornavn: string;
@@ -17,18 +19,27 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                     Hei {fornavn}!
                 </Heading>
                 <VStack gap="4">
-                    <BodyLong size="large">
-                        Veilederen din har meldt deg inn i ungdomsprogrammet fra{' '}
-                        <strong>{dateFormatter.dateShortMonthYear(startdato)}</strong>.
+                    <BodyLong>
+                        Du er meldt inn i ungdomsprogrammet fra{' '}
+                        <strong>{dateFormatter.dayDateMonthYear(startdato)}</strong>.
                     </BodyLong>
-                    <BodyShort>
-                        Fordi du er med i ungdomsprogrammet kan du søke om ytelse fra oss. Det sikrer deg inntekt mens
-                        du jobber med å komme i jobb eller utdanning. For å søke om ytelsen, må du fylle ut denne
-                        søknaden. Les mer om ungdomsprogrammet og ytelsen på nav.no[TODO].
-                    </BodyShort>
-                    <ReadMore header={text('personopplysninger.accordion.header')}>
-                        <BehandlingAvPersonopplysningerContent />
-                    </ReadMore>
+                    <BodyLong>
+                        Når du er med i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen. Da
+                        får du utbetalt penger hver måned så lenge du deltar i programmet.
+                    </BodyLong>
+                    <BodyLong>
+                        Du søker om ungdomsprogramytelsen ved å fylle ut denne søknaden. Les mer om{' '}
+                        <ExternalLink href={getLenker().omUngdomsprogramytelsen}>
+                            ungdomsprogrammet og -ytelsen på nav.no
+                        </ExternalLink>
+                        .
+                    </BodyLong>
+                    <VStack gap="0">
+                        <ReadMore header="Hva hvis datoen ikke stemmer?">[TODO]</ReadMore>
+                        <ReadMore header={text('personopplysninger.accordion.header')}>
+                            <BehandlingAvPersonopplysningerContent />
+                        </ReadMore>
+                    </VStack>
                 </VStack>
             </Box>
         </GuidePanel>

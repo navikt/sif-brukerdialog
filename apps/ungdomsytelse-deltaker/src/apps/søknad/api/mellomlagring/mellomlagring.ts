@@ -6,7 +6,7 @@ import { handleApiError } from '@navikt/ung-common';
 import hash from 'object-hash';
 import { z } from 'zod';
 import { Steg, SøknadSvar } from '../../types';
-import { YTELSE } from '../../../../constants';
+import { YTELSE } from '../../../../utils/constants';
 
 type MellomlagringHashInfo = {
     barn: Array<Pick<RegistrertBarn, 'fornavn' | 'fødselsdato'>>;
@@ -20,7 +20,6 @@ const createHashString = (info: MellomlagringHashInfo) => {
 export const zMellomlagringSchema = z.object({
     søknad: z.object({
         bekrefter: z.boolean().optional(),
-        oppstart: z.nativeEnum(YesOrNo).optional(),
         barn: z.nativeEnum(YesOrNo).optional(),
         kontonummer: z.nativeEnum(YesOrNo).optional(),
     }),

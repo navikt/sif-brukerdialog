@@ -7,9 +7,7 @@ export type ProblemDetail = {
     detail?: string;
     instance?: string;
     properties?: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
 };
 
@@ -20,6 +18,11 @@ export type EndrePeriodeDatoDto = {
 export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
     arbeidsgiver: string;
+};
+
+export type BekreftelseDto = {
+    harGodtattEndringen: boolean;
+    uttalelseFraBruker?: string;
 };
 
 export type DeltakelseOpplysningDto = {
@@ -51,6 +54,7 @@ export type OppgaveDto = {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     oppgavetypeData: EndretProgramperiodeDataDto | KontrollerRegisterinntektOppgavetypeDataDto;
+    bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
     løstDato?: string;
@@ -68,9 +72,7 @@ export enum Oppgavetype {
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
 }
 
-export type OppgavetypeDataDto = {
-    [key: string]: unknown;
-};
+export type OppgavetypeDataDto = unknown;
 
 export type ProgramperiodeDto = {
     fomDato: string;
@@ -107,13 +109,13 @@ export type DeltakerOpplysningerDto = {
     opplysninger: Array<DeltakelseOpplysningDto>;
 };
 
-export type DeltakerPersonlia = {
+export type DeltakerPersonalia = {
     id?: string;
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -155,7 +157,8 @@ export type EndretProgamperiodeOppgaveDto = {
 };
 
 export type KontonummerDto = {
-    kontonummer: string;
+    harKontonummer: boolean;
+    kontonummer?: string;
 };
 
 export type DeltakelsePeriodInfo = {
@@ -413,7 +416,7 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerResponse =
@@ -653,7 +656,7 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse =

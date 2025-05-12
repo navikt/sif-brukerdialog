@@ -12,6 +12,9 @@ export default defineConfig({
         }),
         checker({ typescript: true }),
     ],
+    define: {
+        __IS_GITHUB_PAGES__: true,
+    },
     server: {
         port: 8080,
         proxy: {
@@ -34,9 +37,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
         rollupOptions: {
-            input: {
-                standalone: './demo/index.html',
-            },
+            input: './demo/index.html',
         },
         outDir: './dist-demo',
         emptyOutDir: true,

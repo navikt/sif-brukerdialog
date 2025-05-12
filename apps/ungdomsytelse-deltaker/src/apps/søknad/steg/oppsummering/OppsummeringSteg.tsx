@@ -1,69 +1,31 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg, SøknadSvar } from '../../types';
+import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
-
-type UngdomsytelsesøknadV2 = Ungdomsytelsesøknad & {
-    oppstartErRiktig: boolean;
-    barnErRiktig: boolean;
-    kontonummerErRiktig?: boolean;
-    _harKontonummer: boolean;
-};
-
-export const isYesOrNoAnswered = (answer?: YesOrNo) => {
-    return answer !== undefined && (answer === YesOrNo.NO || answer === YesOrNo.YES);
-};
-
-const getSøknadFromSvar = (
-    svar: SøknadSvar,
-    søkerNorskIdent: string,
-    startdato: Date,
-    harKontonummer: boolean,
-): Omit<UngdomsytelsesøknadV2, 'harBekreftetOpplysninger'> | undefined => {
-    if (
-        (svar[Spørsmål.FORSTÅR_PLIKTER] !== true,
-        !isYesOrNoAnswered(svar[Spørsmål.OPPSTART]) ||
-            !isYesOrNoAnswered(svar[Spørsmål.BARN]) ||
-            (harKontonummer && !isYesOrNoAnswered(svar[Spørsmål.KONTONUMMER])))
-    ) {
-        return undefined;
-    }
-
-    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-
-    return {
-        språk: 'nb',
-        startdato: dateToISODate(startdato),
-        harForståttRettigheterOgPlikter,
-        oppstartErRiktig: svar[Spørsmål.OPPSTART] === YesOrNo.YES,
-        barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
-        kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
-        søkerNorskIdent,
-        _harKontonummer: harKontonummer,
-    };
-};
+import { getBarnSpørsmål } from '../barn/BarnSteg';
+import { buildSøknadFromSvar } from './oppsummeringUtils';
 
 const OppsummeringSteg = () => {
-    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn } = useSøknadContext();
+    const { søker, deltakelsePeriode, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
-    const harKontonummer = kontonummer !== undefined && kontonummer !== null;
-
-    const { svar } = useSøknadContext();
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, harKontonummer);
+    const søknad = buildSøknadFromSvar(
+        svar,
+        søker.fødselsnummer,
+        deltakelsePeriode.programPeriode.from,
+        kontonummerInfo.harKontonummer ? kontonummerInfo.kontonummerFraRegister : undefined,
+    );
 
     const søknadError = søknad
         ? undefined
@@ -98,19 +60,27 @@ const OppsummeringSteg = () => {
                     <VStack gap="4">
                         <FormSummary>
                             <FormSummary.Header>
-                                <FormSummary.Heading level="2">Oppstart</FormSummary.Heading>
-                                <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.OPPSTART)} />
+                                <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>
+                                <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
                             </FormSummary.Header>
                             <FormSummary.Answers>
-                                <FormSummary.Answer>
-                                    <FormSummary.Label>
-                                        Er det riktig at du starter i ungdomsprogrammet{' '}
-                                        {dateFormatter.dayDateMonthYear(deltakelsePeriode.programPeriode.from)}?
-                                    </FormSummary.Label>
-                                    <FormSummary.Value>
-                                        {svar[Spørsmål.OPPSTART] === YesOrNo.YES ? 'Ja' : 'Nei'}
-                                    </FormSummary.Value>
-                                </FormSummary.Answer>
+                                {kontonummerInfo.harKontonummer ? (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>
+                                            Stemmer det at kontonummeret ditt er {kontonummerInfo.formatertKontonummer}?
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
+                                ) : (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>Kontonummer for utbetaling</FormSummary.Label>
+                                        <FormSummary.Value>
+                                            Vi har ikke registrert noe kontonummer på deg.
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
+                                )}
                             </FormSummary.Answers>
                         </FormSummary>
                         <FormSummary>
@@ -126,36 +96,11 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Stemmer informasjonen om barn?</FormSummary.Label>
+                                    <FormSummary.Label>{getBarnSpørsmål(barn.length)}</FormSummary.Label>
                                     <FormSummary.Value>
                                         {svar[Spørsmål.BARN] === YesOrNo.YES ? 'Ja' : 'Nei'}
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
-                            </FormSummary.Answers>
-                        </FormSummary>
-                        <FormSummary>
-                            <FormSummary.Header>
-                                <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>
-                                <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
-                            </FormSummary.Header>
-                            <FormSummary.Answers>
-                                {harKontonummer ? (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>
-                                            Stemmer det at kontonummeret ditt er {kontonummer}?
-                                        </FormSummary.Label>
-                                        <FormSummary.Value>
-                                            {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                ) : (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>Kontonummer for utbetaling</FormSummary.Label>
-                                        <FormSummary.Value>
-                                            Vi har ikke registrert noe kontonummer på deg.
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                )}
                             </FormSummary.Answers>
                         </FormSummary>
                     </VStack>
@@ -182,7 +127,7 @@ const OppsummeringSteg = () => {
 
                     <SkjemaFooter
                         pending={isPending}
-                        forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
+                        forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
                         submit={{ tittel: 'Send søknad', disabled: !!søknadError, erSendInn: true }}
                     />
                 </VStack>

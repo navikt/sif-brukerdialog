@@ -56,7 +56,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                         endre={
                             kanEndreSluttdato(deltakelse, tillattEndringsperiode)
                                 ? {
-                                      label: 'Endre sluttdato',
+                                      label: deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato',
                                       onClick: () => {
                                           setEndretDeltakelse(undefined);
                                           setFormVariant(EndrePeriodeVariant.sluttdato);

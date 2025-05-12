@@ -1,13 +1,13 @@
-import { Heading, Link, List, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
-import getLenker from '../../../lenker';
+import getLenker from '../../../utils/lenker';
+import ExternalLink from './external-link/ExternalLink';
 
-const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
+const BehandlingAvPersonopplysningerContent = () => {
     return (
         <VStack gap="2" paddingBlock="2 0">
             <div>
-                <Heading level="3" size="xsmall" spacing={true}>
+                <Heading level="3" size="xsmall" spacing={true} as="div">
                     <AppText id="personopplysninger.1" />
                 </Heading>
                 <p>
@@ -16,7 +16,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
             </div>
 
             <div>
-                <Heading level="3" size="xsmall">
+                <Heading level="3" size="xsmall" as="div">
                     <AppText id="personopplysninger.3" />
                 </Heading>
                 <p>
@@ -45,11 +45,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 <AppText
                     id="personopplysninger.5"
                     values={{
-                        Lenke: (children) => (
-                            <Link href={getLenker().personvern} target="_blank">
-                                {children}
-                            </Link>
-                        ),
+                        Lenke: (children) => <ExternalLink href={getLenker().personvern}>{children}</ExternalLink>,
                     }}
                 />
             </div>

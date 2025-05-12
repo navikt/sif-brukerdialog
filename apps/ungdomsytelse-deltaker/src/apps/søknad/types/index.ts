@@ -3,25 +3,32 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DeltakelsePeriode } from '@navikt/ung-common';
 
 export enum Steg {
-    'OPPSTART' = 'oppstart',
-    'BARN' = 'barn',
     'KONTONUMMER' = 'kontonummer',
+    'BARN' = 'barn',
     'OPPSUMMERING' = 'oppsummering',
 }
 
 export enum Spørsmål {
     FORSTÅR_PLIKTER = 'harForståttRettigheterOgPlikter',
-    OPPSTART = 'oppstart',
-    BARN = 'barn',
     KONTONUMMER = 'kontonummer',
+    BARN = 'barn',
 }
 
 export type SøknadSvar = {
     [Spørsmål.FORSTÅR_PLIKTER]?: boolean;
-    [Spørsmål.OPPSTART]?: YesOrNo;
-    [Spørsmål.BARN]?: YesOrNo;
     [Spørsmål.KONTONUMMER]?: YesOrNo;
+    [Spørsmål.BARN]?: YesOrNo;
 };
+
+export type KontonummerInfo =
+    | {
+          harKontonummer: true;
+          kontonummerFraRegister: string;
+          formatertKontonummer?: string;
+      }
+    | {
+          harKontonummer: false;
+      };
 
 export interface SøknadContextType {
     søker: Søker;
@@ -29,7 +36,7 @@ export interface SøknadContextType {
     svar: SøknadSvar;
     søknadStartet: boolean;
     søknadSendt: boolean;
-    kontonummer?: string;
+    kontonummerInfo: KontonummerInfo;
     barn: RegistrertBarn[];
     setSpørsmålSvar: (key: Spørsmål, value: unknown | undefined) => void;
     setSøknadSendt: (sendtInn: boolean) => void;

@@ -1,9 +1,8 @@
 import { Steg } from '../types';
 
 export const SøknadRoutes = {
-    OPPSTART: '/soknad/oppstart',
-    BARN: '/soknad/barn',
     KONTONUMMER: '/soknad/kontonummer',
+    BARN: '/soknad/barn',
     OPPSUMMERING: '/soknad/oppsummering',
     KVITTERING: '/soknad/kvittering',
     VELKOMMEN: '/',
@@ -11,12 +10,10 @@ export const SøknadRoutes = {
 
 export const getStegRoute = (steg: Steg): string => {
     switch (steg) {
-        case Steg.OPPSTART:
-            return SøknadRoutes.OPPSTART;
-        case Steg.BARN:
-            return SøknadRoutes.BARN;
         case Steg.KONTONUMMER:
             return SøknadRoutes.KONTONUMMER;
+        case Steg.BARN:
+            return SøknadRoutes.BARN;
         case Steg.OPPSUMMERING:
             return SøknadRoutes.OPPSUMMERING;
     }
