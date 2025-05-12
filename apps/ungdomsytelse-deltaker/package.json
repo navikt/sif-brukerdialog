@@ -20,7 +20,8 @@
         "lint": "eslint src",
         "playwright-test": "playwright test",
         "storybook:build": "storybook build",
-        "storybook": "storybook dev -p 6006"
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
     },
     "dependencies": {
         "@navikt/aksel-icons": "7.21.1",
