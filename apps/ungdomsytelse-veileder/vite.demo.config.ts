@@ -38,6 +38,15 @@ export default defineConfig({
             },
         },
     ],
+    server: {
+        port: 8088,
+        proxy: {
+            '/mockServiceWorker.js': {
+                target: 'http://localhost:8088', // Adjust target URL if needed
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-veileder/mockServiceWorker.js',
+            },
+        },
+    },
     preview: {
         port: 8088,
         proxy: {
@@ -48,14 +57,14 @@ export default defineConfig({
         },
     },
     base: '/sif-brukerdialog/ungdomsytelse-veileder/',
-    build: {
-        sourcemap: true,
-        rollupOptions: {
-            input: './demo/index.html',
-        },
-        outDir: './dist-demo',
-        emptyOutDir: true,
-    },
+    // build: {
+    //     sourcemap: true,
+    //     rollupOptions: {
+    //         input: './demo/index.html',
+    //     },
+    //     outDir: './dist-demo',
+    //     emptyOutDir: true,
+    // },
     css: {
         preprocessorOptions: {
             scss: {
