@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
-import getLenker from '../../../lenker';
+import getLenker from '../../../utils/lenker';
 
 const KvitteringPage = () => {
     return (
@@ -15,6 +15,7 @@ const KvitteringPage = () => {
                     </Heading>
                     <BodyLong>Vi har fått søknaden din om penger gjennom ungdomsprogramytelsen.</BodyLong>
                 </Alert>
+
                 <div>
                     <Heading level="3" size="small" spacing>
                         Hva skjer videre?
@@ -32,6 +33,7 @@ const KvitteringPage = () => {
                         </List.Item>
                     </List>
                 </div>
+
                 <BodyLong>Vi ønsker deg lykke til med veien videre!</BodyLong>
 
                 <div>

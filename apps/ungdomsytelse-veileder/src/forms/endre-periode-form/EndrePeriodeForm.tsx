@@ -142,7 +142,6 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
 
                 return (
                     <VStack gap="6">
-                        {/* {variant === EndrePeriodeVariant.startdato && <TillattStartdatoInfo deltaker={deltaker} />} */}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}

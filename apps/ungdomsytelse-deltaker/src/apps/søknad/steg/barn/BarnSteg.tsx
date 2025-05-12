@@ -11,7 +11,7 @@ import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
 import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 import ExternalLink from '../../components/external-link/ExternalLink';
-import getLenker from '../../../../lenker';
+import getLenker from '../../../../utils/lenker';
 
 export const getBarnSpørsmål = (antallBarn: number): string => {
     if (antallBarn === 0) {

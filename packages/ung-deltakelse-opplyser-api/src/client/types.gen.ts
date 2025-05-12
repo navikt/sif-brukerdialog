@@ -109,13 +109,13 @@ export type DeltakerOpplysningerDto = {
     opplysninger: Array<DeltakelseOpplysningDto>;
 };
 
-export type DeltakerPersonlia = {
+export type DeltakerPersonalia = {
     id?: string;
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -416,7 +416,7 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerResponse =
@@ -656,7 +656,7 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse =

@@ -1,61 +1,31 @@
-import { Alert, Box, Theme } from '@navikt/ds-react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
-import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
-import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
-import DeltakerInfoLoader from './DeltakerInfoLoader';
+import { Theme } from '@navikt/ds-react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AppRouter from './AppRouter';
+import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
+import AppErrorFallback from './components/error-boundary/AppErrorFallback';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
+import { initApiClients } from './hooks/useInitApiClients';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
-initUngDeltakelseOpplyserApiClient({
-    onUnAuthorized: () => {
-        window.location.assign(getCommonEnv()[EnvKey.SIF_PUBLIC_LOGIN_URL]);
-    },
-});
-initK9BrukerdialogProsesseringApiClient();
+const queryClient = new QueryClient();
 
-const getIsGithubPages = () => {
-    try {
-        return __IS_GITHUB_PAGES__ === true;
-    } catch {
-        // do nothing
-    }
-};
-
-const DemoMelding = () => {
-    return (
-        <PageBoundary>
-            <Box marginBlock="6">
-                <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
-            </Box>
-        </PageBoundary>
-    );
-};
+initApiClients();
 
 function App() {
-    const publicPath = getRequiredEnv('PUBLIC_PATH');
-    const isGitHubPages = getIsGithubPages();
-
     return (
         <Theme>
-            <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
-                <AppIntlMessageProvider>
-                    {isGitHubPages ? (
-                        <HashRouter>
-                            {getIsGithubPages() && <DemoMelding />}
+            <ErrorBoundary fallback={<AppErrorFallback />}>
+                <QueryClientProvider client={queryClient}>
+                    <AppIntlMessageProvider>
+                        <AppRouter>
                             <DeltakerInfoLoader />
-                        </HashRouter>
-                    ) : (
-                        <BrowserRouter basename={publicPath}>
-                            <DeltakerInfoLoader />
-                        </BrowserRouter>
-                    )}{' '}
-                    {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
-                </AppIntlMessageProvider>
+                        </AppRouter>
+                        <DevFooter />
+                    </AppIntlMessageProvider>
+                </QueryClientProvider>
             </ErrorBoundary>
         </Theme>
     );
