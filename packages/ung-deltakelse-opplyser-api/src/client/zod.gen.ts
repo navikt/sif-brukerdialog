@@ -116,7 +116,6 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    programOppstartdato: z.string().date().optional(),
     førsteMuligeInnmeldingsdato: z.string().date(),
     sisteMuligeInnmeldingsdato: z.string().date(),
 });
