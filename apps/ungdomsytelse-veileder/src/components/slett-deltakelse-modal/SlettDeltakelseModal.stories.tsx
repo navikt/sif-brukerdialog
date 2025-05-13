@@ -4,7 +4,7 @@ import { withVeilederContext } from '../../../storybook/decorators/withVeilederC
 import SlettDeltakelseModal from './SlettDeltakelseModal';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withRouter } from '../../../storybook/decorators/withRouter';
-import { registrertDeltakerMock } from '../../../mock/msw/mocks/registrert-deltaker-mock/data';
+import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
 import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 
 const meta: Meta<typeof SlettDeltakelseModal> = {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 import { http, HttpResponse } from 'msw';
-import { nyDeltakerMock } from '../../../mock/msw/mocks/ny-deltaker-mock/data';
+import { nyDeltakerMock } from '../../../mock/msw/mocks/data/nyDeltakerMock';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';

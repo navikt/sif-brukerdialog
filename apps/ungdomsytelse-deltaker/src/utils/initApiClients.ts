@@ -1,5 +1,4 @@
 import { EnvKey, getCommonEnv } from '@navikt/sif-common-env';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 
 export const initApiClients = () => {
@@ -9,10 +8,4 @@ export const initApiClients = () => {
         },
     });
     initK9BrukerdialogProsesseringApiClient();
-};
-
-export const useInitApiClients = () => {
-    useEffectOnce(() => {
-        initApiClients();
-    });
 };

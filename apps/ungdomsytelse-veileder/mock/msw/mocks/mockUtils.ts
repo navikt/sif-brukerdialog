@@ -1,8 +1,8 @@
 // /* eslint-disable no-console */
 
 import { DeltakelseOpplysningDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api';
-import { registrertDeltakerMock } from './registrert-deltaker-mock/data';
-import { nyDeltakerMock } from './ny-deltaker-mock/data';
+import { registrertDeltakerMock } from './data/registrertDeltakerMock';
+import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { v4 } from 'uuid';
 
 interface TempDB {

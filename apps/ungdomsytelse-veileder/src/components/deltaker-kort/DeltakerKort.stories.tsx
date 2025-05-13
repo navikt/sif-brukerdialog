@@ -8,7 +8,7 @@ import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { nyDeltakerMock } from '../../../mock/msw/mocks/ny-deltaker-mock/data';
+import { nyDeltakerMock } from '../../../mock/msw/mocks/data/nyDeltakerMock';
 
 const meta: Meta<typeof DeltakerKort> = {
     component: DeltakerKort,
