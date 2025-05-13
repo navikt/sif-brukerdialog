@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react';
-import { veilederMock } from '../../mock/msw/mocks/veileder-mock/veilederMock';
+import { veilederMock } from '../../mock/msw/mocks/data/veileder';
 import { Veileder } from '../types/Veileder';
 
 interface VeilederContextProps {
