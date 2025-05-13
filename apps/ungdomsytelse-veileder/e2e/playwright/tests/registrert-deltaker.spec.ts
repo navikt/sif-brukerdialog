@@ -1,5 +1,4 @@
 import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockRoutes';
 import { test, expect } from '@playwright/test';
 
 const gåTilDeltakerSide = async (page: any) => {
@@ -7,9 +6,8 @@ const gåTilDeltakerSide = async (page: any) => {
     await expect(page.getByRole('heading', { name: 'PRESENTABEL HOFTE' })).toBeVisible();
 };
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockRoutes(page, context);
     await gåTilDeltakerSide(page);
 });
 
