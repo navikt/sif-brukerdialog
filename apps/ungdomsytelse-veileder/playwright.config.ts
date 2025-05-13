@@ -1,6 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
-// import { playwrightEnv } from './e2e/playwright/playwright.env';
+import { playwrightEnv } from './e2e/playwright/playwright.env';
 
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ */
+// import dotenv from 'dotenv';
+// import path from 'path';
+// dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
 export default defineConfig({
     testDir: './e2e/playwright/tests',
     fullyParallel: true,
@@ -13,18 +24,31 @@ export default defineConfig({
         launchOptions: {
             slowMo: 100,
         },
-        baseURL: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-veileder/',
+        baseURL: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
     },
+
+    /* Configure projects for major browsers */
     projects: [
         {
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
+
+        {
+            name: 'firefox',
+            use: { ...devices['Desktop Firefox'] },
+        },
+
+        {
+            name: 'webkit',
+            use: { ...devices['Desktop Safari'] },
+        },
     ],
+
     webServer: {
         command: 'yarn demo:start',
-        url: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-veileder/',
+        url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
         reuseExistingServer: true,
-        // env: playwrightEnv,
+        env: playwrightEnv,
     },
 });

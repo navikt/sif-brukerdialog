@@ -2,7 +2,7 @@ import { CopyButton, HStack, VStack } from '@navikt/ds-react';
 import { getAppEnv } from '../utils/appEnv';
 
 const DevUserList = () => {
-    return getAppEnv().isLocal ? (
+    return getAppEnv().IS_LOCAL ? (
         <VStack>
             Testbrukere lokalt:
             <HStack gap="2" align="center">

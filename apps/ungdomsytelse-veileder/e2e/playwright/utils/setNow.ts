@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-const testDate = new Date('2023-10-04');
+const testDate = new Date('2025-05-15');
 
 const getSetDateScript = (timestamp: number) => `
 {
