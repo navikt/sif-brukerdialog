@@ -5,10 +5,6 @@
         "demo:build": {
             "outputs": ["dist-demo/**"]
         },
-        "build-demo": {
-            "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-demo"]
-        },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build"]
