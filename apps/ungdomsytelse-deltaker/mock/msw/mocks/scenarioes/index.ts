@@ -1,4 +1,5 @@
 import { ScenarioType } from '../../../../src/dev/scenarioer';
+import { ScenarioData } from '../mockUtils';
 import { harSøktMock } from './har-søkt';
 import { harIkkeSøktMock } from './ikke-søkt';
 
@@ -9,13 +10,6 @@ export const mockData: ScenarioMap = {
     [ScenarioType.harSøkt]: harSøktMock,
 };
 
-export interface ScenarioData {
-    søker: any;
-    barn: any;
-    arbeidsgiver: any;
-    deltakelser: any;
-}
-
-export const getScenarioMockData = (scenario: ScenarioType) => {
+export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {
     return mockData[scenario];
 };

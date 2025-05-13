@@ -3,6 +3,6 @@ export default {
     fødselsdato: '2005-06-02',
     fødselsnummer: '02869599258',
     fornavn: 'Test',
-    mellomnavn: null,
+    mellomnavn: undefined,
     etternavn: 'Brukeresen',
 };
