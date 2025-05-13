@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
+import { veilederMock } from '../../mock/msw/mocks/veileder-mock/data';
 import { Veileder } from '../types/Veileder';
-import { parsedVeilederMock } from '../../mock/msw/mocks/mockUtils';
 
 interface VeilederContextProps {
     veileder: Veileder;
@@ -10,7 +10,7 @@ const VeilederContext = createContext<VeilederContextProps | undefined>(undefine
 
 const getUserFromHtml = (): Veileder => {
     const userInfoNode = document.getElementById('nav:userInfo') as HTMLScriptElement;
-    const userInfoInline = userInfoNode ? userInfoNode.text : JSON.stringify(parsedVeilederMock);
+    const userInfoInline = userInfoNode ? userInfoNode.text : JSON.stringify(veilederMock);
     return JSON.parse(userInfoInline);
 };
 

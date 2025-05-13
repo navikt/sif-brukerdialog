@@ -1,13 +1,6 @@
 /* eslint-disable no-constant-condition */
-import { DeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { delay, http, HttpResponse } from 'msw';
-import {
-    deltakelseDNMock,
-    findDeltaker,
-    getDeltakelser,
-    getDeltakerByDeltakerId,
-    registrertDeltakerId,
-} from '../mocks/mockUtils';
+import { mockUtils } from '../mocks/mockUtils';
 
 export const handlers = [
     http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -23,14 +16,14 @@ export const handlers = [
         if (deltakerIdent === '09847696068') {
             return new HttpResponse(null, { status: 403 });
         }
-        const data = findDeltaker(deltakerIdent);
+        const data = mockUtils.findDeltaker(deltakerIdent);
         return data ? HttpResponse.json(data) : new HttpResponse(null, { status: 404 });
     }),
 
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
-        const data = getDeltakerByDeltakerId(id as string);
-        await delay(250);
+        const data = mockUtils.getDeltakerByDeltakerId(id as string);
+        await delay(75);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
@@ -39,8 +32,8 @@ export const handlers = [
     }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
-        const data = getDeltakelser(params.deltakerId as string);
-        await delay(1200);
+        const data = mockUtils.getDeltakelser(params.deltakerId as string);
+        await delay(500);
         if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
@@ -58,32 +51,24 @@ export const handlers = [
 
     http.post<any, any>('**/veileder/register/deltaker/innmelding', async ({ request }) => {
         const { deltakerIdent, startdato } = await request.json();
-        const response: DeltakelseOpplysningDto = {
-            ...deltakelseDNMock,
-            deltaker: {
-                ...deltakelseDNMock.deltaker,
-                deltakerIdent,
-            },
-            fraOgMed: startdato,
-        };
-        await delay(250);
+        const response = mockUtils.meldInnDeltaker(deltakerIdent, startdato);
+        await delay(75);
         return HttpResponse.json(response);
     }),
 
-    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request }) => {
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request, params }) => {
         const { dato } = await request.json();
-        await delay(250);
-        const data = getDeltakelser(registrertDeltakerId)[0];
-        if (1 + 1 === 3) {
-            return new HttpResponse(null, { status: 500 });
-        }
-        return HttpResponse.json({ ...data, fraOgMed: dato });
+        const { deltakelseId } = params;
+        await delay(75);
+        const response = mockUtils.endreStartdato(deltakelseId, dato);
+        return HttpResponse.json(response);
     }),
 
-    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request }) => {
+    http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request, params }) => {
         const { dato } = await request.json();
-        await delay(250);
-        const data = getDeltakelser(registrertDeltakerId)[0];
-        return HttpResponse.json({ ...data, fraOgMed: dato });
+        const { deltakelseId } = params;
+        await delay(75);
+        const response = mockUtils.endreSluttdato(deltakelseId, dato);
+        return HttpResponse.json(response);
     }),
 ];
