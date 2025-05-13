@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+
+  <script type="module">import { injectIntoGlobalHook } from "/@react-refresh"
+    injectIntoGlobalHook(window);
+    window.$RefreshReg$ = () => { };
+    window.$RefreshSig$ = () => (type) => type;</script>
+
+  <script type="module" src="/@vite/client"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNG-Veileder</title>
+  <style>
+    @layer base, dekorator-base, dekorator-utilities, theme, components, utilities;
+  </style>
+  <script type="text/json" id="nav:appSettings">
+    {"APP_VERSION":"dev","PUBLIC_PATH":"/","ENV":"development","GITHUB_REF_NAME":"local","IS_LOCAL":"true","UNG_DELTAKELSE_OPPLYSER_API_URL":"http://localhost:8089","UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH":"/api/ung-deltakelse-opplyser","UNG_DELTAKELSE_OPPLYSER_API_SCOPE":"dev-gcp:dusseldorf:ung-deltakelse-opplyser"}
+  </script>
+  <script type="text/json" id="nav:userInfo">
+    {"name":"Pål","NAVident":"Z999999"}
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

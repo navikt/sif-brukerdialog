@@ -46,9 +46,17 @@ export const zEndretProgramperiodeDataDto = zOppgavetypeDataDto.and(
     }),
 );
 
+export const zYtelseType = z.enum([
+    'SYKEPENGER',
+    'OMSORGSPENGER',
+    'PLEIEPENGER_SYKT_BARN',
+    'PLEIEPENGER_LIVETS_SLUTTFASE',
+    'OPPLAERINGSPENGER',
+]);
+
 export const zYtelseRegisterInntektDto = z.object({
     inntekt: z.number().int(),
-    ytelsetype: z.string(),
+    ytelsetype: zYtelseType,
 });
 
 export const zRegisterinntektDto = z.object({
@@ -127,7 +135,7 @@ export const zRegisterInntektArbeidOgFrilansDto = z.object({
 
 export const zRegisterInntektYtelseDto = z.object({
     beløp: z.number().int(),
-    ytelseType: z.string(),
+    ytelseType: zYtelseType,
 });
 
 export const zRegisterInntektDto = z.object({

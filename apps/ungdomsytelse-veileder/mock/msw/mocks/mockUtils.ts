@@ -1,127 +1,121 @@
-/* eslint-disable no-console */
-import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
-import {
-    DeltakerPersonaliaReadable,
-    DeltakerPersonaliaWritable,
-    OppgaveDto,
-    OppgaveStatus,
-    Oppgavetype,
-} from '@navikt/ung-deltakelse-opplyser-api';
-import { Veileder } from '../../../src/types/Veileder';
+// /* eslint-disable no-console */
 
-type DeltakerPersonlia = DeltakerPersonaliaReadable | DeltakerPersonaliaWritable;
+import { DeltakelseOpplysningDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api';
+import { registrertDeltakerMock } from './data/registrertDeltakerMock';
+import { nyDeltakerMock } from './data/nyDeltakerMock';
+import { v4 } from 'uuid';
 
-const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
-export const registrertDeltakerId = '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd';
+interface TempDB {
+    deltakere: DeltakerPersonalia[];
+    deltakelser: DeltakelseOpplysningDto[];
+}
 
-export const nyDeltakerMock: DeltakerPersonlia = {
-    id: null as any,
-    deltakerIdent: '56857102105',
-    navn: {
-        fornavn: 'GLORETE',
-        mellomnavn: null as any,
-        etternavn: 'TØFFEL',
-    },
-    fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2025-01-01',
-    sisteMuligeInnmeldingsdato: '2029-12-31',
+const localStorageKey = 'ungdomsytelse-veileder';
+
+/** Data */
+
+const initialDb: TempDB = {
+    deltakere: [registrertDeltakerMock.deltakerPersonalia, nyDeltakerMock.deltakerPersonalia],
+    deltakelser: [registrertDeltakerMock.deltakelse],
 };
 
-const nyDeltakerRegistrert = {
-    ...nyDeltakerMock,
-    id: nyDeltakerId,
+const save = (db: TempDB) => {
+    const data = JSON.stringify(db);
+    localStorage.setItem(localStorageKey, data);
 };
 
-export const registrertDeltakerMock: DeltakerPersonlia = {
-    id: registrertDeltakerId,
-    deltakerIdent: '03867198392',
-    navn: {
-        fornavn: 'PRESENTABEL',
-        etternavn: 'HOFTE',
-    },
-    fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2013-05-10',
-    sisteMuligeInnmeldingsdato: '2025-04-10',
+const load = (): TempDB => {
+    const data = localStorage.getItem(localStorageKey);
+    return data ? JSON.parse(data) : initialDb;
 };
+
+const reset = () => {
+    save(initialDb);
+};
+
+const db = load();
+
+/** Actions */
 
 /** Fnr */
-export const findDeltaker = (deltakerIdent: string) => {
-    switch (deltakerIdent) {
-        case nyDeltakerMock.deltakerIdent:
-            return nyDeltakerMock;
-        case registrertDeltakerMock.deltakerIdent:
-            return registrertDeltakerMock;
-        default:
-            console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
-            return null;
-    }
+const findDeltaker = (deltakerIdent: string) => {
+    return db.deltakere.find((d) => d.deltakerIdent === deltakerIdent);
 };
 
 /** Registrert id som deltake */
-export const getDeltakerByDeltakerId = (deltakerId: string) => {
-    if (deltakerId) {
-        switch (deltakerId) {
-            case registrertDeltakerMock.id:
-                return registrertDeltakerMock;
-            case nyDeltakerRegistrert.id:
-                return nyDeltakerRegistrert;
-            default:
-                console.log('fant ikke deltaker med id', deltakerId);
-                return null;
-        }
+const getDeltakerByDeltakerId = (deltakerId: string) => {
+    return db.deltakere.find((d) => d.id === deltakerId);
+};
+
+const getDeltakelser = (deltakerId: string) => {
+    return db.deltakelser.filter((deltakelse) => deltakelse.deltaker.id === deltakerId);
+};
+
+const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
+    const deltaker = findDeltaker(deltakerIdent);
+    if (!deltaker) {
+        throw new Error('Fant ikke deltaker med deltakerIdent');
     }
-};
-
-export const parsedMockDeltaker = registrertDeltakerSchema.parse(registrertDeltakerMock);
-
-export const mockOppgave: OppgaveDto = {
-    oppgaveReferanse: '00054e20-e6c3-4b85-8f62-b269e1c15dc2',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-    status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-02-19T13:29:14.553804Z',
-    oppgavetypeData: {
-        programperiode: {
-            fomDato: '2025-01-10',
+    const deltakelseId = v4();
+    const deltakerId = v4();
+    const deltakelse: DeltakelseOpplysningDto = {
+        id: deltakelseId,
+        deltaker: {
+            deltakerIdent,
+            id: deltakerId,
         },
-    },
+        fraOgMed: startdato,
+        harSøkt: false,
+        oppgaver: [],
+    };
+    db.deltakelser.push(deltakelse);
+    db.deltakere = db.deltakere.map((d) => {
+        if (d.deltakerIdent === deltakerIdent) {
+            return {
+                ...d,
+                id: deltakerId,
+            };
+        }
+        return d;
+    });
+    save(db);
+    return deltakelse;
 };
 
-const oppgaver: OppgaveDto[] = [];
-
-export const deltakelseDRMock = {
-    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
-    deltaker: {
-        id: registrertDeltakerId,
-        deltakerIdent: '03867198392',
-    },
-    fraOgMed: '2025-01-01',
-    harSøkt: true,
-    oppgaver: [...oppgaver],
-};
-export const parsedMockDeltakelse = deltakelseSchema.parse(deltakelseDRMock);
-
-export const deltakelseDNMock = {
-    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
-    deltaker: {
-        id: nyDeltakerId,
-        deltakerIdent: '03867198392',
-    },
-    fraOgMed: '2025-01-01',
-
-    harSøkt: false,
-    oppgaver: [],
+const endreStartdato = (deltakelseId: string, dato: string) => {
+    const deltakelse = db.deltakelser.find((d) => d.id === deltakelseId);
+    if (!deltakelse) {
+        throw new Error('Fant ikke deltakelse med id');
+    }
+    const updatedDeltakelse = {
+        ...deltakelse,
+        fraOgMed: dato,
+    };
+    db.deltakelser = db.deltakelser.map((d) => (d.id === deltakelseId ? updatedDeltakelse : d));
+    save(db);
+    return updatedDeltakelse;
 };
 
-export const getDeltakelser = (id) => {
-    return id === nyDeltakerId ? [deltakelseDNMock] : [deltakelseDRMock];
+const endreSluttdato = (deltakelseId: string, dato: string) => {
+    const deltakelse = db.deltakelser.find((d) => d.id === deltakelseId);
+    if (!deltakelse) {
+        throw new Error('Fant ikke deltakelse med id');
+    }
+    const updatedDeltakelse = {
+        ...deltakelse,
+        tilOgMed: dato,
+    };
+    db.deltakelser = db.deltakelser.map((d) => (d.id === deltakelseId ? updatedDeltakelse : d));
+    save(db);
+    return updatedDeltakelse;
 };
 
-export const veilederMock: Veileder = {
-    preferred_username: 'Pål',
-    NAVident: 'Z999999',
-};
-
-export const parsedVeilederMock: Veileder = {
-    preferred_username: 'Pål',
-    NAVident: 'Z999999',
+export const mockUtils = {
+    endreSluttdato,
+    endreStartdato,
+    findDeltaker,
+    getDeltakelser,
+    getDeltakerByDeltakerId,
+    meldInnDeltaker,
+    reset,
 };

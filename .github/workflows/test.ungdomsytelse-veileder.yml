@@ -1,20 +1,20 @@
 # This workflow trigger on push to apps/sif-ettersending
-name: test.ungdomsytelse-deltaker
+name: test.ungdomsytelse-veileder
 on:
     push:
         branches-ignore:
             - 'main'
         paths:
-            - 'apps/ungdomsytelse-deltaker/**/*'
+            - 'apps/ungdomsytelse-veileder/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/test.ungdomsytelse-deltaker.yml
+            - .github/workflows/test.ungdomsytelse-veileder.yml
             - yarn.lock
 
     workflow_call:
 
 env:
-    APP_NAME: 'ungdomsytelse-deltaker'
+    APP_NAME: 'ungdomsytelse-veileder'
 
 permissions:
     contents: read
@@ -46,7 +46,7 @@ jobs:
               run: yarn
 
             - name: Run code tests
-              run: yarn turbo test --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn turbo test --filter=@navikt/ungdomsytelse-veileder
 
     run-playwright-test:
         if: "!contains(github.event.head_commit.message, '[ci skip]')"
@@ -78,7 +78,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application for testing
-              run: yarn turbo demo:build --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn turbo demo:build --filter=@navikt/ungdomsytelse-veileder
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-veileder

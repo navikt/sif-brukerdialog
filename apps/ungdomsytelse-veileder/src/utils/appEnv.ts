@@ -4,7 +4,7 @@ import { AppEnv } from '../../env.schema';
 export const getAppEnv = (): AppEnv => ({
     ...getBaseEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
-    isLocal: getMaybeEnv('IS_LOCAL') === 'true' ? true : false,
+    IS_LOCAL: getMaybeEnv('IS_LOCAL') === 'true' ? 'true' : 'false',
 });
 
 export const appEnv = getAppEnv();

@@ -4,7 +4,7 @@ import AppFooter from '../app-footer/AppFooter';
 const AppPage = ({ children }) => {
     return (
         <Page style={{ minHeight: 'calc(100lvh - 3rem)' }} footer={<AppFooter />}>
-            {children}
+            <main>{children}</main>
         </Page>
     );
 };

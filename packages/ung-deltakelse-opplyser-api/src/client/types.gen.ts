@@ -89,8 +89,16 @@ export type RegisterinntektDto = {
 
 export type YtelseRegisterInntektDto = {
     inntekt: number;
-    ytelsetype: string;
+    ytelsetype: YtelseType;
 };
+
+export enum YtelseType {
+    SYKEPENGER = 'SYKEPENGER',
+    OMSORGSPENGER = 'OMSORGSPENGER',
+    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
+    PLEIEPENGER_LIVETS_SLUTTFASE = 'PLEIEPENGER_LIVETS_SLUTTFASE',
+    OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
+}
 
 export type DeltakelseUtmeldingDto = {
     utmeldingsdato: string;
@@ -145,7 +153,7 @@ export type RegisterInntektOppgaveDto = {
 
 export type RegisterInntektYtelseDto = {
     beløp: number;
-    ytelseType: string;
+    ytelseType: YtelseType;
 };
 
 export type EndretProgamperiodeOppgaveDto = {
