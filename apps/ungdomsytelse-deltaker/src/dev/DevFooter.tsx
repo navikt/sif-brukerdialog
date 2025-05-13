@@ -2,7 +2,7 @@ import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { deltakelserMockStorage } from '../../mock/msw/handlers/deltakelseMockStorage';
+import { deltakelseMockStorage } from '../../mock/msw/handlers/deltakelseMockStorage';
 import { getAppEnv } from '../utils/appEnv';
 import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
 
@@ -67,7 +67,7 @@ const DevFooter = () => {
                                 type="button"
                                 onClick={() => {
                                     saveScenarioToLocalStorage(scenario);
-                                    deltakelserMockStorage.reset();
+                                    deltakelseMockStorage.reset();
                                     window.location.reload();
                                 }}>
                                 Velg
@@ -76,7 +76,7 @@ const DevFooter = () => {
                                 type="button"
                                 variant="secondary"
                                 onClick={() => {
-                                    deltakelserMockStorage.reset();
+                                    deltakelseMockStorage.reset();
                                     window.location.reload();
                                 }}>
                                 Reset scenario

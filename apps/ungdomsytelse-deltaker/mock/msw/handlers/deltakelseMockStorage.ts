@@ -7,15 +7,13 @@ const deltakelserStorageKey = 'ung-deltakelser-mock';
 
 /** All funksjonalitet baserer seg på at det er én deltakelse som finnes i deltakelser */
 
-const setDeltakelseSøktFor = () => {
-    const deltakelser = deltakelserMockStorage.get();
-    deltakelser[0].harSøkt = true;
-    deltakelserMockStorage.update(deltakelser);
-};
-
 export const deltakelserMockStorage = {
     actions: {
-        setDeltakelseSøktFor,
+        setDeltakelseSøktFor: () => {
+            const deltakelser = deltakelserMockStorage.get();
+            deltakelser[0].harSøkt = true;
+            deltakelserMockStorage.update(deltakelser);
+        },
         setOppgavebekreftelse: (oppgavebekreftelse: UngdomsytelseOppgavebekreftelse) => {
             const deltakelse = deltakelserMockStorage.get()[0];
 
