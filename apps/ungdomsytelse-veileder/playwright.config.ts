@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './e2e/playwright/playwright.env';
 
 /**
  * Read environment variables from file.
@@ -49,6 +48,5 @@ export default defineConfig({
         command: 'yarn demo:start',
         url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
         reuseExistingServer: true,
-        env: playwrightEnv,
     },
 });

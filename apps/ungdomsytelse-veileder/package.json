@@ -15,7 +15,7 @@
         "lint:fix": "eslint src --fix",
         "demo:build": "run-s demo:build-app demo:copy-app-files",
         "demo:build-app": "vite build --config vite.demo.config.ts",
-        "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",
+        "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && cp ./mockServiceWorker.js ./dist-demo/",
         "demo:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder/ --outDir dist-demo --config vite.demo.config.ts",
         "playwright-test": "playwright test",
         "storybook:build": "storybook build",

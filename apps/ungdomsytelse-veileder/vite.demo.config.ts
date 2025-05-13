@@ -8,7 +8,7 @@ import { AppEnv } from './env.schema';
 
 dotenv.config();
 
-const appSettings: AppEnv & { IS_LOCAL: string } = {
+const appSettings: AppEnv = {
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
@@ -16,7 +16,6 @@ const appSettings: AppEnv & { IS_LOCAL: string } = {
     UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
-
     IS_LOCAL: `${process.env.IS_LOCAL}`,
 };
 
@@ -57,14 +56,14 @@ export default defineConfig({
         },
     },
     base: '/sif-brukerdialog/ungdomsytelse-veileder/',
-    // build: {
-    //     sourcemap: true,
-    //     rollupOptions: {
-    //         input: './demo/index.html',
-    //     },
-    //     outDir: './dist-demo',
-    //     emptyOutDir: true,
-    // },
+    build: {
+        sourcemap: true,
+        rollupOptions: {
+            input: './demo/index.html',
+        },
+        outDir: './dist-demo',
+        emptyOutDir: true,
+    },
     css: {
         preprocessorOptions: {
             scss: {

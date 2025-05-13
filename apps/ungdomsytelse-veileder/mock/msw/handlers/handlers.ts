@@ -2,6 +2,8 @@
 import { delay, http, HttpResponse } from 'msw';
 import { mockUtils } from '../mocks/mockUtils';
 
+const slowDown = (ms: number) => (1 + 1 === 2 ? Promise.resolve() : delay(ms));
+
 export const handlers = [
     http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
     http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -23,7 +25,7 @@ export const handlers = [
     http.get('**/oppslag/deltaker/:id', async ({ params }) => {
         const { id } = params;
         const data = mockUtils.getDeltakerByDeltakerId(id as string);
-        await delay(75);
+        await slowDown(75);
         return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
@@ -33,7 +35,7 @@ export const handlers = [
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {
         const data = mockUtils.getDeltakelser(params.deltakerId as string);
-        await delay(500);
+        await slowDown(500);
         if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
@@ -52,14 +54,14 @@ export const handlers = [
     http.post<any, any>('**/veileder/register/deltaker/innmelding', async ({ request }) => {
         const { deltakerIdent, startdato } = await request.json();
         const response = mockUtils.meldInnDeltaker(deltakerIdent, startdato);
-        await delay(75);
+        await slowDown(75);
         return HttpResponse.json(response);
     }),
 
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request, params }) => {
         const { dato } = await request.json();
         const { deltakelseId } = params;
-        await delay(75);
+        await slowDown(75);
         const response = mockUtils.endreStartdato(deltakelseId, dato);
         return HttpResponse.json(response);
     }),
@@ -67,7 +69,7 @@ export const handlers = [
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/sluttdato', async ({ request, params }) => {
         const { dato } = await request.json();
         const { deltakelseId } = params;
-        await delay(75);
+        await slowDown(75);
         const response = mockUtils.endreSluttdato(deltakelseId, dato);
         return HttpResponse.json(response);
     }),
