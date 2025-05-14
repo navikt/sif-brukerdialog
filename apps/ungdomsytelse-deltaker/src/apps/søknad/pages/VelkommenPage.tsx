@@ -40,7 +40,7 @@ const VelkommenPage = () => {
                             </ExternalLink>
                             .
                         </BodyLong>
-
+                        {(undefined as any).test()}
                         <Box paddingBlock="4 8">
                             <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
                                 <Checkbox

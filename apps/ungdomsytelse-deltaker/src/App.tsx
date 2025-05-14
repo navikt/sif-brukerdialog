@@ -9,11 +9,11 @@ import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { initApiClients } from './utils/initApiClients';
+import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
 
-const queryClient = new QueryClient();
-
+initSentry();
 initApiClients();
 
 if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
@@ -25,6 +25,8 @@ if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
         },
     });
 }
+
+const queryClient = new QueryClient();
 
 function App() {
     return (
