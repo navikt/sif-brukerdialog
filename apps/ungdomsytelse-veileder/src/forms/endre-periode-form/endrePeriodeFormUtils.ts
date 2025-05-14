@@ -1,12 +1,13 @@
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getDateValidator } from '@navikt/sif-validation';
 
-export const getStartdatoValidator = ({ from: min, to: max }: DateRange) => {
+export const getStartdatoValidator = ({ from: min, to: max }: DateRange, registrertDato?: Date) => {
     return (value) => {
         const error = getDateValidator({
             required: true,
             min,
             max,
+            originalDate: registrertDato,
             onlyWeekdays: true,
         })(value);
         return error
@@ -21,12 +22,13 @@ export const getStartdatoValidator = ({ from: min, to: max }: DateRange) => {
     };
 };
 
-export const getSluttdatoValidator = ({ from: min, to: max }: DateRange) => {
+export const getSluttdatoValidator = ({ from: min, to: max }: DateRange, registrertDato?: Date) => {
     return (value) => {
         const error = getDateValidator({
             required: true,
             min,
             max,
+            originalDate: registrertDato,
             onlyWeekdays: true,
         })(value);
         return error
