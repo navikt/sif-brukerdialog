@@ -6,7 +6,7 @@ enum SentryEnvironment {
     prod = 'prod',
 }
 
-const resolveEnvironment = (): SentryEnvironment | 'unknown' => {
+const resolveEnvironment = (): SentryEnvironment | undefined => {
     const hostname = window.location.hostname || undefined;
     if (hostname) {
         if (hostname.includes('localhost')) {
@@ -17,7 +17,7 @@ const resolveEnvironment = (): SentryEnvironment | 'unknown' => {
             return SentryEnvironment.prod;
         }
     }
-    return 'unknown';
+    return undefined;
 };
 
 export const initSentry = () => {
