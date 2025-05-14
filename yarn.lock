@@ -6051,7 +6051,7 @@ __metadata:
     "@storybook/test": "npm:8.6.12"
     "@tailwindcss/postcss": "npm:4.1.6"
     "@tailwindcss/vite": "npm:4.1.6"
-    "@tanstack/react-query": "npm:5.75.7"
+    "@tanstack/react-query": "npm:5.76.1"
     "@types/node": "npm:22.15.17"
     "@types/react": "npm:19.1.3"
     "@types/react-dom": "npm:19.1.3"
@@ -10193,10 +10193,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.75.7":
-  version: 5.75.7
-  resolution: "@tanstack/query-core@npm:5.75.7"
-  checksum: 10/d504d831f5b246c9940544e3ae4ccda284082b6b6f7179717834f41095ef746b77ff50c3c984e1efe04b0da56a2603d69fd1f8a2404e2b0e24e24338d2685e84
+"@tanstack/query-core@npm:5.76.0":
+  version: 5.76.0
+  resolution: "@tanstack/query-core@npm:5.76.0"
+  checksum: 10/a661bbcf50767027ebf25ee2d7b7206f1d953c1b9aa5c56a7a3939b0ecd4d9bb6a2937caade8488cb7353d139f4917b518a445fcdacb42f8e2b018235150480c
   languageName: node
   linkType: hard
 
@@ -10221,14 +10221,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.75.7":
-  version: 5.75.7
-  resolution: "@tanstack/react-query@npm:5.75.7"
+"@tanstack/react-query@npm:5.76.1":
+  version: 5.76.1
+  resolution: "@tanstack/react-query@npm:5.76.1"
   dependencies:
-    "@tanstack/query-core": "npm:5.75.7"
+    "@tanstack/query-core": "npm:5.76.0"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/b0962f2943b1206e617fda83a60d178742a280790717b6ef25f525b5a81fbfa42dd372a7ec83faa498dc8b6f52a8497c99b89fc24754bc1d573d4d7f31f0c281
+  checksum: 10/d2d1acea76fa0d6265679061eb5eb983fe50dcf40a6d9de34261686e2354c3c46dd9974751da4e56aa676070e2edb35249b2674fb2923dd54a992e55748ee4ad
   languageName: node
   linkType: hard
 
