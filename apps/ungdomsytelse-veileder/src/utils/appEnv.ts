@@ -4,7 +4,7 @@ import { AppEnv } from '../../env.schema';
 export const getAppEnv = (): AppEnv => ({
     ...getBaseEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
-    SIF_PUBLIC_IS_LOCAL: getMaybeBoolEnv('SIF_PUBLIC_IS_LOCAL'),
+    SIF_PUBLIC_USE_MSW: getMaybeBoolEnv('SIF_PUBLIC_USE_MSW'),
 });
 
 export const appEnv = getAppEnv();
