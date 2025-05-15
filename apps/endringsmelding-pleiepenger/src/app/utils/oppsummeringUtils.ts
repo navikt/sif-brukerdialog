@@ -1,8 +1,6 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import {
-    ArbeidsaktivitetType,
     ArbeidstidApiData,
-    ArbeidstidArbeidsaktivitetMapItem,
     LovbestemtFerieApiData,
     LovbestemtFeriePeriode,
     Sak,
@@ -43,10 +41,7 @@ export type SøknadApiDataMetadata = {
         valgtEndreFerie: boolean;
     };
 
-const getArbeidstidMetadata = (
-    arbeidstid?: ArbeidstidApiData,
-    frilansArbeidstidAktivitet?: ArbeidstidArbeidsaktivitetMapItem,
-): ArbeidstidMetadata | undefined => {
+const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
     return arbeidstid
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
@@ -101,7 +96,7 @@ export const getSøknadApiDataMetadata = (
         antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
         ...getUkjentArbeidsforholdMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
-        ...getArbeidstidMetadata(arbeidstid, søknadsdata.arbeidstid?.arbeidsaktivitet[ArbeidsaktivitetType.frilanser]),
+        ...getArbeidstidMetadata(arbeidstid),
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
     };
 };
