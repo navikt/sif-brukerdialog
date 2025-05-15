@@ -13,9 +13,9 @@ export const barnMessages_nn: Record<keyof typeof barnMessages_nb, string> = {
     'annetBarnForm.navn.stringIsTooLong': 'Namnet på barnet kan ikkje innehalde fleire enn {maks} teikn.',
     'annetBarnForm.fnr.fødselsnummerHasNoValue': 'Skriv inn barnet sitt fødselsnummer',
     'annetBarnForm.fnr.fødselsnummerIsInvalid':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn riktig.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har skrive inn riktig.',
     'annetBarnForm.fnr.fødselsnummerIsNot11Chars':
-        'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'annetBarnForm.fnr.fødselsnummerIsNotAllowed':
-        'Du har oppgitt eit fødselsnummer som du ikkje kan bruke. Kontroller at du har skrive inn barnet sitt fødselsnummer.',
+        'Du har oppgjeve eit fødselsnummer som du ikkje kan bruke. Kontroller at du har skrive inn barnet sitt fødselsnummer.',
 };

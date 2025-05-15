@@ -27,7 +27,7 @@ const nb = {
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
 
-    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 };
 
@@ -48,10 +48,10 @@ const nn: Record<keyof typeof nb, string> = {
     'step.omBarna.stepTitle': 'Om barn',
     'step.oppsummering.stepTitle': 'Oppsummering',
 
-    'initialLoadError.pageTitle': 'Det oppstod en feil',
-    'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+    'initialLoadError.pageTitle': 'Det oppstod ein feil',
+    'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Ver venleg og prøv igjen senere.',
 
-    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+    'resetMellomlagring.text.1': 'Dersom feilen vedvarar, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 };
 

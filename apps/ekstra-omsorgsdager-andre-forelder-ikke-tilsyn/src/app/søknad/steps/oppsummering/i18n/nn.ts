@@ -19,7 +19,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
 
     'step.oppsummering.annenForelderensSituasjon.header': 'Den andre forelderen sin situasjon',
     'step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder':
-        'Har du stadfesta at den andre forelderen ikkje kan ha tilsyn med barn i ein periode på minst 6 månader?',
+        'Har du stadfesta at den andre forelderen ikkje kan ha tilsyn med barn i ein periode på minst 6 månadar?',
     'step.oppsummering.annenForelderensSituasjon.tittel':
         'Grunn til at den andre forelderen ikkje kan ha tilsyn med barn:',
     'step.oppsummering.annenForelderensSituasjon.beskrivelse': 'Skildring av situasjonen:',
@@ -28,7 +28,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.annenForelderensSituasjon.VetIkkeHvorLengePerioden': 'Eg veit ikkje kor lenge perioden vil vare',
 
     'step.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har betydning for mi rett til omsorgsdagar.',
+        'Eg stadfestar at opplysningane eg har gjeve er riktige, og at eg ikkje har halde tilbake opplysningar som har tyding for retten min til omsorgsdagar.',
 
     'step.oppsummering.sendSøknad': 'Send søknad',
 

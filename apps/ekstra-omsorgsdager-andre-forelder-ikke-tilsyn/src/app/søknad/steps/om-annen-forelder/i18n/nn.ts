@@ -3,7 +3,7 @@ import { omAnnenForelderMessages_nb } from './nb';
 export const omAnnenForelderMessages_nn: Record<keyof typeof omAnnenForelderMessages_nb, string> = {
     'step.omAnnenForelder.sifGuidePanel': 'Her legg du inn informasjon om den andre forelderen som ',
     'step.omAnnenForelder.sifGuidePanel.list.1': 'du bur saman med, og',
-    'step.omAnnenForelder.sifGuidePanel.list.2': 'som ikkje kan ha tilsyn med barn i ein periode på minst 6 månader',
+    'step.omAnnenForelder.sifGuidePanel.list.2': 'som ikkje kan ha tilsyn med barn i ein periode på minst 6 månadar',
 
     'step.omAnnenForelder.fnr.spm': 'Skriv inn fødselsnummeret til den andre forelderen, 11 siffer',
     'step.omAnnenForelder.navn.spm': 'Skriv inn namnet til den andre forelderen',
@@ -27,5 +27,5 @@ export const omAnnenForelderMessages_nn: Record<keyof typeof omAnnenForelderMess
     'validation.annenForelderFnr.fødselsnummerIsNotAllowed':
         'Fødselsnummeret kan ikkje vere ditt eige. Legg inn fødselsnummeret til den andre forelderen.',
     'validation.annenForelderSituasjon.noValue':
-        'Du må velje éin av desse grunnane til at den andre forelderen ikkje kan ha tilsyn med barn i ein periode på 6 månader.',
+        'Du må velje éin av desse grunnane til at den andre forelderen ikkje kan ha tilsyn med barn i ein periode på 6 månadar.',
 };
