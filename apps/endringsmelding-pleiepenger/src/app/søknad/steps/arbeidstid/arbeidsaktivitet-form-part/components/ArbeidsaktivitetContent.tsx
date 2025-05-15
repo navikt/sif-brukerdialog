@@ -1,4 +1,4 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
@@ -134,7 +134,14 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     legend={'Mottar du omsorgsstønad i perioden du skal endre?'}
                                 />
                                 {mottarOmsorgsstønad === YesOrNo.YES && (
-                                    <Alert variant="info">Informasjon om omsorgsstønad</Alert>
+                                    <Alert variant="info">
+                                        <BodyShort spacing={true}>
+                                            <AppText id="arbeidsaktivitetContent.omsorgsstønad.1" />
+                                        </BodyShort>
+                                        <BodyShort>
+                                            <AppText id="arbeidsaktivitetContent.omsorgsstønad.2" />
+                                        </BodyShort>
+                                    </Alert>
                                 )}
                             </VStack>
                         )}
