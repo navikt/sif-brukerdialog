@@ -1,22 +1,21 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
-import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import tailwindcss from '@tailwindcss/vite';
 import { AppEnv } from './env.schema';
-
-dotenv.config();
+import tailwindcss from '@tailwindcss/vite';
 
 const appSettings: AppEnv = {
-    ENV: `${process.env.ENV}`,
-    APP_VERSION: `${process.env.APP_VERSION}`,
-    GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
-    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
-    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
-    SIF_PUBLIC_USE_MSW: process.env.SIF_PUBLIC_USE_MSW === 'true',
+    ENV: 'development',
+    APP_VERSION: 'dev',
+    PUBLIC_PATH: 'sif-brukerdialog/ungdomsytelse-veileder',
+    GITHUB_REF_NAME: 'local',
+
+    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: 'api/ung-deltakelse-opplyser',
+    UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://localhost:8089',
+    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:dusseldorf:ung-deltakelse-opplyser',
+
+    SIF_PUBLIC_USE_MSW: true,
 };
 
 const veileder = { name: 'Pål', NAVident: 'Z999999' };
