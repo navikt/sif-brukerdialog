@@ -16,7 +16,7 @@ const appSettings: AppEnv = {
     UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
-    IS_LOCAL: process.env.IS_LOCAL === 'true',
+    SIF_PUBLIC_IS_LOCAL: process.env.SIF_PUBLIC_IS_LOCAL === 'true',
 };
 
 const veileder = { name: 'Pål', NAVident: 'Z999999' };

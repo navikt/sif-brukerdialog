@@ -3,7 +3,7 @@ import { getAppEnv } from '../utils/appEnv';
 import { mockUtils } from '../../mock/msw/mocks/mockUtils';
 
 const DevUserList = () => {
-    return getAppEnv().IS_LOCAL ? (
+    return getAppEnv().SIF_PUBLIC_IS_LOCAL ? (
         <VStack gap="10">
             <VStack>
                 Testbrukere lokalt:
