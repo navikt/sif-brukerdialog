@@ -4,7 +4,6 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
     await setNow(page);
     await page.goto(`./`);
-    await page.getByRole('button', { name: 'Reset testdata' }).click();
 });
 
 test('Søk opp og legg til ny deltaker', async ({ page }) => {

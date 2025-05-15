@@ -2,7 +2,10 @@ import { baseEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-commo
 import * as z from 'zod';
 
 const localSchema = z.object({
-    IS_LOCAL: z.boolean().default(false),
+    SIF_PUBLIC_USE_MSW: z
+        .union([z.boolean(), z.string()])
+        .optional()
+        .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
 });
 
 export const appEnvSchema = baseEnvSchema.merge(ungDeltakelseOpplyserEnvSchema).merge(localSchema);

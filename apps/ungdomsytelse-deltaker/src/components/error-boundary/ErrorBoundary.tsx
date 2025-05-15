@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/react';
 
 interface ErrorBoundaryProps {
     fallback?: React.ReactNode; // Tilpasset fallback-UI
@@ -27,7 +28,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         if (this.props.onError) {
             this.props.onError(error, errorInfo);
         } else {
-            console.error('Error caught by ErrorBoundary:', error, errorInfo);
+            Sentry.captureEvent({ level: 'error', message: error.message, extra: { ...errorInfo } });
         }
     }
 
