@@ -1,4 +1,4 @@
-export * from './barnMessages';
+export * from './i18n';
 export * from './BarnForm';
 export * from './BarnList';
 export * from './BarnListAndDialog';
