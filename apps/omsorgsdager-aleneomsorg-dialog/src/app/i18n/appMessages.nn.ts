@@ -23,5 +23,6 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Ver venleg og prøv igjen seinare.',
     'resetMellomlagring.text.1': 'Dersom feilen varer ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
-    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må stadfeste at du har lese og forstått dine plikter.',
+    'validation.harForståttRettigheterOgPlikter.notChecked':
+        'Du må stadfeste at du har lese og forstått pliktene dine.',
 };

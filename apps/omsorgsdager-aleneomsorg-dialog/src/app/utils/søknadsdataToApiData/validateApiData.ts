@@ -12,7 +12,7 @@ export const validateApiDataMessages = {
         'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
     },
     nn: {
-        'apiDataValidation.undefined': 'Det oppstod ein feil ved visning av sida.',
+        'apiDataValidation.undefined': 'Det oppstod ein feil ved visinga av sida.',
     },
 };
 

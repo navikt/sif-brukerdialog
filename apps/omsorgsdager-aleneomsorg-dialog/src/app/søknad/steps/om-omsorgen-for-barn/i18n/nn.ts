@@ -8,13 +8,13 @@ export const omOmsorgenForBarnMessages_nn: Record<keyof typeof omOmsorgenForBarn
     'steg.omOmsorgenForBarn.info.spm.andreBarn': 'Har du barn som ikkje er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.flereBarn': 'Har du fleire barn som ikkje er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.text':
-        'Om du har barn som ikkje er registrert her, kan du legge inn desse sjølv. Det kan til dømes vere fosterbarn.',
+        'Om du har barn som ikkje er registrert her, kan du leggje inn desse sjølv. Det kan til dømes vere fosterbarn.',
 
     'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel': 'Legg til barn',
     'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle': 'Barn du har lagt til',
     'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
     'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo':
-        '(Du kan ikkje legge til barn som er 19 år i år eller eldre)',
+        '(Du kan ikkje leggje til barn som er 19 år i år eller eldre)',
 
     'steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel': 'åleineomsorg',
     'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg': 'Kryss av for barn du er åleine om omsorga for:',
@@ -32,9 +32,9 @@ export const omOmsorgenForBarnMessages_nn: Record<keyof typeof omOmsorgenForBarn
     'steg.omOmsorgenForBarn.form.fødtNavn': 'Fødd {dato} {navn}',
 
     'steg.omOmsorgenForBarn.alleBarnMedDeltBosted':
-        'Du kan berre søke for barn du er åleine med omsorga for, og ikkje har avtale om delt fast bustad for. Om du og den andre forelderen har ei avtale om delt fast bustad, bur barnet fast hos dykk begge. I desse tilfella kan ingen av dykk få ekstra dagar på grunn av åleineomsorg, men de har begge rett til ordinære omsorgsdagar.',
+        'Du kan berre søkje for barn du er åleine med omsorga for, og ikkje har avtale om delt fast bustad for. Om du og den andre forelderen har ei avtale om delt fast bustad, bur barnet fast hos dykk begge. I desse tilfella kan ingen av dykk få ekstra dagar på grunn av åleineomsorg, men de har begge rett til ordinære omsorgsdagar.',
     'steg.omOmsorgenForBarn.ingenbarn': 'Du må ha minst eitt barn for å kunne gå vidare.',
-    'steg.omOmsorgenForBarn.nextButtonLabel': 'Fortsett',
+    'steg.omOmsorgenForBarn.nextButtonLabel': 'Fortset',
 
     'validation.avtaleOmDeltBosted.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har avtale om delt fast bustad.',

@@ -12,13 +12,13 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
         'Du vart åleine om omsorga for over 2 år sidan.',
 
     'step.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har tyding for min rett til omsorgsdagar.',
+        'Eg stadfestar at opplysningane eg har gjeve er riktige, og at eg ikkje har halde tilbake opplysningar som har tyding for retten min til omsorgsdagar.',
 
     'step.oppsummering.sendMelding.feilmelding.førsteGang':
         'Det oppstod ein feil under innsending. Ver venleg å prøv på nytt.',
     'step.oppsummering.sendMelding.feilmelding.andreGang':
-        'Det oppstod framleis ein feil under innsending. Vent litt og prøv på nytt.',
+        'Det oppstod framleis ein feil under innsending. Ver venleg og prøv på nytt seinare.',
     'step.oppsummering.sendSøknad': 'Send søknad',
 
-    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
+    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gjeve er riktige.',
 };
