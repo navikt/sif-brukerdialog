@@ -50,11 +50,6 @@ const getArbeidstidMetadata = (
     return arbeidstid
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
-              ...(frilansArbeidstidAktivitet && frilansArbeidstidAktivitet.mottarOmsorgsstønad !== undefined
-                  ? {
-                        harEndretFrilans: arbeidstid.frilanserArbeidstidInfo !== undefined,
-                    }
-                  : {}),
           }
         : {
               endretArbeidstid: false,
