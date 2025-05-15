@@ -63,7 +63,6 @@ const SoknadFormStep = ({
     return (
         <Step
             applicationTitle={applicationTitle}
-            cancelOrContinueLaterAriaLabel={text('application.cancelOrContinueLaterLabel')}
             steps={steps}
             activeStepId={id}
             onCancel={resetSoknad}
