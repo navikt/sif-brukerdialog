@@ -1,4 +1,5 @@
 import { Alert, Bleed, Box, VStack } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -9,7 +10,7 @@ import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
 import { max } from 'date-fns';
-import { useIntl } from 'react-intl';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { GYLDIG_PERIODE } from '../../settings';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
@@ -20,7 +21,6 @@ import {
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeFormUtils';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 type FormValues = {
     fom?: string;
@@ -51,8 +51,6 @@ interface Props {
 }
 
 const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
-    // const [visDatoIkkeEndretMelding, setVisDatoIkkeEndretMelding] = useState(false);
-
     const intl = useIntl();
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant,
@@ -85,20 +83,6 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
 
     const handleOnSubmit = async (values: FormValues) => {
         const dato = variant === EndrePeriodeVariant.startdato ? values.fom : values.tom;
-        // const fomDato = values.fom ? ISODateToDate(values.fom) : undefined;
-        // const tomDato = values.tom ? ISODateToDate(values.tom) : undefined;
-
-        // const startdatoErEndret =
-        //     variant === EndrePeriodeVariant.startdato &&
-        //     fomDato !== undefined &&
-        //     !dayjs(fomDato).isSame(deltakelse.fraOgMed, 'day');
-
-        // const sluttdatoErEndret =
-        //     variant === EndrePeriodeVariant.sluttdato &&
-        //     tomDato !== undefined &&
-        //     !dayjs(tomDato).isSame(deltakelse.tilOgMed, 'date');
-
-        // const datoErEndret = startdatoErEndret || sluttdatoErEndret;
 
         if (!dato) {
             return;
