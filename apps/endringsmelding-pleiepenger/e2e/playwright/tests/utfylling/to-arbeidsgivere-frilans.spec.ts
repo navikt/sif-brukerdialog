@@ -39,6 +39,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').fill('2');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
     await page.getByTestId('aktivitet_frilanser').getByRole('button', { name: 'Vis mer' }).click();
+    await page.getByRole('radio', { name: 'Ja' }).check();
     await page.getByTestId('aktivitet_frilanser').getByText('- 04.12.2022').click();
     await page.getByTestId('aktivitet_frilanser').getByRole('button', { name: 'Vis alle uker' }).click();
     await page.getByTestId('aktivitet_frilanser').getByTestId('uke_7').getByTestId('endre-button').click();
