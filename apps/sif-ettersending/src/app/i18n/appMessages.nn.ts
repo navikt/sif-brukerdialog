@@ -62,7 +62,7 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'step.beskrivelse.stepTitle': 'Ettersending av dokumentasjon',
     'step.beskrivelse.stepIndicatorLabel': 'Ettersending av dokumentasjon',
-    'step.beskrivelse.nextButtonLabel': 'Fortsett',
+    'step.beskrivelse.nextButtonLabel': 'Fortset',
     'step.beskrivelse.hvaSendes.spm': 'Kva skal du ettersende?',
     'step.beskrivelse.intro.1':
         'Her skildrar du kva dokumentasjon du skal sende. Det er òg til hjelp for oss om du fortel at du ettersender fordi:',
@@ -74,7 +74,7 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'step.dokumentType.stepTitle': 'Kva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Kva skal du ettersende?',
-    'step.dokumentType.nextButtonLabel': 'Fortsett',
+    'step.dokumentType.nextButtonLabel': 'Fortset',
     'step.dokumentType.info': 'Her skildrar du kva dokumentasjon du skal sende oss.',
     'step.dokumentType.info.1':
         'Dersom ein annan søkjar har sendt inn same dokumentasjon for barnet i perioden du søkjer, treng du ikkje sende inn denne på nytt.',
@@ -103,12 +103,12 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'step.omsorgspenger_type.stepTitle': 'Kva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspengar type',
-    'step.omsorgspenger_type.nextButtonLabel': 'Fortsett',
+    'step.omsorgspenger_type.nextButtonLabel': 'Fortset',
     'step.omsorgspenger_type.søknadstype.spm': 'Kva gjeld denne ettersendinga?',
 
     'step.dokumenter.stepTitle': 'No skal du laste opp dokumenta dine',
     'step.dokumenter.stepIndicatorLabel': 'Last opp dokument',
-    'step.dokumenter.nextButtonLabel': 'Fortsett',
+    'step.dokumenter.nextButtonLabel': 'Fortset',
     'steg.dokumenter.vedlegg': 'Last opp dokument',
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokument, må du anten ta bilete av dokumenta eller skanne dei.',
@@ -188,14 +188,14 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'validation.ytelse.noValue': 'Du må velje kva denne ettersendinga gjeld',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste opplysningane',
     'validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
-        'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgje fødselsnummeret til barnet',
     'validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
-        'Du har oppgitt eit fødselsnummer som du ikkje kan bruke. Kontroller at du har skrive inn barnets fødselsnummer.',
+        'Du har oppgjeve eit fødselsnummer som du ikkje kan bruke. Kontroller at du har skrive inn barnets fødselsnummer.',
     'validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
     'validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
     'validation.barnetLegeerklæringGjelder.noValue': 'Du må velje kva barn legeerklæringa gjeld',
     'validation.dokumentType.noValue': 'Du må velje kva du skal ettersende',
 
