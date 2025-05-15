@@ -2,9 +2,8 @@
     "$schema": "https://turborepo.org/schema.json",
     "globalEnv": [],
     "tasks": {
-        "build-demo": {
-            "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-demo"]
+        "demo:build": {
+            "outputs": ["dist-demo/**"]
         },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
@@ -15,8 +14,7 @@
             "dependsOn": ["^build"]
         },
         "test": {
-            "outputs": [],
-            "dependsOn": ["^test"]
+            "outputs": []
         },
         "lint": {
             "dependsOn": ["lint:eslint", "lint:tsc"]

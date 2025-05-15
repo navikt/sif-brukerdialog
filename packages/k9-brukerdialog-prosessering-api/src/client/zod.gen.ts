@@ -19,6 +19,9 @@ export const zUngdomsytelsesøknad = z.object({
     språk: z.string(),
     startdato: z.string().date(),
     søkerNorskIdent: z.string(),
+    barnErRiktig: z.boolean(),
+    kontonummerFraRegister: z.string().optional(),
+    kontonummerErRiktig: z.boolean().optional(),
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
 });

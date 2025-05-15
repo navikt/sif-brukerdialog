@@ -1,59 +1,31 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { dateToISODate } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg, SøknadSvar } from '../../types';
+import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { getBarnSpørsmål } from '../barn/BarnSteg';
-
-export const isYesOrNoAnswered = (answer?: YesOrNo) => {
-    return answer !== undefined && (answer === YesOrNo.NO || answer === YesOrNo.YES);
-};
-
-const getSøknadFromSvar = (
-    svar: SøknadSvar,
-    søkerNorskIdent: string,
-    startdato: Date,
-    kontonummerFraRegister?: string,
-): Omit<Ungdomsytelsesøknad, 'harBekreftetOpplysninger'> | undefined => {
-    const harKontonummer = kontonummerFraRegister !== undefined && kontonummerFraRegister !== null;
-    if (
-        (svar[Spørsmål.FORSTÅR_PLIKTER] !== true,
-        !isYesOrNoAnswered(svar[Spørsmål.BARN]) || (harKontonummer && !isYesOrNoAnswered(svar[Spørsmål.KONTONUMMER])))
-    ) {
-        return undefined;
-    }
-
-    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-
-    return {
-        språk: 'nb',
-        startdato: dateToISODate(startdato),
-        harForståttRettigheterOgPlikter,
-        barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
-        kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
-        søkerNorskIdent,
-        kontonummerFraRegister,
-    };
-};
+import { buildSøknadFromSvar } from './oppsummeringUtils';
 
 const OppsummeringSteg = () => {
-    const { søker, deltakelsePeriode, setSøknadSendt, kontonummer, barn, svar } = useSøknadContext();
+    const { søker, deltakelsePeriode, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
-    const harKontonummer = kontonummer !== undefined && kontonummer !== null;
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(svar, søker.fødselsnummer, deltakelsePeriode.programPeriode.from, kontonummer);
+    const søknad = buildSøknadFromSvar(
+        svar,
+        søker.fødselsnummer,
+        deltakelsePeriode.programPeriode.from,
+        kontonummerInfo.harKontonummer ? kontonummerInfo.kontonummerFraRegister : undefined,
+    );
 
     const søknadError = søknad
         ? undefined
@@ -92,10 +64,10 @@ const OppsummeringSteg = () => {
                                 <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
                             </FormSummary.Header>
                             <FormSummary.Answers>
-                                {harKontonummer ? (
+                                {kontonummerInfo.harKontonummer ? (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
-                                            Stemmer det at kontonummeret ditt er {kontonummer}?
+                                            Stemmer det at kontonummeret ditt er {kontonummerInfo.formatertKontonummer}?
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}

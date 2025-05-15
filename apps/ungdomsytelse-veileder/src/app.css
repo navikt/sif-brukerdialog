@@ -23,17 +23,7 @@
     }
 }
 
-.page {
-    margin-top: 1rem;
-}
-
-.hentDeltakerForm {
-    legend {
-        font-size: 1.4rem;
-    }
-}
-
-.ungDefList {
+.ungDefinitionList {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.5rem 1rem;
@@ -49,8 +39,9 @@
         word-wrap: break-word; /* Bryt lange ord */
     }
 }
+
 @media screen and (max-width: 768px) {
-    .ungDefList {
+    .ungDefinitionList {
         grid-template-columns: 1fr;
         line-height: 1.5rem;
         dd {

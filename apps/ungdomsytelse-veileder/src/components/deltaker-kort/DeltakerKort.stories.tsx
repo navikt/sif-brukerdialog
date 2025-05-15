@@ -6,9 +6,9 @@ import DeltakerKort from './DeltakerKort';
 import { BrowserRouter } from 'react-router-dom';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { http, HttpResponse } from 'msw';
-import { nyDeltakerMock } from '../../../mock/msw/mocks/mockUtils';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { nyDeltakerMock } from '../../../mock/msw/mocks/data/nyDeltakerMock';
 
 const meta: Meta<typeof DeltakerKort> = {
     component: DeltakerKort,

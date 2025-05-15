@@ -1,12 +1,13 @@
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
-import { useDeltakelsePerioder } from './api/hooks/useDeltakelsePerioder';
-import { useSøker } from './api/hooks/useSøker';
-import InnsynApp from './apps/innsyn/InnsynApp';
-import SøknadApp from './apps/søknad/SøknadApp';
-import FlereDeltakelserPage from './components/pages/FlereDeltakelserPage';
-import HentDeltakerErrorPage from './components/pages/HentDeltakerErrorPage';
-import IngenDeltakelsePage from './components/pages/IngenDeltakelsePage';
-import { DeltakerContextProvider } from './context/DeltakerContext';
+import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
+import { useSøker } from '../../api/hooks/useSøker';
+import InnsynApp from '../../apps/innsyn/InnsynApp';
+import SøknadApp from '../../apps/søknad/SøknadApp';
+import FlereDeltakelserPage from '../pages/FlereDeltakelserPage';
+import HentDeltakerErrorPage from '../pages/HentDeltakerErrorPage';
+import IngenDeltakelsePage from '../pages/IngenDeltakelsePage';
+import { DeltakerContextProvider } from '../../context/DeltakerContext';
+import { useLocation } from 'react-router-dom';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -14,6 +15,7 @@ const DeltakerInfoLoader = () => {
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
+    const { pathname } = useLocation();
 
     if (isLoading) {
         return <LoadingPage />;
@@ -42,7 +44,7 @@ const DeltakerInfoLoader = () => {
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakelsePeriode.harSøkt ? (
+            {deltakelsePeriode.harSøkt && pathname.includes('kvittering') === false ? (
                 <InnsynApp />
             ) : (
                 <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />

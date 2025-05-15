@@ -23,7 +23,7 @@
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
         "fp-ts": "2.16.10",
-        "html-react-parser": "5.2.4",
+        "html-react-parser": "5.2.5",
         "io-ts": "2.2.22",
         "js-cookie": "3.0.5",
         "jsdom": "26.1.0",

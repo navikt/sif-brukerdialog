@@ -1,5 +1,5 @@
 import { Heading, HStack, VStack } from '@navikt/ds-react';
-import BorderBox from '../border-box/BorderBox';
+import BorderBox from '../../atoms/BorderBox';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 interface Props {

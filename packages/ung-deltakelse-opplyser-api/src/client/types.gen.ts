@@ -7,9 +7,7 @@ export type ProblemDetail = {
     detail?: string;
     instance?: string;
     properties?: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
 };
 
@@ -20,6 +18,11 @@ export type EndrePeriodeDatoDto = {
 export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
     arbeidsgiver: string;
+};
+
+export type BekreftelseDto = {
+    harGodtattEndringen: boolean;
+    uttalelseFraBruker?: string;
 };
 
 export type DeltakelseOpplysningDto = {
@@ -51,6 +54,7 @@ export type OppgaveDto = {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     oppgavetypeData: EndretProgramperiodeDataDto | KontrollerRegisterinntektOppgavetypeDataDto;
+    bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
     løstDato?: string;
@@ -68,9 +72,7 @@ export enum Oppgavetype {
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
 }
 
-export type OppgavetypeDataDto = {
-    [key: string]: unknown;
-};
+export type OppgavetypeDataDto = unknown;
 
 export type ProgramperiodeDto = {
     fomDato: string;
@@ -87,8 +89,16 @@ export type RegisterinntektDto = {
 
 export type YtelseRegisterInntektDto = {
     inntekt: number;
-    ytelsetype: string;
+    ytelsetype: YtelseType;
 };
+
+export enum YtelseType {
+    SYKEPENGER = 'SYKEPENGER',
+    OMSORGSPENGER = 'OMSORGSPENGER',
+    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
+    PLEIEPENGER_LIVETS_SLUTTFASE = 'PLEIEPENGER_LIVETS_SLUTTFASE',
+    OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
+}
 
 export type DeltakelseUtmeldingDto = {
     utmeldingsdato: string;
@@ -107,7 +117,7 @@ export type DeltakerOpplysningerDto = {
     opplysninger: Array<DeltakelseOpplysningDto>;
 };
 
-export type DeltakerPersonlia = {
+export type DeltakerPersonalia = {
     id?: string;
     deltakerIdent: string;
     navn: Navn;
@@ -143,7 +153,7 @@ export type RegisterInntektOppgaveDto = {
 
 export type RegisterInntektYtelseDto = {
     beløp: number;
-    ytelseType: string;
+    ytelseType: YtelseType;
 };
 
 export type EndretProgamperiodeOppgaveDto = {
@@ -414,7 +424,7 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerResponse =
@@ -654,7 +664,7 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse =

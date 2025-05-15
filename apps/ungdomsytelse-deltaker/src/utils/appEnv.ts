@@ -13,6 +13,5 @@ export const getAppEnv = (): AppEnv => ({
     [AppEnvKey.SIF_PUBLIC_URL_PERSONVERN]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_PERSONVERN),
     [AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT),
     [AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
+    [AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
 });
-
-export const appEnv = getAppEnv();

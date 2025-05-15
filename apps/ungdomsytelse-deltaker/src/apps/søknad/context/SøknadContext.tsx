@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { DeltakelsePeriode } from '@navikt/ung-common';
+import { DeltakelsePeriode, formaterKontonummer } from '@navikt/ung-common';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
@@ -61,7 +61,15 @@ export const SøknadProvider = ({
             value={{
                 svar,
                 søknadSendt,
-                kontonummer,
+                kontonummerInfo: kontonummer
+                    ? {
+                          harKontonummer: true,
+                          kontonummerFraRegister: kontonummer,
+                          formatertKontonummer: formaterKontonummer(kontonummer),
+                      }
+                    : {
+                          harKontonummer: false,
+                      },
                 barn,
                 søknadStartet,
                 deltakelsePeriode,
