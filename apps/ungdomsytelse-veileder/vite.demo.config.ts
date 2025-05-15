@@ -58,9 +58,6 @@ export default defineConfig({
     base: '/sif-brukerdialog/ungdomsytelse-veileder/',
     build: {
         sourcemap: true,
-        rollupOptions: {
-            input: './demo/index.html',
-        },
         outDir: './dist-demo',
         emptyOutDir: true,
     },
