@@ -24,6 +24,7 @@
         "APP_VERSION": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
+        "IS_LOCAL": "false",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
