@@ -1,10 +1,10 @@
-import { barnMessages } from '../pre-common/forms/barn/barnMessages';
-import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { annenForelderenSituasjonMessages } from '../søknad/steps/annen-forelderens-situasjon/annenForelderenSituasjonMessages';
-import { omAnnenForelderMessages } from '../søknad/steps/om-annen-forelder/omAnnenForelderMessages';
-import { omBarnaMessages } from '../søknad/steps/om-barna/omBarnaMessages';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { barnMessages } from '../pre-common/forms/barn/i18n';
+import { kvitteringMessages } from '../pages/kvittering/i18n';
+import { velkommenPageMessages } from '../pages/velkommen/i18n';
+import { annenForelderenSituasjonMessages } from '../søknad/steps/annen-forelderens-situasjon/i18n';
+import { omAnnenForelderMessages } from '../søknad/steps/om-annen-forelder/i18n';
+import { omBarnaMessages } from '../søknad/steps/om-barna/i18n';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/i18n';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
