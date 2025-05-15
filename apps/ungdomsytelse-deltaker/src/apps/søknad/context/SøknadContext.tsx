@@ -1,7 +1,9 @@
 import React, { createContext, useState } from 'react';
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode, formaterKontonummer } from '@navikt/ung-common';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
@@ -34,6 +36,7 @@ export const SøknadProvider = ({
 }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
+    const { logHendelse, logInfo, logSoknadStartet, logSoknadSent } = useAnalyticsInstance();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
     const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter ? true : false);
@@ -45,6 +48,7 @@ export const SøknadProvider = ({
     const avbrytOgSlett = () => {
         setSvar({});
         setSøknadStartet(false);
+        logHendelse(ApplikasjonHendelse.avbryt);
         gotoVelkommenPage();
     };
 
@@ -53,7 +57,19 @@ export const SøknadProvider = ({
             harForståttRettigheterOgPlikter,
         });
         setSøknadStartet(true);
+        logSoknadStartet(UngdomsytelseDeltakerApp.key);
         gotoSteg(Steg.KONTONUMMER);
+    };
+
+    const doSetSøknadSendt = () => {
+        setSøknadSendt(true);
+        logSoknadSent(UngdomsytelseDeltakerApp.key);
+        logInfo({
+            harBarn: barn.length > 0,
+            barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
+            harKontonummer: kontonummer ? true : false,
+            kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
+        });
     };
 
     return (
@@ -75,7 +91,7 @@ export const SøknadProvider = ({
                 deltakelsePeriode,
                 søker,
                 setSpørsmålSvar: oppdaterSvar,
-                setSøknadSendt,
+                setSøknadSendt: doSetSøknadSendt,
                 startSøknad,
                 avbrytOgSlett,
             }}>

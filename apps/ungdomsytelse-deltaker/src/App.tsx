@@ -8,10 +8,12 @@ import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
+import { AnalyticsProvider } from './utils/analytics';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 
 initSentry();
 initApiClients();
@@ -32,14 +34,19 @@ function App() {
     return (
         <Theme>
             <ErrorBoundary fallback={<AppErrorFallback />}>
-                <QueryClientProvider client={queryClient}>
-                    <AppIntlMessageProvider>
-                        <AppRouter>
-                            <DeltakerInfoLoader />
-                        </AppRouter>
-                        <DevFooter />
-                    </AppIntlMessageProvider>
-                </QueryClientProvider>
+                <AnalyticsProvider
+                    applicationKey={UngdomsytelseDeltakerApp.key}
+                    logToConsoleOnly={true}
+                    isActive={false}>
+                    <QueryClientProvider client={queryClient}>
+                        <AppIntlMessageProvider>
+                            <AppRouter>
+                                <DeltakerInfoLoader />
+                            </AppRouter>
+                            <DevFooter />
+                        </AppIntlMessageProvider>
+                    </QueryClientProvider>
+                </AnalyticsProvider>
             </ErrorBoundary>
         </Theme>
     );

@@ -40,7 +40,7 @@ const OppsummeringSteg = () => {
             }
             try {
                 await mutateAsync({ ...søknad, harBekreftetOpplysninger: bekrefterOpplysninger });
-                setSøknadSendt(true);
+                setSøknadSendt();
                 gotoKvittering();
             } catch {
                 // Håndteres gjennom error objektet  i useSendSøknad
