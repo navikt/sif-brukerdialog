@@ -11,7 +11,6 @@ import {
     ValgteEndringer,
 } from '@types';
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
@@ -54,7 +53,6 @@ const getArbeidstidMetadata = (
               ...(frilansArbeidstidAktivitet && frilansArbeidstidAktivitet.mottarOmsorgsstønad !== undefined
                   ? {
                         harEndretFrilans: arbeidstid.frilanserArbeidstidInfo !== undefined,
-                        harOmsorgsstønad: frilansArbeidstidAktivitet.mottarOmsorgsstønad === YesOrNo.YES,
                     }
                   : {}),
           }
