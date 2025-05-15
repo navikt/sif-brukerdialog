@@ -6,32 +6,9 @@ import { omAnnenForelderMessages } from '../søknad/steps/om-annen-forelder/i18n
 import { omBarnaMessages } from '../søknad/steps/om-barna/i18n';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/i18n';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+import { appMessages_nb } from './appMessages.nb';
 
-const nb = {
-    ...velkommenPageMessages.nb,
-    ...omAnnenForelderMessages.nb,
-    ...annenForelderenSituasjonMessages.nb,
-    ...omBarnaMessages.nb,
-    ...barnMessages.nb,
-    ...oppsummeringMessages.nb,
-    ...kvitteringMessages.nb,
-    ...validateApiDataMessages.nb,
-
-    'application.title': 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
-
-    'step.omAnnenForelder.stepTitle': 'Om den andre forelderen',
-    'step.annenForelderSituasjon.stepTitle': 'Den andre forelderens situasjon',
-    'step.omBarna.stepTitle': 'Om barn',
-    'step.oppsummering.stepTitle': 'Oppsummering',
-
-    'initialLoadError.pageTitle': 'Det oppstod en feil',
-    'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
-
-    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tomt skjema.',
-    'resetMellomlagring.startPåNytt': 'Start på nytt',
-};
-
-const nn: Record<keyof typeof nb, string> = {
+export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     ...velkommenPageMessages.nn,
     ...omAnnenForelderMessages.nn,
     ...annenForelderenSituasjonMessages.nn,
@@ -53,9 +30,4 @@ const nn: Record<keyof typeof nb, string> = {
 
     'resetMellomlagring.text.1': 'Dersom feilen vedvarar, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
-};
-
-export const appMessages = {
-    nb,
-    nn,
 };
