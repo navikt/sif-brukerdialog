@@ -20,7 +20,7 @@ import {
     kanEndreSluttdato,
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
-import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeFormUtils';
+import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
 
 type FormValues = {
     fom?: string;
@@ -138,7 +138,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
-                                            validate={getStartdatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
+                                            validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
                                         />
                                     ) : (
                                         <DatePicker
@@ -147,7 +147,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={sluttdatoMinMax.from}
                                             maxDate={sluttdatoMinMax.to}
                                             defaultMonth={deltakelse.tilOgMed}
-                                            validate={getSluttdatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
+                                            validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
                                         />
                                     )}
 
