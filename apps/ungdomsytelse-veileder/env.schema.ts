@@ -4,6 +4,7 @@ import * as z from 'zod';
 const localSchema = z.object({
     SIF_PUBLIC_IS_LOCAL: z
         .union([z.boolean(), z.string()])
+        .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
 });
 
