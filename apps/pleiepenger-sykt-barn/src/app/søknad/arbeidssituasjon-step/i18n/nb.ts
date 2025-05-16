@@ -1,4 +1,4 @@
-const nb = {
+export const arbeidssituasjonMessages_nb = {
     'step.arbeidssituasjon.pageTitle': 'Pleiepengesøknad - opplysninger om din arbeidssituasjon',
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjonen din',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Om din arbeidssituasjon',
@@ -177,13 +177,7 @@ const nb = {
     'verneplikt.summary.header': 'Verneplikt',
     'verneplikt.summary.harVærtVernepliktig': 'Utøvde verneplikt på tidspunktet det søkes pleiepenger fra',
     'verneplikt.summary.harIkkeVærtVernepliktig': 'Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra',
-};
 
-const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-};
-
-const fosterhjem = {
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm':
         'Mottar du fosterhjemsgodtgjørelse fra kommunen?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm.description.tittel':
@@ -212,9 +206,4 @@ const fosterhjem = {
     'steg.arbeidssituasjon.frilansoppdragListe.tittel': 'Frilansoppdrag registrert på deg:',
     'steg.arbeidssituasjon.frilansoppdragListe.tekst':
         'Dette er informasjon hentet fra AA-registeret. Det kan være jobb som frilanser, eller andre oppdrag som regnes som frilansoppdrag: honorar, fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.',
-};
-
-export const arbeidssituasjonMessages = {
-    nb: { ...nb, ...fosterhjem },
-    nn: { ...nn, ...fosterhjem },
 };

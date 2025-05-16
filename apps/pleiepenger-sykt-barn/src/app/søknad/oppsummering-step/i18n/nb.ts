@@ -1,4 +1,4 @@
-const nb = {
+export const oppsummeringMessages_nb = {
     'step.oppsummering.pageTitle': 'Pleiepengesøknad - oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',
     'step.oppsummering.stepIndicatorLabel': 'Oppsummering',
@@ -194,13 +194,4 @@ const nb = {
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke': 'Uke {ukenummer}: {timer}',
 
     'oppsummering.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
-};
-
-const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-};
-
-export const oppsummeringMessages = {
-    nb,
-    nn,
 };
