@@ -15,6 +15,7 @@ export enum ValidateDateError {
     dateIsBeforeMin = 'dateIsBeforeMin',
     dateIsAfterMax = 'dateIsAfterMax',
     dateIsNotWeekday = 'dateIsNotWeekday',
+    dateNotChanged = 'dateNotChanged',
 }
 
 export const ValidateDateErrorKeys = Object.keys(ValidateDateError);
@@ -25,12 +26,14 @@ export type DateValidationResult =
     | ValidateDateError.dateIsBeforeMin
     | ValidateDateError.dateIsAfterMax
     | ValidateDateError.dateIsNotWeekday
+    | ValidateDateError.dateNotChanged
     | undefined;
 
 export interface DateValidationOptions {
     required?: boolean;
     min?: Date;
     max?: Date;
+    originalDate?: Date;
     onlyWeekdays?: boolean;
 }
 
@@ -42,9 +45,13 @@ const getDateValidator =
         if (required && validationUtils.hasValue(value) === false) {
             return ValidateDateError.dateHasNoValue;
         }
+
         if (validationUtils.hasValue(value)) {
             if (date === undefined) {
                 return ValidateDateError.dateHasInvalidFormat;
+            }
+            if (date && options.originalDate && dayjs(date).isSame(options.originalDate, 'date')) {
+                return ValidateDateError.dateNotChanged;
             }
             if (min && dayjs(date).isBefore(min, 'day')) {
                 return ValidateDateError.dateIsBeforeMin;
