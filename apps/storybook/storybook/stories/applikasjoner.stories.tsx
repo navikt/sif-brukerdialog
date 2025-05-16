@@ -3,13 +3,14 @@ import { Meta, StoryObj } from '@storybook/react';
 import MessagesPreview, {
     MessagesPreviewProps,
 } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { appMessages as omsIkkeTilsyn } from '../../../ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/src/app/i18n/appMessages';
-import { appMessages as omsAleneomsorg } from '../../../omsorgsdager-aleneomsorg-dialog/src/app/i18n/appMessages';
-import { appMessages as omsArbeidstaker } from '../../../omsorgspengerutbetaling-arbeidstaker-soknad/src/app/i18n/appMessages';
-import { appMessages as omsSnFri } from '../../../omsorgspengerutbetaling-soknad/src/app/i18n/appMessages';
-import { appMessages as omsKronisk } from '../../../omsorgspengesoknad/src/app/i18n/appMessages';
-import { appMessages as pils } from '../../../pleiepenger-i-livets-sluttfase-soknad/src/app/i18n/appMessages';
-import { appMessages as psb } from '../../../pleiepenger-sykt-barn/src/app/i18n/appMessages';
+import { appMessages as omsIkkeTilsyn } from '../../../ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/src/app/i18n';
+import { appMessages as omsAleneomsorg } from '../../../omsorgsdager-aleneomsorg-dialog/src/app/i18n';
+import { appMessages as omsArbeidstaker } from '../../../omsorgspengerutbetaling-arbeidstaker-soknad/src/app/i18n';
+import { appMessages as omsSnFri } from '../../../omsorgspengerutbetaling-soknad/src/app/i18n';
+import { appMessages as omsKronisk } from '../../../omsorgspengesoknad/src/app/i18n';
+import { appMessages as pils } from '../../../pleiepenger-i-livets-sluttfase-soknad/src/app/i18n';
+import { appMessages as psb } from '../../../pleiepenger-sykt-barn/src/app/i18n';
+import { appMessages as opplaringspenger } from '../../../pleiepenger-sykt-barn/src/app/i18n';
 import { appMessages as ettersendelse } from '../../../sif-ettersending/src/app/i18n';
 
 const meta: Meta<MessagesPreviewProps> = {
@@ -76,5 +77,12 @@ export const Ettersendelse: Story = {
     name: 'Ettersending av dokumenter innenfor sykdom i familien',
     args: {
         messages: ettersendelse,
+    },
+};
+
+export const Opplæringspenger: Story = {
+    name: 'Søknad om opplæringspenger',
+    args: {
+        messages: opplaringspenger,
     },
 };

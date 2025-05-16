@@ -30,7 +30,7 @@ const libMessages = {
     },
 };
 
-const appMessages = {
+export const appMessages = {
     nb: appMessages_nb,
     nn: appMessages_nn,
 };
