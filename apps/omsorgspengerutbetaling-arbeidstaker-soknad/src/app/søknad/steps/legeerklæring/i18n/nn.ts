@@ -1,7 +1,7 @@
 import { legeerklæringMessages_nb } from './nb';
 
 export const legeerklæringMessages_nn: Record<keyof typeof legeerklæringMessages_nb, string> = {
-    'step.legeerklæring.stepIndicatorLabel': 'Last opp di legeerklæring',
+    'step.legeerklæring.stepIndicatorLabel': 'Last opp legeerklæring di',
     'step.legeerklæring.counsellorpanel.1':
         'Dersom du søkjer om utbetaling for meir enn 3 samanhengande dagar, må du laste opp ei legeerklæring som gjeld frå og med den 4. dagen.',
     'step.legeerklæring.counsellorpanel.2':
@@ -12,5 +12,5 @@ export const legeerklæringMessages_nn: Record<keyof typeof legeerklæringMessag
 
     'step.legeerklæring.vedleggsliste.tittel': 'Last opp legeerklæring',
 
-    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lasta opp',
+    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Inga legeerklæring er lasta opp',
 };

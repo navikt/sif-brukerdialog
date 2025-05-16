@@ -15,7 +15,7 @@ export const dineBarnMessages_nn: Record<keyof typeof dineBarnMessages_nb, strin
     'step.dineBarn.annetBarnListAndDialog.listTitle': 'Har du barn som ikkje er registrert her?',
     'step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn': 'Har du andre barn?',
     'step.dineBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
-    'step.dineBarn.formLeggTilBarn.aldersGrenseInfo': '(du kan ikkje legge til barn som er 19 år eller eldre)',
+    'step.dineBarn.formLeggTilBarn.aldersGrenseInfo': '(du kan ikkje leggje til barn som er 19 år eller eldre)',
 
     'step.dineBarn.harDeltBosted.spm': 'Er det avtalt delt fast bustad for nokre av barna dine?',
     'validation.harDeltBosted.yesOrNoIsUnanswered':

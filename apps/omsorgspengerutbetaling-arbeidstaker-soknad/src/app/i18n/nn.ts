@@ -21,13 +21,13 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     Ja: 'Ja',
     Nei: 'Nei',
 
-    'application.title': 'Søknad om utbetaling av omsorgspengar når arbeidsgivar ikkje utbetalar',
+    'application.title': 'Søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje utbetalar',
     dager: '{dager, plural, one {# dag} other {# dagar}}',
 
     'initialLoadError.pageTitle': 'Det oppstod ein feil',
     'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Ver venleg og prøv igjen seinare.',
 
-    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med eit tomt skjema.',
+    'resetMellomlagring.text.1': 'Dersom feilen vare ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
     'step.nextButtonLabel': 'Fortset',
@@ -64,9 +64,9 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.harHattFraværHosArbeidsgiver.yesOrNoIsUnanswered':
         'Du må svare på om du har hatt fråvær hos {arbeidsgivernavn} fordi du har brukt omsorgsdagar.',
     'validation.arbeidsgiverHarUtbetaltLønn.yesOrNoIsUnanswered':
-        'Du må svare på om {arbeidsgivernavn} har utbetalt deg lønn for dei dagane du har brukt omsorgsdagar.',
+        'Du må svare på om {arbeidsgivernavn} har utbetalt deg løn for dei dagane du har brukt omsorgsdagar.',
     'validation.arbeidsforhold.ansettelseslengde.begrunnelse.noValue':
-        'Du må svare på kva som var din situasjon før du starta å jobbe hos {arbeidsgivernavn}.',
+        'Du må svare på kva som var situasjon din før du starta å jobbe hos {arbeidsgivernavn}.',
     'validation.arbeidsforhold.hvorLengeJobbet.noValue':
         'Du må svare på kor lenge du har vore i jobb hos {arbeidsgivernavn}.',
     'validation.arbeidsforhold.harPerioderMedFravær.yesOrNoIsUnanswered':
@@ -82,29 +82,30 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.perioderUtenlandsopphold.listIsEmpty':
         'Du har svart at du har vore i utlandet i perioden du søkjer for. Du må derfor leggje til utanlandsopphald.',
     'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du har budd i utlandet i heile eller delar av dei siste 12 månadene.',
+        'Du må svare på om du har budd i utlandet i heile eller delar av dei siste 12 månadane.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har ikkje registrert nokre utanlandsopphald for dei siste 12 månadene.',
+        'Du har ikkje registrert nokre utanlandsopphald for dei siste 12 månadane.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper':
-        'Eitt eller fleire av utanlandsopphalda dei siste 12 månadene har datoar som overlappar.',
+        'Eitt eller fleire av utanlandsopphalda dei siste 12 månadane har datoar som overlappar.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_utenfor_periode':
         'Eitt eller fleire av utanlandsopphalda du har lagt inn er utanfor søknadsperioden.',
     'validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du planlegg å bu i utlandet i heile eller delar av dei neste 12 månadene.',
+        'Du må svare på om du planlegg å bu i utlandet i heile eller delar av dei neste 12 månadane.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har ikkje registrert nokre utanlandsopphald for dei neste 12 månadene.',
+        'Du har ikkje registrert nokre utanlandsopphald for dei neste 12 månadane.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper':
-        'Eitt eller fleire av utanlandsopphalda dei neste 12 månadene har datoar som overlappar.',
+        'Eitt eller fleire av utanlandsopphalda dei neste 12 månadane har datoar som overlappar.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_utenfor_periode':
         'Eitt eller fleire av utanlandsopphalda du har lagt inn er utanfor søknadsperioden.',
-    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må stadfeste at du har lese og forstått dine plikter.',
-    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
+    'validation.harForståttRettigheterOgPlikter.notChecked':
+        'Du må stadfeste at du har lese og forstått pliktene dine.',
+    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gjeve er riktige.',
     'validation.situasjon.arbeidsforhold.utbetalingsårsak.noValue':
         'Du må svare på kva som er grunnen til at du søkjer om utbetaling av omsorgspengar frå Nav.',
     'validation.situasjon.arbeidsforhold.ÅrsakMindre4Uker.noValue':
         'Du må svare på kva som var situasjonen din rett før du starta hos {arbeidsgivernavn}.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringHasNoValue':
-        'Du må forklare situasjonen med arbeidsgivaren din.',
+        'Du må forklare situasjonen med arbeidsgjevaren din.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooShort':
         'Forklaringa må vere på minst {min} teikn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
@@ -113,6 +114,6 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Ingen dokument med forklaring frå {arbeidsgivernavn} er lasta opp.',
     'validation.barn.ingenBarn': 'Du må leggje til minst eitt barn du har omsorg for',
 
-    'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av sida.',
-    'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
+    'apiDataValidation.undefined': 'Det oppstod ein feil ved visinga av sida.',
+    'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bustad.',
 };
