@@ -42,11 +42,11 @@ export const omsorgstilbudMessages_nn: Record<keyof typeof omsorgstilbudMessages
     'step.omsorgstilbud.søkerKunHelgedager.alert.avsnitt.2':
         'Du kan derfor ikkje registrere omsorgstilbod berre for laurdag og/eller sundag.',
     'step.omsorgstilbud.søkerKunHelgedager.alert.avsnitt.3':
-        'Venlegst gå tilbake til steget "Perioden med pleiepengar" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykk på "Hald fram"-knappen for å gå vidare.',
+        'Ver venleg å gå tilbake til steget "Perioden med pleiepengar" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykk på "Fortset"-knappen for å gå vidare.',
 
     'steg.omsorgstilbud.erIOmsorgstilbudFortid': 'Fram til no',
     'steg.omsorgstilbud.erIOmsorgstilbudFortid.spm':
-        'Har barnet vore fast og regelmessig i skule/barnehage eller andre omsorgstilbod, frå datoen du søker om og fram til no?',
+        'Har barnet vore fast og regelmessig i skule/barnehage eller andre omsorgstilbod, frå datoen du søkjer om og fram til no?',
     'steg.omsorgstilbud.erIOmsorgstilbudKunFortid.spm':
         'Har barnet vore fast og regelmessig på skulen, i barnehagen eller i andre omsorgstilbod?',
     'steg.omsorgstilbud.erIOmsorgstilbudFremtid': 'Framover i tid',
@@ -65,7 +65,7 @@ export const omsorgstilbudMessages_nn: Record<keyof typeof omsorgstilbudMessages
 
     'steg.omsorgstilbud.eksempel.tittel': 'Døme på å opphalde seg fast og regelmessig i eit omsorgstilbod',
     'steg.omsorgstilbud.eksempel.1':
-        'I perioden med pleiepengar klarer Anna å vere i barnehagen mellom 5 og 15 timar per veke. Det lågaste talet timar Anna er i barnehagen blir rekna som fast og regelmessig. I dette dømet skal det derfor oppgivast 5 timar per veke.',
+        'I perioden med pleiepengar klarer Anna å vere i barnehagen mellom 5 og 15 timar per veke. Det lågaste talet timar Anna er i barnehagen blir rekna som fast og regelmessig. I dette dømet skal ein difor oppgje 5 timar per veke.',
     'steg.omsorgstilbud.eksempel.2':
         'Peder er på skulen berre av og til, når han er i form til det. Nokre veker klarer han å vere der nokre timar, andre veker er han ikkje på skulen i det heile. I dette dømet skal det svarast nei på om barnet er fast og regelmessig i omsorgstilbodet, ettersom tida Peder er på skulen er uforutsigbar og uregelmessig.',
 
@@ -107,18 +107,18 @@ export const omsorgstilbudMessages_nn: Record<keyof typeof omsorgstilbudMessages
     'omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel': 'Oppgje periode med omsorgstilbod',
 
     'validation.omsorgstilbud.fastdag.tid.timeHasNoValue': 'Du må fylle ut timar og minutt for {dag}.',
-    'validation.omsorgstilbud.fastdag.tid.hoursAreInvalid': 'Antall timar på {dag} er ikkje eit gyldig tal.',
-    'validation.omsorgstilbud.fastdag.tid.minutesAreInvalid': 'Antall minutt på {dag} er ikkje eit gyldig tal.',
-    'validation.omsorgstilbud.fastdag.tid.tooManyHours': 'Antall timar på {dag} kan ikkje overstige 7 timar.',
-    'validation.omsorgstilbud.fastdag.tid.tooManyMinutes': 'Antall minutt på {dag} kan ikkje overstige 59 minutt.',
+    'validation.omsorgstilbud.fastdag.tid.hoursAreInvalid': 'Antal timar på {dag} er ikkje eit gyldig tal.',
+    'validation.omsorgstilbud.fastdag.tid.minutesAreInvalid': 'Antal minutt på {dag} er ikkje eit gyldig tal.',
+    'validation.omsorgstilbud.fastdag.tid.tooManyHours': 'Antal timar på {dag} kan ikkje overstige 7 timar.',
+    'validation.omsorgstilbud.fastdag.tid.tooManyMinutes': 'Antal minutt på {dag} kan ikkje overstige 59 minutt.',
     'validation.omsorgstilbud.fastdag.tid.durationIsTooLong':
-        'Antall timar og minutt registrert {dag} er for høgt. Tida kan ikkje overstige 7 timar og 30 minutt kvar vekedag.',
+        'Antal timar og minutt registrert {dag} er for høgt. Tida kan ikkje overstige 7 timar og 30 minutt kvar vekedag.',
     'validation.omsorgstilbud.fastdag.tid.durationIsTooShort':
-        'Antall timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+        'Antal timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
     'validation.omsorgstilbud.fastdag.tid.hoursAreNegative':
-        'Antall timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+        'Antal timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
     'validation.omsorgstilbud.fastdag.tid.minutesAreNegative':
-        'Antall timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
+        'Antal timar og minutt {dag} kan ikkje vere mindre enn 0 timar og 0 minutt.',
 
     'validation.omsorgstilbud_gruppe.ingenInfo':
         'Du må fylle ut den tida i omsorgstilbodet som er fast og regelmessig.',
@@ -128,7 +128,7 @@ export const omsorgstilbudMessages_nn: Record<keyof typeof omsorgstilbudMessages
     'validation.omsorgstilbud.erIOmsorgstilbudFremtid.yesOrNoIsUnanswered':
         'Du må svare ja, nei eller usikker på om barnet skal vere fast og regelmessig i eit omsorgstilbod.',
     'validation.omsorgstilbud.enkeltdager.ingenTidRegistrert':
-        'Du har ikkje oppgitt noko tid for kor mykje barnet er i eit omsorgstilbod i perioden.',
+        'Du har ikkje oppgjeve noko tid for kor mykje barnet er i eit omsorgstilbod i perioden.',
     'validation.omsorgstilbud.erLiktHverUke.yesOrNoIsUnanswered':
         'Du må svare på om tida barnet er i omsorgstilbodet er lik for kvar veke i perioden.',
 };

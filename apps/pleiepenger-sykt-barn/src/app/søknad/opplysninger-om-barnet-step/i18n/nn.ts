@@ -17,21 +17,21 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'steg.omBarnet.årsakManglerIdentitetsnummer.ANNET': 'Anna',
     'steg.omBarnet.fødselsattest.tittel': 'Fødselsattest',
     'steg.omBarnet.fødselsattest.info':
-        'Når barnet bur i utlandet og ikkje har fødselsnummer eller D-nummer, må du legge ved ei kopi av fødselsattesten til barnet.',
+        'Når barnet bur i utlandet og ikkje har fødselsnummer eller D-nummer, må du leggje ved ei kopi av fødselsattesten til barnet.',
     'steg.omBarnet.fødselsattest.vedlegg': 'Last opp fødselsattest',
     'steg.omBarnet.fødselsattest.vedlegg.legend': 'Dokument',
     'steg.omBarnet.fødselsdato': 'Barnet sin fødselsdato',
     'steg.omBarnet.navn': 'Barnet sitt namn',
     'steg.omBarnet.relasjon.spm': 'Kva for ein relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
-        'Beskriv kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for',
+        'Skildr kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for',
     'steg.omBarnet.relasjonAnnet.info.tittel': 'Kva betyr dette?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
         'I nokre tilfelle kan ikkje den eller dei som har den daglege omsorga for barnet ha tilsyn med barn som treng tilsyn og pleie heile tida. Då kan andre personar hjelpe til med dette. Andre personar kan for eksempel vere ein besteforelder, venn, nabo, tante eller onkel.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.2':
         'Eksempel 1: Mor/far kan ikkje sjølv følgje barnet til sjukehuset for utgreiing eller behandling. Då kan andre personar følgje barnet til sjukehuset og ha tilsyn med barnet så lenge opphaldet på sjukehuset varer.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.3':
-        'Eksempel 2: Kvarken mor eller far har moglegheit til å pleie barnet heime, då kan andre personar gjere dette og ha tilsyn med barnet i perioden det gjeld.',
+        'Eksempel 2: Korkje mor eller far har moglegheit til å pleie barnet heime, då kan andre personar gjere dette og ha tilsyn med barnet i perioden det gjeld.',
 
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
@@ -49,10 +49,10 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'validation.barnetsNavn.stringIsTooLong': 'Namnet på barnet kan ikkje innehalde fleire enn {maks} teikn.',
     'validation.barnetsNavn.stringIsTooShort': 'Namnet på barnet må innehalde minst {min} teikn.',
     'validation.barnetsFødselsdato.dateHasInvalidFormat':
-        'Du må oppgi barnet sin fødselsdato i eit gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgje barnet sin fødselsdato i eit gyldig format. Gyldig format er dd.mm.ååå.',
     'validation.barnetsFødselsdato.dateHasNoValue':
-        'Du må oppgi barnet sin fødselsdato. Skriv inn eller vel dato frå datoveljaren.',
-    'validation.barnetsFødselsdato.dateIsBeforeMin': 'Du kan ikkje legge til eit barn over 18 år.',
+        'Du må oppgje barnet sin fødselsdato. Skriv inn eller vel dato frå datoveljaren.',
+    'validation.barnetsFødselsdato.dateIsBeforeMin': 'Du kan ikkje leggje til eit barn over 18 år.',
     'validation.barnetsFødselsdato.dateIsAfterMax': 'Barnet sin fødselsdato kan ikkje vere etter dagens dato.',
     'validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på spørsmålet om kvifor barnet ikkje har fødselsnummer eller D-nummer.',
@@ -68,7 +68,7 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
         'Fødselsnummeret/D-nummeret du har skrive inn er ikkje eit gyldig norsk fødselsnummer. Kontroller at du har skrive inn riktig.',
     'validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
-        'Du må beskrive kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer om.',
+        'Du må skildre kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer om.',
     'validation.relasjonTilBarnetBeskrivelse.stringIsTooLong':
         'Du har brukt for mange teikn i skildringa di. Teksten kan ikkje innehalde fleire enn {maks} teikn.',
 };

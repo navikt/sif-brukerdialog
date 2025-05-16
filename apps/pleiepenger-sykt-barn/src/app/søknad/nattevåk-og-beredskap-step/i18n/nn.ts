@@ -21,7 +21,7 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
         'Du skal svare «ja» om minst eitt av barna sin sjukdom gjer at du må vere vaken om natta eller i beredskap, og derfor ikkje kan gå på jobb.',
 
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm':
-        'No treng me ei skildring av korleis barnet sin sjukdom gir eit pleie- eller tilsynsbehov om nettene.',
+        'No treng me ei skildring av korleis barnet sin sjukdom gjev eit pleie- eller tilsynsbehov om nettene.',
 
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel': 'Me treng detaljert informasjon om:',
 
@@ -63,7 +63,7 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'validation.harBeredskap.yesOrNoIsUnanswered': 'Du må svare ja eller nei på om du må vere i beredskap.',
 
     'validation.harBeredskap_ekstrainfo.stringHasNoValue':
-        'Du må gi ei skildring av kva som gjer at du må vere i beredskap.',
+        'Du må gje ei skildring av kva som gjer at du må vere i beredskap.',
 
     'validation.harBeredskap_ekstrainfo.stringIsTooLong':
         'Du har brukt for mange teikn i skildringa di. Teksten kan ikkje innehalde fleire enn 1000 teikn.',

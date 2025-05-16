@@ -1,7 +1,7 @@
 import { sifCommonPleiepengerMessages_nb } from './nb';
 
 export const sifCommonPleiepengerMessages_nn: Record<keyof typeof sifCommonPleiepengerMessages_nb, string> = {
-    'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode med omsorgstilbod',
+    'omsorgstilbudPeriodeForm.tittel': 'Oppgje periode med omsorgstilbod',
     'omsorgstilbudPeriodeForm.submitButtonLabel': 'Ok',
     'omsorgstilbudPeriodeForm.cancelButtonLabel': 'Avbryt',
     'omsorgstilbudPeriodeForm.periode.legend': 'Vel periode',

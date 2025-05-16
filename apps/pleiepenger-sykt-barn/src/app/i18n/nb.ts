@@ -106,7 +106,6 @@ export const appCommonMessages_nb = {
         'Du må svare på om du ønsker å oppgi hvor mye du er frikjøpt i timer eller prosent',
     'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.noValue':
         'Du må svare på hvordan du mottar denne godtgjørelsen gjennom hele perioden du søker om.',
-
     'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasNoValue':
         'Du må oppgi hvor mange prosent du er frikjøpt',
     'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasInvalidFormat':

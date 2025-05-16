@@ -4,7 +4,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
     'step.tidsrom.søkerKunHelgedager.alert':
         'Du kan berre få utbetalt pleiepengar for vekedagar. Det blir ikkje utbetalt pleiepengar for laurdag eller sundag sjølv om du har hatt fråvær frå jobb for å pleie barn. Du kan difor ikkje søkje pleiepengar berre for laurdag og/eller sundag.',
     'steg.tidsrom.veileder.utenlandsopphold':
-        'Når du oppheld deg i eit land utanfor EØS, kan du behalde pleiepengane i ein avgrensa periode på opptil 8 veker av ein 12 månaders periode.',
+        'Når du oppheld deg i eit land utanfor EØS, kan du behalde pleiepengane i ein avgrensa periode på opptil 8 veker av ein periode på  12 månadar',
 
     'step.tidsrom.pageTitle': 'Pleiepengesøknad - periode',
     'step.tidsrom.stepTitle': 'Perioden med pleiepengar',
@@ -32,7 +32,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
 
     'validation.periodeFra.dateHasNoValue': 'Du må fylle ut frå-datoen for perioden.',
     'validation.periodeFra.dateHasInvalidFormat':
-        'Du må oppgi frå-datoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje frå-datoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'validation.periodeFra.fromDateIsAfterToDate':
         'Frå-datoen kan ikkje vere etter til-datoen. Skriv inn eller vel dato frå kalenderen.',
     'validation.periodeFra.dateIsBeforeMin':
@@ -42,13 +42,13 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
         'Frå-datoen må vere ein vekedag, det kan ikkje vere ein laurdag eller sundag. Skriv inn eller vel dato frå kalenderen.',
     'validation.periodeTil.dateHasNoValue': 'Du må fylle ut til-datoen for perioden.',
     'validation.periodeTil.dateHasInvalidFormat':
-        'Du må oppgi til-datoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje til-datoen i eit gyldig datoformat. Gyldig format er dd.mm.åååå.',
     'validation.periodeTil.dateIsBeforeMin':
         'Du kan ikkje søkje om pleiepengar for ein periode som er meir enn 3 år tilbake i tid.',
     'validation.periodeTil.dateIsNotWeekday':
         'Til-datoen må vere ein vekedag, det kan ikkje vere ein laurdag eller sundag. Skriv inn eller vel dato frå kalenderen.',
     'validation.periodeTil.dateIsAfterMax':
-        'Du kan berre søkje pleiepengar for opptil eitt år av gangen, og eitt år fram i tid.',
+        'Du kan berre søkje pleiepengar for opptil eitt år av gongen, og eitt år fram i tid.',
     'validation.periodeTil.toDateIsBeforeFromDate':
         'Til-datoen kan ikkje vere før frå-datoen. Skriv inn eller vel dato frå kalenderen.',
     'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':

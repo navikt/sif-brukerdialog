@@ -9,15 +9,15 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.spørsmål.ANSATT.arbeidsuker':
         'Oppgje kor mange timar du jobbar {hvor} i kvar enkeltveke i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.arbeiderIPerioden':
-        'Kva situasjon gjeld for deg som frilanser i søknadsperioden?',
-    'arbeidIPeriode.spørsmål.FRILANSER.erLiktHverUke': 'Jobbar du like mykje kvar veke som frilanser i perioden?',
+        'Kva situasjon gjeld for deg som frilansar i søknadsperioden?',
+    'arbeidIPeriode.spørsmål.FRILANSER.erLiktHverUke': 'Jobbar du like mykje kvar veke som frilansar i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.timerEllerProsent':
-        'Korleis vil du oppgje kor mykje du jobbar som frilanser i perioden?',
+        'Korleis vil du oppgje kor mykje du jobbar som frilansar i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.snittTimerPerUke':
-        'Kor mange timar jobbar du kvar veke som frilanser i perioden?',
-    'arbeidIPeriode.spørsmål.FRILANSER.prosentAvNormalt': 'Kor mange prosent jobbar du som frilanser i perioden?',
+        'Kor mange timar jobbar du kvar veke som frilansar i perioden?',
+    'arbeidIPeriode.spørsmål.FRILANSER.prosentAvNormalt': 'Kor mange prosent jobbar du som frilansar i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.arbeidsuker':
-        'Oppgje kor mange timar du jobbar som frilanser i kvar enkeltveke i perioden?',
+        'Oppgje kor mange timar du jobbar som frilansar i kvar enkeltveke i perioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeiderIPerioden':
         'Kva situasjon gjeld for deg som sjølvstendig næringsdrivande i søknadsperioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.erLiktHverUke':
@@ -60,10 +60,10 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberIsTooLarge':
         'Talet på timar du jobbar i veke {ukenummer} {hvor} kan ikkje vere meir enn {max}.',
     'arbeidIPeriode.validation.snittTimerPerUke.UKE.flereTimerEnnTilgjengeligIUke':
-        'Talet på timar du har oppgitt i veke {ukenummer} {hvor} kan ikkje vere meir enn det er timar i døgnet ({dagInfo}).',
+        'Talet på timar du har oppgjeve i veke {ukenummer} {hvor} kan ikkje vere meir enn det er timar i døgnet ({dagInfo}).',
 
     'arbeidIPeriode.erLiktHverUke.ja': 'Ja',
-    'arbeidIPeriode.erLiktHverUke.nei': 'Nei, det varierer',
+    'arbeidIPeriode.erLiktHverUke.nei': 'Nei, det varierar',
     'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke': 'Eg jobbar ikkje',
     'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert': 'Eg kombinerer delvis jobb med pleiepengar',
     'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig':
@@ -78,7 +78,7 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timar}}',
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timar`,
     'arbeidIPeriode.info.frilanser.tekst.1':
-        'No treng vi å vite kor mange timar du jobbar som frilanser i søknadsperioden.',
+        'No treng me å vite kor mange timar du jobbar som frilanser i søknadsperioden.',
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysningar om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
@@ -88,7 +88,7 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.StepInfo.2':
         'Pleiepengane blir gradert mot den tida du jobbar. Det vil seie at viss du for eksempel i søknadsperioden jobbar 30 prosent, kan du ha rett til opptil 70 prosent pleiepengar.',
     'arbeidIPeriode.StepInfo.3':
-        'Viss du søkjer for første gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgivarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
+        'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
 
     'arbeidIPeriode.redusert.info.tekst':
         'Viss du er usikker på kor mykje du skal jobbe framover i tid, legg du inn slik du trur du skal jobbe. Viss det seinare viser seg at du jobbar meir eller mindre enn du trur no, melder du frå om endring i slutten av den aktuelle månaden.',

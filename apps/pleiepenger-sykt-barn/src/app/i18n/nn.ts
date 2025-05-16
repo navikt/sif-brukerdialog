@@ -14,7 +14,6 @@ import { tidsromMessages_nn } from '../søknad/tidsrom-step/i18n/nn';
 import { appCommonMessages_nb, appMessages_nb } from './nb';
 
 export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, string> = {
-    ...appCommonMessages_nb, // TODO
     'application.title': 'Søknad om pleiepengar for sjukt barn',
     HvaBetyrDette: 'Kva tyder dette?',
 
@@ -96,7 +95,67 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.harForståttRettigheterOgPlikter.notChecked':
         'Du må stadfeste at du har lese og forstått pliktene dine.',
     'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du mottek omsorgsstønad eller fosterheimgodtgjersle.',
+        'Du må svare ja eller nei på om du mottek omsorgsstønad eller fosterheimsgodtgjersle.',
+
+    'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du mottar fosterheimsgodtgjersle.',
+    'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
+        'Du må svare ja eller nei på om du er frikjøpt frå jobb',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
+        'Du må velje kva for ein arbeidsgjevar du er frikjøpt frå',
+    'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':
+        'Du må velje kva for ein arbeidsgjevar du er frikjøpt frå',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimerEllerProsent.noValue':
+        'Du må svare på om du ønskjer å oppgje kor mykje du er frikjøpt i timar eller prosent',
+    'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.noValue':
+        'Du må svare på korleis du mottar denne godtgjersla gjennom heile perioden du søkjer om.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasNoValue':
+        'Du må oppgje kor mange prosent du er frikjøpt',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberHasInvalidFormat':
+        'Oppgjeve prosent for kor mykje du er frikjøpt har ikkje gyldig format. Eit gyldig tal inneheld kun siffer og komma som desimaltegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberIsTooSmall':
+        'Oppgjeve prosent for kor mykje du er frikjøpt kan ikkje vere mindre enn {min}.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptProsent.numberIsTooLarge':
+        'Oppgjeve prosent for kor mykje du er frikjøpt kan ikkje vere meir enn {max}.',
+    'validation.fosterhjemsgodtgjørelse.slutterUnderveis.starter_slutter_undeveis_nei':
+        'Du har svart nei på både om godtgjersla startar og sluttar undervegs i perioden du søkjer for. Då må du svare Ja på at du mottar denne godtgjersla for heile perioden du søkjer om.',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberHasNoValue': 'Du må oppgje kor mange timar du er frikjøpt',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberHasInvalidFormat':
+        'Oppgjeve antal timar for kor mykje du er frikjøpt har ikkje gyldig format. Eit gyldig tal inneheld kun siffer og komma som desimaltegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberIsTooSmall':
+        'Oppgjeve antal timar for kor mykje du er frikjøpt kan ikkje vere mindre enn {min}.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptTimer.numberIsTooLarge':
+        'Oppgjeve antal timar for kor mykje du er frikjøpt kan ikkje vere meir enn {max}.',
+
+    'validation.fosterhjemsgodtgjørelse.starterUndeveis.noValue':
+        'Du må svare på om godtgjersla startar undervegs i pleiepengeperioden din',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateHasNoValue':
+        'Du må oppgje kva dato godtgjersla startar. Skriv inn eller vel dato frå kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateHasInvalidFormat':
+        'Du må oppgje datoen for når godtgjersla startar  i eit gyldig format. Gyldig format er dd.mm.åååå.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateIsAfterMax':
+        'Datoen for når godtgjersla startar kan ikkje vere etter dagens dato, eller etter perioden du søkjer for.',
+    'validation.fosterhjemsgodtgjørelse.startdato.dateIsBeforeMin':
+        'Datoen for når godtgjersla startar kan ikkje vere før perioden du søkjer for. Viss den starta før dette, må du svare nei på om den startar undervegs i pleiepengeperioden.',
+    'validation.fosterhjemsgodtgjørelse.startdato.startetEtterSluttDato':
+        'Startdatoen for godtgjersla kan ikkje vere etter sluttdatoen. Skriv inn eller vel dato frå kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.startdato.sluttetFørStartDato':
+        'Sluttdatoen for godtgjersla kan ikkje vere før startdatoen. Skriv inn eller vel dato frå kalenderen.',
+
+    'validation.fosterhjemsgodtgjørelse.slutterUnderveis.noValue':
+        'Du må svare på om godtgjersla sluttar undervegs i pleiepengeperioden din',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateHasNoValue':
+        'Du må oppgje kva dato godtgjersla sluttar. Skriv inn eller vel dato frå kalenderen.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateHasInvalidFormat':
+        'Du må oppgje datoen for når godtgjersla sluttar i eit gyldig format. Gyldig format er dd.mm.åååå.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateIsAfterMax':
+        'Hvis datoen for når godtgjersla sluttar er etter perioden du søkjer for, må du svare nei på om den sluttar undervegs i pleiepengeperioden.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.dateIsBeforeMin':
+        'Datoen for når godtgjersla sluttar kan ikkje vere før perioden du søkjer for, eller før godtgjersla startar.',
+    'validation.fosterhjemsgodtgjørelse.sluttdato.sluttetFørStartDato':
+        'Datoen for når godtgjersla sluttar kan ikkje vere før godtgjersla startar.',
+
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er tilsett hos {navn} i perioden du søkjer pleiepengar.',
     'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
@@ -104,42 +163,42 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberHasNoValue':
         'Du må oppgje kor mange timar du {jobber} per veke {hvor} i perioden når du ikkje har fråvær på grunn av pleiepengar.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberHasInvalidFormat':
-        'Antall timar du normalt {jobber} per veke {hvor} har ikkje gyldig format. Eit gyldig tal inneheld berre siffer og komma som desimalskiljeteikn.',
+        'Antal timar du normalt {jobber} per veke {hvor} har ikkje gyldig format. Eit gyldig tal inneheld berre siffer og komma som desimalskiljeteikn.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooSmall':
-        'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere mindre enn {min}.',
+        'Antal timar du normalt {jobber} per veke {hvor} kan ikkje vere mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':
-        'Antall timar du normalt {jobber} per veke {hvor} kan ikkje vere meir enn {max}.',
+        'Antal timar du normalt {jobber} per veke {hvor} kan ikkje vere meir enn {max}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansOgOmsorgsstønad.numberIsTooLarge':
-        'Antall timar du normalt {jobber} per veke som frilanser og mottar i omsorgsstønad kan ikkje vere meir enn {max} timar til saman.',
+        'Antal timar du normalt {jobber} per veke som frilansar og mottar i omsorgsstønad kan ikkje vere meir enn {max} timar til saman.',
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du jobbar som frilanser, eller om du mottek honorar.',
-    'validation.frilans.frilanstype.notChecked': 'Du må velje kva som er situasjonen din som frilanser.',
+        'Du må svare ja eller nei på om du jobbar som frilansar, eller om du mottar honorar.',
+    'validation.frilans.frilanstype.notChecked': 'Du må velje kva som er situasjonen din som frilansar.',
     'validation.frilans.misterHonorar.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du mistar honorar i perioden du søkjer for.',
     'validation.frilans.startdato.dateHasNoValue':
-        'Du må oppgje kva dato du starta å jobbe som frilanser. Skriv inn eller vel dato frå kalenderen.',
+        'Du må oppgje kva dato du starta å jobbe som frilansar. Skriv inn eller vel dato frå kalenderen.',
     'validation.frilans.startdato.dateHasInvalidFormat':
-        'Du må oppgje datoen for når du starta å jobbe som frilanser i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje datoen for når du starta å jobbe som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.startdato.dateIsAfterMax':
-        'Datoen for når du starta å jobbe som frilanser kan ikkje vere etter dagens dato.',
+        'Datoen for når du starta å jobbe som frilansar kan ikkje vere etter dagens dato.',
     'validation.frilans.startdato.dateIsBeforeMin':
-        'Datoen for når du starta å jobbe som frilanser kan ikkje vere før {minDato}. Dersom du starta før dette, må du svare ja på at du starta før denne datoen.',
+        'Datoen for når du starta å jobbe som frilansar kan ikkje vere før {minDato}. Dersom du starta før dette, må du svare ja på at du starta før denne datoen.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
-        'Du har oppgitt at du starta å jobbe som frilanser etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søkjer for.',
+        'Du har oppgitt at du starta å jobbe som frilansar etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
-        'Du har oppgitt at du slutta å jobbe som frilanser før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søkjer for.',
+        'Du har oppgitt at du slutta å jobbe som frilansar før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.dateHasNoValue':
-        'Du må oppgje kva dato du slutta å jobbe som frilanser. Skriv inn eller vel dato frå kalenderen.',
+        'Du må oppgje kva dato du slutta å jobbe som frilansar. Skriv inn eller vel dato frå kalenderen.',
     'validation.frilans.sluttdato.dateHasInvalidFormat':
-        'Du må oppgje datoen for når du slutta å jobbe som frilanser i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje datoen for når du slutta å jobbe som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.sluttdato.dateIsAfterMax':
-        'Datoen for når du slutta å jobbe som frilanser kan ikkje vere etter dagens dato.',
+        'Datoen for når du slutta å jobbe som frilansar kan ikkje vere etter dagens dato.',
     'validation.frilans.sluttdato.dateIsBeforeMin':
-        'Datoen for når du slutta å jobbe som frilanser kan ikkje vere før datoen du starta.',
+        'Datoen for når du slutta å jobbe som frilansar kan ikkje vere før datoen du starta.',
     'validation.frilans.startetFørSisteTreHeleMåneder.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du starta som frilanser før {dato}.',
+        'Du må svare ja eller nei på om du starta som frilansar før {dato}.',
     'validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du framleis jobbar som frilanser.',
+        'Du må svare ja eller nei på om du framleis jobbar som frilansar.',
 
     'validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er sjølvstendig næringsdrivande i perioden du søkjer for.',
@@ -150,17 +209,27 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du utførte verneplikt på tidspunktet du søkjer pleiepengar frå.',
     'validation.selvstendig.virksomhet.startetEtterSøknadsperiode':
-        'Du har oppgitt at du starta som sjølvstendig næringsdrivande etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
+        'Du har oppgjeve at du starta som sjølvstendig næringsdrivande etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
     'validation.selvstendig.virksomhet.sluttetFørSøknadsperiode':
-        'Du har oppgitt at du slutta som sjølvstendig næringsdrivande før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
+        'Du har oppgjeve at du slutta som sjølvstendig næringsdrivande før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du har jobba som arbeidstakar eller frilanser i eit anna EØS-land i løpet av dei 3 siste månadene før første dag med pleiepengar.',
-    'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i eit anna EØS-land.',
+        'Du må svare ja eller nei på om du har jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadane før første dag med pleiepengar.',
+    'validation.opptjeningUtland.listIsEmpty': 'Du må leggje til jobb i eit anna EØS-land.',
     'validation.harUtenlandskNæring.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei 3 siste åra før perioden du søkjer om.',
     'validation.utenlandskNæring.listIsEmpty':
-        'Du må legge til jobb som sjølvstendig næringsdrivande i eit anna EØS-land.',
+        'Du må leggje til jobb som sjølvstendig næringsdrivande i eit anna EØS-land.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
+
+    'validation.omsorgsstønad.antallTimer.numberHasNoValue':
+        'Du må oppgje antal timar timer du mottar normalt i omsorgsstønad.',
+    'validation.omsorgsstønad.antallTimer.numberHasInvalidFormat':
+        'Oppgjeve antal timar for kor mykje du mottar normalt i omsorgsstønad har ikkje gyldig format. Eit gyldig tal inneheld kun siffer og komma som desimaltegn.',
+    'validation.omsorgsstønad.antallTimer.numberIsTooSmall':
+        'Oppgjeve antal timar for kor mykje du mottar normalt i omsorgsstønad kan ikkje vere mindre enn {min}.',
+    'validation.omsorgsstønad.antallTimer.numberIsTooLarge':
+        'Oppgjeve antal timar for kor mykje du mottar normalt i omsorgsstønad kan ikkje vere meir mer enn {max}.',
+
     'validation.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.noValue':
         'Du må svare ja eller nei på om du mottek stønad/godtgjersle i heile perioden du søkjer for.',
     'validation.omsorgsstønad.starterUndeveis.noValue':
