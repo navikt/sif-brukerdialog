@@ -7,15 +7,6 @@ export enum API_DATA_VALIDATION_ERROR {
     'undefined' = 'undefined',
 }
 
-export const validateApiDataMessages = {
-    nb: {
-        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
-    },
-    nn: {
-        'apiDataValidation.undefined': 'Det oppstod ein feil ved visinga av sida.',
-    },
-};
-
 interface ApiDataValidationError {
     error: API_DATA_VALIDATION_ERROR;
     step?: StepId;
