@@ -2,7 +2,7 @@ import { fraværStepMessages_nb } from './nb';
 
 export const fraværStepMessages_nn: Record<keyof typeof fraværStepMessages_nb, string> = {
     'step.fravaer.counsellorpanel.content':
-        'I dei fleste tilfelle må ein som sjølvstendig næringsdrivande og frilanser betale dei 10 første dagane med omsorgspengar i året sjølv.',
+        'I dei fleste tilfelle må ein som sjølvstendig næringsdrivande og frilansar betale dei 10 første dagane med omsorgspengar i året sjølv.',
     'step.fravaer.dager_med_fullt_fravært.label': 'Dagar med fullt fråvær',
     'step.fravaer.dager_med_delvis_fravært.label': 'Dagar med delvis fråvær',
     'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm':
@@ -11,7 +11,7 @@ export const fraværStepMessages_nn: Record<keyof typeof fraværStepMessages_nb,
     'step.fravaer.info.1':
         'Du kan få utbetalt omsorgspengar for bruk av omsorgsdagar i opptil tre månader tilbake i tid, rekna frå månaden før Nav mottok søknaden din.',
     'step.fravaer.info.2':
-        'Du kan berre søkje om utbetaling frå eitt og same år. Det betyr at dersom du skal søkje om utbetaling for {forrigeÅr} i tillegg til {inneværendeÅr}, må du sende to søknader.',
+        'Du kan berre søkje om utbetaling frå eitt og same år. Det betyr at dersom du skal søkje om utbetaling for {forrigeÅr} i tillegg til {inneværendeÅr}, må du sende to søknadar.',
 
     'step.fravaer.spm.harPerioderMedFravær': 'Har du hatt heile dagar med fråvær frå jobb?',
     'step.fravaer.dager.tittel': 'Omsorgsdagar du søkjer utbetaling for',

@@ -45,7 +45,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
 
-    'step.fravaerFra.stepTitle': 'Fråvær frå arbeid som sjølvstendig næringsdrivande og/eller frilanser',
+    'step.fravaerFra.stepTitle': 'Fråvær frå arbeid som sjølvstendig næringsdrivande og/eller frilansar',
 
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',
 
@@ -54,7 +54,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'initialLoadError.pageTitle': 'Det oppstod ein feil',
     'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Ver venleg og prøv igjen seinare.',
 
-    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med eit tomt skjema.',
+    'resetMellomlagring.text.1': 'Dersom feilen vare ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
     'page.ikkeTilgang.tekst':
@@ -84,21 +84,21 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.perioder_utenlandsopphold.listIsEmpty':
         'Du har svart at du har vore i utlandet i perioden du søkjer for, du må derfor leggje til utanlandsopphald.',
 
-    'validation.frilans_erFrilanser.yesOrNoIsUnanswered': 'Du må svare ja eller nei på om du var frilanser.',
-    'validation.frilans_startdato.dateHasNoValue': 'Du må fylle ut når du starta som frilanser.',
+    'validation.frilans_erFrilanser.yesOrNoIsUnanswered': 'Du må svare ja eller nei på om du var frilansar.',
+    'validation.frilans_startdato.dateHasNoValue': 'Du må fylle ut når du starta som frilansar.',
     'validation.frilans_startdato.dateHasInvalidFormat':
-        'Datoen for når du starta som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',
+        'Datoen for når du starta som frilansar er ugyldig. Gyldig format er dd.mm.åååå.',
     'validation.frilans_startdato.dateIsAfterMax':
-        'Datoen for når du starta som frilanser kan ikkje vere etter dagens dato eller siste dag du søkjer for.',
+        'Datoen for når du starta som frilansar kan ikkje vere etter dagens dato eller siste dag du søkjer for.',
     'validation.frilans_sluttdato.dateHasNoValue': 'Du må fylle ut når du slutta som frilanser.',
     'validation.frilans_sluttdato.dateHasInvalidFormat':
-        'Datoen for når du slutta som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',
+        'Datoen for når du slutta som frilansar er ugyldig. Gyldig format er dd.mm.åååå.',
     'validation.frilans_sluttdato.dateIsAfterMax':
-        'Datoen for når du slutta som frilanser kan ikkje vere etter dagens dato.',
+        'Datoen for når du slutta som frilansar kan ikkje vere etter dagens dato.',
     'validation.frilans_sluttdato.dateIsBeforeMin':
-        'Datoen for når du slutta som frilanser kan ikkje vere før datoen du starta.',
+        'Datoen for når du slutta som frilansar kan ikkje vere før datoen du starta.',
     'validation.frilans_jobberFortsattSomFrilans.yesOrNoIsUnanswered':
-        'Du må svare på om du framleis jobbar som frilanser.',
+        'Du må svare på om du framleis jobbar som frilansar.',
 
     'validation.selvstendig_erSelvstendigNæringsdrivende.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du var sjølvstendig næringsdrivande.',
@@ -106,14 +106,14 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Du må svare ja eller nei på om du har fleire enn éi verksemd som er aktiv.',
     'validation.selvstendig_virksomhet.noValue': 'Du har ikkje registrert informasjon om verksemda di.',
 
-    'validation.arbeidssituasjon.situasjon.frilanser': 'frilanser',
+    'validation.arbeidssituasjon.situasjon.frilanser': 'frilansar',
     'validation.arbeidssituasjon.situasjon.sn': 'sjølvstendig næringsdrivande',
-    'validation.arbeidssituasjon.situasjon.frilanserOgSn': 'frilanser og sjølvstendig næringsdrivande',
+    'validation.arbeidssituasjon.situasjon.frilanserOgSn': 'frilansar og sjølvstendig næringsdrivande',
 
     'validation.arbeidssituasjon_tidsrom.arbeidsperiodeStarterEtterFraværsperiode':
-        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilanser eller sjølvstendig næringsdrivande.',
+        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
     'validation.arbeidssituasjon_tidsrom.arbeidsperiodeSlutterFørEllerIFraværsperiode':
-        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilanser eller sjølvstendig næringsdrivande.',
+        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
 
     'validation.aktivitetFravær.noValue': 'Du må velje kva arbeid du hadde fråvær frå {dato}.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane er riktige.',

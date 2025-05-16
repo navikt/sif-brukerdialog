@@ -14,28 +14,28 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdagar.',
     'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
-    'step.oppsummering.arbeidssituasjon.header': 'Di arbeidssituasjon',
+    'step.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
     'step.oppsummering.utbetalinger.header': 'Dagar du søkjer om utbetaling for',
     'step.oppsummering.utbetalinger.heleDager': 'Heile dagar med fråvær',
     'step.oppsummering.utbetalinger.delvisDager': 'Dagar med delvis fråvær',
     'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygda',
 
-    'step.oppsummering.utlandetSiste12.header': 'Har du budd i utlandet dei siste 12 månadene?',
-    'step.oppsummering.utlandetSiste12.bosteder': 'Bustader i utlandet dei siste 12 månadene',
-    'step.oppsummering.utlandetNeste12.header': 'Skal du bu i utlandet dei neste 12 månadene?',
-    'step.oppsummering.utlandetNeste12.bosteder': 'Bustader i utlandet dei neste 12 månadene',
-    'step.oppsummering.utlandetSiste12.liste.header': 'Utanlandsopphald siste 12 månader',
-    'step.oppsummering.utlandetNeste12.liste.header': 'Utanlandsopphald neste 12 månader',
+    'step.oppsummering.utlandetSiste12.header': 'Har du budd i utlandet dei siste 12 månadane?',
+    'step.oppsummering.utlandetSiste12.bosteder': 'Bustader i utlandet dei siste 12 månadane',
+    'step.oppsummering.utlandetNeste12.header': 'Skal du bu i utlandet dei neste 12 månadane?',
+    'step.oppsummering.utlandetNeste12.bosteder': 'Bustader i utlandet dei neste 12 månadane',
+    'step.oppsummering.utlandetSiste12.liste.header': 'Utanlandsopphald siste 12 månadar',
+    'step.oppsummering.utlandetNeste12.liste.header': 'Utanlandsopphald neste 12 månadar',
 
     'step.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har betydning for min rett til omsorgspengar.',
+        'Eg stadfestar at opplysningane eg har gjeve er riktige, og at eg ikkje har halde tilbake opplysningar som har tyding for retten min til omsorgspengar.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må stadfeste opplysningane',
 
     'step.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utanlandsopphald i perioden',
 
     'step.oppsummering.apiValideringFeil.tittel': 'Noko av informasjonen manglar',
 
-    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lasta opp',
+    'step.oppsummering.legeerklæring.ingenVedlegg': 'Inga legeerklæring er lasta opp',
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
     'step.oppsummering.fravær.aktivitet.1': 'Fråvær som {aktivitet}.',
@@ -63,9 +63,9 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'summary.virksomhet.harFlereVirksomheter.header': 'Har du fleire enn éi næringsverksemd som er aktiv?',
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn:',
 
-    'frilanser.summary.header': 'Frilanser',
-    'frilanser.summary.harDuHattInntekt.header': 'Var du frilanser i dagane du søkjer utbetaling for?',
-    'frilanser.summary.nårStartet.header': 'Når starta du som frilanser?',
-    'frilanser.summary.jobberFortsatt.header': 'Jobbar du framleis som frilanser?',
-    'frilanser.summary.nårSluttet.header': 'Når slutta du som frilanser?',
+    'frilanser.summary.header': 'Frilansar',
+    'frilanser.summary.harDuHattInntekt.header': 'Var du frilansar i dagane du søkjer utbetaling for?',
+    'frilanser.summary.nårStartet.header': 'Når starta du som frilansar?',
+    'frilanser.summary.jobberFortsatt.header': 'Jobbar du framleis som frilansar?',
+    'frilanser.summary.nårSluttet.header': 'Når slutta du som frilansar?',
 };
