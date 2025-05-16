@@ -9,7 +9,7 @@ export const opplysningerOmPleietrengendeMessages_nn: Record<
     'step.opplysningerOmPleietrengende.stepIndicatorLabel': 'Om personen du pleier',
     'step.opplysningerOmPleietrengende.nextButtonLabel': 'Fortset',
     'step.opplysningerOmPleietrengende.counsellorPanel.info':
-        'Her gir du opplysningar om personen du skal gi pleie til, og om det er fleire som skal dele på å gi pleie.',
+        'Her gir du opplysningar om personen du skal gje pleie til, og om det er fleire som skal dele på å gje pleie.',
 
     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm':
         'Skal du pleie personen heime i dei dagane du søkjer for?',
@@ -40,18 +40,18 @@ export const opplysningerOmPleietrengendeMessages_nn: Record<
     'validation.norskIdentitetsnummer.fødselsnummerHasNoValue':
         'Du må skrive inn fødselsnummeret til personen du pleier. Eit fødselsnummer består av 11 siffer.',
     'validation.norskIdentitetsnummer.fødselsnummerIsInvalid':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har tasta inn riktig.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har tasta inn riktig.',
     'validation.norskIdentitetsnummer.fødselsnummerIsNot11Chars':
-        'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'validation.norskIdentitetsnummer.fødselsnummerIsNotAllowed':
-        'Du har oppgitt ditt eige fødselsnummer. Du må skrive inn fødselsnummeret til personen du pleier.',
+        'Du har oppgjeve ditt eige fødselsnummer. Du må skrive inn fødselsnummeret til personen du pleier.',
     'validation.norskIdentitetsnummer.fødselsnummerAsHnrIsNotAllowed':
         'Fødselsnummeret/D-nummeret du har tasta inn er ikkje eit gyldig norsk fødselsnummer. Kontroller at du har tasta inn riktig.',
     'validation.fødselsdato.dateHasNoValue':
-        'Du må oppgi fødselsdatoen til personen du pleier. Skriv inn, eller vel dato frå datoveljaren.',
+        'Du må oppgje fødselsdatoen til personen du pleier. Skriv inn, eller vel dato frå datoveljaren.',
     'validation.fødselsdato.dateIsAfterMax': 'Fødselsdatoen kan ikkje vere etter dagens dato.',
     'validation.fødselsdato.dateHasInvalidFormat':
-        'Du må oppgi fødselsdatoen i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje fødselsdatoen i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på kvifor den du pleier ikkje har fødselsnummer eller D-nummer.',
 };

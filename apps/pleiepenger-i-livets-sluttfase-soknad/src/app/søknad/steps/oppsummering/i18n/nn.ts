@@ -57,7 +57,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode': 'Slutta før {periodeFra}',
     'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode': 'Slutta etter {periodeFra}',
 
-    'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header': 'Arbeidsgivarar',
+    'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header': 'Arbeidsgjevarar',
     'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst': 'Er ikkje tilsett i perioden det søkast for',
 
     'oppsummering.arbeidssituasjon.frilanser.header': 'Frilansar',
@@ -82,9 +82,9 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
 
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstakar eller frilansar i eit anna EØS-land',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
-        'Har jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadene før perioden ein søker om',
+        'Har jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadane før perioden ein søker om',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
-        'Har ikkje jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadene før perioden ein søker om',
+        'Har ikkje jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadane før perioden ein søker om',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i anna EØS-land',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Periodar med jobb i anna EØS-land',
 
@@ -110,12 +110,12 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn',
 
     'step.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har betydning for mi rett til pleiepengar.',
+        'Eg stadfestar at opplysningane eg har gjeve er riktige, og at eg ikkje har halde tilbake opplysningar som har tydning for retten min til pleiepengar.',
 
     'step.oppsummering.sendMelding.feilmelding.førsteGang':
         'Det oppstod ein feil under innsending. Ver venleg å prøve igjen.',
     'step.oppsummering.sendMelding.feilmelding.andreGang':
-        'Det oppstod framleis ein feil under innsending. Ver venleg å vente litt og prøve igjen.',
+        'Det oppstod framleis ein feil under innsending. Ver venleg og prøv seinare.',
 
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
     'step.oppsummering.legeerklæring.label': 'Dokument som er lasta opp',
@@ -125,7 +125,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.fravær.aktivitet.2': 'Fråvær som {aktivitet1} og {aktivitet2}.',
 
     'step.oppsummeringbekreftelseFraLege.header': 'Legeerklæring',
-    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lasta opp',
+    'step.oppsummering.legeerklæring.ingenVedlegg': 'Inga legeerklæring er lasta opp',
 
     'step.oppsummering.apiValideringFeil.tittel': 'Noko av informasjonen manglar',
     'step.oppsummering.sendSøknad': 'Send søknad',

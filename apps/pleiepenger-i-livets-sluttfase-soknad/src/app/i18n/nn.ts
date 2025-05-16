@@ -25,9 +25,9 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'application.title': 'Søknad om pleiepengar i livets sluttfase',
 
     'initialLoadError.pageTitle': 'Det oppstod ein feil',
-    'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Venlegst prøv igjen seinare.',
+    'initialLoadError.text.1': 'Det oppstod ein feil under oppstarten av søknaden. Ver venleg og prøv igjen seinare.',
 
-    'resetMellomlagring.text.1': 'Om feilen vedvarer, kan du prøve å starte på nytt med eit tomt skjema.',
+    'resetMellomlagring.text.1': 'Om feilen vare ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
     hvaBetyrDette: 'Kva betyr dette?',
@@ -47,13 +47,13 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
 
     'frilanser.hjelpetekst.spm': 'Kva betyr det å vere frilansar?',
     'frilanser.hjelpetekst':
-        'Du er frilansar når du mottek løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Om du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
+        'Du er frilansar når du mottatt løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Om du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
     'frilanser.hjelpetekst.skatteetatenLenke': 'skatteetaten sine nettsider.',
 
-    'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søker for?',
+    'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søkjer for?',
     'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva betyr det å vere sjølvstendig næringsdrivande?',
     'selvstendig.harDuHattInntekt.hjelpetekst':
-        'Du er sjølvstendig næringsdrivande når du enten har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
+        'Du er sjølvstendig næringsdrivande når du anten har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
     'selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke':
         'Du kan lese meir om andre situasjonar på skatteetaten sine nettsider.',
     'selvstendig.harFlereVirksomheter.spm': 'Har du fleire enn éi næringsverksemd som er aktiv?',
@@ -72,14 +72,15 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'step.arbeidstid.pageTitle': 'Opplysningar om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
-    'step.arbeidstid.nextButtonLabel': 'Hald fram',
+    'step.arbeidstid.nextButtonLabel': 'Fortset',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygda',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygda',
-    'step.medlemskap.nextButtonLabel': 'Hald fram',
+    'step.medlemskap.nextButtonLabel': 'Fortset',
 
-    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må stadfeste at du har lese og forstått dine plikter.',
+    'validation.harForståttRettigheterOgPlikter.notChecked':
+        'Du må stadfeste at du har lese og forstått pliktene dine.',
 
     'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered': 'Du må svare på om du pleier personen heime.',
 
@@ -87,15 +88,15 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Du må svare ja, nei eller usikker på om de er fleire som skal dele på pleiepengane.',
 
     'validation.skalJobbeIPerioden.yesOrNoIsUnanswered':
-        'Du må svare på om du skal gi pleie og jobbe på same dag, nokre av dagane du skal gi pleie.',
+        'Du må svare på om du skal gje pleie og jobbe på same dag, nokre av dagane du skal gje pleie.',
 
     'validation.dagerMedPleie.ingenDagerValgt': 'Du må velje minst éin dag med pleiepengar.',
     'validation.skalJobbeOgPleieSammeDag.yesOrNoIsUnanswered':
-        'Du må svare på om du skal gi pleie og jobbe på same dag.',
+        'Du må svare på om du skal gje pleie og jobbe på same dag',
     'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
-        'Du må svare på om du oppheld deg i utlandet i nokre av dagane du søker for.',
+        'Du må svare på om du oppheld deg i utlandet i nokre av dagane du søkjer for.',
     'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
-        'Du har svart ja til at du oppheld deg i utlandet i nokre av dagane du søker for. Legg til minst eitt utanlandsopphald.',
+        'Du har svart ja til at du oppheld deg i utlandet i nokre av dagane du søkjer for. Legg til minst eitt utanlandsopphald.',
     'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
         'Du har lagt inn utanlandsopphald med datoar som overlappar kvarandre.',
     'validation.utenlandsoppholdIPerioden.utenlandsopphold_utenfor_periode':
@@ -104,10 +105,10 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Eit utanlandsopphald kan ikkje starte same dag som eit anna avsluttast.',
 
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
-        'Du må svare på om du er tilsett hos {navn} i perioden du søker pleiepengar.',
+        'Du må svare på om du er tilsett hos {navn} i perioden du søkjer pleiepengar.',
 
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
-        'Du må svare på om du er frilansar i perioden du søker for.',
+        'Du må svare på om du er frilansar i perioden du søkjer for.',
     'validation.frilans.startdato.dateHasNoValue':
         'Du må oppgje kva dato du starta som frilansar. Skriv inn eller vel dato frå kalenderen.',
     'validation.frilans.startdato.dateHasInvalidFormat':
@@ -115,9 +116,9 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.frilans.startdato.dateIsAfterMax':
         'Datoen for når du starta som frilansar kan ikkje vere etter dagens dato.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
-        'Du har oppgitt at du starta som frilansar etter perioden du søker for. Om dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søker for.',
+        'Du har oppgjeve at du starta som frilansar etter perioden du søkjer for. Om dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
-        'Du har oppgitt at du slutta som frilansar før perioden du søker for. Om dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søker for.',
+        'Du har oppgjeve at du slutta som frilansar før perioden du søkjer for. Om dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.dateHasNoValue':
         'Du må oppgje når du slutta som frilansar. Skriv inn eller vel dato frå kalenderen.',
     'validation.frilans.sluttdato.dateHasInvalidFormat':
@@ -130,27 +131,27 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Du må svare på om du framleis jobbar som frilansar.',
 
     'validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered':
-        'Du må svare på om du er sjølvstendig næringsdrivande i perioden du søker for.',
+        'Du må svare på om du er sjølvstendig næringsdrivande i perioden du søkjer for.',
     'validation.selvstendig.harFlereVirksomheter.yesOrNoIsUnanswered':
         'Du må svare på om du har fleire enn éi verksemd som er aktiv.',
     'validation.selvstendig.virksomhet.noValue':
         'Du må oppgje informasjon om verksemda di som sjølvstendig næringsdrivande.',
     'validation.selvstendig.virksomhet.startetEtterSøknadsperiode':
-        'Du har oppgitt at du starta som sjølvstendig næringsdrivande etter perioden du søker for. Om dette stemmer, svarer du "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søker for.',
+        'Du har oppgjeve at du starta som sjølvstendig næringsdrivande etter perioden du søkjer for. Om dette stemmer, svarer du "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
     'validation.selvstendig.virksomhet.sluttetFørSøknadsperiode':
-        'Du har oppgitt at du slutta som sjølvstendig næringsdrivande før perioden du søker for. Om dette stemmer, svarer du "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søker for.',
+        'Du har oppgjeve at du slutta som sjølvstendig næringsdrivande før perioden du søkjer for. Om dette stemmer, svarer du "Nei" på spørsmålet om du var sjølvstendig næringsdrivande i perioden du søkjer for.',
 
     'validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered':
-        'Du må svare på om du utførte verneplikt på tidspunktet du søker pleiepengar frå.',
+        'Du må svare på om du utførte verneplikt på tidspunktet du søkjer pleiepengar frå.',
     'virksomhetForm.næringstype.noValue': 'Du må velje kva type verksemd du har.',
 
-    'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i eit anna EØS-land.',
+    'validation.opptjeningUtland.listIsEmpty': 'Du må leggje til jobb i eit anna EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
-        'Du må svare på om du har jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei siste 3 månadene før første dag med pleiepengar.',
+        'Du må svare på om du har jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei siste 3 månadane før fyrste dag med pleiepengar.',
 
     'validation.harUtenlandskNæring.yesOrNoIsUnanswered':
-        'Du må svare på om du har jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei siste 3 åra før perioden du søker om.',
-    'validation.utenlandskNæring.listIsEmpty': 'Du må legge til næringsverksemd i eit anna EØS-land.',
+        'Du må svare på om du har jobba som sjølvstendig næringsdrivande i eit anna EØS-land i løpet av dei siste 3 åra før perioden du søkjer om.',
+    'validation.utenlandskNæring.listIsEmpty': 'Du må leggje til næringsverksemd i eit anna EØS-land.',
 
     'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
         'Du må svare på om du slutta hos {navn} før {fraDato}.',
@@ -166,19 +167,19 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Tal timar du {jobber} per veke {hvor} kan ikkje vere meir enn {max}.',
 
     'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du har budd i utlandet i heile eller delar av dei siste 12 månadene.',
+        'Du må svare på om du har budd i utlandet i heile eller delar av dei siste 12 månadane.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har oppgitt at du har vore i utlandet dei siste 12 månadene. Du må registrere dette utanlandsopphaldet.',
+        'Du har oppgjeve at du har vore i utlandet dei siste 12 månadane. Du må registrere dette utanlandsopphaldet.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper':
-        'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei siste 12 månadene, har datoar som overlappar kvarandre.',
+        'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei siste 12 månadane, har datoar som overlappar kvarandre.',
     'validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du planlegg å bu i utlandet i heile eller delar av dei neste 12 månadene.',
+        'Du må svare på om du planlegg å bu i utlandet i heile eller delar av dei neste 12 månadane.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har oppgitt at du skal opphalde deg i utlandet dei neste 12 månadene. Du må registrere dette utanlandsopphaldet.',
+        'Du har oppgjeve at du skal opphalde deg i utlandet dei neste 12 månadane. Du må registrere dette utanlandsopphaldet.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper':
-        'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei neste 12 månadene, har datoar som overlappar kvarandre.',
+        'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei neste 12 månadane, har datoar som overlappar kvarandre.',
 
-    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gitt er riktige.',
+    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane du har gjeve er riktige.',
 
     'arbeidssituasjonFrilanser.frilanserPart.tittel': 'Om deg som frilansar',
     'frilansoppdragListe.oppdrag': 'Periode: {tidsrom}',
@@ -186,12 +187,12 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'frilansoppdragListe.tidsrom.pågående': 'frå {fra} - pågåande',
     'frilansoppdragInfo.tittel': 'Registrerte frilansoppdrag i perioden:',
     'frilansoppdragInfo.tekst':
-        'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepengar. Om informasjonen ikkje stemmer, må du kontakte oppdragsgivar og be dei oppdatere informasjonen i AA-registeret.',
+        'Dette er frilansoppdrag registrert i AA-registeret i perioden du søkjer om pleiepengar. Om informasjonen ikkje stemmer, må du kontakte oppdragsgjevar og be dei oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fråvær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikkje',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobbar som normalt og ikkje har fråvær i dagane du søker for. For å ha rett til pleiepengar må du ha fråvær frå jobb fordi du pleier nokon. Stemmer det at du ikkje har fråvær frå jobb i dagane du søker for?',
+        'Du har oppgjeve at du jobbar som normalt og ikkje har fråvær i dagane du søkjer for. For å ha rett til pleiepengar må du ha fråvær frå jobb fordi du pleier nokon. Stemmer det at du ikkje har fråvær frå jobb i dagane du søkjer for?',
     'ingenFraværConfirmation.heading': 'Fråvær frå jobb',
 
     'apiDataValidation.undefined': 'Det oppstod ein feil ved visninga av sida.',

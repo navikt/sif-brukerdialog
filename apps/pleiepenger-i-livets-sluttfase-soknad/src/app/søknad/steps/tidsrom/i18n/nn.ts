@@ -1,15 +1,15 @@
 import { tidsromMessages_nb } from './nb';
 
 export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string> = {
-    'step.tidsrom.pageTitle': 'Dagar du må vere heime frå jobb for å gi pleie',
-    'step.tidsrom.stepTitle': 'Dagar du må vere heime frå jobb for å gi pleie',
+    'step.tidsrom.pageTitle': 'Dagar du må vere heime frå jobb for å gje pleie',
+    'step.tidsrom.stepTitle': 'Dagar du må vere heime frå jobb for å gje pleie',
     'step.tidsrom.stepIndicatorLabel': 'Periode',
-    'step.tidsrom.counsellorPanel.avsnitt.1': 'No skal du velje dei dagane du må vere heime frå jobb for å gi pleie.',
+    'step.tidsrom.counsellorPanel.avsnitt.1': 'No skal du velje dei dagane du må vere heime frå jobb for å gje pleie.',
 
     'step.tidsrom.counsellorPanel.avsnitt.2.3mnd':
-        'Du kan søkje tre månader tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
+        'Du kan søkje tre månadar tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gje pleie, kan du sende inn ein ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.2.6mnd':
-        'Du kan søkje opptil tre år tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gi pleie, kan du sende inn ein ny søknad.',
+        'Du kan søkje opptil tre år tilbake i tid og to veker fram i tid. Viss du etter to veker framleis er borte frå jobb for å gje pleie, kan du sende inn ein ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Hugs at det ikkje er rett til pleiepengar på dagar der personen er innlagt på sjukehus eller ein annan institusjon.',
 
@@ -17,7 +17,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
     'step.tidsrom.infotekst':
         'For å ha rett til pleiepengar må du ha omsorga for pleietrengande i heile perioden du søkjer for.',
     'steg.tidsrom.veileder.utenlandsopphold':
-        'Når du oppheld deg i eit land utanfor EØS, kan du behalde pleiepengane i ein avgrensa periode på opptil 8 veker av ein 12 månader lang periode.',
+        'Når du oppheld deg i eit land utanfor EØS, kan du behalde pleiepengane i ein avgrensa periode på opptil 8 veker av ein 12 månadar lang periode.',
 
     'steg.opplysningerOmPleietrengende.flereSokere.spm': 'Er de fleire som skal dele på pleiepengane?',
     'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle':
@@ -32,10 +32,10 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
     'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du jobbe delvis i nokre av dagane du søkjer for?',
     'steg.tidsrom.skalJobbeIPerioden.info.tittel': 'Kva betyr dette?',
     'steg.tidsrom.skalJobbeIPerioden.info.tekst.1':
-        'Du skal svare ja på dette spørsmålet berre dersom du skal jobbe og gi pleie på same dag.',
+        'Du skal svare ja på dette spørsmålet berre dersom du skal jobbe og gje pleie på same dag.',
     'steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1': 'Døme:',
     'steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2':
-        'Du søkjer om pleiepengar for 10 dagar. På onsdag passar det at du gir pleie ein halv dag, og at du jobbar ein halv dag. I dette tilfellet svarer du ja på spørsmålet, då du jobbar og gir pleie på same dag.',
+        'Du søkjer om pleiepengar for 10 dagar. På onsdag passar det at du gjev pleie ein halv dag, og at du jobbar ein halv dag. I dette tilfellet svarer du ja på spørsmålet, då du jobbar og gjev pleie på same dag.',
 
     'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppheld du deg i utlandet i nokre av dagane du søkjer for?',
     'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utanlandsopphald i perioden',
@@ -56,7 +56,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
     'steg.tidsrom.hvilketTidsrom.fom': 'Frå og med',
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
 
-    'steg.tidsrom.dagerMedPleie.spm': 'Kva dagar skal du vere heime frå jobb for å gi pleie',
+    'steg.tidsrom.dagerMedPleie.spm': 'Kva dagar skal du vere heime frå jobb for å gje pleie',
     'dagerMedPleie.info.1':
-        'Vel i kalenderen kva dagar du er borte frå jobben for å gi pleie. Du kan velje heile veker ved å klikke på veketalet.',
+        'Vel i kalenderen kva dagar du er borte frå jobben for å gje pleie. Du kan velje heile veker ved å klikke på veketalet.',
 };

@@ -2,9 +2,9 @@ import { arbeidstidMessages_nb, arbeidstidPeriodeMessages_nb } from './nb';
 
 export const arbeidstidMessages_nn: Record<keyof typeof arbeidstidMessages_nb, string> = {
     'arbeidIPeriode.StepInfo.1':
-        'Du har fortalt oss at du skal jobbe noko dei dagane du skal gi pleie. I denne kalenderen fører du opp kor mange timar du faktisk jobbar i perioden.',
+        'Du har fortalt oss at du skal jobbe noko dei dagane du skal gje pleie. I denne kalenderen fører du opp kor mange timar du faktisk jobbar i perioden.',
     'arbeidIPeriode.StepInfo.2':
-        'Om du søkjer for første gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgivarar som du har heilt eller delvis fråvær frå for å hente inn inntektsmelding.',
+        'Om du søkjer for første gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagane du søkjer for, kva situasjon gjeld for deg {hvor}?',
@@ -32,7 +32,7 @@ export const arbeidstidMessages_nn: Record<keyof typeof arbeidstidMessages_nb, s
     'arbeidIPeriode.validation.timerDag.hoursAreNegative':
         'Tal på timar og minutt for {dato} kan ikkje vere mindre enn 0 timar og 0 minutt.',
     'arbeidIPeriode.validation.ingenTidRegistrert':
-        "Du har ikkje oppgitt noko tid med jobb {hvor} på dagane du har søkt om. Dersom dette stemmer, skal du velje 'Eg jobbar ikkje' på spørsmålet ovanfor.",
+        "Du har ikkje oppgjeve noko tid med jobb {hvor} på dagane du har søkt om. Dersom dette stemmer, skal du velje 'Eg jobbar ikkje' på spørsmålet ovanfor.",
 };
 
 export const arbeidstidPeriodeMessages_nn: Record<keyof typeof arbeidstidPeriodeMessages_nb, string> = {

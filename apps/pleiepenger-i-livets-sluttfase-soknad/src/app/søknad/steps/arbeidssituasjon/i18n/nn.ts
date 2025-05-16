@@ -6,21 +6,21 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
     'step.arbeidssituasjon.nextButtonLabel': 'Fortsett',
 
-    'steg.arbeidssituasjon.tittel': 'Arbeidsgivarar',
+    'steg.arbeidssituasjon.tittel': 'Arbeidsgjevarar',
 
     'steg.arbeidssituasjon.veileder.1':
         'No treng me å vite litt om arbeidssituasjonen din og kor mykje du normalt jobbar når du ikkje har fråvær frå jobben din.',
     'steg.arbeidssituasjon.veileder.2':
-        'Om du er arbeidstakar og er usikker på kva som er din normale arbeidstid, finn du svaret i arbeidskontrakten din. Eventuelt kan du spørje arbeidsgivaren din.',
+        'Om du er arbeidstakar og er usikker på kva som er din normale arbeidstid, finn du svaret i arbeidskontrakten din. Eventuelt kan du spørje arbeidsgjevaren din.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedanfor ser du {antall, plural, one {arbeidsgivaren} other {arbeidsgivarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige må du stadfeste om du er, eller har vore, tilsett der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
-        'Me har ikkje funne nokon arbeidsgivarar registrert på deg i AA-registeret.',
+        'Me har ikkje funne nokon arbeidsgjevarar registrert på deg i AA-registeret.',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
-        'Om du i nokon av dagane du søkjer for er, eller var, tilsett hos ein arbeidsgivar som ikkje er vist her, må du be arbeidsgivaren sende ein ny A-melding. Dette gjer dei enten via sitt eige lønns- og personalsystem, eller gjennom Altinn.',
+        'Om du i nokon av dagane du søkjer for er, eller var, tilsett hos ein arbeidsgjevar som ikkje er vist her, må du be arbeidsgjevaren sende ein ny A-melding. Dette gjer dei enten via sitt eige løns- og personalsystem, eller gjennom Altinn.',
     'steg.arbeidssituasjon.info.tekst':
-        'Om det manglar ein arbeidsgivar her, må du be arbeidsgivaren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
-    'steg.arbeidssituasjon.ingenOpplysninger': 'Me har ikkje funne nokon arbeidsgivar registrert på deg.',
+        'Om det manglar ein arbeidsgjevar her, må du be arbeidsgjevaren din sende ny A-melding, enten via løns- og personalsystemet eller gjennom Altinn.',
+    'steg.arbeidssituasjon.ingenOpplysninger': 'Me har ikkje funne nokon arbeidsgjevar registrert på deg.',
 
     'steg.arbeidssituasjon.intro': 'Me har funne desse arbeidsforholda registrert på deg.',
     'steg.arbeidssituasjon.info.tittel': 'Manglar det eit arbeidsforhold her?',
@@ -34,7 +34,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'steg.arbeidssituasjon.opptjeningUtland.tittel': 'Jobba i eit anna EØS-land',
     'steg.arbeidssituasjon.opptjeningUtland.spm':
-        'Har du jobba som arbeidstakar eller frilanser i eit anna EØS-land i løpet av dei 3 siste månadene før perioden du søkjer om?',
+        'Har du jobba som arbeidstakar eller frilansar i eit anna EØS-land i løpet av dei 3 siste månadane før perioden du søkjer om?',
     'steg.arbeidssituasjon.opptjeningUtland.addLabel': 'Legg til jobb i eit anna EØS-land',
     'steg.arbeidssituasjon.opptjeningUtland.listTitle': 'Registrert jobb i eit anna EØS-land',
     'steg.arbeidssituasjon.opptjeningUtland.modalTitle': 'Jobb i EØS-land',
@@ -49,11 +49,11 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.part.jobbet': 'jobba',
     'arbeidsforhold.part.hosArbeidsgiver': 'hos {navn}',
     'arbeidsforhold.part.som.ANSATT': 'hos {navn}',
-    'arbeidsforhold.part.som.FRILANSER': 'som frilanser',
+    'arbeidsforhold.part.som.FRILANSER': 'som frilansar',
     'arbeidsforhold.part.som.SELVSTENDIG': 'som sjølvstendig næringsdrivande',
 
     'arbeidsforhold.ikkeAnsatt.info':
-        'Når du ikkje er tilsett her lenger, må du be denne arbeidsgivaren sende ein ny A-melding med sluttdato. Dette gjer dei enten via sitt eige lønns- og personalsystem, eller via Altinn.',
+        'Når du ikkje er tilsett her lenger, må du be denne arbeidsgjevaren sende ein ny A-melding med sluttdato. Dette gjer dei anten via sitt eige løns- og personalsystem, eller via Altinn.',
     'arbeidsforhold.ikkeFrilansoppdragIPerioden.info': 'Informasjon når frilansoppdraget ikkje gjeld perioden',
 
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er tilsett hos {navn} i perioden du søkjer for?',
@@ -71,13 +71,13 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'arbeidsforhold.normalTimer.info.tittel': 'Kva betyr dette?',
     'arbeidsforhold.ansatt.normalTimer.info':
-        'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også spørje arbeidsgivaren din.',
+        'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også spørje arbeidsgjevaren din.',
     'arbeidsforhold.frilanser.normalTimer.info':
-        'Her skal du oppgi kor mange timar du normalt jobbar som frilanser når du ikkje har fråvær på grunn av til dømes pleiepengar.',
+        'Her skal du oppgje kor mange timar du normalt jobbar som frilansar når du ikkje har fråvær på grunn av til dømes pleiepengar.',
     'arbeidsforhold.selvstendig.normalTimer.info':
-        'Her skal du oppgi kor mange timar du normalt jobbar som sjølvstendig næringsdrivande når du ikkje har fråvær på grunn av til dømes pleiepengar.',
+        'Her skal du oppgje kor mange timar du normalt jobbar som sjølvstendig næringsdrivande når du ikkje har fråvær på grunn av til dømes pleiepengar.',
     'arbeidsforhold.normalTimer.info.list.item.1':
-        'Om du jobbar like mange timar kvar veke, er det desse timane du oppgir.',
+        'Om du jobbar like mange timar kvar veke, er det desse timane du oppgjev.',
     'arbeidsforhold.normalTimer.info.list.item.2':
         'Om du jobbar turnus eller har ein annan varierande arbeidstid, legg du inn eit snitt per veke.',
 
@@ -92,7 +92,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.normalTimer.info.turnus.avsnitt.4b':
         'Så deler du talet på timar med talet på veker i turnusperioden din: 75 / 3 = 25',
     'arbeidsforhold.normalTimer.info.turnus.avsnitt.5':
-        'Du jobbar altså i snitt 25 timar per veke, og det er dette talet du oppgir.',
+        'Du jobbar altså i snitt 25 timar per veke, og det er dette talet du oppgjev.',
 
     'arbeidsforhold.normalTimer.info.varierende.tittel': 'Korleis reknar eg ut eit snitt ved varierande arbeidstid?',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.1':
@@ -101,7 +101,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.3':
         'Dei siste 12 vekene har du jobba 250 timar. Då deler du talet på timar du har jobba med 12: 250 timar / 12 veker = 20,8',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.4':
-        'Du jobbar altså i snitt 20,8 timar per veke, og det er dette talet du oppgir.',
+        'Du jobbar altså i snitt 20,8 timar per veke, og det er dette talet du oppgjev.',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.5':
         'Slik reknar du ut eit snitt når du har jobba mindre enn 12 veker:',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.6':
