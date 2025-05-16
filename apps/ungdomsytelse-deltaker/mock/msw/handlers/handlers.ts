@@ -5,10 +5,11 @@ export const getHandlers = () => {
     const { barn, arbeidsgiver, søker, deltakelser } = mockUtils.getData();
 
     return [
-        http.post('*umami*', () => new HttpResponse(null, { status: 200 })),
+        http.get('*skyra*', () => new HttpResponse(null, { status: 200 })),
+        http.post('*skyra*', () => new HttpResponse(null, { status: 200 })),
+        http.post('*sentry*', () => new HttpResponse(null, { status: 200 })),
         http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
-        http.post('*amplitude.nav.no*', () => new HttpResponse(null, { status: 200 })),
         http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
         http.get('*nav.no*', () => new HttpResponse(null, { status: 200 })),
         http.get('*www.nav.no/dekoratoren*', () => new HttpResponse(null, { status: 200 })),

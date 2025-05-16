@@ -36,6 +36,11 @@ export const getMaybeEnv = (key: EnvKey | string): string | undefined => {
     return env;
 };
 
+export const getMaybeBoolEnv = (key: EnvKey | string): boolean => {
+    const env = getMaybeEnv(key) as any;
+    return env === 'true' || env === true;
+};
+
 export const isDevMode = () => getMaybeEnv('APP_VERSION') === 'dev';
 export const isProd = () => getMaybeEnv('APP_VERSION') === 'prod';
 
