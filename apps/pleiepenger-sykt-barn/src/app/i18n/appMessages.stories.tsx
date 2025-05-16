@@ -1,7 +1,7 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withStepWrapper } from '../../storybook/decorators';
-import { appMessages } from './appMessages';
+import { appMessages } from './';
 
 export default {
     title: 'i18n/AppMessages',

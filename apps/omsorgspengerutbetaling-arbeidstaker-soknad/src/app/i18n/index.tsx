@@ -6,7 +6,8 @@ import { bostedUtlandMessages } from '@navikt/sif-common-forms-ds/src/forms/bost
 import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
+import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 const libMessages = {
     nb: {
@@ -27,6 +28,11 @@ const libMessages = {
         ...bostedUtlandMessages.nn,
         ...medlemskapFormMessages.nn,
     },
+};
+
+export const appMessages = {
+    nb: appMessages_nb,
+    nn: appMessages_nn,
 };
 
 const nb = {
