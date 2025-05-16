@@ -1,21 +1,21 @@
-import { kvitteringMessages } from '../pages/kvittering/i18n';
-import { velkommenPageMessages } from '../pages/velkommen/i18n';
-import { deltBostedMessages } from '../søknad/steps/delt-bosted/i18n';
-import { dineBarnMessages } from '../søknad/steps/dine-barn/i18n';
-import { fraværStepMessages } from '../søknad/steps/fravær/i18n';
-import { legeerklæringMessages } from '../søknad/steps/legeerklæring/i18n';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/i18n';
-import { situasjonMessages } from '../søknad/steps/situasjon/i18n';
+import { kvitteringMessages_nb } from '../pages/kvittering/i18n/nb';
+import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
+import { deltBostedMessages_nb } from '../søknad/steps/delt-bosted/i18n/nb';
+import { dineBarnMessages_nb } from '../søknad/steps/dine-barn/i18n/nb';
+import { fraværStepMessages_nb } from '../søknad/steps/fravær/i18n/nb';
+import { legeerklæringMessages_nb } from '../søknad/steps/legeerklæring/i18n/nb';
+import { oppsummeringMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
+import { situasjonMessages_nb } from '../søknad/steps/situasjon/i18n/nb';
 
 export const appMessages_nb = {
-    ...situasjonMessages.nb,
-    ...dineBarnMessages.nb,
-    ...deltBostedMessages.nb,
-    ...velkommenPageMessages.nb,
-    ...fraværStepMessages.nb,
-    ...legeerklæringMessages.nb,
-    ...oppsummeringMessages.nb,
-    ...kvitteringMessages.nb,
+    ...situasjonMessages_nb,
+    ...dineBarnMessages_nb,
+    ...deltBostedMessages_nb,
+    ...velkommenPageMessages_nb,
+    ...fraværStepMessages_nb,
+    ...legeerklæringMessages_nb,
+    ...oppsummeringMessages_nb,
+    ...kvitteringMessages_nb,
 
     Ja: 'Ja',
     Nei: 'Nei',

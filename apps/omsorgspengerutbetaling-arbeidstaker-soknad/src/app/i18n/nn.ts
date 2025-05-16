@@ -1,22 +1,22 @@
-import { kvitteringMessages } from '../pages/kvittering/i18n';
-import { velkommenPageMessages } from '../pages/velkommen/i18n';
-import { deltBostedMessages } from '../søknad/steps/delt-bosted/i18n';
-import { dineBarnMessages } from '../søknad/steps/dine-barn/i18n';
-import { fraværStepMessages } from '../søknad/steps/fravær/i18n';
-import { legeerklæringMessages } from '../søknad/steps/legeerklæring/i18n';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/i18n';
-import { situasjonMessages } from '../søknad/steps/situasjon/i18n';
+import { kvitteringMessages_nn } from '../pages/kvittering/i18n/nn';
+import { velkommenPageMessages_nn } from '../pages/velkommen/i18n/nn';
+import { deltBostedMessages_nn } from '../søknad/steps/delt-bosted/i18n/nn';
+import { dineBarnMessages_nn } from '../søknad/steps/dine-barn/i18n/nn';
+import { fraværStepMessages_nn } from '../søknad/steps/fravær/i18n/nn';
+import { legeerklæringMessages_nn } from '../søknad/steps/legeerklæring/i18n/nn';
+import { oppsummeringMessages_nn } from '../søknad/steps/oppsummering/i18n/nn';
+import { situasjonMessages_nn } from '../søknad/steps/situasjon/i18n/nn';
 import { appMessages_nb } from './nb';
 
 export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
-    ...situasjonMessages.nn,
-    ...dineBarnMessages.nn,
-    ...deltBostedMessages.nn,
-    ...velkommenPageMessages.nn,
-    ...fraværStepMessages.nn,
-    ...legeerklæringMessages.nn,
-    ...oppsummeringMessages.nn,
-    ...kvitteringMessages.nn,
+    ...situasjonMessages_nn,
+    ...dineBarnMessages_nn,
+    ...deltBostedMessages_nn,
+    ...velkommenPageMessages_nn,
+    ...fraværStepMessages_nn,
+    ...legeerklæringMessages_nn,
+    ...oppsummeringMessages_nn,
+    ...kvitteringMessages_nn,
 
     Ja: 'Ja',
     Nei: 'Nei',
