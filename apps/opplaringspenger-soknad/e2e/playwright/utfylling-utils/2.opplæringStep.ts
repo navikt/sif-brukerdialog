@@ -26,6 +26,16 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
+export const fyllUtOpplæringAnnenInstitusjon = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
+    await page.getByRole('checkbox', { name: 'Annet opplæringssted' }).check();
+    await page.getByRole('textbox', { name: 'Oppgi navn på opplæringsstedet' }).fill('Kristiania KursOgTur');
+    await leggTilPeriode1(page);
+    await leggTilReisedag(page);
+    await leggTilFerie(page);
+    await page.getByTestId('typedFormikForm-submitButton').click();
+};
+
 const leggTilPeriode1 = async (page: Page) => {
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(0).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
@@ -97,6 +107,16 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
     ).toBeVisible();
     await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
     await expect(page.getByText('Reisedager uten kurs eller opplæringTirsdag')).toBeVisible();
+    await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
+    await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
+};
+
+export const kontrollerOpplæringAnnenInstitusjon = async (page: Page) => {
+    await expect(page.getByText('Hvor foregår opplæringen?Kristiania')).toBeVisible();
+    await expect(page.locator('li').filter({ hasText: '02.12.2024 - 08.12.2024' })).toBeVisible();
+    await expect(page.getByText('Reiser du på dager du ikke har kurs eller opplæring?Ja')).toBeVisible();
+    await expect(page.getByText('Reisedager uten kurs eller opplæringTirsdag')).toBeVisible();
+    await expect(page.getByText('Årsak til reisetidkombinerer')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
 };
