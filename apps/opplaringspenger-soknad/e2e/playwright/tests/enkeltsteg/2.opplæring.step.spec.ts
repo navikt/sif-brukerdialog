@@ -1,8 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
 import {
+    fyllUtOpplæringAnnenInstitusjon,
     fyllUtOpplæringEnPeriode,
     fyllUtOpplæringToPerioder,
+    kontrollerOpplæringAnnenInstitusjon,
     kontrollerOpplæringEnPeriodeOppsummering,
     kontrollerOpplæringFlerePerioderOppsummering,
 } from '../../utfylling-utils/2.opplæringStep';
@@ -33,5 +35,14 @@ test.describe('Opplæring-steg', () => {
         await page.getByTestId('typedFormikForm-submitButton').click();
         await page.getByTestId('typedFormikForm-submitButton').click();
         await kontrollerOpplæringFlerePerioderOppsummering(page);
+    });
+    test('Opplæring med annen institusjon', async ({ page }) => {
+        await fyllUtOpplæringAnnenInstitusjon(page);
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await kontrollerOpplæringAnnenInstitusjon(page);
     });
 });
