@@ -46,9 +46,17 @@ export const zEndretProgramperiodeDataDto = zOppgavetypeDataDto.and(
     }),
 );
 
+export const zYtelseType = z.enum([
+    'SYKEPENGER',
+    'OMSORGSPENGER',
+    'PLEIEPENGER_SYKT_BARN',
+    'PLEIEPENGER_LIVETS_SLUTTFASE',
+    'OPPLAERINGSPENGER',
+]);
+
 export const zYtelseRegisterInntektDto = z.object({
     inntekt: z.number().int(),
-    ytelsetype: z.string(),
+    ytelsetype: zYtelseType,
 });
 
 export const zRegisterinntektDto = z.object({
@@ -111,13 +119,13 @@ export const zNavn = z.object({
     etternavn: z.string(),
 });
 
-export const zDeltakerPersonlia = z.object({
+export const zDeltakerPersonalia = z.object({
     id: z.string().uuid().optional(),
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zRegisterInntektArbeidOgFrilansDto = z.object({
@@ -127,7 +135,7 @@ export const zRegisterInntektArbeidOgFrilansDto = z.object({
 
 export const zRegisterInntektYtelseDto = z.object({
     beløp: z.number().int(),
-    ytelseType: z.string(),
+    ytelseType: zYtelseType,
 });
 
 export const zRegisterInntektDto = z.object({
@@ -187,7 +195,7 @@ export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
 
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
 
-export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonlia;
+export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
 export const zKontrollAvRegisterinntektResponse = zOppgaveDto;
 
@@ -197,7 +205,7 @@ export const zOpprettOppgaveForEndretProgramperiodeResponse = zOppgaveDto;
 
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 
-export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonlia;
+export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zHentKontonummerResponse = zKontonummerDto;
 

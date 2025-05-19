@@ -1,10 +1,10 @@
-import { getBaseEnv, getMaybeEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
+import { getBaseEnv, getMaybeBoolEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AppEnv } from '../../env.schema';
 
 export const getAppEnv = (): AppEnv => ({
     ...getBaseEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
-    isLocal: getMaybeEnv('IS_LOCAL') === 'true' ? true : false,
+    SIF_PUBLIC_USE_MSW: getMaybeBoolEnv('SIF_PUBLIC_USE_MSW'),
 });
 
 export const appEnv = getAppEnv();

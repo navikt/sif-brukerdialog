@@ -1,4 +1,4 @@
-import { DeltakelsePeriodInfo, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelsePeriodInfo, OppgaveStatus, Oppgavetype, YtelseType } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
     {
@@ -26,7 +26,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
                         ],
                         ytelseInntekter: [
                             {
-                                ytelsetype: 'Sykepenger',
+                                ytelsetype: YtelseType.OMSORGSPENGER,
                                 inntekt: 4000,
                             },
                         ],

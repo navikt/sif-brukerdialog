@@ -89,8 +89,16 @@ export type RegisterinntektDto = {
 
 export type YtelseRegisterInntektDto = {
     inntekt: number;
-    ytelsetype: string;
+    ytelsetype: YtelseType;
 };
+
+export enum YtelseType {
+    SYKEPENGER = 'SYKEPENGER',
+    OMSORGSPENGER = 'OMSORGSPENGER',
+    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
+    PLEIEPENGER_LIVETS_SLUTTFASE = 'PLEIEPENGER_LIVETS_SLUTTFASE',
+    OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
+}
 
 export type DeltakelseUtmeldingDto = {
     utmeldingsdato: string;
@@ -109,13 +117,13 @@ export type DeltakerOpplysningerDto = {
     opplysninger: Array<DeltakelseOpplysningDto>;
 };
 
-export type DeltakerPersonlia = {
+export type DeltakerPersonalia = {
     id?: string;
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -145,7 +153,7 @@ export type RegisterInntektOppgaveDto = {
 
 export type RegisterInntektYtelseDto = {
     beløp: number;
-    ytelseType: string;
+    ytelseType: YtelseType;
 };
 
 export type EndretProgamperiodeOppgaveDto = {
@@ -416,7 +424,7 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerResponse =
@@ -656,7 +664,7 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse =

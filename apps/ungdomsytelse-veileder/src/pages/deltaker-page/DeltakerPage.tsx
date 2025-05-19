@@ -29,7 +29,7 @@ const DeltakerPage = () => {
             {deltakerPending ? <Skeleton width="100%" height="6.5rem" variant="rectangle" /> : null}
 
             {/* Error */}
-            {error && !pending ? (
+            {error && !deltakerPending ? (
                 <BoxNew>
                     <Page.Block width="xl" gutters={true} className="pt-7 pb-5">
                         <ErrorPageContent error={error} />

@@ -1,43 +1,33 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
+import { BrowserRouter } from 'react-router-dom';
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import AppRoutes from './AppRoutes';
 import AppHeader from './components/app-header/AppHeader';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import AppErrorFallback from './components/error-boundary/AppErrorFallback';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
-import DeltakerPage from './pages/deltaker-page/DeltakerPage';
-import InfoPage from './pages/info-page/InfoPage';
-import NotFoundPage from './pages/page-not-found/PageNotFound';
-import StartPage from './pages/start-page/StartPage';
+import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
 
-initUngDeltakelseOpplyserApiClient({
-    onUnAuthorized: () => {
-        window.location.reload();
-    },
-});
 const queryClient = new QueryClient();
+
+initApiClients();
 
 const App = () => {
     return (
         <ThemeProvider>
             <VeilederProvider>
-                <ErrorBoundary appKey="ung-veileder" appTitle="Ungdomsytelse Veileder">
+                <ErrorBoundary fallback={<AppErrorFallback />}>
                     <QueryClientProvider client={queryClient}>
                         <IntlProvider locale="nb" messages={appMessages.nb}>
-                            <AppHeader />
-                            <main>
-                                <Routes>
-                                    <Route path="" element={<StartPage />}></Route>
-                                    <Route path="deltaker/" element={<Navigate to="/" />} />
-                                    <Route path="deltaker/:deltakerId" element={<DeltakerPage />} />
-                                    <Route path="informasjon/*" element={<InfoPage />} />
-                                    <Route path="*" element={<NotFoundPage />} />
-                                </Routes>
-                            </main>
+                            <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
+                                <AppHeader />
+                                <AppRoutes />
+                            </BrowserRouter>
                         </IntlProvider>
                     </QueryClientProvider>
                 </ErrorBoundary>

@@ -1,15 +1,16 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, Box, VStack } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
 import { max } from 'date-fns';
-import { useIntl } from 'react-intl';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { GYLDIG_PERIODE } from '../../settings';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
@@ -19,11 +20,7 @@ import {
     kanEndreSluttdato,
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
-import { getSluttdatoValidator, getStartdatoValidator } from './endrePeriodeFormUtils';
-import dayjs from 'dayjs';
-import BekreftEndretStartdatoInfo from './parts/BekreftEndretStartdatoInfo';
-import BekreftEndretSluttdatoInfo from './parts/BekreftEndretSluttdatoInfo';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
 
 type FormValues = {
     fom?: string;
@@ -86,6 +83,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
 
     const handleOnSubmit = async (values: FormValues) => {
         const dato = variant === EndrePeriodeVariant.startdato ? values.fom : values.tom;
+
         if (!dato) {
             return;
         }
@@ -121,33 +119,12 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
             }}
             onSubmit={handleOnSubmit}
             renderForm={({ values }) => {
-                const deltakerInformertBesvart = values.deltakerErInformert !== undefined;
-                const fomDato = values.fom ? ISODateToDate(values.fom) : undefined;
-                const tomDato = values.tom ? ISODateToDate(values.tom) : undefined;
-
-                const startdatoErEndret =
-                    variant === EndrePeriodeVariant.startdato &&
-                    fomDato !== undefined &&
-                    !dayjs(fomDato).isSame(deltakelse.fraOgMed, 'day');
-
-                const sluttdatoErEndret =
-                    variant === EndrePeriodeVariant.sluttdato &&
-                    tomDato !== undefined &&
-                    !dayjs(tomDato).isSame(deltakelse.tilOgMed, 'date');
-
-                const datoErValgt =
-                    (variant === EndrePeriodeVariant.startdato && !!fomDato) ||
-                    (EndrePeriodeVariant.sluttdato && !!tomDato);
-                const datoErEndret = startdatoErEndret || sluttdatoErEndret;
-
                 return (
                     <VStack gap="6">
-                        {/* {variant === EndrePeriodeVariant.startdato && <TillattStartdatoInfo deltaker={deltaker} />} */}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
                             showSubmitButton={true}
-                            submitDisabled={deltakerInformertBesvart && !datoErEndret}
                             submitButtonLabel="Bekreft og lagre"
                             cancelButtonLabel="Avbryt"
                             onCancel={onCancel}
@@ -161,7 +138,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
-                                            validate={getStartdatoValidator(startdatoMinMax)}
+                                            validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
                                         />
                                     ) : (
                                         <DatePicker
@@ -170,41 +147,38 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={sluttdatoMinMax.from}
                                             maxDate={sluttdatoMinMax.to}
                                             defaultMonth={deltakelse.tilOgMed}
-                                            validate={getSluttdatoValidator(sluttdatoMinMax)}
+                                            validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
                                         />
                                     )}
 
-                                    <YesOrNoQuestion
-                                        name={FieldNames.deltakerErInformert}
-                                        legend={`Er denne endringen avklart med ${deltakernavn}?`}
-                                        validate={getRequiredFieldValidator()}
-                                    />
+                                    <VStack gap="2">
+                                        <YesOrNoQuestion
+                                            name={FieldNames.deltakerErInformert}
+                                            legend={`Er denne endringen avklart med ${deltakernavn}?`}
+                                            validate={getRequiredFieldValidator()}
+                                        />
 
-                                    {deltakerInformertBesvart && datoErEndret ? (
+                                        {values.deltakerErInformert === YesOrNo.NO ? (
+                                            <Box marginBlock="0 4">
+                                                <Alert variant="info">
+                                                    Vurder om du skal skal avklare dette med deltaker før du registrerer
+                                                    endringen.
+                                                </Alert>
+                                            </Box>
+                                        ) : null}
+                                    </VStack>
+
+                                    <Bleed marginBlock="4 0">
                                         <ConfirmationCheckbox
                                             name={FieldNames.bekrefterEndring}
-                                            label="Dette er riktig"
-                                            validate={getCheckedValidator()}>
-                                            {variant === EndrePeriodeVariant.startdato && fomDato ? (
-                                                <BekreftEndretStartdatoInfo
-                                                    deltakernavn={deltakernavn}
-                                                    opprinneligStartdato={deltakelse.fraOgMed}
-                                                    nyStartdato={fomDato}
-                                                />
-                                            ) : null}
-                                            {variant === EndrePeriodeVariant.sluttdato && tomDato ? (
-                                                <BekreftEndretSluttdatoInfo
-                                                    deltakernavn={deltakernavn}
-                                                    opprinneligSluttdato={deltakelse.tilOgMed}
-                                                    nySluttdato={tomDato}
-                                                />
-                                            ) : null}
-                                        </ConfirmationCheckbox>
-                                    ) : null}
-
-                                    {deltakerInformertBesvart && datoErValgt && !datoErEndret ? (
-                                        <Alert variant="warning">Dato er ikke endret fra opprinnelig dato</Alert>
-                                    ) : null}
+                                            label={
+                                                variant === EndrePeriodeVariant.startdato
+                                                    ? `Jeg bekrefter endring av startdato`
+                                                    : `Jeg bekrefter endring av sluttdato`
+                                            }
+                                            validate={getCheckedValidator()}
+                                        />
+                                    </Bleed>
                                 </VStack>
                                 {error ? <ApiErrorAlert error={error} /> : null}
                             </VStack>

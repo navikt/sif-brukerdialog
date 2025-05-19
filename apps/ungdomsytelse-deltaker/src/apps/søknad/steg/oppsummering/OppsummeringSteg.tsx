@@ -1,49 +1,16 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { dateToISODate } from '@navikt/sif-common-utils';
-import { formaterKontonummer } from '@navikt/ung-common';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg, SøknadSvar } from '../../types';
+import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { getBarnSpørsmål } from '../barn/BarnSteg';
-
-export const isYesOrNoAnswered = (answer?: YesOrNo) => {
-    return answer !== undefined && (answer === YesOrNo.NO || answer === YesOrNo.YES);
-};
-
-const getSøknadFromSvar = (
-    svar: SøknadSvar,
-    søkerNorskIdent: string,
-    startdato: Date,
-    kontonummerFraRegister?: string,
-): Omit<Ungdomsytelsesøknad, 'harBekreftetOpplysninger'> | undefined => {
-    const harKontonummer = kontonummerFraRegister !== undefined && kontonummerFraRegister !== null;
-    if (
-        (svar[Spørsmål.FORSTÅR_PLIKTER] !== true,
-        !isYesOrNoAnswered(svar[Spørsmål.BARN]) || (harKontonummer && !isYesOrNoAnswered(svar[Spørsmål.KONTONUMMER])))
-    ) {
-        return undefined;
-    }
-
-    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-
-    return {
-        språk: 'nb',
-        startdato: dateToISODate(startdato),
-        harForståttRettigheterOgPlikter,
-        barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
-        kontonummerErRiktig: harKontonummer ? svar[Spørsmål.KONTONUMMER] === YesOrNo.YES : undefined,
-        søkerNorskIdent,
-        kontonummerFraRegister: formaterKontonummer(kontonummerFraRegister),
-    };
-};
+import { buildSøknadFromSvar } from './oppsummeringUtils';
 
 const OppsummeringSteg = () => {
     const { søker, deltakelsePeriode, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
@@ -53,7 +20,7 @@ const OppsummeringSteg = () => {
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = getSøknadFromSvar(
+    const søknad = buildSøknadFromSvar(
         svar,
         søker.fødselsnummer,
         deltakelsePeriode.programPeriode.from,
@@ -73,7 +40,7 @@ const OppsummeringSteg = () => {
             }
             try {
                 await mutateAsync({ ...søknad, harBekreftetOpplysninger: bekrefterOpplysninger });
-                setSøknadSendt(true);
+                setSøknadSendt();
                 gotoKvittering();
             } catch {
                 // Håndteres gjennom error objektet  i useSendSøknad

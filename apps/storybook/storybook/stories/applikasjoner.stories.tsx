@@ -10,7 +10,7 @@ import { appMessages as omsSnFri } from '../../../omsorgspengerutbetaling-soknad
 import { appMessages as omsKronisk } from '../../../omsorgspengesoknad/src/app/i18n/appMessages';
 import { appMessages as pils } from '../../../pleiepenger-i-livets-sluttfase-soknad/src/app/i18n/appMessages';
 import { appMessages as psb } from '../../../pleiepenger-sykt-barn/src/app/i18n/appMessages';
-import { appMessages as ettersendelse } from '../../../sif-ettersending/src/app/i18n/appMessages';
+import { appMessages as ettersendelse } from '../../../sif-ettersending/src/app/i18n';
 
 const meta: Meta<MessagesPreviewProps> = {
     title: 'i18n',

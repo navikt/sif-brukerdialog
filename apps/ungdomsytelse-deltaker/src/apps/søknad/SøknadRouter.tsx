@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { useSøknadContext } from './hooks/context/useSøknadContext';
 import KvitteringPage from './pages/KvitteringPage';
-import VelkommenSteg from './pages/VelkommenPage';
+import VelkommenPage from './pages/VelkommenPage';
 import BarnSteg from './steg/barn/BarnSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
@@ -37,33 +37,23 @@ const SøknadRouter = () => {
         return null;
     };
 
-    const initialRedirectPath = determineRedirectPath();
-    /**
-     * Å sette initialRedirectPath som default value på state gir bare redirectPath===null første
-     * gang komponenten rendres. Derfor både logikk på initialRedirectPath og redirectPath.
-     * */
-
-    const [redirectPath, setRedirectPath] = useState<string | null>();
+    const [redirectPath, setRedirectPath] = useState<string | null>(determineRedirectPath());
 
     useEffect(() => {
         const newRedirectPath = determineRedirectPath();
         if (newRedirectPath !== redirectPath) {
             setRedirectPath(newRedirectPath);
         }
-    }, [redirectPath, pathname, søknadStartet, previousSøknadStartet, previousSøknadSendt]);
+    }, [pathname, søknadStartet, previousSøknadStartet, previousSøknadSendt]);
 
     if (redirectPath && redirectPath !== pathname) {
         return <Navigate to={redirectPath} replace={true} />;
     }
 
-    if (initialRedirectPath !== null && initialRedirectPath !== pathname) {
-        return <Navigate to={initialRedirectPath} replace={true} />;
-    }
-
     return (
         <Routes>
-            <Route index={true} element={<VelkommenSteg />} />
-            <Route path="soknad" element={<Navigate to="/soknad/barn" replace={true} />} />
+            <Route index={true} element={<VelkommenPage />} />
+            <Route path="soknad" element={<Navigate to="/soknad/kontonummer" replace={true} />} />
             <Route path="soknad/barn" element={<BarnSteg />} />
             <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
             <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />

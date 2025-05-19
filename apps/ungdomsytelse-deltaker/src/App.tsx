@@ -1,61 +1,52 @@
-import { Alert, Box, Theme } from '@navikt/ds-react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
-import { EnvKey, getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
-import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
-import DeltakerInfoLoader from './DeltakerInfoLoader';
+import { Theme } from '@navikt/ds-react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import AppRouter from './AppRouter';
+import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
+import AppErrorFallback from './components/error-boundary/AppErrorFallback';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { appEnv } from './utils/appEnv';
+import { AnalyticsProvider } from './utils/analytics';
+import { initApiClients } from './utils/initApiClients';
+import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 
-initUngDeltakelseOpplyserApiClient({
-    onUnAuthorized: () => {
-        window.location.assign(getCommonEnv()[EnvKey.SIF_PUBLIC_LOGIN_URL]);
-    },
-});
-initK9BrukerdialogProsesseringApiClient();
+initSentry();
+initApiClients();
 
-const getIsGithubPages = () => {
-    try {
-        return __IS_GITHUB_PAGES__ === true;
-    } catch {
-        // do nothing
-    }
-};
+if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
+    injectDecoratorClientSide({
+        env: 'dev',
+        params: {
+            simple: true,
+            chatbot: true,
+        },
+    });
+}
 
-const DemoMelding = () => {
-    return (
-        <PageBoundary>
-            <Box marginBlock="6">
-                <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
-            </Box>
-        </PageBoundary>
-    );
-};
+const queryClient = new QueryClient();
 
 function App() {
-    const publicPath = getRequiredEnv('PUBLIC_PATH');
-    const isGitHubPages = getIsGithubPages();
-
     return (
         <Theme>
-            <ErrorBoundary fallback={<div>Noe gikk galt</div>}>
-                <AppIntlMessageProvider>
-                    {isGitHubPages ? (
-                        <HashRouter>
-                            {getIsGithubPages() && <DemoMelding />}
-                            <DeltakerInfoLoader />
-                        </HashRouter>
-                    ) : (
-                        <BrowserRouter basename={publicPath}>
-                            <DeltakerInfoLoader />
-                        </BrowserRouter>
-                    )}{' '}
-                    {appEnv['VELG_SCENARIO'] === 'on' && <DevFooter />}
-                </AppIntlMessageProvider>
+            <ErrorBoundary fallback={<AppErrorFallback />}>
+                <AnalyticsProvider
+                    applicationKey={UngdomsytelseDeltakerApp.key}
+                    logToConsoleOnly={true}
+                    isActive={false}>
+                    <QueryClientProvider client={queryClient}>
+                        <AppIntlMessageProvider>
+                            <AppRouter>
+                                <DeltakerInfoLoader />
+                            </AppRouter>
+                            <DevFooter />
+                        </AppIntlMessageProvider>
+                    </QueryClientProvider>
+                </AnalyticsProvider>
             </ErrorBoundary>
         </Theme>
     );
