@@ -40,6 +40,7 @@ function FormikCombobox<FieldName, ErrorType>({
             }
             name={name}>
             {({ field, form }: FieldProps) => {
+                console.log({ field: field.value, inputValue, initialValue });
                 return (
                     <UNSAFE_Combobox
                         {...restProps}

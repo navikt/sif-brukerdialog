@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, Box, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
@@ -133,14 +133,6 @@ const KursStep = () => {
 
                     const annenInstitusjon = values[KursFormFields.annenInstitusjon] === true;
 
-                    const handleOnAnnenInstitusjonChange = (checked: boolean) => {
-                        if (checked) {
-                            setFieldValue(KursFormFields.valgtOpplæringsinstitusjon, '');
-                        } else {
-                            setFieldValue(KursFormFields.navnAnnenInstitusjon, '');
-                        }
-                    };
-
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -189,25 +181,24 @@ const KursStep = () => {
                                                           maxLength: 100,
                                                       })
                                             }
-                                            // description={
-                                            //     <ReadMore
-                                            //         header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
-                                            //         <Box marginBlock="0 4">
-                                            //             <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
-                                            //         </Box>
-                                            //     </ReadMore>
-                                            // }
+                                            description={
+                                                <ReadMore
+                                                    header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
+                                                    <Box marginBlock="0 4">
+                                                        <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
+                                                    </Box>
+                                                </ReadMore>
+                                            }
                                         />
                                         <Checkbox
                                             name={KursFormFields.annenInstitusjon}
-                                            label={'Annen institusjon'}
-                                            afterOnChange={(checked) => handleOnAnnenInstitusjonChange(checked)}
+                                            label={text('steg.kurs.opplæringsinstitusjon.annen.check.label')}
                                         />
                                         {annenInstitusjon && (
                                             <TextField
                                                 className="mt-4"
                                                 name={KursFormFields.navnAnnenInstitusjon}
-                                                label="Navn på annen institusjon"
+                                                label={text('steg.kurs.opplæringsinstitusjon.annen.navn.label')}
                                                 validate={getStringValidator({
                                                     required: true,
                                                     minLength: 2,

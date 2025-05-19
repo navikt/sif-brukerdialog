@@ -6,8 +6,10 @@ const nb = {
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
     'steg.kurs.opplæringsinstitusjon.readMore.header': 'Jeg finner ikke riktig institusjon',
     'steg.kurs.opplæringsinstitusjon.readMore.content':
-        'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
+        'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, velger du "Annet opplæringssted" nedenfor, og skriver inn navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
+    'steg.kurs.opplæringsinstitusjon.annen.check.label': 'Annet opplæringssted',
+    'steg.kurs.opplæringsinstitusjon.annen.navn.label': 'Oppgi navn på opplæringsstedet',
 
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.kursperioder.tekst':
@@ -23,6 +25,8 @@ const nb = {
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
         'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
 
+    'steg.kurs.validation.valgtOpplæringsinstitusjon.stringHasNoValue':
+        'Du må velge hvor opplæringen foregår. Hvis du ikke får treff på den institusjonen du har fått opplæring hos, velger du "Annet opplæringssted" nedenfor, og skriver inn navnet på institusjonen.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
@@ -89,6 +93,8 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.opplæringsinstitusjon.readMore.content':
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
+    'steg.kurs.opplæringsinstitusjon.annen.check.label': 'Anna opplæringssted',
+    'steg.kurs.opplæringsinstitusjon.annen.navn.label': 'Oppgje navn på opplæringsstedet',
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
     'steg.kurs.kursperioder.tekst':
         'Du kan få opplæringspengar for periodar du er på opplæring, og eventuell reisetid til og frå opplæringa.',
@@ -102,6 +108,8 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
         'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
 
+    'steg.kurs.validation.valgtOpplæringsinstitusjon.stringHasNoValue':
+        'Du må velge hvor opplæringen foregår. Hvis du ikke får treff på den institusjonen du har fått opplæring hos, velger du "Annet opplæringssted" nedenfor, og skriver inn navnet på institusjonen.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut kvar opplæringa føregår.',
