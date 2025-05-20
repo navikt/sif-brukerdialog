@@ -70,7 +70,7 @@ import { DeltakelsePeriodInfo, OppgaveDto, OppgaveStatus, Oppgavetype } from '@n
 //     løstDato: undefined,
 // };
 
-const oppg: OppgaveDto = {
+export const mockOppg: OppgaveDto = {
     oppgaveReferanse: 'd4983a23-53c5-4c71-b1c4-0d11c1431e12',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
     oppgavetypeData: {
