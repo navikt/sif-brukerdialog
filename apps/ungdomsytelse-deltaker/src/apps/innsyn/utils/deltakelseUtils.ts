@@ -1,5 +1,5 @@
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
-import { DeltakelsePeriode, Rapporteringsperiode } from '@navikt/ung-common';
+import { DeltakelsePeriode } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 /**
@@ -18,25 +18,6 @@ export const getTidsromForInntektsrapportering = (inntektsmåned: Date): DateRan
 
 export const getFristForRapporteringsperiode = (periode: DateRange): Date => {
     return dayjs.min(dayjs(periode.to), dayjs(periode.from).startOf('month').add(6, 'days')).toDate();
-};
-
-export const getPeriodeÅpenForInntektsrapportering = (
-    rapporteringsperioder: Rapporteringsperiode[],
-): Rapporteringsperiode | undefined => {
-    const perioder = rapporteringsperioder.filter(
-        (p) => p.erÅpenRapporteringsperiode === true && p.harRapportert === false,
-    );
-    if (perioder.length === 0) {
-        return undefined;
-    }
-    if (perioder.length === 1) {
-        return perioder[0];
-    }
-    throw 'Det er flere åpne perioder for inntektsrapportering';
-};
-
-export const sorterRapporteringsperioderDesc = (r1: Rapporteringsperiode, r2: Rapporteringsperiode): number => {
-    return dayjs(r2.periode.from).diff(dayjs(r1.periode.from));
 };
 
 export const erDatoIFørsteMånedIProgrammet = (dato: Date, programStartdato: Date): boolean => {

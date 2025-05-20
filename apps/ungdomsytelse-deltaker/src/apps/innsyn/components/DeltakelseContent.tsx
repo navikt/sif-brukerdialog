@@ -1,4 +1,4 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import OppgaverList from './oppgaver/OppgaverList';
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../utils/deltakelseUtils';
@@ -30,19 +30,27 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     return (
         <VStack gap="10">
-            {uløsteOppgaver.length === 0 ? null : (
-                <VStack gap="4">
-                    <Heading level="2" size="large" style={{ fontWeight: '600' }}>
-                        Dine oppgaver
-                    </Heading>
+            <VStack gap="4">
+                <Heading level="2" size="large" style={{ fontWeight: '600' }}>
+                    Dine oppgaver
+                </Heading>
+                {uløsteOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
-                </VStack>
-            )}
+                ) : (
+                    <BodyShort>Du har ingen oppgaver du må gjøre</BodyShort>
+                )}
+            </VStack>
             <VStack gap="4">
                 <Heading level="2" size="large" style={{ fontWeight: '600' }}>
                     Tidligere oppgaver
                 </Heading>
-                <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                {tidligereOppgaver.length > 0 ? (
+                    <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                ) : (
+                    <>
+                        <BodyShort>Du har ingen tidligere oppgaver</BodyShort>
+                    </>
+                )}
             </VStack>
         </VStack>
     );

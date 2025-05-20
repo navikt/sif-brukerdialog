@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 const nb = {
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.tittel': 'Bekreft eller kommenter endret programperiode',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel': 'Bekreft eller kommenter avvik i inntekt',
+    'oppgavetype.RAPPORTER_INNTEKT.tittel': 'Oppgi inntekt',
 };
 
 export type AppMessageKeys = keyof typeof nb;

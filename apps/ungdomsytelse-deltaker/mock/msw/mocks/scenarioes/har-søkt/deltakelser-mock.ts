@@ -1,11 +1,4 @@
-import {
-    DeltakelsePeriodInfo,
-    KontrollerRegisterinntektOppgavetypeDataDto,
-    OppgaveDto,
-    OppgaveStatus,
-    Oppgavetype,
-    YtelseType,
-} from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelsePeriodInfo, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 // 8c21972b-f23d-4193-8851-b2fa6c6b2f63,
 // 74085d1a-cdfb-4a9e-9565-037171510473,
@@ -28,53 +21,71 @@ import {
 // 6c994abf-0c9b-4cb1-b003-849f7265cd6b,
 // 37f13a40-14cb-4c6d-b0f3-dceebaa09cf7,
 
-const endretProgramperiodeOppgave: OppgaveDto = {
-    oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
+// const endretProgramperiodeOppgave: OppgaveDto = {
+//     oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
+//     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+//     oppgavetypeData: {
+//         programperiode: {
+//             fomDato: '2025-02-01',
+//             tomDato: '2025-03-31',
+//         },
+//     },
+//     status: OppgaveStatus.LØST,
+//     opprettetDato: '2025-04-14T08:08:15.984057Z',
+//     løstDato: '2025-04-14T08:08:15.984057Z',
+// };
+
+// const kontrollerRegisterInntektOppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
+//     fraOgMed: '2025-01-01',
+//     tilOgMed: '2025-01-31',
+//     registerinntekt: {
+//         arbeidOgFrilansInntekter: [
+//             {
+//                 arbeidsgiver: 'ABC',
+//                 inntekt: 200,
+//             },
+//         ],
+//         ytelseInntekter: [
+//             {
+//                 inntekt: 200,
+//                 ytelsetype: YtelseType.OMSORGSPENGER,
+//             },
+//             {
+//                 inntekt: 100,
+//                 ytelsetype: YtelseType.OPPLAERINGSPENGER,
+//             },
+//         ],
+//         totalInntekt: 500,
+//         totalInntektArbeidOgFrilans: 200,
+//         totalInntektYtelse: 300,
+//     },
+// };
+
+// const kontrollerRegisterInntektOppgave: OppgaveDto = {
+//     oppgaveReferanse: '37f13a40-14cb-4c6d-b0f3-dceebaa09cf7',
+//     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+//     oppgavetypeData: kontrollerRegisterInntektOppgaveDto,
+//     status: OppgaveStatus.ULØST,
+//     opprettetDato: '2025-04-14T08:08:15.984057Z',
+//     løstDato: undefined,
+// };
+
+const oppg: OppgaveDto = {
+    oppgaveReferanse: 'd4983a23-53c5-4c71-b1c4-0d11c1431e12',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
     oppgavetypeData: {
         programperiode: {
-            fomDato: '2025-02-01',
-            tomDato: '2025-03-31',
+            fomDato: '2025-04-02',
+            tomDato: '9999-12-31',
         },
+        forrigeProgramperiode: undefined,
     },
-    status: OppgaveStatus.LØST,
-    opprettetDato: '2025-04-14T08:08:15.984057Z',
-    løstDato: '2025-04-14T08:08:15.984057Z',
-};
-
-const kontrollerRegisterInntektOppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
-    fraOgMed: '2025-01-01',
-    tilOgMed: '2025-01-31',
-    registerinntekt: {
-        arbeidOgFrilansInntekter: [
-            {
-                arbeidsgiver: 'ABC',
-                inntekt: 200,
-            },
-        ],
-        ytelseInntekter: [
-            {
-                inntekt: 200,
-                ytelsetype: YtelseType.OMSORGSPENGER,
-            },
-            {
-                inntekt: 100,
-                ytelsetype: YtelseType.OPPLAERINGSPENGER,
-            },
-        ],
-        totalInntekt: 500,
-        totalInntektArbeidOgFrilans: 200,
-        totalInntektYtelse: 300,
-    },
-};
-
-const kontrollerRegisterInntektOppgave: OppgaveDto = {
-    oppgaveReferanse: '37f13a40-14cb-4c6d-b0f3-dceebaa09cf7',
-    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-    oppgavetypeData: kontrollerRegisterInntektOppgaveDto,
+    bekreftelse: undefined,
     status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-04-14T08:08:15.984057Z',
-    løstDato: undefined,
+    opprettetDato: '2025-04-16T07:20:15.400697Z',
+    løstDato: '2025-04-17T05:05:01.714798Z',
+    åpnetDato: undefined,
+    lukketDato: undefined,
 };
 
 const deltakelser: DeltakelsePeriodInfo[] = [
@@ -83,49 +94,7 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         fraOgMed: '2024-12-02',
         tilOgMed: undefined,
         harSøkt: true,
-        oppgaver: [endretProgramperiodeOppgave, kontrollerRegisterInntektOppgave],
-        rapporteringsPerioder: [
-            {
-                fraOgMed: '2024-12-02',
-                tilOgMed: '2024-12-31',
-                harRapportert: true,
-                arbeidstakerOgFrilansInntekt: 200,
-                inntektFraYtelse: 0,
-                summertInntekt: 200,
-            },
-            {
-                fraOgMed: '2025-01-01',
-                tilOgMed: '2025-01-31',
-                harRapportert: false,
-                arbeidstakerOgFrilansInntekt: undefined,
-                inntektFraYtelse: undefined,
-                summertInntekt: 0,
-            },
-            {
-                fraOgMed: '2025-02-01',
-                tilOgMed: '2025-02-26',
-                harRapportert: false,
-                arbeidstakerOgFrilansInntekt: undefined,
-                inntektFraYtelse: undefined,
-                summertInntekt: 0,
-            },
-            {
-                fraOgMed: '2025-03-01',
-                tilOgMed: '2025-03-31',
-                harRapportert: false,
-                arbeidstakerOgFrilansInntekt: undefined,
-                inntektFraYtelse: undefined,
-                summertInntekt: 0,
-            },
-            {
-                fraOgMed: '2025-04-01',
-                tilOgMed: '2025-04-30',
-                harRapportert: false,
-                arbeidstakerOgFrilansInntekt: undefined,
-                inntektFraYtelse: undefined,
-                summertInntekt: 0,
-            },
-        ],
+        oppgaver: [],
     },
 ];
 

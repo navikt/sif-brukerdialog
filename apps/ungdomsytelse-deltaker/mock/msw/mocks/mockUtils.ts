@@ -3,7 +3,6 @@
 import {
     ArbeidsgivereDto,
     BarnOppslagListe,
-    OppgittInntektForPeriode,
     Søker,
     UngdomsytelseOppgavebekreftelse,
 } from '@navikt/k9-brukerdialog-prosessering-api';
@@ -68,33 +67,7 @@ const setOppgavebekreftelse = (oppgaveReferanse: string, oppgavebekreftelse: Ung
     save(db);
 };
 
-const setInntektRapportert = (deltakelseId: string, inntekt: OppgittInntektForPeriode) => {
-    db.deltakelser = db.deltakelser.map((d) => {
-        if (d.id === deltakelseId) {
-            const { periodeForInntekt } = inntekt;
-            return {
-                ...d,
-                rapporteringsPerioder: d.rapporteringsPerioder.map((rapporteringsperiode) => {
-                    if (
-                        periodeForInntekt.fraOgMed === rapporteringsperiode.fraOgMed &&
-                        periodeForInntekt.tilOgMed === rapporteringsperiode.tilOgMed
-                    ) {
-                        const { arbeidstakerOgFrilansInntekt = 0 } = inntekt;
-                        return {
-                            ...rapporteringsperiode,
-                            harRapportert: true,
-                            arbeidstakerOgFrilansInntekt: arbeidstakerOgFrilansInntekt,
-                        };
-                    }
-                    return rapporteringsperiode;
-                }),
-            };
-        }
-        return d;
-    });
-    save(db);
-};
-
+//
 export const mockUtils = {
     setScenario,
     getData: (): ScenarioData => db,
@@ -104,5 +77,4 @@ export const mockUtils = {
     getDeltakelser: () => db.deltakelser,
     setDeltakelseSøktFor,
     setOppgavebekreftelse,
-    setInntektRapportert,
 };
