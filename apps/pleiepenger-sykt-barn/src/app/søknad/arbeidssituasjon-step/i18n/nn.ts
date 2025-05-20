@@ -9,7 +9,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.veileder.1':
         'No treng me å vite litt om arbeidssituasjonen din, og kor mykje du normalt jobbar. Med «normalt» meiner me kor mykje du jobbar når du ikkje har fråvær på grunn av pleiepengar eller anna.',
     'steg.arbeidssituasjon.veileder.2':
-        'Det er normalarbeidstida din <strong>før</strong> du startar med pleiepengar som vi er ute etter her, uavhengig av om du søkjer for fyrste gong, eller om du søkjer forlenging.',
+        'Det er normalarbeidstida din <strong>før</strong> du startar med pleiepengar som me er ute etter her, uavhengig av om du søkjer for fyrste gong, eller om du søkjer forlenging.',
     'steg.arbeidssituasjon.veileder.3':
         'Viss du mottar yting frå Nav (til dømes foreldrepengar eller sjukepengar) opplyser du om det som var din normale arbeidstid før du starta å motta ytinga.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
@@ -21,11 +21,11 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
         'Viss du i perioden du søkjer for er, eller var, tilsett hos ein arbeidsgjevar som ikkje visast her, må du be arbeidsgjevaren om å sende ei ny A-melding. Det gjer dei anten via eige løns- og personalsystem, eller via Altinn.',
 
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm': 'Mottar du omsorgsstønad frå kommuna?',
-    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønad.spm.description':
         'Omsorgsstønad blir rekna som frilansinntekt, og kan påverke kor mykje du får i pleiepengar.',
     'steg.arbeidssituasjon.omsorgsstønad.antallTimer.spm': 'Kor mange timar i veka har du vedtak om omsorgsstønad?',
-    'steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tittel': 'Hva betyr dette?',
+    'steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.omsorgsstønad.antallTimer.info.tekst':
         'Når kommuna godkjenner søknaden din, reknar dei ut omsorgsstønaden ut frå kor mange timar med omsorgsarbeid stønaden skal dekkje. Du finn vanlegvis timeantalet i vedtaket om omsorgsstønad. Er du usikker, må du avklare dette med kommuna. Om vedtaket oppgjev timar per månad, deler du timeantalet med fire for å få timar per veke.',
     'steg.arbeidssituasjon.omsorgsstønad.mottarOmsorgsstønadIHelePerioden.spm':
@@ -63,7 +63,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
     'steg.arbeidssituasjon.verneplikt.spm': 'Utøvde du verneplikt på tidspunktet du søkjer pleiepengar frå?',
-    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.verneplikt.info.tekst':
         'Du skal svare ja på dette spørsmålet om du har utøvd verneplikt i minst 28 dagar på starttidspunktet for perioden du søkjer for, eller om perioden med verneplikt var meint å vare i minst 28 dagar.',
 
@@ -134,7 +134,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.arbeidsforholdIntlValues.somSN': 'som sjølvstendig næringsdrivande',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søkjer for?',
-    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva betyr det å vere sjølvstendig næringsdrivande?',
+    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva tyder det å vere sjølvstendig næringsdrivande?',
     'selvstendig.harDuHattInntekt.hjelpetekst':
         'Du er sjølvstendig næringsdrivande når du anten har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
     'selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke':
@@ -153,7 +153,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'frilanser.harDuHattInntekt.spm': 'Jobbar du som frilansar eller mottar du honorar?',
     'frilanser.harDuHattInntekt.omsorgsstønad':
         'Viss du berre mottar fosterheimsgodtgjersle eller omsorgsstønad skal du svare nei på dette spørsmålet.',
-    'frilanser.harDuHattInntekt.hvaBetyr.spm': 'Kva betyr dette?',
+    'frilanser.harDuHattInntekt.hvaBetyr.spm': 'Kva tyder dette?',
     'frilanser.harDuHattInntekt.hvaBetyr.info.1':
         'Du skal svare ja på dette spørsmålet viss du jobbar som frilansar og/eller mottar honorar for utført oppdrag. Du kan få kompensert eit eventuelt tap av denne inntekta.',
     'frilanser.harDuHattInntekt.hvaBetyr.info.2':
@@ -168,11 +168,11 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'frilanser.sluttdato.spm': 'Når slutta du å jobbe som frilansar?',
     'frilanser.misterHonorar.tittle': 'Mistar du honorar fordi du må pleie barnet?',
-    'frilanser.misterHonorar.description.tittel': 'Kva betyr dette?',
+    'frilanser.misterHonorar.description.tittel': 'Kva tyder dette?',
     'frilanser.misterHonorar.description':
         'Du kan ha rett til å få kompensert tap av honorar viss du skal pleie eit sjukt barn.',
 
-    'frilanser.hjelpetekst.spm': 'Kva betyr det å være frilansar?',
+    'frilanser.hjelpetekst.spm': 'Kva tyder det å være frilansar?',
     'frilanser.hjelpetekst.1':
         'Du er frilansar når du mottar løn for enkeltstående oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for.Viss du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrert som frilansoppdrag på skatteetaten sine nettsider.',
 
@@ -184,7 +184,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm':
         'Mottar du fosterheimsgodtgjersle frå kommuna?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm.description.tittel':
-        'Kva betyr dette?',
+        'Kva tyder dette?',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.spm.description':
         'Fosterheimsgodtgjersle reknast som frilansinntekt, og kan påverke kor mykje du får i pleiepengar.',
     'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelseIHelePerioden.spm':

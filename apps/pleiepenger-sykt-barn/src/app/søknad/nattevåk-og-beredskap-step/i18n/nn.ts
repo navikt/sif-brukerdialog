@@ -1,9 +1,9 @@
 import { nattevåkOgBeredskapMessages_nb } from './nb';
 
 export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBeredskapMessages_nb, string> = {
-    'step.nattevåkOgBeredskap.pageTitle': 'Pleiepengesøknad - nattevakt og beredskap',
-    'step.nattevåkOgBeredskap.stepTitle': 'Nattevakt og beredskap',
-    'step.nattevåkOgBeredskap.stepIndicatorLabel': 'Nattevakt og beredskap',
+    'step.nattevåkOgBeredskap.pageTitle': 'Pleiepengesøknad - nattvake og beredskap',
+    'step.nattevåkOgBeredskap.stepTitle': 'Nattvake og beredskap',
+    'step.nattevåkOgBeredskap.stepIndicatorLabel': 'Nattvake og beredskap',
 
     'steg.nattevåkOgBeredskap.veileder':
         'No treng me å vite om du på grunn av barnet sin sjukdom må vere vaken om natta, eller vere i beredskap for barnet i pleiepengeperioden. Om nokon av desse situasjonane gjer at du ikkje kan gå på jobb, skal pleiepengane som hovudregel ikkje graderast, sjølv om barnet er i eit omsorgstilbod på dagtid.',
@@ -28,7 +28,7 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1':
         'Kva pleie- eller tilsynsoppgåver må du gjere om natta på grunn av barnet sin sjukdom?',
 
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2': 'Kor ofte/lange må du vere vaken om nettene?',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2': 'Kor ofte/lenge må du vere vaken om nettene?',
 
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3':
         'Må du vere vaken dei fleste nettene i perioden du søker om pleiepengar, eller er det berre i delar av perioden?',

@@ -35,7 +35,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'næringstype.FISKE': 'Fiske',
     'næringstype.JORDBRUK_SKOGBRUK': 'Jordbruk',
-    'næringstype.DAGMAMMA': 'Dagmamma i eige heim',
+    'næringstype.DAGMAMMA': 'Dagmamma i eigen heim',
     'næringstype.ANNEN': 'Anna verksemd',
 
     'fiskerinfo.LOTT': 'Lott',

@@ -33,7 +33,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'step.legeerklæring.counsellorpanel.1':
         'Dersom du søkjer om utbetaling for meir enn 3 samanhengande dagar, må du laste opp ei legeerklæring som gjeld frå og med den 4. dagen.',
     'step.legeerklæring.counsellorpanel.2':
-        'Dersom du søkjer for kortare periode eller for enkeltdagar, treng du ikkje legeerklæring. Du kan då fortsette søknaden utan å laste opp noko.',
+        'Dersom du søkjer for kortare periode eller for enkeltdagar, treng du ikkje legeerklæring. Du kan då fortsetje søknaden utan å laste opp noko.',
     'step.legeerklæring.counsellorpanel.3':
         'Dersom du søkjer for meir enn 3 samanhengande dagar, men ikkje har legeerklæring tilgjengeleg no,',
     'step.legeerklæring.counsellorpanel.3.lenkeEttersending': 'kan du ettersende den her.',

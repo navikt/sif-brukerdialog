@@ -25,13 +25,13 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'steg.omBarnet.relasjon.spm': 'Kva for ein relasjon har du til barnet?',
     'steg.omBarnet.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for',
-    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kva betyr dette?',
+    'steg.omBarnet.relasjonAnnet.info.tittel': 'Kva tyder dette?',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.1':
-        'I nokre tilfelle kan ikkje den eller dei som har den daglege omsorga for barnet ha tilsyn med barn som treng tilsyn og pleie heile tida. Då kan andre personar hjelpe til med dette. Andre personar kan for eksempel vere ein besteforelder, venn, nabo, tante eller onkel.',
+        'I nokre tilfelle kan ikkje den eller dei som har den daglege omsorga for barnet ha tilsyn med barn som treng tilsyn og pleie heile tida. Då kan andre personar hjelpe til med dette. Andre personar kan til dømes vere ein besteforelder, venn, nabo, tante eller onkel.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.2':
-        'Eksempel 1: Mor/far kan ikkje sjølv følgje barnet til sjukehuset for utgreiing eller behandling. Då kan andre personar følgje barnet til sjukehuset og ha tilsyn med barnet så lenge opphaldet på sjukehuset varer.',
+        'Døme 1: Mor/far kan ikkje sjølv følgje barnet til sjukehuset for utgreiing eller behandling. Då kan andre personar følgje barnet til sjukehuset og ha tilsyn med barnet så lenge opphaldet på sjukehuset varer.',
     'steg.omBarnet.relasjonAnnet.info.hjelpetekst.3':
-        'Eksempel 2: Korkje mor eller far har moglegheit til å pleie barnet heime, då kan andre personar gjere dette og ha tilsyn med barnet i perioden det gjeld.',
+        'Døme 2: Korkje mor eller far har moglegheit til å pleie barnet heime, då kan andre personar gjere dette og ha tilsyn med barnet i perioden det gjeld.',
 
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1':
@@ -57,7 +57,7 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på spørsmålet om kvifor barnet ikkje har fødselsnummer eller D-nummer.',
     'validation.relasjonTilBarnet.noValue': 'Du må svare på spørsmålet om kva for ein relasjon du har til barnet.',
-    'validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgi barnet sitt fødselsnummer/D-nummer.',
+    'validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgje barnet sitt fødselsnummer/D-nummer.',
     'validation.barnetsFødselsnummer.fødselsnummerNot11Chars': 'Fødselsnummeret/D-nummeret må bestå av 11 siffer.',
     'validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
         'Fødselsnummeret/D-nummeret du har skrive inn er ikkje eit gyldig norsk fødselsnummer. Kontroller at du har skrive inn riktig.',

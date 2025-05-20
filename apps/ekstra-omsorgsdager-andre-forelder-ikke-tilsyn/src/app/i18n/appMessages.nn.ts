@@ -19,7 +19,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'application.title': 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
 
     'step.omAnnenForelder.stepTitle': 'Om den andre forelderen',
-    'step.annenForelderSituasjon.stepTitle': 'Den andre forelderens situasjon',
+    'step.annenForelderSituasjon.stepTitle': 'Den andre forelderen sin situasjon',
     'step.omBarna.stepTitle': 'Om barn',
     'step.oppsummering.stepTitle': 'Oppsummering',
 

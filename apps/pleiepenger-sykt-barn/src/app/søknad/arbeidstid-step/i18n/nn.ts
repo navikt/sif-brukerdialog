@@ -78,7 +78,7 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timar}}',
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timar`,
     'arbeidIPeriode.info.frilanser.tekst.1':
-        'No treng me å vite kor mange timar du jobbar som frilanser i søknadsperioden.',
+        'No treng me å vite kor mange timar du jobbar som frilansar i søknadsperioden.',
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysningar om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
@@ -86,7 +86,7 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.StepInfo.1':
         'Her skal du svare på om du jobbar noko i perioden du søkjer om. Altså om du kombinerer pleiepengar med delvis jobb.',
     'arbeidIPeriode.StepInfo.2':
-        'Pleiepengane blir gradert mot den tida du jobbar. Det vil seie at viss du for eksempel i søknadsperioden jobbar 30 prosent, kan du ha rett til opptil 70 prosent pleiepengar.',
+        'Pleiepengane blir gradert mot den tida du jobbar. Det vil seie at viss du til dømes i søknadsperioden jobbar 30 prosent, kan du ha rett til opptil 70 prosent pleiepengar.',
     'arbeidIPeriode.StepInfo.3':
         'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
 

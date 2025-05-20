@@ -7,21 +7,21 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.nextButtonLabel': 'Send inn søknaden',
 
     'steg.oppsummering.info':
-        'Les gjennom oppsummeringen før du sender inn søknaden. Du kan gå tilbake hvis du vil gjøre endringer.',
+        'Les gjennom oppsummeringa før du sender inn søknaden. Du kan gå tilbake viss du vil gjere endringar.',
     'steg.oppsummering.søker.header': 'Om deg',
-    'steg.oppsummering.søker.navn': 'Navn',
+    'steg.oppsummering.søker.navn': 'Namn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.tidsrom.header': 'Perioden du søkjer pleiepenger for',
     'steg.oppsummering.søknadsperiode.header': 'Periode',
     'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
     'steg.oppsummering.barnet.header': 'Om barnet',
-    'steg.oppsummering.barnet.navn': 'Navn',
+    'steg.oppsummering.barnet.navn': 'Namn',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
     'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.barnetHarIkkeFnr': 'Utan fødselsnummer/D-nummer',
     'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.NYFØDT':
-        'Barnet er nyfødt, og har ikke fått fødselsnummer endå',
+        'Barnet er nyfødd, og har ikkje fått fødselsnummer endå',
     'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET': 'Barnet bur i utlandet',
     'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.ANNET': 'Anna',
     'steg.oppsummering.omBarn.fødselsattest.tittel': 'Fødselsattest',
@@ -38,7 +38,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'steg.oppsummering.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
 
-    'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbud i søknadsperioden',
+    'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbod i søknadsperioden',
     'steg.oppsummering.omsorgstilbud.fortid.spm':
         'Har barnet vore fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbod?',
     'steg.oppsummering.omsorgstilbud.fortid.svar.JA': 'Ja, i heile eller delar av perioden',
@@ -51,7 +51,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'steg.oppsummering.omsorgstilbud.fremtid.svar.JA': 'Ja, i heile eller delar av perioden',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.NEI': 'Nei',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.USIKKER': 'Usikker',
-    'steg.oppsummering.nattevåkBeredskap.header': 'Nattevåk og beredskap',
+    'steg.oppsummering.nattevåkBeredskap.header': 'Nattvak og beredskap',
     'steg.oppsummering.nattevåkBeredskap.nattevåk.beskrivelse':
         'Skildring av korleis barnet sin sjukdom gjev eit pleie- eller tilsynsbehov om nettene',
     'steg.oppsummering.nattevåkBeredskap.beredskap.beskrivelse':
@@ -113,7 +113,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'steg.oppsummering.validering.omsorgstilbud.ugyldig':
         'Oops, noko gjekk gale med omsorgstilbodet som er registrert.',
     'steg.oppsummering.validering.omsorgstilbud.nattevåkBeskrivelseForLang':
-        'Oops, no ser me at teksten du har skrive om nattevåk er for lang.',
+        'Oops, no ser me at teksten du har skrive om nattvak er for lang.',
     'steg.oppsummering.validering.omsorgstilbud.beredskapBeskrivelseForLang':
         'Oops, no ser me at teksten du har skrive om beredskap er for lang.',
     'steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt':

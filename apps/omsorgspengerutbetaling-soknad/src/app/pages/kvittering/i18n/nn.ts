@@ -7,5 +7,5 @@ export const kvitteringMessages_nn: Record<keyof typeof kvitteringMessages_nb, s
     'page.kvittering.info.1': 'Me handsamar søknaden din.',
     'page.kvittering.info.2': 'Me kontaktar deg dersom me treng fleire opplysningar.',
     'page.kvittering.info.3':
-        'Når søknaden er handsama, får du eit svar frå oss på «Min side». <Lenke>Du kan sjekke sakshandsamlingstida her</Lenke>.',
+        'Når søknaden er handsama, får du eit svar frå oss på «Min side». <Lenke>Du kan sjekke sakshandsamingstida her</Lenke>.',
 };

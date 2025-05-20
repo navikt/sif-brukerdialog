@@ -23,7 +23,7 @@ export const medlemskapMessages_nn: Record<keyof typeof medlemskapMessages_nb, s
     'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har budd i utlandet i heile eller delar av dei siste 12 månadane.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har oppgitt at du har vore i utlandet dei siste 12 månadane. Du må registrere dette utanlandsopphaldet.',
+        'Du har oppgjeve at du har vore i utlandet dei siste 12 månadane. Du må registrere dette utanlandsopphaldet.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper':
         'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei siste 12 månadane, har datoar som overlappar kvarandre.',
     'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_utenfor_periode':
@@ -31,7 +31,7 @@ export const medlemskapMessages_nn: Record<keyof typeof medlemskapMessages_nb, s
     'validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du planlegg å bu i utlandet i heile eller delar av dei neste 12 månadane.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har oppgitt at du skal opphalde deg i utlandet dei neste 12 månadane. Du må registrere dette utanlandsopphaldet.',
+        'Du har oppgjeve at du skal opphalde deg i utlandet dei neste 12 månadane. Du må registrere dette utanlandsopphaldet.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper':
         'Eitt eller fleire av utanlandsopphalda du har lagt inn for dei neste 12 månadane, har datoar som overlappar kvarandre.',
     'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_utenfor_periode':

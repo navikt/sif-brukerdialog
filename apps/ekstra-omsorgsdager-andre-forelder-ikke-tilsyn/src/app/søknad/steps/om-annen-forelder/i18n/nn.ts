@@ -21,9 +21,9 @@ export const omAnnenForelderMessages_nn: Record<keyof typeof omAnnenForelderMess
 
     'validation.annenForelderFnr.fødselsnummerHasNoValue': 'Skriv inn fødselsnummeret til den andre forelderen.',
     'validation.annenForelderFnr.fødselsnummerIsInvalid':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn riktig.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har skrive inn riktig.',
     'validation.annenForelderFnr.fødselsnummerIsNot11Chars':
-        'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
+        'Du har oppgjeve eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'validation.annenForelderFnr.fødselsnummerIsNotAllowed':
         'Fødselsnummeret kan ikkje vere ditt eige. Legg inn fødselsnummeret til den andre forelderen.',
     'validation.annenForelderSituasjon.noValue':

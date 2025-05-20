@@ -8,7 +8,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.søker.fnr': 'Fødselsnummer',
     'step.oppsummering.søker.omDeg': 'Om deg',
 
-    'step.oppsummering.dineBarn': 'Om barn og dagar du må dekke sjølv',
+    'step.oppsummering.dineBarn': 'Om barn og dagar du må dekkje sjølv',
     'step.oppsummering.dineBarn.barn': 'Dine barn',
     'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
     'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdagar.',

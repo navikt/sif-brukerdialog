@@ -95,7 +95,7 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.harForståttRettigheterOgPlikter.notChecked':
         'Du må stadfeste at du har lese og forstått pliktene dine.',
     'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du mottek omsorgsstønad eller fosterheimsgodtgjersle.',
+        'Du må svare ja eller nei på om du mottar omsorgsstønad eller fosterheimsgodtgjersle.',
 
     'validation.fosterhjemsgodtgjørelse.mottarFosterhjemsgodtgjørelse.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du mottar fosterheimsgodtgjersle.',
@@ -184,9 +184,9 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.frilans.startdato.dateIsBeforeMin':
         'Datoen for når du starta å jobbe som frilansar kan ikkje vere før {minDato}. Dersom du starta før dette, må du svare ja på at du starta før denne datoen.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
-        'Du har oppgitt at du starta å jobbe som frilansar etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
+        'Du har oppgjeve at du starta å jobbe som frilansar etter perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
-        'Du har oppgitt at du slutta å jobbe som frilansar før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
+        'Du har oppgjeve at du slutta å jobbe som frilansar før perioden du søkjer for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.dateHasNoValue':
         'Du må oppgje kva dato du slutta å jobbe som frilansar. Skriv inn eller vel dato frå kalenderen.',
     'validation.frilans.sluttdato.dateHasInvalidFormat':
