@@ -15,10 +15,10 @@
     },
     "dependencies": {
         "@hookform/resolvers": "5.0.1",
-        "@navikt/aksel-icons": "7.21.1",
-        "@navikt/ds-css": "7.21.1",
-        "@navikt/ds-react": "7.21.1",
-        "@navikt/ds-tailwind": "7.21.1",
+        "@navikt/aksel-icons": "7.22.0",
+        "@navikt/ds-css": "7.22.0",
+        "@navikt/ds-react": "7.22.0",
+        "@navikt/ds-tailwind": "7.22.0",
         "@navikt/nav-dekoratoren-moduler": "3.2.3",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -35,7 +35,7 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-hook-form": "7.56.4",
-        "zod": "3.24.4"
+        "zod": "3.25.7"
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.3.1",
