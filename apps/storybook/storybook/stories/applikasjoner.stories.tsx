@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import MessagesPreview, {
     MessagesPreviewProps,
 } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { appMessages as omsIkkeTilsyn } from '../../../ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/src/app/i18n/appMessages';
+import { appMessages as omsIkkeTilsyn } from '../../../ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/src/app/i18n';
 import { appMessages as omsAleneomsorg } from '../../../omsorgsdager-aleneomsorg-dialog/src/app/i18n/appMessages';
 import { appMessages as omsArbeidstaker } from '../../../omsorgspengerutbetaling-arbeidstaker-soknad/src/app/i18n/appMessages';
 import { appMessages as omsSnFri } from '../../../omsorgspengerutbetaling-soknad/src/app/i18n/appMessages';
