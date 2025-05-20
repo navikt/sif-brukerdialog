@@ -3,15 +3,15 @@ import { Oppgave, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
+import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import OppgavePanel from './OppgavePanel';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
 const meta: Meta<typeof OppgavePanel> = {
     component: OppgavePanel,
     title: 'Oppgaver',
     parameters: {},
-    decorators: [withPageWidth, withIntl],
+    decorators: [withPageWidth, withIntl, withQueryClient],
 };
 export default meta;
 

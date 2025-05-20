@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Rapporteringsperiode } from '@navikt/ung-common';
+import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
 import RapporterInntekt from './RapporterInntekt';
+import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 
 const rapporteringsperiode: Rapporteringsperiode = {
     harRapportert: false,
@@ -20,7 +23,7 @@ const rapporteringsperiode: Rapporteringsperiode = {
 const meta: Meta<typeof RapporterInntekt> = {
     title: 'Komponenter/Rapporter inntekt',
     component: RapporterInntekt,
-    decorators: [withIntl, withPageWidth],
+    decorators: [withIntl, withPageWidth, withDeltakerContext, withRouter, withQueryClient],
     args: {
         rapporteringsperiode: rapporteringsperiode,
     },
