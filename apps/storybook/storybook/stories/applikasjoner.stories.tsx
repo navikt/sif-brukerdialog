@@ -14,7 +14,7 @@ import { appMessages as opplaringspenger } from '../../../opplaringspenger-sokna
 import { appMessages as ettersendelse } from '../../../sif-ettersending/src/app/i18n';
 
 const meta: Meta<MessagesPreviewProps> = {
-    title: 'i18n',
+    title: 'Applikasjoner',
     component: MessagesPreview,
     args: {
         showExplanation: false,
