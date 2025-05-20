@@ -15,7 +15,7 @@ export const opplysningerOmPleietrengendeMessages_nn: Record<
         'Skal du pleie personen heime i dei dagane du søkjer for?',
     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert':
         'Du kan berre søkje for dagar du pleier personen heime.',
-    'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Kva betyr dette?',
+    'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Kva tyder dette?',
     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1':
         'For å ha rett til pleiepengar må du pleie den som treng pleie heime i ein privat heim. Som oftast skjer det heime hos deg, eller heime hos den du pleier.',
     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.2':

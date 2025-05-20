@@ -22,13 +22,13 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
     'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lasta opp',
 
-    'step.oppsummeringtidsrom.header': 'Dagane du søker pleiepengar for',
+    'step.oppsummeringtidsrom.header': 'Dagane du søkjer pleiepengar for',
     'step.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dagar}} med pleiepengar',
     'step.oppsummeringsøknadsperiode.header': 'Periode',
     'step.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
 
-    'step.oppsummeringpleierDuDenSykeHjemme.header': 'Skal du pleie personen heime dei dagane du søker for?',
-    'step.oppsummeringskalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i nokre av dagane du søker for?',
+    'step.oppsummeringpleierDuDenSykeHjemme.header': 'Skal du pleie personen heime dei dagane du søkjer for?',
+    'step.oppsummeringskalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i nokre av dagane du søkjer for?',
 
     'step.oppsummeringflereSokere.header': 'Er de fleire som skal dele på pleiepengane?',
 

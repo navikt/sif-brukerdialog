@@ -9,7 +9,7 @@ export const arbeidstidMessages_nn: Record<keyof typeof arbeidstidMessages_nb, s
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagane du søkjer for, kva situasjon gjeld for deg {hvor}?',
     'arbeidIPeriode.enkeltdager_gruppe.legend':
-        'Oppgi kor mykje du jobbar {hvor} i dei dagane du søkjer pleiepengar for.',
+        'Oppgje kor mykje du jobbar {hvor} i dei dagane du søkjer pleiepengar for.',
     'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Eg jobbar ikkje noko dei dagane eg pleier',
     'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Eg jobbar som normalt, og har ikkje fråvær',
     'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Eg kombinerer delvis jobb med pleiepengar',

@@ -30,7 +30,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
     'step.tidsrom.flereSokere.usikker': 'Usikker',
 
     'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du jobbe delvis i nokre av dagane du søkjer for?',
-    'steg.tidsrom.skalJobbeIPerioden.info.tittel': 'Kva betyr dette?',
+    'steg.tidsrom.skalJobbeIPerioden.info.tittel': 'Kva tyder dette?',
     'steg.tidsrom.skalJobbeIPerioden.info.tekst.1':
         'Du skal svare ja på dette spørsmålet berre dersom du skal jobbe og gje pleie på same dag.',
     'steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1': 'Døme:',

@@ -30,13 +30,13 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'resetMellomlagring.text.1': 'Om feilen vare ved, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
-    hvaBetyrDette: 'Kva betyr dette?',
+    hvaBetyrDette: 'Kva tyder dette?',
     fødselsnummer: 'Fødselsnummer:',
 
     'dagerMedTid.uke': 'Veke {uke}',
     'dagerMedTid.ingenDagerRegistrert': 'Ingen dagar registrerte',
 
-    'frilanser.harDuHattInntekt.spm': 'Er du frilansar i perioden du søker for?',
+    'frilanser.harDuHattInntekt.spm': 'Er du frilansar i perioden du søkjer for?',
     'frilanser.nårStartet.spm': 'Når starta du å jobbe som frilansar?',
     'frilanser.jobberFortsatt.spm': 'Jobbar du framleis som frilansar?',
     'frilanser.nårSluttet.spm': 'Når slutta du som frilansar?',
@@ -45,20 +45,20 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'frilanser.jobberNormaltTimer.avsluttet.spm':
         'Kor mange timar jobba du normalt per veke som frilansar då du ikkje hadde fråvær?',
 
-    'frilanser.hjelpetekst.spm': 'Kva betyr det å vere frilansar?',
+    'frilanser.hjelpetekst.spm': 'Kva tyder det å vere frilansar?',
     'frilanser.hjelpetekst':
-        'Du er frilansar når du mottatt løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Om du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
+        'Du er frilansar når du mottar løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Om du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
     'frilanser.hjelpetekst.skatteetatenLenke': 'skatteetaten sine nettsider.',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søkjer for?',
-    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva betyr det å vere sjølvstendig næringsdrivande?',
+    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva tyder det å vere sjølvstendig næringsdrivande?',
     'selvstendig.harDuHattInntekt.hjelpetekst':
         'Du er sjølvstendig næringsdrivande når du anten har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
     'selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke':
         'Du kan lese meir om andre situasjonar på skatteetaten sine nettsider.',
     'selvstendig.harFlereVirksomheter.spm': 'Har du fleire enn éi næringsverksemd som er aktiv?',
     'selvstendig.veileder.flereAktiveVirksomheter':
-        'Når du har fleire aktive næringsverksemder skal du berre legge inn den eldste av dei. Har du til dømes ei verksemd du starta i 2012 og ei anna som du starta i 2020, skal du berre legge inn verksemda frå 2012.',
+        'Når du har fleire aktive næringsverksemder skal du berre leggje inn den eldste av dei. Har du til dømes ei verksemd du starta i 2012 og ei anna som du starta i 2020, skal du berre leggje inn verksemda frå 2012.',
 
     'selvstendig.infoDialog.infoTittel': 'Næringsverksemd som du har lagt inn:',
     'selvstendig.infoDialog.registrerKnapp': 'Registrer verksemd',

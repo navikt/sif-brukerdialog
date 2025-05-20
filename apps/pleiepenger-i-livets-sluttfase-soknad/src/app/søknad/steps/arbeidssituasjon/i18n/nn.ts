@@ -11,7 +11,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.veileder.1':
         'No treng me å vite litt om arbeidssituasjonen din og kor mykje du normalt jobbar når du ikkje har fråvær frå jobben din.',
     'steg.arbeidssituasjon.veileder.2':
-        'Om du er arbeidstakar og er usikker på kva som er din normale arbeidstid, finn du svaret i arbeidskontrakten din. Eventuelt kan du spørje arbeidsgjevaren din.',
+        'Om du er arbeidstakar og er usikker på kva som er din normale arbeidstid, finn du svaret i arbeidskontrakta din. Eventuelt kan du spørje arbeidsgjevaren din.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedanfor ser du {antall, plural, one {arbeidsgivaren} other {arbeidsgivarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige må du stadfeste om du er, eller har vore, tilsett der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
@@ -28,7 +28,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.sn.tittel': 'Sjølvstendig næringsdrivande',
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
     'steg.arbeidssituasjon.verneplikt.spm': 'Utøvde du verneplikt på tidspunktet du søkjer pleiepengar frå?',
-    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.verneplikt.info.tekst':
         'Du skal svare ja på dette spørsmålet om du har utøvd verneplikt i minst 28 dagar på starttidspunktet for perioden du søkjer for, eller om perioden med verneplikt var meint å vare i minst 28 dagar.',
 
@@ -69,7 +69,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'arbeidsforhold.utledet': 'timar i veka',
     'arbeidsforhold.timer.suffix': 'timar per veke',
 
-    'arbeidsforhold.normalTimer.info.tittel': 'Kva betyr dette?',
+    'arbeidsforhold.normalTimer.info.tittel': 'Kva tyder dette?',
     'arbeidsforhold.ansatt.normalTimer.info':
         'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også spørje arbeidsgjevaren din.',
     'arbeidsforhold.frilanser.normalTimer.info':
@@ -96,7 +96,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
 
     'arbeidsforhold.normalTimer.info.varierende.tittel': 'Korleis reknar eg ut eit snitt ved varierande arbeidstid?',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.1':
-        'Du reknar ut eit snitt ved å legge saman talet på timar du totalt har jobba dei siste 12 vekene og deler det med 12. Om du ikkje har jobba i 12 veker, reknar du ut snittet på same måte ved å bruke dei vekene du har jobba.',
+        'Du reknar ut eit snitt ved å leggje saman talet på timar du totalt har jobba dei siste 12 vekene og deler det med 12. Om du ikkje har jobba i 12 veker, reknar du ut snittet på same måte ved å bruke dei vekene du har jobba.',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.2': 'Døme når du har jobba dei siste 12 vekene:',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.3':
         'Dei siste 12 vekene har du jobba 250 timar. Då deler du talet på timar du har jobba med 12: 250 timar / 12 veker = 20,8',
