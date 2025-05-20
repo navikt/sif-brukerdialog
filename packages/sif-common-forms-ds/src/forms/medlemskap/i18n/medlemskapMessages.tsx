@@ -57,7 +57,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Utanlandsopphald siste 12 månader og neste 12 månader',
     '@forms.medlemskapForm.info':
         'Medlemskap i folketrygda er nøkkelen til rettar frå Nav. Viss du bur eller jobbar i Noreg er du vanlegvis medlem. Du kan lesa meir om medlemskap på <Lenke>nav.no</Lenke>.',
-    '@forms.medlemskapForm.hvaBetyrDette': 'Kva betyr dette?',
+    '@forms.medlemskapForm.hvaBetyrDette': 'Kva tyder dette?',
     '@forms.medlemskapForm.utenlandsopphold.leggTilLabel': 'Legg til utanlandsopphald',
     '@forms.medlemskapForm.validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
         'Du må svara på om du har budd i utlandet i heile eller deler av dei siste 12 månadene.',

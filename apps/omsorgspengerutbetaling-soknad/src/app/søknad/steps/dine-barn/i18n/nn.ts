@@ -26,14 +26,14 @@ export const dineBarnMessages_nn: Record<keyof typeof dineBarnMessages_nb, strin
 
     'step.dineBarn.utvidetRettSykdom.spm':
         'Har du fått ekstra omsorgsdagar for eit barn som har ein sjukdom eller funksjonshemming som gjer at du oftare må vere borte frå jobb?',
-    'step.dineBarn.utvidetRettSykdom.info.tittel': 'Kva betyr dette?',
+    'step.dineBarn.utvidetRettSykdom.info.tittel': 'Kva tyder dette?',
     'step.dineBarn.utvidetRettSykdom.info.1':
         'Dersom barnet har ein kronisk/langvarig sjukdom eller funksjonshemming som gir høgare risiko for at du må vere borte frå jobb, kan du ha rett til ekstra omsorgsdagar. Du vil då ha rett til omsorgsdagar ut året barnet fyller 18 år.',
     'step.dineBarn.utvidetRettSykdom.info.2':
         'Du svarer ja dersom du har fått vedtak frå Nav om ekstra omsorgsdagar på grunn av sjukdom. Dersom du har sendt inn søknad og ventar på svar, skal du også svare ja på dette spørsmålet.',
 
     'step.dineBarn.utvidetRettAleneomsorg.spm': 'Har du fått ekstra omsorgsdagar fordi du er åleine om omsorga?',
-    'step.dineBarn.utvidetRettAleneomsorg.info.tittel': 'Kva betyr dette?',
+    'step.dineBarn.utvidetRettAleneomsorg.info.tittel': 'Kva tyder dette?',
     'step.dineBarn.utvidetRettAleneomsorg.info.tekst.1':
         'Du er åleine om omsorga dersom barnet bur fast hos deg, og du ikkje bur saman med den andre forelderen. Dersom du og den andre forelderen har ei avtale om delt fast bustad, er du ikkje åleine om omsorga for barnet.',
     'step.dineBarn.utvidetRettAleneomsorg.info.tekst.2':
