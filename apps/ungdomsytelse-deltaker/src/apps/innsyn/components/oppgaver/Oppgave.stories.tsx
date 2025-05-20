@@ -4,18 +4,18 @@ import dayjs from 'dayjs';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../../storybook/decorators/withPageWidth';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
-import OppgavePanel from './OppgavePanel';
+import OppgaveWrapper from './OppgaveWrapper';
 
 import type { Meta, StoryObj } from '@storybook/react';
-const meta: Meta<typeof OppgavePanel> = {
-    component: OppgavePanel,
+const meta: Meta<typeof OppgaveWrapper> = {
+    component: OppgaveWrapper,
     title: 'Oppgaver',
     parameters: {},
     decorators: [withPageWidth, withIntl, withQueryClient],
 };
 export default meta;
 
-type Story = StoryObj<typeof OppgavePanel>;
+type Story = StoryObj<typeof OppgaveWrapper>;
 
 const endretProgramperiode: Oppgave = {
     oppgaveReferanse: '123',

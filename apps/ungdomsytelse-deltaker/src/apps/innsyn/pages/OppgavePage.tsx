@@ -4,7 +4,7 @@ import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-modul
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import OppgavePanel from '../components/oppgaver/OppgavePanel';
+import OppgaveWrapper from '../components/oppgaver/OppgaveWrapper';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 
 type OppgavePageParams = {
@@ -40,7 +40,7 @@ const OppgavePage = () => {
                 <Heading level="1" size="large">
                     {oppgave.oppgavetype}
                 </Heading>
-                <OppgavePanel
+                <OppgaveWrapper
                     oppgave={oppgave}
                     deltakelseId={deltakelsePeriode.id}
                     programPeriode={deltakelsePeriode.programPeriode}

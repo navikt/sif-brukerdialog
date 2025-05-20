@@ -37,9 +37,9 @@ const endretProgramperiodeOppgave: OppgaveDto = {
             tomDato: '2025-03-31',
         },
     },
-    status: OppgaveStatus.ULØST,
+    status: OppgaveStatus.LØST,
     opprettetDato: '2025-04-14T08:08:15.984057Z',
-    løstDato: undefined,
+    løstDato: '2025-04-14T08:08:15.984057Z',
 };
 
 const kontrollerRegisterInntektOppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {

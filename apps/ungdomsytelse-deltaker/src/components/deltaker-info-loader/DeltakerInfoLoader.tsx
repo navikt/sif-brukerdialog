@@ -8,6 +8,7 @@ import HentDeltakerErrorPage from '../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
+import { Theme } from '@navikt/ds-react';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -45,9 +46,13 @@ const DeltakerInfoLoader = () => {
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
             {deltakelsePeriode.harSøkt && pathname.includes('kvittering') === false ? (
-                <InnsynApp />
+                <Theme hasBackground={false} className="bg-deepblue-50">
+                    <InnsynApp />
+                </Theme>
             ) : (
-                <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                <Theme>
+                    <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                </Theme>
             )}
         </DeltakerContextProvider>
     );

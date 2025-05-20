@@ -10,7 +10,7 @@ interface Props {
     oppgave: Oppgave;
 }
 
-const OppgavePanel = ({ oppgave, deltakelseId }: Props): React.ReactNode => {
+const OppgaveWrapper = ({ oppgave, deltakelseId }: Props): React.ReactNode => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return (
@@ -27,4 +27,4 @@ const OppgavePanel = ({ oppgave, deltakelseId }: Props): React.ReactNode => {
     }
 };
 
-export default OppgavePanel;
+export default OppgaveWrapper;
