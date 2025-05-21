@@ -27,6 +27,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     }
 
     const { oppgaver, programPeriode, id } = deltakelsePeriode;
+
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
@@ -43,7 +44,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 </Bleed>
             )}
             <VStack gap="4">
-                <Heading level="2" size="large">
+                <Heading level="2" size="large" style={{ fontWeight: '600' }}>
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
@@ -53,7 +54,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 )}
             </VStack>
             <VStack gap="4">
-                <Heading level="2" size="large">
+                <Heading level="2" size="large" style={{ fontWeight: '600' }}>
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 && (

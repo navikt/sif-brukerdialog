@@ -1,9 +1,15 @@
 /* eslint-disable max-len */
-const HandsIll = () => {
+interface Props {
+    size?: 'normal' | 'fullWidth';
+}
+
+const HandsIll = ({ size }: Props) => {
+    const isFullWidth = size === 'fullWidth';
     return (
         <svg
-            width="134"
-            height="119"
+            style={{ width: isFullWidth ? '100%' : '139' }}
+            width={isFullWidth ? undefined : '139'}
+            height={isFullWidth ? undefined : '119'}
             viewBox="0 0 134 119"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

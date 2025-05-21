@@ -21,19 +21,19 @@ import { DeltakelsePeriodInfo, OppgaveDto, OppgaveStatus, Oppgavetype } from '@n
 // 6c994abf-0c9b-4cb1-b003-849f7265cd6b,
 // 37f13a40-14cb-4c6d-b0f3-dceebaa09cf7,
 
-// const endretProgramperiodeOppgave: OppgaveDto = {
-//     oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
-//     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-//     oppgavetypeData: {
-//         programperiode: {
-//             fomDato: '2025-02-01',
-//             tomDato: '2025-03-31',
-//         },
-//     },
-//     status: OppgaveStatus.LØST,
-//     opprettetDato: '2025-04-14T08:08:15.984057Z',
-//     løstDato: '2025-04-14T08:08:15.984057Z',
-// };
+const endretProgramperiodeOppgave: OppgaveDto = {
+    oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+    oppgavetypeData: {
+        programperiode: {
+            fomDato: '2025-02-01',
+            tomDato: '2025-03-31',
+        },
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: '2025-04-14T08:08:15.984057Z',
+    // løstDato: '2025-04-14T08:08:15.984057Z',
+};
 
 // const kontrollerRegisterInntektOppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
 //     fraOgMed: '2025-01-01',
@@ -94,7 +94,7 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         fraOgMed: '2024-12-02',
         tilOgMed: undefined,
         harSøkt: true,
-        oppgaver: [],
+        oppgaver: [endretProgramperiodeOppgave],
     },
 ];
 

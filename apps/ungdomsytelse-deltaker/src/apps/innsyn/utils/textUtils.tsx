@@ -21,14 +21,12 @@ export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return (
-                <BodyShort spacing={true}>
+                <BodyShort>
                     Det er forskjell mellom det du har oppgitt i lønn og det arbeidsgiveren din har rapportert til oss.
                     Utbetalingen settes på vent til vi har fått svar av deg.
                 </BodyShort>
             );
         default:
-            return (
-                <BodyShort spacing={true}>Veilederen din har endret perioden du er med i ungdomsprogrammet.</BodyShort>
-            );
+            return <BodyShort>Veilederen din har endret perioden du er med i ungdomsprogrammet.</BodyShort>;
     }
 };

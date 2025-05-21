@@ -15,9 +15,9 @@ interface Props {
 const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) => {
     switch (oppgavestatus) {
         case 'ULØST':
-            return <PencilFillIcon fill="red" color="#C95100" width="2.25rem" height="2.25rem" />;
+            return <PencilFillIcon fill="red" color="#C95100" width="2rem" height="2rem" />;
         case 'LØST':
-            return <CheckmarkCircleFillIcon fill="red" color="#00893c" width="2.25rem" height="2.25rem" />;
+            return <CheckmarkCircleFillIcon fill="red" color="#00893c" width="2rem" height="2rem" />;
         default:
             return null;
     }
@@ -57,14 +57,14 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
                 onClick();
             }}>
             <HGrid columns="1fr auto" gap="2" className="w-full" align="center">
-                <Box paddingInline="3">
+                <Box paddingInline="2 3">
                     <OppgaveStatusIcon oppgavestatus={status} />
                 </Box>
                 <VStack gap="1">
                     <Heading level="3" size="small">
                         {tittel}
                     </Heading>
-                    {beskrivelse}
+                    {beskrivelse && <Box marginBlock="0 1">{beskrivelse}</Box>}
                     <div>
                         <OppgaveStatusTag status={status} svarfrist={svarfrist} løstDato={løstDato} />
                     </div>
