@@ -1,10 +1,15 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import OppgaverList from './oppgaver/OppgaverList';
-import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../utils/deltakelseUtils';
+import {
+    erDeltakelseAvsluttet,
+    erDeltakelseStartet,
+    visHuskelappOmInntektsrapportering,
+} from '../utils/deltakelseUtils';
 import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import { sortDates } from '@navikt/sif-common-utils';
+import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -29,7 +34,12 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
 
     return (
-        <VStack gap="10">
+        <VStack gap="10" marginBlock="0 10">
+            {visHuskelappOmInntektsrapportering() && (
+                <Bleed marginBlock="4 0">
+                    <HuskelappInntekt />
+                </Bleed>
+            )}
             <VStack gap="4">
                 <Heading level="2" size="large" style={{ fontWeight: '600' }}>
                     Dine oppgaver

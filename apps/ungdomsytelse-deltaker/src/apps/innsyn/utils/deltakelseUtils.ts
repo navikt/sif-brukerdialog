@@ -65,3 +65,7 @@ export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boole
     }
     return true;
 };
+
+export const visHuskelappOmInntektsrapportering = (): boolean => {
+    return dayjs(new Date()).get('date') > 5;
+};

@@ -6,7 +6,7 @@ import { innsynAppMessages } from './i18n';
 
 const InnsynApp = () => {
     return (
-        <div className="innsynApp">
+        <main className="innsynApp">
             <IntlProvider messages={innsynAppMessages.nb} locale="nb">
                 <Routes>
                     <Route index path="" element={<ForsidePage />} />
@@ -15,7 +15,7 @@ const InnsynApp = () => {
                     <Route path="*" element={<Navigate to="/" replace={true} />} />
                 </Routes>
             </IntlProvider>
-        </div>
+        </main>
     );
 };
 
