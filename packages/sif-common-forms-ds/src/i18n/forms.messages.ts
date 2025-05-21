@@ -1,4 +1,4 @@
-import { annetBarnMessages } from '../forms/annet-barn/annetBarnMessages';
+import { annetBarnMessages } from '../forms/annet-barn/i18n';
 import { bostedUtlandMessages } from '../forms/bosted-utland/bostedUtlandMessages';
 import { enkeltdatoMessages } from '../forms/enkeltdatoer';
 import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
