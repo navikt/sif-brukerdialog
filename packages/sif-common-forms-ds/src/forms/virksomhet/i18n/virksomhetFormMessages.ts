@@ -102,7 +102,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Næringsresultatet er inntekter du har i næringane dine, minus utgifter og avskrivingar.',
     '@forms.virksomhet.hvaErNæringsresultat.title': 'Kva er næringsresultatet?',
     '@forms.virksomhet.har_blitt_yrkesaktiv': 'Har du byrja i arbeidslivet dei 3 siste ferdiglikna åra?',
-    '@forms.virksomhet.har_blitt_yrkesaktiv_info_title': 'Kva betyr dette?',
+    '@forms.virksomhet.har_blitt_yrkesaktiv_info_title': 'Kva tyder dette?',
     '@forms.virksomhet.har_blitt_yrkesaktiv_info':
         'Du skal svare ja på spørsmålet viss du før oppstart av næringsverksemda di hadde låg eller inga inntekt.',
     '@forms.virksomhet.har_blitt_yrkesaktiv_dato': 'Oppgi dato for når du byrja i arbeidslivet',

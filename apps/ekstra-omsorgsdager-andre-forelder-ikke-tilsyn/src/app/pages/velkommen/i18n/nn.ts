@@ -41,5 +41,5 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
         'dersom du søkjer i samband med at den andre forelderen er innlagd i helseinstitusjon, avtjenar verneplikt eller sonar fengselsstraff, kan me sjekke dette mot offentlege register ved behov.',
 
     'personopplysninger.5':
-        'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };

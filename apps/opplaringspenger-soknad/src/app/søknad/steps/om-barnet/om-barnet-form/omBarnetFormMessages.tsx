@@ -97,7 +97,7 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.relasjon.spm': 'Kva relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva betyr dette?',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva tyder dette?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
         'For å få opplæringspengar må det vere naudsynt med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan vere andre omsorgspersonar enn barnets foreldre, så lenge du i periodar tek deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':

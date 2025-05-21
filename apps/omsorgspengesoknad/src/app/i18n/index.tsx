@@ -3,8 +3,9 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
 import { componentMessages } from './componentMessages';
+import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 export const libMessages = {
     nb: {
@@ -17,6 +18,11 @@ export const libMessages = {
         ...uiMessages.nn,
         ...soknadMessages.nn,
     },
+};
+
+export const appMessages = {
+    nb: appMessages_nb,
+    nn: appMessages_nn,
 };
 
 const nb = {
