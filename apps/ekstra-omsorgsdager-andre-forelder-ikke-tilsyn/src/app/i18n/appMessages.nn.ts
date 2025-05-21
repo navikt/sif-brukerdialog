@@ -16,7 +16,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     ...oppsummeringMessages_nn,
     ...kvitteringMessages_nn,
 
-    'application.title': 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+    'application.title': 'Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan ha tilsyn med barn',
 
     'step.omAnnenForelder.stepTitle': 'Om den andre forelderen',
     'step.annenForelderSituasjon.stepTitle': 'Den andre forelderen sin situasjon',
