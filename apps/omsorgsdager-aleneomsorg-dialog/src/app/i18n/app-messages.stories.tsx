@@ -1,7 +1,7 @@
 import { StoryFn } from '@storybook/react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withIntl } from '../../storybook/decorators/withIntl';
-import { appMessages } from './appMessages';
+import { appMessages } from '.';
 
 export default {
     title: 'i18N/App-tekster',
