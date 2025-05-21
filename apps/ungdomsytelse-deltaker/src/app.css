@@ -12,8 +12,8 @@
     }
 }
 
-body {
-    /* background-color: var(--a-deepblue-50); */
+body.innsynAppBody {
+    background-color: var(--a-deepblue-50);
 }
 
 .innsynApp {

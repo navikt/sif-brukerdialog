@@ -3,8 +3,17 @@ import ForsidePage from './pages/ForsidePage';
 import OppgavePage from './pages/OppgavePage';
 import { IntlProvider } from 'react-intl';
 import { innsynAppMessages } from './i18n';
+import { useEffect } from 'react';
 
 const InnsynApp = () => {
+    /** Setter bakgrunnsfarge på body */
+    useEffect(() => {
+        document.body.classList.add('innsynAppBody');
+        return () => {
+            document.body.classList.remove('innsynAppBody');
+        };
+    }, [location.pathname]);
+
     return (
         <main className="innsynApp">
             <IntlProvider messages={innsynAppMessages.nb} locale="nb">
