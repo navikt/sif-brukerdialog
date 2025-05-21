@@ -9,6 +9,8 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+    SIF_PUBLIC_DEKORATOR_URL:
+        'https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/logout',
     SIF_PUBLIC_LOGIN_URL:
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',

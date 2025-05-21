@@ -12,7 +12,7 @@ const ForsidePage = () => {
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
-            { title: 'Ungdomsytelse', url: '/', handleInApp: true },
+            { title: 'Ungdomsprogramytelse', url: '/', handleInApp: true },
         ]);
     });
 

@@ -20,7 +20,7 @@ const OppgavePage = () => {
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
-            { title: 'Ungdomsytelse', url: '/', handleInApp: true },
+            { title: 'Ungdomsprogramytelse', url: '/', handleInApp: true },
             { title: 'Oppgave', url: `/oppgave`, handleInApp: true },
         ]);
     });

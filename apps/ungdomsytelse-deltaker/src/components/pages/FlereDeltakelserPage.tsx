@@ -5,7 +5,7 @@ import { ErrorPage } from '@navikt/sif-common-soknad-ds/src';
 const FlereDeltakelserPage = () => (
     <ErrorPage
         pageTitle="Flere deltakelser"
-        bannerTitle="Ungdomsytelse"
+        bannerTitle="Ungdomsprogramytelse"
         contentRenderer={() => {
             return (
                 <SifGuidePanel mood="uncertain">
