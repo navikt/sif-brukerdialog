@@ -16,7 +16,7 @@ import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/
 import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { useKursperiodeIntl } from './kursperiodeMessages';
+import { useKursperiodeIntl } from './i18n';
 import { Kursperiode } from './types/Kursperiode';
 import kursperiodeUtils from './utils/kursperiodeUtils';
 

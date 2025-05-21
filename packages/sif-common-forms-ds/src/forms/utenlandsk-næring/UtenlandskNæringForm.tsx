@@ -19,7 +19,7 @@ import {
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
-import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './utenlandskNæringMessages';
+import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './i18n';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;

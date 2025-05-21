@@ -8,7 +8,7 @@ import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import AnnetBarnForm, { AnnetBarnFormErrors } from '../AnnetBarnForm';
 import AnnetBarnListAndDialog from '../AnnetBarnListAndDialog';
-import { annetBarnMessages, useAnnetBarnIntl } from '../annetBarnMessages';
+import { annetBarnMessages, useAnnetBarnIntl } from '../i18n';
 import { AnnetBarn } from '../types';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import { flatten } from 'flat';

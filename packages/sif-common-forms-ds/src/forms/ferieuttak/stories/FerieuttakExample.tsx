@@ -7,7 +7,6 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { flatten } from 'flat';
-import { ferieuttakMessages } from '../';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
@@ -15,6 +14,7 @@ import FerieuttakForm, { FerieuttakFormErrors } from '../FerieuttakForm';
 import FerieuttakListAndDialog from '../FerieuttakListAndDialog';
 import { Ferieuttak } from '../types';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
+import { ferieuttakMessages } from '../i18n';
 
 enum FormField {
     'ferie' = 'ferie',

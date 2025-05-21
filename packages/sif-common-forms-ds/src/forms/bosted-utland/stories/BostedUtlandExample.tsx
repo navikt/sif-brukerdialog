@@ -1,19 +1,23 @@
 import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
-import BostedUtlandForm, { BostedUtlandFormErrors } from '../BostedUtlandForm';
-import BostedUtlandListAndDialog from '../BostedUtlandListAndDialog';
-import { bostedUtlandMessages } from '../bostedUtlandMessages';
-import { BostedUtland } from '../types';
-import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
+import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
+import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import BostedUtlandForm, { BostedUtlandFormErrors } from '../BostedUtlandForm';
+import BostedUtlandListAndDialog from '../BostedUtlandListAndDialog';
+import { bostedUtlandMessages } from '../i18n';
+import { BostedUtland } from '../types';
 
 enum FormField {
     'bosted' = 'bosted',
