@@ -14,7 +14,7 @@ import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
-import { GYLDIG_PERIODE } from '../../settings';
+// import { GYLDIG_PERIODE } from '../../settings';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 
 interface Props {
@@ -44,7 +44,6 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
     const startdatoMinMax = getStartdatobegrensningForDeltaker(
         deltaker.førsteMuligeInnmeldingsdato,
         deltaker.sisteMuligeInnmeldingsdato,
-        GYLDIG_PERIODE.from,
         getDateToday(),
     );
 

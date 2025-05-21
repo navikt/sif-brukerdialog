@@ -15,11 +15,6 @@ const UngdomsprogramYtelseHeader = () => {
                                 lineHeight: '3rem',
                                 fontSize: '3rem',
                             }}>
-                            {/* <Box marginBlock="0 5">
-                                <Bleed marginInline="3" aria-hidden={true}>
-                                    <Money />
-                                </Bleed>
-                            </Box> */}
                             Din ungdoms&shy;program&shy;ytelse
                         </span>
                     </Box>

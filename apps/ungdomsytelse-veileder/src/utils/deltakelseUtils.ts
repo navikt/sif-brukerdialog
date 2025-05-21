@@ -4,12 +4,9 @@ import dayjs from 'dayjs';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
-    programperiodeStart: Date,
     tillattEndringsperiode: DateRange,
 ): Date => {
-    return dayjs
-        .max([dayjs(programperiodeStart), dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)])
-        .toDate();
+    return dayjs.max([dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)]).toDate();
 };
 
 /** Tillat periode for endring basert på dagens dato. 6 måned før og etter dagens dato. */
@@ -47,16 +44,11 @@ export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
 export const getStartdatobegrensningForDeltaker = (
     førsteMuligeInnmeldingsdato: Date,
     sisteMuligeInnmeldingsdato: Date,
-    programperiodeStart: Date,
     today: Date,
 ): DateRange | 'fomFørTom' => {
     const tillattEndringsperiode = getTillattEndringsperiode(today);
 
-    const from = getFørsteMuligeInnmeldingsdato(
-        førsteMuligeInnmeldingsdato,
-        programperiodeStart,
-        tillattEndringsperiode,
-    );
+    const from = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, tillattEndringsperiode);
     const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
 
     if (dayjs(from).isAfter(to)) {
