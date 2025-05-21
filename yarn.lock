@@ -7484,9 +7484,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.88.3":
-  version: 3.88.3
-  resolution: "@sanity/vision@npm:3.88.3"
+"@sanity/vision@npm:3.89.0":
+  version: 3.89.0
+  resolution: "@sanity/vision@npm:3.89.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -7508,13 +7508,13 @@ __metadata:
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.1.0-rc.1"
+    react-compiler-runtime: "npm:19.1.0-rc.2"
     react-fast-compare: "npm:^3.2.2"
     use-effect-event: "npm:^1.0.2"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/ff1956dd84df9dddaf347baed313395f040397ece54fe19f6e5562a10f76236738ec667744d46a90ebc3073a12ac700faaf4c4ebeacdc4dfe770da3abe05b8c2
+  checksum: 10/24d20e96f311452073007b4c9092d68950b67051f6d1ad7a0a86267f0e43fe54d698b2264b67a5f409647656975854ed0b3bdc969ee56e612afd3cb995d7e703
   languageName: node
   linkType: hard
 
@@ -10997,7 +10997,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:3.88.3"
+    "@sanity/vision": "npm:3.89.0"
     "@types/react": "npm:19.1.4"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.27.0"
@@ -23627,6 +23627,15 @@ __metadata:
   peerDependencies:
     react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
   checksum: 10/f64a63f8a6eacaebf87b2065dea9b2adc90d061c94361b31233284cbacc3fcf5f7dce6b5353ac8862ca5aa0a0d92240e3d6d695afa73d6bc5ce6d347b4c66870
+  languageName: node
+  linkType: hard
+
+"react-compiler-runtime@npm:19.1.0-rc.2":
+  version: 19.1.0-rc.2
+  resolution: "react-compiler-runtime@npm:19.1.0-rc.2"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
+  checksum: 10/81ded46aa183512698dccb2f272d3ed278a865c7b40c3644281e06a9d67a8967dff5f3da2a8e93db485193dd62e1764eec3e67872780b67660ecda7a1d6f3960
   languageName: node
   linkType: hard
 
