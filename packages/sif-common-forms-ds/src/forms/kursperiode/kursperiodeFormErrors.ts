@@ -5,7 +5,7 @@ import {
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
 import { KursperiodeFormFields } from './KursperiodeForm';
-import { KursperiodeMessageKeys } from './kursperiodeMessages';
+import { KursperiodeMessageKeys } from './i18n';
 
 export const KursperiodeFormErrors: Record<KursperiodeFormFields, { [key: string]: KursperiodeMessageKeys }> = {
     [KursperiodeFormFields.fom]: {

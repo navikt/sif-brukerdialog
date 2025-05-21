@@ -5,7 +5,7 @@ import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@n
 import { getListValidator } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
-import { fosterbarnMessages } from '../';
+import { fosterbarnMessages } from '..';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';

@@ -3,17 +3,16 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     bostedUtlandMessages,
+    enkeltdatoMessages,
     ferieuttakMessages,
+    medlemskapFormMessages,
     opptjeningUtlandMessages,
     utenlandskNæringMessages,
     utenlandsoppholdMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
-import { enkeltdatoMessages } from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/enkeltdatoMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 import { appMessages } from './appMessages';
 
 export const libMessages = {
@@ -22,7 +21,6 @@ export const libMessages = {
         ...commonMessages.nb,
         ...enkeltdatoMessages.nb,
         ...ferieuttakMessages.nb,
-        ...kursperiodeMessages.nb,
         ...medlemskapFormMessages.nb,
         ...opptjeningUtlandMessages.nb,
         ...soknadMessages.nb,
@@ -36,7 +34,6 @@ export const libMessages = {
         ...commonMessages.nn,
         ...enkeltdatoMessages.nn,
         ...ferieuttakMessages.nn,
-        ...kursperiodeMessages.nn,
         ...medlemskapFormMessages.nn,
         ...opptjeningUtlandMessages.nn,
         ...soknadMessages.nn,

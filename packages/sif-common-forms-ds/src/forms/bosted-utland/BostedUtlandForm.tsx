@@ -10,7 +10,7 @@ import {
 } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
-import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
+import { BostedUtlandMessageKeys, useBostedUtlandIntl } from '.';
 import bostedUtlandUtils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
 

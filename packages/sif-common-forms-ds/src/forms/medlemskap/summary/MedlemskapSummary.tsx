@@ -3,7 +3,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { BostedUtlandApiData, MedlemskapApiData } from '../types';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { MedlemskapFormText } from '../i18n/medlemskapMessages';
+import { MedlemskapFormText } from '../i18n';
 
 export interface Props {
     medlemskap: MedlemskapApiData;

@@ -1,4 +1,4 @@
-export * from './i18n/medlemskapMessages';
+export * from './i18n';
 export * from './form/MedlemskapForm';
 export * from './types';
 export * from './utils';

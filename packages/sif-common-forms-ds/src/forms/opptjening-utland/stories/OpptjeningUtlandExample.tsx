@@ -9,7 +9,7 @@ import { OpptjeningUtland } from '../types';
 import OpptjeningUtlandListAndDialog from '../OpptjeningUtlandListAndDialog';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { opptjeningUtlandMessages } from '../opptjeningUtlandMessages';
+import { opptjeningUtlandMessages } from '../i18n';
 import OpptjeningUtlandForm, { OpptjeningUtlandFormErrors } from '../OpptjeningUtlandForm';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { Tabs, VStack } from '@navikt/ds-react';

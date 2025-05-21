@@ -5,7 +5,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import enkeltdatoUtils from './enkeltdatoUtils';
 import { Enkeltdato, EnkeltdatoFormValues } from './types';
-import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './enkeltdatoMessages';
+import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './i18n';
 import { DateRange } from '@navikt/sif-common-utils';
 
 export interface EnkeltdatoerFormLabels {
