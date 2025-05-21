@@ -1,7 +1,4 @@
-import { useIntl } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-
-const nb = {
+export const enkeltdatoMessages_nb = {
     '@forms.enkeltdato.form.title': 'Dato',
     '@forms.enkeltdato.form.okButton': 'Ok',
     '@forms.enkeltdato.form.cancelButton': 'Avbryt',
@@ -14,20 +11,4 @@ const nb = {
         'Datoen kan ikke være før {dato}. Skriv inn eller velg sluttdato fra datovelgeren.',
     '@forms.enkeltdato.form.dato.dateHasInvalidFormat':
         'Du må oppgi datoen i et gyldig format. Gyldig format er dd.mm.åååå.',
-};
-
-const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-};
-
-export type EnkeltdatoMessageKeys = keyof typeof nb;
-
-export const enkeltdatoMessages = {
-    nb,
-    nn,
-};
-
-export const useEnkeltdatoIntl = () => {
-    const intl = useIntl();
-    return typedIntlHelper<EnkeltdatoMessageKeys>(intl);
 };

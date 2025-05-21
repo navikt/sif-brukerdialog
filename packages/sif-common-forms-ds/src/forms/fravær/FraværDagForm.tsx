@@ -17,7 +17,7 @@ import {
     ValidateNumberError,
 } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
-import { useFraværIntl } from './fraværMessages';
+import { useFraværIntl } from './i18n';
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {

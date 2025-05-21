@@ -5,7 +5,7 @@ import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
+import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
 import './opptjeningUtlandList.scss';
 

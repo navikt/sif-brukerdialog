@@ -1,4 +1,4 @@
-export * from './utenlandsoppholdMessages';
+export * from './i18n';
 export * from './UtenlandsoppholdForm';
 export * from './UtenlandsoppholdListAndDialog';
 export * from './UtenlandsoppholdList';

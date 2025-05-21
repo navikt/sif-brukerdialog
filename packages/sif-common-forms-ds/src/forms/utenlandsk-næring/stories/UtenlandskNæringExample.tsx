@@ -12,7 +12,7 @@ import FormValidationErrorMessages from '../../../../storybook/components/valida
 import { UtenlandskNæring } from '../types';
 import UtenlandskNæringForm, { UtenlandskNæringFormErrors } from '../UtenlandskNæringForm';
 import UtenlandskNæringListAndDialog from '../UtenlandskNæringListAndDialog';
-import { utenlandskNæringMessages } from '../utenlandskNæringMessages';
+import { utenlandskNæringMessages } from '../i18n';
 
 enum FormField {
     'utenlandskNæring' = 'utenlandskNæring',

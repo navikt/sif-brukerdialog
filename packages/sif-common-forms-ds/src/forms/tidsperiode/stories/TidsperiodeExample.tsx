@@ -11,7 +11,7 @@ import SubmitPreview from '../../../../storybook/components/submit-preview/Submi
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import TidsperiodeForm, { TidsperiodeFormErrors } from '../TidsperiodeForm';
 import TidsperiodeListAndDialog from '../TidsperiodeListAndDialog';
-import { tidsperiodeMessages } from '../tidsperiodeMessages';
+import { tidsperiodeMessages } from '../i18n';
 import { DateTidsperiode } from '../types';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 

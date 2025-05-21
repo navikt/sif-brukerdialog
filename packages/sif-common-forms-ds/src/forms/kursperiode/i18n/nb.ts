@@ -1,7 +1,4 @@
-import { useIntl } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-
-const nb = {
+export const kursperiodeMessages_nb = {
     'kursperiode.form.title': 'Kursperiode',
     'kursperiode.form.intervalTitle': 'Velg fra og til tidsrom',
     'kursperiode.form.fromDate': 'Fra og med',
@@ -86,20 +83,4 @@ const nb = {
         'Beskrivelsen av årsaken til hjemkomstdatoen må være minst 5 tegn.',
     'kursperiodeForm.beskrivelseReisetidTil.stringContainsUnicodeChacters':
         'Beskrivelsen årsaken til hjemkomstdatoen kan ikke inneholde spesialtegn.',
-};
-
-const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-};
-
-export type KursperiodeMessageKeys = keyof typeof nb;
-
-export const kursperiodeMessages = {
-    nb,
-    nn,
-};
-
-export const useKursperiodeIntl = () => {
-    const intl = useIntl();
-    return typedIntlHelper<KursperiodeMessageKeys>(intl);
 };
