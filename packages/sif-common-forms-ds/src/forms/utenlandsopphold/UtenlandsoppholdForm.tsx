@@ -23,7 +23,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from './types';
-import { useUtenlandsoppholdIntl, UtenlandsoppholdMessageKeys } from './utenlandsoppholdMessages';
+import { useUtenlandsoppholdIntl, UtenlandsoppholdMessageKeys } from './i18n';
 import {
     getUtenlandsoppholdQuestionVisibility,
     mapFormValuesToUtenlandsopphold,

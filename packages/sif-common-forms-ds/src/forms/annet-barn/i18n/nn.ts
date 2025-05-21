@@ -1,6 +1,6 @@
-import { annetBarnMessages_nb } from './nb';
+import { AnnetBarnMessageKeys } from './';
 
-export const annetBarnMessages_nn: Record<keyof typeof annetBarnMessages_nb, string> = {
+export const annetBarnMessages_nn: Record<AnnetBarnMessageKeys, string> = {
     '@forms.annetBarn.list.leggTil': 'Legg til barn',
     '@forms.annetBarn.list.ingenLagtTil': 'Ingen barn er lagt til',
     '@forms.annetBarn.list.title': 'Registrerte barn',

@@ -1,6 +1,6 @@
-import { bostedUtlandMessages_nb } from './nb';
+import { BostedUtlandMessageKeys } from '.';
 
-export const bostedUtlandMessages_nn: Record<keyof typeof bostedUtlandMessages_nb, string> = {
+export const bostedUtlandMessages_nn: Record<BostedUtlandMessageKeys, string> = {
     '@forms.bostedUtland.list.add': 'Legg til opphald',
     '@forms.bostedUtland.form.tittel': 'Utanlandsopphald',
     '@forms.bostedUtland.form.tidsperiode.spm': 'Tidsperiode',

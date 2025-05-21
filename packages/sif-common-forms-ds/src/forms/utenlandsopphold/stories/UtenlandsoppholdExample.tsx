@@ -12,7 +12,7 @@ import FormValidationErrorMessages from '../../../../storybook/components/valida
 import { Utenlandsopphold, UtenlandsoppholdVariant } from '../types';
 import UtenlandsoppholdForm, { UtlandsoppholdFormErrors } from '../UtenlandsoppholdForm';
 import UtenlandsoppholdListAndDialog from '../UtenlandsoppholdListAndDialog';
-import { utenlandsoppholdMessages } from '../utenlandsoppholdMessages';
+import { utenlandsoppholdMessages } from '../i18n';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {

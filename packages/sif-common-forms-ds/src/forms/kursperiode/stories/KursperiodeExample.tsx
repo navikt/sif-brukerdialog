@@ -7,6 +7,8 @@ import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-
 import KursperiodeForm from '../KursperiodeForm';
 import KursperiodeListAndDialog from '../KursperiodeListAndDialog';
 import { Kursperiode } from '../types/Kursperiode';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { kursperiodeMessages } from '../i18n';
 
 enum FormField {
     'tidsperiode' = 'tidsperiode',
@@ -62,6 +64,9 @@ const KursperiodeExample = () => {
                             onCancel={() => null}
                         />
                     </Box>
+                </Tabs.Panel>
+                <Tabs.Panel value="messages">
+                    <MessagesPreview messages={kursperiodeMessages} showExplanation={false} />
                 </Tabs.Panel>
             </VStack>
         </Tabs>

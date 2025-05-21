@@ -19,7 +19,7 @@ import SubmitPreview from '../../../../storybook/components/submit-preview/Submi
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import EnkeltdatoForm, { EnkeltdatoFormErrors } from '../EnkeltdatoForm';
 import EnkeltdatoListAndDialog from '../EnkeltdatoListAndDialog';
-import { enkeltdatoMessages } from '../enkeltdatoMessages';
+import { enkeltdatoMessages } from '../i18n';
 import { Enkeltdato } from '../types';
 
 enum FormField {

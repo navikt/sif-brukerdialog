@@ -1,14 +1,14 @@
 import { annetBarnMessages } from '../forms/annet-barn/i18n';
 import { bostedUtlandMessages } from '../forms/bosted-utland/i18n';
 import { enkeltdatoMessages } from '../forms/enkeltdatoer';
-import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
-import { fosterbarnMessages } from '../forms/fosterbarn/fosterbarnMessages';
-import { fraværMessages } from '../forms/fravær/fraværMessages';
-import { medlemskapFormMessages } from '../forms/medlemskap/i18n/medlemskapMessages';
-import { opptjeningUtlandMessages } from '../forms/opptjening-utland/opptjeningUtlandMessages';
-import { tidsperiodeMessages } from '../forms/tidsperiode/tidsperiodeMessages';
-import { utenlandskNæringMessages } from '../forms/utenlandsk-næring/utenlandskNæringMessages';
-import { utenlandsoppholdMessages } from '../forms/utenlandsopphold/utenlandsoppholdMessages';
+import { ferieuttakMessages } from '../forms/ferieuttak/i18n';
+import { fosterbarnMessages } from '../forms/fosterbarn/i18n';
+import { fraværMessages } from '../forms/fravær/i18n';
+import { medlemskapFormMessages } from '../forms/medlemskap/i18n';
+import { opptjeningUtlandMessages } from '../forms/opptjening-utland/i18n';
+import { tidsperiodeMessages } from '../forms/tidsperiode/i18n';
+import { utenlandskNæringMessages } from '../forms/utenlandsk-næring/i18n';
+import { utenlandsoppholdMessages } from '../forms/utenlandsopphold/i18n';
 import { virksomhetMessages } from '../forms/virksomhet/i18n';
 
 const nb = {

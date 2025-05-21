@@ -5,7 +5,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import tidsperiodeUtils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
-import { TidsperiodeMessageKeys, useTidsperiodeIntl } from './tidsperiodeMessages';
+import { TidsperiodeMessageKeys, useTidsperiodeIntl } from './i18n';
 
 export interface TidsperiodeFormLabels {
     fromDate: string;

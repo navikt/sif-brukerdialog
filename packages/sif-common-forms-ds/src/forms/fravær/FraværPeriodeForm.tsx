@@ -8,7 +8,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { handleDateRangeValidationError } from '../../utils';
-import { useFraværIntl } from './fraværMessages';
+import { useFraværIntl } from './i18n';
 import { isFraværPeriode, mapFormValuesToFraværPeriode, mapFraværPeriodeToFormValues } from './fraværUtilities';
 import {
     FraværFieldValidationErrors,
