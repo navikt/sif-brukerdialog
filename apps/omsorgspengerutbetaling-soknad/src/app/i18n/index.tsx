@@ -4,10 +4,10 @@ import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils'
 import {
     annetBarnMessages,
     bostedUtlandMessages,
+    fraværMessages,
     medlemskapFormMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages_nb } from './nb';
