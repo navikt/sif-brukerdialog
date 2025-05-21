@@ -3989,7 +3989,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.22.0"
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": "npm:3.2.1"
-    "@sanity/client": "npm:7.2.2"
+    "@sanity/client": "npm:7.3.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:22.15.19"
     "@types/react": "npm:19.1.4"
@@ -6990,15 +6990,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:7.2.2":
-  version: 7.2.2
-  resolution: "@sanity/client@npm:7.2.2"
+"@sanity/client@npm:7.3.0":
+  version: 7.3.0
+  resolution: "@sanity/client@npm:7.3.0"
   dependencies:
     "@sanity/eventsource": "npm:^5.0.2"
     get-it: "npm:^8.6.9"
     nanoid: "npm:^3.3.11"
     rxjs: "npm:^7.0.0"
-  checksum: 10/b74bb8a6a323917a4c5ce7c8cb31398013c6be5e0f6700a51acdf91bf5a7e154d5eaa8b9670147035a7b95579b3f8976c9e44aed80ac2f8c8d17ceb4dd4a1e6a
+  checksum: 10/47b1a8fd5a2a42cb0ae435e31c20dcb1e9a1f37fc905c12b33e3e27aad77402f2336dd45e0e9707421c089c9688b55e8fdff5af61d2c561c201e4afa41ac7942
   languageName: node
   linkType: hard
 
