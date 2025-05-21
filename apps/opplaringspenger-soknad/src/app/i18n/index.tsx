@@ -10,7 +10,7 @@ import {
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
 import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
-import { enkeltdatoMessages } from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/enkeltdatoMessages';
+import { enkeltdatoMessages } from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
