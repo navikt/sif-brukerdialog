@@ -3,6 +3,8 @@ import { OpenDateRange } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
 import OppgaveLinkPanel from './OppgaveLinkPanel';
+import { getOppgaveBeskrivelse, getOppgaveTittel } from '../../utils/textUtils';
+import { useAppIntl } from '../../i18n';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -12,14 +14,18 @@ interface Props {
 
 const OppgaverList = ({ oppgaver }: Props) => {
     const navigate = useNavigate();
+    const intl = useAppIntl();
 
     return (
         <VStack gap="4">
             {oppgaver.map((oppgave, index) => (
                 <OppgaveLinkPanel
                     key={index}
-                    oppgave={oppgave}
-                    onGotoOppgave={() => {
+                    beskrivelse={getOppgaveBeskrivelse(oppgave)}
+                    tittel={getOppgaveTittel(oppgave.oppgavetype, intl)}
+                    status={oppgave.status}
+                    svarfrist={oppgave.svarfrist}
+                    onClick={() => {
                         navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
                     }}
                 />
