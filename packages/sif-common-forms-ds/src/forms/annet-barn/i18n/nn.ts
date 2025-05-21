@@ -1,4 +1,4 @@
-import { annetBarnMessages_nb } from './annetBarnMessages_nb';
+import { annetBarnMessages_nb } from './nb';
 
 export const annetBarnMessages_nn: Record<keyof typeof annetBarnMessages_nb, string> = {
     '@forms.annetBarn.list.leggTil': 'Legg til barn',

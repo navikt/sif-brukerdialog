@@ -1,5 +1,5 @@
 import { annetBarnMessages } from '../forms/annet-barn/i18n';
-import { bostedUtlandMessages } from '../forms/bosted-utland/bostedUtlandMessages';
+import { bostedUtlandMessages } from '../forms/bosted-utland/i18n';
 import { enkeltdatoMessages } from '../forms/enkeltdatoer';
 import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
 import { fosterbarnMessages } from '../forms/fosterbarn/fosterbarnMessages';
