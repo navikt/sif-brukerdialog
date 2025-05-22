@@ -150,8 +150,8 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({

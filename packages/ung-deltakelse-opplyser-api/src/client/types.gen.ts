@@ -143,8 +143,8 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
