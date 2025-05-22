@@ -5,6 +5,7 @@ import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import DeltakelseContent from '../components/DeltakelseContent';
 import UngdomsprogramYtelseHeader from '../components/page-layout/illustrasjon/UngdomsprogramYtelseHeader';
 import PageLayout from '../components/page-layout/PageLayout';
+import { visHuskelappOmInntektsrapportering } from '../utils/deltakelseUtils';
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();
@@ -18,10 +19,13 @@ const ForsidePage = () => {
 
     return (
         <PageLayout documentTitle="Din ungdomsprogramytelse">
-            <VStack gap="12">
+            <VStack gap="8">
                 <UngdomsprogramYtelseHeader />
 
-                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
+                <DeltakelseContent
+                    deltakelsePeriode={deltakelsePeriode}
+                    visInfoOmInntektsrapportering={visHuskelappOmInntektsrapportering()}
+                />
             </VStack>
         </PageLayout>
     );

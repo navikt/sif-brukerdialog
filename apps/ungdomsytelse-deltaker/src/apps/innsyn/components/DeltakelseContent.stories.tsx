@@ -1,22 +1,44 @@
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { harSøktMock } from '../../../../mock/msw/mocks/scenarioes/har-søkt';
+import { withDeltakerContext } from '../../../../storybook/decorators/withDeltakerContext';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
-import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
+import { withRouter } from '../../../../storybook/decorators/withRouter';
 import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { withInnsynApp } from '../../../../storybook/decorators/withInnsynApp';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'DeltakelseContent',
     parameters: {},
-    decorators: [withPageWidth, withIntl],
+    decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
 };
 export default meta;
 
 type Story = StoryObj<typeof DeltakelseContent>;
 
 const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
+
+export const AktivDeltakelseMedInfo: Story = {
+    name: 'Aktiv deltakelse - med info om inntektsrapportering',
+    args: {
+        visInfoOmInntektsrapportering: true,
+        deltakelsePeriode: {
+            ...deltakelsePeriode,
+        },
+    },
+};
+
+export const AktivDeltakelseUtenInfo: Story = {
+    name: 'Aktiv deltakelse - uten info om inntektsrapportering',
+    args: {
+        visInfoOmInntektsrapportering: false,
+        deltakelsePeriode: {
+            ...deltakelsePeriode,
+        },
+    },
+};
 
 export const DeltakelseIkkeStartet: Story = {
     name: 'Deltakelse ikke startet',
