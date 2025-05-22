@@ -25,7 +25,7 @@ const UngdomsprogramYtelseHeader = () => {
                             <span
                                 className="inline-block rounded-xl p-3 pt-6 pb-6 relative z-1"
                                 style={{ backgroundColor: '#CCE9F2', fontWeight: '900' }}>
-                                Din ungdoms
+                                Din ungdoms-
                                 <span style={{ position: 'absolute', left: '100%', top: '-1rem' }} aria-hidden="true">
                                     <Money />
                                 </span>
