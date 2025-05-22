@@ -1,5 +1,5 @@
 import { CheckmarkCircleFillIcon, PencilFillIcon } from '@navikt/aksel-icons';
-import { Box, Heading, HGrid, LinkPanel, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HGrid, LinkPanel, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-common';
 
@@ -35,12 +35,12 @@ const OppgaveStatusTag = ({
     if (status === 'ULØST' && svarfrist) {
         return (
             <Tag variant="warning" size="small" className="mb-2">
-                Svarfrist: {dateFormatter.dayCompactDate(svarfrist)}
+                Frist: {dateFormatter.dayCompactDate(svarfrist)}
             </Tag>
         );
     }
     if (løstDato) {
-        return <Box className="text-text-subtle">Sendt inn: {dateFormatter.compact(løstDato)}</Box>;
+        return <BodyShort className="text-text-subtle">Avsluttet: {dateFormatter.compact(løstDato)}</BodyShort>;
     }
 };
 

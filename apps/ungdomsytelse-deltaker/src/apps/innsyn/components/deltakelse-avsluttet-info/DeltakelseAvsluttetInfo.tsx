@@ -13,7 +13,7 @@ const DeltakelseAvsluttetInfo = () => {
                     mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis
                     dolor.
                 </BodyLong>
-                <BodyLong spacing>
+                <BodyLong>
                     Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut
                     porta lorem lacinia consectetur. Donec lacus nunc, viverra nec blandit vel, egestas et augue.
                     Aliquam erat volutpat.

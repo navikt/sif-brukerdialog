@@ -1,27 +1,22 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
-import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../utils/deltakelseUtils';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
-import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
 import OppgaveLinkPanel from './oppgaver/OppgaveLinkPanel';
 import OppgaverList from './oppgaver/OppgaverList';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
+    visInfoOmDeltakelseAvsluttet?: boolean;
     visInfoOmInntektsrapportering?: boolean;
 }
 
-const DeltakelseContent = ({ deltakelsePeriode, visInfoOmInntektsrapportering }: Props) => {
-    if (erDeltakelseStartet(deltakelsePeriode) === false) {
-        return <DeltakelseIkkeStartetInfo />;
-    }
-
-    if (erDeltakelseAvsluttet(deltakelsePeriode)) {
-        return <DeltakelseAvsluttetInfo />;
-    }
-
+const DeltakelseContent = ({
+    deltakelsePeriode,
+    visInfoOmDeltakelseAvsluttet,
+    visInfoOmInntektsrapportering,
+}: Props) => {
     const { oppgaver, programPeriode, id } = deltakelsePeriode;
 
     const uløsteOppgaver = oppgaver
@@ -32,11 +27,13 @@ const DeltakelseContent = ({ deltakelsePeriode, visInfoOmInntektsrapportering }:
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
 
+    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
-        <VStack gap="10" marginBlock={visInfoOmInntektsrapportering ? '0 10' : '6 10'}>
+        <VStack gap="10">
+            {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <HuskelappInntekt />}
-            <VStack gap="4">
-                <Heading level="2" size="large" style={{ fontWeight: '600' }}>
+            <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
+                <Heading level="2" size="large">
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
@@ -46,7 +43,7 @@ const DeltakelseContent = ({ deltakelsePeriode, visInfoOmInntektsrapportering }:
                 )}
             </VStack>
             <VStack gap="4">
-                <Heading level="2" size="large" style={{ fontWeight: '600' }}>
+                <Heading level="2" size="large">
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 && (

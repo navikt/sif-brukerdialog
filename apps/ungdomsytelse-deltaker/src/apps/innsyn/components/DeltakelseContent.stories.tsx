@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { withInnsynApp } from '../../../../storybook/decorators/withInnsynApp';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
-    title: 'DeltakelseContent',
+    title: 'Forside',
     parameters: {},
     decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
 };
@@ -33,29 +33,16 @@ export const AktivDeltakelseMedInfo: Story = {
 export const AktivDeltakelseUtenInfo: Story = {
     name: 'Aktiv deltakelse - uten info om inntektsrapportering',
     args: {
-        visInfoOmInntektsrapportering: false,
         deltakelsePeriode: {
             ...deltakelsePeriode,
         },
     },
 };
 
-export const DeltakelseIkkeStartet: Story = {
-    name: 'Deltakelse ikke startet',
-    args: {
-        deltakelsePeriode: {
-            ...deltakelsePeriode,
-            programPeriode: {
-                from: dayjs().add(2, 'days').toDate(),
-                to: undefined,
-            },
-            oppgaver: [],
-        },
-    },
-};
 export const DeltakelseAvsluttet: Story = {
     name: 'Deltakelse er avsluttet',
     args: {
+        visInfoOmDeltakelseAvsluttet: true,
         deltakelsePeriode: {
             ...deltakelsePeriode,
             programPeriode: {
