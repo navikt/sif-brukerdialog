@@ -25,6 +25,7 @@ const OppgaverList = ({ oppgaver }: Props) => {
                     tittel={getOppgaveTittel(oppgave.oppgavetype, intl)}
                     status={oppgave.status}
                     svarfrist={oppgave.svarfrist}
+                    løstDato={oppgave.løstDato}
                     onClick={() => {
                         navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
                     }}

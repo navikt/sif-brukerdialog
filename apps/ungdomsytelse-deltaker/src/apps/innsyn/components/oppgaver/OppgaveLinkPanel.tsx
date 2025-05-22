@@ -1,4 +1,4 @@
-import { CheckmarkCircleFillIcon, PencilFillIcon } from '@navikt/aksel-icons';
+import { CheckmarkCircleFillIcon, CircleSlashFillIcon, PencilFillIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Heading, HGrid, LinkPanel, Show, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-common';
@@ -14,9 +14,9 @@ interface Props {
 
 const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) => {
     switch (oppgavestatus) {
-        case 'ULØST':
+        case OppgaveStatus.ULØST:
             return <PencilFillIcon fill="red" color="#C95100" width="2rem" height="2rem" aria-label="Penn-ikon" />;
-        case 'LØST':
+        case OppgaveStatus.LØST:
             return (
                 <CheckmarkCircleFillIcon
                     fill="red"
@@ -26,8 +26,18 @@ const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) 
                     aria-label="Gjennomført ikon"
                 />
             );
-        default:
-            return null;
+        case OppgaveStatus.UTLØPT:
+        case OppgaveStatus.AVBRUTT:
+        case OppgaveStatus.LUKKET:
+            return (
+                <CircleSlashFillIcon
+                    fill="red"
+                    color="#49515e"
+                    width="2rem"
+                    height="2rem"
+                    aria-label="Gjennomført ikon"
+                />
+            );
     }
 };
 

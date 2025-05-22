@@ -94,7 +94,26 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         fraOgMed: '2024-12-02',
         tilOgMed: undefined,
         søktTidspunkt: '2025-04-17T05:05:01.714798Z',
-        oppgaver: [endretProgramperiodeOppgave],
+        oppgaver: [
+            endretProgramperiodeOppgave,
+            {
+                oppgaveReferanse: 'd59e08d7-bb0d-4e86-aee4-5b89e4e53228',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+                oppgavetypeData: {
+                    programperiode: {
+                        fomDato: '2025-03-10',
+                        tomDato: '2025-08-01',
+                    },
+                    forrigeProgramperiode: {
+                        fomDato: '2024-12-02',
+                        tomDato: '9999-12-31',
+                    },
+                },
+                status: OppgaveStatus.UTLØPT,
+                opprettetDato: '2025-05-20T14:38:41.859873Z',
+                løstDato: '2025-05-21T05:06:32.457669Z',
+            },
+        ],
     },
 ];
 
