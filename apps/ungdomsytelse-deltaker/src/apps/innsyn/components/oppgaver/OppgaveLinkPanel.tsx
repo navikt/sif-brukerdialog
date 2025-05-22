@@ -15,9 +15,17 @@ interface Props {
 const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) => {
     switch (oppgavestatus) {
         case 'ULØST':
-            return <PencilFillIcon fill="red" color="#C95100" width="2rem" height="2rem" />;
+            return <PencilFillIcon fill="red" color="#C95100" width="2rem" height="2rem" aria-label="Penn-ikon" />;
         case 'LØST':
-            return <CheckmarkCircleFillIcon fill="red" color="#00893c" width="2rem" height="2rem" />;
+            return (
+                <CheckmarkCircleFillIcon
+                    fill="red"
+                    color="#00893c"
+                    width="2rem"
+                    height="2rem"
+                    aria-label="Gjennomført ikon"
+                />
+            );
         default:
             return null;
     }
