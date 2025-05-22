@@ -9,13 +9,13 @@ const IngenDeltakelsePage = () => (
         contentRenderer={() => {
             return (
                 <SifGuidePanel mood="uncertain">
-                    <Heading level="2" size="medium">
+                    <Heading level="2" size="medium" spacing>
                         Deltaker ikke funnet
                     </Heading>
                     <BodyShort>
-                        Vi ser ikke at du registrert som deltaker i ungdomsprogrammet. Hvis du akkurat er meldt inn av
-                        din veileder, kan det ta litt tid før du får tilgang til søknaden. Hvis dette ikke hjelper, kan
-                        du ta kontakt med din veileder.
+                        Vi finner deg ikke registrert som deltaker i ungdomsprogrammet. Hvis du nettopp er blitt meldt
+                        inn av veilederen din, kan det ta litt tid før du får tilgang til søknaden. Hvis problemet
+                        vedvarer, kan du ta kontakt med veilederen din.
                     </BodyShort>
                 </SifGuidePanel>
             );
