@@ -5,7 +5,7 @@ import LoadingPage from './LoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
 const meta: Meta = {
-    title: 'Sider',
+    title: 'Pages',
     parameters: {},
     decorators: [withIntl],
 };
@@ -14,6 +14,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Loading: Story = {
+    name: 'Henter informasjon',
     render: () => <LoadingPage />,
 };
 export const IngenDeltakelse: Story = {

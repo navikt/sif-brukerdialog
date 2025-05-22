@@ -15,7 +15,7 @@ test('Hent opp registrert deltaker', async ({ page }) => {
     await page.getByRole('heading', { name: 'PRESENTABEL HOFTE' }).click();
     await page.getByText('98392Kopier').click();
     await page.getByText('(26 år)').click();
-    await page.getByText('Startdato:onsdag 01.01.').click();
+    await page.getByText('Startdato:mandag 10.03.').click();
     await page.getByText('Sluttdato:-Registrer sluttdato').click();
     await page.getByRole('button', { name: 'Lukk deltaker' }).click();
 });
@@ -28,7 +28,7 @@ test('Endre startdato', async ({ page }) => {
     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Ok, lukk' }).click();
-    await expect(page.getByText('Startdato:mandag 17.02.')).toBeVisible();
+    await expect(page.getByText('Startdato:mandag 17.03.')).toBeVisible();
 });
 
 test('Registrere sluttdato', async ({ page }) => {

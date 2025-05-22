@@ -24,7 +24,7 @@ const deltakelse: DeltakelseOpplysningDto = {
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-03-10',
-    tilOgMed: '2025-08-01',
+    tilOgMed: undefined,
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     oppgaver: [
         {
