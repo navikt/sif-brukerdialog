@@ -1,18 +1,26 @@
-import { VStack } from '@navikt/ds-react';
+import { Box, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React from 'react';
 
 interface Props {
     children: React.ReactNode;
     documentTitle: string;
+    footer?: React.ReactNode;
 }
 
-const PageLayout = ({ children, documentTitle }: Props) => {
+const PageLayout = ({ children, documentTitle, footer }: Props) => {
     useDocumentTitle(documentTitle);
     return (
-        <VStack gap="10" className="p-10  max-w-[800px] mx-auto ">
-            {children}
-        </VStack>
+        <>
+            <VStack gap="10" className="p-10  max-w-[800px] mx-auto ">
+                {children}
+            </VStack>
+            <Box className="bg-[#FFD9BA]">
+                <VStack gap="10" className="p-10 pb-0  max-w-[800px] mx-auto ">
+                    {footer}
+                </VStack>
+            </Box>
+        </>
     );
 };
 

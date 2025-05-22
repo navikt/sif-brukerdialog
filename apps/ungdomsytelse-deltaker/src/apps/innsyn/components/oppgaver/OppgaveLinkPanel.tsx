@@ -1,5 +1,5 @@
 import { CheckmarkCircleFillIcon, PencilFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Heading, HGrid, LinkPanel, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HGrid, LinkPanel, Show, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-common';
 
@@ -57,9 +57,11 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
                 onClick();
             }}>
             <HGrid columns="1fr auto" gap="2" className="w-full" align="center">
-                <Box paddingInline="2 3">
-                    <OppgaveStatusIcon oppgavestatus={status} />
-                </Box>
+                <Show above="sm">
+                    <Box paddingInline="2 3">
+                        <OppgaveStatusIcon oppgavestatus={status} />
+                    </Box>
+                </Show>
                 <VStack gap="1">
                     <Heading level="3" size="small">
                         {tittel}

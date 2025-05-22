@@ -10,6 +10,7 @@ import {
     erDeltakelseStartet,
     visHuskelappOmInntektsrapportering,
 } from '../utils/deltakelseUtils';
+import Snarveier from '../components/snarveier/Snarveier';
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();
@@ -29,7 +30,7 @@ const ForsidePage = () => {
         deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
 
     return (
-        <PageLayout documentTitle="Din ungdomsprogramytelse">
+        <PageLayout documentTitle="Din ungdomsprogramytelse" footer={<Snarveier />}>
             <VStack gap="8">
                 <UngdomsprogramYtelseHeader />
 
