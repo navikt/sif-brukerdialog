@@ -15,11 +15,13 @@ const PageLayout = ({ children, documentTitle, footer }: Props) => {
             <VStack gap="10" className="p-10  max-w-[800px] mx-auto ">
                 {children}
             </VStack>
-            <Box className="bg-[#FFD9BA]">
-                <VStack gap="10" className="p-10 pb-0  max-w-[800px] mx-auto ">
-                    {footer}
-                </VStack>
-            </Box>
+            {footer && (
+                <Box className="bg-[#FFD9BA]">
+                    <VStack gap="10" className="p-10 pb-0  max-w-[800px] mx-auto ">
+                        {footer}
+                    </VStack>
+                </Box>
+            )}
         </>
     );
 };
