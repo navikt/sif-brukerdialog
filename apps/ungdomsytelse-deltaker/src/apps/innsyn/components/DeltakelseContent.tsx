@@ -3,8 +3,8 @@ import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
-import OppgaveLinkPanel from './oppgaver/OppgaveLinkPanel';
 import OppgaverList from './oppgaver/OppgaverList';
+import SøknadMottattOppgavePanel from './oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -49,12 +49,7 @@ const DeltakelseContent = ({
                 {tidligereOppgaver.length > 0 && (
                     <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
                 )}
-                <OppgaveLinkPanel
-                    tittel="Søknad for ungdomprogramytelsen"
-                    status={OppgaveStatus.LØST}
-                    løstDato={deltakelsePeriode.søktTidspunkt!}
-                    onClick={() => {}}
-                />
+                <SøknadMottattOppgavePanel mottatt={deltakelsePeriode.søktTidspunkt!} />
             </VStack>
         </VStack>
     );

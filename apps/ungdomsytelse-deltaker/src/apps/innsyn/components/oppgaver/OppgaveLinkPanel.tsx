@@ -66,15 +66,15 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
     return (
         <LinkPanel
             border={false}
-            style={{ borderRadius: '0.5rem' }}
             href="#"
             className="w-full"
+            style={{ borderRadius: '0.5rem' }}
             onClick={(evt) => {
                 evt.stopPropagation();
                 evt.preventDefault();
                 onClick();
             }}>
-            <HGrid columns="1fr auto" gap="2" className="w-full" align="center">
+            <HGrid columns="3rem auto" gap="2" className="w-full" align="center">
                 <Show above="sm">
                     <Box paddingInline="2 3">
                         <OppgaveStatusIcon oppgavestatus={status} />
