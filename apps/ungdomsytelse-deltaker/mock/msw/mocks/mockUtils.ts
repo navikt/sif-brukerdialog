@@ -46,7 +46,7 @@ const db = load();
 // Forutsetter at det alltid er kun én deltakelse i mock-databasen
 
 const setDeltakelseSøktFor = () => {
-    db.deltakelser[0].harSøkt = true;
+    db.deltakelser[0].søktTidspunkt = new Date().toISOString();
     save(db);
 };
 

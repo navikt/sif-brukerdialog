@@ -25,7 +25,7 @@ const deltakelse: DeltakelseOpplysningDto = {
     },
     fraOgMed: '2025-03-10',
     tilOgMed: '2025-08-01',
-    harSøkt: true,
+    søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     oppgaver: [
         {
             oppgaveReferanse: 'd59e08d7-bb0d-4e86-aee4-5b89e4e53228',

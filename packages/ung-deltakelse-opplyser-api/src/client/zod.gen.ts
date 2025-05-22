@@ -118,7 +118,7 @@ export const zDeltakelseOpplysningDto = z.object({
     deltaker: zDeltakerDto,
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date().optional(),
-    harSøkt: z.boolean(),
+    søktTidspunkt: z.string().datetime().optional(),
     oppgaver: z.array(zOppgaveDto),
 });
 
@@ -210,7 +210,7 @@ export const zDeltakelsePeriodInfo = z.object({
     id: z.string().uuid(),
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date().optional(),
-    harSøkt: z.boolean(),
+    søktTidspunkt: z.string().datetime().optional(),
     oppgaver: z.array(zOppgaveDto),
 });
 

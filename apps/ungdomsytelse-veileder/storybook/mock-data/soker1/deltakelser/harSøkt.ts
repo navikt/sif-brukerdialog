@@ -5,7 +5,7 @@ export const deltakelserHarSøkt: DeltakelsePeriodInfo[] = [
         id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
         fraOgMed: '2024-12-02',
         tilOgMed: undefined,
-        harSøkt: true,
+        søktTidspunkt: '2024-12-01T11:43:29.048157Z',
         oppgaver: [
             {
                 oppgaveReferanse: 'fc2c6f01-8746-4ca0-b77a-40cc48bba216',

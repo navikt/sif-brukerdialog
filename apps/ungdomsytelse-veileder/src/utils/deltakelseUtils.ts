@@ -27,13 +27,13 @@ export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode
 };
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    return deltakelse.harSøkt && deltakelse.tilOgMed
+    return deltakelse.søktTidspunkt !== undefined && deltakelse.tilOgMed
         ? dateRangeUtils.isDateInDateRange(deltakelse.tilOgMed, tillattEndringsperiode)
         : true;
 };
 
 export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
-    return !deltakelse.harSøkt;
+    return deltakelse.søktTidspunkt === undefined;
 };
 
 /**

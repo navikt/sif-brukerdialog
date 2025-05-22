@@ -30,7 +30,7 @@ export type DeltakelseOpplysningDto = {
     deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
-    harSøkt: boolean;
+    søktTidspunkt?: string;
     oppgaver: Array<OppgaveDto>;
 };
 
@@ -209,7 +209,7 @@ export type DeltakelsePeriodInfo = {
     id: string;
     fraOgMed: string;
     tilOgMed?: string;
-    harSøkt: boolean;
+    søktTidspunkt?: string;
     oppgaver: Array<OppgaveDto>;
 };
 

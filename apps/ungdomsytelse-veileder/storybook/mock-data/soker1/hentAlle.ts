@@ -3,7 +3,7 @@ export const hentAlleResponse = [
         id: '123',
         fraOgMed: '2024-07-01',
         tilOgMed: '2025-06-30',
-        harSøkt: false,
+        søktTidspunkt: undefined,
         rapporteringsPerioder: [
             {
                 fraOgMed: '2024-07-01',

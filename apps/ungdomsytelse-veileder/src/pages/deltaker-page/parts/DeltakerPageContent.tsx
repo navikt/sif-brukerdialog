@@ -28,7 +28,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     return (
         <Box className="pb-8 pt-8">
             <VStack gap="10">
-                {deltakelse.harSøkt === false ? (
+                {deltakelse.søktTidspunkt === undefined ? (
                     <HStack>
                         <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
