@@ -19,7 +19,7 @@ const Snarveier = () => {
                     </HStack>
                 </Show>
 
-                <VStack gap="5" marginBlock="3 0">
+                <VStack gap="4" marginBlock="3 0">
                     <LinkPanel
                         border={false}
                         style={{ borderRadius: '0.5rem' }}
