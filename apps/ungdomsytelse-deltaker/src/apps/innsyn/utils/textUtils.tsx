@@ -8,6 +8,8 @@ export const getOppgaveTittel = (oppgavetype: Oppgavetype, { text }: AppIntlShap
             return text('oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.tittel');
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel');
+        case Oppgavetype.RAPPORTER_INNTEKT:
+            return text('oppgavetype.RAPPORTER_INNTEKT.tittel');
         default:
             return '';
     }
@@ -26,7 +28,11 @@ export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
                     Utbetalingen settes på vent til vi har fått svar av deg.
                 </BodyShort>
             );
-        default:
+        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
             return <BodyShort>Veilederen din har endret perioden du er med i ungdomsprogrammet.</BodyShort>;
+        case Oppgavetype.RAPPORTER_INNTEKT:
+            return <BodyShort>Du kan nå rapportere inntekt for forrige måned.</BodyShort>;
+        default:
+            return null;
     }
 };

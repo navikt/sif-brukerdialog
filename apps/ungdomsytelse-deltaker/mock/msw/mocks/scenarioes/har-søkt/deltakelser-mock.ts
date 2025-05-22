@@ -113,6 +113,16 @@ const deltakelser: DeltakelsePeriodInfo[] = [
                 opprettetDato: '2025-05-20T14:38:41.859873Z',
                 løstDato: '2025-05-21T05:06:32.457669Z',
             },
+            {
+                oppgaveReferanse: 'c3782bb8-6fd6-462b-9db4-d2441485bddd',
+                oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+                oppgavetypeData: {
+                    fraOgMed: '2025-03-01',
+                    tilOgMed: '2025-03-31',
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-05-22T09:32:12.590003Z',
+            },
         ],
     },
 ];

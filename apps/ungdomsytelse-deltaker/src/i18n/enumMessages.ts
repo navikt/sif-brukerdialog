@@ -8,6 +8,7 @@ const nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO': 'Endret sluttdato',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT': 'Endret inntekt',
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE': 'Endret programperiode',
+    'oppgavetype.RAPPORTER_INNTEKT': 'Rapporter inntekt',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
