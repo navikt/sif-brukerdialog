@@ -2,6 +2,7 @@ import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import { zDeltakelsePeriodInfo } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { parseOppgaverElement } from '../api';
+import dayjs from 'dayjs';
 
 export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
     .extend({
@@ -17,6 +18,7 @@ export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
             ...rest,
             programPeriode,
             oppgaver: parseOppgaverElement(data.oppgaver),
+            søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
         };
     });
 

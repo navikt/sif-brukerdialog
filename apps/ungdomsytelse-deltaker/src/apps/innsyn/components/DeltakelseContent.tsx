@@ -63,7 +63,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 <OppgaveLinkPanel
                     tittel="Søknad for ungdomprogramytelsen"
                     status={OppgaveStatus.LØST}
-                    løstDato={new Date()} // TODO
+                    løstDato={deltakelsePeriode.søktTidspunkt!}
                     onClick={() => {}}
                 />
             </VStack>
