@@ -67,7 +67,7 @@
         "@types/react": "19.1.4",
         "@types/react-dom": "19.1.5",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "4.4.1",
+        "@vitejs/plugin-react": "4.5.0",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
         "chromatic": "11.28.2",

@@ -47,7 +47,7 @@
         "@types/react": "19.1.4",
         "@types/react-dom": "19.1.5",
         "@types/uuid": "10.0.0",
-        "@vitejs/plugin-react": "4.4.1",
+        "@vitejs/plugin-react": "4.5.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "css-loader": "7.1.2",
