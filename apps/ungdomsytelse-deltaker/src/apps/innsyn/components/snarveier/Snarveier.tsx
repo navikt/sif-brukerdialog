@@ -5,7 +5,7 @@ const Snarveier = () => {
     return (
         <HGrid columns="1fr auto">
             <VStack gap="2" marginBlock="0 10">
-                <Heading level="2" size="medium">
+                <Heading level="2" size="large">
                     Har du noen spørsmål?
                 </Heading>
                 <BodyShort>Her er noen snarveier som kan være nyttige.</BodyShort>
