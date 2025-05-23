@@ -25,12 +25,14 @@ import type {
     HentDeltakerInfoGittDeltakerError,
     UtløperOppgaveData,
     UtløperOppgaveError,
-    KontrollAvRegisterinntektData,
-    KontrollAvRegisterinntektResponse,
-    KontrollAvRegisterinntektError,
+    UtløperOppgaveForTypeOgPeriodeData,
+    UtløperOppgaveForTypeOgPeriodeError,
     OpprettOppgaveForKontrollAvRegisterinntektData,
     OpprettOppgaveForKontrollAvRegisterinntektResponse,
     OpprettOppgaveForKontrollAvRegisterinntektError,
+    OpprettOppgaveForInntektsrapporteringData,
+    OpprettOppgaveForInntektsrapporteringResponse,
+    OpprettOppgaveForInntektsrapporteringError,
     OpprettOppgaveForEndretProgramperiodeData,
     OpprettOppgaveForEndretProgramperiodeResponse,
     OpprettOppgaveForEndretProgramperiodeError,
@@ -48,6 +50,12 @@ import type {
     HentDeltakersOppgaveData,
     HentDeltakersOppgaveResponse,
     HentDeltakersOppgaveError,
+    MarkerOppgaveSomÅpnetData,
+    MarkerOppgaveSomÅpnetResponse,
+    MarkerOppgaveSomÅpnetError,
+    MarkerOppgaveSomLukketData,
+    MarkerOppgaveSomLukketResponse,
+    MarkerOppgaveSomLukketError,
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserResponse,
     HentAlleMineDeltakelserError,
@@ -63,13 +71,15 @@ import {
     zMeldInnDeltakerResponse,
     zHentAlleDeltakelserGittDeltakerAktørResponse,
     zHentDeltakerInfoGittDeltakerResponse,
-    zKontrollAvRegisterinntektResponse,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
+    zOpprettOppgaveForInntektsrapporteringResponse,
     zOpprettOppgaveForEndretProgramperiodeResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
+    zMarkerOppgaveSomÅpnetResponse,
+    zMarkerOppgaveSomLukketResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
 } from './zod.gen';
@@ -324,6 +334,64 @@ export class DeltakelseService {
     }
 
     /**
+     * Markerer en oppgave som åpnet
+     */
+    public static markerOppgaveSomÅpnet<ThrowOnError extends boolean = true>(
+        options: Options<MarkerOppgaveSomÅpnetData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            MarkerOppgaveSomÅpnetResponse,
+            MarkerOppgaveSomÅpnetError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/åpnet',
+            ...options,
+        });
+    }
+
+    /**
+     * Markerer en oppgave som lukket
+     */
+    public static markerOppgaveSomLukket<ThrowOnError extends boolean = true>(
+        options: Options<MarkerOppgaveSomLukketData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            MarkerOppgaveSomLukketResponse,
+            MarkerOppgaveSomLukketError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomLukketResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
+            ...options,
+        });
+    }
+
+    /**
      * Henter alle deltakelser for en deltaker i ungdomsprogrammet
      */
     public static hentAlleMineDeltakelser<ThrowOnError extends boolean = true>(
@@ -480,17 +548,12 @@ export class OppretterOgEndrerPåOppgaverService {
     }
 
     /**
-     * @deprecated
-     * Oppretter oppgave
+     * Setter oppgave til utløpt for type og periode
      */
-    public static kontrollAvRegisterinntekt<ThrowOnError extends boolean = true>(
-        options: Options<KontrollAvRegisterinntektData, ThrowOnError>,
+    public static utløperOppgaveForTypeOgPeriode<ThrowOnError extends boolean = true>(
+        options: Options<UtløperOppgaveForTypeOgPeriodeData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<
-            KontrollAvRegisterinntektResponse,
-            KontrollAvRegisterinntektError,
-            ThrowOnError
-        >({
+        return (options.client ?? _heyApiClient).post<unknown, UtløperOppgaveForTypeOgPeriodeError, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -501,10 +564,7 @@ export class OppretterOgEndrerPåOppgaverService {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zKontrollAvRegisterinntektResponse.parseAsync(data);
-            },
-            url: '/oppgave/opprett',
+            url: '/oppgave/utløpt/forTypeOgPeriode',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
@@ -538,6 +598,39 @@ export class OppretterOgEndrerPåOppgaverService {
                 return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
             },
             url: '/oppgave/opprett/kontroll/registerinntekt',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options?.headers,
+            },
+        });
+    }
+
+    /**
+     * Oppretter oppgave for inntektsrapportering
+     */
+    public static opprettOppgaveForInntektsrapportering<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForInntektsrapporteringData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForInntektsrapporteringResponse,
+            OpprettOppgaveForInntektsrapporteringError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForInntektsrapporteringResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett/inntektsrapportering',
             ...options,
             headers: {
                 'Content-Type': 'application/json',

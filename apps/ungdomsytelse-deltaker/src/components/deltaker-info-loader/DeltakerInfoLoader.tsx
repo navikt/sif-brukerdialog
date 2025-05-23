@@ -3,11 +3,12 @@ import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import SøknadApp from '../../apps/søknad/SøknadApp';
-import FlereDeltakelserPage from '../pages/FlereDeltakelserPage';
-import HentDeltakerErrorPage from '../pages/HentDeltakerErrorPage';
-import IngenDeltakelsePage from '../pages/IngenDeltakelsePage';
+import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
+import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
+import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
+import { Theme } from '@navikt/ds-react';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -44,10 +45,14 @@ const DeltakerInfoLoader = () => {
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakelsePeriode.harSøkt && pathname.includes('kvittering') === false ? (
-                <InnsynApp />
+            {deltakelsePeriode.søktTidspunkt !== undefined && pathname.includes('kvittering') === false ? (
+                <Theme hasBackground={false}>
+                    <InnsynApp />
+                </Theme>
             ) : (
-                <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                <Theme>
+                    <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                </Theme>
             )}
         </DeltakerContextProvider>
     );

@@ -1,6 +1,7 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     EndretProgramperiodeDataDto,
+    InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
     OppgaveStatus,
     Oppgavetype,
@@ -8,7 +9,7 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import { z } from 'zod';
-import { EndretProgramperiodeOppgave, KorrigertInntektOppgave, Oppgave } from '../../types';
+import { EndretProgramperiodeOppgave, KorrigertInntektOppgave, RapporterInntektOppgave, Oppgave } from '../../types';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
@@ -74,8 +75,24 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 };
                 parsedOppgaver.push(endretProgramperiodeOppgave);
                 return;
+            case Oppgavetype.RAPPORTER_INNTEKT:
+                const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;
+                const rapporterInntektOppgave: RapporterInntektOppgave = {
+                    oppgaveReferanse: oppgave.oppgaveReferanse,
+                    status: getOppgaveStatusEnum(oppgave.status),
+                    opprettetDato,
+                    svarfrist,
+                    løstDato,
+                    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+                    oppgavetypeData: {
+                        fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
+                        tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
+                    },
+                };
+                parsedOppgaver.push(rapporterInntektOppgave);
+                return;
+
             default:
-                console.error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
                 throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
         }
     });

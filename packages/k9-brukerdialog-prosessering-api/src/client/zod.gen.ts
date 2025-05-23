@@ -40,18 +40,13 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
     oppgave: zUngdomsytelseOppgaveDto,
 });
 
-export const zUngPeriode = z.object({
-    fraOgMed: z.string().date(),
-    tilOgMed: z.string().date(),
-});
-
-export const zOppgittInntektForPeriode = z.object({
+export const zOppgittInntekt = z.object({
     arbeidstakerOgFrilansInntekt: z.number().int().optional(),
-    periodeForInntekt: zUngPeriode,
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({
-    oppgittInntektForPeriode: zOppgittInntektForPeriode,
+    oppgaveReferanse: z.string(),
+    oppgittInntekt: zOppgittInntekt,
     harBekreftetInntekt: z.boolean(),
 });
 

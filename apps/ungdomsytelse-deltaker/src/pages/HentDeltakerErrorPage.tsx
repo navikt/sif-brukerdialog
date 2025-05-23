@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds/src';
 
@@ -17,7 +17,9 @@ const HentDeltakerErrorPage = ({ error }: Props) => {
                         <Heading level="2" size="medium" spacing>
                             Det oppstod en feil under henting av informasjon
                         </Heading>
-                        <pre style={{ fontSize: '.8rem', lineHeight: '1rem' }}>{error}</pre>
+                        <Alert variant="error" inline>
+                            <BodyShort>{error}</BodyShort>
+                        </Alert>
                     </SifGuidePanel>
                 );
             }}

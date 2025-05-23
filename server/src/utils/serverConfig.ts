@@ -106,7 +106,7 @@ interface App {
     publicPath: string;
     publicEnvVariables: EnvVariables;
     proxyEnvVariables: Partial<ProxyEnvVariables>;
-    skipDecorator?: boolean;
+    fullDekorator?: boolean;
 }
 
 const app: App = {
@@ -116,7 +116,7 @@ const app: App = {
     publicPath: process.env.PUBLIC_PATH || '',
     publicEnvVariables: getPublicEnvVariables(),
     proxyEnvVariables: getProxyEnvVariables(),
-    skipDecorator: process.env.SKIP_DECORATOR === 'true',
+    fullDekorator: process.env.SIF_PUBLIC_FULL_DEKORATOR === 'on',
 };
 
 export default { proxies, app };

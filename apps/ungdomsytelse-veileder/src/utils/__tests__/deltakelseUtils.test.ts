@@ -11,27 +11,15 @@ describe('deltakelseUtils', () => {
             const programperiodeStart = ISODateToDate('2023-01-01');
             const førsteMuligeInnmeldingsdato = ISODateToDate('2023-01-01');
             const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2023-02-01'));
-            const result = getFørsteMuligeInnmeldingsdato(
-                førsteMuligeInnmeldingsdato,
-                programperiodeStart,
-                tillattEndringsperiode,
-            );
+            const result = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, tillattEndringsperiode);
             expect(result).toEqual(programperiodeStart);
         });
-        it('Min startdato settes til deltakers førsteMuligeInnmeldingsdato når denne er etter programperiodeStart', () => {
-            const programperiodeStart = ISODateToDate('2023-01-01');
-            const startdato = ISODateToDate('2023-01-02');
-            const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2023-02-01'));
-            const result = getFørsteMuligeInnmeldingsdato(startdato, programperiodeStart, tillattEndringsperiode);
-            expect(result).toEqual(startdato);
-        });
         it('Min startdato settes til maks 6 måneder før dagens dato', () => {
-            const programperiodeStart = ISODateToDate('2023-01-01');
             const førsteMuligeInnmeldingsdato = ISODateToDate('2023-01-01');
             const tillattEndringsperiode = getTillattEndringsperiode(ISODateToDate('2024-01-08'));
             const result = getFørsteMuligeInnmeldingsdato(
                 førsteMuligeInnmeldingsdato,
-                programperiodeStart,
+
                 tillattEndringsperiode,
             );
             expect(result).toEqual(tillattEndringsperiode.from);

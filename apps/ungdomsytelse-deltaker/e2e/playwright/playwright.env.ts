@@ -28,6 +28,7 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: 'http://localhost/om-ungdomsprogramytelsen',
     SIF_PUBLIC_URL_SKATTEETATEN: 'https://www.skatteetaten.no/',
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: 'http://localhost/endre-kontonummer',
+    SIF_PUBLIC_URL_SKRIV_TIL_OSS: 'http://localhost/skriv-til-oss',
     SIF_PUBLIC_PERSONALIA_URL: 'http://localhost/personalia',
     VELG_SCENARIO: 'off',
 };

@@ -1,7 +1,7 @@
 import { Søker } from '@navikt/sif-common-api';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import { DeltakelsePeriode } from '@navikt/ung-common';
-import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
+import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
