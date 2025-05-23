@@ -8,10 +8,10 @@ interface Props {
 
 const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
     <BoxNew
-        borderColor="brand-blue-subtle"
-        background="brand-blue-soft"
+        borderColor="neutral-subtle"
+        background="neutral-soft"
         borderRadius="8"
-        borderWidth="2"
+        borderWidth="1"
         className="w-full"
         padding="4">
         <HGrid columns="3rem auto" gap="2" className="w-full" align="center">

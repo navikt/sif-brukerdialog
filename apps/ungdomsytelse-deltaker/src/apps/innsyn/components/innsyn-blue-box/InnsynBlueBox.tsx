@@ -1,11 +1,11 @@
-import { Box } from '@navikt/ds-react';
+import { BoxNew } from '@navikt/ds-react';
 import React from 'react';
 
 const InnsynBlueBox = ({ children }: { children: React.ReactNode }) => {
     return (
-        <Box className="inline-block rounded-xl p-6" style={{ backgroundColor: '#CCE9F2', color: '#002060' }}>
+        <BoxNew background="info-soft" className="inline-block rounded-xl p-6">
             {children}
-        </Box>
+        </BoxNew>
     );
 };
 

@@ -1,5 +1,4 @@
-import { Box, Heading, HGrid, Hide, HStack, Show, VStack } from '@navikt/ds-react';
-import HandsIll from './hands';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import InnsynBlueBox from '../innsyn-blue-box/InnsynBlueBox';
 
 const HuskelappInntekt = () => (
@@ -10,19 +9,19 @@ const HuskelappInntekt = () => (
                     Husk å melde fra mellom 1. - 6. hver måned hvis du starter å jobbe og får utbetalt lønn mens du er i
                     ungdoms&shy;programmet.
                 </Heading>
-                <Hide above="md">
+                {/* <Hide above="md">
                     <HStack justify="center">
                         <Box maxWidth="200px" marginBlock="4 0">
                             <HandsIll size="fullWidth" />
                         </Box>
                     </HStack>
-                </Hide>
+                </Hide> */}
             </VStack>
-            <Show above="md">
+            {/* <Show above="md">
                 <div>
                     <HandsIll />
                 </div>
-            </Show>
+            </Show> */}
         </HGrid>
     </InnsynBlueBox>
 );

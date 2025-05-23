@@ -65,7 +65,6 @@ const OppgaveStatusTag = ({
 const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, onClick }: Props) => {
     return (
         <LinkPanel
-            border={false}
             href="#"
             className="w-full"
             style={{ borderRadius: '0.5rem' }}

@@ -1,7 +1,17 @@
-import { Bleed, Box, Hide, Show, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Heading, Hide, Show, VStack } from '@navikt/ds-react';
 import Money from './money';
 
-const UngdomsprogramYtelseHeader = () => {
+interface Props {
+    simple?: boolean;
+}
+const UngdomsprogramYtelseHeader = ({ simple = true }: Props) => {
+    if (simple) {
+        return (
+            <Heading level="1" size="xlarge">
+                Din ungdoms&shy;program&shy;ytelse
+            </Heading>
+        );
+    }
     return (
         <VStack style={{ color: '#002060', fontWeight: 'bold', lineHeight: '1.5rem', fontSize: '3.65rem' }}>
             <div role="heading" aria-level={1} aria-label="Din ungdomsprogramytelse">

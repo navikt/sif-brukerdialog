@@ -46,7 +46,7 @@ const DeltakerInfoLoader = () => {
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
             {deltakelsePeriode.søktTidspunkt !== undefined && pathname.includes('kvittering') === false ? (
-                <Theme hasBackground={false} className="bg-deepblue-50">
+                <Theme hasBackground={false}>
                     <InnsynApp />
                 </Theme>
             ) : (
