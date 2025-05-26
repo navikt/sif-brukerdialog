@@ -1,5 +1,13 @@
 # @navikt/sif-common-ui
 
+## 0.9.6
+
+### Patch Changes
+
+- Nynorsktekster
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.5
+
 ## 0.9.5
 
 ### Patch Changes
