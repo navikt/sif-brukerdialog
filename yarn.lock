@@ -4160,7 +4160,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -4391,7 +4391,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.4.1"
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4514,7 +4514,7 @@ __metadata:
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -4597,7 +4597,7 @@ __metadata:
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -4678,7 +4678,7 @@ __metadata:
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4757,7 +4757,7 @@ __metadata:
     axios: "npm:1.9.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     compression: "npm:1.8.0"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
@@ -12343,7 +12343,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.28.2, chromatic@npm:^11.15.0":
+"chromatic@npm:12.0.0":
+  version: 12.0.0
+  resolution: "chromatic@npm:12.0.0"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 10/bae3b9f68196a0c5eb52e5ca25f20f0fa7a4276ccd35215d693bb4bb19727ac58fb94f74ea4d32b3f65f70e568d28378015d5da305af88ee1acf20c271dd3f2d
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^11.15.0":
   version: 11.28.2
   resolution: "chromatic@npm:11.28.2"
   peerDependencies:
@@ -25610,7 +25629,7 @@ __metadata:
     "@storybook/react": "npm:8.6.14"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/react": "npm:19.1.4"
-    chromatic: "npm:11.28.2"
+    chromatic: "npm:12.0.0"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
