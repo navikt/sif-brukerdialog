@@ -28,21 +28,21 @@ export const utenlandskNæringMessages_nn: Record<UtenlandskNæringMessageKeys, 
         'Du må velja kva for eit land verksemda di er registrert i. Vel land frå lista.',
     '@forms.utenlandskNæringForm.identifikasjonsnummer.noValue': 'Skriv inn organisasjonsnummeret.',
     '@forms.utenlandskNæringForm.fraOgMed.dateHasNoValue':
-        'Du må oppgi kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
+        'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateIsAfterMax':
         'Startdatoen for når du starta verksemda må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateHasInvalidFormat':
-        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for når du starta verksemda må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateHasNoValue':
-        'Du må oppgi kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
+        'Du må oppgje kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateIsBeforeMin':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateIsAfterMax':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dagens dato. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateHasInvalidFormat':
-        'Du må oppgi dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
 };
