@@ -35,5 +35,12 @@ export interface EndretProgramperiodeOppgave extends oppgaveBase {
         tilOgMed?: Date;
     };
 }
+export interface RapporterInntektOppgave extends oppgaveBase {
+    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT;
+    oppgavetypeData: {
+        fraOgMed: Date;
+        tilOgMed?: Date;
+    };
+}
 
-export type Oppgave = KorrigertInntektOppgave | EndretProgramperiodeOppgave;
+export type Oppgave = KorrigertInntektOppgave | EndretProgramperiodeOppgave | RapporterInntektOppgave;

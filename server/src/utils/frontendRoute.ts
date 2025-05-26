@@ -4,7 +4,6 @@ import { Express, Response } from 'express';
 import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
 import config from './serverConfig.js';
-import fs from 'fs';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -15,7 +14,7 @@ export const setupAndServeHtml = async (app: Express) => {
         addLocalViteServerHandlerWithDecorator(app);
     }
 
-    const html = config.app.skipDecorator ? fs.readFileSync(spaFilePath, 'utf-8') : await injectDecorator(spaFilePath);
+    const html = await injectDecorator(spaFilePath, config.app.fullDekorator);
 
     const envs = appEnvSchema.safeParse({
         ENV: `${config.app.env}`,
@@ -38,12 +37,12 @@ export const setupAndServeHtml = async (app: Express) => {
     });
 };
 
-async function injectDecorator(filePath: string) {
+async function injectDecorator(filePath: string, fullDecorator: boolean = false) {
     return injectDecoratorServerSide({
         env: config.app.env,
         filePath,
         params: {
-            simple: true,
+            simple: fullDecorator === false,
         },
     });
 }

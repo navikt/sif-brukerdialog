@@ -65,7 +65,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
             id: deltakerId,
         },
         fraOgMed: startdato,
-        harSøkt: false,
+        søktTidspunkt: undefined,
         oppgaver: [],
     };
     db.deltakelser.push(deltakelse);

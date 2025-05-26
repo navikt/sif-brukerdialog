@@ -1,11 +1,16 @@
 import { VStack } from '@navikt/ds-react';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import InformasjonOmUngdomsytelsen from '../../søknad/components/Informasjon';
 import DeltakelseContent from '../components/DeltakelseContent';
-import DeltakelseHeader from '../components/DeltakelseHeader';
+import UngdomsprogramYtelseHeader from '../components/page-layout/illustrasjon/UngdomsprogramYtelseHeader';
+import PageLayout from '../components/page-layout/PageLayout';
+import {
+    erDeltakelseAvsluttet,
+    erDeltakelseStartet,
+    visHuskelappOmInntektsrapportering,
+} from '../utils/deltakelseUtils';
+import Snarveier from '../components/snarveier/Snarveier';
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();
@@ -13,20 +18,29 @@ const ForsidePage = () => {
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
-            { title: 'Ungdomsytelse', url: '/', handleInApp: true },
+            { title: 'Ungdomsprogramytelse', url: '/', handleInApp: true },
         ]);
     });
 
+    const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
+    const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
+
+    const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering =
+        deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
+
     return (
-        <Page title="Din ungdomsytelse">
+        <PageLayout documentTitle="Din ungdomsprogramytelse" footer={<Snarveier />}>
             <VStack gap="8">
-                <DeltakelseHeader deltakelsePeriode={deltakelsePeriode} />
+                <UngdomsprogramYtelseHeader />
 
-                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
-
-                <InformasjonOmUngdomsytelsen />
+                <DeltakelseContent
+                    deltakelsePeriode={deltakelsePeriode}
+                    visInfoOmDeltakelseAvsluttet={visInfoOmDeltakelseAvsluttet}
+                    visInfoOmInntektsrapportering={visInfoOmInntektsrapportering}
+                />
             </VStack>
-        </Page>
+        </PageLayout>
     );
 };
 

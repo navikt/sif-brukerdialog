@@ -1,7 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
+import { DateRange } from '@navikt/sif-common-utils';
 import { Inntekt } from '@navikt/ung-common';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
@@ -25,13 +25,10 @@ const InntektForm = ({ periode, inntekt, onCancel, onSuccess }: Props) => {
     const handleSubmit = (values: InntektFormValues) => {
         const nyInntekt = getInntektFromFormValues(values, false);
         const data: UngdomsytelseInntektsrapportering = {
-            oppgittInntektForPeriode: {
-                periodeForInntekt: {
-                    fraOgMed: dateToISODate(periode.from),
-                    tilOgMed: dateToISODate(periode.to),
-                },
+            oppgittInntekt: {
                 arbeidstakerOgFrilansInntekt: nyInntekt.arbeidOgFrilansInntekter,
             },
+            oppgaveReferanse: 123 as any, // TODO referanse
             harBekreftetInntekt: values.bekrefterInntekt === true,
         };
         mutateAsync(data).then(() => onSuccess(data));

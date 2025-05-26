@@ -32,13 +32,16 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                             </dd>
                         </dl>
                     </VStack>
-                    <VStack gap="4">
-                        {/* <dl className="ungDefinitionList">
+                    <VStack gap="2">
+                        <Heading size="small" level="3">
+                            Metadata om deltaker (kun for test)
+                        </Heading>
+                        <dl className="ungDefinitionList">
                             <dt>Første mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
                             <dt>Siste mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.sisteMuligeInnmeldingsdato)}</dd>
-                        </dl> */}
+                        </dl>
                     </VStack>
                 </HGrid>
             </InfoBox>
