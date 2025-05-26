@@ -14,9 +14,11 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
         return (
             <HashRouter>
                 <PageBoundary>
-                    <Box marginBlock="6">
-                        <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
-                    </Box>
+                    <div role="note">
+                        <Box marginBlock="6">
+                            <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
+                        </Box>
+                    </div>
                 </PageBoundary>
                 {children}
             </HashRouter>
