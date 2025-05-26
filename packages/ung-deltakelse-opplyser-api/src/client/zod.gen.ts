@@ -201,6 +201,21 @@ export const zEndretProgamperiodeOppgaveDto = z.object({
     forrigeProgramperiode: zProgramperiodeDto.optional(),
 });
 
+export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
+
+export const zDeltakelseHistorikkDto = z.object({
+    revisjonstype: zRevisjonstype,
+    revisjonsnummer: z.coerce.bigint(),
+    id: z.string().uuid(),
+    fom: z.string().date(),
+    tom: z.string().date().optional(),
+    opprettetAv: z.string().optional(),
+    opprettetTidspunkt: z.string().datetime(),
+    endretAv: z.string(),
+    endretTidspunkt: z.string().datetime(),
+    søktTidspunkt: z.string().datetime().optional(),
+});
+
 export const zKontonummerDto = z.object({
     harKontonummer: z.boolean(),
     kontonummer: z.string().optional(),
@@ -235,6 +250,8 @@ export const zOpprettOppgaveForInntektsrapporteringResponse = zOppgaveDto;
 export const zOpprettOppgaveForEndretProgramperiodeResponse = zOppgaveDto;
 
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
+
+export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 

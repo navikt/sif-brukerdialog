@@ -200,6 +200,26 @@ export type EndretProgamperiodeOppgaveDto = {
     forrigeProgramperiode?: ProgramperiodeDto;
 };
 
+export type DeltakelseHistorikkDto = {
+    revisjonstype: Revisjonstype;
+    revisjonsnummer: number;
+    id: string;
+    fom: string;
+    tom?: string;
+    opprettetAv?: string;
+    opprettetTidspunkt: string;
+    endretAv: string;
+    endretTidspunkt: string;
+    søktTidspunkt?: string;
+};
+
+export enum Revisjonstype {
+    OPPRETTET = 'OPPRETTET',
+    ENDRET = 'ENDRET',
+    SLETTET = 'SLETTET',
+    UKJENT = 'UKJENT',
+}
+
 export type KontonummerDto = {
     harKontonummer: boolean;
     kontonummer?: string;
@@ -691,6 +711,41 @@ export type HentAlleDeltakelserGittDeltakerIdResponses = {
 
 export type HentAlleDeltakelserGittDeltakerIdResponse =
     HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
+
+export type DeltakelseHistorikkData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/historikk';
+};
+
+export type DeltakelseHistorikkErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type DeltakelseHistorikkError = DeltakelseHistorikkErrors[keyof DeltakelseHistorikkErrors];
+
+export type DeltakelseHistorikkResponses = {
+    /**
+     * OK
+     */
+    200: Array<DeltakelseHistorikkDto>;
+};
+
+export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
 
 export type HentDeltakerInfoGittDeltakerIdData = {
     body?: never;

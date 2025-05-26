@@ -67,6 +67,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
         <LinkPanel
             href="#"
             className="w-full"
+            border={false}
             style={{ borderRadius: '0.5rem' }}
             onClick={(evt) => {
                 evt.stopPropagation();

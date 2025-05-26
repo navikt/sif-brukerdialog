@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.37.6
+
+### Patch Changes
+
+- b7ed26c: Frilanser må nå svare på om de mottar omsorgsstønad i perioden de skal endre arbeid. Ved ja, så kommer det informasjon som skal hjelpe dem å fylle ut riktig.
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.4
+    - @navikt/sif-common-forms-ds@19.0.4
+    - @navikt/sif-common-core-ds@10.2.5
+    - @navikt/sif-common-ui@0.9.6
+
 ## 2.37.5
 
 ### Patch Changes

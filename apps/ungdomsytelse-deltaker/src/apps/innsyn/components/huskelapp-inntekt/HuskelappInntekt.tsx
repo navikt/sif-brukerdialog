@@ -4,9 +4,10 @@ import InnsynBlueBox from '../innsyn-blue-box/InnsynBlueBox';
 
 interface Props {
     simple?: boolean;
+    showIll?: boolean;
 }
 
-const HuskelappInntekt = ({ simple = true }: Props) => {
+const HuskelappInntekt = ({ simple = false, showIll = false }: Props) => {
     if (simple) {
         return (
             <Alert variant="info">
@@ -25,19 +26,23 @@ const HuskelappInntekt = ({ simple = true }: Props) => {
                         Husk å melde fra mellom 1. - 6. hver måned hvis du starter å jobbe og får utbetalt lønn mens du
                         er i ungdoms&shy;programmet.
                     </Heading>
-                    <Hide above="md">
-                        <HStack justify="center">
-                            <Box maxWidth="200px" marginBlock="4 0">
-                                <HandsIll size="fullWidth" />
-                            </Box>
-                        </HStack>
-                    </Hide>
+                    {showIll && (
+                        <Hide above="md">
+                            <HStack justify="center">
+                                <Box maxWidth="200px" marginBlock="4 0">
+                                    <HandsIll size="fullWidth" />
+                                </Box>
+                            </HStack>
+                        </Hide>
+                    )}
                 </VStack>
-                <Show above="md">
-                    <div>
-                        <HandsIll />
-                    </div>
-                </Show>
+                {showIll && (
+                    <Show above="md">
+                        <div>
+                            <HandsIll />
+                        </div>
+                    </Show>
+                )}
             </HGrid>
         </InnsynBlueBox>
     );

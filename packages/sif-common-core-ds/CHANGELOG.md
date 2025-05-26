@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.5
+
+### Patch Changes
+
+- Nynorsktekster
+
 ## 10.2.4
 
 ### Patch Changes

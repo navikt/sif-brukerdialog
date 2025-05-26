@@ -29,13 +29,13 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
         'Du har opplyst at du har fleire næringsverksemder som sjølvstendig næringsdrivande. No skal du svare på spørsmål som gjeld alle verksemdene dine.',
     '@forms.virksomhet.næringsinntekt': 'Næringsinntekt',
     '@forms.virksomhet.næringsinntekt.enVirksomhet.spm':
-        'Kva har du hatt i næringsresultat før skatt dei siste 12 månadene?',
+        'Kva har du hatt i næringsresultat før skatt dei siste 12 månadane?',
     '@forms.virksomhet.næringsinntekt.enVirksomhet.spm.description':
-        'Viss verksemda har vart i kortare tid enn 12 månader, kan du bruke denne perioden og rekne om til årsinntekt. Oppgi beløpet i heile kroner.',
+        'Viss verksemda har vart i kortare tid enn 12 månadar, kan du bruke denne perioden og rekne om til årsinntekt. Oppgje beløpet i heile kroner.',
     '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm':
-        'Kva har du hatt totalt i næringsresultat før skatt dei siste 12 månadene?',
+        'Kva har du hatt totalt i næringsresultat før skatt dei siste 12 månadane?',
     '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm.description':
-        'Viss verksemdene har vart i kortare tid enn 12 månader, kan du bruke denne perioden og rekne om til årsinntekt. Oppgi beløpet i heile kroner.',
+        'Viss verksemdene har vart i kortare tid enn 12 månadar, kan du bruke denne perioden og rekne om til årsinntekt. Oppgje beløpet i heile kroner.',
     '@forms.virksomhet.hvaErNæringsresultat.enVirksomhet.text':
         'Næringsresultatet er inntekter du har i næringa di, minus utgifter og avskrivingar.',
     '@forms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text':
@@ -45,20 +45,20 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhet.har_blitt_yrkesaktiv_info_title': 'Kva tyder dette?',
     '@forms.virksomhet.har_blitt_yrkesaktiv_info':
         'Du skal svare ja på spørsmålet viss du før oppstart av næringsverksemda di hadde låg eller inga inntekt.',
-    '@forms.virksomhet.har_blitt_yrkesaktiv_dato': 'Oppgi dato for når du byrja i arbeidslivet',
+    '@forms.virksomhet.har_blitt_yrkesaktiv_dato': 'Oppgje dato for når du byrja i arbeidslivet',
     '@forms.virksomhet.varig_endring_spm':
         'Har du hatt ei varig endring i nokon av arbeidsforholda, verksemdene eller arbeidssituasjonen din dei siste fire åra?',
-    '@forms.virksomhet.varig_endring_dato': 'Oppgi dato for endringa',
+    '@forms.virksomhet.varig_endring_dato': 'Oppgje dato for endringa',
     '@forms.virksomhet.varig_endring_inntekt':
-        'Oppgi næringsinntekta di etter endringa. Oppgi årsinntekta i heile kroner.',
+        'Oppgje næringsinntekta di etter endringa. Oppgje årsinntekta i heile kroner.',
     '@forms.virksomhet.varig_endring_tekst':
         'Her kan du skrive kort kva som har endra seg i arbeidsforholda, verksemdene eller arbeidssituasjonen din',
     '@forms.virksomhet.regnskapsfører_spm': 'Har du rekneskapsførar?',
-    '@forms.virksomhet.regnskapsfører_navn': 'Oppgi namnet til rekneskapsføraren',
-    '@forms.virksomhet.regnskapsfører_telefon': 'Oppgi telefonnummeret til rekneskapsføraren',
+    '@forms.virksomhet.regnskapsfører_navn': 'Oppgje namnet til rekneskapsføraren',
+    '@forms.virksomhet.regnskapsfører_telefon': 'Oppgje telefonnummeret til rekneskapsføraren',
     '@forms.virksomhet.veileder_innhenter_info.1':
-        'Vi hentar inn opplysningar om verksemda og inntekta di frå offentlege register.',
-    '@forms.virksomhet.veileder_innhenter_info.2': 'Vi tek kontakt med deg viss vi treng fleire opplysningar.',
+        'Me innhentar  opplysningar om verksemda og inntekta di frå offentlege register.',
+    '@forms.virksomhet.veileder_innhenter_info.2': 'Me tar kontakt med deg viss vi treng fleire opplysningar.',
     '@forms.virksomhet.regnskapsfører_telefon_info':
         'Skriv inn telefonnummeret i staden for å kopiere og lime det inn frå ein annan stad.',
 
@@ -67,7 +67,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhet.summary.næringstype': 'Næringstype',
     '@forms.virksomhet.summary.varigEndring.dato': 'Dato for varig endring',
     '@forms.virksomhet.summary.varigEndring.næringsinntekt': 'Næringsinntekt etter endring',
-    '@forms.virksomhet.summary.varigEndring.beskrivelse': 'Beskriving av endring',
+    '@forms.virksomhet.summary.varigEndring.beskrivelse': 'Skildring av endring',
     '@forms.virksomhet.summary.ikkeRegnskapsfører': 'Har ikkje rekneskapsførar.',
     '@forms.virksomhet.summary.tidsinfo.avsluttet': 'Starta: {fraOgMed}, avslutta: {tilOgMed}.',
     '@forms.virksomhet.summary.tidsinfo.pågående': 'Starta: {fraOgMed} (er pågåande).',
@@ -85,47 +85,47 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
         'Du må svara ja eller nei på spørsmålet om du er fiskar på Blad B.',
     '@forms.virksomhetForm.navnPåVirksomheten.stringHasNoValue': 'Skriv inn namnet på verksemda di.',
     '@forms.virksomhetForm.navnPåVirksomheten.stringContainsUnicodeChacters':
-        'Namnet på verksemda du har lagt inn inneheld ugyldige teikn. Viss du har limd inn namnet kan det vera at du har fått med teikn som ikkje blir vist. Prøv derfor å skriva det inn sjølv, i staden for å lima det inn.',
+        'Namnet på verksemda du har lagt inn inneheld ugyldige teikn. Viss du har limt inn namnet kan det vera at du har fått med teikn som ikkje blir vist. Prøv difor å skriva det inn sjølv, i staden for å lima det inn.',
     '@forms.virksomhetForm.registrertINorge.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på spørsmålet om verksemda di er registrert i Noreg.',
     '@forms.virksomhetForm.registrertILand.noValue':
-        'Du må velja noko som land verksemda di er registrert i. Vel land frå lista.',
+        'Du må velja kva land verksemda di er registrert i. Vel land frå lista.',
     '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasInvalidFormat':
-        'Du har oppgitt eit ugyldig organisasjonsnummer. Oppgi eit gyldig organsisasjonsnummer som inneheld 9 siffer.',
+        'Du har oppgjeve eit ugyldig organisasjonsnummer. Oppgje eit gyldig organsisasjonsnummer som inneheld 9 siffer.',
     '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasNoValue':
         'Skriv inn organisasjonsnummeret. Eit gyldig organsisasjonsnummer inneheld 9 siffer',
     '@forms.virksomhetForm.fom.dateHasNoValue':
-        'Du må oppgi kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
+        'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateIsAfterMax':
         'Startdatoen for når du starta {navn} må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
-        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
         'Startdatoen for når du starta {navn} må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateHasNoValue':
-        'Du må oppgi kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
+        'Du må oppgje kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateIsBeforeMin':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateIsAfterMax':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dagens dato. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateHasInvalidFormat':
-        'Du må oppgi dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.tom.toDateIsBeforeFromDate':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat':
-        'Du må oppgi eit gyldig tal for næringsinntekta i {navn}. Eit gyldig tal inneheld berre siffer.',
+        'Du må oppgje eit gyldig tal for næringsinntekta i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall':
-        'Talet du har oppgitt som næringsinntekt for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
+        'Talet du har oppgjeve som næringsinntekt for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge':
-        'Talet du har oppgitt som næringsinntekt for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
-    '@forms.virksomhetForm.næringsinntekt.numberHasNoValue': 'Du må oppgi næringsinntekta i {navn}.',
-    '@forms.virksomhetForm.næringsinntekt.numberHasDecimals': 'Du må oppgi næringsinntekta i {navn} utan desimalar.',
+        'Talet du har oppgjeve som næringsinntekt for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
+    '@forms.virksomhetForm.næringsinntekt.numberHasNoValue': 'Du må oppgje næringsinntekta i {navn}.',
+    '@forms.virksomhetForm.næringsinntekt.numberHasDecimals': 'Du må oppgje næringsinntekta i {navn} utan desimalar.',
     '@forms.virksomhetForm.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på spørsmålet om du har byrja arbeidslivet  dei 3 siste ferdiglikna åra.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateHasNoValue':
-        'Du må oppgi dato for når du byrja i arbeidslivet. Skriv inn eller vel dato frå datoveljaren.',
+        'Du må oppgje dato for når du byrja i arbeidslivet. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateHasInvalidFormat':
-        'Du må oppgi dato for når du byrja i arbeidslivet i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje dato for når du byrja i arbeidslivet i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateIsAfterMax':
         'Datoen for når du byrja i arbeidslivet kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateIsBeforeMin':
@@ -133,23 +133,23 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på spørsmålet om du har hatt varig endring i næringsinntekta i dei siste 4 kalenderåra.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasNoValue':
-        'Du må oppgi frå kva dato du fekk ei varig endring i næringsinntekta i {navn}. Skriv inn eller vel dato frå datoveljaren.',
+        'Du må oppgje frå kva dato du fekk ei varig endring i næringsinntekta i {navn}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasInvalidFormat':
-        'Du må oppgi dato for når du fekk varig endring i næringsinntekt i {navn} i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgje dato for når du fekk varig endring i næringsinntekt i {navn} i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsAfterMax':
         'Datoen for når du fekk varig endring i næringsinntekt kan ikkje vera etter {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsBeforeMin':
         'Datoen for når du fekk varig endring i næringsinntekt kan ikkje vera før {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue':
-        'Du må oppgi inntekt etter inntektsendring for {navn}.',
+        'Du må oppgje inntekt etter inntektsendring for {navn}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
-        'Du må oppgi eit gyldig tal for ny inntekt etter inntektsendring i {navn}. Eit gyldig tal inneheld berre siffer.',
+        'Du må oppgje eit gyldig tal for ny inntekt etter inntektsendring i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
-        'Talet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
+        'Talet du har oppgjeve som ny inntekt etter inntektsendring for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall':
-        'Talet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
+        'Talet du har oppgjeve som ny inntekt etter inntektsendring for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals':
-        'Du må oppgi inntekt etter inntektsendring for {navn} utan desimalar.',
+        'Du må oppgje inntekt etter inntektsendring for {navn} utan desimalar.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringHasNoValue':
         'Skriv ei forklaring på kvifor du har hatt ei varig endring i næringsinntekta for {navn}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooLong':
@@ -164,7 +164,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.regnskapsfører_navn.stringIsTooShort':
         'Namnet på rekneskapsførar må innehalda minst {min} teikn.',
     '@forms.virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters':
-        'Namnet til rekneskapsføraren du har lagt inn inneheld ugyldige teikn. Viss du har limd inn namnet kan det vera at du har fått med teikn som ikkje blir vist. Prøv derfor å skriva det inn sjølv, i staden for å lima det inn.',
+        'Namnet til rekneskapsføraren du har lagt inn inneheld ugyldige teikn. Viss du har limt inn namnet kan det vera at du har fått med teikn som ikkje blir vist. Prøv difor å skriva det inn sjølv, i staden for å lima det inn.',
     '@forms.virksomhetForm.regnskapsfører_telefon.stringHasNoValue':
         'Skriv inn telefonnummeret til rekneskapsføraren din.',
     '@forms.virksomhetForm.regnskapsfører_telefon.stringIsTooLong':
@@ -172,7 +172,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.regnskapsfører_telefon.stringIsTooShort':
         'Telefonnummeret til rekneskapsførar må innehalda minst {min} teikn.',
     '@forms.virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters':
-        'Telefonnummeret du har lagt inn inneheld ugyldige teikn. Viss du har limd inn telefonnummeret kan det vera at du har fått med teikn som ikkje blir vist. Prøv derfor å skriva det inn sjølv, i staden for å lima det inn. Telefonnummeret kan berre innehalda tal, mellomrom og  .',
+        'Telefonnummeret du har lagt inn inneheld ugyldige teikn. Viss du har limt inn telefonnummeret kan det vera at du har fått med teikn som ikkje blir vist. Prøv difor å skriva det inn sjølv, i staden for å lima det inn. Telefonnummeret kan berre innehalda tal, mellomrom og.',
     '@forms.virksomhetForm.regnskapsfører_telefon.stringHasInvalidFormat':
-        'Telefonnummeret du har lagt inn inneheld ugyldige teikn. Viss du har limd inn telefonnummeret kan det vera at du har fått med teikn som ikkje blir vist. Prøv derfor å skriva det inn sjølv, i staden for å lima det inn. Telefonnummeret kan berre innehalda tal, mellomrom og  .',
+        'Telefonnummeret du har lagt inn inneheld ugyldige teikn. Viss du har limt inn telefonnummeret kan det vera at du har fått med teikn som ikkje blir vist. Prøv difor å skriva det inn sjølv, i staden for å lima det inn. Telefonnummeret kan berre innehalda tal, mellomrom og.',
 };

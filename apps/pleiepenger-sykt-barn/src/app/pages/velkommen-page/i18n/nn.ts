@@ -16,7 +16,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.omSøknaden.fremoverITid':
         'Viss du søkjer fram i tid, har vi forståing for at du kan bli usikker på kva du skal svare på nokre spørsmål som handlar om tida framover. Då svarar du så godt du kan ut frå situasjonen no, og så kan du melde frå om eventuelle endringar seinare.',
     'page.velkommen.omSøknaden.2':
-        'Me tek vare på svara dine i 72 timar. Så, viss du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
+        'Me tar vare på svara dine i 72 timar. Så, viss du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':
         'Du må svara på alle spørsmåla for å kunne gå vidare. Viss du manglar etterspurd dokumentasjon, kan du ettersende det så snart du kan.',
     'page.velkommen.omSøknaden.4': 'Om korleis me innhentar opplysningar om deg',

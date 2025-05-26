@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.0.4
+
+### Patch Changes
+
+- Nynorsktekster
+
 ## 0.0.3
 
 ### Patch Changes

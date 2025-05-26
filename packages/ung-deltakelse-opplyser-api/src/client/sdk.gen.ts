@@ -41,6 +41,9 @@ import type {
     HentAlleDeltakelserGittDeltakerIdData,
     HentAlleDeltakelserGittDeltakerIdResponse,
     HentAlleDeltakelserGittDeltakerIdError,
+    DeltakelseHistorikkData,
+    DeltakelseHistorikkResponse,
+    DeltakelseHistorikkError,
     HentDeltakerInfoGittDeltakerIdData,
     HentDeltakerInfoGittDeltakerIdResponse,
     HentDeltakerInfoGittDeltakerIdError,
@@ -75,6 +78,7 @@ import {
     zOpprettOppgaveForInntektsrapporteringResponse,
     zOpprettOppgaveForEndretProgramperiodeResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
+    zDeltakelseHistorikkResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
@@ -244,6 +248,32 @@ export class VeilederService {
                 return await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data);
             },
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
+            ...options,
+        });
+    }
+
+    public static deltakelseHistorikk<ThrowOnError extends boolean = true>(
+        options: Options<DeltakelseHistorikkData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            DeltakelseHistorikkResponse,
+            DeltakelseHistorikkError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zDeltakelseHistorikkResponse.parseAsync(data);
+            },
+            url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
             ...options,
         });
     }

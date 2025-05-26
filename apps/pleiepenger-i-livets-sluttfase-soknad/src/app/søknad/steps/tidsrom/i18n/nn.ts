@@ -44,7 +44,7 @@ export const tidsromMessages_nn: Record<keyof typeof tidsromMessages_nb, string>
 
     'steg.tidsrom.hjelpetekst.tittel': 'Kan eg søkje for fleire periodar i same søknad?',
     'steg.tidsrom.hjelpetekst.1':
-        'Når du ikkje tek ut dagane samanhengande, kan du søkje om fleire periodar dersom du jobbar i full stilling mellom periodane du har pleiepengar.',
+        'Når du ikkje tar ut dagane samanhengande, kan du søkje om fleire periodar dersom du jobbar i full stilling mellom periodane du har pleiepengar.',
     'steg.tidsrom.hjelpetekst.2':
         'Då set du frå og med dato til den første dagen du har pleiepengar. Til og med dato set du til den siste dagen du har pleiepengar i den siste perioden.',
     'steg.tidsrom.hjelpetekst.3':
