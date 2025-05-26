@@ -1,6 +1,6 @@
 import { HelpText } from '@navikt/ds-react';
 import { useUiIntl } from '../../i18n/ui.messages';
-import { RegistrerteBarnListText as Text } from './registrerteBarnListe.messages';
+import { RegistrerteBarnListText as Text } from './i18n/nb';
 
 const RegistrerteBarnHelpText = () => {
     const { text } = useUiIntl();

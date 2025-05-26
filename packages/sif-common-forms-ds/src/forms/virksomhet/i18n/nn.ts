@@ -58,7 +58,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhet.regnskapsfører_telefon': 'Oppgje telefonnummeret til rekneskapsføraren',
     '@forms.virksomhet.veileder_innhenter_info.1':
         'Me innhentar  opplysningar om verksemda og inntekta di frå offentlege register.',
-    '@forms.virksomhet.veileder_innhenter_info.2': 'Me tek kontakt med deg viss vi treng fleire opplysningar.',
+    '@forms.virksomhet.veileder_innhenter_info.2': 'Me tar kontakt med deg viss vi treng fleire opplysningar.',
     '@forms.virksomhet.regnskapsfører_telefon_info':
         'Skriv inn telefonnummeret i staden for å kopiere og lime det inn frå ein annan stad.',
 
