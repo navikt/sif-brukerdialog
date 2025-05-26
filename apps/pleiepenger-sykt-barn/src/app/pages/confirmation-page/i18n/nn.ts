@@ -11,7 +11,7 @@ export const confirmationPageMessages_nn: Record<keyof typeof confirmationPageMe
 
     'page.confirmation.dinePP.info.tittel': 'Dine pleiepengar:',
     'page.confirmation.dinePP.info.1':
-        'Det tek inntil 15 minutt før søknaden din blir synleg på Dine Pleiepengar. Der kan du: ',
+        'Det tar inntil 15 minutt før søknaden din blir synleg på Dine Pleiepengar. Der kan du: ',
     'page.confirmation.dinePP.list.item.1':
         'Laste ned stadfesting på at du har søkt pleiepengar som du kan gje til arbeidsgjevar',
     'page.confirmation.dinePP.list.item.2': 'Ettersende dokumentasjon',

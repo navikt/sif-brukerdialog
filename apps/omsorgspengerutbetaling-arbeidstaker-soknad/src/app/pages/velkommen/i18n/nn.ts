@@ -12,7 +12,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
-        'Me tek vare på svara dine i 72 timar. Dersom du i løpet av den tida til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
+        'Me tar vare på svara dine i 72 timar. Dersom du i løpet av den tida til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':
         'Du må svara på alle spørsmåla for å kunne gå vidare. Dersom du manglar etterspurd dokumentasjon, kan du ettersende det så snart du kan.',
     'page.velkommen.omSøknaden.4': 'Om korleis me innhentar opplysningar om deg',
