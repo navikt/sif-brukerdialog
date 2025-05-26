@@ -6,12 +6,12 @@
     "type": "module",
     "version": "0.0.3",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.67.5",
+        "@hey-api/openapi-ts": "0.67.6",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.3",
         "vitest": "3.1.4",
-        "zod": "3.25.7"
+        "zod": "3.25.28"
     },
     "peerDependencies": {
         "dayjs": "*",

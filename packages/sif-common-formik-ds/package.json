@@ -43,11 +43,11 @@
         "@storybook/test-runner": "0.22.0",
         "@storybook/testing-library": "0.2.2",
         "@types/jest": "29.5.14",
-        "@types/node": "22.15.19",
-        "@types/react": "19.1.4",
+        "@types/node": "22.15.21",
+        "@types/react": "19.1.5",
         "@types/react-dom": "19.1.5",
         "@types/uuid": "10.0.0",
-        "@vitejs/plugin-react": "4.4.1",
+        "@vitejs/plugin-react": "4.5.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "css-loader": "7.1.2",
@@ -69,7 +69,7 @@
         "vite": "6.3.5",
         "vite-plugin-checker": "0.9.3",
         "vitest": "3.1.4",
-        "webpack": "5.99.8"
+        "webpack": "5.99.9"
     },
     "directories": {
         "lib": "lib"
