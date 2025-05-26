@@ -30,37 +30,39 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
 
     return (
         <Page title={`${tittel} - Søknad om ungdomsprogramytelse`}>
-            <VStack gap="8">
-                <SøknadHeader />
-                <div>
-                    <Box paddingBlock="6 5">
-                        <Heading level="2" size="large">
-                            {tittel}
-                        </Heading>
-                    </Box>
-                    <FormProgress
-                        totalSteps={søknadSteg.length}
-                        activeStep={activeIndex}
-                        onStepChange={handleOnProgressStepChange}>
-                        <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                            Kontonummer for utbetaling
-                        </FormProgress.Step>
-                        <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
-                            Barn
-                        </FormProgress.Step>
-                        <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
-                    </FormProgress>
-                </div>
+            <section aria-label="Skjema">
+                <VStack gap="8">
+                    <SøknadHeader />
+                    <div>
+                        <Box paddingBlock="6 5">
+                            <Heading level="2" size="large">
+                                {tittel}
+                            </Heading>
+                        </Box>
+                        <FormProgress
+                            totalSteps={søknadSteg.length}
+                            activeStep={activeIndex}
+                            onStepChange={handleOnProgressStepChange}>
+                            <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
+                                Kontonummer for utbetaling
+                            </FormProgress.Step>
+                            <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
+                                Barn
+                            </FormProgress.Step>
+                            <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
+                        </FormProgress>
+                    </div>
 
-                <Box marginBlock="4 0">{children}</Box>
+                    <Box marginBlock="4 0">{children}</Box>
 
-                <StegFooter
-                    slett={{
-                        tittel: 'Avbryt søknad',
-                        onClick: avbrytOgSlett,
-                    }}
-                />
-            </VStack>
+                    <StegFooter
+                        slett={{
+                            tittel: 'Avbryt søknad',
+                            onClick: avbrytOgSlett,
+                        }}
+                    />
+                </VStack>
+            </section>
         </Page>
     );
 };

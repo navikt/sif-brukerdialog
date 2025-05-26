@@ -50,63 +50,63 @@ const OppsummeringSteg = () => {
 
     return (
         <SøknadSteg tittel="Oppsummering" steg={Steg.OPPSUMMERING}>
-            <form
-                onSubmit={(evt) => {
-                    evt.preventDefault();
-                    setBekreftError(undefined);
-                    handleOnSubmit();
-                }}>
-                <VStack gap="6">
-                    <VStack gap="4">
-                        <FormSummary>
-                            <FormSummary.Header>
-                                <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>
-                                <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
-                            </FormSummary.Header>
-                            <FormSummary.Answers>
-                                {kontonummerInfo.harKontonummer ? (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>
-                                            Stemmer det at kontonummeret ditt er {kontonummerInfo.formatertKontonummer}?
-                                        </FormSummary.Label>
-                                        <FormSummary.Value>
-                                            {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                ) : (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>Kontonummer for utbetaling</FormSummary.Label>
-                                        <FormSummary.Value>
-                                            Vi har ikke registrert noe kontonummer på deg.
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                )}
-                            </FormSummary.Answers>
-                        </FormSummary>
-                        <FormSummary>
-                            <FormSummary.Header>
-                                <FormSummary.Heading level="2">Barn</FormSummary.Heading>
-                                <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.BARN)} />
-                            </FormSummary.Header>
-                            <FormSummary.Answers>
+            <VStack gap="6">
+                <VStack gap="4">
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>
+                            <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            {kontonummerInfo.harKontonummer ? (
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Barn vi har registrert på deg:</FormSummary.Label>
+                                    <FormSummary.Label>
+                                        Stemmer det at kontonummeret ditt er {kontonummerInfo.formatertKontonummer}?
+                                    </FormSummary.Label>
                                     <FormSummary.Value>
-                                        <BarnInfo barn={barn} />
+                                        {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES ? 'Ja' : 'Nei'}
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
+                            ) : (
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>{getBarnSpørsmål(barn.length)}</FormSummary.Label>
+                                    <FormSummary.Label>Kontonummer for utbetaling</FormSummary.Label>
                                     <FormSummary.Value>
-                                        {svar[Spørsmål.BARN] === YesOrNo.YES ? 'Ja' : 'Nei'}
+                                        Vi har ikke registrert noe kontonummer på deg.
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
-                            </FormSummary.Answers>
-                        </FormSummary>
-                    </VStack>
+                            )}
+                        </FormSummary.Answers>
+                    </FormSummary>
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Barn</FormSummary.Heading>
+                            <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.BARN)} />
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Barn vi har registrert på deg:</FormSummary.Label>
+                                <FormSummary.Value>
+                                    <BarnInfo barn={barn} />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>{getBarnSpørsmål(barn.length)}</FormSummary.Label>
+                                <FormSummary.Value>
+                                    {svar[Spørsmål.BARN] === YesOrNo.YES ? 'Ja' : 'Nei'}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    </FormSummary>
+                </VStack>
 
-                    {søknadError ? <Alert variant="error">{søknadError}</Alert> : null}
+                {søknadError ? <Alert variant="error">{søknadError}</Alert> : null}
 
+                <form
+                    onSubmit={(evt) => {
+                        evt.preventDefault();
+                        setBekreftError(undefined);
+                        handleOnSubmit();
+                    }}>
                     <CheckboxGroup
                         name="bekrefterInnsending"
                         hideLegend={true}
@@ -124,14 +124,13 @@ const OppsummeringSteg = () => {
                     </CheckboxGroup>
 
                     {error ? <ApiErrorAlert error={error} /> : null}
-
                     <SkjemaFooter
                         pending={isPending}
                         forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
                         submit={{ tittel: 'Send søknad', disabled: !!søknadError, erSendInn: true }}
                     />
-                </VStack>
-            </form>
+                </form>
+            </VStack>
         </SøknadSteg>
     );
 };
