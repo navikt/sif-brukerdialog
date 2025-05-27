@@ -13,7 +13,7 @@ export const tidspunktForAleneomsorgMessages_nn: Record<keyof typeof tidspunktFo
     'validation.tidspunktForAleneomsorg.noValue': 'Du må oppgje kva år du vart åleine om omsorga for barnet.',
     'validation.tidspunktForAleneomsorg.dato.dateHasNoValue':
         'Du må oppgje kva dato du vart åleine om omsorga for barnet.',
-    'validation.tidspunktForAleneomsorg.dato.dateIsAfterMax': 'Du må oppgje dagens dato eller tidlegare.',
+    'validation.tidspunktForAleneomsorg.dato.dateIsAfterMax': 'Du må oppgje dags dato eller tidlegare.',
     'validation.tidspunktForAleneomsorg.dato.dateIsBeforeMin':
         'Du kan ikkje oppgje dato tidlegare enn to år frå dagens år.',
     'validation.tidspunktForAleneomsorg.dato.dateHasInvalidFormat':

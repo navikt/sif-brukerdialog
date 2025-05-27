@@ -30,7 +30,7 @@ export const utenlandskNæringMessages_nn: Record<UtenlandskNæringMessageKeys, 
     '@forms.utenlandskNæringForm.fraOgMed.dateHasNoValue':
         'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateIsAfterMax':
-        'Startdatoen for når du starta verksemda må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
+        'Startdatoen for når du starta verksemda må vera før dags dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateHasInvalidFormat':
         'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate':
@@ -40,7 +40,7 @@ export const utenlandskNæringMessages_nn: Record<UtenlandskNæringMessageKeys, 
     '@forms.utenlandskNæringForm.tilOgMed.dateIsBeforeMin':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateIsAfterMax':
-        'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dagens dato. Skriv inn eller vel sluttdato frå datoveljaren.',
+        'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dags dato. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateHasInvalidFormat':
         'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.tilOgMed.toDateIsBeforeFromDate':

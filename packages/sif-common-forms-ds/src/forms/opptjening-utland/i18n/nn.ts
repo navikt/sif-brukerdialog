@@ -17,7 +17,7 @@ export const opptjeningUtlandMessages_nn: Record<OpptjeningUtlandMessageKeys, st
     '@forms.opptjeningUtlandForm.fom.dateHasNoValue':
         'Du må oppgje når du starta å jobba. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.opptjeningUtlandForm.fom.dateIsAfterMax':
-        'Datoen for når du starta å jobba kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når du starta å jobba kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.opptjeningUtlandForm.fom.dateIsBeforeMin':
         'Datoen for når du starta å jobba kan ikkje vera før {dato}. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.opptjeningUtlandForm.fom.dateHasInvalidFormat':
