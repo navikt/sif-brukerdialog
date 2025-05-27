@@ -23,13 +23,14 @@ initApiClients();
 
 const App = () => {
     const env = getAppEnv();
+    const { telemetryCollectorURL } = nais;
     return (
         <ThemeProvider>
             <VeilederProvider>
                 <FaroProvider
                     appVersion={env.APP_VERSION}
                     applicationKey={UngdomsytelseVeilederApp.key}
-                    telemetryCollectorURL={nais.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
+                    telemetryCollectorURL={telemetryCollectorURL}
                     isActive={env.SIF_PUBLIC_USE_FARO}>
                     <ErrorBoundary fallback={<AppErrorFallback />}>
                         <QueryClientProvider client={queryClient}>
