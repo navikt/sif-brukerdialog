@@ -10,6 +10,7 @@ const localSchema = z.object({
         .union([z.boolean(), z.string()])
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
+    SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: z.string().optional(),
 });
 
 export const appEnvSchema = baseEnvSchema.merge(ungDeltakelseOpplyserEnvSchema).merge(localSchema);
