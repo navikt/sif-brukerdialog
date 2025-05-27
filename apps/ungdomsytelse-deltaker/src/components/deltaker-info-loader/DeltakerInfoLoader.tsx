@@ -8,7 +8,8 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
-import { Theme } from '@navikt/ds-react';
+import { Alert, Theme, VStack } from '@navikt/ds-react';
+import { isDevMode } from '@navikt/sif-common-env';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -40,13 +41,24 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
+    const deltakerHarSøkt =
+        deltakelsePeriode.søktTidspunkt !== undefined || (isDevMode() && deltakelsePeriode.oppgaver.length > 0);
+
     return (
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakelsePeriode.søktTidspunkt !== undefined && pathname.includes('kvittering') === false ? (
+            {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
                 <Theme hasBackground={false}>
+                    {deltakelsePeriode.søktTidspunkt === undefined && (
+                        <VStack marginBlock="0 2" className="pl-10 pr-10  max-w-[800px] mx-auto ">
+                            <Alert variant="warning" size="small">
+                                Kun i test/utvikling: Deltakelse er søkt for før vi endret datastruktur, så
+                                søktTidspunkt settes til dagens dato.
+                            </Alert>
+                        </VStack>
+                    )}
                     <InnsynApp />
                 </Theme>
             ) : (
