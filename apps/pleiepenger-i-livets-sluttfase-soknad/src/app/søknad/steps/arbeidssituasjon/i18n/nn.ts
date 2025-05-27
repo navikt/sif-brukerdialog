@@ -4,7 +4,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.nextButtonLabel': 'Fortsett',
+    'step.arbeidssituasjon.nextButtonLabel': 'Fortset',
 
     'steg.arbeidssituasjon.tittel': 'Arbeidsgjevarar',
 
@@ -13,7 +13,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.veileder.2':
         'Om du er arbeidstakar og er usikker på kva som er din normale arbeidstid, finn du svaret i arbeidskontrakta din. Eventuelt kan du spørje arbeidsgjevaren din.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
-        'Nedanfor ser du {antall, plural, one {arbeidsgivaren} other {arbeidsgivarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige må du stadfeste om du er, eller har vore, tilsett der.',
+        'Nedanfor ser du {antall, plural, one {arbeidsgjevar} other {arbeidsgjevarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige må du stadfeste om du er, eller har vore, tilsett der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
         'Me har ikkje funne nokon arbeidsgjevarar registrert på deg i AA-registeret.',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
