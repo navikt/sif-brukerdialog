@@ -28,7 +28,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.spm':
         'Kva var situasjonen din rett før du starta hos denne arbeidsgjevaren?',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.JOBBET_HOS_ANNEN_ARBEIDSGIVER':
-        'Eg jobba for ein annan arbeidsgivar',
+        'Eg jobba for ein annan arbeidsgjevar',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.VAR_FRILANSER': 'Eg var frilansar',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.VAR_SELVSTENDIGE': 'Eg var sjølvstendig næringsdrivande',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.SØKTE_ANDRE_UTBETALINGER':

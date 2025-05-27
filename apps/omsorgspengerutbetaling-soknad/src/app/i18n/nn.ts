@@ -111,9 +111,9 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.arbeidssituasjon.situasjon.frilanserOgSn': 'frilansar og sjølvstendig næringsdrivande',
 
     'validation.arbeidssituasjon_tidsrom.arbeidsperiodeStarterEtterFraværsperiode':
-        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
+        'Du har registrert fråværsdagar utanfor perioden du har oppgjeve som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
     'validation.arbeidssituasjon_tidsrom.arbeidsperiodeSlutterFørEllerIFraværsperiode':
-        'Du har registrert fråværsdagar utanfor perioden du har oppgitt som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
+        'Du har registrert fråværsdagar utanfor perioden du har oppgjeve som {situasjon}. Du kan berre søkje for dagar du har vore frilansar eller sjølvstendig næringsdrivande.',
 
     'validation.aktivitetFravær.noValue': 'Du må velje kva arbeid du hadde fråvær frå {dato}.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste at opplysningane er riktige.',

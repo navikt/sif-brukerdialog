@@ -15,7 +15,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
     'step.oppsummering.pleietrengende.navn': 'Namn',
     'step.oppsummeringpleietrengende.harIkkeFnr':
-        'Oppgitt grunn for at vedkomande ikkje har fødselsnummer eller D-nummer',
+        'Oppgjeve grunn for at vedkomande ikkje har fødselsnummer eller D-nummer',
     'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bur i utlandet',
     'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Anna',
     'step.oppsummeringpleietrengende.id': 'ID for personen du pleier',
