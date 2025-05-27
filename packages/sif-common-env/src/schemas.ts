@@ -25,6 +25,7 @@ export enum EnvKey {
     'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH' = 'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH',
     'UNG_DELTAKELSE_OPPLYSER_API_SCOPE' = 'UNG_DELTAKELSE_OPPLYSER_API_SCOPE',
     'UNG_DELTAKELSE_OPPLYSER_API_URL' = 'UNG_DELTAKELSE_OPPLYSER_API_URL',
+    'NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL' = 'NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL',
 }
 /**
  * ZOD schemas
@@ -35,6 +36,7 @@ export const baseEnvSchema = z.object({
     [EnvKey.APP_VERSION]: z.string().min(1),
     [EnvKey.PUBLIC_PATH]: z.string().min(1),
     [EnvKey.GITHUB_REF_NAME]: z.string().min(1),
+    [EnvKey.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
 });
 
 export const commonEnvSchema = baseEnvSchema.extend({

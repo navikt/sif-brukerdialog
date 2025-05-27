@@ -6,6 +6,10 @@ const localSchema = z.object({
         .union([z.boolean(), z.string()])
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
+    SIF_PUBLIC_USE_FARO: z
+        .union([z.boolean(), z.string()])
+        .optional()
+        .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
 });
 
 export const appEnvSchema = baseEnvSchema.merge(ungDeltakelseOpplyserEnvSchema).merge(localSchema);

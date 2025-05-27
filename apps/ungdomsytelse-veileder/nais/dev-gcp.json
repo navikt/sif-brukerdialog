@@ -19,6 +19,7 @@
             }
         ]
     },
+    "faro": true,
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",
@@ -29,6 +30,7 @@
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
-        "SIF_PUBLIC_USE_MSW": false
+        "SIF_PUBLIC_USE_MSW": false,
+        "SIF_PUBLIC_USE_FARO": true
     }
 }

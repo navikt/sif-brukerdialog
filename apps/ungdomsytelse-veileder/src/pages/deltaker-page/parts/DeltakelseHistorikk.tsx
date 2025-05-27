@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useDeltakelserHistorikk } from '../../../hooks/useDeltakelseHistorikk';
 import DeltakelseHistorikkListe from '../../../components/deltakelse-historikk-liste/DeltakelseHistorikkListe';
@@ -59,7 +58,6 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
         );
     }
     if (historikk.isError) {
-        console.error('Feil ved henting av historikk:', historikk.error);
         return (
             <VStack gap="4">
                 <HistorikkHeader />

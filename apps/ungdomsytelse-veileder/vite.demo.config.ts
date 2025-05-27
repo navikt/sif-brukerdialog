@@ -16,6 +16,7 @@ const appSettings: AppEnv = {
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:dusseldorf:ung-deltakelse-opplyser',
 
     SIF_PUBLIC_USE_MSW: true,
+    SIF_PUBLIC_USE_FARO: true,
 };
 
 const veileder = { name: 'Pål', NAVident: 'Z999999' };
