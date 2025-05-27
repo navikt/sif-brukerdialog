@@ -50,6 +50,7 @@ export const getBaseEnv = (): BaseEnv => {
         [EnvKey.APP_VERSION]: getRequiredEnv(EnvKey.APP_VERSION),
         [EnvKey.PUBLIC_PATH]: getRequiredEnv(EnvKey.PUBLIC_PATH),
         [EnvKey.GITHUB_REF_NAME]: getRequiredEnv(EnvKey.GITHUB_REF_NAME),
+        [EnvKey.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: getMaybeEnv(EnvKey.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL),
     };
 };
 

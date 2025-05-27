@@ -25,7 +25,7 @@ export enum EnvKey {
     'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH' = 'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH',
     'UNG_DELTAKELSE_OPPLYSER_API_SCOPE' = 'UNG_DELTAKELSE_OPPLYSER_API_SCOPE',
     'UNG_DELTAKELSE_OPPLYSER_API_URL' = 'UNG_DELTAKELSE_OPPLYSER_API_URL',
-    'NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL' = 'NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL',
+    'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL' = 'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL',
 }
 /**
  * ZOD schemas
@@ -36,7 +36,6 @@ export const baseEnvSchema = z.object({
     [EnvKey.APP_VERSION]: z.string().min(1),
     [EnvKey.PUBLIC_PATH]: z.string().min(1),
     [EnvKey.GITHUB_REF_NAME]: z.string().min(1),
-    [EnvKey.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
 });
 
 export const commonEnvSchema = baseEnvSchema.extend({
@@ -50,6 +49,7 @@ export const commonEnvSchema = baseEnvSchema.extend({
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string().min(1),
+    [EnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
 });
 
 export type BaseEnv = z.infer<typeof baseEnvSchema>;

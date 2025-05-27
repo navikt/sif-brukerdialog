@@ -17,7 +17,7 @@ const appSettings: AppEnv = {
 
     SIF_PUBLIC_USE_MSW: true,
     SIF_PUBLIC_USE_FARO: true,
-    NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: 'http://localhost:12347/collect',
+    SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
 };
 
 const veileder = { name: 'Pål', NAVident: 'Z999999' };

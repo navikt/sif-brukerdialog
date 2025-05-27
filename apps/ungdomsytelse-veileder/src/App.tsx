@@ -28,7 +28,7 @@ const App = () => {
                 <FaroProvider
                     appVersion={env.APP_VERSION}
                     applicationKey={UngdomsytelseVeilederApp.key}
-                    telemetryCollectorURL={env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
+                    telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
                     isActive={env.SIF_PUBLIC_USE_FARO}>
                     <ErrorBoundary fallback={<AppErrorFallback />}>
                         <QueryClientProvider client={queryClient}>
