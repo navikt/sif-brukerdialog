@@ -34,7 +34,7 @@ const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): 
             });
         } else {
             innslag.push({
-                tidspunkt: dayjs(endring.endretTidspunkt).toDate(),
+                tidspunkt: dayjs.utc(endring.endretTidspunkt).toDate(),
                 revisjonstype: endring.revisjonstype,
                 utfører: endring.endretAv,
             });
