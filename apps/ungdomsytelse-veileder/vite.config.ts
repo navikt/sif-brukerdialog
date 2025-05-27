@@ -20,7 +20,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
         rollupOptions: {
-            external: ['./src/nais.js'],
+            external: ['./nais.js'],
         },
     },
     css: {
