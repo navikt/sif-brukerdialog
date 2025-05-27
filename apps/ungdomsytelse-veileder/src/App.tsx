@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
+import nais from '../nais.js';
 import AppRoutes from './AppRoutes';
 import AppHeader from './components/app-header/AppHeader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
@@ -28,7 +29,7 @@ const App = () => {
                 <FaroProvider
                     appVersion={env.APP_VERSION}
                     applicationKey={UngdomsytelseVeilederApp.key}
-                    telemetryCollectorURL={env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
+                    telemetryCollectorURL={nais.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
                     isActive={env.SIF_PUBLIC_USE_FARO}>
                     <ErrorBoundary fallback={<AppErrorFallback />}>
                         <QueryClientProvider client={queryClient}>
