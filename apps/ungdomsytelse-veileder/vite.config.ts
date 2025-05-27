@@ -19,9 +19,6 @@ export default defineConfig({
     resolve: {},
     build: {
         sourcemap: true,
-        rollupOptions: {
-            external: ['./nais.js'],
-        },
     },
     css: {
         preprocessorOptions: {

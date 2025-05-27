@@ -31,6 +31,7 @@
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
         "SIF_PUBLIC_USE_MSW": false,
-        "SIF_PUBLIC_USE_FARO": true
+        "SIF_PUBLIC_USE_FARO": true,
+        "NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

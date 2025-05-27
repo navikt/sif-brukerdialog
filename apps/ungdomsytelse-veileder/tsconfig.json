@@ -13,7 +13,6 @@
         "./storybook/**/*",
         "./vite.config.ts",
         "vite.demo.config.ts",
-        "vite.storybook.config.ts",
-        "nais.js"
+        "vite.storybook.config.ts"
     ]
 }

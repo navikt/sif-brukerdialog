@@ -61,9 +61,6 @@ export default defineConfig({
         sourcemap: true,
         outDir: './dist-demo',
         emptyOutDir: true,
-        rollupOptions: {
-            external: ['./src/nais.js'],
-        },
     },
     css: {
         preprocessorOptions: {
