@@ -9,12 +9,14 @@ import { registrertDeltakerMock } from './data/registrertDeltakerMock';
 import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { v4 } from 'uuid';
 
+interface DbDeltakelse {
+    deltakelse: DeltakelseOpplysningDto;
+    historikk: DeltakelseHistorikkDto[];
+}
+
 interface TempDB {
     deltakere: DeltakerPersonalia[];
-    deltakelser: Array<{
-        deltakelse: DeltakelseOpplysningDto;
-        historikk: DeltakelseHistorikkDto[];
-    }>;
+    deltakelser: DbDeltakelse[];
 }
 
 const localStorageKey = 'ungdomsytelse-veileder';
@@ -109,13 +111,16 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
-    const updatedDeltakelse = {
+    const dbDeltakelse: DbDeltakelse = {
         ...deltakelse,
-        fraOgMed: dato,
+        deltakelse: {
+            ...deltakelse.deltakelse,
+            fraOgMed: dato,
+        },
     };
-    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? updatedDeltakelse : d));
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
     save(db);
-    return updatedDeltakelse;
+    return dbDeltakelse.deltakelse;
 };
 
 const endreSluttdato = (deltakelseId: string, dato: string) => {
@@ -123,13 +128,16 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
-    const updatedDeltakelse = {
+    const dbDeltakelse: DbDeltakelse = {
         ...deltakelse,
-        tilOgMed: dato,
+        deltakelse: {
+            ...deltakelse.deltakelse,
+            tilOgMed: dato,
+        },
     };
-    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? updatedDeltakelse : d));
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
     save(db);
-    return updatedDeltakelse;
+    return dbDeltakelse.deltakelse;
 };
 
 export const mockUtils = {
