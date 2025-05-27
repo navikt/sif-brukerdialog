@@ -62,7 +62,7 @@ export default defineConfig({
         outDir: './dist-demo',
         emptyOutDir: true,
         rollupOptions: {
-            external: ['./nais.js'],
+            external: ['./src/nais.js'],
         },
     },
     css: {
