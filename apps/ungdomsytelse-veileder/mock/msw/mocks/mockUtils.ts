@@ -1,13 +1,20 @@
 // /* eslint-disable no-console */
 
-import { DeltakelseOpplysningDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    DeltakelseHistorikkDto,
+    DeltakelseOpplysningDto,
+    DeltakerPersonalia,
+} from '@navikt/ung-deltakelse-opplyser-api';
 import { registrertDeltakerMock } from './data/registrertDeltakerMock';
 import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { v4 } from 'uuid';
 
 interface TempDB {
     deltakere: DeltakerPersonalia[];
-    deltakelser: DeltakelseOpplysningDto[];
+    deltakelser: Array<{
+        deltakelse: DeltakelseOpplysningDto;
+        historikk: DeltakelseHistorikkDto[];
+    }>;
 }
 
 const localStorageKey = 'ungdomsytelse-veileder';
@@ -16,7 +23,12 @@ const localStorageKey = 'ungdomsytelse-veileder';
 
 const initialDb: TempDB = {
     deltakere: [registrertDeltakerMock.deltakerPersonalia, nyDeltakerMock.deltakerPersonalia],
-    deltakelser: [registrertDeltakerMock.deltakelse],
+    deltakelser: [
+        {
+            deltakelse: registrertDeltakerMock.deltakelse,
+            historikk: registrertDeltakerMock.deltakelseHistorikk,
+        },
+    ],
 };
 
 const save = (db: TempDB) => {
@@ -48,7 +60,14 @@ const getDeltakerByDeltakerId = (deltakerId: string) => {
 };
 
 const getDeltakelser = (deltakerId: string) => {
-    return db.deltakelser.filter((deltakelse) => deltakelse.deltaker.id === deltakerId);
+    return db.deltakelser
+        .filter(({ deltakelse }) => deltakelse.deltaker.id === deltakerId)
+        .map((data) => data.deltakelse);
+};
+
+const getDeltakelseHistorikk = (deltakelseId: string): DeltakelseHistorikkDto[] => {
+    const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
+    return deltakelse ? deltakelse.historikk : [];
 };
 
 const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
@@ -68,7 +87,10 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         søktTidspunkt: undefined,
         oppgaver: [],
     };
-    db.deltakelser.push(deltakelse);
+    db.deltakelser.push({
+        deltakelse,
+        historikk: [],
+    });
     db.deltakere = db.deltakere.map((d) => {
         if (d.deltakerIdent === deltakerIdent) {
             return {
@@ -83,7 +105,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
 };
 
 const endreStartdato = (deltakelseId: string, dato: string) => {
-    const deltakelse = db.deltakelser.find((d) => d.id === deltakelseId);
+    const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
@@ -91,13 +113,13 @@ const endreStartdato = (deltakelseId: string, dato: string) => {
         ...deltakelse,
         fraOgMed: dato,
     };
-    db.deltakelser = db.deltakelser.map((d) => (d.id === deltakelseId ? updatedDeltakelse : d));
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? updatedDeltakelse : d));
     save(db);
     return updatedDeltakelse;
 };
 
 const endreSluttdato = (deltakelseId: string, dato: string) => {
-    const deltakelse = db.deltakelser.find((d) => d.id === deltakelseId);
+    const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
         throw new Error('Fant ikke deltakelse med id');
     }
@@ -105,7 +127,7 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
         ...deltakelse,
         tilOgMed: dato,
     };
-    db.deltakelser = db.deltakelser.map((d) => (d.id === deltakelseId ? updatedDeltakelse : d));
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? updatedDeltakelse : d));
     save(db);
     return updatedDeltakelse;
 };
@@ -115,6 +137,7 @@ export const mockUtils = {
     endreStartdato,
     findDeltaker,
     getDeltakelser,
+    getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
     meldInnDeltaker,
     reset,

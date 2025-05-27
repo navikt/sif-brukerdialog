@@ -2,7 +2,7 @@
 import { delay, http, HttpResponse } from 'msw';
 import { mockUtils } from '../mocks/mockUtils';
 
-const slowDown = (ms: number) => (1 + 1 === 2 ? Promise.resolve() : delay(ms));
+const slowDown = (ms: number) => (1 + 1 === 1 ? Promise.resolve() : delay(ms));
 
 export const handlers = [
     http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
@@ -31,6 +31,13 @@ export const handlers = [
 
     http.delete('**/veileder/register/deltakelse/:deltakelseId/fjern', async () => {
         return new HttpResponse(null, { status: 403 });
+    }),
+
+    http.get('**/veileder/register/deltakelse/:deltakelseId/historikk', async ({ params }) => {
+        const { deltakelseId } = params;
+        const data = mockUtils.getDeltakelseHistorikk(deltakelseId as string);
+        await slowDown(75);
+        return data ? HttpResponse.json(data) : HttpResponse.error();
     }),
 
     http.get('**/veileder/register/deltaker/:deltakerId/deltakelser', async ({ params }) => {

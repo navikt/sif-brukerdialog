@@ -3,6 +3,7 @@ import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
 import SlettDeltakelseInfo from './SlettDeltakelseInfo';
 import DeltakerInfo from './DeltakerInfo';
+import DeltakelseHistorikk from './DeltakelseHistorikk';
 
 interface Props {
     deltaker: Deltaker;
@@ -18,9 +19,11 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
         );
     }
     if (deltakelser.length > 1) {
-        <VStack maxWidth="30rem pb-8 pt-8">
-            <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
-        </VStack>;
+        return (
+            <VStack maxWidth="30rem pb-8 pt-8">
+                <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
+            </VStack>
+        );
     }
 
     const deltakelse = deltakelser[0];
@@ -39,6 +42,8 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
 
                 <SlettDeltakelseInfo deltakelse={deltakelse} deltaker={deltaker} />
+
+                <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
         </Box>
     );

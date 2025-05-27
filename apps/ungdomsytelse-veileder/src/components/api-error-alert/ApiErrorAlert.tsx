@@ -7,6 +7,7 @@ interface Props {
 }
 
 const ApiErrorAlert = ({ error, detaljert }: Props) => {
+    console.error(error);
     return (
         <Alert variant="error">
             {isApiAxiosError(error) ? (
@@ -26,7 +27,7 @@ const ApiErrorAlert = ({ error, detaljert }: Props) => {
                     )}
                 </VStack>
             ) : (
-                <>error.message</>
+                <>{error.message}</>
             )}
         </Alert>
     );
