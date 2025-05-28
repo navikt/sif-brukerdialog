@@ -1,10 +1,9 @@
-import { Alert, Box, Button, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
 import SlettDeltakelseInfo from './SlettDeltakelseInfo';
 import DeltakerInfo from './DeltakerInfo';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
-import { useFaroInstance } from '@navikt/sif-common-faro';
 
 interface Props {
     deltaker: Deltaker;
@@ -12,7 +11,6 @@ interface Props {
 }
 
 const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
-    const { logInfo, logError } = useFaroInstance();
     if (deltakelser.length === 0) {
         return (
             <VStack maxWidth="30rem" marginBlock="8 8">
@@ -39,7 +37,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </HStack>
                 ) : null}
 
-                <HStack gap="2">
+                {/* <HStack gap="2">
                     <Button
                         type="button"
                         variant="secondary"
@@ -60,7 +58,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                         }}>
                         Trigger info
                     </Button>
-                </HStack>
+                </HStack> */}
 
                 <DeltakerInfo deltaker={deltaker} />
 
