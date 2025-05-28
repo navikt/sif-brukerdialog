@@ -24,6 +24,8 @@ const StartPage = () => {
         navigate(`/deltaker/${deltakelse.deltaker.id}`);
     };
 
+    console.log((window as any).faro);
+
     return (
         <BoxNew background="default" paddingBlock="0">
             <AppPage>

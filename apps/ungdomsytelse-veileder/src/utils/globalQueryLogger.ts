@@ -15,12 +15,8 @@ export const GlobalQueryLogger = () => {
                 const query = event.query;
                 const state = query.state;
                 if (state.status === 'error' && state.error) {
-                    faro.api.pushError(state.error, {
-                        context: {
-                            queryKey: query.queryKey,
-                            source: 'TanStackQuery',
-                        },
-                    });
+                    // console.error('Query error:', JSON.stringify(state.error));
+                    faro.api.pushError(state.error, { type: 'ApiQueryError' });
                 }
             }
         });
@@ -30,12 +26,8 @@ export const GlobalQueryLogger = () => {
                 const mutation = event.mutation;
                 const state = mutation.state;
                 if (state.status === 'error' && state.error) {
-                    faro.api.pushError(state.error, {
-                        context: {
-                            mutationKey: JSON.stringify(mutation.options.mutationKey),
-                            source: 'TanStackMutation',
-                        },
-                    });
+                    // console.error('Mutation error:', state.error);
+                    faro.api.pushError(state.error, { type: 'ApiMutateError' });
                 }
             }
         });
