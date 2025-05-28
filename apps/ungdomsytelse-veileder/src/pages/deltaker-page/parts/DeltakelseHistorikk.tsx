@@ -1,8 +1,7 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useDeltakelserHistorikk } from '../../../hooks/useDeltakelseHistorikk';
 import DeltakelseHistorikkListe from '../../../components/deltakelse-historikk-liste/DeltakelseHistorikkListe';
-import { DeltakelseHistorikkDto, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
-import dayjs from 'dayjs';
+import { getDeltakelseHistorikkTilInnslag } from '../../../utils/deltakelseUtils';
 
 interface Props {
     deltakelseId?: string;
@@ -16,34 +15,8 @@ const HistorikkHeader = () => {
     );
 };
 
-export interface DeltakelseHistorikkInnslag {
-    tidspunkt: Date;
-    revisjonstype: Revisjonstype;
-    utfører: string;
-}
-
-const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
-    const innslag: DeltakelseHistorikkInnslag[] = [];
-    historikk.forEach((endring) => {
-        if (endring.revisjonstype === Revisjonstype.OPPRETTET) {
-            innslag.push({
-                tidspunkt: dayjs.utc(endring.opprettetTidspunkt).toDate(),
-                revisjonstype: endring.revisjonstype,
-                utfører: endring.opprettetAv || 'ukjent',
-            });
-        } else {
-            innslag.push({
-                tidspunkt: dayjs.utc(endring.endretTidspunkt).toDate(),
-                revisjonstype: endring.revisjonstype,
-                utfører: endring.endretAv,
-            });
-        }
-    });
-    return innslag.sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
-};
-
 const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
-    const historikk = useDeltakelserHistorikk(deltakelseId || '');
+    const historikk = useDeltakelserHistorikk(deltakelseId || '', !!deltakelseId);
 
     if (historikk.isLoading) {
         return (
@@ -72,7 +45,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     return (
         <VStack gap="1">
             <HistorikkHeader />
-            <DeltakelseHistorikkListe historikkInnslag={mapDeltakelseHistorikkTilInnslag(historikk.data || [])} />
+            <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>
     );
 };

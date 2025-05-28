@@ -1,6 +1,8 @@
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
+import { DeltakelseHistorikkDto, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
+import { DeltakelseHistorikkInnslag } from '../types';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
@@ -59,4 +61,39 @@ export const getStartdatobegrensningForDeltaker = (
         from,
         to,
     };
+};
+
+export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto): DeltakelseHistorikkInnslag => {
+    switch (historikk.revisjonstype) {
+        case Revisjonstype.OPPRETTET:
+            return {
+                tidspunkt: dayjs.utc(historikk.opprettetTidspunkt).toDate(),
+                revisjonstype: historikk.revisjonstype,
+                utfører: historikk.opprettetAv || 'ukjent',
+            };
+        case Revisjonstype.ENDRET:
+            return {
+                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
+                revisjonstype: historikk.revisjonstype,
+                utfører: historikk.endretAv || 'ukjent',
+            };
+        case Revisjonstype.SLETTET:
+            return {
+                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
+                revisjonstype: historikk.revisjonstype,
+                utfører: historikk.endretAv || 'ukjent',
+            };
+        case Revisjonstype.UKJENT:
+            return {
+                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
+                revisjonstype: historikk.revisjonstype,
+                utfører: historikk.endretAv || 'ukjent',
+            };
+    }
+};
+
+export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
+    return historikk
+        .map(mapDeltakelseHistorikkTilInnslag)
+        .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
 };

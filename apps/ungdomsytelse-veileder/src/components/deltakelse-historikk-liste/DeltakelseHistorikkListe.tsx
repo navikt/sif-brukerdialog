@@ -1,7 +1,9 @@
-import { Table } from '@navikt/ds-react';
-import { DeltakelseHistorikkInnslag } from '../../pages/deltaker-page/parts/DeltakelseHistorikk';
+import { Add } from '@navikt/ds-icons';
+import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkInnslag } from '../../types';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
@@ -20,28 +22,61 @@ const getRevisjonstypeTekst = (type: Revisjonstype): string => {
     }
 };
 
-const DeltakelseHistorikkListe = ({ historikkInnslag: historikk = [] }: Props) => {
+const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
+    const [antall, setAntall] = useState(5);
+    const [focusIndex, setFocusIndex] = useState<number | undefined>();
+
+    const totalt = useMemo(() => historikkInnslag.length, [historikkInnslag]);
+
+    const ref = useRef<HTMLTableRowElement>(null);
+
+    useEffect(() => {
+        if (focusIndex && ref.current) {
+            ref.current.focus();
+            setFocusIndex(undefined);
+        }
+    }, [antall, focusIndex]);
+
+    const visFlerehistorikkInnslag = () => {
+        setFocusIndex(antall);
+        setAntall(Math.min(historikkInnslag.length, antall + 10));
+    };
+
+    const synligeHistorikkInnslag = historikkInnslag.slice(0, antall);
+
     return (
-        <Table zebraStripes>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell scope="col">Tidspunkt</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Endring</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {historikk.map(({ revisjonstype, tidspunkt, utfører }, i) => {
-                    return (
-                        <Table.Row key={i}>
-                            <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
-                            <Table.DataCell>{getRevisjonstypeTekst(revisjonstype)}</Table.DataCell>
-                            <Table.DataCell>{utfører}</Table.DataCell>
-                        </Table.Row>
-                    );
-                })}
-            </Table.Body>
-        </Table>
+        <VStack gap="2">
+            <Table zebraStripes>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell scope="col">Tidspunkt</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Endring</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {synligeHistorikkInnslag.map(({ revisjonstype, tidspunkt, utfører }, index) => {
+                        return (
+                            <Table.Row key={index} ref={index === focusIndex ? ref : undefined}>
+                                <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
+                                <Table.DataCell>{getRevisjonstypeTekst(revisjonstype)}</Table.DataCell>
+                                <Table.DataCell>{utfører}</Table.DataCell>
+                            </Table.Row>
+                        );
+                    })}
+                </Table.Body>
+            </Table>
+            {antall < totalt ? (
+                <Box className="flex justify-start">
+                    <Button variant="tertiary-neutral" type="button" onClick={visFlerehistorikkInnslag}>
+                        <HStack gap="2" align="center" wrap={false}>
+                            <Add role="presentation" />
+                            Vis flere
+                        </HStack>
+                    </Button>
+                </Box>
+            ) : null}
+        </VStack>
     );
 };
 
