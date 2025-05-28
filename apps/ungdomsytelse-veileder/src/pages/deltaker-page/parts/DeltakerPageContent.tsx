@@ -1,9 +1,10 @@
-import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
 import SlettDeltakelseInfo from './SlettDeltakelseInfo';
 import DeltakerInfo from './DeltakerInfo';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
+import { useFaroInstance } from '@navikt/sif-common-faro';
 
 interface Props {
     deltaker: Deltaker;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
+    const { logInfo, logError } = useFaroInstance();
     if (deltakelser.length === 0) {
         return (
             <VStack maxWidth="30rem" marginBlock="8 8">
@@ -36,6 +38,29 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                         <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
                 ) : null}
+
+                <HStack gap="2">
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={() => {
+                            logError({
+                                name: 'feiltype1',
+                                message: 'Dette er en test-feil',
+                                stack: 'stacktrace her',
+                            } as Error);
+                        }}>
+                        Trigger feil
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={() => {
+                            logInfo(['Hva er dette?', { data: { navn: 'test' } }]);
+                        }}>
+                        Trigger info
+                    </Button>
+                </HStack>
 
                 <DeltakerInfo deltaker={deltaker} />
 

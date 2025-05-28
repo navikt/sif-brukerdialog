@@ -12,6 +12,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
 import { getAppEnv } from './utils/appEnv';
+import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
@@ -22,6 +23,7 @@ initApiClients();
 
 const App = () => {
     const env = getAppEnv();
+
     return (
         <ThemeProvider>
             <VeilederProvider>
@@ -32,6 +34,7 @@ const App = () => {
                     isActive={env.SIF_PUBLIC_USE_FARO}>
                     <ErrorBoundary fallback={<AppErrorFallback />}>
                         <QueryClientProvider client={queryClient}>
+                            <GlobalQueryLogger />
                             <IntlProvider locale="nb" messages={appMessages.nb}>
                                 <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
                                     <AppHeader />

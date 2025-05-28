@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-constant-condition */
 import { delay, http, HttpResponse } from 'msw';
 import { mockUtils } from '../mocks/mockUtils';
@@ -15,10 +16,10 @@ export const handlers = [
             return HttpResponse.json(
                 {
                     type: 'about:blank',
-                    title: 'Not Found',
+                    title: 'Title - Deltaker ikke funnet',
                     status: 404,
-                    detail: 'BlaBla',
-                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                    detail: 'Detail: Deltaker ikke funnet',
+                    instance: '**/oppslag/deltaker',
                 },
                 { status: 404 },
             );
@@ -81,13 +82,14 @@ export const handlers = [
         if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
-                    type: 'about:blank',
-                    title: 'Not Found',
-                    status: 404,
-                    detail: 'BlaBla',
-                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                    type: '/problem-details/internal-server-error',
+                    title: 'Et uventet feil har oppstått',
+                    status: 500,
+                    detail: 'Cannot update previous revision for entity no.nav.ung.deltakelseopplyser.domene.register.UngdomsprogramDeltakelseDAO_historikk and id be10ed2a-9ea7-4d7c-b2a0-1d735a685389 (0 rows modified).',
+                    instance:
+                        'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/deltakelse/be10ed2a-9ea7-4d7c-b2a0-1d735a685389/endre/startdato',
                 },
-                { status: 404 },
+                { status: 500 },
             );
         }
         const { dato } = await request.json();
