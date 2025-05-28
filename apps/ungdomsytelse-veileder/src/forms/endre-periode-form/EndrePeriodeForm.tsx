@@ -136,6 +136,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
+                                            disableWeekends={true}
                                             validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
                                         />
                                     ) : (
@@ -145,6 +146,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={sluttdatoMinMax.from}
                                             maxDate={sluttdatoMinMax.to}
                                             defaultMonth={deltakelse.tilOgMed}
+                                            disableWeekends={true}
                                             validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
                                         />
                                     )}
