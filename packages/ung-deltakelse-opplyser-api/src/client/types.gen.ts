@@ -958,10 +958,10 @@ export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[k
 export type FjernFraProgramData = {
     body?: never;
     path: {
-        deltakelseId: string;
+        deltakerId: string;
     };
     query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/fjern';
+    url: '/veileder/register/deltaker/{deltakerId}/fjern';
 };
 
 export type FjernFraProgramErrors = {

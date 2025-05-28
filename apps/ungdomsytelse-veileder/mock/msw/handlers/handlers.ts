@@ -12,7 +12,7 @@ export const handlers = [
     http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
-        if (1 + 1 === 2) {
+        if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
                     type: 'about:blank',
@@ -79,7 +79,7 @@ export const handlers = [
     }),
 
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request, params }) => {
-        if (1 + 1 === 2) {
+        if (1 + 1 === 3) {
             return HttpResponse.json(
                 {
                     type: '/problem-details/internal-server-error',

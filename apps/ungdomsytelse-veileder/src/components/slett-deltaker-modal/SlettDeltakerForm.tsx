@@ -1,18 +1,17 @@
 import { BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
-import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
 import { useState } from 'react';
+import { Deltaker, formaterNavn } from '@navikt/ung-common';
+import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
 import ApiErrorAlert from '../api-error-alert/ApiErrorAlert';
 
 interface Props {
     deltaker: Deltaker;
-    deltakelse: Deltakelse;
     onCancel: () => void;
-    onDeltakelseSlettet: () => void;
+    onDeltakerSlettet: () => void;
 }
 
-const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlettet }: Props) => {
-    const { error, isPending, mutate } = useSlettDeltakelse(deltaker.id, deltakelse.id);
+const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => {
+    const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
 
@@ -23,14 +22,14 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlett
         if (!bekrefter) {
             setValidationError('Bekreftelse er påkrevd');
         } else {
-            mutate({ deltakelseId: deltakelse.id }, { onSuccess: onDeltakelseSlettet });
+            mutate({ deltakerId: deltaker.id }, { onSuccess: onDeltakerSlettet });
         }
     };
     return (
         <>
             <BodyShort spacing>
-                Du kan slette en deltakelse frem til deltaker har sendt inn en søknad. Men det er noen viktige punkter
-                som du må ivareta hvis du sletter:
+                Du kan slette en deltaker frem til deltaker har sendt inn en søknad. Men det er noen viktige punkter som
+                du må ivareta hvis du sletter:
             </BodyShort>
             <List>
                 <List.Item title="Deltaker må kontaktes">
@@ -48,7 +47,7 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlett
             <form onSubmit={handleSubmit}>
                 <VStack gap="6">
                     <ConfirmationPanel
-                        label={`Jeg bekrefter at deltakelsen for ${formaterNavn(deltaker.navn)} skal slettes`}
+                        label={`Jeg bekrefter at ${formaterNavn(deltaker.navn)} skal slettes som deltaker`}
                         name="bekreft-sletting"
                         error={validationError}
                         onChange={(evt) => {
@@ -58,7 +57,7 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlett
                     />
                     <HStack gap="4">
                         <Button type="submit" variant="primary" loading={isPending}>
-                            Slett deltakelse (kan ikke angres)
+                            Slett deltaker (kan ikke angres)
                         </Button>
                         <Button type="button" variant="secondary" onClick={onCancel}>
                             Avbryt
@@ -71,4 +70,4 @@ const SlettDeltakelseForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSlett
     );
 };
 
-export default SlettDeltakelseForm;
+export default SlettDeltakerForm;

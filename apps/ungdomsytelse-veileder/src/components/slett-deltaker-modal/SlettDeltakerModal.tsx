@@ -1,17 +1,16 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import SlettDeltakelseForm from './SlettDeltakelseForm';
+import { Deltaker } from '@navikt/ung-common';
+import SlettDeltakerForm from './SlettDeltakerForm';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     deltaker: Deltaker;
-    deltakelse: Deltakelse;
     onCancel: () => void;
 }
 
-const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
+const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
 
     const handleOnDeltakelseSlettet = () => {
@@ -34,19 +33,18 @@ const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
             width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
-                    Slett deltakelse
+                    Slett deltaker
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 <Box style={{ minWidth: '600px' }}>
                     {deltakelseSlettet ? (
-                        <Alert variant="success">Deltakelsen er slettet.</Alert>
+                        <Alert variant="success">Deltakeren er slettet.</Alert>
                     ) : (
-                        <SlettDeltakelseForm
-                            deltakelse={deltakelse}
+                        <SlettDeltakerForm
                             deltaker={deltaker}
                             onCancel={onCancel}
-                            onDeltakelseSlettet={handleOnDeltakelseSlettet}
+                            onDeltakerSlettet={handleOnDeltakelseSlettet}
                         />
                     )}
                 </Box>
@@ -62,4 +60,4 @@ const SlettDeltakelseModal = ({ deltaker, deltakelse, onCancel }: Props) => {
     );
 };
 
-export default SlettDeltakelseModal;
+export default SlettDeltakerModal;

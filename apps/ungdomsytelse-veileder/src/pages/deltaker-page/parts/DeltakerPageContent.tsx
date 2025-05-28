@@ -1,9 +1,10 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
-import SlettDeltakelseInfo from './SlettDeltakelseInfo';
+
 import DeltakerInfo from './DeltakerInfo';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
+import SlettDeltakerInfo from './SlettDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -64,7 +65,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
 
-                <SlettDeltakelseInfo deltakelse={deltakelse} deltaker={deltaker} />
+                <SlettDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
 
                 <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
