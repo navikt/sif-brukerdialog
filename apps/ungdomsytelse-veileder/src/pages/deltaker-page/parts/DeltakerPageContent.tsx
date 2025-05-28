@@ -13,14 +13,14 @@ interface Props {
 const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     if (deltakelser.length === 0) {
         return (
-            <VStack maxWidth="30rem pb-8 pt-8">
-                <Alert variant="info">Ingen deltakelser funnet</Alert>
+            <VStack maxWidth="30rem" marginBlock="8 8">
+                <Alert variant="info">Deltakelse ikke funnet</Alert>
             </VStack>
         );
     }
     if (deltakelser.length > 1) {
         return (
-            <VStack maxWidth="30rem pb-8 pt-8">
+            <VStack maxWidth="30rem" marginBlock="8 8">
                 <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
             </VStack>
         );

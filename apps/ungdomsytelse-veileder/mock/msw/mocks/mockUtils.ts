@@ -8,6 +8,7 @@ import {
 import { registrertDeltakerMock } from './data/registrertDeltakerMock';
 import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { v4 } from 'uuid';
+import { deltaker2Mock } from './data/deltaker2';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseOpplysningDto;
@@ -24,11 +25,19 @@ const localStorageKey = 'ungdomsytelse-veileder';
 /** Data */
 
 const initialDb: TempDB = {
-    deltakere: [registrertDeltakerMock.deltakerPersonalia, nyDeltakerMock.deltakerPersonalia],
+    deltakere: [
+        registrertDeltakerMock.deltakerPersonalia,
+        nyDeltakerMock.deltakerPersonalia,
+        deltaker2Mock.deltakerPersonalia,
+    ],
     deltakelser: [
         {
             deltakelse: registrertDeltakerMock.deltakelse,
             historikk: registrertDeltakerMock.deltakelseHistorikk,
+        },
+        {
+            deltakelse: deltaker2Mock.deltakelse,
+            historikk: deltaker2Mock.historikk,
         },
     ],
 };

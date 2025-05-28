@@ -28,7 +28,7 @@ export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
     return deltakelse.søktTidspunkt !== undefined && deltakelse.tilOgMed
-        ? dateRangeUtils.isDateInDateRange(deltakelse.tilOgMed, tillattEndringsperiode)
+        ? dayjs(deltakelse.tilOgMed).isSameOrAfter(tillattEndringsperiode.from, 'day')
         : true;
 };
 

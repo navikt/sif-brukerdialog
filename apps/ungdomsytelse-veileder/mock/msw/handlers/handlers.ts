@@ -11,6 +11,18 @@ export const handlers = [
     http.get('*login*', () => new HttpResponse(null, { status: 200 })),
 
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
+        if (1 + 1 === 3) {
+            return HttpResponse.json(
+                {
+                    type: 'about:blank',
+                    title: 'Not Found',
+                    status: 404,
+                    detail: 'BlaBla',
+                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                },
+                { status: 404 },
+            );
+        }
         const formData = await request.json();
         const deltakerIdent = formData.deltakerIdent;
 
@@ -66,6 +78,18 @@ export const handlers = [
     }),
 
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/endre/startdato', async ({ request, params }) => {
+        if (1 + 1 === 3) {
+            return HttpResponse.json(
+                {
+                    type: 'about:blank',
+                    title: 'Not Found',
+                    status: 404,
+                    detail: 'BlaBla',
+                    instance: '/veileder/register/deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd/deltakelser',
+                },
+                { status: 404 },
+            );
+        }
         const { dato } = await request.json();
         const { deltakelseId } = params;
         await slowDown(75);
