@@ -38,10 +38,10 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
                     ignorere denne oppgaven.
                 </List.Item>
                 <List.Item>
-                    En slettet deltakelse vil ikke være synlig i saksbehandlingssystemet for ungdomsytelsen.
+                    En slettet deltaker vil ikke være synlig i saksbehandlingssystemet for ungdomsytelsen.
                 </List.Item>
                 <List.Item>
-                    En slettet deltakelse vil ikke hindre at deltaker kan meldes inn på et senere tidspunkt.
+                    En slettet deltaker vil ikke hindre at deltaker kan meldes inn på et senere tidspunkt.
                 </List.Item>
             </List>
             <form onSubmit={handleSubmit}>
