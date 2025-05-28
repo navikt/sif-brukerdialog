@@ -59,6 +59,10 @@ spec:
     vault:
         enabled: false
     observability:
+      logging:
+        destinations:
+          - id: loki
+          - id: elastic
       autoInstrumentation:
         enabled: {{observabilityEnabled}}
         runtime: nodejs
