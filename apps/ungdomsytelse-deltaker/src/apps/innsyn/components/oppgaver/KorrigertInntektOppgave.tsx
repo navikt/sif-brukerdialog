@@ -15,7 +15,7 @@ import { KorrigertInntektOppgave } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { useAppIntl } from '../../../../i18n';
 import InntektTabell from '../inntekt-tabell/InntektTabell';
-import { useOppgaveContext } from '../oppgave/OppgaveContext';
+import { useDeprOppgaveContext } from '../oppgavebekreftelse/DeprOppgaveContext';
 import PageOppgaveLayout from './PageOppgaveLayout';
 
 interface Props {
@@ -43,7 +43,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 
 const KorrigertInntektOppgave = ({ oppgave }: Props) => {
     const { intl } = useAppIntl();
-    const { sendSvar, setVisSkjema, error, isPending, erBesvart } = useOppgaveContext();
+    const { sendSvar, error, isPending, erBesvart } = useDeprOppgaveContext();
 
     const handleSubmit = async (values: FormValues) => {
         const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
@@ -134,15 +134,10 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
                 <FormikWrapper
                     initialValues={{}}
                     onSubmit={handleSubmit}
-                    renderForm={({ values, resetForm }) => {
+                    renderForm={({ values }) => {
                         return (
                             <Form
                                 submitButtonLabel="Send"
-                                cancelButtonLabel="Avbryt"
-                                onCancel={() => {
-                                    resetForm();
-                                    setVisSkjema(false);
-                                }}
                                 submitPending={isPending}
                                 includeValidationSummary={true}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>

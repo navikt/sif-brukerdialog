@@ -4,6 +4,8 @@ import { Add } from '@navikt/ds-icons';
 import { Oppgave } from '@navikt/ung-common';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
+import { getOppgaveTittel } from '../../utils/textUtils';
+import { useAppIntl } from '../../i18n';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -13,6 +15,7 @@ const LøsteOppgaver = ({ oppgaver }: Props) => {
     const [antall, setAntall] = useState(2);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
     const ref = useRef<HTMLDivElement>(null);
+    const intl = useAppIntl();
 
     useEffect(() => {
         if (focusIndex && ref.current) {
@@ -44,7 +47,7 @@ const LøsteOppgaver = ({ oppgaver }: Props) => {
                         <ExpansionCard.Header>
                             <VStack gap="2">
                                 <ExpansionCard.Title size="small">
-                                    <AppText id={`oppgavetype.${oppgave.oppgavetype}`} /> -{' '}
+                                    {getOppgaveTittel(oppgave, intl)} -{' '}
                                     <AppText id={`oppgavestatus.${oppgave.status}`} />
                                 </ExpansionCard.Title>
                                 <BodyShort as="div" size="small">

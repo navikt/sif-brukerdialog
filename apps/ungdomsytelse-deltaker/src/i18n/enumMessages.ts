@@ -4,10 +4,9 @@ const nb = {
     'oppgavestatus.AVBRUTT': 'Avbrutt',
     'oppgavestatus.UTLØPT': 'Utløpt',
     'oppgavestatus.LUKKET': 'Lukket',
-    'oppgavetype.BEKREFT_ENDRET_STARTDATO': 'Endret startdato',
-    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO': 'Endret sluttdato',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT': 'Endret inntekt',
-    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE': 'Endret programperiode',
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.ENDRET_STARTDATO.tittel': 'Ny startdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.ENDRET_SLUTTDATO.tittel': 'Ny sluttdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.NY_SLUTTDATO.tittel': 'Ny sluttdato i ungdomsprogrammet',
     'oppgavetype.RAPPORTER_INNTEKT': 'Rapporter inntekt',
 };
 

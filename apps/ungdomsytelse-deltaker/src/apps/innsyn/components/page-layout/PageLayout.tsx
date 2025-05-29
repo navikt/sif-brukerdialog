@@ -1,6 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
     children: React.ReactNode;
@@ -9,6 +9,9 @@ interface Props {
 }
 
 const PageLayout = ({ children, documentTitle, footer }: Props) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     useDocumentTitle(documentTitle);
     return (
         <>

@@ -22,7 +22,7 @@ const OppgaverList = ({ oppgaver }: Props) => {
                 <OppgaveLinkPanel
                     key={index}
                     beskrivelse={getOppgaveBeskrivelse(oppgave)}
-                    tittel={getOppgaveTittel(oppgave.oppgavetype, intl)}
+                    tittel={getOppgaveTittel(oppgave, intl)}
                     status={oppgave.status}
                     svarfrist={oppgave.svarfrist}
                     løstDato={oppgave.løstDato}

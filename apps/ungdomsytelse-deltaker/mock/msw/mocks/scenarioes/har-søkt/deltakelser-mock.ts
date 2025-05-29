@@ -97,6 +97,29 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         oppgaver: [
             endretProgramperiodeOppgave,
             {
+                oppgaveReferanse: 'dd6ebf33-e515-45c7-8eb4-2c8629064e5f',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+                oppgavetypeData: {
+                    programperiode: {
+                        fomDato: '2025-05-05',
+                        tomDato: '2026-01-01',
+                    },
+                    forrigeProgramperiode: {
+                        fomDato: '2025-05-05',
+                        tomDato: '9999-12-31',
+                    },
+                },
+                bekreftelse: {
+                    harGodtattEndringen: false,
+                    uttalelseFraBruker: 'Dette mener jeg mye om, og jeg er faktisk uenig. Så det så',
+                },
+                status: OppgaveStatus.LØST,
+                opprettetDato: '2025-05-28T13:18:38.596543Z',
+                løstDato: '2025-05-28T21:10:48.241199Z',
+                åpnetDato: undefined,
+                lukketDato: undefined,
+            },
+            {
                 oppgaveReferanse: 'd59e08d7-bb0d-4e86-aee4-5b89e4e53228',
                 oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {

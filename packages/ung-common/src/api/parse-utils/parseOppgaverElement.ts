@@ -9,7 +9,13 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import { z } from 'zod';
-import { EndretProgramperiodeOppgave, KorrigertInntektOppgave, RapporterInntektOppgave, Oppgave } from '../../types';
+import {
+    EndretProgramperiodeOppgave,
+    KorrigertInntektOppgave,
+    RapporterInntektOppgave,
+    Oppgave,
+    EndretProgramperiodeEndringType,
+} from '../../types';
 
 const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
 type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
@@ -27,6 +33,20 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
+};
+
+export const getEndretProgramperiodeEndringType = (
+    oppgavetypeData: EndretProgramperiodeDataDto,
+): EndretProgramperiodeEndringType => {
+    const { programperiode, forrigeProgramperiode } = oppgavetypeData;
+
+    if (programperiode.fomDato !== forrigeProgramperiode?.fomDato) {
+        return EndretProgramperiodeEndringType.ENDRET_STARTDATO;
+    }
+
+    return forrigeProgramperiode
+        ? EndretProgramperiodeEndringType.ENDRET_SLUTTDATO
+        : EndretProgramperiodeEndringType.NY_SLUTTDATO;
 };
 
 export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
@@ -54,6 +74,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                             ytelseInntekter: korrigertInntektData.registerinntekt.ytelseInntekter,
                         },
                     },
+                    bekreftelse: oppgave.bekreftelse,
                 };
                 parsedOppgaver.push(korrigertInntektOppgave);
                 return;
@@ -67,11 +88,23 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     løstDato,
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                     oppgavetypeData: {
-                        fraOgMed: ISODateToDate(endretProgramperiodeData.programperiode.fomDato),
-                        tilOgMed: endretProgramperiodeData.programperiode.tomDato
-                            ? ISODateToDate(endretProgramperiodeData.programperiode.tomDato)
+                        programperiode: {
+                            fraOgMed: ISODateToDate(endretProgramperiodeData.programperiode.fomDato),
+                            tilOgMed: endretProgramperiodeData.programperiode.tomDato
+                                ? ISODateToDate(endretProgramperiodeData.programperiode.tomDato)
+                                : undefined,
+                        },
+                        forrigeProgramperiode: endretProgramperiodeData.forrigeProgramperiode
+                            ? {
+                                  fraOgMed: ISODateToDate(endretProgramperiodeData.forrigeProgramperiode.fomDato),
+                                  tilOgMed: endretProgramperiodeData.forrigeProgramperiode.tomDato
+                                      ? ISODateToDate(endretProgramperiodeData.forrigeProgramperiode.tomDato)
+                                      : undefined,
+                              }
                             : undefined,
+                        endringType: getEndretProgramperiodeEndringType(endretProgramperiodeData),
                     },
+                    bekreftelse: oppgave.bekreftelse,
                 };
                 parsedOppgaver.push(endretProgramperiodeOppgave);
                 return;

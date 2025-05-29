@@ -8,10 +8,12 @@ export const deltakelseSchema = zDeltakelseOpplysningDto
         id: z.string(),
     })
     .transform((data) => {
+        const fraOgMed = ISODateToDate(data.fraOgMed);
+        const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
         return {
             ...data,
-            fraOgMed: ISODateToDate(data.fraOgMed),
-            tilOgMed: data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined,
+            fraOgMed,
+            tilOgMed,
             oppgaver: parseOppgaverElement(data.oppgaver),
         };
     });

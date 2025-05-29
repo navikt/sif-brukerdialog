@@ -1,168 +1,103 @@
-import { Alert, BodyShort, HStack, ReadMore, VStack } from '@navikt/ds-react';
-import { CalendarIcon } from '@navikt/aksel-icons';
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import {
-    getIntlFormErrorHandler,
-    getTypedFormComponents,
-    ValidationError,
-    YesOrNo,
-} from '@navikt/sif-common-formik-ds';
+import { Box, Button, Heading, Tag, VStack } from '@navikt/ds-react';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
+import { EnvKey } from '@navikt/sif-common-env';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { EndretProgramperiodeOppgave } from '@navikt/ung-common';
-import dayjs from 'dayjs';
-import { useAppIntl } from '../../../../i18n';
-import { useOppgaveContext } from '../oppgave/OppgaveContext';
-import OppgaveLayout from './OppgaveLayout';
+import { EndretProgramperiodeEndringType, EndretProgramperiodeOppgave, OppgaveStatus } from '@navikt/ung-common';
+import { getAppEnv } from '../../../../utils/appEnv';
+import { useDeprOppgaveContext } from '../oppgavebekreftelse/DeprOppgaveContext';
+import UtalelseForm from '../uttalelse-form/UtalelseForm';
+import EndretSluttdatoOppgaveInfo from './parts/EndretSluttdatoOppgaveInfo';
+import EndretStartdatoOppgaveInfo from './parts/EndretStartdatoOppgaveInfo';
+import OppgaveInfoWrapper from './parts/OppgaveInfoWrapper';
+import OppgaveKvittering from './parts/OppgaveKvittering';
+import OppgaveUttalelse from './parts/OppgaveUttalelse';
 
 interface Props {
     deltakelseId: string;
     oppgave: EndretProgramperiodeOppgave;
+    deltakerNavn: string;
 }
 
-enum FormFields {
-    harKontaktetVeileder = 'harKontaktetVeileder',
-    godkjenner = 'godkjenner',
-    begrunnelse = 'begrunnelse',
-}
+const EndretProgramperiodeOppgaveForm = ({ oppgave, deltakerNavn }: Props) => {
+    const { visKvittering } = useDeprOppgaveContext();
+    const navigate = useNavigate();
+    const alertRef = useRef<HTMLDivElement>(null);
 
-type FormValues = Partial<{
-    [FormFields.harKontaktetVeileder]: YesOrNo;
-    [FormFields.begrunnelse]: string;
-    [FormFields.godkjenner]: YesOrNo;
-}>;
+    const prevVisKvittering = usePrevious(visKvittering);
 
-const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
-    FormFields,
-    FormValues,
-    ValidationError
->();
+    useEffect(() => {
+        if (visKvittering && !prevVisKvittering && alertRef.current) {
+            alertRef.current.focus();
+        }
+    });
 
-const EndretProgramperiodeOppgaveForm = ({ oppgave }: Props) => {
-    const { intl } = useAppIntl();
-    const { sendSvar, error, isPending, setVisSkjema } = useOppgaveContext();
-    const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
+    const erLøst = oppgave.status !== OppgaveStatus.ULØST;
 
-    const handleSubmit = async (values: FormValues) => {
-        const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
+    const TilForsidenLenke = () => (
+        <Box>
+            <Button
+                as="a"
+                href="#"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    navigate(getAppEnv()[EnvKey.PUBLIC_PATH]);
+                }}
+                variant="secondary"
+                icon={<ChevronLeftIcon />}
+                iconPosition="left">
+                Tilbake til oversikten
+            </Button>
+        </Box>
+    );
 
-        const dto: UngdomsytelseOppgavebekreftelse = {
-            oppgave: {
-                oppgaveReferanse: oppgave.oppgaveReferanse,
-                uttalelse: {
-                    bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
-                    meldingFraDeltaker: values[FormFields.begrunnelse]!,
-                },
-            },
-        };
-        await sendSvar(dto);
-    };
+    const gjelderStartdato = oppgave.oppgavetypeData.endringType === EndretProgramperiodeEndringType.ENDRET_STARTDATO;
 
     return (
-        <OppgaveLayout
-            tag={
-                <HStack gap="2">
-                    <CalendarIcon />
-                    Endret deltakerperiode
-                </HStack>
-            }
-            tittel="Din deltakerperiode blir endret"
-            svarfrist={oppgave.svarfrist}
-            beskrivelse={
+        <VStack gap="6">
+            {oppgave.løstDato && !visKvittering && (
+                <Box>
+                    <Tag variant="success">Sendt inn {dateFormatter.full(oppgave.løstDato)}</Tag>
+                </Box>
+            )}
+            <Heading level="1" size="large">
+                {gjelderStartdato ? 'Ny startdato i ungdomsprogrammet' : 'Ny sluttdato i ungdomsprogrammet'}
+            </Heading>
+
+            {visKvittering ? (
                 <>
-                    <BodyShort>
-                        <>
-                            Veileder har endret perioden du er med i programmet. Perioden er nå{' '}
-                            <BodyShort as="span">
-                                <>
-                                    fra og med{' '}
-                                    <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                                        {dateFormatter.compact(fraOgMed)}
-                                    </BodyShort>
-                                </>
-                                {tilOgMed ? (
-                                    <>
-                                        {' '}
-                                        til og med{' '}
-                                        <BodyShort as="span" className="inline-block nowrap" weight="semibold">
-                                            {dateFormatter.compact(tilOgMed)}
-                                        </BodyShort>
-                                    </>
-                                ) : null}
-                                .
-                            </BodyShort>
-                        </>
-                    </BodyShort>
-                    <BodyShort>
-                        Du kan bekrefte eller kommentere denne endringen frem til og med{' '}
-                        {dateFormatter.compact(oppgave.svarfrist)}. Endringen vil tre i kraft når du bekrefter
-                        endringen, eller senest {dateFormatter.compact(dayjs(oppgave.svarfrist).add(1, 'day').toDate())}
-                        .
-                    </BodyShort>
+                    <OppgaveKvittering ref={alertRef} />
+                    <TilForsidenLenke />
                 </>
-            }>
-            <VStack gap="4">
-                <FormikWrapper
-                    initialValues={{}}
-                    onSubmit={handleSubmit}
-                    renderForm={({ values, resetForm }) => {
-                        return (
-                            <Form
-                                submitButtonLabel="Send"
-                                cancelButtonLabel="Avbryt"
-                                onCancel={() => {
-                                    resetForm();
-                                    setVisSkjema(false);
-                                }}
-                                submitPending={isPending}
-                                includeValidationSummary={true}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
-                                <VStack gap="6" marginBlock="2 0">
-                                    <YesOrNoQuestion
-                                        name={FormFields.godkjenner}
-                                        legend="Godkjenner du endringen i programperioden?"
-                                        validate={getYesOrNoValidator()}
-                                        description={
-                                            <>
-                                                <ReadMore header="Hva betyr dette for meg">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-                                                    corporis quasi id fugiat eveniet quisquam quia quam voluptate
-                                                    officiis dolores quidem sunt velit, cum nemo, minima eligendi.
-                                                    Temporibus, dolores facere.
-                                                </ReadMore>
-                                            </>
-                                        }
-                                    />
-                                    {values[FormFields.godkjenner] === YesOrNo.NO ? (
-                                        <>
-                                            <YesOrNoQuestion
-                                                name={FormFields.harKontaktetVeileder}
-                                                legend="Har du hatt kontakt med veileder for å diskutere hvorfor du ikke ønsker å godkjenne denne endringen?"
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                            {values.harKontaktetVeileder === YesOrNo.NO ? (
-                                                <Alert variant="info">
-                                                    Vi anbefaler deg å ta kontakt med veileder for å se om dere kan
-                                                    oppklare hvorfor du ikke ønsker å godkjenne. Da kan veileder evt.
-                                                    endre datoen til den dere blir enig om.
-                                                </Alert>
-                                            ) : null}
-                                            <Textarea
-                                                name={FormFields.begrunnelse}
-                                                label="Skriv en kort begrunnelse for hvorfor du ikke ønsker å godkjenne denne endringen. "
-                                                maxLength={250}
-                                                validate={getStringValidator({ required: true, maxLength: 250 })}
-                                            />
-                                        </>
-                                    ) : null}
-                                    {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
-                                </VStack>
-                            </Form>
-                        );
-                    }}
-                />
-            </VStack>
-        </OppgaveLayout>
+            ) : (
+                <VStack gap="6">
+                    <OppgaveInfoWrapper løst={erLøst} svarfrist={oppgave.svarfrist} deltakerNavn={deltakerNavn}>
+                        {gjelderStartdato && (
+                            <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.fraOgMed} />
+                        )}
+                        {!gjelderStartdato && oppgave.oppgavetypeData.programperiode.tilOgMed && (
+                            <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.tilOgMed} />
+                        )}
+                    </OppgaveInfoWrapper>
+                    {erLøst && oppgave.bekreftelse && (
+                        <>
+                            <OppgaveUttalelse
+                                godtarSpørsmål="Forstår og godtar du at startdatoen din er endret"
+                                bekreftelse={oppgave.bekreftelse}
+                            />
+                        </>
+                    )}
+                    {!erLøst ? (
+                        <UtalelseForm oppgaveReferanse={oppgave.oppgaveReferanse} onSuccess={() => null} />
+                    ) : (
+                        <TilForsidenLenke />
+                    )}
+                </VStack>
+            )}
+        </VStack>
     );
 };
 

@@ -25,7 +25,7 @@ const DeltakelseContent = ({
 
     const tidligereOppgaver = oppgaver
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+        .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (

@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { mockUtils } from '../mocks/mockUtils';
+import { zUngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 
 export const getHandlers = () => {
     const { barn, arbeidsgiver, søker, deltakelser } = mockUtils.getData();
@@ -37,17 +38,17 @@ export const getHandlers = () => {
             mockUtils.setDeltakelseSøktFor(); // Forutsetter kun én deltakelse i mock-databasen
             return HttpResponse.json({});
         }),
-        // http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
-        //     const text = await request.text();
-        //     await delay(1000);
-        //     try {
-        //         // const data = zUngdomsytelseOppgavebekreftelse.parse(JSON.parse(text));
-        //         // deltakelserMockStorage.actions.setOppgavebekreftelse(JSON.parse(text));
-        //     } catch (e) {
-        //         console.log(e);
-        //     }
-        //     return new HttpResponse(null, { status: 200 });
-        // }),
+        http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
+            const text = await request.text();
+            try {
+                const data = zUngdomsytelseOppgavebekreftelse.parse(JSON.parse(text));
+                console.log(data);
+                mockUtils.setOppgavebekreftelse(data.oppgave.oppgaveReferanse, data);
+            } catch (e) {
+                console.log(e);
+            }
+            return new HttpResponse(null, { status: 200 });
+        }),
         // http.post('**/ungdomsytelse/inntektsrapportering/innsending', async ({ request }) => {
         //     const text = await request.text();
         //     // const data = zUngdomsytelseInntektsrapportering.parse(JSON.parse(text));

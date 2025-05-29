@@ -2,10 +2,10 @@ import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { AppIntlShape } from '../i18n';
 import { BodyShort } from '@navikt/ds-react';
 
-export const getOppgaveTittel = (oppgavetype: Oppgavetype, { text }: AppIntlShape) => {
-    switch (oppgavetype) {
+export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
+    switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-            return text('oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.tittel');
+            return text(`oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.${oppgave.oppgavetypeData.endringType}.tittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel');
         case Oppgavetype.RAPPORTER_INNTEKT:

@@ -1,11 +1,17 @@
-import { Heading, VStack } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import OppgaveWrapper from '../components/oppgaver/OppgaveWrapper';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
+import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekreftelse';
+import { getOppgaveTittel } from '../utils/textUtils';
+import { useAppIntl } from '../i18n';
+import { EndretProgramperiodeEndringType, Oppgavetype } from '@navikt/ung-common';
+import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
+import EndretSluttdatoOppgaveInfo from '../components/oppgaver/parts/EndretSluttdatoOppgaveInfo';
+import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppgave';
+import { BodyShort } from '@navikt/ds-react';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -13,9 +19,10 @@ type OppgavePageParams = {
 
 const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
-    const { deltakelsePeriode } = useDeltakerContext();
+    const { deltakelsePeriode, søker } = useDeltakerContext();
     const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
     const navigate = useNavigate();
+    const intl = useAppIntl();
 
     useEffectOnce(() => {
         setBreadcrumbs([
@@ -33,21 +40,38 @@ const OppgavePage = () => {
         return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;
     }
 
-    return (
-        <Page title="Din ungdomsytelse">
-            <VStack gap="8">
-                {oppgave.status}
-                <Heading level="1" size="large">
-                    {oppgave.oppgavetype}
-                </Heading>
-                <OppgaveWrapper
-                    oppgave={oppgave}
-                    deltakelseId={deltakelsePeriode.id}
-                    programPeriode={deltakelsePeriode.programPeriode}
-                />
-            </VStack>
+    const oppgaveTittel = getOppgaveTittel(oppgave, intl);
+
+    const renderOppgavebekreftelsePage = (children: React.ReactNode) => (
+        <Page title={`${oppgaveTittel} - Din ungdomsytelse`}>
+            <Oppgavebekreftelse oppgave={oppgave} deltakerNavn={søker.fornavn} oppgavetittel={oppgaveTittel}>
+                {children}
+            </Oppgavebekreftelse>
         </Page>
     );
+
+    switch (oppgave.oppgavetype) {
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            return renderOppgavebekreftelsePage(
+                <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelsePeriode.id} />,
+            );
+
+        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+            return renderOppgavebekreftelsePage(
+                oppgave.oppgavetypeData.endringType === EndretProgramperiodeEndringType.ENDRET_STARTDATO ? (
+                    <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.fraOgMed} />
+                ) : (
+                    <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.tilOgMed} />
+                ),
+            );
+
+        case Oppgavetype.RAPPORTER_INNTEKT:
+            return (
+                <Page title={`${oppgaveTittel} - Din ungdomsytelse`}>
+                    <BodyShort spacing>Rapporter inntekst oppgave</BodyShort>
+                </Page>
+            );
+    }
 };
 
 export default OppgavePage;
