@@ -4,8 +4,12 @@ import LøstOppgavebekreftelse from './LøstOppgavebekreftelse';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import OppgavebekreftelseFellestekst from './OppgavebekreftelseFellestekst';
 
+export interface OppgavebekreftelseTekster {
+    tittel: string;
+    forstårOppgaveSpørsmål: string;
+}
 interface Props {
-    oppgavetittel: string;
+    tekster: OppgavebekreftelseTekster;
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;

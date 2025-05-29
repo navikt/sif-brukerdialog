@@ -7,15 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import { getAppEnv } from '../../../../utils/appEnv';
 import { EnvKey } from '@navikt/sif-common-env';
 import { BekreftelseOppgave } from '@navikt/ung-common';
+import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
 
 interface Props {
-    oppgavetittel: string;
+    tekster: OppgavebekreftelseTekster;
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;
 }
 
-const UløstOppgavebekreftelse = ({ oppgavetittel, deltakerNavn, oppgave, children }: Props) => {
+const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: Props) => {
     const [visKvittering, setVisKvittering] = useState<boolean>(false);
     const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const UløstOppgavebekreftelse = ({ oppgavetittel, deltakerNavn, oppgave, childr
     return (
         <VStack gap="6">
             <Heading level="1" size="large">
-                {oppgavetittel}
+                {tekster.tittel}
             </Heading>
             {visKvittering ? (
                 <>
@@ -59,6 +60,7 @@ const UløstOppgavebekreftelse = ({ oppgavetittel, deltakerNavn, oppgave, childr
                         </VStack>
                     </GuidePanel>
                     <UtalelseForm
+                        forstårOppgaveSpørsmål={tekster.forstårOppgaveSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={() => setVisKvittering(true)}
                         onCancel={() => navigate(getAppEnv()[EnvKey.PUBLIC_PATH])}

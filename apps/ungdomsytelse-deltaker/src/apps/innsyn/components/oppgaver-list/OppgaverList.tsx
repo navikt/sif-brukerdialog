@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { OpenDateRange } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
-import OppgaveLinkPanel from './OppgaveLinkPanel';
+import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
 import { getOppgaveBeskrivelse, getOppgaveTittel } from '../../utils/textUtils';
 import { useAppIntl } from '../../i18n';
 

@@ -5,7 +5,7 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekreftelse';
-import { getOppgaveTittel } from '../utils/textUtils';
+import { getOppgaveBekreftelseTekster } from '../utils/textUtils';
 import { useAppIntl } from '../i18n';
 import { EndretProgramperiodeEndringType, Oppgavetype } from '@navikt/ung-common';
 import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
@@ -40,15 +40,16 @@ const OppgavePage = () => {
         return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;
     }
 
-    const oppgaveTittel = getOppgaveTittel(oppgave, intl);
-
-    const renderOppgavebekreftelsePage = (children: React.ReactNode) => (
-        <Page title={`${oppgaveTittel} - Din ungdomsytelse`}>
-            <Oppgavebekreftelse oppgave={oppgave} deltakerNavn={søker.fornavn} oppgavetittel={oppgaveTittel}>
-                {children}
-            </Oppgavebekreftelse>
-        </Page>
-    );
+    const renderOppgavebekreftelsePage = (children: React.ReactNode) => {
+        const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
+        return (
+            <Page title={`${tekster.tittel} - Din ungdomsytelse`}>
+                <Oppgavebekreftelse tekster={tekster} oppgave={oppgave} deltakerNavn={søker.fornavn}>
+                    {children}
+                </Oppgavebekreftelse>
+            </Page>
+        );
+    };
 
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
@@ -67,7 +68,7 @@ const OppgavePage = () => {
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return (
-                <Page title={`${oppgaveTittel} - Din ungdomsytelse`}>
+                <Page title="Rapporter inntekt - Din ungdomsytelse">
                     <BodyShort spacing>Rapporter inntekst oppgave</BodyShort>
                 </Page>
             );

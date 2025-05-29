@@ -1,6 +1,7 @@
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { AppIntlShape } from '../i18n';
 import { BodyShort } from '@navikt/ds-react';
+import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
 
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
@@ -12,6 +13,26 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
             return text('oppgavetype.RAPPORTER_INNTEKT.tittel');
         default:
             return '';
+    }
+};
+
+export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShape): OppgavebekreftelseTekster => {
+    switch (oppgave.oppgavetype) {
+        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+            return {
+                tittel: getOppgaveTittel(oppgave, intl),
+                forstårOppgaveSpørsmål: intl.text(
+                    `oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.${oppgave.oppgavetypeData.endringType}.forstårOppgaveSpørsmål`,
+                ),
+            };
+
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            return {
+                tittel: getOppgaveTittel(oppgave, intl),
+                forstårOppgaveSpørsmål: intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.forstårOppgaveSpørsmål'),
+            };
+        default:
+            throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';
     }
 };
 

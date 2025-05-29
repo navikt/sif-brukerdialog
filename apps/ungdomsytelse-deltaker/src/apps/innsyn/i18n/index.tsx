@@ -4,8 +4,6 @@ import { enumMessages } from '../../../i18n/enumMessages';
 
 const nb = {
     ...enumMessages.nb,
-    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.tittel': 'Bekreft eller kommenter endret programperiode',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel': 'Bekreft eller kommenter avvik i inntekt',
     'oppgavetype.RAPPORTER_INNTEKT.tittel': 'Meld fra om inntekt',
 };
 

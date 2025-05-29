@@ -2,19 +2,20 @@ import { ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import OppgaveUttalelse from '../oppgaver/parts/OppgaveUttalelse';
 import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
+import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
 
 interface Props {
-    oppgavetittel: string;
+    tekster: OppgavebekreftelseTekster;
     deltakerNavn: string;
     bekreftelse?: BekreftelseDto;
     children: React.ReactNode;
 }
 
-const LøstOppgavebekreftelse = ({ oppgavetittel, deltakerNavn, bekreftelse, children }: Props) => {
+const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, children }: Props) => {
     return (
         <VStack gap="6">
             <Heading level="1" size="large">
-                {oppgavetittel}
+                {tekster.tittel}
             </Heading>
             <ExpansionCard aria-label="Beskjed fra Nav" size="small">
                 <ExpansionCard.Header>

@@ -1,7 +1,7 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { OpenDateRange } from '@navikt/sif-common-utils';
 import { Oppgave } from '@navikt/ung-common';
-import OppgaverList from '../oppgaver/OppgaverList';
+import OppgaverList from '../oppgaver-list/OppgaverList';
 
 interface Props {
     oppgaver: Oppgave[];

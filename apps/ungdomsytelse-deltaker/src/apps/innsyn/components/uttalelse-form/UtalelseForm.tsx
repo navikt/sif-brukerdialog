@@ -7,10 +7,11 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { useAppIntl } from '../../i18n';
 import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreftelse';
+import { useAppIntl } from '../../i18n';
 
 interface Props {
+    forstårOppgaveSpørsmål: string;
     oppgaveReferanse: string;
     onSuccess: () => void;
     onCancel?: () => void;
@@ -32,7 +33,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const UtalelseForm = ({ oppgaveReferanse, onSuccess, onCancel }: Props) => {
+const UtalelseForm = ({ forstårOppgaveSpørsmål: forstårLegend, oppgaveReferanse, onSuccess, onCancel }: Props) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
 
     const { intl } = useAppIntl();
@@ -70,7 +71,7 @@ const UtalelseForm = ({ oppgaveReferanse, onSuccess, onCancel }: Props) => {
                         <VStack gap="6" marginBlock="2 0">
                             <YesOrNoQuestion
                                 name={FormFields.godkjenner}
-                                legend="Forstår og godtar du at startdatoen din er endret?"
+                                legend={forstårLegend}
                                 validate={getYesOrNoValidator()}
                             />
                             {values[FormFields.godkjenner] === YesOrNo.NO ? (

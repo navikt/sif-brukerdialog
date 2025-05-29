@@ -3,7 +3,7 @@ import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
-import OppgaverList from './oppgaver/OppgaverList';
+import OppgaverList from './oppgaver-list/OppgaverList';
 import SøknadMottattOppgavePanel from './oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
 
 interface Props {
