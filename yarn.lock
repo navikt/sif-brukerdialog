@@ -4125,7 +4125,7 @@ __metadata:
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.27.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     formik: "npm:2.4.6"
     html-react-parser: "npm:5.2.5"
     jest: "npm:29.7.0"
@@ -4602,7 +4602,7 @@ __metadata:
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.5.0"
     eslint: "npm:9.27.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     express: "npm:4.21.2"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.5"
@@ -4684,7 +4684,7 @@ __metadata:
     csp-header: "npm:6.1.0"
     dotenv: "npm:16.5.0"
     eslint: "npm:9.27.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     express: "npm:4.21.2"
     helmet: "npm:8.1.0"
     html-react-parser: "npm:5.2.5"
@@ -4846,7 +4846,7 @@ __metadata:
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.5.0"
     eslint: "npm:9.27.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     express: "npm:4.21.2"
     express-rate-limit: "npm:7.5.0"
     formik: "npm:2.4.6"
@@ -4944,7 +4944,7 @@ __metadata:
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.5.0"
     eslint: "npm:9.27.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
     helmet: "npm:8.1.0"
@@ -5836,7 +5836,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.4.0"
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     eslint-plugin-unicorn: "npm:59.0.1"
     express: "npm:4.21.2"
     html-react-parser: "npm:5.2.5"
@@ -5920,7 +5920,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-hooks: "npm:5.2.0"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     eslint-plugin-unicorn: "npm:59.0.1"
     eslint-plugin-vitest: "npm:0.5.4"
     express: "npm:4.21.2"
@@ -13010,7 +13010,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.4.0"
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-hooks: "npm:5.2.0"
-    eslint-plugin-storybook: "npm:0.12.0"
+    eslint-plugin-storybook: "npm:9.0.0"
     postcss: "npm:8.5.3"
     prettier: "npm:3.5.3"
     typescript: "npm:5.8.3"
@@ -15119,16 +15119,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.12.0":
-  version: 0.12.0
-  resolution: "eslint-plugin-storybook@npm:0.12.0"
+"eslint-plugin-storybook@npm:9.0.0":
+  version: 9.0.0
+  resolution: "eslint-plugin-storybook@npm:9.0.0"
   dependencies:
-    "@storybook/csf": "npm:^0.1.11"
     "@typescript-eslint/utils": "npm:^8.8.1"
-    ts-dedent: "npm:^2.2.0"
   peerDependencies:
     eslint: ">=8"
-  checksum: 10/278ea59565e30b74ee1d57f0a8f704906eaf40973b13999ec2c44872bb90c7505dfb12777b264940e2b480e81ace85c0532af69666e76a783b8ffa898a1d49ad
+    storybook: ^9.0.0
+  checksum: 10/80d90c655ce6e0268ff6b7cc9f189bd2648aac0502d1d4c403c7f30e620a1a245ac46c88f589bbba075342aada2ee76c8142d902fcabc89113c8a065320efa7a
   languageName: node
   linkType: hard
 
