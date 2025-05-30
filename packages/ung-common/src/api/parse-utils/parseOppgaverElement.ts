@@ -36,6 +36,10 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     }
 };
 
+const isoDateErUndefinedEllerILangFremtid = (dato: string | undefined): boolean => {
+    return !dato || dayjs(ISODateToDate(dato)).isAfter(dayjs('2099-01-01'));
+};
+
 export const getEndretProgramperiodeEndringType = (
     oppgavetypeData: EndretProgramperiodeDataDto,
 ): EndretProgramperiodeEndringType => {
@@ -45,9 +49,9 @@ export const getEndretProgramperiodeEndringType = (
         return EndretProgramperiodeEndringType.ENDRET_STARTDATO;
     }
 
-    return forrigeProgramperiode
-        ? EndretProgramperiodeEndringType.ENDRET_SLUTTDATO
-        : EndretProgramperiodeEndringType.NY_SLUTTDATO;
+    return isoDateErUndefinedEllerILangFremtid(forrigeProgramperiode.tomDato)
+        ? EndretProgramperiodeEndringType.NY_SLUTTDATO
+        : EndretProgramperiodeEndringType.ENDRET_SLUTTDATO;
 };
 
 export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
