@@ -29,7 +29,7 @@ export const usePeriodeForDeltakelse = ({
                 : endreSluttdatoForDeltakelse(deltakelseId, data),
         onSuccess: () => {
             queryClient.invalidateQueries(queries.deltakelserForDeltaker(deltakerId));
-            queryClient.invalidateQueries(queries.deltakelseHistorikk(deltakerId));
+            queryClient.invalidateQueries(queries.deltakelseHistorikk(deltakelseId));
         },
     });
 };
