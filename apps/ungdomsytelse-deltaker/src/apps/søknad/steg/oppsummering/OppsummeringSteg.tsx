@@ -21,6 +21,7 @@ const OppsummeringSteg = () => {
     const { error, isPending, mutateAsync } = useSendSøknad();
 
     const søknad = buildSøknadFromSvar(
+        deltakelsePeriode.id,
         søknadOppgave.oppgaveReferanse,
         svar,
         søker.fødselsnummer,
