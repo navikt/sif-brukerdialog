@@ -1,6 +1,6 @@
-import PageLayout from '../../src/apps/innsyn/components/page-layout/PageLayout';
-import UngdomsprogramYtelseHeader from '../../src/apps/innsyn/components/page-layout/illustrasjon/UngdomsprogramYtelseHeader';
+import ForsidePageLayout from '../../src/apps/innsyn/components/page-layout/ForsidePageLayout';
 import { VStack } from '@navikt/ds-react';
+import UngdomsprogrammetHeader from '../../src/apps/innsyn/components/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 
 export const withInnsynApp = (Story: any) => {
     // useEffect(() => {
@@ -10,11 +10,11 @@ export const withInnsynApp = (Story: any) => {
     //     };
     // }, [location.pathname]);
     return (
-        <PageLayout documentTitle="Forside">
+        <ForsidePageLayout documentTitle="Forside">
             <VStack gap="8">
-                <UngdomsprogramYtelseHeader />
+                <UngdomsprogrammetHeader />
                 <Story />
             </VStack>
-        </PageLayout>
+        </ForsidePageLayout>
     );
 };

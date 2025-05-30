@@ -15,14 +15,14 @@ interface Props {
 const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) => {
     switch (oppgavestatus) {
         case OppgaveStatus.ULØST:
-            return <PencilFillIcon fill="red" color="#C95100" width="2rem" height="2rem" aria-label="Penn-ikon" />;
+            return <PencilFillIcon fill="red" color="#C95100" width="1.8rem" height="1.8rem" aria-label="Penn-ikon" />;
         case OppgaveStatus.LØST:
             return (
                 <CheckmarkCircleFillIcon
                     fill="red"
                     color="#00893c"
-                    width="2rem"
-                    height="2rem"
+                    width="1.8rem"
+                    height="1.8rem"
                     aria-label="Gjennomført ikon"
                 />
             );
@@ -33,8 +33,8 @@ const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) 
                 <CircleSlashFillIcon
                     fill="red"
                     color="#49515e"
-                    width="2rem"
-                    height="2rem"
+                    width="1.8rem"
+                    height="1.8rem"
                     aria-label="Gjennomført ikon"
                 />
             );
@@ -52,7 +52,7 @@ const OppgaveStatusTag = ({
 }) => {
     if (status === 'ULØST' && svarfrist) {
         return (
-            <Tag variant="warning" size="small" className="mb-2">
+            <Tag variant="warning-moderate" size="small" className="mb-2">
                 Frist: {dateFormatter.dayCompactDate(svarfrist)}
             </Tag>
         );

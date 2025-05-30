@@ -1,6 +1,6 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
-import { SøkerJobbPictogram } from './SøkerJobbPictogram';
+import { UngdomsprogramPictogram } from './UngdomsprogramPictogram';
 
 interface Props {
     title: string;
@@ -8,7 +8,7 @@ interface Props {
     variant?: 'søknad' | 'innsyn';
 }
 
-const YtelseHeader = ({ title, description, variant }: Props) => {
+const AppHeader = ({ title, description, variant }: Props) => {
     return (
         <Stack
             gap="6"
@@ -16,15 +16,15 @@ const YtelseHeader = ({ title, description, variant }: Props) => {
             justify={{ sm: 'space-between', md: 'start' }}
             align="center"
             wrap={false}>
-            <Show above="sm">{variant === 'søknad' ? <ApplicationPictogram /> : <SøkerJobbPictogram />}</Show>
+            <Show above="sm">{variant === 'søknad' ? <ApplicationPictogram /> : <UngdomsprogramPictogram />}</Show>
             <VStack gap="1">
-                <Heading level="1" size="large">
+                <Heading level="1" size="xlarge">
                     {title}
                 </Heading>
-                {description}
+                <div className="uppercase">{description}</div>
             </VStack>
         </Stack>
     );
 };
 
-export default YtelseHeader;
+export default AppHeader;

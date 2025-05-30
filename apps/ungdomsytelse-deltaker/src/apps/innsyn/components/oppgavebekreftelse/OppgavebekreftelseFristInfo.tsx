@@ -5,7 +5,7 @@ interface Props {
     svarfrist: Date;
 }
 
-const OppgavebekreftelseFellestekst = ({ svarfrist }: Props) => (
+const OppgavebekreftelseFristInfo = ({ svarfrist }: Props) => (
     <>
         <BodyLong spacing>
             Utbetalingen av pengene blir utsatt til du svarer eller til fristen for å svare har gått ut.
@@ -16,4 +16,4 @@ const OppgavebekreftelseFellestekst = ({ svarfrist }: Props) => (
     </>
 );
 
-export default OppgavebekreftelseFellestekst;
+export default OppgavebekreftelseFristInfo;

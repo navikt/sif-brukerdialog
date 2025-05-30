@@ -1,24 +1,19 @@
-import { BodyShort, Heading, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
+import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
 import getLenker from '../../../../utils/lenker';
+import UngdomsprogrammetHeader from '../ungdomsprogrammet-header/UngdomsprogrammetHeader';
 
 const Snarveier = () => {
     return (
         <HGrid columns="1fr auto">
-            <VStack gap="2" marginBlock="0 10">
-                <Heading level="2" size="large">
-                    Har du noen spørsmål?
-                </Heading>
-                <BodyShort>Her er noen snarveier som kan være nyttige.</BodyShort>
+            <VStack gap="6" marginBlock="8 10">
+                <UngdomsprogrammetHeader />
 
-                {/* <Show below="md">
-                    <HStack justify="center" marginBlock="4 0">
-                        <Box maxWidth="16rem">
-                            <SnarveierDameSVG size="fullWidth" />
-                        </Box>
-                    </HStack>
-                </Show> */}
+                <BodyLong>
+                    Et fulltidsprogram for deg mellom 18 og 29 år som trenger ekstra oppfølging for å komme i jobb. Når
+                    du deltar i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen.
+                </BodyLong>
 
-                <VStack gap="4" marginBlock="3 0" maxWidth="30rem">
+                <HGrid columns="1fr 1fr" gap="4">
                     <LinkPanel
                         border={false}
                         style={{ borderRadius: '0.5rem' }}
@@ -26,17 +21,10 @@ const Snarveier = () => {
                         Om ungdoms&shy;programmet
                     </LinkPanel>
                     <LinkPanel border={false} style={{ borderRadius: '0.5rem' }} href={getLenker().skrivtilOss}>
-                        Skriv til oss
+                        Still spørsmål om ytelsen
                     </LinkPanel>
-                </VStack>
+                </HGrid>
             </VStack>
-            {/* <Show above="md">
-                <HStack justify="end">
-                    <Bleed marginInline="0 20">
-                        <SnarveierDameSVG />
-                    </Bleed>
-                </HStack>
-            </Show> */}
         </HGrid>
     );
 };

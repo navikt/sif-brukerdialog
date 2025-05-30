@@ -3,14 +3,14 @@ import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import DeltakelseContent from '../components/DeltakelseContent';
-import UngdomsprogramYtelseHeader from '../components/page-layout/illustrasjon/UngdomsprogramYtelseHeader';
-import PageLayout from '../components/page-layout/PageLayout';
+import ForsidePageLayout from '../components/page-layout/ForsidePageLayout';
 import {
     erDeltakelseAvsluttet,
     erDeltakelseStartet,
     visHuskelappOmInntektsrapportering,
 } from '../utils/deltakelseUtils';
 import Snarveier from '../components/snarveier/Snarveier';
+import AppHeader from '../components/app-header/AppHeader';
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();
@@ -18,7 +18,7 @@ const ForsidePage = () => {
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
-            { title: 'Ungdomsprogramytelse', url: '/', handleInApp: true },
+            { title: 'Ditt ungdomsprogram', url: '/', handleInApp: true },
         ]);
     });
 
@@ -30,9 +30,9 @@ const ForsidePage = () => {
         deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
 
     return (
-        <PageLayout documentTitle="Din ungdomsprogramytelse" footer={<Snarveier />}>
+        <ForsidePageLayout documentTitle="Ditt ungdomsprogram" footer={<Snarveier />}>
             <VStack gap="8">
-                <UngdomsprogramYtelseHeader />
+                <AppHeader title="Ditt ungdomsprogram" description="Oversikt over ytelsen din" />
 
                 <DeltakelseContent
                     deltakelsePeriode={deltakelsePeriode}
@@ -40,7 +40,7 @@ const ForsidePage = () => {
                     visInfoOmInntektsrapportering={visInfoOmInntektsrapportering}
                 />
             </VStack>
-        </PageLayout>
+        </ForsidePageLayout>
     );
 };
 

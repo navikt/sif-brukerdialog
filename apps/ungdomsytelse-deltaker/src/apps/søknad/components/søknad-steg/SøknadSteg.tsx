@@ -1,5 +1,4 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
@@ -7,6 +6,7 @@ import { Steg } from '../../types';
 import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
+import DefaultPage from '../../../innsyn/components/page-layout/DefaultPage';
 
 interface Props {
     steg: Steg;
@@ -29,7 +29,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     const activeIndex = getSkjemaStegIndex(steg) + 1;
 
     return (
-        <Page title={`${tittel} - Søknad om ungdomsprogramytelse`}>
+        <DefaultPage title={`${tittel} - Søknad om ungdomsprogramytelse`}>
             <section aria-label="Skjema">
                 <VStack gap="8">
                     <SøknadHeader />
@@ -63,7 +63,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                     />
                 </VStack>
             </section>
-        </Page>
+        </DefaultPage>
     );
 };
 

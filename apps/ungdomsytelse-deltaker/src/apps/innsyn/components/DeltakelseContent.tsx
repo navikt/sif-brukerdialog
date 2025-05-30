@@ -33,7 +33,7 @@ const DeltakelseContent = ({
             {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <HuskelappInntekt />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
-                <Heading level="2" size="large">
+                <Heading level="2" size="medium">
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
@@ -43,7 +43,7 @@ const DeltakelseContent = ({
                 )}
             </VStack>
             <VStack gap="4">
-                <Heading level="2" size="large">
+                <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 && (
