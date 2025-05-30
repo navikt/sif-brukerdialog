@@ -49,21 +49,15 @@ const getRapporterInntektOppsummering = (oppgave: RapporterInntektOppgave): Reac
 };
 
 const getEndretProgramperiodeOppsummering = (oppgave: EndretProgramperiodeOppgave): React.ReactNode => {
-    const { endringType, forrigeProgramperiode, programperiode } = oppgave.oppgavetypeData;
-    // Startdato endret
-    if (endringType === EndretProgramperiodeEndringType.ENDRET_STARTDATO) {
-        return `Startdato for programperioden din er endret til ${dateFormatter.full(programperiode.fraOgMed)}.`;
+    const { endringType, programperiode } = oppgave.oppgavetypeData;
+    switch (endringType) {
+        case EndretProgramperiodeEndringType.ENDRET_STARTDATO:
+            return `Startdato for programperioden din er endret til ${dateFormatter.full(programperiode.fraOgMed)}.`;
+        case EndretProgramperiodeEndringType.ENDRET_SLUTTDATO:
+            return `Sluttdato for programperioden din er endret til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
+        case EndretProgramperiodeEndringType.NY_SLUTTDATO:
+            return `Sluttdato for programperioden din er endret til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
     }
-    // Sluttdato må være definert for endret_sluttdato endring
-    if (programperiode.tilOgMed === undefined) {
-        throw new Error('Programperiode må ha en sluttdato når endringstype ikke er ENDRET_STARTDATO');
-    }
-    // Sluttdato settes første gang
-    if (forrigeProgramperiode?.tilOgMed === undefined) {
-        return `Sluttdato for programperioden din er satt til ${dateFormatter.full(programperiode.tilOgMed)}.`;
-    }
-    // Sluttdato er endret
-    return `Sluttdato for programperioden din er endret til ${dateFormatter.full(programperiode.tilOgMed)}.`;
 };
 
 export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | undefined => {
