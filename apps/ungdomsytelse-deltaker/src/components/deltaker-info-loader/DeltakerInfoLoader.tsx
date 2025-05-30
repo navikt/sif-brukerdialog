@@ -9,6 +9,7 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
 import { Alert, Theme, VStack } from '@navikt/ds-react';
+import { Oppgavetype } from '@navikt/ung-common';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -40,8 +41,13 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
+    const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
+        (oppgave) => oppgave.oppgavetype === Oppgavetype.SEND_SØKNAD,
+    );
+
     const deltakerHarSøkt =
-        deltakelsePeriode.søktTidspunkt !== undefined || (deltakelsePeriode as any).harSøkt !== undefined;
+        deltakelsePeriode.søktTidspunkt !== undefined ||
+        (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
 
     return (
         <DeltakerContextProvider
