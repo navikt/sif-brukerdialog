@@ -34,6 +34,7 @@ export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_PROGRAMPERIODE',
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
+    'SEND_SØKNAD',
 ]);
 
 export const zOppgavetypeDataDto = z.unknown();
@@ -150,8 +151,8 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    førsteMuligeInnmeldingsdato: z.string().date(),
     sisteMuligeInnmeldingsdato: z.string().date(),
+    førsteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({
