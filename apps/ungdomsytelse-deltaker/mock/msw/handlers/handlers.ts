@@ -19,7 +19,8 @@ export const getHandlers = () => {
         http.get('**/deltaker/hent-kontonummer', async () => {
             return HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' });
         }),
-        http.get('**/oppslag/soker', () => {
+        http.get('**/oppslag/soker', async () => {
+            // await delay(4000);
             return HttpResponse.json(søker);
         }),
         http.get('**/oppslag/barn', () => {

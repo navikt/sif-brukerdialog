@@ -8,7 +8,9 @@ interface Props {
 
 const PageContentWrapper = ({ children }: Props) => (
     <PageBoundary>
-        <Box className="md:pb-10 sm:pb-0 mx-auto">{children}</Box>
+        <Box paddingBlock={{ sm: '10' }} className="mx-auto">
+            {children}
+        </Box>
     </PageBoundary>
 );
 
