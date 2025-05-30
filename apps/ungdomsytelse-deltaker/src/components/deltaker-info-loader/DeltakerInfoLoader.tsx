@@ -24,6 +24,7 @@ const DeltakerInfoLoader = () => {
     }
 
     if (error) {
+        console.error('Error loading data:', søker.error, deltakelsePerioder.error);
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
