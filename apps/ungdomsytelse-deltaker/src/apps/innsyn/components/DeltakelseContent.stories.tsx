@@ -23,7 +23,6 @@ const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSÃ
 export const AktivDeltakelseMedInfo: Story = {
     name: 'Aktiv deltakelse - med info om inntektsrapportering',
     args: {
-        visInfoOmInntektsrapportering: true,
         deltakelsePeriode: {
             ...deltakelsePeriode,
         },
@@ -42,7 +41,6 @@ export const AktivDeltakelseUtenInfo: Story = {
 export const DeltakelseAvsluttet: Story = {
     name: 'Deltakelse er avsluttet',
     args: {
-        visInfoOmDeltakelseAvsluttet: true,
         deltakelsePeriode: {
             ...deltakelsePeriode,
             programPeriode: {

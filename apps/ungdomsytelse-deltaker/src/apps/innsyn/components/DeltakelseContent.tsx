@@ -1,22 +1,30 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
+import {
+    erDeltakelseAvsluttet,
+    erDeltakelseStartet,
+    visHuskelappOmInntektsrapportering,
+} from '../utils/deltakelseUtils';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
 import OppgaverList from './oppgaver-list/OppgaverList';
+import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
-    visInfoOmDeltakelseAvsluttet?: boolean;
-    visInfoOmInntektsrapportering?: boolean;
 }
 
-const DeltakelseContent = ({
-    deltakelsePeriode,
-    visInfoOmDeltakelseAvsluttet,
-    visInfoOmInntektsrapportering,
-}: Props) => {
+const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const { oppgaver, programPeriode, id } = deltakelsePeriode;
+
+    const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
+    const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
+
+    const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering =
+        deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
+    const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -26,9 +34,10 @@ const DeltakelseContent = ({
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
-    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
+    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering || visInfoOmDeltakelseIkkeStartet;
     return (
         <VStack gap="10">
+            {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <HuskelappInntekt />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
