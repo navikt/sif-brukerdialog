@@ -18,8 +18,8 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.tittel');
-        case Oppgavetype.SEND_SØKNAD:
-            return text('oppgavetype.SEND_SØKNAD.tittel');
+        case Oppgavetype.SØK_YTELSE:
+            return text('Oppgavetype.SØK_YTELSE.tittel');
     }
 };
 

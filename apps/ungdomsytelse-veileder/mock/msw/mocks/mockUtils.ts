@@ -101,7 +101,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         oppgaver: [
             {
                 oppgaveReferanse: 'e6eaf147-db0e-454c-9271-f15ffe550b10',
-                oppgavetype: Oppgavetype.SEND_SØKNAD,
+                oppgavetype: Oppgavetype.SØK_YTELSE,
                 oppgavetypeData: {
                     fomDato: '2025-08-01',
                 },

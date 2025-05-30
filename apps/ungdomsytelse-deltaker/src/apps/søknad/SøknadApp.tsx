@@ -27,7 +27,7 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     }
 
     const kontonummerData = kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined;
-    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SEND_SØKNAD);
+    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;

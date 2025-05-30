@@ -5,7 +5,7 @@ import {
     KontrollerRegisterinntektOppgavetypeDataDto,
     OppgaveStatus,
     Oppgavetype,
-    SendSøknadOppgavetypeDataDto,
+    SøkYtelseOppgavetypeDataDto,
     zDeltakelseOpplysningDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
@@ -125,15 +125,15 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);
                 return;
-            case Oppgavetype.SEND_SØKNAD:
-                const { fomDato } = oppgave.oppgavetypeData as SendSøknadOppgavetypeDataDto;
+            case Oppgavetype.SØK_YTELSE:
+                const { fomDato } = oppgave.oppgavetypeData as SøkYtelseOppgavetypeDataDto;
                 const sendSøknadOppgave: Oppgave = {
                     oppgaveReferanse: oppgave.oppgaveReferanse,
                     status: getOppgaveStatusEnum(oppgave.status),
                     opprettetDato,
                     svarfrist,
                     løstDato,
-                    oppgavetype: Oppgavetype.SEND_SØKNAD,
+                    oppgavetype: Oppgavetype.SØK_YTELSE,
                     oppgavetypeData: {
                         fomDato: ISODateToDate(fomDato),
                     },

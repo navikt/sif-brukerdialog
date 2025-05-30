@@ -20,7 +20,7 @@ const OppgaverList = ({ oppgaver }: Props) => {
     return (
         <VStack gap="4">
             {oppgaver.map((oppgave, index) =>
-                oppgave.oppgavetype === Oppgavetype.SEND_SØKNAD ? (
+                oppgave.oppgavetype === Oppgavetype.SØK_YTELSE ? (
                     <SøknadMottattOppgavePanel key={index} mottatt={oppgave.opprettetDato} />
                 ) : (
                     <OppgaveLinkPanel

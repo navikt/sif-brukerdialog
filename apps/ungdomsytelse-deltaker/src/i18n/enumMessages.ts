@@ -5,7 +5,7 @@ const nb = {
     'oppgavestatus.UTLØPT': 'Utløpt',
     'oppgavestatus.LUKKET': 'Lukket',
 
-    'oppgavetype.SEND_SØKNAD.tittel': 'Søknad for ungdomsprogramytelsen',
+    'Oppgavetype.SØK_YTELSE.tittel': 'Søknad for ungdomsprogramytelsen',
 
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.ENDRET_STARTDATO.tittel': 'Ny startdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.ENDRET_STARTDATO.forstårOppgaveSpørsmål':

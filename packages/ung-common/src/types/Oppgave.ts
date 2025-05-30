@@ -63,7 +63,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
 }
 
 export interface SendSøknadOppgave extends OppgaveBase {
-    oppgavetype: Oppgavetype.SEND_SØKNAD;
+    oppgavetype: Oppgavetype.SØK_YTELSE;
     oppgavetypeData: {
         fomDato: Date;
     };

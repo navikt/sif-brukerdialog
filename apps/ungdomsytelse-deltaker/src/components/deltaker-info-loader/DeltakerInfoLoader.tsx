@@ -42,7 +42,7 @@ const DeltakerInfoLoader = () => {
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
-        (oppgave) => oppgave.oppgavetype === Oppgavetype.SEND_SØKNAD,
+        (oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE,
     );
 
     const deltakerHarSøkt =

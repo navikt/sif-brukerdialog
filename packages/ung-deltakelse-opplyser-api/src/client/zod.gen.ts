@@ -34,7 +34,7 @@ export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_PROGRAMPERIODE',
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
-    'SEND_SØKNAD',
+    'SØK_YTELSE',
 ]);
 
 export const zOppgavetypeDataDto = z.unknown();
@@ -96,7 +96,7 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
     }),
 );
 
-export const zSendSøknadOppgavetypeDataDto = zOppgavetypeDataDto.and(
+export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
     z.object({
         fomDato: z.string().date(),
     }),
@@ -111,7 +111,7 @@ export const zOppgaveDto = z.object({
         zEndretProgramperiodeDataDto,
         zInntektsrapporteringOppgavetypeDataDto,
         zKontrollerRegisterinntektOppgavetypeDataDto,
-        zSendSøknadOppgavetypeDataDto,
+        zSøkYtelseOppgavetypeDataDto,
     ]),
     bekreftelse: zBekreftelseDto.optional(),
     status: zOppgaveStatus,

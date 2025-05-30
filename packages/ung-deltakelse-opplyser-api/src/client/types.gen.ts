@@ -63,7 +63,7 @@ export type OppgaveDto = {
         | EndretProgramperiodeDataDto
         | InntektsrapporteringOppgavetypeDataDto
         | KontrollerRegisterinntektOppgavetypeDataDto
-        | SendSøknadOppgavetypeDataDto;
+        | SøkYtelseOppgavetypeDataDto;
     bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
@@ -84,7 +84,7 @@ export enum Oppgavetype {
     BEKREFT_ENDRET_PROGRAMPERIODE = 'BEKREFT_ENDRET_PROGRAMPERIODE',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
-    SEND_SØKNAD = 'SEND_SØKNAD',
+    SØK_YTELSE = 'SØK_YTELSE',
 }
 
 export type OppgavetypeDataDto = unknown;
@@ -110,7 +110,7 @@ export type RegisterinntektDto = {
     totalInntekt: number;
 };
 
-export type SendSøknadOppgavetypeDataDto = OppgavetypeDataDto & {
+export type SøkYtelseOppgavetypeDataDto = OppgavetypeDataDto & {
     fomDato: string;
 };
 
