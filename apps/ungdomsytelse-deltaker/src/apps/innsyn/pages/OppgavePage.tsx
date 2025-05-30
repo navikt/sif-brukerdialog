@@ -9,7 +9,7 @@ import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppg
 import EndretSluttdatoOppgaveInfo from '../components/oppgaver/parts/EndretSluttdatoOppgaveInfo';
 import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
 import { useAppIntl } from '../i18n';
-import { getOppgaveBekreftelseTekster } from '../utils/textUtils';
+import { getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../utils/textUtils';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import DefaultPage from '../components/page-layout/DefaultPage';
 
@@ -42,9 +42,14 @@ const OppgavePage = () => {
 
     const renderOppgavebekreftelsePage = (children: React.ReactNode) => {
         const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
+        const oppsummering = getOppgaveOppsummering(oppgave);
         return (
             <DefaultPage title={`${tekster.tittel} - Ditt ungdomsprogram`}>
-                <Oppgavebekreftelse tekster={tekster} oppgave={oppgave} deltakerNavn={søker.fornavn}>
+                <Oppgavebekreftelse
+                    tekster={tekster}
+                    oppsummering={oppsummering}
+                    oppgave={oppgave}
+                    deltakerNavn={søker.fornavn}>
                     {children}
                 </Oppgavebekreftelse>
             </DefaultPage>

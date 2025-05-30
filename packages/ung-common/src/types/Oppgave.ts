@@ -58,7 +58,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
-        tilOgMed?: Date;
+        tilOgMed: Date;
     };
 }
 

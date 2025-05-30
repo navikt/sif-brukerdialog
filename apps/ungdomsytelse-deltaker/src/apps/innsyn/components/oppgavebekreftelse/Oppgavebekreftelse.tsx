@@ -10,20 +10,25 @@ export interface OppgavebekreftelseTekster {
 }
 interface Props {
     tekster: OppgavebekreftelseTekster;
+    oppsummering: React.ReactNode;
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;
 }
 
 const Oppgavebekreftelse = (props: Props) => {
-    const { oppgave, children, ...rest } = props;
+    const { oppgave, oppsummering, children, ...rest } = props;
 
     /** Brukes for å sjekke om en skal vise kvittering etter innsending */
     const erOpprinneligUløst = usePrevious(oppgave.status) === OppgaveStatus.ULØST;
 
     if (oppgave.status !== OppgaveStatus.ULØST && erOpprinneligUløst === false) {
         return (
-            <LøstOppgavebekreftelse {...rest} bekreftelse={oppgave.bekreftelse}>
+            <LøstOppgavebekreftelse
+                {...rest}
+                bekreftelse={oppgave.bekreftelse}
+                oppsummering={oppsummering}
+                deltakerNavn={props.deltakerNavn}>
                 {children}
                 <OppgavebekreftelseFristInfo svarfrist={oppgave.svarfrist} />
             </LøstOppgavebekreftelse>
