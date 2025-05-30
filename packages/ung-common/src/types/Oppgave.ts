@@ -62,4 +62,15 @@ export interface RapporterInntektOppgave extends OppgaveBase {
     };
 }
 
-export type Oppgave = KorrigertInntektOppgave | EndretProgramperiodeOppgave | RapporterInntektOppgave;
+export interface SendSøknadOppgave extends OppgaveBase {
+    oppgavetype: Oppgavetype.SEND_SØKNAD;
+    oppgavetypeData: {
+        fomDato: Date;
+    };
+}
+
+export type Oppgave =
+    | KorrigertInntektOppgave
+    | EndretProgramperiodeOppgave
+    | RapporterInntektOppgave
+    | SendSøknadOppgave;

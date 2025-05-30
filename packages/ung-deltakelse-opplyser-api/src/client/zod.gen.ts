@@ -96,6 +96,12 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
     }),
 );
 
+export const zSendSøknadOppgavetypeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        fomDato: z.string().date(),
+    }),
+);
+
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
 
 export const zOppgaveDto = z.object({
@@ -105,6 +111,7 @@ export const zOppgaveDto = z.object({
         zEndretProgramperiodeDataDto,
         zInntektsrapporteringOppgavetypeDataDto,
         zKontrollerRegisterinntektOppgavetypeDataDto,
+        zSendSøknadOppgavetypeDataDto,
     ]),
     bekreftelse: zBekreftelseDto.optional(),
     status: zOppgaveStatus,
@@ -151,8 +158,8 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({

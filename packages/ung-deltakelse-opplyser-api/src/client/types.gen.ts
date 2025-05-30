@@ -62,7 +62,8 @@ export type OppgaveDto = {
     oppgavetypeData:
         | EndretProgramperiodeDataDto
         | InntektsrapporteringOppgavetypeDataDto
-        | KontrollerRegisterinntektOppgavetypeDataDto;
+        | KontrollerRegisterinntektOppgavetypeDataDto
+        | SendSøknadOppgavetypeDataDto;
     bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
@@ -109,6 +110,10 @@ export type RegisterinntektDto = {
     totalInntekt: number;
 };
 
+export type SendSøknadOppgavetypeDataDto = OppgavetypeDataDto & {
+    fomDato: string;
+};
+
 export type YtelseRegisterInntektDto = {
     inntekt: number;
     ytelsetype: YtelseType;
@@ -144,8 +149,8 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {

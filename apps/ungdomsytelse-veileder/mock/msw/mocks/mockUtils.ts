@@ -4,11 +4,13 @@ import {
     DeltakelseHistorikkDto,
     DeltakelseOpplysningDto,
     DeltakerPersonalia,
+    OppgaveStatus,
+    Oppgavetype,
 } from '@navikt/ung-deltakelse-opplyser-api';
-import { registrertDeltakerMock } from './data/registrertDeltakerMock';
-import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { v4 } from 'uuid';
 import { deltaker2Mock } from './data/deltaker2';
+import { nyDeltakerMock } from './data/nyDeltakerMock';
+import { registrertDeltakerMock } from './data/registrertDeltakerMock';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseOpplysningDto;
@@ -96,7 +98,17 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         },
         fraOgMed: startdato,
         søktTidspunkt: undefined,
-        oppgaver: [],
+        oppgaver: [
+            {
+                oppgaveReferanse: 'e6eaf147-db0e-454c-9271-f15ffe550b10',
+                oppgavetype: Oppgavetype.SEND_SØKNAD,
+                oppgavetypeData: {
+                    fomDato: '2025-08-01',
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-05-30T08:01:25.542771Z',
+            },
+        ],
     };
     db.deltakelser.push({
         deltakelse,
@@ -114,7 +126,6 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
     save(db);
     return deltakelse;
 };
-
 const endreStartdato = (deltakelseId: string, dato: string) => {
     const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     if (!deltakelse) {
