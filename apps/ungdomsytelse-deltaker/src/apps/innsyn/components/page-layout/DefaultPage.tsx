@@ -1,6 +1,6 @@
 import React from 'react';
 import PageContentWrapper from './PageContentWrapper';
-import { Page } from '@navikt/ds-react';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 
 interface Props {
     title: string;
