@@ -4,7 +4,6 @@ import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
 import OppgaverList from './oppgaver-list/OppgaverList';
-import SøknadMottattOppgavePanel from './oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -49,7 +48,6 @@ const DeltakelseContent = ({
                 {tidligereOppgaver.length > 0 && (
                     <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
                 )}
-                <SøknadMottattOppgavePanel mottatt={deltakelsePeriode.søktTidspunkt!} />
             </VStack>
         </VStack>
     );

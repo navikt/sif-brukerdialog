@@ -146,6 +146,16 @@ const deltakelser: DeltakelsePeriodInfo[] = [
                 status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-05-22T09:32:12.590003Z',
             },
+            {
+                oppgaveReferanse: 'e6eaf147-db0e-454c-9271-f15ffe550b10',
+                oppgavetype: Oppgavetype.SEND_SØKNAD,
+                oppgavetypeData: {
+                    fomDato: '2025-08-01',
+                },
+                status: OppgaveStatus.LØST,
+                opprettetDato: '2025-05-30T08:01:25.542771Z',
+                løstDato: '2025-04-17T05:06:32.457669Z',
+            },
         ],
     },
 ];
