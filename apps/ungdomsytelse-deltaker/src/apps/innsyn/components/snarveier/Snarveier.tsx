@@ -13,7 +13,7 @@ const Snarveier = () => {
                     du deltar i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen.
                 </BodyLong>
 
-                <HGrid columns="1fr 1fr" gap="4">
+                <HGrid columns={{ sm: '1fr 1fr' }} gap="4">
                     <LinkPanel
                         border={false}
                         style={{ borderRadius: '0.5rem' }}

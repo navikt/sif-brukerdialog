@@ -74,7 +74,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
                 evt.preventDefault();
                 onClick();
             }}>
-            <HGrid columns="3rem auto" gap="2" className="w-full" align="center">
+            <HGrid columns={{ sm: '3rem auto' }} gap="2" className="w-full" align="center">
                 <Show above="sm">
                     <Box paddingInline="2 3">
                         <OppgaveStatusIcon oppgavestatus={status} />
