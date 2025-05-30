@@ -1,11 +1,12 @@
 import { Søker } from '@navikt/sif-common-api';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
-import { DeltakelsePeriode } from '@navikt/ung-common';
+import { DeltakelsePeriode, Oppgavetype } from '@navikt/ung-common';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
+import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 
 interface SøknadAppProps {
     søker: Søker;
@@ -26,9 +27,14 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     }
 
     const kontonummerData = kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined;
+    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SEND_SØKNAD);
 
+    if (!søknadOppgave) {
+        return <IngenSendSøknadOppgave />;
+    }
     return (
         <SøknadProvider
+            søknadOppgave={søknadOppgave}
             søker={søker}
             deltakelsePeriode={deltakelsePeriode}
             kontonummer={kontonummerData}

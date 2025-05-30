@@ -13,7 +13,7 @@ import { getBarnSpørsmål } from '../barn/BarnSteg';
 import { buildSøknadFromSvar } from './oppsummeringUtils';
 
 const OppsummeringSteg = () => {
-    const { søker, deltakelsePeriode, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
+    const { søker, deltakelsePeriode, søknadOppgave, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
@@ -21,6 +21,7 @@ const OppsummeringSteg = () => {
     const { error, isPending, mutateAsync } = useSendSøknad();
 
     const søknad = buildSøknadFromSvar(
+        søknadOppgave.oppgaveReferanse,
         svar,
         søker.fødselsnummer,
         deltakelsePeriode.programPeriode.from,
@@ -107,28 +108,30 @@ const OppsummeringSteg = () => {
                         setBekreftError(undefined);
                         handleOnSubmit();
                     }}>
-                    <CheckboxGroup
-                        name="bekrefterInnsending"
-                        hideLegend={true}
-                        legend="Bekreft opplysninger"
-                        error={bekreftError}>
-                        <Checkbox
-                            value="bekrefter"
-                            onChange={(evt) => {
-                                setBekreftError(undefined);
-                                setBekrefterOpplysninger(evt.target.checked);
-                            }}>
-                            Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om
-                            ungdomsprogram&shy;ytelsen.
-                        </Checkbox>
-                    </CheckboxGroup>
+                    <VStack gap="4">
+                        <CheckboxGroup
+                            name="bekrefterInnsending"
+                            hideLegend={true}
+                            legend="Bekreft opplysninger"
+                            error={bekreftError}>
+                            <Checkbox
+                                value="bekrefter"
+                                onChange={(evt) => {
+                                    setBekreftError(undefined);
+                                    setBekrefterOpplysninger(evt.target.checked);
+                                }}>
+                                Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om
+                                ungdomsprogram&shy;ytelsen.
+                            </Checkbox>
+                        </CheckboxGroup>
 
-                    {error ? <ApiErrorAlert error={error} /> : null}
-                    <SkjemaFooter
-                        pending={isPending}
-                        forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
-                        submit={{ tittel: 'Send søknad', disabled: !!søknadError, erSendInn: true }}
-                    />
+                        {error ? <ApiErrorAlert error={error} /> : null}
+                        <SkjemaFooter
+                            pending={isPending}
+                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.BARN) }}
+                            submit={{ tittel: 'Send søknad', disabled: !!søknadError, erSendInn: true }}
+                        />
+                    </VStack>
                 </form>
             </VStack>
         </SøknadSteg>

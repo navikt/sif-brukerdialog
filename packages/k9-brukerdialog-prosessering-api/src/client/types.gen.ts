@@ -16,6 +16,7 @@ export type Friteksfelt = {
 };
 
 export type Ungdomsytelsesøknad = {
+    oppgaveReferanse: string;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;

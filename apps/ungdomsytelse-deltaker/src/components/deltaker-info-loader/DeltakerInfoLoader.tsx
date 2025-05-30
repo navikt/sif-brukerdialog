@@ -9,7 +9,6 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
 import { Alert, Theme, VStack } from '@navikt/ds-react';
-import { isDevMode } from '@navikt/sif-common-env';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -42,7 +41,7 @@ const DeltakerInfoLoader = () => {
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const deltakerHarSøkt =
-        deltakelsePeriode.søktTidspunkt !== undefined || (isDevMode() && deltakelsePeriode.oppgaver.length > 0);
+        deltakelsePeriode.søktTidspunkt !== undefined || (deltakelsePeriode as any).harSøkt !== undefined;
 
     return (
         <DeltakerContextProvider
