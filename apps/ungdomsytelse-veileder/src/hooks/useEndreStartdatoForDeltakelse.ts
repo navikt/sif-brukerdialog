@@ -17,6 +17,7 @@ export const useEndreStartdatoForDeltakelse = ({
         mutationFn: (payload: EndrePeriodeDatoDto) => endreStartdatoForDeltakelse(deltakelseId, payload),
         onSuccess: () => {
             queryClient.invalidateQueries(queries.deltakelserForDeltaker(deltakerId));
+            queryClient.invalidateQueries(queries.deltakelseHistorikk(deltakerId));
         },
     });
 };

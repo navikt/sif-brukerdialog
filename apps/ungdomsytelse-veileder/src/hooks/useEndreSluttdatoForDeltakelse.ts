@@ -22,6 +22,7 @@ export const useEndreSluttdatoForDeltakelse = ({
         mutationFn: (data: EndrePeriodeDatoDto) => endreSluttdatoForDeltakelse(deltakelseId, data),
         onSuccess: () => {
             queryClient.invalidateQueries(queries.deltakelserForDeltaker(deltakerId));
+            queryClient.invalidateQueries(queries.deltakelseHistorikk(deltakerId));
         },
     });
 };
