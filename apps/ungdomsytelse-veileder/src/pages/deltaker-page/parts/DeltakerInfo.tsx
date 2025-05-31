@@ -32,7 +32,9 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                                     <span>
                                         {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
                                     </span>
-                                    <BodyShort>🎉 Bursdag i dag 🎉</BodyShort>
+                                    {dayjs(deltaker.fødselsdato).isSame(dayjs(), 'day') && (
+                                        <BodyShort as="span">🎉 Bursdag i dag 🎉</BodyShort>
+                                    )}
                                 </VStack>
                             </dd>
                         </dl>
