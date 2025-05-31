@@ -15,7 +15,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
 
     return (
         <InternalHeader>
-            <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
+            <InternalHeader.Title href="/">Nav Veileder - Ungdomsprogramytelse</InternalHeader.Title>
             <Spacer />
             <InternalHeader.Button
                 aria-label="Bytt mellom lys og mørk modus"
