@@ -48,7 +48,7 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
             <HistorikkHeader />
             <Alert variant="info" inline>
                 Historikkinnslagene er ikke optimale enda, men vi satser på å forbedre dem snart. F.eks. innsendt søknad
-                fra deltaker kommer som &quot;Søknad sendt&quot; hvor kilden er &quot;system&quot;.
+                fra deltaker vises som &quot;Endret periode&quot;.
             </Alert>
             <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>
