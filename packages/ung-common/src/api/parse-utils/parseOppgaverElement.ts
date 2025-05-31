@@ -45,7 +45,14 @@ export const getEndretProgramperiodeEndringType = (
 ): EndretProgramperiodeEndringType => {
     const { programperiode, forrigeProgramperiode } = oppgavetypeData;
 
-    if (programperiode.fomDato !== forrigeProgramperiode?.fomDato) {
+    const startdatoEndret = programperiode.fomDato !== forrigeProgramperiode?.fomDato;
+    const sluttdatoEndret = programperiode.tomDato !== forrigeProgramperiode?.tomDato;
+
+    if (startdatoEndret && sluttdatoEndret) {
+        return EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET;
+    }
+
+    if (startdatoEndret) {
         return EndretProgramperiodeEndringType.ENDRET_STARTDATO;
     }
 
@@ -85,6 +92,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                 return;
             case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
                 const endretProgramperiodeData = oppgave.oppgavetypeData as EndretProgramperiodeDataDto;
+                const endringType = getEndretProgramperiodeEndringType(endretProgramperiodeData);
                 const endretProgramperiodeOppgave: EndretProgramperiodeOppgave = {
                     oppgaveReferanse: oppgave.oppgaveReferanse,
                     status: getOppgaveStatusEnum(oppgave.status),
@@ -92,6 +100,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                     svarfrist,
                     løstDato,
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+                    ugyldigOppgave: endringType === EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET,
                     oppgavetypeData: {
                         programperiode: {
                             fraOgMed: ISODateToDate(endretProgramperiodeData.programperiode.fomDato),
@@ -107,7 +116,7 @@ export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => 
                                       : undefined,
                               }
                             : undefined,
-                        endringType: getEndretProgramperiodeEndringType(endretProgramperiodeData),
+                        endringType,
                     },
                     bekreftelse: oppgave.bekreftelse,
                 };

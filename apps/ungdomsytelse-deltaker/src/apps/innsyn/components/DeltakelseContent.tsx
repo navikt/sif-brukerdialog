@@ -22,8 +22,10 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
 
     const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
+
     const visInfoOmInntektsrapportering =
         deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
+
     const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
 
     // const info = (periode?: { fraOgMed: Date; tilOgMed?: Date }) => {

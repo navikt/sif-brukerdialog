@@ -7,6 +7,7 @@ interface OppgaveBase {
     status: OppgaveStatus;
     løstDato?: Date;
     svarfrist: Date;
+    ugyldigOppgave?: boolean;
 }
 
 export interface BekreftelseOppgave extends OppgaveBase {
@@ -38,6 +39,8 @@ export enum EndretProgramperiodeEndringType {
     'ENDRET_SLUTTDATO' = 'ENDRET_SLUTTDATO',
     /** Sluttdato satt første gang */
     'NY_SLUTTDATO' = 'NY_SLUTTDATO',
+    /** Startdato og sluttdato endret - UGYLDIG*/
+    'START_OG_SLUTTDATO_ENDRET' = 'START_OG_SLUTTDATO_ENDRET',
 }
 
 export interface EndretProgramperiodeOppgave extends BekreftelseOppgave {

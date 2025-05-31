@@ -15,6 +15,10 @@ const nb = {
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.ENDRET_SLUTTDATO.forstårOppgaveSpørsmål':
         'Forstår og godtar du at sluttdatoen din er endret',
 
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.START_OG_SLUTTDATO_ENDRET.tittel': 'Ugyldig oppgave',
+    'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.START_OG_SLUTTDATO_ENDRET.forstårOppgaveSpørsmål':
+        'Ugyldig oppgave - start og sluttdato endret',
+
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.NY_SLUTTDATO.tittel': 'Ny sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.NY_SLUTTDATO.forstårOppgaveSpørsmål':
         'Forstår og godtar du at sluttdatoen din er endret',

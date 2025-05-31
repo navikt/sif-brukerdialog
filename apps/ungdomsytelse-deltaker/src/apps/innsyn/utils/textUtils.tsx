@@ -57,6 +57,8 @@ const getEndretProgramperiodeOppsummering = (oppgave: EndretProgramperiodeOppgav
             return `Sluttdato for programperioden din er endret til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
         case EndretProgramperiodeEndringType.NY_SLUTTDATO:
             return `Sluttdato for programperioden din er endret til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
+        case EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET:
+            return `Ugyldig oppgave - både start- og sluttdato er endret.`;
     }
 };
 
@@ -87,7 +89,7 @@ export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
                 </BodyShort>
             );
         case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-            return <BodyShort>Veilederen din har endret perioden du er med i ungdomsprogrammet.</BodyShort>;
+            return <BodyShort>{getOppgaveOppsummering(oppgave)}</BodyShort>;
         case Oppgavetype.RAPPORTER_INNTEKT:
             return <BodyShort>Du kan nå rapportere inntekt for forrige måned.</BodyShort>;
         default:
