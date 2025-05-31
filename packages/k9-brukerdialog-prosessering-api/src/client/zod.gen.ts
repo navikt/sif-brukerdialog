@@ -16,6 +16,7 @@ export const zFriteksfelt = z.object({
 });
 
 export const zUngdomsytelsesøknad = z.object({
+    oppgaveReferanse: z.string(),
     språk: z.string(),
     startdato: z.string().date(),
     søkerNorskIdent: z.string(),

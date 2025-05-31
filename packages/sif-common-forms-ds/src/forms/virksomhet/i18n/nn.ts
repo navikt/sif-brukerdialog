@@ -97,7 +97,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.fom.dateHasNoValue':
         'Du må oppgje kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateIsAfterMax':
-        'Startdatoen for når du starta {navn} må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
+        'Startdatoen for når du starta {navn} må vera før dags dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
         'Du må oppgje startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
@@ -107,7 +107,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.tom.dateIsBeforeMin':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateIsAfterMax':
-        'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dagens dato. Skriv inn eller vel sluttdato frå datoveljaren.',
+        'Sluttdatoen for når du avslutta verksemda kan ikkje vera etter dags dato. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateHasInvalidFormat':
         'Du må oppgje dato for når du avslutta verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.tom.toDateIsBeforeFromDate':
@@ -127,7 +127,7 @@ export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = 
     '@forms.virksomhetForm.blittYrkesaktivDato.dateHasInvalidFormat':
         'Du må oppgje dato for når du byrja i arbeidslivet i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateIsAfterMax':
-        'Datoen for når du byrja i arbeidslivet kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når du byrja i arbeidslivet kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateIsBeforeMin':
         'Datoen for når du byrja i arbeidslivet kan ikkje vera før {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':

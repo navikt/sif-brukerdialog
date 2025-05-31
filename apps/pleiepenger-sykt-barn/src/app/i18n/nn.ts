@@ -135,7 +135,7 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.fosterhjemsgodtgjørelse.startdato.dateHasInvalidFormat':
         'Du må oppgje datoen for når godtgjersla startar  i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.fosterhjemsgodtgjørelse.startdato.dateIsAfterMax':
-        'Datoen for når godtgjersla startar kan ikkje vere etter dagens dato, eller etter perioden du søkjer for.',
+        'Datoen for når godtgjersla startar kan ikkje vere etter dags dato, eller etter perioden du søkjer for.',
     'validation.fosterhjemsgodtgjørelse.startdato.dateIsBeforeMin':
         'Datoen for når godtgjersla startar kan ikkje vere før perioden du søkjer for. Viss den starta før dette, må du svare nei på om den startar undervegs i pleiepengeperioden.',
     'validation.fosterhjemsgodtgjørelse.startdato.startetEtterSluttDato':
@@ -180,7 +180,7 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.frilans.startdato.dateHasInvalidFormat':
         'Du må oppgje datoen for når du starta å jobbe som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.startdato.dateIsAfterMax':
-        'Datoen for når du starta å jobbe som frilansar kan ikkje vere etter dagens dato.',
+        'Datoen for når du starta å jobbe som frilansar kan ikkje vere etter dags dato.',
     'validation.frilans.startdato.dateIsBeforeMin':
         'Datoen for når du starta å jobbe som frilansar kan ikkje vere før {minDato}. Dersom du starta før dette, må du svare ja på at du starta før denne datoen.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
@@ -192,7 +192,7 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
     'validation.frilans.sluttdato.dateHasInvalidFormat':
         'Du må oppgje datoen for når du slutta å jobbe som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.sluttdato.dateIsAfterMax':
-        'Datoen for når du slutta å jobbe som frilansar kan ikkje vere etter dagens dato.',
+        'Datoen for når du slutta å jobbe som frilansar kan ikkje vere etter dags dato.',
     'validation.frilans.sluttdato.dateIsBeforeMin':
         'Datoen for når du slutta å jobbe som frilansar kan ikkje vere før datoen du starta.',
     'validation.frilans.startetFørSisteTreHeleMåneder.yesOrNoIsUnanswered':

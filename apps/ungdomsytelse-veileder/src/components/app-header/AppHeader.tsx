@@ -4,7 +4,10 @@ import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillI
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
 
-const AppHeader = () => {
+interface Props {
+    visActionsMenu?: boolean;
+}
+const AppHeader = ({ visActionsMenu = false }: Props) => {
     const { veileder } = useVeileder();
     const { setDarkMode, darkMode } = useThemeContext();
 
@@ -12,7 +15,7 @@ const AppHeader = () => {
 
     return (
         <InternalHeader>
-            <InternalHeader.Title href="/">Nav Veileder - Ungdomsytelse</InternalHeader.Title>
+            <InternalHeader.Title href="/">Nav Veileder - Ungdomsprogramytelse</InternalHeader.Title>
             <Spacer />
             <InternalHeader.Button
                 aria-label="Bytt mellom lys og mørk modus"
@@ -26,22 +29,24 @@ const AppHeader = () => {
                     <SunFillIcon aria-label="Lys modus er aktiv" />
                 )}
             </InternalHeader.Button>
-            <ActionMenu>
-                <ActionMenu.Trigger>
-                    <InternalHeader.Button>
-                        <MenuGridIcon fontSize="1.5rem" title="Innhold i veilederapplikasjonen" />
-                    </InternalHeader.Button>
-                </ActionMenu.Trigger>
-                <ActionMenu.Content>
-                    <ActionMenu.Item onSelect={() => navigate('/')} icon={<PersonIcon />}>
-                        Finn deltaker
-                    </ActionMenu.Item>
-                    <ActionMenu.Divider />
-                    <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
-                        Informasjon og veiledning
-                    </ActionMenu.Item>
-                </ActionMenu.Content>
-            </ActionMenu>
+            {visActionsMenu && (
+                <ActionMenu>
+                    <ActionMenu.Trigger>
+                        <InternalHeader.Button>
+                            <MenuGridIcon fontSize="1.5rem" title="Innhold i veilederapplikasjonen" />
+                        </InternalHeader.Button>
+                    </ActionMenu.Trigger>
+                    <ActionMenu.Content>
+                        <ActionMenu.Item onSelect={() => navigate('/')} icon={<PersonIcon />}>
+                            Finn deltaker
+                        </ActionMenu.Item>
+                        <ActionMenu.Divider />
+                        <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
+                            Informasjon og veiledning
+                        </ActionMenu.Item>
+                    </ActionMenu.Content>
+                </ActionMenu>
+            )}
             <InternalHeader.User name={veileder.NAVident} />
         </InternalHeader>
     );

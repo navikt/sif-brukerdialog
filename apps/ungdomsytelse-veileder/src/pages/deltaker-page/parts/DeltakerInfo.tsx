@@ -1,4 +1,4 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltaker, formaterNavn } from '@navikt/ung-common';
 import dayjs from 'dayjs';
@@ -28,7 +28,14 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                             </dd>
                             <dt>Fødselsdato:</dt>
                             <dd>
-                                {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
+                                <VStack gap="3">
+                                    <span>
+                                        {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
+                                    </span>
+                                    {dayjs(deltaker.fødselsdato).isSame(dayjs(), 'day') && (
+                                        <BodyShort as="span">🎉 Bursdag i dag 🎉</BodyShort>
+                                    )}
+                                </VStack>
                             </dd>
                         </dl>
                     </VStack>

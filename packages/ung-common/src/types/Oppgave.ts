@@ -1,14 +1,18 @@
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import { BekreftelseDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
-interface oppgaveBase {
+interface OppgaveBase {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
     svarfrist: Date;
+    ugyldigOppgave?: boolean;
 }
 
+export interface BekreftelseOppgave extends OppgaveBase {
+    bekreftelse?: BekreftelseDto;
+}
 export interface Registerinntekt {
     arbeidOgFrilansInntekter: Array<{
         arbeidsgiver: string;
@@ -19,7 +23,7 @@ export interface Registerinntekt {
         inntekt: number;
     }>;
 }
-export interface KorrigertInntektOppgave extends oppgaveBase {
+export interface KorrigertInntektOppgave extends BekreftelseOppgave {
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
@@ -28,19 +32,48 @@ export interface KorrigertInntektOppgave extends oppgaveBase {
     };
 }
 
-export interface EndretProgramperiodeOppgave extends oppgaveBase {
+export enum EndretProgramperiodeEndringType {
+    /** Startdato endret */
+    'ENDRET_STARTDATO' = 'ENDRET_STARTDATO',
+    /** Sluttdato endret */
+    'ENDRET_SLUTTDATO' = 'ENDRET_SLUTTDATO',
+    /** Sluttdato satt første gang */
+    'NY_SLUTTDATO' = 'NY_SLUTTDATO',
+    /** Startdato og sluttdato endret - UGYLDIG*/
+    'START_OG_SLUTTDATO_ENDRET' = 'START_OG_SLUTTDATO_ENDRET',
+}
+
+export interface EndretProgramperiodeOppgave extends BekreftelseOppgave {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE;
     oppgavetypeData: {
-        fraOgMed: Date;
-        tilOgMed?: Date;
+        programperiode: {
+            fraOgMed: Date;
+            tilOgMed?: Date;
+        };
+        forrigeProgramperiode?: {
+            fraOgMed: Date;
+            tilOgMed?: Date;
+        };
+        endringType: EndretProgramperiodeEndringType;
     };
 }
-export interface RapporterInntektOppgave extends oppgaveBase {
+export interface RapporterInntektOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
-        tilOgMed?: Date;
+        tilOgMed: Date;
     };
 }
 
-export type Oppgave = KorrigertInntektOppgave | EndretProgramperiodeOppgave | RapporterInntektOppgave;
+export interface SendSøknadOppgave extends OppgaveBase {
+    oppgavetype: Oppgavetype.SØK_YTELSE;
+    oppgavetypeData: {
+        fomDato: Date;
+    };
+}
+
+export type Oppgave =
+    | KorrigertInntektOppgave
+    | EndretProgramperiodeOppgave
+    | RapporterInntektOppgave
+    | SendSøknadOppgave;

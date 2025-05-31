@@ -28,7 +28,7 @@ const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
             </Show>
             <VStack gap="1">
                 <Heading level="3" size="small">
-                    Søknad for ungdomsprogramytelsen
+                    Søknad for ungdoms&shy;program&shy;ytelsen
                 </Heading>
                 <BodyShort className="text-text-subtle">Mottatt {dateFormatter.compact(mottatt)}</BodyShort>
             </VStack>

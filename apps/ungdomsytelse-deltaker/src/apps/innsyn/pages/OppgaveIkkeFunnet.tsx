@@ -1,8 +1,8 @@
 import { BodyShort, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
 import { useNavigate } from 'react-router-dom';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
+import DefaultPage from '../components/page-layout/DefaultPage';
 
 interface Props {
     oppgaveReferanse?: string;
@@ -13,7 +13,7 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
     const navigate = useNavigate();
 
     return (
-        <Page title="Oppgave ikke funnet">
+        <DefaultPage title="Oppgave ikke funnet">
             <VStack gap="8">
                 <VStack gap="4">
                     <Heading size="large" level="1">
@@ -51,7 +51,7 @@ const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
                     <BodyShort>Ingen oppgaver er registrert</BodyShort>
                 )}
             </VStack>
-        </Page>
+        </DefaultPage>
     );
 };
 

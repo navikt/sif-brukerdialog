@@ -53,7 +53,7 @@ export const omBarnetMessages_nn: Record<keyof typeof omBarnetMessages_nb, strin
     'validation.barnetsFødselsdato.dateHasNoValue':
         'Du må oppgje barnet sin fødselsdato. Skriv inn eller vel dato frå datoveljaren.',
     'validation.barnetsFødselsdato.dateIsBeforeMin': 'Du kan ikkje leggje til eit barn over 18 år.',
-    'validation.barnetsFødselsdato.dateIsAfterMax': 'Barnet sin fødselsdato kan ikkje vere etter dagens dato.',
+    'validation.barnetsFødselsdato.dateIsAfterMax': 'Barnet sin fødselsdato kan ikkje vere etter dags dato.',
     'validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på spørsmålet om kvifor barnet ikkje har fødselsnummer eller D-nummer.',
     'validation.relasjonTilBarnet.noValue': 'Du må svare på spørsmålet om kva for ein relasjon du har til barnet.',

@@ -62,7 +62,8 @@ export type OppgaveDto = {
     oppgavetypeData:
         | EndretProgramperiodeDataDto
         | InntektsrapporteringOppgavetypeDataDto
-        | KontrollerRegisterinntektOppgavetypeDataDto;
+        | KontrollerRegisterinntektOppgavetypeDataDto
+        | SøkYtelseOppgavetypeDataDto;
     bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
@@ -83,6 +84,7 @@ export enum Oppgavetype {
     BEKREFT_ENDRET_PROGRAMPERIODE = 'BEKREFT_ENDRET_PROGRAMPERIODE',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
+    SØK_YTELSE = 'SØK_YTELSE',
 }
 
 export type OppgavetypeDataDto = unknown;
@@ -106,6 +108,10 @@ export type RegisterinntektDto = {
     totalInntektArbeidOgFrilans: number;
     totalInntektYtelse: number;
     totalInntekt: number;
+};
+
+export type SøkYtelseOppgavetypeDataDto = OppgavetypeDataDto & {
+    fomDato: string;
 };
 
 export type YtelseRegisterInntektDto = {
@@ -958,10 +964,10 @@ export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[k
 export type FjernFraProgramData = {
     body?: never;
     path: {
-        deltakelseId: string;
+        deltakerId: string;
     };
     query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/fjern';
+    url: '/veileder/register/deltaker/{deltakerId}/fjern';
 };
 
 export type FjernFraProgramErrors = {

@@ -24,7 +24,7 @@ export const utenlandsoppholdMessages_nn: Record<UtenlandsoppholdMessageKeys, st
     '@forms.utenlandsoppholdForm.fom.dateHasNoValue':
         'Du må oppgje når utanlandsopphaldet starta. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.utenlandsoppholdForm.fom.dateIsAfterMax':
-        'Datoen for når utanlandsopphaldet starta kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når utanlandsopphaldet starta kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.utenlandsoppholdForm.fom.dateIsBeforeMin':
         'Datoen for når utanlandsopphaldet starta kan ikkje vera før {dato}. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.utenlandsoppholdForm.fom.dateHasInvalidFormat':

@@ -279,7 +279,7 @@ export class VeilederService {
     }
 
     /**
-     * Fjern en deltakelse fra ungdomsprogrammet
+     * Fjern en deltaker fra ungdomsprogrammet
      */
     public static fjernFraProgram<ThrowOnError extends boolean = true>(
         options: Options<FjernFraProgramData, ThrowOnError>,
@@ -298,7 +298,7 @@ export class VeilederService {
             responseValidator: async (data) => {
                 return await zFjernFraProgramResponse.parseAsync(data);
             },
-            url: '/veileder/register/deltakelse/{deltakelseId}/fjern',
+            url: '/veileder/register/deltaker/{deltakerId}/fjern',
             ...options,
         });
     }

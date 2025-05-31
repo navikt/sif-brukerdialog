@@ -29,7 +29,7 @@ test('Søk opp og legg til ny deltaker', async ({ page }) => {
     await expect(page.getByText('(26 år)')).toBeVisible();
     await expect(page.getByText('Startdato:torsdag 29.05.')).toBeVisible();
     await expect(page.getByText('Sluttdato:-Registrer sluttdato')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Slett deltakelse' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Slett deltaker' })).toBeVisible();
     await page.getByRole('button', { name: 'Lukk deltaker' }).click();
     await expect(page.getByText('Finn deltaker')).toBeVisible();
 });

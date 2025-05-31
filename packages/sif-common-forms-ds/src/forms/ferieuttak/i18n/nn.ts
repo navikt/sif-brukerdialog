@@ -10,7 +10,7 @@ export const ferieuttakMessages_nn: Record<FerieuttakMessageKeys, string> = {
     '@forms.ferieuttakForm.from.dateHasNoValue':
         'Du må oppgje når ferien startar. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.ferieuttakForm.from.dateIsAfterMax':
-        'Datoen for når ferien startar kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når ferien startar kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.ferieuttakForm.from.dateIsBeforeMin':
         'Datoen for når ferien startar kan ikkje vera før {dato}. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.ferieuttakForm.from.dateHasInvalidFormat':

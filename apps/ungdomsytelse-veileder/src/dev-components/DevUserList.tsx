@@ -8,6 +8,9 @@ const DevUserList = () => {
             <VStack>
                 Testbrukere lokalt:
                 <HStack gap="2" align="center">
+                    <CopyButton copyText="26430569928" size="small" /> 26430569928 - registrert med historikk
+                </HStack>
+                <HStack gap="2" align="center">
                     <CopyButton copyText="03867198392" size="small" /> 03867198392 - registrert
                 </HStack>
                 <HStack gap="2" align="center">
