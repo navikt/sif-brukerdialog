@@ -85,6 +85,8 @@ describe('buildSøknadFromSvar', () => {
             startdato: '2023-01-01',
             harForståttRettigheterOgPlikter: true,
             barnErRiktig: true,
+            deltakelseId: '12345',
+            oppgaveReferanse: '12345',
             kontonummerErRiktig: true,
             søkerNorskIdent,
             kontonummerFraRegister: '1234 56 78901', // Forutsatt at `formaterKontonummer` formaterer slik
@@ -102,6 +104,8 @@ describe('buildSøknadFromSvar', () => {
             språk: 'nb',
             startdato: '2023-01-01',
             harForståttRettigheterOgPlikter: true,
+            deltakelseId: '12345',
+            oppgaveReferanse: '12345',
             barnErRiktig: false,
             kontonummerErRiktig: undefined,
             søkerNorskIdent,
