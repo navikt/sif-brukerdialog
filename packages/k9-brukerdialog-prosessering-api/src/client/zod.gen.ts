@@ -16,6 +16,8 @@ export const zFriteksfelt = z.object({
 });
 
 export const zUngdomsytelsesøknad = z.object({
+    oppgaveReferanse: z.string(),
+    deltakelseId: z.string(),
     språk: z.string(),
     startdato: z.string().date(),
     søkerNorskIdent: z.string(),
@@ -789,16 +791,129 @@ export const zArbeidsgivereDto = z.object({
     frilansoppdrag: z.array(zFrilansoppdragDto).optional(),
 });
 
+export const zDeleteMellomlagringParameterYtelse = z.string();
+
+export const zGetMellomlagringParameterYtelse = z.string();
+
+/**
+ * OK
+ */
 export const zGetMellomlagringResponse = z.string();
 
+export const zCreateMellomlagringData = z.object({});
+
+export const zCreateMellomlagringParameterYtelse = z.string();
+
+export const zUpdateMellomlagringData = z.object({});
+
+export const zUpdateMellomlagringParameterYtelse = z.string();
+
+export const zLagreVedleggData = z.object({
+    vedlegg: z.string(),
+});
+
+export const zValiderFriteksfeltData = zFriteksfelt;
+
+export const zInnsendingUngdomsytelsesøknadData = zUngdomsytelsesøknad;
+
+export const zInnsendingUngdomsytelsesøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingUngdomsytelsesøknadParameterEnabled = z.boolean();
+
+export const zOppgavebekreftelseData = zUngdomsytelseOppgavebekreftelse;
+
+export const zOppgavebekreftelseParameterXBrukerdialogGitSha = z.string();
+
+export const zOppgavebekreftelseParameterEnabled = z.boolean();
+
+export const zInntektrapporteringData = zUngdomsytelseInntektsrapportering;
+
+export const zInntektrapporteringParameterXBrukerdialogGitSha = z.string();
+
+export const zInntektrapporteringParameterEnabled = z.boolean();
+
+export const zInnsendingPleiepengerSyktBarnSøknadData = zPleiepengerSyktBarnSøknad;
+
+export const zInnsendingPleiepengerSyktBarnSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingEndringsmeldingData = zEndringsmelding;
+
+export const zInnsendingEndringsmeldingParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingPleiepengerILivetsSluttfaseSøknadData = zPleiepengerILivetsSluttfaseSøknad;
+
+export const zInnsendingPleiepengerILivetsSluttfaseSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zLagPdfData = zFamiliePdfPostRequest;
+
+/**
+ * OK
+ */
 export const zLagPdfResponse = z.string();
 
+export const zInnsendingOpplæringspengerSøknadData = zOpplæringspengerSøknad;
+
+export const zInnsendingOpplæringspengerSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadData = zOmsorgspengerKroniskSyktBarnSøknad;
+
+export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingOmsorgspengerutbetalingSnfSøknadData = zOmsorgspengerutbetalingSnfSøknad;
+
+export const zInnsendingOmsorgspengerutbetalingSnfSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = zOmsorgspengerutbetalingArbeidstakerSøknad;
+
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingOmsorgspengerMidlertidigAleneSøknadData = zOmsorgspengerMidlertidigAleneSøknad;
+
+export const zInnsendingOmsorgspengerMidlertidigAleneSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = zOmsorgsdagerAleneOmOmsorgenSøknad;
+
+export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadParameterXBrukerdialogGitSha = z.string();
+
+export const zInnsendingEttersendelseData = zEttersendelse;
+
+export const zInnsendingEttersendelseParameterXBrukerdialogGitSha = z.string();
+
+export const zSlettVedleggParameterVedleggId = z.string().min(1);
+
+/**
+ * No Content
+ */
 export const zSlettVedleggResponse = z.void();
 
+export const zHentVedleggParameterVedleggId = z.string().min(1);
+
+/**
+ * OK
+ */
 export const zHentVedleggResponse = z.string();
 
+/**
+ * OK
+ */
 export const zHentSøkerResponse = zSøker;
 
+/**
+ * OK
+ */
 export const zHentBarnResponse = zBarnOppslagListe;
 
+export const zHentArbeidsgivereParameterFraOgMed = z.string();
+
+export const zHentArbeidsgivereParameterTilOgMed = z.string();
+
+export const zHentArbeidsgivereParameterInkluderAlleAnsettelsesperioder = z.boolean();
+
+export const zHentArbeidsgivereParameterFrilansoppdrag = z.boolean().default(false);
+
+export const zHentArbeidsgivereParameterPrivateArbeidsgivere = z.boolean().default(false);
+
+/**
+ * OK
+ */
 export const zHentArbeidsgivereResponse = zArbeidsgivereDto;

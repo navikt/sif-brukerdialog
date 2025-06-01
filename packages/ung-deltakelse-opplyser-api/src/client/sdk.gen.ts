@@ -3,68 +3,74 @@
 import type { Options as ClientOptions, TDataShape, Client } from '@hey-api/client-axios';
 import type {
     EndreStartdatoData,
-    EndreStartdatoResponse,
-    EndreStartdatoError,
+    EndreStartdatoResponses,
+    EndreStartdatoErrors,
     EndreSluttdatoData,
-    EndreSluttdatoResponse,
-    EndreSluttdatoError,
+    EndreSluttdatoResponses,
+    EndreSluttdatoErrors,
     MeldUtDeltakerData,
-    MeldUtDeltakerResponse,
-    MeldUtDeltakerError,
+    MeldUtDeltakerResponses,
+    MeldUtDeltakerErrors,
     MarkerDeltakelseSomSøktData,
-    MarkerDeltakelseSomSøktResponse,
-    MarkerDeltakelseSomSøktError,
+    MarkerDeltakelseSomSøktResponses,
+    MarkerDeltakelseSomSøktErrors,
     MeldInnDeltakerData,
-    MeldInnDeltakerResponse,
-    MeldInnDeltakerError,
+    MeldInnDeltakerResponses,
+    MeldInnDeltakerErrors,
     HentAlleDeltakelserGittDeltakerAktørData,
-    HentAlleDeltakelserGittDeltakerAktørResponse,
-    HentAlleDeltakelserGittDeltakerAktørError,
+    HentAlleDeltakelserGittDeltakerAktørResponses,
+    HentAlleDeltakelserGittDeltakerAktørErrors,
     HentDeltakerInfoGittDeltakerData,
-    HentDeltakerInfoGittDeltakerResponse,
-    HentDeltakerInfoGittDeltakerError,
+    HentDeltakerInfoGittDeltakerResponses,
+    HentDeltakerInfoGittDeltakerErrors,
     UtløperOppgaveData,
-    UtløperOppgaveError,
+    UtløperOppgaveResponses,
+    UtløperOppgaveErrors,
     UtløperOppgaveForTypeOgPeriodeData,
-    UtløperOppgaveForTypeOgPeriodeError,
+    UtløperOppgaveForTypeOgPeriodeResponses,
+    UtløperOppgaveForTypeOgPeriodeErrors,
     OpprettOppgaveForKontrollAvRegisterinntektData,
-    OpprettOppgaveForKontrollAvRegisterinntektResponse,
-    OpprettOppgaveForKontrollAvRegisterinntektError,
+    OpprettOppgaveForKontrollAvRegisterinntektResponses,
+    OpprettOppgaveForKontrollAvRegisterinntektErrors,
     OpprettOppgaveForInntektsrapporteringData,
-    OpprettOppgaveForInntektsrapporteringResponse,
-    OpprettOppgaveForInntektsrapporteringError,
+    OpprettOppgaveForInntektsrapporteringResponses,
+    OpprettOppgaveForInntektsrapporteringErrors,
     OpprettOppgaveForEndretProgramperiodeData,
-    OpprettOppgaveForEndretProgramperiodeResponse,
-    OpprettOppgaveForEndretProgramperiodeError,
+    OpprettOppgaveForEndretProgramperiodeResponses,
+    OpprettOppgaveForEndretProgramperiodeErrors,
     AvbrytOppgaveData,
-    AvbrytOppgaveError,
+    AvbrytOppgaveResponses,
+    AvbrytOppgaveErrors,
     HentAlleDeltakelserGittDeltakerIdData,
-    HentAlleDeltakelserGittDeltakerIdResponse,
-    HentAlleDeltakelserGittDeltakerIdError,
+    HentAlleDeltakelserGittDeltakerIdResponses,
+    HentAlleDeltakelserGittDeltakerIdErrors,
     DeltakelseHistorikkData,
-    DeltakelseHistorikkResponse,
-    DeltakelseHistorikkError,
+    DeltakelseHistorikkResponses,
+    DeltakelseHistorikkErrors,
     HentDeltakerInfoGittDeltakerIdData,
-    HentDeltakerInfoGittDeltakerIdResponse,
-    HentDeltakerInfoGittDeltakerIdError,
+    HentDeltakerInfoGittDeltakerIdResponses,
+    HentDeltakerInfoGittDeltakerIdErrors,
     HentKontonummerData,
-    HentKontonummerResponse,
-    HentKontonummerError,
+    HentKontonummerResponses,
+    HentKontonummerErrors,
     HentDeltakersOppgaveData,
-    HentDeltakersOppgaveResponse,
-    HentDeltakersOppgaveError,
+    HentDeltakersOppgaveResponses,
+    HentDeltakersOppgaveErrors,
     MarkerOppgaveSomÅpnetData,
-    MarkerOppgaveSomÅpnetResponse,
-    MarkerOppgaveSomÅpnetError,
+    MarkerOppgaveSomÅpnetResponses,
+    MarkerOppgaveSomÅpnetErrors,
+    MarkerOppgaveSomLøstData,
+    MarkerOppgaveSomLøstResponses,
+    MarkerOppgaveSomLøstErrors,
     MarkerOppgaveSomLukketData,
-    MarkerOppgaveSomLukketResponse,
-    MarkerOppgaveSomLukketError,
+    MarkerOppgaveSomLukketResponses,
+    MarkerOppgaveSomLukketErrors,
     HentAlleMineDeltakelserData,
-    HentAlleMineDeltakelserResponse,
-    HentAlleMineDeltakelserError,
+    HentAlleMineDeltakelserResponses,
+    HentAlleMineDeltakelserErrors,
     FjernFraProgramData,
-    FjernFraProgramResponse,
-    FjernFraProgramError,
+    FjernFraProgramResponses,
+    FjernFraProgramErrors,
 } from './types.gen';
 import {
     zEndreStartdatoResponse,
@@ -83,6 +89,7 @@ import {
     zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
     zMarkerOppgaveSomÅpnetResponse,
+    zMarkerOppgaveSomLøstResponse,
     zMarkerOppgaveSomLukketResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
@@ -113,7 +120,8 @@ export class VeilederService {
     public static endreStartdato<ThrowOnError extends boolean = true>(
         options: Options<EndreStartdatoData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).put<EndreStartdatoResponse, EndreStartdatoError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).put<EndreStartdatoResponses, EndreStartdatoErrors, ThrowOnError>({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -131,7 +139,7 @@ export class VeilederService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -142,7 +150,8 @@ export class VeilederService {
     public static endreSluttdato<ThrowOnError extends boolean = true>(
         options: Options<EndreSluttdatoData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).put<EndreSluttdatoResponse, EndreSluttdatoError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).put<EndreSluttdatoResponses, EndreSluttdatoErrors, ThrowOnError>({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -160,7 +169,7 @@ export class VeilederService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -171,7 +180,8 @@ export class VeilederService {
     public static meldUtDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldUtDeltakerData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).put<MeldUtDeltakerResponse, MeldUtDeltakerError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).put<MeldUtDeltakerResponses, MeldUtDeltakerErrors, ThrowOnError>({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -189,7 +199,7 @@ export class VeilederService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -200,7 +210,8 @@ export class VeilederService {
     public static meldInnDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldInnDeltakerData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<MeldInnDeltakerResponse, MeldInnDeltakerError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<MeldInnDeltakerResponses, MeldInnDeltakerErrors, ThrowOnError>({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -218,7 +229,7 @@ export class VeilederService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -230,10 +241,11 @@ export class VeilederService {
         options: Options<HentAlleDeltakelserGittDeltakerIdData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            HentAlleDeltakelserGittDeltakerIdResponse,
-            HentAlleDeltakelserGittDeltakerIdError,
+            HentAlleDeltakelserGittDeltakerIdResponses,
+            HentAlleDeltakelserGittDeltakerIdErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -256,10 +268,11 @@ export class VeilederService {
         options: Options<DeltakelseHistorikkData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            DeltakelseHistorikkResponse,
-            DeltakelseHistorikkError,
+            DeltakelseHistorikkResponses,
+            DeltakelseHistorikkErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -279,12 +292,12 @@ export class VeilederService {
     }
 
     /**
-     * Fjern en deltakelse fra ungdomsprogrammet
+     * Fjern en deltaker fra ungdomsprogrammet
      */
     public static fjernFraProgram<ThrowOnError extends boolean = true>(
         options: Options<FjernFraProgramData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).delete<FjernFraProgramResponse, FjernFraProgramError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).delete<FjernFraProgramResponses, FjernFraProgramErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -298,7 +311,7 @@ export class VeilederService {
             responseValidator: async (data) => {
                 return await zFjernFraProgramResponse.parseAsync(data);
             },
-            url: '/veileder/register/deltakelse/{deltakelseId}/fjern',
+            url: '/veileder/register/deltaker/{deltakerId}/fjern',
             ...options,
         });
     }
@@ -312,10 +325,11 @@ export class DeltakelseService {
         options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<
-            MarkerDeltakelseSomSøktResponse,
-            MarkerDeltakelseSomSøktError,
+            MarkerDeltakelseSomSøktResponses,
+            MarkerDeltakelseSomSøktErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -341,10 +355,11 @@ export class DeltakelseService {
         options: Options<HentDeltakersOppgaveData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            HentDeltakersOppgaveResponse,
-            HentDeltakersOppgaveError,
+            HentDeltakersOppgaveResponses,
+            HentDeltakersOppgaveErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -370,10 +385,11 @@ export class DeltakelseService {
         options: Options<MarkerOppgaveSomÅpnetData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            MarkerOppgaveSomÅpnetResponse,
-            MarkerOppgaveSomÅpnetError,
+            MarkerOppgaveSomÅpnetResponses,
+            MarkerOppgaveSomÅpnetErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -393,16 +409,47 @@ export class DeltakelseService {
     }
 
     /**
+     * Markerer en oppgave som åpnet
+     */
+    public static markerOppgaveSomLøst<ThrowOnError extends boolean = true>(
+        options: Options<MarkerOppgaveSomLøstData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            MarkerOppgaveSomLøstResponses,
+            MarkerOppgaveSomLøstErrors,
+            ThrowOnError
+        >({
+            responseType: 'json',
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomLøstResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
+            ...options,
+        });
+    }
+
+    /**
      * Markerer en oppgave som lukket
      */
     public static markerOppgaveSomLukket<ThrowOnError extends boolean = true>(
         options: Options<MarkerOppgaveSomLukketData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            MarkerOppgaveSomLukketResponse,
-            MarkerOppgaveSomLukketError,
+            MarkerOppgaveSomLukketResponses,
+            MarkerOppgaveSomLukketErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -428,10 +475,11 @@ export class DeltakelseService {
         options?: Options<HentAlleMineDeltakelserData, ThrowOnError>,
     ) {
         return (options?.client ?? _heyApiClient).get<
-            HentAlleMineDeltakelserResponse,
-            HentAlleMineDeltakelserError,
+            HentAlleMineDeltakelserResponses,
+            HentAlleMineDeltakelserErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -459,10 +507,11 @@ export class LesRegisterDataService {
         options: Options<HentAlleDeltakelserGittDeltakerAktørData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            HentAlleDeltakelserGittDeltakerAktørResponse,
-            HentAlleDeltakelserGittDeltakerAktørError,
+            HentAlleDeltakelserGittDeltakerAktørResponses,
+            HentAlleDeltakelserGittDeltakerAktørErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -480,7 +529,7 @@ export class LesRegisterDataService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -494,10 +543,11 @@ export class OppslagService {
         options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            HentDeltakerInfoGittDeltakerResponse,
-            HentDeltakerInfoGittDeltakerError,
+            HentDeltakerInfoGittDeltakerResponses,
+            HentDeltakerInfoGittDeltakerErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -515,7 +565,7 @@ export class OppslagService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -527,10 +577,11 @@ export class OppslagService {
         options: Options<HentDeltakerInfoGittDeltakerIdData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).get<
-            HentDeltakerInfoGittDeltakerIdResponse,
-            HentDeltakerInfoGittDeltakerIdError,
+            HentDeltakerInfoGittDeltakerIdResponses,
+            HentDeltakerInfoGittDeltakerIdErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -557,7 +608,7 @@ export class OppretterOgEndrerPåOppgaverService {
     public static utløperOppgave<ThrowOnError extends boolean = true>(
         options: Options<UtløperOppgaveData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, UtløperOppgaveError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<UtløperOppgaveResponses, UtløperOppgaveErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -572,7 +623,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -583,7 +634,11 @@ export class OppretterOgEndrerPåOppgaverService {
     public static utløperOppgaveForTypeOgPeriode<ThrowOnError extends boolean = true>(
         options: Options<UtløperOppgaveForTypeOgPeriodeData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, UtløperOppgaveForTypeOgPeriodeError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            UtløperOppgaveForTypeOgPeriodeResponses,
+            UtløperOppgaveForTypeOgPeriodeErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -598,7 +653,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -610,10 +665,11 @@ export class OppretterOgEndrerPåOppgaverService {
         options: Options<OpprettOppgaveForKontrollAvRegisterinntektData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForKontrollAvRegisterinntektResponse,
-            OpprettOppgaveForKontrollAvRegisterinntektError,
+            OpprettOppgaveForKontrollAvRegisterinntektResponses,
+            OpprettOppgaveForKontrollAvRegisterinntektErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -631,7 +687,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -643,10 +699,11 @@ export class OppretterOgEndrerPåOppgaverService {
         options: Options<OpprettOppgaveForInntektsrapporteringData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForInntektsrapporteringResponse,
-            OpprettOppgaveForInntektsrapporteringError,
+            OpprettOppgaveForInntektsrapporteringResponses,
+            OpprettOppgaveForInntektsrapporteringErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -664,7 +721,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -676,10 +733,11 @@ export class OppretterOgEndrerPåOppgaverService {
         options: Options<OpprettOppgaveForEndretProgramperiodeData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForEndretProgramperiodeResponse,
-            OpprettOppgaveForEndretProgramperiodeError,
+            OpprettOppgaveForEndretProgramperiodeResponses,
+            OpprettOppgaveForEndretProgramperiodeErrors,
             ThrowOnError
         >({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
@@ -697,7 +755,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -708,7 +766,7 @@ export class OppretterOgEndrerPåOppgaverService {
     public static avbrytOppgave<ThrowOnError extends boolean = true>(
         options: Options<AvbrytOppgaveData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, AvbrytOppgaveError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<AvbrytOppgaveResponses, AvbrytOppgaveErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -723,7 +781,7 @@ export class OppretterOgEndrerPåOppgaverService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -736,7 +794,8 @@ export class DeltakerService {
     public static hentKontonummer<ThrowOnError extends boolean = true>(
         options?: Options<HentKontonummerData, ThrowOnError>,
     ) {
-        return (options?.client ?? _heyApiClient).get<HentKontonummerResponse, HentKontonummerError, ThrowOnError>({
+        return (options?.client ?? _heyApiClient).get<HentKontonummerResponses, HentKontonummerErrors, ThrowOnError>({
+            responseType: 'json',
             security: [
                 {
                     scheme: 'bearer',
