@@ -35,7 +35,7 @@ export const getHandlers = () => {
         http.put('**/deltakelse/register/:id/marker-har-sokt', () => {
             return new HttpResponse(null, { status: 500 });
         }),
-        http.get<any, any>('**/deltakelse/register/oppgave/:oppgaveReferanse/åpnet', async ({ params }) => {
+        http.get<any, any>('**/deltakelse/register/oppgave/:oppgaveReferanse/**pnet', async ({ params }) => {
             const { oppgaveReferanse } = params;
             if (!oppgaveReferanse) {
                 return new HttpResponse(null, { status: 400 });
