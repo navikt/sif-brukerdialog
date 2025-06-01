@@ -12,6 +12,7 @@ import { useAppIntl } from '../i18n';
 import { getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../utils/textUtils';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import DefaultPage from '../components/page-layout/DefaultPage';
+import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -24,6 +25,8 @@ const OppgavePage = () => {
     const navigate = useNavigate();
     const intl = useAppIntl();
 
+    const { mutateAsync } = useMarkerOppgaveSomÅpnet();
+
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
@@ -34,6 +37,17 @@ const OppgavePage = () => {
 
     onBreadcrumbClick((breadcrumb) => {
         navigate(breadcrumb.url);
+    });
+
+    useEffectOnce(async () => {
+        if (!oppgave) {
+            return;
+        }
+        if (oppgave.åpnetDato === undefined) {
+            await mutateAsync(oppgave.oppgaveReferanse).catch(() => {
+                // console.error('Feil ved åpning av oppgave:', e);
+            });
+        }
     });
 
     if (!oppgave) {

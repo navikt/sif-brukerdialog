@@ -61,6 +61,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
+        const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
         const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
         const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate();
 
@@ -73,6 +74,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     opprettetDato,
                     svarfrist,
                     løstDato,
+                    åpnetDato,
                     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
@@ -95,6 +97,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     opprettetDato,
                     svarfrist,
                     løstDato,
+                    åpnetDato,
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                     ugyldigOppgave: endringType === EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET,
                     oppgavetypeData: {
@@ -126,6 +129,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     opprettetDato,
                     svarfrist,
                     løstDato,
+                    åpnetDato,
                     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
@@ -142,6 +146,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     opprettetDato,
                     svarfrist,
                     løstDato,
+                    åpnetDato,
                     oppgavetype: Oppgavetype.SØK_YTELSE,
                     oppgavetypeData: {
                         fomDato: ISODateToDate(fomDato),

@@ -35,6 +35,14 @@ export const getHandlers = () => {
         http.put('**/deltakelse/register/:id/marker-har-sokt', () => {
             return new HttpResponse(null, { status: 500 });
         }),
+        http.get<any, any>('**/deltakelse/register/oppgave/:oppgaveReferanse/åpnet', async ({ params }) => {
+            const { oppgaveReferanse } = params;
+            if (!oppgaveReferanse) {
+                return new HttpResponse(null, { status: 400 });
+            }
+            mockUtils.setOppgaveSomÅpnet(oppgaveReferanse);
+            return new HttpResponse(null, { status: 200 });
+        }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
             mockUtils.setDeltakelseSøktFor(); // Forutsetter kun én deltakelse i mock-databasen
             return HttpResponse.json({});

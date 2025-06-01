@@ -1,12 +1,15 @@
-import { BekreftelseDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import { BekreftelseDto, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
-interface OppgaveBase {
+interface OppgaveBase
+    extends Omit<OppgaveDto, 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData'> {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
     svarfrist: Date;
+    åpnetDato?: Date;
+    lukketDato?: Date;
     ugyldigOppgave?: boolean;
 }
 
