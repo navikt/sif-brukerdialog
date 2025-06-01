@@ -3,18 +3,19 @@ import {
     EndretProgramperiodeDataDto,
     InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
+    OppgaveDto,
     OppgaveStatus,
     Oppgavetype,
     SøkYtelseOppgavetypeDataDto,
-    OppgaveDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import {
+    EndretProgramperiodeEndringType,
     EndretProgramperiodeOppgave,
     KorrigertInntektOppgave,
-    RapporterInntektOppgave,
     Oppgave,
-    EndretProgramperiodeEndringType,
+    OppgaveBase,
+    RapporterInntektOppgave,
 } from '../../types';
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
@@ -57,32 +58,34 @@ export const getEndretProgramperiodeEndringType = (
         : EndretProgramperiodeEndringType.ENDRET_SLUTTDATO;
 };
 
+const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetype'> => {
+    const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
+    const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
+    const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
+    const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate();
+    return {
+        oppgaveReferanse: oppgave.oppgaveReferanse,
+        status: getOppgaveStatusEnum(oppgave.status),
+        opprettetDato,
+        svarfrist,
+        løstDato,
+        åpnetDato,
+    };
+};
+
 export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
-        const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
-        const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
-        const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
-        const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate();
-
         switch (oppgave.oppgavetype) {
             case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
                 const korrigertInntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
-                    oppgaveReferanse: oppgave.oppgaveReferanse,
-                    status: getOppgaveStatusEnum(oppgave.status),
-                    opprettetDato,
-                    svarfrist,
-                    løstDato,
-                    åpnetDato,
+                    ...getOppgaveBaseProps(oppgave),
                     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
+                        ...korrigertInntektData,
                         fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
                         tilOgMed: ISODateToDate(korrigertInntektData.tilOgMed),
-                        registerinntekt: {
-                            arbeidOgFrilansInntekter: korrigertInntektData.registerinntekt.arbeidOgFrilansInntekter,
-                            ytelseInntekter: korrigertInntektData.registerinntekt.ytelseInntekter,
-                        },
                     },
                     bekreftelse: oppgave.bekreftelse,
                 };
@@ -92,12 +95,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                 const endretProgramperiodeData = oppgave.oppgavetypeData as EndretProgramperiodeDataDto;
                 const endringType = getEndretProgramperiodeEndringType(endretProgramperiodeData);
                 const endretProgramperiodeOppgave: EndretProgramperiodeOppgave = {
-                    oppgaveReferanse: oppgave.oppgaveReferanse,
-                    status: getOppgaveStatusEnum(oppgave.status),
-                    opprettetDato,
-                    svarfrist,
-                    løstDato,
-                    åpnetDato,
+                    ...getOppgaveBaseProps(oppgave),
                     oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                     ugyldigOppgave: endringType === EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET,
                     oppgavetypeData: {
@@ -124,12 +122,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
             case Oppgavetype.RAPPORTER_INNTEKT:
                 const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;
                 const rapporterInntektOppgave: RapporterInntektOppgave = {
-                    oppgaveReferanse: oppgave.oppgaveReferanse,
-                    status: getOppgaveStatusEnum(oppgave.status),
-                    opprettetDato,
-                    svarfrist,
-                    løstDato,
-                    åpnetDato,
+                    ...getOppgaveBaseProps(oppgave),
                     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
@@ -141,12 +134,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
             case Oppgavetype.SØK_YTELSE:
                 const { fomDato } = oppgave.oppgavetypeData as SøkYtelseOppgavetypeDataDto;
                 const sendSøknadOppgave: Oppgave = {
-                    oppgaveReferanse: oppgave.oppgaveReferanse,
-                    status: getOppgaveStatusEnum(oppgave.status),
-                    opprettetDato,
-                    svarfrist,
-                    løstDato,
-                    åpnetDato,
+                    ...getOppgaveBaseProps(oppgave),
                     oppgavetype: Oppgavetype.SØK_YTELSE,
                     oppgavetypeData: {
                         fomDato: ISODateToDate(fomDato),

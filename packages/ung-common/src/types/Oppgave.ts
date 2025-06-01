@@ -1,6 +1,12 @@
-import { BekreftelseDto, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    BekreftelseDto,
+    OppgaveDto,
+    OppgaveStatus,
+    Oppgavetype,
+    RegisterinntektDto,
+} from '@navikt/ung-deltakelse-opplyser-api';
 
-interface OppgaveBase
+export interface OppgaveBase
     extends Omit<OppgaveDto, 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData'> {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
@@ -16,22 +22,12 @@ interface OppgaveBase
 export interface BekreftelseOppgave extends OppgaveBase {
     bekreftelse?: BekreftelseDto;
 }
-export interface Registerinntekt {
-    arbeidOgFrilansInntekter: Array<{
-        arbeidsgiver: string;
-        inntekt: number;
-    }>;
-    ytelseInntekter: Array<{
-        ytelsetype: string;
-        inntekt: number;
-    }>;
-}
 export interface KorrigertInntektOppgave extends BekreftelseOppgave {
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
-        registerinntekt: Registerinntekt;
+        registerinntekt: RegisterinntektDto;
     };
 }
 
