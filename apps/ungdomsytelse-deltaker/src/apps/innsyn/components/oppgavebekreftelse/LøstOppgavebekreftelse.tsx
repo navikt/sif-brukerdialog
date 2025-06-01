@@ -3,16 +3,19 @@ import OppgaveUttalelse from '../oppgaver/parts/OppgaveUttalelse';
 import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
 import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
+import OppgaveMeta from '../oppgave-meta/OppgaveMeta';
+import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
     deltakerNavn: string;
     bekreftelse?: BekreftelseDto;
     oppsummering: React.ReactNode;
+    oppgave: Oppgave | BekreftelseOppgave;
     children: React.ReactNode;
 }
 
-const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummering, children }: Props) => {
+const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummering, oppgave, children }: Props) => {
     return (
         <VStack gap="6">
             <Heading level="1" size="large">
@@ -33,6 +36,7 @@ const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummer
                             Hei {deltakerNavn}
                         </Heading>
                         <div>{children}</div>
+                        <OppgaveMeta oppgave={oppgave} />
                     </VStack>
                 </ExpansionCard.Content>
             </ExpansionCard>

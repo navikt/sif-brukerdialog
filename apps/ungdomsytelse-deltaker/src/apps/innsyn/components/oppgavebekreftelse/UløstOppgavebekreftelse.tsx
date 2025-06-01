@@ -1,4 +1,4 @@
-import { Alert, Box, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, Box, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { useEffect, useRef, useState } from 'react';
 import UtalelseForm from '../uttalelse-form/UtalelseForm';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
@@ -8,6 +8,7 @@ import { getAppEnv } from '../../../../utils/appEnv';
 import { EnvKey } from '@navikt/sif-common-env';
 import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
+import OppgaveMeta from '../oppgave-meta/OppgaveMeta';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -57,6 +58,9 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                                 Hei {deltakerNavn}
                             </Heading>
                             <Box maxWidth="90%">{children}</Box>
+                            <Bleed marginBlock="5 0">
+                                <OppgaveMeta oppgave={oppgave} />
+                            </Bleed>
                         </VStack>
                     </GuidePanel>
                     <UtalelseForm

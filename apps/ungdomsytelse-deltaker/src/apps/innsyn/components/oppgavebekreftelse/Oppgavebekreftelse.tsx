@@ -28,7 +28,8 @@ const Oppgavebekreftelse = (props: Props) => {
                 {...rest}
                 bekreftelse={oppgave.bekreftelse}
                 oppsummering={oppsummering}
-                deltakerNavn={props.deltakerNavn}>
+                deltakerNavn={props.deltakerNavn}
+                oppgave={oppgave}>
                 {children}
                 <OppgavebekreftelseFristInfo svarfrist={oppgave.svarfrist} />
             </LøstOppgavebekreftelse>
