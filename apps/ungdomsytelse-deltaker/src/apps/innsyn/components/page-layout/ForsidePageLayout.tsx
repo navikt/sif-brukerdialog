@@ -21,7 +21,7 @@ const ForsidePageLayout = ({ children, documentTitle, footer }: Props) => {
             </PageContentWrapper>
 
             {footer && (
-                <Box className="bg-[#FFEBC7]" marginBlock="8 0">
+                <Box className="bg-[#FFEBC7]">
                     <PageContentWrapper>{footer}</PageContentWrapper>
                 </Box>
             )}

@@ -1,5 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto, zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 
@@ -14,7 +14,7 @@ export const deltakelseSchema = zDeltakelseOpplysningDto
             ...data,
             fraOgMed,
             tilOgMed,
-            oppgaver: parseOppgaverElement(data.oppgaver),
+            oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
         };
     });
 

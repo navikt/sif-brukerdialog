@@ -14,7 +14,7 @@ const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
         borderWidth="1"
         className="w-full"
         padding="4">
-        <HGrid columns="3rem auto" gap="2" className="w-full" align="center">
+        <HGrid columns={{ sm: '3rem auto' }} gap="2" className="w-full" align="center">
             <Show above="sm">
                 <Box paddingInline="2 3">
                     <CheckmarkCircleFillIcon

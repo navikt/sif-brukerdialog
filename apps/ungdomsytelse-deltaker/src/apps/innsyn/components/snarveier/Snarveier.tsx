@@ -5,7 +5,7 @@ import UngdomsprogrammetHeader from '../ungdomsprogrammet-header/Ungdomsprogramm
 const Snarveier = () => {
     return (
         <HGrid columns="1fr auto">
-            <VStack gap="6" marginBlock="8 10">
+            <VStack gap="6">
                 <UngdomsprogrammetHeader />
 
                 <BodyLong>

@@ -6,10 +6,9 @@ import {
     OppgaveStatus,
     Oppgavetype,
     SøkYtelseOppgavetypeDataDto,
-    zDeltakelseOpplysningDto,
+    OppgaveDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
-import { z } from 'zod';
 import {
     EndretProgramperiodeOppgave,
     KorrigertInntektOppgave,
@@ -17,9 +16,6 @@ import {
     Oppgave,
     EndretProgramperiodeEndringType,
 } from '../../types';
-
-const zOppgaveElementSchema = zDeltakelseOpplysningDto.shape.oppgaver.element;
-type zOppgaveElement = z.infer<typeof zOppgaveElementSchema>;
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
@@ -61,7 +57,7 @@ export const getEndretProgramperiodeEndringType = (
         : EndretProgramperiodeEndringType.ENDRET_SLUTTDATO;
 };
 
-export const parseOppgaverElement = (oppgaver: zOppgaveElement[]): Oppgave[] => {
+export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
