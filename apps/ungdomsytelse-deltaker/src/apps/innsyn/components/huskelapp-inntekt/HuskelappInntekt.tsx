@@ -22,7 +22,7 @@ const HuskelappInntekt = ({ simple = false, showIll = false }: Props) => {
         <InnsynBlueBox>
             <HGrid align="center" columns={{ md: 'auto 1fr' }} gap="8">
                 <VStack>
-                    <Heading as="div" level="2" size="medium" style={{ fontWeight: '300' }}>
+                    <Heading as="div" level="2" size="small" style={{ fontWeight: '300' }}>
                         Husk å melde fra mellom 1. - 6. hver måned hvis du starter å jobbe og får utbetalt lønn mens du
                         er i ungdoms&shy;programmet.
                     </Heading>

@@ -24,7 +24,7 @@ export const fraværMessages_nn: Record<FraværMessageKeys, string> = {
     '@forms.fraværDagForm.dato.dateHasInvalidFormat':
         'Du må oppgje dato for når du hadde delvis fråvær i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.fraværDagForm.dato.dateIsAfterMax':
-        'Dato for når du hadde delvis fråvær kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Dato for når du hadde delvis fråvær kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværDagForm.dato.dateIsBeforeMin':
         'Datoen for når du hadde delvis fråvær kan ikkje vera før {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværDagForm.dato.er_helg':
@@ -39,7 +39,7 @@ export const fraværMessages_nn: Record<FraværMessageKeys, string> = {
     '@forms.fraværPeriodeForm.fraOgMed.dateHasNoValue':
         'Du må oppgje når perioden starta. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.fraOgMed.dateIsAfterMax':
-        'Datoen for når perioden starta kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når perioden starta kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.fraOgMed.dateIsBeforeMin':
         'Datoen for når perioden starta kan ikkje vera før {dato}. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.fraværPeriodeForm.fraOgMed.dateHasInvalidFormat':
@@ -49,7 +49,7 @@ export const fraværMessages_nn: Record<FraværMessageKeys, string> = {
     '@forms.fraværPeriodeForm.tilOgMed.dateHasNoValue':
         'Du må oppgje når perioden slutta. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.tilOgMed.dateIsAfterMax':
-        'Datoen for når perioden slutta kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+        'Datoen for når perioden slutta kan ikkje vera etter dags dato. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.tilOgMed.dateIsBeforeMin':
         'Datoen for når perioden slutta kan ikkje vera før {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.tilOgMed.dateHasInvalidFormat':

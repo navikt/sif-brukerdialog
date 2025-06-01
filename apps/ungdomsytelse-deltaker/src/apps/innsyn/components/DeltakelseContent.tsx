@@ -1,23 +1,53 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
+import {
+    erDeltakelseAvsluttet,
+    erDeltakelseStartet,
+    visHuskelappOmInntektsrapportering,
+} from '../utils/deltakelseUtils';
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
-import OppgaverList from './oppgaver/OppgaverList';
-import SøknadMottattOppgavePanel from './oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
+import OppgaverList from './oppgaver-list/OppgaverList';
+import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
-    visInfoOmDeltakelseAvsluttet?: boolean;
-    visInfoOmInntektsrapportering?: boolean;
 }
 
-const DeltakelseContent = ({
-    deltakelsePeriode,
-    visInfoOmDeltakelseAvsluttet,
-    visInfoOmInntektsrapportering,
-}: Props) => {
+const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const { oppgaver, programPeriode, id } = deltakelsePeriode;
+
+    const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
+    const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
+
+    const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
+
+    const visInfoOmInntektsrapportering =
+        deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
+
+    const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
+
+    // const info = (periode?: { fraOgMed: Date; tilOgMed?: Date }) => {
+    //     if (!periode) {
+    //         return undefined;
+    //     }
+    //     return {
+    //         fraOgMed: dateToISODate(periode.fraOgMed),
+    //         tilOgMed: periode.tilOgMed ? dateToISODate(periode.tilOgMed) : undefined,
+    //     };
+    // };
+    // console.log(
+    //     oppgaver
+    //         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato))
+    //         .filter((oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE)
+    //         .map((oppgave) => ({
+    //             programperiode: info(oppgave.oppgavetypeData.programperiode),
+    //             forrigeProgramperiode: info(oppgave.oppgavetypeData.forrigeProgramperiode),
+    //             endring: oppgave.oppgavetypeData.endringType,
+    //         })),
+    //     // .map((data) => JSON.stringify(data, null, 2)),
+    // );
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -25,15 +55,16 @@ const DeltakelseContent = ({
 
     const tidligereOppgaver = oppgaver
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+        .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
-    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
+    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering || visInfoOmDeltakelseIkkeStartet;
     return (
         <VStack gap="10">
+            {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <HuskelappInntekt />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
-                <Heading level="2" size="large">
+                <Heading level="2" size="medium">
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
@@ -43,13 +74,12 @@ const DeltakelseContent = ({
                 )}
             </VStack>
             <VStack gap="4">
-                <Heading level="2" size="large">
+                <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 && (
                     <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
                 )}
-                <SøknadMottattOppgavePanel mottatt={deltakelsePeriode.søktTidspunkt!} />
             </VStack>
         </VStack>
     );

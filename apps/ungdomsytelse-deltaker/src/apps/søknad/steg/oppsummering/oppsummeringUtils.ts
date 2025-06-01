@@ -9,6 +9,8 @@ const isYesOrNoAnswered = (answer?: YesOrNo) => {
 };
 
 export const buildSøknadFromSvar = (
+    deltakelseId: string,
+    oppgaveReferanse: string,
     svar: SøknadSvar,
     søkerNorskIdent: string,
     startdato: Date,
@@ -26,6 +28,8 @@ export const buildSøknadFromSvar = (
     const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
 
     return {
+        deltakelseId,
+        oppgaveReferanse,
         språk: 'nb',
         startdato: dateToISODate(startdato),
         harForståttRettigheterOgPlikter,

@@ -20,7 +20,7 @@ export const annetBarnMessages_nn: Record<AnnetBarnMessageKeys, string> = {
         'Du må oppgje fødselsdatoen til barnet. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.annetBarnForm.fødselsdato.dateIsBeforeMin':
         'Barnet sin fødselsdato kan ikkje vera før {dato}. Skriv inn eller vel startdato frå datoveljaren.',
-    '@forms.annetBarnForm.fødselsdato.dateIsAfterMax': 'Barnet sin fødselsdato kan ikkje vera etter dagens dato',
+    '@forms.annetBarnForm.fødselsdato.dateIsAfterMax': 'Barnet sin fødselsdato kan ikkje vera etter dags dato',
     '@forms.annetBarnForm.fødselsdato.dateHasInvalidFormat':
         'Du må oppgje fødselsdatoen til barnet i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.annetBarnForm.fnr.fødselsnummerHasNoValue': 'Skriv inn fødselsnummeret til barnet',

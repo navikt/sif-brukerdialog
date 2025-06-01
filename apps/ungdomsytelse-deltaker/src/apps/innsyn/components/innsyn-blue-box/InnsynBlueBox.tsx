@@ -3,7 +3,7 @@ import React from 'react';
 
 const InnsynBlueBox = ({ children }: { children: React.ReactNode }) => {
     return (
-        <BoxNew background="info-soft" className="inline-block rounded-xl p-6">
+        <BoxNew background="brand-blue-moderateA" className="inline-block rounded-xl p-6">
             {children}
         </BoxNew>
     );

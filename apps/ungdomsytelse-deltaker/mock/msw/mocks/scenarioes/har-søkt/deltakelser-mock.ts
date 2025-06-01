@@ -1,5 +1,3 @@
-import { DeltakelsePeriodInfo, OppgaveDto, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
-
 // 8c21972b-f23d-4193-8851-b2fa6c6b2f63,
 // 74085d1a-cdfb-4a9e-9565-037171510473,
 // 0dc07e3f-13dc-4a75-9315-bf155e924cbc,
@@ -21,19 +19,7 @@ import { DeltakelsePeriodInfo, OppgaveDto, OppgaveStatus, Oppgavetype } from '@n
 // 6c994abf-0c9b-4cb1-b003-849f7265cd6b,
 // 37f13a40-14cb-4c6d-b0f3-dceebaa09cf7,
 
-const endretProgramperiodeOppgave: OppgaveDto = {
-    oppgaveReferanse: '4659accd-ccde-4196-a326-1ed3fd3ac400',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-    oppgavetypeData: {
-        programperiode: {
-            fomDato: '2025-02-01',
-            tomDato: '2025-03-31',
-        },
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-04-14T08:08:15.984057Z',
-    // løstDato: '2025-04-14T08:08:15.984057Z',
-};
+import { DeltakelsePeriodInfo, OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api';
 
 // const kontrollerRegisterInntektOppgaveDto: KontrollerRegisterinntektOppgavetypeDataDto = {
 //     fraOgMed: '2025-01-01',
@@ -65,63 +51,80 @@ const endretProgramperiodeOppgave: OppgaveDto = {
 //     oppgaveReferanse: '37f13a40-14cb-4c6d-b0f3-dceebaa09cf7',
 //     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
 //     oppgavetypeData: kontrollerRegisterInntektOppgaveDto,
-//     status: OppgaveStatus.ULØST,
+//     status:OppgaveStatus.OppgaveStatusULØST,
 //     opprettetDato: '2025-04-14T08:08:15.984057Z',
 //     løstDato: undefined,
 // };
 
-export const mockOppg: OppgaveDto = {
-    oppgaveReferanse: 'd4983a23-53c5-4c71-b1c4-0d11c1431e12',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-    oppgavetypeData: {
-        programperiode: {
-            fomDato: '2025-04-02',
-            tomDato: '9999-12-31',
-        },
-        forrigeProgramperiode: undefined,
-    },
-    bekreftelse: undefined,
-    status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-04-16T07:20:15.400697Z',
-    løstDato: '2025-04-17T05:05:01.714798Z',
-    åpnetDato: undefined,
-    lukketDato: undefined,
-};
-
 const deltakelser: DeltakelsePeriodInfo[] = [
     {
         id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-        fraOgMed: '2024-12-02',
+        fraOgMed: '2025-07-02',
         tilOgMed: undefined,
         søktTidspunkt: '2025-04-17T05:05:01.714798Z',
         oppgaver: [
-            endretProgramperiodeOppgave,
             {
-                oppgaveReferanse: 'd59e08d7-bb0d-4e86-aee4-5b89e4e53228',
+                oppgaveReferanse: '247f3e28-0366-46eb-89be-e205e7efd7c2',
                 oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {
                     programperiode: {
-                        fomDato: '2025-03-10',
-                        tomDato: '2025-08-01',
+                        fomDato: '2025-05-02',
+                        tomDato: '9999-12-31',
                     },
                     forrigeProgramperiode: {
-                        fomDato: '2024-12-02',
+                        fomDato: '2025-05-01',
                         tomDato: '9999-12-31',
                     },
                 },
-                status: OppgaveStatus.UTLØPT,
-                opprettetDato: '2025-05-20T14:38:41.859873Z',
-                løstDato: '2025-05-21T05:06:32.457669Z',
+
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-05-31T03:59:03.540410Z',
             },
             {
-                oppgaveReferanse: 'c3782bb8-6fd6-462b-9db4-d2441485bddd',
-                oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+                oppgaveReferanse: '247f3e28-0366-46eb-89be-e205e7efd7c4',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {
-                    fraOgMed: '2025-03-01',
-                    tilOgMed: '2025-03-31',
+                    programperiode: {
+                        fomDato: '2025-05-02',
+                        tomDato: '9999-12-31',
+                    },
+                    forrigeProgramperiode: {
+                        fomDato: '2025-05-01',
+                        tomDato: '9999-12-31',
+                    },
                 },
+
+                status: OppgaveStatus.AVBRUTT,
+                opprettetDato: '2025-05-31T03:59:03.540410Z',
+                løstDato: '2025-05-31T04:00:47.367209Z',
+            },
+            {
+                oppgaveReferanse: '8a8b9fc4-4665-4256-b495-50042437d90c',
+                oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+                oppgavetypeData: {
+                    programperiode: {
+                        fomDato: '2025-05-02',
+                        tomDato: '2025-12-31',
+                    },
+                    forrigeProgramperiode: {
+                        fomDato: '2025-05-01',
+                        tomDato: '9999-12-31',
+                    },
+                },
+
                 status: OppgaveStatus.ULØST,
-                opprettetDato: '2025-05-22T09:32:12.590003Z',
+                opprettetDato: '2025-05-31T04:00:47.504201Z',
+            },
+            {
+                oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
+                oppgavetype: Oppgavetype.SØK_YTELSE,
+                oppgavetypeData: {
+                    fomDato: '2025-05-01',
+                },
+
+                status: OppgaveStatus.LØST,
+                opprettetDato: '2025-05-31T03:58:01.779214Z',
+                løstDato: '2025-05-31T03:58:42.211729Z',
             },
         ],
     },

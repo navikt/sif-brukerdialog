@@ -1,11 +1,11 @@
 import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import getLenker from '../../../utils/lenker';
+import DefaultPage from '../../innsyn/components/page-layout/DefaultPage';
 
 const KvitteringPage = () => {
     return (
-        <Page title="Kvittering">
+        <DefaultPage title="Kvittering">
             <VStack gap="8">
                 <SøknadHeader />
 
@@ -42,7 +42,7 @@ const KvitteringPage = () => {
                     </Button>
                 </div>
             </VStack>
-        </Page>
+        </DefaultPage>
     );
 };
 

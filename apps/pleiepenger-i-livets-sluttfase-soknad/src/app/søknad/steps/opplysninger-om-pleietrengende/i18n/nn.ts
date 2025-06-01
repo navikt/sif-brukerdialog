@@ -49,7 +49,7 @@ export const opplysningerOmPleietrengendeMessages_nn: Record<
         'Fødselsnummeret/D-nummeret du har tasta inn er ikkje eit gyldig norsk fødselsnummer. Kontroller at du har tasta inn riktig.',
     'validation.fødselsdato.dateHasNoValue':
         'Du må oppgje fødselsdatoen til personen du pleier. Skriv inn, eller vel dato frå datoveljaren.',
-    'validation.fødselsdato.dateIsAfterMax': 'Fødselsdatoen kan ikkje vere etter dagens dato.',
+    'validation.fødselsdato.dateIsAfterMax': 'Fødselsdatoen kan ikkje vere etter dags dato.',
     'validation.fødselsdato.dateHasInvalidFormat':
         'Du må oppgje fødselsdatoen i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.årsakManglerIdentitetsnummer.noValue':

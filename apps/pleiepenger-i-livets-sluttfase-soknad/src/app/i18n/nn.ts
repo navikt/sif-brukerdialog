@@ -114,7 +114,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.frilans.startdato.dateHasInvalidFormat':
         'Du må oppgje datoen for når du starta som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.startdato.dateIsAfterMax':
-        'Datoen for når du starta som frilansar kan ikkje vere etter dagens dato.',
+        'Datoen for når du starta som frilansar kan ikkje vere etter dags dato.',
     'validation.frilans.startdato.startetEtterSøknadsperiode':
         'Du har oppgjeve at du starta som frilansar etter perioden du søkjer for. Om dette stemmer, kan du svare "Nei" på spørsmålet om du var frilansar i perioden du søkjer for.',
     'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
@@ -124,7 +124,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'validation.frilans.sluttdato.dateHasInvalidFormat':
         'Du må oppgje datoen for når du slutta som frilansar i eit gyldig format. Gyldig format er dd.mm.åååå.',
     'validation.frilans.sluttdato.dateIsAfterMax':
-        'Datoen for når du slutta som frilansar kan ikkje vere etter dagens dato.',
+        'Datoen for når du slutta som frilansar kan ikkje vere etter dags dato.',
     'validation.frilans.sluttdato.dateIsBeforeMin':
         'Datoen for når du slutta som frilansar kan ikkje vere før datoen du starta.',
     'validation.frilans.jobberFortsattSomFrilans.yesOrNoIsUnanswered':

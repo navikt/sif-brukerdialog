@@ -26,7 +26,7 @@ const ApiErrorAlert = ({ error, detaljert }: Props) => {
                     )}
                 </VStack>
             ) : (
-                <>error.message</>
+                <>{error.message}</>
             )}
         </Alert>
     );

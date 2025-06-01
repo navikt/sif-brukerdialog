@@ -34,6 +34,7 @@ export const zOppgavetype = z.enum([
     'BEKREFT_ENDRET_PROGRAMPERIODE',
     'BEKREFT_AVVIK_REGISTERINNTEKT',
     'RAPPORTER_INNTEKT',
+    'SØK_YTELSE',
 ]);
 
 export const zOppgavetypeDataDto = z.unknown();
@@ -95,6 +96,12 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = zOppgavetypeDataDto.
     }),
 );
 
+export const zSøkYtelseOppgavetypeDataDto = zOppgavetypeDataDto.and(
+    z.object({
+        fomDato: z.string().date(),
+    }),
+);
+
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT', 'LUKKET']);
 
 export const zOppgaveDto = z.object({
@@ -104,6 +111,7 @@ export const zOppgaveDto = z.object({
         zEndretProgramperiodeDataDto,
         zInntektsrapporteringOppgavetypeDataDto,
         zKontrollerRegisterinntektOppgavetypeDataDto,
+        zSøkYtelseOppgavetypeDataDto,
     ]),
     bekreftelse: zBekreftelseDto.optional(),
     status: zOppgaveStatus,

@@ -1,82 +1,20 @@
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+
 export default [
     {
         id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
         fraOgMed: '2024-07-01',
         tilOgMed: '2025-06-30',
         søktTidspunkt: undefined,
-        oppgaver: [],
-        rapporteringsPerioder: [
+        oppgaver: [
             {
-                fraOgMed: '2024-07-01',
-                tilOgMed: '2024-07-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2024-08-01',
-                tilOgMed: '2024-08-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2024-09-01',
-                tilOgMed: '2024-09-30',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2024-10-01',
-                tilOgMed: '2024-10-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2024-11-01',
-                tilOgMed: '2024-11-30',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2024-12-01',
-                tilOgMed: '2024-12-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-01-01',
-                tilOgMed: '2025-01-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-02-01',
-                tilOgMed: '2025-02-28',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-03-01',
-                tilOgMed: '2025-03-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-04-01',
-                tilOgMed: '2025-04-30',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-05-01',
-                tilOgMed: '2025-05-31',
-                harRapportert: false,
-                inntekt: null,
-            },
-            {
-                fraOgMed: '2025-06-01',
-                tilOgMed: '2025-06-30',
-                harRapportert: false,
-                inntekt: null,
+                oppgaveReferanse: 'e6eaf147-db0e-454c-9271-f15ffe550b10',
+                oppgavetype: Oppgavetype.SØK_YTELSE,
+                oppgavetypeData: {
+                    fomDato: '2025-08-01',
+                },
+                status: OppgaveStatus.LØST,
+                opprettetDato: '2025-05-30T08:01:25.542771Z',
             },
         ],
     },

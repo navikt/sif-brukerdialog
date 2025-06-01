@@ -67,6 +67,19 @@ const setOppgavebekreftelse = (oppgaveReferanse: string, oppgavebekreftelse: Ung
     save(db);
 };
 
+const setOppgaveSomÅpnet = (oppgaveReferanse: string) => {
+    db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
+        if (oppgaveReferanse !== oppgave.oppgaveReferanse) {
+            return oppgave;
+        }
+        return <OppgaveDto>{
+            ...oppgave,
+            åpnetDato: new Date().toISOString(),
+        };
+    });
+    save(db);
+};
+
 //
 export const mockUtils = {
     setScenario,
@@ -77,4 +90,5 @@ export const mockUtils = {
     getDeltakelser: () => db.deltakelser,
     setDeltakelseSøktFor,
     setOppgavebekreftelse,
+    setOppgaveSomÅpnet,
 };

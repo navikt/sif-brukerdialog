@@ -1,5 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto, zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 
@@ -8,11 +8,13 @@ export const deltakelseSchema = zDeltakelseOpplysningDto
         id: z.string(),
     })
     .transform((data) => {
+        const fraOgMed = ISODateToDate(data.fraOgMed);
+        const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
         return {
             ...data,
-            fraOgMed: ISODateToDate(data.fraOgMed),
-            tilOgMed: data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined,
-            oppgaver: parseOppgaverElement(data.oppgaver),
+            fraOgMed,
+            tilOgMed,
+            oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
         };
     });
 

@@ -1,6 +1,6 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { DeltakelsePeriode } from '@navikt/ung-common';
+import { DeltakelsePeriode, SendSøknadOppgave } from '@navikt/ung-common';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',
@@ -33,6 +33,7 @@ export type KontonummerInfo =
 export interface SøknadContextType {
     søker: Søker;
     deltakelsePeriode: DeltakelsePeriode;
+    søknadOppgave: SendSøknadOppgave;
     svar: SøknadSvar;
     søknadStartet: boolean;
     søknadSendt: boolean;

@@ -14,7 +14,7 @@ const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
         borderWidth="1"
         className="w-full"
         padding="4">
-        <HGrid columns="3rem auto" gap="2" className="w-full" align="center">
+        <HGrid columns={{ sm: '3rem auto' }} gap="2" className="w-full" align="center">
             <Show above="sm">
                 <Box paddingInline="2 3">
                     <CheckmarkCircleFillIcon
@@ -28,7 +28,7 @@ const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
             </Show>
             <VStack gap="1">
                 <Heading level="3" size="small">
-                    Søknad for ungdomsprogramytelsen
+                    Søknad for ungdoms&shy;program&shy;ytelsen
                 </Heading>
                 <BodyShort className="text-text-subtle">Mottatt {dateFormatter.compact(mottatt)}</BodyShort>
             </VStack>

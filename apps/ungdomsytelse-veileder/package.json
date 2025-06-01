@@ -22,6 +22,7 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
+        "@grafana/faro-react": "1.18.2",
         "@navikt/aksel-icons": "7.22.0",
         "@navikt/ds-css": "7.22.0",
         "@navikt/ds-react": "7.22.0",
@@ -30,6 +31,7 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
