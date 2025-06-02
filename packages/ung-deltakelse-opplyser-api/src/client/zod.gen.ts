@@ -237,40 +237,143 @@ export const zDeltakelsePeriodInfo = z.object({
     oppgaver: z.array(zOppgaveDto),
 });
 
+export const zEndreStartdatoData = zEndrePeriodeDatoDto;
+
+export const zEndreStartdatoParameterDeltakelseId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zEndreStartdatoResponse = zDeltakelseOpplysningDto;
 
+export const zEndreSluttdatoData = zEndrePeriodeDatoDto;
+
+export const zEndreSluttdatoParameterDeltakelseId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zEndreSluttdatoResponse = zDeltakelseOpplysningDto;
 
+export const zMeldUtDeltakerData = zDeltakelseUtmeldingDto;
+
+export const zMeldUtDeltakerParameterDeltakelseId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zMeldUtDeltakerResponse = zDeltakelseOpplysningDto;
 
+export const zMarkerDeltakelseSomSøktParameterId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseOpplysningDto;
 
+export const zMeldInnDeltakerData = zDeltakelseInnmeldingDto;
+
+/**
+ * OK
+ */
 export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
 
+export const zHentAlleDeltakelserGittDeltakerAktørData = zAktørIdDto;
+
+/**
+ * OK
+ */
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
 
+export const zHentDeltakerInfoGittDeltakerData = zDeltakerDto;
+
+/**
+ * OK
+ */
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
+export const zUtløperOppgaveData = z.string().uuid();
+
+export const zUtløperOppgaveForTypeOgPeriodeData = zSettTilUtløptDto;
+
+export const zOpprettOppgaveForKontrollAvRegisterinntektData = zRegisterInntektOppgaveDto;
+
+/**
+ * OK
+ */
 export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zOppgaveDto;
 
+export const zOpprettOppgaveForInntektsrapporteringData = zInntektsrapporteringOppgaveDto;
+
+/**
+ * OK
+ */
 export const zOpprettOppgaveForInntektsrapporteringResponse = zOppgaveDto;
 
+export const zOpprettOppgaveForEndretProgramperiodeData = zEndretProgamperiodeOppgaveDto;
+
+/**
+ * OK
+ */
 export const zOpprettOppgaveForEndretProgramperiodeResponse = zOppgaveDto;
 
+export const zAvbrytOppgaveData = z.string().uuid();
+
+export const zHentAlleDeltakelserGittDeltakerIdParameterDeltakerId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
 
+export const zDeltakelseHistorikkParameterDeltakelseId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
+export const zHentDeltakerInfoGittDeltakerIdParameterId = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
+/**
+ * OK
+ */
 export const zHentKontonummerResponse = zKontonummerDto;
 
+export const zHentDeltakersOppgaveParameterOppgaveReferanse = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
+export const zMarkerOppgaveSomLukketParameterOppgaveReferanse = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
 
+export const zMarkerOppgaveSomÅpnetParameterOppgaveReferanse = z.string().uuid();
+
+/**
+ * OK
+ */
 export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
 
+/**
+ * OK
+ */
 export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelsePeriodInfo);
 
+export const zFjernFraProgramParameterDeltakerId = z.string().uuid();
+
+/**
+ * No Content
+ */
 export const zFjernFraProgramResponse = z.void();
