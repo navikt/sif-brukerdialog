@@ -149,8 +149,8 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    førsteMuligeInnmeldingsdato: string;
     sisteMuligeInnmeldingsdato: string;
+    førsteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -486,7 +486,7 @@ export type UtløperOppgaveData = {
     body: string;
     path?: never;
     query?: never;
-    url: '/oppgave/utløpt';
+    url: '/oppgave/utlopt';
 };
 
 export type UtløperOppgaveErrors = {
@@ -517,7 +517,7 @@ export type UtløperOppgaveForTypeOgPeriodeData = {
     body: SettTilUtløptDto;
     path?: never;
     query?: never;
-    url: '/oppgave/utløpt/forTypeOgPeriode';
+    url: '/oppgave/utlopt/forTypeOgPeriode';
 };
 
 export type UtløperOppgaveForTypeOgPeriodeErrors = {
@@ -858,41 +858,6 @@ export type HentDeltakersOppgaveResponses = {
 
 export type HentDeltakersOppgaveResponse = HentDeltakersOppgaveResponses[keyof HentDeltakersOppgaveResponses];
 
-export type MarkerOppgaveSomÅpnetData = {
-    body?: never;
-    path: {
-        oppgaveReferanse: string;
-    };
-    query?: never;
-    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/åpnet';
-};
-
-export type MarkerOppgaveSomÅpnetErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type MarkerOppgaveSomÅpnetError = MarkerOppgaveSomÅpnetErrors[keyof MarkerOppgaveSomÅpnetErrors];
-
-export type MarkerOppgaveSomÅpnetResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type MarkerOppgaveSomÅpnetResponse = MarkerOppgaveSomÅpnetResponses[keyof MarkerOppgaveSomÅpnetResponses];
-
 export type MarkerOppgaveSomLukketData = {
     body?: never;
     path: {
@@ -927,6 +892,41 @@ export type MarkerOppgaveSomLukketResponses = {
 };
 
 export type MarkerOppgaveSomLukketResponse = MarkerOppgaveSomLukketResponses[keyof MarkerOppgaveSomLukketResponses];
+
+export type MarkerOppgaveSomÅpnetData = {
+    body?: never;
+    path: {
+        oppgaveReferanse: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet';
+};
+
+export type MarkerOppgaveSomÅpnetErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerOppgaveSomÅpnetError = MarkerOppgaveSomÅpnetErrors[keyof MarkerOppgaveSomÅpnetErrors];
+
+export type MarkerOppgaveSomÅpnetResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type MarkerOppgaveSomÅpnetResponse = MarkerOppgaveSomÅpnetResponses[keyof MarkerOppgaveSomÅpnetResponses];
 
 export type HentAlleMineDeltakelserData = {
     body?: never;

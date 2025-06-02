@@ -53,12 +53,12 @@ import type {
     HentDeltakersOppgaveData,
     HentDeltakersOppgaveResponse,
     HentDeltakersOppgaveError,
-    MarkerOppgaveSomÅpnetData,
-    MarkerOppgaveSomÅpnetResponse,
-    MarkerOppgaveSomÅpnetError,
     MarkerOppgaveSomLukketData,
     MarkerOppgaveSomLukketResponse,
     MarkerOppgaveSomLukketError,
+    MarkerOppgaveSomÅpnetData,
+    MarkerOppgaveSomÅpnetResponse,
+    MarkerOppgaveSomÅpnetError,
     HentAlleMineDeltakelserData,
     HentAlleMineDeltakelserResponse,
     HentAlleMineDeltakelserError,
@@ -82,8 +82,8 @@ import {
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
-    zMarkerOppgaveSomÅpnetResponse,
     zMarkerOppgaveSomLukketResponse,
+    zMarkerOppgaveSomÅpnetResponse,
     zHentAlleMineDeltakelserResponse,
     zFjernFraProgramResponse,
 } from './zod.gen';
@@ -364,35 +364,6 @@ export class DeltakelseService {
     }
 
     /**
-     * Markerer en oppgave som åpnet
-     */
-    public static markerOppgaveSomÅpnet<ThrowOnError extends boolean = true>(
-        options: Options<MarkerOppgaveSomÅpnetData, ThrowOnError>,
-    ) {
-        return (options.client ?? _heyApiClient).get<
-            MarkerOppgaveSomÅpnetResponse,
-            MarkerOppgaveSomÅpnetError,
-            ThrowOnError
-        >({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
-            },
-            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/åpnet',
-            ...options,
-        });
-    }
-
-    /**
      * Markerer en oppgave som lukket
      */
     public static markerOppgaveSomLukket<ThrowOnError extends boolean = true>(
@@ -417,6 +388,35 @@ export class DeltakelseService {
                 return await zMarkerOppgaveSomLukketResponse.parseAsync(data);
             },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
+            ...options,
+        });
+    }
+
+    /**
+     * Markerer en oppgave som åpnet
+     */
+    public static markerOppgaveSomÅpnet<ThrowOnError extends boolean = true>(
+        options: Options<MarkerOppgaveSomÅpnetData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            MarkerOppgaveSomÅpnetResponse,
+            MarkerOppgaveSomÅpnetError,
+            ThrowOnError
+        >({
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet',
             ...options,
         });
     }
@@ -568,7 +568,7 @@ export class OppretterOgEndrerPåOppgaverService {
                     type: 'http',
                 },
             ],
-            url: '/oppgave/utløpt',
+            url: '/oppgave/utlopt',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
@@ -594,7 +594,7 @@ export class OppretterOgEndrerPåOppgaverService {
                     type: 'http',
                 },
             ],
-            url: '/oppgave/utløpt/forTypeOgPeriode',
+            url: '/oppgave/utlopt/forTypeOgPeriode',
             ...options,
             headers: {
                 'Content-Type': 'application/json',
