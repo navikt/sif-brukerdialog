@@ -34,9 +34,7 @@ const OppgaverList = ({ oppgaver }: Props) => {
                         key={index}
                         beskrivelse={getOppgaveBeskrivelse(oppgave)}
                         tittel={getOppgaveTittel(oppgave, intl)}
-                        status={oppgave.status}
-                        svarfrist={oppgave.svarfrist}
-                        løstDato={oppgave.løstDato}
+                        oppgave={oppgave}
                         onClick={() => {
                             navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
                         }}

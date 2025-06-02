@@ -1,14 +1,12 @@
 import { CheckmarkCircleFillIcon, CircleSlashFillIcon, PencilFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Heading, HGrid, LinkPanel, Show, Tag, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus } from '@navikt/ung-common';
+import { Box, Heading, HGrid, LinkPanel, Show, VStack } from '@navikt/ds-react';
+import { BekreftelseOppgave, Oppgave, OppgaveStatus } from '@navikt/ung-common';
+import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     tittel: string;
     beskrivelse?: React.ReactNode;
-    status: OppgaveStatus;
-    svarfrist?: Date;
-    løstDato?: Date;
+    oppgave: Oppgave | BekreftelseOppgave;
     onClick: () => void;
 }
 
@@ -41,39 +39,7 @@ const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) 
     }
 };
 
-const OppgaveStatusTag = ({
-    status,
-    svarfrist,
-    løstDato,
-}: {
-    status: OppgaveStatus;
-    svarfrist?: Date;
-    løstDato?: Date;
-}) => {
-    if (status === 'ULØST' && svarfrist) {
-        return (
-            <Tag variant="warning-moderate" size="small" className="mb-2">
-                Frist: {dateFormatter.dayCompactDate(svarfrist)} [TODO]
-            </Tag>
-        );
-    }
-    if (løstDato) {
-        switch (status) {
-            case OppgaveStatus.LØST:
-                return <BodyShort className="text-text-subtle">Løst: {dateFormatter.compact(løstDato)}</BodyShort>;
-            case OppgaveStatus.UTLØPT:
-                return <BodyShort className="text-text-subtle">Utløpt: {dateFormatter.compact(løstDato)}</BodyShort>;
-            case OppgaveStatus.AVBRUTT:
-                return <BodyShort className="text-text-subtle">Avbrutt: {dateFormatter.compact(løstDato)}</BodyShort>;
-            case OppgaveStatus.LUKKET:
-                return <BodyShort className="text-text-subtle">Lukket: {dateFormatter.compact(løstDato)}</BodyShort>;
-            default:
-                return null;
-        }
-    }
-};
-
-const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, onClick }: Props) => {
+const OppgaveLinkPanel = ({ tittel, beskrivelse, oppgave, onClick }: Props) => {
     return (
         <LinkPanel
             href="#"
@@ -88,7 +54,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
             <HGrid columns={{ sm: '3rem auto' }} gap="2" className="w-full" align="center">
                 <Show above="sm">
                     <Box paddingInline="2 3">
-                        <OppgaveStatusIcon oppgavestatus={status} />
+                        <OppgaveStatusIcon oppgavestatus={oppgave.status} />
                     </Box>
                 </Show>
                 <VStack gap="1">
@@ -97,7 +63,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, status, svarfrist, løstDato, o
                     </Heading>
                     {beskrivelse && <Box marginBlock="0 1">{beskrivelse}</Box>}
                     <div>
-                        <OppgaveStatusTag status={status} svarfrist={svarfrist} løstDato={løstDato} />
+                        <OppgaveStatusTag oppgave={oppgave} />
                     </div>
                 </VStack>
             </HGrid>

@@ -20,7 +20,9 @@ interface Props {
 const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummering, oppgave, children }: Props) => {
     return (
         <VStack gap="6">
-            <OppgaveStatusTag oppgave={oppgave} />
+            <div>
+                <OppgaveStatusTag oppgave={oppgave} />
+            </div>
             <Heading level="1" size="large">
                 {tekster.tittel}
             </Heading>
