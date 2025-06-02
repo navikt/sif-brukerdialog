@@ -58,7 +58,18 @@ const OppgaveStatusTag = ({
         );
     }
     if (løstDato) {
-        return <BodyShort className="text-text-subtle">Avsluttet: {dateFormatter.compact(løstDato)}</BodyShort>;
+        switch (status) {
+            case OppgaveStatus.LØST:
+                return <BodyShort className="text-text-subtle">Løst: {dateFormatter.compact(løstDato)}</BodyShort>;
+            case OppgaveStatus.UTLØPT:
+                return <BodyShort className="text-text-subtle">Utløpt: {dateFormatter.compact(løstDato)}</BodyShort>;
+            case OppgaveStatus.AVBRUTT:
+                return <BodyShort className="text-text-subtle">Avbrutt: {dateFormatter.compact(løstDato)}</BodyShort>;
+            case OppgaveStatus.LUKKET:
+                return <BodyShort className="text-text-subtle">Lukket: {dateFormatter.compact(løstDato)}</BodyShort>;
+            default:
+                return null;
+        }
     }
 };
 

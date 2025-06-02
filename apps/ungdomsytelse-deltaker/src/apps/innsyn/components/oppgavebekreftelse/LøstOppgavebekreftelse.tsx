@@ -1,10 +1,12 @@
-import { BodyShort, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
 import OppgaveUttalelse from '../oppgaver/parts/OppgaveUttalelse';
-import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
 import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
 import OppgaveMeta from '../oppgave-meta/OppgaveMeta';
 import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
+import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
+import AvbruttOppgaveInfo from '../avbrutt-oppgave-info/AvbruttOppgaveInfo';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -23,11 +25,18 @@ const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummer
             </Heading>
             <ExpansionCard aria-label="Beskjed fra Nav" size="small">
                 <ExpansionCard.Header>
-                    <ExpansionCard.Title>Oppgaveinformasjon</ExpansionCard.Title>
+                    <ExpansionCard.Title>
+                        <VStack gap="2">
+                            <div>
+                                <OppgaveStatusTag status={oppgave.status} />
+                            </div>
+                            <div>Oppgaveinformasjon</div>
+                        </VStack>
+                    </ExpansionCard.Title>
                     <ExpansionCard.Description>
-                        <Box paddingBlock="2 0">
+                        <HStack paddingBlock="2 0" gap="2">
                             <BodyShort>{oppsummering}</BodyShort>
-                        </Box>
+                        </HStack>
                     </ExpansionCard.Description>
                 </ExpansionCard.Header>
                 <ExpansionCard.Content>
@@ -41,14 +50,13 @@ const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummer
                 </ExpansionCard.Content>
             </ExpansionCard>
 
-            {bekreftelse ? (
+            {bekreftelse && (
                 <OppgaveUttalelse
                     godtarSpørsmål="Forstår og godtar du at startdatoen din er endret"
                     bekreftelse={bekreftelse}
                 />
-            ) : (
-                <>Informasjon om bekreftelse mangler</>
             )}
+            {oppgave.status !== OppgaveStatus.LØST && <AvbruttOppgaveInfo oppgave={oppgave} />}
 
             <div>
                 <ForsideLenkeButton />
