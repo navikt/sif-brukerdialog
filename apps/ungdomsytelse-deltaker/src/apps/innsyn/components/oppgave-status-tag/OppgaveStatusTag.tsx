@@ -19,13 +19,13 @@ const OppgaveStatusTag = ({ oppgave }: Props) => {
         case OppgaveStatus.LØST:
             return (
                 <Tag variant="success" size="small">
-                    Løst {renderDatoOgKlokkeslett(oppgave.løstDato)}
+                    Sendt inn {renderDatoOgKlokkeslett(oppgave.løstDato)}
                 </Tag>
             );
         case OppgaveStatus.ULØST:
             return (
                 <Tag variant="warning-filled" size="small">
-                    Uløst - frist {renderDato(oppgave.svarfrist)}
+                    Ikke besvart - frist innen {renderDato(oppgave.svarfrist)}
                 </Tag>
             );
         case OppgaveStatus.AVBRUTT:
@@ -37,13 +37,13 @@ const OppgaveStatusTag = ({ oppgave }: Props) => {
         case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size="small">
-                    Lukket {renderDatoOgKlokkeslett(oppgave.lukketDato)}
+                    Sendt inn {renderDatoOgKlokkeslett(oppgave.lukketDato)}
                 </Tag>
             );
         case OppgaveStatus.UTLØPT:
             return (
                 <Tag variant="info" size="small">
-                    Utløpt
+                    Utløpt - frist for å svare var innen {renderDato(oppgave.svarfrist)}
                 </Tag>
             );
 
