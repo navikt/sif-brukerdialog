@@ -62,7 +62,7 @@ const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetyp
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
     const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
-    const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate();
+    const svarfrist = dayjs.utc(oppgave.opprettetDato).add(2, 'weeks').toDate(); // TODO
     return {
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),

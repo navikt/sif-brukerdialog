@@ -53,7 +53,7 @@ const OppgaveStatusTag = ({
     if (status === 'ULØST' && svarfrist) {
         return (
             <Tag variant="warning-moderate" size="small" className="mb-2">
-                Frist: {dateFormatter.dayCompactDate(svarfrist)}
+                Frist: {dateFormatter.dayCompactDate(svarfrist)} [TODO]
             </Tag>
         );
     }

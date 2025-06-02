@@ -11,7 +11,6 @@ interface Props {
 }
 
 const PageOppgaveLayout = ({ tittel, svarfrist, beskrivelse, children }: Props) => {
-    // const { erBesvart } = useOppgaveContext();
     return (
         <VStack gap="6">
             <Heading level="2" size="medium" spacing={true}>
@@ -23,8 +22,8 @@ const PageOppgaveLayout = ({ tittel, svarfrist, beskrivelse, children }: Props) 
                     <Heading level="3" size="xsmall" spacing={true}>
                         Svarfrist
                     </Heading>
-                    Frist for å svare er <strong>{dateFormatter.full(svarfrist)}</strong>. Hvis du ikke svarer innen
-                    fristen, godkjennes oppgaven automatisk.
+                    Frist for å svare er <strong>{dateFormatter.full(svarfrist)} [TODO]</strong>. Hvis du ikke svarer
+                    innen fristen, godkjennes oppgaven automatisk.
                 </Box>
             ) : null}
             <BlueBox>{children}</BlueBox>

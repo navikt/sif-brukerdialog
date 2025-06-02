@@ -88,7 +88,7 @@ const OppgavePage = () => {
         case Oppgavetype.RAPPORTER_INNTEKT:
             return (
                 <DefaultPage title="Rapporter inntekt - Ditt ungdomsprogram">
-                    <BodyShort spacing>Rapporter inntekst oppgave</BodyShort>
+                    <BodyShort spacing>Rapporter inntekt oppgave</BodyShort>
                 </DefaultPage>
             );
     }
