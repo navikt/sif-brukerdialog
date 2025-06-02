@@ -158,8 +158,8 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({
@@ -351,6 +351,13 @@ export const zHentDeltakersOppgaveParameterOppgaveReferanse = z.string().uuid();
  * OK
  */
 export const zHentDeltakersOppgaveResponse = zOppgaveDto;
+
+export const zMarkerOppgaveSomLøstParameterOppgaveReferanse = z.string().uuid();
+
+/**
+ * OK
+ */
+export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomLukketParameterOppgaveReferanse = z.string().uuid();
 

@@ -28,6 +28,8 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
             return OppgaveStatus.AVBRUTT;
         case 'UTLØPT':
             return OppgaveStatus.UTLØPT;
+        case 'LUKKET':
+            return OppgaveStatus.LUKKET;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }

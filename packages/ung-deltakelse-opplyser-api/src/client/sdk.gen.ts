@@ -56,6 +56,9 @@ import type {
     HentDeltakersOppgaveData,
     HentDeltakersOppgaveResponses,
     HentDeltakersOppgaveErrors,
+    MarkerOppgaveSomLøstData,
+    MarkerOppgaveSomLøstResponses,
+    MarkerOppgaveSomLøstErrors,
     MarkerOppgaveSomLukketData,
     MarkerOppgaveSomLukketResponses,
     MarkerOppgaveSomLukketErrors,
@@ -85,6 +88,7 @@ import {
     zHentDeltakerInfoGittDeltakerIdResponse,
     zHentKontonummerResponse,
     zHentDeltakersOppgaveResponse,
+    zMarkerOppgaveSomLøstResponse,
     zMarkerOppgaveSomLukketResponse,
     zMarkerOppgaveSomÅpnetResponse,
     zHentAlleMineDeltakelserResponse,
@@ -370,6 +374,36 @@ export class DeltakelseService {
                 return await zHentDeltakersOppgaveResponse.parseAsync(data);
             },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
+            ...options,
+        });
+    }
+
+    /**
+     * Markerer en oppgave som åpnet
+     */
+    public static markerOppgaveSomLøst<ThrowOnError extends boolean = true>(
+        options: Options<MarkerOppgaveSomLøstData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).get<
+            MarkerOppgaveSomLøstResponses,
+            MarkerOppgaveSomLøstErrors,
+            ThrowOnError
+        >({
+            responseType: 'json',
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomLøstResponse.parseAsync(data);
+            },
+            url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
             ...options,
         });
     }

@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import ForsidePage from './pages/ForsidePage';
 import OppgavePage from './pages/OppgavePage';
 import { IntlProvider } from 'react-intl';
-import { innsynAppMessages } from './i18n';
 import { useEffect } from 'react';
+import { applicationIntlMessages } from '../../i18n';
 
 const InnsynApp = () => {
     /** Setter bakgrunnsfarge på body */
@@ -16,7 +16,7 @@ const InnsynApp = () => {
 
     return (
         <main className="innsynApp">
-            <IntlProvider messages={innsynAppMessages.nb} locale="nb">
+            <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
                 <Routes>
                     <Route index path="" element={<ForsidePage />} />
                     <Route path="oppgave" element={<Navigate to="/" replace={true} />} />

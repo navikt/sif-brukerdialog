@@ -1,6 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import { mockUtils } from '../mocks/mockUtils';
-import { zUngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import {
+    zUngdomsytelseInntektsrapportering,
+    zUngdomsytelseOppgavebekreftelse,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 
 export const getHandlers = () => {
     const { barn, arbeidsgiver, søker, deltakelser } = mockUtils.getData();
@@ -43,6 +46,14 @@ export const getHandlers = () => {
             mockUtils.setOppgaveSomÅpnet(oppgaveReferanse);
             return new HttpResponse(null, { status: 200 });
         }),
+        http.get<any, any>('**/deltakelse/register/oppgave/:oppgaveReferanse/lukk', async ({ params }) => {
+            const { oppgaveReferanse } = params;
+            if (!oppgaveReferanse) {
+                return new HttpResponse(null, { status: 400 });
+            }
+            const oppgave = mockUtils.setOppgaveSomLukket(oppgaveReferanse);
+            return new HttpResponse(JSON.stringify(oppgave), { status: 200 });
+        }),
         http.post('**/ungdomsytelse/soknad/innsending', () => {
             mockUtils.setDeltakelseSøktFor(); // Forutsetter kun én deltakelse i mock-databasen
             return HttpResponse.json({});
@@ -51,19 +62,18 @@ export const getHandlers = () => {
             const text = await request.text();
             try {
                 const data = zUngdomsytelseOppgavebekreftelse.parse(JSON.parse(text));
-                console.log(data);
                 mockUtils.setOppgavebekreftelse(data.oppgave.oppgaveReferanse, data);
             } catch (e) {
                 console.log(e);
             }
             return new HttpResponse(null, { status: 200 });
         }),
-        // http.post('**/ungdomsytelse/inntektsrapportering/innsending', async ({ request }) => {
-        //     const text = await request.text();
-        //     // const data = zUngdomsytelseInntektsrapportering.parse(JSON.parse(text));
-        //     // deltakelserMockStorage.actions.setInntektRapportert(JSON.parse(text).oppgittInntektForPeriode);
-        //     return Promise.resolve(new HttpResponse(null, { status: 200 }));
-        // }),
+        http.post('**/ungdomsytelse/inntektsrapportering/innsending', async ({ request }) => {
+            const text = await request.text();
+            const data = zUngdomsytelseInntektsrapportering.parse(JSON.parse(text));
+            mockUtils.setRapportertInntekt(data.oppgaveReferanse, data);
+            return Promise.resolve(new HttpResponse(null, { status: 200 }));
+        }),
         // http.get(`**/mellomlagring/${YTELSE}`, () => {
         //     const data = localStorage.getItem(MellomlagringStorageKey);
         //     const jsonData = JSON.parse(JSON.stringify(data) || '{}');

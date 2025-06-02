@@ -149,8 +149,8 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -857,6 +857,41 @@ export type HentDeltakersOppgaveResponses = {
 };
 
 export type HentDeltakersOppgaveResponse = HentDeltakersOppgaveResponses[keyof HentDeltakersOppgaveResponses];
+
+export type MarkerOppgaveSomLøstData = {
+    body?: never;
+    path: {
+        oppgaveReferanse: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst';
+};
+
+export type MarkerOppgaveSomLøstErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerOppgaveSomLøstError = MarkerOppgaveSomLøstErrors[keyof MarkerOppgaveSomLøstErrors];
+
+export type MarkerOppgaveSomLøstResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type MarkerOppgaveSomLøstResponse = MarkerOppgaveSomLøstResponses[keyof MarkerOppgaveSomLøstResponses];
 
 export type MarkerOppgaveSomLukketData = {
     body?: never;

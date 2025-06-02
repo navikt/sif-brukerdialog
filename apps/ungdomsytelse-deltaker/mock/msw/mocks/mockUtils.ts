@@ -4,6 +4,7 @@ import {
     ArbeidsgivereDto,
     BarnOppslagListe,
     Søker,
+    UngdomsytelseInntektsrapportering,
     UngdomsytelseOppgavebekreftelse,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { DeltakelsePeriodInfo, OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
@@ -66,6 +67,23 @@ const setOppgavebekreftelse = (oppgaveReferanse: string, oppgavebekreftelse: Ung
     });
     save(db);
 };
+const setRapportertInntekt = (oppgaveReferanse: string, rapporterInntektOppgave: UngdomsytelseInntektsrapportering) => {
+    db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
+        if (oppgaveReferanse !== oppgave.oppgaveReferanse) {
+            return oppgave;
+        }
+        if (oppgave.oppgaveReferanse !== rapporterInntektOppgave.oppgaveReferanse) {
+            return oppgave;
+        }
+        return <OppgaveDto>{
+            ...oppgave,
+
+            løstDato: new Date().toISOString(),
+            status: 'LØST',
+        };
+    });
+    save(db);
+};
 
 const setOppgaveSomÅpnet = (oppgaveReferanse: string) => {
     db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
@@ -79,6 +97,22 @@ const setOppgaveSomÅpnet = (oppgaveReferanse: string) => {
     });
     save(db);
 };
+const setOppgaveSomLukket = (oppgaveReferanse: string) => {
+    let oppdatertOppgave;
+    db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
+        if (oppgaveReferanse !== oppgave.oppgaveReferanse) {
+            return oppgave;
+        }
+        oppdatertOppgave = <OppgaveDto>{
+            ...oppgave,
+            lukketDato: new Date().toISOString(),
+            status: 'LUKKET',
+        };
+        return oppdatertOppgave;
+    });
+    save(db);
+    return oppdatertOppgave;
+};
 
 //
 export const mockUtils = {
@@ -91,4 +125,6 @@ export const mockUtils = {
     setDeltakelseSøktFor,
     setOppgavebekreftelse,
     setOppgaveSomÅpnet,
+    setOppgaveSomLukket,
+    setRapportertInntekt,
 };

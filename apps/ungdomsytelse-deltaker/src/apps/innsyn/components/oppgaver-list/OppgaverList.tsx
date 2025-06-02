@@ -4,8 +4,8 @@ import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
 import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
 import { getOppgaveBeskrivelse, getOppgaveOppsummering, getOppgaveTittel } from '../../utils/textUtils';
-import { useAppIntl } from '../../i18n';
 import SøknadMottattOppgavePanel from '../oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     oppgaver: Oppgave[];

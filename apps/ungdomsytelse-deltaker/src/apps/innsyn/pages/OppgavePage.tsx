@@ -1,4 +1,3 @@
-import { BodyShort } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -8,11 +7,13 @@ import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekrefte
 import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppgave';
 import EndretSluttdatoOppgaveInfo from '../components/oppgaver/parts/EndretSluttdatoOppgaveInfo';
 import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
-import { useAppIntl } from '../i18n';
 import { getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../utils/textUtils';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import DefaultPage from '../components/page-layout/DefaultPage';
 import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import RapporterInntekt from '../components/rapporter-inntekt/RapporterInntekt';
+import { useAppIntl } from '../../../i18n';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -87,8 +88,9 @@ const OppgavePage = () => {
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return (
-                <DefaultPage title="Rapporter inntekt - Ditt ungdomsprogram">
-                    <BodyShort spacing>Rapporter inntekt oppgave</BodyShort>
+                <DefaultPage
+                    title={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Ditt ungdomsprogram`}>
+                    <RapporterInntekt oppgave={oppgave} deltakerNavn={søker.fornavn} />
                 </DefaultPage>
             );
     }

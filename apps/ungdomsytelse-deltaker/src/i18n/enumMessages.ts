@@ -27,7 +27,7 @@ const nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.forstårOppgaveSpørsmål':
         'Forstår og godtar du at inntekten din er endret',
 
-    'oppgavetype.RAPPORTER_INNTEKT': 'Rapporter inntekt',
+    'oppgavetype.RAPPORTER_INNTEKT.tittel': 'Rapporter inntekt',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

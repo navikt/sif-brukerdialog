@@ -64,6 +64,18 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         søktTidspunkt: '2025-04-17T05:05:01.714798Z',
         oppgaver: [
             {
+                oppgaveReferanse: 'a94ccd8b-bf3b-4b20-89af-ab3bc7819baf',
+                oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+                oppgavetypeData: {
+                    fraOgMed: '2025-05-01',
+                    tilOgMed: '2025-05-31',
+                },
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-06-01T18:58:26.643958Z',
+                åpnetDato: '2025-06-02T07:43:26.262365Z',
+            },
+
+            {
                 oppgaveReferanse: '247f3e28-0366-46eb-89be-e205e7efd7c2',
                 oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {

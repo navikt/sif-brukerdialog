@@ -16,6 +16,7 @@ const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) 
     switch (oppgavestatus) {
         case OppgaveStatus.ULØST:
             return <PencilFillIcon fill="red" color="#C95100" width="1.8rem" height="1.8rem" aria-label="Penn-ikon" />;
+        case OppgaveStatus.LUKKET:
         case OppgaveStatus.LØST:
             return (
                 <CheckmarkCircleFillIcon
@@ -28,7 +29,6 @@ const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) 
             );
         case OppgaveStatus.UTLØPT:
         case OppgaveStatus.AVBRUTT:
-        case OppgaveStatus.LUKKET:
             return (
                 <CircleSlashFillIcon
                     fill="red"
