@@ -1,4 +1,4 @@
-import { Alert, Bleed, BodyLong, Box, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EnvKey } from '@navikt/sif-common-env';
@@ -9,7 +9,8 @@ import { OppgaveStatus, RapporterInntektOppgave } from '@navikt/ung-common';
 import { getAppEnv } from '../../../../utils/appEnv';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
 import InntektForm from '../inntekt-form/InntektForm';
-import OppgaveMeta from '../oppgave-meta/OppgaveMeta';
+import BesvartOppgaveExpansionCart from '../besvart-oppgave-expansion-card/BesvartOppgaveExpansionCard';
+import { TallSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     deltakerNavn: string;
@@ -34,7 +35,67 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
     const måned = dateFormatter.monthFullYear(periode.from);
     const frist = dateFormatter.full(oppgave.svarfrist);
 
-    return oppgave.status === OppgaveStatus.ULØST ? (
+    const renderOppgaveTekst = () => {
+        return (
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Hei {deltakerNavn}
+                </Heading>
+                <Box maxWidth="90%">
+                    <BodyLong spacing>
+                        Hadde du inntekt i {måned}, må du gi oss beskjed innen {frist}.
+                    </BodyLong>
+                    <BodyLong spacing>
+                        Hadde du ingen inntekt, trenger du ikke gjøre noe eller du kan svare nei.
+                    </BodyLong>
+                </Box>
+            </VStack>
+        );
+    };
+
+    if (oppgave.status !== OppgaveStatus.ULØST) {
+        const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
+        return (
+            <VStack gap="6">
+                <Heading level="1" size="large">
+                    Rapporter inntekt
+                </Heading>
+                <BesvartOppgaveExpansionCart
+                    oppgavestatus={oppgave.status}
+                    oppsummering={`Hadde du inntekt i ${måned}`}>
+                    {renderOppgaveTekst()}
+                </BesvartOppgaveExpansionCart>
+
+                <FormSummary>
+                    <FormSummary.Header>
+                        <FormSummary.Heading level="3">Du svarte</FormSummary.Heading>
+                    </FormSummary.Header>
+                    <FormSummary.Answers>
+                        <FormSummary.Answer>
+                            <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
+                            <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
+                        </FormSummary.Answer>
+                    </FormSummary.Answers>
+                    {arbeidstakerOgFrilansInntekt && (
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Inntekt</FormSummary.Label>
+                                <FormSummary.Value>
+                                    <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    )}
+                </FormSummary>
+
+                <div>
+                    <ForsideLenkeButton />
+                </div>
+            </VStack>
+        );
+    }
+
+    return (
         <VStack gap="6">
             <Heading level="1" size="large">
                 Rapporter inntekt
@@ -55,24 +116,7 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
                 </>
             ) : (
                 <VStack gap="10">
-                    <GuidePanel>
-                        <VStack gap="4">
-                            <Heading level="2" size="medium">
-                                Hei {deltakerNavn}
-                            </Heading>
-                            <Box maxWidth="90%">
-                                <BodyLong spacing>
-                                    Hadde du inntekt i {måned}, må du gi oss beskjed innen {frist}.
-                                </BodyLong>
-                                <BodyLong spacing>
-                                    Hadde du ingen inntekt, trenger du ikke gjøre noe eller du kan svare nei.
-                                </BodyLong>
-                            </Box>
-                            <Bleed marginBlock="5 0">
-                                <OppgaveMeta oppgave={oppgave} />
-                            </Bleed>
-                        </VStack>
-                    </GuidePanel>
+                    <GuidePanel>{renderOppgaveTekst()}</GuidePanel>
                     <InntektForm
                         måned={måned}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
@@ -82,8 +126,6 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
                 </VStack>
             )}
         </VStack>
-    ) : (
-        <>Oppgaven er løst - visning kommer snart :) </>
     );
 };
 

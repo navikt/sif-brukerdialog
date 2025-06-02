@@ -129,6 +129,12 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
                         tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
+                        rapportertInntekt: rapporterInntektData.rapportertInntekt
+                            ? {
+                                  arbeidstakerOgFrilansInntekt:
+                                      rapporterInntektData.rapportertInntekt.arbeidstakerOgFrilansInntekt,
+                              }
+                            : undefined,
                     },
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);

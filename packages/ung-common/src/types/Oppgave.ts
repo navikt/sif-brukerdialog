@@ -3,6 +3,7 @@ import {
     OppgaveDto,
     OppgaveStatus,
     Oppgavetype,
+    RapportertInntektPeriodeinfoDto,
     RegisterinntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 
@@ -61,6 +62,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
+        rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
     };
 }
 
