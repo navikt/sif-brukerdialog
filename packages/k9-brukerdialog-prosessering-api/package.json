@@ -31,7 +31,7 @@
         "gen-types": "yarn openapi-ts && yarn fix"
     },
     "dependencies": {
-        "@hey-api/client-axios": "0.7.1",
+        "@hey-api/client-axios": "0.8.0",
         "@hey-api/client-fetch": "0.10.2"
     }
 }
