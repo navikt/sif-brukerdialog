@@ -20,13 +20,13 @@
         "http-proxy-middleware": "3.0.5",
         "jsdom": "26.1.0",
         "react": "19.1.0",
-        "zod": "3.25.30"
+        "zod": "3.25.47"
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.8",
         "@types/express": "5.0.2",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.15.21",
+        "@types/node": "22.15.29",
         "@vercel/ncc": "0.38.3",
         "axios": "1.9.0",
         "morgan": "1.10.0",
