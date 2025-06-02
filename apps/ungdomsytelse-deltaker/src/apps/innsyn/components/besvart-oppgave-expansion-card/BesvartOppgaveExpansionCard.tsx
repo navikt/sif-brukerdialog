@@ -1,22 +1,23 @@
-import { BodyShort, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
-import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
-import { OppgaveStatus } from '@navikt/ung-common';
+import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
 
 interface Props {
-    oppgavestatus: OppgaveStatus;
     oppsummering?: React.ReactNode;
     children: React.ReactNode;
 }
 
-const BesvartOppgaveExpansionCart = ({ oppgavestatus, oppsummering, children }: Props) => (
+const BesvartOppgaveExpansionCart = ({ oppsummering, children }: Props) => (
     <ExpansionCard aria-label="Beskjed fra Nav" size="small">
         <ExpansionCard.Header>
-            <ExpansionCard.Title>Oppgaveinformasjon</ExpansionCard.Title>
+            <ExpansionCard.Title>
+                <VStack gap="2">
+                    <div>Oppgaveinformasjon</div>
+                </VStack>
+            </ExpansionCard.Title>
             {oppsummering && (
                 <ExpansionCard.Description>
-                    <HStack paddingBlock="2 0" gap="2">
-                        <OppgaveStatusTag status={oppgavestatus} /> <BodyShort>{oppsummering}</BodyShort>
-                    </HStack>
+                    <BodyShort as="span" className="pl-2">
+                        {oppsummering}
+                    </BodyShort>
                 </ExpansionCard.Description>
             )}
         </ExpansionCard.Header>

@@ -11,6 +11,7 @@ import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
 import InntektForm from '../inntekt-form/InntektForm';
 import BesvartOppgaveExpansionCart from '../besvart-oppgave-expansion-card/BesvartOppgaveExpansionCard';
 import { TallSvar } from '@navikt/sif-common-ui';
+import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     deltakerNavn: string;
@@ -57,12 +58,13 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
         return (
             <VStack gap="6">
+                <div>
+                    <OppgaveStatusTag oppgave={oppgave} />
+                </div>
                 <Heading level="1" size="large">
                     Rapporter inntekt
                 </Heading>
-                <BesvartOppgaveExpansionCart
-                    oppgavestatus={oppgave.status}
-                    oppsummering={`Hadde du inntekt i ${måned}`}>
+                <BesvartOppgaveExpansionCart oppsummering={`Hadde du inntekt i ${måned}`}>
                     {renderOppgaveTekst()}
                 </BesvartOppgaveExpansionCart>
 

@@ -6,6 +6,7 @@ import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
 import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
 import AvbruttOppgaveInfo from '../avbrutt-oppgave-info/AvbruttOppgaveInfo';
 import BesvartOppgaveExpansionCart from '../besvart-oppgave-expansion-card/BesvartOppgaveExpansionCard';
+import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -19,11 +20,12 @@ interface Props {
 const LøstOppgavebekreftelse = ({ tekster, deltakerNavn, bekreftelse, oppsummering, oppgave, children }: Props) => {
     return (
         <VStack gap="6">
+            <OppgaveStatusTag oppgave={oppgave} />
             <Heading level="1" size="large">
                 {tekster.tittel}
             </Heading>
 
-            <BesvartOppgaveExpansionCart oppgavestatus={oppgave.status} oppsummering={oppsummering}>
+            <BesvartOppgaveExpansionCart oppsummering={oppsummering}>
                 <VStack gap="4">
                     <Heading level="3" size="small">
                         Hei {deltakerNavn}
