@@ -8,7 +8,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
@@ -43,7 +43,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
         mutateAsync: rapporterMutateAsync,
     } = useRapporterInntekt();
     const { error: lukkError, isPending: lukkPending, mutateAsync: lukkMutateAsync } = useMarkerOppgaveSomLukket();
-    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
+    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput, ConfirmationCheckbox } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
         const harArbeidstakerOgFrilansInntekt =
@@ -123,11 +123,11 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                         })}
                                     />
                                 ) : null}
-                                {/* <ConfirmationCheckbox
+                                <ConfirmationCheckbox
                                     name={InntektFormFields.bekrefterInntekt}
                                     label="Jeg bekrefter at opplysningene er korrekte"
                                     validate={getCheckedValidator()}
-                                /> */}
+                                />
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>
