@@ -25,7 +25,6 @@
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "test": "vitest run",
         "openapi-ts": "openapi-ts",
         "fix": "node ./scripts/fixGen.mjs",
         "gen-types": "yarn openapi-ts && yarn fix"
