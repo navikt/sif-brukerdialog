@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { EndretProgramperiodeEndringType, Oppgavetype } from '@navikt/ung-common';
+import { Oppgavetype } from '@navikt/ung-common';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekreftelse';
 import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppgave';
@@ -75,13 +75,13 @@ const OppgavePage = () => {
                 <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelsePeriode.id} />,
             );
 
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return renderOppgavebekreftelsePage(
-                oppgave.oppgavetypeData.endringType === EndretProgramperiodeEndringType.ENDRET_STARTDATO ? (
-                    <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.fraOgMed} />
-                ) : (
-                    <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.tilOgMed} />
-                ),
+                <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nyStartdato} />,
+            );
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return renderOppgavebekreftelsePage(
+                <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nySluttdato} />,
             );
 
         case Oppgavetype.RAPPORTER_INNTEKT:

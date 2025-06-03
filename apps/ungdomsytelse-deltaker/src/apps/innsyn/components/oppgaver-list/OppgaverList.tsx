@@ -1,8 +1,8 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
 import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
-import { getOppgaveBeskrivelse, getOppgaveOppsummering, getOppgaveTittel } from '../../utils/textUtils';
+import { getOppgaveBeskrivelse, getOppgaveTittel } from '../../utils/textUtils';
 import SøknadMottattOppgavePanel from '../oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
 import { useAppIntl } from '../../../../i18n';
 import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
@@ -19,13 +19,6 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant }: Props) => {
     return (
         <VStack gap="4">
             {oppgaver.map((oppgave, index) => {
-                if (oppgave.ugyldigOppgave) {
-                    return (
-                        <Alert variant="error" key={index}>
-                            <div>{getOppgaveOppsummering(oppgave)}</div>
-                        </Alert>
-                    );
-                }
                 return oppgave.oppgavetype === Oppgavetype.SØK_YTELSE ? (
                     <SøknadMottattOppgavePanel key={index} mottatt={oppgave.opprettetDato} />
                 ) : (

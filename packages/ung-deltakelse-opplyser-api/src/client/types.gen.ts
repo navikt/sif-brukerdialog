@@ -39,9 +39,14 @@ export type DeltakerDto = {
     deltakerIdent: string;
 };
 
-export type EndretProgramperiodeDataDto = OppgavetypeDataDto & {
-    programperiode: ProgramperiodeDto;
-    forrigeProgramperiode?: ProgramperiodeDto;
+export type EndretSluttdatoDataDto = OppgavetypeDataDto & {
+    nySluttdato: string;
+    forrigeSluttdato?: string;
+};
+
+export type EndretStartdatoDataDto = OppgavetypeDataDto & {
+    nyStartdato: string;
+    forrigeStartdato: string;
 };
 
 export type InntektsrapporteringOppgavetypeDataDto = OppgavetypeDataDto & {
@@ -60,7 +65,8 @@ export type OppgaveDto = {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     oppgavetypeData:
-        | EndretProgramperiodeDataDto
+        | EndretSluttdatoDataDto
+        | EndretStartdatoDataDto
         | InntektsrapporteringOppgavetypeDataDto
         | KontrollerRegisterinntektOppgavetypeDataDto
         | SøkYtelseOppgavetypeDataDto;
@@ -82,7 +88,8 @@ export enum OppgaveStatus {
 }
 
 export enum Oppgavetype {
-    BEKREFT_ENDRET_PROGRAMPERIODE = 'BEKREFT_ENDRET_PROGRAMPERIODE',
+    BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
+    BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
     SØK_YTELSE = 'SØK_YTELSE',
@@ -90,17 +97,10 @@ export enum Oppgavetype {
 
 export type OppgavetypeDataDto = unknown;
 
-export type ProgramperiodeDto = {
-    fomDato: string;
-    tomDato?: string;
-};
-
 export type RapportertInntektPeriodeinfoDto = {
     fraOgMed: string;
     tilOgMed: string;
     arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
-    summertInntekt?: number;
 };
 
 export type RegisterinntektDto = {
@@ -199,12 +199,20 @@ export type InntektsrapporteringOppgaveDto = {
     tomDato: string;
 };
 
-export type EndretProgamperiodeOppgaveDto = {
+export type EndretStartdatoOppgaveDto = {
     deltakerIdent: string;
     oppgaveReferanse: string;
     frist: string;
-    programperiode: ProgramperiodeDto;
-    forrigeProgramperiode?: ProgramperiodeDto;
+    nyStartdato: string;
+    forrigeStartdato: string;
+};
+
+export type EndretSluttdatoOppgaveDto = {
+    deltakerIdent: string;
+    oppgaveReferanse: string;
+    frist: string;
+    nySluttdato: string;
+    forrigeSluttdato?: string;
 };
 
 export type DeltakelseHistorikkDto = {
@@ -616,14 +624,14 @@ export type OpprettOppgaveForInntektsrapporteringResponses = {
 export type OpprettOppgaveForInntektsrapporteringResponse =
     OpprettOppgaveForInntektsrapporteringResponses[keyof OpprettOppgaveForInntektsrapporteringResponses];
 
-export type OpprettOppgaveForEndretProgramperiodeData = {
-    body: EndretProgamperiodeOppgaveDto;
+export type OpprettOppgaveForEndretStartdatoData = {
+    body: EndretStartdatoOppgaveDto;
     path?: never;
     query?: never;
-    url: '/oppgave/opprett/endre/programperiode';
+    url: '/oppgave/opprett/endret-startdato';
 };
 
-export type OpprettOppgaveForEndretProgramperiodeErrors = {
+export type OpprettOppgaveForEndretStartdatoErrors = {
     /**
      * Unauthorized
      */
@@ -638,18 +646,53 @@ export type OpprettOppgaveForEndretProgramperiodeErrors = {
     500: ProblemDetail;
 };
 
-export type OpprettOppgaveForEndretProgramperiodeError =
-    OpprettOppgaveForEndretProgramperiodeErrors[keyof OpprettOppgaveForEndretProgramperiodeErrors];
+export type OpprettOppgaveForEndretStartdatoError =
+    OpprettOppgaveForEndretStartdatoErrors[keyof OpprettOppgaveForEndretStartdatoErrors];
 
-export type OpprettOppgaveForEndretProgramperiodeResponses = {
+export type OpprettOppgaveForEndretStartdatoResponses = {
     /**
      * OK
      */
     200: OppgaveDto;
 };
 
-export type OpprettOppgaveForEndretProgramperiodeResponse =
-    OpprettOppgaveForEndretProgramperiodeResponses[keyof OpprettOppgaveForEndretProgramperiodeResponses];
+export type OpprettOppgaveForEndretStartdatoResponse =
+    OpprettOppgaveForEndretStartdatoResponses[keyof OpprettOppgaveForEndretStartdatoResponses];
+
+export type OpprettOppgaveForEndretSluttdatoData = {
+    body: EndretSluttdatoOppgaveDto;
+    path?: never;
+    query?: never;
+    url: '/oppgave/opprett/endret-sluttdato';
+};
+
+export type OpprettOppgaveForEndretSluttdatoErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type OpprettOppgaveForEndretSluttdatoError =
+    OpprettOppgaveForEndretSluttdatoErrors[keyof OpprettOppgaveForEndretSluttdatoErrors];
+
+export type OpprettOppgaveForEndretSluttdatoResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type OpprettOppgaveForEndretSluttdatoResponse =
+    OpprettOppgaveForEndretSluttdatoResponses[keyof OpprettOppgaveForEndretSluttdatoResponses];
 
 export type AvbrytOppgaveData = {
     body: string;

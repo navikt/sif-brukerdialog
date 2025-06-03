@@ -17,7 +17,6 @@ export interface OppgaveBase
     svarfrist: Date;
     åpnetDato?: Date;
     lukketDato?: Date;
-    ugyldigOppgave?: boolean;
 }
 
 export interface BekreftelseOppgave extends OppgaveBase {
@@ -32,29 +31,18 @@ export interface KorrigertInntektOppgave extends BekreftelseOppgave {
     };
 }
 
-export enum EndretProgramperiodeEndringType {
-    /** Startdato endret */
-    'ENDRET_STARTDATO' = 'ENDRET_STARTDATO',
-    /** Sluttdato endret */
-    'ENDRET_SLUTTDATO' = 'ENDRET_SLUTTDATO',
-    /** Sluttdato satt første gang */
-    'NY_SLUTTDATO' = 'NY_SLUTTDATO',
-    /** Startdato og sluttdato endret - UGYLDIG*/
-    'START_OG_SLUTTDATO_ENDRET' = 'START_OG_SLUTTDATO_ENDRET',
-}
-
-export interface EndretProgramperiodeOppgave extends BekreftelseOppgave {
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE;
+export interface EndretStartdatoOppgave extends BekreftelseOppgave {
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO;
     oppgavetypeData: {
-        programperiode: {
-            fraOgMed: Date;
-            tilOgMed?: Date;
-        };
-        forrigeProgramperiode?: {
-            fraOgMed: Date;
-            tilOgMed?: Date;
-        };
-        endringType: EndretProgramperiodeEndringType;
+        forrigeStartdato: Date;
+        nyStartdato: Date;
+    };
+}
+export interface EndretSluttdatoOppgave extends BekreftelseOppgave {
+    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO;
+    oppgavetypeData: {
+        forrigeSluttdato?: Date;
+        nySluttdato: Date;
     };
 }
 export interface RapporterInntektOppgave extends OppgaveBase {
@@ -75,6 +63,7 @@ export interface SendSøknadOppgave extends OppgaveBase {
 
 export type Oppgave =
     | KorrigertInntektOppgave
-    | EndretProgramperiodeOppgave
+    | EndretSluttdatoOppgave
+    | EndretStartdatoOppgave
     | RapporterInntektOppgave
     | SendSøknadOppgave;

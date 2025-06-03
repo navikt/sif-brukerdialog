@@ -2,8 +2,6 @@ import {
     DeltakelseHistorikkDto,
     DeltakelseOpplysningDto,
     DeltakerPersonalia,
-    OppgaveStatus,
-    Oppgavetype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api';
 
@@ -29,51 +27,7 @@ const deltakelse: DeltakelseOpplysningDto = {
     fraOgMed: '2025-05-05',
     tilOgMed: '2026-01-01',
     søktTidspunkt: '2025-05-28T05:21:41.000340Z',
-    oppgaver: [
-        {
-            oppgaveReferanse: '9cd953f6-6445-4784-84bb-3bc288e5cc38',
-            oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-            oppgavetypeData: {
-                programperiode: {
-                    fomDato: '2025-05-05',
-                    tomDato: '9999-12-31',
-                },
-                forrigeProgramperiode: {
-                    fomDato: '2025-05-02',
-                    tomDato: '9999-12-31',
-                },
-            },
-            bekreftelse: {
-                harGodtattEndringen: true,
-                uttalelseFraBruker: undefined,
-            },
-            status: OppgaveStatus.LØST,
-            opprettetDato: '2025-05-28T05:22:07.103907Z',
-            løstDato: '2025-05-28T05:25:44.595214Z',
-            åpnetDato: undefined,
-            lukketDato: undefined,
-        },
-        {
-            oppgaveReferanse: '33a801d3-25ba-451f-a98b-a619f45aaeac',
-            oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-            oppgavetypeData: {
-                programperiode: {
-                    fomDato: '2025-05-05',
-                    tomDato: '2026-01-01',
-                },
-                forrigeProgramperiode: {
-                    fomDato: '2025-05-05',
-                    tomDato: '9999-12-31',
-                },
-            },
-            bekreftelse: undefined,
-            status: OppgaveStatus.ULØST,
-            opprettetDato: '2025-05-28T05:26:29.802729Z',
-            løstDato: undefined,
-            åpnetDato: undefined,
-            lukketDato: undefined,
-        },
-    ],
+    oppgaver: [],
 };
 
 const historikk: DeltakelseHistorikkDto[] = [

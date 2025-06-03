@@ -35,9 +35,12 @@ import type {
     OpprettOppgaveForInntektsrapporteringData,
     OpprettOppgaveForInntektsrapporteringResponses,
     OpprettOppgaveForInntektsrapporteringErrors,
-    OpprettOppgaveForEndretProgramperiodeData,
-    OpprettOppgaveForEndretProgramperiodeResponses,
-    OpprettOppgaveForEndretProgramperiodeErrors,
+    OpprettOppgaveForEndretStartdatoData,
+    OpprettOppgaveForEndretStartdatoResponses,
+    OpprettOppgaveForEndretStartdatoErrors,
+    OpprettOppgaveForEndretSluttdatoData,
+    OpprettOppgaveForEndretSluttdatoResponses,
+    OpprettOppgaveForEndretSluttdatoErrors,
     AvbrytOppgaveData,
     AvbrytOppgaveResponses,
     AvbrytOppgaveErrors,
@@ -82,7 +85,8 @@ import {
     zHentDeltakerInfoGittDeltakerResponse,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
     zOpprettOppgaveForInntektsrapporteringResponse,
-    zOpprettOppgaveForEndretProgramperiodeResponse,
+    zOpprettOppgaveForEndretStartdatoResponse,
+    zOpprettOppgaveForEndretSluttdatoResponse,
     zHentAlleDeltakelserGittDeltakerIdResponse,
     zDeltakelseHistorikkResponse,
     zHentDeltakerInfoGittDeltakerIdResponse,
@@ -727,14 +731,14 @@ export class OppretterOgEndrerPåOppgaverService {
     }
 
     /**
-     * Oppretter oppgave for endret programperiode
+     * Oppretter oppgave for endret startdato
      */
-    public static opprettOppgaveForEndretProgramperiode<ThrowOnError extends boolean = true>(
-        options: Options<OpprettOppgaveForEndretProgramperiodeData, ThrowOnError>,
+    public static opprettOppgaveForEndretStartdato<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForEndretStartdatoData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            OpprettOppgaveForEndretProgramperiodeResponses,
-            OpprettOppgaveForEndretProgramperiodeErrors,
+            OpprettOppgaveForEndretStartdatoResponses,
+            OpprettOppgaveForEndretStartdatoErrors,
             ThrowOnError
         >({
             responseType: 'json',
@@ -749,9 +753,43 @@ export class OppretterOgEndrerPåOppgaverService {
                 },
             ],
             responseValidator: async (data) => {
-                return await zOpprettOppgaveForEndretProgramperiodeResponse.parseAsync(data);
+                return await zOpprettOppgaveForEndretStartdatoResponse.parseAsync(data);
             },
-            url: '/oppgave/opprett/endre/programperiode',
+            url: '/oppgave/opprett/endret-startdato',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
+        });
+    }
+
+    /**
+     * Oppretter oppgave for endret sluttdato
+     */
+    public static opprettOppgaveForEndretSluttdato<ThrowOnError extends boolean = true>(
+        options: Options<OpprettOppgaveForEndretSluttdatoData, ThrowOnError>,
+    ) {
+        return (options.client ?? _heyApiClient).post<
+            OpprettOppgaveForEndretSluttdatoResponses,
+            OpprettOppgaveForEndretSluttdatoErrors,
+            ThrowOnError
+        >({
+            responseType: 'json',
+            security: [
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretSluttdatoResponse.parseAsync(data);
+            },
+            url: '/oppgave/opprett/endret-sluttdato',
             ...options,
             headers: {
                 'Content-Type': 'application/json',

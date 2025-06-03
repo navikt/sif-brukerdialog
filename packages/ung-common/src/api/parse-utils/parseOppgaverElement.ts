@@ -1,17 +1,18 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
-    EndretProgramperiodeDataDto,
     InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
     OppgaveDto,
     OppgaveStatus,
     Oppgavetype,
     SøkYtelseOppgavetypeDataDto,
+    EndretStartdatoDataDto,
+    EndretSluttdatoDataDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import {
-    EndretProgramperiodeEndringType,
-    EndretProgramperiodeOppgave,
+    EndretSluttdatoOppgave,
+    EndretStartdatoOppgave,
     KorrigertInntektOppgave,
     Oppgave,
     OppgaveBase,
@@ -35,30 +36,30 @@ const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     }
 };
 
-const isoDateErUndefinedEllerILangFremtid = (dato: string | undefined): boolean => {
-    return !dato || dayjs(ISODateToDate(dato)).isAfter(dayjs('2099-01-01'));
-};
+// const isoDateErUndefinedEllerILangFremtid = (dato: string | undefined): boolean => {
+//     return !dato || dayjs(ISODateToDate(dato)).isAfter(dayjs('2099-01-01'));
+// };
 
-export const getEndretProgramperiodeEndringType = (
-    oppgavetypeData: EndretProgramperiodeDataDto,
-): EndretProgramperiodeEndringType => {
-    const { programperiode, forrigeProgramperiode } = oppgavetypeData;
+// export const getEndretProgramperiodeEndringType = (
+//     oppgavetypeData: EndretProgramperiodeDataDto,
+// ): EndretProgramperiodeEndringType => {
+//     const { programperiode, forrigeProgramperiode } = oppgavetypeData;
 
-    const startdatoEndret = programperiode.fomDato !== forrigeProgramperiode?.fomDato;
-    const sluttdatoEndret = programperiode.tomDato !== forrigeProgramperiode?.tomDato;
+//     const startdatoEndret = programperiode.fomDato !== forrigeProgramperiode?.fomDato;
+//     const sluttdatoEndret = programperiode.tomDato !== forrigeProgramperiode?.tomDato;
 
-    if (startdatoEndret && sluttdatoEndret) {
-        return EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET;
-    }
+//     if (startdatoEndret && sluttdatoEndret) {
+//         return EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET;
+//     }
 
-    if (startdatoEndret) {
-        return EndretProgramperiodeEndringType.ENDRET_STARTDATO;
-    }
+//     if (startdatoEndret) {
+//         return EndretProgramperiodeEndringType.ENDRET_STARTDATO;
+//     }
 
-    return isoDateErUndefinedEllerILangFremtid(forrigeProgramperiode.tomDato)
-        ? EndretProgramperiodeEndringType.NY_SLUTTDATO
-        : EndretProgramperiodeEndringType.ENDRET_SLUTTDATO;
-};
+//     return isoDateErUndefinedEllerILangFremtid(forrigeProgramperiode.tomDato)
+//         ? EndretProgramperiodeEndringType.NY_SLUTTDATO
+//         : EndretProgramperiodeEndringType.ENDRET_SLUTTDATO;
+// };
 
 const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
@@ -93,33 +94,31 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                 };
                 parsedOppgaver.push(korrigertInntektOppgave);
                 return;
-            case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-                const endretProgramperiodeData = oppgave.oppgavetypeData as EndretProgramperiodeDataDto;
-                const endringType = getEndretProgramperiodeEndringType(endretProgramperiodeData);
-                const endretProgramperiodeOppgave: EndretProgramperiodeOppgave = {
+            case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+                const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
+                const endretStartdatoOppgave: EndretStartdatoOppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-                    ugyldigOppgave: endringType === EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET,
+                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
                     oppgavetypeData: {
-                        programperiode: {
-                            fraOgMed: ISODateToDate(endretProgramperiodeData.programperiode.fomDato),
-                            tilOgMed: endretProgramperiodeData.programperiode.tomDato
-                                ? ISODateToDate(endretProgramperiodeData.programperiode.tomDato)
-                                : undefined,
-                        },
-                        forrigeProgramperiode: endretProgramperiodeData.forrigeProgramperiode
-                            ? {
-                                  fraOgMed: ISODateToDate(endretProgramperiodeData.forrigeProgramperiode.fomDato),
-                                  tilOgMed: endretProgramperiodeData.forrigeProgramperiode.tomDato
-                                      ? ISODateToDate(endretProgramperiodeData.forrigeProgramperiode.tomDato)
-                                      : undefined,
-                              }
-                            : undefined,
-                        endringType,
+                        forrigeStartdato: ISODateToDate(forrigeStartdato),
+                        nyStartdato: ISODateToDate(nyStartdato),
                     },
                     bekreftelse: oppgave.bekreftelse,
                 };
-                parsedOppgaver.push(endretProgramperiodeOppgave);
+                parsedOppgaver.push(endretStartdatoOppgave);
+                return;
+            case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+                const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;
+                const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
+                    ...getOppgaveBaseProps(oppgave),
+                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+                    oppgavetypeData: {
+                        forrigeSluttdato: forrigeSluttdato ? ISODateToDate(forrigeSluttdato) : undefined,
+                        nySluttdato: ISODateToDate(nySluttdato),
+                    },
+                    bekreftelse: oppgave.bekreftelse,
+                };
+                parsedOppgaver.push(endretSluttdatoOppgave);
                 return;
             case Oppgavetype.RAPPORTER_INNTEKT:
                 const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;

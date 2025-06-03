@@ -1,6 +1,6 @@
 import {
-    EndretProgramperiodeEndringType,
-    EndretProgramperiodeOppgave,
+    EndretSluttdatoOppgave,
+    EndretStartdatoOppgave,
     Oppgave,
     Oppgavetype,
     RapporterInntektOppgave,
@@ -12,8 +12,10 @@ import { AppIntlShape } from '../../../i18n';
 
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-            return text(`oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.${oppgave.oppgavetypeData.endringType}.tittel`);
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            return text(`oppgavetype.${oppgave.oppgavetype}.tittel`);
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return text(`oppgavetype.${oppgave.oppgavetype}.tittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
@@ -25,12 +27,16 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
 
 export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShape): OppgavebekreftelseTekster => {
     switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return {
                 tittel: getOppgaveTittel(oppgave, intl),
-                forstårOppgaveSpørsmål: intl.text(
-                    `oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE.${oppgave.oppgavetypeData.endringType}.forstårOppgaveSpørsmål`,
-                ),
+                forstårOppgaveSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.forstårOppgaveSpørsmål`),
+            };
+
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return {
+                tittel: getOppgaveTittel(oppgave, intl),
+                forstårOppgaveSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.forstårOppgaveSpørsmål`),
             };
 
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
@@ -48,39 +54,33 @@ const getRapporterInntektOppsummering = (oppgave: RapporterInntektOppgave): Reac
     return `Inntekt kan rapporteres for perioden ${dateFormatter.full(fraOgMed)} til ${dateFormatter.full(tilOgMed)}`;
 };
 
-const getEndretProgramperiodeOppsummering = (oppgave: EndretProgramperiodeOppgave): React.ReactNode => {
-    const { endringType, programperiode } = oppgave.oppgavetypeData;
-    switch (endringType) {
-        case EndretProgramperiodeEndringType.ENDRET_STARTDATO:
-            return (
-                <>
-                    Startdato i ungdomsprogrammet er endret til{' '}
-                    <strong>{dateFormatter.full(programperiode.fraOgMed)}.</strong>
-                </>
-            );
-        case EndretProgramperiodeEndringType.ENDRET_SLUTTDATO:
-            return (
-                <>
-                    Sluttdato i ungdomsprogrammet er endret til{' '}
-                    <strong>{dateFormatter.full(programperiode.tilOgMed!)}.</strong>
-                </>
-            );
-        case EndretProgramperiodeEndringType.NY_SLUTTDATO:
-            return (
-                <>
-                    Sluttdato i ungdomsprogrammet er satt til{' '}
-                    <strong>{dateFormatter.full(programperiode.tilOgMed!)}</strong>.
-                </>
-            );
-        case EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET:
-            return `Ugyldig oppgave - både start- og sluttdato er endret.`;
-    }
+const getEndretStartdatoOppsummering = (oppgave: EndretStartdatoOppgave): React.ReactNode => {
+    return (
+        <>
+            Startdato i ungdomsprogrammet er endret til{' '}
+            <strong>{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}.</strong>
+        </>
+    );
+};
+const getEndretSluttdatoOppsummering = (oppgave: EndretSluttdatoOppgave): React.ReactNode => {
+    const { forrigeSluttdato, nySluttdato } = oppgave.oppgavetypeData;
+    return forrigeSluttdato ? (
+        <>
+            Sluttdato i ungdomsprogrammet er endret til <strong>{dateFormatter.full(nySluttdato)}.</strong>
+        </>
+    ) : (
+        <>
+            Sluttdato i ungdomsprogrammet er satt til <strong>{dateFormatter.full(nySluttdato)}.</strong>
+        </>
+    );
 };
 
 export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | undefined => {
     switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
-            return getEndretProgramperiodeOppsummering(oppgave);
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            return getEndretStartdatoOppsummering(oppgave);
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return getEndretSluttdatoOppsummering(oppgave);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return 'TODO';
         case Oppgavetype.RAPPORTER_INNTEKT:
@@ -103,7 +103,8 @@ export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
                     Utbetalingen settes på vent til vi har fått svar av deg.
                 </BodyShort>
             );
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <BodyShort>{getOppgaveOppsummering(oppgave)}</BodyShort>;
         case Oppgavetype.RAPPORTER_INNTEKT:
             return <BodyShort>Du kan nå rapportere inntekt for forrige måned.</BodyShort>;
