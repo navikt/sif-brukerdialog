@@ -16,7 +16,7 @@ interface Props {
 }
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
-    const { oppgaver, programPeriode, id } = deltakelsePeriode;
+    const { oppgaver, programPeriode } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
@@ -47,7 +47,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
-                    <OppgaverList oppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                    <OppgaverList oppgaver={uløsteOppgaver} />
                 ) : (
                     <BodyLong>Du har ingen uløste oppgaver</BodyLong>
                 )}
@@ -57,7 +57,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 && (
-                    <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" />
                 )}
             </VStack>
         </VStack>

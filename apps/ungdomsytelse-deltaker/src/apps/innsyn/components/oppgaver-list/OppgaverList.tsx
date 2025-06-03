@@ -1,19 +1,18 @@
 import { Alert, VStack } from '@navikt/ds-react';
-import { OpenDateRange } from '@navikt/sif-common-utils';
 import { Oppgave, Oppgavetype } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
 import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
 import { getOppgaveBeskrivelse, getOppgaveOppsummering, getOppgaveTittel } from '../../utils/textUtils';
 import SøknadMottattOppgavePanel from '../oppgaver/søknad-mottatt-oppgave/SøknadMottattOppgavePanel';
 import { useAppIntl } from '../../../../i18n';
+import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     oppgaver: Oppgave[];
-    programPeriode: OpenDateRange;
-    deltakelseId: string;
+    oppgaveStatusTagVariant?: OppgaveStatusTagVariant;
 }
 
-const OppgaverList = ({ oppgaver }: Props) => {
+const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant }: Props) => {
     const navigate = useNavigate();
     const intl = useAppIntl();
 
@@ -32,6 +31,7 @@ const OppgaverList = ({ oppgaver }: Props) => {
                 ) : (
                     <OppgaveLinkPanel
                         key={index}
+                        oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                         beskrivelse={getOppgaveBeskrivelse(oppgave)}
                         tittel={getOppgaveTittel(oppgave, intl)}
                         oppgave={oppgave}

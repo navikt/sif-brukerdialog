@@ -12,10 +12,10 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
                 <Alert variant="warning">
                     <Box>
                         <Heading level="3" size="small" spacing>
-                            Fristen for oppgaven er utløpt.
+                            Fristen for oppgaven er utløpt
                         </Heading>
                         <BodyLong>
-                            En oppgave kan blir utløpt vis fristen for å svare passerer. Når oppgaven uløper behandles
+                            En oppgave kan blir utløpt når fristen for å svare er passert. Når oppgaven uløper behandles
                             den automatisk.
                         </BodyLong>
                     </Box>
