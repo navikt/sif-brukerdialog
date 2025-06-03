@@ -1,54 +1,43 @@
-import { Tag } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { BekreftelseOppgave, Oppgave, OppgaveStatus } from '@navikt/ung-common';
+import { BodyShort, Tag } from '@navikt/ds-react';
+import { OppgaveBase, OppgaveStatus } from '@navikt/ung-common';
+import { getOppgaveStatusText } from '../../utils/getOppgaveStatusText';
 
 interface Props {
-    oppgave: Oppgave | BekreftelseOppgave;
+    oppgave: OppgaveBase;
+    variant?: 'tag' | 'text';
+    size?: 'small' | 'medium';
 }
 
-const renderDato = (dato?: Date) => {
-    return dato ? dateFormatter.compact(dato) : '';
-};
-
-const renderDatoOgKlokkeslett = (dato?: Date) => {
-    return dato ? dateFormatter.compactWithTime(dato) : '';
-};
-
-const OppgaveStatusTag = ({ oppgave }: Props) => {
+const OppgaveStatusTag = ({ oppgave, variant, size = 'small' }: Props): React.ReactNode => {
+    const text = getOppgaveStatusText(oppgave);
+    if (variant === 'text') {
+        return (
+            <BodyShort className="text-text-subtle" size={size}>
+                {text}
+            </BodyShort>
+        );
+    }
     switch (oppgave.status) {
         case OppgaveStatus.LØST:
+        case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size="small">
-                    Sendt inn {renderDatoOgKlokkeslett(oppgave.løstDato)}
+                    {text}
                 </Tag>
             );
         case OppgaveStatus.ULØST:
             return (
                 <Tag variant="warning-filled" size="small">
-                    Ikke besvart - frist innen {renderDato(oppgave.svarfrist)}
+                    {text}
                 </Tag>
             );
         case OppgaveStatus.AVBRUTT:
-            return (
-                <Tag variant="info" size="small">
-                    Avbrutt
-                </Tag>
-            );
-        case OppgaveStatus.LUKKET:
-            return (
-                <Tag variant="success" size="small">
-                    Sendt inn {renderDatoOgKlokkeslett(oppgave.lukketDato)}
-                </Tag>
-            );
         case OppgaveStatus.UTLØPT:
             return (
                 <Tag variant="info" size="small">
-                    Utløpt - frist for å svare var innen {renderDato(oppgave.svarfrist)}
+                    {text}
                 </Tag>
             );
-
-        default:
-            return null;
     }
 };
 

@@ -10,7 +10,7 @@ export interface OppgavebekreftelseTekster {
 }
 interface Props {
     tekster: OppgavebekreftelseTekster;
-    oppsummering: React.ReactNode;
+    oppsummering?: React.ReactNode;
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;

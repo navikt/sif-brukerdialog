@@ -10,7 +10,7 @@ const BesvartOppgaveExpansionCart = ({ oppsummering, children }: Props) => (
         <ExpansionCard.Header>
             <ExpansionCard.Title>
                 <VStack gap="2">
-                    <div>Oppgaveinformasjon</div>
+                    <div>Beskjed fra Nav</div>
                 </VStack>
             </ExpansionCard.Title>
             {oppsummering && <ExpansionCard.Description>{oppsummering}</ExpansionCard.Description>}

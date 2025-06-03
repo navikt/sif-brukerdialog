@@ -19,7 +19,10 @@ type OppgavePageParams = {
     oppgaveReferanse: string;
 };
 
-const OppgavePage = () => {
+interface Props {
+    visOppgaveOppsummering?: boolean;
+}
+const OppgavePage = ({ visOppgaveOppsummering }: Props) => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const { deltakelsePeriode, søker } = useDeltakerContext();
     const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
@@ -45,9 +48,7 @@ const OppgavePage = () => {
             return;
         }
         if (oppgave.åpnetDato === undefined) {
-            await mutateAsync(oppgave.oppgaveReferanse).catch(() => {
-                // console.error('Feil ved åpning av oppgave:', e);
-            });
+            await mutateAsync(oppgave.oppgaveReferanse);
         }
     });
 
@@ -57,7 +58,7 @@ const OppgavePage = () => {
 
     const renderOppgavebekreftelsePage = (children: React.ReactNode) => {
         const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
-        const oppsummering = getOppgaveOppsummering(oppgave);
+        const oppsummering = visOppgaveOppsummering ? getOppgaveOppsummering(oppgave) : undefined;
         return (
             <DefaultPage title={`${tekster.tittel} - Ditt ungdomsprogram`}>
                 <Oppgavebekreftelse

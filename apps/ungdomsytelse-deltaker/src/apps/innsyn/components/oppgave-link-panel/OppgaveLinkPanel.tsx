@@ -63,7 +63,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, oppgave, onClick }: Props) => {
                     </Heading>
                     {beskrivelse && <Box marginBlock="0 1">{beskrivelse}</Box>}
                     <div>
-                        <OppgaveStatusTag oppgave={oppgave} />
+                        <OppgaveStatusTag oppgave={oppgave} variant="text" />
                     </div>
                 </VStack>
             </HGrid>

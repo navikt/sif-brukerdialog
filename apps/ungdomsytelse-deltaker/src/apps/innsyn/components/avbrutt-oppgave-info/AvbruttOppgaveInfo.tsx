@@ -9,7 +9,7 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
     switch (oppgave.status) {
         case OppgaveStatus.UTLØPT:
             return (
-                <Alert variant="info">
+                <Alert variant="warning">
                     <Box>
                         <Heading level="3" size="small" spacing>
                             Fristen for oppgaven er utløpt.
@@ -23,7 +23,7 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
             );
         case OppgaveStatus.AVBRUTT:
             return (
-                <Alert variant="info">
+                <Alert variant="warning">
                     <Box>
                         <Heading level="3" size="small" spacing>
                             Oppgaven er avbrutt
@@ -37,12 +37,14 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
             );
         case OppgaveStatus.LUKKET:
             return (
-                <Alert variant="info">
+                <Alert variant="warning">
                     <Box>
                         <Heading level="3" size="small" spacing>
                             Oppgaven er lukket
                         </Heading>
-                        <BodyShort spacing>[TODO] - når og hvorfor blir en oppgave lukket?</BodyShort>
+                        <BodyShort spacing>
+                            Oppgaven ble lukket uten at det medførte noen endring i saken din.
+                        </BodyShort>
                     </Box>
                 </Alert>
             );
