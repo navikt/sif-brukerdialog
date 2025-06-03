@@ -2,6 +2,7 @@
     "name": "@navikt/dine-pleiepenger",
     "version": "1.9.6",
     "private": true,
+    "type": "module",
     "scripts": {
         "build-storybook": "storybook build",
         "build": "next build",
