@@ -1,4 +1,4 @@
-import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
+import { ExpansionCard, VStack } from '@navikt/ds-react';
 
 interface Props {
     oppsummering?: React.ReactNode;
@@ -13,13 +13,7 @@ const BesvartOppgaveExpansionCart = ({ oppsummering, children }: Props) => (
                     <div>Oppgaveinformasjon</div>
                 </VStack>
             </ExpansionCard.Title>
-            {oppsummering && (
-                <ExpansionCard.Description>
-                    <BodyShort as="span" className="pl-2">
-                        {oppsummering}
-                    </BodyShort>
-                </ExpansionCard.Description>
-            )}
+            {oppsummering && <ExpansionCard.Description>{oppsummering}</ExpansionCard.Description>}
         </ExpansionCard.Header>
         <ExpansionCard.Content>
             <VStack gap="4">{children}</VStack>

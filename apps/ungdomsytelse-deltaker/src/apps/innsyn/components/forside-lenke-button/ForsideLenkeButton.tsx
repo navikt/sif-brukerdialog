@@ -15,7 +15,7 @@ const ForsideLenkeButton = () => {
                 e.preventDefault();
                 navigate(getAppEnv()[EnvKey.PUBLIC_PATH]);
             }}
-            variant="secondary"
+            variant="tertiary"
             icon={<ChevronLeftIcon />}
             iconPosition="left">
             Tilbake til oversikten
