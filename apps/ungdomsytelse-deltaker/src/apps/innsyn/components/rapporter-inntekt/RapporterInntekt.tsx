@@ -9,7 +9,6 @@ import { OppgaveStatus, RapporterInntektOppgave } from '@navikt/ung-common';
 import { getAppEnv } from '../../../../utils/appEnv';
 import ForsideLenkeButton from '../forside-lenke-button/ForsideLenkeButton';
 import InntektForm from '../inntekt-form/InntektForm';
-import BesvartOppgaveExpansionCart from '../besvart-oppgave-expansion-card/BesvartOppgaveExpansionCard';
 import { TallSvar } from '@navikt/sif-common-ui';
 import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 
@@ -33,7 +32,8 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
     });
 
     const periode: DateRange = { from: oppgave.oppgavetypeData.fraOgMed, to: oppgave.oppgavetypeData.tilOgMed };
-    const måned = dateFormatter.monthFullYear(periode.from);
+    const månedOgÅr = dateFormatter.monthFullYear(periode.from);
+    const måned = dateFormatter.month(periode.from);
     const frist = dateFormatter.full(oppgave.svarfrist);
 
     const renderOppgaveTekst = () => {
@@ -62,32 +62,27 @@ const RapporterInntekt = ({ deltakerNavn, oppgave }: Props) => {
                     <OppgaveStatusTag oppgave={oppgave} />
                 </div>
                 <Heading level="1" size="large">
-                    Rapporter inntekt
+                    Rapporter inntekt {månedOgÅr}
                 </Heading>
-                <BesvartOppgaveExpansionCart oppsummering={`Hadde du inntekt i ${måned}`}>
-                    {renderOppgaveTekst()}
-                </BesvartOppgaveExpansionCart>
 
                 <FormSummary>
                     <FormSummary.Header>
-                        <FormSummary.Heading level="3">Du svarte</FormSummary.Heading>
+                        <FormSummary.Heading level="3">Oppsummering</FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
                             <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
                         </FormSummary.Answer>
-                    </FormSummary.Answers>
-                    {arbeidstakerOgFrilansInntekt && (
-                        <FormSummary.Answers>
+                        {arbeidstakerOgFrilansInntekt && (
                             <FormSummary.Answer>
                                 <FormSummary.Label>Inntekt</FormSummary.Label>
                                 <FormSummary.Value>
                                     <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
-                        </FormSummary.Answers>
-                    )}
+                        )}
+                    </FormSummary.Answers>
                 </FormSummary>
 
                 <div>

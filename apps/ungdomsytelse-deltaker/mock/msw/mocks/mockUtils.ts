@@ -86,16 +86,19 @@ const setRapportertInntekt = (oppgaveReferanse: string, rapporterInntektOppgave:
 };
 
 const setOppgaveSomÅpnet = (oppgaveReferanse: string) => {
+    let oppdatertOppgave;
     db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
         if (oppgaveReferanse !== oppgave.oppgaveReferanse) {
             return oppgave;
         }
-        return <OppgaveDto>{
+        oppdatertOppgave = <OppgaveDto>{
             ...oppgave,
             åpnetDato: new Date().toISOString(),
         };
+        return oppdatertOppgave;
     });
     save(db);
+    return oppdatertOppgave;
 };
 const setOppgaveSomLukket = (oppgaveReferanse: string) => {
     let oppdatertOppgave;

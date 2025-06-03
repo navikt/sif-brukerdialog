@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-binary-expression */
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
@@ -59,7 +60,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                     arbeidstakerOgFrilansInntekt,
                 },
                 oppgaveReferanse,
-                harBekreftetInntekt: values.bekrefterInntekt === true,
+                harBekreftetInntekt: true, // TODO - evt. beholde eller gjerne validering i backend // values.bekrefterInntekt === true,
             };
             rapporterMutateAsync(data).then(() => onSuccess(data));
         } else {
@@ -80,7 +81,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
 
                 return (
                     <Form
-                        submitButtonLabel="Send inn"
+                        submitButtonLabel="Send inn svaret ditt"
                         showButtonArrows={true}
                         onCancel={onCancel}
                         cancelButtonLabel="Avbryt"
@@ -91,7 +92,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
-                                    legend={`Hadde du inntekt i ${måned}?`}
+                                    legend={`Hadde du lønn i ${måned}?`}
                                     validate={(v) => {
                                         const vError = getYesOrNoValidator()(v);
                                         return vError ? { key: vError, values: { måned } } : undefined;
@@ -123,11 +124,14 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                         })}
                                     />
                                 ) : null}
-                                <ConfirmationCheckbox
-                                    name={InntektFormFields.bekrefterInntekt}
-                                    label="Jeg bekrefter at opplysningene er korrekte"
-                                    validate={getCheckedValidator()}
-                                />
+                                {1 + 1 === 3 && (
+                                    // TODO
+                                    <ConfirmationCheckbox
+                                        name={InntektFormFields.bekrefterInntekt}
+                                        label="Jeg bekrefter at opplysningene er korrekte"
+                                        validate={getCheckedValidator()}
+                                    />
+                                )}
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>

@@ -8,6 +8,17 @@ const deltakelser: DeltakelsePeriodInfo[] = [
         søktTidspunkt: '2025-04-17T05:05:01.714798Z',
         oppgaver: [
             {
+                oppgaveReferanse: '88486b78-dfa7-4b76-be6e-703603b6787e',
+                oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+                oppgavetypeData: {
+                    fraOgMed: '2025-05-01',
+                    tilOgMed: '2025-05-31',
+                },
+
+                status: OppgaveStatus.ULØST,
+                opprettetDato: '2025-06-01T18:58:02.849028Z',
+            },
+            {
                 oppgaveReferanse: '99233834-0295-4190-8928-ddcdb2261997',
                 oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
                 oppgavetypeData: {
@@ -42,7 +53,7 @@ const deltakelser: DeltakelsePeriodInfo[] = [
                 bekreftelse: {
                     harGodtattEndringen: true,
                 },
-                status: OppgaveStatus.LØST,
+                status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-05-30T10:34:08.546495Z',
                 løstDato: '2025-05-30T10:34:38.620735Z',
                 åpnetDato: '2025-06-02T07:11:59.082092Z',

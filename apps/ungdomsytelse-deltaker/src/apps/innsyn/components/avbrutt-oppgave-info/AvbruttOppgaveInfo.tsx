@@ -14,7 +14,7 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
                         <Heading level="3" size="small" spacing>
                             Fristen for oppgaven er utløpt.
                         </Heading>
-                        <BodyLong spacing>
+                        <BodyLong>
                             En oppgave kan blir utløpt vis fristen for å svare passerer. Når oppgaven uløper behandles
                             den automatisk.
                         </BodyLong>
@@ -28,7 +28,7 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
                         <Heading level="3" size="small" spacing>
                             Oppgaven er avbrutt
                         </Heading>
-                        <BodyShort spacing>
+                        <BodyShort>
                             En oppgave blir avbrutt hvis informasjonen i oppgaven ikke lenger er gyldig eller relevant.
                             Dette kan for eksempel skje hvis oppgaven erstattes av en ny oppgave.
                         </BodyShort>
@@ -42,9 +42,7 @@ const AvbruttOppgaveInfo = ({ oppgave }: Props) => {
                         <Heading level="3" size="small" spacing>
                             Oppgaven er lukket
                         </Heading>
-                        <BodyShort spacing>
-                            Oppgaven ble lukket uten at det medførte noen endring i saken din.
-                        </BodyShort>
+                        <BodyShort>Oppgaven ble lukket uten at det medførte noen endring i saken din.</BodyShort>
                     </Box>
                 </Alert>
             );

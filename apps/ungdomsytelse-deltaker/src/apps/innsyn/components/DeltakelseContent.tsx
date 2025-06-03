@@ -28,27 +28,6 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
 
-    // const info = (periode?: { fraOgMed: Date; tilOgMed?: Date }) => {
-    //     if (!periode) {
-    //         return undefined;
-    //     }
-    //     return {
-    //         fraOgMed: dateToISODate(periode.fraOgMed),
-    //         tilOgMed: periode.tilOgMed ? dateToISODate(periode.tilOgMed) : undefined,
-    //     };
-    // };
-    // console.log(
-    //     oppgaver
-    //         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato))
-    //         .filter((oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE)
-    //         .map((oppgave) => ({
-    //             programperiode: info(oppgave.oppgavetypeData.programperiode),
-    //             forrigeProgramperiode: info(oppgave.oppgavetypeData.forrigeProgramperiode),
-    //             endring: oppgave.oppgavetypeData.endringType,
-    //         })),
-    //     // .map((data) => JSON.stringify(data, null, 2)),
-    // );
-
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));

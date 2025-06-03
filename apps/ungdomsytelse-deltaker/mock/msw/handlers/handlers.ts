@@ -43,8 +43,8 @@ export const getHandlers = () => {
             if (!oppgaveReferanse) {
                 return new HttpResponse(null, { status: 400 });
             }
-            mockUtils.setOppgaveSomÅpnet(oppgaveReferanse);
-            return new HttpResponse(null, { status: 200 });
+            const oppgave = mockUtils.setOppgaveSomÅpnet(oppgaveReferanse);
+            return new HttpResponse(JSON.stringify(oppgave), { status: 200 });
         }),
         http.get<any, any>('**/deltakelse/register/oppgave/:oppgaveReferanse/lukk', async ({ params }) => {
             const { oppgaveReferanse } = params;

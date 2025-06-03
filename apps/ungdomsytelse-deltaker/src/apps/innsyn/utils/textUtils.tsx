@@ -52,11 +52,26 @@ const getEndretProgramperiodeOppsummering = (oppgave: EndretProgramperiodeOppgav
     const { endringType, programperiode } = oppgave.oppgavetypeData;
     switch (endringType) {
         case EndretProgramperiodeEndringType.ENDRET_STARTDATO:
-            return `Startdato er endret til ${dateFormatter.full(programperiode.fraOgMed)}.`;
+            return (
+                <>
+                    Startdato i ungdomsprogrammet er endret til{' '}
+                    <strong>{dateFormatter.full(programperiode.fraOgMed)}.</strong>
+                </>
+            );
         case EndretProgramperiodeEndringType.ENDRET_SLUTTDATO:
-            return `Sluttdato er endret til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
+            return (
+                <>
+                    Sluttdato i ungdomsprogrammet er endret til{' '}
+                    <strong>{dateFormatter.full(programperiode.tilOgMed!)}.</strong>
+                </>
+            );
         case EndretProgramperiodeEndringType.NY_SLUTTDATO:
-            return `Sluttdato er satt til ${dateFormatter.full(programperiode.tilOgMed!)}.`;
+            return (
+                <>
+                    Sluttdato i ungdomsprogrammet er satt til{' '}
+                    <strong>{dateFormatter.full(programperiode.tilOgMed!)}</strong>.
+                </>
+            );
         case EndretProgramperiodeEndringType.START_OG_SLUTTDATO_ENDRET:
             return `Ugyldig oppgave - både start- og sluttdato er endret.`;
     }

@@ -10,7 +10,7 @@ export interface OppgavebekreftelseTekster {
 }
 interface Props {
     tekster: OppgavebekreftelseTekster;
-    oppsummering?: React.ReactNode;
+    oppsummering: React.ReactNode;
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;
@@ -29,10 +29,8 @@ const Oppgavebekreftelse = (props: Props) => {
                 bekreftelse={oppgave.bekreftelse}
                 oppsummering={oppsummering}
                 deltakerNavn={props.deltakerNavn}
-                oppgave={oppgave}>
-                {children}
-                <OppgavebekreftelseFristInfo svarfrist={oppgave.svarfrist} />
-            </LøstOppgavebekreftelse>
+                oppgave={oppgave}
+            />
         );
     }
     return (

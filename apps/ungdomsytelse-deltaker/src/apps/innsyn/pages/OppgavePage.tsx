@@ -19,10 +19,7 @@ type OppgavePageParams = {
     oppgaveReferanse: string;
 };
 
-interface Props {
-    visOppgaveOppsummering?: boolean;
-}
-const OppgavePage = ({ visOppgaveOppsummering }: Props) => {
+const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const { deltakelsePeriode, søker } = useDeltakerContext();
     const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
@@ -58,7 +55,7 @@ const OppgavePage = ({ visOppgaveOppsummering }: Props) => {
 
     const renderOppgavebekreftelsePage = (children: React.ReactNode) => {
         const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
-        const oppsummering = visOppgaveOppsummering ? getOppgaveOppsummering(oppgave) : undefined;
+        const oppsummering = getOppgaveOppsummering(oppgave);
         return (
             <DefaultPage title={`${tekster.tittel} - Ditt ungdomsprogram`}>
                 <Oppgavebekreftelse
