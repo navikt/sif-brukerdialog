@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';

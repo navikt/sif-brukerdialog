@@ -29,10 +29,8 @@ const Oppgavebekreftelse = (props: Props) => {
                 bekreftelse={oppgave.bekreftelse}
                 oppsummering={oppsummering}
                 deltakerNavn={props.deltakerNavn}
-                oppgave={oppgave}>
-                {children}
-                <OppgavebekreftelseFristInfo svarfrist={oppgave.svarfrist} />
-            </LøstOppgavebekreftelse>
+                oppgave={oppgave}
+            />
         );
     }
     return (

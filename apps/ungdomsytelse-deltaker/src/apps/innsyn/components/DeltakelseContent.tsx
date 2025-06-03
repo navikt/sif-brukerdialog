@@ -16,7 +16,7 @@ interface Props {
 }
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
-    const { oppgaver, programPeriode, id } = deltakelsePeriode;
+    const { oppgaver, programPeriode } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
@@ -27,27 +27,6 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
         deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
 
     const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
-
-    // const info = (periode?: { fraOgMed: Date; tilOgMed?: Date }) => {
-    //     if (!periode) {
-    //         return undefined;
-    //     }
-    //     return {
-    //         fraOgMed: dateToISODate(periode.fraOgMed),
-    //         tilOgMed: periode.tilOgMed ? dateToISODate(periode.tilOgMed) : undefined,
-    //     };
-    // };
-    // console.log(
-    //     oppgaver
-    //         .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato))
-    //         .filter((oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE)
-    //         .map((oppgave) => ({
-    //             programperiode: info(oppgave.oppgavetypeData.programperiode),
-    //             forrigeProgramperiode: info(oppgave.oppgavetypeData.forrigeProgramperiode),
-    //             endring: oppgave.oppgavetypeData.endringType,
-    //         })),
-    //     // .map((data) => JSON.stringify(data, null, 2)),
-    // );
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -68,7 +47,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     Dine oppgaver
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
-                    <OppgaverList oppgaver={uløsteOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                    <OppgaverList oppgaver={uløsteOppgaver} />
                 ) : (
                     <BodyLong>Du har ingen uløste oppgaver</BodyLong>
                 )}
@@ -77,8 +56,10 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
-                {tidligereOppgaver.length > 0 && (
-                    <OppgaverList oppgaver={tidligereOppgaver} programPeriode={programPeriode} deltakelseId={id} />
+                {tidligereOppgaver.length > 0 ? (
+                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" />
+                ) : (
+                    <BodyLong>Du har ingen tidligere oppgaver</BodyLong>
                 )}
             </VStack>
         </VStack>

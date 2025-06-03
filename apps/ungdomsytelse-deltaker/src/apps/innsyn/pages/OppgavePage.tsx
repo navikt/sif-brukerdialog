@@ -1,18 +1,19 @@
-import { BodyShort } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { EndretProgramperiodeEndringType, Oppgavetype } from '@navikt/ung-common';
+import { Oppgavetype } from '@navikt/ung-common';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekreftelse';
 import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppgave';
 import EndretSluttdatoOppgaveInfo from '../components/oppgaver/parts/EndretSluttdatoOppgaveInfo';
 import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
-import { useAppIntl } from '../i18n';
 import { getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../utils/textUtils';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import DefaultPage from '../components/page-layout/DefaultPage';
 import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import RapporterInntekt from '../components/rapporter-inntekt/RapporterInntekt';
+import { useAppIntl } from '../../../i18n';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -44,9 +45,7 @@ const OppgavePage = () => {
             return;
         }
         if (oppgave.åpnetDato === undefined) {
-            await mutateAsync(oppgave.oppgaveReferanse).catch(() => {
-                // console.error('Feil ved åpning av oppgave:', e);
-            });
+            await mutateAsync(oppgave.oppgaveReferanse);
         }
     });
 
@@ -76,19 +75,20 @@ const OppgavePage = () => {
                 <KorrigertInntektOppgave oppgave={oppgave} deltakelseId={deltakelsePeriode.id} />,
             );
 
-        case Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE:
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return renderOppgavebekreftelsePage(
-                oppgave.oppgavetypeData.endringType === EndretProgramperiodeEndringType.ENDRET_STARTDATO ? (
-                    <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.fraOgMed} />
-                ) : (
-                    <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.programperiode.tilOgMed} />
-                ),
+                <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nyStartdato} />,
+            );
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return renderOppgavebekreftelsePage(
+                <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nySluttdato} />,
             );
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return (
-                <DefaultPage title="Rapporter inntekt - Ditt ungdomsprogram">
-                    <BodyShort spacing>Rapporter inntekst oppgave</BodyShort>
+                <DefaultPage
+                    title={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Ditt ungdomsprogram`}>
+                    <RapporterInntekt oppgave={oppgave} deltakerNavn={søker.fornavn} />
                 </DefaultPage>
             );
     }

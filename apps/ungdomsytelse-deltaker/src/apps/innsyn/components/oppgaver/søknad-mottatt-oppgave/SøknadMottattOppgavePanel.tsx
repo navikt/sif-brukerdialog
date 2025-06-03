@@ -30,7 +30,9 @@ const SøknadMottattOppgavePanel = ({ mottatt }: Props) => (
                 <Heading level="3" size="small">
                     Søknad for ungdoms&shy;program&shy;ytelsen
                 </Heading>
-                <BodyShort className="text-text-subtle">Mottatt {dateFormatter.compact(mottatt)}</BodyShort>
+                <BodyShort className="text-text-subtle" size="small">
+                    Sendt inn {dateFormatter.compactWithTime(mottatt)}
+                </BodyShort>
             </VStack>
         </HGrid>
     </BoxNew>

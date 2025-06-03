@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreftelse';
-import { useAppIntl } from '../../i18n';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     forstårOppgaveSpørsmål: string;

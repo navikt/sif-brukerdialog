@@ -24,7 +24,7 @@ const OppgaveInfoWrapper = ({ deltakerNavn, children, svarfrist, løst }: Props)
     return løst ? (
         <ExpansionCard aria-label="Beskjed fra Nav" size="small">
             <ExpansionCard.Header>
-                <ExpansionCard.Title>Oppgaveinformasjon</ExpansionCard.Title>
+                <ExpansionCard.Title>Beskjed fra Nav</ExpansionCard.Title>
             </ExpansionCard.Header>
             <ExpansionCard.Content>
                 {children}

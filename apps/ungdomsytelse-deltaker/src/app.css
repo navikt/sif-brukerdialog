@@ -44,3 +44,10 @@ body.innsynAppBody {
 .navds-guide-panel__content > .navds-body-long p:last-child {
     margin-bottom: 0;
 }
+
+/** Theme noen farger */
+
+:root {
+    --ax-bg-warning-moderateA: #ffebc7;
+    --ax-bg-neutral-moderateA: #e3e5e7 !important;
+}

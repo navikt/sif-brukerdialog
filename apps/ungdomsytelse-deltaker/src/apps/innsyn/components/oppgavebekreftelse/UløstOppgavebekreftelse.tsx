@@ -9,6 +9,7 @@ import { EnvKey } from '@navikt/sif-common-env';
 import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from './Oppgavebekreftelse';
 import OppgaveMeta from '../oppgave-meta/OppgaveMeta';
+import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -33,6 +34,9 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
 
     return (
         <VStack gap="6">
+            <div>
+                <OppgaveStatusTag oppgave={oppgave} />
+            </div>
             <Heading level="1" size="large">
                 {tekster.tittel}
             </Heading>

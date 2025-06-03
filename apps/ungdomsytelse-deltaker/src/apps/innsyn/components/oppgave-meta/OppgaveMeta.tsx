@@ -4,10 +4,14 @@ import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
 
 interface Props {
     oppgave: BekreftelseOppgave | Oppgave;
+    visMeta?: boolean;
 }
 
-const OppgaveMeta = ({ oppgave }: Props) => {
+const OppgaveMeta = ({ oppgave, visMeta = false }: Props) => {
     const { opprettetDato, lukketDato, løstDato, åpnetDato } = oppgave;
+    if (!visMeta) {
+        return null;
+    }
     return (
         <BoxNew background="neutral-moderateA" padding="2" borderRadius="medium">
             <HStack gap="2">

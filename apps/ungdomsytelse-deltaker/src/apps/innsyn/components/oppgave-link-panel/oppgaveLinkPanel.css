@@ -1,0 +1,14 @@
+.oppgaveLinkPanel {
+    border-radius: 0.5rem;
+}
+
+.oppgaveLinkPanel--avbrutt {
+    --ax-bg-default: var(--ax-bg-sunken);
+    border-style: dashed;
+    border-width: 2px;
+    border: 2px dashed var(--ax-border-neutral-subtle);
+}
+
+.oppgaveLinkPanel--avbrutt:hover {
+    border-color: var(--ax-border-accent);
+}

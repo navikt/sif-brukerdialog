@@ -1,21 +1,30 @@
-import { FormSummary } from '@navikt/ds-react';
+import { BoxNew, FormSummary } from '@navikt/ds-react';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface Props {
-    godtarSpørsmål: string;
+    beskjedFraNav: React.ReactNode;
+    spørsmål: string;
     bekreftelse: BekreftelseDto;
 }
 
-const OppgaveUttalelse = ({ godtarSpørsmål, bekreftelse }: Props) => {
+const OppgaveUttalelse = ({ beskjedFraNav, spørsmål, bekreftelse }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level="3">Du svarte</FormSummary.Heading>
+                <FormSummary.Heading level="3">Beskjed og ditt svar</FormSummary.Heading>
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
-                    <FormSummary.Label>{godtarSpørsmål}</FormSummary.Label>
+                    <FormSummary.Label>Beskjed fra Nav</FormSummary.Label>
+                    <FormSummary.Value>
+                        <BoxNew background="accent-moderate" borderRadius="large" padding="4">
+                            {beskjedFraNav}
+                        </BoxNew>
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+                <FormSummary.Answer>
+                    <FormSummary.Label>{spørsmål}</FormSummary.Label>
                     <FormSummary.Value>{bekreftelse.harGodtattEndringen ? 'Ja' : 'Nei'}</FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

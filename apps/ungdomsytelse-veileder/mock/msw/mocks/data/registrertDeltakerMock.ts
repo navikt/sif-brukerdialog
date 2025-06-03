@@ -30,23 +30,19 @@ const deltakelse: DeltakelseOpplysningDto = {
     søktTidspunkt: '2025-05-21T12:00:20.859873Z',
     oppgaver: [
         {
-            oppgaveReferanse: 'd59e08d7-bb0d-4e86-aee4-5b89e4e53228',
-            oppgavetype: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
+            oppgaveReferanse: '9cd953f6-6445-4784-84bb-3bc288e5cc38',
+            oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
             oppgavetypeData: {
-                // type: Oppgavetype.BEKREFT_ENDRET_PROGRAMPERIODE,
-                programperiode: {
-                    fomDato: '2025-03-10',
-                    tomDato: '2025-08-01',
-                },
-                forrigeProgramperiode: {
-                    fomDato: '2024-12-02',
-                    tomDato: '9999-12-31',
-                },
+                forrigeSluttdato: '2025-05-02',
+                nySluttdato: '2025-05-05',
             },
-            bekreftelse: undefined,
-            status: OppgaveStatus.ULØST,
-            opprettetDato: '2025-05-20T14:38:41.859873Z',
-            løstDato: undefined,
+            bekreftelse: {
+                harGodtattEndringen: true,
+                uttalelseFraBruker: undefined,
+            },
+            status: OppgaveStatus.LØST,
+            opprettetDato: '2025-05-28T05:22:07.103907Z',
+            løstDato: '2025-05-28T05:25:44.595214Z',
             åpnetDato: undefined,
             lukketDato: undefined,
         },

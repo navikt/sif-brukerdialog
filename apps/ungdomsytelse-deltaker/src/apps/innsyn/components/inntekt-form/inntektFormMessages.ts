@@ -1,14 +1,11 @@
 const nb = {
     'inntektForm.validation.harArbeidstakerOgFrilansInntekt.yesOrNoIsUnanswered':
-        'Du må svare på om du har inntekt som arbeidstaker eller frilanser',
-    'inntektForm.validation.harInntektFraYtelse.yesOrNoIsUnanswered': 'Du må svare på om du har inntekt fra Nav',
+        'Du må svare på om du har inntekt i {måned}.',
 
-    'inntektForm.validation.ansattInntekt.numberHasDecimals': 'Inntekt arbeidstaker/frilanser kan ikke ha desimaler',
-    'inntektForm.validation.ansattInntekt.numberHasNoValue': 'Inntekt arbeidstaker/frilanser feltet er tomt',
-    'inntektForm.validation.ansattInntekt.numberHasInvalidFormat':
-        'Inntekt arbeidstaker/frilanser er ikke et gyldig heltall',
-    'inntektForm.validation.ansattInntekt.numberIsTooSmall':
-        'Inntekt arbeidstaker/frilanser kan ikke være et negativt tall',
+    'inntektForm.validation.ansattInntekt.numberHasDecimals': 'Inntekt kan ikke ha desimaler',
+    'inntektForm.validation.ansattInntekt.numberHasNoValue': 'Inntekt feltet er tomt',
+    'inntektForm.validation.ansattInntekt.numberHasInvalidFormat': 'Inntekt er ikke et gyldig heltall',
+    'inntektForm.validation.ansattInntekt.numberIsTooSmall': 'Inntekt kan ikke være et negativt tall',
     'inntektForm.validation.ansattInntekt.numberIsTooLarge':
         'Inntekt arbeidstaker/frilanserkan ikke være større enn 99999',
 

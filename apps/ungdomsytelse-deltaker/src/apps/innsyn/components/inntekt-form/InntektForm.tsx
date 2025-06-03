@@ -1,4 +1,5 @@
-import { Box, ReadMore, VStack } from '@navikt/ds-react';
+/* eslint-disable no-constant-binary-expression */
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
@@ -8,11 +9,11 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
+import { useMarkerOppgaveSomLukket } from '../../hooks/api/useMarkerOppgaveSomLukket';
 
 export enum InntektFormFields {
     harArbeidstakerOgFrilansInntekt = 'harArbeidstakerOgFrilansInntekt',
@@ -30,33 +31,45 @@ const inntektFormComponents = getTypedFormComponents<InntektFormFields, InntektF
 
 interface Props {
     oppgaveReferanse: string;
-    periode: DateRange;
-    onSuccess: (data: UngdomsytelseInntektsrapportering) => void;
+    måned: string;
+    onSuccess: (data: UngdomsytelseInntektsrapportering | void) => void;
     onCancel: () => void;
 }
 
-const InntektForm = ({ periode, oppgaveReferanse, onCancel, onSuccess }: Props) => {
+const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
     const { intl } = useAppIntl();
-    const { error, isPending, mutateAsync } = useRapporterInntekt();
-    const { FormikWrapper, Form, ConfirmationCheckbox, YesOrNoQuestion, NumberInput } = inntektFormComponents;
+    const {
+        error: rapporterError,
+        isPending: rapporterPending,
+        mutateAsync: rapporterMutateAsync,
+    } = useRapporterInntekt();
+    const { error: lukkError, isPending: lukkPending, mutateAsync: lukkMutateAsync } = useMarkerOppgaveSomLukket();
+    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput, ConfirmationCheckbox } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
         const harArbeidstakerOgFrilansInntekt =
             values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
 
-        const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
-            ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
-            : 0;
+        if (harArbeidstakerOgFrilansInntekt) {
+            const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
+                ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
+                : 0;
 
-        const data: UngdomsytelseInntektsrapportering = {
-            oppgittInntekt: {
-                arbeidstakerOgFrilansInntekt,
-            },
-            oppgaveReferanse,
-            harBekreftetInntekt: values.bekrefterInntekt === true,
-        };
-        mutateAsync(data).then(() => onSuccess(data));
+            const data: UngdomsytelseInntektsrapportering = {
+                oppgittInntekt: {
+                    arbeidstakerOgFrilansInntekt,
+                },
+                oppgaveReferanse,
+                harBekreftetInntekt: true, // TODO - evt. beholde eller gjerne validering i backend // values.bekrefterInntekt === true,
+            };
+            rapporterMutateAsync(data).then(() => onSuccess(data));
+        } else {
+            lukkMutateAsync(oppgaveReferanse).then(() => onSuccess());
+        }
     };
+
+    const isPending = rapporterPending || lukkPending;
+    const error = rapporterError || lukkError;
 
     return (
         <FormikWrapper
@@ -66,11 +79,9 @@ const InntektForm = ({ periode, oppgaveReferanse, onCancel, onSuccess }: Props) 
                 const harArbeidstakerOgFrilansInntekt =
                     values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
 
-                const periodetekst = dateRangeFormatter.getDateRangeText(periode, intl.locale);
-
                 return (
                     <Form
-                        submitButtonLabel="Send inn"
+                        submitButtonLabel="Send inn svaret ditt"
                         showButtonArrows={true}
                         onCancel={onCancel}
                         cancelButtonLabel="Avbryt"
@@ -81,37 +92,46 @@ const InntektForm = ({ periode, oppgaveReferanse, onCancel, onSuccess }: Props) 
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
-                                    legend={`Har du hatt inntekt som arbeidstaker eller frilanser i perioden ${periodetekst}?`}
-                                    validate={getYesOrNoValidator()}
-                                    description={
-                                        <ReadMore header="Hva er inntekt som arbeidstaker eller frilanser?">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nam
-                                            quisquam eum enim cum. Consequuntur aspernatur itaque quasi porro! Optio
-                                            tempora a, id ipsa incidunt aliquid sequi aut non deserunt?
-                                        </ReadMore>
-                                    }
+                                    legend={`Hadde du lønn i ${måned}?`}
+                                    validate={(v) => {
+                                        const vError = getYesOrNoValidator()(v);
+                                        return vError ? { key: vError, values: { måned } } : undefined;
+                                    }}
                                 />
 
                                 {harArbeidstakerOgFrilansInntekt ? (
-                                    <FormLayout.QuestionBleedTop>
-                                        <Box className=" bg-deepblue-50 p-6 rounded-md">
-                                            <NumberInput
-                                                name={InntektFormFields.ansattInntekt}
-                                                label="Oppgi i hele kroner hvor mye du har hatt i inntekt som arbeidstaker eller frilanser i perioden."
-                                                integerValue={true}
-                                                validate={getNumberValidator({
-                                                    min: 1,
-                                                    required: true,
-                                                    allowDecimals: false,
-                                                })}
-                                            />
-                                        </Box>
-                                    </FormLayout.QuestionBleedTop>
+                                    <NumberInput
+                                        name={InntektFormFields.ansattInntekt}
+                                        label={`Hvor mye tjente du i ${måned}`}
+                                        integerValue={true}
+                                        description={
+                                            <VStack gap="2" marginBlock="2 0">
+                                                <BodyLong>
+                                                    Oppgi hva du tjente før skatt som arbeidstaker eller frilanser.
+                                                    Mottar du andre ytelser fra Nav skal du ikke ta med dette.
+                                                </BodyLong>
+                                                <ReadMore header="Hvor finner jeg ut hva jeg tjente før skatt?">
+                                                    TODO
+                                                </ReadMore>
+                                                <ReadMore header="Hva betyr arbeidstaker og frilanse?">TODO</ReadMore>
+                                            </VStack>
+                                        }
+                                        validate={getNumberValidator({
+                                            min: 1,
+                                            max: 999999,
+                                            required: true,
+                                            allowDecimals: false,
+                                        })}
+                                    />
                                 ) : null}
-                                <ConfirmationCheckbox
-                                    name={InntektFormFields.bekrefterInntekt}
-                                    label="Jeg bekrefter at opplysningene er korrekte"
-                                    validate={getCheckedValidator()}></ConfirmationCheckbox>
+                                {1 + 1 === 3 && (
+                                    // TODO
+                                    <ConfirmationCheckbox
+                                        name={InntektFormFields.bekrefterInntekt}
+                                        label="Jeg bekrefter at opplysningene er korrekte"
+                                        validate={getCheckedValidator()}
+                                    />
+                                )}
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>
