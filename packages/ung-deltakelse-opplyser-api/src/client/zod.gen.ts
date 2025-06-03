@@ -119,6 +119,7 @@ export const zOppgaveDto = z.object({
     løstDato: z.string().datetime().optional(),
     åpnetDato: z.string().datetime().optional(),
     lukketDato: z.string().datetime().optional(),
+    frist: z.string().datetime().optional(),
 });
 
 export const zDeltakelseOpplysningDto = z.object({

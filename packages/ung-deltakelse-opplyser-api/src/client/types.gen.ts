@@ -70,6 +70,7 @@ export type OppgaveDto = {
     løstDato?: string;
     åpnetDato?: string;
     lukketDato?: string;
+    frist?: string;
 };
 
 export enum OppgaveStatus {
