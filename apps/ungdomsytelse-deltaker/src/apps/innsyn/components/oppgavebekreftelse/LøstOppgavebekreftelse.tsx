@@ -25,7 +25,7 @@ const LøstOppgavebekreftelse = ({
     return (
         <VStack gap="6">
             <div>
-                <OppgaveStatusTag oppgave={oppgave} />
+                <OppgaveStatusTag oppgave={oppgave} iconFill={false} />
             </div>
             <Heading level="1" size="large">
                 {tekster.tittel}

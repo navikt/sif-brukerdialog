@@ -56,8 +56,10 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
-                {tidligereOppgaver.length > 0 && (
+                {tidligereOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" />
+                ) : (
+                    <BodyLong>Du har ingen tidligere oppgaver</BodyLong>
                 )}
             </VStack>
         </VStack>

@@ -1,12 +1,8 @@
-import {
-    CheckmarkCircleFillIcon,
-    CircleSlashFillIcon,
-    HourglassBottomFilledIcon,
-    PencilFillIcon,
-} from '@navikt/aksel-icons';
 import { Box, Heading, HGrid, LinkPanel, Show, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave, Oppgave, OppgaveStatus } from '@navikt/ung-common';
+import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
 import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
+import './oppgaveLinkPanel.css';
 
 interface Props {
     tittel: string;
@@ -16,40 +12,13 @@ interface Props {
     onClick: () => void;
 }
 
-const OppgaveStatusIcon = ({ oppgavestatus }: { oppgavestatus: OppgaveStatus }) => {
-    switch (oppgavestatus) {
-        case OppgaveStatus.ULØST:
-            return <PencilFillIcon color="#C95100" width="1.8rem" height="1.8rem" aria-label="Penn-ikon" />;
-        case OppgaveStatus.LUKKET:
-        case OppgaveStatus.LØST:
-            return (
-                <CheckmarkCircleFillIcon color="#00893c" width="1.8rem" height="1.8rem" aria-label="Gjennomført ikon" />
-            );
-        case OppgaveStatus.UTLØPT:
-            return <HourglassBottomFilledIcon color="#49515e" width="1.8rem" height="1.8rem" aria-label="Utløpt" />;
-        case OppgaveStatus.AVBRUTT:
-            return <CircleSlashFillIcon color="#49515e" width="1.8rem" height="1.8rem" aria-label="Gjennomført ikon" />;
-    }
-};
-
 const OppgaveLinkPanel = ({ tittel, beskrivelse, oppgave, oppgaveStatusTagVariant = 'tag', onClick }: Props) => {
     const erAvbruttEllerUtløpt = oppgave.status === OppgaveStatus.AVBRUTT || oppgave.status === OppgaveStatus.UTLØPT;
     return (
         <LinkPanel
             href="#"
-            className="w-full"
-            border={erAvbruttEllerUtløpt ? true : false}
-            style={
-                erAvbruttEllerUtløpt
-                    ? {
-                          borderRadius: '0.5rem',
-                          backgroundColor: 'var(--ax-bg-sunken)',
-                          borderWidth: '2px',
-                          borderColor: 'var(--ax-border-neutral-subtle)',
-                          borderStyle: 'dashed',
-                      }
-                    : { borderRadius: '0.5rem' }
-            }
+            className={`w-full oppgaveLinkPanel ${erAvbruttEllerUtløpt ? ' oppgaveLinkPanel--avbrutt' : ''}`}
+            border={false}
             onClick={(evt) => {
                 evt.stopPropagation();
                 evt.preventDefault();
@@ -58,7 +27,7 @@ const OppgaveLinkPanel = ({ tittel, beskrivelse, oppgave, oppgaveStatusTagVarian
             <HGrid columns={{ sm: '3rem auto' }} gap="2" className="w-full" align="center">
                 <Show above="sm">
                     <Box paddingInline="2 3">
-                        <OppgaveStatusIcon oppgavestatus={oppgave.status} />
+                        <OppgaveStatusIkon oppgavestatus={oppgave.status} />
                     </Box>
                 </Show>
                 <VStack gap="1">
