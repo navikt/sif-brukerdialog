@@ -107,7 +107,7 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
                 };
                 parsedOppgaver.push(endretStartdatoOppgave);
                 return;
-            case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
                 const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;
                 const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
                     ...getOppgaveBaseProps(oppgave),
