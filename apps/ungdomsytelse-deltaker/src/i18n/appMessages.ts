@@ -23,7 +23,7 @@ const nb = {
         'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelsetjeneste. Deler av saken din blir behandlet automatisk.',
     'personopplysninger.3': 'Hvilke opplysninger henter vi inn?',
     'personopplysninger.4':
-        'Opplysningene vi henter inn kommer enten fra deg, din veileder i NAV eller fra offentlige registre:',
+        'Opplysningene vi henter inn kommer enten fra deg, din veileder i Nav eller fra offentlige registre:',
     'personopplysninger.4.1':
         'barn som du er registrert som forelder til, henter vi fra folkeregisteret, slik at vi kan vurdere om du har rett på barnetillegg',
     'personopplysninger.4.2':
