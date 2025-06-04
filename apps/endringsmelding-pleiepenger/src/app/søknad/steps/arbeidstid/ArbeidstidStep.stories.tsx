@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import ArbeidstidStep from './ArbeidstidStep';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';

@@ -1,4 +1,4 @@
-import { StoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react-vite';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { VStack } from '@navikt/ds-react';
 import IkkeSammeAdresseAlert from './IkkeSammeAdresseAlert';

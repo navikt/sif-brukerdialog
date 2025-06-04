@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withIntl, withAmplitudeProvider, withRouterProvider } from '../../../storybook/decorators';
 import InvalidStepPage from './InvalidStepPage';
 

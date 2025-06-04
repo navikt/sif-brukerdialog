@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { StoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react-vite';
 import AlertStoryWrapper from '../../../../../storybook/components/AlertStoryWrapper';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import InnsendingFeiletAlert from './InnsendingFeiletAlert';

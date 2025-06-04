@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { commonMessages } from '../../../../packages/sif-common-core-ds/src/i18n/common.messages';
 import { formsMessages } from '../../../../packages/sif-common-forms-ds/src/i18n/forms.messages';
 import { soknadMessages } from '../../../../packages/sif-common-soknad-ds/src/i18n/soknad.messages';

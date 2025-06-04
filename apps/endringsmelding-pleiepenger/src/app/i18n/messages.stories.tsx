@@ -1,5 +1,5 @@
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { withIntl } from '../../storybook/decorators/withIntl';
 import { appMessages } from './appMessages';

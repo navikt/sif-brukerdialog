@@ -5,7 +5,7 @@ import { withIntl } from '../../../storybook/hooks/withIntl';
 import StatusTag from '../../status-tag/StatusTag';
 import SakPageHeader from './SakPageHeader';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof SakPageHeader> = {
     component: SakPageHeader,
     title: 'Components/SakPageHeader',

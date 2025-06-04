@@ -1,5 +1,5 @@
 import SnarveiLinkPanel from './SnarveiLinkPanel';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { Edit } from '@navikt/ds-icons';
 import { withIntl } from '../../storybook/hooks/withIntl';
