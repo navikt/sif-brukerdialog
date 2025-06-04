@@ -22,7 +22,7 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
                 <OppgaveStatusTag oppgave={oppgave} iconFill={false} />
             </div>
             <Heading level="1" size="large">
-                {tekster.tittel}
+                {tekster.sidetittel}
             </Heading>
 
             {bekreftelse && (

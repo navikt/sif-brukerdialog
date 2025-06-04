@@ -13,15 +13,29 @@ import { AppIntlShape } from '../../../i18n';
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return text(`oppgavetype.${oppgave.oppgavetype}.tittel`);
+            return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return text(`oppgavetype.${oppgave.oppgavetype}.tittel`);
+            return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel');
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
-            return text('oppgavetype.RAPPORTER_INNTEKT.tittel');
+            return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel');
         case Oppgavetype.SØK_YTELSE:
-            return text('oppgavetype.SØK_YTELSE.tittel');
+            return text('oppgavetype.SØK_YTELSE.oppgavetittel');
+    }
+};
+export const getOppgaveSidetittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
+    switch (oppgave.oppgavetype) {
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            return text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`);
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`);
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel');
+        case Oppgavetype.RAPPORTER_INNTEKT:
+            return text('oppgavetype.RAPPORTER_INNTEKT.sidetittel');
+        case Oppgavetype.SØK_YTELSE:
+            return text('oppgavetype.SØK_YTELSE.sidetittel');
     }
 };
 
@@ -44,19 +58,22 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return {
-                tittel: getOppgaveTittel(oppgave, intl),
+                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
+                oppgavetittel: getOppgaveTittel(oppgave, intl),
                 harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
             };
 
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return {
-                tittel: getOppgaveTittel(oppgave, intl),
+                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
+                oppgavetittel: getOppgaveTittel(oppgave, intl),
                 harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
             };
 
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return {
-                tittel: getOppgaveTittel(oppgave, intl),
+                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
+                oppgavetittel: getOppgaveTittel(oppgave, intl),
                 harTilbakemeldingSpørsmål: intl.text(
                     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
                 ),

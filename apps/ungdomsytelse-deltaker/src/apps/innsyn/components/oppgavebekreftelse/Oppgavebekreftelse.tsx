@@ -4,7 +4,8 @@ import LøstOppgavebekreftelse from './LøstOppgavebekreftelse';
 import { usePrevious } from '@navikt/sif-common-hooks';
 
 export interface OppgavebekreftelseTekster {
-    tittel: string;
+    sidetittel: string;
+    oppgavetittel: string;
     harTilbakemeldingSpørsmål: string;
 }
 interface Props {

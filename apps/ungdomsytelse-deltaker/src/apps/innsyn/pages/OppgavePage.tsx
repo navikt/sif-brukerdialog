@@ -58,7 +58,7 @@ const OppgavePage = () => {
         const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
         const oppsummering = getOppgaveOppsummering(oppgave);
         return (
-            <DefaultPage documentTitle={`${tekster.tittel} - Din ungdomsprogramytelse`}>
+            <DefaultPage documentTitle={`${tekster.oppgavetittel} - Din ungdomsprogramytelse`}>
                 <Oppgavebekreftelse
                     tekster={tekster}
                     oppsummering={oppsummering}
