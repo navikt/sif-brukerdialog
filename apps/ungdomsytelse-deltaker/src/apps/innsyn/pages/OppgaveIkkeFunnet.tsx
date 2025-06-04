@@ -7,7 +7,7 @@ interface Props {
 
 const OppgaveIkkeFunnetPage = ({ oppgaveReferanse }: Props) => {
     return (
-        <DefaultPage title="Oppgave ikke funnet">
+        <DefaultPage documentTitle="Oppgave ikke funnet">
             <VStack gap="8">
                 <VStack gap="4">
                     <Heading size="large" level="1">

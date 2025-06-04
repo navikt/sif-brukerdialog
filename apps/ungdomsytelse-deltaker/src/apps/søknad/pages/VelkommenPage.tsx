@@ -25,7 +25,7 @@ const VelkommenPage = () => {
     };
 
     return (
-        <DefaultPage title="Velkommen - Søknad om ungdomsprogramytelse">
+        <DefaultPage documentTitle="Velkommen - Søknad om ungdomsprogramytelse">
             <VStack gap="8">
                 <SøknadHeader />
 

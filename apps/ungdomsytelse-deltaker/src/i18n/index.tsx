@@ -5,7 +5,7 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
 import { inntektFormMessages } from '../apps/innsyn/components/inntekt-form/inntektFormMessages';
-import { enumMessages } from './enumMessages';
+import { oppgaveMessages } from './oppgaveMessages';
 
 export const libMessages = {
     nb: {
@@ -23,14 +23,14 @@ export const libMessages = {
 const nb = {
     ...libMessages.nb,
     ...appMessages.nb,
-    ...enumMessages.nb,
+    ...oppgaveMessages.nb,
     ...inntektFormMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...libMessages.nn,
     ...appMessages.nn,
-    ...enumMessages.nn,
+    ...oppgaveMessages.nn,
     ...inntektFormMessages.nn,
 };
 

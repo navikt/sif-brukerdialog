@@ -32,7 +32,7 @@ const OppgavePage = () => {
     useEffectOnce(() => {
         setBreadcrumbs([
             { title: 'Min side', url: '/min-side' },
-            { title: 'Ditt ungdomsprogram', url: '/', handleInApp: true },
+            { title: 'Din ungdomsprogramytelse', url: '/', handleInApp: true },
             { title: 'Oppgave', url: `/oppgave`, handleInApp: true },
         ]);
     });
@@ -58,7 +58,7 @@ const OppgavePage = () => {
         const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
         const oppsummering = getOppgaveOppsummering(oppgave);
         return (
-            <DefaultPage title={`${tekster.tittel} - Ditt ungdomsprogram`}>
+            <DefaultPage documentTitle={`${tekster.oppgavetittel} - Din ungdomsprogramytelse`}>
                 <Oppgavebekreftelse
                     tekster={tekster}
                     oppsummering={oppsummering}
@@ -78,28 +78,34 @@ const OppgavePage = () => {
 
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return renderOppgavebekreftelsePage(
-                <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nyStartdato} />,
+                <EndretStartdatoOppgaveInfo
+                    endretDato={oppgave.oppgavetypeData.nyStartdato}
+                    svarfrist={oppgave.svarfrist}
+                />,
             );
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return renderOppgavebekreftelsePage(
-                <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nySluttdato} />,
+                <EndretSluttdatoOppgaveInfo
+                    endretDato={oppgave.oppgavetypeData.nySluttdato}
+                    svarfrist={oppgave.svarfrist}
+                />,
             );
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return (
                 <DefaultPage
-                    title={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Ditt ungdomsprogram`}>
+                    documentTitle={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Din ungdomsprogramytelse`}>
                     <RapporterInntekt oppgave={oppgave} deltakerNavn={søker.fornavn} />
                 </DefaultPage>
             );
         case Oppgavetype.SØK_YTELSE:
             return (
-                <DefaultPage title="Send søknad">
+                <DefaultPage documentTitle="Send søknad">
                     <SendSøknadOppgave oppgave={oppgave} />
                 </DefaultPage>
             );
         default:
-            return <DefaultPage title="Ukjent oppgavetype">Ukjent type</DefaultPage>;
+            return <DefaultPage documentTitle="Ukjent oppgavetype">Ukjent type</DefaultPage>;
     }
 };
 

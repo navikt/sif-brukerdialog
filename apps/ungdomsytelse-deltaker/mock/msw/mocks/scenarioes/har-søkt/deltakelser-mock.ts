@@ -17,10 +17,8 @@ const deltakelser: DeltakelsePeriodInfo[] = [
                 bekreftelse: {
                     harGodtattEndringen: true,
                 },
-                status: OppgaveStatus.LØST,
+                status: OppgaveStatus.ULØST,
                 opprettetDato: '2025-06-04T10:32:47.664066Z',
-                løstDato: '2025-06-04T10:33:14.535581Z',
-                åpnetDato: '2025-06-04T10:32:55.156831Z',
                 frist: '2025-06-04T12:47:47.492347Z',
             },
             {

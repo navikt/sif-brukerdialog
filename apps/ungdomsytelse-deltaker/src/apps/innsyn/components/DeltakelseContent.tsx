@@ -9,14 +9,14 @@ import {
 import DeltakelseAvsluttetInfo from './deltakelse-avsluttet-info/DeltakelseAvsluttetInfo';
 import HuskelappInntekt from './huskelapp-inntekt/HuskelappInntekt';
 import OppgaverList from './oppgaver-list/OppgaverList';
-import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
+// import DeltakelseIkkeStartetInfo from './deltakelse-ikke-startet-info/DeltakelseIkkeStartetInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
 }
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
-    const { oppgaver, programPeriode } = deltakelsePeriode;
+    const { oppgaver } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
@@ -26,7 +26,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const visInfoOmInntektsrapportering =
         deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
 
-    const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
+    // const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -36,10 +36,10 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
         .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
-    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering || visInfoOmDeltakelseIkkeStartet;
+    const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
         <VStack gap="10">
-            {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
+            {/* {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />} */}
             {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <HuskelappInntekt />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
@@ -57,7 +57,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 ? (
-                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" />
+                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" visBeskrivelse={false} />
                 ) : (
                     <BodyLong>Du har ingen tidligere oppgaver</BodyLong>
                 )}

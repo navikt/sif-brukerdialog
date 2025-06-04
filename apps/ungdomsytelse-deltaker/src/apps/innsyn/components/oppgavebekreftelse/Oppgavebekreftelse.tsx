@@ -2,11 +2,11 @@ import { BekreftelseOppgave, OppgaveStatus } from '@navikt/ung-common';
 import UløstOppgavebekreftelse from './UløstOppgavebekreftelse';
 import LøstOppgavebekreftelse from './LøstOppgavebekreftelse';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import OppgavebekreftelseFristInfo from './OppgavebekreftelseFristInfo';
 
 export interface OppgavebekreftelseTekster {
-    tittel: string;
-    forstårOppgaveSpørsmål: string;
+    sidetittel: string;
+    oppgavetittel: string;
+    harTilbakemeldingSpørsmål: string;
 }
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -36,7 +36,6 @@ const Oppgavebekreftelse = (props: Props) => {
     return (
         <UløstOppgavebekreftelse oppgave={oppgave} {...rest}>
             {children}
-            <OppgavebekreftelseFristInfo svarfrist={oppgave.svarfrist} />
         </UløstOppgavebekreftelse>
     );
 };

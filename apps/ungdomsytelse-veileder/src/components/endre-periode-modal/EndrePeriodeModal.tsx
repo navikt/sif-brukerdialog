@@ -35,7 +35,7 @@ const EndrePeriodeModal = ({
                 </Heading>
             </Modal.Header>
             <Modal.Body>
-                <Box style={{ minWidth: '600px' }}>
+                <Box style={{ minWidth: '400px' }}>
                     {deltakelseChanged ? (
                         <Alert variant="success">Deltakelsen er oppdatert.</Alert>
                     ) : (

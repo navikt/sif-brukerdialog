@@ -3,21 +3,32 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     endretDato: Date;
+    svarfrist: Date;
 }
 
-const EndretStartdatoOppgaveInfo = ({ endretDato }: Props) => {
+const EndretStartdatoOppgaveInfo = ({ endretDato, svarfrist }: Props) => {
+    const formatertDato = <span className="text-nowrap">{dateFormatter.full(endretDato)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
     return (
         <>
             <BodyLong spacing>
-                Veilederen din har endret startdatoen din i ungdomsprogrammet til{' '}
-                <strong>{dateFormatter.full(endretDato)}</strong>.
+                Veilederen din har endret startdatoen din i ungdomsprogrammet til <strong>{formatertDato}</strong>.
+            </BodyLong>
+            <BodyLong spacing>Du får denne meldingen slik at du kan komme med en tilbakemelding på datoen.</BodyLong>
+            <BodyLong spacing>
+                Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer, jo
+                fortere får vi behandlet saken din.
             </BodyLong>
             <BodyLong spacing>
-                Du får denne beskjeden slik at du kan si hva du mener om den nye startdatoen før vi registrerer den.
+                Har du en tilbakemelding? Ta kontakt med veilederen din først. Når dere har snakket sammen, sender du
+                inn svaret ditt her.
             </BodyLong>
             <BodyLong spacing>
-                Er du uenig i den nye startdatoen? Ta kontakt med veilderen din først. Når dere har snakket sammen,
-                kommer du tilbake hit og sender inn svaret ditt.
+                Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som startdato når vi
+                går videre med søknaden din.
+            </BodyLong>
+            <BodyLong spacing weight="semibold">
+                Fristen for å svare er {formatertFrist}.
             </BodyLong>
         </>
     );

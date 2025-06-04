@@ -28,16 +28,13 @@ const SendSøknadOppgave = ({ oppgave }: Props) => {
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
-                        <FormSummary.Label>Tidspunkt</FormSummary.Label>
-                        <FormSummary.Value>
-                            Du sendte inn søknaden{' '}
-                            {oppgave.løstDato ? dateFormatter.compactWithTime(oppgave.løstDato) : 'N/A'}
-                        </FormSummary.Value>
+                        <FormSummary.Label>Startdato</FormSummary.Label>
+                        <FormSummary.Value>{dateFormatter.full(oppgave.oppgavetypeData.fomDato)}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>Dine svar</FormSummary.Label>
                         <FormSummary.Value>
-                            Du kan se den innsendte søknaden i{' '}
+                            Du kan se alle dine svar i søknaden som ligger i{' '}
                             <Link href={getLenker().dokumentarkiv}>dokumentarkivet</Link> på Min side.
                         </FormSummary.Value>
                     </FormSummary.Answer>

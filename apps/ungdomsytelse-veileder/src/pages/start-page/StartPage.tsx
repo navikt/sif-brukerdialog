@@ -6,10 +6,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
 
 const StartPage = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+
+    useDocumentTitle('Finn deltaker - Nav veileder - ungdomsprogramytelsen');
 
     useEffect(() => {
         queryClient.resetQueries();

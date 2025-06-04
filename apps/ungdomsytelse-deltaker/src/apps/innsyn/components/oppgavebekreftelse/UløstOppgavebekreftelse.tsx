@@ -38,7 +38,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                 <OppgaveStatusTag oppgave={oppgave} />
             </div>
             <Heading level="1" size="large">
-                {tekster.tittel}
+                {tekster.sidetittel}
             </Heading>
             {visKvittering ? (
                 <>
@@ -68,7 +68,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                         </VStack>
                     </GuidePanel>
                     <UtalelseForm
-                        forstårOppgaveSpørsmål={tekster.forstårOppgaveSpørsmål}
+                        harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={() => setVisKvittering(true)}
                         onCancel={() => navigate(getAppEnv()[EnvKey.PUBLIC_PATH])}
