@@ -78,7 +78,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     <Fieldset
                         error={validationError}
                         legend={
-                            <Heading level="2" size="medium" as="span">
+                            <Heading level="1" size="medium">
                                 Finn deltaker
                             </Heading>
                         }
