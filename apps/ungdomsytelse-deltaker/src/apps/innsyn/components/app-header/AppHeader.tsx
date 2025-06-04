@@ -3,7 +3,7 @@ import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/component
 import { UngdomsprogramPictogram } from './UngdomsprogramPictogram';
 
 interface Props {
-    title: string;
+    title: React.ReactElement;
     description?: React.ReactNode;
     variant?: 'søknad' | 'innsyn';
 }
@@ -21,7 +21,7 @@ const AppHeader = ({ title, description, variant }: Props) => {
                 <Heading level="1" size="xlarge">
                     {title}
                 </Heading>
-                <div className="uppercase">{description}</div>
+                <div>{description}</div>
             </VStack>
         </Stack>
     );

@@ -70,6 +70,7 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
                         formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                         <VStack gap="6" marginBlock="2 0">
                             <YesOrNoQuestion
+                                reverse={true}
                                 name={FormFields.harTilbakemelding}
                                 legend={harTilbakemeldingSpørsmål}
                                 validate={getYesOrNoValidator()}

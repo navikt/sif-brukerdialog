@@ -4,7 +4,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import DefaultPage from '../../apps/innsyn/components/page-layout/DefaultPage';
 
 const AppErrorFallback = () => (
-    <DefaultPage title="Ditt ungdomsprogram">
+    <DefaultPage documentTitle="Din ungdomsprogramytelse">
         <Block margin="xxxl">
             <SifGuidePanel mood="uncertain">
                 <Heading level="2" size="medium">

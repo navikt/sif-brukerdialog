@@ -29,7 +29,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     const activeIndex = getSkjemaStegIndex(steg) + 1;
 
     return (
-        <DefaultPage title={`${tittel} - Søknad om ungdomsprogramytelse`}>
+        <DefaultPage documentTitle={`${tittel} - Søknad om ungdomsprogramytelse`}>
             <section aria-label="Skjema">
                 <VStack gap="8">
                     <SøknadHeader />

@@ -170,6 +170,7 @@ const KorrigertInntektOppgave = ({ oppgave }: Props) => {
                                     </VStack>
 
                                     <YesOrNoQuestion
+                                        reverse={true}
                                         name={FormFields.godkjenner}
                                         legend="Er inntektsopplysningene fra A-ordningen riktig?"
                                         validate={getYesOrNoValidator()}

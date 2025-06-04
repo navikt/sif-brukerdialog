@@ -3,7 +3,7 @@ import DefaultPage from '../apps/innsyn/components/page-layout/DefaultPage';
 
 const LoadingPage = () => {
     return (
-        <DefaultPage title="Henter informasjon">
+        <DefaultPage documentTitle="Henter informasjon">
             <VStack align="center" justify="center" marginBlock="10">
                 <Loader size="3xlarge" />
             </VStack>

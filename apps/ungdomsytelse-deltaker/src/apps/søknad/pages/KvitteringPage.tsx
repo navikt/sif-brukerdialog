@@ -5,7 +5,7 @@ import DefaultPage from '../../innsyn/components/page-layout/DefaultPage';
 
 const KvitteringPage = () => {
     return (
-        <DefaultPage title="Kvittering">
+        <DefaultPage documentTitle="Kvittering">
             <VStack gap="8">
                 <SøknadHeader />
 

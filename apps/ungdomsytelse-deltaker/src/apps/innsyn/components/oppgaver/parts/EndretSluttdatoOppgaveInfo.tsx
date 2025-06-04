@@ -8,10 +8,11 @@ interface Props {
 }
 
 const EndretSluttdatoOppgaveInfo = ({ endretDato, svarfrist, endretFraDato }: Props) => {
-    const formatertDato = dateFormatter.full(endretDato);
+    const formatertDato = <span className="text-nowrap">{dateFormatter.full(endretDato)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 
     return endretFraDato === undefined ? (
-        /** Første gang sluttdapo settes */
+        /** Første gang sluttdato settes */
         <>
             <BodyLong spacing>
                 Veilederen din har meldt deg ut av ungdomsprogrammet fra og med <strong>{formatertDato}</strong>.
@@ -29,7 +30,9 @@ const EndretSluttdatoOppgaveInfo = ({ endretDato, svarfrist, endretFraDato }: Pr
                 Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som sluttdato når vi
                 behandler saken din.
             </BodyLong>
-            <BodyLong spacing>Fristen for å svare er {dateFormatter.full(svarfrist)}.</BodyLong>
+            <BodyLong spacing weight="semibold">
+                Fristen for å svare er {formatertFrist}.
+            </BodyLong>
         </>
     ) : (
         <>
@@ -49,7 +52,9 @@ const EndretSluttdatoOppgaveInfo = ({ endretDato, svarfrist, endretFraDato }: Pr
                 Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som sluttdato når vi
                 behandler saken din.
             </BodyLong>
-            <BodyLong spacing>Fristen for å svare er {dateFormatter.full(svarfrist)}.</BodyLong>
+            <BodyLong spacing weight="semibold">
+                Fristen for å svare er {formatertFrist}.
+            </BodyLong>
         </>
     );
 };

@@ -7,7 +7,8 @@ interface Props {
 }
 
 const EndretStartdatoOppgaveInfo = ({ endretDato, svarfrist }: Props) => {
-    const formatertDato = dateFormatter.full(endretDato);
+    const formatertDato = <span className="text-nowrap">{dateFormatter.full(endretDato)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
     return (
         <>
             <BodyLong spacing>
@@ -26,7 +27,9 @@ const EndretStartdatoOppgaveInfo = ({ endretDato, svarfrist }: Props) => {
                 Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som startdato når vi
                 går videre med søknaden din.
             </BodyLong>
-            <BodyLong spacing>Fristen for å svare er {dateFormatter.full(svarfrist)}.</BodyLong>
+            <BodyLong spacing weight="semibold">
+                Fristen for å svare er {formatertFrist}.
+            </BodyLong>
         </>
     );
 };
