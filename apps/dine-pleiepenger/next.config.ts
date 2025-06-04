@@ -2,7 +2,7 @@
 //     enabled: process.env.ANALYZE === 'true',
 // });
 
-const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
+import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 const appDirectives = {
     'default-src': ["'self'"],
