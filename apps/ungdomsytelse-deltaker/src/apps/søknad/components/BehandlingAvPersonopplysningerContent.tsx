@@ -32,12 +32,6 @@ const BehandlingAvPersonopplysningerContent = () => {
                     <List.Item>
                         <AppText id="personopplysninger.4.4" />
                     </List.Item>
-                    <List.Item>
-                        <AppText id="personopplysninger.4.5" />
-                    </List.Item>
-                    <List.Item>
-                        <AppText id="personopplysninger.4.6" />
-                    </List.Item>
                 </List>
             </div>
 
