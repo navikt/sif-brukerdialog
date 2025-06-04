@@ -2,6 +2,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { OppgaveDto, zDeltakelseOpplysningDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
 import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
+import dayjs from 'dayjs';
 
 export const deltakelseSchema = zDeltakelseOpplysningDto
     .extend({
@@ -12,6 +13,7 @@ export const deltakelseSchema = zDeltakelseOpplysningDto
         const tilOgMed = data.tilOgMed ? ISODateToDate(data.tilOgMed) : undefined;
         return {
             ...data,
+            søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             fraOgMed,
             tilOgMed,
             oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas

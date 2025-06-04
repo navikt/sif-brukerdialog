@@ -3,6 +3,7 @@ import { Deltakelse } from '@navikt/ung-common';
 import { DeltakelseHistorikkDto, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
+import { UtvidetRevisjonstype } from '../types/UtvidetRevisjonstype';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
@@ -92,8 +93,39 @@ export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkD
     }
 };
 
-export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
-    return historikk
+export const getDeltakelseHistorikkTilInnslag = (
+    historikk: DeltakelseHistorikkDto[],
+    søktTidspunkt: Date | undefined,
+): DeltakelseHistorikkInnslag[] => {
+    const innslag = historikk
         .map(mapDeltakelseHistorikkTilInnslag)
         .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
+
+    if (søktTidspunkt === undefined) {
+        return innslag;
+    }
+
+    /** TODO - hacker til søknad fra deltaker */
+    // Finn tinnslag i listen som har deltaker som kilde, og har typen endret periode og tidspunkt som er lik søktTidspunkt.
+    const erPotensiellSøknad = (i: DeltakelseHistorikkInnslag): boolean => {
+        return (
+            i.revisjonstype === UtvidetRevisjonstype.ENDRET &&
+            i.utfører.includes('deltaker') &&
+            dayjs(i.tidspunkt).isSame(søktTidspunkt, 'day')
+        );
+    };
+    /** Hvis vi har flere treff så gjør vi ikke noe */
+    if (innslag.filter(erPotensiellSøknad).length !== 1) {
+        return innslag;
+    }
+
+    const søknadInnslagIndex = innslag.findIndex(erPotensiellSøknad);
+    return innslag.map((i, index) => {
+        return index === søknadInnslagIndex && søktTidspunkt
+            ? {
+                  ...i,
+                  revisjonstype: UtvidetRevisjonstype.SØKNAD_INNSENDT,
+              }
+            : i;
+    });
 };
