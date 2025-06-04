@@ -10,7 +10,7 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.2.1",
-        "@sanity/client": "7.4.0"
+        "@sanity/client": "7.4.1"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.22.0",
@@ -18,7 +18,7 @@
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.15.29",
         "@types/react": "19.1.6",
-        "@types/react-dom": "19.1.5",
+        "@types/react-dom": "19.1.6",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "postcss": "8.5.4",

@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
 import { withIntl } from '../../decorators/withIntl';

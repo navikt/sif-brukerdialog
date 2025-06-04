@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import LegeerklæringStep from '../../../app/søknad/steps/legeerklæring/LegeerklæringStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';

@@ -1,5 +1,5 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import * as React from 'react';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds';
 import { useFormikContext } from 'formik';

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
 import FormikCountrySelect from '../../../src/components/formik-country-select/FormikCountrySelect';
 

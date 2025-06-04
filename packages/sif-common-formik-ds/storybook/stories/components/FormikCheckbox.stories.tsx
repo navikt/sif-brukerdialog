@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import FormikCheckbox from '../../../src/components/formik-checkbox/FormikCheckbox';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 

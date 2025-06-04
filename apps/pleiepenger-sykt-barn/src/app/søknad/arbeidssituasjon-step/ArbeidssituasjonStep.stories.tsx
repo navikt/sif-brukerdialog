@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { withStepWrapper } from '../../../storybook/decorators';
 import ArbeidssituasjonStep from './ArbeidssituasjonStep';
 

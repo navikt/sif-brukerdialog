@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import { useState } from 'react';
 import ItemList from '../../../src/components/lists/item-list/ItemList';

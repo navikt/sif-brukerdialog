@@ -6,12 +6,7 @@ function getAbsolutePath(value) {
 
 export default {
     stories: ['../src/**/*.stories.@(ts|tsx)'],
-    addons: [
-        getAbsolutePath('@storybook/addon-essentials'),
-        getAbsolutePath('@storybook/addon-interactions'),
-        getAbsolutePath('@storybook/addon-a11y'),
-        getAbsolutePath('@storybook/addon-toolbars'),
-    ],
+    addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('storybook/internal/toolbars')],
     framework: {
         name: '@storybook/react-vite',
         options: {},

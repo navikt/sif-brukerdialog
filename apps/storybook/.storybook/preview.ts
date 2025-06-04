@@ -1,4 +1,4 @@
-import { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react-vite';
 import '@navikt/ds-css';
 
 // Add a <script> element with JSON content to the document head

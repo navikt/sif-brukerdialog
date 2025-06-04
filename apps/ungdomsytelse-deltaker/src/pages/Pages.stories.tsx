@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import IngenDeltakelsePage from './IngenDeltakelsePage';
 import { withIntl } from '../../storybook/decorators/withIntl';
 import LoadingPage from './LoadingPage';
