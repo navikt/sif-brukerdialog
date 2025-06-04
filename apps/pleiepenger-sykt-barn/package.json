@@ -37,11 +37,11 @@
         "mockdate": "3.0.5",
         "react": "19.1.0",
         "react-day-picker": "9.7.0",
-        "react-router-dom": "7.6.1",
+        "react-router-dom": "7.6.2",
         "uuid": "11.1.0"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.1",
+        "@axe-core/playwright": "4.10.2",
         "@babel/core": "7.27.4",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.27.1",

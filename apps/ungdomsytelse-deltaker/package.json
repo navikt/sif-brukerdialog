@@ -52,13 +52,13 @@
         "react-error-boundary": "6.0.0",
         "react-helmet": "6.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.6.1",
+        "react-router-dom": "7.6.2",
         "uuid": "11.1.0",
-        "zod": "3.25.49",
+        "zod": "3.25.51",
         "zustand": "5.0.5"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.1",
+        "@axe-core/playwright": "4.10.2",
         "@eslint/eslintrc": "3.3.1",
         "@eslint/js": "9.28.0",
         "@navikt/nav-dekoratoren-moduler": "3.2.3",
@@ -101,7 +101,7 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.6.1",
+        "react-router-dom": "7.6.2",
         "storybook": "8.6.14",
         "stylelint": "16.20.0",
         "tailwindcss": "4.1.8",
@@ -111,7 +111,7 @@
         "vite": "6.3.5",
         "vite-plugin-checker": "0.9.3",
         "vitest": "3.2.1",
-        "zod": "3.25.49"
+        "zod": "3.25.51"
     },
     "msw": {
         "workerDirectory": [

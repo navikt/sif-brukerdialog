@@ -42,10 +42,10 @@
         "react-loading-skeleton": "3.5.0",
         "swr": "2.3.3",
         "uuid": "11.1.0",
-        "zod": "3.25.49"
+        "zod": "3.25.51"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.1",
+        "@axe-core/playwright": "4.10.2",
         "@navikt/ds-css": "7.22.0",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.22.0",

@@ -38,10 +38,10 @@
         "react-day-picker": "9.7.0",
         "react-dom": "19.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.6.1"
+        "react-router-dom": "7.6.2"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.1",
+        "@axe-core/playwright": "4.10.2",
         "@babel/core": "7.27.4",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.27.1",
