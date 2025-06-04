@@ -14,6 +14,7 @@ import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpne
 import { dateFormatter } from '@navikt/sif-common-utils';
 import RapporterInntekt from '../components/rapporter-inntekt/RapporterInntekt';
 import { useAppIntl } from '../../../i18n';
+import SendSøknadOppgave from '../components/send-søknad-oppgave/SendSøknadOppgave';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -91,6 +92,14 @@ const OppgavePage = () => {
                     <RapporterInntekt oppgave={oppgave} deltakerNavn={søker.fornavn} />
                 </DefaultPage>
             );
+        case Oppgavetype.SØK_YTELSE:
+            return (
+                <DefaultPage title="Send søknad">
+                    <SendSøknadOppgave oppgave={oppgave} />
+                </DefaultPage>
+            );
+        default:
+            return <DefaultPage title="Ukjent oppgavetype">Ukjent type</DefaultPage>;
     }
 };
 
