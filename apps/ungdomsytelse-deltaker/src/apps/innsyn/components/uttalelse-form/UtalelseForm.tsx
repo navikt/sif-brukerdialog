@@ -11,20 +11,20 @@ import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreft
 import { useAppIntl } from '../../../../i18n';
 
 interface Props {
-    forstårOppgaveSpørsmål: string;
+    harTilbakemeldingSpørsmål: string;
     oppgaveReferanse: string;
     onSuccess: () => void;
     onCancel?: () => void;
 }
 
 enum FormFields {
-    godkjenner = 'godkjenner',
+    harTilbakemelding = 'harTilbakemelding',
     begrunnelse = 'begrunnelse',
 }
 
 type FormValues = Partial<{
     [FormFields.begrunnelse]: string;
-    [FormFields.godkjenner]: YesOrNo;
+    [FormFields.harTilbakemelding]: YesOrNo;
 }>;
 
 const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
@@ -33,19 +33,19 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const UtalelseForm = ({ forstårOppgaveSpørsmål: forstårLegend, oppgaveReferanse, onSuccess, onCancel }: Props) => {
+const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess, onCancel }: Props) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
 
     const { intl } = useAppIntl();
 
     const handleSubmit = async (values: FormValues) => {
-        const godkjennerOppgave = values[FormFields.godkjenner] === YesOrNo.YES;
+        const harTilbakemelding = values[FormFields.harTilbakemelding] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
             oppgave: {
                 oppgaveReferanse: oppgaveReferanse,
                 uttalelse: {
-                    bekreftelseSvar: godkjennerOppgave ? 'GODTAR' : 'AVSLÅR',
+                    bekreftelseSvar: harTilbakemelding ? 'AVSLÅR' : 'GODTAR',
                     meldingFraDeltaker: values[FormFields.begrunnelse]!,
                 },
             },
@@ -70,11 +70,11 @@ const UtalelseForm = ({ forstårOppgaveSpørsmål: forstårLegend, oppgaveRefera
                         formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
                         <VStack gap="6" marginBlock="2 0">
                             <YesOrNoQuestion
-                                name={FormFields.godkjenner}
-                                legend={forstårLegend}
+                                name={FormFields.harTilbakemelding}
+                                legend={harTilbakemeldingSpørsmål}
                                 validate={getYesOrNoValidator()}
                             />
-                            {values[FormFields.godkjenner] === YesOrNo.NO ? (
+                            {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
                                 <Textarea
                                     name={FormFields.begrunnelse}
                                     label="Kommentar"

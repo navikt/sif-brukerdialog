@@ -15,13 +15,7 @@ interface Props {
     oppgave: Oppgave | BekreftelseOppgave;
 }
 
-const LøstOppgavebekreftelse = ({
-    tekster,
-    // deltakerNavn,
-    bekreftelse,
-    oppsummering,
-    oppgave,
-}: Props) => {
+const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }: Props) => {
     return (
         <VStack gap="6">
             <div>
@@ -34,7 +28,7 @@ const LøstOppgavebekreftelse = ({
             {bekreftelse && (
                 <OppgaveUttalelse
                     beskjedFraNav={oppsummering}
-                    spørsmål="Forstår og godtar du at startdatoen din er endret"
+                    spørsmål={tekster.harTilbakemeldingSpørsmål}
                     bekreftelse={bekreftelse}
                 />
             )}

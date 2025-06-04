@@ -5,7 +5,7 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 
 export interface OppgavebekreftelseTekster {
     tittel: string;
-    forstårOppgaveSpørsmål: string;
+    harTilbakemeldingSpørsmål: string;
 }
 interface Props {
     tekster: OppgavebekreftelseTekster;

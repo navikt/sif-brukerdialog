@@ -45,19 +45,21 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return {
                 tittel: getOppgaveTittel(oppgave, intl),
-                forstårOppgaveSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.forstårOppgaveSpørsmål`),
+                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
             };
 
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return {
                 tittel: getOppgaveTittel(oppgave, intl),
-                forstårOppgaveSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.forstårOppgaveSpørsmål`),
+                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
             };
 
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return {
                 tittel: getOppgaveTittel(oppgave, intl),
-                forstårOppgaveSpørsmål: intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.forstårOppgaveSpørsmål'),
+                harTilbakemeldingSpørsmål: intl.text(
+                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
+                ),
             };
         default:
             throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';

@@ -17,21 +17,21 @@ const nb = {
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.tittel': 'Se og gi tilbakemelding på ny startdato',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
         'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_ENDRET_STARTDATO.forstårOppgaveSpørsmål': 'Forstår og godtar du at startdatoen din er endret',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på startdatoen?',
 
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tittel': 'Se og gi tilbakemelding på sluttdato',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
         'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet. ',
-    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.forstårOppgaveSpørsmål': 'Forstår og godtar du at sluttdatoen din er endret',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
 
     'oppgavetype.BEKREFT_NY_SLUTTDATO.tittel': 'Se og gi tilbakemelding på ny sluttdato',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.forstårOppgaveSpørsmål': 'Forstår og godtar du at sluttdatoen din er endret',
+    'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
 
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tittel': 'Se og gi tibakemelding på ulik inntekt for september',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Det er forskjell mellom det du har oppgitt i lønn, og det arbeidsgiveren din har rapportert til oss.',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.forstårOppgaveSpørsmål':
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
         'Forstår og godtar du at inntekten din er endret',
 };
 
