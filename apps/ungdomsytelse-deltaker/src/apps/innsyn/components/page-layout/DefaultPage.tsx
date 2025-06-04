@@ -14,9 +14,11 @@ const DefaultPage = ({ title, children }: Props) => {
     }, []);
     useDocumentTitle(title);
     return (
-        <PageContentWrapper>
-            <PageBoundary>{children}</PageBoundary>
-        </PageContentWrapper>
+        <div role="main" aria-label="Hovedinnhold">
+            <PageContentWrapper>
+                <PageBoundary>{children}</PageBoundary>
+            </PageContentWrapper>
+        </div>
     );
 };
 
