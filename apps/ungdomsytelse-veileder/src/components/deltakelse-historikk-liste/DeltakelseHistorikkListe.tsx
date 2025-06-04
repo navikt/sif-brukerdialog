@@ -1,22 +1,24 @@
 import { Add } from '@navikt/ds-icons';
 import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
 import { DeltakelseHistorikkInnslag } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { UtvidetRevisjonstype } from '../../types/UtvidetRevisjonstype';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
 }
 
-const getRevisjonstypeTekst = (type: Revisjonstype): string => {
+const getRevisjonstypeTekst = (type: UtvidetRevisjonstype): string => {
     switch (type) {
-        case Revisjonstype.OPPRETTET:
+        case UtvidetRevisjonstype.OPPRETTET:
             return 'Deltakelse opprettet';
-        case Revisjonstype.ENDRET:
+        case UtvidetRevisjonstype.ENDRET:
             return 'Endret periode';
-        case Revisjonstype.SLETTET:
+        case UtvidetRevisjonstype.SLETTET:
             return 'Slettet';
+        case UtvidetRevisjonstype.SØKNAD_INNSENDT:
+            return 'Søknad mottatt';
         default:
             return 'Ukjent';
     }
@@ -59,7 +61,9 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                         return (
                             <Table.Row key={index} ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
-                                <Table.DataCell>{getRevisjonstypeTekst(revisjonstype)}</Table.DataCell>
+                                <Table.DataCell>
+                                    {getRevisjonstypeTekst(revisjonstype as UtvidetRevisjonstype)}
+                                </Table.DataCell>
                                 <Table.DataCell>{utfører}</Table.DataCell>
                             </Table.Row>
                         );

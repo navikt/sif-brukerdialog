@@ -67,7 +67,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
                 <SlettDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
 
-                <DeltakelseHistorikk deltakelseId={deltakelse.id} />
+                <DeltakelseHistorikk deltakelseId={deltakelse.id} søktTidspunkt={deltakelse.søktTidspunkt} />
             </VStack>
         </Box>
     );
