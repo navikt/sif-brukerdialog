@@ -78,11 +78,17 @@ const OppgavePage = () => {
 
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return renderOppgavebekreftelsePage(
-                <EndretStartdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nyStartdato} />,
+                <EndretStartdatoOppgaveInfo
+                    endretDato={oppgave.oppgavetypeData.nyStartdato}
+                    svarfrist={oppgave.svarfrist}
+                />,
             );
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return renderOppgavebekreftelsePage(
-                <EndretSluttdatoOppgaveInfo endretDato={oppgave.oppgavetypeData.nySluttdato} />,
+                <EndretSluttdatoOppgaveInfo
+                    endretDato={oppgave.oppgavetypeData.nySluttdato}
+                    svarfrist={oppgave.svarfrist}
+                />,
             );
 
         case Oppgavetype.RAPPORTER_INNTEKT:

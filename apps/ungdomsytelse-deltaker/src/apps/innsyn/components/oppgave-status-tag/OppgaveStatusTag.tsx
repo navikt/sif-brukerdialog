@@ -13,14 +13,14 @@ interface Props {
 export type OppgaveStatusTagVariant = 'tag' | 'text';
 
 const OppgaveStatusTag = ({ oppgave, variant, size = 'small', iconFill }: Props): React.ReactNode => {
-    const text = <Box paddingInline="1">{getOppgaveStatusText(oppgave)}</Box>;
     if (variant === 'text') {
         return (
             <BodyShort className="text-text-subtle" size={size}>
-                {text}
+                {getOppgaveStatusText(oppgave)}
             </BodyShort>
         );
     }
+    const text = <Box paddingInline="1">{getOppgaveStatusText(oppgave)}</Box>;
     switch (oppgave.status) {
         case OppgaveStatus.LØST:
         case OppgaveStatus.LUKKET:

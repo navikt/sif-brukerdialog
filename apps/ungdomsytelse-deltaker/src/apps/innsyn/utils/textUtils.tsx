@@ -21,7 +21,22 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.tittel');
         case Oppgavetype.SØK_YTELSE:
-            return text('Oppgavetype.SØK_YTELSE.tittel');
+            return text('oppgavetype.SØK_YTELSE.tittel');
+    }
+};
+
+export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
+    switch (oppgave.oppgavetype) {
+        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+            return text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.info`);
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+            return text(`oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info`);
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info');
+        case Oppgavetype.RAPPORTER_INNTEKT:
+            return text('oppgavetype.RAPPORTER_INNTEKT.info');
+        case Oppgavetype.SØK_YTELSE:
+            return text('oppgavetype.SØK_YTELSE.info');
     }
 };
 

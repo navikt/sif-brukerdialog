@@ -57,7 +57,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     Tidligere oppgaver
                 </Heading>
                 {tidligereOppgaver.length > 0 ? (
-                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" />
+                    <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" visBeskrivelse={false} />
                 ) : (
                     <BodyLong>Du har ingen tidligere oppgaver</BodyLong>
                 )}
