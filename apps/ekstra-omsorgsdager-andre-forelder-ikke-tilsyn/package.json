@@ -58,10 +58,10 @@
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.6.1"
+        "react-router-dom": "7.6.2"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.1",
+        "@axe-core/playwright": "4.10.2",
         "@babel/core": "7.27.4",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.27.1",
@@ -91,7 +91,7 @@
         "typescript": "5.8.3",
         "vite": "6.3.5",
         "vite-plugin-checker": "0.9.3",
-        "vitest": "3.1.4"
+        "vitest": "3.2.1"
     },
     "eslintConfig": {
         "overrides": [
