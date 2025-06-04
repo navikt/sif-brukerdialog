@@ -17,6 +17,7 @@ body.innsynAppBody {
 }
 
 .innsynApp {
+    --a-text-default: #002942;
     color: var(--a-text-default);
 }
 
