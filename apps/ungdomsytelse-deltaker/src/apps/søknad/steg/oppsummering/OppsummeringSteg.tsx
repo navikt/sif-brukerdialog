@@ -11,6 +11,7 @@ import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { getBarnSpørsmål } from '../barn/BarnSteg';
 import { buildSøknadFromSvar } from './oppsummeringUtils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 const OppsummeringSteg = () => {
     const { søker, deltakelsePeriode, søknadOppgave, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
@@ -54,6 +55,19 @@ const OppsummeringSteg = () => {
         <SøknadSteg tittel="Oppsummering" steg={Steg.OPPSUMMERING}>
             <VStack gap="6">
                 <VStack gap="4">
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">Ungdomsprogramytelsen</FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Startdato</FormSummary.Label>
+                                <FormSummary.Value>
+                                    {dateFormatter.compact(deltakelsePeriode.programPeriode.from)}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    </FormSummary>
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>

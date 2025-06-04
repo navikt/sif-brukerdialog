@@ -23,9 +23,9 @@ const KvitteringPage = () => {
                     <List>
                         <List.Item>
                             Du får en SMS når søknaden din er ferdig behandlet. Da kan du logge inn på Min side på
-                            nav.no og se svaret på søknaden (vedtaket).
+                            nav.no og se svaret på søknaden (vedtaksbrevet).
                         </List.Item>
-                        <List.Item>Penger gjennom ungdomsprogramytelsen får du som regel den 10. hver måned.</List.Item>
+                        <List.Item>Pengene får du som regel den 10. hver måned.</List.Item>
                         <List.Item>
                             Hvis du tjener penger mens du er i ungdomsprogrammet, må du melde fra om dette. Du får en
                             SMS den 1. hver måned, og så logger du inn på Min side på nav.no og melder fra om hva du

@@ -20,18 +20,18 @@ const nb = {
     'personopplysninger.accordion.header': 'Om hvordan vi innhenter opplysninger om deg',
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'personopplysninger.2':
-        'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
-    'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
-    'personopplysninger.4': 'Opplysningene vi innhenter kommer enten fra deg eller fra offentlige registre:',
-    'personopplysninger.4.1': 'hvilke barn du er registrert som forelder til',
-    'personopplysninger.4.2': 'opplysninger om barnets helse',
-    'personopplysninger.4.3': 'arbeidsforholdene dine og inntekten din',
-    'personopplysninger.4.4': 'ytelser du mottar fra Nav',
-    'personopplysninger.4.5': 'tilknytningen din til Norge',
-    'personopplysninger.4.6':
-        'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
-    'personopplysninger.4b':
-        'Vi lagrer opplysningene vi får inn om barnet du søker pleiepenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre omsorgspersoner søker pleiepenger for samme barn.',
+        'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelsetjeneste. Deler av saken din blir behandlet automatisk.',
+    'personopplysninger.3': 'Hvilke opplysninger henter vi inn?',
+    'personopplysninger.4':
+        'Opplysningene vi henter inn kommer enten fra deg, din veileder i NAV eller fra offentlige registre:',
+    'personopplysninger.4.1':
+        'barn som du er registrert som forelder til, henter vi fra folkeregisteret, slik at vi kan vurdere om du har rett på barnetillegg',
+    'personopplysninger.4.2':
+        'inntekten din henter vi fra arbeidsgiver, slik at vi kan kontrollere om ytelsen skal reduseres siden du har inntekt ved siden av',
+    'personopplysninger.4.3':
+        'ytelser du mottar fra Nav, slik at vi kan kontrollere om ytelsen skal reduseres siden du mottar annen ytelse fra Nav',
+    'personopplysninger.4.4':
+        'opplysninger om perioden du deltar i programmet, henter vi fra veileder i Nav, slik at vi vet for hvilken periode du skal motta ytelse/penger fra Nav',
     'personopplysninger.5':
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };

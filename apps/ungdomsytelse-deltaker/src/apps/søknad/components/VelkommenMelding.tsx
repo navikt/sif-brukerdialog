@@ -24,18 +24,20 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                         <strong>{dateFormatter.dayDateMonthYear(startdato)}</strong>.
                     </BodyLong>
                     <BodyLong>
-                        Når du er med i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen. Da
-                        får du utbetalt penger hver måned så lenge du deltar i programmet.
+                        Når du er med i ungdomsprogrammet, kan du søke om å få penger. Da får du utbetalt penger hver
+                        måned så lenge du deltar i programmet.
                     </BodyLong>
                     <BodyLong>
-                        Du søker om ungdomsprogramytelsen ved å fylle ut denne søknaden. Les mer om{' '}
+                        Du søker ved å fylle ut denne søknaden. Les mer om{' '}
                         <ExternalLink href={getLenker().omUngdomsprogramytelsen}>
                             ungdomsprogrammet og -ytelsen på nav.no
                         </ExternalLink>
                         .
                     </BodyLong>
                     <VStack gap="0">
-                        <ReadMore header="Hva hvis datoen ikke stemmer?">[TODO]</ReadMore>
+                        <ReadMore header="Hva hvis datoen ikke stemmer?">
+                            Da tar du kontakt med din veileder og sier fra om dette, før du sender inn denne søknaden.
+                        </ReadMore>
                         <ReadMore header={text('personopplysninger.accordion.header')}>
                             <BehandlingAvPersonopplysningerContent />
                         </ReadMore>
