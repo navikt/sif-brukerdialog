@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import ConfirmationPage from './ConfirmationPage';

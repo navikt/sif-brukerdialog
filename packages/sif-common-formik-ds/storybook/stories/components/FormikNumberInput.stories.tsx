@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import FormikNumberInput from '../../../src/components/formik-number-input/FormikNumberInput';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';

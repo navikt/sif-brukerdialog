@@ -11,12 +11,7 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
     stories: ['../src/**/*.stories.@(ts|tsx)'],
-    addons: [
-        getAbsolutePath('@storybook/addon-links'),
-        getAbsolutePath('@storybook/addon-essentials'),
-        getAbsolutePath('@storybook/addon-onboarding'),
-        getAbsolutePath('@storybook/addon-interactions'),
-    ],
+    addons: [],
     framework: {
         name: getAbsolutePath('@storybook/nextjs'),
         options: {},

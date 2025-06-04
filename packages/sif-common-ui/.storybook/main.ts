@@ -5,15 +5,14 @@ function getAbsolutePath(value) {
 }
 
 export default {
-    stories: ['../src/**/*.stories.@(ts|tsx)'],
-    addons: [
-        getAbsolutePath('@storybook/addon-essentials'),
-        getAbsolutePath('@storybook/addon-interactions'),
-        getAbsolutePath('@storybook/addon-a11y'),
-        getAbsolutePath('@storybook/addon-toolbars'),
-    ],
+    stories: ['../src/**/*.stories.tsx'],
+    addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs')],
     framework: {
-        name: '@storybook/react-vite',
+        name: getAbsolutePath('@storybook/react-vite'),
         options: {},
+    },
+
+    typescript: {
+        reactDocgen: 'react-docgen-typescript-plugin',
     },
 };

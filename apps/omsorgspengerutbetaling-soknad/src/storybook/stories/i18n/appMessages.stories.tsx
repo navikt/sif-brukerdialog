@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
@@ -7,7 +6,7 @@ import { withStepFormValuesContext } from '../../decorators/withStepFormValuesCo
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { appMessages } from '../../../app/i18n/appMessages';
+import { appMessages } from '../../../app/i18n';
 
 export default {
     title: 'i18n/Appmessages',

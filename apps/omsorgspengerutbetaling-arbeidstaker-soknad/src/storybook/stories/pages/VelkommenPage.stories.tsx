@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import VelkommenPage from '../../../app/pages/velkommen/VelkommenPage';
 import { withIntl } from '../../decorators/withIntl';

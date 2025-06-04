@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { registrertDeltakerSchema } from '@navikt/ung-common';
 import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
 import { withIntl } from '../../../storybook/decorators/withIntl';

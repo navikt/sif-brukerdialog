@@ -6,7 +6,7 @@ import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../storybook/decorators/withRouter';
 import DeltakelseContent from './DeltakelseContent';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withInnsynApp } from '../../../../storybook/decorators/withInnsynApp';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,

@@ -15,7 +15,7 @@ const InnsynApp = () => {
     }, [location.pathname]);
 
     return (
-        <main className="innsynApp">
+        <div className="innsynApp">
             <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
                 <Routes>
                     <Route index path="" element={<ForsidePage />} />
@@ -24,7 +24,7 @@ const InnsynApp = () => {
                     <Route path="*" element={<Navigate to="/" replace={true} />} />
                 </Routes>
             </IntlProvider>
-        </main>
+        </div>
     );
 };
 

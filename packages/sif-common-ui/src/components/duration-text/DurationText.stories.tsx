@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import DurationText from './DurationText';
 import { withIntlWrapper } from '../../../storybook/decorators/withIntlWrapper';
 
