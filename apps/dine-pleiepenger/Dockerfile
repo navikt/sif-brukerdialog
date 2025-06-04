@@ -1,7 +1,7 @@
 FROM gcr.io/distroless/nodejs18-debian12:nonroot
 WORKDIR /app
 
-COPY /apps/dine-pleiepenger/next.config.js .
+COPY /apps/dine-pleiepenger/next.config.ts .
 COPY /apps/dine-pleiepenger/.next/standalone ./
 COPY /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
 
