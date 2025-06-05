@@ -12,6 +12,7 @@ import InntektForm from '../../../forms/inntekt-form/InntektForm';
 import { TallSvar } from '@navikt/sif-common-ui';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
+import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
 
 interface Props {
     deltakerNavn: string;
@@ -41,7 +42,10 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
         return (
             <VStack gap="6">
                 <div>
-                    <OppgaveStatusTag oppgave={oppgave} />
+                    <OppgaveStatusTag
+                        oppgaveStatus={oppgave.status}
+                        oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
+                    />
                 </div>
                 <Heading level="1" size="large">
                     Rapporter inntekt {månedOgÅr}

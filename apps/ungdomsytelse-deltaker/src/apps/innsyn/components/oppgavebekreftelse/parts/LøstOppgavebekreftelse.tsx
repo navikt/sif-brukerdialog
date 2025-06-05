@@ -6,6 +6,7 @@ import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
 import LøstOppgavebekreftelseInfo from './LøstOppgavebekreftelseInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
+import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -19,7 +20,11 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
     return (
         <VStack gap="6">
             <div>
-                <OppgaveStatusTag oppgave={oppgave} iconFill={false} />
+                <OppgaveStatusTag
+                    oppgaveStatus={oppgave.status}
+                    oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
+                    iconFill={false}
+                />
             </div>
             <Heading level="1" size="large">
                 {tekster.sidetittel}

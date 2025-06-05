@@ -1,9 +1,10 @@
 import { FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, SøkYtelseOppgave } from '@navikt/ung-common';
+import getLenker from '../../../../../utils/lenker';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
-import getLenker from '../../../../../utils/lenker';
+import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
@@ -16,7 +17,7 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
     return (
         <VStack gap="6">
             <div>
-                <OppgaveStatusTag oppgave={oppgave} />
+                <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
                 Søknad for ungdomsprogramytelsen
