@@ -5,7 +5,7 @@ import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag
 import './oppgaveLinkPanel.css';
 
 interface Props {
-    tittel: string;
+    tittel: React.ReactNode;
     beskrivelse?: React.ReactNode;
     oppgaveStatus: OppgaveStatus;
     oppgaveStatusTekst: string;

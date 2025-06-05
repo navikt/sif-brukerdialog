@@ -5,7 +5,7 @@ import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';
 
 export interface OppgavebekreftelseTekster {
     sidetittel: string;
-    oppgavetittel: string;
+    oppgavetittel: React.ReactNode;
     harTilbakemeldingSpørsmål: string;
 }
 interface Props {

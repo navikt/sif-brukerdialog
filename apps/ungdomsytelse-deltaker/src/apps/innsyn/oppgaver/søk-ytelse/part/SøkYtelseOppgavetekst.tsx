@@ -20,7 +20,7 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                Søknad for ungdomsprogramytelsen
+                Søknad for ungdoms&shy;program&shy;ytelsen
             </Heading>
 
             <section aria-labelledby="summaryHeading">
