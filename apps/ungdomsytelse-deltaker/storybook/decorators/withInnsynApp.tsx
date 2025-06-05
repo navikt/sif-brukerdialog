@@ -1,7 +1,7 @@
-import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 import { VStack } from '@navikt/ds-react';
-import UngdomsprogrammetHeader from '../../src/apps/innsyn/components/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 import { useEffect } from 'react';
+import UngdomsprogrammetHeader from '../../src/apps/innsyn/atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
+import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 
 export const withInnsynApp = (Story: any) => {
     useEffect(() => {

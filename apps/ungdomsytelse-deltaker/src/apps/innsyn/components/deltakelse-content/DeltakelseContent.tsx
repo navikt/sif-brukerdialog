@@ -8,7 +8,7 @@ import {
 } from '../../utils/deltakelseUtils';
 import OppgaverList from '../oppgaver-list/OppgaverList';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
-import HuskelappInntekt from './parts/huskelapp-inntekt/HuskelappInntekt';
+import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -37,7 +37,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     return (
         <VStack gap="10">
             {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
-            {visInfoOmInntektsrapportering && <HuskelappInntekt />}
+            {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
                 <Heading level="2" size="medium">
                     Dine oppgaver

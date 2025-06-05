@@ -1,13 +1,13 @@
 import { Alert, BodyLong, Box, Heading, HGrid, Hide, HStack, Show, VStack } from '@navikt/ds-react';
-import HandsIll from '../../../../atoms/svg/Hands';
-import InnsynBlueBox from '../../../../atoms/innsyn-blue-box/InnsynBlueBox';
+import HandsIll from '../../../atoms/svg/Hands';
+import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
 
 interface Props {
     simple?: boolean;
     showIll?: boolean;
 }
 
-const HuskelappInntekt = ({ simple = false, showIll = false }: Props) => {
+const DeltakelsePågåendeInfo = ({ simple = false, showIll = false }: Props) => {
     if (simple) {
         return (
             <Alert variant="info">
@@ -48,4 +48,4 @@ const HuskelappInntekt = ({ simple = false, showIll = false }: Props) => {
     );
 };
 
-export default HuskelappInntekt;
+export default DeltakelsePågåendeInfo;
