@@ -1,11 +1,11 @@
 import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import getLenker from '../../../utils/lenker';
-import DefaultPage from '../../innsyn/components/page-layout/DefaultPage';
+import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
 
 const KvitteringPage = () => {
     return (
-        <DefaultPage documentTitle="Kvittering">
+        <DefaultPageLayout documentTitle="Kvittering">
             <VStack gap="8">
                 <SøknadHeader />
 
@@ -42,7 +42,7 @@ const KvitteringPage = () => {
                     </Button>
                 </div>
             </VStack>
-        </DefaultPage>
+        </DefaultPageLayout>
     );
 };
 

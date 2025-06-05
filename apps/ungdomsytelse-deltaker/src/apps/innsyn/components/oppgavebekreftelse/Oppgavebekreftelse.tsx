@@ -1,7 +1,7 @@
-import { BekreftelseOppgave, OppgaveStatus } from '@navikt/ung-common';
-import UløstOppgavebekreftelse from './UløstOppgavebekreftelse';
-import LøstOppgavebekreftelse from './LøstOppgavebekreftelse';
 import { usePrevious } from '@navikt/sif-common-hooks';
+import { BekreftelseOppgave, OppgaveStatus } from '@navikt/ung-common';
+import LøstOppgavebekreftelse from './parts/LøstOppgavebekreftelse';
+import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';
 
 export interface OppgavebekreftelseTekster {
     sidetittel: string;

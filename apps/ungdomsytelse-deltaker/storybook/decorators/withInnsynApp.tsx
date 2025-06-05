@@ -1,4 +1,4 @@
-import ForsidePageLayout from '../../src/apps/innsyn/components/page-layout/ForsidePageLayout';
+import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 import { VStack } from '@navikt/ds-react';
 import UngdomsprogrammetHeader from '../../src/apps/innsyn/components/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 
