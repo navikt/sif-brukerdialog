@@ -14,7 +14,7 @@ import { getCheckedValidator, getStringValidator, getYesOrNoValidator } from '@n
 import { KorrigertInntektOppgave } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { useAppIntl } from '../../../../i18n';
-import InntektTabell from '../inntekt-tabell/InntektTabell';
+import InntektTabell from './inntekt-tabell/InntektTabell';
 import { useDeprOppgaveContext } from '../oppgavebekreftelse/DeprOppgaveContext';
 import PageOppgaveLayout from './PageOppgaveLayout';
 

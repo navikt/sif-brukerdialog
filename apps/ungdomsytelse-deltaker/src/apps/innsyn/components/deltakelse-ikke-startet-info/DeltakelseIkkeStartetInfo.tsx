@@ -1,4 +1,4 @@
-import InnsynBlueBox from '../innsyn-blue-box/InnsynBlueBox';
+import InnsynBlueBox from '../../atoms/innsyn-blue-box/InnsynBlueBox';
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 

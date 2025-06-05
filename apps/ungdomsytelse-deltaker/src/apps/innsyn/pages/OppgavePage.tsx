@@ -1,20 +1,20 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { useParams } from 'react-router-dom';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Oppgavetype } from '@navikt/ung-common';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import Oppgavebekreftelse from '../components/oppgavebekreftelse/Oppgavebekreftelse';
-import KorrigertInntektOppgave from '../components/oppgaver/KorrigertInntektOppgave';
 import EndretSluttdatoOppgaveInfo from '../components/oppgaver/parts/EndretSluttdatoOppgaveInfo';
 import EndretStartdatoOppgaveInfo from '../components/oppgaver/parts/EndretStartdatoOppgaveInfo';
 import { getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../utils/textUtils';
-import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnet';
 import DefaultPage from '../components/page-layout/DefaultPage';
 import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import RapporterInntekt from '../components/rapporter-inntekt/RapporterInntekt';
+import RapporterInntektOppgave from '../components/rapporter-inntekt-oppgave/RapporterInntektOppgave';
 import { useAppIntl } from '../../../i18n';
 import SendSøknadOppgave from '../components/send-søknad-oppgave/SendSøknadOppgave';
+import KorrigertInntektOppgave from '../components/_utsatt/KorrigertInntektOppgave';
+import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -24,22 +24,11 @@ const OppgavePage = () => {
     const { oppgaveReferanse } = useParams<OppgavePageParams>();
     const { deltakelsePeriode, søker } = useDeltakerContext();
     const oppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
-    const navigate = useNavigate();
     const intl = useAppIntl();
 
     const { mutateAsync } = useMarkerOppgaveSomÅpnet();
 
-    useEffectOnce(() => {
-        setBreadcrumbs([
-            { title: 'Min side', url: '/min-side' },
-            { title: 'Din ungdomsprogramytelse', url: '/', handleInApp: true },
-            { title: 'Oppgave', url: `/oppgave`, handleInApp: true },
-        ]);
-    });
-
-    onBreadcrumbClick((breadcrumb) => {
-        navigate(breadcrumb.url);
-    });
+    useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
 
     useEffectOnce(async () => {
         if (!oppgave) {
@@ -51,7 +40,20 @@ const OppgavePage = () => {
     });
 
     if (!oppgave) {
-        return <OppgaveIkkeFunnetPage oppgaveReferanse={oppgaveReferanse} />;
+        return (
+            <DefaultPage documentTitle="Oppgave ikke funnet">
+                <VStack gap="4">
+                    <Heading size="large" level="1">
+                        Oppgave ikke funnet
+                    </Heading>
+                    {oppgaveReferanse ? (
+                        <BodyShort>Vi kunne ikke finne oppgave med id {oppgaveReferanse}.</BodyShort>
+                    ) : (
+                        <BodyShort>Vi kunne ikke finne oppgave - id mangler.</BodyShort>
+                    )}
+                </VStack>
+            </DefaultPage>
+        );
     }
 
     const renderOppgavebekreftelsePage = (children: React.ReactNode) => {
@@ -83,6 +85,7 @@ const OppgavePage = () => {
                     svarfrist={oppgave.svarfrist}
                 />,
             );
+
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return renderOppgavebekreftelsePage(
                 <EndretSluttdatoOppgaveInfo
@@ -95,15 +98,17 @@ const OppgavePage = () => {
             return (
                 <DefaultPage
                     documentTitle={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Din ungdomsprogramytelse`}>
-                    <RapporterInntekt oppgave={oppgave} deltakerNavn={søker.fornavn} />
+                    <RapporterInntektOppgave oppgave={oppgave} deltakerNavn={søker.fornavn} />
                 </DefaultPage>
             );
+
         case Oppgavetype.SØK_YTELSE:
             return (
                 <DefaultPage documentTitle="Send søknad">
                     <SendSøknadOppgave oppgave={oppgave} />
                 </DefaultPage>
             );
+
         default:
             return <DefaultPage documentTitle="Ukjent oppgavetype">Ukjent type</DefaultPage>;
     }

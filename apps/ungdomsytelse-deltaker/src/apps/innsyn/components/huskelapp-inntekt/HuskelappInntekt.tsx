@@ -1,6 +1,6 @@
 import { Alert, BodyLong, Box, Heading, HGrid, Hide, HStack, Show, VStack } from '@navikt/ds-react';
-import HandsIll from './hands';
-import InnsynBlueBox from '../innsyn-blue-box/InnsynBlueBox';
+import HandsIll from './Hands';
+import InnsynBlueBox from '../../atoms/innsyn-blue-box/InnsynBlueBox';
 
 interface Props {
     simple?: boolean;

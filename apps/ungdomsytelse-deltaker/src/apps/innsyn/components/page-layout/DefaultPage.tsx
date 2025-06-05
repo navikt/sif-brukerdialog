@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import PageContentWrapper from './PageContentWrapper';
 
@@ -15,9 +14,7 @@ const DefaultPage = ({ documentTitle, children }: Props) => {
     useDocumentTitle(documentTitle);
     return (
         <div role="main" aria-label="Hovedinnhold">
-            <PageContentWrapper>
-                <PageBoundary>{children}</PageBoundary>
-            </PageContentWrapper>
+            <PageContentWrapper>{children}</PageContentWrapper>
         </div>
     );
 };

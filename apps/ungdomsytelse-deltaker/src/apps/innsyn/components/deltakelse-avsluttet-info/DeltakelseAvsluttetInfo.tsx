@@ -1,5 +1,5 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import InnsynBlueBox from '../innsyn-blue-box/InnsynBlueBox';
+import InnsynBlueBox from '../../atoms/innsyn-blue-box/InnsynBlueBox';
 
 const DeltakelseAvsluttetInfo = () => {
     return (
