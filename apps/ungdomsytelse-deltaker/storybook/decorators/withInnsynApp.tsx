@@ -1,6 +1,5 @@
 import { VStack } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import UngdomsprogrammetHeader from '../../src/apps/innsyn/atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 
 export const withInnsynApp = (Story: any) => {
@@ -13,7 +12,6 @@ export const withInnsynApp = (Story: any) => {
     return (
         <ForsidePageLayout documentTitle="Forside">
             <VStack gap="8">
-                <UngdomsprogrammetHeader />
                 <Story />
             </VStack>
         </ForsidePageLayout>

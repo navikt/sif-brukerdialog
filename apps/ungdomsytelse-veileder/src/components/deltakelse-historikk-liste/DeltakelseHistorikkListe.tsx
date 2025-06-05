@@ -52,6 +52,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                     <Table.Row>
                         <Table.HeaderCell scope="col">Tidspunkt</Table.HeaderCell>
                         <Table.HeaderCell scope="col">Endring</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Beskrivelse</Table.HeaderCell>
                         <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
