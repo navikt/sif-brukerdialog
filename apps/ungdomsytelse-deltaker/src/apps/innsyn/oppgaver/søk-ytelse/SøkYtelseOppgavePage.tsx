@@ -1,6 +1,6 @@
 import { SøkYtelseOppgave } from '@navikt/ung-common';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
-import SøkYtelseOppgavetekst from './part/SøkYtelseOppavetekst';
+import SøkYtelseOppgavetekst from './part/SøkYtelseOppgavetekst';
 
 interface Props {
     oppgave: SøkYtelseOppgave;

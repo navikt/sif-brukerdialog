@@ -3,7 +3,7 @@ import OppgaveUttalelse from './OppgaveUttalelse';
 import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
-import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
+import { OppgaveBase } from '@navikt/ung-common';
 import LøstOppgavebekreftelseInfo from './LøstOppgavebekreftelseInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
@@ -13,7 +13,7 @@ interface Props {
     deltakerNavn: string;
     bekreftelse?: BekreftelseDto;
     oppsummering: React.ReactNode;
-    oppgave: Oppgave | BekreftelseOppgave;
+    oppgave: OppgaveBase;
 }
 
 const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }: Props) => {
@@ -26,6 +26,7 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
                     iconFill={false}
                 />
             </div>
+
             <Heading level="1" size="large">
                 {tekster.sidetittel}
             </Heading>

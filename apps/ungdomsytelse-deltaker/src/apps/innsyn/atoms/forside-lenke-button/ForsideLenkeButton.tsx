@@ -16,7 +16,7 @@ const ForsideLenkeButton = () => {
                 navigate(getAppEnv()[EnvKey.PUBLIC_PATH]);
             }}
             variant="primary"
-            icon={<ArrowLeftIcon />}
+            icon={<ArrowLeftIcon role="presentation" />}
             iconPosition="left">
             Tilbake til oversikten
         </Button>

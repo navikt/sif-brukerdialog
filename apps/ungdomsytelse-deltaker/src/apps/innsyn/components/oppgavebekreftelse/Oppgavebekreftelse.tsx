@@ -28,7 +28,6 @@ const Oppgavebekreftelse = (props: Props) => {
                 {...rest}
                 bekreftelse={oppgave.bekreftelse}
                 oppsummering={oppsummering}
-                deltakerNavn={props.deltakerNavn}
                 oppgave={oppgave}
             />
         );

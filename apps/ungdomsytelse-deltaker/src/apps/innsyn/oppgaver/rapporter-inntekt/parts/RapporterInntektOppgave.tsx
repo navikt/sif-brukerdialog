@@ -51,25 +51,29 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
                     Rapporter inntekt {månedOgÅr}
                 </Heading>
 
-                <FormSummary>
-                    <FormSummary.Header>
-                        <FormSummary.Heading level="3">Oppsummering</FormSummary.Heading>
-                    </FormSummary.Header>
-                    <FormSummary.Answers>
-                        <FormSummary.Answer>
-                            <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
-                            <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
-                        </FormSummary.Answer>
-                        {arbeidstakerOgFrilansInntekt && (
+                <section aria-labelledby="summaryHeading">
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2" id="summaryHeading">
+                                Oppsummering
+                            </FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Inntekt</FormSummary.Label>
-                                <FormSummary.Value>
-                                    <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
-                                </FormSummary.Value>
+                                <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
+                                <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
                             </FormSummary.Answer>
-                        )}
-                    </FormSummary.Answers>
-                </FormSummary>
+                            {arbeidstakerOgFrilansInntekt && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>Inntekt</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </FormSummary.Answers>
+                    </FormSummary>
+                </section>
 
                 <div>
                     <ForsideLenkeButton />
