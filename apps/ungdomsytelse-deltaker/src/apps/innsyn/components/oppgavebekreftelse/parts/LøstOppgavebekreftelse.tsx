@@ -1,6 +1,6 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { Alert, Heading, VStack } from '@navikt/ds-react';
 import OppgaveUttalelse from './OppgaveUttalelse';
-import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import { OppgaveBase } from '@navikt/ung-common';
@@ -38,7 +38,16 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
                     bekreftelse={bekreftelse}
                 />
             )}
+
+            {/* Kan oppstå hvis bruker går direkte inn på en besvart oppgave etter å ha send inn svar */}
+            {oppgave.status === OppgaveStatus.LØST && !bekreftelse ? (
+                <Alert variant="info" size="small" inline>
+                    Informasjon om hva du svarte er ikke tilgjengelig enda. Du kan prøve å laste siden inn på nytt.
+                </Alert>
+            ) : null}
+
             <LøstOppgavebekreftelseInfo oppgaveStatus={oppgave.status} />
+
             <div>
                 <ForsideLenkeButton />
             </div>
