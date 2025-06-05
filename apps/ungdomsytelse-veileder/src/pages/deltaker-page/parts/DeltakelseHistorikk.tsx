@@ -5,7 +5,6 @@ import { getDeltakelseHistorikkTilInnslag } from '../../../utils/deltakelseUtils
 
 interface Props {
     deltakelseId?: string;
-    søktTidspunkt?: Date;
 }
 
 const HistorikkHeader = () => {
@@ -16,7 +15,7 @@ const HistorikkHeader = () => {
     );
 };
 
-const DeltakelseHistorikk = ({ deltakelseId, søktTidspunkt }: Props) => {
+const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     const historikk = useDeltakelserHistorikk(deltakelseId || '', !!deltakelseId);
 
     if (historikk.isLoading) {
@@ -51,9 +50,7 @@ const DeltakelseHistorikk = ({ deltakelseId, søktTidspunkt }: Props) => {
                 Historikkinnslagene er ikke optimale enda, men vi satser på å forbedre dem snart. F.eks. innsendt søknad
                 fra deltaker vises som &quot;Endret periode&quot;.
             </Alert> */}
-            <DeltakelseHistorikkListe
-                historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [], søktTidspunkt)}
-            />
+            <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>
     );
 };
