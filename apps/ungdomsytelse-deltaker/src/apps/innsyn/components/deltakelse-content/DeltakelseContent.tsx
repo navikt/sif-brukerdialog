@@ -1,11 +1,7 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
-import {
-    erDeltakelseAvsluttet,
-    erDeltakelseStartet,
-    visHuskelappOmInntektsrapportering,
-} from '../../utils/deltakelseUtils';
+import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakelseUtils';
 import OppgaverList from '../oppgaver-list/OppgaverList';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
@@ -22,8 +18,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
 
-    const visInfoOmInntektsrapportering =
-        deltakelseStartet && visHuskelappOmInntektsrapportering() && !deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering = deltakelseStartet && !deltakelseAvsluttet;
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)

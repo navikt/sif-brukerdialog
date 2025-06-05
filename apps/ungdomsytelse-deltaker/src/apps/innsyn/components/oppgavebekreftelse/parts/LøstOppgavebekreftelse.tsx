@@ -6,7 +6,7 @@ import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import { BekreftelseOppgave, Oppgave } from '@navikt/ung-common';
 import LøstOppgavebekreftelseInfo from './LøstOppgavebekreftelseInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;

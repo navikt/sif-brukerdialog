@@ -4,7 +4,7 @@ import { OppgaveStatus, SøkYtelseOppgave } from '@navikt/ung-common';
 import getLenker from '../../../../../utils/lenker';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
 
 interface Props {
     oppgave: SøkYtelseOppgave;

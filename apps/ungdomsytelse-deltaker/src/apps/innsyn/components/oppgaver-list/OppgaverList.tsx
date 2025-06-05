@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { Oppgave } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
-import { getOppgaveStatusText } from '../../utils/getOppgaveStatusText';
+import { getOppgaveStatusText } from '../../utils/textUtils';
 import { getOppgaveInfo, getOppgaveTittel } from '../../utils/textUtils';
 import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
 import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';

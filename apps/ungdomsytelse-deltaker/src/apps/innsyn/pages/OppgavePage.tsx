@@ -3,12 +3,12 @@ import { Oppgavetype } from '@navikt/ung-common';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
+import { EndretSluttdatoOppgavePage } from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
 import { EndretStartdatoOppgavePage } from '../oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import { EndretSluttdatoOppgavePage } from '../oppgaver/endret-sluttdato-oppgave/EndretSluttdatoOppgavePage';
-import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt-oppgave/RapporterInntektOppgavePage';
-import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse-oppgave/SøkYtelseOppgavePage';
+import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
 import OppgaveIkkeFunnetPage from '../oppgaver/oppgave-ikke-funnet/OppgaveIkkeFunnetPage';
-import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt-oppgave/KorrigertInntektOppgavePage';
+import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
+import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse/SøkYtelseOppgavePage';
 
 /** Url params */
 type OppgavePageParams = {

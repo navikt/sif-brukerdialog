@@ -12,7 +12,7 @@ import InntektForm from '../../../forms/inntekt-form/InntektForm';
 import { TallSvar } from '@navikt/sif-common-ui';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
-import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
 
 interface Props {
     deltakerNavn: string;

@@ -9,7 +9,7 @@ import { EnvKey } from '@navikt/sif-common-env';
 import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../../utils/getOppgaveStatusText';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
