@@ -47,8 +47,8 @@ const OppgaveLinkPanel = ({
                         <OppgaveStatusTag
                             oppgaveStatus={oppgaveStatus}
                             oppgaveStatusTekst={oppgaveStatusTekst}
-                            size="small"
                             variant={oppgaveStatusTagVariant}
+                            size="small"
                         />
                     </div>
                 </VStack>

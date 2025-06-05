@@ -7,9 +7,6 @@ interface Props {
 
 const LøstOppgavebekreftelseInfo = ({ oppgaveStatus }: Props) => {
     switch (oppgaveStatus) {
-        case OppgaveStatus.ULØST:
-        case OppgaveStatus.LØST:
-            return null;
         case OppgaveStatus.UTLØPT:
             return (
                 <Alert variant="warning">

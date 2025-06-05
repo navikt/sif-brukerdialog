@@ -22,11 +22,11 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
             {oppgaver.map((oppgave, index) => (
                 <OppgaveLinkPanel
                     key={index}
-                    oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                     beskrivelse={visBeskrivelse ? getOppgaveInfo(oppgave, intl) : undefined}
                     tittel={getOppgaveTittel(oppgave, intl)}
                     oppgaveStatus={oppgave.status}
                     oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
+                    oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                     onClick={() => {
                         navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
                     }}

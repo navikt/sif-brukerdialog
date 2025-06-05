@@ -1,5 +1,5 @@
 import { Bleed, Box, Heading, Hide, Show, VStack } from '@navikt/ds-react';
-import MannSvg from './Mann';
+import MannSvg from '../../atoms/svg/Mann';
 
 const UngdomsprogrammetHeader = () => {
     return (
@@ -41,7 +41,6 @@ const UngdomsprogrammetHeader = () => {
                                 </span>
                             </Bleed>
                         </div>
-                        {/* </Hide> */}
                     </div>
                 </VStack>
             </Show>
