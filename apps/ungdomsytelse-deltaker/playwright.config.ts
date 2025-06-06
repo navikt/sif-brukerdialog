@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './e2e/playwright/playwright.env';
 
 export default defineConfig({
     testDir: './e2e/playwright/tests',
@@ -25,6 +24,5 @@ export default defineConfig({
         command: 'yarn demo:start',
         url: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-deltaker/',
         reuseExistingServer: true,
-        env: playwrightEnv,
     },
 });

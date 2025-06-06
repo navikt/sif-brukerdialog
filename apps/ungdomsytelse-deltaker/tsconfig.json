@@ -6,5 +6,13 @@
         "baseUrl": "./"
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist", "dist-demo", "demo"],
-    "include": ["src/**/*", "./mock/msw/**/*", "storybook/**/*", "./vite-demo-env.d.ts", "./e2e/playwright/**/*"]
+    "include": [
+        "src/**/*",
+        "./mock/msw/**/*",
+        "storybook/**/*",
+        "./vite-demo-env.d.ts",
+        "./e2e/playwright/**/*",
+        "vite.config.ts",
+        "vite-env.d.ts"
+    ]
 }
