@@ -1,21 +1,18 @@
 // /* eslint-disable no-console */
 
 import {
-    ArbeidsgivereDto,
-    BarnOppslagListe,
-    Søker,
     UngdomsytelseInntektsrapportering,
     UngdomsytelseOppgavebekreftelse,
 } from '@navikt/k9-brukerdialog-prosessering-api';
-import { DeltakelsePeriodInfo, OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { ScenarioType } from '../../../src/dev/scenarioer';
 import { getScenarioMockData } from './scenarioes';
 
 export interface ScenarioData {
-    søker: Søker;
-    barn: BarnOppslagListe;
-    arbeidsgiver: ArbeidsgivereDto;
-    deltakelser: DeltakelsePeriodInfo[];
+    søker: any;
+    barn: any;
+    arbeidsgiver: any;
+    deltakelser: any;
 }
 
 const localStorageKey = 'ungdomsytelse-deltaker-mock-db';
@@ -67,6 +64,7 @@ const setOppgavebekreftelse = (oppgaveReferanse: string, oppgavebekreftelse: Ung
     });
     save(db);
 };
+
 const setRapportertInntekt = (oppgaveReferanse: string, rapporterInntektOppgave: UngdomsytelseInntektsrapportering) => {
     db.deltakelser[0].oppgaver = db.deltakelser[0].oppgaver.map((oppgave) => {
         if (oppgaveReferanse !== oppgave.oppgaveReferanse) {
