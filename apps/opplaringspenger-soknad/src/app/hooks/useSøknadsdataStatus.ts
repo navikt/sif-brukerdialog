@@ -19,6 +19,7 @@ import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { Institusjoner } from '../api/institusjonService';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -29,6 +30,7 @@ const getStepSøknadsdataFromStepFormValues = (
     stepFormValues: StepFormValues,
     state: SøknadContextState,
     registrerteBarn: RegistrertBarn[],
+    institusjoner: Institusjoner,
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -39,7 +41,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, registrerteBarn);
         case StepId.KURS:
-            return getKursSøknadsdataFromFormValues(formValues as KursFormValues);
+            return getKursSøknadsdataFromFormValues(formValues as KursFormValues, institusjoner);
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:
@@ -58,6 +60,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
     state: SøknadContextState,
+    institusjoner: Institusjoner,
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
@@ -66,6 +69,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
             stepFormValues,
             state,
             state.registrerteBarn,
+            institusjoner,
         );
 
         if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
@@ -79,7 +83,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
     const [invalidSteps, setInvalidSteps] = useState<StepId[]>([]);
 
     const { state } = useSøknadContext();
-    const { søknadsdata } = state;
+    const { søknadsdata, institusjoner } = state;
     const { stepFormValues } = useStepFormValuesContext();
 
     useEffectOnce(() => {
@@ -88,7 +92,10 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
         const precedingSteps = getPrecedingSteps(currentStep.index, stepConfig);
 
         precedingSteps.forEach((step) => {
-            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false) {
+            if (
+                isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state, institusjoner) ===
+                false
+            ) {
                 ip.push(step);
             }
         });
