@@ -61,6 +61,7 @@ export default defineConfig({
     ],
     define: {
         __IS_GITHUB_PAGES__: false,
+        __IS_E2E__: false,
     },
     server: {
         port: 8080,
