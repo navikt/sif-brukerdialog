@@ -1,10 +1,10 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
-import { OppgaveBase, OppgaveStatus } from '@navikt/ung-common';
-import { getOppgaveStatusText } from '../../utils/getOppgaveStatusText';
+import { OppgaveStatus } from '@navikt/ung-common';
 import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
 
 interface Props {
-    oppgave: OppgaveBase;
+    oppgaveStatus: OppgaveStatus;
+    oppgaveStatusTekst: string;
     variant?: OppgaveStatusTagVariant;
     size?: 'small' | 'medium';
     iconFill?: boolean;
@@ -12,16 +12,22 @@ interface Props {
 
 export type OppgaveStatusTagVariant = 'tag' | 'text';
 
-const OppgaveStatusTag = ({ oppgave, variant, size = 'small', iconFill }: Props): React.ReactNode => {
+const OppgaveStatusTag = ({
+    oppgaveStatus,
+    oppgaveStatusTekst,
+    variant,
+    size = 'small',
+    iconFill,
+}: Props): React.ReactNode => {
     if (variant === 'text') {
         return (
             <BodyShort className="text-text-subtle" size={size}>
-                {getOppgaveStatusText(oppgave)}
+                {oppgaveStatusTekst}
             </BodyShort>
         );
     }
-    const text = <Box paddingInline="1">{getOppgaveStatusText(oppgave)}</Box>;
-    switch (oppgave.status) {
+    const text = <Box paddingInline="1">{oppgaveStatusTekst}</Box>;
+    switch (oppgaveStatus) {
         case OppgaveStatus.LØST:
         case OppgaveStatus.LUKKET:
             return (
@@ -39,7 +45,7 @@ const OppgaveStatusTag = ({ oppgave, variant, size = 'small', iconFill }: Props)
             return (
                 <Tag variant="neutral" size={size}>
                     <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgave.status} fill={iconFill} />
+                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
                     </Box>
                     {text}
                 </Tag>
@@ -48,7 +54,7 @@ const OppgaveStatusTag = ({ oppgave, variant, size = 'small', iconFill }: Props)
             return (
                 <Tag variant="neutral" size={size}>
                     <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgave.status} fill={iconFill} />
+                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
                     </Box>
                     {text}
                 </Tag>

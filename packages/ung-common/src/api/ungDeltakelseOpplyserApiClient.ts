@@ -1,5 +1,5 @@
 import { getMaybeEnv } from '@navikt/sif-common-env';
-import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
+import { client } from '@navikt/ung-deltakelse-opplyser-api';
 import { v4 } from 'uuid';
 import { isUnauthorized } from '.';
 

@@ -6,7 +6,7 @@ import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { Spørsmål } from '../types';
 import ExternalLink from '../components/external-link/ExternalLink';
-import DefaultPage from '../../innsyn/components/page-layout/DefaultPage';
+import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
 
 const VelkommenPage = () => {
     const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
@@ -25,7 +25,7 @@ const VelkommenPage = () => {
     };
 
     return (
-        <DefaultPage documentTitle="Velkommen - Søknad om ungdomsprogramytelse">
+        <DefaultPageLayout documentTitle="Velkommen - Søknad om ungdomsprogramytelse">
             <VStack gap="8">
                 <SøknadHeader />
 
@@ -60,7 +60,7 @@ const VelkommenPage = () => {
                     </form>
                 </div>
             </VStack>
-        </DefaultPage>
+        </DefaultPageLayout>
     );
 };
 

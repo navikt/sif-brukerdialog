@@ -3,22 +3,21 @@ import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkInnslag } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { UtvidetRevisjonstype } from '../../types/UtvidetRevisjonstype';
+import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
 }
-
-const getRevisjonstypeTekst = (type: UtvidetRevisjonstype): string => {
+const getEndringstypeTekst = (type: Endringstype): string => {
     switch (type) {
-        case UtvidetRevisjonstype.OPPRETTET:
+        case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
+            return 'Søknad sendt inn';
+        case Endringstype.DELTAKER_MELDT_INN:
             return 'Deltakelse opprettet';
-        case UtvidetRevisjonstype.ENDRET:
-            return 'Endret periode';
-        case UtvidetRevisjonstype.SLETTET:
-            return 'Slettet';
-        case UtvidetRevisjonstype.SØKNAD_INNSENDT:
-            return 'Søknad mottatt';
+        case Endringstype.ENDRET_SLUTTDATO:
+            return 'Endret sluttdato';
+        case Endringstype.ENDRET_STARTDATO:
+            return 'Endret startdato';
         default:
             return 'Ukjent';
     }
@@ -53,18 +52,18 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                     <Table.Row>
                         <Table.HeaderCell scope="col">Tidspunkt</Table.HeaderCell>
                         <Table.HeaderCell scope="col">Endring</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Beskrivelse</Table.HeaderCell>
                         <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {synligeHistorikkInnslag.map(({ revisjonstype, tidspunkt, utfører }, index) => {
+                    {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
                             <Table.Row key={index} ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
-                                <Table.DataCell>
-                                    {getRevisjonstypeTekst(revisjonstype as UtvidetRevisjonstype)}
-                                </Table.DataCell>
-                                <Table.DataCell>{utfører}</Table.DataCell>
+                                <Table.DataCell>{getEndringstypeTekst(endringstype)}</Table.DataCell>
+                                <Table.DataCell>{endring}</Table.DataCell>
+                                <Table.DataCell>{aktør}</Table.DataCell>
                             </Table.Row>
                         );
                     })}

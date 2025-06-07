@@ -2,6 +2,8 @@ import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     Oppgave,
+    OppgaveBase,
+    OppgaveStatus,
     Oppgavetype,
     RapporterInntektOppgave,
 } from '@navikt/ung-common';
@@ -80,6 +82,25 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
             };
         default:
             throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';
+    }
+};
+
+const renderDatoOgKlokkeslett = (dato?: Date) => {
+    return dato ? dateFormatter.compactWithTime(dato) : '';
+};
+
+export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
+    switch (oppgave.status) {
+        case OppgaveStatus.LØST:
+            return `Sendt inn ${renderDatoOgKlokkeslett(oppgave.løstDato)}`;
+        case OppgaveStatus.ULØST:
+            return `Frist: ${dateFormatter.full(oppgave.svarfrist)}`;
+        case OppgaveStatus.AVBRUTT:
+            return 'Avbrutt';
+        case OppgaveStatus.LUKKET:
+            return `Sendt inn ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
+        case OppgaveStatus.UTLØPT:
+            return `Utløpt`;
     }
 };
 

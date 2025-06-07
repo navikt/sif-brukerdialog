@@ -1,0 +1,15 @@
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { Oppgave } from '@navikt/ung-common';
+import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
+
+export const useRegistrerOppgaveSomÅpnet = (oppgave?: Oppgave) => {
+    const { mutateAsync } = useMarkerOppgaveSomÅpnet();
+    useEffectOnce(async () => {
+        if (!oppgave) {
+            return;
+        }
+        if (oppgave.åpnetDato === undefined) {
+            await mutateAsync(oppgave.oppgaveReferanse);
+        }
+    });
+};

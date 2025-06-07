@@ -1,9 +1,8 @@
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
-import { UtvidetRevisjonstype } from '../types/UtvidetRevisjonstype';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
@@ -65,67 +64,15 @@ export const getStartdatobegrensningForDeltaker = (
 };
 
 export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto): DeltakelseHistorikkInnslag => {
-    switch (historikk.revisjonstype) {
-        case Revisjonstype.OPPRETTET:
-            return {
-                tidspunkt: dayjs.utc(historikk.opprettetTidspunkt).toDate(),
-                revisjonstype: historikk.revisjonstype,
-                utfører: historikk.opprettetAv || 'ukjent',
-            };
-        case Revisjonstype.ENDRET:
-            return {
-                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
-                revisjonstype: historikk.revisjonstype,
-                utfører: historikk.endretAv || 'ukjent',
-            };
-        case Revisjonstype.SLETTET:
-            return {
-                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
-                revisjonstype: historikk.revisjonstype,
-                utfører: historikk.endretAv || 'ukjent',
-            };
-        case Revisjonstype.UKJENT:
-            return {
-                tidspunkt: dayjs.utc(historikk.endretTidspunkt).toDate(),
-                revisjonstype: historikk.revisjonstype,
-                utfører: historikk.endretAv || 'ukjent',
-            };
-    }
+    return {
+        ...historikk,
+        tidspunkt: dayjs.utc(historikk.tidspunkt).toDate(),
+        aktør: historikk.endringstype === Endringstype.DELTAKER_HAR_SØKT_YTELSE ? 'Deltaker' : historikk.aktør,
+    };
 };
 
-export const getDeltakelseHistorikkTilInnslag = (
-    historikk: DeltakelseHistorikkDto[],
-    søktTidspunkt: Date | undefined,
-): DeltakelseHistorikkInnslag[] => {
-    const innslag = historikk
+export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
+    return historikk
         .map(mapDeltakelseHistorikkTilInnslag)
         .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
-
-    if (søktTidspunkt === undefined) {
-        return innslag;
-    }
-
-    /** TODO - hacker til søknad fra deltaker */
-    // Finn tinnslag i listen som har deltaker som kilde, og har typen endret periode og tidspunkt som er lik søktTidspunkt.
-    const erPotensiellSøknad = (i: DeltakelseHistorikkInnslag): boolean => {
-        return (
-            i.revisjonstype === UtvidetRevisjonstype.ENDRET &&
-            i.utfører.includes('deltaker') &&
-            dayjs(i.tidspunkt).isSame(søktTidspunkt, 'day')
-        );
-    };
-    /** Hvis vi har flere treff så gjør vi ikke noe */
-    if (innslag.filter(erPotensiellSøknad).length !== 1) {
-        return innslag;
-    }
-
-    const søknadInnslagIndex = innslag.findIndex(erPotensiellSøknad);
-    return innslag.map((i, index) => {
-        return index === søknadInnslagIndex && søktTidspunkt
-            ? {
-                  ...i,
-                  revisjonstype: UtvidetRevisjonstype.SØKNAD_INNSENDT,
-              }
-            : i;
-    });
 };

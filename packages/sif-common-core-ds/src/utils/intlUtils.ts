@@ -14,6 +14,9 @@ export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
         text: (id: Keys, values?: any): string => {
             return intl.formatMessage({ id }, values);
         },
+        html: (id: Keys, values?: any): string => {
+            return intl.formatMessage({ id }, values);
+        },
         number: (value: number, options?: FormatNumberOptions) => intl.formatNumber(value, options),
         date: (date: Date, format: IntlDateFormat) => {
             return intl.formatDate(date, intlDateFormats[format]);

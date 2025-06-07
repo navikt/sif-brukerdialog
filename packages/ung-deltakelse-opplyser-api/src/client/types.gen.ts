@@ -216,17 +216,20 @@ export type EndretSluttdatoOppgaveDto = {
 };
 
 export type DeltakelseHistorikkDto = {
+    tidspunkt: string;
+    endringstype: Endringstype;
     revisjonstype: Revisjonstype;
-    revisjonsnummer: number;
-    id: string;
-    fom: string;
-    tom?: string;
-    opprettetAv?: string;
-    opprettetTidspunkt: string;
-    endretAv: string;
-    endretTidspunkt: string;
-    søktTidspunkt?: string;
+    endring: string;
+    aktør: string;
 };
+
+export enum Endringstype {
+    DELTAKER_MELDT_INN = 'DELTAKER_MELDT_INN',
+    ENDRET_STARTDATO = 'ENDRET_STARTDATO',
+    ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
+    DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
+    UKJENT = 'UKJENT',
+}
 
 export enum Revisjonstype {
     OPPRETTET = 'OPPRETTET',

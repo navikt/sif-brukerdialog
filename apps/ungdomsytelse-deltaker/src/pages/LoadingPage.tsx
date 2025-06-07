@@ -1,13 +1,13 @@
 import { Loader, VStack } from '@navikt/ds-react';
-import DefaultPage from '../apps/innsyn/components/page-layout/DefaultPage';
+import DefaultPageLayout from '../apps/innsyn/pages/layout/DefaultPageLayout';
 
 const LoadingPage = () => {
     return (
-        <DefaultPage documentTitle="Henter informasjon">
+        <DefaultPageLayout documentTitle="Henter informasjon">
             <VStack align="center" justify="center" marginBlock="10">
                 <Loader size="3xlarge" />
             </VStack>
-        </DefaultPage>
+        </DefaultPageLayout>
     );
 };
 

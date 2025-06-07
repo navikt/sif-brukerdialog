@@ -1,8 +1,5 @@
-import { Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
-import { UtvidetRevisjonstype } from './UtvidetRevisjonstype';
+import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api';
 
-export interface DeltakelseHistorikkInnslag {
+export interface DeltakelseHistorikkInnslag extends Omit<DeltakelseHistorikkDto, 'tidspunkt'> {
     tidspunkt: Date;
-    revisjonstype: UtvidetRevisjonstype | Revisjonstype;
-    utfører: string;
 }

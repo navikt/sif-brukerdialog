@@ -220,19 +220,22 @@ export const zEndretSluttdatoOppgaveDto = z.object({
     forrigeSluttdato: z.string().date().optional(),
 });
 
+export const zEndringstype = z.enum([
+    'DELTAKER_MELDT_INN',
+    'ENDRET_STARTDATO',
+    'ENDRET_SLUTTDATO',
+    'DELTAKER_HAR_SØKT_YTELSE',
+    'UKJENT',
+]);
+
 export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
 
 export const zDeltakelseHistorikkDto = z.object({
+    tidspunkt: z.string().datetime(),
+    endringstype: zEndringstype,
     revisjonstype: zRevisjonstype,
-    revisjonsnummer: z.coerce.bigint(),
-    id: z.string().uuid(),
-    fom: z.string().date(),
-    tom: z.string().date().optional(),
-    opprettetAv: z.string().optional(),
-    opprettetTidspunkt: z.string().datetime(),
-    endretAv: z.string(),
-    endretTidspunkt: z.string().datetime(),
-    søktTidspunkt: z.string().datetime().optional(),
+    endring: z.string(),
+    aktør: z.string(),
 });
 
 export const zKontonummerDto = z.object({

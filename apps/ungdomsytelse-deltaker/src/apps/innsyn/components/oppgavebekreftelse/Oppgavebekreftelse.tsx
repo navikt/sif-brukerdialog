@@ -1,11 +1,11 @@
-import { BekreftelseOppgave, OppgaveStatus } from '@navikt/ung-common';
-import UløstOppgavebekreftelse from './UløstOppgavebekreftelse';
-import LøstOppgavebekreftelse from './LøstOppgavebekreftelse';
 import { usePrevious } from '@navikt/sif-common-hooks';
+import { BekreftelseOppgave, OppgaveStatus } from '@navikt/ung-common';
+import LøstOppgavebekreftelse from './parts/LøstOppgavebekreftelse';
+import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';
 
 export interface OppgavebekreftelseTekster {
     sidetittel: string;
-    oppgavetittel: string;
+    oppgavetittel: React.ReactNode;
     harTilbakemeldingSpørsmål: string;
 }
 interface Props {
@@ -28,7 +28,6 @@ const Oppgavebekreftelse = (props: Props) => {
                 {...rest}
                 bekreftelse={oppgave.bekreftelse}
                 oppsummering={oppsummering}
-                deltakerNavn={props.deltakerNavn}
                 oppgave={oppgave}
             />
         );
