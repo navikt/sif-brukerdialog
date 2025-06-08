@@ -8,7 +8,7 @@
     "exclude": ["node_modules", "src/build", "**.js", "dist", "dist-demo", "demo"],
     "include": [
         "src/**/*",
-        "./mock/msw/**/*",
+        "./mock/**/*",
         "storybook/**/*",
         "./vite-demo-env.d.ts",
         "./e2e/playwright/**/*",

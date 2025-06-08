@@ -2,13 +2,15 @@ import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { mockUtils } from '../../mock/msw/mocks/mockUtils';
 import { getAppEnv } from '../utils/appEnv';
-import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
+import { Scenario, scenarioer } from './scenarioer';
+import { store } from '../../mock/state/store';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
-    const [scenarioType, setScenarioType] = useState<Scenario>(getScenarioFromLocalStorage());
+    const initialScenario = scenarioer.find((s) => s.value === store.getScenario()) || scenarioer[0];
+
+    const [scenarioType, setScenarioType] = useState<Scenario>(initialScenario);
 
     if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
         return null;
@@ -67,8 +69,7 @@ const DevFooter = () => {
                             <Button
                                 type="button"
                                 onClick={() => {
-                                    saveScenarioToLocalStorage(scenarioType);
-                                    mockUtils.setScenario(scenarioType.value);
+                                    store.setScenario(scenarioType.value);
                                     window.location.reload();
                                 }}>
                                 Velg
@@ -77,7 +78,7 @@ const DevFooter = () => {
                                 type="button"
                                 variant="secondary"
                                 onClick={() => {
-                                    mockUtils.setScenario(scenarioType.value);
+                                    store.setScenario(scenarioType.value);
                                     window.location.reload();
                                 }}>
                                 Reset scenario

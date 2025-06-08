@@ -2,10 +2,13 @@ import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
 
 export async function enableMocking() {
     const ENV = getMaybeEnv('ENV');
-    if (ENV !== 'development') {
+
+    alert(import.meta.env.MODE);
+    if (ENV !== 'development' || import.meta.env.MODE === 'e2e') {
         return;
     }
-    const { worker } = await import('./browser');
+
+    const { worker } = await import('./msw/browser');
     if (document.location.pathname === '/') {
         document.location.replace(getRequiredEnv('PUBLIC_PATH'));
     }

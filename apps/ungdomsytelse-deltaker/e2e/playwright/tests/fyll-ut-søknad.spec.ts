@@ -1,11 +1,13 @@
-import { expect, test } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockRoutes';
 import AxeBuilder from '@axe-core/playwright'; // 1
+import { expect, test } from '@playwright/test';
+import { registerMockRoutes } from '../utils/registerMockRoutes';
+import { setNow } from '../utils/setNow';
+import { memoryStore } from '../../../mock/state/memoryStore';
+import { ScenarioType } from '../../../mock/scenarios/types';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
-    await setupMockRoutes(page, context);
+    await registerMockRoutes(page, context);
 });
 
 const testAccessibility = async (page) => {
@@ -14,6 +16,8 @@ const testAccessibility = async (page) => {
 };
 
 test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
+    memoryStore.setScenario(ScenarioType.harIkkeSøkt);
+
     await page.goto(`./`);
 
     // 1. Accessibility test before starting the application
@@ -52,9 +56,9 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByText('Stemmer informasjonen om barnet?Ja').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
     await page.locator('header').filter({ hasText: 'Kontonummer for' }).getByRole('link').click();
-    await page.getByText('Nei').click();
+    await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
-    await page.getByText('Nei').click();
+    await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
     await page.getByText('Stemmer det at kontonummeret ditt er 1234 56 78901?Nei').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();

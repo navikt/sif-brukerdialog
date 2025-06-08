@@ -8,9 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config();
 
-export const getAppSettings = (): AppEnv & { VITE: true } => ({
-    VITE: true,
-
+export const getAppSettings = (): AppEnv => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
@@ -61,7 +59,6 @@ export default defineConfig({
     ],
     define: {
         __IS_GITHUB_PAGES__: false,
-        __IS_E2E__: false,
     },
     server: {
         port: 8080,

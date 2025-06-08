@@ -46,6 +46,7 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
 });
 
 export default defineConfig({
+    mode: 'e2e',
     plugins: [
         tailwindcss(),
         react({
