@@ -8,11 +8,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config();
 
-export const getAppSettings = (): AppEnv => ({
+export const getAppSettings = (): AppEnv & { VITE: string } => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+    VITE: 'true',
 
     SIF_PUBLIC_PERSONALIA_URL: `${process.env.SIF_PUBLIC_PERSONALIA_URL}`,
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
