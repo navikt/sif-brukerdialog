@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { DeltakelsePeriode, formaterKontonummer, SendSøknadOppgave } from '@navikt/ung-common';
+import { DeltakelsePeriode, formaterKontonummer, SøkYtelseOppgave } from '@navikt/ung-common';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
@@ -16,7 +16,7 @@ interface SøknadProviderProps {
     kontonummer?: string;
     mellomlagring?: MellomlagringDTO;
     søker: Søker;
-    søknadOppgave: SendSøknadOppgave;
+    søknadOppgave: SøkYtelseOppgave;
     deltakelsePeriode: DeltakelsePeriode;
 }
 

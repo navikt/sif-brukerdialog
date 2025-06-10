@@ -54,7 +54,7 @@ export interface RapporterInntektOppgave extends OppgaveBase {
     };
 }
 
-export interface SendSøknadOppgave extends OppgaveBase {
+export interface SøkYtelseOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.SØK_YTELSE;
     oppgavetypeData: {
         fomDato: Date;
@@ -66,4 +66,4 @@ export type Oppgave =
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | RapporterInntektOppgave
-    | SendSøknadOppgave;
+    | SøkYtelseOppgave;

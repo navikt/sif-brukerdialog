@@ -38,36 +38,13 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
                     </HStack>
                 ) : null}
 
-                {/* <HStack gap="2">
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={() => {
-                            logError({
-                                name: 'feiltype1',
-                                message: 'Dette er en test-feil',
-                                stack: 'stacktrace her',
-                            } as Error);
-                        }}>
-                        Trigger feil
-                    </Button>
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={() => {
-                            logInfo(['Hva er dette?', { data: { navn: 'test' } }]);
-                        }}>
-                        Trigger info
-                    </Button>
-                </HStack> */}
-
                 <DeltakerInfo deltaker={deltaker} />
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
 
                 <SlettDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
 
-                <DeltakelseHistorikk deltakelseId={deltakelse.id} søktTidspunkt={deltakelse.søktTidspunkt} />
+                <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
         </Box>
     );

@@ -37,7 +37,7 @@ const nb = {
     'oppgavetype.RAPPORTER_INNTEKT.info.ikkeRapportert': 'Du meldte at du ikke hadde inntekt i {måned}.',
 
     'oppgavetype.SØK_YTELSE.sidetittel': 'Søknad for ungdomsprogramytelsen',
-    'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdomsprogramytelsen',
+    'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
     'oppgavetype.SØK_YTELSE.info': 'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
 };
 

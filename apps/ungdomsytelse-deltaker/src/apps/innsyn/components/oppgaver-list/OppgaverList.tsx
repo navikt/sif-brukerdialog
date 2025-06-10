@@ -1,9 +1,9 @@
 import { VStack } from '@navikt/ds-react';
-import { Oppgave } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
-import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
-import { getOppgaveInfo, getOppgaveTittel } from '../../utils/textUtils';
+import { Oppgave } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
+import { getOppgaveInfo, getOppgaveStatusText, getOppgaveTittel } from '../../utils/textUtils';
+import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
 import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
@@ -21,10 +21,11 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
             {oppgaver.map((oppgave, index) => (
                 <OppgaveLinkPanel
                     key={index}
-                    oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                     beskrivelse={visBeskrivelse ? getOppgaveInfo(oppgave, intl) : undefined}
                     tittel={getOppgaveTittel(oppgave, intl)}
-                    oppgave={oppgave}
+                    oppgaveStatus={oppgave.status}
+                    oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
+                    oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                     onClick={() => {
                         navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
                     }}

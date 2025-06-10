@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { enableMocking } from '../mock/msw/mocking';
+import { enableMocking } from '../mock/enableMocking';
 import App from './App';
 
 enableMocking().then(() =>

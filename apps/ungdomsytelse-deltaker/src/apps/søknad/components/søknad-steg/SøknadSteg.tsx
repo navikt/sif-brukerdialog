@@ -6,7 +6,7 @@ import { Steg } from '../../types';
 import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
-import DefaultPage from '../../../innsyn/components/page-layout/DefaultPage';
+import DefaultPageLayout from '../../../innsyn/pages/layout/DefaultPageLayout';
 
 interface Props {
     steg: Steg;
@@ -29,7 +29,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     const activeIndex = getSkjemaStegIndex(steg) + 1;
 
     return (
-        <DefaultPage documentTitle={`${tittel} - Søknad om ungdomsprogramytelse`}>
+        <DefaultPageLayout documentTitle={`${tittel} - Søknad om ungdomsprogramytelse`}>
             <section aria-label="Skjema">
                 <VStack gap="8">
                     <SøknadHeader />
@@ -63,7 +63,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                     />
                 </VStack>
             </section>
-        </DefaultPage>
+        </DefaultPageLayout>
     );
 };
 

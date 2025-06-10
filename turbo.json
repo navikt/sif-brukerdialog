@@ -5,6 +5,9 @@
         "demo:build": {
             "outputs": ["dist-demo/**"]
         },
+        "e2e:build": {
+            "outputs": ["dist-demo/**"]
+        },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build"]
