@@ -7,7 +7,6 @@ on:
             - main
         paths:
             - 'apps/pleiepenger-i-livets-sluttfase-soknad/**/*'
-            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 

@@ -7,7 +7,6 @@ on:
             - main
         paths:
             - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**/*'
-            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 

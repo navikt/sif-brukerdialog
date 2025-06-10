@@ -7,7 +7,6 @@ on:
             - main
         paths:
             - 'apps/pleiepenger-sykt-barn/**/*'
-            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 

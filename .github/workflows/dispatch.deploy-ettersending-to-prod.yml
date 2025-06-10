@@ -7,7 +7,6 @@ on:
             - main
         paths:
             - 'apps/sif-ettersending/**/*'
-            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 
