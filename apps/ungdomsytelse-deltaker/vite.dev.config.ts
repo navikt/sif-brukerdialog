@@ -15,7 +15,6 @@ export const getAppSettings = (): AppEnv & { VITE: string } => ({
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VITE: 'true',
 
-    SIF_PUBLIC_PERSONALIA_URL: `${process.env.SIF_PUBLIC_PERSONALIA_URL}`,
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
