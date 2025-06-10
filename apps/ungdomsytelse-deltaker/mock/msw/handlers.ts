@@ -58,6 +58,7 @@ export const getHandlers = () => [
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);
             mockUtils.setOppgavebekreftelse(parsed.oppgave.oppgaveReferanse, parsed);
         } catch (e) {
+            // eslint-disable-next-line no-console
             console.error(e);
         }
         return new HttpResponse(null, { status: 200 });

@@ -1,9 +1,6 @@
 // import { deltakelserMockStorage } from '../../mock/msw/handlers/mockStorage';
 
-export enum ScenarioType {
-    'harIkkeSøkt' = 'harIkkeSøkt',
-    'harSøkt' = 'harSøkt',
-}
+import { ScenarioType } from '../../mock/scenarios/types';
 
 export interface Scenario {
     name: string;
@@ -19,6 +16,10 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Har søkt',
         value: ScenarioType.harSøkt,
+    },
+    {
+        name: 'Er ikke meldt inn',
+        value: ScenarioType.ikkeMeldtInn,
     },
 ];
 
