@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { registerMockRoutes } from '../utils/registerMockRoutes';
 import { setNow } from '../utils/setNow';
 import { memoryStore } from '../../../mock/state/memoryStore';
-import { ScenarioType } from '../../../src/dev/scenarioer';
+import { ScenarioType } from '../../../mock/scenarios/types';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);

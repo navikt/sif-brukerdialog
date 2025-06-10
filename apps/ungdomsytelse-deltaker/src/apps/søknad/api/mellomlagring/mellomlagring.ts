@@ -1,4 +1,4 @@
-import { MellomlagringControllerService } from '@navikt/k9-brukerdialog-prosessering-api';
+import { MellomlagringController as MellomlagringControllerService } from '@navikt/k9-brukerdialog-prosessering-api';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { jsonSort } from '@navikt/sif-common-utils';

@@ -117,7 +117,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 
-export class VeilederService {
+export class Veileder {
     /**
      * Endrer startdato på en deltakelse i ungdomsprogrammet
      */
@@ -321,7 +321,7 @@ export class VeilederService {
     }
 }
 
-export class DeltakelseService {
+export class Deltakelse {
     /**
      * Markerer at deltakelsen er søkt om
      */
@@ -503,7 +503,7 @@ export class DeltakelseService {
     }
 }
 
-export class LesRegisterDataService {
+export class LesRegisterData {
     /**
      * Hent alle deltakelser for en deltaker i ungdomsprogrammet
      */
@@ -539,7 +539,7 @@ export class LesRegisterDataService {
     }
 }
 
-export class OppslagService {
+export class Oppslag {
     /**
      * Hent personalia for en deltaker
      */
@@ -605,7 +605,7 @@ export class OppslagService {
     }
 }
 
-export class OppretterOgEndrerPåOppgaverService {
+export class OppretterOgEndrerPåOppgaver {
     /**
      * Setter oppgave til utløpt
      */
@@ -825,7 +825,7 @@ export class OppretterOgEndrerPåOppgaverService {
     }
 }
 
-export class DeltakerService {
+export class Deltaker {
     /**
      * Henter kontonummer for en deltaker i ungdomsprogrammet
      */

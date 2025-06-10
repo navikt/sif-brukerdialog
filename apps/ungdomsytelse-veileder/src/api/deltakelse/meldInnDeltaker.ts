@@ -1,7 +1,7 @@
 import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
 import {
     DeltakelseInnmeldingDto,
-    VeilederService,
+    Veileder as VeilederService,
     zDeltakelseInnmeldingDto,
 } from '@navikt/ung-deltakelse-opplyser-api';
 

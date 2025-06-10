@@ -1,8 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { EnvKey } from '@navikt/sif-common-env';
-import { getAppEnv } from '../../../../utils/appEnv';
+import { navigateToInnsynForside } from '../../utils/navigateUtils';
 
 const ForsideLenkeButton = () => {
     const navigate = useNavigate();
@@ -13,7 +12,7 @@ const ForsideLenkeButton = () => {
             onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                navigate(getAppEnv()[EnvKey.PUBLIC_PATH]);
+                navigateToInnsynForside(navigate);
             }}
             variant="primary"
             icon={<ArrowLeftIcon role="presentation" />}

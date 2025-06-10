@@ -1,5 +1,5 @@
 import {
-    UngdomsytelseControllerService,
+    UngdomsytelseController as UngdomsytelseControllerService,
     UngdomsytelseOppgavebekreftelse,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { handleApiError } from '@navikt/ung-common';

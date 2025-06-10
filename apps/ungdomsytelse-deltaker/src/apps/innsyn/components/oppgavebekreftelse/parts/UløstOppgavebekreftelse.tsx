@@ -4,12 +4,11 @@ import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { useNavigate } from 'react-router-dom';
-import { getAppEnv } from '../../../../../utils/appEnv';
-import { EnvKey } from '@navikt/sif-common-env';
 import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { navigateToInnsynForside } from '../../../utils/navigateUtils';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -68,7 +67,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                         harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={() => setVisKvittering(true)}
-                        onCancel={() => navigate(getAppEnv()[EnvKey.PUBLIC_PATH])}
+                        onCancel={() => navigateToInnsynForside(navigate)}
                     />
                 </>
             )}

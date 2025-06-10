@@ -1,5 +1,12 @@
 # @navikt/sif-demo-app
 
+## 0.5.6
+
+### Patch Changes
+
+- Diverse oppdateringer i ung
+    - @navikt/ung-common@0.0.5
+
 ## 0.5.5
 
 ### Patch Changes

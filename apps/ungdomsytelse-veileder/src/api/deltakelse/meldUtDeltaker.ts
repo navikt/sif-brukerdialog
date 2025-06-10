@@ -1,5 +1,9 @@
 import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
-import { DeltakelseUtmeldingDto, VeilederService, zDeltakelseUtmeldingDto } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    Veileder as VeilederService,
+    DeltakelseUtmeldingDto,
+    zDeltakelseUtmeldingDto,
+} from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Melder ut en deltaker fra deltakelse
