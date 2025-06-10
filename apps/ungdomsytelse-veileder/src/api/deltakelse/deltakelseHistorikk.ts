@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto, VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Henter historikk for en deltakelse

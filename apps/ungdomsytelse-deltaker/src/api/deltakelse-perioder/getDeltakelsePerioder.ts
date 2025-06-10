@@ -1,5 +1,5 @@
 import { DeltakelsePeriode, deltakelsePerioderSchema, handleApiError } from '@navikt/ung-common';
-import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltakelse as DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const getDeltakelsePerioder = async (): Promise<DeltakelsePeriode[]> => {
     try {

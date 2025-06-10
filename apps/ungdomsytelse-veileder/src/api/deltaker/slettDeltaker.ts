@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Sletter en deltaker

@@ -1,5 +1,5 @@
 import { Deltakelse, deltakelserSchema, handleApiError } from '@navikt/ung-common';
-import { VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Henter alle deltakelser som en deltaker har registrert

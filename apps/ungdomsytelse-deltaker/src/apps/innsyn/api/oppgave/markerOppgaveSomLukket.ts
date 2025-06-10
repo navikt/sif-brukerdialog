@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltakelse as DeltakelseService } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Markerer en oppgave som åpnet

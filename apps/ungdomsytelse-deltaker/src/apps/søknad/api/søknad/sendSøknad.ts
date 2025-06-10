@@ -1,4 +1,7 @@
-import { UngdomsytelseControllerService, Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import {
+    UngdomsytelseController as UngdomsytelseControllerService,
+    Ungdomsytelsesøknad,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 import { handleApiError } from '@navikt/ung-common';
 
 export const sendSøknad = async (data: Ungdomsytelsesøknad): Promise<any> => {
