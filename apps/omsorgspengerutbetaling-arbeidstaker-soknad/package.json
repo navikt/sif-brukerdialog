@@ -71,7 +71,7 @@
         "cross-env": "7.0.3",
         "dotenv": "16.5.0",
         "eslint": "9.28.0",
-        "eslint-plugin-storybook": "9.0.6",
+        "eslint-plugin-storybook": "9.0.7",
         "express": "4.21.2",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",

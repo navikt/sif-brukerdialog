@@ -59,7 +59,7 @@
         "classnames": "2.5.1",
         "dayjs": "1.11.13",
         "eslint": "9.28.0",
-        "eslint-plugin-storybook": "9.0.6",
+        "eslint-plugin-storybook": "9.0.7",
         "formik": "2.4.6",
         "jest": "30.0.0",
         "jest-environment-jsdom": "30.0.0",
