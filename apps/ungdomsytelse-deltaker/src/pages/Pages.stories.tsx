@@ -24,5 +24,5 @@ export const FlereDeltakelser: Story = {
     render: () => <FlereDeltakelserPage />,
 };
 export const HentDeltakerError: Story = {
-    render: () => <HentDeltakerErrorPage error="Teknisk feilmelding" />,
+    render: () => <HentDeltakerErrorPage error="[Teknisk feilmelding]" />,
 };

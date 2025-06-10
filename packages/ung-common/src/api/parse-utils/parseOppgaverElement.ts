@@ -70,7 +70,7 @@ const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetyp
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,
-        svarfrist,
+        frist: svarfrist,
         løstDato,
         åpnetDato,
     };

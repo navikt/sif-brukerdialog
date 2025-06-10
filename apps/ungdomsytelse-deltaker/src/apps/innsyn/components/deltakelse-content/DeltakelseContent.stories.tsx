@@ -20,8 +20,8 @@ type Story = StoryObj<typeof DeltakelseContent>;
 
 const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
 
-export const AktivDeltakelseMedInfo: Story = {
-    name: 'Aktiv deltakelse - med info om inntektsrapportering',
+export const AktivDeltakelse: Story = {
+    name: 'Aktiv deltakelse',
     args: {
         deltakelsePeriode: {
             ...deltakelsePeriode,
@@ -29,11 +29,15 @@ export const AktivDeltakelseMedInfo: Story = {
     },
 };
 
-export const AktivDeltakelseUtenInfo: Story = {
-    name: 'Aktiv deltakelse - uten info om inntektsrapportering',
+export const DeltakelseIkkeStartet: Story = {
+    name: 'Deltakelse ikke startet',
     args: {
         deltakelsePeriode: {
             ...deltakelsePeriode,
+            programPeriode: {
+                from: dayjs().add(2, 'days').toDate(),
+            },
+            oppgaver: [],
         },
     },
 };
