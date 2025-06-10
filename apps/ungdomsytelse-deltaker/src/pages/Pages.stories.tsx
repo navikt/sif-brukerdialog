@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import IngenDeltakelsePage from './IngenDeltakelsePage';
 import { withIntl } from '../../storybook/decorators/withIntl';
-import LoadingPage from './LoadingPage';
+import UngLoadingPage from './UngLoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
 const meta: Meta = {
@@ -15,7 +15,7 @@ type Story = StoryObj;
 
 export const Loading: Story = {
     name: 'Henter informasjon',
-    render: () => <LoadingPage />,
+    render: () => <UngLoadingPage />,
 };
 export const IngenDeltakelse: Story = {
     render: () => <IngenDeltakelsePage />,

@@ -8,7 +8,7 @@ interface Props {
 
 const SøkYtelseOppgavePage = ({ oppgave }: Props) => {
     return (
-        <DefaultPageLayout documentTitle="Send søknad">
+        <DefaultPageLayout documentTitle="Søknad for ungdomsprogramytelsen oppgave">
             <SøkYtelseOppgavetekst oppgave={oppgave} />
         </DefaultPageLayout>
     );

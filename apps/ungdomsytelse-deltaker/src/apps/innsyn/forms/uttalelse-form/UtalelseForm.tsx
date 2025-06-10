@@ -55,40 +55,42 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
     };
 
     return (
-        <FormikWrapper
-            initialValues={{}}
-            onSubmit={handleSubmit}
-            renderForm={({ values }) => {
-                return (
-                    <Form
-                        submitButtonLabel="Send inn svaret ditt"
-                        cancelButtonLabel="Avbryt"
-                        onCancel={onCancel}
-                        isFinalSubmit={true}
-                        submitPending={isPending}
-                        includeValidationSummary={true}
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
-                        <VStack gap="6" marginBlock="2 0">
-                            <YesOrNoQuestion
-                                reverse={true}
-                                name={FormFields.harTilbakemelding}
-                                legend={harTilbakemeldingSpørsmål}
-                                validate={getYesOrNoValidator()}
-                            />
-                            {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
-                                <Textarea
-                                    name={FormFields.begrunnelse}
-                                    label="Kommentar"
-                                    maxLength={100}
-                                    validate={getStringValidator({ required: true, maxLength: 250 })}
+        <section aria-label="Skjema for tilbakemelding">
+            <FormikWrapper
+                initialValues={{}}
+                onSubmit={handleSubmit}
+                renderForm={({ values }) => {
+                    return (
+                        <Form
+                            submitButtonLabel="Send inn svaret ditt"
+                            cancelButtonLabel="Avbryt"
+                            onCancel={onCancel}
+                            isFinalSubmit={true}
+                            submitPending={isPending}
+                            includeValidationSummary={true}
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
+                            <VStack gap="6" marginBlock="2 0">
+                                <YesOrNoQuestion
+                                    reverse={true}
+                                    name={FormFields.harTilbakemelding}
+                                    legend={harTilbakemeldingSpørsmål}
+                                    validate={getYesOrNoValidator()}
                                 />
-                            ) : null}
-                            {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
-                        </VStack>
-                    </Form>
-                );
-            }}
-        />
+                                {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
+                                    <Textarea
+                                        name={FormFields.begrunnelse}
+                                        label="Kommentar"
+                                        maxLength={100}
+                                        validate={getStringValidator({ required: true, maxLength: 250 })}
+                                    />
+                                ) : null}
+                                {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
+                            </VStack>
+                        </Form>
+                    );
+                }}
+            />
+        </section>
     );
 };
 

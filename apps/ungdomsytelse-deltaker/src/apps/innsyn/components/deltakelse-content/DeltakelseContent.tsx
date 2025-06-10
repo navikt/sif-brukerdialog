@@ -40,7 +40,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 {uløsteOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={uløsteOppgaver} />
                 ) : (
-                    <BodyLong>Du har ingen uløste oppgaver</BodyLong>
+                    <BodyLong>Du har ingen uløste oppgaver.</BodyLong>
                 )}
             </VStack>
             <VStack gap="4">
@@ -50,7 +50,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                 {tidligereOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" visBeskrivelse={false} />
                 ) : (
-                    <BodyLong>Du har ingen tidligere oppgaver</BodyLong>
+                    <BodyLong>Du har ingen tidligere oppgaver.</BodyLong>
                 )}
             </VStack>
         </VStack>

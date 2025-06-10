@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
@@ -11,6 +10,7 @@ import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
 import { Alert, Theme, VStack } from '@navikt/ds-react';
 import { Oppgavetype } from '@navikt/ung-common';
+import UngLoadingPage from '../../pages/UngLoadingPage';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -21,7 +21,7 @@ const DeltakerInfoLoader = () => {
     const { pathname } = useLocation();
 
     if (isLoading) {
-        return <LoadingPage />;
+        return <UngLoadingPage />;
     }
 
     if (error) {
