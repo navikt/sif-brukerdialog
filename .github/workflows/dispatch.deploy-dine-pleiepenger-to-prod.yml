@@ -7,6 +7,7 @@ on:
             - main
         paths:
             - 'apps/dine-pleiepenger/**/*'
+            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 

@@ -7,6 +7,7 @@ on:
             - main
         paths:
             - 'apps/endringsmelding-pleiepenger/**/*'
+            - 'packages/**/*'
             - 'server/**/*'
     workflow_dispatch:
 
