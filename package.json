@@ -55,6 +55,9 @@
     "private": true,
     "packageManager": "yarn@4.5.3",
     "resolutions": {
-        "@swc/core": "1.5.7"
+        "@swc/core": "1.5.7",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "@types/react": "19.1.7"
     }
 }
