@@ -67,7 +67,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.27.1",
         "@babel/preset-env": "7.27.2",
         "@babel/preset-react": "7.27.1",
-        "@playwright/test": "1.52.0",
+        "@playwright/test": "1.53.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.0.6",
         "@testing-library/dom": "10.4.0",
