@@ -4,7 +4,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { RegistrerteBarnListText as Text } from './registrerteBarnListe.messages';
+import { RegistrerteBarnListText as Text } from './i18n/nb';
 import RegistrerteBarnListeHeading, { RegistrerteBarnListeHeadingProps } from './RegistrerteBarnListeHeading';
 
 interface Props {

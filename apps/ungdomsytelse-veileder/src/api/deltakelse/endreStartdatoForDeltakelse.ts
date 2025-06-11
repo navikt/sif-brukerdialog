@@ -1,5 +1,9 @@
 import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
-import { EndrePeriodeDatoDto, VeilederService, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    Veileder as VeilederService,
+    EndrePeriodeDatoDto,
+    zEndrePeriodeDatoDto,
+} from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Endrer startdato for en deltakelse

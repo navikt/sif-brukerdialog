@@ -1,7 +1,7 @@
-import { samtykkeFormMessages } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/samtykkeForm.messages';
+import { samtykkeFormMessages_nb } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/i18n/nb';
 
 type OverrideKeys = Pick<
-    typeof samtykkeFormMessages.nb,
+    typeof samtykkeFormMessages_nb,
     | '@soknad.samtykkeForm.bekreftLabel'
     | '@soknad.samtykkeForm.ansvar.tittel'
     | '@soknad.samtykkeForm.ansvar.list.1'

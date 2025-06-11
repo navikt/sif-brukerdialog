@@ -7,9 +7,7 @@ export type ProblemDetail = {
     detail?: string;
     instance?: string;
     properties?: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
 };
 
@@ -18,6 +16,8 @@ export type Friteksfelt = {
 };
 
 export type Ungdomsytelsesøknad = {
+    oppgaveReferanse: string;
+    deltakelseId: string;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -42,18 +42,13 @@ export type UngdomsytelseOppgavebekreftelse = {
     oppgave: UngdomsytelseOppgaveDto;
 };
 
-export type OppgittInntektForPeriode = {
+export type OppgittInntekt = {
     arbeidstakerOgFrilansInntekt?: number;
-    periodeForInntekt: UngPeriode;
-};
-
-export type UngPeriode = {
-    fraOgMed: string;
-    tilOgMed: string;
 };
 
 export type UngdomsytelseInntektsrapportering = {
-    oppgittInntektForPeriode: OppgittInntektForPeriode;
+    oppgaveReferanse: string;
+    oppgittInntekt: OppgittInntekt;
     harBekreftetInntekt: boolean;
 };
 
@@ -859,9 +854,7 @@ export type GetMellomlagringResponse = GetMellomlagringResponses[keyof GetMellom
 
 export type CreateMellomlagringData = {
     body: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
     path: {
         ytelse: string;
@@ -900,9 +893,7 @@ export type CreateMellomlagringResponses = {
 
 export type UpdateMellomlagringData = {
     body: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
     path: {
         ytelse: string;

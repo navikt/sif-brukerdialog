@@ -1,7 +1,8 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
-import { zDeltakelsePeriodInfo } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto, zDeltakelsePeriodInfo } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { parseOppgaverElement, parseRapporteringsperioder } from '../api';
+import { parseOppgaverElement } from '../api';
+import dayjs from 'dayjs';
 
 export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
     .extend({
@@ -16,15 +17,8 @@ export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
         return {
             ...rest,
             programPeriode,
-            rapporteringsPerioder: parseRapporteringsperioder(
-                programPeriode,
-                data.rapporteringsPerioder.map((periode) => ({
-                    ...periode,
-                    ytelseInntekter: periode.inntektFraYtelse ?? 0,
-                    arbeidOgFrilansInntekter: periode.arbeidstakerOgFrilansInntekt ?? 0,
-                })),
-            ),
-            oppgaver: parseOppgaverElement(data.oppgaver),
+            oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
+            søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
         };
     });
 

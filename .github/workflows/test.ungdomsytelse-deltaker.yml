@@ -37,7 +37,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 22
                   cache: 'yarn'
             - run: yarn set version 4.x
 
@@ -65,7 +65,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 22
                   cache: 'yarn'
             - run: yarn set version 4.x
 
@@ -76,7 +76,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application for testing
-              run: yarn turbo demo:build --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn turbo e2e:build --filter=@navikt/ungdomsytelse-deltaker
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-deltaker

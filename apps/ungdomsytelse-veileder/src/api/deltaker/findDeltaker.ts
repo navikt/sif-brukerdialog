@@ -1,4 +1,4 @@
-import { OppslagService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Oppslag as OppslagService } from '@navikt/ung-deltakelse-opplyser-api';
 import {
     Deltaker,
     registrertDeltakerSchema,

@@ -19,7 +19,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
-        'Me tek vare på svara dine i 72 timar. Dersom du til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
+        'Me tar vare på svara dine i 72 timar. Dersom du til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':
         'Du må svara på alle spørsmåla for å kunne gå vidare. Dersom du manglar etterspurd dokumentasjon, kan du ettersenda det så snart du kan.',
     'page.velkommen.omSøknaden.4': 'Om korleis me innhentar opplysningar om deg',
@@ -41,5 +41,5 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
         'dersom du søkjer i samband med at den andre forelderen er innlagd i helseinstitusjon, avtjenar verneplikt eller sonar fengselsstraff, kan me sjekke dette mot offentlege register ved behov.',
 
     'personopplysninger.5':
-        'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };

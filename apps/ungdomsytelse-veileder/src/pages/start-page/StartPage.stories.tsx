@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BrowserRouter } from 'react-router-dom';
 import { http, HttpResponse } from 'msw';
 import { nyDeltakerMock } from '../../../mock/msw/mocks/data/nyDeltakerMock';

@@ -8,15 +8,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config();
 
-export const getAppSettings = (): AppEnv & { VITE: true } => ({
-    VITE: true,
-
+export const getAppSettings = (): AppEnv & { VITE: string } => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+    VITE: 'true',
 
-    SIF_PUBLIC_PERSONALIA_URL: `${process.env.SIF_PUBLIC_PERSONALIA_URL}`,
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
@@ -41,6 +39,8 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: `${process.env.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN}`,
     SIF_PUBLIC_URL_SKATTEETATEN: `${process.env.SIF_PUBLIC_URL_SKATTEETATEN}`,
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: `${process.env.SIF_PUBLIC_URL_ENDRE_KONTONUMMER}`,
+    SIF_PUBLIC_URL_SKRIV_TIL_OSS: `${process.env.SIF_PUBLIC_URL_SKRIV_TIL_OSS}`,
+    SIF_PUBLIC_URL_DOKUMENTARKIV: `${process.env.SIF_PUBLIC_URL_DOKUMENTARKIV}`,
 });
 
 export default defineConfig({

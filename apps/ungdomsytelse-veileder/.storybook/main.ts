@@ -4,24 +4,15 @@ function getAbsolutePath(value) {
     return dirname(require.resolve(join(value, 'package.json')));
 }
 
-const config = {
-    stories: ['../src/**/*.stories.tsx'],
-    addons: [
-        getAbsolutePath('@storybook/addon-links'),
-        getAbsolutePath('@storybook/addon-essentials'),
-        getAbsolutePath('@storybook/addon-onboarding'),
-        getAbsolutePath('@storybook/addon-interactions'),
-    ],
+export default {
+    stories: ['../src/storybook/**/*.stories.tsx', '../src/app/**/*.stories.tsx'],
+    addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs')],
     framework: {
-        name: '@storybook/react-vite',
+        name: getAbsolutePath('@storybook/react-vite'),
         options: {},
     },
-    docs: {
-        autodocs: false,
-    },
+
     typescript: {
         reactDocgen: 'react-docgen-typescript-plugin',
     },
 };
-
-export default config;

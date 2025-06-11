@@ -10,7 +10,7 @@ import {
 } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
-import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';
+import { FosterbarnMessageKeys, useFosterbarnIntl } from './i18n';
 import { Fosterbarn, isFosterbarn } from './types';
 
 interface FosterbarnFormText {

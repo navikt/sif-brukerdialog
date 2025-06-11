@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikYesOrNoQuestion from '../../../src/components/formik-yes-or-no-question/FormikYesOrNoQuestion';

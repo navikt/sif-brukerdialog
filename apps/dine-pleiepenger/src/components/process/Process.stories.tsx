@@ -1,5 +1,5 @@
 import Process from './Process';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import ProcessStep from './ProcessStep';
 

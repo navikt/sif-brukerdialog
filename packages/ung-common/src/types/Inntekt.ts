@@ -1,3 +1,3 @@
-export interface Inntekt {
-    arbeidOgFrilansInntekter?: number;
-}
+// export interface Inntekt {
+//     arbeidOgFrilansInntekter?: number;
+// }

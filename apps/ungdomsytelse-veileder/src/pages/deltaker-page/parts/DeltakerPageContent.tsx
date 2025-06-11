@@ -1,8 +1,10 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
-import SlettDeltakelseInfo from './SlettDeltakelseInfo';
+
 import DeltakerInfo from './DeltakerInfo';
+import DeltakelseHistorikk from './DeltakelseHistorikk';
+import SlettDeltakerInfo from './SlettDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -12,15 +14,17 @@ interface Props {
 const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     if (deltakelser.length === 0) {
         return (
-            <VStack maxWidth="30rem pb-8 pt-8">
-                <Alert variant="info">Ingen deltakelser funnet</Alert>
+            <VStack maxWidth="30rem" marginBlock="8 8">
+                <Alert variant="info">Deltakelse ikke funnet</Alert>
             </VStack>
         );
     }
     if (deltakelser.length > 1) {
-        <VStack maxWidth="30rem pb-8 pt-8">
-            <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
-        </VStack>;
+        return (
+            <VStack maxWidth="30rem" marginBlock="8 8">
+                <Alert variant="info">Deltaker har flere deltakerperioder - dette er ikke støttet enda</Alert>
+            </VStack>
+        );
     }
 
     const deltakelse = deltakelser[0];
@@ -28,7 +32,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
     return (
         <Box className="pb-8 pt-8">
             <VStack gap="10">
-                {deltakelse.harSøkt === false ? (
+                {deltakelse.søktTidspunkt === undefined ? (
                     <HStack>
                         <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
@@ -38,7 +42,9 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
 
                 <DeltakelsePeriodeInfo deltakelse={deltakelse} deltaker={deltaker} />
 
-                <SlettDeltakelseInfo deltakelse={deltakelse} deltaker={deltaker} />
+                <SlettDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
+
+                <DeltakelseHistorikk deltakelseId={deltakelse.id} />
             </VStack>
         </Box>
     );

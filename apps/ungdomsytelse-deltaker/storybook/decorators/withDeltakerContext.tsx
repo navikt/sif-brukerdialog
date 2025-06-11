@@ -1,8 +1,8 @@
 import { søkerResponseSchema } from '@navikt/sif-common-api';
 import { deltakelsePeriodeSchema } from '@navikt/ung-common';
-import { getScenarioMockData } from '../../mock/msw/mocks/scenarioes';
+import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
 import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
-import { ScenarioType } from '../../src/dev/scenarioer';
+import { ScenarioType } from '../../mock/scenarios/types';
 
 export const withDeltakerContext = (Story) => {
     const { søker, deltakelser } = getScenarioMockData(ScenarioType.harSøkt);

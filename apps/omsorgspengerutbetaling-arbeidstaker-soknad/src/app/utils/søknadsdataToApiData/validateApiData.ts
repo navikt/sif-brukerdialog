@@ -7,17 +7,6 @@ export enum API_DATA_VALIDATION_ERROR {
     'omsorgsavtaleMangler' = 'omsorgsavtaleMangler',
 }
 
-export const validateApiDataMessages = {
-    nb: {
-        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
-        'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
-    },
-    nn: {
-        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av sida.',
-        'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
-    },
-};
-
 interface ApiDataValidationError {
     error: API_DATA_VALIDATION_ERROR;
     step?: StepId;

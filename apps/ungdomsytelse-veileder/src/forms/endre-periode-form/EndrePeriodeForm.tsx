@@ -9,10 +9,8 @@ import {
 import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
-import { max } from 'date-fns';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
-import { GYLDIG_PERIODE } from '../../settings';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import {
     getStartdatobegrensningForDeltaker,
@@ -21,6 +19,7 @@ import {
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
+import dayjs from 'dayjs';
 
 type FormValues = {
     fom?: string;
@@ -63,7 +62,6 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
     const startdatoMinMax = getStartdatobegrensningForDeltaker(
         deltaker.førsteMuligeInnmeldingsdato,
         deltaker.sisteMuligeInnmeldingsdato,
-        GYLDIG_PERIODE.from,
         getDateToday(),
     );
 
@@ -77,8 +75,8 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
     }
 
     const sluttdatoMinMax = {
-        from: max([deltakelse.fraOgMed || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from]),
-        to: GYLDIG_PERIODE.to,
+        from: deltakelse.fraOgMed,
+        to: dayjs(deltakelse.fraOgMed).add(15, 'months').toDate(),
     };
 
     const handleOnSubmit = async (values: FormValues) => {
@@ -138,6 +136,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={startdatoMinMax.from}
                                             maxDate={startdatoMinMax.to}
                                             defaultMonth={deltakelse.fraOgMed}
+                                            disableWeekends={true}
                                             validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
                                         />
                                     ) : (
@@ -147,6 +146,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                             minDate={sluttdatoMinMax.from}
                                             maxDate={sluttdatoMinMax.to}
                                             defaultMonth={deltakelse.tilOgMed}
+                                            disableWeekends={true}
                                             validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
                                         />
                                     )}

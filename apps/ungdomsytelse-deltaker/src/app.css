@@ -12,6 +12,15 @@
     }
 }
 
+body.innsynAppBody {
+    background-color: var(--a-deepblue-50);
+}
+
+.innsynApp {
+    --a-text-default: #002942;
+    color: var(--a-text-default);
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -35,4 +44,11 @@
 }
 .navds-guide-panel__content > .navds-body-long p:last-child {
     margin-bottom: 0;
+}
+
+/** Theme noen farger */
+
+:root {
+    --ax-bg-warning-moderateA: #ffebc7;
+    --ax-bg-neutral-moderateA: #e3e5e7 !important;
 }

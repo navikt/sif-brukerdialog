@@ -9,6 +9,8 @@ interface Lenker {
     minSide: string;
     skatteetaten: string;
     endreKontonummer: string;
+    skrivtilOss: string;
+    dokumentarkiv: string;
 }
 
 const getLenkerBokmål = (): Lenker => ({
@@ -19,6 +21,8 @@ const getLenkerBokmål = (): Lenker => ({
     minSide: getRequiredEnv(AppEnvKey.SIF_PUBLIC_MINSIDE_URL),
     skatteetaten: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
     endreKontonummer: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
+    skrivtilOss: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS),
+    dokumentarkiv: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV),
 });
 
 const getLenker = (locale: string = 'nb'): Lenker => {

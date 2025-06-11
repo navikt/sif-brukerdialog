@@ -1,11 +1,12 @@
 import { Søker } from '@navikt/sif-common-api';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
-import { DeltakelsePeriode } from '@navikt/ung-common';
-import HentDeltakerErrorPage from '../../components/pages/HentDeltakerErrorPage';
+import { DeltakelsePeriode, Oppgavetype } from '@navikt/ung-common';
+import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
+import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
+import UngLoadingPage from '../../pages/UngLoadingPage';
 
 interface SøknadAppProps {
     søker: Søker;
@@ -17,7 +18,7 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     const barn = useBarn();
 
     if (barn.isLoading || kontonummer.isLoading) {
-        return <LoadingPage />;
+        return <UngLoadingPage />;
     }
 
     if (barn.isError || kontonummer.isError) {
@@ -26,9 +27,14 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     }
 
     const kontonummerData = kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined;
+    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
 
+    if (!søknadOppgave) {
+        return <IngenSendSøknadOppgave />;
+    }
     return (
         <SøknadProvider
+            søknadOppgave={søknadOppgave}
             søker={søker}
             deltakelsePeriode={deltakelsePeriode}
             kontonummer={kontonummerData}

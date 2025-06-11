@@ -16,7 +16,6 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
 
-    SIF_PUBLIC_PERSONALIA_URL: `${process.env.SIF_PUBLIC_PERSONALIA_URL}`,
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
@@ -25,6 +24,7 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
     SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
     SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
+    SIF_PUBLIC_URL_DOKUMENTARKIV: `${process.env.SIF_PUBLIC_URL_DOKUMENTARKIV}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
 
     K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
@@ -41,6 +41,7 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: `${process.env.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN}`,
     SIF_PUBLIC_URL_SKATTEETATEN: `${process.env.SIF_PUBLIC_URL_SKATTEETATEN}`,
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: `${process.env.SIF_PUBLIC_URL_ENDRE_KONTONUMMER}`,
+    SIF_PUBLIC_URL_SKRIV_TIL_OSS: `${process.env.SIF_PUBLIC_URL_SKRIV_TIL_OSS}`,
 });
 
 export default defineConfig({

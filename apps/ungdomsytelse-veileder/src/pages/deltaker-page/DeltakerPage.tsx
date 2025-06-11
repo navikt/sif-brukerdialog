@@ -7,6 +7,7 @@ import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPage from '../error-page/ErrorPage';
 import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakelseLoader from './parts/DeltakelseLoader';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
 
 type DeltakerPageParams = {
     deltakerId: string;
@@ -15,6 +16,8 @@ type DeltakerPageParams = {
 const DeltakerPage = () => {
     const { deltakerId } = useParams<DeltakerPageParams>();
     const navigate = useNavigate();
+
+    useDocumentTitle('Deltaker - Nav veileder - ungdomsprogramytelsen');
 
     /** Forenklet feilhåndtering */
     if (!deltakerId || deltakerId === '' || !validate(deltakerId)) {

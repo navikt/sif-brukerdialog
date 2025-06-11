@@ -4,7 +4,7 @@ import { AppEnv, AppEnvKey } from '../../env.schema';
 export const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
-    [AppEnvKey.SIF_PUBLIC_PERSONALIA_URL]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_PERSONALIA_URL),
+
     [AppEnvKey.VELG_SCENARIO]: getMaybeEnv(AppEnvKey.VELG_SCENARIO),
     [AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN]: getRequiredEnv(
         AppEnvKey.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN,
@@ -14,4 +14,6 @@ export const getAppEnv = (): AppEnv => ({
     [AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT),
     [AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKATTEETATEN),
     [AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER),
+    [AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS),
+    [AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV),
 });

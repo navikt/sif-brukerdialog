@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import DeltakelsePeriodeInfo from '../parts/DeltakelsePeriodeInfo';
 import { deltakelseSchema } from '@navikt/ung-common';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';

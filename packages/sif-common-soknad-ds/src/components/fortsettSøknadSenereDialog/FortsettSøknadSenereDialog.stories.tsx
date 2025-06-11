@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import FortsettSøknadSenereDialog from './FortsettSøknadSenereDialog';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 

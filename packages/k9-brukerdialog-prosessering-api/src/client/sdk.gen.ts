@@ -8,62 +8,80 @@ import {
 } from '@hey-api/client-axios';
 import type {
     DeleteMellomlagringData,
-    DeleteMellomlagringError,
+    DeleteMellomlagringResponses,
+    DeleteMellomlagringErrors,
     GetMellomlagringData,
-    GetMellomlagringResponse,
-    GetMellomlagringError,
+    GetMellomlagringResponses,
+    GetMellomlagringErrors,
     CreateMellomlagringData,
-    CreateMellomlagringError,
+    CreateMellomlagringResponses,
+    CreateMellomlagringErrors,
     UpdateMellomlagringData,
-    UpdateMellomlagringError,
+    UpdateMellomlagringResponses,
+    UpdateMellomlagringErrors,
     LagreVedleggData,
-    LagreVedleggError,
+    LagreVedleggResponses,
+    LagreVedleggErrors,
     ValiderFriteksfeltData,
-    ValiderFriteksfeltError,
+    ValiderFriteksfeltResponses,
+    ValiderFriteksfeltErrors,
     InnsendingUngdomsytelsesøknadData,
-    InnsendingUngdomsytelsesøknadError,
+    InnsendingUngdomsytelsesøknadResponses,
+    InnsendingUngdomsytelsesøknadErrors,
     OppgavebekreftelseData,
-    OppgavebekreftelseError,
+    OppgavebekreftelseResponses,
+    OppgavebekreftelseErrors,
     InntektrapporteringData,
-    InntektrapporteringError,
+    InntektrapporteringResponses,
+    InntektrapporteringErrors,
     InnsendingPleiepengerSyktBarnSøknadData,
-    InnsendingPleiepengerSyktBarnSøknadError,
+    InnsendingPleiepengerSyktBarnSøknadResponses,
+    InnsendingPleiepengerSyktBarnSøknadErrors,
     InnsendingEndringsmeldingData,
-    InnsendingEndringsmeldingError,
+    InnsendingEndringsmeldingResponses,
+    InnsendingEndringsmeldingErrors,
     InnsendingPleiepengerILivetsSluttfaseSøknadData,
-    InnsendingPleiepengerILivetsSluttfaseSøknadError,
+    InnsendingPleiepengerILivetsSluttfaseSøknadResponses,
+    InnsendingPleiepengerILivetsSluttfaseSøknadErrors,
     LagPdfData,
-    LagPdfResponse,
-    LagPdfError,
+    LagPdfResponses,
+    LagPdfErrors,
     InnsendingOpplæringspengerSøknadData,
-    InnsendingOpplæringspengerSøknadError,
+    InnsendingOpplæringspengerSøknadResponses,
+    InnsendingOpplæringspengerSøknadErrors,
     InnsendingOmsorgspengerKroniskSyktBarnSøknadData,
-    InnsendingOmsorgspengerKroniskSyktBarnSøknadError,
+    InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses,
+    InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors,
     InnsendingOmsorgspengerutbetalingSnfSøknadData,
-    InnsendingOmsorgspengerutbetalingSnfSøknadError,
+    InnsendingOmsorgspengerutbetalingSnfSøknadResponses,
+    InnsendingOmsorgspengerutbetalingSnfSøknadErrors,
     InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData,
-    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError,
+    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses,
+    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors,
     InnsendingOmsorgspengerMidlertidigAleneSøknadData,
-    InnsendingOmsorgspengerMidlertidigAleneSøknadError,
+    InnsendingOmsorgspengerMidlertidigAleneSøknadResponses,
+    InnsendingOmsorgspengerMidlertidigAleneSøknadErrors,
     InnsendingOmsorgsdagerAleneOmOmsorgenSøknadData,
-    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError,
+    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses,
+    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors,
     InnsendingEttersendelseData,
-    InnsendingEttersendelseError,
+    InnsendingEttersendelseResponses,
+    InnsendingEttersendelseErrors,
     SlettVedleggData,
-    SlettVedleggResponse,
-    SlettVedleggError,
+    SlettVedleggResponses,
+    SlettVedleggErrors,
     HentVedleggData,
-    HentVedleggResponse,
-    HentVedleggError,
+    HentVedleggResponses,
+    HentVedleggErrors,
     HentSøkerData,
-    HentSøkerResponse,
-    HentSøkerError,
+    HentSøkerResponses,
+    HentSøkerErrors,
     HentBarnData,
-    HentBarnResponse,
-    HentBarnError,
+    HentBarnResponses,
+    HentBarnErrors,
     HentArbeidsgivereData,
-    HentArbeidsgivereResponse,
-    HentArbeidsgivereError,
+    HentArbeidsgivereResponses,
+    HentArbeidsgivereErrors,
 } from './types.gen';
 import { client as _heyApiClient } from './client.gen';
 import {
@@ -93,11 +111,15 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 
-export class MellomlagringControllerService {
+export class MellomlagringController {
     public static deleteMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<DeleteMellomlagringData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).delete<unknown, DeleteMellomlagringError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).delete<
+            DeleteMellomlagringResponses,
+            DeleteMellomlagringErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -112,7 +134,7 @@ export class MellomlagringControllerService {
     public static getMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<GetMellomlagringData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).get<GetMellomlagringResponse, GetMellomlagringError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).get<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -130,7 +152,11 @@ export class MellomlagringControllerService {
     public static createMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<CreateMellomlagringData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, CreateMellomlagringError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            CreateMellomlagringResponses,
+            CreateMellomlagringErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -141,7 +167,7 @@ export class MellomlagringControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -149,7 +175,11 @@ export class MellomlagringControllerService {
     public static updateMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<UpdateMellomlagringData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).put<unknown, UpdateMellomlagringError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).put<
+            UpdateMellomlagringResponses,
+            UpdateMellomlagringErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -160,15 +190,15 @@ export class MellomlagringControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class VedleggControllerService {
+export class VedleggController {
     public static lagreVedlegg<ThrowOnError extends boolean = true>(options?: Options<LagreVedleggData, ThrowOnError>) {
-        return (options?.client ?? _heyApiClient).post<unknown, LagreVedleggError, ThrowOnError>({
+        return (options?.client ?? _heyApiClient).post<LagreVedleggResponses, LagreVedleggErrors, ThrowOnError>({
             ...formDataBodySerializer,
             security: [
                 {
@@ -186,7 +216,7 @@ export class VedleggControllerService {
     }
 
     public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
-        return (options.client ?? _heyApiClient).delete<SlettVedleggResponse, SlettVedleggError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).delete<SlettVedleggResponses, SlettVedleggErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -202,7 +232,7 @@ export class VedleggControllerService {
     }
 
     public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
-        return (options.client ?? _heyApiClient).get<HentVedleggResponse, HentVedleggError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).get<HentVedleggResponses, HentVedleggErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -218,11 +248,15 @@ export class VedleggControllerService {
     }
 }
 
-export class FeltValideringControllerService {
+export class FeltValideringController {
     public static validerFriteksfelt<ThrowOnError extends boolean = true>(
         options: Options<ValiderFriteksfeltData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, ValiderFriteksfeltError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            ValiderFriteksfeltResponses,
+            ValiderFriteksfeltErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -233,17 +267,21 @@ export class FeltValideringControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class UngdomsytelseControllerService {
+export class UngdomsytelseController {
     public static innsendingUngdomsytelsesøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingUngdomsytelsesøknadData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingUngdomsytelsesøknadError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InnsendingUngdomsytelsesøknadResponses,
+            InnsendingUngdomsytelsesøknadErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -254,7 +292,7 @@ export class UngdomsytelseControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -262,7 +300,11 @@ export class UngdomsytelseControllerService {
     public static oppgavebekreftelse<ThrowOnError extends boolean = true>(
         options: Options<OppgavebekreftelseData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, OppgavebekreftelseError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            OppgavebekreftelseResponses,
+            OppgavebekreftelseErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -273,7 +315,7 @@ export class UngdomsytelseControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
@@ -281,7 +323,11 @@ export class UngdomsytelseControllerService {
     public static inntektrapportering<ThrowOnError extends boolean = true>(
         options: Options<InntektrapporteringData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InntektrapporteringError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InntektrapporteringResponses,
+            InntektrapporteringErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -292,17 +338,21 @@ export class UngdomsytelseControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class PleiepengerSyktBarnControllerService {
+export class PleiepengerSyktBarnController {
     public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerSyktBarnSøknadData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingPleiepengerSyktBarnSøknadError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InnsendingPleiepengerSyktBarnSøknadResponses,
+            InnsendingPleiepengerSyktBarnSøknadErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -313,17 +363,21 @@ export class PleiepengerSyktBarnControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class EndringsmeldingControllerService {
+export class EndringsmeldingController {
     public static innsendingEndringsmelding<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEndringsmeldingData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingEndringsmeldingError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InnsendingEndringsmeldingResponses,
+            InnsendingEndringsmeldingErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -334,19 +388,19 @@ export class EndringsmeldingControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class PleiepengerLivetsSluttfaseControllerService {
+export class PleiepengerLivetsSluttfaseController {
     public static innsendingPleiepengerILivetsSluttfaseSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerILivetsSluttfaseSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingPleiepengerILivetsSluttfaseSøknadError,
+            InnsendingPleiepengerILivetsSluttfaseSøknadResponses,
+            InnsendingPleiepengerILivetsSluttfaseSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -359,15 +413,15 @@ export class PleiepengerLivetsSluttfaseControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class PdfControllerService {
+export class PdfController {
     public static lagPdf<ThrowOnError extends boolean = true>(options: Options<LagPdfData, ThrowOnError>) {
-        return (options.client ?? _heyApiClient).post<LagPdfResponse, LagPdfError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<LagPdfResponses, LagPdfErrors, ThrowOnError>({
             responseType: 'blob',
             security: [
                 {
@@ -382,17 +436,21 @@ export class PdfControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OpplÆringspengerSØknadControllerService {
+export class OpplÆringspengerSØknadController {
     public static innsendingOpplæringspengerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOpplæringspengerSøknadData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingOpplæringspengerSøknadError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InnsendingOpplæringspengerSøknadResponses,
+            InnsendingOpplæringspengerSøknadErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -403,19 +461,19 @@ export class OpplÆringspengerSØknadControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OmsorgspengerUtvidetRettControllerService {
+export class OmsorgspengerUtvidetRettController {
     public static innsendingOmsorgspengerKroniskSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerKroniskSyktBarnSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingOmsorgspengerKroniskSyktBarnSøknadError,
+            InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses,
+            InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -428,19 +486,19 @@ export class OmsorgspengerUtvidetRettControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OmsorgspengerUtbetalingSnfControllerService {
+export class OmsorgspengerUtbetalingSnfController {
     public static innsendingOmsorgspengerutbetalingSnfSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingSnfSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingOmsorgspengerutbetalingSnfSøknadError,
+            InnsendingOmsorgspengerutbetalingSnfSøknadResponses,
+            InnsendingOmsorgspengerutbetalingSnfSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -453,19 +511,19 @@ export class OmsorgspengerUtbetalingSnfControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OmsorgspengerUtbetalingArbeidstakerControllerService {
+export class OmsorgspengerUtbetalingArbeidstakerController {
     public static innsendingOmsorgspengerutbetalingArbeidstakerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError,
+            InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses,
+            InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -478,19 +536,19 @@ export class OmsorgspengerUtbetalingArbeidstakerControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OmsorgspengerMidlertidigAleneControllerService {
+export class OmsorgspengerMidlertidigAleneController {
     public static innsendingOmsorgspengerMidlertidigAleneSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerMidlertidigAleneSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingOmsorgspengerMidlertidigAleneSøknadError,
+            InnsendingOmsorgspengerMidlertidigAleneSøknadResponses,
+            InnsendingOmsorgspengerMidlertidigAleneSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -503,19 +561,19 @@ export class OmsorgspengerMidlertidigAleneControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class OmsorgsdagerAleneomsorgControllerService {
+export class OmsorgsdagerAleneomsorgController {
     public static innsendingOmsorgsdagerAleneOmOmsorgenSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgsdagerAleneOmOmsorgenSøknadData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<
-            unknown,
-            InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError,
+            InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses,
+            InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors,
             ThrowOnError
         >({
             security: [
@@ -528,17 +586,21 @@ export class OmsorgsdagerAleneomsorgControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class EttersendingControllerService {
+export class EttersendingController {
     public static innsendingEttersendelse<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEttersendelseData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).post<unknown, InnsendingEttersendelseError, ThrowOnError>({
+        return (options.client ?? _heyApiClient).post<
+            InnsendingEttersendelseResponses,
+            InnsendingEttersendelseErrors,
+            ThrowOnError
+        >({
             security: [
                 {
                     scheme: 'bearer',
@@ -549,15 +611,15 @@ export class EttersendingControllerService {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
-                ...options?.headers,
+                ...options.headers,
             },
         });
     }
 }
 
-export class SØkerControllerService {
+export class SØkerController {
     public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
-        return (options?.client ?? _heyApiClient).get<HentSøkerResponse, HentSøkerError, ThrowOnError>({
+        return (options?.client ?? _heyApiClient).get<HentSøkerResponses, HentSøkerErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -573,9 +635,9 @@ export class SØkerControllerService {
     }
 }
 
-export class BarnControllerService {
+export class BarnController {
     public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
-        return (options?.client ?? _heyApiClient).get<HentBarnResponse, HentBarnError, ThrowOnError>({
+        return (options?.client ?? _heyApiClient).get<HentBarnResponses, HentBarnErrors, ThrowOnError>({
             security: [
                 {
                     scheme: 'bearer',
@@ -591,22 +653,24 @@ export class BarnControllerService {
     }
 }
 
-export class ArbeidsgivereControllerService {
+export class ArbeidsgivereController {
     public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
         options: Options<HentArbeidsgivereData, ThrowOnError>,
     ) {
-        return (options.client ?? _heyApiClient).get<HentArbeidsgivereResponse, HentArbeidsgivereError, ThrowOnError>({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http',
+        return (options.client ?? _heyApiClient).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>(
+            {
+                security: [
+                    {
+                        scheme: 'bearer',
+                        type: 'http',
+                    },
+                ],
+                responseValidator: async (data) => {
+                    return await zHentArbeidsgivereResponse.parseAsync(data);
                 },
-            ],
-            responseValidator: async (data) => {
-                return await zHentArbeidsgivereResponse.parseAsync(data);
+                url: '/oppslag/arbeidsgiver',
+                ...options,
             },
-            url: '/oppslag/arbeidsgiver',
-            ...options,
-        });
+        );
     }
 }

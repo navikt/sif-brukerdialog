@@ -1,15 +1,14 @@
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
+import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
+import { DeltakelseHistorikkInnslag } from '../types';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
-    programperiodeStart: Date,
     tillattEndringsperiode: DateRange,
 ): Date => {
-    return dayjs
-        .max([dayjs(programperiodeStart), dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)])
-        .toDate();
+    return dayjs.max([dayjs(førsteMuligeInnmeldingsdato), dayjs(tillattEndringsperiode.from)]).toDate();
 };
 
 /** Tillat periode for endring basert på dagens dato. 6 måned før og etter dagens dato. */
@@ -30,13 +29,13 @@ export const kanEndreStartdato = (deltakelse: Deltakelse, tillattEndringsperiode
 };
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, tillattEndringsperiode: DateRange): boolean => {
-    return deltakelse.harSøkt && deltakelse.tilOgMed
-        ? dateRangeUtils.isDateInDateRange(deltakelse.tilOgMed, tillattEndringsperiode)
+    return deltakelse.søktTidspunkt !== undefined && deltakelse.tilOgMed
+        ? dayjs(deltakelse.tilOgMed).isSameOrAfter(tillattEndringsperiode.from, 'day')
         : true;
 };
 
 export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
-    return !deltakelse.harSøkt;
+    return deltakelse.søktTidspunkt === undefined;
 };
 
 /**
@@ -47,16 +46,11 @@ export const kanSletteDeltakelse = (deltakelse: Deltakelse): boolean => {
 export const getStartdatobegrensningForDeltaker = (
     førsteMuligeInnmeldingsdato: Date,
     sisteMuligeInnmeldingsdato: Date,
-    programperiodeStart: Date,
     today: Date,
 ): DateRange | 'fomFørTom' => {
     const tillattEndringsperiode = getTillattEndringsperiode(today);
 
-    const from = getFørsteMuligeInnmeldingsdato(
-        førsteMuligeInnmeldingsdato,
-        programperiodeStart,
-        tillattEndringsperiode,
-    );
+    const from = getFørsteMuligeInnmeldingsdato(førsteMuligeInnmeldingsdato, tillattEndringsperiode);
     const to = getSisteMuligeInnmeldingsdato(sisteMuligeInnmeldingsdato, tillattEndringsperiode);
 
     if (dayjs(from).isAfter(to)) {
@@ -67,4 +61,18 @@ export const getStartdatobegrensningForDeltaker = (
         from,
         to,
     };
+};
+
+export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto): DeltakelseHistorikkInnslag => {
+    return {
+        ...historikk,
+        tidspunkt: dayjs.utc(historikk.tidspunkt).toDate(),
+        aktør: historikk.endringstype === Endringstype.DELTAKER_HAR_SØKT_YTELSE ? 'Deltaker' : historikk.aktør,
+    };
+};
+
+export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
+    return historikk
+        .map(mapDeltakelseHistorikkTilInnslag)
+        .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
 };

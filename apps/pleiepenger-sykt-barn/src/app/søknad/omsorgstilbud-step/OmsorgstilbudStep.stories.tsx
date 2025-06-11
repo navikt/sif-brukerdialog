@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import OmsorgstilbudStep from './OmsorgstilbudStep';
 import { withStepWrapper } from '../../../storybook/decorators';
 import { søknadsdata } from '../../../storybook/data/søknadsdata';

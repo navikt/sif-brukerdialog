@@ -1,5 +1,14 @@
 # @navikt/sif-common-forms-ds
 
+## 19.0.4
+
+### Patch Changes
+
+- Nynorsktekster
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.5
+    - @navikt/sif-common-ui@0.9.6
+
 ## 19.0.3
 
 ### Patch Changes

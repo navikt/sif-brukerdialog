@@ -1,13 +1,16 @@
-import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
+/* eslint-disable no-console */
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import SøknadApp from '../../apps/søknad/SøknadApp';
-import FlereDeltakelserPage from '../pages/FlereDeltakelserPage';
-import HentDeltakerErrorPage from '../pages/HentDeltakerErrorPage';
-import IngenDeltakelsePage from '../pages/IngenDeltakelsePage';
+import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
+import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
+import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import { useLocation } from 'react-router-dom';
+import { Alert, Theme, VStack } from '@navikt/ds-react';
+import { Oppgavetype } from '@navikt/ung-common';
+import UngLoadingPage from '../../pages/UngLoadingPage';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -18,10 +21,11 @@ const DeltakerInfoLoader = () => {
     const { pathname } = useLocation();
 
     if (isLoading) {
-        return <LoadingPage />;
+        return <UngLoadingPage />;
     }
 
     if (error) {
+        console.error('Error loading data:', søker.error, deltakelsePerioder.error);
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
@@ -39,15 +43,35 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
+    const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
+        (oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE,
+    );
+
+    const deltakerHarSøkt =
+        deltakelsePeriode.søktTidspunkt !== undefined ||
+        (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
+
     return (
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakelsePeriode.harSøkt && pathname.includes('kvittering') === false ? (
-                <InnsynApp />
+            {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
+                <Theme hasBackground={false}>
+                    {deltakelsePeriode.søktTidspunkt === undefined && (
+                        <VStack marginBlock="0 2" className="pl-10 pr-10  max-w-[800px] mx-auto ">
+                            <Alert variant="warning" size="small">
+                                Kun i test/utvikling: Deltakelse er søkt for før vi endret datastruktur, så
+                                søktTidspunkt settes til dagens dato.
+                            </Alert>
+                        </VStack>
+                    )}
+                    <InnsynApp />
+                </Theme>
             ) : (
-                <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                <Theme>
+                    <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
+                </Theme>
             )}
         </DeltakerContextProvider>
     );

@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakerService, KontonummerDto, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltaker as DeltakerService, KontonummerDto, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 export const getKontonummer = async (): Promise<KontonummerDto | null> => {
     try {

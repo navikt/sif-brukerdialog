@@ -10,15 +10,15 @@
     },
     "dependencies": {
         "@changesets/cli": "2.29.4",
-        "tailwindcss": "4.1.7",
-        "turbo": "2.5.3"
+        "tailwindcss": "4.1.8",
+        "turbo": "2.5.4"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "16.0.0",
+        "lint-staged": "16.1.0",
         "prettier": "3.5.3",
         "typescript": "5.8.3"
     },
@@ -55,6 +55,9 @@
     "private": true,
     "packageManager": "yarn@4.5.3",
     "resolutions": {
-        "@swc/core": "1.5.7"
+        "@swc/core": "1.5.7",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "@types/react": "19.1.7"
     }
 }

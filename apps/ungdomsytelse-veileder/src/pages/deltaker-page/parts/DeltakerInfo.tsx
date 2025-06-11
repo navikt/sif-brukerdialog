@@ -1,4 +1,4 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltaker, formaterNavn } from '@navikt/ung-common';
 import dayjs from 'dayjs';
@@ -28,18 +28,28 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                             </dd>
                             <dt>Fødselsdato:</dt>
                             <dd>
-                                {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
+                                <VStack gap="3">
+                                    <span>
+                                        {dateFormatter.compact(deltaker.fødselsdato)} ({alder} år)
+                                    </span>
+                                    {dayjs(deltaker.fødselsdato).isSame(dayjs(), 'day') && (
+                                        <BodyShort as="span">🎉 Bursdag i dag 🎉</BodyShort>
+                                    )}
+                                </VStack>
                             </dd>
                         </dl>
                     </VStack>
-                    <VStack gap="4">
-                        {/* <dl className="ungDefinitionList">
+                    {/* <VStack gap="2">
+                        <Heading size="small" level="3">
+                            Metadata om deltaker (kun for test)
+                        </Heading>
+                        <dl className="ungDefinitionList">
                             <dt>Første mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.førsteMuligeInnmeldingsdato)}</dd>
                             <dt>Siste mulige innmeldingsdato:</dt>
                             <dd>{dateFormatter.compact(deltaker.sisteMuligeInnmeldingsdato)}</dd>
-                        </dl> */}
-                    </VStack>
+                        </dl>
+                    </VStack> */}
                 </HGrid>
             </InfoBox>
         </VStack>

@@ -1,5 +1,5 @@
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
-import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/client/client.gen';
+import { client } from '@navikt/k9-brukerdialog-prosessering-api';
 import { v4 } from 'uuid';
 import { isUnauthorized } from './';
 

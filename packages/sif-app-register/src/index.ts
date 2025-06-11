@@ -204,6 +204,18 @@ export const UngdomsytelseDeltakerApp: AppInfo = {
     },
 };
 
+export const UngdomsytelseVeilederApp: AppInfo = {
+    key: 'ungdomsytelse-veileder',
+    navn: 'Veilederapplikasjon for ungdomsprogramytelse',
+    tittel: {
+        nb: 'Veilederapplikasjon for ungdomsprogramytelse',
+    },
+    lenker: {
+        q: 'https://ungdomsytelse-veileder.intern.dev.nav.no',
+        prod: '',
+    },
+};
+
 export const sifAppRegister = {
     OmsorgsdagerAleneomsorgApp,
 };

@@ -10,23 +10,23 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.2.1",
-        "@sanity/client": "7.2.1"
+        "@sanity/client": "7.5.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "7.21.1",
-        "@navikt/ds-react": "7.21.1",
+        "@navikt/ds-css": "7.22.0",
+        "@navikt/ds-react": "7.22.0",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "22.15.19",
-        "@types/react": "19.1.4",
-        "@types/react-dom": "19.1.5",
+        "@types/node": "24.0.0",
+        "@types/react": "19.1.7",
+        "@types/react-dom": "19.1.6",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.5.3",
+        "postcss": "8.5.4",
         "prop-types": "15.8.1",
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "rimraf": "6.0.1",
-        "sass": "1.89.0"
+        "sass": "1.89.2"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

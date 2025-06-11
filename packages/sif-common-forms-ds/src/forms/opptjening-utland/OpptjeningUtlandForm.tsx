@@ -11,7 +11,7 @@ import {
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { hasValue } from '@navikt/sif-validation';
 import { handleDateRangeValidationError } from '../../utils';
-import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
+import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './i18n';
 import utils from './opptjeningUtlandUtils';
 import { OpptjeningAktivitet, OpptjeningUtland, OpptjeningUtlandFormValues } from './types';
 

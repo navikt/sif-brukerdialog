@@ -71,7 +71,7 @@ const KontonummerSteg = () => {
                                         </BodyShort>
                                         <BodyShort>
                                             Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden,
-                                            slik at pengene ikke blir forsinket.
+                                            slik at pengene blir satt inn på kontoen din.
                                         </BodyShort>
                                     </Alert>
                                 </AriaLiveRegion>

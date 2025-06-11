@@ -1,10 +1,10 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import DefaultPageLayout from '../../apps/innsyn/pages/layout/DefaultPageLayout';
 
 const AppErrorFallback = () => (
-    <Page title="Ungdomsprogramytelse">
+    <DefaultPageLayout documentTitle="Din ungdomsprogramytelse">
         <Block margin="xxxl">
             <SifGuidePanel mood="uncertain">
                 <Heading level="2" size="medium">
@@ -13,7 +13,7 @@ const AppErrorFallback = () => (
                 <p>Du kan prøve å laste siden på nytt, eller du kan vente litt og prøve igjen senere.</p>
             </SifGuidePanel>
         </Block>
-    </Page>
+    </DefaultPageLayout>
 );
 
 export default AppErrorFallback;

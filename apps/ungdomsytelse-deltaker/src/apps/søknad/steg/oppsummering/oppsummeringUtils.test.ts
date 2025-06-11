@@ -3,6 +3,9 @@ import { describe, expect, it } from 'vitest';
 import { Spørsmål, SøknadSvar } from '../../types';
 import { buildSøknadFromSvar } from './oppsummeringUtils';
 
+const deltakelseId = '12345';
+const oppgaveReferanse = '12345';
+
 describe('buildSøknadFromSvar', () => {
     const søkerNorskIdent = '12345678910';
     const startdato = new Date('2023-01-01');
@@ -15,7 +18,14 @@ describe('buildSøknadFromSvar', () => {
             [Spørsmål.KONTONUMMER]: YesOrNo.YES,
         };
 
-        const result = buildSøknadFromSvar(svar, søkerNorskIdent, startdato, kontonummerFraRegister);
+        const result = buildSøknadFromSvar(
+            deltakelseId,
+            oppgaveReferanse,
+            svar,
+            søkerNorskIdent,
+            startdato,
+            kontonummerFraRegister,
+        );
         expect(result).toBeUndefined();
     });
 
@@ -26,7 +36,14 @@ describe('buildSøknadFromSvar', () => {
             [Spørsmål.KONTONUMMER]: YesOrNo.YES,
         };
 
-        const result = buildSøknadFromSvar(svar, søkerNorskIdent, startdato, kontonummerFraRegister);
+        const result = buildSøknadFromSvar(
+            deltakelseId,
+            oppgaveReferanse,
+            svar,
+            søkerNorskIdent,
+            startdato,
+            kontonummerFraRegister,
+        );
         expect(result).toBeUndefined();
     });
 
@@ -37,7 +54,14 @@ describe('buildSøknadFromSvar', () => {
             [Spørsmål.KONTONUMMER]: undefined,
         };
 
-        const result = buildSøknadFromSvar(svar, søkerNorskIdent, startdato, kontonummerFraRegister);
+        const result = buildSøknadFromSvar(
+            deltakelseId,
+            oppgaveReferanse,
+            svar,
+            søkerNorskIdent,
+            startdato,
+            kontonummerFraRegister,
+        );
         expect(result).toBeUndefined();
     });
 
@@ -48,12 +72,21 @@ describe('buildSøknadFromSvar', () => {
             [Spørsmål.KONTONUMMER]: YesOrNo.YES,
         };
 
-        const result = buildSøknadFromSvar(svar, søkerNorskIdent, startdato, kontonummerFraRegister);
+        const result = buildSøknadFromSvar(
+            deltakelseId,
+            oppgaveReferanse,
+            svar,
+            søkerNorskIdent,
+            startdato,
+            kontonummerFraRegister,
+        );
         expect(result).toEqual({
             språk: 'nb',
             startdato: '2023-01-01',
             harForståttRettigheterOgPlikter: true,
             barnErRiktig: true,
+            deltakelseId: '12345',
+            oppgaveReferanse: '12345',
             kontonummerErRiktig: true,
             søkerNorskIdent,
             kontonummerFraRegister: '1234 56 78901', // Forutsatt at `formaterKontonummer` formaterer slik
@@ -66,11 +99,13 @@ describe('buildSøknadFromSvar', () => {
             [Spørsmål.BARN]: YesOrNo.NO,
         };
 
-        const result = buildSøknadFromSvar(svar, søkerNorskIdent, startdato);
+        const result = buildSøknadFromSvar(deltakelseId, oppgaveReferanse, svar, søkerNorskIdent, startdato);
         expect(result).toEqual({
             språk: 'nb',
             startdato: '2023-01-01',
             harForståttRettigheterOgPlikter: true,
+            deltakelseId: '12345',
+            oppgaveReferanse: '12345',
             barnErRiktig: false,
             kontonummerErRiktig: undefined,
             søkerNorskIdent,

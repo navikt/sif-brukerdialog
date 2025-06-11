@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { HStack } from '@navikt/ds-react';
 import EndretTag from './EndretTag';

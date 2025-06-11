@@ -1,5 +1,12 @@
 # @navikt/sif-common-ui
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.5
+
 ## 0.0.4
 
 ### Patch Changes

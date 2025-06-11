@@ -1,6 +1,6 @@
-import { Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import AppRouter from './AppRouter';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
@@ -13,7 +13,6 @@ import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 
 initSentry();
 initApiClients();
@@ -22,7 +21,7 @@ if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
-            simple: true,
+            simple: false,
             chatbot: true,
         },
     });
@@ -32,23 +31,18 @@ const queryClient = new QueryClient();
 
 function App() {
     return (
-        <Theme>
-            <ErrorBoundary fallback={<AppErrorFallback />}>
-                <AnalyticsProvider
-                    applicationKey={UngdomsytelseDeltakerApp.key}
-                    logToConsoleOnly={true}
-                    isActive={false}>
-                    <QueryClientProvider client={queryClient}>
-                        <AppIntlMessageProvider>
-                            <AppRouter>
-                                <DeltakerInfoLoader />
-                            </AppRouter>
-                            <DevFooter />
-                        </AppIntlMessageProvider>
-                    </QueryClientProvider>
-                </AnalyticsProvider>
-            </ErrorBoundary>
-        </Theme>
+        <ErrorBoundary fallback={<AppErrorFallback />}>
+            <AnalyticsProvider applicationKey={UngdomsytelseDeltakerApp.key} logToConsoleOnly={true} isActive={false}>
+                <QueryClientProvider client={queryClient}>
+                    <AppIntlMessageProvider>
+                        <AppRouter>
+                            <DeltakerInfoLoader />
+                        </AppRouter>
+                        <DevFooter />
+                    </AppIntlMessageProvider>
+                </QueryClientProvider>
+            </AnalyticsProvider>
+        </ErrorBoundary>
     );
 }
 
