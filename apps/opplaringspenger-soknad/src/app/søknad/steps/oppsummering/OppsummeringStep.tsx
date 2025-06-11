@@ -44,7 +44,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { text, intl } = useAppIntl();
     const {
-        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
+        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -67,7 +67,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, institusjoner);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn);
 
     if (!apiData) {
         return (

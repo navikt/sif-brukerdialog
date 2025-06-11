@@ -33,9 +33,12 @@ import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './ReisedagerFormPart';
 import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
 import ReiseInfo from './ReiseInfo';
+import { useMemo } from 'react';
 
 export enum KursFormFields {
-    opplæringsinstitusjon = 'opplæringsinstitusjon',
+    valgtOpplæringsinstitusjon = 'valgtOpplæringsinstitusjon',
+    annenInstitusjon = 'annenInstitusjon',
+    navnAnnenInstitusjon = 'navnAnnenInstitusjon',
     kursperioder = 'kursperioder',
     reiserUtenforKursdager = 'reiserUtenforKursdager',
     reisedager = 'reisedager',
@@ -45,7 +48,9 @@ export enum KursFormFields {
 }
 
 export interface KursFormValues {
-    [KursFormFields.opplæringsinstitusjon]?: string;
+    [KursFormFields.valgtOpplæringsinstitusjon]?: string;
+    [KursFormFields.annenInstitusjon]?: boolean;
+    [KursFormFields.navnAnnenInstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
     [KursFormFields.reisedager]?: Enkeltdato[];
     [KursFormFields.reisedagerBeskrivelse]?: string;
@@ -54,7 +59,7 @@ export interface KursFormValues {
     [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion, Combobox } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, Combobox, Checkbox, TextField } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -76,7 +81,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, institusjoner);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -102,17 +107,31 @@ const KursStep = () => {
             <FormikWrapper
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => {
-                    const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
-                    const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
+                renderForm={({ values, setFieldValue }) => {
+                    const søknadsperiode = useMemo(
+                        () => getSøknadsperiodeFromKursperioderFormValues(values.kursperioder),
+                        [values.kursperioder],
+                    );
+
+                    const kursperioder = useMemo(
+                        () => getDateRangesFromKursperiodeFormValues(values.kursperioder),
+                        [values.kursperioder],
+                    );
+
+                    const disabledDateRanges = useMemo(() => {
+                        if (søknadsperiode) {
+                            return getDateRangesBetweenDateRangesWithinDateRange(
+                                søknadsperiode.from,
+                                søknadsperiode.to,
+                                kursperioder,
+                            );
+                        }
+                        return [];
+                    }, [søknadsperiode, kursperioder]);
+
                     const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
-                    const disabledDateRanges = søknadsperiode
-                        ? getDateRangesBetweenDateRangesWithinDateRange(
-                              søknadsperiode.from,
-                              søknadsperiode.to,
-                              kursperioder,
-                          )
-                        : [];
+
+                    const annenInstitusjon = values[KursFormFields.annenInstitusjon] === true;
 
                     return (
                         <>
@@ -135,22 +154,33 @@ const KursStep = () => {
                                         <GodkjentHelseinstitusjonInfo />
                                     </SifGuidePanel>
 
-                                    <VStack gap={'4'}>
+                                    <VStack gap={'1'}>
                                         <Combobox
-                                            name={KursFormFields.opplæringsinstitusjon}
-                                            allowNewValues={true}
+                                            name={KursFormFields.valgtOpplæringsinstitusjon}
+                                            allowNewValues={false}
                                             label={text('steg.kurs.opplæringsinstitusjon.label')}
                                             options={institusjonsnavn}
                                             shouldAutocomplete={false}
                                             maxLength={90}
                                             minLength={2}
+                                            disabled={annenInstitusjon}
                                             isMultiSelect={false}
-                                            initialValue={values[KursFormFields.opplæringsinstitusjon]}
-                                            validate={getStringValidator({
-                                                required: true,
-                                                minLength: 2,
-                                                maxLength: 100,
-                                            })}
+                                            initialValue={values[KursFormFields.valgtOpplæringsinstitusjon]}
+                                            onSelect={(evt) => {
+                                                if (evt.currentTarget.value !== '') {
+                                                    setFieldValue(KursFormFields.annenInstitusjon, false);
+                                                    setFieldValue(KursFormFields.navnAnnenInstitusjon, '');
+                                                }
+                                            }}
+                                            validate={
+                                                annenInstitusjon
+                                                    ? undefined
+                                                    : getStringValidator({
+                                                          required: true,
+                                                          minLength: 2,
+                                                          maxLength: 100,
+                                                      })
+                                            }
                                             description={
                                                 <ReadMore
                                                     header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
@@ -160,6 +190,24 @@ const KursStep = () => {
                                                 </ReadMore>
                                             }
                                         />
+                                        <Checkbox
+                                            name={KursFormFields.annenInstitusjon}
+                                            label={text('steg.kurs.opplæringsinstitusjon.annen.check.label')}
+                                        />
+                                        {annenInstitusjon && (
+                                            <TextField
+                                                className="mt-4"
+                                                name={KursFormFields.navnAnnenInstitusjon}
+                                                label={text('steg.kurs.opplæringsinstitusjon.annen.navn.label')}
+                                                validate={getStringValidator({
+                                                    required: true,
+                                                    minLength: 2,
+                                                    maxLength: 100,
+                                                })}
+                                                disabled={!values[KursFormFields.annenInstitusjon]}
+                                                maxLength={100}
+                                            />
+                                        )}
                                     </VStack>
 
                                     <FormikInputGroup
