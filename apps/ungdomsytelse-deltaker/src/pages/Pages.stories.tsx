@@ -5,7 +5,7 @@ import UngLoadingPage from './UngLoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
 const meta: Meta = {
-    title: 'Pages',
+    title: 'Andre sider',
     parameters: {},
     decorators: [withIntl],
 };

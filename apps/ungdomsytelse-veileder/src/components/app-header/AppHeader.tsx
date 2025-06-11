@@ -7,7 +7,7 @@ import { useVeileder } from '../../context/VeilederContext';
 interface Props {
     visActionsMenu?: boolean;
 }
-const AppHeader = ({ visActionsMenu = false }: Props) => {
+const AppHeader = ({ visActionsMenu = true }: Props) => {
     const { veileder } = useVeileder();
     const { setDarkMode, darkMode } = useThemeContext();
 
