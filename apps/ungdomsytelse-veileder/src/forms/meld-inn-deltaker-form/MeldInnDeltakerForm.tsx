@@ -10,7 +10,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
+import { ApiErrorType, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
@@ -117,7 +117,9 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                     Avbryt
                                 </Button>
                             </HStack>
-                            {error ? <ApiErrorAlert error={error} /> : null}
+                            {error && error.type === ApiErrorType.NetworkError && error.originalError ? (
+                                <ApiErrorAlert error={error} />
+                            ) : null}
                         </VStack>
                     </TypedFormikForm>
                 );

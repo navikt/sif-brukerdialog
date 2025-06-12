@@ -7,7 +7,7 @@ import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import DevUserList from '../../dev-components/DevUserList';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import FinnDeltakerApiError from './FinnDeltakerApiError';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -106,7 +106,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         </HStack>
                     </Fieldset>
                 </form>
-                {error ? <ApiErrorAlert error={error} /> : null}
+                {error && fnrValue ? <FinnDeltakerApiError error={error} fnr={fnrValue} /> : null}
             </VStack>
 
             {nyDeltaker ? (
