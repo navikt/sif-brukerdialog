@@ -37,6 +37,12 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                                     )}
                                 </VStack>
                             </dd>
+                            {/* <dt>Skjerming:</dt>
+                            <dd>
+                                <Tag variant="error" size="small">
+                                    Kode 6
+                                </Tag>
+                            </dd> */}
                         </dl>
                     </VStack>
                     {/* <VStack gap="2">

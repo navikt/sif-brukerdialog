@@ -1,4 +1,4 @@
-import { Bleed, BodyShort, Box, Button, HGrid, HStack, Tag, VStack } from '@navikt/ds-react';
+import { Bleed, BodyShort, Box, Button, HGrid, HStack, Show, Tag, VStack } from '@navikt/ds-react';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
@@ -29,10 +29,17 @@ const DeltakerKort = ({
             background="info-soft"
             borderColor="info-subtle"
             borderWidth="2">
-            <HGrid columns="4.5rem auto 2rem" align="start" gap="4">
-                <PersonNøytral width="4.5rem" height="4.5rem" />
+            <HGrid columns={{ xs: 'auto 2rem', sm: '4.5rem auto 2rem' }} align="start" gap="4">
+                <Show above="sm">
+                    <PersonNøytral width="4.5rem" height="4.5rem" />
+                </Show>
                 <VStack gap="2" flexGrow="2">
-                    <VStack>
+                    <VStack gap="1">
+                        {/* <Box marginBlock="0 2">
+                            <Tag variant="error" size="small">
+                                Kode 6
+                            </Tag>
+                        </Box> */}
                         <BodyShort size="medium" weight="semibold">
                             {etternavn}, {mellomnavn} {fornavn}
                         </BodyShort>
@@ -44,7 +51,7 @@ const DeltakerKort = ({
                         </HStack>
                     </VStack>
                     {!registrert ? (
-                        <Box>
+                        <Box marginBlock="2 0">
                             <Tag variant="warning" size="small">
                                 Ikke registrert som deltaker
                             </Tag>

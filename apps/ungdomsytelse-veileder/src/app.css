@@ -49,3 +49,15 @@
         }
     }
 }
+
+:root {
+    --ax-bg-warning-moderateA: #ffebc7 !important;
+    --ax-bg-neutral-moderateA: #e3e5e7 !important;
+}
+
+.aksel-tag--warning {
+    background-color: #ffebc7 !important;
+}
+.aksel-tag--error {
+    background-color: var(--ax-bg-danger-moderate) !important;
+}
