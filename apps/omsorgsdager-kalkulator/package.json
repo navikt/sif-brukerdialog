@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.12.4",
+    "version": "3.12.6",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -38,11 +38,11 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@playwright/test": "1.52.0",
-        "@tailwindcss/postcss": "4.1.8",
-        "@tailwindcss/vite": "4.1.8",
-        "@types/node": "24.0.0",
-        "@types/react": "19.1.7",
+        "@playwright/test": "1.53.0",
+        "@tailwindcss/postcss": "4.1.10",
+        "@tailwindcss/vite": "4.1.10",
+        "@types/node": "24.0.1",
+        "@types/react": "19.1.8",
         "@types/react-dom": "19.1.6",
         "@types/uuid": "10.0.0",
         "config": "workspace:*",
@@ -50,9 +50,9 @@
         "eslint-config-next": "15.3.3",
         "jest": "30.0.0",
         "jest-environment-jsdom": "30.0.0",
-        "playwright-core": "1.52.0",
-        "postcss": "8.5.4",
-        "tailwindcss": "4.1.8",
+        "playwright-core": "1.53.0",
+        "postcss": "8.5.5",
+        "tailwindcss": "4.1.10",
         "typescript": "5.8.3"
     }
 }

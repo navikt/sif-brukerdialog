@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.6
+
+### Patch Changes
+
+- Oppdatere til node22 image
+
+## 3.12.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 3.12.4
 
 ### Patch Changes

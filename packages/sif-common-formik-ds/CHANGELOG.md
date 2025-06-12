@@ -1,5 +1,20 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.3
+    - @navikt/sif-validation@1.0.0
+
+## 2.4.4
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+
 ## 2.4.3
 
 ### Patch Changes

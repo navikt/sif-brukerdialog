@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.2.2
 
 ### Patch Changes
