@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.9.8
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.4
+    - @navikt/sif-common-core-ds@10.2.6
+    - @navikt/sif-common-forms-ds@19.0.5
+    - @navikt/sif-common-soknad-ds@24.0.5
+    - @navikt/sif-common-ui@0.9.7
+
 ## 4.9.7
 
 ### Patch Changes

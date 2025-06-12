@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.4
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+
 ## 2.4.3
 
 ### Patch Changes
