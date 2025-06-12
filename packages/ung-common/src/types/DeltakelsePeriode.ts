@@ -1,10 +1,10 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
-import { OppgaveDto, zDeltakelsePeriodInfo } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api';
 import { z } from 'zod';
-import { parseOppgaverElement } from '../api';
 import dayjs from 'dayjs';
+import { parseOppgaverElement } from '../api';
 
-export const deltakelsePeriodeSchema = zDeltakelsePeriodInfo
+export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
     .extend({
         id: z.string(),
     })

@@ -15,6 +15,23 @@ export type EndrePeriodeDatoDto = {
     dato: string;
 };
 
+export type DeltakelseDto = {
+    id?: string;
+    deltaker: DeltakerDto;
+    fraOgMed: string;
+    tilOgMed?: string;
+    søktTidspunkt?: string;
+};
+
+export type DeltakerDto = {
+    id?: string;
+    deltakerIdent: string;
+};
+
+export type DeltakelseUtmeldingDto = {
+    utmeldingsdato: string;
+};
+
 export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
     arbeidsgiver: string;
@@ -25,18 +42,13 @@ export type BekreftelseDto = {
     uttalelseFraBruker?: string;
 };
 
-export type DeltakelseOpplysningDto = {
+export type DeltakelseKomposittDto = {
     id?: string;
     deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
     søktTidspunkt?: string;
     oppgaver: Array<OppgaveDto>;
-};
-
-export type DeltakerDto = {
-    id?: string;
-    deltakerIdent: string;
 };
 
 export type EndretSluttdatoDataDto = OppgavetypeDataDto & {
@@ -128,10 +140,6 @@ export enum YtelseType {
     OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
 }
 
-export type DeltakelseUtmeldingDto = {
-    utmeldingsdato: string;
-};
-
 export type DeltakelseInnmeldingDto = {
     deltakerIdent: string;
     startdato: string;
@@ -141,8 +149,8 @@ export type AktørIdDto = {
     aktørId: string;
 };
 
-export type DeltakerOpplysningerDto = {
-    opplysninger: Array<DeltakelseOpplysningDto>;
+export type DeltakelseOpplysningerDto = {
+    opplysninger: Array<DeltakelseDto>;
 };
 
 export type DeltakerPersonalia = {
@@ -150,8 +158,8 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export type Navn = {
@@ -243,14 +251,6 @@ export type KontonummerDto = {
     kontonummer?: string;
 };
 
-export type DeltakelsePeriodInfo = {
-    id: string;
-    fraOgMed: string;
-    tilOgMed?: string;
-    søktTidspunkt?: string;
-    oppgaver: Array<OppgaveDto>;
-};
-
 export type EndreStartdatoData = {
     body: EndrePeriodeDatoDto;
     path: {
@@ -281,7 +281,7 @@ export type EndreStartdatoResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type EndreStartdatoResponse = EndreStartdatoResponses[keyof EndreStartdatoResponses];
@@ -316,7 +316,7 @@ export type EndreSluttdatoResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type EndreSluttdatoResponse = EndreSluttdatoResponses[keyof EndreSluttdatoResponses];
@@ -351,7 +351,7 @@ export type MeldUtDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
@@ -386,7 +386,7 @@ export type MarkerDeltakelseSomSøktResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseKomposittDto;
 };
 
 export type MarkerDeltakelseSomSøktResponse = MarkerDeltakelseSomSøktResponses[keyof MarkerDeltakelseSomSøktResponses];
@@ -419,7 +419,7 @@ export type MeldInnDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type MeldInnDeltakerResponse = MeldInnDeltakerResponses[keyof MeldInnDeltakerResponses];
@@ -453,7 +453,7 @@ export type HentAlleDeltakelserGittDeltakerAktørResponses = {
     /**
      * OK
      */
-    200: DeltakerOpplysningerDto;
+    200: DeltakelseOpplysningerDto;
 };
 
 export type HentAlleDeltakelserGittDeltakerAktørResponse =
@@ -759,7 +759,7 @@ export type HentAlleDeltakelserGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: Array<DeltakelseOpplysningDto>;
+    200: Array<DeltakelseDto>;
 };
 
 export type HentAlleDeltakelserGittDeltakerIdResponse =
@@ -1038,7 +1038,7 @@ export type HentAlleMineDeltakelserResponses = {
     /**
      * OK
      */
-    200: Array<DeltakelsePeriodInfo>;
+    200: Array<DeltakelseKomposittDto>;
 };
 
 export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];

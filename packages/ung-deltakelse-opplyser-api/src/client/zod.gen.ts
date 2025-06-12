@@ -15,6 +15,23 @@ export const zEndrePeriodeDatoDto = z.object({
     dato: z.string().date(),
 });
 
+export const zDeltakerDto = z.object({
+    id: z.string().uuid().optional(),
+    deltakerIdent: z.string(),
+});
+
+export const zDeltakelseDto = z.object({
+    id: z.string().uuid().optional(),
+    deltaker: zDeltakerDto,
+    fraOgMed: z.string().date(),
+    tilOgMed: z.string().date().optional(),
+    søktTidspunkt: z.string().datetime().optional(),
+});
+
+export const zDeltakelseUtmeldingDto = z.object({
+    utmeldingsdato: z.string().date(),
+});
+
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
     inntekt: z.number().int(),
     arbeidsgiver: z.string(),
@@ -23,11 +40,6 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
 export const zBekreftelseDto = z.object({
     harGodtattEndringen: z.boolean(),
     uttalelseFraBruker: z.string().optional(),
-});
-
-export const zDeltakerDto = z.object({
-    id: z.string().uuid().optional(),
-    deltakerIdent: z.string(),
 });
 
 export const zOppgavetype = z.enum([
@@ -124,17 +136,13 @@ export const zOppgaveDto = z.object({
     frist: z.string().datetime().optional(),
 });
 
-export const zDeltakelseOpplysningDto = z.object({
+export const zDeltakelseKomposittDto = z.object({
     id: z.string().uuid().optional(),
     deltaker: zDeltakerDto,
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date().optional(),
     søktTidspunkt: z.string().datetime().optional(),
     oppgaver: z.array(zOppgaveDto),
-});
-
-export const zDeltakelseUtmeldingDto = z.object({
-    utmeldingsdato: z.string().date(),
 });
 
 export const zDeltakelseInnmeldingDto = z.object({
@@ -146,8 +154,8 @@ export const zAktørIdDto = z.object({
     aktørId: z.string(),
 });
 
-export const zDeltakerOpplysningerDto = z.object({
-    opplysninger: z.array(zDeltakelseOpplysningDto),
+export const zDeltakelseOpplysningerDto = z.object({
+    opplysninger: z.array(zDeltakelseDto),
 });
 
 export const zNavn = z.object({
@@ -161,8 +169,8 @@ export const zDeltakerPersonalia = z.object({
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({
@@ -243,14 +251,6 @@ export const zKontonummerDto = z.object({
     kontonummer: z.string().optional(),
 });
 
-export const zDeltakelsePeriodInfo = z.object({
-    id: z.string().uuid(),
-    fraOgMed: z.string().date(),
-    tilOgMed: z.string().date().optional(),
-    søktTidspunkt: z.string().datetime().optional(),
-    oppgaver: z.array(zOppgaveDto),
-});
-
 export const zEndreStartdatoData = zEndrePeriodeDatoDto;
 
 export const zEndreStartdatoParameterDeltakelseId = z.string().uuid();
@@ -258,7 +258,7 @@ export const zEndreStartdatoParameterDeltakelseId = z.string().uuid();
 /**
  * OK
  */
-export const zEndreStartdatoResponse = zDeltakelseOpplysningDto;
+export const zEndreStartdatoResponse = zDeltakelseDto;
 
 export const zEndreSluttdatoData = zEndrePeriodeDatoDto;
 
@@ -267,7 +267,7 @@ export const zEndreSluttdatoParameterDeltakelseId = z.string().uuid();
 /**
  * OK
  */
-export const zEndreSluttdatoResponse = zDeltakelseOpplysningDto;
+export const zEndreSluttdatoResponse = zDeltakelseDto;
 
 export const zMeldUtDeltakerData = zDeltakelseUtmeldingDto;
 
@@ -276,28 +276,28 @@ export const zMeldUtDeltakerParameterDeltakelseId = z.string().uuid();
 /**
  * OK
  */
-export const zMeldUtDeltakerResponse = zDeltakelseOpplysningDto;
+export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
 export const zMarkerDeltakelseSomSøktParameterId = z.string().uuid();
 
 /**
  * OK
  */
-export const zMarkerDeltakelseSomSøktResponse = zDeltakelseOpplysningDto;
+export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
 export const zMeldInnDeltakerData = zDeltakelseInnmeldingDto;
 
 /**
  * OK
  */
-export const zMeldInnDeltakerResponse = zDeltakelseOpplysningDto;
+export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
 export const zHentAlleDeltakelserGittDeltakerAktørData = zAktørIdDto;
 
 /**
  * OK
  */
-export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakerOpplysningerDto;
+export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakelseOpplysningerDto;
 
 export const zHentDeltakerInfoGittDeltakerData = zDeltakerDto;
 
@@ -345,7 +345,7 @@ export const zHentAlleDeltakelserGittDeltakerIdParameterDeltakerId = z.string().
 /**
  * OK
  */
-export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseOpplysningDto);
+export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
 export const zDeltakelseHistorikkParameterDeltakelseId = z.string().uuid();
 
@@ -397,7 +397,7 @@ export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
 /**
  * OK
  */
-export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelsePeriodInfo);
+export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelseKomposittDto);
 
 export const zFjernFraProgramParameterDeltakerId = z.string().uuid();
 
