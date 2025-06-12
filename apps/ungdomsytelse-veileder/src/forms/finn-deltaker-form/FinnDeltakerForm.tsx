@@ -116,7 +116,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     <Checkbox
                         checked={visRegistrerNySkjema}
                         onChange={(evt) => setVisRegistrerNySkjema(evt.target.checked)}>
-                        Registrer som ny deltaker
+                        Registrer som ny deltaker i ungdomsprogrammet
                     </Checkbox>
                 </VStack>
             ) : null}

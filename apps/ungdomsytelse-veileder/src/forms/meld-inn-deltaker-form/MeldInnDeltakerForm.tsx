@@ -67,12 +67,12 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                         <VStack gap="6">
                             <VStack gap="4">
                                 <Heading level="2" size="small" spacing={false}>
-                                    Registrer ny deltakelse
+                                    Registrer ny deltaker
                                 </Heading>
 
                                 <FormikDatepicker
                                     name="startDato"
-                                    label="Når starter deltakelsen?"
+                                    label="Når starter deltakeren i ungdomsprogrammet?"
                                     disableWeekends={true}
                                     description={
                                         <>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>
