@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@changesets/cli": "2.29.4",
-        "tailwindcss": "4.1.8",
+        "tailwindcss": "4.1.10",
         "turbo": "2.5.4"
     },
     "devDependencies": {
