@@ -15,7 +15,7 @@
         "config": "workspace:*",
         "typescript": "5.8.3",
         "vitest": "3.2.3",
-        "zod": "3.25.57"
+        "zod": "3.25.63"
     },
     "peerDependencies": {
         "axios": "*",
