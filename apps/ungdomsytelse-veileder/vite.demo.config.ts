@@ -30,6 +30,12 @@ export default defineConfig({
         }),
         checker({ typescript: true }),
         {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
+        {
             name: 'html-transform',
             transformIndexHtml: (html) => {
                 return html

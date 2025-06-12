@@ -11,6 +11,12 @@ export default defineConfig({
             include: '**/*.{tsx}',
         }),
         checker({ typescript: true }),
+        {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
     ],
     define: {
         __IS_GITHUB_PAGES__: false,
