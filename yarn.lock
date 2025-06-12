@@ -5291,7 +5291,7 @@ __metadata:
     "@storybook/jest": "npm:0.2.3"
     "@storybook/preset-scss": "npm:1.0.3"
     "@storybook/react-vite": "npm:9.0.6"
-    "@storybook/test-runner": "npm:0.22.1"
+    "@storybook/test-runner": "npm:0.23.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:29.5.14"
     "@types/node": "npm:24.0.0"
@@ -8400,16 +8400,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.22.1":
-  version: 0.22.1
-  resolution: "@storybook/test-runner@npm:0.22.1"
+"@storybook/test-runner@npm:0.23.0":
+  version: 0.23.0
+  resolution: "@storybook/test-runner@npm:0.23.0"
   dependencies:
     "@babel/core": "npm:^7.22.5"
     "@babel/generator": "npm:^7.22.5"
     "@babel/template": "npm:^7.22.5"
     "@babel/types": "npm:^7.22.5"
     "@jest/types": "npm:^29.6.3"
-    "@storybook/csf": "npm:^0.1.11"
     "@swc/core": "npm:^1.5.22"
     "@swc/jest": "npm:^0.2.23"
     expect-playwright: "npm:^0.8.0"
@@ -8424,10 +8423,10 @@ __metadata:
     nyc: "npm:^15.1.0"
     playwright: "npm:^1.14.0"
   peerDependencies:
-    storybook: ^0.0.0-0 || ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0 || ^9.0.0-0
+    storybook: ^0.0.0-0 || ^8.2.0 || ^9.0.0 || ^9.1.0-0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: 10/b124495770068d9c70ab8c643a4f5547bd27ebdfd5151161241743544799f0f48305a463603024b9849b93f9d39477d562872e7851371b1b91395ab93571f39d
+  checksum: 10/42cb993ea3647cbe71495ea095c71d28970b465796dd6b85c15bf41d7fbc3d0f44b0eceb55b200d34d70d2e05e681a759d7164c46f911a43a338ec918d188e25
   languageName: node
   linkType: hard
 
