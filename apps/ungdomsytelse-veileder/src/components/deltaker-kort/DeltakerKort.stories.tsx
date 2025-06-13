@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
-import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
-import DeltakerKort from './DeltakerKort';
 import { BrowserRouter } from 'react-router-dom';
-import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
-import { http, HttpResponse } from 'msw';
-import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { nyDeltakerMock } from '../../../mock/msw/mocks/data/nyDeltakerMock';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api';
+import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
+import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
+import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import DeltakerKort from './DeltakerKort';
+import { Deltaker } from '@navikt/ung-common';
+import { VStack } from '@navikt/ds-react';
 
 const meta: Meta<typeof DeltakerKort> = {
     component: DeltakerKort,
@@ -20,38 +21,61 @@ export default meta;
 
 type Story = StoryObj<typeof DeltakerKort>;
 
-function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const deltaker: Deltaker = {
+    id: '123',
+    deltakerIdent: '56857102105',
+    fødselsdato: ISODateToDate('2000-01-01'),
+    registrert: false,
+    navn: {
+        fornavn: 'Ola',
+        mellomnavn: 'Nordmann',
+        etternavn: 'Nordmann',
+    },
+    førsteMuligeInnmeldingsdato: ISODateToDate('2023-01-01'),
+    sisteMuligeInnmeldingsdato: ISODateToDate('2023-12-31'),
+    diskresjonskoder: [],
+};
+
+export const Varianter: Story = {
+    render: () => (
+        <VStack gap="4">
+            <DeltakerKort deltaker={deltaker} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.SKJERMET] }} />
+            <DeltakerKort
+                deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6, Diskresjonskode.SKJERMET] }}
+            />
+        </VStack>
+    ),
+};
 
 export const UregistrertDeltaker: Story = {
     render: () => (
         <BrowserRouter>
-            <DeltakerKort
-                deltaker={{
-                    deltakerIdent: '56857102105',
-                    fødselsdato: ISODateToDate('2000-01-01'),
-                    registrert: false,
-                    navn: {
-                        fornavn: 'Ola',
-                        mellomnavn: 'Nordmann',
-                        etternavn: 'Nordmann',
-                    },
-                    førsteMuligeInnmeldingsdato: ISODateToDate('2023-01-01'),
-                    sisteMuligeInnmeldingsdato: ISODateToDate('2023-12-31'),
-                    diskresjonskoder: [],
-                }}
-            />
+            <DeltakerKort deltaker={deltaker} />
         </BrowserRouter>
     ),
-    parameters: {
-        msw: {
-            handlers: [
-                http.post('http://localhost:6006/api/ung-deltakelse-opplyser/oppslag/deltaker', async () => {
-                    await delay(200);
-                    return HttpResponse.json(nyDeltakerMock);
-                }),
-            ],
-        },
-    },
+};
+
+export const Kode6: Story = {
+    render: () => (
+        <BrowserRouter>
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
+        </BrowserRouter>
+    ),
+};
+export const Kode7: Story = {
+    render: () => (
+        <BrowserRouter>
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />
+        </BrowserRouter>
+    ),
+};
+export const Skjermet: Story = {
+    render: () => (
+        <BrowserRouter>
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.SKJERMET] }} />
+        </BrowserRouter>
+    ),
 };

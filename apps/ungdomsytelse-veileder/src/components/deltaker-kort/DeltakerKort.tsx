@@ -54,7 +54,7 @@ const DeltakerKort = ({
                     </VStack>
                     {!registrert ? (
                         <Box marginBlock="2 0">
-                            <Tag variant="warning" size="small">
+                            <Tag variant="info" size="small">
                                 Ikke registrert som deltaker
                             </Tag>
                         </Box>
