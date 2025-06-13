@@ -32,7 +32,7 @@ const StartPage = () => {
         <BoxNew background="default" paddingBlock="0">
             <AppPage>
                 <Page.Block gutters={true}>
-                    <HStack align="center" justify="center" paddingBlock="20">
+                    <HStack align="center" justify="center" paddingBlock="14 0">
                         <VStack gap="10" maxWidth="40rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
