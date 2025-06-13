@@ -40,7 +40,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                             </dd>
                             {deltaker.diskresjonskoder.length > 0 && (
                                 <>
-                                    <dt>diskresjonskoder:</dt>
+                                    <dt>Diskresjonskoder:</dt>
                                     <dd>
                                         <DiskresjonskoderTags koder={deltaker.diskresjonskoder} />
                                     </dd>
