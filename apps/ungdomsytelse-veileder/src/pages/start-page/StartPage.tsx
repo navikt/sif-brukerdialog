@@ -1,12 +1,12 @@
 import { BoxNew, HStack, Page } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -37,6 +37,13 @@ const StartPage = () => {
                                 onDeltakerFetched={handleDeltakerFetched}
                                 onDeltakelseRegistrert={handleDeltakelseRegistrert}
                             />
+                            {/* <button
+                                className="p-2 bg-blue-600 text-white rounded"
+                                onClick={() =>
+                                    openDrawer(<ArticleContent articleList={articleList} />, { title: 'Informasjon' })
+                                }>
+                                Åpne Drawer
+                            </button> */}
                         </BorderBox>
                     </HStack>
                 </Page.Block>

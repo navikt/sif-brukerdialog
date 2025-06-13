@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
+import { useDrawer } from '../drawer/DrawerContext';
+import { articleList } from '../../pages/info-page/InfoInnhold';
+import ArticleContent from '../../pages/info-page/components/ArticleContent';
 
 interface Props {
     visActionsMenu?: boolean;
@@ -12,6 +15,7 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
     const { setDarkMode, darkMode } = useThemeContext();
 
     const navigate = useNavigate();
+    const { openDrawer } = useDrawer();
 
     return (
         <InternalHeader>
@@ -29,6 +33,17 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
                     <SunFillIcon aria-label="Lys modus er aktiv" />
                 )}
             </InternalHeader.Button>
+            <ActionMenu>
+                <ActionMenu.Trigger>
+                    <InternalHeader.Button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            openDrawer(<ArticleContent articleList={articleList} />, { title: 'Informasjon' });
+                        }}>
+                        <InformationSquareIcon fontSize="1.5rem" title="Informasjon og veiledning" />
+                    </InternalHeader.Button>
+                </ActionMenu.Trigger>
+            </ActionMenu>
             {visActionsMenu && (
                 <ActionMenu>
                     <ActionMenu.Trigger>
@@ -41,7 +56,9 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
                             Finn deltaker
                         </ActionMenu.Item>
                         <ActionMenu.Divider />
-                        <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
+                        <ActionMenu.Item
+                            onSelect={() => openDrawer('Innnhold', { title: 'Informasjon' })}
+                            icon={<InformationSquareIcon />}>
                             Informasjon og veiledning
                         </ActionMenu.Item>
                     </ActionMenu.Content>
