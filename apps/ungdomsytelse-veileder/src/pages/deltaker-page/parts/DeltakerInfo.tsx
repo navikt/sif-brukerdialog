@@ -4,6 +4,7 @@ import { Deltaker, formaterNavn } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import Fødselsnummer from '../../../atoms/Fødselsnummer';
 import InfoBox from '../../../atoms/InfoBox';
+import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/DiskresjonskoderTags';
 
 interface Props {
     deltaker: Deltaker;
@@ -17,7 +18,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                 Om Deltaker
             </Heading>
             <InfoBox>
-                <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
+                <HGrid gap="4" columns={{ sm: 1, md: 'auto 1fr' }}>
                     <VStack gap="4">
                         <dl className="ungDefinitionList">
                             <dt>Navn:</dt>
@@ -37,12 +38,14 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                                     )}
                                 </VStack>
                             </dd>
-                            {/* <dt>Skjerming:</dt>
-                            <dd>
-                                <Tag variant="error" size="small">
-                                    Kode 6
-                                </Tag>
-                            </dd> */}
+                            {deltaker.diskresjonskoder.length > 0 && (
+                                <>
+                                    <dt>diskresjonskoder:</dt>
+                                    <dd>
+                                        <DiskresjonskoderTags koder={deltaker.diskresjonskoder} />
+                                    </dd>
+                                </>
+                            )}
                         </dl>
                     </VStack>
                     {/* <VStack gap="2">

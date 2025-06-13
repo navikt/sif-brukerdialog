@@ -158,9 +158,19 @@ export type DeltakerPersonalia = {
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
-    førsteMuligeInnmeldingsdato: string;
+    /**
+     * Diskresjonskoder som gjelder for deltakeren. Vl være tom hvis deltaker ikke har diskresjonskoder satt.
+     */
+    diskresjonskoder: Array<Diskresjonskode>;
     sisteMuligeInnmeldingsdato: string;
+    førsteMuligeInnmeldingsdato: string;
 };
+
+export enum Diskresjonskode {
+    KODE6 = 'KODE6',
+    KODE7 = 'KODE7',
+    SKJERMET = 'SKJERMET',
+}
 
 export type Navn = {
     fornavn: string;

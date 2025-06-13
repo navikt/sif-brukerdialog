@@ -39,6 +39,7 @@ export const UregistrertDeltaker: Story = {
                     },
                     førsteMuligeInnmeldingsdato: ISODateToDate('2023-01-01'),
                     sisteMuligeInnmeldingsdato: ISODateToDate('2023-12-31'),
+                    diskresjonskoder: [],
                 }}
             />
         </BrowserRouter>

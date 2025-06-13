@@ -164,13 +164,16 @@ export const zNavn = z.object({
     etternavn: z.string(),
 });
 
+export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
+
 export const zDeltakerPersonalia = z.object({
     id: z.string().uuid().optional(),
     deltakerIdent: z.string(),
     navn: zNavn,
     fødselsdato: z.string().date(),
-    førsteMuligeInnmeldingsdato: z.string().date(),
+    diskresjonskoder: z.array(zDiskresjonskode),
     sisteMuligeInnmeldingsdato: z.string().date(),
+    førsteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({

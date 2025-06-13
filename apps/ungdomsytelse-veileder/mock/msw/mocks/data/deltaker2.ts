@@ -4,6 +4,7 @@ import {
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
+    Diskresjonskode,
 } from '@navikt/ung-deltakelse-opplyser-api';
 
 const deltakerPersonalia: DeltakerPersonalia = {
@@ -17,6 +18,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
     fødselsdato: '2005-03-26',
     førsteMuligeInnmeldingsdato: '2025-01-01',
     sisteMuligeInnmeldingsdato: '2034-03-26',
+    diskresjonskoder: [Diskresjonskode.SKJERMET, Diskresjonskode.KODE6],
 };
 
 const deltakelse: DeltakelseDto = {

@@ -16,6 +16,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
     fødselsdato: '1998-12-31',
     førsteMuligeInnmeldingsdato: '2013-05-10',
     sisteMuligeInnmeldingsdato: '2025-04-10',
+    diskresjonskoder: [],
 };
 
 const deltakelse: DeltakelseDto = {

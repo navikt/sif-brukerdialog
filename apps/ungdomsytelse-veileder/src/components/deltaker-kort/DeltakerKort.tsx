@@ -6,6 +6,7 @@ import PersonNøytral from '../../atoms/PersonNøytral';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
 import dayjs from 'dayjs';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import DiskresjonskoderTags from '../diskresjonskode-tag/DiskresjonskoderTags';
 
 interface Props {
     deltaker: Deltaker | UregistrertDeltaker;
@@ -18,6 +19,7 @@ const DeltakerKort = ({
         navn: { etternavn, fornavn, mellomnavn },
         deltakerIdent,
         fødselsdato,
+        diskresjonskoder,
     },
     onClose,
 }: Props) => {
@@ -35,11 +37,11 @@ const DeltakerKort = ({
                 </Show>
                 <VStack gap="2" flexGrow="2">
                     <VStack gap="1">
-                        {/* <Box marginBlock="0 2">
-                            <Tag variant="error" size="small">
-                                Kode 6
-                            </Tag>
-                        </Box> */}
+                        {diskresjonskoder.length > 0 && (
+                            <Box marginBlock="0 2">
+                                <DiskresjonskoderTags koder={diskresjonskoder} />
+                            </Box>
+                        )}
                         <BodyShort size="medium" weight="semibold">
                             {etternavn}, {mellomnavn} {fornavn}
                         </BodyShort>
