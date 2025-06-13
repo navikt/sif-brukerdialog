@@ -64,46 +64,43 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                     <TypedFormikForm
                         showSubmitButton={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
-                        <VStack gap="6">
-                            <VStack gap="4">
-                                <Heading level="2" size="small" spacing={false}>
-                                    Registrer ny deltaker
-                                </Heading>
+                        <VStack gap="4" marginBlock="4 0">
+                            <Heading level="2" size="medium">
+                                Registrer ny deltaker
+                            </Heading>
 
-                                <FormikDatepicker
-                                    name="startDato"
-                                    label="Når starter deltakeren i ungdomsprogrammet?"
-                                    disableWeekends={true}
-                                    description={
-                                        <>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>
-                                    }
-                                    minDate={startdatoMinMax.from}
-                                    maxDate={startdatoMinMax.to}
-                                    defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
-                                    validate={(value) => {
-                                        const e = getDateValidator({
-                                            required: true,
-                                            min: startdatoMinMax.from,
-                                            max: startdatoMinMax.to,
-                                            onlyWeekdays: true,
-                                        })(value);
-                                        return e
-                                            ? {
-                                                  key: e,
-                                                  values: {
-                                                      min: dateFormatter.compact(startdatoMinMax.from),
-                                                      max: dateFormatter.compact(startdatoMinMax.to),
-                                                  },
-                                              }
-                                            : undefined;
-                                    }}
-                                />
-                                <FormikConfirmationCheckbox
-                                    label={<BodyShort>Bekreft deltakelse</BodyShort>}
-                                    name="bekreftRegistrering"
-                                    validate={getCheckedValidator()}
-                                />
-                            </VStack>
+                            <FormikDatepicker
+                                name="startDato"
+                                label="Når starter deltakeren i ungdomsprogrammet?"
+                                disableWeekends={true}
+                                description={<>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>}
+                                minDate={startdatoMinMax.from}
+                                maxDate={startdatoMinMax.to}
+                                defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
+                                validate={(value) => {
+                                    const e = getDateValidator({
+                                        required: true,
+                                        min: startdatoMinMax.from,
+                                        max: startdatoMinMax.to,
+                                        onlyWeekdays: true,
+                                    })(value);
+                                    return e
+                                        ? {
+                                              key: e,
+                                              values: {
+                                                  min: dateFormatter.compact(startdatoMinMax.from),
+                                                  max: dateFormatter.compact(startdatoMinMax.to),
+                                              },
+                                          }
+                                        : undefined;
+                                }}
+                            />
+                            <FormikConfirmationCheckbox
+                                label={<BodyShort>Bekreft deltakelse</BodyShort>}
+                                name="bekreftRegistrering"
+                                validate={getCheckedValidator()}
+                            />
+
                             <HStack gap="2">
                                 <Button
                                     type="submit"
