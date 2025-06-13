@@ -75,7 +75,7 @@
         "vite": "6.3.5",
         "vite-plugin-checker": "0.9.3",
         "vitest": "3.2.3",
-        "zod": "3.25.63"
+        "zod": "3.25.64"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
