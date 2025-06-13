@@ -1,5 +1,11 @@
 # config
 
+## 0.10.32
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
 ## 0.10.31
 
 ### Patch Changes
