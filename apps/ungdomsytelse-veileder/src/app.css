@@ -40,7 +40,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
     .ungDefinitionList {
         grid-template-columns: 1fr;
         line-height: 1.5rem;

@@ -13,7 +13,7 @@ const getFeilmelding = (fnr: string, error: ApiError): string | undefined => {
     if (isAxiosError(error.originalError)) {
         switch (error.originalError.status) {
             case 403:
-                return `Kunne ikke hente opp personen med fødselsnummer ${formattedFnr} fordi du ikke har tilgang.`;
+                return `Kunne ikke hente opp personen med fødselsnummer ${formattedFnr} fordi du ikke har tilgang. Årsak: ${error.message}`;
             case 404:
                 return `Kunne ikke finne personen med fødselsnummer ${formattedFnr}.`;
             case 500:
