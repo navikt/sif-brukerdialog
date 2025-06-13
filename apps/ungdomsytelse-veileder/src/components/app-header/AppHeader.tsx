@@ -56,9 +56,7 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
                             Finn deltaker
                         </ActionMenu.Item>
                         <ActionMenu.Divider />
-                        <ActionMenu.Item
-                            onSelect={() => openDrawer('Innnhold', { title: 'Informasjon' })}
-                            icon={<InformationSquareIcon />}>
+                        <ActionMenu.Item onSelect={() => navigate('/informasjon')} icon={<InformationSquareIcon />}>
                             Informasjon og veiledning
                         </ActionMenu.Item>
                     </ActionMenu.Content>

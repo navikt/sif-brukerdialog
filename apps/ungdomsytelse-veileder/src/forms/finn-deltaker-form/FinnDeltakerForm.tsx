@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-binary-expression */
 import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
@@ -6,8 +7,8 @@ import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextField
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
-import DevUserList from '../../dev-components/DevUserList';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
+import DevUserList from '../../dev-components/DevUserList';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -78,8 +79,8 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     <Fieldset
                         error={validationError}
                         legend={
-                            <Heading level="1" size="medium">
-                                Finn deltaker
+                            <Heading level="2" size="medium">
+                                Registrer ny/finn deltaker
                             </Heading>
                         }
                         hideLegend={false}>
@@ -130,7 +131,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     onDeltakelseRegistrert={onDeltakelseRegistrert}
                 />
             ) : null}
-            <DevUserList />
+            {1 + 1 === 3 && <DevUserList />}
         </VStack>
     );
 };
