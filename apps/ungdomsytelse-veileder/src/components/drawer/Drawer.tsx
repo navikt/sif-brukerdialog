@@ -1,9 +1,8 @@
+import { Button, Heading } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import './Drawer.css';
-import { Button, Heading } from '@navikt/ds-react';
-
 import { ArrowRightIcon } from '@navikt/aksel-icons';
+import './drawer.css';
 
 type DrawerProps = {
     isOpen: boolean;
