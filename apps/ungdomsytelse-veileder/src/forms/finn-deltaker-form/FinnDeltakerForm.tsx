@@ -80,7 +80,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         error={validationError}
                         legend={
                             <Heading level="2" size="medium">
-                                Registrer ny/finn deltaker
+                                Registrer eller finn deltaker
                             </Heading>
                         }
                         hideLegend={false}>

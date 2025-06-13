@@ -33,13 +33,13 @@ const StartPage = () => {
             <AppPage>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="20">
-                        <VStack gap="10" maxWidth="45rem">
+                        <VStack gap="10" maxWidth="40rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
-                                    Ungdomsprogramytelsen - Nav veileder
+                                    Nav Veileder - Ungdomsprogramytelsen
                                 </Heading>
                                 <BodyLong size="large">
-                                    Administrer deltakere i ungdomsprogrammet, slik at de mottar
+                                    Her kan du administrere deltakerne i ungdoms&shy;programmet, slik at de får
                                     ungdoms&shy;program&shy;ytelsen til riktig tid.
                                 </BodyLong>
                             </VStack>
@@ -54,7 +54,7 @@ const StartPage = () => {
                             <VStack gap="4" marginBlock="4 0">
                                 <Alert variant="info" size="small" className="w-full" inline>
                                     <BodyLong>
-                                        Tips! Du finner mer informasjon om denne løsningen, ungdomsprogrammet og
+                                        Du finner mer informasjon om denne løsningen, ungdomsprogrammet og
                                         ungdomsprogramytelsen ved å klikke på{' '}
                                         <span>
                                             <InformationSquareIcon
