@@ -1,8 +1,8 @@
-import { Button, Heading } from '@navikt/ds-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
+import './Drawer.css';
+import { Button, Heading } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import './drawer.css';
 
 type DrawerProps = {
     isOpen: boolean;
@@ -23,14 +23,51 @@ export const Drawer: React.FC<DrawerProps> = ({
 }) => {
     const drawerRef = useRef<HTMLDivElement>(null);
     const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+    const titleId = useId();
 
+    const [isVisible, setIsVisible] = useState(false);
+    const [hasEntered, setHasEntered] = useState(false);
+
+    const container =
+        typeof window !== 'undefined'
+            ? (portalContainer ?? document.getElementById('portal-root') ?? document.body)
+            : null;
+
+    // Forsinket mount/unmount for animasjon
     useEffect(() => {
+        if (isOpen) {
+            setIsVisible(true);
+            setTimeout(() => setHasEntered(true), 0); // VIKTIG: start animasjon etter første render
+        } else {
+            setHasEntered(false);
+            const timeout = setTimeout(() => setIsVisible(false), 300); // matcher CSS
+            return () => clearTimeout(timeout);
+        }
+    }, [isOpen]);
+
+    // Accessibility: skjul annen DOM for skjermleser
+    useEffect(() => {
+        if (!isOpen || !container) return;
+        const siblings = Array.from(document.body.children).filter((el) => el !== container);
+        siblings.forEach((el) => el.setAttribute('aria-hidden', 'true'));
+        return () => {
+            siblings.forEach((el) => el.removeAttribute('aria-hidden'));
+        };
+    }, [isOpen, container]);
+
+    // Fokusstyring og ESC/tab
+    useEffect(() => {
+        if (!isOpen) return;
+
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isOpen) {
+            if (!drawerRef.current) return;
+
+            if (e.key === 'Escape') {
+                e.preventDefault();
                 onClose();
             }
 
-            if (e.key === 'Tab' && drawerRef.current) {
+            if (e.key === 'Tab') {
                 const focusableEls = drawerRef.current.querySelectorAll<HTMLElement>(
                     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
                 );
@@ -38,58 +75,52 @@ export const Drawer: React.FC<DrawerProps> = ({
                 const lastEl = focusableEls[focusableEls.length - 1];
                 if (!firstEl || !lastEl) return;
 
-                if (e.shiftKey) {
-                    if (document.activeElement === firstEl) {
-                        e.preventDefault();
-                        lastEl.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastEl) {
-                        e.preventDefault();
-                        firstEl.focus();
-                    }
+                if (e.shiftKey && document.activeElement === firstEl) {
+                    e.preventDefault();
+                    lastEl.focus();
+                } else if (!e.shiftKey && document.activeElement === lastEl) {
+                    e.preventDefault();
+                    firstEl.focus();
                 }
             }
         };
 
-        if (isOpen) {
-            previouslyFocusedElement.current = document.activeElement as HTMLElement;
-            document.body.style.overflow = 'hidden';
-            document.addEventListener('keydown', handleKeyDown);
-            setTimeout(() => {
-                drawerRef.current?.querySelector<HTMLElement>('button, [tabindex]')?.focus();
-            }, 0);
-        } else {
-            document.body.style.overflow = '';
-            previouslyFocusedElement.current?.focus();
-        }
+        previouslyFocusedElement.current = document.activeElement as HTMLElement;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', handleKeyDown);
+
+        setTimeout(() => {
+            drawerRef.current?.querySelector<HTMLElement>('button, [tabindex]')?.focus();
+        }, 0);
 
         return () => {
             document.body.style.overflow = '';
             document.removeEventListener('keydown', handleKeyDown);
+            previouslyFocusedElement.current?.focus();
         };
     }, [isOpen, onClose]);
 
-    const container =
-        typeof window !== 'undefined'
-            ? (portalContainer ?? document.getElementById('portal-root') ?? document.body)
-            : null;
-
-    if (!container) return null;
+    if (!isVisible || !container) return null;
 
     return createPortal(
         <>
-            <div className={`drawer-overlay ${isOpen ? 'visible' : 'hidden'}`} onClick={onClose} aria-hidden="true" />
-
+            <div
+                className={`drawer-overlay ${hasEntered ? 'visible' : 'hidden'}`}
+                onClick={onClose}
+                aria-hidden="true"
+            />
             <div
                 ref={drawerRef}
                 role="dialog"
                 aria-modal="true"
-                className={`drawer-panel ${position} ${isOpen ? 'open' : 'closed'}`}>
+                aria-labelledby={title ? titleId : undefined}
+                className={`drawer-panel ${position} ${hasEntered ? 'open' : 'closed'}`}>
                 <div className="drawer-header mt-5">
-                    <Heading level="2" size="medium" className="drawer-heading">
-                        {title}
-                    </Heading>
+                    {title && (
+                        <Heading level="2" size="medium" className="drawer-heading" id={titleId}>
+                            {title}
+                        </Heading>
+                    )}
                     <Button
                         size="small"
                         variant="secondary-neutral"
