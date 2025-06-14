@@ -16,6 +16,7 @@ import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import { DrawerProvider } from './components/drawer/DrawerContext';
 
 const queryClient = new QueryClient();
 
@@ -37,8 +38,10 @@ const App = () => {
                             <GlobalQueryLogger />
                             <IntlProvider locale="nb" messages={appMessages.nb}>
                                 <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
-                                    <AppHeader />
-                                    <AppRoutes />
+                                    <DrawerProvider>
+                                        <AppHeader />
+                                        <AppRoutes />
+                                    </DrawerProvider>
                                 </BrowserRouter>
                             </IntlProvider>
                         </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { Theme, VStack } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 
@@ -10,10 +10,12 @@ export const withInnsynApp = (Story: any) => {
         };
     }, [location.pathname]);
     return (
-        <ForsidePageLayout documentTitle="Forside">
-            <VStack gap="8">
-                <Story />
-            </VStack>
-        </ForsidePageLayout>
+        <Theme hasBackground={false}>
+            <ForsidePageLayout documentTitle="Forside">
+                <VStack gap="8">
+                    <Story />
+                </VStack>
+            </ForsidePageLayout>
+        </Theme>
     );
 };

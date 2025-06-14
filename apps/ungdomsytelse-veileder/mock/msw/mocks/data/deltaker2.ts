@@ -1,9 +1,10 @@
 import {
     DeltakelseHistorikkDto,
-    DeltakelseOpplysningDto,
+    DeltakelseDto,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
+    Diskresjonskode,
 } from '@navikt/ung-deltakelse-opplyser-api';
 
 const deltakerPersonalia: DeltakerPersonalia = {
@@ -17,9 +18,10 @@ const deltakerPersonalia: DeltakerPersonalia = {
     fødselsdato: '2005-03-26',
     førsteMuligeInnmeldingsdato: '2025-01-01',
     sisteMuligeInnmeldingsdato: '2034-03-26',
+    diskresjonskoder: [Diskresjonskode.SKJERMET, Diskresjonskode.KODE6],
 };
 
-const deltakelse: DeltakelseOpplysningDto = {
+const deltakelse: DeltakelseDto = {
     id: '2a270c69-9a5b-4a94-b27e-53f6e70bc35f',
     deltaker: {
         id: '6369f9a3-5a38-4b90-b93a-695fabe8c6f9',
@@ -28,7 +30,6 @@ const deltakelse: DeltakelseOpplysningDto = {
     fraOgMed: '2025-05-05',
     tilOgMed: '2026-01-01',
     søktTidspunkt: '2025-05-31T03:58:29.015999Z',
-    oppgaver: [],
 };
 
 const historikk: DeltakelseHistorikkDto[] = [

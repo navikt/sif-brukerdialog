@@ -1,19 +1,13 @@
 // /* eslint-disable no-console */
 
-import {
-    DeltakelseHistorikkDto,
-    DeltakelseOpplysningDto,
-    DeltakerPersonalia,
-    OppgaveStatus,
-    Oppgavetype,
-} from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, DeltakelseDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api';
 import { v4 } from 'uuid';
 import { deltaker2Mock } from './data/deltaker2';
 import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { registrertDeltakerMock } from './data/registrertDeltakerMock';
 
 interface DbDeltakelse {
-    deltakelse: DeltakelseOpplysningDto;
+    deltakelse: DeltakelseDto;
     historikk: DeltakelseHistorikkDto[];
 }
 
@@ -90,7 +84,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
     }
     const deltakelseId = v4();
     const deltakerId = v4();
-    const deltakelse: DeltakelseOpplysningDto = {
+    const deltakelse: DeltakelseDto = {
         id: deltakelseId,
         deltaker: {
             deltakerIdent,
@@ -98,17 +92,6 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
         },
         fraOgMed: startdato,
         søktTidspunkt: undefined,
-        oppgaver: [
-            {
-                oppgaveReferanse: 'e6eaf147-db0e-454c-9271-f15ffe550b10',
-                oppgavetype: Oppgavetype.SØK_YTELSE,
-                oppgavetypeData: {
-                    fomDato: '2025-08-01',
-                },
-                status: OppgaveStatus.ULØST,
-                opprettetDato: '2025-05-30T08:01:25.542771Z',
-            },
-        ],
     };
     db.deltakelser.push({
         deltakelse,

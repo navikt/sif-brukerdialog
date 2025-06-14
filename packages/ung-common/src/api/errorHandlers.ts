@@ -25,7 +25,7 @@ type ApiAxiosError = {
 
 export type ApiError = ApiErrorBase | ApiAxiosError;
 
-export type HttpStatusErrorMessages = Record<number, string>;
+export type HttpStatusErrorMessages = Record<number, string | ((error: AxiosError) => string)>;
 
 export const createApiError = (
     type: ApiErrorType,
@@ -56,15 +56,8 @@ export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
 export const handleApiError = (
     error: unknown,
     context: string = '',
-    customErrorHandler?: () => ApiError | void,
     httpStatusMessages?: HttpStatusErrorMessages,
 ): ApiError => {
-    if (customErrorHandler) {
-        const customError = customErrorHandler();
-        if (customError) {
-            return customError;
-        }
-    }
     if (error instanceof ZodError) {
         return {
             type: ApiErrorType.ValidationError,
@@ -99,7 +92,13 @@ const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStat
     // Hent statuskode og tilhørende melding
     const statusCode = error.response?.status;
     if (httpStatusMessages && statusCode && httpStatusMessages[statusCode]) {
-        return httpStatusMessages[statusCode];
+        const message = httpStatusMessages[statusCode];
+        if (typeof message === 'function') {
+            // Hvis meldingen er en funksjon, kall den med Axios-feilen
+            return message(error);
+        }
+        // Hvis meldingen er en streng, returner den direkte
+        return message;
     }
 
     // Håndter tilfeller der statuskode mangler

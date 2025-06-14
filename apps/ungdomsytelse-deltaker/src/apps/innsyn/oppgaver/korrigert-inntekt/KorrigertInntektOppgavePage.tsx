@@ -22,7 +22,7 @@ export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave }: Props) =>
                 oppsummering={oppsummering}
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}>
-                <KorrigertInntektOppgavetekst svarfrist={oppgave.svarfrist} />
+                <KorrigertInntektOppgavetekst svarfrist={oppgave.frist} />
             </Oppgavebekreftelse>
         </DefaultPageLayout>
     );

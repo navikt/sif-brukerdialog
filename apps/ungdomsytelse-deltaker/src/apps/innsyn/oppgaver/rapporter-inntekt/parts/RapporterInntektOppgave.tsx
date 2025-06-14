@@ -107,7 +107,7 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
                         <RapporterInntektOppgavetekst
                             deltakerNavn={deltakerNavn}
                             periode={periode}
-                            svarfrist={oppgave.svarfrist}
+                            svarfrist={oppgave.frist}
                         />
                     </GuidePanel>
                     <InntektForm

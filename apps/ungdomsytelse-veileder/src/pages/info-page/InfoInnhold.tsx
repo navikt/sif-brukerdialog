@@ -6,7 +6,7 @@ import ArticleContent from './components/ArticleContent';
 // Dynamisk import av alle markdown-filer i articles-mappen
 const articles = import.meta.glob('../../articles/*.md', { eager: true, as: 'raw' });
 
-const articleList = Object.keys(articles).map((path) => {
+export const articleList = Object.keys(articles).map((path) => {
     const fileName = path.split('/').pop() || '';
     const id = fileName.replace('.md', '');
     const title = fileName
