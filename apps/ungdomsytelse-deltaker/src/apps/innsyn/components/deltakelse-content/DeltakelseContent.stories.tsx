@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
-    title: 'Sider/Innsyn forside',
+    title: 'Innsyn/Sider/Forside',
     parameters: {},
     decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
 };

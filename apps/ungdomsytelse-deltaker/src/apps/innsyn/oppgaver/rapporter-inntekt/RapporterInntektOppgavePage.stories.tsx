@@ -8,7 +8,7 @@ import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Oppgaver/Rapporter inntekt',
+    title: 'Innsyn/Oppgaver/Rapporter inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, withInnsynApp],
 };

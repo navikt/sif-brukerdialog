@@ -26,7 +26,6 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
         return <HentDeltakerErrorPage error={errorMessage} />;
     }
 
-    const kontonummerData = kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined;
     const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
@@ -37,7 +36,7 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
             søknadOppgave={søknadOppgave}
             søker={søker}
             deltakelsePeriode={deltakelsePeriode}
-            kontonummer={kontonummerData}
+            kontonummer={kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined}
             barn={barn.data || []}>
             <SøknadRouter />
         </SøknadProvider>

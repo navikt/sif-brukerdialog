@@ -33,6 +33,10 @@ export const harIkkeSøktMock: ScenarioData = {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: '2025-07-02',
             tilOgMed: undefined,
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
             oppgaver: [
                 {
                     oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',

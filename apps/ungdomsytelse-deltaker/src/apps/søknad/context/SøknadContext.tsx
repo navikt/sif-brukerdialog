@@ -16,6 +16,7 @@ interface SøknadProviderProps {
     kontonummer?: string;
     mellomlagring?: MellomlagringDTO;
     søker: Søker;
+    initialSvar?: SøknadSvar;
     søknadOppgave: SøkYtelseOppgave;
     deltakelsePeriode: DeltakelsePeriode;
 }
@@ -31,12 +32,12 @@ export const SøknadProvider = ({
     children,
     kontonummer,
     barn,
-    mellomlagring,
     søknadOppgave,
     deltakelsePeriode,
+    initialSvar,
     søker,
 }: SøknadProviderProps) => {
-    const [svar, setSvar] = useState<SøknadSvar>(mellomlagring?.søknad || initialData);
+    const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
     const { logHendelse, logInfo, logSoknadStartet, logSoknadSent } = useAnalyticsInstance();
 

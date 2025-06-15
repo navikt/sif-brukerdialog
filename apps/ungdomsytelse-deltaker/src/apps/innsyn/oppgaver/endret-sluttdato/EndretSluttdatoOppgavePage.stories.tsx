@@ -8,7 +8,7 @@ import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Oppgaver/Endret sluttdato',
+    title: 'Innsyn/Oppgaver/Endret sluttdato',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, withInnsynApp],
 };
