@@ -37,6 +37,7 @@ const deltaker: Deltaker = {
 };
 
 export const Varianter: Story = {
+    name: 'Alle varianter',
     render: () => (
         <VStack gap="4">
             <DeltakerKort deltaker={deltaker} />

@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-binary-expression */
 import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
@@ -132,7 +131,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     onDeltakelseRegistrert={onDeltakelseRegistrert}
                 />
             ) : null}
-            {1 + 1 === 2 && <DevUserList />}
+            <DevUserList />
         </VStack>
     );
 };

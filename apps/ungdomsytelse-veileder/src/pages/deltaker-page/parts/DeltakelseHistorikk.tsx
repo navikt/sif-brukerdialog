@@ -22,7 +22,6 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
         return (
             <VStack gap="4">
                 <HistorikkHeader />
-
                 <VStack gap="2">
                     <Skeleton height="2rem" variant="rectangle" />
                     <Skeleton height="2rem" variant="rectangle" />
@@ -46,10 +45,6 @@ const DeltakelseHistorikk = ({ deltakelseId }: Props) => {
     return (
         <VStack gap="4">
             <HistorikkHeader />
-            {/* <Alert variant="info" inline>
-                Historikkinnslagene er ikke optimale enda, men vi satser på å forbedre dem snart. F.eks. innsendt søknad
-                fra deltaker vises som &quot;Endret periode&quot;.
-            </Alert> */}
             <DeltakelseHistorikkListe historikkInnslag={getDeltakelseHistorikkTilInnslag(historikk.data || [])} />
         </VStack>
     );
