@@ -1,9 +1,12 @@
 import { Box, Button, CopyButton, HStack, VStack } from '@navikt/ds-react';
-import { getAppEnv } from '../utils/appEnv';
+import { appEnv, getAppEnv } from '../utils/appEnv';
 import { mockUtils } from '../../mock/msw/mocks/mockUtils';
 
 const DevUserList = () => {
-    return getAppEnv().SIF_PUBLIC_USE_MSW ? (
+    if (appEnv.DEV_IS_STORYBOOK) {
+        return null;
+    }
+    return getAppEnv().DEV_USE_MSW ? (
         <VStack gap="10">
             <VStack>
                 Testbrukere lokalt:

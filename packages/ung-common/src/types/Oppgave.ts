@@ -8,13 +8,13 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api';
 
 export interface OppgaveBase
-    extends Omit<OppgaveDto, 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData'> {
+    extends Omit<OppgaveDto, 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist'> {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
-    svarfrist: Date;
+    frist: Date;
     åpnetDato?: Date;
     lukketDato?: Date;
 }

@@ -17,6 +17,6 @@ export const meldInnDeltaker = async (dto: DeltakelseInnmeldingDto): Promise<Del
         const { data } = await VeilederService.meldInnDeltaker({ body });
         return deltakelseSchema.parse(data);
     } catch (e) {
-        throw handleApiError(e, 'medlInnDeltaker');
+        throw handleApiError(e, 'meldInnDeltaker');
     }
 };

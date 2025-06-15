@@ -26,12 +26,12 @@ export const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave }: Props) => 
                 {oppgave.oppgavetypeData.forrigeSluttdato ? (
                     <EndretSluttdatoOppgavetekst
                         endretDato={oppgave.oppgavetypeData.nySluttdato}
-                        svarfrist={oppgave.svarfrist}
+                        svarfrist={oppgave.frist}
                     />
                 ) : (
                     <NySluttdatoOppgavetekst
                         endretDato={oppgave.oppgavetypeData.nySluttdato}
-                        svarfrist={oppgave.svarfrist}
+                        svarfrist={oppgave.frist}
                     />
                 )}
             </Oppgavebekreftelse>
