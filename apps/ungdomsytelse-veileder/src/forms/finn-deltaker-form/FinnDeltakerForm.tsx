@@ -90,6 +90,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                                     name="fnr"
                                     value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
                                     label="Fødselsnummer/d-nummer:"
+                                    autoComplete="off"
                                     onChange={(evt) => {
                                         setFnrValue(evt.target.value);
                                         setNyDeltaker(undefined);

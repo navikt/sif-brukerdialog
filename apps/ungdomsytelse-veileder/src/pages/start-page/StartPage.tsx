@@ -61,6 +61,7 @@ const StartPage = () => {
                                                 fontSize="1.6rem"
                                                 display="inline"
                                                 className="inline"
+                                                aria-label="Informasjonikon"
                                             />
                                         </span>{' '}
                                         ikonet i menyen oppe til høyre.

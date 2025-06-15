@@ -65,7 +65,7 @@ const DeltakerKort = ({
                         <Button
                             variant="tertiary-neutral"
                             size="small"
-                            icon={<XMarkIcon width="1.5rem" height="1.5rem" />}
+                            icon={<XMarkIcon width="1.5rem" height="1.5rem" aria-hidden={true} />}
                             aria-label={`Lukk ${fornavn}`}
                             onClick={onClose}
                         />

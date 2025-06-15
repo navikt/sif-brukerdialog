@@ -40,7 +40,7 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
                             e.preventDefault();
                             openDrawer(<ArticleContent articleList={articleList} />, { title: 'Informasjon' });
                         }}>
-                        <InformationSquareIcon fontSize="1.5rem" title="Informasjon og veiledning" />
+                        <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />
                     </InternalHeader.Button>
                 </ActionMenu.Trigger>
             </ActionMenu>

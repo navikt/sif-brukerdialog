@@ -24,8 +24,8 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 30rem;
-    max-width: 100;
+    width: 40rem;
+    max-width: 100%;
     background: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -66,10 +66,10 @@
 
 /* === Innhold === */
 .drawer-header {
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 1.5rem;
     border-bottom: 1px solid #e0e0e0;
 }
 
