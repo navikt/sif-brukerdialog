@@ -5,7 +5,7 @@ import UngLoadingPage from './UngLoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
 const meta: Meta = {
-    title: 'Andre sider',
+    title: 'Sider/Støttesider og feilsider',
     parameters: {},
     decorators: [withIntl],
 };

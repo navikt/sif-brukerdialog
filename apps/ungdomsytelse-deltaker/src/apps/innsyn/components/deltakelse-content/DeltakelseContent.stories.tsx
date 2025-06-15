@@ -1,5 +1,6 @@
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@navikt/ung-common';
 import dayjs from 'dayjs';
+import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
@@ -7,10 +8,10 @@ import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
+
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
-    title: 'Forside',
+    title: 'Sider/Innsyn forside',
     parameters: {},
     decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
 };
