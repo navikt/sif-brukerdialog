@@ -5,7 +5,7 @@ interface Props {
     oppgaveStatus: OppgaveStatus;
 }
 
-const LøstOppgavebekreftelseInfo = ({ oppgaveStatus }: Props) => {
+const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
     switch (oppgaveStatus) {
         case OppgaveStatus.UTLØPT:
             return (
@@ -51,4 +51,4 @@ const LøstOppgavebekreftelseInfo = ({ oppgaveStatus }: Props) => {
     }
 };
 
-export default LøstOppgavebekreftelseInfo;
+export default OppgaveStatusInfo;

@@ -16,7 +16,7 @@ export default meta;
 
 type Story = StoryObj;
 
-const endretSluttdatoOppgave: EndretStartdatoOppgave = {
+const oppgave: EndretStartdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
@@ -28,8 +28,8 @@ const endretSluttdatoOppgave: EndretStartdatoOppgave = {
     frist: dayjs().add(14, 'days').toDate(),
 };
 
-const besvart_endretSluttdatoOppgave: EndretStartdatoOppgave = {
-    ...endretSluttdatoOppgave,
+const besvartOppgave: EndretStartdatoOppgave = {
+    ...oppgave,
     bekreftelse: {
         harGodtattEndringen: true,
     },
@@ -39,12 +39,12 @@ const besvart_endretSluttdatoOppgave: EndretStartdatoOppgave = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={besvart_endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
@@ -52,13 +52,33 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
     render: () => (
         <EndretStartdatoOppgavePage
             oppgave={{
-                ...besvart_endretSluttdatoOppgave,
+                ...besvartOppgave,
                 bekreftelse: {
                     harGodtattEndringen: false,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 },
             }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const AvbruttOppgave: Story = {
+    name: 'Avbrutt oppgave',
+    render: () => (
+        <EndretStartdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const UtløptOppgave: Story = {
+    name: 'Utløpt oppgave',
+    render: () => (
+        <EndretStartdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

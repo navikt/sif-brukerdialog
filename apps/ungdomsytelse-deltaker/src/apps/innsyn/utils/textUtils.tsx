@@ -98,7 +98,7 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
         case OppgaveStatus.AVBRUTT:
             return 'Avbrutt';
         case OppgaveStatus.LUKKET:
-            return `Sendt inn ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
+            return `Lukket ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
         case OppgaveStatus.UTLØPT:
             return `Utløpt`;
     }

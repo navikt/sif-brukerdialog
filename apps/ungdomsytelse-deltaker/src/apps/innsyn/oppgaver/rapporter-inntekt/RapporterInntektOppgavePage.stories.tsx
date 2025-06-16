@@ -49,3 +49,13 @@ export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
     render: () => <RapporterInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
+
+export const LukketOppgave: Story = {
+    name: 'Lukket oppgave',
+    render: () => (
+        <RapporterInntektOppgavePage
+            oppgave={{ ...oppgave, lukketDato: oppgave.åpnetDato, status: OppgaveStatus.LUKKET }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};

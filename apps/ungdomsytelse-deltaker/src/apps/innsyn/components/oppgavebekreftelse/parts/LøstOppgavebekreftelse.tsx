@@ -4,7 +4,7 @@ import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-a
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import { OppgaveBase } from '@navikt/ung-common';
-import LøstOppgavebekreftelseInfo from './LøstOppgavebekreftelseInfo';
+import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 
@@ -46,7 +46,7 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
                 </Alert>
             ) : null}
 
-            <LøstOppgavebekreftelseInfo oppgaveStatus={oppgave.status} />
+            <OppgaveStatusInfo oppgaveStatus={oppgave.status} />
 
             <div>
                 <ForsideLenkeButton />
