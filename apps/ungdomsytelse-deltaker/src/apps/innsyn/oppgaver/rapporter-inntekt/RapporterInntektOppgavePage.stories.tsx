@@ -84,7 +84,7 @@ export const LukketOppgave: Story = {
     name: 'Lukket oppgave',
     render: () => (
         <RapporterInntektOppgavePage
-            oppgave={{ ...oppgave, lukketDato: oppgave.åpnetDato, status: OppgaveStatus.LUKKET }}
+            oppgave={{ ...oppgave, lukketDato: oppgave.opprettetDato, status: OppgaveStatus.LUKKET }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

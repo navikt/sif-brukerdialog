@@ -13,7 +13,6 @@ import { TallSvar } from '@navikt/sif-common-ui';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
-import OppgaveStatusInfo from '../../../components/oppgave-status-info/OppgaveStatusInfo';
 
 interface Props {
     deltakerNavn: string;
@@ -38,10 +37,6 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
     const månedOgÅr = dateFormatter.monthFullYear(periode.from);
     const måned = dateFormatter.month(periode.from);
 
-    const erIkkeRapportertMenLukket = [OppgaveStatus.LUKKET, OppgaveStatus.AVBRUTT, OppgaveStatus.UTLØPT].includes(
-        oppgave.status,
-    );
-
     if (oppgave.status !== OppgaveStatus.ULØST) {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
         return (
@@ -52,37 +47,34 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
                         oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     />
                 </div>
+
                 <Heading level="1" size="large">
                     Rapporter inntekt {månedOgÅr}
                 </Heading>
 
-                {erIkkeRapportertMenLukket ? (
-                    <OppgaveStatusInfo oppgaveStatus={oppgave.status} />
-                ) : (
-                    <section aria-labelledby="summaryHeading">
-                        <FormSummary>
-                            <FormSummary.Header>
-                                <FormSummary.Heading level="2" id="summaryHeading">
-                                    Oppsummering
-                                </FormSummary.Heading>
-                            </FormSummary.Header>
-                            <FormSummary.Answers>
+                <section aria-labelledby="summaryHeading">
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2" id="summaryHeading">
+                                Oppsummering
+                            </FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
+                                <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
+                            </FormSummary.Answer>
+                            {arbeidstakerOgFrilansInntekt && (
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
-                                    <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
+                                    <FormSummary.Label>Inntekt</FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
+                                    </FormSummary.Value>
                                 </FormSummary.Answer>
-                                {arbeidstakerOgFrilansInntekt && (
-                                    <FormSummary.Answer>
-                                        <FormSummary.Label>Inntekt</FormSummary.Label>
-                                        <FormSummary.Value>
-                                            <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
-                                        </FormSummary.Value>
-                                    </FormSummary.Answer>
-                                )}
-                            </FormSummary.Answers>
-                        </FormSummary>
-                    </section>
-                )}
+                            )}
+                        </FormSummary.Answers>
+                    </FormSummary>
+                </section>
 
                 <div>
                     <ForsideLenkeButton />

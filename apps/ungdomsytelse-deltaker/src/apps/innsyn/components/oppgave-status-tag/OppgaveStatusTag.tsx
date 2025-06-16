@@ -29,6 +29,14 @@ const OppgaveStatusTag = ({
     const text = <Box paddingInline="1">{oppgaveStatusTekst}</Box>;
     switch (oppgaveStatus) {
         case OppgaveStatus.LØST:
+            return (
+                <Tag variant="success" size={size}>
+                    <Box marginBlock="1">
+                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
+                    </Box>
+                    {text}
+                </Tag>
+            );
         case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size={size}>

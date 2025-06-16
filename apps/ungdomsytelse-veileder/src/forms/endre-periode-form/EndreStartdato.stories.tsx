@@ -11,7 +11,7 @@ import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertD
 
 const meta: Meta<typeof EndrePeriodeForm> = {
     component: EndrePeriodeForm,
-    title: 'Forms/Endre startdato',
+    title: 'Skjema/Endre startdato',
     parameters: {},
     decorators: [withIntl, withVeilederContext, withQueryClientProvider],
 };

@@ -30,12 +30,6 @@ export const AlleStatuser: Story = {
                 </Heading>
                 <OppgaveStatusInfo oppgaveStatus={OppgaveStatus.AVBRUTT} />
             </VStack>
-            <VStack gap="4">
-                <Heading level="2" size="medium">
-                    Lukket oppgave
-                </Heading>
-                <OppgaveStatusInfo oppgaveStatus={OppgaveStatus.LUKKET} />
-            </VStack>
         </VStack>
     ),
 };
