@@ -6,6 +6,8 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
+import { Heading, VStack } from '@navikt/ds-react';
+import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Rapporter inntekt',
@@ -27,6 +29,7 @@ const oppgave: RapporterInntektOppgave = {
     opprettetDato: dayjs('2025-06-01').toDate(),
     frist: dayjs('2025-06-06').startOf('day').toDate(),
 };
+
 const besvartOppgave: RapporterInntektOppgave = {
     ...oppgave,
     oppgavetypeData: {
@@ -40,6 +43,33 @@ const besvartOppgave: RapporterInntektOppgave = {
     løstDato: dayjs().subtract(1, 'days').toDate(),
 };
 
+export const OppgavePanel: Story = {
+    name: 'Oppgavepaneler',
+    render: () => (
+        <VStack gap="10">
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
+                <OppgaverList oppgaver={[oppgave]} />
+            </VStack>
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
+                <OppgaverList
+                    visBeskrivelse={false}
+                    oppgaveStatusTagVariant="text"
+                    oppgaver={[
+                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
+                        { ...oppgave, status: OppgaveStatus.UTLØPT },
+                        { ...oppgave, status: OppgaveStatus.LØST },
+                    ]}
+                />
+            </VStack>
+        </VStack>
+    ),
+};
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
     render: () => <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,

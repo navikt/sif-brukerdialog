@@ -22,7 +22,7 @@ const InnsynAppHeader = ({ startdato }: Props) => {
                 <Heading level="1" size="xlarge">
                     <YtelseNavn />
                 </Heading>
-                <div>Startdato {dateFormatter.full(startdato)}</div>
+                <div className="uppercase">Startdato {dateFormatter.full(startdato)}</div>
             </VStack>
         </Stack>
     );

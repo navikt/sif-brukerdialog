@@ -4,7 +4,7 @@ import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
 import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 import './oppgaveLinkPanel.css';
 
-interface Props {
+export interface OppgaveLinkPanelProps {
     tittel: React.ReactNode;
     beskrivelse?: React.ReactNode;
     oppgaveStatus: OppgaveStatus;
@@ -20,7 +20,7 @@ const OppgaveLinkPanel = ({
     oppgaveStatusTekst,
     oppgaveStatusTagVariant = 'tag',
     onClick,
-}: Props) => {
+}: OppgaveLinkPanelProps) => {
     const erAvbruttEllerUtløpt = oppgaveStatus === OppgaveStatus.AVBRUTT || oppgaveStatus === OppgaveStatus.UTLØPT;
     return (
         <LinkPanel

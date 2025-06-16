@@ -6,6 +6,8 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import OppgaverList from '../../components/oppgaver-list/OppgaverList';
+import { Heading, VStack } from '@navikt/ds-react';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret sluttdato',
@@ -35,6 +37,34 @@ const besvartOppgave: EndretSluttdatoOppgave = {
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
+};
+
+export const OppgavePanel: Story = {
+    name: 'Oppgavepaneler',
+    render: () => (
+        <VStack gap="10">
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
+                <OppgaverList oppgaver={[oppgave]} />
+            </VStack>
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
+                <OppgaverList
+                    visBeskrivelse={false}
+                    oppgaveStatusTagVariant="text"
+                    oppgaver={[
+                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
+                        { ...oppgave, status: OppgaveStatus.UTLØPT },
+                        { ...oppgave, status: OppgaveStatus.LØST },
+                    ]}
+                />
+            </VStack>
+        </VStack>
+    ),
 };
 
 export const UbesvartOppgave: Story = {

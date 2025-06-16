@@ -21,7 +21,9 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
-            return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel');
+            return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
+                måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+            });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.oppgavetittel');
     }
