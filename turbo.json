@@ -16,6 +16,10 @@
             "outputs": ["dist/**", ".next/**", "!.next/cache/**", "storybook-static/**"],
             "dependsOn": ["^build"]
         },
+        "storybook:build": {
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**", "storybook-static/**"],
+            "dependsOn": ["^build"]
+        },
         "test": {
             "outputs": []
         },
