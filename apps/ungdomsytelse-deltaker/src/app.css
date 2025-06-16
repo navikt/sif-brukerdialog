@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@navikt/ds-css' layer(components);
+@import '@navikt/ds-css/darkside';
 @import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(components);
 @import 'react-loading-skeleton/dist/skeleton.css' layer(utilities);
 
@@ -21,6 +22,9 @@ body.innsynAppBody {
     color: var(--a-text-default);
 }
 
+p {
+    margin: 0;
+}
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still

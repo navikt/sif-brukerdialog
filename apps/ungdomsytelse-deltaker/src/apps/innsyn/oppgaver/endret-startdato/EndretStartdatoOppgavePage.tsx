@@ -24,7 +24,7 @@ export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave }: Props) => 
                 deltakerNavn={deltakerNavn}>
                 <EndretStartdatoOppgavetekst
                     endretDato={oppgave.oppgavetypeData.nyStartdato}
-                    svarfrist={oppgave.svarfrist}
+                    svarfrist={oppgave.frist}
                 />
             </Oppgavebekreftelse>
         </DefaultPageLayout>

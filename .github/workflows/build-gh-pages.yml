@@ -29,7 +29,7 @@ jobs:
             - name: Install dependencies
               run: yarn install
 
-            # Bygg Storybook
+            # Bygg Storybook (eget prosjekt)
             - name: Build Storybook
               run: yarn build-storybook
               working-directory: apps/storybook
@@ -40,16 +40,27 @@ jobs:
                   mkdir -p deployment/storybook
                   mv apps/storybook/storybook-static/* deployment/storybook/
 
-            # Bygg ungdomsytelse-deltaker med gh-pages:rebuild
+            # Bygg ungdomsytelse-deltaker demo-app med gh-pages:rebuild
             - name: Build ungdomsytelse-deltaker
               run: yarn gh-pages:rebuild
               working-directory: apps/ungdomsytelse-deltaker
 
             # Flytt ungdomsytelse-deltaker-output til en subfolder
-            - name: Prepare ungdomsytelse-deltaker for deployment
+            - name: Kopier ungdomsytelse-deltaker til gh-pages
               run: |
                   mkdir -p deployment/ungdomsytelse-deltaker
                   mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
+
+            # Bygg ungdomsytelse-deltaker-storybook
+            - name: Build ungdomsytelse-deltaker-storybook
+              run: yarn storybook:build
+              working-directory: apps/ungdomsytelse-deltaker
+
+            # Flytt ungdomsytelse-deltaker-storybook til gh-pages
+            - name: Kopier ungdomsytelse-deltaker-storybook til gh-pages
+              run: |
+                  mkdir -p deployment/ungdomsytelse-deltaker-storybook
+                  mv apps/ungdomsytelse-deltaker/storybook-static/* deployment/ungdomsytelse-deltaker-storybook/
 
             # Last opp bygget som en artefakt
             - name: Upload artifact for GitHub Pages

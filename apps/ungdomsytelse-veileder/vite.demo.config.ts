@@ -15,7 +15,7 @@ const appSettings: AppEnv = {
     UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://localhost:8089',
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:dusseldorf:ung-deltakelse-opplyser',
 
-    SIF_PUBLIC_USE_MSW: true,
+    DEV_USE_MSW: true,
     SIF_PUBLIC_USE_FARO: true,
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: 'http://localhost:12347/collect',
 };
@@ -29,6 +29,12 @@ export default defineConfig({
             include: '**/*.{tsx}',
         }),
         checker({ typescript: true }),
+        {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {

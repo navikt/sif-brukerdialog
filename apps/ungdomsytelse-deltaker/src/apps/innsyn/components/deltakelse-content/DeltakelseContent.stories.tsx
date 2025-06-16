@@ -1,5 +1,6 @@
-import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@navikt/ung-common';
+import { DeltakelsePeriode, deltakelsePeriodeSchema, OppgaveStatus } from '@navikt/ung-common';
 import dayjs from 'dayjs';
+import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
@@ -7,12 +8,12 @@ import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
+
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
-    title: 'Forside',
+    title: 'Innsyn/Sider/Forside',
     parameters: {},
-    decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
+    decorators: [withIntl, withRouter, withDeltakerContext, (Story) => withInnsynApp(Story, new Date(), true)],
 };
 export default meta;
 
@@ -20,8 +21,8 @@ type Story = StoryObj<typeof DeltakelseContent>;
 
 const deltakelsePeriode: DeltakelsePeriode = deltakelsePeriodeSchema.parse(harSøktMock.deltakelser[0]);
 
-export const AktivDeltakelseMedInfo: Story = {
-    name: 'Aktiv deltakelse - med info om inntektsrapportering',
+export const AktivDeltakelse: Story = {
+    name: 'Aktiv deltakelse',
     args: {
         deltakelsePeriode: {
             ...deltakelsePeriode,
@@ -29,11 +30,15 @@ export const AktivDeltakelseMedInfo: Story = {
     },
 };
 
-export const AktivDeltakelseUtenInfo: Story = {
-    name: 'Aktiv deltakelse - uten info om inntektsrapportering',
+export const DeltakelseIkkeStartet: Story = {
+    name: 'Deltakelse ikke startet',
     args: {
         deltakelsePeriode: {
             ...deltakelsePeriode,
+            programPeriode: {
+                from: dayjs().add(2, 'days').toDate(),
+            },
+            oppgaver: [],
         },
     },
 };
@@ -47,7 +52,7 @@ export const DeltakelseAvsluttet: Story = {
                 from: dayjs().subtract(1, 'year').toDate(),
                 to: dayjs().subtract(1, 'day').toDate(),
             },
-            oppgaver: [],
+            oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.status !== OppgaveStatus.ULØST),
         },
     },
 };

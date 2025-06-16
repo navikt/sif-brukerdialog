@@ -1,5 +1,42 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.9
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.7
+    - @navikt/sif-common-forms-ds@19.0.7
+    - @navikt/sif-common-core-ds@10.2.8
+    - @navikt/sif-common-api@0.4.6
+    - @navikt/sif-common-ui@0.9.9
+    - @navikt/ung-common@0.0.7
+
+## 0.6.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.6
+    - @navikt/sif-common-forms-ds@19.0.6
+    - @navikt/sif-common-core-ds@10.2.7
+    - @navikt/sif-common-api@0.4.5
+    - @navikt/sif-common-ui@0.9.8
+    - @navikt/ung-common@0.0.6
+
+## 0.6.7
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+    - @navikt/sif-common-api@0.4.4
+    - @navikt/sif-common-core-ds@10.2.6
+    - @navikt/sif-common-forms-ds@19.0.5
+    - @navikt/sif-common-soknad-ds@24.0.5
+    - @navikt/sif-common-ui@0.9.7
+
 ## 0.6.6
 
 ### Patch Changes

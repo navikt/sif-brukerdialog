@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@changesets/cli": "2.29.4",
-        "tailwindcss": "4.1.8",
+        "tailwindcss": "4.1.10",
         "turbo": "2.5.4"
     },
     "devDependencies": {
@@ -18,7 +18,7 @@
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "16.1.0",
+        "lint-staged": "16.1.2",
         "prettier": "3.5.3",
         "typescript": "5.8.3"
     },

@@ -1,5 +1,42 @@
 # @navikt/sif-demo-app
 
+## 0.5.9
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.6
+    - @navikt/sif-common-core-ds@10.2.8
+    - @navikt/sif-common-api@0.4.6
+    - @navikt/sif-common-ui@0.9.9
+    - @navikt/ung-common@0.0.7
+    - @navikt/sif-validation@1.0.0
+
+## 0.5.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.5
+    - @navikt/sif-common-core-ds@10.2.7
+    - @navikt/sif-common-api@0.4.5
+    - @navikt/sif-common-ui@0.9.8
+    - @navikt/ung-common@0.0.6
+    - @navikt/sif-validation@1.0.0
+
+## 0.5.7
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.4
+    - @navikt/sif-common-api@0.4.4
+    - @navikt/sif-common-core-ds@10.2.6
+    - @navikt/sif-common-ui@0.9.7
+
 ## 0.5.6
 
 ### Patch Changes

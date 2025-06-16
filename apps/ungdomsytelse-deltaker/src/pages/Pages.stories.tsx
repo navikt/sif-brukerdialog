@@ -5,7 +5,7 @@ import UngLoadingPage from './UngLoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
 const meta: Meta = {
-    title: 'Pages',
+    title: 'Innsyn/Sider/Støttesider og feilsider',
     parameters: {},
     decorators: [withIntl],
 };
@@ -24,5 +24,5 @@ export const FlereDeltakelser: Story = {
     render: () => <FlereDeltakelserPage />,
 };
 export const HentDeltakerError: Story = {
-    render: () => <HentDeltakerErrorPage error="Teknisk feilmelding" />,
+    render: () => <HentDeltakerErrorPage error="[Teknisk feilmelding]" />,
 };

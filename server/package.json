@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.3",
+    "version": "0.4.5",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -20,15 +20,15 @@
         "http-proxy-middleware": "3.0.5",
         "jsdom": "26.1.0",
         "react": "19.1.0",
-        "zod": "3.25.57"
+        "zod": "3.25.64"
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.9",
         "@types/express": "5.0.3",
         "@types/morgan": "1.9.10",
-        "@types/node": "24.0.0",
+        "@types/node": "24.0.1",
         "@vercel/ncc": "0.38.3",
-        "axios": "1.9.0",
+        "axios": "1.10.0",
         "morgan": "1.10.0",
         "prettier": "3.5.3",
         "typescript": "5.8.3",

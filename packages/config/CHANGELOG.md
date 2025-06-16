@@ -1,5 +1,17 @@
 # config
 
+## 0.10.32
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.10.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.10.30
 
 ### Patch Changes

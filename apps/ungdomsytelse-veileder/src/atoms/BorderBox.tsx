@@ -8,7 +8,6 @@ const BorderBox = (props: BoxNewProps) => {
             borderColor="neutral-subtle"
             borderWidth="2"
             className="p-8 pt-8 pb-14 items-center w-full"
-            maxWidth="30rem"
             {...props}
         />
     );

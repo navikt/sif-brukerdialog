@@ -17,6 +17,7 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
 
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
+    DEV_IS_STORYBOOK: `${process.env.DEV_IS_STORYBOOK}`,
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
@@ -51,6 +52,12 @@ export default defineConfig({
             include: '**/*.{tsx}',
         }),
         checker({ typescript: true }),
+        {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
