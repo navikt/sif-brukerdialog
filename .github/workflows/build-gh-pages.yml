@@ -53,7 +53,7 @@ jobs:
 
             # Bygg ungdomsytelse-deltaker-storybook
             - name: Build ungdomsytelse-deltaker-storybook
-              run: yarn turbo run storybook:build --filter=@navikt/ungdomsytelse-deltaker
+              run: yarn storybook:build
               working-directory: apps/ungdomsytelse-deltaker
 
             # Flytt ungdomsytelse-deltaker-storybook til gh-pages
