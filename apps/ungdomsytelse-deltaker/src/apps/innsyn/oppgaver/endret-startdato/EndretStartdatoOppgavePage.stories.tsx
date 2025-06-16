@@ -10,7 +10,7 @@ import { EndretStartdatoOppgavePage } from '../endret-startdato/EndretStartdatoO
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret startdato',
     parameters: {},
-    decorators: [withIntl, withRouter, withQueryClient, withInnsynApp],
+    decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
 export default meta;
 

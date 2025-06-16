@@ -18,7 +18,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
 
-    const visInfoOmInntektsrapportering = deltakelseStartet && !deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering = !deltakelseAvsluttet;
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -31,8 +31,8 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
         <VStack gap="10">
-            {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
+            {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
                 <Heading level="2" size="medium">
                     Dine oppgaver
