@@ -1,4 +1,4 @@
-import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@navikt/ung-common';
+import { DeltakelsePeriode, deltakelsePeriodeSchema, OppgaveStatus } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
@@ -13,7 +13,7 @@ const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'Innsyn/Sider/Forside',
     parameters: {},
-    decorators: [withIntl, withRouter, withDeltakerContext, withInnsynApp],
+    decorators: [withIntl, withRouter, withDeltakerContext, (Story) => withInnsynApp(Story, new Date(), true)],
 };
 export default meta;
 
@@ -52,7 +52,7 @@ export const DeltakelseAvsluttet: Story = {
                 from: dayjs().subtract(1, 'year').toDate(),
                 to: dayjs().subtract(1, 'day').toDate(),
             },
-            oppgaver: [],
+            oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.status !== OppgaveStatus.ULØST),
         },
     },
 };

@@ -10,7 +10,7 @@ import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Rapporter inntekt',
     parameters: {},
-    decorators: [withIntl, withRouter, withQueryClient, withInnsynApp],
+    decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
 export default meta;
 
