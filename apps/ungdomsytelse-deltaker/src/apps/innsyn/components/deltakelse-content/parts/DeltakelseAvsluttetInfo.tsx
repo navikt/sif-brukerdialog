@@ -1,13 +1,18 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
+import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
-const DeltakelseAvsluttetInfo = () => {
+interface Props {
+    fraOgMed: Date;
+    tilOgMed: Date;
+}
+const DeltakelseAvsluttetInfo = ({ fraOgMed, tilOgMed }: Props) => {
     return (
-        <VStack gap="4">
-            <Heading level="2" size="medium">
-                Deltakelsen din er avsluttet
-            </Heading>
-            <BodyShort>Ta kontakt med din veileder hvis du har noen spørsmål.</BodyShort>
-        </VStack>
+        <InnsynBlueBox>
+            <BodyLong size="large" weight="semibold">
+                Du var i ungdomsprogrammet fra {dateFormatter.full(fraOgMed)} - {dateFormatter.full(tilOgMed)}.
+            </BodyLong>
+        </InnsynBlueBox>
     );
 };
 

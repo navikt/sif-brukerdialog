@@ -9,7 +9,7 @@ import SlettDeltakerModal from './SlettDeltakerModal';
 
 const meta: Meta<typeof SlettDeltakerModal> = {
     component: SlettDeltakerModal,
-    title: 'Forms/Slett deltaker ',
+    title: 'Skjema/Slett deltaker ',
     parameters: {},
     decorators: [withIntl, withVeilederContext, withQueryClientProvider, withRouter],
 };

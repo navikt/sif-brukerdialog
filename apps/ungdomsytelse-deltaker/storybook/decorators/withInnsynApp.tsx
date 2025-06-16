@@ -5,7 +5,12 @@ import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLay
 import ForsidePageFooter from '../../src/apps/innsyn/pages/parts/ForsidePageFooter';
 import '../../src/app.css';
 
-export const withInnsynApp = (Story: any, startdato?: Date, frontpageFooter?: boolean) => {
+export const withInnsynApp = (
+    Story: any,
+    options: { startdato?: Date; frontpageFooter?: boolean; withHeader?: boolean } = {
+        withHeader: true,
+    },
+) => {
     useEffect(() => {
         document.body.classList.add('innsynAppBody');
         return () => {
@@ -14,9 +19,9 @@ export const withInnsynApp = (Story: any, startdato?: Date, frontpageFooter?: bo
     }, [location.pathname]);
     return (
         <Theme hasBackground={false}>
-            <ForsidePageLayout documentTitle="Forside" footer={frontpageFooter ? <ForsidePageFooter /> : null}>
+            <ForsidePageLayout documentTitle="Forside" footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
                 <VStack gap="8">
-                    <InnsynAppHeader startdato={startdato || new Date()} />
+                    {options.withHeader && <InnsynAppHeader startdato={options.startdato || new Date()} />}
                     <Story />
                 </VStack>
             </ForsidePageLayout>

@@ -6,6 +6,8 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretStartdatoOppgavePage } from '../endret-startdato/EndretStartdatoOppgavePage';
+import { Heading, VStack } from '@navikt/ds-react';
+import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret startdato',
@@ -16,7 +18,7 @@ export default meta;
 
 type Story = StoryObj;
 
-const endretSluttdatoOppgave: EndretStartdatoOppgave = {
+const oppgave: EndretStartdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
@@ -28,23 +30,50 @@ const endretSluttdatoOppgave: EndretStartdatoOppgave = {
     frist: dayjs().add(14, 'days').toDate(),
 };
 
-const besvart_endretSluttdatoOppgave: EndretStartdatoOppgave = {
-    ...endretSluttdatoOppgave,
+const besvartOppgave: EndretStartdatoOppgave = {
+    ...oppgave,
     bekreftelse: {
         harGodtattEndringen: true,
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
+export const OppgavePanel: Story = {
+    name: 'Oppgavepaneler',
+    render: () => (
+        <VStack gap="10">
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
+                <OppgaverList oppgaver={[oppgave]} />
+            </VStack>
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
+                <OppgaverList
+                    visBeskrivelse={false}
+                    oppgaveStatusTagVariant="text"
+                    oppgaver={[
+                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
+                        { ...oppgave, status: OppgaveStatus.UTLØPT },
+                        { ...oppgave, status: OppgaveStatus.LØST },
+                    ]}
+                />
+            </VStack>
+        </VStack>
+    ),
+};
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={besvart_endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
@@ -52,13 +81,33 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
     render: () => (
         <EndretStartdatoOppgavePage
             oppgave={{
-                ...besvart_endretSluttdatoOppgave,
+                ...besvartOppgave,
                 bekreftelse: {
                     harGodtattEndringen: false,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 },
             }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const AvbruttOppgave: Story = {
+    name: 'Avbrutt oppgave',
+    render: () => (
+        <EndretStartdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const UtløptOppgave: Story = {
+    name: 'Utløpt oppgave',
+    render: () => (
+        <EndretStartdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

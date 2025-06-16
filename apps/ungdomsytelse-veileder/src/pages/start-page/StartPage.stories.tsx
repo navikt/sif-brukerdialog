@@ -12,7 +12,7 @@ import StartPage from './StartPage';
 
 const meta: Meta<typeof StartPage> = {
     component: StartPage,
-    title: 'Pages/Startside',
+    title: 'Sider/Startside',
     parameters: {},
     decorators: [
         withPageWidth,
@@ -36,6 +36,7 @@ function delay(ms: number) {
 }
 
 export const UregistrertDeltaker: Story = {
+    name: 'Finn deltaker',
     render: () => (
         <BrowserRouter>
             <StartPage />
