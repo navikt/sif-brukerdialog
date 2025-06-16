@@ -42,7 +42,7 @@ jobs:
 
             # Bygg ungdomsytelse-deltaker demo-app med gh-pages:rebuild
             - name: Build ungdomsytelse-deltaker
-              run: yarn build-gh-pages:rebuild
+              run: yarn gh-pages:rebuild
               working-directory: apps/ungdomsytelse-deltaker
 
             # Flytt ungdomsytelse-deltaker-output til en subfolder
