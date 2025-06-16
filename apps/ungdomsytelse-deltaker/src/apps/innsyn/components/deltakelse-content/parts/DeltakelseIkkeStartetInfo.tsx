@@ -1,5 +1,5 @@
 import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
@@ -8,9 +8,15 @@ interface Props {
 
 const DeltakelseIkkeStartetInfo = ({ fraOgMed }: Props) => (
     <InnsynBlueBox>
-        <BodyLong size="large" style={{ fontWeight: '300' }}>
-            Din første dag i ungdomsprogrammet er {dateFormatter.full(fraOgMed)}
-        </BodyLong>
+        <VStack gap="6">
+            <BodyLong size="large" weight="semibold">
+                Du ble meldt inn i ungdomsprogrammet <strong>{dateFormatter.full(fraOgMed)}</strong>. Fra denne datoen
+                mottar du penger gjennom ungdomsprogramytelsen.
+            </BodyLong>
+            <BodyLong size="large" weight="semibold">
+                Etter første måned i ungdomsprogrammet må du melde ifra hvis du starter å jobbe og får utbetalt lønn.
+            </BodyLong>
+        </VStack>
     </InnsynBlueBox>
 );
 

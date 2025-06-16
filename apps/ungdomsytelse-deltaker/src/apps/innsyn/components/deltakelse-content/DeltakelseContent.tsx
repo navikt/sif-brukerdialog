@@ -5,6 +5,7 @@ import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakel
 import OppgaverList from '../oppgaver-list/OppgaverList';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
+import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -12,13 +13,14 @@ interface Props {
 
 const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const { oppgaver } = deltakelsePeriode;
+    const { programPeriode } = deltakelsePeriode;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
 
+    const visInfoOmDeltakelseIkkeStartet = !deltakelseStartet;
     const visInfoOmDeltakelseAvsluttet = deltakelseStartet && deltakelseAvsluttet;
-
-    const visInfoOmInntektsrapportering = !deltakelseAvsluttet;
+    const visInfoOmInntektsrapportering = deltakelseStartet && !deltakelseAvsluttet;
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -31,8 +33,11 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
         <VStack gap="10">
+            {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
-            {visInfoOmDeltakelseAvsluttet && <DeltakelseAvsluttetInfo />}
+            {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
+                <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
+            )}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
                 <Heading level="2" size="medium">
                     Dine oppgaver

@@ -96,11 +96,11 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
         case OppgaveStatus.ULØST:
             return `Frist: ${dateFormatter.full(oppgave.frist)}`;
         case OppgaveStatus.AVBRUTT:
-            return 'Avbrutt';
+            return 'Oppgave er avbrutt';
         case OppgaveStatus.LUKKET:
-            return `Lukket ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
+            return `Oppgave er lukket ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
         case OppgaveStatus.UTLØPT:
-            return `Utløpt`;
+            return `Oppgave er utløpt`;
     }
 };
 
