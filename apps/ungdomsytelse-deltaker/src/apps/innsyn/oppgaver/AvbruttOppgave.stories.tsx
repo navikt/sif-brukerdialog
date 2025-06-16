@@ -39,6 +39,7 @@ const rapporterInntektOppgave: RapporterInntektOppgave = {
     opprettetDato: dayjs('2025-06-01').toDate(),
     frist: dayjs('2025-06-06').startOf('day').toDate(),
 };
+
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (

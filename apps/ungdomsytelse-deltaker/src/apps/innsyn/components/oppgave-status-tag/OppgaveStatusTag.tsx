@@ -32,12 +32,18 @@ const OppgaveStatusTag = ({
         case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size={size}>
+                    <Box marginBlock="1">
+                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
+                    </Box>
                     {text}
                 </Tag>
             );
         case OppgaveStatus.ULØST:
             return (
                 <Tag variant="warning" size={size}>
+                    <Box marginBlock="1">
+                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
+                    </Box>
                     {text}
                 </Tag>
             );

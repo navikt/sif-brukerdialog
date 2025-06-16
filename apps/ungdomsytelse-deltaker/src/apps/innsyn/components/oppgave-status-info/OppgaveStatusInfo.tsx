@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, Box, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-common';
 
 interface Props {
@@ -11,13 +11,7 @@ const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
             return (
                 <Alert variant="warning">
                     <Box>
-                        <Heading level="3" size="small" spacing>
-                            Fristen for oppgaven er utløpt
-                        </Heading>
-                        <BodyLong>
-                            En oppgave kan blir utløpt når fristen for å svare er passert. Når oppgaven uløper behandles
-                            den automatisk.
-                        </BodyLong>
+                        <BodyLong>Denne oppgaven er utløpt og er behandlet automatisk.</BodyLong>
                     </Box>
                 </Alert>
             );
@@ -25,13 +19,7 @@ const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
             return (
                 <Alert variant="warning">
                     <Box>
-                        <Heading level="3" size="small" spacing>
-                            Oppgaven er avbrutt
-                        </Heading>
-                        <BodyShort>
-                            En oppgave blir avbrutt hvis informasjonen i oppgaven ikke lenger er gyldig eller relevant.
-                            Dette kan for eksempel skje hvis oppgaven erstattes av en ny oppgave.
-                        </BodyShort>
+                        <BodyLong>Denne oppgaven er erstattet med en ny oppgave og er derfor avbrutt.</BodyLong>
                     </Box>
                 </Alert>
             );
@@ -39,10 +27,7 @@ const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
             return (
                 <Alert variant="warning">
                     <Box>
-                        <Heading level="3" size="small" spacing>
-                            Oppgaven er lukket
-                        </Heading>
-                        <BodyShort>Oppgaven ble lukket uten at det medførte noen endring i saken din.</BodyShort>
+                        <BodyLong>Oppgaven ble lukket uten at det medførte noen endring i saken din.</BodyLong>
                     </Box>
                 </Alert>
             );
