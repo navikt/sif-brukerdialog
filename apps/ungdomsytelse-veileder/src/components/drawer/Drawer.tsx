@@ -29,9 +29,7 @@ export const Drawer: React.FC<DrawerProps> = ({
     const titleId = useId();
 
     const container =
-        typeof window !== 'undefined'
-            ? (portalContainer ?? document.getElementById('portal-root') ?? document.body)
-            : null;
+        typeof window !== 'undefined' ? (portalContainer ?? document.getElementById('root') ?? document.body) : null;
 
     const { isVisible, hasEntered } = useDelayedUnmount(isOpen, 300);
     useAriaHider(isOpen, container);
