@@ -146,9 +146,9 @@ const DrawerArticles = () => {
                                 </Heading>
                                 <BodyLong>
                                     Noen oppgaver kan bli avbrutt hvis de blir utdaterte eller erstattet, for eksempel
-                                    ved endring av startdato. Hvis veileder endrer startdato og en oppgave opprettes,
-                                    men veileder så gjør en ny endring før deltakeren har svart på den første oppgaven,
-                                    opprettes en ny oppgave, og den første blir avbrutt.
+                                    ved endring av start- eller sluttdato. Når veileder endrer dato, opprettes det en
+                                    oppgave. Gjør veileder en ny endring før deltakeren har svart, blir den første
+                                    oppgaven automatisk avbrutt og erstattet med en ny.
                                 </BodyLong>
                             </VStack>
                             <VStack gap="2">
