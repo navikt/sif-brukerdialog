@@ -1,7 +1,7 @@
 import { Button, Heading } from '@navikt/ds-react';
 import React, { useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { ArrowLeftIcon, ArrowRightIcon } from '@navikt/aksel-icons';
+import { XMarkIcon, ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 import { useAriaHider } from './hooks/useAriaHider';
 import { useDelayedUnmount } from './hooks/useDelayedUnmount';
 import { useFocusTrap } from './hooks/useFocusTrap';
@@ -63,11 +63,11 @@ export const Drawer: React.FC<DrawerProps> = ({
                     <Button
                         variant="tertiary-neutral"
                         type="button"
-                        aria-label={width === DrawerWidth.NARROW ? 'Gjør vid' : 'Gjør smal'}
+                        aria-label={width === DrawerWidth.NARROW ? 'Gjør bredere' : 'Gjør smalere'}
                         onClick={() => {
                             setWidth(width === DrawerWidth.NARROW ? DrawerWidth.WIDE : DrawerWidth.NARROW);
                         }}
-                        icon={width === DrawerWidth.NARROW ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+                        icon={width === DrawerWidth.NARROW ? <ExpandIcon /> : <ShrinkIcon />}
                     />
                     {title && (
                         <Heading level="2" size="medium" className="drawer-heading" id={titleId}>
@@ -80,7 +80,7 @@ export const Drawer: React.FC<DrawerProps> = ({
                         className="drawer-close-button"
                         onClick={onClose}
                         aria-label="Lukk drawer">
-                        <ArrowRightIcon fontSize={20} />
+                        <XMarkIcon fontSize={20} />
                     </Button>
                 </div>
                 <div className="drawer-body p-10">{children}</div>
