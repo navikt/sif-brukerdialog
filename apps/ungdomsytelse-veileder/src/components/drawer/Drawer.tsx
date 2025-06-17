@@ -1,20 +1,27 @@
 import { Button, Heading } from '@navikt/ds-react';
 import React, { useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { ArrowLeftIcon, ArrowRightIcon } from '@navikt/aksel-icons';
 import { useAriaHider } from './hooks/useAriaHider';
 import { useDelayedUnmount } from './hooks/useDelayedUnmount';
 import { useFocusTrap } from './hooks/useFocusTrap';
 import './drawer.css';
+import { useDrawer } from './DrawerContext';
 
 type DrawerProps = {
     isOpen: boolean;
     onClose: () => void;
-    title?: string;
     children: React.ReactNode;
+    title?: string;
+    width?: DrawerWidth;
     position?: 'left' | 'right';
     portalContainer?: HTMLElement | null;
 };
+
+export enum DrawerWidth {
+    NARROW = 'narrow',
+    WIDE = 'wide',
+}
 
 export const Drawer: React.FC<DrawerProps> = ({
     isOpen,
@@ -22,8 +29,10 @@ export const Drawer: React.FC<DrawerProps> = ({
     title,
     children,
     position = 'right',
+    width = DrawerWidth.WIDE,
     portalContainer,
 }) => {
+    const { setWidth } = useDrawer();
     const drawerRef = useRef<HTMLDivElement | null>(null);
     const previouslyFocusedElement = useRef<HTMLElement | null>(null);
     const titleId = useId();
@@ -49,8 +58,17 @@ export const Drawer: React.FC<DrawerProps> = ({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={title ? titleId : undefined}
-                className={`drawer-panel ${position} ${hasEntered ? 'open' : 'closed'}`}>
+                className={`drawer-panel drawer-panel-width-${width} ${position} ${hasEntered ? 'open' : 'closed'}`}>
                 <div className="drawer-header mt-5">
+                    <Button
+                        variant="tertiary-neutral"
+                        type="button"
+                        aria-label={width === DrawerWidth.NARROW ? 'Gjør vid' : 'Gjør smal'}
+                        onClick={() => {
+                            setWidth(width === DrawerWidth.NARROW ? DrawerWidth.WIDE : DrawerWidth.NARROW);
+                        }}
+                        icon={width === DrawerWidth.NARROW ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+                    />
                     {title && (
                         <Heading level="2" size="medium" className="drawer-heading" id={titleId}>
                             {title}

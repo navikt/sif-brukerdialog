@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { Drawer } from './Drawer';
+import { Drawer, DrawerWidth } from './Drawer';
 
 type DrawerOptions = {
     title?: string;
@@ -10,6 +10,7 @@ type DrawerOptions = {
 type DrawerContextValue = {
     openDrawer: (content: ReactNode, options?: DrawerOptions) => void;
     closeDrawer: () => void;
+    setWidth: (width: DrawerWidth) => void;
 };
 
 export const DrawerContext = createContext<DrawerContextValue | undefined>(undefined);
@@ -25,6 +26,7 @@ export const DrawerProvider = ({ children, initialTitle, initialContent = undefi
     const [isOpen, setIsOpen] = useState(initialOpen);
     const [content, setContent] = useState<ReactNode>(initialContent);
     const [title, setTitle] = useState<string | undefined>(initialTitle);
+    const [width, setWidth] = useState<DrawerWidth | undefined>(DrawerWidth.NARROW);
     const [position, setPosition] = useState<'left' | 'right'>('right');
     const [portalContainer, setPortalContainer] = useState<HTMLElement | null | undefined>(undefined);
 
@@ -46,14 +48,15 @@ export const DrawerProvider = ({ children, initialTitle, initialContent = undefi
     };
 
     return (
-        <DrawerContext.Provider value={{ openDrawer, closeDrawer }}>
+        <DrawerContext.Provider value={{ openDrawer, closeDrawer, setWidth }}>
             {children}
             <Drawer
                 isOpen={isOpen}
                 onClose={closeDrawer}
                 title={title}
                 position={position}
-                portalContainer={portalContainer}>
+                portalContainer={portalContainer}
+                width={width}>
                 {content}
             </Drawer>
         </DrawerContext.Provider>

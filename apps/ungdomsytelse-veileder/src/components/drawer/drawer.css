@@ -34,6 +34,9 @@
     flex-direction: column;
     overflow-y: auto;
 }
+.drawer-panel-width-wide {
+    width: 60rem;
+}
 
 /* Sideposisjon */
 .drawer-panel.right {
