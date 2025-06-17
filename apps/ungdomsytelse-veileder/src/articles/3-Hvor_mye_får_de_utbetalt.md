@@ -1,3 +1,5 @@
+Hvor mye får de utbetalt?
+
 # Hvor mye penger får deltakerne gjennom ungdomsprogramytelsen?
 
 Hvor mye penger deltakerne får, kommer først og fremst an på hvor gamle de er.

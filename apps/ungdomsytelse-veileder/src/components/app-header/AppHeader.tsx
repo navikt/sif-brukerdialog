@@ -4,8 +4,7 @@ import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillI
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
 import { useDrawer } from '../drawer/DrawerContext';
-import { articleList } from '../../pages/info-page/InfoInnhold';
-import ArticleContent from '../../pages/info-page/components/ArticleContent';
+import DrawerArticles from '../../pages/info-page/DrawerArticles';
 
 interface Props {
     visActionsMenu?: boolean;
@@ -38,7 +37,7 @@ const AppHeader = ({ visActionsMenu = true }: Props) => {
                     <InternalHeader.Button
                         onClick={(e) => {
                             e.preventDefault();
-                            openDrawer(<ArticleContent articleList={articleList} />, { title: 'Informasjon' });
+                            openDrawer(<DrawerArticles />, { title: 'Informasjon' });
                         }}>
                         <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />
                     </InternalHeader.Button>

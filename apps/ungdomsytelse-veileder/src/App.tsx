@@ -17,6 +17,7 @@ import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
 import { DrawerProvider } from './components/drawer/DrawerContext';
+import DrawerArticles from './pages/info-page/DrawerArticles';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,10 @@ const App = () => {
                             <GlobalQueryLogger />
                             <IntlProvider locale="nb" messages={appMessages.nb}>
                                 <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
-                                    <DrawerProvider>
+                                    <DrawerProvider
+                                        initialContent={<DrawerArticles />}
+                                        initialOpen={true}
+                                        initialTitle="Hjelp og informasjon">
                                         <AppHeader />
                                         <AppRoutes />
                                     </DrawerProvider>

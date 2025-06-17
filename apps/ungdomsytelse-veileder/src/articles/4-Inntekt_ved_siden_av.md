@@ -1,3 +1,5 @@
+Inntekt ved siden av
+
 # Hva skjer når en deltaker har arbeidsinntekt i tillegg til ungdomsprogramytelsen?
 
 Dersom deltakerne har arbeidsinntekt når de deltar i ungdomsprogrammet, skal pengene de mottar gjennom ungdomsprogramytelsen, reduseres med et beløp som tilsvarer 66 prosent av arbeidsinntekten.

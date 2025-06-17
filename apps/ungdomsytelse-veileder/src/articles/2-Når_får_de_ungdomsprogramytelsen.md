@@ -1,3 +1,5 @@
+Når får de ungdomsprogramytelsen?
+
 # Når får deltakerne i ungdomsprogrammet penger gjennom ungdomsprogramytelsen?
 
 Når de er meldt inn i ungdomsprogrammet og har sendt søknaden om ungdomsprogramytelsen, blir det automatisk fattet vedtak om ungdomsprogramytelse, slik at de får penger mens de deltar i programmet.

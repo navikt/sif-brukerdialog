@@ -1,33 +1,32 @@
 import { BodyLong, Heading, List } from '@navikt/ds-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'; // Støtte for tabeller, sjekklister, gjennomstreking
-import { useParams } from 'react-router-dom';
+import { MarkdownArticle } from '../InfoInnhold';
 
-const ArticleContent = ({ articleList }: { articleList: any }) => {
-    const { articleId } = useParams();
-    const article = articleId === undefined ? articleList[0] : articleList.find((a) => a.id === articleId);
+interface Props {
+    article: MarkdownArticle;
+    size?: 'medium' | 'small';
+}
 
-    if (!article) {
-        return <div>Artikkel ikke funnet</div>;
-    }
-
+const Article = ({ article, size = 'small' }: Props) => {
+    const isSmall = size === 'small';
     return (
-        <div className="prose">
+        <div className="prose mt-4">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
                     h1: ({ children }) => (
-                        <Heading level="1" size="large" spacing={true}>
+                        <Heading level="1" size={isSmall ? 'medium' : 'large'} spacing={true}>
                             {children}
                         </Heading>
                     ),
                     h2: ({ children }) => (
-                        <Heading level="2" size="medium" spacing={true}>
+                        <Heading level="2" size={isSmall ? 'small' : 'medium'} spacing={true}>
                             {children}
                         </Heading>
                     ),
                     h3: ({ children }) => (
-                        <Heading level="3" size="small" spacing={true}>
+                        <Heading level="3" size={isSmall ? 'xsmall' : 'small'} spacing={true}>
                             {children}
                         </Heading>
                     ),
@@ -63,4 +62,4 @@ const ArticleContent = ({ articleList }: { articleList: any }) => {
     );
 };
 
-export default ArticleContent;
+export default Article;

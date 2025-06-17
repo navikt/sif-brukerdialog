@@ -1,19 +1,31 @@
 import { Box, Heading, HGrid, Link } from '@navikt/ds-react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import ArticleContent from './components/ArticleContent';
+import ArticleContentFromUrl from './components/ArticleContentFromUrl';
 
 // Dynamisk import av alle markdown-filer i articles-mappen
 const articles = import.meta.glob('../../articles/*.md', { eager: true, as: 'raw' });
 
-export const articleList = Object.keys(articles).map((path) => {
+export interface MarkdownArticle {
+    id: string;
+    title: string;
+    content: string;
+}
+
+export const articleList = Object.keys(articles).map((path): MarkdownArticle => {
     const fileName = path.split('/').pop() || '';
     const id = fileName.replace('.md', '');
-    const title = fileName
-        .replace(/^\d+(\.\d+)*-/, '')
-        .replace('.md', '')
-        .replace(/_/g, ' ');
-    return { id, title, content: articles[path] as string };
+    const content = articles[path] as string;
+
+    // Finn første ikke-tomme linje (tittel)
+    const lines = content.split('\n');
+    const firstLineIndex = lines.findIndex((line) => line.trim().length > 0);
+    const title = lines[firstLineIndex]?.replace(/^#+\s*/, '') || '';
+
+    // Fjern tittellinjen fra innholdet
+    const contentWithoutTitle = [...lines.slice(0, firstLineIndex), ...lines.slice(firstLineIndex + 1)].join('\n');
+
+    return { id, title, content: contentWithoutTitle };
 });
 
 const InfoInnhold = () => {
@@ -50,8 +62,8 @@ const InfoInnhold = () => {
             </Box>
             <Box>
                 <Routes>
-                    <Route index element={<ArticleContent articleList={articleList} />} />
-                    <Route path=":articleId" element={<ArticleContent articleList={articleList} />} />
+                    <Route index element={<ArticleContentFromUrl articleList={articleList} />} />
+                    <Route path=":articleId" element={<ArticleContentFromUrl articleList={articleList} />} />
                 </Routes>
             </Box>
         </HGrid>

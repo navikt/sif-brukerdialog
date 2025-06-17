@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { Drawer } from './Drawer';
 
 type DrawerOptions = {
@@ -14,10 +14,17 @@ type DrawerContextValue = {
 
 export const DrawerContext = createContext<DrawerContextValue | undefined>(undefined);
 
-export const DrawerProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [content, setContent] = useState<ReactNode>(null);
-    const [title, setTitle] = useState<string | undefined>();
+interface Props {
+    children: ReactNode;
+    initialTitle?: string;
+    initialContent?: ReactNode;
+    initialOpen?: boolean;
+}
+
+export const DrawerProvider = ({ children, initialTitle, initialContent = undefined, initialOpen = false }: Props) => {
+    const [isOpen, setIsOpen] = useState(initialOpen);
+    const [content, setContent] = useState<ReactNode>(initialContent);
+    const [title, setTitle] = useState<string | undefined>(initialTitle);
     const [position, setPosition] = useState<'left' | 'right'>('right');
     const [portalContainer, setPortalContainer] = useState<HTMLElement | null | undefined>(undefined);
 
