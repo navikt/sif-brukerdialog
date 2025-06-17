@@ -9,7 +9,7 @@ import DrawerArticles from '../../pages/info-page/DrawerArticles';
 interface Props {
     visActionsMenu?: boolean;
 }
-const AppHeader = ({ visActionsMenu = true }: Props) => {
+const AppHeader = ({ visActionsMenu = false }: Props) => {
     const { veileder } = useVeileder();
     const { setDarkMode, darkMode } = useThemeContext();
 

@@ -41,7 +41,7 @@ const App = () => {
                                 <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
                                     <DrawerProvider
                                         initialContent={<DrawerArticles />}
-                                        initialOpen={true}
+                                        initialOpen={false}
                                         initialTitle="Hjelp og informasjon">
                                         <AppHeader />
                                         <AppRoutes />
