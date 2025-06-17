@@ -38,7 +38,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
         if (!isOpen) {
             setIsOpen(true);
             setContent(drawerContent);
-            setTitle(options?.title);
+            setTitle(options?.title || title);
         }
     };
 
@@ -68,7 +68,7 @@ export const DrawerProvider = ({ children, initialTitle, initialOpen = true, ini
                                 icon={width === DrawerWidth.NARROW ? <ExpandIcon /> : <ShrinkIcon />}
                             />
                         </Bleed>
-                        <Heading level="2" size="small">
+                        <Heading level="2" size="xsmall">
                             {title}
                         </Heading>
                     </HStack>

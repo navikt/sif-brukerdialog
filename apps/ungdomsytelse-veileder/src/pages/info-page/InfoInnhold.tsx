@@ -9,23 +9,37 @@ const articles = import.meta.glob('../../articles/*.md', { eager: true, as: 'raw
 export interface MarkdownArticle {
     id: string;
     title: string;
+    ingress?: string;
     content: string;
 }
 
 export const articleList = Object.keys(articles).map((path): MarkdownArticle => {
     const fileName = path.split('/').pop() || '';
     const id = fileName.replace('.md', '');
-    const content = articles[path] as string;
+    const raw = articles[path] as string;
+    const lines = raw.split('\n');
 
-    // Finn første ikke-tomme linje (tittel)
-    const lines = content.split('\n');
-    const firstLineIndex = lines.findIndex((line) => line.trim().length > 0);
-    const title = lines[firstLineIndex]?.replace(/^#+\s*/, '') || '';
+    let title = '';
+    let ingress: string | undefined = undefined;
+    let content = '';
 
-    // Fjern tittellinjen fra innholdet
-    const contentWithoutTitle = [...lines.slice(0, firstLineIndex), ...lines.slice(firstLineIndex + 1)].join('\n');
+    // Finn tittel
+    const tittelIndex = lines.findIndex((l) => l.trim().toLowerCase() === 'tittel');
+    if (tittelIndex !== -1) {
+        title = (lines[tittelIndex + 1] || '').trim();
+    }
 
-    return { id, title, content: contentWithoutTitle };
+    // Finn ingress
+    const ingressIndex = lines.findIndex((l) => l.trim().toLowerCase() === 'ingress');
+    if (ingressIndex !== -1) {
+        ingress = (lines[ingressIndex + 1] || '').trim();
+    }
+
+    // Content starter etter ingress-linjen
+    const contentStart = ingressIndex !== -1 ? ingressIndex + 2 : tittelIndex !== -1 ? tittelIndex + 2 : 0;
+    content = lines.slice(contentStart).join('\n').trim();
+
+    return { id, title, ingress, content };
 });
 
 const InfoInnhold = () => {

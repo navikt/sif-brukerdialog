@@ -15,6 +15,9 @@ const DrawerArticles = () => {
                     <ExpansionCard aria-label={article.title} size="small" key={article.id}>
                         <ExpansionCard.Header>
                             <ExpansionCard.Title size="small">{article.title}</ExpansionCard.Title>
+                            {article.ingress && (
+                                <ExpansionCard.Description>{article.ingress}</ExpansionCard.Description>
+                            )}
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
                             <Article article={article} />
