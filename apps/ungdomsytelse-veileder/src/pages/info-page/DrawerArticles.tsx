@@ -12,7 +12,7 @@ const DrawerArticles = () => {
                     Om ungdomsprogramytelsen
                 </Heading>
                 {articleList.map((article) => (
-                    <ExpansionCard aria-label="Demo med bare tittel" size="small" key={article.id}>
+                    <ExpansionCard aria-label={article.title} size="small" key={article.id}>
                         <ExpansionCard.Header>
                             <ExpansionCard.Title size="small">{article.title}</ExpansionCard.Title>
                         </ExpansionCard.Header>
@@ -26,7 +26,7 @@ const DrawerArticles = () => {
                 <Heading level="2" size="medium" spacing={true}>
                     Deltaker, deltakelse og oppgaver
                 </Heading>
-                <ExpansionCard aria-label="Demo med bare tittel" size="small">
+                <ExpansionCard aria-label="Eksempel på en deltakerreise" size="small">
                     <ExpansionCard.Header>
                         <ExpansionCard.Title size="small">Eksempel på en deltakerreise</ExpansionCard.Title>
                     </ExpansionCard.Header>
@@ -80,7 +80,7 @@ const DrawerArticles = () => {
                         </Process>
                     </ExpansionCard.Content>
                 </ExpansionCard>
-                <ExpansionCard aria-label="Demo med bare tittel" size="small">
+                <ExpansionCard aria-label="Deltakeroppgaver" size="small">
                     <ExpansionCard.Header>
                         <ExpansionCard.Title size="small">Deltakeroppgaver</ExpansionCard.Title>
                     </ExpansionCard.Header>
