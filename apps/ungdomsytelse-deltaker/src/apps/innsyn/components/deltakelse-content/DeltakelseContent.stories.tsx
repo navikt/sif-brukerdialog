@@ -13,7 +13,12 @@ const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'Innsyn/Sider/Forside',
     parameters: {},
-    decorators: [withIntl, withRouter, withDeltakerContext, (Story) => withInnsynApp(Story, { startdato: new Date() })],
+    decorators: [
+        withIntl,
+        withRouter,
+        withDeltakerContext,
+        (Story) => withInnsynApp(Story, { startdato: new Date(), frontpageFooter: true, withHeader: true }),
+    ],
 };
 export default meta;
 
