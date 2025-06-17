@@ -87,9 +87,9 @@ const DrawerArticles = () => {
                     <ExpansionCard.Content>
                         <VStack gap="6">
                             <BodyLong>
-                                Deltaker vil underveis motta ulike oppgaver relatert til ungdomsprogramytelsen. Disse
-                                varsles via SMS, og leder deltakeren til Min side på nav.no. Derfra kan deltakeren gå
-                                videre til deltakerportalen, hvor hele oppgaven vises.
+                                Deltakeren vil underveis motta ulike oppgaver knyttet til ungdomsprogramytelsen. Disse
+                                varsles via SMS og leder til Min side på nav.no. Derfra kan deltakeren gå videre til
+                                deltakerportalen, hvor hele oppgaven vises.
                             </BodyLong>
                             <Heading level="2" size="medium">
                                 Enkeltoppgaver
