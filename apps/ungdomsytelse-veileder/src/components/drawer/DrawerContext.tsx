@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { Drawer, DrawerWidth } from './Drawer';
+import { Bleed, Button, Heading, HStack, Modal } from '@navikt/ds-react';
+import { createContext, ReactNode, useContext, useState } from 'react';
+import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 
 type DrawerOptions = {
     title?: string;
@@ -13,6 +14,11 @@ type DrawerContextValue = {
     setWidth: (width: DrawerWidth) => void;
 };
 
+export enum DrawerWidth {
+    NARROW = 'narrow',
+    WIDE = 'wide',
+}
+
 export const DrawerContext = createContext<DrawerContextValue | undefined>(undefined);
 
 interface Props {
@@ -22,43 +28,53 @@ interface Props {
     initialOpen?: boolean;
 }
 
-export const DrawerProvider = ({ children, initialTitle, initialContent = undefined, initialOpen = false }: Props) => {
+export const DrawerProvider = ({ children, initialTitle, initialOpen = true, initialContent = undefined }: Props) => {
     const [isOpen, setIsOpen] = useState(initialOpen);
     const [content, setContent] = useState<ReactNode>(initialContent);
     const [title, setTitle] = useState<string | undefined>(initialTitle);
     const [width, setWidth] = useState<DrawerWidth | undefined>(DrawerWidth.NARROW);
-    const [position, setPosition] = useState<'left' | 'right'>('right');
-    const [portalContainer, setPortalContainer] = useState<HTMLElement | null | undefined>(undefined);
 
     const openDrawer = (drawerContent: ReactNode, options?: DrawerOptions) => {
-        setContent(drawerContent);
-        setTitle(options?.title);
-        setPosition(options?.position ?? 'right');
-        setPortalContainer(options?.portalContainer);
-        setIsOpen(true);
+        if (!isOpen) {
+            setIsOpen(true);
+            setContent(drawerContent);
+            setTitle(options?.title);
+        }
     };
 
     const closeDrawer = () => {
         setIsOpen(false);
-        setTimeout(() => {
-            setContent(null);
-            setTitle(undefined);
-            setPortalContainer(undefined);
-        }, 300); // må matche lukke-animasjon
     };
 
     return (
-        <DrawerContext.Provider value={{ openDrawer, closeDrawer, setWidth }}>
+        <DrawerContext.Provider value={{ openDrawer, closeDrawer, setWidth: () => null }}>
             {children}
-            <Drawer
-                isOpen={isOpen}
+            <Modal
+                className={`drawer-dialog drawer-dialog-${width}`}
+                open={isOpen === true}
                 onClose={closeDrawer}
-                title={title}
-                position={position}
-                portalContainer={portalContainer}
-                width={width}>
-                {content}
-            </Drawer>
+                aria-label="Dialog">
+                <Modal.Header>
+                    <HStack gap="4" align="center">
+                        <Bleed marginBlock="2" marginInline="2">
+                            <Button
+                                variant="tertiary-neutral"
+                                type="button"
+                                title="Utvid eller reduser bredde"
+                                aria-label={width === DrawerWidth.NARROW ? 'Gjør bredere' : 'Gjør smalere'}
+                                onClick={() => {
+                                    setWidth(width === DrawerWidth.NARROW ? DrawerWidth.WIDE : DrawerWidth.NARROW);
+                                }}
+                                icon={width === DrawerWidth.NARROW ? <ExpandIcon /> : <ShrinkIcon />}
+                            />
+                        </Bleed>
+                        <Heading level="2" size="small">
+                            {title}
+                        </Heading>
+                    </HStack>
+                </Modal.Header>
+                <Modal.Body className={`drawer-body drawer-body-${width}`}>{content}</Modal.Body>
+            </Modal>
         </DrawerContext.Provider>
     );
 };
