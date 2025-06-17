@@ -12,7 +12,7 @@ import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsopphold
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
-    { text }: AppIntlShape,
+    { text, locale }: AppIntlShape,
 ): SøknadApiData | undefined => {
     const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
 
@@ -25,7 +25,7 @@ export const getApiDataFromSøknadsdata = (
         return undefined;
     }
 
-    const språk = 'nb';
+    const språk = locale;
 
     const yesOrNoQuestions: YesNoSpørsmålOgSvar[] = [];
 
