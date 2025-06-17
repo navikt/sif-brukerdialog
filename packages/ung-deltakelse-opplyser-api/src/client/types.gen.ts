@@ -38,7 +38,7 @@ export type ArbeidOgFrilansRegisterInntektDto = {
 };
 
 export type BekreftelseDto = {
-    harGodtattEndringen: boolean;
+    harUttalelse: boolean;
     uttalelseFraBruker?: string;
 };
 
@@ -159,11 +159,11 @@ export type DeltakerPersonalia = {
     navn: Navn;
     fødselsdato: string;
     /**
-     * Diskresjonskoder som gjelder for deltakeren. Vl være tom hvis deltaker ikke har diskresjonskoder satt.
+     * Diskresjonskoder som gjelder for deltakeren. Vil være tom hvis deltaker ikke har diskresjonskoder satt.
      */
     diskresjonskoder: Array<Diskresjonskode>;
-    sisteMuligeInnmeldingsdato: string;
     førsteMuligeInnmeldingsdato: string;
+    sisteMuligeInnmeldingsdato: string;
 };
 
 export enum Diskresjonskode {
