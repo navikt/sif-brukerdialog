@@ -1,5 +1,13 @@
 # @navikt/sif-server
 
+## 0.4.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.4
+
 ## 0.4.5
 
 ### Patch Changes
