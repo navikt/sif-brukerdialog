@@ -12,7 +12,7 @@ export default defineConfig({
         launchOptions: {
             slowMo: 100,
         },
-        baseURL: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-deltaker/',
+        baseURL: 'http://localhost:8080/ungdomsprogrammet/ytelsen/',
     },
     projects: [
         {
@@ -22,7 +22,7 @@ export default defineConfig({
     ],
     webServer: {
         command: 'yarn e2e:start',
-        url: 'http://localhost:8080/sif-brukerdialog/ungdomsytelse-deltaker/',
+        url: 'http://localhost:8080/ungdomsprogrammet/ytelsen/',
         reuseExistingServer: true,
     },
 });
