@@ -26,19 +26,19 @@
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
 
-        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/ungdomsprogrammet/ytelse/oauth2/logout",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/ungdomsprogrammet/ytelsen/oauth2/logout",
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
 
-        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/ungdomsprogrammet/ytelse/api/brukerdialog",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/ungdomsprogrammet/ytelsen/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
 
-        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/ungdomsprogrammet/ytelse/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/ungdomsprogrammet/ytelsen/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
-        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelse/oauth2/login?redirect=/ungdomsprogrammet/ytelsen",
+        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelsen/oauth2/login?redirect=/ungdomsprogrammet/ytelsen",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
         "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.nav.no/dokumentarkiv/tema/UNG",
         "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.nav.no/endringer",
