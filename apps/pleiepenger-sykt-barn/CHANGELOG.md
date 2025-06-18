@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.9.12
+
+### Patch Changes
+
+- dd584ae: Skru på nynorsk i prod for alle søknader som ikke hadde det fra før
+
 ## 4.9.11
 
 ### Patch Changes
