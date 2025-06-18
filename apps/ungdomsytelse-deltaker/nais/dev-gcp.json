@@ -14,6 +14,7 @@
     "maxReplicas": 1,
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
+    "faro": true,
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",

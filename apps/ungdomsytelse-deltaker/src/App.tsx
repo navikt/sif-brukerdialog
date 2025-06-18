@@ -13,6 +13,8 @@ import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import { FaroProvider } from '@navikt/sif-common-faro';
+import { getAppEnv } from './utils/appEnv';
 
 initSentry();
 initApiClients();
@@ -30,18 +32,28 @@ if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
 const queryClient = new QueryClient();
 
 function App() {
+    const env = getAppEnv();
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
-            <AnalyticsProvider applicationKey={UngdomsytelseDeltakerApp.key} logToConsoleOnly={true} isActive={false}>
-                <QueryClientProvider client={queryClient}>
-                    <AppIntlMessageProvider>
-                        <AppRouter>
-                            <DeltakerInfoLoader />
-                        </AppRouter>
-                        <DevFooter />
-                    </AppIntlMessageProvider>
-                </QueryClientProvider>
-            </AnalyticsProvider>
+            <FaroProvider
+                appVersion={env.APP_VERSION}
+                applicationKey={UngdomsytelseDeltakerApp.key}
+                telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
+                isActive={env.SIF_PUBLIC_USE_FARO}>
+                <AnalyticsProvider
+                    applicationKey={UngdomsytelseDeltakerApp.key}
+                    logToConsoleOnly={true}
+                    isActive={false}>
+                    <QueryClientProvider client={queryClient}>
+                        <AppIntlMessageProvider>
+                            <AppRouter>
+                                <DeltakerInfoLoader />
+                            </AppRouter>
+                            <DevFooter />
+                        </AppIntlMessageProvider>
+                    </QueryClientProvider>
+                </AnalyticsProvider>
+            </FaroProvider>
         </ErrorBoundary>
     );
 }
