@@ -9,6 +9,7 @@ import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
 import { getStegRoute, SøknadRoutes } from './utils/routeUtils';
+import { getRequiredEnv } from '@navikt/sif-common-env';
 
 const SøknadRouter = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();
@@ -58,7 +59,7 @@ const SøknadRouter = () => {
             <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
             <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
             <Route path="soknad/kvittering" element={<KvitteringPage />} />
-            <Route path="*" element={<>Unknown route</>} />
+            <Route path="*" element={<Navigate to={getRequiredEnv('PUBLIC_PATH')} replace={true} />} />
         </Routes>
     );
 };
