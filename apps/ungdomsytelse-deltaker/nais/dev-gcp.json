@@ -26,7 +26,7 @@
         "SIF_PUBLIC_USE_AMPLITUDE": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
 
-        "SIF_PUBLIC_USE_FARO": true,
+        "SIF_PUBLIC_USE_FARO": "true",
         "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect",
 
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
