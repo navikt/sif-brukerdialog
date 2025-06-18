@@ -7,6 +7,9 @@ import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
 import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Theme } from '@navikt/ds-react';
 
 interface SøknadAppProps {
     søker: Søker;
@@ -14,8 +17,17 @@ interface SøknadAppProps {
 }
 
 const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
     const kontonummer = useKontonummer();
     const barn = useBarn();
+
+    useEffect(() => {
+        if (deltakelsePeriode.søktTidspunkt !== undefined && !pathname.includes('kvittering')) {
+            navigate('/innsyn');
+            return;
+        }
+    }, []);
 
     if (barn.isLoading || kontonummer.isLoading) {
         return <UngLoadingPage />;
@@ -31,15 +43,18 @@ const SøknadApp = ({ søker, deltakelsePeriode }: SøknadAppProps) => {
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;
     }
+
     return (
-        <SøknadProvider
-            søknadOppgave={søknadOppgave}
-            søker={søker}
-            deltakelsePeriode={deltakelsePeriode}
-            kontonummer={kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined}
-            barn={barn.data || []}>
-            <SøknadRouter />
-        </SøknadProvider>
+        <Theme>
+            <SøknadProvider
+                søknadOppgave={søknadOppgave}
+                søker={søker}
+                deltakelsePeriode={deltakelsePeriode}
+                kontonummer={kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined}
+                barn={barn.data || []}>
+                <SøknadRouter />
+            </SøknadProvider>
+        </Theme>
     );
 };
 

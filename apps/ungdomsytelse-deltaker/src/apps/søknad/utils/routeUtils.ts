@@ -1,11 +1,11 @@
 import { Steg } from '../types';
 
 export const SøknadRoutes = {
-    KONTONUMMER: '/soknad/kontonummer',
-    BARN: '/soknad/barn',
-    OPPSUMMERING: '/soknad/oppsummering',
+    KONTONUMMER: '/soknad/steg/kontonummer',
+    BARN: '/soknad/steg/barn',
+    OPPSUMMERING: '/soknad/steg/oppsummering',
     KVITTERING: '/soknad/kvittering',
-    VELKOMMEN: '/',
+    VELKOMMEN: '/soknad',
 };
 
 export const getStegRoute = (steg: Steg): string => {

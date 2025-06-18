@@ -7,8 +7,7 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
-import { useLocation } from 'react-router-dom';
-import { Alert, Theme, VStack } from '@navikt/ds-react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 
@@ -51,12 +50,23 @@ const DeltakerInfoLoader = () => {
         deltakelsePeriode.søktTidspunkt !== undefined ||
         (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
 
+    const aktivPathBasertPåDeltaker = deltakerHarSøkt && !pathname.includes('kvittering') ? '/innsyn' : '/soknad';
+    console.log(aktivPathBasertPåDeltaker);
+
     return (
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
+            <Routes>
+                <Route
+                    path="/soknad/*"
+                    element={<SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />}
+                />
+                <Route path="/innsyn/*" element={<InnsynApp />} />
+                <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
+            </Routes>
+            {/* {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
                 <Theme hasBackground={false}>
                     {deltakelsePeriode.søktTidspunkt === undefined && (
                         <VStack marginBlock="0 2" className="pl-10 pr-10  max-w-[800px] mx-auto ">
@@ -72,7 +82,7 @@ const DeltakerInfoLoader = () => {
                 <Theme>
                     <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
                 </Theme>
-            )}
+            )} */}
         </DeltakerContextProvider>
     );
 };

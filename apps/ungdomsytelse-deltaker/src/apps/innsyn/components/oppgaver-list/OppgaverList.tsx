@@ -27,7 +27,7 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
                     oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     oppgaveStatusTagVariant={oppgaveStatusTagVariant}
                     onClick={() => {
-                        navigate(`/oppgave/${oppgave.oppgaveReferanse}`);
+                        navigate(`oppgave/${oppgave.oppgaveReferanse}`);
                     }}
                 />
             ))}

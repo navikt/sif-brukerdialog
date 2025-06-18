@@ -52,13 +52,11 @@ const SøknadRouter = () => {
 
     return (
         <Routes>
-            <Route index={true} element={<VelkommenPage />} />
-            <Route path="soknad" element={<Navigate to="/soknad/kontonummer" replace={true} />} />
-            <Route path="soknad/barn" element={<BarnSteg />} />
-            <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
-            <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
-            <Route path="soknad/kvittering" element={<KvitteringPage />} />
-            <Route path="*" element={<Navigate to="/" replace={true} />} />
+            <Route index element={<VelkommenPage />} />
+            <Route path="steg/barn" element={<BarnSteg />} />
+            <Route path="steg/kontonummer" element={<KontonummerSteg />} />
+            <Route path="steg/oppsummering" element={<OppsummeringSteg />} />
+            <Route path="kvittering" element={<KvitteringPage />} />
         </Routes>
     );
 };
