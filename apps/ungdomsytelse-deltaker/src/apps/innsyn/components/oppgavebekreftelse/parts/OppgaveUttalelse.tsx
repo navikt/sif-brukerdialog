@@ -28,16 +28,10 @@ const OppgaveUttalelse = ({ beskjedFraNav, spørsmål, bekreftelse }: Props) => 
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>{spørsmål}</FormSummary.Label>
-                        <FormSummary.Value>
-                            {
-                                bekreftelse.harGodtattEndringen
-                                    ? 'Nei'
-                                    : 'Ja' /** TODO: harGodtattEndringen har byttet mening til harTilbakemelding */
-                            }
-                        </FormSummary.Value>
+                        <FormSummary.Value>{bekreftelse.harUttalelse ? 'Ja' : 'Nei'}</FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
-                {!bekreftelse.harGodtattEndringen && bekreftelse.uttalelseFraBruker && (
+                {!bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>Kommentar</FormSummary.Label>

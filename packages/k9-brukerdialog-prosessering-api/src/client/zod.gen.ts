@@ -29,8 +29,8 @@ export const zUngdomsytelsesøknad = z.object({
 });
 
 export const zUngdomsytelseOppgaveUttalelseDto = z.object({
-    bekreftelseSvar: z.enum(['GODTAR', 'AVSLÅR']),
-    meldingFraDeltaker: z.string().optional(),
+    harUttalelse: z.boolean(),
+    uttalelseFraDeltaker: z.string().optional(),
 });
 
 export const zUngdomsytelseOppgaveDto = z.object({

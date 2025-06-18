@@ -43,8 +43,8 @@ export const mockUtils = {
     setOppgavebekreftelse: (ref: string, data: any) => {
         const oppdatertData: Partial<any> = {
             bekreftelse: {
-                harGodtattEndringen: data.oppgave.uttalelse.bekreftelseSvar === 'GODTAR',
-                uttalelseFraBruker: data.oppgave.uttalelse.meldingFraDeltaker,
+                harUttalelse: data.oppgave.uttalelse.harUttalelse,
+                uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,
             },
             løstDato: new Date().toISOString(),
             status: 'LØST',

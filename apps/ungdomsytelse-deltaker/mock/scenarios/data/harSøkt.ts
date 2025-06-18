@@ -19,7 +19,7 @@ const deltakelse: DeltakelseKomposittDto = zDeltakelseKomposittDto.parse({
                 forrigeStartdato: '2025-05-02',
             },
             bekreftelse: {
-                harGodtattEndringen: true,
+                harUttalelse: false,
             },
             status: 'ULØST',
             opprettetDato: '2025-06-04T10:32:47.664066Z',

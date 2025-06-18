@@ -34,8 +34,8 @@ export type UngdomsytelseOppgaveDto = {
 };
 
 export type UngdomsytelseOppgaveUttalelseDto = {
-    bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
-    meldingFraDeltaker?: string;
+    harUttalelse: boolean;
+    uttalelseFraDeltaker?: string;
 };
 
 export type UngdomsytelseOppgavebekreftelse = {

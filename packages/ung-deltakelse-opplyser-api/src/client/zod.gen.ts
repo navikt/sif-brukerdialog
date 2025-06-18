@@ -38,7 +38,7 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
 });
 
 export const zBekreftelseDto = z.object({
-    harGodtattEndringen: z.boolean(),
+    harUttalelse: z.boolean(),
     uttalelseFraBruker: z.string().optional(),
 });
 
@@ -172,8 +172,8 @@ export const zDeltakerPersonalia = z.object({
     navn: zNavn,
     fødselsdato: z.string().date(),
     diskresjonskoder: z.array(zDiskresjonskode),
-    sisteMuligeInnmeldingsdato: z.string().date(),
     førsteMuligeInnmeldingsdato: z.string().date(),
+    sisteMuligeInnmeldingsdato: z.string().date(),
 });
 
 export const zSettTilUtløptDto = z.object({

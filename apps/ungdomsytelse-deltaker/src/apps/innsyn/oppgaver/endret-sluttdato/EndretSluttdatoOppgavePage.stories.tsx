@@ -33,7 +33,7 @@ const oppgave: EndretSluttdatoOppgave = {
 const besvartOppgave: EndretSluttdatoOppgave = {
     ...oppgave,
     bekreftelse: {
-        harGodtattEndringen: true,
+        harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
@@ -84,7 +84,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
-                    harGodtattEndringen: false,
+                    harUttalelse: true,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 },
