@@ -3,6 +3,7 @@ import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
+import { Locale } from '@navikt/sif-common-core-ds/src/types';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -10,6 +11,7 @@ export const getApiDataFromSøknadsdata = (
     sak: Sak,
     valgteEndringer: ValgteEndringer,
     arbeidsgivere: Arbeidsgiver[],
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
 
@@ -19,7 +21,7 @@ export const getApiDataFromSøknadsdata = (
     return {
         søkerNorskIdent,
         id,
-        språk: '',
+        språk: locale,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true ? true : false,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true ? true : false,
         ytelse: {

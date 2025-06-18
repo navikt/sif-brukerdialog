@@ -32,7 +32,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetData,
-    locale: Locale = 'nb',
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { søknadsperiode, harForståttRettigheterOgPlikter } = søknadsdata;
 

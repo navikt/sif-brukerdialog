@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.24.11
+
+### Patch Changes
+
+- dd584ae: Skru på nynorsk i prod for alle søknader som ikke hadde det fra før
+
 ## 1.24.10
 
 ### Patch Changes

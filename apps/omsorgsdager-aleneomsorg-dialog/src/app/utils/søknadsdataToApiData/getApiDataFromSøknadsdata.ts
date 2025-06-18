@@ -2,11 +2,13 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
+import { Locale } from '@navikt/sif-common-core-ds/src';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     registrertBarn: RegistrertBarn[],
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, omOmsorgenForBarn, tidspunktForAleneomsorg } = søknadsdata;
     if (!omOmsorgenForBarn || !tidspunktForAleneomsorg) {
@@ -20,7 +22,7 @@ export const getApiDataFromSøknadsdata = (
     return {
         søkerNorskIdent,
         id,
-        språk: 'nb',
+        språk: locale,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,

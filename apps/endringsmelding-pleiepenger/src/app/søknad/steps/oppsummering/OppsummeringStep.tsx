@@ -38,7 +38,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
-    const { text, intl } = useAppIntl();
+    const { text, intl, locale } = useAppIntl();
     const {
         state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
     } = useSøknadContext();
@@ -55,7 +55,14 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, sak, valgteEndringer, arbeidsgivere);
+    const apiData = getApiDataFromSøknadsdata(
+        søker.fødselsnummer,
+        søknadsdata,
+        sak,
+        valgteEndringer,
+        arbeidsgivere,
+        locale,
+    );
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;

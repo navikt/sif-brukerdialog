@@ -1,4 +1,4 @@
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -31,6 +31,7 @@ export const getDagerMedPleieApiData = (søknadsdata: Søknadsdata): string[] =>
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, opplysningerOmPleietrengende, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } =
         søknadsdata;
@@ -64,7 +65,7 @@ export const getApiDataFromSøknadsdata = (
         return undefined;
     }
 
-    const språk = 'nb';
+    const språk = locale;
 
     return {
         søkerNorskIdent,
