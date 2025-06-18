@@ -58,7 +58,7 @@ const SøknadRouter = () => {
             <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
             <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
             <Route path="soknad/kvittering" element={<KvitteringPage />} />
-            <Route path="*" element={<>Unknown route</>} />
+            <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>
     );
 };

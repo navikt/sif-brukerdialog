@@ -7,7 +7,7 @@ on:
             - main
         paths:
             - 'apps/ungdomsytelse-veileder/**/*'
-            - 'server/**/*'
+            - 'server-ungdomsytelse-veileder/**/*'
     workflow_dispatch:
 
 jobs:
