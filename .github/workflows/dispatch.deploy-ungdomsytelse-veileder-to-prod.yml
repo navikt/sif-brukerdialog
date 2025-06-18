@@ -20,7 +20,7 @@ jobs:
     deploy-to-prod:
         name: Deploy ungdomsytelse-veileder to prod
         needs: [run-tests]
-        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        uses: ./.github/workflows/.deploy-app-to-intern-prod.yml
         secrets: inherit
         permissions:
             contents: write
