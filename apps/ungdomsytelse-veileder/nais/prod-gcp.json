@@ -7,8 +7,8 @@
     "readinessPath": "/internal/health/isReady",
     "externalHosts": [],
     "accessPolicyOutApps": [{ "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }],
-    "minReplicas": 1,
-    "maxReplicas": 1,
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
     "azure": {

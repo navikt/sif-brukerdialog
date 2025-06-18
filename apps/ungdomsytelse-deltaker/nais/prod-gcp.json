@@ -18,7 +18,7 @@
         "ENV": "prod",
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
-        "PUBLIC_PATH": "/ungdomsprogramytelse",
+        "PUBLIC_PATH": "/ungdomsprogrammet/ytelse",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
@@ -30,10 +30,6 @@
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
 
-        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelse/oauth2/login?redirect=/ungdomsprogrammet/ytelse",
-        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
-        "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.nav.no/dokumentarkiv/tema/UNG",
-
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
@@ -42,13 +38,15 @@
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
+        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/ungdomsprogrammet/ytelse/oauth2/login?redirect=/ungdomsprogrammet/ytelse",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
+        "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.nav.no/dokumentarkiv/tema/UNG",
         "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.nav.no/endringer",
         "SIF_PUBLIC_URL_PERSONOPPLYSNINGER": "https://www.nav.no/person/personopplysninger/nb/",
         "SIF_PUBLIC_URL_PERSONVERN": "https://www.nav.no/personvernerklaering",
         "SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN": "https://www.nav.no/ungdomsprogrammet",
         "SIF_PUBLIC_URL_ENDRE_KONTONUMMER": "https://www.nav.no/start/soknad-endring-bankkontonummer",
         "SIF_PUBLIC_URL_SKRIV_TIL_OSS": "https://www.nav.no/skriv-til-oss",
-
         "SIF_PUBLIC_URL_SKATTEETATEN": "https://www.skatteetaten.no"
     }
 }
