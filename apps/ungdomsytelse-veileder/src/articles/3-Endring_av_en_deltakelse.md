@@ -1,1 +1,0 @@
-# Endringer av en deltakelse

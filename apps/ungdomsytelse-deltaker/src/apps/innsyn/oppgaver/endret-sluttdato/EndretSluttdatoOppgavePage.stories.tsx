@@ -6,6 +6,8 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import OppgaverList from '../../components/oppgaver-list/OppgaverList';
+import { Heading, VStack } from '@navikt/ds-react';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret sluttdato',
@@ -16,7 +18,7 @@ export default meta;
 
 type Story = StoryObj;
 
-const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
+const oppgave: EndretSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
@@ -28,23 +30,51 @@ const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
     frist: dayjs().add(14, 'days').toDate(),
 };
 
-const besvart_endretSluttdatoOppgave: EndretSluttdatoOppgave = {
-    ...endretSluttdatoOppgave,
+const besvartOppgave: EndretSluttdatoOppgave = {
+    ...oppgave,
     bekreftelse: {
-        harGodtattEndringen: true,
+        harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
 
+export const OppgavePanel: Story = {
+    name: 'Oppgavepaneler',
+    render: () => (
+        <VStack gap="10">
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
+                <OppgaverList oppgaver={[oppgave]} />
+            </VStack>
+            <VStack gap="4">
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
+                <OppgaverList
+                    visBeskrivelse={false}
+                    oppgaveStatusTagVariant="text"
+                    oppgaver={[
+                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
+                        { ...oppgave, status: OppgaveStatus.UTLØPT },
+                        { ...oppgave, status: OppgaveStatus.LØST },
+                    ]}
+                />
+            </VStack>
+        </VStack>
+    ),
+};
+
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={besvart_endretSluttdatoOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretSluttdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
@@ -52,13 +82,33 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
     render: () => (
         <EndretSluttdatoOppgavePage
             oppgave={{
-                ...besvart_endretSluttdatoOppgave,
+                ...besvartOppgave,
                 bekreftelse: {
-                    harGodtattEndringen: false,
+                    harUttalelse: true,
                     uttalelseFraBruker:
                         'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 },
             }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const AvbruttOppgave: Story = {
+    name: 'Avbrutt oppgave',
+    render: () => (
+        <EndretSluttdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const UtløptOppgave: Story = {
+    name: 'Utløpt oppgave',
+    render: () => (
+        <EndretSluttdatoOppgavePage
+            oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />
     ),

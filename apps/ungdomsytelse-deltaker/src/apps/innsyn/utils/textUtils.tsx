@@ -21,7 +21,9 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
-            return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel');
+            return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
+                måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+            });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.oppgavetittel');
     }
@@ -96,11 +98,11 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
         case OppgaveStatus.ULØST:
             return `Frist: ${dateFormatter.full(oppgave.frist)}`;
         case OppgaveStatus.AVBRUTT:
-            return 'Avbrutt';
+            return 'Oppgave er avbrutt';
         case OppgaveStatus.LUKKET:
             return `Sendt inn ${renderDatoOgKlokkeslett(oppgave.lukketDato)}`;
         case OppgaveStatus.UTLØPT:
-            return `Utløpt`;
+            return `Oppgave er utløpt`;
     }
 };
 

@@ -39,14 +39,14 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
     const { intl } = useAppIntl();
 
     const handleSubmit = async (values: FormValues) => {
-        const harTilbakemelding = values[FormFields.harTilbakemelding] === YesOrNo.YES;
+        const harUttalelse = values[FormFields.harTilbakemelding] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
             oppgave: {
                 oppgaveReferanse: oppgaveReferanse,
                 uttalelse: {
-                    bekreftelseSvar: harTilbakemelding ? 'AVSLÅR' : 'GODTAR',
-                    meldingFraDeltaker: values[FormFields.begrunnelse]!,
+                    harUttalelse,
+                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.begrunnelse] : undefined,
                 },
             },
         };

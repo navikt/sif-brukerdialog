@@ -13,7 +13,7 @@ const StartPage = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
-    useDocumentTitle('Finn deltaker - Nav veileder - ungdomsprogramytelsen');
+    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogramytelsen');
 
     useEffect(() => {
         queryClient.resetQueries();
@@ -33,13 +33,13 @@ const StartPage = () => {
             <AppPage>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="14 0">
-                        <VStack gap="10" maxWidth="40rem">
+                        <VStack gap="10" maxWidth="44rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
-                                    Nav Veileder - Ungdomsprogramytelsen
+                                    Deltakerregistrering - Ungdomsprogramytelsen
                                 </Heading>
                                 <BodyLong size="large">
-                                    Her kan du administrere deltakerne i ungdoms&shy;programmet, slik at de får
+                                    Her kan du registrere deltakerne i ungdoms&shy;programmet, slik at de får
                                     ungdoms&shy;program&shy;ytelsen til riktig tid.
                                 </BodyLong>
                             </VStack>

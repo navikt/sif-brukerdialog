@@ -47,6 +47,7 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
                         oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     />
                 </div>
+
                 <Heading level="1" size="large">
                     Rapporter inntekt {månedOgÅr}
                 </Heading>

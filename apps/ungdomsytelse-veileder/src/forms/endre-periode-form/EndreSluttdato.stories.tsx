@@ -11,7 +11,7 @@ import EndrePeriodeForm from './EndrePeriodeForm';
 
 const meta: Meta<typeof EndrePeriodeForm> = {
     component: EndrePeriodeForm,
-    title: 'Forms/Endre sluttdato',
+    title: 'Skjema/Endre sluttdato',
     parameters: {},
     decorators: [withIntl, withVeilederContext, withQueryClientProvider],
 };
