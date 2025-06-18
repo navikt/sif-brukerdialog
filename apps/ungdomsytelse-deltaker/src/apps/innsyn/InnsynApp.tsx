@@ -4,7 +4,6 @@ import OppgavePage from './pages/OppgavePage';
 import { IntlProvider } from 'react-intl';
 import { useEffect } from 'react';
 import { applicationIntlMessages } from '../../i18n';
-import { getRequiredEnv } from '@navikt/sif-common-env';
 
 const InnsynApp = () => {
     /** Setter bakgrunnsfarge på body */
@@ -22,7 +21,7 @@ const InnsynApp = () => {
                     <Route index path="" element={<ForsidePage />} />
                     <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
                     <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
-                    <Route path="*" element={<Navigate to={getRequiredEnv('PUBLIC_PATH')} replace={true} />} />
+                    <Route path="*" element={<Navigate to="/" replace={true} />} />
                 </Routes>
             </IntlProvider>
         </div>
