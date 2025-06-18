@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.26.12
+
+### Patch Changes
+
+- dd584ae: Skru på nynorsk i prod for alle søknader som ikke hadde det fra før
+
 ## 2.26.11
 
 ### Patch Changes

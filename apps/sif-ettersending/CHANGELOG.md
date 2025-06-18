@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.46.12
+
+### Patch Changes
+
+- dd584ae: Skru på nynorsk i prod for alle søknader som ikke hadde det fra før
+
 ## 3.46.11
 
 ### Patch Changes

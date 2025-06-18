@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Institusjoner } from '../../api/institusjonService';
 import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
@@ -36,6 +36,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[],
     institusjoner: Institusjoner,
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -52,7 +53,7 @@ export const getApiDataFromSøknadsdata = (
         return undefined;
     }
 
-    const språk = 'nb';
+    const språk = locale;
 
     return {
         søkerNorskIdent,
