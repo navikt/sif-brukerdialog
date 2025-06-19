@@ -1,14 +1,14 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Oppgavetype } from '@navikt/ung-common';
 /* eslint-disable no-console */
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import SøknadApp from '../../apps/søknad/SøknadApp';
+import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
-import { DeltakerContextProvider } from '../../context/DeltakerContext';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Oppgavetype } from '@navikt/ung-common';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 
