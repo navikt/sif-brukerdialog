@@ -8,7 +8,7 @@ import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
-import { navigateToInnsynForside } from '../../../utils/navigateUtils';
+import { AppRoutes } from '../../../../../utils/AppRoutes';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -67,7 +67,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                         harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={() => setVisKvittering(true)}
-                        onCancel={() => navigateToInnsynForside(navigate)}
+                        onCancel={() => navigate(AppRoutes.innsyn)}
                     />
                 </>
             )}

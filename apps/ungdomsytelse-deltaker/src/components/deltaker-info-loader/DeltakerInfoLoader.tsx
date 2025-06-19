@@ -7,9 +7,10 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { AppRoutes } from '../../utils/AppRoutes';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -17,7 +18,7 @@ const DeltakerInfoLoader = () => {
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-    const { pathname } = useLocation();
+    // const { pathname } = useLocation();
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -40,6 +41,9 @@ const DeltakerInfoLoader = () => {
         return <FlereDeltakelserPage />;
     }
 
+    /**
+     * Applikasjonen støtter kun én deltakelse per bruker, så vi tar den første deltakelsen.
+     */
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
@@ -50,8 +54,7 @@ const DeltakerInfoLoader = () => {
         deltakelsePeriode.søktTidspunkt !== undefined ||
         (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
 
-    const aktivPathBasertPåDeltaker = deltakerHarSøkt && !pathname.includes('kvittering') ? '/innsyn' : '/soknad';
-    console.log(aktivPathBasertPåDeltaker);
+    const aktivPathBasertPåDeltaker = deltakerHarSøkt ? AppRoutes.innsyn : AppRoutes.soknad;
 
     return (
         <DeltakerContextProvider
@@ -59,30 +62,10 @@ const DeltakerInfoLoader = () => {
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
             <Routes>
-                <Route
-                    path="/soknad/*"
-                    element={<SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />}
-                />
-                <Route path="/innsyn/*" element={<InnsynApp />} />
+                <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
+                <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
                 <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
             </Routes>
-            {/* {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
-                <Theme hasBackground={false}>
-                    {deltakelsePeriode.søktTidspunkt === undefined && (
-                        <VStack marginBlock="0 2" className="pl-10 pr-10  max-w-[800px] mx-auto ">
-                            <Alert variant="warning" size="small">
-                                Kun i test/utvikling: Deltakelse er søkt for før vi endret datastruktur, så
-                                søktTidspunkt settes til dagens dato.
-                            </Alert>
-                        </VStack>
-                    )}
-                    <InnsynApp />
-                </Theme>
-            ) : (
-                <Theme>
-                    <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
-                </Theme>
-            )} */}
         </DeltakerContextProvider>
     );
 };

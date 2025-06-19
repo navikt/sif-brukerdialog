@@ -1,7 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { navigateToInnsynForside } from '../../utils/navigateUtils';
+import { AppRoutes } from '../../../../utils/AppRoutes';
 
 const ForsideLenkeButton = () => {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ const ForsideLenkeButton = () => {
             onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                navigateToInnsynForside(navigate);
+                navigate(AppRoutes.innsyn);
             }}
             variant="primary"
             icon={<ArrowLeftIcon role="presentation" />}

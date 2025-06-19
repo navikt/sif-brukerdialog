@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { applicationIntlMessages } from '../../i18n';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { Theme } from '@navikt/ds-react';
+import { AppRoutes } from '../../utils/AppRoutes';
 
 const InnsynApp = () => {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ const InnsynApp = () => {
 
     useEffect(() => {
         if (deltakelsePeriode.søktTidspunkt === undefined) {
-            navigate('/soknad');
+            navigate(AppRoutes.soknad);
         }
     }, []);
 

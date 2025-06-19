@@ -8,10 +8,13 @@ import BarnSteg from './steg/barn/BarnSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
-import { getStegRoute, SøknadRoutes } from './utils/routeUtils';
+import { getSøknadStegRoute, SøknadRoutes } from './utils/søknadRouteUtils';
+import { useDeltakerContext } from '../../hooks/useDeltakerContext';
+import { AppRoutes } from '../../utils/AppRoutes';
 
 const SøknadRouter = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();
+    const { deltakelsePeriode } = useDeltakerContext();
     const { pathname } = useLocation();
 
     const previousSøknadStartet = usePrevious(søknadStartet);
@@ -22,8 +25,12 @@ const SøknadRouter = () => {
      * Hvis det ikke stemmer, returner korrekt route
      */
     const determineRedirectPath = (): string | null => {
+        /** Sjekker om søknad er registrert på deltakelsen, og redirecter til innsyn i så fall */
+        if (deltakelsePeriode.søktTidspunkt !== undefined) {
+            return AppRoutes.innsyn;
+        }
         if (pathname === SøknadRoutes.VELKOMMEN && søknadStartet && previousSøknadStartet === true) {
-            return getStegRoute(Steg.KONTONUMMER);
+            return getSøknadStegRoute(Steg.KONTONUMMER);
         }
         if (pathname !== SøknadRoutes.KVITTERING && søknadSendt && previousSøknadSendt === true) {
             return SøknadRoutes.KVITTERING;
