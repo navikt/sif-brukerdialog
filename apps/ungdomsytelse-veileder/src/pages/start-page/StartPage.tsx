@@ -68,7 +68,9 @@ const StartPage = () => {
                                     </BodyLong>
                                 </Alert>
                                 <Alert variant="info" size="small" className="w-full" inline>
-                                    <BodyLong>Hvis det er noe du lurer på, kan du ta kontakt med oss via ...</BodyLong>
+                                    <BodyLong>
+                                        Hvis det er noe du lurer på, kan du ta kontakt med oss via Teams.
+                                    </BodyLong>
                                 </Alert>
                             </VStack>
                         </VStack>
