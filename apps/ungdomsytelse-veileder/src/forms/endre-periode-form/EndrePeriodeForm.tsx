@@ -9,8 +9,10 @@ import {
 import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
+import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
+import EndreStartdatoInfo from '../../pages/deltaker-page/EndreStartdatoInfo';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import {
     getStartdatobegrensningForDeltaker,
@@ -19,7 +21,6 @@ import {
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
-import dayjs from 'dayjs';
 
 type FormValues = {
     fom?: string;
@@ -119,6 +120,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
             renderForm={({ values }) => {
                 return (
                     <VStack gap="6">
+                        <EndreStartdatoInfo />
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
