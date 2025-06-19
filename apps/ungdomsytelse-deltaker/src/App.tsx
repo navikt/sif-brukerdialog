@@ -29,6 +29,10 @@ if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
 
 const queryClient = new QueryClient();
 
+if (window.location.pathname === '/') {
+    window.location.pathname = '/ungdomsprogrammet/ytelsen/';
+}
+
 function App() {
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
