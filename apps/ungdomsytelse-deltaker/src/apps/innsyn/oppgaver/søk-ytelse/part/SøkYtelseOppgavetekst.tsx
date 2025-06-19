@@ -1,4 +1,4 @@
-import { FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, SøkYtelseOppgave } from '@navikt/ung-common';
 import getLenker from '../../../../../utils/lenker';
@@ -12,7 +12,20 @@ interface Props {
 
 const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
-        return null;
+        return (
+            <VStack gap="6">
+                <Heading level="1" size="large">
+                    Søknad for ungdoms&shy;program&shy;ytelsen
+                </Heading>
+                <Alert variant="info">
+                    Søknaden er mottatt, men vi kan ikke vise mer informasjon enda. Du kan vente litt og så laste siden
+                    på nytt.
+                </Alert>
+                <div>
+                    <ForsideLenkeButton />
+                </div>
+            </VStack>
+        );
     }
     return (
         <VStack gap="6">
