@@ -71,7 +71,14 @@ const OppsummeringSteg = () => {
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">Kontonummer for utbetaling</FormSummary.Heading>
-                            <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.KONTONUMMER)} />
+                            <FormSummary.EditLink
+                                href="#"
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+                                    evt.stopPropagation();
+                                    gotoSteg(Steg.KONTONUMMER);
+                                }}
+                            />
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             {kontonummerInfo.harKontonummer ? (
@@ -96,7 +103,14 @@ const OppsummeringSteg = () => {
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">Barn</FormSummary.Heading>
-                            <FormSummary.EditLink href="#" onClick={() => gotoSteg(Steg.BARN)} />
+                            <FormSummary.EditLink
+                                href="#"
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+                                    evt.stopPropagation();
+                                    gotoSteg(Steg.BARN);
+                                }}
+                            />
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             <FormSummary.Answer>
