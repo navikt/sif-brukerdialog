@@ -67,9 +67,6 @@ const StartPage = () => {
                                         ikonet i menyen oppe til høyre.
                                     </BodyLong>
                                 </Alert>
-                                <Alert variant="info" size="small" className="w-full" inline>
-                                    <BodyLong>Hvis det er noe du lurer på, kan du ta kontakt med oss via ...</BodyLong>
-                                </Alert>
                             </VStack>
                         </VStack>
                     </HStack>

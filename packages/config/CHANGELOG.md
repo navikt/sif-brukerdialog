@@ -1,5 +1,11 @@
 # config
 
+## 0.11.0
+
+### Minor Changes
+
+- Oppdatere target i tsconfig til es2020
+
 ## 0.10.34
 
 ### Patch Changes
