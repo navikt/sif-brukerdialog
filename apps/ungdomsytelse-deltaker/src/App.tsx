@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
-import AppRouter from './AppRouter';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
@@ -54,9 +53,7 @@ function App() {
                     isActive={false}>
                     <QueryClientProvider client={queryClient}>
                         <AppIntlMessageProvider>
-                            <AppRouter>
-                                <DeltakerInfoLoader />
-                            </AppRouter>
+                            <DeltakerInfoLoader />
                             <DevFooter />
                         </AppIntlMessageProvider>
                     </QueryClientProvider>

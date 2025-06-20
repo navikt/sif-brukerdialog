@@ -1,12 +1,11 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import ForsidePage from './pages/ForsidePage';
-import OppgavePage from './pages/OppgavePage';
-import { IntlProvider } from 'react-intl';
-import { useEffect } from 'react';
-import { applicationIntlMessages } from '../../i18n';
-import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { Theme } from '@navikt/ds-react';
+import { useEffect } from 'react';
+import { IntlProvider } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+import { useDeltakerContext } from '../../hooks/useDeltakerContext';
+import { applicationIntlMessages } from '../../i18n';
 import { AppRoutes } from '../../utils/AppRoutes';
+import InnsynRouter from './InnsynRouter';
 
 const InnsynApp = () => {
     const navigate = useNavigate();
@@ -30,12 +29,7 @@ const InnsynApp = () => {
         <Theme hasBackground={false}>
             <div className="innsynApp">
                 <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
-                    <Routes>
-                        <Route index path="" element={<ForsidePage />} />
-                        <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
-                        <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
-                        {/* <Route path="*" element={<Navigate to="/" replace={true} />} /> */}
-                    </Routes>
+                    <InnsynRouter />
                 </IntlProvider>
             </div>
         </Theme>
