@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "2.4.8",
+    "version": "2.4.9",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
@@ -49,7 +49,7 @@
         "date-fns": "4.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
-        "jest": "30.0.0",
+        "jest": "30.0.2",
         "prop-types": "15.8.1",
         "react": "19.1.0",
         "react-day-picker": "9.7.0",
