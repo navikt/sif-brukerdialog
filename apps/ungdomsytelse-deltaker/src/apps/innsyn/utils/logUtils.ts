@@ -1,7 +1,10 @@
 import { DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+import dayjs from 'dayjs';
 
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;
+    harStartet: boolean;
+    erAvsluttet: boolean;
     antallOppgaver: number;
     antallLøsteOppgaver: number;
     antallUløsteOppgaver: number;
@@ -13,11 +16,18 @@ type DeltakelsePeriodeMeta = {
     antallAvvikInntektOppgaver: number;
     antallRapporterInntektOppgaver: number;
     antallSøkYtelseOppgaver: number;
+    antallDagerIProgrammet: number;
 };
 
 const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
+    const harSøkt = deltakelse.søktTidspunkt !== undefined;
+    const harStartet = harSøkt && dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
+    const erAvsluttet = harSøkt && dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
     return {
-        harSøkt: deltakelse.søktTidspunkt !== undefined,
+        harSøkt,
+        harStartet,
+        erAvsluttet,
+        antallDagerIProgrammet: harStartet ? 0 : dayjs(deltakelse.programPeriode.from).diff(dayjs(), 'day'),
         antallOppgaver: deltakelse.oppgaver.length,
         antallLøsteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LØST).length,
         antallUløsteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST).length,
