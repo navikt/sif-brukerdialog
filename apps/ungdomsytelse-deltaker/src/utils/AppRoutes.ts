@@ -1,4 +1,4 @@
 export enum AppRoutes {
-    innsyn = '/innsyn',
+    innsyn = '/oversikt',
     soknad = '/soknad',
 }
