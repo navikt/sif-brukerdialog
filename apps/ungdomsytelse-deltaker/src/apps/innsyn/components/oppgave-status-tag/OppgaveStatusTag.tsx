@@ -10,7 +10,7 @@ interface Props {
     iconFill?: boolean;
 }
 
-export type OppgaveStatusTagVariant = 'tag' | 'text';
+export type OppgaveStatusTagVariant = 'tag' | 'text' | 'tag-uten-ikon';
 
 const OppgaveStatusTag = ({
     oppgaveStatus,
@@ -26,50 +26,35 @@ const OppgaveStatusTag = ({
             </BodyShort>
         );
     }
+    const ikon =
+        variant !== 'tag-uten-ikon' ? (
+            <Box marginBlock="1">
+                <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
+            </Box>
+        ) : null;
+
     const text = <Box paddingInline="1">{oppgaveStatusTekst}</Box>;
     switch (oppgaveStatus) {
         case OppgaveStatus.LØST:
-            return (
-                <Tag variant="success" size={size}>
-                    <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
-                    </Box>
-                    {text}
-                </Tag>
-            );
         case OppgaveStatus.LUKKET:
             return (
                 <Tag variant="success" size={size}>
-                    <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
-                    </Box>
+                    {ikon}
                     {text}
                 </Tag>
             );
         case OppgaveStatus.ULØST:
             return (
                 <Tag variant="warning" size={size}>
-                    <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
-                    </Box>
+                    {ikon}
                     {text}
                 </Tag>
             );
         case OppgaveStatus.AVBRUTT:
-            return (
-                <Tag variant="neutral" size={size}>
-                    <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
-                    </Box>
-                    {text}
-                </Tag>
-            );
         case OppgaveStatus.UTLØPT:
             return (
                 <Tag variant="neutral" size={size}>
-                    <Box marginBlock="1">
-                        <OppgaveStatusIkon size="small" oppgavestatus={oppgaveStatus} fill={iconFill} />
-                    </Box>
+                    {ikon}
                     {text}
                 </Tag>
             );
