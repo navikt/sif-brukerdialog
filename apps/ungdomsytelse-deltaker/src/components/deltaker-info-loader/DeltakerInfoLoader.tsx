@@ -12,13 +12,28 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import AppRouter from '../../AppRouter';
+import { useEffect } from 'react';
+import { logUtils } from '../../apps/innsyn/utils/logUtils';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
+    const amp = useAmplitudeInstance();
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
+
+    useEffect(() => {
+        if (!isLoading && !error && søker.data && deltakelsePerioder.data) {
+            if (deltakelsePerioder.data.length === 1) {
+                const meta = logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]);
+                if (amp.logInfo) {
+                    amp.logInfo(meta);
+                }
+            }
+        }
+    }, [isLoading, error, søker.data, deltakelsePerioder.data]);
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -44,6 +59,7 @@ const DeltakerInfoLoader = () => {
     /**
      * Applikasjonen støtter kun én deltakelse per bruker, så vi tar den første deltakelsen.
      */
+
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
