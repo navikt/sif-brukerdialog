@@ -8,10 +8,13 @@ import BarnSteg from './steg/barn/BarnSteg';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
-import { getStegRoute, SøknadRoutes } from './utils/routeUtils';
+import { getSøknadStegRoute, SøknadRoutes } from './utils/søknadRouteUtils';
+import { useDeltakerContext } from '../../hooks/useDeltakerContext';
+import { AppRoutes } from '../../utils/AppRoutes';
 
 const SøknadRouter = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();
+    const { deltakelsePeriode } = useDeltakerContext();
     const { pathname } = useLocation();
 
     const previousSøknadStartet = usePrevious(søknadStartet);
@@ -22,8 +25,12 @@ const SøknadRouter = () => {
      * Hvis det ikke stemmer, returner korrekt route
      */
     const determineRedirectPath = (): string | null => {
+        /** Sjekker om søknad er registrert på deltakelsen, og redirecter til innsyn i så fall */
+        if (deltakelsePeriode.søktTidspunkt !== undefined) {
+            return AppRoutes.innsyn;
+        }
         if (pathname === SøknadRoutes.VELKOMMEN && søknadStartet && previousSøknadStartet === true) {
-            return getStegRoute(Steg.KONTONUMMER);
+            return getSøknadStegRoute(Steg.KONTONUMMER);
         }
         if (pathname !== SøknadRoutes.KVITTERING && søknadSendt && previousSøknadSendt === true) {
             return SøknadRoutes.KVITTERING;
@@ -52,13 +59,11 @@ const SøknadRouter = () => {
 
     return (
         <Routes>
-            <Route index={true} element={<VelkommenPage />} />
-            <Route path="soknad" element={<Navigate to="/soknad/kontonummer" replace={true} />} />
-            <Route path="soknad/barn" element={<BarnSteg />} />
-            <Route path="soknad/kontonummer" element={<KontonummerSteg />} />
-            <Route path="soknad/oppsummering" element={<OppsummeringSteg />} />
-            <Route path="soknad/kvittering" element={<KvitteringPage />} />
-            <Route path="*" element={<Navigate to="/" replace={true} />} />
+            <Route index element={<VelkommenPage />} />
+            <Route path="steg/barn" element={<BarnSteg />} />
+            <Route path="steg/kontonummer" element={<KontonummerSteg />} />
+            <Route path="steg/oppsummering" element={<OppsummeringSteg />} />
+            <Route path="kvittering" element={<KvitteringPage />} />
         </Routes>
     );
 };

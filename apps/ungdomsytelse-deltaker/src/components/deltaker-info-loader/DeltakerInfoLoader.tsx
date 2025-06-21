@@ -1,5 +1,4 @@
-import { Alert, Theme, VStack } from '@navikt/ds-react';
-import { useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
 /* eslint-disable no-console */
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
@@ -11,14 +10,30 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { AppRoutes } from '../../utils/AppRoutes';
+import AppRouter from '../../AppRouter';
+import { useEffect } from 'react';
+import { logUtils } from '../../apps/innsyn/utils/logUtils';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
+    const amp = useAmplitudeInstance();
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-    const { pathname } = useLocation();
+
+    useEffect(() => {
+        if (!isLoading && !error && søker.data && deltakelsePerioder.data) {
+            if (deltakelsePerioder.data.length === 1) {
+                const meta = logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]);
+                if (amp.logInfo) {
+                    amp.logInfo(meta);
+                }
+            }
+        }
+    }, [isLoading, error, søker.data, deltakelsePerioder.data]);
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -41,6 +56,10 @@ const DeltakerInfoLoader = () => {
         return <FlereDeltakelserPage />;
     }
 
+    /**
+     * Applikasjonen støtter kun én deltakelse per bruker, så vi tar den første deltakelsen.
+     */
+
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
     const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
@@ -51,28 +70,28 @@ const DeltakerInfoLoader = () => {
         deltakelsePeriode.søktTidspunkt !== undefined ||
         (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
 
+    const aktivPathBasertPåDeltaker = deltakerHarSøkt ? AppRoutes.innsyn : AppRoutes.soknad;
+
+    const OppgaveRedirect = () => {
+        const { oppgaveReferanse } = useParams<{ oppgaveReferanse: string }>();
+        return <Navigate to={`${AppRoutes.innsyn}/oppgave/${oppgaveReferanse}`} replace />;
+    };
+
     return (
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
             refetchDeltakelser={deltakelsePerioder.refetch}>
-            {deltakerHarSøkt && pathname.includes('kvittering') === false ? (
-                <Theme hasBackground={false}>
-                    {deltakelsePeriode.søktTidspunkt === undefined && (
-                        <VStack marginBlock="0 2" className="pl-10 pr-10  max-w-[800px] mx-auto ">
-                            <Alert variant="warning" size="small">
-                                Kun i test/utvikling: Deltakelse er søkt for før vi endret datastruktur, så
-                                søktTidspunkt settes til dagens dato.
-                            </Alert>
-                        </VStack>
-                    )}
-                    <InnsynApp />
-                </Theme>
-            ) : (
-                <Theme>
-                    <SøknadApp søker={søker.data} deltakelsePeriode={deltakelsePeriode} />
-                </Theme>
-            )}
+            <AppRouter>
+                <Routes>
+                    <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
+                    <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
+                    {/* Fallback for tidligere routes */}
+                    <Route path="oppgave/:oppgaveReferanse" element={<OppgaveRedirect />} />
+                    {/* Fallback for andre routes */}
+                    <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
+                </Routes>
+            </AppRouter>
         </DeltakerContextProvider>
     );
 };

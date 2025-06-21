@@ -91,7 +91,7 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
             {visKvittering ? (
                 <>
                     <VStack gap="4">
-                        <Alert variant="success" size="small" ref={alertRef} tabIndex={-1}>
+                        <Alert variant="success" ref={alertRef} tabIndex={-1}>
                             <Heading level="2" size="small" spacing>
                                 Svaret ditt er sendt inn
                             </Heading>

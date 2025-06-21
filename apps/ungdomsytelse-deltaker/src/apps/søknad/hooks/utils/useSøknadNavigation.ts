@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Steg } from '../../types';
 import { getStegFraPath } from '../../utils/stegUtils';
-import { getStegRoute, SøknadRoutes } from '../../utils/routeUtils';
+import { getSøknadStegRoute, SøknadRoutes } from '../../utils/søknadRouteUtils';
 
 export const useSøknadNavigation = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const useSøknadNavigation = () => {
 
     const gotoSteg = (steg: Steg, replace?: boolean) => {
         setAktivtSteg(steg);
-        navigate(getStegRoute(steg), replace ? { replace: true } : undefined);
+        navigate(getSøknadStegRoute(steg), replace ? { replace: true } : undefined);
     };
 
     return {

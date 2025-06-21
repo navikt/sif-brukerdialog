@@ -31,10 +31,10 @@ const OppgaveUttalelse = ({ beskjedFraNav, spørsmål, bekreftelse }: Props) => 
                         <FormSummary.Value>{bekreftelse.harUttalelse ? 'Ja' : 'Nei'}</FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
-                {!bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
+                {bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
                     <FormSummary.Answers>
                         <FormSummary.Answer>
-                            <FormSummary.Label>Kommentar</FormSummary.Label>
+                            <FormSummary.Label>Tilbakemelding</FormSummary.Label>
                             <FormSummary.Value>
                                 <TextareaSvar text={bekreftelse.uttalelseFraBruker} />
                             </FormSummary.Value>

@@ -18,7 +18,7 @@ const OppgaveLinkPanel = ({
     beskrivelse,
     oppgaveStatus,
     oppgaveStatusTekst,
-    oppgaveStatusTagVariant = 'tag',
+    oppgaveStatusTagVariant = 'tag-uten-ikon',
     onClick,
 }: OppgaveLinkPanelProps) => {
     const erAvbruttEllerUtløpt = oppgaveStatus === OppgaveStatus.AVBRUTT || oppgaveStatus === OppgaveStatus.UTLØPT;

@@ -8,7 +8,7 @@ import { BekreftelseOppgave } from '@navikt/ung-common';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
-import { navigateToInnsynForside } from '../../../utils/navigateUtils';
+import { AppRoutes } from '../../../../../utils/AppRoutes';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -42,7 +42,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
             {visKvittering ? (
                 <>
                     <VStack gap="4">
-                        <Alert variant="success" size="small" ref={alertRef} tabIndex={-1}>
+                        <Alert variant="success" ref={alertRef} tabIndex={-1}>
                             <Heading level="2" size="small" spacing>
                                 Svaret ditt er sendt inn
                             </Heading>
@@ -67,7 +67,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                         harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={() => setVisKvittering(true)}
-                        onCancel={() => navigateToInnsynForside(navigate)}
+                        onCancel={() => navigate(AppRoutes.innsyn)}
                     />
                 </>
             )}
