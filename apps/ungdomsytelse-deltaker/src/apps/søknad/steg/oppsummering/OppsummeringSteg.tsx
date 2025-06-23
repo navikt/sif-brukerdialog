@@ -115,7 +115,7 @@ const OppsummeringSteg = () => {
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">
-                                <AppText id="oppsummeringSteg.kontonummer.tittel" />
+                                <AppText id="oppsummeringSteg.barn.tittel" />
                             </FormSummary.Heading>
                             <FormSummary.EditLink
                                 href="#"
