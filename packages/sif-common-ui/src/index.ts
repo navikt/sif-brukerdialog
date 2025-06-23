@@ -14,6 +14,6 @@ export { default as TextareaSvar } from './components/summary-answers/TextareaSv
 export { default as RegistrerteBarnListe } from './components/registrerte-barn-liste/RegistrerteBarnListe';
 export * from './components/form-layout';
 export { default as ProgressStepper, type ProgressStep } from './components/progress-stepper/ProgressStepper';
-export * from './components/duration-text/durationText.messages';
+export * from './components/duration-text/i18n/nb';
 export * from './components/duration-text/DurationText';
 export * from './i18n/ui.messages';

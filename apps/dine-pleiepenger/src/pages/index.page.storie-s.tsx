@@ -3,7 +3,7 @@ import { withInnsynsdata } from '../storybook/hooks/withInnsynsdata';
 import { withIntl } from '../storybook/hooks/withIntl';
 import Page from './index.page';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Page> = {
     component: Page,

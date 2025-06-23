@@ -7,9 +7,7 @@ export type ProblemDetail = {
     detail?: string;
     instance?: string;
     properties?: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
 };
 
@@ -18,9 +16,14 @@ export type Friteksfelt = {
 };
 
 export type Ungdomsytelsesøknad = {
+    oppgaveReferanse: string;
+    deltakelseId: string;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
+    barnErRiktig: boolean;
+    kontonummerFraRegister?: string;
+    kontonummerErRiktig?: boolean;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
 };
@@ -31,27 +34,21 @@ export type UngdomsytelseOppgaveDto = {
 };
 
 export type UngdomsytelseOppgaveUttalelseDto = {
-    bekreftelseSvar: 'GODTAR' | 'AVSLÅR';
-    meldingFraDeltaker?: string;
+    harUttalelse: boolean;
+    uttalelseFraDeltaker?: string;
 };
 
 export type UngdomsytelseOppgavebekreftelse = {
     oppgave: UngdomsytelseOppgaveDto;
 };
 
-export type OppgittInntektForPeriode = {
+export type OppgittInntekt = {
     arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
-    periodeForInntekt: UngPeriode;
-};
-
-export type UngPeriode = {
-    fraOgMed: string;
-    tilOgMed: string;
 };
 
 export type UngdomsytelseInntektsrapportering = {
-    oppgittInntektForPeriode: OppgittInntektForPeriode;
+    oppgaveReferanse: string;
+    oppgittInntekt: OppgittInntekt;
     harBekreftetInntekt: boolean;
 };
 
@@ -120,6 +117,30 @@ export type FerieuttakIPerioden = {
     ferieuttak: Array<Ferieuttak>;
 };
 
+export type Fosterhjemgodtgjørelse = {
+    type: 'MOTTAR_IKKE' | 'MOTTAR_FRIKJØPT' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+    mottarFosterhjemsgodtgjørelse: boolean;
+};
+
+export type FosterhjemsgodtgjørelseFrikjøpt = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseFrikjøpt';
+} & {
+    erFrikjøptFraJobb: boolean;
+    frikjøptBeskrivelse: string;
+};
+
+export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
+} & {
+    erFrikjøptFraJobb: boolean;
+    startdato?: string;
+    sluttdato?: string;
+};
+
+export type FosterhjemsgodtgjørelseMottarIkke = Fosterhjemgodtgjørelse & {
+    type: 'FosterhjemsgodtgjørelseMottarIkke';
+};
+
 export type Frilans = {
     harInntektSomFrilanser: boolean;
     startetFørSisteTreHeleMåneder?: boolean;
@@ -150,6 +171,29 @@ export type Nattevåk = {
 
 export type NormalArbeidstid = {
     timerPerUkeISnitt: string;
+};
+
+export type Omsorgsstønad = {
+    type: 'MOTTAR_IKKE' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+    mottarOmsorgsstønad: boolean;
+};
+
+export type OmsorgsstønadMottarDelerAvPerioden = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarDelerAvPerioden';
+} & {
+    startdato?: string;
+    sluttdato?: string;
+    antallTimerIUken: string;
+};
+
+export type OmsorgsstønadMottarHelePerioden = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarHelePerioden';
+} & {
+    antallTimerIUken: string;
+};
+
+export type OmsorgsstønadMottarIkke = Omsorgsstønad & {
+    type: 'OmsorgsstønadMottarIkke';
 };
 
 export type Omsorgstilbud = {
@@ -203,7 +247,16 @@ export type PleiepengerSyktBarnSøknad = {
     nattevåk?: Nattevåk;
     beredskap?: Beredskap;
     frilans: Frilans;
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
+    fosterhjemgodtgjørelse?:
+        | FosterhjemsgodtgjørelseFrikjøpt
+        | FosterhjemsgodtgjørelseIkkeFrikjøpt
+        | FosterhjemsgodtgjørelseMottarIkke;
+    omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
     barnRelasjonBeskrivelse?: string;
@@ -246,7 +299,10 @@ export type Utenlandsopphold = {
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: Array<Periode>;
-    getårsak?: 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING' | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD' | 'ANNET';
+    getårsak?:
+        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
+        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
+        | 'ANNET';
 };
 
 export type UtenlandsoppholdIPerioden = {
@@ -655,7 +711,15 @@ export type Ettersendelse = {
     språk: string;
     vedlegg: Array<string>;
     beskrivelse?: string;
-    søknadstype: 'PLEIEPENGER_SYKT_BARN' | 'PLEIEPENGER_LIVETS_SLUTTFASE' | 'OMP_UT_SNF' | 'OMP_UT_ARBEIDSTAKER' | 'OMP_UTV_KS' | 'OMP_UTV_MA' | 'OMP_UTV_AO' | 'OPPLÆRINGSPENGER';
+    søknadstype:
+        | 'PLEIEPENGER_SYKT_BARN'
+        | 'PLEIEPENGER_LIVETS_SLUTTFASE'
+        | 'OMP_UT_SNF'
+        | 'OMP_UT_ARBEIDSTAKER'
+        | 'OMP_UTV_KS'
+        | 'OMP_UTV_MA'
+        | 'OMP_UTV_AO'
+        | 'OPPLÆRINGSPENGER';
     ettersendelsesType: 'LEGEERKLÆRING' | 'ANNET';
     søkerNorskIdent?: string;
     pleietrengende?: Pleietrengende;
@@ -790,9 +854,7 @@ export type GetMellomlagringResponse = GetMellomlagringResponses[keyof GetMellom
 
 export type CreateMellomlagringData = {
     body: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
     path: {
         ytelse: string;
@@ -831,9 +893,7 @@ export type CreateMellomlagringResponses = {
 
 export type UpdateMellomlagringData = {
     body: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
     path: {
         ytelse: string;
@@ -973,7 +1033,8 @@ export type InnsendingUngdomsytelsesøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingUngdomsytelsesøknadError = InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
+export type InnsendingUngdomsytelsesøknadError =
+    InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
 
 export type InnsendingUngdomsytelsesøknadResponses = {
     /**
@@ -1091,7 +1152,8 @@ export type InnsendingPleiepengerSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingPleiepengerSyktBarnSøknadError = InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
+export type InnsendingPleiepengerSyktBarnSøknadError =
+    InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
 
 export type InnsendingPleiepengerSyktBarnSøknadResponses = {
     /**
@@ -1167,7 +1229,8 @@ export type InnsendingPleiepengerILivetsSluttfaseSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingPleiepengerILivetsSluttfaseSøknadError = InnsendingPleiepengerILivetsSluttfaseSøknadErrors[keyof InnsendingPleiepengerILivetsSluttfaseSøknadErrors];
+export type InnsendingPleiepengerILivetsSluttfaseSøknadError =
+    InnsendingPleiepengerILivetsSluttfaseSøknadErrors[keyof InnsendingPleiepengerILivetsSluttfaseSøknadErrors];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadResponses = {
     /**
@@ -1242,7 +1305,8 @@ export type InnsendingOpplæringspengerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOpplæringspengerSøknadError = InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
+export type InnsendingOpplæringspengerSøknadError =
+    InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
 
 export type InnsendingOpplæringspengerSøknadResponses = {
     /**
@@ -1280,7 +1344,8 @@ export type InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError = InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError =
+    InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
 
 export type InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses = {
     /**
@@ -1318,7 +1383,8 @@ export type InnsendingOmsorgspengerutbetalingSnfSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingSnfSøknadError = InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingSnfSøknadError =
+    InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingSnfSøknadResponses = {
     /**
@@ -1356,7 +1422,8 @@ export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError = InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError =
+    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses = {
     /**
@@ -1394,7 +1461,8 @@ export type InnsendingOmsorgspengerMidlertidigAleneSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadError = InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadError =
+    InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
 
 export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
     /**
@@ -1432,7 +1500,8 @@ export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError = InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError =
+    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
 
 export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses = {
     /**

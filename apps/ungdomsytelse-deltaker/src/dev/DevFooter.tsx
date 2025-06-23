@@ -1,18 +1,25 @@
 import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
-import { deltakelserMockStorage } from '../../mock/msw/handlers/deltakelseMockStorage';
+import { getAppEnv } from '../utils/appEnv';
+import { Scenario, scenarioer } from './scenarioer';
+import { store } from '../../mock/state/store';
 
-const DevFooter: React.FunctionComponent = () => {
+const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
-    const [scenario, setScenario] = useState<Scenario>(getScenarioFromLocalStorage());
+    const initialScenario = scenarioer.find((s) => s.value === store.getScenario()) || scenarioer[0];
+
+    const [scenarioType, setScenarioType] = useState<Scenario>(initialScenario);
+
+    if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
+        return null;
+    }
 
     const setScenarioFromValue = (value: string) => {
         const scenarioFromValue = scenarioer.find((s) => s.value === value);
         if (scenarioFromValue) {
-            setScenario(scenarioFromValue);
+            setScenarioType(scenarioFromValue);
         }
     };
 
@@ -31,8 +38,9 @@ const DevFooter: React.FunctionComponent = () => {
                     size="small"
                     variant="secondary"
                     onClick={() => setShowModal(true)}
+                    className="bg-white"
                     icon={<Settings role="presentation" aria-hidden={true} />}>
-                    {scenario.name}
+                    {scenarioType.name}
                 </Button>
             </div>
             <Modal
@@ -47,7 +55,7 @@ const DevFooter: React.FunctionComponent = () => {
                     <VStack gap="4">
                         <div className="scenarioes">
                             <RadioGroup
-                                value={scenario.value}
+                                value={scenarioType.value}
                                 legend="Velg secenario"
                                 onChange={(value) => setScenarioFromValue(value)}>
                                 {scenarioer.map(({ name, value }) => (
@@ -61,8 +69,7 @@ const DevFooter: React.FunctionComponent = () => {
                             <Button
                                 type="button"
                                 onClick={() => {
-                                    saveScenarioToLocalStorage(scenario);
-                                    deltakelserMockStorage.reset();
+                                    store.setScenario(scenarioType.value);
                                     window.location.reload();
                                 }}>
                                 Velg
@@ -71,7 +78,7 @@ const DevFooter: React.FunctionComponent = () => {
                                 type="button"
                                 variant="secondary"
                                 onClick={() => {
-                                    deltakelserMockStorage.reset();
+                                    store.setScenario(scenarioType.value);
                                     window.location.reload();
                                 }}>
                                 Reset scenario

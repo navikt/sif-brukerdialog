@@ -1,9 +1,13 @@
-import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
-import { client } from '@navikt/ung-deltakelse-opplyser-api/src/client/client.gen';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { client } from '@navikt/ung-deltakelse-opplyser-api';
 import { v4 } from 'uuid';
 import { isUnauthorized } from '.';
 
-export const initUngDeltakelseOpplyserApiClient = () => {
+interface InitOptions {
+    onUnAuthorized?: () => void;
+}
+
+export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
@@ -17,8 +21,8 @@ export const initUngDeltakelseOpplyserApiClient = () => {
     client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
-            if (isUnauthorized(error)) {
-                window.location.assign(getCommonEnv().SIF_PUBLIC_LOGIN_URL);
+            if (isUnauthorized(error) && options?.onUnAuthorized) {
+                options.onUnAuthorized();
             }
             return Promise.reject(error);
         },

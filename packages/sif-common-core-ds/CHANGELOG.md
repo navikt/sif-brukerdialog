@@ -1,5 +1,85 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-api@0.4.9
+
+## 10.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-common-api@0.4.8
+
+## 10.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.7
+    - @navikt/sif-common-env@0.1.4
+    - @navikt/sif-common-utils@3.49.4
+
+## 10.2.8
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.6
+    - @navikt/sif-common-utils@3.49.3
+
+## 10.2.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.3
+    - @navikt/sif-common-api@0.4.5
+
+## 10.2.6
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.4
+
+## 10.2.5
+
+### Patch Changes
+
+- Nynorsktekster
+
+## 10.2.4
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+- Updated dependencies [3e4c469]
+    - @navikt/sif-common-utils@3.49.2
+    - @navikt/sif-common-api@0.4.3
+
+## 10.2.3
+
+### Patch Changes
+
+- 58582b9: Legge til css for å fikse bug i sentrering av logg-ut-varsel dialog
+
+## 10.2.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+- Updated dependencies [346e74d]
+    - @navikt/sif-common-utils@3.49.1
+    - @navikt/sif-common-api@0.4.2
+
 ## 10.2.1
 
 ### Patch Changes

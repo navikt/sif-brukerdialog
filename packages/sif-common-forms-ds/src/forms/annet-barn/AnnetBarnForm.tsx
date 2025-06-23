@@ -14,7 +14,7 @@ import {
 } from '@navikt/sif-validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
+import { AnnetBarnMessageKeys, useAnnetBarnIntl } from '.';
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './types';
 

@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import DaySelector from './DaySelector';

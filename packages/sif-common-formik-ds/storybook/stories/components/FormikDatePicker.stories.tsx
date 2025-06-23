@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { getDateValidator } from '@navikt/sif-validation';

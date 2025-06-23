@@ -1,7 +1,10 @@
 import { useIntl } from 'react-intl';
-import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     dateRangeToISODateRange,
@@ -10,10 +13,11 @@ import {
     isDateRange,
     prettifyDate,
 } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { handleDateRangeValidationError } from '../../utils';
-import { FerieuttakMessageKeys, useFerieuttakIntl } from './';
 import ferieuttakUtils from './ferieuttakUtils';
+import { FerieuttakMessageKeys, useFerieuttakIntl } from './i18n';
 import { Ferieuttak, FerieuttakFormValues } from './types';
 
 export interface FerieuttakFormLabels {

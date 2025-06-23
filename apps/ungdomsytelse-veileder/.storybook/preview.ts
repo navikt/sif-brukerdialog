@@ -1,6 +1,7 @@
-import { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react-vite';
 import { initUngDeltakelseOpplyserApiClient } from '@navikt/ung-common';
 import { initialize, mswLoader } from 'msw-storybook-addon';
+import '@navikt/ds-css/darkside';
 import '../src/app.css';
 
 initialize();

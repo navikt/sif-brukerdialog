@@ -6,8 +6,8 @@ import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import { tidFasteUkedagerInputMessages } from './tidFasteUkerdagerInput.messages';
 import './tidFasteUkedagerInput.css';
+import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
 
 interface OwnProps {
     name: string;
@@ -31,7 +31,7 @@ const TidFasteUkedagerInput = ({
     'data-testid': testId,
 }: TidFasteUkedagerInputProps) => {
     const intl = useIntl();
-    const { text } = typedIntlHelper<keyof typeof tidFasteUkedagerInputMessages.nb>(intl);
+    const { text } = typedIntlHelper<keyof typeof tidFasteUkedagerInputMessages_nb>(intl);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
         const disabled = isWeekdayDisabled(disabledDays, weekday);

@@ -19,6 +19,7 @@
             }
         ]
     },
+    "faro": true,
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",
@@ -27,6 +28,10 @@
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
-        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
+
+        "DEV_USE_MSW": false,
+        "SIF_PUBLIC_USE_FARO": true,
+        "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

@@ -21,9 +21,10 @@ import { getNattevåkApiDataFromSøknadsdata } from './getNattevåkApiDataFromS�
 import { getOmsorgstilbudApiDataFromSøknadsdata } from './getOmsorgstibudApiDataFromSøknadsdata';
 import { getOpptjeningIUtlandetSøknadsdata } from './getOpptjeningIUtlandetSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
-import { getStønadGodtgjørelseApiDataFromSøknadsdata } from './getStønadGodtgjørelseApiDataFromSøknadsdata';
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
+import { getOmsorgsstønadApiDataFromSøknadsdata } from './getOmsorgsstønadApiDataFromSøknadsdata';
+import { getFosterhjemsgodtgjørelseApiDataFromSøknadsdata } from './getFosterhjemsgodtgjørelseApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -31,7 +32,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetData,
-    locale: Locale = 'nb',
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { søknadsperiode, harForståttRettigheterOgPlikter } = søknadsdata;
 
@@ -71,7 +72,8 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.arbeidstidIPerioden?.selvstendig,
                     locale,
                 ),
-                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsdata.stønadGodtgjørelse),
+                ...getOmsorgsstønadApiDataFromSøknadsdata(søknadsdata.omsorgsstønad),
+                ...getFosterhjemsgodtgjørelseApiDataFromSøknadsdata(søknadsdata.fosterhjemsgodtgjørelse),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
                     sprak,
                     søknadsdata.arbeidssituasjon?.opptjeningUtland,

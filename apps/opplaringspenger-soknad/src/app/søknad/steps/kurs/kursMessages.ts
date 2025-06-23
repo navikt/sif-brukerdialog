@@ -82,7 +82,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringa må vere ved ein godkjend helseinstitusjon eller eit offentleg spesialpedagogisk kompetansesenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Kvar føregår opplæringa?',
-    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkjeriktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkje riktig institusjon',
     'steg.kurs.opplæringsinstitusjon.readMore.content':
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
@@ -91,7 +91,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du kan få opplæringspengar for periodar du er på opplæring, og eventuell reisetid til og frå opplæringa.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':

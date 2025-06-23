@@ -5,13 +5,13 @@ import '@formatjs/intl-pluralrules//locale-data/nb';
 import '@formatjs/intl-pluralrules//locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import dayjs from 'dayjs';
-import { appMessages } from './messages';
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/nb';
+import 'dayjs/locale/nn';
+import { formsMessages } from '../../src/i18n/forms.messages';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
-import 'dayjs/locale/nb';
-import 'dayjs/locale/nn';
 export interface IntlProviderProps {
     locale: Locale;
     children: React.ReactNode;
@@ -19,7 +19,7 @@ export interface IntlProviderProps {
 }
 
 const AppIntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
-    const messages = locale === 'nb' ? appMessages.nb : appMessages.nn;
+    const messages = locale === 'nb' ? formsMessages.nb : formsMessages.nn;
     dayjs.locale(locale === 'nb' ? 'nb' : 'nn');
     React.useEffect(() => {
         window.document.body.className = window.document.body.className + ' sif-ds-theme';

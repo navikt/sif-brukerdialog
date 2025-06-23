@@ -1,20 +1,38 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import ForsidePage from './pages/ForsidePage';
-import OppgavePage from './pages/OppgavePage';
-import RapporterInntektPage from './pages/RapporterInntektPage';
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { Theme } from '@navikt/ds-react';
+import { useEffect } from 'react';
+import { IntlProvider } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+import { useDeltakerContext } from '../../hooks/useDeltakerContext';
+import { applicationIntlMessages } from '../../i18n';
+import { AppRoutes } from '../../utils/AppRoutes';
+import InnsynRouter from './InnsynRouter';
 
 const InnsynApp = () => {
-    const publicPath = getRequiredEnv('PUBLIC_PATH');
+    const navigate = useNavigate();
+    const { deltakelsePeriode } = useDeltakerContext();
+
+    /** Setter bakgrunnsfarge på body */
+    useEffect(() => {
+        document.body.classList.add('innsynAppBody');
+        return () => {
+            document.body.classList.remove('innsynAppBody');
+        };
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (deltakelsePeriode.søktTidspunkt === undefined) {
+            navigate(AppRoutes.soknad);
+        }
+    }, []);
+
     return (
-        <BrowserRouter basename={publicPath}>
-            <Routes>
-                <Route index path="" element={<ForsidePage />} />
-                <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
-                <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
-                <Route path="inntekt/:periode/:kvittering?" element={<RapporterInntektPage />} />
-            </Routes>
-        </BrowserRouter>
+        <Theme hasBackground={false}>
+            <div className="innsynApp">
+                <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
+                    <InnsynRouter />
+                </IntlProvider>
+            </div>
+        </Theme>
     );
 };
 

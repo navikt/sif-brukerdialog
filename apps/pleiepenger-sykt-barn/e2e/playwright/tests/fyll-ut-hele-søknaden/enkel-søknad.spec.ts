@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
     await setNow(page);
 });
 
-test('Velkommen side', async ({ page, context }) => {
+test('Fyll ut enkel søknad', async ({ page, context }) => {
     await routeUtils.setupMockRoutes(page, context);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await page.getByLabel('Jeg bekrefter at jeg har').check();
@@ -34,7 +34,8 @@ test('Velkommen side', async ({ page, context }) => {
     await page.getByLabel('Hvor mange timer jobber du').click();
     await page.getByLabel('Hvor mange timer jobber du').fill('30');
     await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei').first().click();
-    await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+    await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+    await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').check();
     await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Nei').check();
     await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByLabel('Nei').check();

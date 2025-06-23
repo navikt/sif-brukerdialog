@@ -1,32 +1,24 @@
 import { VStack } from '@navikt/ds-react';
-import { useDeltakerContext } from '../../../context/DeltakerContext';
-import InformasjonOmUngdomsytelsen from '../../søknad/components/Informasjon';
-import DeltakelseContent from '../components/DeltakelseContent';
-import DeltakelseHeader from '../components/DeltakelseHeader';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
+import InnsynAppHeader from '../components/innsyn-app-header/InnsynAppHeader';
+import DeltakelseContent from '../components/deltakelse-content/DeltakelseContent';
+import ForsidePageLayout from './layout/ForsidePageLayout';
+import ForsidePageFooter from './parts/ForsidePageFooter';
+import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 
 const ForsidePage = () => {
-    const { deltakelse } = useDeltakerContext();
+    const { deltakelsePeriode } = useDeltakerContext();
 
-    useEffectOnce(() => {
-        setBreadcrumbs([
-            { title: 'Min side', url: '/min-side' },
-            { title: 'Ungdomsytelse', url: '/', handleInApp: true },
-        ]);
-    });
+    useInnsynBreadcrumbs();
 
     return (
-        <Page title="Din ungdomsytelse">
+        <ForsidePageLayout documentTitle="Din ungdomsprogramytelse" footer={<ForsidePageFooter />}>
             <VStack gap="8">
-                <DeltakelseHeader deltakelse={deltakelse} />
+                <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
 
-                <DeltakelseContent deltakelse={deltakelse} />
-
-                <InformasjonOmUngdomsytelsen />
+                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
-        </Page>
+        </ForsidePageLayout>
     );
 };
 

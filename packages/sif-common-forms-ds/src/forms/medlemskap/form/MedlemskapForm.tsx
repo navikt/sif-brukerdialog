@@ -7,7 +7,7 @@ import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n/medlemskapMessages';
+import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n';
 import { getMedlemskapDateRanges } from '../utils';
 import {
     MedlemskapFormErrorKeys,

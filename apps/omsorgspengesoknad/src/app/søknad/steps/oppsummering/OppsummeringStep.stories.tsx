@@ -1,5 +1,5 @@
 import { Tabs } from '@navikt/ds-react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { SøknadContextProvider } from '../../context/SøknadContext';

@@ -23,12 +23,57 @@
     }
 }
 
-.page {
-    margin-top: 1rem;
+.ungDefinitionList {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.75rem;
+    dt {
+        margin: 0;
+    }
+    dd {
+        margin: 0;
+        font-weight: bolder;
+        word-wrap: break-word; /* Bryt lange ord */
+    }
 }
 
-.hentDeltakerForm {
-    legend {
-        font-size: 1.4rem;
+@media screen and (max-width: 500px) {
+    .ungDefinitionList {
+        grid-template-columns: 1fr;
+        line-height: 1.5rem;
+        dd {
+            margin-bottom: 0.75rem;
+        }
     }
+}
+
+:root {
+    --ax-bg-warning-moderateA: #ffebc7 !important;
+    --ax-bg-neutral-moderateA: #e3e5e7 !important;
+}
+
+.aksel-tag--warning {
+    background-color: #ffebc7 !important;
+}
+.aksel-tag--error {
+    background-color: var(--ax-bg-danger-moderate) !important;
+}
+
+.drawer-dialog {
+    max-width: 95%;
+    right: 1rem;
+    /* bottom: -8rem; */
+    left: auto;
+    top: 0;
+    height: 100%;
+}
+
+.drawer-dialog-narrow {
+    width: 40rem;
+}
+.drawer-dialog-wide {
+    width: 60rem;
 }

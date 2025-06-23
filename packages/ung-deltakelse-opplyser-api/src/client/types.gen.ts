@@ -7,9 +7,7 @@ export type ProblemDetail = {
     detail?: string;
     instance?: string;
     properties?: {
-        [key: string]: {
-            [key: string]: unknown;
-        };
+        [key: string]: unknown;
     };
 };
 
@@ -17,18 +15,12 @@ export type EndrePeriodeDatoDto = {
     dato: string;
 };
 
-export type ArbeidOgFrilansRegisterInntektDto = {
-    inntekt: number;
-    arbeidsgiver: string;
-};
-
-export type DeltakelseOpplysningDto = {
+export type DeltakelseDto = {
     id?: string;
     deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
-    harSøkt: boolean;
-    oppgaver: Array<OppgaveDto>;
+    søktTidspunkt?: string;
 };
 
 export type DeltakerDto = {
@@ -36,17 +28,43 @@ export type DeltakerDto = {
     deltakerIdent: string;
 };
 
-export type EndretProgramperiodeDataDto = OppgavetypeDataDto & {
+export type DeltakelseUtmeldingDto = {
+    utmeldingsdato: string;
+};
+
+export type ArbeidOgFrilansRegisterInntektDto = {
+    inntekt: number;
+    arbeidsgiver: string;
+};
+
+export type BekreftelseDto = {
+    harUttalelse: boolean;
+    uttalelseFraBruker?: string;
+};
+
+export type DeltakelseKomposittDto = {
+    id?: string;
+    deltaker: DeltakerDto;
     fraOgMed: string;
     tilOgMed?: string;
+    søktTidspunkt?: string;
+    oppgaver: Array<OppgaveDto>;
 };
 
-export type EndretSluttdatoOppgavetypeDataDto = OppgavetypeDataDto & {
+export type EndretSluttdatoDataDto = OppgavetypeDataDto & {
     nySluttdato: string;
+    forrigeSluttdato?: string;
 };
 
-export type EndretStartdatoOppgavetypeDataDto = OppgavetypeDataDto & {
+export type EndretStartdatoDataDto = OppgavetypeDataDto & {
     nyStartdato: string;
+    forrigeStartdato: string;
+};
+
+export type InntektsrapporteringOppgavetypeDataDto = OppgavetypeDataDto & {
+    fraOgMed: string;
+    tilOgMed: string;
+    rapportertInntekt?: RapportertInntektPeriodeinfoDto;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = OppgavetypeDataDto & {
@@ -59,13 +77,18 @@ export type OppgaveDto = {
     oppgaveReferanse: string;
     oppgavetype: Oppgavetype;
     oppgavetypeData:
-        | EndretProgramperiodeDataDto
-        | EndretSluttdatoOppgavetypeDataDto
-        | EndretStartdatoOppgavetypeDataDto
-        | KontrollerRegisterinntektOppgavetypeDataDto;
+        | EndretSluttdatoDataDto
+        | EndretStartdatoDataDto
+        | InntektsrapporteringOppgavetypeDataDto
+        | KontrollerRegisterinntektOppgavetypeDataDto
+        | SøkYtelseOppgavetypeDataDto;
+    bekreftelse?: BekreftelseDto;
     status: OppgaveStatus;
     opprettetDato: string;
     løstDato?: string;
+    åpnetDato?: string;
+    lukketDato?: string;
+    frist?: string;
 };
 
 export enum OppgaveStatus {
@@ -73,17 +96,23 @@ export enum OppgaveStatus {
     ULØST = 'ULØST',
     AVBRUTT = 'AVBRUTT',
     UTLØPT = 'UTLØPT',
+    LUKKET = 'LUKKET',
 }
 
 export enum Oppgavetype {
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
     BEKREFT_ENDRET_SLUTTDATO = 'BEKREFT_ENDRET_SLUTTDATO',
-    BEKREFT_ENDRET_PROGRAMPERIODE = 'BEKREFT_ENDRET_PROGRAMPERIODE',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
+    RAPPORTER_INNTEKT = 'RAPPORTER_INNTEKT',
+    SØK_YTELSE = 'SØK_YTELSE',
 }
 
-export type OppgavetypeDataDto = {
-    [key: string]: unknown;
+export type OppgavetypeDataDto = unknown;
+
+export type RapportertInntektPeriodeinfoDto = {
+    fraOgMed: string;
+    tilOgMed: string;
+    arbeidstakerOgFrilansInntekt?: number;
 };
 
 export type RegisterinntektDto = {
@@ -94,14 +123,22 @@ export type RegisterinntektDto = {
     totalInntekt: number;
 };
 
-export type YtelseRegisterInntektDto = {
-    inntekt: number;
-    ytelsetype: string;
+export type SøkYtelseOppgavetypeDataDto = OppgavetypeDataDto & {
+    fomDato: string;
 };
 
-export type DeltakelseUtmeldingDto = {
-    utmeldingsdato: string;
+export type YtelseRegisterInntektDto = {
+    inntekt: number;
+    ytelsetype: YtelseType;
 };
+
+export enum YtelseType {
+    SYKEPENGER = 'SYKEPENGER',
+    OMSORGSPENGER = 'OMSORGSPENGER',
+    PLEIEPENGER_SYKT_BARN = 'PLEIEPENGER_SYKT_BARN',
+    PLEIEPENGER_LIVETS_SLUTTFASE = 'PLEIEPENGER_LIVETS_SLUTTFASE',
+    OPPLAERINGSPENGER = 'OPPLAERINGSPENGER',
+}
 
 export type DeltakelseInnmeldingDto = {
     deltakerIdent: string;
@@ -112,23 +149,40 @@ export type AktørIdDto = {
     aktørId: string;
 };
 
-export type DeltakerOpplysningerDto = {
-    opplysninger: Array<DeltakelseOpplysningDto>;
+export type DeltakelseOpplysningerDto = {
+    opplysninger: Array<DeltakelseDto>;
 };
 
-export type DeltakerPersonlia = {
+export type DeltakerPersonalia = {
     id?: string;
     deltakerIdent: string;
     navn: Navn;
     fødselsdato: string;
+    /**
+     * Diskresjonskoder som gjelder for deltakeren. Vil være tom hvis deltaker ikke har diskresjonskoder satt.
+     */
+    diskresjonskoder: Array<Diskresjonskode>;
     førsteMuligeInnmeldingsdato: string;
     sisteMuligeInnmeldingsdato: string;
 };
+
+export enum Diskresjonskode {
+    KODE6 = 'KODE6',
+    KODE7 = 'KODE7',
+    SKJERMET = 'SKJERMET',
+}
 
 export type Navn = {
     fornavn: string;
     mellomnavn?: string;
     etternavn: string;
+};
+
+export type SettTilUtløptDto = {
+    deltakerIdent: string;
+    oppgavetype: Oppgavetype;
+    fomDato: string;
+    tomDato: string;
 };
 
 export type RegisterInntektArbeidOgFrilansDto = {
@@ -152,44 +206,59 @@ export type RegisterInntektOppgaveDto = {
 
 export type RegisterInntektYtelseDto = {
     beløp: number;
-    ytelseType: string;
+    ytelseType: YtelseType;
 };
 
-export type EndretPeriodeOppgaveDto = {
+export type InntektsrapporteringOppgaveDto = {
     deltakerIdent: string;
-    oppgaveReferanse: string;
+    referanse: string;
     frist: string;
-    programperiodeDato: string;
-};
-
-export type EndretProgamperiodeOppgaveDto = {
-    deltakerIdent: string;
-    oppgaveReferanse: string;
-    frist: string;
-    programperiode: ProgramperiodeDto;
-};
-
-export type ProgramperiodeDto = {
     fomDato: string;
-    tomDato?: string;
+    tomDato: string;
 };
 
-export type DeltakelsePeriodInfo = {
-    id: string;
-    fraOgMed: string;
-    tilOgMed?: string;
-    harSøkt: boolean;
-    oppgaver: Array<OppgaveDto>;
-    rapporteringsPerioder: Array<RapportPeriodeinfoDto>;
+export type EndretStartdatoOppgaveDto = {
+    deltakerIdent: string;
+    oppgaveReferanse: string;
+    frist: string;
+    nyStartdato: string;
+    forrigeStartdato: string;
 };
 
-export type RapportPeriodeinfoDto = {
-    fraOgMed: string;
-    tilOgMed: string;
-    harRapportert: boolean;
-    arbeidstakerOgFrilansInntekt?: number;
-    inntektFraYtelse?: number;
-    summertInntekt?: number;
+export type EndretSluttdatoOppgaveDto = {
+    deltakerIdent: string;
+    oppgaveReferanse: string;
+    frist: string;
+    nySluttdato: string;
+    forrigeSluttdato?: string;
+};
+
+export type DeltakelseHistorikkDto = {
+    tidspunkt: string;
+    endringstype: Endringstype;
+    revisjonstype: Revisjonstype;
+    endring: string;
+    aktør: string;
+};
+
+export enum Endringstype {
+    DELTAKER_MELDT_INN = 'DELTAKER_MELDT_INN',
+    ENDRET_STARTDATO = 'ENDRET_STARTDATO',
+    ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
+    DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
+    UKJENT = 'UKJENT',
+}
+
+export enum Revisjonstype {
+    OPPRETTET = 'OPPRETTET',
+    ENDRET = 'ENDRET',
+    SLETTET = 'SLETTET',
+    UKJENT = 'UKJENT',
+}
+
+export type KontonummerDto = {
+    harKontonummer: boolean;
+    kontonummer?: string;
 };
 
 export type EndreStartdatoData = {
@@ -222,7 +291,7 @@ export type EndreStartdatoResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type EndreStartdatoResponse = EndreStartdatoResponses[keyof EndreStartdatoResponses];
@@ -257,7 +326,7 @@ export type EndreSluttdatoResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type EndreSluttdatoResponse = EndreSluttdatoResponses[keyof EndreSluttdatoResponses];
@@ -292,7 +361,7 @@ export type MeldUtDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type MeldUtDeltakerResponse = MeldUtDeltakerResponses[keyof MeldUtDeltakerResponses];
@@ -327,7 +396,7 @@ export type MarkerDeltakelseSomSøktResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseKomposittDto;
 };
 
 export type MarkerDeltakelseSomSøktResponse = MarkerDeltakelseSomSøktResponses[keyof MarkerDeltakelseSomSøktResponses];
@@ -360,7 +429,7 @@ export type MeldInnDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakelseOpplysningDto;
+    200: DeltakelseDto;
 };
 
 export type MeldInnDeltakerResponse = MeldInnDeltakerResponses[keyof MeldInnDeltakerResponses];
@@ -394,7 +463,7 @@ export type HentAlleDeltakelserGittDeltakerAktørResponses = {
     /**
      * OK
      */
-    200: DeltakerOpplysningerDto;
+    200: DeltakelseOpplysningerDto;
 };
 
 export type HentAlleDeltakelserGittDeltakerAktørResponse =
@@ -429,7 +498,7 @@ export type HentDeltakerInfoGittDeltakerResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerResponse =
@@ -439,7 +508,7 @@ export type UtløperOppgaveData = {
     body: string;
     path?: never;
     query?: never;
-    url: '/oppgave/utløpt';
+    url: '/oppgave/utlopt';
 };
 
 export type UtløperOppgaveErrors = {
@@ -466,14 +535,14 @@ export type UtløperOppgaveResponses = {
     200: unknown;
 };
 
-export type KontrollAvRegisterinntektData = {
-    body: RegisterInntektOppgaveDto;
+export type UtløperOppgaveForTypeOgPeriodeData = {
+    body: SettTilUtløptDto;
     path?: never;
     query?: never;
-    url: '/oppgave/opprett';
+    url: '/oppgave/utlopt/forTypeOgPeriode';
 };
 
-export type KontrollAvRegisterinntektErrors = {
+export type UtløperOppgaveForTypeOgPeriodeErrors = {
     /**
      * Unauthorized
      */
@@ -488,17 +557,15 @@ export type KontrollAvRegisterinntektErrors = {
     500: ProblemDetail;
 };
 
-export type KontrollAvRegisterinntektError = KontrollAvRegisterinntektErrors[keyof KontrollAvRegisterinntektErrors];
+export type UtløperOppgaveForTypeOgPeriodeError =
+    UtløperOppgaveForTypeOgPeriodeErrors[keyof UtløperOppgaveForTypeOgPeriodeErrors];
 
-export type KontrollAvRegisterinntektResponses = {
+export type UtløperOppgaveForTypeOgPeriodeResponses = {
     /**
      * OK
      */
-    200: OppgaveDto;
+    200: unknown;
 };
-
-export type KontrollAvRegisterinntektResponse =
-    KontrollAvRegisterinntektResponses[keyof KontrollAvRegisterinntektResponses];
 
 export type OpprettOppgaveForKontrollAvRegisterinntektData = {
     body: RegisterInntektOppgaveDto;
@@ -535,11 +602,46 @@ export type OpprettOppgaveForKontrollAvRegisterinntektResponses = {
 export type OpprettOppgaveForKontrollAvRegisterinntektResponse =
     OpprettOppgaveForKontrollAvRegisterinntektResponses[keyof OpprettOppgaveForKontrollAvRegisterinntektResponses];
 
-export type OpprettOppgaveForEndretStartdatoData = {
-    body: EndretPeriodeOppgaveDto;
+export type OpprettOppgaveForInntektsrapporteringData = {
+    body: InntektsrapporteringOppgaveDto;
     path?: never;
     query?: never;
-    url: '/oppgave/opprett/endre/startdato';
+    url: '/oppgave/opprett/inntektsrapportering';
+};
+
+export type OpprettOppgaveForInntektsrapporteringErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type OpprettOppgaveForInntektsrapporteringError =
+    OpprettOppgaveForInntektsrapporteringErrors[keyof OpprettOppgaveForInntektsrapporteringErrors];
+
+export type OpprettOppgaveForInntektsrapporteringResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type OpprettOppgaveForInntektsrapporteringResponse =
+    OpprettOppgaveForInntektsrapporteringResponses[keyof OpprettOppgaveForInntektsrapporteringResponses];
+
+export type OpprettOppgaveForEndretStartdatoData = {
+    body: EndretStartdatoOppgaveDto;
+    path?: never;
+    query?: never;
+    url: '/oppgave/opprett/endret-startdato';
 };
 
 export type OpprettOppgaveForEndretStartdatoErrors = {
@@ -571,10 +673,10 @@ export type OpprettOppgaveForEndretStartdatoResponse =
     OpprettOppgaveForEndretStartdatoResponses[keyof OpprettOppgaveForEndretStartdatoResponses];
 
 export type OpprettOppgaveForEndretSluttdatoData = {
-    body: EndretPeriodeOppgaveDto;
+    body: EndretSluttdatoOppgaveDto;
     path?: never;
     query?: never;
-    url: '/oppgave/opprett/endre/sluttdato';
+    url: '/oppgave/opprett/endret-sluttdato';
 };
 
 export type OpprettOppgaveForEndretSluttdatoErrors = {
@@ -604,41 +706,6 @@ export type OpprettOppgaveForEndretSluttdatoResponses = {
 
 export type OpprettOppgaveForEndretSluttdatoResponse =
     OpprettOppgaveForEndretSluttdatoResponses[keyof OpprettOppgaveForEndretSluttdatoResponses];
-
-export type OpprettOppgaveForEndretProgramperiodeData = {
-    body: EndretProgamperiodeOppgaveDto;
-    path?: never;
-    query?: never;
-    url: '/oppgave/opprett/endre/programperiode';
-};
-
-export type OpprettOppgaveForEndretProgramperiodeErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type OpprettOppgaveForEndretProgramperiodeError =
-    OpprettOppgaveForEndretProgramperiodeErrors[keyof OpprettOppgaveForEndretProgramperiodeErrors];
-
-export type OpprettOppgaveForEndretProgramperiodeResponses = {
-    /**
-     * OK
-     */
-    200: OppgaveDto;
-};
-
-export type OpprettOppgaveForEndretProgramperiodeResponse =
-    OpprettOppgaveForEndretProgramperiodeResponses[keyof OpprettOppgaveForEndretProgramperiodeResponses];
 
 export type AvbrytOppgaveData = {
     body: string;
@@ -702,11 +769,46 @@ export type HentAlleDeltakelserGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: Array<DeltakelseOpplysningDto>;
+    200: Array<DeltakelseDto>;
 };
 
 export type HentAlleDeltakelserGittDeltakerIdResponse =
     HentAlleDeltakelserGittDeltakerIdResponses[keyof HentAlleDeltakelserGittDeltakerIdResponses];
+
+export type DeltakelseHistorikkData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/historikk';
+};
+
+export type DeltakelseHistorikkErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type DeltakelseHistorikkError = DeltakelseHistorikkErrors[keyof DeltakelseHistorikkErrors];
+
+export type DeltakelseHistorikkResponses = {
+    /**
+     * OK
+     */
+    200: Array<DeltakelseHistorikkDto>;
+};
+
+export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
 
 export type HentDeltakerInfoGittDeltakerIdData = {
     body?: never;
@@ -739,11 +841,44 @@ export type HentDeltakerInfoGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakerPersonlia;
+    200: DeltakerPersonalia;
 };
 
 export type HentDeltakerInfoGittDeltakerIdResponse =
     HentDeltakerInfoGittDeltakerIdResponses[keyof HentDeltakerInfoGittDeltakerIdResponses];
+
+export type HentKontonummerData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/deltaker/hent-kontonummer';
+};
+
+export type HentKontonummerErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentKontonummerError = HentKontonummerErrors[keyof HentKontonummerErrors];
+
+export type HentKontonummerResponses = {
+    /**
+     * OK
+     */
+    200: KontonummerDto;
+};
+
+export type HentKontonummerResponse = HentKontonummerResponses[keyof HentKontonummerResponses];
 
 export type HentDeltakersOppgaveData = {
     body?: never;
@@ -780,6 +915,111 @@ export type HentDeltakersOppgaveResponses = {
 
 export type HentDeltakersOppgaveResponse = HentDeltakersOppgaveResponses[keyof HentDeltakersOppgaveResponses];
 
+export type MarkerOppgaveSomLøstData = {
+    body?: never;
+    path: {
+        oppgaveReferanse: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst';
+};
+
+export type MarkerOppgaveSomLøstErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerOppgaveSomLøstError = MarkerOppgaveSomLøstErrors[keyof MarkerOppgaveSomLøstErrors];
+
+export type MarkerOppgaveSomLøstResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type MarkerOppgaveSomLøstResponse = MarkerOppgaveSomLøstResponses[keyof MarkerOppgaveSomLøstResponses];
+
+export type MarkerOppgaveSomLukketData = {
+    body?: never;
+    path: {
+        oppgaveReferanse: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk';
+};
+
+export type MarkerOppgaveSomLukketErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerOppgaveSomLukketError = MarkerOppgaveSomLukketErrors[keyof MarkerOppgaveSomLukketErrors];
+
+export type MarkerOppgaveSomLukketResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type MarkerOppgaveSomLukketResponse = MarkerOppgaveSomLukketResponses[keyof MarkerOppgaveSomLukketResponses];
+
+export type MarkerOppgaveSomÅpnetData = {
+    body?: never;
+    path: {
+        oppgaveReferanse: string;
+    };
+    query?: never;
+    url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet';
+};
+
+export type MarkerOppgaveSomÅpnetErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type MarkerOppgaveSomÅpnetError = MarkerOppgaveSomÅpnetErrors[keyof MarkerOppgaveSomÅpnetErrors];
+
+export type MarkerOppgaveSomÅpnetResponses = {
+    /**
+     * OK
+     */
+    200: OppgaveDto;
+};
+
+export type MarkerOppgaveSomÅpnetResponse = MarkerOppgaveSomÅpnetResponses[keyof MarkerOppgaveSomÅpnetResponses];
+
 export type HentAlleMineDeltakelserData = {
     body?: never;
     path?: never;
@@ -808,7 +1048,7 @@ export type HentAlleMineDeltakelserResponses = {
     /**
      * OK
      */
-    200: Array<DeltakelsePeriodInfo>;
+    200: Array<DeltakelseKomposittDto>;
 };
 
 export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];
@@ -816,10 +1056,10 @@ export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[k
 export type FjernFraProgramData = {
     body?: never;
     path: {
-        deltakelseId: string;
+        deltakerId: string;
     };
     query?: never;
-    url: '/veileder/register/deltakelse/{deltakelseId}/fjern';
+    url: '/veileder/register/deltaker/{deltakerId}/fjern';
 };
 
 export type FjernFraProgramErrors = {

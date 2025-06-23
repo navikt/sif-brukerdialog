@@ -128,7 +128,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.arbeidssituasjon.sn.tittel': 'Sjølvstendig næringsdrivande',
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
     'steg.arbeidssituasjon.verneplikt.spm': 'Utførte du verneplikt på tidspunktet du søkjer opplæringspengar frå?',
-    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.verneplikt.info.tekst':
         'Du skal svare ja på dette spørsmålet om du har utført verneplikt i minst 28 dagar på starttidspunktet for perioden du søkjer for, eller om perioden med verneplikt var meint å vare i minst 28 dagar.',
 
@@ -169,7 +169,7 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.utledet': 'timar i veka',
     'arbeidsforhold.timer.suffix': 'timar per veke',
 
-    'arbeidsforhold.normalTimer.info.tittel': 'Kva betyr dette?',
+    'arbeidsforhold.normalTimer.info.tittel': 'Kva tyder dette?',
     'arbeidsforhold.ansatt.normalTimer.info':
         'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også høyre med arbeidsgivaren din.',
     'arbeidsforhold.frilanser.normalTimer.info':

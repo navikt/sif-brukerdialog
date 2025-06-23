@@ -4,14 +4,14 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.9",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.65.0",
+        "@hey-api/openapi-ts": "0.72.2",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.3",
-        "vitest": "3.1.1",
-        "zod": "3.24.3"
+        "vitest": "3.2.4",
+        "zod": "3.25.67"
     },
     "peerDependencies": {
         "dayjs": "*",
@@ -25,12 +25,11 @@
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "test": "vitest run",
         "openapi-ts": "openapi-ts",
         "gen-types": "openapi-ts"
     },
     "dependencies": {
-        "@hey-api/client-axios": "0.7.0",
-        "@hey-api/client-fetch": "0.10.0"
+        "@hey-api/client-axios": "0.9.1",
+        "@hey-api/client-fetch": "0.13.1"
     }
 }

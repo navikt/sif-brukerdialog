@@ -1,5 +1,41 @@
 # config
 
+## 0.11.0
+
+### Minor Changes
+
+- Oppdatere target i tsconfig til es2020
+
+## 0.10.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.32
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.10.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.30
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
 ## 0.10.29
 
 ### Patch Changes

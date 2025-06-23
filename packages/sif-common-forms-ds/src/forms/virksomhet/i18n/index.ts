@@ -1,26 +1,13 @@
 import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { virksomhetValidationMessages } from './virksomhetValidationMessages';
-import { virksomhetFormMessages } from './virksomhetFormMessages';
-import { virksomhetSummaryMessages } from './virksomhetSummaryMessages';
+import { virksomhetFormMessages_nb } from './nb';
+import { virksomhetFormMessages_nn } from './nn';
 
-const nb = {
-    ...virksomhetFormMessages.nb,
-    ...virksomhetValidationMessages.nb,
-    ...virksomhetSummaryMessages.nb,
-};
-
-const nn: Record<keyof typeof nb, string> = {
-    ...virksomhetFormMessages.nn,
-    ...virksomhetValidationMessages.nn,
-    ...virksomhetSummaryMessages.nn,
-};
-
-export type VirksomhetMessageKeys = keyof typeof nb;
+export type VirksomhetMessageKeys = keyof typeof virksomhetFormMessages_nb;
 
 export const virksomhetMessages = {
-    nb,
-    nn,
+    nb: virksomhetFormMessages_nb,
+    nn: virksomhetFormMessages_nn,
 };
 
 export const useVirksomhetIntl = () => {

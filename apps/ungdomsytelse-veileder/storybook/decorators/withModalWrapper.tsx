@@ -1,13 +1,7 @@
 import { Heading, Modal } from '@navikt/ds-react';
 
-export const withModalWrapper = (Story, args) => (
-    <ModalWrapper {...args}>
-        <Story />
-    </ModalWrapper>
-);
-
 export const ModalWrapper = ({ header, children }: { header: string; children: React.ReactNode }) => (
-    <Modal open={true} aria-labelledby="oppgave-modal-heading" width={'800px'} onClose={() => {}}>
+    <Modal open={true} aria-labelledby="oppgave-modal-heading" width="800px" onClose={() => {}}>
         <Modal.Header>
             <Heading level="1" size="large" id="oppgave-modal-heading">
                 {header}
@@ -15,4 +9,10 @@ export const ModalWrapper = ({ header, children }: { header: string; children: R
         </Modal.Header>
         <Modal.Body>{children}</Modal.Body>
     </Modal>
+);
+
+export const withModalWrapper = (Story, args) => (
+    <ModalWrapper {...args}>
+        <Story />
+    </ModalWrapper>
 );

@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -10,25 +10,25 @@
         "build": "ncc build ./src/index.ts -o dist -t --no-cache"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@navikt/oasis": "3.7.0",
+        "@navikt/nav-dekoratoren-moduler": "3.2.3",
+        "@navikt/oasis": "3.8.0",
         "@navikt/sif-common-env": "workspace:*",
         "cookie-parser": "1.4.7",
         "csp-header": "6.1.0",
         "express": "4.21.2",
-        "html-react-parser": "5.2.3",
+        "html-react-parser": "5.2.5",
         "http-proxy-middleware": "3.0.5",
         "jsdom": "26.1.0",
         "react": "19.1.0",
-        "zod": "3.24.3"
+        "zod": "3.25.67"
     },
     "devDependencies": {
-        "@types/cookie-parser": "1.4.8",
-        "@types/express": "5.0.1",
-        "@types/morgan": "1.9.9",
-        "@types/node": "22.14.1",
+        "@types/cookie-parser": "1.4.9",
+        "@types/express": "5.0.3",
+        "@types/morgan": "1.9.10",
+        "@types/node": "24.0.3",
         "@vercel/ncc": "0.38.3",
-        "axios": "1.8.4",
+        "axios": "1.10.0",
         "morgan": "1.10.0",
         "prettier": "3.5.3",
         "typescript": "5.8.3",
