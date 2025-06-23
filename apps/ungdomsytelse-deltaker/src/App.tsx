@@ -46,7 +46,7 @@ function App() {
                 appVersion={env.APP_VERSION}
                 applicationKey={UngdomsytelseDeltakerApp.key}
                 telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
-                isActive={env.SIF_PUBLIC_USE_FARO}>
+                isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
                 <AnalyticsProvider
                     applicationKey={UngdomsytelseDeltakerApp.key}
                     isActive={env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true'}>
