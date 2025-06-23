@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.7
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
 ## 0.4.6
 
 ### Patch Changes
@@ -95,7 +101,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -103,7 +108,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 

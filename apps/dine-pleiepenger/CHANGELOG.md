@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.14
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/appstatus-react-ds@2.20.8
+    - @navikt/sif-common-core-ds@10.2.12
+    - @navikt/sif-common-amplitude@2.28.4
+    - @navikt/sif-common-sentry@0.28.7
+    - @navikt/sif-common-utils@3.49.5
+
 ## 1.9.13
 
 ### Patch Changes
@@ -665,7 +677,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss
@@ -954,7 +965,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Patch Changes
 
 - 33f4b9c: To interne bugfix
-
     - Legge "ryujtq87.api.sanity.io" til i externalHosts
     - Endre path fra internal til health for isAlive og isHealthy
 
@@ -1000,7 +1010,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Patch Changes
 
 - 8f80c29: Bugfix + tekstendring.
-
     - Korrigere sortering på behandlinger som brukte feil verdi.
     - Endre tekst som står i tidslinje på at saken vil bli ferdig behandlet
 
@@ -1081,7 +1090,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Major Changes
 
 - 12a209a: Skru på feature for å hente saker fra k9. Dette gjør at bruker får
-
     - velge mellom barn/sak en ønsker å se
     - se status i sak, og tidslinje med innsendte søknader
     - se historikk på hendelser

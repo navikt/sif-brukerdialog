@@ -1,5 +1,13 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.10
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
 ## 2.4.9
 
 ### Patch Changes
@@ -116,7 +124,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN
@@ -393,7 +400,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss
@@ -994,7 +1000,6 @@
 - 41d0a03c: Oppdatere til versjon 5 av designsystemet aksel. Breaking change på grunn av props som er endret på komponenter som bruker modal dialog.
 
     # Props som er fjernet
-
     - shouldCloseOnOverlayClick. Denne finnes ikke lenger i Aksel Modal. Dette gjelder:
       -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndInfo.tsx
       -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndList.tsx
