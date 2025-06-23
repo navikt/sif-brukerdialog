@@ -8,6 +8,7 @@ import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
+import { logUtils } from '../../innsyn/utils/logUtils';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -63,12 +64,14 @@ export const SøknadProvider = ({
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
         logSoknadSent(UngdomsytelseDeltakerApp.key);
-        logInfo({
-            harBarn: barn.length > 0,
-            barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-            harKontonummer: kontonummer ? true : false,
-            kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
-        });
+        logInfo(
+            logUtils.getSøknadInnsendingMeta(deltakelsePeriode, {
+                antallBarn: barn.length,
+                barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
+                harKontonummer: kontonummer ? true : false,
+                kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
+            }),
+        );
     };
 
     return (

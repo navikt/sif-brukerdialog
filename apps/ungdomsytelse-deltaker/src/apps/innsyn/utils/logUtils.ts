@@ -1,7 +1,13 @@
 import { DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
+enum LogInfoType {
+    SØKNAD_SENDT = 'søknadSendt',
+    DELTAKELSE_META = 'deltakelseMeta',
+}
+
 type DeltakelsePeriodeMeta = {
+    type: LogInfoType;
     harSøkt: boolean;
     harStartet: boolean;
     erAvsluttet: boolean;
@@ -27,6 +33,7 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
 
     const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
     return {
+        type: LogInfoType.DELTAKELSE_META,
         harSøkt,
         harStartet,
         erAvsluttet,
@@ -58,6 +65,37 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
     };
 };
 
+const getSøknadInnsendingMeta = (
+    deltakelse: DeltakelsePeriode,
+    {
+        antallBarn,
+        barnStemmer,
+        harKontonummer,
+        kontonummerStemmer,
+    }: {
+        antallBarn: number;
+        barnStemmer: boolean;
+        harKontonummer: boolean;
+        kontonummerStemmer: boolean;
+    },
+) => {
+    const meta = getDeltakelsePeriodeMeta(deltakelse);
+    return {
+        type: LogInfoType.SØKNAD_SENDT,
+        harBarn: antallBarn > 0,
+        barnStemmer,
+        harKontonummer,
+        kontonummerStemmer,
+        harStartet: meta.harStartet,
+        harSluttdato: meta.harSluttdato,
+        antallOppgaverTotalt: meta.antallOppgaverTotalt,
+        antallEndretStartdatoOppgaver: meta.antallEndretStartdatoOppgaver,
+        antallEndretSluttdatoOppgaver: meta.antallEndretSluttdatoOppgaver,
+        antallSøkYtelseOppgaver: meta.antallSøkYtelseOppgaver,
+    };
+};
+
 export const logUtils = {
     getDeltakelsePeriodeMeta,
+    getSøknadInnsendingMeta,
 };

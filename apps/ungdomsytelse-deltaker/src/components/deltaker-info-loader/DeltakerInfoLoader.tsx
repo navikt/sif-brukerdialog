@@ -27,9 +27,8 @@ const DeltakerInfoLoader = () => {
     useEffect(() => {
         if (!isLoading && !error && søker.data && deltakelsePerioder.data) {
             if (deltakelsePerioder.data.length === 1) {
-                const meta = logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]);
                 if (logInfo) {
-                    logInfo(meta);
+                    logInfo(logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]));
                 }
             }
         }
