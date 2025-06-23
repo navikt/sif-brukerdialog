@@ -43,7 +43,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@sentry/react": "9.30.0",
-        "@tanstack/react-query": "5.80.10",
+        "@tanstack/react-query": "5.81.2",
         "axios": "1.10.0",
         "clsx": "2.1.1",
         "csp-header": "6.1.0",
