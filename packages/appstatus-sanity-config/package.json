@@ -27,7 +27,7 @@
         "@types/react": "19.1.8",
         "dayjs": "1.11.13",
         "eslint": "9.29.0",
-        "prettier": "3.5.3",
+        "prettier": "3.6.0",
         "react-is": "19.1.0",
         "typescript": "5.8.3"
     },
