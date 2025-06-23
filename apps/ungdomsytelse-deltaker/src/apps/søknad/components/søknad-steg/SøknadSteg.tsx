@@ -7,6 +7,7 @@ import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
 import DefaultPageLayout from '../../../innsyn/pages/layout/DefaultPageLayout';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     steg: Steg;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const SøknadSteg = ({ steg, tittel, children }: Props) => {
+    const { text } = useAppIntl();
     useKontrollerOmStegErTilgjengelig(steg);
 
     const { avbrytOgSlett } = useSøknadContext();
@@ -29,7 +31,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     const activeIndex = getSkjemaStegIndex(steg) + 1;
 
     return (
-        <DefaultPageLayout documentTitle={`${tittel} - Søknad om ungdomsprogramytelse`}>
+        <DefaultPageLayout documentTitle={`${tittel} - ${text('søknad.tittel')}`}>
             <section aria-label="Skjema">
                 <VStack gap="8">
                     <SøknadHeader />
@@ -44,12 +46,12 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                             activeStep={activeIndex}
                             onStepChange={handleOnProgressStepChange}>
                             <FormProgress.Step completed={activeIndex > 2} interactive={activeIndex > 2}>
-                                Kontonummer for utbetaling
+                                {text('kontonummerSteg.tittel')}
                             </FormProgress.Step>
                             <FormProgress.Step completed={activeIndex > 1} interactive={activeIndex > 1}>
-                                Barn
+                                {text('barnSteg.tittel')}
                             </FormProgress.Step>
-                            <FormProgress.Step interactive={false}>Oppsummering</FormProgress.Step>
+                            <FormProgress.Step interactive={false}>{text('oppsummeringSteg.tittel')}</FormProgress.Step>
                         </FormProgress>
                     </div>
 
@@ -57,7 +59,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
 
                     <StegFooter
                         slett={{
-                            tittel: 'Avbryt søknad',
+                            tittel: text('søknadApp.avbrytSøknad.label'),
                             onClick: avbrytOgSlett,
                         }}
                     />

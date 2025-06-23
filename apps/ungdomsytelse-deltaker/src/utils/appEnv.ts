@@ -1,10 +1,4 @@
-import {
-    getCommonEnv,
-    getMaybeBoolEnv,
-    getMaybeEnv,
-    getRequiredEnv,
-    getUngDeltakelseOpplyserBrowserEnv,
-} from '@navikt/sif-common-env';
+import { getCommonEnv, getMaybeEnv, getRequiredEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AppEnv, AppEnvKey } from '../../env.schema';
 
 export const getAppEnv = (): AppEnv => ({
@@ -12,7 +6,7 @@ export const getAppEnv = (): AppEnv => ({
     ...getUngDeltakelseOpplyserBrowserEnv(),
 
     [AppEnvKey.VELG_SCENARIO]: getMaybeEnv(AppEnvKey.VELG_SCENARIO),
-    [AppEnvKey.SIF_PUBLIC_USE_FARO]: getMaybeBoolEnv(AppEnvKey.SIF_PUBLIC_USE_FARO),
+    [AppEnvKey.SIF_PUBLIC_USE_FARO]: getMaybeEnv(AppEnvKey.SIF_PUBLIC_USE_FARO),
     [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: getMaybeEnv(
         AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
     ),

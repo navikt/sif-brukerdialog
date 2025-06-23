@@ -12,6 +12,7 @@ import { appMessages as pils } from '../../../pleiepenger-i-livets-sluttfase-sok
 import { appMessages as psb } from '../../../pleiepenger-sykt-barn/src/app/i18n';
 import { appMessages as opplaringspenger } from '../../../opplaringspenger-soknad/src/app/i18n/appMessages';
 import { appMessages as ettersendelse } from '../../../sif-ettersending/src/app/i18n';
+import { applicationIntlMessages as ungDeltaker } from '../../../ungdomsytelse-deltaker/src/i18n';
 
 const meta: Meta<MessagesPreviewProps> = {
     title: 'Applikasjoner',
@@ -84,5 +85,12 @@ export const Opplæringspenger: Story = {
     name: 'Søknad om opplæringspenger',
     args: {
         messages: opplaringspenger,
+    },
+};
+
+export const UngdomsprogramytelseDeltaker: Story = {
+    name: 'Ungdomsprogramytelse - Deltaker',
+    args: {
+        messages: ungDeltaker,
     },
 };

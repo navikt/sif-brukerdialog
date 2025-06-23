@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { EnvKey, getMaybeEnv } from '@navikt/sif-common-env';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
@@ -46,11 +46,10 @@ function App() {
                 appVersion={env.APP_VERSION}
                 applicationKey={UngdomsytelseDeltakerApp.key}
                 telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
-                isActive={env.SIF_PUBLIC_USE_FARO}>
+                isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
                 <AnalyticsProvider
                     applicationKey={UngdomsytelseDeltakerApp.key}
-                    logToConsoleOnly={true}
-                    isActive={false}>
+                    isActive={env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true'}>
                     <QueryClientProvider client={queryClient}>
                         <AppIntlMessageProvider>
                             <DeltakerInfoLoader />

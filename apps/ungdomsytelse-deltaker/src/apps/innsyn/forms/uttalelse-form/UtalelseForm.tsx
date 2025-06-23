@@ -1,5 +1,8 @@
 import { Alert, VStack } from '@navikt/ds-react';
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import {
+    UngdomsytelseOppgavebekreftelse,
+    UngdomsytelseOppgaveUttalelseDto,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -7,13 +10,13 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreftelse';
 import { useAppIntl } from '../../../../i18n';
+import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreftelse';
 
 interface Props {
     harTilbakemeldingSpørsmål: string;
     oppgaveReferanse: string;
-    onSuccess: () => void;
+    onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
     onCancel?: () => void;
 }
 
@@ -51,7 +54,7 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
             },
         };
         await mutateAsync(dto);
-        onSuccess();
+        onSuccess(dto.oppgave.uttalelse);
     };
 
     return (

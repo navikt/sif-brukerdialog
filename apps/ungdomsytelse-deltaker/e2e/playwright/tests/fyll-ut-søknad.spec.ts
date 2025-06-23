@@ -51,7 +51,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste steg' }).click();
 
     await testAccessibility(page);
-    await page.getByText('Stemmer det at kontonummeret ditt er 1234 56 78901?Ja').click();
+    await page.getByText('Er kontonummeret ditt 1234 56 78901?Ja').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
     await page.getByText('Stemmer informasjonen om barnet?Ja').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
@@ -60,7 +60,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste steg' }).click();
     await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
-    await page.getByText('Stemmer det at kontonummeret ditt er 1234 56 78901?Nei').click();
+    await page.getByText('Er kontonummeret ditt 1234 56 78901?Nei').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
     await page.getByText('Stemmer informasjonen om barnet?Nei').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();

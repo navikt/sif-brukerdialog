@@ -1,8 +1,9 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Link, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
+import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../utils/lenker';
 import ExternalLink from '../../components/external-link/ExternalLink';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
@@ -12,6 +13,7 @@ import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 
 const KontonummerSteg = () => {
+    const { text } = useAppIntl();
     const { setSpørsmålSvar, svar, kontonummerInfo } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
@@ -31,7 +33,7 @@ const KontonummerSteg = () => {
     };
 
     return (
-        <SøknadSteg tittel="Kontonummer for utbetaling" steg={Steg.KONTONUMMER}>
+        <SøknadSteg tittel={text('kontonummerSteg.tittel')} steg={Steg.KONTONUMMER}>
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
@@ -39,14 +41,15 @@ const KontonummerSteg = () => {
                 }}>
                 <VStack gap="8">
                     <GuidePanel>
-                        For å få pengene inn på bankkontoen din, må du ha registrert kontonummeret ditt hos Nav.
+                        <AppText id="kontonummerSteg.beskrivelse" />
                     </GuidePanel>
                     {kontonummerInfo.harKontonummer ? (
                         <>
                             <VStack gap="4">
                                 <RadioGroup
-                                    name="barnOk"
-                                    legend={`Er kontonummeret ditt ${kontonummerInfo.formatertKontonummer}?`}
+                                    legend={text('kontonummerSteg.kontonummer.spm', {
+                                        kontonummer: kontonummerInfo.formatertKontonummer,
+                                    })}
                                     error={error}
                                     value={infoStemmer}
                                     onChange={(value: YesOrNo) => {
@@ -54,49 +57,54 @@ const KontonummerSteg = () => {
                                         setSpørsmålSvar(Spørsmål.KONTONUMMER, value);
                                     }}>
                                     <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
-                                        Ja
+                                        <AppText id="kontonummerSteg.kontonummer.ja.label" />
                                     </Radio>
                                     <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
-                                        Nei
+                                        <AppText id="kontonummerSteg.kontonummer.nei.label" />
                                     </Radio>
                                 </RadioGroup>
                                 <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                     <Alert variant="info">
                                         <BodyShort spacing>
-                                            Gå til{' '}
-                                            <ExternalLink href={getLenker().personopplysninger}>
-                                                personopplysninger på Min side
-                                            </ExternalLink>{' '}
-                                            for å endre bankkontonummeret ditt.
+                                            <AppText
+                                                id="kontonummerSteg.kontonummer.stemmerIkke.info"
+                                                values={{
+                                                    Lenke: (children) => (
+                                                        <ExternalLink href={getLenker().personopplysninger}>
+                                                            {children}
+                                                        </ExternalLink>
+                                                    ),
+                                                }}
+                                            />
                                         </BodyShort>
                                         <BodyShort>
-                                            Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden,
-                                            slik at pengene blir satt inn på kontoen din.
+                                            <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
                                         </BodyShort>
                                     </Alert>
                                 </AriaLiveRegion>
                             </VStack>
                         </>
                     ) : (
-                        <>
-                            <Alert variant="warning">
-                                <Heading level="3" size="small" spacing>
-                                    Du har ikke registrert kontonummer hos oss
-                                </Heading>
-                                <BodyLong spacing>
-                                    Registrer bankkontonummeret ditt hos Nav slik at du får pengene utbetalt til rett
-                                    konto. Gå til{' '}
-                                    <Link href={getLenker().endreKontonummer}>personopplysninger på Min side</Link> for
-                                    å legge inn kontonummeret ditt.
-                                </BodyLong>
-                                <BodyLong>
-                                    Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret
-                                    med én gang slik at pengene ikke blir forsinket.
-                                </BodyLong>
-                            </Alert>
-                        </>
+                        <Alert variant="warning">
+                            <Heading level="3" size="small" spacing>
+                                <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
+                            </Heading>
+                            <BodyLong spacing>
+                                <AppText
+                                    id="kontonummerSteg.harIkkeKontonummer.info.2"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                            <BodyLong>
+                                <AppText id="kontonummerSteg.harIkkeKontonummer.info.3" />
+                            </BodyLong>
+                        </Alert>
                     )}
-                    <SkjemaFooter submit={{ tittel: 'Neste steg', erSendInn: false }} />
+                    <SkjemaFooter submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }} />
                 </VStack>
             </form>
         </SøknadSteg>
