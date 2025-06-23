@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -30,7 +30,7 @@
         "@vercel/ncc": "0.38.3",
         "axios": "1.10.0",
         "morgan": "1.10.0",
-        "prettier": "3.5.3",
+        "prettier": "3.6.0",
         "typescript": "5.8.3",
         "winston": "3.17.0"
     },

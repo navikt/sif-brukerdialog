@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -30,7 +30,7 @@
         "@vercel/ncc": "0.38.3",
         "axios": "1.10.0",
         "morgan": "1.10.0",
-        "prettier": "3.5.3",
+        "prettier": "3.6.0",
         "typescript": "5.8.3",
         "winston": "3.17.0"
     },
