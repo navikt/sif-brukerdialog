@@ -1,29 +1,21 @@
 import { Alert, BodyLong, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
+import { AppText, useAppIntl } from '../../../../i18n';
+import getLenker from '../../../../utils/lenker';
+import ExternalLink from '../../components/external-link/ExternalLink';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
-import ExternalLink from '../../components/external-link/ExternalLink';
-import getLenker from '../../../../utils/lenker';
-
-export const getBarnSpørsmål = (antallBarn: number): string => {
-    if (antallBarn === 0) {
-        return 'Stemmer det at du ikke har barn';
-    }
-    if (antallBarn === 1) {
-        return 'Stemmer informasjonen om barnet?';
-    }
-    return 'Stemmer informasjonen om barna?';
-};
 
 const BarnSteg = () => {
+    const { text } = useAppIntl();
     const { setSpørsmålSvar, svar, barn } = useSøknadContext();
     const { gotoSteg } = useSøknadNavigation();
 
@@ -33,7 +25,7 @@ const BarnSteg = () => {
     const handleOnSubmit = () => {
         const err = getYesOrNoValidator()(infoStemmer);
         if (err) {
-            setError('Du må svare på spørsmålet');
+            setError(text('barnSteg.validering.ikkeSvart'));
             return;
         }
         setError(undefined);
@@ -41,9 +33,11 @@ const BarnSteg = () => {
     };
 
     return (
-        <SøknadSteg tittel="Barn" steg={Steg.BARN}>
+        <SøknadSteg tittel={text('barnSteg.tittel')} steg={Steg.BARN}>
             <VStack gap="8">
-                <GuidePanel>Hvis du deltar i ungdomsprogrammet og har barn, har du rett på et barnetillegg.</GuidePanel>
+                <GuidePanel>
+                    <AppText id="barnSteg.beskrivelse" />
+                </GuidePanel>
 
                 <form
                     onSubmit={(evt) => {
@@ -53,15 +47,19 @@ const BarnSteg = () => {
                     <VStack gap="8">
                         <VStack gap="4">
                             <RegistrerteBarnListeHeading level="2" size="xsmall">
-                                Barn vi har registrert på deg:
+                                {text('barnSteg.registrerteBarn.tittel')}
                             </RegistrerteBarnListeHeading>
 
                             <BarnInfo barn={barn} />
                         </VStack>
                         <VStack gap="4">
                             <RadioGroup
-                                name="barnOk"
-                                legend={getBarnSpørsmål(barn.length)}
+                                legend={text(
+                                    barn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn',
+                                    {
+                                        antallBarn: barn.length,
+                                    },
+                                )}
                                 error={error}
                                 value={infoStemmer}
                                 onChange={(value: YesOrNo) => {
@@ -69,32 +67,38 @@ const BarnSteg = () => {
                                     setSpørsmålSvar(Spørsmål.BARN, value);
                                 }}>
                                 <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
-                                    Ja
+                                    <AppText id="barnSteg.barnStemmer.ja.label" />
                                 </Radio>
                                 <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
-                                    Nei
+                                    <AppText id="barnSteg.barnStemmer.nei.label" />
                                 </Radio>
                             </RadioGroup>
                             <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                                 <Alert variant="info">
                                     <Heading level="3" size="small" spacing>
-                                        Vi henter opplysninger fra folkeregisteret
+                                        <AppText id="barnSteg.opplysninger.info.tittel" />
                                     </Heading>
                                     <BodyLong>
-                                        Du må være registrert som forelder med foreldreansvar i Folkeregisteret for å ha
-                                        rett på barnetillegg. Hvis du mener opplysningene fra Folkeregisteret er feil,
-                                        må du ta{' '}
-                                        <ExternalLink href={getLenker().skatteetaten}>
-                                            kontakt med Skatteetaten
-                                        </ExternalLink>
-                                        . Hos Skatteetaten kan du registrere foreldreansvar.
+                                        <AppText
+                                            id="barnSteg.opplysninger.info.text"
+                                            values={{
+                                                Lenke: (children) => (
+                                                    <ExternalLink href={getLenker().skatteetaten}>
+                                                        {children}
+                                                    </ExternalLink>
+                                                ),
+                                            }}
+                                        />
                                     </BodyLong>
                                 </Alert>
                             </AriaLiveRegion>
                         </VStack>
                         <SkjemaFooter
-                            forrige={{ tittel: 'Forrige steg', onClick: () => gotoSteg(Steg.KONTONUMMER) }}
-                            submit={{ tittel: 'Neste steg', erSendInn: false }}
+                            forrige={{
+                                tittel: text('søknadApp.forrigeSteg.label'),
+                                onClick: () => gotoSteg(Steg.KONTONUMMER),
+                            }}
+                            submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }}
                         />
                     </VStack>
                 </form>

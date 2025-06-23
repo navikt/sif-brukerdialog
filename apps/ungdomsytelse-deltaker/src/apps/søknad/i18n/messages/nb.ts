@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 export const ungSoknadMessages_nb = {
-    'soknad.title': 'Søknad om ungdomsprogramytelsen',
+    'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
 
     'personopplysninger.accordion.header': 'Om hvordan vi innhenter opplysninger om deg',
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
@@ -21,6 +21,11 @@ export const ungSoknadMessages_nb = {
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 
     'søknadApp.loading.error': 'Det oppstod en feil ved henting av nødvendig informasjon. Vennligst prøv igjen senere.',
+
+    'søknadApp.nesteSteg.label': 'Neste steg',
+    'søknadApp.forrigeSteg.label': 'Forrige steg',
+    'søknadApp.avbrytSøknad.label': 'Avbryt søknad',
+    'søknadApp.sendSøknad.label': 'Send søknad',
 
     /** VelkommenPage */
     'velkommenPage.startSøknad': 'Start søknad',
@@ -53,4 +58,49 @@ export const ungSoknadMessages_nb = {
         'Hvis du tjener penger mens du er i ungdomsprogrammet, må du melde fra om dette. Du får en SMS den 1. hver måned, og så logger du inn på Min side på nav.no og melder fra om hva du tjente måneden før.',
     'kvitteringPage.lykkeTil': 'Vi ønsker deg lykke til med veien videre!',
     'kvitteringPage.gåTilMinSide': 'Gå til Min side',
+
+    /** KontonummerSteg */
+    'kontonummerSteg.tittel': 'Kontonummer for utbetaling',
+    'kontonummerSteg.beskrivelse':
+        'For å få pengene inn på bankkontoen din, må du ha registrert kontonummeret ditt hos Nav.',
+    'kontonummerSteg.kontonummer.spm': 'Er kontonummeret ditt {kontonummer}?',
+    'kontonummerSteg.kontonummer.ja.label': 'Ja',
+    'kontonummerSteg.kontonummer.nei.label': 'Nei',
+    'kontonummerSteg.kontonummer.stemmerIkke.info':
+        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre kontonummeret ditt.',
+    'kontonummerSteg.kontonummer.stemmerIkke.info.2':
+        'Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden, slik at pengene blir satt inn på kontoen din.',
+    'kontonummerSteg.harIkkeKontonummer.info.1': 'Du har ikke registrert kontonummer hos oss',
+    'kontonummerSteg.harIkkeKontonummer.info.2':
+        'Registrer bankkontonummeret ditt hos Nav slik at du får pengene utbetalt til rett konto. Gå til <Lenke>personopplysninger på Min side</Lenke> for å legge inn kontonummeret ditt.',
+    'kontonummerSteg.harIkkeKontonummer.info.3':
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret med én gang slik at pengene ikke blir forsinket.',
+
+    /** BarnSteg */
+    'barnSteg.tittel': 'Barn',
+    'barnSteg.beskrivelse': 'Hvis du deltar i ungdomsprogrammet og har barn, har du rett på et barnetillegg.',
+    'barnSteg.registrerteBarn.tittel': 'Barn vi har registrert på deg:',
+    'barnSteg.barnStemmer.ja.label': 'Ja',
+    'barnSteg.barnStemmer.nei.label': 'Nei',
+    'barnSteg.spørsmål.ingenBarn': 'Stemmer det at du ikke har barn?',
+    'barnSteg.spørsmål.harBarn': 'Stemmer informasjonen om {antallBarn, plural, one {barnet} other {barna}}?',
+    'barnSteg.validering.ikkeSvart': 'Du må svare på om informasjonen stemmer',
+    'barnSteg.opplysninger.info.tittel': 'Vi henter opplysninger fra folkeregisteret',
+    'barnSteg.opplysninger.info.text':
+        'Du må være registrert som forelder med foreldreansvar i Folkeregisteret for å ha rett på barnetillegg. Hvis du mener opplysningene fra Folkeregisteret er feil, må du ta <Lenke>kontakt med Skatteetaten</Lenke>. Hos Skatteetaten kan du registrere foreldreansvar.',
+    'barnSteg.barnInfo.ingenBarn': 'Vi har ikke registrert at du har barn.',
+
+    /** OppsummeringSteg */
+    'oppsummeringSteg.tittel': 'Oppsummering',
+    'oppsummeringSteg.startdato': 'Startdato',
+    'oppsummeringSteg.kontonummer.tittel': 'Kontonummer for utbetaling',
+    'oppsummeringSteg.kontonummer.ingenKontonummer.tittel': 'Kontonummer for utbetaling',
+    'oppsummeringSteg.kontonummer.ingenKontonummer.tekst': 'Vi har ikke registrert noe kontonummer på deg.',
+    'oppsummeringSteg.barn.tittel': 'Barn',
+    'oppsummeringSteg.bekreft.hiddenLegend': 'Bekreft opplysninger',
+    'oppsummeringSteg.bekreft.tekst':
+        'Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om ungdomsprogram\u00ADytelsen.',
+    'oppsummeringSteg.bekreft.validering.bekreftIkkeValgt': 'Du må bekrefte at opplysningene er riktige',
+    'oppsummeringSteg.søknadIkkeGyldig':
+        'Det mangler opplysninger i søknaden din. Vennligst gå tilbake og fyll ut de nødvendige feltene.',
 };

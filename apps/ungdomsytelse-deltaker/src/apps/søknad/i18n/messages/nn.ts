@@ -1,3 +1,3 @@
 export const ungSoknadMessages_nn = {
-    'soknad.title': 'Søknad om ungdomsprogramytelsen',
+    'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
 };

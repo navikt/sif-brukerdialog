@@ -28,7 +28,7 @@ const VelkommenPage = () => {
     };
 
     return (
-        <DefaultPageLayout documentTitle={text('soknad.title')}>
+        <DefaultPageLayout documentTitle={text('søknad.tittel')}>
             <VStack gap="8">
                 <SøknadHeader />
 
