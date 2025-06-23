@@ -2,14 +2,12 @@ import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-proses
 import { BekreftelseOppgave, DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
-enum LogInfoType {
-    SØKNAD_SENDT = 'søknadSendt',
-    DELTAKELSE_META = 'deltakelseMeta',
-    OPPGAVEBEKREFTELSE = 'oppgaveBekreftelse',
+export enum LogMetaInfoType {
+    UNG_SØKNAD_SENDT = 'ungSøknadSendt',
+    UNG_OPPGAVEBEKREFTELSE_SENDT = 'ungOppgaveBekreftelseSendt',
 }
 
 type DeltakelsePeriodeMeta = {
-    type: LogInfoType;
     harSøkt: boolean;
     harStartet: boolean;
     erAvsluttet: boolean;
@@ -35,7 +33,6 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
 
     const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
     return {
-        type: LogInfoType.DELTAKELSE_META,
         harSøkt,
         harStartet,
         erAvsluttet,
@@ -83,7 +80,6 @@ const getSøknadInnsendingMeta = (
 ) => {
     const meta = getDeltakelsePeriodeMeta(deltakelse);
     return {
-        type: LogInfoType.SØKNAD_SENDT,
         harBarn: antallBarn > 0,
         barnStemmer,
         harKontonummer,
@@ -99,7 +95,6 @@ const getSøknadInnsendingMeta = (
 
 export const getOppgaveBekreftelseMeta = (oppgave: BekreftelseOppgave, uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
     return {
-        type: LogInfoType.OPPGAVEBEKREFTELSE,
         bekreftelse: oppgave.oppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
         harUttalelse: uttalelse.harUttalelse,

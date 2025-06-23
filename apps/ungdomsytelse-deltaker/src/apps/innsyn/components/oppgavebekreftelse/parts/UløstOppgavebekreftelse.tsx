@@ -8,7 +8,7 @@ import { useAnalyticsInstance } from '../../../../../utils/analytics';
 import { AppRoutes } from '../../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
-import { logUtils } from '../../../utils/logUtils';
+import { LogMetaInfoType, logUtils } from '../../../utils/logUtils';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
@@ -23,7 +23,7 @@ interface Props {
 const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: Props) => {
     const [visKvittering, setVisKvittering] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { logInfo } = useAnalyticsInstance();
+    const { logEvent } = useAnalyticsInstance();
 
     const alertRef = useRef<HTMLDivElement>(null);
     const prevVisKvittering = usePrevious(visKvittering);
@@ -36,7 +36,10 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
 
     const handleOnSuccess = (uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
         setVisKvittering(true);
-        logInfo(logUtils.getOppgaveBekreftelseMeta(oppgave, { harUttalelse: uttalelse.harUttalelse }));
+        logEvent(
+            LogMetaInfoType.UNG_OPPGAVEBEKREFTELSE_SENDT,
+            logUtils.getOppgaveBekreftelseMeta(oppgave, { harUttalelse: uttalelse.harUttalelse }),
+        );
     };
 
     return (
