@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 export const ungSoknadMessages_nb = {
     'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
+    'søknad.tittel.shy': 'Søknad om ungdoms\u00ADprogram\u00ADytelsen',
 
     'personopplysninger.accordion.header': 'Om hvordan vi innhenter opplysninger om deg',
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
@@ -26,6 +27,12 @@ export const ungSoknadMessages_nb = {
     'søknadApp.forrigeSteg.label': 'Forrige steg',
     'søknadApp.avbrytSøknad.label': 'Avbryt søknad',
     'søknadApp.sendSøknad.label': 'Send søknad',
+
+    'søknadApp.slettSøknad.tittel': 'Slett søknad',
+    'søknadApp.slettSøknad.ja.label': 'Ja, slett',
+    'søknadApp.slettSøknad.nei.label': 'Nei',
+    'søknadApp.slettSøknad.spm': 'Ønsker du å slette søknaden?',
+    'søknadApp.slettSøknad.tekst': 'Informasjonen du har fylt ut blir slettet, og du kommer tilbake til velkomstsiden.',
 
     /** VelkommenPage */
     'velkommenPage.startSøknad': 'Start søknad',
@@ -99,7 +106,7 @@ export const ungSoknadMessages_nb = {
     'oppsummeringSteg.barn.tittel': 'Barn',
     'oppsummeringSteg.bekreft.hiddenLegend': 'Bekreft opplysninger',
     'oppsummeringSteg.bekreft.tekst':
-        'Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om ungdomsprogram\u00ADytelsen.',
+        'Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om ungdoms\u00ADprogram\u00ADytelsen.',
     'oppsummeringSteg.bekreft.validering.bekreftIkkeValgt': 'Du må bekrefte at opplysningene er riktige',
     'oppsummeringSteg.søknadIkkeGyldig':
         'Det mangler opplysninger i søknaden din. Vennligst gå tilbake og fyll ut de nødvendige feltene.',
