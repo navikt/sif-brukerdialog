@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
 /* eslint-disable no-console */
@@ -6,33 +5,20 @@ import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
-import { logUtils } from '../../apps/innsyn/utils/logUtils';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
-import { useAnalyticsInstance } from '../../utils/analytics';
 import { AppRoutes } from '../../utils/AppRoutes';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
-    const { logInfo } = useAnalyticsInstance();
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-
-    useEffect(() => {
-        if (!isLoading && !error && søker.data && deltakelsePerioder.data) {
-            if (deltakelsePerioder.data.length === 1) {
-                if (logInfo) {
-                    logInfo(logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]));
-                }
-            }
-        }
-    }, [isLoading, error, søker.data, deltakelsePerioder.data]);
 
     if (isLoading) {
         return <UngLoadingPage />;
