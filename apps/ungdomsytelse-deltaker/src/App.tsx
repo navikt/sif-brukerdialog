@@ -50,7 +50,7 @@ function App() {
                 <AnalyticsProvider
                     applicationKey={UngdomsytelseDeltakerApp.key}
                     logToConsoleOnly={true}
-                    isActive={false}>
+                    isActive={true}>
                     <QueryClientProvider client={queryClient}>
                         <AppIntlMessageProvider>
                             <DeltakerInfoLoader />

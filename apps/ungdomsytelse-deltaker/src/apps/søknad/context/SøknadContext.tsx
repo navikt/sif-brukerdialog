@@ -1,12 +1,13 @@
 import React, { createContext, useState } from 'react';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+// import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode, formaterKontonummer, SøkYtelseOppgave } from '@navikt/ung-common';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -34,7 +35,7 @@ export const SøknadProvider = ({
 }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
-    const { logHendelse, logInfo, logSoknadStartet, logSoknadSent } = useAmplitudeInstance();
+    const { logHendelse, logInfo, logSoknadStartet, logSoknadSent } = useAnalyticsInstance();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
     const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter ? true : false);
