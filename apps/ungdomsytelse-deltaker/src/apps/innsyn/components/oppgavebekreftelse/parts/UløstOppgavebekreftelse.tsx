@@ -1,14 +1,17 @@
 import { Alert, Box, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { useEffect, useRef, useState } from 'react';
-import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
-import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import { usePrevious } from '@navikt/sif-common-hooks';
 import { useNavigate } from 'react-router-dom';
+import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { BekreftelseOppgave } from '@navikt/ung-common';
-import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
-import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { useAnalyticsInstance } from '../../../../../utils/analytics';
 import { AppRoutes } from '../../../../../utils/AppRoutes';
+import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
+import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
+import { logUtils } from '../../../utils/logUtils';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
+import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
+import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
@@ -20,9 +23,9 @@ interface Props {
 const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: Props) => {
     const [visKvittering, setVisKvittering] = useState<boolean>(false);
     const navigate = useNavigate();
+    const { logInfo } = useAnalyticsInstance();
 
     const alertRef = useRef<HTMLDivElement>(null);
-
     const prevVisKvittering = usePrevious(visKvittering);
 
     useEffect(() => {
@@ -30,6 +33,11 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
             alertRef.current.focus();
         }
     });
+
+    const handleOnSuccess = (uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
+        setVisKvittering(true);
+        logInfo(logUtils.getOppgaveBekreftelseMeta(oppgave, { harUttalelse: uttalelse.harUttalelse }));
+    };
 
     return (
         <VStack gap="6">
@@ -66,7 +74,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                     <UtalelseForm
                         harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
-                        onSuccess={() => setVisKvittering(true)}
+                        onSuccess={handleOnSuccess}
                         onCancel={() => navigate(AppRoutes.innsyn)}
                     />
                 </>

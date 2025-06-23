@@ -1,9 +1,11 @@
-import { DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BekreftelseOppgave, DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 enum LogInfoType {
     SØKNAD_SENDT = 'søknadSendt',
     DELTAKELSE_META = 'deltakelseMeta',
+    OPPGAVEBEKREFTELSE = 'oppgaveBekreftelse',
 }
 
 type DeltakelsePeriodeMeta = {
@@ -95,7 +97,17 @@ const getSøknadInnsendingMeta = (
     };
 };
 
+export const getOppgaveBekreftelseMeta = (oppgave: BekreftelseOppgave, uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
+    return {
+        type: LogInfoType.OPPGAVEBEKREFTELSE,
+        bekreftelse: oppgave.oppgavetype,
+        antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
+        harUttalelse: uttalelse.harUttalelse,
+    };
+};
+
 export const logUtils = {
     getDeltakelsePeriodeMeta,
     getSøknadInnsendingMeta,
+    getOppgaveBekreftelseMeta,
 };
