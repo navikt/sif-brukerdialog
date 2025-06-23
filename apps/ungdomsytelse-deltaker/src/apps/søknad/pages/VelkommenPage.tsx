@@ -1,14 +1,17 @@
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { AppText, useAppIntl } from '../../../i18n';
+import getLenker from '../../../utils/lenker';
+import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
+import ExternalLink from '../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
 import { Spørsmål } from '../types';
-import ExternalLink from '../components/external-link/ExternalLink';
-import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
 
 const VelkommenPage = () => {
+    const { text } = useAppIntl();
     const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
@@ -17,7 +20,7 @@ const VelkommenPage = () => {
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         if (!infoStemmer) {
-            setError('Du må bekrefte at du vil svare så riktig som du kan.');
+            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
             return;
         } else {
             startSøknad(infoStemmer);
@@ -25,7 +28,7 @@ const VelkommenPage = () => {
     };
 
     return (
-        <DefaultPageLayout documentTitle="Velkommen - Søknad om ungdomsprogramytelse">
+        <DefaultPageLayout documentTitle={text('soknad.title')}>
             <VStack gap="8">
                 <SøknadHeader />
 
@@ -34,28 +37,35 @@ const VelkommenPage = () => {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <BodyLong>
-                            Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
-                            <ExternalLink href="https://www.nav.no/endringer">
-                                Les mer om viktigheten av å gi riktige opplysninger
-                            </ExternalLink>
-                            .
+                            <AppText
+                                id="velkommenPage.infoStemmer"
+                                values={{
+                                    Lenke: (children: string) => (
+                                        <ExternalLink href={getLenker().rettOgPlikt}>{children}</ExternalLink>
+                                    ),
+                                }}
+                            />
                         </BodyLong>
 
                         <Box paddingBlock="4 8">
-                            <CheckboxGroup error={error} name="bekreftelse" legend="Bekreftelse" hideLegend={true}>
+                            <CheckboxGroup
+                                error={error}
+                                name="bekreftelse"
+                                legend={text('velkommenPage.bekreftelse.skjultLegend')}
+                                hideLegend={true}>
                                 <Checkbox
                                     value="bekrefter"
                                     onChange={(evt) => {
                                         setError(undefined);
                                         setInfoStemmer(evt.target.checked);
                                     }}>
-                                    Jeg vil svare så godt jeg kan på spørsmålene i søknaden.
+                                    <AppText id="velkommenPage.bekrefter" />
                                 </Checkbox>
                             </CheckboxGroup>
                         </Box>
 
                         <Button variant="primary" icon={<ArrowRightIcon aria-hidden />} iconPosition="right">
-                            Start søknad
+                            <AppText id="velkommenPage.startSøknad" />
                         </Button>
                     </form>
                 </div>

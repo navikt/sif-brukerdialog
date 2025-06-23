@@ -11,6 +11,7 @@ import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
 import { AppRoutes } from '../../utils/AppRoutes';
+import { useAppIntl } from '../../i18n';
 
 const SøknadApp = () => {
     const { søker, deltakelsePeriode } = useDeltakerContext();
@@ -18,6 +19,7 @@ const SøknadApp = () => {
     const navigate = useNavigate();
     const kontonummer = useKontonummer();
     const barn = useBarn();
+    const { text } = useAppIntl();
 
     const { søktTidspunkt } = deltakelsePeriode;
     useEffect(() => {
@@ -32,8 +34,7 @@ const SøknadApp = () => {
     }
 
     if (barn.isError || kontonummer.isError) {
-        const errorMessage = barn.isError ? 'Feil ved lasting av barn' : 'Feil ved lasting av kontonummer';
-        return <HentDeltakerErrorPage error={errorMessage} />;
+        return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 
     const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
