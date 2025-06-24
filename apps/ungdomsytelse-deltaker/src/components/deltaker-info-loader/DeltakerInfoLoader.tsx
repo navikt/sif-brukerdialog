@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
-/* eslint-disable no-console */
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
@@ -11,8 +10,9 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
-import { AppRoutes } from '../../utils/AppRoutes';
 import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { AppRoutes } from '../../utils/AppRoutes';
+import { logFaroError } from '../../utils/faroUtils';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -28,12 +28,16 @@ const DeltakerInfoLoader = () => {
 
     if (error) {
         logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
-        console.error('Error loading data:', søker.error, deltakelsePerioder.error);
+        logFaroError('DeltakerInfoLoader.Error', { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
         logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
+        logFaroError('DeltakerInfoLoader.ManglendeData', {
+            søker: søker.error,
+            deltakelsePerioder: deltakelsePerioder.error,
+        });
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -44,6 +48,10 @@ const DeltakerInfoLoader = () => {
 
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
+        logFaroError('DeltakerInfoLoader.FlereDeltakelser', {
+            søker: søker.error,
+            deltakelsePerioder: deltakelsePerioder.error,
+        });
         return <FlereDeltakelserPage />;
     }
 

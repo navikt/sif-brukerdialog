@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Sentry from '@sentry/react';
+import { logFaroError } from '../../utils/faroUtils';
 
 interface ErrorBoundaryProps {
     fallback?: React.ReactNode; // Tilpasset fallback-UI
@@ -41,6 +42,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         const { fallback, children } = this.props;
 
         if (hasError) {
+            logFaroError('ErrorBoundary', error);
             return (
                 fallback || (
                     <div style={{ padding: '2rem', textAlign: 'center' }}>
