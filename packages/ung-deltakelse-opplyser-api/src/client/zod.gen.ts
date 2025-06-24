@@ -254,155 +254,297 @@ export const zKontonummerDto = z.object({
     kontonummer: z.string().optional(),
 });
 
-export const zEndreStartdatoData = zEndrePeriodeDatoDto;
-
-export const zEndreStartdatoParameterDeltakelseId = z.string().uuid();
+export const zEndreStartdatoData = z.object({
+    body: zEndrePeriodeDatoDto,
+    headers: z.never().optional(),
+    path: z.object({
+        deltakelseId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zEndreStartdatoResponse = zDeltakelseDto;
 
-export const zEndreSluttdatoData = zEndrePeriodeDatoDto;
-
-export const zEndreSluttdatoParameterDeltakelseId = z.string().uuid();
+export const zEndreSluttdatoData = z.object({
+    body: zEndrePeriodeDatoDto,
+    headers: z.never().optional(),
+    path: z.object({
+        deltakelseId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zEndreSluttdatoResponse = zDeltakelseDto;
 
-export const zMeldUtDeltakerData = zDeltakelseUtmeldingDto;
-
-export const zMeldUtDeltakerParameterDeltakelseId = z.string().uuid();
+export const zMeldUtDeltakerData = z.object({
+    body: zDeltakelseUtmeldingDto,
+    headers: z.never().optional(),
+    path: z.object({
+        deltakelseId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
-export const zMarkerDeltakelseSomSøktParameterId = z.string().uuid();
+export const zMarkerDeltakelseSomSøktData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        id: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
-export const zMeldInnDeltakerData = zDeltakelseInnmeldingDto;
+export const zMeldInnDeltakerData = z.object({
+    body: zDeltakelseInnmeldingDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
-export const zHentAlleDeltakelserGittDeltakerAktørData = zAktørIdDto;
+export const zHentAlleDeltakelserGittDeltakerAktørData = z.object({
+    body: zAktørIdDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakelseOpplysningerDto;
 
-export const zHentDeltakerInfoGittDeltakerData = zDeltakerDto;
+export const zHentDeltakerInfoGittDeltakerData = z.object({
+    body: zDeltakerDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
-export const zUtløperOppgaveData = z.string().uuid();
+export const zUtløperOppgaveData = z.object({
+    body: z.string().uuid(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zUtløperOppgaveForTypeOgPeriodeData = zSettTilUtløptDto;
+export const zUtløperOppgaveForTypeOgPeriodeData = z.object({
+    body: zSettTilUtløptDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zOpprettOppgaveForKontrollAvRegisterinntektData = zRegisterInntektOppgaveDto;
+export const zOpprettOppgaveForKontrollAvRegisterinntektData = z.object({
+    body: zRegisterInntektOppgaveDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zOppgaveDto;
 
-export const zOpprettOppgaveForInntektsrapporteringData = zInntektsrapporteringOppgaveDto;
+export const zOpprettOppgaveForInntektsrapporteringData = z.object({
+    body: zInntektsrapporteringOppgaveDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zOpprettOppgaveForInntektsrapporteringResponse = zOppgaveDto;
 
-export const zOpprettOppgaveForEndretStartdatoData = zEndretStartdatoOppgaveDto;
+export const zOpprettOppgaveForEndretStartdatoData = z.object({
+    body: zEndretStartdatoOppgaveDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zOpprettOppgaveForEndretStartdatoResponse = zOppgaveDto;
 
-export const zOpprettOppgaveForEndretSluttdatoData = zEndretSluttdatoOppgaveDto;
+export const zOpprettOppgaveForEndretSluttdatoData = z.object({
+    body: zEndretSluttdatoOppgaveDto,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zOpprettOppgaveForEndretSluttdatoResponse = zOppgaveDto;
 
-export const zAvbrytOppgaveData = z.string().uuid();
+export const zAvbrytOppgaveData = z.object({
+    body: z.string().uuid(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zHentAlleDeltakelserGittDeltakerIdParameterDeltakerId = z.string().uuid();
+export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        deltakerId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
-export const zDeltakelseHistorikkParameterDeltakelseId = z.string().uuid();
+export const zDeltakelseHistorikkData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        deltakelseId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
-export const zHentDeltakerInfoGittDeltakerIdParameterId = z.string().uuid();
+export const zHentDeltakerInfoGittDeltakerIdData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        id: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
+export const zHentKontonummerData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
+
 /**
  * OK
  */
 export const zHentKontonummerResponse = zKontonummerDto;
 
-export const zHentDeltakersOppgaveParameterOppgaveReferanse = z.string().uuid();
+export const zHentDeltakersOppgaveData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        oppgaveReferanse: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomLøstParameterOppgaveReferanse = z.string().uuid();
+export const zMarkerOppgaveSomLøstData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        oppgaveReferanse: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomLukketParameterOppgaveReferanse = z.string().uuid();
+export const zMarkerOppgaveSomLukketData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        oppgaveReferanse: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
 
-export const zMarkerOppgaveSomÅpnetParameterOppgaveReferanse = z.string().uuid();
+export const zMarkerOppgaveSomÅpnetData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        oppgaveReferanse: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
 
+export const zHentAlleMineDeltakelserData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
+
 /**
  * OK
  */
 export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelseKomposittDto);
 
-export const zFjernFraProgramParameterDeltakerId = z.string().uuid();
+export const zFjernFraProgramData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        deltakerId: z.string().uuid(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * No Content
