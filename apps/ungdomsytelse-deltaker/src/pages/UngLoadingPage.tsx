@@ -3,7 +3,7 @@ import DefaultPageLayout from '../apps/innsyn/pages/layout/DefaultPageLayout';
 
 const UngLoadingPage = () => {
     return (
-        <DefaultPageLayout documentTitle="Ungdomsprogramytelsen - henter informasjon">
+        <DefaultPageLayout documentTitle="Ungdomsprogramytelsen">
             <VStack align="center" justify="center" marginBlock="10">
                 <Loader size="3xlarge" />
             </VStack>
