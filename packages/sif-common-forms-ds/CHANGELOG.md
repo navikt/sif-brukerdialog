@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 19.0.11
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/sif-common-formik-ds@2.4.10
+    - @navikt/sif-common-core-ds@10.2.12
+    - @navikt/sif-common-ui@0.9.13
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
 ## 19.0.10
 
 ### Patch Changes
@@ -171,7 +183,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN
@@ -299,7 +310,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -307,7 +317,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 
@@ -686,7 +695,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss
@@ -721,7 +729,6 @@
 ### Major Changes
 
 - 0bb2df0: Endre utenlandsopphold-skjema
-
     - Legge til spørsmål om barnet er med på utenlandsoppholdet
     - Endre rekkefølge på spørsmålene
     - Refactoring
@@ -876,7 +883,6 @@
 ### Minor Changes
 
 - 368badf: Legge til rette for flere språk i sif-common-forms:
-
     - AnnetBarn
     - BostedUtland
     - Ferieuttak
