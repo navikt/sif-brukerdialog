@@ -32,10 +32,7 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
 
-    app.get('*', async (request, response) => {
-        if (request.path.includes('dist')) {
-            return response.sendFile(path.resolve('./public', request.path));
-        }
+    app.get('*', async (_request, response) => {
         return response.send(renderedHtml);
     });
 };
