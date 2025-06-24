@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+
 ## 0.28.7
 
 ### Patch Changes

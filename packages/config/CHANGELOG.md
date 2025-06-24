@@ -1,5 +1,11 @@
 # config
 
+## 0.11.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+
 ## 0.11.1
 
 ### Patch Changes
