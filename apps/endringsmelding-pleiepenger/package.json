@@ -83,7 +83,7 @@
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",
         "react-responsive": "10.0.1",
-        "storybook": "9.0.12",
+        "storybook": "9.0.13",
         "storybook-addon-mock": "5.0.0",
         "tailwindcss": "4.1.10",
         "typescript": "5.8.3",
