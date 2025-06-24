@@ -4,17 +4,7 @@ import { Helmet } from 'react-helmet';
 
 const MAX_AWAIT_TIME = 500;
 
-export enum SIFCommonPageKey {
-    'velkommen' = 'velkommen',
-    'kvittering' = 'kvittering',
-    'feilside' = 'feilside',
-    'intro' = 'intro',
-    'ikkeTilgang' = 'ikkeTilgang',
-    'ikkeTilgjengelig' = 'ikkeTilgjengelig',
-}
-
 export enum AnalyticsEvents {
-    'applikasjonStartet' = 'applikasjon-startet',
     'skjemaStartet' = 'skjema startet',
     'skjemaSendt' = 'skjema fullført',
     'skjemaFeilet' = 'skjemainnsending feilet',
@@ -23,28 +13,19 @@ export enum AnalyticsEvents {
     'apiError' = 'api-error',
 }
 
-export enum SIFCommonGeneralEvents {
-    'vedleggSlettet' = 'vedleggSlettet',
-    'vedleggLastetOpp' = 'vedleggLastetOpp',
-}
-
 export enum ApplikasjonHendelse {
-    'brukerSendesTilLoggInn' = 'brukerSendesTilLoggInn',
-    'vedleggOpplastingFeilet' = 'vedleggOpplastingFeilet',
-    'starterMedMellomlagring' = 'starterMedMellomlagring',
-    'ugyldigMellomlagring' = 'ugyldigMellomlagring',
     'avbryt' = 'avbryt',
     'fortsettSenere' = 'fortsettSenere',
-    'innloggetBrukerErEndret' = 'innloggetBrukerErEndret',
+    'erIkkeDeltaker' = 'erIkkeDeltaker',
+    'harFlereDeltakelser' = 'harFlereDeltakelser',
 }
 
 export enum ApiError {
     'oppstartsinfo' = 'oppstartsinfo',
     'søkerinfo' = 'søkerinfo',
-    'arbeidsgiver' = 'arbeidsgiver',
+    'deltakelsePeriode' = 'deltakelsePeriode',
     'barn' = 'barn',
-    'vedlegg' = 'vedlegg',
-    'mellomlagring' = 'mellomlagring',
+    'kontonummer' = 'kontonummer',
 }
 
 interface Props {
@@ -86,7 +67,7 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         registerAnalytics();
     }
 
-    async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
+    async function logEvent(eventName: string, eventProperties?: EventProperties) {
         const logger = getAnalyticsInstance('dekoratoren');
         if (isActive && logger) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
@@ -147,13 +128,6 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         return logEvent(AnalyticsEvents.applikasjonInfo, details);
     }
 
-    async function logUserLoggedOut(info: string) {
-        return logEvent(AnalyticsEvents.applikasjonHendelse, {
-            hendelse: ApplikasjonHendelse.brukerSendesTilLoggInn,
-            info,
-        });
-    }
-
     return {
         logEvent,
         logSoknadStartet,
@@ -162,6 +136,5 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         logHendelse,
         logInfo,
         logApiError,
-        logUserLoggedOut,
     };
 });

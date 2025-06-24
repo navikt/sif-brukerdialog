@@ -64,7 +64,7 @@ export const SøknadProvider = ({
         setSøknadSendt(true);
         logSoknadSent(UngdomsytelseDeltakerApp.key);
         logEvent(
-            LogMetaInfoType.UNG_SØKNAD_SENDT,
+            LogMetaInfoType.SØKNAD_SENDT,
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,

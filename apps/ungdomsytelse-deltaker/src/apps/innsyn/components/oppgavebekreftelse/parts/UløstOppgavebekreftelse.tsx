@@ -37,7 +37,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
     const handleOnSuccess = (uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
         setVisKvittering(true);
         logEvent(
-            LogMetaInfoType.UNG_OPPGAVEBEKREFTELSE_SENDT,
+            LogMetaInfoType.OPPGAVEBEKREFTELSE_SENDT,
             logUtils.getOppgaveBekreftelseMeta(oppgave, { harUttalelse: uttalelse.harUttalelse }),
         );
     };
@@ -48,7 +48,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                {tekster.sidetittel}
+                {tekster.oppgavetittel}
             </Heading>
             {visKvittering ? (
                 <>
