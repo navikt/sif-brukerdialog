@@ -791,127 +791,296 @@ export const zArbeidsgivereDto = z.object({
     frilansoppdrag: z.array(zFrilansoppdragDto).optional(),
 });
 
-export const zDeleteMellomlagringParameterYtelse = z.string();
+export const zDeleteMellomlagringData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        ytelse: z.string(),
+    }),
+    query: z.never().optional(),
+});
 
-export const zGetMellomlagringParameterYtelse = z.string();
+export const zGetMellomlagringData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        ytelse: z.string(),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zGetMellomlagringResponse = z.string();
 
-export const zCreateMellomlagringData = z.object({});
-
-export const zCreateMellomlagringParameterYtelse = z.string();
-
-export const zUpdateMellomlagringData = z.object({});
-
-export const zUpdateMellomlagringParameterYtelse = z.string();
-
-export const zLagreVedleggData = z.object({
-    vedlegg: z.string(),
+export const zCreateMellomlagringData = z.object({
+    body: z.object({}),
+    headers: z.never().optional(),
+    path: z.object({
+        ytelse: z.string(),
+    }),
+    query: z.never().optional(),
 });
 
-export const zValiderFriteksfeltData = zFriteksfelt;
+export const zUpdateMellomlagringData = z.object({
+    body: z.object({}),
+    headers: z.never().optional(),
+    path: z.object({
+        ytelse: z.string(),
+    }),
+    query: z.never().optional(),
+});
 
-export const zInnsendingUngdomsytelsesøknadData = zUngdomsytelsesøknad;
+export const zLagreVedleggData = z.object({
+    body: z
+        .object({
+            vedlegg: z.string(),
+        })
+        .optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingUngdomsytelsesøknadParameterXBrukerdialogGitSha = z.string();
+export const zValiderFriteksfeltData = z.object({
+    body: zFriteksfelt,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingUngdomsytelsesøknadParameterEnabled = z.boolean();
+export const zInnsendingUngdomsytelsesøknadData = z.object({
+    body: zUngdomsytelsesøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z
+        .object({
+            enabled: z.boolean().optional(),
+        })
+        .optional(),
+});
 
-export const zOppgavebekreftelseData = zUngdomsytelseOppgavebekreftelse;
+export const zOppgavebekreftelseData = z.object({
+    body: zUngdomsytelseOppgavebekreftelse,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z
+        .object({
+            enabled: z.boolean().optional(),
+        })
+        .optional(),
+});
 
-export const zOppgavebekreftelseParameterXBrukerdialogGitSha = z.string();
+export const zInntektrapporteringData = z.object({
+    body: zUngdomsytelseInntektsrapportering,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z
+        .object({
+            enabled: z.boolean().optional(),
+        })
+        .optional(),
+});
 
-export const zOppgavebekreftelseParameterEnabled = z.boolean();
+export const zInnsendingPleiepengerSyktBarnSøknadData = z.object({
+    body: zPleiepengerSyktBarnSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInntektrapporteringData = zUngdomsytelseInntektsrapportering;
+export const zInnsendingEndringsmeldingData = z.object({
+    body: zEndringsmelding,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInntektrapporteringParameterXBrukerdialogGitSha = z.string();
+export const zInnsendingPleiepengerILivetsSluttfaseSøknadData = z.object({
+    body: zPleiepengerILivetsSluttfaseSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInntektrapporteringParameterEnabled = z.boolean();
-
-export const zInnsendingPleiepengerSyktBarnSøknadData = zPleiepengerSyktBarnSøknad;
-
-export const zInnsendingPleiepengerSyktBarnSøknadParameterXBrukerdialogGitSha = z.string();
-
-export const zInnsendingEndringsmeldingData = zEndringsmelding;
-
-export const zInnsendingEndringsmeldingParameterXBrukerdialogGitSha = z.string();
-
-export const zInnsendingPleiepengerILivetsSluttfaseSøknadData = zPleiepengerILivetsSluttfaseSøknad;
-
-export const zInnsendingPleiepengerILivetsSluttfaseSøknadParameterXBrukerdialogGitSha = z.string();
-
-export const zLagPdfData = zFamiliePdfPostRequest;
+export const zLagPdfData = z.object({
+    body: zFamiliePdfPostRequest,
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zLagPdfResponse = z.string();
 
-export const zInnsendingOpplæringspengerSøknadData = zOpplæringspengerSøknad;
+export const zInnsendingOpplæringspengerSøknadData = z.object({
+    body: zOpplæringspengerSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOpplæringspengerSøknadParameterXBrukerdialogGitSha = z.string();
+export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadData = z.object({
+    body: zOmsorgspengerKroniskSyktBarnSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadData = zOmsorgspengerKroniskSyktBarnSøknad;
+export const zInnsendingOmsorgspengerutbetalingSnfSøknadData = z.object({
+    body: zOmsorgspengerutbetalingSnfSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadParameterXBrukerdialogGitSha = z.string();
+export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = z.object({
+    body: zOmsorgspengerutbetalingArbeidstakerSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerutbetalingSnfSøknadData = zOmsorgspengerutbetalingSnfSøknad;
+export const zInnsendingOmsorgspengerMidlertidigAleneSøknadData = z.object({
+    body: zOmsorgspengerMidlertidigAleneSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerutbetalingSnfSøknadParameterXBrukerdialogGitSha = z.string();
+export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = z.object({
+    body: zOmsorgsdagerAleneOmOmsorgenSøknad,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = zOmsorgspengerutbetalingArbeidstakerSøknad;
+export const zInnsendingEttersendelseData = z.object({
+    body: zEttersendelse,
+    headers: z
+        .object({
+            'X-Brukerdialog-Git-Sha': z.string(),
+        })
+        .optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
-export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadParameterXBrukerdialogGitSha = z.string();
-
-export const zInnsendingOmsorgspengerMidlertidigAleneSøknadData = zOmsorgspengerMidlertidigAleneSøknad;
-
-export const zInnsendingOmsorgspengerMidlertidigAleneSøknadParameterXBrukerdialogGitSha = z.string();
-
-export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = zOmsorgsdagerAleneOmOmsorgenSøknad;
-
-export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadParameterXBrukerdialogGitSha = z.string();
-
-export const zInnsendingEttersendelseData = zEttersendelse;
-
-export const zInnsendingEttersendelseParameterXBrukerdialogGitSha = z.string();
-
-export const zSlettVedleggParameterVedleggId = z.string().min(1);
+export const zSlettVedleggData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        vedleggId: z.string().min(1),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * No Content
  */
 export const zSlettVedleggResponse = z.void();
 
-export const zHentVedleggParameterVedleggId = z.string().min(1);
+export const zHentVedleggData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.object({
+        vedleggId: z.string().min(1),
+    }),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentVedleggResponse = z.string();
 
+export const zHentSøkerData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
+
 /**
  * OK
  */
 export const zHentSøkerResponse = zSøker;
+
+export const zHentBarnData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.never().optional(),
+});
 
 /**
  * OK
  */
 export const zHentBarnResponse = zBarnOppslagListe;
 
-export const zHentArbeidsgivereParameterFraOgMed = z.string();
-
-export const zHentArbeidsgivereParameterTilOgMed = z.string();
-
-export const zHentArbeidsgivereParameterInkluderAlleAnsettelsesperioder = z.boolean();
-
-export const zHentArbeidsgivereParameterFrilansoppdrag = z.boolean().default(false);
-
-export const zHentArbeidsgivereParameterPrivateArbeidsgivere = z.boolean().default(false);
+export const zHentArbeidsgivereData = z.object({
+    body: z.never().optional(),
+    headers: z.never().optional(),
+    path: z.never().optional(),
+    query: z.object({
+        fra_og_med: z.string(),
+        til_og_med: z.string(),
+        inkluderAlleAnsettelsesperioder: z.boolean().optional(),
+        frilansoppdrag: z.boolean().optional().default(false),
+        private_arbeidsgivere: z.boolean().optional().default(false),
+    }),
+});
 
 /**
  * OK
