@@ -68,11 +68,4 @@ export default defineConfig({
         outDir: './dist-demo',
         emptyOutDir: true,
     },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
-    },
 });
