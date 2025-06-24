@@ -37,7 +37,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
     const handleOnSuccess = (uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
         setVisKvittering(true);
         logEvent(
-            LogMetaInfoType.UNG_OPPGAVEBEKREFTELSE_SENDT,
+            LogMetaInfoType.OPPGAVEBEKREFTELSE_SENDT,
             logUtils.getOppgaveBekreftelseMeta(oppgave, { harUttalelse: uttalelse.harUttalelse }),
         );
     };

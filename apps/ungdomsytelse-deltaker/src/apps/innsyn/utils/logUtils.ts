@@ -3,8 +3,9 @@ import { BekreftelseOppgave, DeltakelsePeriode, OppgaveStatus, Oppgavetype } fro
 import dayjs from 'dayjs';
 
 export enum LogMetaInfoType {
-    UNG_SØKNAD_SENDT = 'ungSøknadSendt',
-    UNG_OPPGAVEBEKREFTELSE_SENDT = 'ungOppgaveBekreftelseSendt',
+    SØKNAD_SENDT = 'søknad sendt',
+    OPPGAVEBEKREFTELSE_SENDT = 'oppgavebekreftelse sendt',
+    INNTEKT_RAPPORTERT = 'inntekt rapportert',
 }
 
 type DeltakelsePeriodeMeta = {
