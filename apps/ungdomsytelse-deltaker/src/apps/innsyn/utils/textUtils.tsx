@@ -169,3 +169,7 @@ export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
             return null;
     }
 };
+
+export const getDokumentTittel = (sidetittel: string) => {
+    return `${sidetittel} - Din ungdomsprogramytelse`;
+};
