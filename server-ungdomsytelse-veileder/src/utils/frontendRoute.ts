@@ -43,7 +43,10 @@ export const setupAndServeHtml = async (app: Express) => {
         response.json({});
     });
 
-    app.get(/^\/(?!.*dist).*$/, async (request, response) => {
+    app.get('*', async (request, response) => {
+        if (request.path.includes('dist')) {
+            return response.sendFile(path.resolve('./public', request.path));
+        }
         const token = getToken(request);
         let userInfo = {};
         if (token) {
