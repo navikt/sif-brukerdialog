@@ -48,7 +48,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                {tekster.sidetittel}
+                {tekster.oppgavetittel}
             </Heading>
             {visKvittering ? (
                 <>

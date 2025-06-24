@@ -16,7 +16,7 @@ export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave }: Props) => 
     const oppsummering = getOppgaveOppsummering(oppgave);
 
     return (
-        <DefaultPageLayout documentTitle={`${tekster.oppgavetittel} - Din ungdomsprogramytelse`}>
+        <DefaultPageLayout documentTitle={`${tekster.sidetittel} - Din ungdomsprogramytelse`}>
             <Oppgavebekreftelse
                 tekster={tekster}
                 oppsummering={oppsummering}
