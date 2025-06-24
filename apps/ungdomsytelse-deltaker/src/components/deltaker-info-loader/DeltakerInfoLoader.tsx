@@ -12,6 +12,7 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
+import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -19,25 +20,30 @@ const DeltakerInfoLoader = () => {
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
+    const { logApiError, logHendelse } = useAnalyticsInstance();
 
     if (isLoading) {
         return <UngLoadingPage />;
     }
 
     if (error) {
+        logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
         console.error('Error loading data:', søker.error, deltakelsePerioder.error);
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
+        logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
     if (deltakelsePerioder.data.length === 0) {
+        logHendelse(ApplikasjonHendelse.erIkkeDeltaker);
         return <IngenDeltakelsePage />;
     }
 
     if (deltakelsePerioder.data.length > 1) {
+        logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
         return <FlereDeltakelserPage />;
     }
 
