@@ -38,10 +38,7 @@ export const appEnvSchema = z
         [AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_ENDRE_KONTONUMMER]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_SKRIV_TIL_OSS]: z.string(),
-        [AppEnvKey.SIF_PUBLIC_USE_FARO]: z
-            .union([z.boolean(), z.string()])
-            .optional()
-            .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
+        [AppEnvKey.SIF_PUBLIC_USE_FARO]: z.string().optional(),
         [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
     })
     .merge(commonEnvSchema)

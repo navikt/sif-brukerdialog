@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-common';
-/* eslint-disable no-console */
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
+import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
@@ -10,49 +10,48 @@ import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
+import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { AppRoutes } from '../../utils/AppRoutes';
-import AppRouter from '../../AppRouter';
-import { useEffect } from 'react';
-import { logUtils } from '../../apps/innsyn/utils/logUtils';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { logFaroError } from '../../utils/faroUtils';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
-    const amp = useAmplitudeInstance();
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-
-    useEffect(() => {
-        if (!isLoading && !error && søker.data && deltakelsePerioder.data) {
-            if (deltakelsePerioder.data.length === 1) {
-                const meta = logUtils.getDeltakelsePeriodeMeta(deltakelsePerioder.data[0]);
-                if (amp.logInfo) {
-                    amp.logInfo(meta);
-                }
-            }
-        }
-    }, [isLoading, error, søker.data, deltakelsePerioder.data]);
+    const { logApiError, logHendelse } = useAnalyticsInstance();
 
     if (isLoading) {
         return <UngLoadingPage />;
     }
 
     if (error) {
-        console.error('Error loading data:', søker.error, deltakelsePerioder.error);
+        logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
+        logFaroError('DeltakerInfoLoader.Error', { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
+        logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
+        logFaroError('DeltakerInfoLoader.ManglendeData', {
+            søker: søker.error,
+            deltakelsePerioder: deltakelsePerioder.error,
+        });
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
     if (deltakelsePerioder.data.length === 0) {
+        logHendelse(ApplikasjonHendelse.erIkkeDeltaker);
         return <IngenDeltakelsePage />;
     }
 
     if (deltakelsePerioder.data.length > 1) {
+        logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
+        logFaroError('DeltakerInfoLoader.FlereDeltakelser', {
+            søker: søker.error,
+            deltakelsePerioder: deltakelsePerioder.error,
+        });
         return <FlereDeltakelserPage />;
     }
 

@@ -41,9 +41,7 @@ const LøstOppgavebekreftelse = ({ tekster, bekreftelse, oppsummering, oppgave }
 
             {/* Kan oppstå hvis bruker går direkte inn på en besvart oppgave etter å ha send inn svar */}
             {oppgave.status === OppgaveStatus.LØST && !bekreftelse ? (
-                <Alert variant="info" size="small">
-                    Informasjon om hva du svarte er ikke tilgjengelig enda. Du kan prøve å laste siden inn på nytt.
-                </Alert>
+                <Alert variant="info">Informasjon om hva du svarte er ikke tilgjengelig enda.</Alert>
             ) : null}
 
             <OppgaveStatusInfo oppgaveStatus={oppgave.status} />

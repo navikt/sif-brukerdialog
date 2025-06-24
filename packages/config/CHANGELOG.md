@@ -1,5 +1,11 @@
 # config
 
+## 0.11.1
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
 ## 0.11.0
 
 ### Minor Changes

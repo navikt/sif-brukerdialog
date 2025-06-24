@@ -1,6 +1,7 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import RapporterInntektOppgave from './parts/RapporterInntektOppgave';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
+import { getDokumentTittel } from '../../utils/textUtils';
 
 interface Props {
     deltakerNavn: string;
@@ -10,7 +11,9 @@ interface Props {
 const RapporterInntektOppgavePage = ({ oppgave, deltakerNavn }: Props) => {
     return (
         <DefaultPageLayout
-            documentTitle={`Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)} - Din ungdomsprogramytelse`}>
+            documentTitle={getDokumentTittel(
+                `Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)}`,
+            )}>
             <RapporterInntektOppgave oppgave={oppgave} deltakerNavn={deltakerNavn} />
         </DefaultPageLayout>
     );

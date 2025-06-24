@@ -1,5 +1,18 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.13
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/sif-common-soknad-ds@24.0.11
+    - @navikt/sif-common-forms-ds@19.0.11
+    - @navikt/sif-common-core-ds@10.2.12
+    - @navikt/sif-common-api@0.4.10
+    - @navikt/sif-common-ui@0.9.13
+    - @navikt/ung-common@0.0.9
+
 ## 0.6.12
 
 ### Patch Changes
@@ -199,7 +212,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN
@@ -317,7 +329,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -325,7 +336,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 

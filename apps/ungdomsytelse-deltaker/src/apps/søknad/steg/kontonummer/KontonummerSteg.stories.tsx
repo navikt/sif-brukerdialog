@@ -25,3 +25,12 @@ type Story = StoryObj;
 export const Kontonummer: Story = {
     render: () => <KontonummerSteg />,
 };
+export const UtenKontonummer: Story = {
+    render: () => <KontonummerSteg />,
+    decorators: [
+        (Story) =>
+            withSøknadContext(Story, {
+                kontonummerInfo: { harKontonummer: false },
+            }),
+    ],
+};

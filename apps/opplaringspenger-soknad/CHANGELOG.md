@@ -1,5 +1,21 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.0.15
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/sif-common-formik-ds@2.4.10
+    - @navikt/sif-common-soknad-ds@24.0.11
+    - @navikt/sif-common-forms-ds@19.0.11
+    - @navikt/sif-common-core-ds@10.2.12
+    - @navikt/sif-common-ui@0.9.13
+    - @navikt/sif-common-amplitude@2.28.4
+    - @navikt/sif-common-sentry@0.28.7
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
 ## 1.0.14
 
 ### Patch Changes
@@ -270,7 +286,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN

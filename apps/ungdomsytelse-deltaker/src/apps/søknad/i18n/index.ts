@@ -7,7 +7,6 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     ...ungSoknadMessages_nn,
-    ...ungSoknadMessages_nb, // TODO - fjerne når all tekst er oversatt
 };
 export const ungSoknadMessages = {
     nb,

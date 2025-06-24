@@ -6,18 +6,18 @@ import { getRequiredEnv } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import AppRoutes from './AppRoutes';
 import AppHeader from './components/app-header/AppHeader';
+import { DrawerProvider } from './components/drawer/DrawerContext';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
+import DrawerArticles from './pages/info-page/DrawerArticles';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import { DrawerProvider } from './components/drawer/DrawerContext';
-import DrawerArticles from './pages/info-page/DrawerArticles';
 
 const queryClient = new QueryClient();
 
