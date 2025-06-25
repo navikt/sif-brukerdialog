@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
 import { KorrigertInntektOppgave } from '@navikt/ung-common';
@@ -22,25 +22,13 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                 repellat alias sit? Ab.
             </BodyLong>
 
-            <VStack gap="1">
-                {arbeidOgFrilansInntekter.length > 0 ? (
-                    <InntektTabell
-                        inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
-                        header="Arbeidsgiver/frilans"
-                    />
-                ) : (
-                    <>Ingen ytelser i perioden</>
-                )}
-            </VStack>
+            <InntektTabell
+                inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
+                header="Arbeidsgiver/frilans"
+            />
 
-            {ytelseInntekter.length > 0 ? (
-                <VStack gap="4">
-                    <Heading level="3" size="xsmall">
-                        Ytelser
-                    </Heading>
-                    <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
-                </VStack>
-            ) : null}
+            <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
+
             <BodyLong>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. veniam, nam repudiandae similique quasi unde
                 dolorem sit repellendus!
