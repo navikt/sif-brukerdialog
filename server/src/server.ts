@@ -1,13 +1,13 @@
 import express from 'express';
 import path from 'node:path';
-import { configureReverseProxyApi } from './utils/reverseProxy.js';
-import { verifyToken } from './utils/tokenValidation.js';
 import { setupActuators } from './utils/actuators.js';
 import { errorHandling } from './utils/errorHandler.js';
 import { setupAndServeHtml } from './utils/frontendRoute.js';
 import logger from './utils/log.js';
+import { configureReverseProxyApi } from './utils/reverseProxy.js';
 import serverConfig from './utils/serverConfig.js';
 import { setupServerDefaults } from './utils/serverSetup.js';
+import { verifyToken } from './utils/tokenValidation.js';
 
 const server = express();
 

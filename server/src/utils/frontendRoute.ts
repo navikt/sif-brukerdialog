@@ -1,21 +1,23 @@
 import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
-import cookieParser from 'cookie-parser';
-import { Express, Response } from 'express';
+import { Router } from 'express';
 import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
 import config from './serverConfig.js';
 
-export const setupAndServeHtml = async (app: Express) => {
+export const setupAndServeHtml = async (router: Router) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
     const spaFilePath = path.resolve('./public', 'index.html');
 
-    // Only add vite-mode to dev environment
-    if (config.app.env === 'dev') {
-        addLocalViteServerHandlerWithDecorator(app);
-    }
+    /** Legg dekoratøren til i index.html */
+    const html = await injectDecoratorServerSide({
+        env: config.app.env,
+        filePath: spaFilePath,
+        params: {
+            simple: config.app.fullDekorator === false,
+        },
+    });
 
-    const html = await injectDecorator(spaFilePath, config.app.fullDekorator);
-
+    /** Hent ut envs som skal inn i APP_SETTINGS */
     const envs = appEnvSchema.safeParse({
         ENV: `${config.app.env}`,
         APP_VERSION: `${config.app.version}`,
@@ -32,48 +34,7 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
 
-    app.get('*', async (_request, response) => {
-        return response.send(renderedHtml);
+    router.get('*', async (_, response) => {
+        response.send(renderedHtml);
     });
 };
-
-async function injectDecorator(filePath: string, fullDecorator: boolean = false) {
-    return injectDecoratorServerSide({
-        env: config.app.env,
-        filePath,
-        params: {
-            simple: fullDecorator === false,
-        },
-    });
-}
-
-function addLocalViteServerHandlerWithDecorator(app: Express) {
-    const viteDevelopmentServerPath = path.resolve('.', 'vite-dev-server.html');
-
-    app.use(cookieParser());
-    app.get('/vite-on', (_, response) => {
-        setViteCookie(response, true);
-        return response.redirect('/');
-    });
-    app.get('/vite-off', (_, response) => {
-        setViteCookie(response, false);
-        return response.redirect('/');
-    });
-    app.get('*', async (request, response, next) => {
-        const localViteServerIsEnabled = request.cookies['use-local-vite-server'] === 'true';
-        if (localViteServerIsEnabled) {
-            const html = await injectDecorator(viteDevelopmentServerPath);
-
-            return response.send(html);
-        }
-        return next();
-    });
-}
-
-function setViteCookie(response: Response, cookieValue: boolean) {
-    response.cookie('use-local-vite-server', cookieValue, {
-        httpOnly: false,
-        secure: false,
-        sameSite: 'lax',
-    });
-}

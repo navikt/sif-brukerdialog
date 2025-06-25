@@ -1,8 +1,8 @@
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
 import { v4 as uuid } from 'uuid';
+import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
 
 type ProxyOptions = {
     ingoingUrl: string;
@@ -48,15 +48,16 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
 
             const token = getToken(request);
             if (!token) {
-                return response.status(401).send();
+                response.status(401).send();
+                return;
             }
             const obo = await requestTokenxOboToken(token, scope);
             if (obo.ok) {
                 request.headers['obo-token'] = obo.token;
-                return next();
+                next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
-                return response.status(403).send();
+                response.status(403).send();
             }
         },
         createProxyMiddleware({
