@@ -6,14 +6,15 @@ export const verifyToken = async (request: Request, response: Response, next: Ne
 
     if (!token) {
         console.error('No token found in request');
-        return response.status(401).send();
+        response.status(401).send();
+        return;
     }
 
     const validation = await validateToken(token);
     if (!validation.ok) {
         console.log('Invalid token validation', validation);
-        return response.status(403).send();
+        response.status(403).send();
     }
 
-    return next();
+    next();
 };
