@@ -3,7 +3,7 @@ import { initK9BrukerdialogProsesseringApiClient, initUngDeltakelseOpplyserApiCl
 import { getMockRequestHeaders } from '../../mock/utils/mockUtils';
 
 export const initApiClients = () => {
-    const devHeaders = import.meta.env.MODE === 'dev' ? getMockRequestHeaders() : undefined;
+    const devHeaders = ['msw', 'e2e'].includes(import.meta.env.MODE) ? getMockRequestHeaders() : undefined;
     initUngDeltakelseOpplyserApiClient({
         onUnAuthorized: () => {
             window.location.assign(getCommonEnv()[EnvKey.SIF_PUBLIC_LOGIN_URL]);

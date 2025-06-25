@@ -47,7 +47,7 @@ export const getAppSettings = (): AppEnv & { VITE: string } => ({
 });
 
 export default defineConfig({
-    mode: 'dev',
+    mode: 'msw',
     plugins: [
         tailwindcss(),
         react({

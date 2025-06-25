@@ -3,7 +3,7 @@ import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
 export async function enableMocking() {
     const ENV = getMaybeEnv('ENV');
 
-    if (ENV !== 'development' || import.meta.env.MODE === 'dev') {
+    if (ENV !== 'development' || import.meta.env.MODE !== 'msw') {
         return;
     }
 
