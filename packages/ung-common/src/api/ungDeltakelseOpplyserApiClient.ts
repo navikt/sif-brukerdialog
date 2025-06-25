@@ -5,13 +5,14 @@ import { isUnauthorized } from '.';
 
 interface InitOptions {
     onUnAuthorized?: () => void;
+    headers?: Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
 }
 
 export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
-        headers: { 'Content-type': 'application/json; charset=utf-8' },
+        headers: { 'Content-type': 'application/json; charset=utf-8', ...options?.headers },
         baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
     });
 
