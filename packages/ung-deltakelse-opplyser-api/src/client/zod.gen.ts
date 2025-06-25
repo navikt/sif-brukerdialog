@@ -35,6 +35,7 @@ export const zDeltakelseUtmeldingDto = z.object({
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
     inntekt: z.number().int(),
     arbeidsgiver: z.string(),
+    arbeidsgiverNavn: z.string().optional(),
 });
 
 export const zBekreftelseDto = z.object({
@@ -256,7 +257,6 @@ export const zKontonummerDto = z.object({
 
 export const zEndreStartdatoData = z.object({
     body: zEndrePeriodeDatoDto,
-    headers: z.never().optional(),
     path: z.object({
         deltakelseId: z.string().uuid(),
     }),
@@ -270,7 +270,6 @@ export const zEndreStartdatoResponse = zDeltakelseDto;
 
 export const zEndreSluttdatoData = z.object({
     body: zEndrePeriodeDatoDto,
-    headers: z.never().optional(),
     path: z.object({
         deltakelseId: z.string().uuid(),
     }),
@@ -284,7 +283,6 @@ export const zEndreSluttdatoResponse = zDeltakelseDto;
 
 export const zMeldUtDeltakerData = z.object({
     body: zDeltakelseUtmeldingDto,
-    headers: z.never().optional(),
     path: z.object({
         deltakelseId: z.string().uuid(),
     }),
@@ -298,7 +296,6 @@ export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
 export const zMarkerDeltakelseSomSøktData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         id: z.string().uuid(),
     }),
@@ -312,7 +309,6 @@ export const zMarkerDeltakelseSomSøktResponse = zDeltakelseKomposittDto;
 
 export const zMeldInnDeltakerData = z.object({
     body: zDeltakelseInnmeldingDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -324,7 +320,6 @@ export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
 export const zHentAlleDeltakelserGittDeltakerAktørData = z.object({
     body: zAktørIdDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -336,7 +331,6 @@ export const zHentAlleDeltakelserGittDeltakerAktørResponse = zDeltakelseOpplysn
 
 export const zHentDeltakerInfoGittDeltakerData = z.object({
     body: zDeltakerDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -348,21 +342,18 @@ export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
 export const zUtløperOppgaveData = z.object({
     body: z.string().uuid(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
 
 export const zUtløperOppgaveForTypeOgPeriodeData = z.object({
     body: zSettTilUtløptDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
 
 export const zOpprettOppgaveForKontrollAvRegisterinntektData = z.object({
     body: zRegisterInntektOppgaveDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -374,7 +365,6 @@ export const zOpprettOppgaveForKontrollAvRegisterinntektResponse = zOppgaveDto;
 
 export const zOpprettOppgaveForInntektsrapporteringData = z.object({
     body: zInntektsrapporteringOppgaveDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -386,7 +376,6 @@ export const zOpprettOppgaveForInntektsrapporteringResponse = zOppgaveDto;
 
 export const zOpprettOppgaveForEndretStartdatoData = z.object({
     body: zEndretStartdatoOppgaveDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -398,7 +387,6 @@ export const zOpprettOppgaveForEndretStartdatoResponse = zOppgaveDto;
 
 export const zOpprettOppgaveForEndretSluttdatoData = z.object({
     body: zEndretSluttdatoOppgaveDto,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -410,14 +398,12 @@ export const zOpprettOppgaveForEndretSluttdatoResponse = zOppgaveDto;
 
 export const zAvbrytOppgaveData = z.object({
     body: z.string().uuid(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
 
 export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         deltakerId: z.string().uuid(),
     }),
@@ -431,7 +417,6 @@ export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto
 
 export const zDeltakelseHistorikkData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         deltakelseId: z.string().uuid(),
     }),
@@ -445,7 +430,6 @@ export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
 export const zHentDeltakerInfoGittDeltakerIdData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         id: z.string().uuid(),
     }),
@@ -459,7 +443,6 @@ export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zHentKontonummerData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -471,7 +454,6 @@ export const zHentKontonummerResponse = zKontonummerDto;
 
 export const zHentDeltakersOppgaveData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.string().uuid(),
     }),
@@ -485,7 +467,6 @@ export const zHentDeltakersOppgaveResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomLøstData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.string().uuid(),
     }),
@@ -499,7 +480,6 @@ export const zMarkerOppgaveSomLøstResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomLukketData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.string().uuid(),
     }),
@@ -513,7 +493,6 @@ export const zMarkerOppgaveSomLukketResponse = zOppgaveDto;
 
 export const zMarkerOppgaveSomÅpnetData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         oppgaveReferanse: z.string().uuid(),
     }),
@@ -527,7 +506,6 @@ export const zMarkerOppgaveSomÅpnetResponse = zOppgaveDto;
 
 export const zHentAlleMineDeltakelserData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -539,7 +517,6 @@ export const zHentAlleMineDeltakelserResponse = z.array(zDeltakelseKomposittDto)
 
 export const zFjernFraProgramData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         deltakerId: z.string().uuid(),
     }),

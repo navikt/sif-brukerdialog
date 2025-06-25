@@ -30,7 +30,7 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Det er forskjell mellom det du har oppgitt i lønn, og det arbeidsgiveren din har rapportert til oss.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Forstår og godtar du at inntekten din er endret',
+        'Har du en tilbakemelding på inntekten som er rapportert?',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
     'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld fra om du hadde inntekt {måned}',

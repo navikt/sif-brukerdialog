@@ -793,7 +793,6 @@ export const zArbeidsgivereDto = z.object({
 
 export const zDeleteMellomlagringData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         ytelse: z.string(),
     }),
@@ -802,7 +801,6 @@ export const zDeleteMellomlagringData = z.object({
 
 export const zGetMellomlagringData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         ytelse: z.string(),
     }),
@@ -816,7 +814,6 @@ export const zGetMellomlagringResponse = z.string();
 
 export const zCreateMellomlagringData = z.object({
     body: z.object({}),
-    headers: z.never().optional(),
     path: z.object({
         ytelse: z.string(),
     }),
@@ -825,7 +822,6 @@ export const zCreateMellomlagringData = z.object({
 
 export const zUpdateMellomlagringData = z.object({
     body: z.object({}),
-    headers: z.never().optional(),
     path: z.object({
         ytelse: z.string(),
     }),
@@ -838,99 +834,84 @@ export const zLagreVedleggData = z.object({
             vedlegg: z.string(),
         })
         .optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
 
 export const zValiderFriteksfeltData = z.object({
     body: zFriteksfelt,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
 
 export const zInnsendingUngdomsytelsesøknadData = z.object({
     body: zUngdomsytelsesøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z
         .object({
             enabled: z.boolean().optional(),
         })
         .optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zOppgavebekreftelseData = z.object({
     body: zUngdomsytelseOppgavebekreftelse,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z
         .object({
             enabled: z.boolean().optional(),
         })
         .optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInntektrapporteringData = z.object({
     body: zUngdomsytelseInntektsrapportering,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z
         .object({
             enabled: z.boolean().optional(),
         })
         .optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingPleiepengerSyktBarnSøknadData = z.object({
     body: zPleiepengerSyktBarnSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingEndringsmeldingData = z.object({
     body: zEndringsmelding,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingPleiepengerILivetsSluttfaseSøknadData = z.object({
     body: zPleiepengerILivetsSluttfaseSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zLagPdfData = z.object({
     body: zFamiliePdfPostRequest,
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -942,84 +923,69 @@ export const zLagPdfResponse = z.string();
 
 export const zInnsendingOpplæringspengerSøknadData = z.object({
     body: zOpplæringspengerSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadData = z.object({
     body: zOmsorgspengerKroniskSyktBarnSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingOmsorgspengerutbetalingSnfSøknadData = z.object({
     body: zOmsorgspengerutbetalingSnfSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingOmsorgspengerutbetalingArbeidstakerSøknadData = z.object({
     body: zOmsorgspengerutbetalingArbeidstakerSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingOmsorgspengerMidlertidigAleneSøknadData = z.object({
     body: zOmsorgspengerMidlertidigAleneSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingOmsorgsdagerAleneOmOmsorgenSøknadData = z.object({
     body: zOmsorgsdagerAleneOmOmsorgenSøknad,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zInnsendingEttersendelseData = z.object({
     body: zEttersendelse,
-    headers: z
-        .object({
-            'X-Brukerdialog-Git-Sha': z.string(),
-        })
-        .optional(),
     path: z.never().optional(),
     query: z.never().optional(),
+    headers: z.object({
+        'X-Brukerdialog-Git-Sha': z.string(),
+    }),
 });
 
 export const zSlettVedleggData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         vedleggId: z.string().min(1),
     }),
@@ -1033,7 +999,6 @@ export const zSlettVedleggResponse = z.void();
 
 export const zHentVedleggData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.object({
         vedleggId: z.string().min(1),
     }),
@@ -1047,7 +1012,6 @@ export const zHentVedleggResponse = z.string();
 
 export const zHentSøkerData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -1059,7 +1023,6 @@ export const zHentSøkerResponse = zSøker;
 
 export const zHentBarnData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional(),
 });
@@ -1071,7 +1034,6 @@ export const zHentBarnResponse = zBarnOppslagListe;
 
 export const zHentArbeidsgivereData = z.object({
     body: z.never().optional(),
-    headers: z.never().optional(),
     path: z.never().optional(),
     query: z.object({
         fra_og_med: z.string(),
