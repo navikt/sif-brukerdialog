@@ -58,6 +58,6 @@ export const setupAndServeHtml = async (app: Express) => {
             }
         }
         const responseHtml = renderedHtml.replaceAll('{{{USER_INFO}}}', JSON.stringify(userInfo));
-        return response.send(responseHtml);
+        response.send(responseHtml);
     });
 };

@@ -49,15 +49,16 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
             const token = getToken(request);
             if (!token) {
                 console.error('[addProxyHandler] No token found in request');
-                return response.status(401).send();
+                response.status(401).send();
+                return;
             }
             const obo = await requestOboToken(token, scope);
             if (obo.ok) {
                 request.headers['obo-token'] = obo.token;
-                return next();
+                next();
             } else {
                 console.log('OBO-exchange failed', obo.error);
-                return response.status(403).send();
+                response.status(403).send();
             }
         },
         createProxyMiddleware({
