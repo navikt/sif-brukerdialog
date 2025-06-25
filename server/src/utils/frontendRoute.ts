@@ -27,6 +27,8 @@ export const setupAndServeHtml = async (router: Express) => {
         ...config.app.publicEnvVariables,
     });
 
+    console.log(envs);
+
     if (!envs.success) {
         console.error('Invalid environment variables:', envs.error.format());
         process.exit(1); // Exit the server if validation fails
