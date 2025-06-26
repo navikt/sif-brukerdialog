@@ -96,16 +96,21 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                 onSuccess: onDeltakelseChanged,
             },
         );
+        const logValues = {
+            deltakerErInformert: values.deltakerErInformert,
+        };
         if (variant === EndrePeriodeVariant.startdato) {
             await logAppHendelse(AppHendelse.startdatoEndret, {
                 endring: dayjs(dato).diff(deltakelse.fraOgMed, 'day'),
+                ...logValues,
             });
         } else {
             if (deltakelse.tilOgMed === undefined) {
-                await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang);
+                await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang, logValues);
             } else {
                 await logAppHendelse(AppHendelse.sluttdatoEndret, {
                     endring: dayjs(dato).diff(deltakelse.tilOgMed, 'day'),
+                    ...logValues,
                 });
             }
         }
