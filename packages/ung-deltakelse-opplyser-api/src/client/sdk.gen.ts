@@ -76,26 +76,50 @@ import type {
     FjernFraProgramErrors,
 } from './types.gen';
 import {
+    zEndreStartdatoData,
     zEndreStartdatoResponse,
+    zEndreSluttdatoData,
     zEndreSluttdatoResponse,
+    zMeldUtDeltakerData,
     zMeldUtDeltakerResponse,
+    zMarkerDeltakelseSomSøktData,
     zMarkerDeltakelseSomSøktResponse,
+    zMeldInnDeltakerData,
     zMeldInnDeltakerResponse,
+    zHentAlleDeltakelserGittDeltakerAktørData,
     zHentAlleDeltakelserGittDeltakerAktørResponse,
+    zHentDeltakerInfoGittDeltakerData,
     zHentDeltakerInfoGittDeltakerResponse,
+    zUtløperOppgaveData,
+    zUtløperOppgaveForTypeOgPeriodeData,
+    zOpprettOppgaveForKontrollAvRegisterinntektData,
     zOpprettOppgaveForKontrollAvRegisterinntektResponse,
+    zOpprettOppgaveForInntektsrapporteringData,
     zOpprettOppgaveForInntektsrapporteringResponse,
+    zOpprettOppgaveForEndretStartdatoData,
     zOpprettOppgaveForEndretStartdatoResponse,
+    zOpprettOppgaveForEndretSluttdatoData,
     zOpprettOppgaveForEndretSluttdatoResponse,
+    zAvbrytOppgaveData,
+    zHentAlleDeltakelserGittDeltakerIdData,
     zHentAlleDeltakelserGittDeltakerIdResponse,
+    zDeltakelseHistorikkData,
     zDeltakelseHistorikkResponse,
+    zHentDeltakerInfoGittDeltakerIdData,
     zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentKontonummerData,
     zHentKontonummerResponse,
+    zHentDeltakersOppgaveData,
     zHentDeltakersOppgaveResponse,
+    zMarkerOppgaveSomLøstData,
     zMarkerOppgaveSomLøstResponse,
+    zMarkerOppgaveSomLukketData,
     zMarkerOppgaveSomLukketResponse,
+    zMarkerOppgaveSomÅpnetData,
     zMarkerOppgaveSomÅpnetResponse,
+    zHentAlleMineDeltakelserData,
     zHentAlleMineDeltakelserResponse,
+    zFjernFraProgramData,
     zFjernFraProgramResponse,
 } from './zod.gen';
 import { client as _heyApiClient } from './client.gen';
@@ -125,7 +149,13 @@ export class Veileder {
         options: Options<EndreStartdatoData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<EndreStartdatoResponses, EndreStartdatoErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zEndreStartdatoData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zEndreStartdatoResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -136,9 +166,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zEndreStartdatoResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato',
             ...options,
             headers: {
@@ -155,7 +182,13 @@ export class Veileder {
         options: Options<EndreSluttdatoData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<EndreSluttdatoResponses, EndreSluttdatoErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zEndreSluttdatoData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zEndreSluttdatoResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -166,9 +199,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zEndreSluttdatoResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato',
             ...options,
             headers: {
@@ -185,7 +215,13 @@ export class Veileder {
         options: Options<MeldUtDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).put<MeldUtDeltakerResponses, MeldUtDeltakerErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zMeldUtDeltakerData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMeldUtDeltakerResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -196,9 +232,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMeldUtDeltakerResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
             ...options,
             headers: {
@@ -215,7 +248,13 @@ export class Veileder {
         options: Options<MeldInnDeltakerData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<MeldInnDeltakerResponses, MeldInnDeltakerErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zMeldInnDeltakerData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMeldInnDeltakerResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -226,9 +265,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMeldInnDeltakerResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltaker/innmelding',
             ...options,
             headers: {
@@ -249,7 +285,13 @@ export class Veileder {
             HentAlleDeltakelserGittDeltakerIdErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentAlleDeltakelserGittDeltakerIdData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -260,9 +302,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
             ...options,
         });
@@ -276,7 +315,13 @@ export class Veileder {
             DeltakelseHistorikkErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zDeltakelseHistorikkData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zDeltakelseHistorikkResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -287,9 +332,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zDeltakelseHistorikkResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
             ...options,
         });
@@ -302,6 +344,12 @@ export class Veileder {
         options: Options<FjernFraProgramData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).delete<FjernFraProgramResponses, FjernFraProgramErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zFjernFraProgramData.parseAsync(data);
+            },
+            responseValidator: async (data) => {
+                return await zFjernFraProgramResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -312,9 +360,6 @@ export class Veileder {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zFjernFraProgramResponse.parseAsync(data);
-            },
             url: '/veileder/register/deltaker/{deltakerId}/fjern',
             ...options,
         });
@@ -333,7 +378,13 @@ export class Deltakelse {
             MarkerDeltakelseSomSøktErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zMarkerDeltakelseSomSøktData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMarkerDeltakelseSomSøktResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -344,9 +395,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMarkerDeltakelseSomSøktResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
         });
@@ -363,7 +411,13 @@ export class Deltakelse {
             HentDeltakersOppgaveErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentDeltakersOppgaveData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentDeltakersOppgaveResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -374,9 +428,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentDeltakersOppgaveResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}',
             ...options,
         });
@@ -393,7 +444,13 @@ export class Deltakelse {
             MarkerOppgaveSomLøstErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zMarkerOppgaveSomLøstData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomLøstResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -404,9 +461,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomLøstResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/løst',
             ...options,
         });
@@ -423,7 +477,13 @@ export class Deltakelse {
             MarkerOppgaveSomLukketErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zMarkerOppgaveSomLukketData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomLukketResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -434,9 +494,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomLukketResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/lukk',
             ...options,
         });
@@ -453,7 +510,13 @@ export class Deltakelse {
             MarkerOppgaveSomÅpnetErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zMarkerOppgaveSomÅpnetData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -464,9 +527,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zMarkerOppgaveSomÅpnetResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/oppgave/{oppgaveReferanse}/apnet',
             ...options,
         });
@@ -483,7 +543,13 @@ export class Deltakelse {
             HentAlleMineDeltakelserErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentAlleMineDeltakelserData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentAlleMineDeltakelserResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -494,9 +560,6 @@ export class Deltakelse {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentAlleMineDeltakelserResponse.parseAsync(data);
-            },
             url: '/deltakelse/register/hent/alle',
             ...options,
         });
@@ -515,7 +578,13 @@ export class LesRegisterData {
             HentAlleDeltakelserGittDeltakerAktørErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentAlleDeltakelserGittDeltakerAktørData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentAlleDeltakelserGittDeltakerAktørResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -526,9 +595,6 @@ export class LesRegisterData {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentAlleDeltakelserGittDeltakerAktørResponse.parseAsync(data);
-            },
             url: '/register/hent/alle',
             ...options,
             headers: {
@@ -551,7 +617,13 @@ export class Oppslag {
             HentDeltakerInfoGittDeltakerErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentDeltakerInfoGittDeltakerData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentDeltakerInfoGittDeltakerResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -562,9 +634,6 @@ export class Oppslag {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentDeltakerInfoGittDeltakerResponse.parseAsync(data);
-            },
             url: '/oppslag/deltaker',
             ...options,
             headers: {
@@ -585,7 +654,13 @@ export class Oppslag {
             HentDeltakerInfoGittDeltakerIdErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zHentDeltakerInfoGittDeltakerIdData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -596,9 +671,6 @@ export class Oppslag {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data);
-            },
             url: '/oppslag/deltaker/{id}',
             ...options,
         });
@@ -613,6 +685,9 @@ export class OppretterOgEndrerPåOppgaver {
         options: Options<UtløperOppgaveData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<UtløperOppgaveResponses, UtløperOppgaveErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zUtløperOppgaveData.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -643,6 +718,9 @@ export class OppretterOgEndrerPåOppgaver {
             UtløperOppgaveForTypeOgPeriodeErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zUtløperOppgaveForTypeOgPeriodeData.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -673,7 +751,13 @@ export class OppretterOgEndrerPåOppgaver {
             OpprettOppgaveForKontrollAvRegisterinntektErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zOpprettOppgaveForKontrollAvRegisterinntektData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -684,9 +768,6 @@ export class OppretterOgEndrerPåOppgaver {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForKontrollAvRegisterinntektResponse.parseAsync(data);
-            },
             url: '/oppgave/opprett/kontroll/registerinntekt',
             ...options,
             headers: {
@@ -707,7 +788,13 @@ export class OppretterOgEndrerPåOppgaver {
             OpprettOppgaveForInntektsrapporteringErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zOpprettOppgaveForInntektsrapporteringData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForInntektsrapporteringResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -718,9 +805,6 @@ export class OppretterOgEndrerPåOppgaver {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForInntektsrapporteringResponse.parseAsync(data);
-            },
             url: '/oppgave/opprett/inntektsrapportering',
             ...options,
             headers: {
@@ -741,7 +825,13 @@ export class OppretterOgEndrerPåOppgaver {
             OpprettOppgaveForEndretStartdatoErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zOpprettOppgaveForEndretStartdatoData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretStartdatoResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -752,9 +842,6 @@ export class OppretterOgEndrerPåOppgaver {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForEndretStartdatoResponse.parseAsync(data);
-            },
             url: '/oppgave/opprett/endret-startdato',
             ...options,
             headers: {
@@ -775,7 +862,13 @@ export class OppretterOgEndrerPåOppgaver {
             OpprettOppgaveForEndretSluttdatoErrors,
             ThrowOnError
         >({
+            requestValidator: async (data) => {
+                return await zOpprettOppgaveForEndretSluttdatoData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zOpprettOppgaveForEndretSluttdatoResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -786,9 +879,6 @@ export class OppretterOgEndrerPåOppgaver {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zOpprettOppgaveForEndretSluttdatoResponse.parseAsync(data);
-            },
             url: '/oppgave/opprett/endret-sluttdato',
             ...options,
             headers: {
@@ -805,6 +895,9 @@ export class OppretterOgEndrerPåOppgaver {
         options: Options<AvbrytOppgaveData, ThrowOnError>,
     ) {
         return (options.client ?? _heyApiClient).post<AvbrytOppgaveResponses, AvbrytOppgaveErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zAvbrytOppgaveData.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -833,7 +926,13 @@ export class Deltaker {
         options?: Options<HentKontonummerData, ThrowOnError>,
     ) {
         return (options?.client ?? _heyApiClient).get<HentKontonummerResponses, HentKontonummerErrors, ThrowOnError>({
+            requestValidator: async (data) => {
+                return await zHentKontonummerData.parseAsync(data);
+            },
             responseType: 'json',
+            responseValidator: async (data) => {
+                return await zHentKontonummerResponse.parseAsync(data);
+            },
             security: [
                 {
                     scheme: 'bearer',
@@ -844,9 +943,6 @@ export class Deltaker {
                     type: 'http',
                 },
             ],
-            responseValidator: async (data) => {
-                return await zHentKontonummerResponse.parseAsync(data);
-            },
             url: '/deltaker/hent-kontonummer',
             ...options,
         });

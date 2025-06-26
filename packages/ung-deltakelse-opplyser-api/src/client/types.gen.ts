@@ -35,6 +35,7 @@ export type DeltakelseUtmeldingDto = {
 export type ArbeidOgFrilansRegisterInntektDto = {
     inntekt: number;
     arbeidsgiver: string;
+    arbeidsgiverNavn?: string;
 };
 
 export type BekreftelseDto = {

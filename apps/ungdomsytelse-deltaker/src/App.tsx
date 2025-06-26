@@ -8,7 +8,7 @@ import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { AnalyticsProvider } from './utils/analytics';
+import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
@@ -40,16 +40,16 @@ if (window.location.pathname === '/ungdomsytelse-deltaker') {
 
 function App() {
     const env = getAppEnv();
+    const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true';
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
+            {analyticsIsActive && registerAnalytics()}
             <FaroProvider
                 appVersion={env.APP_VERSION}
                 applicationKey={UngdomsytelseDeltakerApp.key}
                 telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
                 isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
-                <AnalyticsProvider
-                    applicationKey={UngdomsytelseDeltakerApp.key}
-                    isActive={env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true'}>
+                <AnalyticsProvider applicationKey={UngdomsytelseDeltakerApp.key} isActive={analyticsIsActive}>
                     <QueryClientProvider client={queryClient}>
                         <AppIntlMessageProvider>
                             <DeltakerInfoLoader />

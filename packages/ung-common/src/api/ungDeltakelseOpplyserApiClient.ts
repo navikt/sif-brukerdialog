@@ -1,7 +1,7 @@
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/ung-deltakelse-opplyser-api';
 import { v4 } from 'uuid';
-import { isUnauthorized } from '.';
+import { commonRequestHeader, isUnauthorized } from './';
 
 interface InitOptions {
     onUnAuthorized?: () => void;
@@ -11,7 +11,7 @@ export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
-        headers: { 'Content-type': 'application/json; charset=utf-8' },
+        headers: commonRequestHeader,
         baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
     });
 
