@@ -45,7 +45,6 @@ export const registerAnalytics = () => {
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
                 data-website-id="a9f8b8e4-a401-47ad-93c4-df596c00bed6"></script>
-
             <script
                 defer
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"

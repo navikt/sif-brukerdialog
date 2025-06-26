@@ -13,7 +13,7 @@ const StartPage = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
-    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogramytelsen');
+    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogrammet');
 
     useEffect(() => {
         queryClient.resetQueries();
@@ -36,7 +36,7 @@ const StartPage = () => {
                         <VStack gap="10" maxWidth="44rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
-                                    Deltakerregistrering - Ungdomsprogramytelsen
+                                    Deltakerregistrering - ungdomsprogrammet
                                 </Heading>
                                 <BodyLong size="large">
                                     Her kan du registrere deltakerne i ungdoms&shy;programmet, slik at de får
