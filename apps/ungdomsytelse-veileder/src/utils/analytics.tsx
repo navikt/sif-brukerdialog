@@ -17,6 +17,9 @@ export enum AppHendelse {
     nyDeltakerFunnet = 'ny-deltaker-funnet',
     deltakerRegistrert = 'deltaker-registrert',
     deltakerSlettet = 'deltaker-slettet',
+    startdatoEndret = 'startdato-endret',
+    sluttdatoEndret = 'sluttdato-endret',
+    sluttdatoSattFørsteGang = 'sluttdato-satt-første-gang',
 }
 
 interface Props {
