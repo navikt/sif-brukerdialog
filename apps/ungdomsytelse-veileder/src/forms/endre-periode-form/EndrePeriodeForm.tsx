@@ -98,6 +98,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         );
         const logValues = {
             deltakerErInformert: values.deltakerErInformert,
+            deltakerHarSøkt: deltakelse.søktTidspunkt !== undefined,
         };
         if (variant === EndrePeriodeVariant.startdato) {
             await logAppHendelse(AppHendelse.startdatoEndret, {
