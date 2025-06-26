@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet';
-import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import { ApiError } from '@navikt/ung-common';
 import constate from 'constate';
 
@@ -46,8 +45,8 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
 
     async function logEvent(eventName: string, eventProperties?: EventProperties) {
-        const logger = getAnalyticsInstance('dekoratoren');
-        if (isActive && logger) {
+        const umamiTracker = (window as any).umami;
+        if (isActive && umamiTracker) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, applikasjon: applicationKey };
@@ -56,9 +55,8 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 } else {
-                    logger(eventName, eventProps).catch(() => {
-                        resolve(true);
-                    });
+                    umamiTracker.track(eventName, eventProps);
+                    resolve(true);
                 }
             });
             return Promise.race([timeoutPromise, logPromise]);
