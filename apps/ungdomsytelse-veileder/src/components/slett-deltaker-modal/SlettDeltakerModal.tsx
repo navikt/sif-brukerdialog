@@ -16,8 +16,8 @@ const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const { logAppHendelse } = useAnalyticsInstance();
 
     const handleOnDeltakelseSlettet = async () => {
-        await logAppHendelse(AppHendelse.deltakerSlettet);
         setDeltakelseSlettet(true);
+        await logAppHendelse(AppHendelse.deltakerSlettet);
     };
 
     const navigate = useNavigate();
