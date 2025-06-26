@@ -24,9 +24,9 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
             <Spacer />
             <InternalHeader.Button
                 aria-label="Bytt mellom lys og mørk modus"
-                onClick={(e) => {
+                onClick={async (e) => {
                     e.preventDefault();
-                    logAppHendelse(AppHendelse.togglerDarkMode, { mode: !darkMode });
+                    await logAppHendelse(AppHendelse.togglerDarkMode, { mode: !darkMode });
                     setDarkMode(!darkMode);
                 }}>
                 {darkMode ? (
@@ -38,9 +38,9 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button
-                        onClick={(e) => {
+                        onClick={async (e) => {
                             e.preventDefault();
-                            logAppHendelse(AppHendelse.viserInformasjon);
+                            await logAppHendelse(AppHendelse.viserInformasjon);
                             openDrawer(<DrawerArticles />);
                         }}>
                         <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />

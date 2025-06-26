@@ -13,12 +13,12 @@ import { ThemeProvider } from './context/ThemeContext';
 import { VeilederProvider } from './context/VeilederContext';
 import { appMessages } from './i18n';
 import DrawerArticles from './pages/info-page/DrawerArticles';
+import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 
 const queryClient = new QueryClient();
 
