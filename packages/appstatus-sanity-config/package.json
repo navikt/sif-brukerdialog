@@ -19,7 +19,7 @@
         "@sanity/vision": "3.94.2",
         "react": "19.1.0",
         "react-dom": "19.1.0",
-        "sanity": "3.94.2",
+        "sanity": "3.95.0",
         "styled-components": "6.1.19"
     },
     "devDependencies": {
