@@ -35,8 +35,8 @@ type DeltakelsePeriodeMeta = {
 
 const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
-    const harStartet = harSøkt && dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
-    const erAvsluttet = harSøkt && dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
+    const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
+    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
 
     const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
     return {
@@ -83,7 +83,7 @@ const getSøknadInnsendingMeta = (
         antallBarn: number;
         barnStemmer: boolean;
         harKontonummer: boolean;
-        kontonummerStemmer: boolean;
+        kontonummerStemmer?: boolean;
     },
 ) => {
     const meta = getDeltakelsePeriodeMeta(deltakelse);
@@ -91,7 +91,7 @@ const getSøknadInnsendingMeta = (
         harBarn: antallBarn > 0,
         barnStemmer,
         harKontonummer,
-        kontonummerStemmer,
+        kontonummerStemmer: harKontonummer ? kontonummerStemmer : undefined,
         harStartet: meta.harStartet,
         harSluttdato: meta.harSluttdato,
         antallOppgaverTotalt: meta.antallOppgaverTotalt,
