@@ -3,13 +3,14 @@ import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
 import { isAxiosError } from 'axios';
 import FødselsnummerInline from '../../atoms/FødselsnummerInline';
+import { useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     error: ApiError;
     fnr: string;
 }
 
-const getFeilmelding = (fnr: string, error: ApiError): React.ReactNode | undefined => {
+const getFinnDeltakerFeilmelding = (fnr: string, error: ApiError): React.ReactNode | undefined => {
     const formattedFnr = fødselsnummerFormatter.applyFormat(fnr);
     if (isAxiosError(error.originalError)) {
         switch (error.originalError.status) {
@@ -20,7 +21,6 @@ const getFeilmelding = (fnr: string, error: ApiError): React.ReactNode | undefin
                             Kunne ikke hente opp personen med fødselsnummer <FødselsnummerInline fnr={fnr} /> fordi du
                             ikke har tilgang.
                         </BodyShort>
-
                         <BodyShort size="small">Årsak: {error.message}</BodyShort>
                     </Box>
                 );
@@ -34,8 +34,15 @@ const getFeilmelding = (fnr: string, error: ApiError): React.ReactNode | undefin
 };
 
 const FinnDeltakerApiError = ({ error, fnr }: Props) => {
-    const feilmelding = getFeilmelding(fnr, error);
-    return feilmelding ? <Alert variant="error">{feilmelding}</Alert> : <ApiErrorAlert error={error} />;
+    const finnDeltakerFeilmelding = getFinnDeltakerFeilmelding(fnr, error);
+    const { logEvent } = useAnalyticsInstance();
+    if (finnDeltakerFeilmelding) {
+        if (isAxiosError(error.originalError)) {
+            logEvent('FinnDeltakerApiError', { kode: error.originalError.status });
+        }
+        return <Alert variant="error">{finnDeltakerFeilmelding}</Alert>;
+    }
+    return <ApiErrorAlert error={error} />;
 };
 
 export default FinnDeltakerApiError;

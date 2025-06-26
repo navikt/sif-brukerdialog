@@ -18,6 +18,7 @@ import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
 import '@navikt/ds-css/darkside';
 import './app.css';
+import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => {
 
     return (
         <ThemeProvider>
+            {registerAnalytics()}
             <VeilederProvider>
                 <FaroProvider
                     appVersion={env.APP_VERSION}
@@ -35,20 +37,22 @@ const App = () => {
                     telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
                     isActive={env.SIF_PUBLIC_USE_FARO}>
                     <ErrorBoundary fallback={<AppErrorFallback />}>
-                        <QueryClientProvider client={queryClient}>
-                            <GlobalQueryLogger />
-                            <IntlProvider locale="nb" messages={appMessages.nb}>
-                                <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
-                                    <DrawerProvider
-                                        initialContent={<DrawerArticles />}
-                                        initialOpen={false}
-                                        initialTitle="Hjelp og informasjon">
-                                        <AppHeader />
-                                        <AppRoutes />
-                                    </DrawerProvider>
-                                </BrowserRouter>
-                            </IntlProvider>
-                        </QueryClientProvider>
+                        <AnalyticsProvider applicationKey={UngdomsytelseVeilederApp.key} isActive={true}>
+                            <QueryClientProvider client={queryClient}>
+                                <GlobalQueryLogger />
+                                <IntlProvider locale="nb" messages={appMessages.nb}>
+                                    <BrowserRouter basename={getRequiredEnv('PUBLIC_PATH')}>
+                                        <DrawerProvider
+                                            initialContent={<DrawerArticles />}
+                                            initialOpen={false}
+                                            initialTitle="Hjelp og informasjon">
+                                            <AppHeader />
+                                            <AppRoutes />
+                                        </DrawerProvider>
+                                    </BrowserRouter>
+                                </IntlProvider>
+                            </QueryClientProvider>
+                        </AnalyticsProvider>
                     </ErrorBoundary>
                 </FaroProvider>
             </VeilederProvider>
