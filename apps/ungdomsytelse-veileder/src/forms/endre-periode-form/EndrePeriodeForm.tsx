@@ -105,7 +105,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                 await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang);
             } else {
                 await logAppHendelse(AppHendelse.sluttdatoEndret, {
-                    endring: dayjs(dato).diff(deltakelse.fraOgMed, 'day'),
+                    endring: dayjs(dato).diff(deltakelse.tilOgMed, 'day'),
                 });
             }
         }
