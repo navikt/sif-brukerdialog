@@ -1,5 +1,11 @@
 import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BekreftelseOppgave, DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+import {
+    BekreftelseOppgave,
+    DeltakelsePeriode,
+    OppgaveStatus,
+    Oppgavetype,
+    SøkYtelseOppgave,
+} from '@navikt/ung-common';
 import dayjs from 'dayjs';
 
 export enum LogMetaInfoType {
@@ -67,6 +73,7 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
 
 const getSøknadInnsendingMeta = (
     deltakelse: DeltakelsePeriode,
+    oppgave: SøkYtelseOppgave,
     {
         antallBarn,
         barnStemmer,
@@ -91,13 +98,16 @@ const getSøknadInnsendingMeta = (
         antallEndretStartdatoOppgaver: meta.antallEndretStartdatoOppgaver,
         antallEndretSluttdatoOppgaver: meta.antallEndretSluttdatoOppgaver,
         antallSøkYtelseOppgaver: meta.antallSøkYtelseOppgaver,
+        antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
+        antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minute'),
     };
 };
 
 export const getOppgaveBekreftelseMeta = (oppgave: BekreftelseOppgave, uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
     return {
-        bekreftelse: oppgave.oppgavetype,
+        oppgavetype: oppgave.oppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
+        antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minutes'),
         harUttalelse: uttalelse.harUttalelse,
     };
 };
