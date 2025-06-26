@@ -47,8 +47,9 @@ export const registerAnalytics = () => {
                 defer
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
-                data-auto-track="false"
+                data-auto-track="true"
                 data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
+
             <script
                 defer
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
