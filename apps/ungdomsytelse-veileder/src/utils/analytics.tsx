@@ -8,6 +8,17 @@ export enum AnalyticsEvents {
     'apiError' = 'api-error',
 }
 
+export enum AppHendelse {
+    togglerDarkMode = 'toggler-dark-mode',
+    viserInformasjon = 'viser-informasjon',
+    søkerOppDeltaker = 'søker-opp-deltaker',
+    finnDeltakerApiFeil = 'finn-deltaker-api-feil',
+    registrertDeltakerFunnet = 'registrert-deltaker-funnet',
+    nyDeltakerFunnet = 'ny-deltaker-funnet',
+    deltakerRegistrert = 'deltaker-registrert',
+    deltakerSlettet = 'deltaker-slettet',
+}
+
 interface Props {
     applicationKey: string;
     logToConsoleOnly?: boolean;
@@ -64,6 +75,10 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         return Promise.resolve();
     }
 
+    async function logAppHendelse(hendelse: AppHendelse, details?: EventProperties) {
+        return logEvent(hendelse, details);
+    }
+
     async function logApiError(error: ApiError, details?: EventProperties) {
         return logEvent(AnalyticsEvents.apiError, {
             error,
@@ -72,7 +87,7 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
     }
 
     return {
-        logEvent,
+        logAppHendelse,
         logApiError,
     };
 });

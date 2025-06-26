@@ -16,6 +16,7 @@ import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 // import { GYLDIG_PERIODE } from '../../settings';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;
@@ -32,12 +33,14 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
     const intl = useIntl();
 
     const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
+    const { logAppHendelse } = useAnalyticsInstance();
 
     const handleOnSubmit = async (values: FormValues) => {
         const deltakelse = await mutateAsync({
             deltakerIdent: deltaker.deltakerIdent,
             startdato: values.startDato,
         });
+        logAppHendelse(AppHendelse.deltakerRegistrert);
         onDeltakelseRegistrert(deltakelse);
     };
 

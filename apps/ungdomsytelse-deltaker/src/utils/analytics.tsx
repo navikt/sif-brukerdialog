@@ -64,10 +64,6 @@ export const registerAnalytics = () => {
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
 
-    if (isActive) {
-        registerAnalytics();
-    }
-
     async function logEvent(eventName: string, eventProperties?: EventProperties) {
         const logger = getAnalyticsInstance('dekoratoren');
         if (isActive && logger) {

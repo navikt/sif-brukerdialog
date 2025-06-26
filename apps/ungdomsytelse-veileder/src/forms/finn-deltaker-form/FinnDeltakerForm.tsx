@@ -8,6 +8,7 @@ import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
 import DevUserList from '../../dev-components/DevUserList';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -32,6 +33,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
     const textFieldFormatter = useTextFieldFormatter(fødselsnummerFormatter);
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
+    const { logAppHendelse } = useAnalyticsInstance();
 
     const { data, error, isLoading, refetch } = useFinnDeltaker(fnrValue || '', false);
 
@@ -44,6 +46,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
         if (fnrValue && fnrError === undefined) {
             setNyDeltaker(undefined);
+            logAppHendelse(AppHendelse.søkerOppDeltaker);
             refetch();
         }
     };
@@ -51,8 +54,10 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     useEffect(() => {
         if (data) {
             if ('id' in data && data.id !== undefined) {
+                logAppHendelse(AppHendelse.registrertDeltakerFunnet);
                 onDeltakerFetched(data as Deltaker);
             } else {
+                logAppHendelse(AppHendelse.nyDeltakerFunnet);
                 setNyDeltaker(data as UregistrertDeltaker);
             }
         }
