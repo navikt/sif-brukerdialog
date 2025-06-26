@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Deltaker, formaterNavn } from '@navikt/ung-common';
 import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
 import ApiErrorAlert from '../api-error-alert/ApiErrorAlert';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     deltaker: Deltaker;
@@ -15,7 +14,6 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
     const { error, isPending, mutate } = useSlettDeltaker(deltaker.id);
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [bekrefter, setBekrefter] = useState<boolean>(false);
-    const { logAppHendelse } = useAnalyticsInstance();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,7 +23,6 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
             setValidationError('Bekreftelse er påkrevd');
         } else {
             mutate({ deltakerId: deltaker.id }, { onSuccess: onDeltakerSlettet });
-            await logAppHendelse(AppHendelse.deltakerSlettet);
         }
     };
     return (
