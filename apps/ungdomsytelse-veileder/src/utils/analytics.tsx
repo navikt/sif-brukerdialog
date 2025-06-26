@@ -12,6 +12,8 @@ export enum AppHendelse {
     togglerDarkMode = 'toggler-dark-mode',
     viserInformasjon = 'viser-informasjon',
     søkerOppDeltaker = 'søker-opp-deltaker',
+    finnDeltakerIkkeTilgang = 'finn-deltaker-ikke-tilgang',
+    finnDeltakerIkkeFunnet = 'finn-deltaker-ikke-funnet',
     finnDeltakerApiFeil = 'finn-deltaker-api-feil',
     registrertDeltakerFunnet = 'registrert-deltaker-funnet',
     nyDeltakerFunnet = 'ny-deltaker-funnet',

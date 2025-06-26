@@ -3,7 +3,6 @@ import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
 import { isAxiosError } from 'axios';
 import FødselsnummerInline from '../../atoms/FødselsnummerInline';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     error: ApiError;
@@ -35,11 +34,7 @@ const getFinnDeltakerFeilmelding = (fnr: string, error: ApiError): React.ReactNo
 
 const FinnDeltakerApiError = ({ error, fnr }: Props) => {
     const finnDeltakerFeilmelding = getFinnDeltakerFeilmelding(fnr, error);
-    const { logAppHendelse } = useAnalyticsInstance();
     if (finnDeltakerFeilmelding) {
-        if (isAxiosError(error.originalError)) {
-            logAppHendelse(AppHendelse.finnDeltakerApiFeil, { kode: error.originalError.status });
-        }
         return <Alert variant="error">{finnDeltakerFeilmelding}</Alert>;
     }
     return <ApiErrorAlert error={error} />;
