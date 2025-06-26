@@ -40,7 +40,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
             deltakerIdent: deltaker.deltakerIdent,
             startdato: values.startDato,
         });
-        logAppHendelse(AppHendelse.deltakerRegistrert);
+        await logAppHendelse(AppHendelse.deltakerRegistrert);
         onDeltakelseRegistrert(deltakelse);
     };
 

@@ -25,7 +25,7 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
             setValidationError('Bekreftelse er påkrevd');
         } else {
             mutate({ deltakerId: deltaker.id }, { onSuccess: onDeltakerSlettet });
-            logAppHendelse(AppHendelse.deltakerSlettet);
+            await logAppHendelse(AppHendelse.deltakerSlettet);
         }
     };
     return (

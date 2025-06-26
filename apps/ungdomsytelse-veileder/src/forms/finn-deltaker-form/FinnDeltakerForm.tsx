@@ -37,7 +37,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
     const { data, error, isLoading, refetch } = useFinnDeltaker(fnrValue || '', false);
 
-    const handleSubmit = (evt: React.FormEvent) => {
+    const handleSubmit = async (evt: React.FormEvent) => {
         evt.preventDefault();
         setValidationError(undefined);
 
@@ -46,7 +46,7 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
 
         if (fnrValue && fnrError === undefined) {
             setNyDeltaker(undefined);
-            logAppHendelse(AppHendelse.søkerOppDeltaker);
+            await logAppHendelse(AppHendelse.søkerOppDeltaker);
             refetch();
         }
     };
