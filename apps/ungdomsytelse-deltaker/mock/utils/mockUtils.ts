@@ -59,9 +59,3 @@ export const mockUtils = {
         console.log(`Inntekt rapportert for ${ref}`, data);
     },
 };
-
-export const getMockRequestHeaders = () => {
-    return {
-        'X-Brukerdialog-Git-Sha': 'abc',
-    };
-};
