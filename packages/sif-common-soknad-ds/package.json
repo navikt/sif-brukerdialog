@@ -18,7 +18,7 @@
         "@navikt/sif-validation": "workspace:*"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.2.3",
+        "@navikt/nav-dekoratoren-moduler": "3.3.0",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
@@ -31,15 +31,15 @@
         "webpack": "5.99.9"
     },
     "devDependencies": {
-        "@babel/core": "7.27.4",
+        "@babel/core": "7.27.7",
         "@babel/preset-env": "7.27.2",
         "@babel/preset-react": "7.27.1",
         "@babel/preset-typescript": "7.27.1",
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.4.4",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "7.23.2",
-        "@navikt/ds-react": "7.23.2",
+        "@navikt/ds-css": "7.24.0",
+        "@navikt/ds-react": "7.24.0",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
@@ -68,7 +68,7 @@
         "gh-pages": "6.3.0",
         "intl": "1.2.5",
         "io-ts-types": "0.5.19",
-        "jest": "30.0.2",
+        "jest": "30.0.3",
         "jsdom": "26.1.0",
         "monocle-ts": "2.3.13",
         "newtype-ts": "0.3.5",
