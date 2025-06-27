@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.2.13",
+    "version": "10.2.14",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -16,18 +16,18 @@
         "dayjs": "1.11.13",
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.14.0",
-        "tailwindcss": "4.1.10"
+        "tailwindcss": "4.1.11"
     },
     "devDependencies": {
-        "@babel/core": "7.27.4",
+        "@babel/core": "7.27.7",
         "@babel/preset-env": "7.27.2",
         "@babel/preset-react": "7.27.1",
         "@babel/preset-typescript": "7.27.1",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "7.23.2",
+        "@navikt/ds-css": "7.24.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.23.2",
-        "@navikt/ds-tailwind": "7.23.2",
+        "@navikt/ds-react": "7.24.0",
+        "@navikt/ds-tailwind": "7.24.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@playwright/test": "1.53.1",

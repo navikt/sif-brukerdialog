@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.26.16",
+    "version": "2.26.17",
     "private": true,
     "type": "module",
     "scripts": {
@@ -29,9 +29,9 @@
         "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
-        "@navikt/ds-css": "7.23.2",
-        "@navikt/ds-react": "7.23.2",
-        "@navikt/ds-tailwind": "7.23.2",
+        "@navikt/ds-css": "7.24.0",
+        "@navikt/ds-react": "7.24.0",
+        "@navikt/ds-tailwind": "7.24.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -62,7 +62,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@babel/core": "7.27.4",
+        "@babel/core": "7.27.7",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.27.1",
         "@babel/preset-env": "7.27.2",
@@ -82,7 +82,7 @@
         "compression": "1.8.0",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
-        "dotenv": "16.5.0",
+        "dotenv": "16.6.0",
         "express": "4.21.2",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",
