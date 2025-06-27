@@ -1,6 +1,7 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const getAppSettings = () => ({
+export const getAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
@@ -25,5 +26,3 @@ const getAppSettings = () => ({
     K9_SAK_INNSYN_API_SCOPE: `${process.env.K9_SAK_INNSYN_API_SCOPE}`,
     K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_API_URL}`,
 });
-
-module.exports = getAppSettings;

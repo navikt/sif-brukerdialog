@@ -84,12 +84,12 @@
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./mock/mock-server.cjs",
-        "dev": "node ./dev-server.cjs",
+        "dev": "node ./dev-server.mjs",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
+        "start-e2e-server": "node ./e2e/server/server.mjs",
         "storybook": "storybook dev -p 6006"
     },
     "eslintConfig": {

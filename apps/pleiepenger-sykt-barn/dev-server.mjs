@@ -1,18 +1,25 @@
-const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
-const getAppSettings = require('./mock/AppSettings.cjs');
-const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
-const express = require('express');
+import express from 'express';
+import compression from 'compression';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import mustacheExpress from 'mustache-express';
+import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
+import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import getAppSettings from './mock/AppSettings.cjs'; // behold .cjs hvis den må være CJS
+import { createServer as createViteServer } from 'vite';
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const server = express();
 server.use(express.json());
-const path = require('path');
-const mustacheExpress = require('mustache-express');
-const compression = require('compression');
-
 server.disable('x-powered-by');
-
 server.use(compression());
 
-require('dotenv').config();
 server.set('views', `${__dirname}`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
@@ -48,15 +55,14 @@ const startServer = async () => {
     const renderedHtml = htmlWithDecoratorInjected.replaceAll(
         '{{{APP_SETTINGS}}}',
         JSON.stringify({
-            APP_VERSION: `${process.env.APP_VERSION}`,
-            PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+            APP_VERSION: process.env.APP_VERSION ?? '',
+            PUBLIC_PATH: process.env.PUBLIC_PATH ?? '',
             ...getAppSettings(),
         }),
     );
 
     server.use(
         `${process.env.PUBLIC_PATH}/api/k9-brukerdialog`,
-        // limiter,
         createProxyMiddleware({
             target: 'http://localhost:8089/',
             changeOrigin: true,
@@ -67,23 +73,9 @@ const startServer = async () => {
         }),
     );
 
-    server.use(
-        `${process.env.PUBLIC_PATH}/api/k9-sak-innsyn`,
-        // limiter,
-        createProxyMiddleware({
-            target: 'http://localhost:8089/',
-            changeOrigin: true,
-            logger: console,
-            on: {
-                proxyReq: fixRequestBody,
-            },
-        }),
-    );
-
-    const fs = require('fs');
     fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), renderedHtml);
 
-    const vite = await require('vite').createServer({
+    const vite = await createViteServer({
         root: __dirname,
         server: {
             middlewareMode: true,
