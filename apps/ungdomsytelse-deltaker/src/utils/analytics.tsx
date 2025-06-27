@@ -1,7 +1,6 @@
 import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
 import { Helmet } from 'react-helmet';
-import { getAppEnv } from './appEnv';
 
 const MAX_AWAIT_TIME = 500;
 
@@ -41,17 +40,6 @@ type EventProperties = {
     [key: string]: any;
 };
 
-const getTag = () => {
-    const env = getAppEnv()['APP_VERSION'];
-    if (env === 'prod') {
-        return 'prod';
-    } else if (env === 'dev') {
-        return 'dev';
-    } else if (env === 'local') {
-        return 'local';
-    }
-    return 'local';
-};
 export const registerAnalytics = () => {
     return (
         <Helmet>
@@ -60,7 +48,6 @@ export const registerAnalytics = () => {
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
-                data-tag={getTag()}
                 data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
         </Helmet>
     );
