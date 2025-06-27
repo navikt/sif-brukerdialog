@@ -49,24 +49,12 @@ export const registerAnalytics = () => {
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
                 data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
-
-            <script
-                defer
-                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-                data-host-url="https://umami.nav.no"
-                data-domains="localhost"
-                data-auto-track="false"
-                data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
         </Helmet>
     );
 };
 
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
-
-    if (isActive) {
-        registerAnalytics();
-    }
 
     async function logEvent(eventName: string, eventProperties?: EventProperties) {
         const logger = getAnalyticsInstance('dekoratoren');

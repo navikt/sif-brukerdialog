@@ -8,6 +8,8 @@ import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
 import DevUserList from '../../dev-components/DevUserList';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { isAxiosError } from 'axios';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -29,21 +31,25 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [nyDeltaker, setNyDeltaker] = useState<UregistrertDeltaker | undefined>();
     const [visRegistrerNySkjema, setVisRegistrerNySkjema] = useState<boolean>(false);
+    const [errorHendelseLogget, setErrorHendelseLogget] = useState<boolean>(false);
 
     const textFieldFormatter = useTextFieldFormatter(fødselsnummerFormatter);
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
+    const { logAppHendelse } = useAnalyticsInstance();
 
     const { data, error, isLoading, refetch } = useFinnDeltaker(fnrValue || '', false);
 
-    const handleSubmit = (evt: React.FormEvent) => {
+    const handleSubmit = async (evt: React.FormEvent) => {
         evt.preventDefault();
         setValidationError(undefined);
+        setErrorHendelseLogget(false);
 
         const fnrError = fnrValidator(fnrValue);
         setValidationError(fnrError ? fnrValideringsmeldinger[fnrError] : undefined);
 
         if (fnrValue && fnrError === undefined) {
             setNyDeltaker(undefined);
+            await logAppHendelse(AppHendelse.søkerOppDeltaker);
             refetch();
         }
     };
@@ -51,12 +57,27 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
     useEffect(() => {
         if (data) {
             if ('id' in data && data.id !== undefined) {
+                logAppHendelse(AppHendelse.registrertDeltakerFunnet);
                 onDeltakerFetched(data as Deltaker);
             } else {
+                logAppHendelse(AppHendelse.nyDeltakerFunnet);
                 setNyDeltaker(data as UregistrertDeltaker);
             }
         }
     }, [data, onDeltakerFetched]);
+
+    useEffect(() => {
+        if (!errorHendelseLogget && error && isAxiosError(error.originalError)) {
+            if (error.originalError.status === 403) {
+                logAppHendelse(AppHendelse.finnDeltakerIkkeTilgang);
+            } else if (error.originalError.status === 404) {
+                logAppHendelse(AppHendelse.finnDeltakerIkkeFunnet);
+            } else if (error.originalError.status === 500) {
+                logAppHendelse(AppHendelse.finnDeltakerApiFeil);
+            }
+            setErrorHendelseLogget(true);
+        }
+    }, [error, errorHendelseLogget]);
 
     useEffect(() => {
         if (validationError) {

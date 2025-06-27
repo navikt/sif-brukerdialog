@@ -21,6 +21,7 @@ import {
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 type FormValues = {
     fom?: string;
@@ -52,6 +53,8 @@ interface Props {
 
 const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
+    const { logAppHendelse } = useAnalyticsInstance();
+
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant,
         deltakelseId: deltakelse.id,
@@ -82,7 +85,6 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
 
     const handleOnSubmit = async (values: FormValues) => {
         const dato = variant === EndrePeriodeVariant.startdato ? values.fom : values.tom;
-
         if (!dato) {
             return;
         }
@@ -94,6 +96,25 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                 onSuccess: onDeltakelseChanged,
             },
         );
+        const logValues = {
+            deltakerErInformert: values.deltakerErInformert,
+            deltakerHarSøkt: deltakelse.søktTidspunkt !== undefined,
+        };
+        if (variant === EndrePeriodeVariant.startdato) {
+            await logAppHendelse(AppHendelse.startdatoEndret, {
+                endring: dayjs(dato).diff(deltakelse.fraOgMed, 'day'),
+                ...logValues,
+            });
+        } else {
+            if (deltakelse.tilOgMed === undefined) {
+                await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang, logValues);
+            } else {
+                await logAppHendelse(AppHendelse.sluttdatoEndret, {
+                    endring: dayjs(dato).diff(deltakelse.tilOgMed, 'day'),
+                    ...logValues,
+                });
+            }
+        }
     };
 
     if (

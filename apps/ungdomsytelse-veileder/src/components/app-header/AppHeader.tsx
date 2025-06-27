@@ -5,6 +5,7 @@ import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
 import { useDrawer } from '../drawer/DrawerContext';
 import DrawerArticles from '../../pages/info-page/DrawerArticles';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 
 interface Props {
     visActionsMenu?: boolean;
@@ -15,15 +16,17 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
 
     const navigate = useNavigate();
     const { openDrawer } = useDrawer();
+    const { logAppHendelse } = useAnalyticsInstance();
 
     return (
         <InternalHeader>
-            <InternalHeader.Title href="/">Deltakerregistrering - Ungdomsprogramytelsen</InternalHeader.Title>
+            <InternalHeader.Title href="/">Deltakerregistrering - ungdomsprogrammet</InternalHeader.Title>
             <Spacer />
             <InternalHeader.Button
                 aria-label="Bytt mellom lys og mørk modus"
-                onClick={(e) => {
+                onClick={async (e) => {
                     e.preventDefault();
+                    await logAppHendelse(AppHendelse.togglerDarkMode, { mode: !darkMode });
                     setDarkMode(!darkMode);
                 }}>
                 {darkMode ? (
@@ -35,8 +38,9 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
             <ActionMenu>
                 <ActionMenu.Trigger>
                     <InternalHeader.Button
-                        onClick={(e) => {
+                        onClick={async (e) => {
                             e.preventDefault();
+                            await logAppHendelse(AppHendelse.viserInformasjon);
                             openDrawer(<DrawerArticles />);
                         }}>
                         <InformationSquareIcon fontSize="1.5rem" title="Informasjonikon" />
