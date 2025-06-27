@@ -7,7 +7,7 @@ import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import getAppSettings from './mock/AppSettings.cjs'; // behold .cjs hvis den må være CJS
+import { getAppSettings } from './mock/AppSettings.mjs';
 import { createServer as createViteServer } from 'vite';
 
 dotenv.config();
