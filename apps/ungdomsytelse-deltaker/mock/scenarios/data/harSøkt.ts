@@ -1,7 +1,7 @@
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseKomposittDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ScenarioData } from '../types';
 
-const deltakelse: DeltakerApi.DeltakelseKomposittDto = DeltakerApi.zDeltakelseKomposittDto.parse({
+const deltakelse: DeltakelseKomposittDto = zDeltakelseKomposittDto.parse({
     id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
     fraOgMed: '2025-07-02',
     tilOgMed: undefined,
@@ -60,7 +60,7 @@ const deltakelse: DeltakerApi.DeltakelseKomposittDto = DeltakerApi.zDeltakelseKo
             opprettetDato: '2025-04-07T05:00:46.869460Z',
         },
     ],
-}) as DeltakerApi.DeltakelseKomposittDto;
+}) as DeltakelseKomposittDto;
 
 export const harSøktMock: ScenarioData = {
     søker: {

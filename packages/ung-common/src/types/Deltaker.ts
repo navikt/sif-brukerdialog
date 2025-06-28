@@ -1,11 +1,11 @@
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Diskresjonskode, zHentDeltakerInfoGittDeltakerIdResponse } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { z } from 'zod';
 
-export const uregistrertDeltakerSchema = VeilederApi.zHentDeltakerInfoGittDeltakerIdResponse
+export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .extend({
         id: z.undefined(),
-        diskresjonskoder: z.nativeEnum(VeilederApi.Diskresjonskode).array(),
+        diskresjonskoder: z.nativeEnum(Diskresjonskode).array(),
     })
     .transform((dto) => ({
         ...dto,
@@ -15,10 +15,10 @@ export const uregistrertDeltakerSchema = VeilederApi.zHentDeltakerInfoGittDeltak
         sisteMuligeInnmeldingsdato: ISODateToDate(dto.sisteMuligeInnmeldingsdato),
     }));
 
-export const registrertDeltakerSchema = VeilederApi.zHentDeltakerInfoGittDeltakerIdResponse
+export const registrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse
     .extend({
         id: z.string(),
-        diskresjonskoder: z.nativeEnum(VeilederApi.Diskresjonskode).array(),
+        diskresjonskoder: z.nativeEnum(Diskresjonskode).array(),
     })
     .transform((dto) => ({
         ...dto,

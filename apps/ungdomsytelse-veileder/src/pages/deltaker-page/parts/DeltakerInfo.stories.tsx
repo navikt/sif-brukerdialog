@@ -8,7 +8,7 @@ import { withVeilederContext } from '../../../../storybook/decorators/withVeiled
 import DeltakerInfo from './DeltakerInfo';
 import { Deltaker } from '@navikt/ung-common';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 const meta: Meta<typeof DeltakerInfo> = {
     component: DeltakerInfo,
@@ -47,7 +47,7 @@ export const MedDiskresjonskode: Story = {
     name: 'DeltakerInfo - med diskresjonskode',
     render: () => (
         <VStack gap="4">
-            <DeltakerInfo deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.KODE6] }} />
+            <DeltakerInfo deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
         </VStack>
     ),
 };

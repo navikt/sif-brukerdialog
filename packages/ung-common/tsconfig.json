@@ -4,8 +4,6 @@
         "rootDir": "src",
         "baseUrl": "src"
     },
-    "include": [
-        "src/**/*",
-    ],
+    "include": ["src/**/*", "../../apps/ungdomsytelse-deltaker/src/types/DeltakelsePeriode.ts"],
     "exclude": ["node_modules", "_src"]
 }

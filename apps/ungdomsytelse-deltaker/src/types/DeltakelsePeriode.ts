@@ -1,10 +1,10 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { z } from 'zod';
-import { parseOppgaverElement } from '../api';
+import { parseOppgaverElement } from '../api/parse-utils/parseOppgaverElement';
 
-export const deltakelsePeriodeSchema = DeltakerApi.zDeltakelseKomposittDto
+export const deltakelsePeriodeSchema = zDeltakelseKomposittDto
     .extend({
         id: z.string(),
     })
@@ -17,7 +17,7 @@ export const deltakelsePeriodeSchema = DeltakerApi.zDeltakelseKomposittDto
         return {
             ...rest,
             programPeriode,
-            oppgaver: parseOppgaverElement(data.oppgaver as DeltakerApi.OppgaveDto[]), // Bruker as pga generert type ikke godtas
+            oppgaver: parseOppgaverElement(data.oppgaver as OppgaveDto[]), // Bruker as pga generert type ikke godtas
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
         };
     });

@@ -5978,7 +5978,8 @@ __metadata:
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@navikt/ung-deltakelse-opplyser-api": "workspace:*"
+    "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
+    "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.8.3"
@@ -5991,9 +5992,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ung-deltakelse-opplyser-api@workspace:*, @navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api":
+"@navikt/ung-deltakelse-opplyser-api-deltaker@workspace:*, @navikt/ung-deltakelse-opplyser-api-deltaker@workspace:packages/ung-deltakelse-opplyser-api-deltaker":
   version: 0.0.0-use.local
-  resolution: "@navikt/ung-deltakelse-opplyser-api@workspace:packages/ung-deltakelse-opplyser-api"
+  resolution: "@navikt/ung-deltakelse-opplyser-api-deltaker@workspace:packages/ung-deltakelse-opplyser-api-deltaker"
+  dependencies:
+    "@hey-api/client-axios": "npm:0.9.1"
+    "@hey-api/client-fetch": "npm:0.13.1"
+    "@hey-api/openapi-ts": "npm:0.77.0"
+    "@sif/eslint-config": "workspace:*"
+    config: "workspace:*"
+    typescript: "npm:5.8.3"
+    vitest: "npm:3.2.4"
+    zod: "npm:3.25.67"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/ung-deltakelse-opplyser-api-veileder@workspace:*, @navikt/ung-deltakelse-opplyser-api-veileder@workspace:packages/ung-deltakelse-opplyser-api-veileder":
+  version: 0.0.0-use.local
+  resolution: "@navikt/ung-deltakelse-opplyser-api-veileder@workspace:packages/ung-deltakelse-opplyser-api-veileder"
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
@@ -6031,6 +6050,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/ung-common": "workspace:*"
+    "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*"
     "@playwright/test": "npm:1.53.1"
     "@sentry/react": "npm:9.32.0"
     "@storybook/addon-docs": "npm:9.0.13"

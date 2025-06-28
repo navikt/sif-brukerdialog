@@ -10,7 +10,7 @@ import { withVeilederContext } from '../../../storybook/decorators/withVeilederC
 import DeltakerKort from './DeltakerKort';
 import { Deltaker } from '@navikt/ung-common';
 import { VStack } from '@navikt/ds-react';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 const meta: Meta<typeof DeltakerKort> = {
     component: DeltakerKort,
@@ -42,13 +42,13 @@ export const Varianter: Story = {
     render: () => (
         <VStack gap="4">
             <DeltakerKort deltaker={deltaker} />
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.KODE6] }} />
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.KODE7] }} />
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.SKJERMET] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.SKJERMET] }} />
             <DeltakerKort
                 deltaker={{
                     ...deltaker,
-                    diskresjonskoder: [VeilederApi.Diskresjonskode.KODE6, VeilederApi.Diskresjonskode.SKJERMET],
+                    diskresjonskoder: [Diskresjonskode.KODE6, Diskresjonskode.SKJERMET],
                 }}
             />
         </VStack>
@@ -66,21 +66,21 @@ export const UregistrertDeltaker: Story = {
 export const Kode6: Story = {
     render: () => (
         <BrowserRouter>
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.KODE6] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6] }} />
         </BrowserRouter>
     ),
 };
 export const Kode7: Story = {
     render: () => (
         <BrowserRouter>
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.KODE7] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />
         </BrowserRouter>
     ),
 };
 export const Skjermet: Story = {
     render: () => (
         <BrowserRouter>
-            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [VeilederApi.Diskresjonskode.SKJERMET] }} />
+            <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.SKJERMET] }} />
         </BrowserRouter>
     ),
 };

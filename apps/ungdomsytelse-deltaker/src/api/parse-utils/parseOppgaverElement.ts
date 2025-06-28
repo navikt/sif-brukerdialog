@@ -1,6 +1,16 @@
+/* eslint-disable no-case-declarations */
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
+import {
+    EndretSluttdatoDataDto,
+    EndretStartdatoDataDto,
+    InntektsrapporteringOppgavetypeDataDto,
+    KontrollerRegisterinntektOppgavetypeDataDto,
+    OppgaveDto,
+    OppgaveStatus,
+    Oppgavetype,
+    SøkYtelseOppgavetypeDataDto,
+} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
@@ -8,26 +18,26 @@ import {
     Oppgave,
     OppgaveBase,
     RapporterInntektOppgave,
-} from '../../types';
+} from '../../types/Oppgave';
 
-const getOppgaveStatusEnum = (status: string): DeltakerApi.OppgaveStatus => {
+const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
         case 'LØST':
-            return DeltakerApi.OppgaveStatus.LØST;
+            return OppgaveStatus.LØST;
         case 'ULØST':
-            return DeltakerApi.OppgaveStatus.ULØST;
+            return OppgaveStatus.ULØST;
         case 'AVBRUTT':
-            return DeltakerApi.OppgaveStatus.AVBRUTT;
+            return OppgaveStatus.AVBRUTT;
         case 'UTLØPT':
-            return DeltakerApi.OppgaveStatus.UTLØPT;
+            return OppgaveStatus.UTLØPT;
         case 'LUKKET':
-            return DeltakerApi.OppgaveStatus.LUKKET;
+            return OppgaveStatus.LUKKET;
         default:
             throw new Error(`Ukjent oppgavestatus: ${status}`);
     }
 };
 
-const getOppgaveBaseProps = (oppgave: DeltakerApi.OppgaveDto): Omit<OppgaveBase, 'oppgavetype'> => {
+const getOppgaveBaseProps = (oppgave: OppgaveDto): Omit<OppgaveBase, 'oppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
     const åpnetDato = oppgave.åpnetDato ? dayjs.utc(oppgave.åpnetDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
@@ -42,16 +52,15 @@ const getOppgaveBaseProps = (oppgave: DeltakerApi.OppgaveDto): Omit<OppgaveBase,
     };
 };
 
-export const parseOppgaverElement = (oppgaver: DeltakerApi.OppgaveDto[]): Oppgave[] => {
+export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
-            case DeltakerApi.Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-                const korrigertInntektData =
-                    oppgave.oppgavetypeData as DeltakerApi.KontrollerRegisterinntektOppgavetypeDataDto;
+            case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+                const korrigertInntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
                 const korrigertInntektOppgave: KorrigertInntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+                    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
                         ...korrigertInntektData,
                         fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
@@ -61,11 +70,11 @@ export const parseOppgaverElement = (oppgaver: DeltakerApi.OppgaveDto[]): Oppgav
                 };
                 parsedOppgaver.push(korrigertInntektOppgave);
                 return;
-            case DeltakerApi.Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-                const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as DeltakerApi.EndretStartdatoDataDto;
+            case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
+                const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
                 const endretStartdatoOppgave: EndretStartdatoOppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
                     oppgavetypeData: {
                         forrigeStartdato: ISODateToDate(forrigeStartdato),
                         nyStartdato: ISODateToDate(nyStartdato),
@@ -74,11 +83,11 @@ export const parseOppgaverElement = (oppgaver: DeltakerApi.OppgaveDto[]): Oppgav
                 };
                 parsedOppgaver.push(endretStartdatoOppgave);
                 return;
-            case DeltakerApi.Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-                const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as DeltakerApi.EndretSluttdatoDataDto;
+            case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
+                const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;
                 const endretSluttdatoOppgave: EndretSluttdatoOppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+                    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
                     oppgavetypeData: {
                         forrigeSluttdato: forrigeSluttdato ? ISODateToDate(forrigeSluttdato) : undefined,
                         nySluttdato: ISODateToDate(nySluttdato),
@@ -87,12 +96,11 @@ export const parseOppgaverElement = (oppgaver: DeltakerApi.OppgaveDto[]): Oppgav
                 };
                 parsedOppgaver.push(endretSluttdatoOppgave);
                 return;
-            case DeltakerApi.Oppgavetype.RAPPORTER_INNTEKT:
-                const rapporterInntektData =
-                    oppgave.oppgavetypeData as DeltakerApi.InntektsrapporteringOppgavetypeDataDto;
+            case Oppgavetype.RAPPORTER_INNTEKT:
+                const rapporterInntektData = oppgave.oppgavetypeData as InntektsrapporteringOppgavetypeDataDto;
                 const rapporterInntektOppgave: RapporterInntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: DeltakerApi.Oppgavetype.RAPPORTER_INNTEKT,
+                    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
                     oppgavetypeData: {
                         fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
                         tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
@@ -106,11 +114,11 @@ export const parseOppgaverElement = (oppgaver: DeltakerApi.OppgaveDto[]): Oppgav
                 };
                 parsedOppgaver.push(rapporterInntektOppgave);
                 return;
-            case DeltakerApi.Oppgavetype.SØK_YTELSE:
-                const { fomDato } = oppgave.oppgavetypeData as DeltakerApi.SøkYtelseOppgavetypeDataDto;
+            case Oppgavetype.SØK_YTELSE:
+                const { fomDato } = oppgave.oppgavetypeData as SøkYtelseOppgavetypeDataDto;
                 const sendSøknadOppgave: Oppgave = {
                     ...getOppgaveBaseProps(oppgave),
-                    oppgavetype: DeltakerApi.Oppgavetype.SØK_YTELSE,
+                    oppgavetype: Oppgavetype.SØK_YTELSE,
                     oppgavetypeData: {
                         fomDato: ISODateToDate(fomDato),
                     },

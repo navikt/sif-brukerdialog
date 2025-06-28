@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 /**
  * Markerer en oppgave som åpnet
@@ -7,7 +7,7 @@ import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
  */
 export const markerOppgaveSomÅpnet = async (oppgaveReferanse: string): Promise<void> => {
     try {
-        await DeltakerApi.Deltakelse.markerOppgaveSomÅpnet({ path: { oppgaveReferanse } });
+        await Deltakelse.markerOppgaveSomÅpnet({ path: { oppgaveReferanse } });
     } catch (e) {
         throw handleApiError(e, 'markerOppgaveSomÅpnet');
     }

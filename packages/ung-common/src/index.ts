@@ -1,6 +1,3 @@
-export { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api/src/deltaker';
-export { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api/src/deltaker';
-
 export * from './hooks';
 export * from './types';
 export * from './utils';

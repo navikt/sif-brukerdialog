@@ -1,10 +1,10 @@
 import { handleApiError } from '@navikt/ung-common';
 import { registrertDeltakerSchema } from '@navikt/ung-common/src/types';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 export const getDeltakerById = async (deltakerId: string) => {
     try {
-        const { data } = await VeilederApi.Oppslag.hentDeltakerInfoGittDeltakerId({
+        const { data } = await Oppslag.hentDeltakerInfoGittDeltakerId({
             path: { id: deltakerId },
         });
         return registrertDeltakerSchema.parse(data);

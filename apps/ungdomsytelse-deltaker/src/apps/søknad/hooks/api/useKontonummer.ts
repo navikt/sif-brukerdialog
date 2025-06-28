@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { getKontonummer } from '../../api/kontonummer/getKontonummer';
 import { søknadQueryKeys } from '../../queries/søknadQueries';
 
@@ -8,7 +8,7 @@ import { søknadQueryKeys } from '../../queries/søknadQueries';
  * Henter alle deltakelser for innlogget deltaker
  */
 export const useKontonummer = (enabled = true) => {
-    return useQuery<DeltakerApi.KontonummerDto | null, ApiError>({
+    return useQuery<KontonummerDto | null, ApiError>({
         queryKey: søknadQueryKeys.kontonummer,
         queryFn: getKontonummer,
         enabled,

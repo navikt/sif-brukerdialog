@@ -1,9 +1,9 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 export const markerDeltakelseSomSøkt = async (deltakelseId: string): Promise<void> => {
     try {
-        await DeltakerApi.Deltakelse.markerDeltakelseSomSøkt({ path: { id: deltakelseId }, headers: {} as any });
+        await Deltakelse.markerDeltakelseSomSøkt({ path: { id: deltakelseId }, headers: {} as any });
         return Promise.resolve();
     } catch (e) {
         throw handleApiError(e, 'markerDeltakelseSomSøkt');

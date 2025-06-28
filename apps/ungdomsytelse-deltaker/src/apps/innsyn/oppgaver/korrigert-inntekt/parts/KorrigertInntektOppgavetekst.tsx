@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { KorrigertInntektOppgave } from '@navikt/ung-common';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
+import {
+    ArbeidOgFrilansRegisterInntektDto,
+    YtelseRegisterInntektDto,
+} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;
@@ -41,7 +44,7 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
 };
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
-    inntekt: DeltakerApi.ArbeidOgFrilansRegisterInntektDto[],
+    inntekt: ArbeidOgFrilansRegisterInntektDto[],
 ): InntektTabellRad[] => {
     if (inntekt.length === 0) {
         return [
@@ -57,7 +60,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
     }));
 };
 
-const mapYtelseInntektToInntektTabellRad = (inntekt: DeltakerApi.YtelseRegisterInntektDto[]): InntektTabellRad[] => {
+const mapYtelseInntektToInntektTabellRad = (inntekt: YtelseRegisterInntektDto[]): InntektTabellRad[] => {
     if (inntekt.length === 0) {
         return [
             {

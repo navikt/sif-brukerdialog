@@ -1,11 +1,11 @@
+import { handleApiError } from '@navikt/ung-common';
+import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import {
     Deltaker,
     registrertDeltakerSchema,
     UregistrertDeltaker,
     uregistrertDeltakerSchema,
 } from '@navikt/ung-common/src/types';
-import { handleApiError } from '@navikt/ung-common';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Henter informasjon om en deltaker basert på ident (fnr/dnr).
@@ -16,7 +16,7 @@ import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
  */
 export const findDeltakerByIdent = async (ident: string): Promise<Deltaker | UregistrertDeltaker> => {
     try {
-        const { data } = await VeilederApi.Oppslag.hentDeltakerInfoGittDeltaker({ body: { deltakerIdent: ident } });
+        const { data } = await Oppslag.hentDeltakerInfoGittDeltaker({ body: { deltakerIdent: ident } });
         return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
     } catch (e) {
         throw handleApiError(e, 'findDeltakerByIdent');

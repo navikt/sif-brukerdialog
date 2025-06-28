@@ -2,7 +2,7 @@ import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { Deltakelse } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
@@ -63,20 +63,15 @@ export const getStartdatobegrensningForDeltaker = (
     };
 };
 
-export const mapDeltakelseHistorikkTilInnslag = (
-    historikk: VeilederApi.DeltakelseHistorikkDto,
-): DeltakelseHistorikkInnslag => {
+export const mapDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto): DeltakelseHistorikkInnslag => {
     return {
         ...historikk,
         tidspunkt: dayjs.utc(historikk.tidspunkt).toDate(),
-        aktør:
-            historikk.endringstype === VeilederApi.Endringstype.DELTAKER_HAR_SØKT_YTELSE ? 'Deltaker' : historikk.aktør,
+        aktør: historikk.endringstype === Endringstype.DELTAKER_HAR_SØKT_YTELSE ? 'Deltaker' : historikk.aktør,
     };
 };
 
-export const getDeltakelseHistorikkTilInnslag = (
-    historikk: VeilederApi.DeltakelseHistorikkDto[],
-): DeltakelseHistorikkInnslag[] => {
+export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkDto[]): DeltakelseHistorikkInnslag[] => {
     return historikk
         .map(mapDeltakelseHistorikkTilInnslag)
         .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());

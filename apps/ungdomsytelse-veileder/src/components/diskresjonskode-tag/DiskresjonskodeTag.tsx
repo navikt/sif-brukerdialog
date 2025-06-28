@@ -1,25 +1,25 @@
 import { Tag, TagProps } from '@navikt/ds-react';
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 interface Props extends Omit<TagProps, 'variant' | 'children'> {
-    kode: VeilederApi.Diskresjonskode;
+    kode: Diskresjonskode;
 }
 
 const DiskresjonskodeTag = ({ kode: kode, ...rest }: Props) => {
     switch (kode) {
-        case VeilederApi.Diskresjonskode.KODE6:
+        case Diskresjonskode.KODE6:
             return (
                 <Tag size="small" variant="error" {...rest}>
                     Kode 6
                 </Tag>
             );
-        case VeilederApi.Diskresjonskode.KODE7:
+        case Diskresjonskode.KODE7:
             return (
                 <Tag size="small" variant="warning" {...rest}>
                     Kode 7
                 </Tag>
             );
-        case VeilederApi.Diskresjonskode.SKJERMET:
+        case Diskresjonskode.SKJERMET:
             return (
                 <Tag size="small" variant="warning" {...rest}>
                     Skjermet

@@ -1,6 +1,6 @@
-import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
-export const deltakelserHarSøkt: VeilederApi.DeltakelseDto[] = [
+export const deltakelserHarSøkt: DeltakelseDto[] = [
     {
         id: '3b2d6764-1ea1-4b5d-9a07-d4d5e254b595',
         fraOgMed: '2024-12-02',

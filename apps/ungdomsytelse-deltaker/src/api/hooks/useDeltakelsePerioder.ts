@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, DeltakelsePeriode } from '@navikt/ung-common';
+import { ApiError } from '@navikt/ung-common';
 import { getDeltakelsePerioder } from '../deltakelse-perioder/getDeltakelsePerioder';
 import { commonQueryKeys } from '../queries/commonQueries';
+import { DeltakelsePeriode } from '../../types/DeltakelsePeriode';
 
 /**
  * Henter alle deltakelser for innlogget deltaker

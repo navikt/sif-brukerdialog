@@ -1,5 +1,5 @@
 import { getMaybeEnv } from '@navikt/sif-common-env';
-import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
+import { client } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { v4 } from 'uuid';
 import { commonRequestHeader, isUnauthorized } from './';
 
@@ -9,7 +9,7 @@ interface InitOptions {
 
 export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /** Set config for generert klient */
-    DeltakerApi.client.setConfig({
+    client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
         baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
@@ -18,7 +18,7 @@ export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /**
      * Håndterer 401 (Unauthorized) feil ved å sende brukeren til innloggingssiden.
      */
-    DeltakerApi.client.instance.interceptors.response.use(
+    client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
             if (isUnauthorized(error) && options?.onUnAuthorized) {
@@ -31,7 +31,7 @@ export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     /**
      * Legg på X-Correlation-ID til alle requests for å kunne spore en request gjennom systemet.
      */
-    DeltakerApi.client.instance.interceptors.request.use(
+    client.instance.interceptors.request.use(
         (config) => {
             config.headers.set('X-Correlation-ID', v4());
             return config;
@@ -58,7 +58,7 @@ export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     };
 
     /** Erstatter alle null verdier med undefined */
-    DeltakerApi.client.instance.interceptors.response.use(
+    client.instance.interceptors.response.use(
         (response) => {
             response.data = convertNullToUndefined(response.data);
             return response;
