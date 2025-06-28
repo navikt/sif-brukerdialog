@@ -1,8 +1,9 @@
 import { BodyShort, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Deltaker, formaterNavn } from '@navikt/ung-common';
+import { Deltaker } from '@navikt/ung-common';
 import { useSlettDeltaker } from '../../hooks/useSlettDeltaker';
 import ApiErrorAlert from '../api-error-alert/ApiErrorAlert';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 interface Props {
     deltaker: Deltaker;
@@ -47,7 +48,7 @@ const SlettDeltakerForm = ({ deltaker, onCancel, onDeltakerSlettet }: Props) => 
             <form onSubmit={handleSubmit}>
                 <VStack gap="6">
                     <ConfirmationPanel
-                        label={`Jeg bekrefter at ${formaterNavn(deltaker.navn)} skal slettes som deltaker`}
+                        label={`Jeg bekrefter at ${formatName(deltaker.navn)} skal slettes som deltaker`}
                         name="bekreft-sletting"
                         error={validationError}
                         onChange={(evt) => {

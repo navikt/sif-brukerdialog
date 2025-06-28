@@ -1,10 +1,11 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Deltaker, formaterNavn } from '@navikt/ung-common';
+import { Deltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import Fødselsnummer from '../../../atoms/Fødselsnummer';
 import InfoBox from '../../../atoms/InfoBox';
 import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/DiskresjonskoderTags';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 interface Props {
     deltaker: Deltaker;
@@ -22,7 +23,7 @@ const DeltakerInfo = ({ deltaker }: Props) => {
                 <VStack gap="4">
                     <dl className="ungDefinitionList">
                         <dt>Navn:</dt>
-                        <dd>{formaterNavn(deltaker.navn)}</dd>
+                        <dd>{formatName(deltaker.navn)}</dd>
                         <dt>Fødselsnummer:</dt>
                         <dd>
                             <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={true} />
