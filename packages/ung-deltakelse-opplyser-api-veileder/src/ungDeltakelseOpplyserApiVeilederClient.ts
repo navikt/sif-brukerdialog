@@ -1,18 +1,19 @@
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { client } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
-import { commonRequestHeader, isUnauthorized } from './';
+import { client } from './veileder';
 
 interface InitOptions {
     onUnAuthorized?: () => void;
+    isUnauthorized?: (error: AxiosError) => boolean;
+    headers?: Record<string, string>;
 }
 
-export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
+export const initUngDeltakelseOpplyserApiVeilederClient = (baseURL: string, options?: InitOptions) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
-        headers: commonRequestHeader,
-        baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
+        headers: options?.headers,
+        baseURL,
     });
 
     /**
@@ -21,7 +22,7 @@ export const initUngDeltakelseOpplyserApiClient = (options?: InitOptions) => {
     client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
-            if (isUnauthorized(error) && options?.onUnAuthorized) {
+            if (options?.isUnauthorized && options.isUnauthorized(error) && options?.onUnAuthorized) {
                 options.onUnAuthorized();
             }
             return Promise.reject(error);
