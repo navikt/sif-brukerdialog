@@ -5,7 +5,7 @@ import {
     registrertDeltakerSchema,
     UregistrertDeltaker,
     uregistrertDeltakerSchema,
-} from '@navikt/ung-common/src/types';
+} from '../../types/Deltaker';
 
 /**
  * Henter informasjon om en deltaker basert på ident (fnr/dnr).

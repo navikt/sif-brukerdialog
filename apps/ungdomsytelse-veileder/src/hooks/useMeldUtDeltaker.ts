@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { queries } from '../queries/queryKeys';
-import { meldUtDeltaker } from '../api/deltakelse/meldUtDeltaker';
-
-import { ApiError, Deltakelse } from '@navikt/ung-common';
+import { ApiError } from '@navikt/ung-common';
 import { DeltakelseUtmeldingDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { meldUtDeltaker } from '../api/deltakelse/meldUtDeltaker';
+import { queries } from '../queries/queryKeys';
+import { Deltakelse } from '../types/Deltakelse';
 
 export const useMeldUtDeltaker = (deltakerId: string) => {
     const queryClient = useQueryClient();

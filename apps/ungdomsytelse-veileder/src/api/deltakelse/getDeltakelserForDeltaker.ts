@@ -1,5 +1,6 @@
-import { Deltakelse, deltakelserSchema, handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@navikt/ung-common';
 import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Deltakelse, deltakelserSchema } from '../../types/Deltakelse';
 
 /**
  * Henter alle deltakelser som en deltaker har registrert

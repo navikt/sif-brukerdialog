@@ -1,5 +1,6 @@
-import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto, Veileder, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 
 /**
  * Lager en oppgave for å endre sluttdato for en deltakelse

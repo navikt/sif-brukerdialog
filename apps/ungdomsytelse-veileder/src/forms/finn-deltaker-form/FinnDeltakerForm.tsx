@@ -1,7 +1,6 @@
 import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import DevUserList from '../../dev-components/DevUserList';
@@ -11,6 +10,8 @@ import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
+import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
+import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;

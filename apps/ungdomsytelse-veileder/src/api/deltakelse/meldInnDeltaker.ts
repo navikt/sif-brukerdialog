@@ -1,9 +1,10 @@
-import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@navikt/ung-common';
 import {
     DeltakelseInnmeldingDto,
     Veileder,
     zDeltakelseInnmeldingDto,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 
 /**
  * Melder inn en bruker til deltakelse

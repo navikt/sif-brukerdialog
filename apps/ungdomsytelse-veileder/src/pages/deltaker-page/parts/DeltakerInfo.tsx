@@ -1,11 +1,11 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Deltaker } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import Fødselsnummer from '../../../atoms/Fødselsnummer';
 import InfoBox from '../../../atoms/InfoBox';
 import DiskresjonskoderTags from '../../../components/diskresjonskode-tag/DiskresjonskoderTags';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { Deltaker } from '../../../types/Deltaker';
 
 interface Props {
     deltaker: Deltaker;

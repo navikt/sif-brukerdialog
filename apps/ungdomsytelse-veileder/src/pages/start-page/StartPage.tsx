@@ -2,12 +2,13 @@ import { Alert, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
-import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
 
 const StartPage = () => {
     const navigate = useNavigate();

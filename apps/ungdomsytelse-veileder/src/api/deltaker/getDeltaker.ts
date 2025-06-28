@@ -1,6 +1,6 @@
 import { handleApiError } from '@navikt/ung-common';
-import { registrertDeltakerSchema } from '@navikt/ung-common/src/types';
 import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { registrertDeltakerSchema } from '../../types/Deltaker';
 
 export const getDeltakerById = async (deltakerId: string) => {
     try {
