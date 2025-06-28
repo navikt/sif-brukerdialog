@@ -1,8 +1,8 @@
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
-import { Deltakelse } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
+import { Deltakelse } from '../types/Deltakelse';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,

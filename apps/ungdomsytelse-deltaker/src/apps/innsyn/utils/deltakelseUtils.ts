@@ -1,6 +1,6 @@
 import { getDateToday } from '@navikt/sif-common-utils';
-import { DeltakelsePeriode } from '@navikt/ung-common';
 import dayjs from 'dayjs';
+import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
 /**
  * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående

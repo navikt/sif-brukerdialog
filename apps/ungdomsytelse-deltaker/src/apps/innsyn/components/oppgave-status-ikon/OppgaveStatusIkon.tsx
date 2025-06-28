@@ -5,7 +5,7 @@ import {
     HourglassBottomFilledIcon,
     PencilFillIcon,
 } from '@navikt/aksel-icons';
-import { OppgaveStatus } from '@navikt/ung-common';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 interface Props {
     oppgavestatus: OppgaveStatus;

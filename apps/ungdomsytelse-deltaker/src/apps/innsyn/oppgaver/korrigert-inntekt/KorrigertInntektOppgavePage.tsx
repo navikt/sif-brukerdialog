@@ -1,5 +1,5 @@
-import { KorrigertInntektOppgave } from '@navikt/ung-common';
 import { useAppIntl } from '../../../../i18n';
+import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
 import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel, getOppgaveBekreftelseTekster, getOppgaveOppsummering } from '../../utils/textUtils';

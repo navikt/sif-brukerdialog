@@ -1,8 +1,9 @@
-import { ApiError, fødselsnummerFormatter } from '@navikt/ung-common';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
+import { ApiError } from '@navikt/ung-common';
 import { isAxiosError } from 'axios';
 import FødselsnummerInline from '../../atoms/FødselsnummerInline';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';
 
 interface Props {
     error: ApiError;

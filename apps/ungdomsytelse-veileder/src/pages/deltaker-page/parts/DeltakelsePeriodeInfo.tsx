@@ -1,11 +1,12 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { useState } from 'react';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
 import DatoBoks from './DatoBoks';
+import { Deltaker } from '../../../types/Deltaker';
+import { Deltakelse } from '../../../types/Deltakelse';
 
 interface Props {
     deltaker: Deltaker;

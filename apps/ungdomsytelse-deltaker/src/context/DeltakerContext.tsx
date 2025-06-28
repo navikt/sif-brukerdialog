@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { Søker } from '@navikt/sif-common-api';
-import { DeltakelsePeriode } from '@navikt/ung-common';
+import { DeltakelsePeriode } from '../types/DeltakelsePeriode';
 
 export interface DeltakerContextType {
     søker: Søker;

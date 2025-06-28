@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import { deltakelseSchema } from '../../types/Deltakelse';
+import { registrertDeltakerSchema } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import EndrePeriodeForm from './EndrePeriodeForm';
 

@@ -5,7 +5,6 @@ import { EnvKey } from '@navikt/sif-common-env';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus, RapporterInntektOppgave } from '@navikt/ung-common';
 import { getAppEnv } from '../../../../../utils/appEnv';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import InntektForm from '../../../forms/inntekt-form/InntektForm';
@@ -13,6 +12,8 @@ import { TallSvar } from '@navikt/sif-common-ui';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { RapporterInntektOppgave } from '../../../../../types/Oppgave';
 
 interface Props {
     deltakerNavn: string;

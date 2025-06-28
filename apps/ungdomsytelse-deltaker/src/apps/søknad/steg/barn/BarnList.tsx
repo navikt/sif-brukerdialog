@@ -1,6 +1,6 @@
 import { List } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { formaterNavn } from '@navikt/ung-common';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 interface Props {
     barn: RegistrertBarn[];
@@ -9,7 +9,7 @@ interface Props {
 const BarnList = ({ barn }: Props) => (
     <List>
         {barn.map((b, index) => (
-            <List.Item key={index}>{formaterNavn(b)}</List.Item>
+            <List.Item key={index}>{formatName(b)}</List.Item>
         ))}
     </List>
 );

@@ -6,8 +6,9 @@ import EndrePeriodeForm from './EndrePeriodeForm';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { deltakelseSchema, registrertDeltakerSchema } from '@navikt/ung-common';
 import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
+import { deltakelseSchema } from '../../types/Deltakelse';
+import { registrertDeltakerSchema } from '../../types/Deltaker';
 
 const meta: Meta<typeof EndrePeriodeForm> = {
     component: EndrePeriodeForm,

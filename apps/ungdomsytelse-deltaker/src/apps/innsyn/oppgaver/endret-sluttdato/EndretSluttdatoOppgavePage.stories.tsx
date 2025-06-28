@@ -1,13 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { EndretSluttdatoOppgave, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+
+import { Heading, VStack } from '@navikt/ds-react';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { Heading, VStack } from '@navikt/ds-react';
+import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret sluttdato',

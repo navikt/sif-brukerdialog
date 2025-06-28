@@ -1,16 +1,15 @@
+import { BodyShort } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { AppIntlShape } from '../../../i18n';
+import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     Oppgave,
     OppgaveBase,
-    OppgaveStatus,
-    Oppgavetype,
     RapporterInntektOppgave,
-} from '@navikt/ung-common';
-import { BodyShort } from '@navikt/ds-react';
-import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { AppIntlShape } from '../../../i18n';
+} from '../../../types/Oppgave';
 
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {

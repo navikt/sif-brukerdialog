@@ -1,12 +1,8 @@
 import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
-import {
-    BekreftelseOppgave,
-    DeltakelsePeriode,
-    OppgaveStatus,
-    Oppgavetype,
-    SøkYtelseOppgave,
-} from '@navikt/ung-common';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
+import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
 export enum LogMetaInfoType {
     SØKNAD_SENDT = 'søknad sendt',

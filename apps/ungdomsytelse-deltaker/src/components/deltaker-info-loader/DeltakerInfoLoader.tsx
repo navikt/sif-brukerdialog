@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
-import { Oppgavetype } from '@navikt/ung-common';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
@@ -13,6 +12,7 @@ import UngLoadingPage from '../../pages/UngLoadingPage';
 import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();

@@ -1,4 +1,4 @@
-import { DeltakelseKomposittDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseKomposittDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ScenarioData } from '../types';
 
 const deltakelse: DeltakelseKomposittDto = zDeltakelseKomposittDto.parse({

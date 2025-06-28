@@ -1,5 +1,6 @@
-import { Deltakelse, deltakelserSchema, handleApiError } from '@navikt/ung-common';
-import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { handleApiError } from '@navikt/ung-common';
+import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Deltakelse, deltakelserSchema } from '../../types/Deltakelse';
 
 /**
  * Henter alle deltakelser som en deltaker har registrert
@@ -10,7 +11,7 @@ import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api
 
 export const getDeltakelserForDeltaker = async (deltakerId: string): Promise<Deltakelse[]> => {
     try {
-        const { data } = await VeilederService.hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
+        const { data } = await Veileder.hentAlleDeltakelserGittDeltakerId({ path: { deltakerId } });
         return deltakelserSchema.parse(data);
     } catch (e) {
         throw handleApiError(e, 'getDeltakelserForDeltaker');

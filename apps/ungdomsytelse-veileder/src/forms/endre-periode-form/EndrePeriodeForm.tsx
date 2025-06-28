@@ -8,7 +8,6 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, formaterNavn } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
@@ -22,6 +21,9 @@ import {
 } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
 import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { Deltaker } from '../../types/Deltaker';
+import { Deltakelse } from '../../types/Deltakelse';
 
 type FormValues = {
     fom?: string;
@@ -61,7 +63,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         deltakerId: deltaker.id,
     });
 
-    const deltakernavn = formaterNavn(deltaker.navn);
+    const deltakernavn = formatName(deltaker.navn);
 
     const startdatoMinMax = getStartdatobegrensningForDeltaker(
         deltaker.førsteMuligeInnmeldingsdato,

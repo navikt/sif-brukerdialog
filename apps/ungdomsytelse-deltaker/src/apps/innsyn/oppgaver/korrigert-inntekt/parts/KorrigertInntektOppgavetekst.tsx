@@ -2,8 +2,11 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
-import { KorrigertInntektOppgave } from '@navikt/ung-common';
-import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@navikt/ung-deltakelse-opplyser-api';
+import {
+    ArbeidOgFrilansRegisterInntektDto,
+    YtelseRegisterInntektDto,
+} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;

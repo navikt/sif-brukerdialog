@@ -1,9 +1,9 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
-
-import DeltakerInfo from './DeltakerInfo';
+import { Deltakelse } from '../../../types/Deltakelse';
+import { Deltaker } from '../../../types/Deltaker';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
+import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
+import DeltakerInfo from './DeltakerInfo';
 import SlettDeltakerInfo from './SlettDeltakerInfo';
 
 interface Props {

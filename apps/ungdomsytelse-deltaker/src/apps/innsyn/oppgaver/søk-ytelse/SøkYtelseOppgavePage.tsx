@@ -1,4 +1,4 @@
-import { SøkYtelseOppgave } from '@navikt/ung-common';
+import { SøkYtelseOppgave } from '../../../../types/Oppgave';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import SøkYtelseOppgavetekst from './part/SøkYtelseOppgavetekst';
 

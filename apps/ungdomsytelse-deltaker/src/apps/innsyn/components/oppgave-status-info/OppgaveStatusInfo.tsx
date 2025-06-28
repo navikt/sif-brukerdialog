@@ -1,5 +1,5 @@
 import { Alert, BodyLong, Box } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-common';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;

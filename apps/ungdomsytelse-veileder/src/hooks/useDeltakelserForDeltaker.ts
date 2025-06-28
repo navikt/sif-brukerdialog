@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDeltakelserForDeltaker } from '../api/deltakelse/getDeltakelserForDeltaker';
 import { queryKeys } from '../queries/queryKeys';
-import { ApiError, Deltakelse } from '@navikt/ung-common';
+import { ApiError } from '@navikt/ung-common';
+import { Deltakelse } from '../types/Deltakelse';
 
 /**
  * Henter alle deltakelser knyttet til en deltaker-id.

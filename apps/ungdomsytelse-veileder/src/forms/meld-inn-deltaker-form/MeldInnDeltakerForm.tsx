@@ -10,13 +10,14 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
-import { ApiErrorType, Deltakelse, Deltaker, UregistrertDeltaker } from '@navikt/ung-common';
+import { ApiErrorType } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
-// import { GYLDIG_PERIODE } from '../../settings';
-import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;

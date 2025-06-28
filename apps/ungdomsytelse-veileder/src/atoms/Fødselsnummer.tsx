@@ -1,5 +1,5 @@
 import { Bleed, CopyButton, HStack } from '@navikt/ds-react';
-import { fødselsnummerFormatter } from '@navikt/ung-common';
+import { fødselsnummerFormatter } from '../utils/formaterFødselsnummer';
 
 interface Props {
     fnr: string;

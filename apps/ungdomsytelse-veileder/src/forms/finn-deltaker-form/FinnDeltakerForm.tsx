@@ -1,15 +1,17 @@
 import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
-import { Deltakelse, Deltaker, fødselsnummerFormatter, UregistrertDeltaker } from '@navikt/ung-common';
-import { useTextFieldFormatter } from '@navikt/ung-common/src/hooks/useTextFieldFormatter';
+import { isAxiosError } from 'axios';
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
+import DevUserList from '../../dev-components/DevUserList';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
+import { useTextFieldFormatter } from '../../hooks/useTextFieldFormatter';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
-import DevUserList from '../../dev-components/DevUserList';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
-import { isAxiosError } from 'axios';
+import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
+import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;

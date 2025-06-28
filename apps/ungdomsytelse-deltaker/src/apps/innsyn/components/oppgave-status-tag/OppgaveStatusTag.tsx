@@ -1,6 +1,6 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-common';
 import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;

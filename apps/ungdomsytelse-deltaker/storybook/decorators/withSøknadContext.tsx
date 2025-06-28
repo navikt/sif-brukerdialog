@@ -1,10 +1,11 @@
-import { DeltakelsePeriode, deltakelsePeriodeSchema, SøkYtelseOppgave } from '@navikt/ung-common';
 import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { SøknadProvider } from '../../src/apps/søknad/context/SøknadContext';
 import { barnResponseSchema } from '@navikt/sif-common-api';
 import { SøknadContextType } from '../../src/apps/søknad/types';
 import { Theme } from '@navikt/ds-react';
+import { SøkYtelseOppgave } from '../../src/types/Oppgave';
+import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../src/types/DeltakelsePeriode';
 
 const data = getScenarioMockData(ScenarioType.harIkkeSøkt);
 
