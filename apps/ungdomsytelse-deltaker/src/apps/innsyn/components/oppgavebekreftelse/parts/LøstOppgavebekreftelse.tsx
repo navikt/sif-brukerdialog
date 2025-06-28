@@ -1,17 +1,17 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
-import OppgaveUttalelse from './OppgaveUttalelse';
-import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api';
+import { OppgaveBase, OppgaveStatus } from '@navikt/ung-common';
+import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
-import { OppgaveBase } from '@navikt/ung-common';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
 import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
+import OppgaveUttalelse from './OppgaveUttalelse';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
     deltakerNavn: string;
-    bekreftelse?: BekreftelseDto;
+    bekreftelse?: DeltakerApi.BekreftelseDto;
     oppsummering: React.ReactNode;
     oppgave: OppgaveBase;
 }

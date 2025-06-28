@@ -1,4 +1,4 @@
-import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
@@ -111,12 +111,12 @@ const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStat
 };
 
 /** Overstyrer generert zod schema for å tillate strings som ikke har url format (for lokal utvikling) */
-export const zProblemDetailWithoutUrl = zProblemDetail.omit({ type: true, instance: true }).extend({
+export const zProblemDetailWithoutUrl = DeltakerApi.zProblemDetail.omit({ type: true, instance: true }).extend({
     type: z.string().optional(), // Endrer type til kun string
     instance: z.string().optional(), // Endrer type til kun string
 });
 
-export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
+export const isProblemDetail = (obj: unknown): obj is DeltakerApi.ProblemDetail => {
     const result = zProblemDetailWithoutUrl.safeParse(obj);
     if (result.success) {
         return true;

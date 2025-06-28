@@ -1,5 +1,5 @@
-import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
-export interface DeltakelseHistorikkInnslag extends Omit<DeltakelseHistorikkDto, 'tidspunkt'> {
+export interface DeltakelseHistorikkInnslag extends Omit<VeilederApi.DeltakelseHistorikkDto, 'tidspunkt'> {
     tidspunkt: Date;
 }

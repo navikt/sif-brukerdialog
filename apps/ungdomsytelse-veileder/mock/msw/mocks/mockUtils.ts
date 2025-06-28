@@ -1,18 +1,18 @@
 // /* eslint-disable no-console */
 
-import { DeltakelseHistorikkDto, DeltakelseDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api';
 import { v4 } from 'uuid';
 import { deltaker2Mock } from './data/deltaker2';
 import { nyDeltakerMock } from './data/nyDeltakerMock';
 import { registrertDeltakerMock } from './data/registrertDeltakerMock';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface DbDeltakelse {
-    deltakelse: DeltakelseDto;
-    historikk: DeltakelseHistorikkDto[];
+    deltakelse: VeilederApi.DeltakelseDto;
+    historikk: VeilederApi.DeltakelseHistorikkDto[];
 }
 
 interface TempDB {
-    deltakere: DeltakerPersonalia[];
+    deltakere: VeilederApi.DeltakerPersonalia[];
     deltakelser: DbDeltakelse[];
 }
 
@@ -72,7 +72,7 @@ const getDeltakelser = (deltakerId: string) => {
         .map((data) => data.deltakelse);
 };
 
-const getDeltakelseHistorikk = (deltakelseId: string): DeltakelseHistorikkDto[] => {
+const getDeltakelseHistorikk = (deltakelseId: string): VeilederApi.DeltakelseHistorikkDto[] => {
     const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
     return deltakelse ? deltakelse.historikk : [];
 };
@@ -84,7 +84,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
     }
     const deltakelseId = v4();
     const deltakerId = v4();
-    const deltakelse: DeltakelseDto = {
+    const deltakelse: VeilederApi.DeltakelseDto = {
         id: deltakelseId,
         deltaker: {
             deltakerIdent,

@@ -1,18 +1,14 @@
-import {
-    BekreftelseDto,
-    OppgaveDto,
-    OppgaveStatus,
-    Oppgavetype,
-    RapportertInntektPeriodeinfoDto,
-    RegisterinntektDto,
-} from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 export interface OppgaveBase
-    extends Omit<OppgaveDto, 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist'> {
+    extends Omit<
+        DeltakerApi.OppgaveDto,
+        'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist'
+    > {
     oppgaveReferanse: string;
-    oppgavetype: Oppgavetype;
+    oppgavetype: DeltakerApi.Oppgavetype;
     opprettetDato: Date;
-    status: OppgaveStatus;
+    status: DeltakerApi.OppgaveStatus;
     løstDato?: Date;
     frist: Date;
     åpnetDato?: Date;
@@ -20,42 +16,42 @@ export interface OppgaveBase
 }
 
 export interface BekreftelseOppgave extends OppgaveBase {
-    bekreftelse?: BekreftelseDto;
+    bekreftelse?: DeltakerApi.BekreftelseDto;
 }
 export interface KorrigertInntektOppgave extends BekreftelseOppgave {
-    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
+    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
-        registerinntekt: RegisterinntektDto;
+        registerinntekt: DeltakerApi.RegisterinntektDto;
     };
 }
 
 export interface EndretStartdatoOppgave extends BekreftelseOppgave {
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO;
+    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_ENDRET_STARTDATO;
     oppgavetypeData: {
         forrigeStartdato: Date;
         nyStartdato: Date;
     };
 }
 export interface EndretSluttdatoOppgave extends BekreftelseOppgave {
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO;
+    oppgavetype: DeltakerApi.Oppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
         forrigeSluttdato?: Date;
         nySluttdato: Date;
     };
 }
 export interface RapporterInntektOppgave extends OppgaveBase {
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT;
+    oppgavetype: DeltakerApi.Oppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
-        rapportertInntekt?: Pick<RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
+        rapportertInntekt?: Pick<DeltakerApi.RapportertInntektPeriodeinfoDto, 'arbeidstakerOgFrilansInntekt'>;
     };
 }
 
 export interface SøkYtelseOppgave extends OppgaveBase {
-    oppgavetype: Oppgavetype.SØK_YTELSE;
+    oppgavetype: DeltakerApi.Oppgavetype.SØK_YTELSE;
     oppgavetypeData: {
         fomDato: Date;
     };

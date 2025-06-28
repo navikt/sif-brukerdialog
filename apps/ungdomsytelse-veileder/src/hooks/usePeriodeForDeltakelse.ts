@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, Deltakelse } from '@navikt/ung-common';
-import { EndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api';
+
 import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';
 import { queries } from '../queries/queryKeys';
 import { endreStartdatoForDeltakelse } from '../api/deltakelse/endreStartdatoForDeltakelse';
 import { EndrePeriodeVariant } from '../types/EndrePeriodeVariant';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Mutasjon for å endre startdato eller sluttdato for en deltakelse
@@ -22,8 +23,8 @@ export const usePeriodeForDeltakelse = ({
 }) => {
     const queryClient = useQueryClient();
 
-    return useMutation<Deltakelse, ApiError, EndrePeriodeDatoDto>({
-        mutationFn: (data: EndrePeriodeDatoDto) =>
+    return useMutation<Deltakelse, ApiError, VeilederApi.EndrePeriodeDatoDto>({
+        mutationFn: (data: VeilederApi.EndrePeriodeDatoDto) =>
             variant === EndrePeriodeVariant.startdato
                 ? endreStartdatoForDeltakelse(deltakelseId, data)
                 : endreSluttdatoForDeltakelse(deltakelseId, data),

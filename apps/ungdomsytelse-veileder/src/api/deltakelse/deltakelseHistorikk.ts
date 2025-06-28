@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto, Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Henter historikk for en deltakelse
@@ -8,9 +8,9 @@ import { DeltakelseHistorikkDto, Veileder as VeilederService } from '@navikt/ung
  * @throws {ApiError}
  */
 
-export const getDeltakelseHistorikk = async (deltakelseId: string): Promise<DeltakelseHistorikkDto[]> => {
+export const getDeltakelseHistorikk = async (deltakelseId: string): Promise<VeilederApi.DeltakelseHistorikkDto[]> => {
     try {
-        const { data } = await VeilederService.deltakelseHistorikk({ path: { deltakelseId } });
+        const { data } = await VeilederApi.Veileder.deltakelseHistorikk({ path: { deltakelseId } });
         return data;
     } catch (e) {
         throw handleApiError(e, 'getDeltakelseHistorikk');

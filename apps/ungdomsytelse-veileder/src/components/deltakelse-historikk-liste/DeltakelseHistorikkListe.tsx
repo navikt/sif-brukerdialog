@@ -3,20 +3,20 @@ import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkInnslag } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];
 }
-const getEndringstypeTekst = (type: Endringstype): string => {
+const getEndringstypeTekst = (type: VeilederApi.Endringstype): string => {
     switch (type) {
-        case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
+        case VeilederApi.Endringstype.DELTAKER_HAR_SØKT_YTELSE:
             return 'Søknad sendt inn';
-        case Endringstype.DELTAKER_MELDT_INN:
+        case VeilederApi.Endringstype.DELTAKER_MELDT_INN:
             return 'Deltakelse opprettet';
-        case Endringstype.ENDRET_SLUTTDATO:
+        case VeilederApi.Endringstype.ENDRET_SLUTTDATO:
             return 'Endret sluttdato';
-        case Endringstype.ENDRET_STARTDATO:
+        case VeilederApi.Endringstype.ENDRET_STARTDATO:
             return 'Endret startdato';
         default:
             return 'Ukjent';

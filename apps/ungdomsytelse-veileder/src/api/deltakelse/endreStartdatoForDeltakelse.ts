@@ -1,9 +1,5 @@
 import { Deltakelse, deltakelseSchema, handleApiError } from '@navikt/ung-common';
-import {
-    Veileder as VeilederService,
-    EndrePeriodeDatoDto,
-    zEndrePeriodeDatoDto,
-} from '@navikt/ung-deltakelse-opplyser-api';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 /**
  * Endrer startdato for en deltakelse
@@ -14,11 +10,11 @@ import {
  */
 export const endreStartdatoForDeltakelse = async (
     deltakelseId: string,
-    endrePeriodeData: EndrePeriodeDatoDto,
+    endrePeriodeData: VeilederApi.EndrePeriodeDatoDto,
 ): Promise<Deltakelse> => {
     try {
-        const body = zEndrePeriodeDatoDto.parse(endrePeriodeData);
-        const { data } = await VeilederService.endreStartdato({
+        const body = VeilederApi.zEndrePeriodeDatoDto.parse(endrePeriodeData);
+        const { data } = await VeilederApi.Veileder.endreStartdato({
             path: { deltakelseId },
             body,
         });

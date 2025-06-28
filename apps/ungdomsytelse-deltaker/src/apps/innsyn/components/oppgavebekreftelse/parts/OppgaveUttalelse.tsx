@@ -1,11 +1,11 @@
 import { BoxNew, FormSummary } from '@navikt/ds-react';
 import { TextareaSvar } from '@navikt/sif-common-ui';
-import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 
 interface Props {
     beskjedFraNav: React.ReactNode;
     spørsmål: string;
-    bekreftelse: BekreftelseDto;
+    bekreftelse: DeltakerApi.BekreftelseDto;
 }
 
 const OppgaveUttalelse = ({ beskjedFraNav, spørsmål, bekreftelse }: Props) => {

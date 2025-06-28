@@ -1,10 +1,10 @@
 import { handleApiError } from '@navikt/ung-common';
-import { Deltaker as DeltakerService, KontonummerDto, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakerApi } from '@navikt/ung-deltakelse-opplyser-api';
 
-export const getKontonummer = async (): Promise<KontonummerDto | null> => {
+export const getKontonummer = async (): Promise<DeltakerApi.KontonummerDto | null> => {
     try {
-        const { data } = await DeltakerService.hentKontonummer();
-        return zKontonummerDto.parse(data);
+        const { data } = await DeltakerApi.Deltaker.hentKontonummer();
+        return DeltakerApi.zKontonummerDto.parse(data);
     } catch (e) {
         throw handleApiError(e, 'getKontonummer');
     }

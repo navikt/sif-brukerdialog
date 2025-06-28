@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Heading, VStack } from '@navikt/ds-react';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype, SøkYtelseOppgave } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { Heading, VStack } from '@navikt/ds-react';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 import SøkYtelseOppgavePage from './SøkYtelseOppgavePage';
 
 const meta: Meta = {

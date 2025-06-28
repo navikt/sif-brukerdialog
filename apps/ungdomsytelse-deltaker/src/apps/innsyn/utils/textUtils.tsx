@@ -1,3 +1,5 @@
+import { BodyShort } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
@@ -7,10 +9,8 @@ import {
     Oppgavetype,
     RapporterInntektOppgave,
 } from '@navikt/ung-common';
-import { BodyShort } from '@navikt/ds-react';
-import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppIntlShape } from '../../../i18n';
+import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
 
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {

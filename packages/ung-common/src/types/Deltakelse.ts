@@ -1,9 +1,9 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api';
-import { z } from 'zod';
+import { VeilederApi } from '@navikt/ung-deltakelse-opplyser-api';
 import dayjs from 'dayjs';
+import { z } from 'zod';
 
-export const deltakelseSchema = zDeltakelseDto
+export const deltakelseSchema = VeilederApi.zDeltakelseDto
     .extend({
         id: z.string(),
     })

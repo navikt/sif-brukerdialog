@@ -26,7 +26,9 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "gen-types": "openapi-ts"
+        "gen-types-deltaker": "openapi-ts -f openapi-ts.deltaker.config.ts",
+        "gen-types-veileder": "openapi-ts -f openapi-ts.veileder.config.ts",
+        "gen-types": "yarn gen-types-deltaker && yarn gen-types-veileder"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
