@@ -15,6 +15,7 @@ import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøk
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenApiData';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -66,6 +67,7 @@ export const getApiDataFromSøknadsdata = (
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
+        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,

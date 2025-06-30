@@ -88,7 +88,7 @@ export interface PeriodeApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;
 }
-export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
+export interface UtenlandsoppholdApiData extends PeriodeApiData {
     landkode: string;
     landnavn: string;
 }
@@ -106,9 +106,9 @@ export interface OpptjeningIUtlandetApi {
     tilOgMed: ISODate;
 }
 
-export interface UtenlandsoppholdIPeriodenApi {
+export interface UtenlandsoppholdIPeriodenApiData {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: UtenlandsoppholdIPeriodenApiData[];
+    opphold: UtenlandsoppholdApiData[];
 }
 
 export interface FerieuttakIPeriodenApiData {
@@ -152,5 +152,6 @@ export interface SøknadApiData {
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

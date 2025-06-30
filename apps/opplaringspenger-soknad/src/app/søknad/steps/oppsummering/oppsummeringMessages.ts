@@ -24,6 +24,9 @@ const nb = {
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
 
+    'oppsummering.kurs.utenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
+    'oppsummering.kurs.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold i perioden',
+
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
     'oppsummering.arbeidssituasjon.tid': 'Jobber normalt {timer, plural, one {# time} other {# timer}} per uke',
@@ -92,7 +95,7 @@ const nb = {
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
 
     'steg.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold i perioden',
     'steg.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
     'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
     'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
@@ -159,6 +162,9 @@ const nn: Record<keyof typeof nb, string> = {
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
+
+    'oppsummering.kurs.utenlandsoppholdIPerioden.header': 'Oppheld du deg i utlandet i nokre av dagane du søker for?',
+    'oppsummering.kurs.utenlandsoppholdIPerioden.listTitle': 'Utanlandsopphald i perioden',
 
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er tilsett i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikkje lenger tilsett',
@@ -228,7 +234,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Det oppstod framleis ein feil under innsending. Vent litt og prøv på nytt.',
 
     'steg.oppsummering.medlemskap.header': 'Medlemskap i folketrygda',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Opphald i utlandet i perioden',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Opphald i utlandet i perioden',
     'steg.oppsummering.utlandetSiste12.header': 'Har du budd i utlandet dei siste 12 månadene?',
     'steg.oppsummering.utlandetNeste12.header': 'Skal du bu i utlandet dei neste 12 månadene?',
     'steg.oppsummering.utlandetSiste12.liste.header': 'Opphald i utlandet siste 12 månader',

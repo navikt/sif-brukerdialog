@@ -1,7 +1,11 @@
 import { FormSummary, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
-import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import {
+    FerieuttakIPeriodenApiData,
+    KursApiData,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../../../types/søknadApiData/SøknadApiData';
 import {
     capsFirstCharacter,
     dateFormatter,
@@ -14,10 +18,11 @@ import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 interface Props {
     kurs: KursApiData;
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
+const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdIPerioden }: Props) => {
     const { kursholder, kursperioder } = kurs;
     const { locale } = useAppIntl();
     return (
@@ -114,6 +119,38 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                                 <List.Item key={ferieuttak.fraOgMed}>
                                                     {dateFormatter.compact(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
                                                     {dateFormatter.compact(ISODateToDate(ferieuttak.tilOgMed))}
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </>
+                    )}
+                    {utenlandsoppholdIPerioden && (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.utenlandsoppholdIPerioden.header" />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    <AppText
+                                        id={utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden ? 'Ja' : 'Nei'}
+                                    />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+
+                            {utenlandsoppholdIPerioden.opphold.length > 0 && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="oppsummering.kurs.utenlandsoppholdIPerioden.listTitle" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            {utenlandsoppholdIPerioden.opphold.map((opphold) => (
+                                                <List.Item key={opphold.fraOgMed}>
+                                                    {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
+                                                    {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
                                                 </List.Item>
                                             ))}
                                         </List>
