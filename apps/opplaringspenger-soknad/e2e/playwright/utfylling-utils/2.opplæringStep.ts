@@ -9,6 +9,7 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await leggTilPeriode1(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
+    await svarIngenUtenlandsopphold(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -23,6 +24,7 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await leggTilPeriode2(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
+    await svarIngenUtenlandsopphold(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -77,6 +79,34 @@ const leggTilFerie = async (page: Page) => {
         .click();
 
     await page.getByRole('button', { name: 'torsdag 5' }).click();
+    await page.getByRole('button', { name: 'Ok' }).click();
+};
+
+const svarIngenUtenlandsopphold = async (page: Page) => {
+    await page
+        .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
+        .getByLabel('Nei')
+        .check();
+};
+
+export const leggTilUtenlandsopphold = async (page: Page) => {
+    await page.getByRole('group', { name: 'Oppholder du deg i utlandet i' }).getByLabel('Ja').check();
+    await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
+    await page
+        .getByLabel('Utenlandsopphold')
+        .locator('div')
+        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
+        .getByRole('button')
+        .click();
+    await page.getByRole('button', { name: 'fredag 6' }).click();
+    await page
+        .getByLabel('Utenlandsopphold')
+        .locator('div')
+        .filter({ hasText: /^Til og medÅpne datovelger$/ })
+        .getByRole('button')
+        .click();
+    await page.getByRole('button', { name: 'lørdag 7' }).click();
+    await page.getByLabel('Velg land').selectOption('ABW');
     await page.getByRole('button', { name: 'Ok' }).click();
 };
 
