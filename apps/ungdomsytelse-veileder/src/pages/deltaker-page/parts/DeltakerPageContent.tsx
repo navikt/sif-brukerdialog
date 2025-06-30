@@ -34,7 +34,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
             <VStack gap="10">
                 {deltakelse.søktTidspunkt === undefined ? (
                     <HStack>
-                        <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                        <Alert variant="warning">Søknad om ungdomsprogramytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
                 ) : null}
 

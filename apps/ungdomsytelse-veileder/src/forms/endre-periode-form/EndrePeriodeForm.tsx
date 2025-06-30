@@ -24,6 +24,7 @@ import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { Deltaker } from '../../types/Deltaker';
 import { Deltakelse } from '../../types/Deltakelse';
+import EndreSluttdatoInfo from '../../pages/deltaker-page/EndreSluttdatoInfo';
 
 type FormValues = {
     fom?: string;
@@ -143,7 +144,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
             renderForm={({ values }) => {
                 return (
                     <VStack gap="6">
-                        <EndreStartdatoInfo />
+                        {variant === EndrePeriodeVariant.sluttdato ? <EndreSluttdatoInfo /> : <EndreStartdatoInfo />}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
