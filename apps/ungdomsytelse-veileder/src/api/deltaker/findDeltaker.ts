@@ -19,6 +19,7 @@ export const findDeltakerByIdent = async (ident: string): Promise<Deltaker | Ure
         const { data } = await Oppslag.hentDeltakerInfoGittDeltaker({ body: { deltakerIdent: ident } });
         return data?.id ? registrertDeltakerSchema.parse(data) : uregistrertDeltakerSchema.parse(data);
     } catch (e) {
+        alert(e);
         throw handleApiError(e, 'findDeltakerByIdent');
     }
 };
