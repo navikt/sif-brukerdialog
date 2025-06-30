@@ -83,9 +83,10 @@ const startServer = async () => {
 
     // Fallback til index-decorated.html (ikke transformert)
     server.get(/^\/(?!.*dist).*$/, (req, res, next) => {
-        const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
+        const normalizedPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
+        const fullPath = fs.realpathSync(normalizedPath);
         const insideRoot = fullPath.startsWith(__dirname);
-        const fileExists = fs.existsSync(fullPath);
+        const fileExists = insideRoot && fs.existsSync(fullPath);
 
         if (!insideRoot || (!fileExists && !req.url.startsWith('/@')) || req.url === '/') {
             req.url = '/index-decorated.html';
