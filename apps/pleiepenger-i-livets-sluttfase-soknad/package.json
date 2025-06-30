@@ -63,7 +63,7 @@
         "compression": "1.8.0",
         "cross-env": "7.0.3",
         "dotenv": "16.6.0",
-        "eslint": "9.29.0",
+        "eslint": "9.30.0",
         "eslint-plugin-storybook": "9.0.13",
         "express": "4.21.2",
         "helmet": "8.1.0",
