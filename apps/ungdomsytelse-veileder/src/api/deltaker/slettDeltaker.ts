@@ -1,5 +1,5 @@
 import { handleApiError } from '@navikt/ung-common';
-import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api';
+import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 /**
  * Sletter en deltaker
@@ -9,7 +9,7 @@ import { Veileder as VeilederService } from '@navikt/ung-deltakelse-opplyser-api
 
 export const slettDeltaker = async (deltakerId: string) => {
     try {
-        await VeilederService.fjernFraProgram({ path: { deltakerId } });
+        await Veileder.fjernFraProgram({ path: { deltakerId } });
     } catch (e) {
         throw handleApiError(e, 'slettDeltaker');
     }

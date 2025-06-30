@@ -1,5 +1,5 @@
 import { Tag, TagProps } from '@navikt/ds-react';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 interface Props extends Omit<TagProps, 'variant' | 'children'> {
     kode: Diskresjonskode;

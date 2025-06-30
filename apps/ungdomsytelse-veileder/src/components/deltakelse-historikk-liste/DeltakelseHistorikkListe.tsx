@@ -3,7 +3,7 @@ import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkInnslag } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];

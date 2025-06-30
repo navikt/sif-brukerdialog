@@ -1,7 +1,7 @@
 import { BodyShort, Box, Button, Heading, HGrid, Hide, HStack, VStack } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { Deltaker } from '@navikt/ung-common';
 import PersonNøytral from '../../atoms/PersonNøytral';
+import { Deltaker } from '../../types/Deltaker';
 
 interface Props {
     deltaker: Deltaker;

@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { BekreftelseOppgave } from '@navikt/ung-common';
 import { useAnalyticsInstance } from '../../../../../utils/analytics';
 import { AppRoutes } from '../../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
@@ -12,6 +11,7 @@ import { LogMetaInfoType, logUtils } from '../../../utils/logUtils';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
 import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
+import { BekreftelseOppgave } from '../../../../../types/Oppgave';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;

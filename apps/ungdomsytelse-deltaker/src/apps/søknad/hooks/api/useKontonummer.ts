@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
-import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { KontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { getKontonummer } from '../../api/kontonummer/getKontonummer';
 import { søknadQueryKeys } from '../../queries/søknadQueries';
 

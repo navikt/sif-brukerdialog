@@ -24,7 +24,6 @@ test('Endre startdato', async ({ page }) => {
     await page.getByRole('button', { name: 'Endre startdato' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'mandag 17' }).click();
-    await page.getByRole('radio', { name: 'Ja' }).check();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Ok, lukk' }).click();
@@ -35,7 +34,6 @@ test('Registrere sluttdato', async ({ page }) => {
     await page.getByRole('button', { name: 'Registrer sluttdato' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'fredag 16' }).click();
-    await page.getByRole('radio', { name: 'Ja' }).check();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Ok, lukk' }).click();

@@ -90,7 +90,7 @@ export const ungSoknadMessages_nb = {
     'barnSteg.barnStemmer.ja.label': 'Ja',
     'barnSteg.barnStemmer.nei.label': 'Nei',
     'barnSteg.spørsmål.ingenBarn': 'Stemmer det at du ikke har barn?',
-    'barnSteg.spørsmål.harBarn': 'Stemmer informasjonen om {antallBarn, plural, one {barnet} other {barna}}?',
+    'barnSteg.spørsmål.harBarn': 'Stemmer opplysningen om {antallBarn, plural, one {barnet} other {barna}}?',
     'barnSteg.validering.ikkeSvart': 'Du må svare på om informasjonen stemmer',
     'barnSteg.opplysninger.info.tittel': 'Vi henter opplysninger fra folkeregisteret',
     'barnSteg.opplysninger.info.text':

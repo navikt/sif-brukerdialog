@@ -1,11 +1,12 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
-import { DeltakelsePeriode, OppgaveStatus } from '@navikt/ung-common';
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakelseUtils';
 import OppgaverList from '../oppgaver-list/OppgaverList';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;

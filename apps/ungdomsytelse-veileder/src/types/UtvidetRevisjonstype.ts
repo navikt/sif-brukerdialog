@@ -1,4 +1,4 @@
-import { Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 export enum UtvidetRevisjonstype {
     OPPRETTET = Revisjonstype.OPPRETTET,

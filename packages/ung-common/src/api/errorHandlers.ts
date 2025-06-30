@@ -1,4 +1,4 @@
-import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api';
+import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 

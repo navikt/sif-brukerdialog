@@ -1,10 +1,11 @@
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { OppgaveStatus, SøkYtelseOppgave } from '@navikt/ung-common';
 import getLenker from '../../../../../utils/lenker';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { SøkYtelseOppgave } from '../../../../../types/Oppgave';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
