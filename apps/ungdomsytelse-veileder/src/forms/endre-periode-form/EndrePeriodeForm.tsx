@@ -1,4 +1,4 @@
-import { Alert, Bleed, Box, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
@@ -7,12 +7,15 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, getDateToday } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
-import EndreStartdatoInfo from '../../pages/deltaker-page/EndreStartdatoInfo';
+import StartdatoInfo from '../../pages/deltaker-page/StartdatoInfo';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
+import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import {
     getStartdatobegrensningForDeltaker,
     getTillattEndringsperiode,
@@ -20,11 +23,7 @@ import {
     kanEndreStartdato,
 } from '../../utils/deltakelseUtils';
 import { getPeriodeDatoValidator } from './endrePeriodeFormUtils';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { Deltaker } from '../../types/Deltaker';
-import { Deltakelse } from '../../types/Deltakelse';
-import EndreSluttdatoInfo from '../../pages/deltaker-page/EndreSluttdatoInfo';
+import SluttdatoInfo from '../../pages/deltaker-page/SluttdatoInfo';
 
 type FormValues = {
     fom?: string;
@@ -40,7 +39,7 @@ enum FieldNames {
     deltakerErInformert = 'deltakerErInformert',
 }
 
-const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormComponents<
     FieldNames,
     FormValues,
     ValidationError
@@ -64,7 +63,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         deltakerId: deltaker.id,
     });
 
-    const deltakernavn = formatName(deltaker.navn);
+    // const deltakernavn = formatName(deltaker.navn);
 
     const startdatoMinMax = getStartdatobegrensningForDeltaker(
         deltaker.førsteMuligeInnmeldingsdato,
@@ -141,10 +140,14 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                 tom: deltakelse.tilOgMed ? dateToISODate(deltakelse.tilOgMed) : undefined,
             }}
             onSubmit={handleOnSubmit}
-            renderForm={({ values }) => {
+            renderForm={() => {
                 return (
                     <VStack gap="6">
-                        {variant === EndrePeriodeVariant.sluttdato ? <EndreSluttdatoInfo /> : <EndreStartdatoInfo />}
+                        {variant === EndrePeriodeVariant.sluttdato ? (
+                            <SluttdatoInfo gjelderEndring={!!deltakelse.tilOgMed} />
+                        ) : (
+                            <StartdatoInfo />
+                        )}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
@@ -177,7 +180,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                         />
                                     )}
 
-                                    <VStack gap="2">
+                                    {/* <VStack gap="2">
                                         <YesOrNoQuestion
                                             name={FieldNames.deltakerErInformert}
                                             legend={`Er denne endringen avklart med ${deltakernavn}?`}
@@ -192,7 +195,7 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
                                                 </Alert>
                                             </Box>
                                         ) : null}
-                                    </VStack>
+                                    </VStack> */}
 
                                     <Bleed marginBlock="4 0">
                                         <ConfirmationCheckbox
