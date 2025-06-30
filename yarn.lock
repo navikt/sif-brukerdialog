@@ -2709,6 +2709,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.30.0":
+  version: 9.30.0
+  resolution: "@eslint/js@npm:9.30.0"
+  checksum: 10/42e3d5a9cdd5a0842f3ed078e28f81ae1cf04bd2edfd09f43e6dc148bb2e99904f09090007eb6485afd82d837771890c5a8b9ceb1e8c4e256953df4b4aa97308
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.6":
   version: 2.1.6
   resolution: "@eslint/object-schema@npm:2.1.6"
@@ -5806,7 +5813,7 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.29.0"
+    "@eslint/js": "npm:9.30.0"
     "@hookform/resolvers": "npm:5.1.1"
     "@navikt/aksel-icons": "npm:7.24.0"
     "@navikt/ds-css": "npm:7.24.0"
@@ -6015,7 +6022,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.29.0"
+    "@eslint/js": "npm:9.30.0"
     "@grafana/faro-react": "npm:1.18.2"
     "@navikt/aksel-icons": "npm:7.24.0"
     "@navikt/ds-css": "npm:7.24.0"
@@ -6095,7 +6102,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.2"
     "@chromatic-com/storybook": "npm:4.0.1"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.29.0"
+    "@eslint/js": "npm:9.30.0"
     "@grafana/faro-react": "npm:1.18.2"
     "@navikt/aksel-icons": "npm:7.24.0"
     "@navikt/ds-css": "npm:7.24.0"
@@ -8205,7 +8212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
-    "@eslint/js": "npm:9.29.0"
+    "@eslint/js": "npm:9.30.0"
     eslint: "npm:9.29.0"
     eslint-config-prettier: "npm:10.1.5"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
