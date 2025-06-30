@@ -53,7 +53,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await testAccessibility(page);
     await page.getByText('Er kontonummeret ditt 1234 56 78901?Ja').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
-    await page.getByText('Stemmer informasjonen om barnet?Ja').click();
+    await page.getByText('Stemmer opplysningen om barnet?Ja').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
     await page.locator('header').filter({ hasText: 'Kontonummer for' }).getByRole('link').click();
     await page.getByRole('radio', { name: 'Nei' }).check();
@@ -62,7 +62,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste steg' }).click();
     await page.getByText('Er kontonummeret ditt 1234 56 78901?Nei').click();
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
-    await page.getByText('Stemmer informasjonen om barnet?Nei').click();
+    await page.getByText('Stemmer opplysningen om barnet?Nei').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
     await page.getByRole('button', { name: 'Send søknad' }).click();
     await expect(page.getByText('Søknaden er sendt!Vi har fått')).toBeVisible();
