@@ -52,7 +52,6 @@ const søknadsdata: Søknadsdata = {
                 },
             },
         ],
-
         ferieuttakIPerioden: {
             type: 'skalTaUtFerieSøknadsdata',
             skalTaUtFerieIPerioden: true,
@@ -63,6 +62,10 @@ const søknadsdata: Søknadsdata = {
                     to: new Date('2024-12-05T00:00:00.000Z'),
                 },
             ],
+        },
+        utenlandsopphold: {
+            type: 'harIkkeUtenlandsopphold',
+            skalOppholdeSegIUtlandetIPerioden: false,
         },
     },
     arbeidssituasjon: {
@@ -152,5 +155,5 @@ export const mellomlagringMock = {
 
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
-    versjon: '0.1.0',
+    versjon: '0.2.0',
 };
