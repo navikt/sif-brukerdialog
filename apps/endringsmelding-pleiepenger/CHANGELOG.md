@@ -1,5 +1,22 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.37.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.6
+    - @navikt/sif-common-formik-ds@2.4.13
+    - @navikt/sif-common-soknad-ds@24.0.14
+    - @navikt/sif-common-forms-ds@19.0.14
+    - @navikt/sif-common-core-ds@10.2.15
+    - @navikt/sif-common-sentry@0.28.10
+    - @navikt/sif-common-utils@3.49.7
+    - @navikt/sif-common-ui@0.9.16
+    - @navikt/sif-common-hooks@0.3.2
+    - @navikt/sif-validation@1.0.2
+
 ## 2.37.15
 
 ### Patch Changes
