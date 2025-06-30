@@ -172,44 +172,43 @@ const startExpressServer = () => {
     //Test uten barn
     // server.get('/oppslag/barn', (req, res) => res.send({ barn: [] }));
 
-    // server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
-    //     res.sendStatus(200);
-    // });
     server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
-        // server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
-        res.status(400).send({
-            violations: [
-                {
-                    invalidValue: 'K9-format valideringsfeil',
-                    parameterName:
-                        "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2025-03-03/..'].regnskapsførerNavn",
-                    parameterType: 'ENTITY',
-                    reason: "' \uD83D\uDE0D \uD83D\uDE22 \uD83D\uDE21 \uD83E\uDD2F \uD83D\uDE34 \uD83E\uDD73' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
-                },
-            ],
-            detail: 'Forespørselen inneholder valideringsfeil',
-            instance: '/pleiepenger-sykt-barn/innsending',
-            properties: null,
-            status: 400,
-            title: 'invalid-request-parameters',
-            type: '/problem-details/invalid-request-parameters',
-        });
-        // res.status(400).send({
-        //     type: '/problem-details/invalid-request-parameters',
-        //     title: 'invalid-request-parameters',
-        //     status: 400,
-        //     detail: 'Requesten inneholder ugyldige paramtere.',
-        //     instance: 'about:blank',
-        //     invalid_parameters: [
-        //         {
-        //             name: "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2021-05-21/..'].regnskapsførerTlf",
-        //             reason: "'+00 00000000' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
-        //             invalid_value: 'K9-format valideringsfeil',
-        //             type: 'entity',
-        //         },
-        //     ],
-        // });
+        res.sendStatus(200);
     });
+    // server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
+    //     res.status(400).send({
+    //         violations: [
+    //             {
+    //                 invalidValue: 'K9-format valideringsfeil',
+    //                 parameterName:
+    //                     "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2025-03-03/..'].regnskapsførerNavn",
+    //                 parameterType: 'ENTITY',
+    //                 reason: "' \uD83D\uDE0D \uD83D\uDE22 \uD83D\uDE21 \uD83E\uDD2F \uD83D\uDE34 \uD83E\uDD73' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
+    //             },
+    //         ],
+    //         detail: 'Forespørselen inneholder valideringsfeil',
+    //         instance: '/pleiepenger-sykt-barn/innsending',
+    //         properties: null,
+    //         status: 400,
+    //         title: 'invalid-request-parameters',
+    //         type: '/problem-details/invalid-request-parameters',
+    //     });
+    //     // res.status(400).send({
+    //     //     type: '/problem-details/invalid-request-parameters',
+    //     //     title: 'invalid-request-parameters',
+    //     //     status: 400,
+    //     //     detail: 'Requesten inneholder ugyldige paramtere.',
+    //     //     instance: 'about:blank',
+    //     //     invalid_parameters: [
+    //     //         {
+    //     //             name: "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2021-05-21/..'].regnskapsførerTlf",
+    //     //             reason: "'+00 00000000' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
+    //     //             invalid_value: 'K9-format valideringsfeil',
+    //     //             type: 'entity',
+    //     //         },
+    //     //     ],
+    //     // });
+    // });
 
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
