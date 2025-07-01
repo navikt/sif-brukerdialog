@@ -1,4 +1,4 @@
-import { FormSummary, List, VStack } from '@navikt/ds-react';
+import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
 import {
@@ -149,8 +149,13 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         <List>
                                             {utenlandsoppholdIPerioden.opphold.map((opphold) => (
                                                 <List.Item key={opphold.fraOgMed}>
-                                                    {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
-                                                    {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
+                                                    <HStack gap="2">
+                                                        <div>
+                                                            {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
+                                                            {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
+                                                        </div>
+                                                        <div>{opphold.landnavn}</div>
+                                                    </HStack>
                                                 </List.Item>
                                             ))}
                                         </List>
