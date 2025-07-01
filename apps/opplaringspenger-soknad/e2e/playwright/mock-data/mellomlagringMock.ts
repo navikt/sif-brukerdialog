@@ -64,8 +64,16 @@ const søknadsdata: Søknadsdata = {
             ],
         },
         utenlandsopphold: {
-            type: 'harIkkeUtenlandsopphold',
-            skalOppholdeSegIUtlandetIPerioden: false,
+            type: 'harUtenlandsopphold',
+            skalOppholdeSegIUtlandetIPerioden: true,
+            utenlandsopphold: [
+                {
+                    type: 'enkel',
+                    landkode: 'ABW',
+                    fom: new Date('2024-12-06T00:00:00.000Z'),
+                    tom: new Date('2024-12-07T00:00:00.000Z'),
+                },
+            ],
         },
     },
     arbeidssituasjon: {
