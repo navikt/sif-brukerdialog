@@ -119,7 +119,7 @@ export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
     await expect(page.getByText('Oppholder du deg i utlandet i noen av dagene du søker for?Ja')).toBeVisible();
-    await expect(page.getByText('Utenlandsopphold i perioden06.12.2024 - 07.12.2024')).toBeVisible();
+    await expect(page.getByText('Utenlandsopphold06.12.2024 - 07.12.2024')).toBeVisible();
 };
 
 export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) => {

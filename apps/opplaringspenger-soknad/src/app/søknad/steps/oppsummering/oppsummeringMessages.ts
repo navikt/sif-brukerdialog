@@ -95,7 +95,7 @@ const nb = {
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
 
     'steg.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold i perioden',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold',
     'steg.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
     'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
     'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',

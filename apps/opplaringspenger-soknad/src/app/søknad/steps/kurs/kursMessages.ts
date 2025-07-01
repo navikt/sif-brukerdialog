@@ -87,7 +87,7 @@ const nb = {
         'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor det er nødvendig å reise på andre dager. Det kan for eksempel være at det er lang reisevei og/eller begrenset mulighet til å reise samme dag.',
 
     'steg.kurs.utenlandsopphold.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'steg.kurs.utenlandsopphold.listTitle': 'Utenlandsopphold i perioden',
+    'steg.kurs.utenlandsopphold.listTitle': 'Utenlandsopphold',
     'steg.kurs.utenlandsopphold.modalTitle': 'Utenlandsopphold',
     'steg.kurs.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
 };
