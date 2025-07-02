@@ -23,12 +23,10 @@ const EndretStartdatoOppgavetekst = ({ endretDato, svarfrist }: Props) => {
                 Har du en tilbakemelding? Ta kontakt med veilederen din først. Når dere har snakket sammen, sender du
                 inn svaret ditt her.
             </BodyLong>
+            <BodyLong weight="semibold">Fristen for å svare er {formatertFrist}.</BodyLong>
             <BodyLong spacing>
                 Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som startdato når vi
-                går videre med søknaden din.
-            </BodyLong>
-            <BodyLong spacing weight="semibold">
-                Fristen for å svare er {formatertFrist}.
+                behandler saken din.
             </BodyLong>
         </>
     );
