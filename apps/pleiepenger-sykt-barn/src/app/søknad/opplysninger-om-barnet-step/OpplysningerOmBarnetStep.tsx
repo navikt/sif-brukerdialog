@@ -9,7 +9,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
-import { Box, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';
 import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
@@ -38,7 +38,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
                     <VStack gap="6">
                         <InfoRetningslinjerSøskensaker />
 
-                        <Box marginBlock="2 0">
+                        <VStack gap="8" marginBlock="2 0">
                             {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
                             {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
                                 <AnnetBarnPart
@@ -48,7 +48,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
                                     harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
                                 />
                             )}
-                        </Box>
+                        </VStack>
                     </VStack>
                 </div>
             )}
