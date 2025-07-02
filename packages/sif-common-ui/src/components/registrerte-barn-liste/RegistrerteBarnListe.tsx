@@ -1,11 +1,10 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { RegistrerteBarnListText as Text } from './i18n/nb';
 import RegistrerteBarnListeHeading, { RegistrerteBarnListeHeadingProps } from './RegistrerteBarnListeHeading';
+import { UiText } from '../../i18n/ui.messages';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -14,7 +13,7 @@ interface Props {
 const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
     return registrerteBarn.length === 0 ? (
         <Alert variant="info">
-            <Text id="registrerteBarnListe.ingenbarn" />
+            <UiText id="registrerteBarnListe.ingenbarn" />
         </Alert>
     ) : (
         <VStack gap="4">
@@ -24,7 +23,7 @@ const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
                 labelRenderer={(barn): React.ReactNode => (
                     <HStack gap="4">
                         <Box>
-                            <Text
+                            <UiText
                                 id="registrertBarnListe.barn.født"
                                 values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
                             />

@@ -1,15 +1,19 @@
-import { IntlShape, useIntl } from 'react-intl';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { durationTextMessages_nb } from '../components/duration-text/i18n/nb';
 import { durationTextMessages_nn } from '../components/duration-text/i18n/nn';
 import { progressStepperMessages_nb } from '../components/progress-stepper/i18n/nb';
 import { progressStepperMessages_nn } from '../components/progress-stepper/i18n/nn';
-import { registrerteBarnMessages_nb } from '../components/registrerte-barn-liste/i18n/nb';
-import { registrerteBarnMessages_nn } from '../components/registrerte-barn-liste/i18n/nn';
+import { registrerteBarnKildeInfoMessages_nb } from '../components/registrerte-barn-kilde/i18n/nb';
+import { registrerteBarnKildeInfoMessages_nn } from '../components/registrerte-barn-kilde/i18n/nn';
+import { registrerteBarnListeMessages_nb } from '../components/registrerte-barn-liste/i18n/nb';
+import { registrerteBarnListeMessages_nn } from '../components/registrerte-barn-liste/i18n/nn';
 import { daySelectorMessages_nb } from '../inputs/day-selector/i18n/nb';
 import { daySelectorMessages_nn } from '../inputs/day-selector/i18n/nn';
 import { durationWeekdaysInputMessages_nb } from '../inputs/duration-weekdays-input/i18n/nb';
 import { durationWeekdaysInputMessages_nn } from '../inputs/duration-weekdays-input/i18n/nn';
+import { registrertBarnInput_nb } from '../inputs/velg-registrerte-barn-input/i18n/nb';
+import { registrertBarnInput_nn } from '../inputs/velg-registrerte-barn-input/i18n/nn';
 import { tidFasteUkedagerInputMessages_nb } from '../inputs/tid-faste-ukedager-input/i18n/nb';
 import { tidFasteUkedagerInputMessages_nn } from '../inputs/tid-faste-ukedager-input/i18n/nn';
 
@@ -21,7 +25,9 @@ const nb = {
     ...durationWeekdaysInputMessages_nb,
     ...progressStepperMessages_nb,
     ...tidFasteUkedagerInputMessages_nb,
-    ...registrerteBarnMessages_nb,
+    ...registrerteBarnListeMessages_nb,
+    ...registrertBarnInput_nb,
+    ...registrerteBarnKildeInfoMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -32,7 +38,9 @@ const nn: Record<keyof typeof nb, string> = {
     ...durationWeekdaysInputMessages_nn,
     ...progressStepperMessages_nn,
     ...tidFasteUkedagerInputMessages_nn,
-    ...registrerteBarnMessages_nn,
+    ...registrerteBarnListeMessages_nn,
+    ...registrertBarnInput_nn,
+    ...registrerteBarnKildeInfoMessages_nn,
 };
 
 export const getUiIntl = (intl: IntlShape) => {
@@ -42,6 +50,17 @@ export const getUiIntl = (intl: IntlShape) => {
 export const useUiIntl = () => {
     const intl = useIntl();
     return getUiIntl(intl);
+};
+
+export type UiMessageKeys = keyof typeof nb;
+
+interface UiTextProps {
+    id: UiMessageKeys;
+    values?: any;
+}
+
+export const UiText = (props: UiTextProps) => {
+    return <FormattedMessage {...props} />;
 };
 
 export const uiMessages = { nb, nn };
