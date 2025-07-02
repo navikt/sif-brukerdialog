@@ -11,6 +11,7 @@ import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
 import { Box, VStack } from '@navikt/ds-react';
 import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';
+import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
@@ -19,7 +20,7 @@ const harRegistrerteBarn = ({ barn }: Søkerdata) => {
 const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 
-    const { søknadenGjelderEtAnnetBarn } = values;
+    const søknadenGjelderEtAnnetBarn = values[SøknadFormField.barnetSøknadenGjelder] === AnnetBarnValue;
     const søkerdata = React.useContext(SøkerdataContext);
 
     const fødselsattester: Vedlegg[] = React.useMemo(() => {

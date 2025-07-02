@@ -13,7 +13,6 @@ export const formikValues: SøknadFormValues = {
     barnetSøknadenGjelder: '2811762539343',
     harForståttRettigheterOgPlikter: true,
     harBekreftetOpplysninger: true,
-    søknadenGjelderEtAnnetBarn: false,
     barnetHarIkkeFnr: false,
     fødselsattest: [],
     legeerklæring: [],

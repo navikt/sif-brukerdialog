@@ -6,7 +6,7 @@ export const ungSoknadMessages_nb = {
     'personopplysninger.accordion.header': 'Om hvordan vi innhenter opplysninger om deg',
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'personopplysninger.2':
-        'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelsetjeneste. Deler av saken din blir behandlet automatisk.',
+        'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelse. Deler av saken din blir behandlet automatisk.',
     'personopplysninger.3': 'Hvilke opplysninger henter vi inn?',
     'personopplysninger.4':
         'Opplysningene vi henter inn kommer enten fra deg, din veileder i Nav eller fra offentlige registre:',
