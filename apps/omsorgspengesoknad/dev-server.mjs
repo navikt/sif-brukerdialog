@@ -78,13 +78,16 @@ const startServer = async () => {
     });
 
     server.get(/^\/(?!.*dist).*$/, (req, res, next) => {
-        const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
-        const insideRoot = fullPath.startsWith(__dirname);
-        const fileExists = fs.existsSync(fullPath);
+        const requestedPath = decodeURIComponent(req.path.substring(1));
+        const normalizedPath = fs.realpathSync(path.resolve(__dirname, requestedPath));
+        const insideRoot = normalizedPath.startsWith(__dirname);
+        const fileExists = fs.existsSync(normalizedPath);
 
         if (!insideRoot || (!fileExists && !req.url.startsWith('/@')) || req.url === '/') {
             req.url = '/index-decorated.html';
+            return next();
         }
+        req.url = normalizedPath;
         next();
     });
 
