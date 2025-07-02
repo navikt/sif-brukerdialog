@@ -2,13 +2,13 @@ import { Box, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { annetBarnErValgt, FormLayout, VelgRegistrerteBarnInput } from '@navikt/sif-common-ui';
+import { AnnetBarnValue, FormLayout, VelgRegistrerteBarnInput } from '@navikt/sif-common-ui';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';
 import { useOmBarnetFormIntl } from './omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues } from './types';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -31,7 +31,7 @@ const OmBarnetForm = ({
 }: Props) => {
     const { text, intl } = useOmBarnetFormIntl();
     const { values } = useFormikContext<OmBarnetFormValues>();
-    const søknadenGjelderEtAnnetBarn = annetBarnErValgt(values[OmBarnetFormFields.barnetSøknadenGjelder]);
+    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === AnnetBarnValue;
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
     return (

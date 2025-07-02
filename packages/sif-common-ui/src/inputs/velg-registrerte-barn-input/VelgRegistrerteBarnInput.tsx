@@ -10,25 +10,31 @@ import { UiText, useUiIntl } from '../../i18n/ui.messages';
 
 export const AnnetBarnValue = 'annetBarn';
 
-export const annetBarnErValgt = (value?: string): boolean => {
-    return value === AnnetBarnValue;
-};
 interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios'> {
     legend?: string;
     registrerteBarn: RegistrertBarn[];
     inkluderAnnetBarn?: boolean;
+    annetBarnOptions?: FormikRadioProp;
 }
 
-const VelgRegistrerteBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, ...restProps }: Props) => {
+const VelgRegistrerteBarnInput = ({
+    legend,
+    inkluderAnnetBarn,
+    registrerteBarn,
+    annetBarnOptions,
+    ...restProps
+}: Props) => {
     const { text } = useUiIntl();
 
     const radios = useMemo(() => {
         const options: FormikRadioProp[] = registrerteBarn.map((barn) => mapBarnTilRadioProps(barn));
         if (inkluderAnnetBarn) {
-            options.push({
-                value: AnnetBarnValue,
-                label: text('@ui.registrertBarnInput.gjelderAnnetBarn'),
-            });
+            options.push(
+                annetBarnOptions || {
+                    value: AnnetBarnValue,
+                    label: text('@ui.registrertBarnInput.gjelderAnnetBarn'),
+                },
+            );
         }
         return options;
     }, [registrerteBarn]);
