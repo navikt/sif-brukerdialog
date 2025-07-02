@@ -1,15 +1,12 @@
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { AppMessageKeys, AppText } from '../../../i18n';
+import { AppMessageKeys } from '../../../i18n';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -21,7 +18,6 @@ export const getOmBarnetStepInitialValues = (
 
     const defaultValues: OmBarnetFormValues = {
         barnetSøknadenGjelder: undefined,
-        søknadenGjelderEtAnnetBarn: undefined,
         barnetsFødselsnummer: '',
         barnetsNavn: '',
         barnetsFødselsdato: '',
@@ -41,7 +37,6 @@ export const getOmBarnetStepInitialValues = (
             case 'registrertBarn':
                 return {
                     ...defaultValues,
-                    søknadenGjelderEtAnnetBarn: false,
                     barnetSøknadenGjelder: omBarnet.registrertBarn.aktørId,
                     sammeAdresse: omBarnet.sammeAdresse,
                     kroniskEllerFunksjonshemming,
@@ -51,7 +46,7 @@ export const getOmBarnetStepInitialValues = (
             case 'annetBarn':
                 return {
                     ...defaultValues,
-                    søknadenGjelderEtAnnetBarn: true,
+                    barnetSøknadenGjelder: AnnetBarnValue,
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
                     barnetsFødselsdato: omBarnet.barnetsFødselsdato,
@@ -75,7 +70,9 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         ? values.høyereRisikoForFravær === YesOrNo.YES
         : undefined;
 
-    if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
+    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === AnnetBarnValue;
+
+    if (søknadenGjelderAnnetBarn || registrerteBarn.length === 0) {
         if (values.søkersRelasjonTilBarnet === undefined || values.sammeAdresse === undefined) {
             return undefined;
         }
@@ -94,9 +91,9 @@ export const getOmBarnetSøknadsdataFromFormValues = (
                 : undefined,
         };
     }
-    const barn = values.barnetSøknadenGjelder
-        ? registrerteBarn.find((b) => b.aktørId === values.barnetSøknadenGjelder)
-        : undefined;
+    const barn = søknadenGjelderAnnetBarn
+        ? undefined
+        : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);
 
     if (!barn) {
         return undefined;
@@ -113,26 +110,6 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         kroniskEllerFunksjonshemming,
         høyereRisikoForFravær,
         høyereRisikoForFraværBeskrivelse: høyereRisikoForFravær ? values.høyereRisikoForFraværBeskrivelse : undefined,
-    };
-};
-
-export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): FormikRadioProp => {
-    const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
-    const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
-    return {
-        value: aktørId,
-        label: (
-            <>
-                <div>{barnetsNavn}</div>
-                <div>
-                    <AppText
-                        id="steg.omBarnet.spm.barnetSøknadenGjelder.født"
-                        values={{ dato: dateFormatter.compact(fødselsdato) }}
-                    />
-                </div>
-            </>
-        ),
-        disabled,
     };
 };
 
