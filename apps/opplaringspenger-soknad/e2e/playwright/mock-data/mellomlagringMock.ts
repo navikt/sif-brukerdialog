@@ -9,7 +9,6 @@ const søknadsdata: Søknadsdata = {
     },
     omBarnet: {
         type: 'registrerteBarn',
-        aktørId: '2811762539343',
         registrertBarn: {
             aktørId: '2811762539343',
             fornavn: 'ALFABETISK',

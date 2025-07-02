@@ -3,8 +3,10 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import RegistrerteBarnListeHeading, { RegistrerteBarnListeHeadingProps } from './RegistrerteBarnListeHeading';
 import { UiText } from '../../i18n/ui.messages';
+import RegistrerteBarnListeHeading, {
+    RegistrerteBarnListeHeadingProps,
+} from '../registrert-barn-liste-heading/RegistrerteBarnListeHeading';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];

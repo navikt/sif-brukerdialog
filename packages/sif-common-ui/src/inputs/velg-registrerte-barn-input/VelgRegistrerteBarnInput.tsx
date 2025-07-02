@@ -4,10 +4,15 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { FormikRadioGroup, FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { FormikRadioGroupProps } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+import RegistrerteBarnListeHeading from '../../components/registrert-barn-liste-heading/RegistrerteBarnListeHeading';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { UiText, useUiIntl } from '../../i18n/ui.messages';
 
+export const AnnetBarnValue = 'annetBarn';
+
+export const annetBarnErValgt = (value?: string): boolean => {
+    return value === AnnetBarnValue;
+};
 interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios'> {
     legend?: string;
     registrerteBarn: RegistrertBarn[];
@@ -16,16 +21,18 @@ interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios
 
 const VelgRegistrerteBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, ...restProps }: Props) => {
     const { text } = useUiIntl();
+
     const radios = useMemo(() => {
         const options: FormikRadioProp[] = registrerteBarn.map((barn) => mapBarnTilRadioProps(barn));
         if (inkluderAnnetBarn) {
             options.push({
-                value: 'annet',
+                value: AnnetBarnValue,
                 label: text('@ui.registrertBarnInput.gjelderAnnetBarn'),
             });
         }
         return options;
     }, [registrerteBarn]);
+
     return (
         <Box>
             <FormikRadioGroup

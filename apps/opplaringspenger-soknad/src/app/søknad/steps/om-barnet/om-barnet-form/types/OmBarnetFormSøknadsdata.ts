@@ -24,7 +24,6 @@ interface OmBarnetFormSøknadsdata_BarnUtenFnr extends RelasjonTilBarnetSøknads
 
 export interface OmBarnetFormSøknadsdata_RegistrertBarn {
     type: 'registrerteBarn';
-    aktørId: string;
     registrertBarn: RegistrertBarn;
 }
 

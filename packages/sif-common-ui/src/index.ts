@@ -1,4 +1,3 @@
-export { default as TidFasteUkedagerInput } from './inputs/tid-faste-ukedager-input/TidFasteUkedagerInput';
 export { default as DatoSvar } from './components/summary-answers/DatoSvar';
 export { default as DaySelector } from './inputs/day-selector/DaySelector';
 export { default as DurationText, getDurationString } from './components/duration-text/DurationText';
@@ -6,14 +5,19 @@ export { default as DurationWeekdaysInput } from './inputs/duration-weekdays-inp
 export { default as FødselsnummerSvar } from './components/summary-answers/FødselsnummerSvar';
 export { default as JaNeiSvar } from './components/summary-answers/JaNeiSvar';
 export { default as KronerSvar } from './components/summary-answers/KronerSvar';
+export { default as ProgressStepper, type ProgressStep } from './components/progress-stepper/ProgressStepper';
+export { default as RegistrerteBarnKildeInfo } from './components/registrerte-barn-kilde/RegistrerteBarnKildeInfo';
+export { default as RegistrerteBarnListe } from './components/registrerte-barn-liste/RegistrerteBarnListe';
+export { default as RegistrerteBarnListeHeading } from './components/registrert-barn-liste-heading/RegistrerteBarnListeHeading';
 export { default as Sitat } from './components/summary-answers/Sitat';
 export { default as SummaryList } from './components/summary-list/SummaryList';
 export { default as SummarySection } from './components/summary-section/SummarySection';
 export { default as TallSvar } from './components/summary-answers/TallSvar';
 export { default as TextareaSvar } from './components/summary-answers/TextareaSvar';
-export { default as RegistrerteBarnListe } from './components/registrerte-barn-liste/RegistrerteBarnListe';
-export * from './components/form-layout';
-export { default as ProgressStepper, type ProgressStep } from './components/progress-stepper/ProgressStepper';
-export * from './components/duration-text/i18n/nb';
+export { default as TidFasteUkedagerInput } from './inputs/tid-faste-ukedager-input/TidFasteUkedagerInput';
+export { default as VelgRegistrerteBarnInput } from './inputs/velg-registrerte-barn-input/VelgRegistrerteBarnInput';
 export * from './components/duration-text/DurationText';
+export * from './components/duration-text/i18n/nb';
+export * from './components/form-layout';
 export * from './i18n/ui.messages';
+export * from './inputs/velg-registrerte-barn-input/VelgRegistrerteBarnInput';
