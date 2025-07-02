@@ -5,7 +5,7 @@ import mustacheExpress from 'mustache-express';
 import compression from 'compression';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-import { getAppSettings } from '../../mock/AppSettings.mjs';
+import { getAppSettings } from '../../dev/AppSettings.mjs';
 import getDecorator from './decorator.mjs';
 
 dotenv.config();
