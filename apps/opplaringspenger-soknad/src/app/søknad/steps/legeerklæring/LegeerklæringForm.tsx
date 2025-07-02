@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, getVedleggValidator, useVedleggHelper, YesOrNo } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -7,6 +7,7 @@ import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { List, VStack } from '@navikt/ds-react';
+import { getListValidator } from '@navikt/sif-validation';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -17,18 +18,32 @@ interface Props {
 
 export enum LegeerklæringFormFields {
     vedlegg = 'vedlegg',
+    skalEttersendeVedlegg = 'skalEttersendeVedlegg',
+    vedleggSomSkalEttersendes = 'vedleggSomSkalEttersendes',
 }
 
+export enum VedleggType {
+    LEGEERKLÆRING = 'Signert legeerklæring',
+    KURSINFORMASJON = 'Informasjon om kurs',
+    ANNET = 'Annet',
+}
 export interface LegeerklæringFormValues {
     [LegeerklæringFormFields.vedlegg]: Vedlegg[];
+    [LegeerklæringFormFields.skalEttersendeVedlegg]: YesOrNo;
+    [LegeerklæringFormFields.vedleggSomSkalEttersendes]: VedleggType[];
 }
 
-const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
+const { Form, YesOrNoQuestion, CheckboxGroup } = getTypedFormComponents<
+    LegeerklæringFormFields,
+    LegeerklæringFormValues
+>();
 
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
     const legeerklæringer = values.vedlegg ? values.vedlegg : [];
     const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);
+
+    const skalEttersendeVedlegg = values.skalEttersendeVedlegg === YesOrNo.YES;
 
     return (
         <Form
@@ -74,6 +89,24 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     label={text('steg.legeerklæring.vedlegg.label')}
                     showPictureScanningGuide={true}
                 />
+
+                <YesOrNoQuestion
+                    name={LegeerklæringFormFields.skalEttersendeVedlegg}
+                    legend={'Skal du ettersende vedlegg?'}
+                />
+
+                {skalEttersendeVedlegg && (
+                    <CheckboxGroup
+                        name={LegeerklæringFormFields.vedleggSomSkalEttersendes}
+                        checkboxes={[
+                            { label: 'Signert legeerklæring', value: VedleggType.LEGEERKLÆRING },
+                            { label: 'Informasjon om kurs', value: VedleggType.KURSINFORMASJON },
+                            { label: 'Annet', value: VedleggType.ANNET },
+                        ]}
+                        legend="Hvilke vedlegg skal du ettersende?"
+                        validate={getListValidator({ required: true })}
+                    />
+                )}
             </VStack>
         </Form>
     );

@@ -11,7 +11,9 @@ test.beforeEach(async ({ page, context }) => {
     await setupMockRoutes(page, context, {
         mellomlagring: mellomlagringMock,
     });
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.LEGEERKLÆRING, { legeerklæring: { vedlegg: [] } });
+    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.LEGEERKLÆRING, {
+        legeerklæring: { vedlegg: [], skalEttersendeVedlegg: false },
+    });
     await expect(page.getByRole('heading', { name: 'Dokumentasjon på nødvendig opplæring' })).toBeVisible();
 });
 

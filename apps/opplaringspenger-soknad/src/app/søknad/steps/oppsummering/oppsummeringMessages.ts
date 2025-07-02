@@ -103,6 +103,9 @@ const nb = {
     'steg.oppsummering.legeerklæring.header': 'Dokumentasjon på nødvendig opplæring',
     'steg.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
 
+    'steg.oppsummering.legeerklæring.skalEttersende.label': 'Skal du ettersende vedlegg?',
+    'steg.oppsummering.legeerklæring.vedleggSomSkalEttersendes.title': 'Vedlegg som skal ettersendes:',
+
     'steg.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
     'steg.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
 
@@ -247,6 +250,8 @@ const nn: Record<keyof typeof nb, string> = {
 
     'steg.oppsummeringbekreftelseFraLege.header': 'Legeerklæring',
     'steg.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lasta opp',
+    'steg.oppsummering.legeerklæring.skalEttersende.label': 'Skal du ettersende vedlegg?',
+    'steg.oppsummering.legeerklæring.vedleggSomSkalEttersendes.title': 'Vedlegg som skal ettersendes:',
 
     'steg.oppsummering.apiValideringFeil.tittel': 'Nokre av opplysningane manglar',
     'steg.oppsummering.sendSøknad': 'Send søknad',

@@ -155,6 +155,7 @@ const søknadsdata: Søknadsdata = {
     },
     legeerklæring: {
         vedlegg: [],
+        skalEttersendeVedlegg: false,
     },
 };
 export const mellomlagringMock = {

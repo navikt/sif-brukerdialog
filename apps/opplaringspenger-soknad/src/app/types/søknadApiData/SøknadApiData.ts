@@ -3,6 +3,7 @@ import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
+import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 
 export * from './OmBarnetApiData';
 
@@ -151,6 +152,8 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
+    skalEttersendeVedlegg: boolean;
+    vedleggSomSkalEttersendes?: VedleggType[];
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
