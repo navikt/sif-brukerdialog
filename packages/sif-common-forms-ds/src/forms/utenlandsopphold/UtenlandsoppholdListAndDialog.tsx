@@ -2,9 +2,9 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { sortMaybeDateRange } from '@navikt/sif-common-utils';
+import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdVariant } from './types';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';
 import UtenlandsoppholdListe from './UtenlandsoppholdList';
@@ -15,6 +15,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     maxDate: Date;
     labels: ModalFormAndListLabels;
     variant: UtenlandsoppholdVariant;
+    disabledDateRanges?: DateRange[];
 }
 
 function UtenlandsoppholdListAndDialog<FieldNames>({
@@ -22,6 +23,7 @@ function UtenlandsoppholdListAndDialog<FieldNames>({
     name,
     minDate,
     maxDate,
+    disabledDateRanges,
     validate,
     labels,
 }: Props<FieldNames>) {
@@ -41,6 +43,7 @@ function UtenlandsoppholdListAndDialog<FieldNames>({
                     variant={variant}
                     onSubmit={onSubmit}
                     onCancel={onCancel}
+                    disabledDateRanges={disabledDateRanges}
                 />
             )}
             listRenderer={({ items, onEdit, onDelete }) => (

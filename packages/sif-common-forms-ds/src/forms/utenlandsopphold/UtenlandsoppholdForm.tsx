@@ -6,6 +6,7 @@ import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ISOStringToDate,
+    ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import {
@@ -19,11 +20,10 @@ import {
     ValidateRequiredFieldError,
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
-import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from './types';
 import { useUtenlandsoppholdIntl, UtenlandsoppholdMessageKeys } from './i18n';
+import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from './types';
 import {
     getUtenlandsoppholdQuestionVisibility,
     mapFormValuesToUtenlandsopphold,
@@ -36,6 +36,7 @@ interface Props {
     maxDate: Date;
     opphold?: Utenlandsopphold; // Ved redigering av utenlandsopphold
     alleOpphold?: Utenlandsopphold[];
+    disabledDateRanges?: DateRange[];
     onSubmit: (values: Utenlandsopphold) => void;
     onCancel: () => void;
 }
@@ -97,7 +98,16 @@ const defaultFormValues: UtenlandsoppholdFormValues = {
 
 const Form = getTypedFormComponents<UtenlandsoppholdFormFields, UtenlandsoppholdFormValues, ValidationError>();
 
-const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold = [], onSubmit, onCancel }: Props) => {
+const UtenlandsoppholdForm = ({
+    variant,
+    maxDate,
+    minDate,
+    opphold,
+    alleOpphold = [],
+    disabledDateRanges,
+    onSubmit,
+    onCancel,
+}: Props) => {
     const intl = useIntl();
     const { text } = useUtenlandsoppholdIntl();
 
@@ -138,7 +148,10 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                         formErrorHandler={getIntlFormErrorHandler(intl, '@forms.utenlandsoppholdForm')}>
                         <Form.DateRangePicker
                             legend={text('@forms.utenlandsopphold.form.tidsperiode.spm')}
-                            disabledDateRanges={registrerteTidsperioder}
+                            disabledDateRanges={[
+                                ...registrerteTidsperioder,
+                                ...(disabledDateRanges ? disabledDateRanges : []),
+                            ]}
                             minDate={minDate}
                             maxDate={maxDate}
                             fromInputProps={{

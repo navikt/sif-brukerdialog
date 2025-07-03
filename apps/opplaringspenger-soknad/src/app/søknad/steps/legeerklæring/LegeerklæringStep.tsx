@@ -52,6 +52,8 @@ const LegeerklæringStep = () => {
         dispatch(
             actionsCreator.setSøknadLegeerklæring({
                 vedlegg: getUploadedVedlegg(vedlegg),
+                skalEttersendeVedlegg: søknadsdata.legeerklæring?.skalEttersendeVedlegg || false,
+                vedleggSomSkalEttersendes: søknadsdata.legeerklæring?.vedleggSomSkalEttersendes || [],
             }),
         );
         dispatch(actionsCreator.requestLagreSøknad());

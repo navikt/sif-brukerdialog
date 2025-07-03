@@ -9,6 +9,7 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await leggTilPeriode1(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
+    await leggTilUtenlandsopphold(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -23,6 +24,7 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await leggTilPeriode2(page);
     await leggTilReisedag(page);
     await leggTilFerie(page);
+    await svarIngenUtenlandsopphold(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -80,6 +82,34 @@ const leggTilFerie = async (page: Page) => {
     await page.getByRole('button', { name: 'Ok' }).click();
 };
 
+const svarIngenUtenlandsopphold = async (page: Page) => {
+    await page
+        .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
+        .getByLabel('Nei')
+        .check();
+};
+
+export const leggTilUtenlandsopphold = async (page: Page) => {
+    await page.getByRole('group', { name: 'Oppholder du deg i utlandet i' }).getByLabel('Ja').check();
+    await page.getByRole('button', { name: 'Legg til utenlandsopphold' }).click();
+    await page
+        .getByLabel('Utenlandsopphold')
+        .locator('div')
+        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
+        .getByRole('button')
+        .click();
+    await page.getByRole('button', { name: 'fredag 6' }).click();
+    await page
+        .getByLabel('Utenlandsopphold')
+        .locator('div')
+        .filter({ hasText: /^Til og medÅpne datovelger$/ })
+        .getByRole('button')
+        .click();
+    await page.getByRole('button', { name: 'lørdag 7' }).click();
+    await page.getByLabel('Velg land').selectOption('ABW');
+    await page.getByRole('button', { name: 'Ok' }).click();
+};
+
 export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Hvor foregår opplæringen?Barnas')).toBeVisible();
     await expect(page.locator('li').filter({ hasText: '02.12.2024 - 08.12.2024' })).toBeVisible();
@@ -88,6 +118,8 @@ export const kontrollerOpplæringEnPeriodeOppsummering = async (page: Page) => {
     await expect(page.getByText('Årsak til reisetidkombinerer')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
+    await expect(page.getByText('Oppholder du deg i utlandet i noen av dagene du søker for?Ja')).toBeVisible();
+    await expect(page.getByText('Utenlandsopphold 06.12.2024')).toBeVisible();
 };
 
 export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) => {
@@ -99,4 +131,5 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
     await expect(page.getByText('Reisedager uten kurs eller opplæringTirsdag')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
+    await expect(page.getByText('Oppholder du deg i utlandet i noen av dagene du søker for?Nei')).toBeVisible();
 };

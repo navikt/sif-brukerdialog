@@ -1,12 +1,18 @@
 import { Alert, Box, ReadMore, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
+import {
+    FormikInputGroup,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
+import { Enkeltdato, Ferieuttak, UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
+import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateRangeUtils, getDateRangesBetweenDateRangesWithinDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -20,6 +26,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import {
@@ -28,10 +35,9 @@ import {
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
+    getUtenlandsoppholdValidator,
 } from './kursStepUtils';
-import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './ReisedagerFormPart';
-import GodkjentHelseinstitusjonInfo from './GodkjentHelseinstitusjonInfo';
 import ReiseInfo from './ReiseInfo';
 
 export enum KursFormFields {
@@ -42,6 +48,8 @@ export enum KursFormFields {
     reisedagerBeskrivelse = 'reisedagerBeskrivelse',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
+    skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
+    utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
 }
 
 export interface KursFormValues {
@@ -52,6 +60,8 @@ export interface KursFormValues {
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
     [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
+    [KursFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
+    [KursFormFields.utenlandsoppholdIPerioden]?: UtenlandsoppholdEnkel[];
 }
 
 const { FormikWrapper, Form, YesOrNoQuestion, Combobox } = getTypedFormComponents<
@@ -106,6 +116,9 @@ const KursStep = () => {
                     const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
                     const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
                     const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
+                    const skalOppholdeSegIUtlandetIPerioden =
+                        values[KursFormFields.skalOppholdeSegIUtlandetIPerioden] === YesOrNo.YES;
+
                     const disabledDateRanges = søknadsperiode
                         ? getDateRangesBetweenDateRangesWithinDateRange(
                               søknadsperiode.from,
@@ -237,6 +250,28 @@ const KursStep = () => {
                                                 />
                                             </FormLayout.Panel>
                                         </FormLayout.QuestionBleedTop>
+                                    )}
+
+                                    <YesOrNoQuestion
+                                        legend={text('steg.kurs.utenlandsopphold.spm')}
+                                        name={KursFormFields.skalOppholdeSegIUtlandetIPerioden}
+                                        validate={getYesOrNoValidator()}
+                                    />
+
+                                    {skalOppholdeSegIUtlandetIPerioden && (
+                                        <UtenlandsoppholdListAndDialog<KursFormFields>
+                                            name={KursFormFields.utenlandsoppholdIPerioden}
+                                            minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
+                                            maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
+                                            variant="enkel"
+                                            labels={{
+                                                modalTitle: text('steg.kurs.utenlandsopphold.modalTitle'),
+                                                listTitle: text('steg.kurs.utenlandsopphold.listTitle'),
+                                                addLabel: text('steg.kurs.utenlandsopphold.addLabel'),
+                                            }}
+                                            disabledDateRanges={disabledDateRanges}
+                                            validate={getUtenlandsoppholdValidator(kursperioder)}
+                                        />
                                     )}
                                 </VStack>
                             </Form>

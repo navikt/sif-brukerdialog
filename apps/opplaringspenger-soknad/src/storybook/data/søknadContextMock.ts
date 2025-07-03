@@ -184,6 +184,7 @@ export const søknadContextMock: SøknadContextState = {
                     },
                 },
             ],
+            skalEttersendeVedlegg: false,
         },
     },
     søknadRoute: SøknadRoutes.LEGEERKLÆRING,
