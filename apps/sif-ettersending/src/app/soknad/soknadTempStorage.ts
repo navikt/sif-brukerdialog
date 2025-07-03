@@ -4,13 +4,12 @@ import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { axiosJsonConfig } from '../api/api';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
-
-export const STORAGE_VERSION = '2.4';
 
 interface UserHashInfo {
     søker: Søker;
@@ -62,7 +61,7 @@ export const isStorageDataValid = (
     userHashInfo: UserHashInfo,
 ): SoknadTempStorageData | undefined => {
     if (
-        data?.metadata?.version === STORAGE_VERSION &&
+        data?.metadata?.version === MELLOMLAGRING_VERSJON &&
         data?.metadata.lastStepID !== undefined &&
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
@@ -87,7 +86,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
             metadata: {
                 soknadId,
                 lastStepID,
-                version: STORAGE_VERSION,
+                version: MELLOMLAGRING_VERSJON,
                 userHash: createHashString(userHashInfo),
             },
         });
