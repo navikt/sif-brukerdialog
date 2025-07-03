@@ -25,7 +25,7 @@ const nb = {
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
 
     'oppsummering.kurs.utenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'oppsummering.kurs.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold i dagene ',
+    'oppsummering.kurs.utenlandsoppholdIPerioden.listTitle': 'Utenlandsopphold ',
 
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
