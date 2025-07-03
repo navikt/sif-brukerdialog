@@ -17,13 +17,7 @@ interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios
     annetBarnOptions?: FormikRadioProp;
 }
 
-const VelgRegistrerteBarnInput = ({
-    legend,
-    inkluderAnnetBarn,
-    registrerteBarn,
-    annetBarnOptions,
-    ...restProps
-}: Props) => {
+const VelgBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOptions, ...restProps }: Props) => {
     const { text } = useUiIntl();
 
     const radios = useMemo(() => {
@@ -70,4 +64,4 @@ const mapBarnTilRadioProps = (barn: RegistrertBarn): FormikRadioProp => {
     };
 };
 
-export default VelgRegistrerteBarnInput;
+export default VelgBarnInput;
