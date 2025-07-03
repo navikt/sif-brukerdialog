@@ -2,19 +2,11 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { DokumentType } from './DokumentType';
 import { YtelseKey } from './Ytelser';
 
-export interface RegistrertBarnFormData {
-    aktørId: string;
-    barnetsNavn: string;
-    barnetsFødselsdato: Date;
-}
-
 export enum SoknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
     dokumentType = 'dokumentType',
     registrertBarnAktørId = 'registrertBarnAktørId',
-    valgteRegistrertBarn = 'valgteRegistrertBarn',
-    gjelderEtAnnetBarn = 'gjelderEtAnnetBarn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
     barnetHarIkkeFnr = 'barnetHarIkkeFnr',
     beskrivelse = 'beskrivelse',
@@ -27,8 +19,6 @@ export interface SoknadFormData {
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.dokumentType]?: DokumentType;
     [SoknadFormField.registrertBarnAktørId]?: string;
-    [SoknadFormField.valgteRegistrertBarn]?: RegistrertBarnFormData;
-    [SoknadFormField.gjelderEtAnnetBarn]?: boolean;
     [SoknadFormField.barnetsFødselsnummer]?: string;
     [SoknadFormField.barnetHarIkkeFnr]?: boolean;
     [SoknadFormField.beskrivelse]?: string;

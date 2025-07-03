@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
 
 const extractDecoratorFragments = (html, appSettings) => {
     const { document } = new JSDOM(html).window;
     const prop = 'innerHTML';
 
     if (!appSettings) {
-        throw 'extractDecoratorFragments: appSettings is undefined';
+        throw new Error('extractDecoratorFragments: appSettings is undefined');
     }
     if (typeof appSettings === 'string') {
-        throw 'extractDecoratorFragments: appSettings must be an object';
+        throw new Error('extractDecoratorFragments: appSettings must be an object');
     }
 
     return {
@@ -21,9 +21,7 @@ const extractDecoratorFragments = (html, appSettings) => {
     };
 };
 
-const decoratorParams = new URLSearchParams({
-    simple: 'true',
-});
+const decoratorParams = new URLSearchParams({ simple: 'true' });
 
 const getDecorator = (appSettings) =>
     new Promise((resolve, reject) => {
@@ -33,15 +31,14 @@ const getDecorator = (appSettings) =>
                 if (html) {
                     resolve(extractDecoratorFragments(html, appSettings));
                 } else {
-                    try {
-                        console.log('Failed to get decorator. Exiting node.');
-                        process.exit(1);
-                    } catch (err) {
-                        console.log(err);
-                        reject(err);
-                    }
+                    console.log('Failed to get decorator. Exiting node.');
+                    process.exit(1);
                 }
+            })
+            .catch((err) => {
+                console.error('Error fetching decorator:', err);
+                reject(err);
             });
     });
 
-module.exports = getDecorator;
+export default getDecorator;

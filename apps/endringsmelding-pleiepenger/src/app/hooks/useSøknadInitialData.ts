@@ -16,7 +16,7 @@ import {
 import { appSentryLogger } from '@utils';
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
-import { APP_VERSJON } from '../constants/APP_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
@@ -80,7 +80,7 @@ const prepInitialData = (
     const sak = getInitialSak();
 
     return {
-        versjon: APP_VERSJON,
+        versjon: MELLOMLAGRING_VERSJON,
         tillattEndringsperiode,
         søker,
         k9saker,

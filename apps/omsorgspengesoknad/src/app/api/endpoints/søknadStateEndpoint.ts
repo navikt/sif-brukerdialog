@@ -3,7 +3,7 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/sr
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
-import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
 import { ApiEndpoint, axiosConfig } from '../api';
@@ -38,7 +38,7 @@ export const isPersistedSøknadStateValid = (
     info: SøknadStateHashInfo,
 ): boolean => {
     return (
-        søknadState.versjon === SØKNAD_VERSJON &&
+        søknadState.versjon === MELLOMLAGRING_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&
         søknadState.søknadHashString === createHashString(info) &&
         isValidSøknadRoute(søknadState.søknadRoute)
@@ -55,7 +55,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             søknadRoute,
             søknadSendt,
             registrerteBarn,
-            versjon: SØKNAD_VERSJON,
+            versjon: MELLOMLAGRING_VERSJON,
         });
     },
     fetch: async () => {

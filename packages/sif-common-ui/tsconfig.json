@@ -3,6 +3,6 @@
     "compilerOptions": {
         "outDir": "./lib"
     },
-    "exclude": ["node_modules", "src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src", "./env.schema.ts", "./playwright-config.ts"]
+    "exclude": ["node_modules"],
+    "include": ["src", "./storybook/**/*"]
 }

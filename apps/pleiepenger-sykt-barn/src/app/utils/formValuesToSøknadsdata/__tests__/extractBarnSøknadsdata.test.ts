@@ -1,6 +1,7 @@
 import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
 import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
 const formValues: OmBarnetFormValues = {
     barnetsNavn: '',
@@ -23,7 +24,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer annetBarn dersom bruker la til barn med fnr', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetsFødselsnummer: '12345678911',
                 relasjonTilBarnet: BarnRelasjon.FAR,
@@ -37,7 +38,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer annetBarnUtenFnr dersom bruker la til barn uten fnr', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,
                 barnetsFødselsnummer: '',
@@ -55,7 +56,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer undefined med tomt barnet', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,
                 barnetsFødselsnummer: '',

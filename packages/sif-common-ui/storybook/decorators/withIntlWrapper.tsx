@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { uiMessages } from '../../src/i18n/ui.messages';
 
