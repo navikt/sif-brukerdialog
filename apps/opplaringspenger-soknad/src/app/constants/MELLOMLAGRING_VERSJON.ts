@@ -1,1 +1,2 @@
-export const MELLOMLAGRING_VERSJON = '0.1.0';
+/** Ta i bruk velg barn input komponent */
+export const MELLOMLAGRING_VERSJON = '0.2.0';
