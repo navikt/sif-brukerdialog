@@ -25,7 +25,6 @@ export enum SøknadFormField {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     relasjonTilBarnet = 'relasjonTilBarnet',
     relasjonTilBarnetBeskrivelse = 'relasjonTilBarnetBeskrivelse',
-    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetHarIkkeFnr = 'barnetHarIkkeFnr',
     årsakManglerIdentitetsnummer = 'årsakManglerIdentitetsnummer',
     fødselsattest = 'fødselsattest',

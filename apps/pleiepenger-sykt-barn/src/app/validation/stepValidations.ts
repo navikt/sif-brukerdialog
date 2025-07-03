@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { getStringValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
-import { validateFødselsnummer, validateNavn } from './fieldValidations';
+import { validateFødselsnummer, validateNavn, validateRelasjonTilBarnBeskrivelse } from './fieldValidations';
 import { AnnetBarnValue } from '@navikt/sif-common-ui';
+import { BarnRelasjon } from '../types';
 
 dayjs.extend(isSameOrBefore);
 
@@ -18,23 +18,34 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetHarIkkeFnr,
     årsakManglerIdentitetsnummer,
     barnetSøknadenGjelder,
+    relasjonTilBarnet,
+    relasjonTilBarnetBeskrivelse,
 }: SøknadFormValues) => {
-    const fødselsnummerValidation = () => {
+    /** Valgt registrert barn */
+    if (barnetSøknadenGjelder !== AnnetBarnValue && validateFødselsnummer(barnetsFødselsnummer) === undefined) {
+        return true;
+    }
+    if (barnetSøknadenGjelder === AnnetBarnValue) {
         if (barnetHarIkkeFnr && barnetsFødselsdato !== undefined && årsakManglerIdentitetsnummer !== undefined) {
-            return true;
-        } else return validateFødselsnummer(barnetsFødselsnummer) === undefined;
-    };
-    const formIsValid = validateNavn(barnetsNavn) === undefined && fødselsnummerValidation();
-
-    if (!formIsValid && barnetSøknadenGjelder !== AnnetBarnValue) {
-        return getStringValidator({ required: true })(barnetSøknadenGjelder) === undefined;
+            return false;
+        }
+        if (!barnetHarIkkeFnr && validateFødselsnummer(barnetsFødselsnummer) !== undefined) {
+            return false;
+        }
+        if (validateNavn(barnetsNavn) !== undefined) {
+            return false;
+        }
+        if (relasjonTilBarnet === undefined) {
+            return false;
+        }
+        if (
+            relasjonTilBarnet === BarnRelasjon.ANNET &&
+            validateRelasjonTilBarnBeskrivelse(relasjonTilBarnetBeskrivelse) !== undefined
+        ) {
+            return false;
+        }
     }
-
-    if (barnetSøknadenGjelder === undefined) {
-        return false;
-    }
-
-    return formIsValid;
+    return true;
 };
 
 export const opplysningerOmTidsromStepIsValid = ({ periodeFra, periodeTil }: Partial<SøknadFormValues>) => {
