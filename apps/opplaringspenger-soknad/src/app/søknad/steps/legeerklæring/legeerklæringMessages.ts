@@ -18,6 +18,9 @@ const nb = {
 
     'validation.skalEttersendeVedlegg.yesOrNoIsUnanswered': 'Du må svare på om du skal ettersende vedlegg',
     'validation.vedleggSomSkalEttersendes.listIsEmpty': 'Du må velge hvilke vedlegg du skal ettersende',
+    'vedleggType.ANNET': 'Annet',
+    'vedleggType.KURSINFORMASJON': 'Informasjon om kurs',
+    'vedleggType.LEGEERKLÆRING': 'Signert legeerklæring',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -37,9 +40,14 @@ const nn: Record<keyof typeof nb, string> = {
     'dokumenter.advarsel.totalstørrelse.1':
         'Du har totalt lasta opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lasta opp. Om det betyr at du ikkje får plass til alt du ønskjer å sende no, kan du ',
     'dokumenter.advarsel.totalstørrelse.2': 'ettersende fleire dokument.',
+
     // TODO NYNORSK
     'validation.skalEttersendeVedlegg.yesOrNoIsUnanswered': 'Du må svare på om du skal ettersende vedlegg',
     'validation.vedleggSomSkalEttersendes.listIsEmpty': 'Du må velge hvilke vedlegg du skal ettersende',
+
+    'vedleggType.ANNET': 'Anna',
+    'vedleggType.KURSINFORMASJON': 'Informasjon om kurs',
+    'vedleggType.LEGEERKLÆRING': 'Signert legeerklæring',
 };
 
 export const legeerklæringMessages = { nb, nn };

@@ -23,10 +23,11 @@ export enum LegeerklæringFormFields {
 }
 
 export enum VedleggType {
-    LEGEERKLÆRING = 'Signert legeerklæring',
-    KURSINFORMASJON = 'Informasjon om kurs',
-    ANNET = 'Annet',
+    LEGEERKLÆRING = 'LEGEERKLÆRING',
+    KURSINFORMASJON = 'KURSINFORMASJON',
+    ANNET = 'ANNET',
 }
+
 export interface LegeerklæringFormValues {
     [LegeerklæringFormFields.vedlegg]: Vedlegg[];
     [LegeerklæringFormFields.skalEttersendeVedlegg]: YesOrNo;
@@ -99,9 +100,15 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     <CheckboxGroup
                         name={LegeerklæringFormFields.vedleggSomSkalEttersendes}
                         checkboxes={[
-                            { label: 'Signert legeerklæring', value: VedleggType.LEGEERKLÆRING },
-                            { label: 'Informasjon om kurs', value: VedleggType.KURSINFORMASJON },
-                            { label: 'Annet', value: VedleggType.ANNET },
+                            {
+                                label: text(`vedleggType.${VedleggType.LEGEERKLÆRING}`),
+                                value: VedleggType.LEGEERKLÆRING,
+                            },
+                            {
+                                label: text(`vedleggType.${VedleggType.KURSINFORMASJON}`),
+                                value: VedleggType.KURSINFORMASJON,
+                            },
+                            { label: text(`vedleggType.${VedleggType.ANNET}`), value: VedleggType.ANNET },
                         ]}
                         legend="Hvilke vedlegg skal du ettersende?"
                         validate={getListValidator({ required: true })}

@@ -65,7 +65,7 @@ export const getApiDataFromSøknadsdata = (
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
         skalEttersendeVedlegg: legeerklæring.skalEttersendeVedlegg,
         vedleggSomSkalEttersendes: legeerklæring.skalEttersendeVedlegg
-            ? legeerklæring.vedleggSomSkalEttersendes
+            ? legeerklæring.vedleggSomSkalEttersendes?.sort().reverse() // Hack for å ANNET sist :)
             : undefined,
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),

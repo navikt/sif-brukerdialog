@@ -58,7 +58,9 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                         <FormSummary.Value>
                             <List>
                                 {apiData.vedleggSomSkalEttersendes?.map((vedlegg, index) => (
-                                    <List.Item key={index}>{vedlegg}</List.Item>
+                                    <List.Item key={index}>
+                                        <AppText id={`vedleggType.${vedlegg}`} />
+                                    </List.Item>
                                 ))}
                             </List>
                         </FormSummary.Value>
