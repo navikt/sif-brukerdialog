@@ -26,7 +26,7 @@ export const opplysningerOmBarnetStepIsValid = ({
         return true;
     }
     if (barnetSøknadenGjelder === AnnetBarnValue) {
-        if (barnetHarIkkeFnr && barnetsFødselsdato !== undefined && årsakManglerIdentitetsnummer !== undefined) {
+        if (barnetHarIkkeFnr && (barnetsFødselsdato === undefined || årsakManglerIdentitetsnummer === undefined)) {
             return false;
         }
         if (!barnetHarIkkeFnr && validateFødselsnummer(barnetsFødselsnummer) !== undefined) {
