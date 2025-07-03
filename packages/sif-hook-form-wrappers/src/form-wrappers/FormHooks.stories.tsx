@@ -1,7 +1,6 @@
 import { Alert, BodyShort, Checkbox as DsCheckbox, Heading, HStack, Label, Radio, VStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import dayjs from 'dayjs';
 import { RhfCheckbox } from './RhfCheckbox';
 import { RhfCheckboxGroup } from './RhfCheckboxGroup';
 import { RhfCombobox } from './RhfCombobox';
@@ -12,6 +11,7 @@ import { RhfRadioGroup } from './RhfRadioGroup';
 import { RhfSelect } from './RhfSelect';
 import { RhfTextarea } from './RhfTextarea';
 import { RhfTextField } from './RhfTextField';
+import dayjs from 'dayjs';
 
 const meta = {
     title: 'FormHooks',

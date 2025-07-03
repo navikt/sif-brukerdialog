@@ -1,11 +1,21 @@
 {
     "extends": "../config/tsconfig-packages.json",
     "compilerOptions": {
-        "baseUrl": "src",
-        "jsx": "react-jsx",
-        "rootDir": "src",
-        "types": ["vite/client", "@testing-library/jest-dom", "vitest/globals"]
+        "outDir": "./lib"
     },
-    "exclude": ["node_modules", "src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src", "./env.schema.ts", "./playwright-config.ts"]
+    "exclude": ["node_modules"],
+    "include": ["src"]
 }
+// {
+//     "extends": "../config/tsconfig-packages.json",
+//     "compilerOptions": {
+//         "baseUrl": "src",
+//         "jsx": "react-jsx",
+//         "rootDir": "src",
+//         "types": ["vite/client", "@testing-library/jest-dom", "vitest/globals"],
+//         "esModuleInterop": true,
+//         "allowSyntheticDefaultImports": true
+//     },
+//     "exclude": ["node_modules", "src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
+//     "include": ["src", "./env.schema.ts", "./playwright-config.ts"]
+// }
