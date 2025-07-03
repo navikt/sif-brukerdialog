@@ -62,10 +62,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@babel/core": "7.27.7",
+        "@babel/core": "7.28.0",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.27.1",
-        "@babel/preset-env": "7.27.2",
+        "@babel/preset-env": "7.28.0",
         "@babel/preset-react": "7.27.1",
         "@playwright/test": "1.53.1",
         "@sif/eslint-config": "workspace:*",
