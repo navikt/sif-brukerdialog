@@ -4544,7 +4544,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -4764,7 +4764,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.6.0"
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4880,7 +4880,7 @@ __metadata:
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -4956,7 +4956,7 @@ __metadata:
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
@@ -5032,7 +5032,7 @@ __metadata:
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -5104,7 +5104,7 @@ __metadata:
     axios: "npm:1.10.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     compression: "npm:1.8.0"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
@@ -12826,9 +12826,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:13.0.1":
-  version: 13.0.1
-  resolution: "chromatic@npm:13.0.1"
+"chromatic@npm:13.1.0":
+  version: 13.1.0
+  resolution: "chromatic@npm:13.1.0"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -12841,7 +12841,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10/d8690f0f6ea0844142524f858716311c70eaaaa736025e6ed10c62aa0eea998f35349eb76497e39294b27a940ad19de7d768329789da82a1eec9f375b9f7e3d4
+  checksum: 10/32e488c202c6cc6ce6ff9cbda5f7adf01d605af0e0500cdd12b7be1a76f14b8e0d249480e8e44370c45d485e8b5d24bdd128c40bf5358b98ea3c553c4274ecca
   languageName: node
   linkType: hard
 
@@ -26685,7 +26685,7 @@ __metadata:
     "@navikt/sif-validation": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@types/react": "npm:19.1.8"
-    chromatic: "npm:13.0.1"
+    chromatic: "npm:13.1.0"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
