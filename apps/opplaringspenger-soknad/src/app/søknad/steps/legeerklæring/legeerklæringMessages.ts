@@ -25,14 +25,13 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'steg.legeerklæring.counsellorPanel.info.1':
-        'Her skal du laste opp dokumentasjon på nødvendig opplæring. Denne dokumentasjonen får ein ofte når ein søkjer om opplæring/kurs, eller ein får den på kursstaden.',
-    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Det kan til dømes vere:',
-    'steg.legeerklæring.counsellorPanel.info.2.1': 'Stadfesting frå lege om at opplæringa er nødvendig',
+        'Her skal du laste opp dokumentasjon på naudsynt opplæring. Denne dokumentasjonen får ein ofte når ein søkjer om opplæring/kurs, eller ein får den på kursstaden.',
+    'steg.legeerklæring.counsellorPanel.info.2.tittel': 'Vi treng:',
+    'steg.legeerklæring.counsellorPanel.info.2.1': 'signert legeerklæring som stadfestar at opplæringa er naudsynt',
     'steg.legeerklæring.counsellorPanel.info.2.2':
-        'Informasjon om innhald og tidspunkt for opplæring/kurs (kursstadfesting)',
+        'informasjon om innhald og tidspunkt for opplæring/kurs (stadfesting frå kursstaden)',
     'steg.legeerklæring.counsellorPanel.info.3':
-        'Send inn det du har fått av dokumentasjon, me kontaktar deg om me treng fleire opplysningar. Om du ikkje har dokumentasjonen no, kan du ettersende den seinare.',
-
+        'Vi kan ikkje handsame søknaden din utan denne dokumentasjonen. Viss du ikkje har dokumentasjonen no, kan du ettersende den innan 14 dagar.',
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lasta opp',
@@ -41,10 +40,8 @@ const nn: Record<keyof typeof nb, string> = {
         'Du har totalt lasta opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lasta opp. Om det betyr at du ikkje får plass til alt du ønskjer å sende no, kan du ',
     'dokumenter.advarsel.totalstørrelse.2': 'ettersende fleire dokument.',
 
-    // TODO NYNORSK
     'validation.skalEttersendeVedlegg.yesOrNoIsUnanswered': 'Du må svare på om du skal ettersende vedlegg',
-    'validation.vedleggSomSkalEttersendes.listIsEmpty': 'Du må velge hvilke vedlegg du skal ettersende',
-
+    'validation.vedleggSomSkalEttersendes.listIsEmpty': 'Du må velje kva vedlegg du skal ettersende',
     'vedleggType.ANNET': 'Anna',
     'vedleggType.KURSINFORMASJON': 'Informasjon om kurs',
     'vedleggType.LEGEERKLÆRING': 'Signert legeerklæring',
