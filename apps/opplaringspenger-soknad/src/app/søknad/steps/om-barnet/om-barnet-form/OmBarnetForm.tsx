@@ -2,7 +2,7 @@ import { Box, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { AnnetBarnValue, FormLayout, VelgRegistrerteBarnInput } from '@navikt/sif-common-ui';
+import { AnnetBarnValue, FormLayout, VelgBarnInput } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import AnnetBarnPart from './components/AnnetBarnPart';
@@ -48,7 +48,7 @@ const OmBarnetForm = ({
                             {text('omBarnetForm.hvilketBarn.spm')}
                         </Heading>
                         <FormLayout.Questions>
-                            <VelgRegistrerteBarnInput
+                            <VelgBarnInput
                                 name={OmBarnetFormFields.barnetSøknadenGjelder}
                                 registrerteBarn={registrerteBarn}
                                 inkluderAnnetBarn={true}

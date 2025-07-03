@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { validateFødselsnummer, validateNavn } from './fieldValidations';
+import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
 dayjs.extend(isSameOrBefore);
 
@@ -17,7 +18,6 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetHarIkkeFnr,
     årsakManglerIdentitetsnummer,
     barnetSøknadenGjelder,
-    søknadenGjelderEtAnnetBarn,
 }: SøknadFormValues) => {
     const fødselsnummerValidation = () => {
         if (barnetHarIkkeFnr && barnetsFødselsdato !== undefined && årsakManglerIdentitetsnummer !== undefined) {
@@ -26,11 +26,11 @@ export const opplysningerOmBarnetStepIsValid = ({
     };
     const formIsValid = validateNavn(barnetsNavn) === undefined && fødselsnummerValidation();
 
-    if (!formIsValid && barnetSøknadenGjelder !== undefined) {
+    if (!formIsValid && barnetSøknadenGjelder !== AnnetBarnValue) {
         return getStringValidator({ required: true })(barnetSøknadenGjelder) === undefined;
     }
 
-    if (barnetSøknadenGjelder === undefined && søknadenGjelderEtAnnetBarn === false) {
+    if (barnetSøknadenGjelder === undefined) {
         return false;
     }
 
