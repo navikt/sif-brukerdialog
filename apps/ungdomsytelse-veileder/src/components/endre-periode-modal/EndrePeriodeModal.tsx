@@ -1,7 +1,8 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
 import EndrePeriodeForm from '../../forms/endre-periode-form/EndrePeriodeForm';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
 
 const getModalHeader = (formVariant: EndrePeriodeVariant, deltakelse: Deltakelse) => {
     if (formVariant === EndrePeriodeVariant.startdato) {

@@ -1,9 +1,9 @@
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
-import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
-
-import DeltakerInfo from './DeltakerInfo';
+import { Deltakelse } from '../../../types/Deltakelse';
+import { Deltaker } from '../../../types/Deltaker';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
+import DeltakelsePeriodeInfo from './DeltakelsePeriodeInfo';
+import DeltakerInfo from './DeltakerInfo';
 import SlettDeltakerInfo from './SlettDeltakerInfo';
 
 interface Props {
@@ -34,7 +34,7 @@ const DeltakerPageContent = ({ deltaker, deltakelser }: Props) => {
             <VStack gap="10">
                 {deltakelse.søktTidspunkt === undefined ? (
                     <HStack>
-                        <Alert variant="warning">Søknad om ungdomsytelse er ikke mottatt fra deltaker</Alert>
+                        <Alert variant="warning">Søknad om ungdomsprogramytelse er ikke mottatt fra deltaker</Alert>
                     </HStack>
                 ) : null}
 

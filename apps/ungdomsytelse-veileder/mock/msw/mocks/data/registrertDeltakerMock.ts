@@ -1,10 +1,10 @@
 import {
-    DeltakelseHistorikkDto,
     DeltakelseDto,
+    DeltakelseHistorikkDto,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
-} from '@navikt/ung-deltakelse-opplyser-api';
+} from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 const deltakerPersonalia: DeltakerPersonalia = {
     id: '699b9f97-b0d7-4b78-9b8e-8758feb9e0fd',

@@ -1,7 +1,8 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { queryKeys } from '../queries/queryKeys';
+import { ApiError } from '@navikt/ung-common';
 import { getDeltakerById } from '../api/deltaker/getDeltaker';
-import { ApiError, Deltaker } from '@navikt/ung-common';
+import { queryKeys } from '../queries/queryKeys';
+import { Deltaker } from '../types/Deltaker';
 
 /**
  * Henter en registrert deltaker basert på deltakerId (UUID).

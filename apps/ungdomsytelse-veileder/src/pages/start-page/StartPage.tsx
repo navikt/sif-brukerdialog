@@ -2,18 +2,20 @@ import { Alert, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import { Deltakelse, Deltaker } from '@navikt/ung-common';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
-import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
+import { erÅpnetForRegistrering } from '../../utils/deltakelseUtils';
 
 const StartPage = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
-    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogramytelsen');
+    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogrammet');
 
     useEffect(() => {
         queryClient.resetQueries();
@@ -36,7 +38,7 @@ const StartPage = () => {
                         <VStack gap="10" maxWidth="44rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
-                                    Deltakerregistrering - Ungdomsprogramytelsen
+                                    Deltakerregistrering - ungdomsprogrammet
                                 </Heading>
                                 <BodyLong size="large">
                                     Her kan du registrere deltakerne i ungdoms&shy;programmet, slik at de får
@@ -44,12 +46,18 @@ const StartPage = () => {
                                 </BodyLong>
                             </VStack>
                             <VStack className="items-center">
-                                <BorderBox className="p-8 pt-8 pb-14 items-center w-full">
-                                    <FinnDeltakerForm
-                                        onDeltakerFetched={handleDeltakerFetched}
-                                        onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                                    />
-                                </BorderBox>
+                                {erÅpnetForRegistrering() ? (
+                                    <BorderBox className="p-8 pt-8 pb-14 items-center w-full">
+                                        <FinnDeltakerForm
+                                            onDeltakerFetched={handleDeltakerFetched}
+                                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                                        />
+                                    </BorderBox>
+                                ) : (
+                                    <Alert variant="info" className="w-full">
+                                        Funksjonaliteten for å registrere deltakere blir tilgjengelig 11. august.
+                                    </Alert>
+                                )}
                             </VStack>
                             <VStack gap="4" marginBlock="4 0">
                                 <Alert variant="info" size="small" className="w-full" inline>

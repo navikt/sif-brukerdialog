@@ -158,7 +158,7 @@ const DrawerArticles = () => {
                                 <Heading level="3" size="small">
                                     Utløpt oppgave
                                 </Heading>
-                                <BodyLong>
+                                <BodyLong as="div">
                                     Alle oppgaver har en utløpsdato. Hvis deltakeren ikke svarer innen denne fristen,
                                     blir oppgaven satt som utløpt.
                                     <List>

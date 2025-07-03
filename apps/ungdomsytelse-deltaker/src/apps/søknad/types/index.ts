@@ -1,6 +1,7 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { DeltakelsePeriode, SøkYtelseOppgave } from '@navikt/ung-common';
+import { SøkYtelseOppgave } from '../../../types/Oppgave';
+import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',

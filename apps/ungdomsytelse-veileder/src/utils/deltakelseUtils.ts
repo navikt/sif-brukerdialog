@@ -1,8 +1,9 @@
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
-import { Deltakelse } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
+import { Deltakelse } from '../types/Deltakelse';
+import { getRequiredEnv } from '@navikt/sif-common-env';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,
@@ -75,4 +76,11 @@ export const getDeltakelseHistorikkTilInnslag = (historikk: DeltakelseHistorikkD
     return historikk
         .map(mapDeltakelseHistorikkTilInnslag)
         .sort((a, b) => b.tidspunkt.getTime() - a.tidspunkt.getTime());
+};
+
+export const erÅpnetForRegistrering = (): boolean => {
+    if (getRequiredEnv('ENV') !== 'prod') {
+        return true; // For testing purposes, always allow registration in non-prod environments
+    }
+    return dayjs().isSameOrAfter(dayjs('2025-08-11'), 'day');
 };

@@ -6,9 +6,9 @@ import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../../storybook/decorators/withVeilederContext';
 import DeltakerInfo from './DeltakerInfo';
-import { Deltaker } from '@navikt/ung-common';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Deltaker } from '../../../types/Deltaker';
 
 const meta: Meta<typeof DeltakerInfo> = {
     component: DeltakerInfo,

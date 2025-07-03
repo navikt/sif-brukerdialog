@@ -1,4 +1,4 @@
-import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 export const deltakelserHarSøkt: DeltakelseDto[] = [
     {

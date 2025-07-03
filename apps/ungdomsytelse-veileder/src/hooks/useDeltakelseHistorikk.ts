@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
-import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api';
+
 import { getDeltakelseHistorikk } from '../api/deltakelse/deltakelseHistorikk';
 import { queryKeys } from '../queries/queryKeys';
+import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 /**
  * Henter historikk for en deltakelse

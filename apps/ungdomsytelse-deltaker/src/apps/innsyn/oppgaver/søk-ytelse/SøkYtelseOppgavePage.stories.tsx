@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { OppgaveStatus, Oppgavetype, SøkYtelseOppgave } from '@navikt/ung-common';
+import { Heading, VStack } from '@navikt/ds-react';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { Heading, VStack } from '@navikt/ds-react';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 import SøkYtelseOppgavePage from './SøkYtelseOppgavePage';
+import { SøkYtelseOppgave } from '../../../../types/Oppgave';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Søk ytelsen',

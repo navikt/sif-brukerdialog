@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { VStack } from '@navikt/ds-react';
 import { BrowserRouter } from 'react-router-dom';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import { Deltaker } from '../../types/Deltaker';
 import DeltakerKort from './DeltakerKort';
-import { Deltaker } from '@navikt/ung-common';
-import { VStack } from '@navikt/ds-react';
 
 const meta: Meta<typeof DeltakerKort> = {
     component: DeltakerKort,
@@ -45,7 +45,10 @@ export const Varianter: Story = {
             <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE7] }} />
             <DeltakerKort deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.SKJERMET] }} />
             <DeltakerKort
-                deltaker={{ ...deltaker, diskresjonskoder: [Diskresjonskode.KODE6, Diskresjonskode.SKJERMET] }}
+                deltaker={{
+                    ...deltaker,
+                    diskresjonskoder: [Diskresjonskode.KODE6, Diskresjonskode.SKJERMET],
+                }}
             />
         </VStack>
     ),

@@ -23,7 +23,7 @@ test('Søk opp og legg til ny deltaker', async ({ page }) => {
     await page.getByRole('checkbox', { name: 'Bekreft deltakelse' }).check();
     await page.getByRole('button', { name: 'Registrer' }).click();
 
-    await expect(page.getByText('Søknad om ungdomsytelse er')).toBeVisible();
+    await expect(page.getByText('Søknad om ungdomsprogramytelse er')).toBeVisible();
     await expect(page.getByRole('definition').filter({ hasText: 'GLORETE TØFFEL' })).toBeVisible();
     await expect(page.getByText('02105Kopier')).toBeVisible();
     await expect(page.getByText('(26 år)')).toBeVisible();

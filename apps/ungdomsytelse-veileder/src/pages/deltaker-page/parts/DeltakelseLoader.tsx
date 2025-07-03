@@ -1,8 +1,8 @@
 import { BoxNew, Page } from '@navikt/ds-react';
 import { useDeltakelserForDeltaker } from '../../../hooks/useDeltakelserForDeltaker';
+import { Deltaker } from '../../../types/Deltaker';
 import ErrorPageContent from '../../error-page/ErrorPageContent';
 import DeltakerPageContent from './DeltakerPageContent';
-import { Deltaker } from '@navikt/ung-common';
 import DeltakerPageContentSkeleton from './DeltakerPageSkeleton';
 
 interface Props {

@@ -1,13 +1,13 @@
-import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { client } from '@navikt/k9-brukerdialog-prosessering-api';
+import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { v4 } from 'uuid';
-import { isUnauthorized } from './';
+import { commonRequestHeader, isUnauthorized } from './';
 
 export const initK9BrukerdialogProsesseringApiClient = () => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
-        headers: { 'Content-type': 'application/json; charset=utf-8' },
+        headers: commonRequestHeader,
         baseURL: getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH'),
     });
 

@@ -35,7 +35,7 @@ export default defineConfig({
     ],
 
     webServer: {
-        command: 'yarn demo:start',
+        command: 'yarn e2e:start',
         url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
         reuseExistingServer: true,
     },

@@ -1,6 +1,8 @@
 import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BekreftelseOppgave, DeltakelsePeriode, OppgaveStatus, Oppgavetype } from '@navikt/ung-common';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
+import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
 export enum LogMetaInfoType {
     SØKNAD_SENDT = 'søknad sendt',
@@ -29,8 +31,8 @@ type DeltakelsePeriodeMeta = {
 
 const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
-    const harStartet = harSøkt && dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
-    const erAvsluttet = harSøkt && dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
+    const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
+    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
 
     const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
     return {
@@ -67,6 +69,7 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
 
 const getSøknadInnsendingMeta = (
     deltakelse: DeltakelsePeriode,
+    oppgave: SøkYtelseOppgave,
     {
         antallBarn,
         barnStemmer,
@@ -76,7 +79,7 @@ const getSøknadInnsendingMeta = (
         antallBarn: number;
         barnStemmer: boolean;
         harKontonummer: boolean;
-        kontonummerStemmer: boolean;
+        kontonummerStemmer?: boolean;
     },
 ) => {
     const meta = getDeltakelsePeriodeMeta(deltakelse);
@@ -84,20 +87,23 @@ const getSøknadInnsendingMeta = (
         harBarn: antallBarn > 0,
         barnStemmer,
         harKontonummer,
-        kontonummerStemmer,
+        kontonummerStemmer: harKontonummer ? kontonummerStemmer : undefined,
         harStartet: meta.harStartet,
         harSluttdato: meta.harSluttdato,
         antallOppgaverTotalt: meta.antallOppgaverTotalt,
         antallEndretStartdatoOppgaver: meta.antallEndretStartdatoOppgaver,
         antallEndretSluttdatoOppgaver: meta.antallEndretSluttdatoOppgaver,
         antallSøkYtelseOppgaver: meta.antallSøkYtelseOppgaver,
+        antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
+        antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minute'),
     };
 };
 
 export const getOppgaveBekreftelseMeta = (oppgave: BekreftelseOppgave, uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
     return {
-        bekreftelse: oppgave.oppgavetype,
+        oppgavetype: oppgave.oppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
+        antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minutes'),
         harUttalelse: uttalelse.harUttalelse,
     };
 };

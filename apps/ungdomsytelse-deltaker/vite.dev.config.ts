@@ -47,6 +47,7 @@ export const getAppSettings = (): AppEnv & { VITE: string } => ({
 });
 
 export default defineConfig({
+    mode: 'msw',
     plugins: [
         tailwindcss(),
         react({
@@ -95,12 +96,5 @@ export default defineConfig({
         },
         outDir: './dist-demo',
         emptyOutDir: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
     },
 });

@@ -1,5 +1,61 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.10
+    - @navikt/sif-common-soknad-ds@24.0.15
+    - @navikt/sif-common-forms-ds@19.0.15
+    - @navikt/sif-common-core-ds@10.2.16
+    - @navikt/sif-common-api@0.4.14
+    - @navikt/sif-common-ui@0.9.17
+    - @navikt/ung-common@0.0.10
+    - @navikt/sif-app-register@0.1.7
+
+## 0.6.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.14
+    - @navikt/sif-common-forms-ds@19.0.14
+    - @navikt/sif-common-core-ds@10.2.15
+    - @navikt/sif-common-api@0.4.13
+    - @navikt/sif-common-ui@0.9.16
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/ung-common@0.0.9
+
+## 0.6.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.13
+    - @navikt/sif-common-forms-ds@19.0.13
+    - @navikt/sif-common-core-ds@10.2.14
+    - @navikt/sif-common-api@0.4.12
+    - @navikt/sif-common-ui@0.9.15
+    - @navikt/ung-common@0.0.9
+
+## 0.6.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.12
+    - @navikt/sif-common-forms-ds@19.0.12
+    - @navikt/sif-common-core-ds@10.2.13
+    - @navikt/sif-common-api@0.4.11
+    - @navikt/sif-common-ui@0.9.14
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/ung-common@0.0.9
+
 ## 0.6.13
 
 ### Patch Changes

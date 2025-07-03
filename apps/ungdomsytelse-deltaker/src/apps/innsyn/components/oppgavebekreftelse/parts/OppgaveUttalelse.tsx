@@ -1,6 +1,6 @@
 import { BoxNew, FormSummary } from '@navikt/ds-react';
 import { TextareaSvar } from '@navikt/sif-common-ui';
-import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { BekreftelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 interface Props {
     beskjedFraNav: React.ReactNode;

@@ -17,7 +17,7 @@ const DeltakerPage = () => {
     const { deltakerId } = useParams<DeltakerPageParams>();
     const navigate = useNavigate();
 
-    useDocumentTitle('Deltaker - Deltakerregistrering - ungdomsprogramytelsen');
+    useDocumentTitle('Deltaker - Deltakerregistrering - ungdomsprogrammet');
 
     /** Forenklet feilhåndtering */
     if (!deltakerId || deltakerId === '' || !validate(deltakerId)) {

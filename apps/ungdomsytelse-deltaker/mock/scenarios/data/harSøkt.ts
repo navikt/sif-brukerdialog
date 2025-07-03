@@ -1,4 +1,4 @@
-import { DeltakelseKomposittDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { DeltakelseKomposittDto, zDeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ScenarioData } from '../types';
 
 const deltakelse: DeltakelseKomposittDto = zDeltakelseKomposittDto.parse({
@@ -34,6 +34,30 @@ const deltakelse: DeltakelseKomposittDto = zDeltakelseKomposittDto.parse({
             status: 'LØST',
             opprettetDato: '2025-05-31T03:58:01.779214Z',
             løstDato: '2025-05-31T03:58:42.211729Z',
+        },
+        {
+            oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
+            oppgavetype: 'BEKREFT_AVVIK_REGISTERINNTEKT',
+            oppgavetypeData: {
+                type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
+                fraOgMed: '2025-03-01',
+                tilOgMed: '2025-03-31',
+                registerinntekt: {
+                    arbeidOgFrilansInntekter: [
+                        {
+                            inntekt: 20000,
+                            arbeidsgiver: '947064649',
+                            arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                        },
+                    ],
+                    ytelseInntekter: [],
+                    totalInntektArbeidOgFrilans: 20000,
+                    totalInntektYtelse: 0,
+                    totalInntekt: 20000,
+                },
+            },
+            status: 'ULØST',
+            opprettetDato: '2025-04-07T05:00:46.869460Z',
         },
     ],
 }) as DeltakelseKomposittDto;
