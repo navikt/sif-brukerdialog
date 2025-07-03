@@ -48,6 +48,10 @@ const VelkommenMelding = ({ fornavn, startdato }: Props) => {
                         <ReadMore header={text('personopplysninger.accordion.header')}>
                             <BehandlingAvPersonopplysningerContent />
                         </ReadMore>
+                        <ReadMore header="Disse reglene gjelder for ungdomsprogramytelsen">
+                            Informasjon om at søknad behandles automatisk, litt om de konkrete reglene, men info om at
+                            hvis en motsetter seg dette må en ta kontakt med veileder.
+                        </ReadMore>
                     </VStack>
                 </VStack>
             </Box>

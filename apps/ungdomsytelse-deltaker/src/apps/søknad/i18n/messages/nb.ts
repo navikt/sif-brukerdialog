@@ -6,7 +6,7 @@ export const ungSoknadMessages_nb = {
     'personopplysninger.accordion.header': 'Om hvordan vi innhenter opplysninger om deg',
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'personopplysninger.2':
-        'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelsetjeneste. Deler av saken din blir behandlet automatisk.',
+        'Vi henter inn og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig ytelse. Deler av saken din blir behandlet automatisk.',
     'personopplysninger.3': 'Hvilke opplysninger henter vi inn?',
     'personopplysninger.4':
         'Opplysningene vi henter inn kommer enten fra deg, din veileder i Nav eller fra offentlige registre:',
@@ -50,8 +50,7 @@ export const ungSoknadMessages_nb = {
     'velkommenMelding.søknadBeskrivelse':
         'Du søker ved å fylle ut denne søknaden. Les mer om <Lenke>ungdomsprogrammet og -ytelsen på nav.no</Lenke>.',
     'velkommenMelding.readMore.dato.header': 'Hva hvis datoen ikke stemmer?',
-    'velkommenMelding.readMore.dato.content':
-        'Da tar du kontakt med din veileder og sier fra om dette, før du sender inn denne søknaden.',
+    'velkommenMelding.readMore.dato.content': 'Da tar du kontakt med din veileder og sier fra om dette.',
 
     /** KvitteringPage */
     'kvitteringPage.dokumentTittel': 'Søknad er sendt - Søknad om ungdomsprogramytelsen',

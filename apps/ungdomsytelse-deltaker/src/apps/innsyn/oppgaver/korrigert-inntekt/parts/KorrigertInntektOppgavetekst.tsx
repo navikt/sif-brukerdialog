@@ -32,12 +32,10 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
 
             <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
 
+            <BodyLong weight="semibold">Fristen for å svare er {formatertFrist}.</BodyLong>
             <BodyLong>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. veniam, nam repudiandae similique quasi unde
                 dolorem sit repellendus!
-            </BodyLong>
-            <BodyLong weight="semibold" spacing>
-                Fristen for å svare er {formatertFrist}.
             </BodyLong>
         </VStack>
     );

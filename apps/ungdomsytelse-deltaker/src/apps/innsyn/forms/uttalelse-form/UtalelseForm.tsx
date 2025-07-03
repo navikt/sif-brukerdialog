@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, VStack } from '@navikt/ds-react';
 import {
     UngdomsytelseOppgavebekreftelse,
     UngdomsytelseOppgaveUttalelseDto,
@@ -82,9 +82,16 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
                                 {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
                                     <Textarea
                                         name={FormFields.begrunnelse}
-                                        label="Kommentar"
-                                        maxLength={100}
-                                        validate={getStringValidator({ required: true, maxLength: 250 })}
+                                        label="Tilbakemelding på startdato"
+                                        description={
+                                            <BodyLong>
+                                                Du må ikke oppgi sensitive informasjon (særlige kategorier av
+                                                personopplysninger) om deg selv eller andre, for eksempel
+                                                helseopplysninger.
+                                            </BodyLong>
+                                        }
+                                        maxLength={500}
+                                        validate={getStringValidator({ required: true, maxLength: 500 })}
                                     />
                                 ) : null}
                                 {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
