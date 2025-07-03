@@ -62,7 +62,7 @@ test.describe('Medlemskap', () => {
         await page.getByLabel('Velg land').selectOption('ABW');
         await page.getByRole('button', { name: 'Ok' }).click();
         await page.getByLabel('Fjern Bahrain').click();
-        await page.getByText('Ja', { exact: true }).nth(2).click();
+        await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Ja').click();
         await page
             .getByTestId('bostedUtlandList-annetLandNeste12')
             .getByRole('button', { name: 'Legg til nytt utenlandsopphold' })
