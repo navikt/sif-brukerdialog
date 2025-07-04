@@ -1,12 +1,27 @@
 import { Box, Tabs, VStack } from '@navikt/ds-react';
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { enableMocking } from '../mock/enableMocking';
+import ArbeidsgiverInfo from './components/ArbeidsgiverInfo';
+import BarnInfo from './components/BarnInfo';
 import SøkerInfo from './components/SøkerInfo';
+import DemoForm from './forms/DemoForm';
 import { useInitialData } from './hooks/useInitialData';
 import '@navikt/ds-css';
-import BarnInfo from './components/BarnInfo';
-import ArbeidsgiverInfo from './components/ArbeidsgiverInfo';
-import DemoForm from './forms/DemoForm';
+
+enableMocking();
+
+if (getMaybeEnv('ENV') !== 'prod') {
+    injectDecoratorClientSide({
+        env: 'dev',
+        params: {
+            simple: false,
+            chatbot: true,
+        },
+    });
+}
 
 const App = () => {
     const { initialData, isLoading } = useInitialData();

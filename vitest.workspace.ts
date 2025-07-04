@@ -5,7 +5,6 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineWorkspace([
-    './apps/dine-pleiepenger/vitest.config.ts',
     './apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/vitest.config.ts',
     './apps/endringsmelding-pleiepenger/vitest.config.ts',
     './apps/omsorgsdager-aleneomsorg-dialog/vite.config.ts',
