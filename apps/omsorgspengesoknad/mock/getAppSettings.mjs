@@ -1,6 +1,7 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const getAppSettings = () => ({
+export const getAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
@@ -15,7 +16,6 @@ const getAppSettings = () => ({
     SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
     SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
 
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
@@ -25,5 +25,3 @@ const getAppSettings = () => ({
     K9_SAK_INNSYN_API_SCOPE: `${process.env.K9_SAK_INNSYN_API_SCOPE}`,
     K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_API_URL}`,
 });
-
-module.exports = getAppSettings;

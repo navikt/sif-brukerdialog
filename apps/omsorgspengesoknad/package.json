@@ -93,7 +93,7 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
+        "start-e2e-server": "node ./e2e/server/server.mjs",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run",
         "chromatic": "npx chromatic --project-token"

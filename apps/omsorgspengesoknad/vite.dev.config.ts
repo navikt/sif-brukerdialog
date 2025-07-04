@@ -3,35 +3,10 @@ import react from '@vitejs/plugin-react';
 import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { AppEnv } from './env.schema';
+import { getAppSettings } from './mock/getAppSettings.mjs';
 import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config();
-
-export const getAppSettings = (): AppEnv => ({
-    ENV: `${process.env.ENV}`,
-    APP_VERSION: `${process.env.APP_VERSION}`,
-    GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-
-    SIF_PUBLIC_FEATURE_NYNORSK: 'on',
-
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
-    SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,
-    SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
-    SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
-    SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
-    SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
-
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
-    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
-
-    K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-    K9_SAK_INNSYN_API_SCOPE: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-    K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-});
 
 export default defineConfig({
     mode: 'msw',
