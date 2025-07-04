@@ -1,9 +1,9 @@
+import { Box, Button, Heading, Select, TextField } from '@navikt/ds-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Heading, TextField, Select, Button, Box } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import RhfTextField from './react-hook-form-ds/RhfTextfield';
+import { RhfTextField } from '@navikt/sif-hook-form-wrappers';
+import { z } from 'zod';
 
 const schema = z.object({
     fornavn: z.string().min(1, 'Fornavn er påkrevd'),

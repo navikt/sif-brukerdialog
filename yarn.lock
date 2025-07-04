@@ -6619,6 +6619,7 @@ __metadata:
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
+    "@navikt/sif-hook-form-wrappers": "workspace:*"
     "@tailwindcss/postcss": "npm:4.1.11"
     "@tailwindcss/vite": "npm:4.1.11"
     "@types/node": "npm:24.0.10"
@@ -6730,7 +6731,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers":
+"@navikt/sif-hook-form-wrappers@workspace:*, @navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers"
   dependencies:
