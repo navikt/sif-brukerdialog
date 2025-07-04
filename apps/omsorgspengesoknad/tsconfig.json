@@ -6,12 +6,11 @@
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": [
-        "./src/app/**/*",
-        "./src/storybook/**/*",
-        "./e2e/playwright/*",
+        "./src/**/*",
+        "./e2e/**/*",
+        "./mock/**/*",
         "./playwright-config.ts",
         "./env.schema.ts",
-        "./mock/**/*",
         "./vite-env.d.ts"
     ]
 }
