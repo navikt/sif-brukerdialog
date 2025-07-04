@@ -1,24 +1,34 @@
-import { Checkbox, ErrorMessage } from '@navikt/ds-react';
 import { ReactNode, useCallback, useMemo } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { getError, getValidationRules } from './formUtils';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 
-export interface Props {
-    name: string;
+import { Checkbox, ErrorMessage } from '@navikt/ds-react';
+
+import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+
+type Props<T extends FieldValues> = {
     label: string | ReactNode;
-    validate?: Array<(value: string) => any>;
+    validate?: Array<(value: string) => ValidationReturnType>;
     onChange?: (isChecked: boolean) => void;
     className?: string;
-    disabled?: boolean;
-}
+    control: UseControllerProps<T>['control'];
+} & Omit<UseControllerProps<T>, 'control'>;
 
-export const RhfCheckbox = ({ name, label, validate = [], onChange, className, disabled }: Props) => {
+export const RhfCheckbox = <T extends FieldValues>({
+    label,
+    validate = [],
+    onChange,
+    className,
+    ...controllerProps
+}: Props<T>) => {
+    const { name, control, disabled } = controllerProps;
+
     const {
         formState: { errors },
     } = useFormContext();
 
     const { field } = useController({
         name,
+        control,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
         },

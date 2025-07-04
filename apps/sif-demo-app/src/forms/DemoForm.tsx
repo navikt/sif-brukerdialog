@@ -1,59 +1,47 @@
-import { Box, Button, Heading, Select, TextField } from '@navikt/ds-react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Box, Button, Heading } from '@navikt/ds-react';
+import { useForm } from 'react-hook-form';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { RhfTextField } from '@navikt/sif-hook-form-wrappers';
-import { z } from 'zod';
+import { RhfForm, RhfSelect, RhfTextField } from '@navikt/sif-hook-form-wrappers';
 
-const schema = z.object({
-    fornavn: z.string().min(1, 'Fornavn er påkrevd'),
-    etternavn: z.string().min(1, 'Etternavn er påkrevd'),
-    fodselsdato: z.string(),
-    favorittdyr: z.string(),
-});
-
-type FormData = z.infer<typeof schema>;
+export interface FormValues {
+    fornavn?: string;
+    etternavn?: string;
+    favorittdyr?: 'cat' | 'dog' | 'cow';
+}
 
 const DemoForm = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<FormData>({
-        resolver: zodResolver(schema),
+    const formMethods = useForm<FormValues>({
+        defaultValues: {
+            fornavn: '',
+            etternavn: '',
+            favorittdyr: undefined,
+        },
     });
 
-    const onSubmit = (data: FormData) => {
-        console.log(data);
+    const onSubmit = (values: FormValues) => {
+        console.log(values);
     };
-
-    const methods = useForm<FormData>({
-        resolver: zodResolver(schema),
-    });
 
     return (
         <>
             <Heading level="2" size="medium" spacing={true}>
                 Testskjema
             </Heading>
-            <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <FormLayout.Questions>
-                        <RhfTextField label="Fornavn" {...register('fornavn')} error={errors.fornavn?.message} />
-                        <TextField label="Etternavn" {...register('etternavn')} error={errors.etternavn?.message} />
-                        <Select label="Favorittdyr" {...register('favorittdyr')}>
-                            <option value="">Velg et dyr</option>
-                            <option value="cat">Katt</option>
-                            <option value="dog">Hund</option>
-                            <option value="cow">Ku</option>
-                        </Select>
-
-                        <Box>
-                            <Button type="submit">Send inn</Button>
-                        </Box>
-                    </FormLayout.Questions>
-                </form>
-            </FormProvider>
+            <RhfForm formMethods={formMethods} onSubmit={onSubmit}>
+                <FormLayout.Questions>
+                    <RhfTextField name="fornavn" control={formMethods.control} label="Fornavn" />
+                    <RhfTextField name="etternavn" control={formMethods.control} label="Etternavn" />
+                    <RhfSelect name="favorittdyr" control={formMethods.control} label="Favorittdyr">
+                        <option value="">Velg et dyr</option>
+                        <option value="cat">Katt</option>
+                        <option value="dog">Hund</option>
+                        <option value="cow">Ku</option>
+                    </RhfSelect>
+                    <Box>
+                        <Button type="submit">Send inn</Button>
+                    </Box>
+                </FormLayout.Questions>
+            </RhfForm>
         </>
     );
 };

@@ -1,47 +1,48 @@
 import { TextField, TextFieldProps as DsTextFieldProps } from '@navikt/ds-react';
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
 import { replaceInvisibleCharsWithSpace } from '../fp/utils';
-import { getError, getValidationRules } from './formUtils';
+import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
-type Props = {
-    name: string;
+type Props<T extends FieldValues> = {
     label?: string | ReactNode;
-    validate?: Array<(value: string) => any> | Array<(value: number) => any>;
+    validate?: Array<(value: string) => ValidationReturnType>;
     description?: string;
-    onChange?: (value: any) => void;
+    onChange?: (value: string | null) => void;
     autoFocus?: boolean;
-    disabled?: boolean;
     type?: 'email' | 'password' | 'tel' | 'text' | 'url';
     className?: string;
     style?: CSSProperties;
     shouldReplaceInvisibleChars?: boolean;
     autofocusWhenEmpty?: boolean;
     customErrorFormatter?: (error: string | undefined) => ReactNode;
-} & DsTextFieldProps;
+    control: UseControllerProps<T>['control'];
+} & DsTextFieldProps &
+    Omit<UseControllerProps<T>, 'control'>;
 
-export const RhfTextField = ({
-    name,
+export const RhfTextField = <T extends FieldValues>({
     label,
     validate = [],
     type,
     onChange,
     description,
     autoFocus,
-    disabled,
     className,
     style,
     shouldReplaceInvisibleChars = false,
     autofocusWhenEmpty,
     customErrorFormatter,
     ...rest
-}: Props) => {
+}: Props<T>) => {
+    const { name, control, disabled } = rest;
+
     const {
         formState: { errors },
     } = useFormContext();
 
     const { field } = useController({
         name,
+        control,
         disabled,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
@@ -66,7 +67,7 @@ export const RhfTextField = ({
     return (
         <TextField
             ref={field.ref}
-            value={field.value || ''}
+            value={field.value ?? ''}
             label={label}
             description={description}
             type={type}

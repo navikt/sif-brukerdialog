@@ -1,39 +1,44 @@
-import { TextField } from '@navikt/ds-react';
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { getError, getValidationRules } from './formUtils';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 
-interface Props {
-    name: string;
+import { TextField } from '@navikt/ds-react';
+
+import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+
+type Props<T extends FieldValues> = {
     label: string | ReactNode;
-    validate?: Array<(value: string) => any> | Array<(value: number) => any>;
+    validate?: Array<(value: string) => ValidationReturnType>;
     description?: string;
-    onChange?: (value: any) => void;
+    onChange?: (value: string) => void;
+    onBlur?: (value: string) => void;
     autoFocus?: boolean;
     maxLength?: number;
-    disabled?: boolean;
     className?: string;
     style?: CSSProperties;
-}
+    control: UseControllerProps<T>['control'];
+} & Omit<UseControllerProps<T>, 'control'>;
 
-export const RhfNumericField = ({
-    name,
+export const RhfNumericField = <T extends FieldValues>({
     label,
     validate = [],
     onChange,
     description,
     autoFocus,
+    onBlur,
     maxLength,
-    disabled,
     className,
     style,
-}: Props) => {
+    ...controllerProps
+}: Props<T>) => {
+    const { name, control, disabled } = controllerProps;
+
     const {
         formState: { errors },
     } = useFormContext();
 
     const { field } = useController({
         name,
+        control,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
         },
@@ -52,7 +57,7 @@ export const RhfNumericField = ({
     return (
         <TextField
             ref={field.ref}
-            value={field.value || ''}
+            value={field.value ?? ''}
             label={label}
             description={description}
             type="text"
@@ -60,6 +65,7 @@ export const RhfNumericField = ({
             error={getError(errors, name)}
             autoFocus={autoFocus}
             autoComplete="off"
+            onBlur={(event) => onBlur?.(event.currentTarget.value)}
             maxLength={maxLength}
             disabled={disabled}
             className={className}

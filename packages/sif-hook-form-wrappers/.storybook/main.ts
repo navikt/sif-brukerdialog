@@ -1,14 +1,21 @@
+import { join, dirname } from 'path';
+
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, 'package.json')));
+}
+
 const config = {
-    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: [
-        '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
-        'storybook-react-intl',
-    ],
+    stories: ['../src/**/*.stories.tsx'],
+
+    addons: [getAbsolutePath('@storybook/addon-docs')],
+
     framework: {
-        name: '@storybook/react-vite',
+        name: getAbsolutePath('@storybook/react-vite'),
         options: {},
+    },
+
+    typescript: {
+        reactDocgen: 'react-docgen-typescript-plugin',
     },
 };
 

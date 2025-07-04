@@ -1,41 +1,44 @@
-import { Select } from '@navikt/ds-react';
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { getError, getValidationRules } from './formUtils';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 
-interface Props {
-    name: string;
+import { Select } from '@navikt/ds-react';
+
+import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+
+type Props<T extends FieldValues> = {
     label: string | ReactNode;
-    onChange?: (event: any) => void;
-    validate?: Array<(value: string) => any>;
+    onChange?: (event: React.ChangeEvent<Element>) => void;
+    validate?: Array<(value: string) => ValidationReturnType>;
     children: React.ReactElement[];
     description?: ReactNode;
-    disabled?: boolean;
     className?: string;
     style?: CSSProperties;
     autofocusWhenEmpty?: boolean;
     customErrorFormatter?: (error: string | undefined) => ReactNode;
-}
+    control: UseControllerProps<T>['control'];
+} & Omit<UseControllerProps<T>, 'control'>;
 
-export const RhfSelect = ({
-    name,
+export const RhfSelect = <T extends FieldValues>({
     label,
     validate = [],
     description,
     onChange,
-    disabled,
     className,
     children,
     style,
     autofocusWhenEmpty,
     customErrorFormatter,
-}: Props) => {
+    ...controllerProps
+}: Props<T>) => {
+    const { name, control, disabled } = controllerProps;
+
     const {
         formState: { errors },
     } = useFormContext();
 
     const { field } = useController({
         name,
+        control,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
         },

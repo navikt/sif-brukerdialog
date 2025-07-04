@@ -1,11 +1,13 @@
-import { DatePicker, HStack, useRangeDatepicker, VStack } from '@navikt/ds-react';
-import { JSX, ReactNode, useMemo, useState } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { DateRange } from '@navikt/sif-common-utils';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { JSX, ReactNode, useMemo, useState } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+
+import { DatePicker, HStack, VStack, useRangeDatepicker } from '@navikt/ds-react';
+
 import { DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT, TIDENES_ENDE, TIDENES_MORGEN } from '../fp/dates';
-import { getError, getValidationRules } from './formUtils';
+
+import { ValidationReturnType, getError, getValidationRules } from './formUtils';
 
 dayjs.extend(customParseFormat);
 
@@ -13,7 +15,7 @@ const INVALID_DATE = 'Invalid Date';
 const isValidDateString = (date: string): boolean => date !== INVALID_DATE;
 
 const findDisabledDays = (minDate?: Date, maxDate?: Date): Array<{ from: Date; to?: Date }> => {
-    const disabledDays: DateRange[] = [];
+    const disabledDays: Array<{ from: Date; to?: Date }> = [];
     if (minDate) {
         disabledDays.push({
             from: dayjs(TIDENES_MORGEN).toDate(),
@@ -32,7 +34,7 @@ const findDisabledDays = (minDate?: Date, maxDate?: Date): Array<{ from: Date; t
 const getDefaultSelected = (fieldValue: string, defaultDate: string) =>
     fieldValue && isValidDateString(defaultDate) ? dayjs(fieldValue, ISO_DATE_FORMAT, true).toDate() : undefined;
 
-const onFieldChange = (value: string, onChange: (...event: any[]) => void) => {
+const onFieldChange = (value: string, onChange: (...event: string[]) => void) => {
     const verdi = dayjs(value, DDMMYYYY_DATE_FORMAT, true).format(ISO_DATE_FORMAT);
     const isValidDate = isValidDateString(verdi);
     onChange(isValidDate ? verdi : value);
@@ -43,8 +45,8 @@ interface Props {
     nameTo: string;
     labelFrom?: string | ReactNode;
     labelTo?: string | ReactNode;
-    validateFrom?: Array<(value: string) => any>;
-    validateTo?: Array<(value: string) => any>;
+    validateFrom?: Array<(value: string) => ValidationReturnType>;
+    validateTo?: Array<(value: string) => ValidationReturnType>;
     minDate?: Date | Dayjs | string;
     maxDate?: Date | Dayjs | string;
     defaultMonth?: Date | Dayjs | string;

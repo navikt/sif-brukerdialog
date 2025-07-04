@@ -1,11 +1,14 @@
-import { DatePicker, useDatepicker } from '@navikt/ds-react';
-import React, { JSX, ReactNode, useCallback, useMemo, useState } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { DateRange } from '@navikt/sif-common-utils';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import React, { JSX, ReactNode, useCallback, useMemo, useState } from 'react';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
+import { useIntl } from 'react-intl';
+
+import { DatePicker, useDatepicker } from '@navikt/ds-react';
+
 import { DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT, TIDENES_ENDE, TIDENES_MORGEN } from '../fp/dates';
-import { getError, getValidationRules } from './formUtils';
+
+import { ValidationReturnType, getError, getValidationRules } from './formUtils';
 
 dayjs.extend(customParseFormat);
 
@@ -13,7 +16,7 @@ const INVALID_DATE = 'Invalid Date';
 const isValidDateString = (date: string): boolean => date !== INVALID_DATE;
 
 const findDisabledDays = (minDate?: Date, maxDate?: Date): Array<{ from: Date; to?: Date }> => {
-    const disabledDays: DateRange[] = [];
+    const disabledDays: Array<{ from: Date; to?: Date }> = [];
     if (minDate) {
         disabledDays.push({
             from: dayjs(TIDENES_MORGEN).toDate(),
@@ -29,12 +32,11 @@ const findDisabledDays = (minDate?: Date, maxDate?: Date): Array<{ from: Date; t
     return disabledDays;
 };
 
-interface Props {
-    name: string;
+type Props<T extends FieldValues> = {
     label?: string | ReactNode;
     description?: string;
-    validate?: Array<(value: string) => any>;
-    onChange?: (value: any) => void;
+    validate?: Array<(value: string) => ValidationReturnType>;
+    onChange?: (value: string) => void;
     minDate?: Date | Dayjs | string;
     maxDate?: Date | Dayjs | string;
     defaultMonth?: Date | Dayjs | string;
@@ -43,10 +45,10 @@ interface Props {
     autofocusWhenEmpty?: boolean;
     customErrorFormatter?: (error: string | undefined) => ReactNode;
     useStrategyAbsolute?: boolean;
-}
+    control: UseControllerProps<T>['control'];
+} & Omit<UseControllerProps<T>, 'control'>;
 
-export const RhfDatepicker = ({
-    name,
+export const RhfDatepicker = <T extends FieldValues>({
     label,
     description,
     validate = [],
@@ -59,13 +61,18 @@ export const RhfDatepicker = ({
     autofocusWhenEmpty,
     customErrorFormatter,
     useStrategyAbsolute = false,
-}: Props): JSX.Element => {
+    ...controllerProps
+}: Props<T>): JSX.Element => {
+    const { name, control } = controllerProps;
+
+    const intl = useIntl();
     const {
         formState: { errors },
     } = useFormContext();
 
     const { field } = useController({
         name,
+        control,
         rules: {
             validate: useMemo(() => getValidationRules(validate), [validate]),
         },
@@ -131,7 +138,7 @@ export const RhfDatepicker = ({
                 label={label}
                 description={description}
                 error={customErrorFormatter ? customErrorFormatter(getError(errors, name)) : getError(errors, name)}
-                placeholder="dd.mm.åååå"
+                placeholder={intl.formatMessage({ id: 'Skjema.input.dato.placeholder' })}
                 autoFocus={autofocusWhenEmpty && field.value === undefined}
             />
         </DatePicker>
