@@ -25,6 +25,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-hook-form-wrappers": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.10.0",
         "csp-header": "6.1.0",
@@ -37,6 +38,7 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
+        "react-hook-form": "7.59.0",
         "react-intl": "7.1.11",
         "react-router-dom": "7.6.3"
     },
@@ -86,8 +88,7 @@
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
-        "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
-        "dev": "node ./dev-server.cjs",
+        "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
@@ -112,5 +113,10 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "msw": {
+        "workerDirectory": [
+            ""
+        ]
+    }
 }

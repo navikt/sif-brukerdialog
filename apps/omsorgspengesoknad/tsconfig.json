@@ -10,6 +10,8 @@
         "./src/storybook/**/*",
         "./e2e/playwright/*",
         "./playwright-config.ts",
-        "./env.schema.ts"
+        "./env.schema.ts",
+        "./mock/**/*",
+        "./vite-env.d.ts"
     ]
 }
