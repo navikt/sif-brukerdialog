@@ -2,8 +2,9 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/types"],
+        "baseUrl": "./"
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/**/*"]
+    "exclude": ["node_modules"],
+    "include": ["src/**/*", "./vite.dev.config.ts", "./env.schema.ts", "./mock/**/*"]
 }
