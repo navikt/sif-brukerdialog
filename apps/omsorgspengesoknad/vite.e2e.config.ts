@@ -1,10 +1,10 @@
 import react from '@vitejs/plugin-react';
 import * as dotenv from 'dotenv';
+import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { getAppSettings } from './mock/getAppSettings.mjs';
 import tailwindcss from '@tailwindcss/vite';
-import { copyFileSync } from 'fs';
 
 dotenv.config();
 
@@ -55,4 +55,11 @@ export default defineConfig({
         copyPublicDir: false,
     },
     publicDir: false,
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler',
+            },
+        },
+    },
 });
