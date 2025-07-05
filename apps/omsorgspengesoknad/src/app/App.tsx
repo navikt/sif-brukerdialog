@@ -1,6 +1,7 @@
 import { Navigate, Route } from 'react-router-dom';
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { isProd } from '@navikt/sif-common-env';
+import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -22,6 +23,16 @@ const {
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
+
+if (getMaybeEnv('ENV') !== 'prod') {
+    injectDecoratorClientSide({
+        env: 'dev',
+        params: {
+            simple: false,
+            chatbot: true,
+        },
+    });
+}
 
 const App = () => (
     <SoknadApplication

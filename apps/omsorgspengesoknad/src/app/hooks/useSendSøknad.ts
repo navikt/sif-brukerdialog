@@ -4,7 +4,7 @@ import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
-import { useMellomlagring } from '../hooks/useMellomlagring';
+import { useMellomlagring } from './useMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';

@@ -21,7 +21,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn start-e2e-server',
+        command: 'yarn e2e:build && yarn e2e:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: playwrightEnv,
