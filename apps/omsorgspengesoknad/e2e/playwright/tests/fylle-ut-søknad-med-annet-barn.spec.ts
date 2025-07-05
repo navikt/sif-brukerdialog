@@ -22,7 +22,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     const barn = barnMock.barn[0];
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('Søknaden gjelder et annet barn').check();
-    await page.getByLabel('Barnets fødselsnummer/D-nummer').fill(barn.fødselsnummer);
+    await page.getByLabel('Barnets fødselsnummer/D-nummer').fill(barn.fødselsnummer || '');
     await page.getByLabel('Barnets navn').fill(`${barn.fornavn} ${barn.etternavn}`);
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByLabel('År', { exact: true }).selectOption('2019');

@@ -4,8 +4,8 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
+import RegistrerteBarnHelpText from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnHelpText';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { RegistrerteBarnKildeInfo } from '@navikt/sif-common-ui';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -29,7 +29,7 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
                         <>
                             <HStack gap="2" marginBlock={'2 2'}>
                                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
-                                <RegistrerteBarnKildeInfo />
+                                <RegistrerteBarnHelpText />
                             </HStack>
                         </>
                     }
