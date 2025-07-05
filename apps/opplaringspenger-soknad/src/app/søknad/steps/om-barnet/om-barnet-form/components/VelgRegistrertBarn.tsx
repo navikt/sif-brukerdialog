@@ -8,7 +8,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetFormText, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields } from '../types';
 import { OmBarnetFormComponents } from './OmBarnetFormComponents';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
