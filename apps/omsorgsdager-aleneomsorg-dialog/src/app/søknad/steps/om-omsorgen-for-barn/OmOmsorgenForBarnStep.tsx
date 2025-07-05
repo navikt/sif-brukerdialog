@@ -30,7 +30,7 @@ import {
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
+import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 
 export enum OmOmsorgenForBarnFormFields {
