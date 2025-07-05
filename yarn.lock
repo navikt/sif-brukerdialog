@@ -5390,7 +5390,6 @@ __metadata:
     axe-core: "npm:4.10.3"
     axios: "npm:1.10.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.1.2"
     compression: "npm:1.8.0"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -13357,25 +13356,6 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 10/32e488c202c6cc6ce6ff9cbda5f7adf01d605af0e0500cdd12b7be1a76f14b8e0d249480e8e44370c45d485e8b5d24bdd128c40bf5358b98ea3c553c4274ecca
-  languageName: node
-  linkType: hard
-
-"chromatic@npm:13.1.2":
-  version: 13.1.2
-  resolution: "chromatic@npm:13.1.2"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 10/f5fd9ec4c22ac8a6b998867501eadf73b911a2a4e09ea8bd1bccc8f02b094492a023a35caef36d1ed19a14d936aa787be163a4b87dd2fe0e7c04872ea00cab9b
   languageName: node
   linkType: hard
 
