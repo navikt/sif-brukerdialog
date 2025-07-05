@@ -1,10 +1,10 @@
-/// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { getAppSettings } from './mock/getAppSettings.mjs';
 import tailwindcss from '@tailwindcss/vite';
+import { copyFileSync } from 'fs';
 
 dotenv.config();
 
@@ -26,6 +26,12 @@ export default defineConfig({
             name: 'html-transform',
             transformIndexHtml: (html) => {
                 return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getAppSettings()));
+            },
+        },
+        {
+            name: 'copy-msw',
+            writeBundle() {
+                copyFileSync('./mockServiceWorker.js', './dist-e2e/mockServiceWorker.js');
             },
         },
     ],
