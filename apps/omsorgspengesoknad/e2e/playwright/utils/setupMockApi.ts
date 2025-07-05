@@ -1,5 +1,5 @@
 import { BrowserContext, Page } from '@playwright/test';
-import { setupNavnoConsentCookieForPlaywrightTests } from '@navikt/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
+import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 import { barnMock } from '../mock-data/barnMock';
 import { søkerMock } from '../mock-data/søkerMock';
 
