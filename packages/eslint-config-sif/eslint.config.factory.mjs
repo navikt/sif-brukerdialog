@@ -62,7 +62,6 @@ export async function createSifConfig(options = {}) {
                     'no-duplicate-imports': ERROR,
                     '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
                     '@typescript-eslint/no-use-before-define': [OFF],
-                    // TODO (TOR) Ignorert inntil videre grunnet kost/nytte
                     '@typescript-eslint/no-explicit-any': OFF,
                     '@typescript-eslint/ban-ts-comment': OFF,
                 }),
