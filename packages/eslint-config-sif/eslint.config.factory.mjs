@@ -4,18 +4,23 @@ const ERROR = 2;
 
 /**
  * Factory function to create shared ESLint configuration
- * This avoids module resolution issues by requiring consumers to pass their own plugins
+ * Only requires typescript-eslint as parameter, all other plugins are imported directly
+ * This approach minimizes boilerplate while avoiding module resolution issues
  */
-export function createSifConfig({
-    pluginJs,
-    eslintConfigPrettier,
-    jsxA11y,
-    pluginReact,
-    vitest,
-    globals,
-    tseslint,
-    reactHooks,
-}) {
+export async function createSifConfig(options = {}) {
+    const { tseslint } = options;
+
+    // Import all other plugins directly - they don't cause module resolution issues
+    const [pluginJs, eslintConfigPrettier, jsxA11y, pluginReact, vitest, globals, reactHooks] = await Promise.all([
+        import('@eslint/js'),
+        import('eslint-config-prettier'),
+        import('eslint-plugin-jsx-a11y'),
+        import('eslint-plugin-react'),
+        import('eslint-plugin-vitest'),
+        import('globals'),
+        import('eslint-plugin-react-hooks'),
+    ]);
+
     return [
         {
             files: ['**/*.{js,mjs,js,ts,jsx,tsx}'],
@@ -25,19 +30,19 @@ export function createSifConfig({
                 },
             },
             plugins: {
-                vitest,
-                'react-hooks': reactHooks,
+                vitest: vitest.default,
+                'react-hooks': reactHooks.default,
             },
-            languageOptions: { globals: globals.browser },
+            languageOptions: { globals: globals.default.browser },
         },
-        pluginJs.configs.recommended,
-        ...tseslint.configs.recommended,
-        pluginReact.configs.flat.recommended,
-        jsxA11y.flatConfigs.recommended,
-        eslintConfigPrettier,
+        pluginJs.default.configs.recommended,
+        ...(tseslint ? tseslint.configs.recommended : []),
+        pluginReact.default.configs.flat.recommended,
+        jsxA11y.default.flatConfigs.recommended,
+        eslintConfigPrettier.default,
         {
             rules: {
-                ...vitest.configs.recommended.rules,
+                ...vitest.default.configs.recommended.rules,
                 'max-len': [ERROR, 300],
                 'no-console': WARNING,
                 'no-debugger': WARNING,
@@ -46,17 +51,24 @@ export function createSifConfig({
                 'react/react-in-jsx-scope': OFF,
                 'react/display-name': OFF,
 
-                // Note: you must disable the base rule as it can report incorrect errors
-                'no-use-before-define': OFF,
-                'no-shadow': OFF,
-                '@typescript-eslint/no-shadow': [ERROR],
-                'no-unused-vars': OFF,
-                '@typescript-eslint/no-unused-vars': [ERROR],
-                'no-duplicate-imports': ERROR,
-                '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
+                // TypeScript rules - only add if tseslint is provided
+                ...(tseslint && {
+                    // Note: you must disable the base rule as it can report incorrect errors
+                    'no-use-before-define': OFF,
+                    'no-shadow': OFF,
+                    '@typescript-eslint/no-shadow': [ERROR],
+                    'no-unused-vars': OFF,
+                    '@typescript-eslint/no-unused-vars': [ERROR],
+                    'no-duplicate-imports': ERROR,
+                    '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
+                    '@typescript-eslint/no-use-before-define': [OFF],
+                    // TODO (TOR) Ignorert inntil videre grunnet kost/nytte
+                    '@typescript-eslint/no-explicit-any': OFF,
+                    '@typescript-eslint/ban-ts-comment': OFF,
+                }),
+
                 'react-hooks/rules-of-hooks': 'error',
 
-                // TODO Bør ein ha med desse to?
                 'react/function-component-definition': [
                     OFF,
                     {
@@ -64,12 +76,6 @@ export function createSifConfig({
                         unnamedComponents: 'arrow-function',
                     },
                 ],
-                // 'no-use-before-define': OFF,
-                '@typescript-eslint/no-use-before-define': [OFF],
-
-                // TODO (TOR) Ignorert inntil videre grunnet kost/nytte
-                '@typescript-eslint/no-explicit-any': OFF,
-                '@typescript-eslint/ban-ts-comment': OFF,
 
                 'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
                 'jsx-quotes': ['error', 'prefer-double'],
@@ -77,6 +83,3 @@ export function createSifConfig({
         },
     ];
 }
-
-// Keep the old default export for backward compatibility, but mark as deprecated
-export default createSifConfig;
