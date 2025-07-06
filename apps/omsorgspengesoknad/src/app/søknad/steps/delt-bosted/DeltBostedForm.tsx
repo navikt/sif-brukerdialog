@@ -3,8 +3,7 @@ import { useIntl } from 'react-intl';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
@@ -48,7 +47,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
             <FormLayout.Questions>
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.deltBosted.intro'} />
+                        <AppText id="steg.deltBosted.intro" />
                     </p>
                 </SifGuidePanel>
 

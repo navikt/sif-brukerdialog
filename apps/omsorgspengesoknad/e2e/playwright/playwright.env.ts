@@ -3,9 +3,11 @@ import { AppEnv } from '../../env.schema';
 export const playwrightEnv: AppEnv = {
     ENV: 'dev',
     APP_VERSION: 'dev',
-
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger',
     GITHUB_REF_NAME: 'branch-name',
+
+    INJECT_DECORATOR: 'true',
+
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
@@ -16,9 +18,11 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_USE_AMPLITUDE: 'true',
+
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+
     K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-sak-innsyn',
     K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
     K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',

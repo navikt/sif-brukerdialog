@@ -27,7 +27,7 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
                 <RadioGroup
                     legend={
                         <>
-                            <HStack gap="2" marginBlock={'2 2'}>
+                            <HStack gap="2" marginBlock="2 2">
                                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
                                 <RegistrerteBarnKildeInfo />
                             </HStack>

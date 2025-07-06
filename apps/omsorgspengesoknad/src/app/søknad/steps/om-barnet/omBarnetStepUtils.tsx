@@ -1,15 +1,14 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
+import { FormikRadioProp, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppMessageKeys, AppText } from '../../../i18n';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { RegistrertBarn } from '@navikt/sif-common-api';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
