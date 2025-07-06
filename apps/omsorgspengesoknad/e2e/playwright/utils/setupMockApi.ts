@@ -5,15 +5,6 @@ import { søkerMock } from '../mock-data/søkerMock';
 
 export const setupMockRoutes = async (page: Page, context: BrowserContext, props?: { mellomlagring: any }) => {
     await setupNavnoConsentCookieForPlaywrightTests(context);
-    await page.route('**hotjar**', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('https://login.nav.no/**', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({
             status: 200,
@@ -43,5 +34,8 @@ export const setupMockRoutes = async (page: Page, context: BrowserContext, props
                 harInnvilgedeBehandlinger: false,
             }),
         });
+    });
+    await page.route('*', async (route) => {
+        await route.fulfill({ status: 200 });
     });
 };
