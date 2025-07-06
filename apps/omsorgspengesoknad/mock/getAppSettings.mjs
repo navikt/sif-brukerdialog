@@ -8,6 +8,8 @@ export const getAppSettings = () => ({
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
 
+    INJECT_DECORATOR: `${process.env.INJECT_DECORATOR}`,
+
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,

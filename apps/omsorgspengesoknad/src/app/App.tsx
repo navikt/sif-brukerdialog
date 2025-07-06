@@ -1,5 +1,5 @@
-import { Navigate, Route } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Navigate, Route } from 'react-router-dom';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
@@ -27,7 +27,7 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
     useEffect(() => {
-        if (getMaybeEnv('ENV') === 'development') {
+        if (getMaybeEnv('INJECT_DECORATOR') === 'true') {
             injectDecoratorClientSide({
                 env: 'dev',
                 params: {
