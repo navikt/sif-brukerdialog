@@ -4,8 +4,7 @@ import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
@@ -48,10 +47,10 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
             <FormLayout.Questions>
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.legeerklaering.counsellorpanel.1'} />
+                        <AppText id="steg.legeerklaering.counsellorpanel.1" />
                     </p>
                     <p>
-                        <AppText id={'steg.legeerklaering.counsellorpanel.2'} />
+                        <AppText id="steg.legeerklaering.counsellorpanel.2" />
                     </p>
                 </SifGuidePanel>
 
