@@ -5367,7 +5367,6 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@navikt/sif-hook-form-wrappers": "workspace:*"
     "@navikt/sif-validation": "workspace:*"
     "@playwright/test": "npm:1.53.2"
     "@sif/eslint-config": "workspace:*"
@@ -6292,7 +6291,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-hook-form-wrappers@workspace:*, @navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers":
+"@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers"
   dependencies:
