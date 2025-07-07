@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { MellomlagringController, zGetMellomlagringResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/mellomlagring';
+import { storageParser } from '../utils/storageParser';
 
 // Hook for fetching mellomlagring data for a specific ytelse
 export const useGetMellomlagring = (
@@ -16,7 +17,9 @@ export const useGetMellomlagring = (
             const response = await MellomlagringController.getMellomlagring({
                 path: { ytelse },
             });
-            return zGetMellomlagringResponse.parse(response.data);
+            // Apply storage parser to convert date strings to Date objects
+            const parsedData = storageParser(JSON.stringify(response.data));
+            return zGetMellomlagringResponse.parse(parsedData);
         },
         enabled: options?.enabled ?? !!ytelse,
         staleTime: 30 * 1000, // 30 seconds - intermediate storage is fairly dynamic
