@@ -1,5 +1,27 @@
 # @navikt/omsorgspengesoknad
 
+## 1.39.0
+
+### Minor Changes
+
+- 66f1544: Erstatte gammelt dev-oppsett med vite og msw. Lage egen factory for eslint oppsett pga. module resolution issues med den gamle.
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.15
+    - @navikt/sif-common-soknad-ds@24.0.16
+    - @navikt/sif-common-forms-ds@19.0.16
+    - @navikt/sif-common-core-ds@10.2.17
+    - @navikt/sif-common-sentry@0.28.12
+    - @navikt/sif-common-ui@0.9.18
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-amplitude@2.28.7
+    - @navikt/sif-common-hooks@0.3.2
+    - @navikt/sif-common-utils@3.49.8
+    - @navikt/sif-validation@1.0.2
+
 ## 1.38.18
 
 ### Patch Changes

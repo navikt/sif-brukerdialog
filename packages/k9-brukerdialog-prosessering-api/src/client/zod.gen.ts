@@ -605,6 +605,7 @@ export const zOpplæringspengerSøknad = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     medlemskap: zMedlemskap,
+    utenlandsoppholdIPerioden: zUtenlandsoppholdIPerioden,
     ferieuttakIPerioden: zFerieuttakIPerioden.optional(),
     opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
     utenlandskNæring: z.array(zUtenlandskNæring),

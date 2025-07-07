@@ -1,19 +1,19 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.9.17",
+    "version": "0.9.18",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.24.0",
+        "@navikt/ds-css": "7.25.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.24.0",
+        "@navikt/ds-react": "7.25.1",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "9.7.0"
+        "react-day-picker": "9.8.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
