@@ -4,4 +4,5 @@ export const sifCommonQueryKeys = {
     arbeidsgivere: ['arbeidsgivere'] as const,
     validerFritekst: ['validerFritekst'] as const,
     vedlegg: ['vedlegg'] as const,
+    mellomlagring: ['mellomlagring'] as const,
 } as const;

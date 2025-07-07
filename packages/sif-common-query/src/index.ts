@@ -30,6 +30,22 @@ export {
     type HentVedleggErrors,
     type HentVedleggResponse,
 } from './types/vedlegg';
+export {
+    type DeleteMellomlagringData,
+    type DeleteMellomlagringResponses,
+    type DeleteMellomlagringErrors,
+    type GetMellomlagringData,
+    type GetMellomlagringResponses,
+    type GetMellomlagringErrors,
+    type GetMellomlagringResponse,
+    type CreateMellomlagringData,
+    type CreateMellomlagringResponses,
+    type CreateMellomlagringErrors,
+    type UpdateMellomlagringData,
+    type UpdateMellomlagringResponses,
+    type UpdateMellomlagringErrors,
+    MellomlagringYtelse,
+} from './types/mellomlagring';
 
 // Hooks
 export { useSøker } from './hooks/useSøker';
@@ -42,3 +58,10 @@ export {
     useHentVedlegg,
     getVedleggIdFromResponseHeaderLocation,
 } from './hooks/useVedlegg';
+export {
+    useGetMellomlagring,
+    useCreateMellomlagring,
+    useUpdateMellomlagring,
+    useDeleteMellomlagring,
+    useMellomlagringService,
+} from './hooks/useMellomlagring';
