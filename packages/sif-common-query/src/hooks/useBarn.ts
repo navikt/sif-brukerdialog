@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { BarnController, BarnOppslag, zHentBarnResponse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BarnController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
+import { barnOppslagListeSchema, BarnOppslag } from '../types/barn';
 
 /**
  * Hook for å hente informasjon om registrerte barn fra k9-brukerdialog-prosessering-api
@@ -15,7 +16,7 @@ export const useBarn = (enabled = true) => {
         queryKey: sifCommonQueryKeys.barn,
         queryFn: async () => {
             const response = await BarnController.hentBarn();
-            const data = zHentBarnResponse.parse(response.data);
+            const data = barnOppslagListeSchema.parse(response.data);
             return data.barn;
         },
         enabled,

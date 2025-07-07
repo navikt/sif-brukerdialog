@@ -3,12 +3,12 @@ export { sifCommonQueryKeys } from './queryKeys';
 
 // Types
 export { type Søker } from './types/søker';
-export type { BarnOppslag, BarnOppslagListe } from '@navikt/k9-brukerdialog-prosessering-api';
+export type { BarnOppslag, BarnOppslagListe } from './types/barn';
 export {
-    type ArbeidsgivereDto,
-    type OrganisasjonDto,
-    type PrivatArbeidsgiverDto,
-    type FrilansoppdragDto,
+    type Arbeidsgivere,
+    type Organisasjon,
+    type PrivatArbeidsgiver,
+    type Frilansoppdrag,
 } from './types/arbeidsgivere';
 export {
     type Friteksfelt,

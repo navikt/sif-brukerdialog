@@ -1,10 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-    ArbeidsgivereController,
-    ArbeidsgivereDto,
-    zHentArbeidsgivereResponse,
-} from '@navikt/k9-brukerdialog-prosessering-api';
+import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
+import { hentArbeidsgivereResponseSchema, Arbeidsgivere } from '../types/arbeidsgivere';
 
 /**
  * Hook for å hente informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api
@@ -26,7 +23,7 @@ export const useArbeidsgivere = (
 ) => {
     const { enabled = true, ...queryOptions } = options || {};
 
-    return useQuery<ArbeidsgivereDto, Error>({
+    return useQuery<Arbeidsgivere, Error>({
         queryKey: [...sifCommonQueryKeys.arbeidsgivere, fraOgMed, tilOgMed, queryOptions],
         queryFn: async () => {
             const response = await ArbeidsgivereController.hentArbeidsgivere({
@@ -36,7 +33,7 @@ export const useArbeidsgivere = (
                     ...queryOptions,
                 },
             });
-            return zHentArbeidsgivereResponse.parse(response.data);
+            return hentArbeidsgivereResponseSchema.parse(response.data);
         },
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden
