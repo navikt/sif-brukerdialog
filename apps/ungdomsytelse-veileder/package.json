@@ -36,7 +36,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
-        "@tanstack/react-form": "1.12.4",
+        "@tanstack/react-form": "1.14.0",
         "axios": "1.10.0",
         "clsx": "2.1.1",
         "csp-header": "6.1.0",
