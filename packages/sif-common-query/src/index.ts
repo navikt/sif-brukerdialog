@@ -17,9 +17,28 @@ export {
     type ValiderFriteksfeltErrors,
     type ValiderFriteksfeltError,
 } from './types/validerFritekst';
+export {
+    type LagreVedleggData,
+    type LagreVedleggResponses,
+    type LagreVedleggErrors,
+    type SlettVedleggData,
+    type SlettVedleggResponses,
+    type SlettVedleggErrors,
+    type SlettVedleggResponse,
+    type HentVedleggData,
+    type HentVedleggResponses,
+    type HentVedleggErrors,
+    type HentVedleggResponse,
+} from './types/vedlegg';
 
 // Hooks
 export { useSøker } from './hooks/useSøker';
 export { useBarn } from './hooks/useBarn';
 export { useArbeidsgivere } from './hooks/useArbeidsgivere';
 export { useValiderFritekst } from './hooks/useValiderFritekst';
+export {
+    useLagreVedlegg,
+    useSlettVedlegg,
+    useHentVedlegg,
+    getVedleggIdFromResponseHeaderLocation,
+} from './hooks/useVedlegg';
