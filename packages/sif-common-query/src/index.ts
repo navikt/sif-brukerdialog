@@ -65,3 +65,18 @@ export {
     useDeleteMellomlagring,
     useMellomlagringService,
 } from './hooks/useMellomlagring';
+
+// API calls (for non-React usage)
+export {
+    hentBarn,
+    hentSøker,
+    hentArbeidsgivere,
+    validerFritekst,
+    lagreVedlegg,
+    slettVedlegg,
+    hentVedlegg,
+    getMellomlagring,
+    createMellomlagring,
+    updateMellomlagring,
+    deleteMellomlagring,
+} from './api';

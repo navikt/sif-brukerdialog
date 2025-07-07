@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { hentArbeidsgivereResponseSchema, Arbeidsgivere } from '../types/arbeidsgivere';
+import { Arbeidsgivere } from '../types/arbeidsgivere';
+import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 
 /**
  * Hook for å hente informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api
@@ -25,16 +25,7 @@ export const useArbeidsgivere = (
 
     return useQuery<Arbeidsgivere, Error>({
         queryKey: [...sifCommonQueryKeys.arbeidsgivere, fraOgMed, tilOgMed, queryOptions],
-        queryFn: async () => {
-            const response = await ArbeidsgivereController.hentArbeidsgivere({
-                query: {
-                    fra_og_med: fraOgMed,
-                    til_og_med: tilOgMed,
-                    ...queryOptions,
-                },
-            });
-            return hentArbeidsgivereResponseSchema.parse(response.data);
-        },
+        queryFn: () => hentArbeidsgivere(fraOgMed, tilOgMed, queryOptions),
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden
         gcTime: Infinity, // Hold i cache til appen lukkes

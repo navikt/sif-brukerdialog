@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../utils/dateUtils';
 
 export const søkerResponseSchema = zSøker.extend({
+    fornavn: z.string().min(1),
+    etternavn: z.string().min(1),
     fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
 });
 

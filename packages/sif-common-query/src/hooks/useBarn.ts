@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { BarnController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { barnOppslagListeSchema, BarnOppslag } from '../types/barn';
+import { BarnOppslag } from '../types/barn';
+import { hentBarn } from '../api/barnApi';
 
 /**
  * Hook for å hente informasjon om registrerte barn fra k9-brukerdialog-prosessering-api
@@ -14,11 +14,7 @@ import { barnOppslagListeSchema, BarnOppslag } from '../types/barn';
 export const useBarn = (enabled = true) => {
     return useQuery<BarnOppslag[], Error>({
         queryKey: sifCommonQueryKeys.barn,
-        queryFn: async () => {
-            const response = await BarnController.hentBarn();
-            const data = barnOppslagListeSchema.parse(response.data);
-            return data.barn;
-        },
+        queryFn: hentBarn,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden
         gcTime: Infinity, // Hold i cache til appen lukkes

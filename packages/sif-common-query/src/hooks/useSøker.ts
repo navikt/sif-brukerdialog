@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { SØkerController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { Søker, søkerResponseSchema } from '../types/søker';
+import { Søker } from '../types/søker';
+import { hentSøker } from '../api/søkerApi';
 
 /**
  * Hook for å hente informasjon om innlogget bruker fra k9-brukerdialog-prosessering-api
@@ -14,10 +14,7 @@ import { Søker, søkerResponseSchema } from '../types/søker';
 export const useSøker = (enabled = true) => {
     return useQuery<Søker, Error>({
         queryKey: sifCommonQueryKeys.søker,
-        queryFn: async () => {
-            const response = await SØkerController.hentSøker();
-            return søkerResponseSchema.parse(response.data);
-        },
+        queryFn: hentSøker,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg aldri
         gcTime: Infinity, // Hold i cache til appen lukkes
