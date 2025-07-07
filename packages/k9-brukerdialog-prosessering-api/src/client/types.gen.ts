@@ -580,6 +580,7 @@ export type OpplæringspengerSøknad = {
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
     utenlandskNæring: Array<UtenlandskNæring>;
