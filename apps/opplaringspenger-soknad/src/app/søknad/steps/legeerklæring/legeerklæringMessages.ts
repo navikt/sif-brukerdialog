@@ -10,7 +10,7 @@ const nb = {
 
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
-    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
+    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen dokumenter er lastet opp',
 
     'dokumenter.advarsel.totalstørrelse.1':
         'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
@@ -34,7 +34,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Vi kan ikkje handsame søknaden din utan denne dokumentasjonen. Viss du ikkje har dokumentasjonen no, kan du ettersende den innan 14 dagar.',
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
-    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lasta opp',
+    'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen dokumenter er lasta opp',
 
     'dokumenter.advarsel.totalstørrelse.1':
         'Du har totalt lasta opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lasta opp. Om det betyr at du ikkje får plass til alt du ønskjer å sende no, kan du ',
