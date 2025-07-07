@@ -80,3 +80,5 @@ export {
     updateMellomlagring,
     deleteMellomlagring,
 } from './api';
+
+export { initK9BrukerdialogProsesseringApiClient, type ApiError, type ApiErrorType } from './api-clients/index';

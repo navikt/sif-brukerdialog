@@ -1,9 +1,7 @@
-// import { ProblemDetail, zProblemDetail } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosessering-api';
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
-// Generelle feiltyper
 export enum ApiErrorType {
     ValidationError = 'ValidationError',
     NetworkError = 'NetworkError',
@@ -24,9 +22,9 @@ type ApiAxiosError = {
     originalError: AxiosError;
 };
 
-export type ApiError = ApiErrorBase | ApiAxiosError;
+type HttpStatusErrorMessages = Record<number, string | ((error: AxiosError) => string)>;
 
-export type HttpStatusErrorMessages = Record<number, string | ((error: AxiosError) => string)>;
+export type ApiError = ApiErrorBase | ApiAxiosError;
 
 export const createApiError = (
     type: ApiErrorType,

@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { BarnOppslag, Søker } from '@navikt/sif-common-query';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
 export const SøkerMock: Søker = {
@@ -9,7 +9,7 @@ export const SøkerMock: Søker = {
     etternavn: 'KRONJUVEL',
 };
 
-export const RegistrerteBarnMock: RegistrertBarn[] = [
+export const RegistrerteBarnMock: BarnOppslag[] = [
     {
         fødselsdato: ISODateToDate('1990-01-01'),
         fornavn: 'Barn',

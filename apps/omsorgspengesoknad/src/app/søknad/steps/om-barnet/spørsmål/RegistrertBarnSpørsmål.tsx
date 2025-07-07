@@ -4,11 +4,11 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { BarnOppslag } from '@navikt/sif-common-query';
 import { RegistrerteBarnKildeInfo } from '@navikt/sif-common-ui';
 
 interface Props {
-    registrerteBarn: RegistrertBarn[];
+    registrerteBarn: BarnOppslag[];
     søknadenGjelderEtAnnetBarn?: boolean;
     onAnnetBarnSelected: () => void;
 }

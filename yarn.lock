@@ -5363,6 +5363,7 @@ __metadata:
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-query": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
@@ -5996,7 +5997,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-query@workspace:packages/sif-common-query":
+"@navikt/sif-common-query@workspace:*, @navikt/sif-common-query@workspace:packages/sif-common-query":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
   dependencies:

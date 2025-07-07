@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { BarnOppslag } from '@navikt/sif-common-query';
 import innvilgetVedtakEndpoint from '../api/endpoints/innvilgetVedtakEndpoint';
 import { HentSisteGyldigeVedtakResponseDto } from '../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
 
@@ -7,7 +7,7 @@ export interface InnvilgedeVedtak {
     [key: string]: HentSisteGyldigeVedtakResponseDto;
 }
 
-export const useInnvilgedeVedtakForRegistrerteBarn = (registrerteBarn: RegistrertBarn[]) => {
+export const useInnvilgedeVedtakForRegistrerteBarn = (registrerteBarn: BarnOppslag[]) => {
     const [innvilgedeVedtak, setInnvilgedeVedtak] = useState<InnvilgedeVedtak>({});
     useEffect(() => {
         async function getInnvilgedeVedtak() {

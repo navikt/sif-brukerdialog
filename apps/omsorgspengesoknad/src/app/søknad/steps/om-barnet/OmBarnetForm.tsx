@@ -1,6 +1,6 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { BarnOppslag, Søker } from '@navikt/sif-common-query';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppText, useAppIntl } from '../../../i18n';
@@ -24,7 +24,7 @@ import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
 
 interface Props {
     values: Partial<OmBarnetFormValues>;
-    registrerteBarn: RegistrertBarn[];
+    registrerteBarn: BarnOppslag[];
     isSubmitting: boolean;
     innvilgedeVedtak: InnvilgedeVedtak;
     søker: Søker;

@@ -1,4 +1,4 @@
-import { Søker } from '@navikt/sif-common-api';
+import { Søker } from '@navikt/sif-common-query';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
