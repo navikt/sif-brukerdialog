@@ -63,10 +63,12 @@ export const getApiDataFromSøknadsdata = (
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
-        skalEttersendeVedlegg: legeerklæring.skalEttersendeVedlegg,
-        vedleggSomSkalEttersendes: legeerklæring.skalEttersendeVedlegg
-            ? legeerklæring.vedleggSomSkalEttersendes?.sort().reverse() // Hack for å ANNET sist :)
-            : undefined,
+        ettersendingAvVedlegg: {
+            skalEttersendeVedlegg: legeerklæring.skalEttersendeVedlegg,
+            vedleggSomSkalEttersendes: legeerklæring.skalEttersendeVedlegg
+                ? legeerklæring.vedleggSomSkalEttersendes?.sort().reverse() // Hack for å ANNET sist :)
+                : undefined,
+        },
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),

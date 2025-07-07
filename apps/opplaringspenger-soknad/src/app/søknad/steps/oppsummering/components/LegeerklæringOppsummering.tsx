@@ -47,17 +47,17 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                         <AppText id="steg.oppsummering.legeerklæring.skalEttersende.label" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <JaNeiSvar harSvartJa={apiData.skalEttersendeVedlegg} />
+                        <JaNeiSvar harSvartJa={apiData.ettersendingAvVedlegg.skalEttersendeVedlegg} />
                     </FormSummary.Value>
                 </FormSummary.Answer>
-                {apiData.skalEttersendeVedlegg && (
+                {apiData.ettersendingAvVedlegg.skalEttersendeVedlegg && (
                     <FormSummary.Answer>
                         <FormSummary.Label>
                             <AppText id="steg.oppsummering.legeerklæring.vedleggSomSkalEttersendes.title" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <List>
-                                {apiData.vedleggSomSkalEttersendes?.map((vedlegg, index) => (
+                                {apiData.ettersendingAvVedlegg.vedleggSomSkalEttersendes?.map((vedlegg, index) => (
                                     <List.Item key={index}>
                                         <AppText id={`vedleggType.${vedlegg}`} />
                                     </List.Item>

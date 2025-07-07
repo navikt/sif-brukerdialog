@@ -152,8 +152,10 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
-    skalEttersendeVedlegg: boolean;
-    vedleggSomSkalEttersendes?: VedleggType[];
+    ettersendingAvVedlegg: {
+        skalEttersendeVedlegg: boolean;
+        vedleggSomSkalEttersendes?: VedleggType[];
+    };
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
