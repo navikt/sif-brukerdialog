@@ -5036,9 +5036,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api":
+"@navikt/k9-sak-innsyn-k9-sak-api@workspace:*, @navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api":
   version: 0.0.0-use.local
-  resolution: "@navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api"
+  resolution: "@navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api"
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
@@ -6020,9 +6020,11 @@ __metadata:
   resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.81.5"
     "@types/react": "npm:19.1.8"
+    axios: "npm:1.10.0"
     react: "npm:19.1.0"
     typescript: "npm:5.8.3"
     zod: "npm:3.25.74"
