@@ -1,84 +1,25 @@
 // Query keys
 export { sifCommonQueryKeys } from './queryKeys';
 
-// Types
-export { type Søker } from './types/søker';
-export type { BarnOppslag, BarnOppslagListe } from './types/barn';
-export {
-    type Arbeidsgivere,
-    type Organisasjon,
-    type PrivatArbeidsgiver,
-    type Frilansoppdrag,
-} from './types/arbeidsgivere';
-export {
-    type Friteksfelt,
-    type ValiderFriteksfeltData,
-    type ValiderFriteksfeltResponses,
-    type ValiderFriteksfeltErrors,
-    type ValiderFriteksfeltError,
-} from './types/validerFritekst';
-export {
-    type LagreVedleggData,
-    type LagreVedleggResponses,
-    type LagreVedleggErrors,
-    type SlettVedleggData,
-    type SlettVedleggResponses,
-    type SlettVedleggErrors,
-    type SlettVedleggResponse,
-    type HentVedleggData,
-    type HentVedleggResponses,
-    type HentVedleggErrors,
-    type HentVedleggResponse,
-} from './types/vedlegg';
-export {
-    type DeleteMellomlagringData,
-    type DeleteMellomlagringResponses,
-    type DeleteMellomlagringErrors,
-    type GetMellomlagringData,
-    type GetMellomlagringResponses,
-    type GetMellomlagringErrors,
-    type GetMellomlagringResponse,
-    type CreateMellomlagringData,
-    type CreateMellomlagringResponses,
-    type CreateMellomlagringErrors,
-    type UpdateMellomlagringData,
-    type UpdateMellomlagringResponses,
-    type UpdateMellomlagringErrors,
-    MellomlagringYtelse,
-} from './types/mellomlagring';
+// All types
+export * from './types/arbeidsgivere';
+export * from './types/barn';
+export * from './types/invalidParameterProblemDetail';
+export * from './types/mellomlagring';
+export * from './types/søker';
+export * from './types/validerFritekst';
+export * from './types/vedlegg';
 
-// Hooks
-export { useSøker } from './hooks/useSøker';
-export { useBarn } from './hooks/useBarn';
-export { useArbeidsgivere } from './hooks/useArbeidsgivere';
-export { useValiderFritekst } from './hooks/useValiderFritekst';
-export {
-    useLagreVedlegg,
-    useSlettVedlegg,
-    useHentVedlegg,
-    getVedleggIdFromResponseHeaderLocation,
-} from './hooks/useVedlegg';
-export {
-    useGetMellomlagring,
-    useCreateMellomlagring,
-    useUpdateMellomlagring,
-    useDeleteMellomlagring,
-    useMellomlagringService,
-} from './hooks/useMellomlagring';
+// All hooks
+export * from './hooks/useArbeidsgivere';
+export * from './hooks/useBarn';
+export * from './hooks/useMellomlagring';
+export * from './hooks/useSøker';
+export * from './hooks/useValiderFritekst';
+export * from './hooks/useVedlegg';
 
-// API calls (for non-React usage)
-export {
-    hentBarn,
-    hentSøker,
-    hentArbeidsgivere,
-    validerFritekst,
-    lagreVedlegg,
-    slettVedlegg,
-    hentVedlegg,
-    hentMellomlagring,
-    createMellomlagring,
-    updateMellomlagring,
-    deleteMellomlagring,
-} from './api';
+// All API calls (for non-React usage)
+export * from './api';
 
-export { initK9BrukerdialogProsesseringApiClient, type ApiError, type ApiErrorType } from './api-clients/index';
+// API client initialization and error types
+export * from './api-clients';

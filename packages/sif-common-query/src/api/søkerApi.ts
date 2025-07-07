@@ -11,3 +11,8 @@ export const hentSøker = async (): Promise<Søker> => {
     const response = await SØkerController.hentSøker();
     return søkerResponseSchema.parse(response.data);
 };
+
+export const hentSøkerId = async (): Promise<string> => {
+    const søker = await hentSøker();
+    return søker.fødselsnummer;
+};

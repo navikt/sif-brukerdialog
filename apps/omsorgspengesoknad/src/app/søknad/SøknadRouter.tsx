@@ -17,7 +17,7 @@ import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { fetchSøkerId } from '@navikt/sif-common-api';
+import { hentSøkerId } from '@navikt/sif-common-query';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -31,7 +31,7 @@ const SøknadRouter = () => {
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, hentSøkerId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
