@@ -6007,6 +6007,8 @@ __metadata:
     react: "npm:19.1.0"
     typescript: "npm:5.8.3"
     zod: "npm:3.25.74"
+  peerDependencies:
+    dayjs: 1.11.13
   languageName: unknown
   linkType: soft
 

@@ -1,5 +1,9 @@
 import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
+
+dayjs.extend(utc);
 
 const isISODateString = (value: any): value is string => {
     if (value && typeof value === 'string') {
@@ -14,11 +18,10 @@ const isISODateString = (value: any): value is string => {
 const getDateFromString = (value?: string): Date | undefined => {
     if (typeof value === 'string') {
         if (isISODateString(value)) {
-            return new Date(value + 'T00:00:00.000Z');
+            return dayjs.utc(value, 'YYYY-MM-DD').toDate();
         }
-        const date = new Date(value);
-        if (!isNaN(date.getTime())) {
-            return date;
+        if (dayjs(value).isValid()) {
+            return dayjs.utc(value).toDate();
         } else {
             throw new Error(`Could not parse date string: ${value}`);
         }

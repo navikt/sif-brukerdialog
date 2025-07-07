@@ -17,6 +17,9 @@
         "typescript": "5.8.3",
         "zod": "3.25.74"
     },
+    "peerDependencies": {
+        "dayjs": "1.11.13"
+    },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:tsc": "tsc --noEmit",
