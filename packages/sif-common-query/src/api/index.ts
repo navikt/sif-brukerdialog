@@ -14,4 +14,4 @@ export { validerFritekst } from './validerFritekstApi';
 export { lagreVedlegg, slettVedlegg, hentVedlegg, getVedleggIdFromResponseHeaderLocation } from './vedleggApi';
 
 // Mellomlagring API
-export { getMellomlagring, createMellomlagring, updateMellomlagring, deleteMellomlagring } from './mellomlagringApi';
+export { hentMellomlagring, createMellomlagring, updateMellomlagring, deleteMellomlagring } from './mellomlagringApi';

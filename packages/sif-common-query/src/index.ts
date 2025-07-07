@@ -75,7 +75,7 @@ export {
     lagreVedlegg,
     slettVedlegg,
     hentVedlegg,
-    getMellomlagring,
+    hentMellomlagring,
     createMellomlagring,
     updateMellomlagring,
     deleteMellomlagring,

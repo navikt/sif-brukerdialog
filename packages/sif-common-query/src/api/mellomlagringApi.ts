@@ -9,7 +9,7 @@ import { storageParser } from '../utils/storageParser';
  * @returns Promise med mellomlagrede data
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
-export const getMellomlagring = async (ytelse: MellomlagringYtelse) => {
+export const hentMellomlagring = async (ytelse: MellomlagringYtelse) => {
     const response = await MellomlagringController.getMellomlagring({
         path: { ytelse },
     });
