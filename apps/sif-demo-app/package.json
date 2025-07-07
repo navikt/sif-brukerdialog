@@ -15,10 +15,10 @@
     },
     "dependencies": {
         "@hookform/resolvers": "5.1.1",
-        "@navikt/aksel-icons": "7.24.0",
-        "@navikt/ds-css": "7.24.0",
-        "@navikt/ds-react": "7.24.0",
-        "@navikt/ds-tailwind": "7.24.0",
+        "@navikt/aksel-icons": "7.25.1",
+        "@navikt/ds-css": "7.25.1",
+        "@navikt/ds-react": "7.25.1",
+        "@navikt/ds-tailwind": "7.25.1",
         "@navikt/nav-dekoratoren-moduler": "3.3.0",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -34,8 +34,8 @@
         "postcss": "8.5.6",
         "react": "19.1.0",
         "react-dom": "19.1.0",
-        "react-hook-form": "7.59.0",
-        "zod": "3.25.71"
+        "react-hook-form": "7.60.0",
+        "zod": "3.25.74"
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.3.1",
@@ -64,7 +64,7 @@
         "tailwindcss": "4.1.11",
         "typescript": "5.8.3",
         "typescript-eslint": "8.35.1",
-        "vite": "7.0.0",
+        "vite": "7.0.2",
         "vite-plugin-checker": "0.9.3"
     }
 }
