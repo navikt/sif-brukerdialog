@@ -10,8 +10,16 @@ export {
     type PrivatArbeidsgiverDto,
     type FrilansoppdragDto,
 } from './types/arbeidsgivere';
+export {
+    type Friteksfelt,
+    type ValiderFriteksfeltData,
+    type ValiderFriteksfeltResponses,
+    type ValiderFriteksfeltErrors,
+    type ValiderFriteksfeltError,
+} from './types/validerFritekst';
 
 // Hooks
 export { useSøker } from './hooks/useSøker';
 export { useBarn } from './hooks/useBarn';
 export { useArbeidsgivere } from './hooks/useArbeidsgivere';
+export { useValiderFritekst } from './hooks/useValiderFritekst';
