@@ -1,5 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { ArbeidsgivereController, ArbeidsgivereDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import {
+    ArbeidsgivereController,
+    ArbeidsgivereDto,
+    zHentArbeidsgivereResponse,
+} from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
 
 /**
@@ -32,7 +36,7 @@ export const useArbeidsgivere = (
                     ...queryOptions,
                 },
             });
-            return response.data;
+            return zHentArbeidsgivereResponse.parse(response.data);
         },
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden

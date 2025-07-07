@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { BarnController, BarnOppslag } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BarnController, BarnOppslag, zHentBarnResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
 
 /**
@@ -15,7 +15,8 @@ export const useBarn = (enabled = true) => {
         queryKey: sifCommonQueryKeys.barn,
         queryFn: async () => {
             const response = await BarnController.hentBarn();
-            return response.data.barn;
+            const data = zHentBarnResponse.parse(response.data);
+            return data.barn;
         },
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { VedleggController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
 
 /**
@@ -73,7 +73,7 @@ export const useHentVedlegg = (vedleggId: string, options?: { enabled?: boolean 
                     vedleggId,
                 },
             });
-            return response.data;
+            return zHentVedleggResponse.parse(response.data);
         },
         enabled: options?.enabled ?? !!vedleggId,
         staleTime: 5 * 60 * 1000, // 5 minutes

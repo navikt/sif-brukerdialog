@@ -1,14 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { MellomlagringController, zGetMellomlagringResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/mellomlagring';
 
 // Hook for fetching mellomlagring data for a specific ytelse
-export const useGetMellomlagring = <TData = string>(
+export const useGetMellomlagring = (
     ytelse: MellomlagringYtelse,
     options?: {
         enabled?: boolean;
-        transformData?: (data: string) => TData;
     },
 ) => {
     return useQuery({
@@ -17,8 +16,7 @@ export const useGetMellomlagring = <TData = string>(
             const response = await MellomlagringController.getMellomlagring({
                 path: { ytelse },
             });
-            const data = response.data;
-            return options?.transformData ? options.transformData(data) : data;
+            return zGetMellomlagringResponse.parse(response.data);
         },
         enabled: options?.enabled ?? !!ytelse,
         staleTime: 30 * 1000, // 30 seconds - intermediate storage is fairly dynamic
@@ -95,18 +93,17 @@ export const useDeleteMellomlagring = () => {
 /**
  * Convenience hook that provides a complete mellomlagring interface for a specific ytelse
  * Similar to the legacy getMellomlagringService but using React Query patterns
+ *
+ * The raw data from API is a JSON string. If you need to parse it, use JSON.parse() on the data.
  */
-export const useMellomlagringService = <TData = any>(
+export const useMellomlagringService = (
     ytelse: MellomlagringYtelse,
     options?: {
         enabled?: boolean;
-        transformData?: (rawData: string) => TData;
-        parseData?: (data: TData) => string;
     },
 ) => {
     const fetch = useGetMellomlagring(ytelse, {
         enabled: options?.enabled,
-        transformData: options?.transformData,
     });
 
     const createMutation = useCreateMellomlagring();
@@ -122,18 +119,16 @@ export const useMellomlagringService = <TData = any>(
 
         // Actions
         fetch: () => fetch.refetch(),
-        create: (data?: TData) => {
-            const processedData = data ? (options?.parseData ? { data: options.parseData(data) } : data) : {};
+        create: (data?: Record<string, unknown>) => {
             return createMutation.mutate({
                 ytelse,
-                data: processedData as Record<string, unknown>,
+                data: data || {},
             });
         },
-        update: (data: TData) => {
-            const processedData = options?.parseData ? { data: options.parseData(data) } : data;
+        update: (data: Record<string, unknown>) => {
             return updateMutation.mutate({
                 ytelse,
-                data: processedData as Record<string, unknown>,
+                data,
             });
         },
         purge: () => deleteMutation.mutate(ytelse),
