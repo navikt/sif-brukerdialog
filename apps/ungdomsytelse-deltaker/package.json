@@ -43,7 +43,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
-        "@sentry/react": "9.34.0",
+        "@sentry/react": "9.35.0",
         "@tanstack/react-query": "5.81.5",
         "axios": "1.10.0",
         "clsx": "2.1.1",
