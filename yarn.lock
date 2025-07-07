@@ -5036,6 +5036,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api":
+  version: 0.0.0-use.local
+  resolution: "@navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api"
+  dependencies:
+    "@hey-api/client-axios": "npm:0.9.1"
+    "@hey-api/client-fetch": "npm:0.13.1"
+    "@hey-api/openapi-ts": "npm:0.78.2"
+    "@sif/eslint-config": "workspace:*"
+    config: "workspace:*"
+    typescript: "npm:5.8.3"
+    vitest: "npm:3.2.4"
+    zod: "npm:3.25.74"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/nav-dekoratoren-moduler@npm:3.3.0":
   version: 3.3.0
   resolution: "@navikt/nav-dekoratoren-moduler@npm:3.3.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.3.0%2F55b4b96465af40358fb09ef9a7e5a495b49bffd3"

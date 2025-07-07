@@ -1,0 +1,36 @@
+{
+    "name": "@navikt/k9-sak-innsyn-api-k9-sak",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "private": true,
+    "type": "module",
+    "version": "0.0.1",
+    "devDependencies": {
+        "@hey-api/openapi-ts": "0.78.2",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
+        "typescript": "5.8.3",
+        "vitest": "3.2.4",
+        "zod": "3.25.74"
+    },
+    "peerDependencies": {
+        "dayjs": "*",
+        "uuid": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "openapi-ts": "openapi-ts",
+        "fix": "node ./scripts/fixGen.mjs",
+        "gen-types": "yarn openapi-ts && yarn fix"
+    },
+    "dependencies": {
+        "@hey-api/client-axios": "0.9.1",
+        "@hey-api/client-fetch": "0.13.1"
+    }
+}
