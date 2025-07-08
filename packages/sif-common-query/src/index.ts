@@ -22,7 +22,7 @@ export * from './hooks/useVedlegg';
 export * from './api';
 
 // All utils
-export * from './utils/mellomlagringUtils';
+export * from './utils/createYtelseMellomlagringUtils';
 export * from './utils/dateUtils';
 export * from './utils/jsonResponseParser';
 export * from './utils/nullToUndefined';

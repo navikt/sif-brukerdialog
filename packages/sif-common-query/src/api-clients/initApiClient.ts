@@ -48,19 +48,23 @@ export const initApiClient = (client: Client, frontendPath: string, loginURL: st
     );
 
     /**
-     * Går gjennom objekt og erstatter alle null med undefined
+     * Går gjennom objekt og sletter alle nøkler med null-verdier
      * @param obj
      * @returns
      */
-    const convertNullToUndefined = (obj: any): any => {
+    const deleteNullValues = (obj: any): any => {
         if (obj === null) {
             return undefined;
         }
         if (Array.isArray(obj)) {
-            return obj.map(convertNullToUndefined);
+            return obj.map(deleteNullValues);
         }
         if (typeof obj === 'object' && obj !== null) {
-            return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, convertNullToUndefined(value)]));
+            return Object.fromEntries(
+                Object.entries(obj)
+                    .filter(([, value]) => value !== null)
+                    .map(([key, value]) => [key, deleteNullValues(value)]),
+            );
         }
         return obj;
     };
@@ -68,7 +72,7 @@ export const initApiClient = (client: Client, frontendPath: string, loginURL: st
     /** Erstatter alle null verdier med undefined */
     client.instance.interceptors.response.use(
         (response) => {
-            response.data = convertNullToUndefined(response.data);
+            response.data = deleteNullValues(response.data);
             return response;
         },
         (error) => {

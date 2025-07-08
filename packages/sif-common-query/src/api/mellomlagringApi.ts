@@ -1,4 +1,4 @@
-import { MellomlagringController, zGetMellomlagringResponse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
 import { MellomlagringYtelse } from '../types/mellomlagring';
 import { jsonResponseParser } from '../utils/jsonResponseParser';
 
@@ -9,13 +9,12 @@ import { jsonResponseParser } from '../utils/jsonResponseParser';
  * @returns Promise med mellomlagrede data
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
-export const hentMellomlagring = async (ytelse: MellomlagringYtelse) => {
-    const response = await MellomlagringController.getMellomlagring({
+export const hentMellomlagring = async (ytelse: MellomlagringYtelse): Promise<Record<string, unknown>> => {
+    const { data } = await MellomlagringController.getMellomlagring({
         path: { ytelse },
     });
-    // Apply storage parser to convert date strings to Date objects
-    const parsedData = jsonResponseParser(JSON.stringify(response.data));
-    return zGetMellomlagringResponse.parse(parsedData);
+    const parsedData = await jsonResponseParser(typeof data === 'string' ? data : JSON.stringify(data));
+    return parsedData;
 };
 
 /**

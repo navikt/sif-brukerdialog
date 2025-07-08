@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import { useMellomlagring } from '../hooks/useMellomlagring';
-import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
+import { useOppdaterMellomlagringHvisNødvendig } from '../hooks/useOppdaterMellomlagringHvisNødvendig';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
@@ -27,10 +27,10 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const { slettMellomlagring } = useMellomlagring();
+    const { slettMellomlagring } = useSøknadMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    usePersistSøknadState();
+    useOppdaterMellomlagringHvisNødvendig();
     useVerifyUserOnWindowFocus(søker.fødselsnummer, hentSøkerId);
 
     useEffect(() => {

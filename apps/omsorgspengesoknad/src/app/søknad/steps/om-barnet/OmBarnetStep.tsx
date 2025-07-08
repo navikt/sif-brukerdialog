@@ -6,7 +6,6 @@ import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -16,6 +15,7 @@ import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
+import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
@@ -51,6 +51,7 @@ const OmBarnetStep = () => {
     } = useSøknadContext();
 
     const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+    const { lagreMellomlagring } = useSøknadMellomlagring();
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -72,7 +73,7 @@ const OmBarnetStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return lagreMellomlagring(state);
         },
     );
 

@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { hentBarn, hentSøker } from '@navikt/sif-common-query';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-// import søknadStateEndpoint, {
-//     isPersistedSøknadStateValid,
-//     SøknadStatePersistence,
-// } from './endpoints/søknadStateEndpoint';
-import { BarnOppslag, hentBarn, hentMellomlagring, hentSøker, Søker } from '@navikt/sif-common-query';
+import { søknadMellomlagring } from '../utils/søknadMellomlagring';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -41,37 +38,22 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-const getSøknadInitialData = async (
-    søker: Søker,
-    registrerteBarn: BarnOppslag[],
-    lagretSøknadState: SøknadStatePersistence,
-): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
-
-    if (!isValid) {
-        await søknadStateEndpoint.purge();
-    }
-    const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
-    return Promise.resolve({
-        versjon: MELLOMLAGRING_VERSJON,
-        søker,
-        registrerteBarn,
-        søknadsdata: {},
-        ...lagretSøknadStateToUse,
-    });
-};
-
 function useSøknadInitialData(): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
 
     const fetch = async () => {
         try {
-            const søker = await hentSøker();
-            const barn = await hentBarn();
-            const lagretSøknadState = await hentMellomlagring();
+            const [søker, registrerteBarn] = await Promise.all([hentSøker(), hentBarn()]);
+            const mellomlagring = await søknadMellomlagring.hent({ søker, registrerteBarn, MELLOMLAGRING_VERSJON });
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, barn, lagretSøknadState),
+                data: {
+                    versjon: MELLOMLAGRING_VERSJON,
+                    søker,
+                    registrerteBarn,
+                    søknadsdata: {},
+                    ...(mellomlagring || defaultSøknadState),
+                },
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {
