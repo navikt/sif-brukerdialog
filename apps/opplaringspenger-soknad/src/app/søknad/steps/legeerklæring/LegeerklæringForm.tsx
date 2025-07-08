@@ -7,7 +7,7 @@ import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { List, VStack } from '@navikt/ds-react';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -94,6 +94,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 <YesOrNoQuestion
                     name={LegeerklæringFormFields.skalEttersendeVedlegg}
                     legend={'Skal du ettersende vedlegg?'}
+                    validate={getYesOrNoValidator()}
                 />
 
                 {skalEttersendeVedlegg && (
