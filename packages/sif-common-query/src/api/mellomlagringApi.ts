@@ -1,6 +1,6 @@
 import { MellomlagringController, zGetMellomlagringResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { MellomlagringYtelse } from '../types/mellomlagring';
-import { storageParser } from '../utils/storageParser';
+import { jsonResponseParser } from '../utils/jsonResponseParser';
 
 /**
  * Henter mellomlagrede data for en spesifikk ytelse fra k9-brukerdialog-prosessering-api
@@ -14,7 +14,7 @@ export const hentMellomlagring = async (ytelse: MellomlagringYtelse) => {
         path: { ytelse },
     });
     // Apply storage parser to convert date strings to Date objects
-    const parsedData = storageParser(JSON.stringify(response.data));
+    const parsedData = jsonResponseParser(JSON.stringify(response.data));
     return zGetMellomlagringResponse.parse(parsedData);
 };
 
