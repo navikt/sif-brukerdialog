@@ -16,7 +16,7 @@ export interface MellomlagringConfig<State> {
     /** Ytelse som mellomlagringen gjelder for */
     ytelse: MellomlagringYtelse;
     /** Funksjon for å velge ut data som skal brukes til hash-validering */
-    dataSelector: (data: State) => unknown;
+    hashDataSelector: (data: State) => unknown;
 }
 
 export interface MellomlagringUtils<State> {
@@ -44,14 +44,14 @@ interface MellomlagringWrapper<State> {
  * @returns Utils objekt med funksjoner for mellomlagring
  */
 export const createMellomlagringUtils = <State>(config: MellomlagringConfig<State>): MellomlagringUtils<State> => {
-    const { ytelse, dataSelector } = config;
+    const { ytelse, hashDataSelector } = config;
 
     const generateHash = (data: unknown): string => {
         return objectHash(data as Record<string, unknown>);
     };
 
     const createStateObject = (data: State): MellomlagringWrapper<State> => {
-        const hashData = dataSelector(data);
+        const hashData = hashDataSelector(data);
         return {
             data,
             hash: generateHash(hashData),
@@ -84,8 +84,8 @@ export const createMellomlagringUtils = <State>(config: MellomlagringConfig<Stat
         },
 
         erGyldig(currentState: State, mellomlagring: State): boolean {
-            const currentHash = generateHash(dataSelector(currentState));
-            const mellomlagringHash = generateHash(dataSelector(mellomlagring));
+            const currentHash = generateHash(hashDataSelector(currentState));
+            const mellomlagringHash = generateHash(hashDataSelector(mellomlagring));
             return currentHash === mellomlagringHash;
         },
     };
