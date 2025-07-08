@@ -26,7 +26,7 @@ export const hentMellomlagring = async (ytelse: MellomlagringYtelse) => {
  * @returns Promise med opprettingsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const createMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
+export const opprettMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
     const response = await MellomlagringController.createMellomlagring({
         path: { ytelse },
         body: data,
@@ -42,7 +42,7 @@ export const createMellomlagring = async (ytelse: MellomlagringYtelse, data: Rec
  * @returns Promise med oppdateringsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const updateMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
+export const oppdaterMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
     const response = await MellomlagringController.updateMellomlagring({
         path: { ytelse },
         body: data,
@@ -57,7 +57,7 @@ export const updateMellomlagring = async (ytelse: MellomlagringYtelse, data: Rec
  * @returns Promise med slettingsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const deleteMellomlagring = async (ytelse: MellomlagringYtelse) => {
+export const slettMellomlagring = async (ytelse: MellomlagringYtelse) => {
     const response = await MellomlagringController.deleteMellomlagring({
         path: { ytelse },
     });

@@ -21,5 +21,11 @@ export * from './hooks/useVedlegg';
 // All API calls (for non-React usage)
 export * from './api';
 
+// All utils
+export * from './utils/mellomlagringUtils';
+export * from './utils/dateUtils';
+export * from './utils/jsonResponseParser';
+export * from './utils/nullToUndefined';
+
 // API client initialization and error types
 export * from './api-clients';

@@ -9,8 +9,10 @@
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
         "@tanstack/react-query": "5.81.5",
-        "axios": "1.10.0"
+        "axios": "1.10.0",
+        "object-hash": "3.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

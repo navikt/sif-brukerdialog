@@ -5,11 +5,11 @@ import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import søknadStateEndpoint, {
-    isPersistedSøknadStateValid,
-    SøknadStatePersistence,
-} from './endpoints/søknadStateEndpoint';
-import { BarnOppslag, hentBarn, hentSøker, Søker } from '@navikt/sif-common-query';
+// import søknadStateEndpoint, {
+//     isPersistedSøknadStateValid,
+//     SøknadStatePersistence,
+// } from './endpoints/søknadStateEndpoint';
+import { BarnOppslag, hentBarn, hentMellomlagring, hentSøker, Søker } from '@navikt/sif-common-query';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -68,7 +68,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
         try {
             const søker = await hentSøker();
             const barn = await hentBarn();
-            const lagretSøknadState = await søknadStateEndpoint.fetch();
+            const lagretSøknadState = await hentMellomlagring();
             setInitialData({
                 status: RequestStatus.success,
                 data: await getSøknadInitialData(søker, barn, lagretSøknadState),

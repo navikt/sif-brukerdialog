@@ -6021,10 +6021,12 @@ __metadata:
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.81.5"
     "@types/react": "npm:19.1.8"
     axios: "npm:1.10.0"
+    object-hash: "npm:3.0.0"
     react: "npm:19.1.0"
     typescript: "npm:5.8.3"
     zod: "npm:3.25.74"

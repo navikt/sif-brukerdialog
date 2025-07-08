@@ -3,9 +3,9 @@ import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/mellomlagring';
 import {
     hentMellomlagring,
-    createMellomlagring,
-    updateMellomlagring,
-    deleteMellomlagring,
+    opprettMellomlagring,
+    oppdaterMellomlagring,
+    slettMellomlagring,
 } from '../api/mellomlagringApi';
 
 // Hook for fetching mellomlagring data for a specific ytelse
@@ -30,7 +30,7 @@ export const useCreateMellomlagring = () => {
 
     return useMutation({
         mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return createMellomlagring(ytelse, data);
+            return opprettMellomlagring(ytelse, data);
         },
         onSuccess: (_data, variables) => {
             // Invalidate and refetch the specific mellomlagring
@@ -47,7 +47,7 @@ export const useUpdateMellomlagring = () => {
 
     return useMutation({
         mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return updateMellomlagring(ytelse, data);
+            return oppdaterMellomlagring(ytelse, data);
         },
         onSuccess: (_data, variables) => {
             // Invalidate and refetch the specific mellomlagring
@@ -63,7 +63,7 @@ export const useDeleteMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: deleteMellomlagring,
+        mutationFn: slettMellomlagring,
         onSuccess: (_data, ytelse) => {
             // Remove the specific mellomlagring from cache
             queryClient.removeQueries({
