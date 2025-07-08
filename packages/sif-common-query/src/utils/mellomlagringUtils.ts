@@ -1,35 +1,26 @@
-import { MellomlagringYtelse } from '../types/mellomlagring';
-import {
-    hentMellomlagring,
-    opprettMellomlagring,
-    oppdaterMellomlagring,
-    slettMellomlagring,
-} from '../api/mellomlagringApi';
 import objectHash from 'object-hash';
+import { hentMellomlagring, oppdaterMellomlagring, slettMellomlagring } from '../api/mellomlagringApi';
+import { MellomlagringYtelse } from '../types/mellomlagring';
 
 /**
- * Generisk mellomlagring utils objekt for å håndtere mellomlagring av state
- * i søknadsapplikasjoner.
+ * Generisk mellomlagring utils for å håndtere mellomlagring av state
+ * med automatisk validering basert på metadata.
  */
 
-export interface MellomlagringConfig<State> {
+export interface MellomlagringConfig<Metadata = unknown> {
     /** Ytelse som mellomlagringen gjelder for */
     ytelse: MellomlagringYtelse;
-    /** Funksjon for å velge ut data som skal brukes til hash-validering */
-    hashDataSelector: (data: State) => unknown;
+    /** Metadata som brukes til validering - mellomlagring blir ugyldig hvis metadata endres */
+    metadata: Metadata;
 }
 
 export interface MellomlagringUtils<State> {
-    /** Henter mellomlagrede data */
+    /** Henter mellomlagrede data - returnerer null hvis ikke gyldig eller ikke finnes */
     hent: () => Promise<State | null>;
-    /** Lagrer data til mellomlagring med hash */
+    /** Lagrer data til mellomlagring */
     lagre: (data: State) => Promise<void>;
-    /** Oppdaterer eksisterende mellomlagring med hash */
-    oppdater: (data: State) => Promise<void>;
     /** Sletter mellomlagrede data */
     slett: () => Promise<void>;
-    /** Sjekker om mellomlagrede data er gyldige ved å sammenligne hash */
-    erGyldig: (currentState: State, mellomlagring: State) => boolean;
 }
 
 interface MellomlagringWrapper<State> {
@@ -38,55 +29,39 @@ interface MellomlagringWrapper<State> {
 }
 
 /**
- * Oppretter et mellomlagring utils objekt for en spesifikk type data
- *
- * @param config Konfigurasjon for mellomlagring
- * @returns Utils objekt med funksjoner for mellomlagring
+ * Oppretter mellomlagring utils med automatisk validering basert på metadata
  */
-export const createMellomlagringUtils = <State>(config: MellomlagringConfig<State>): MellomlagringUtils<State> => {
-    const { ytelse, hashDataSelector } = config;
+export const createMellomlagringUtils = <State, Metadata = unknown>(
+    config: MellomlagringConfig<Metadata>,
+): MellomlagringUtils<State> => {
+    const { ytelse, metadata } = config;
 
-    const generateHash = (data: unknown): string => {
-        return objectHash(data as Record<string, unknown>);
-    };
-
-    const createStateObject = (data: State): MellomlagringWrapper<State> => {
-        const hashData = hashDataSelector(data);
-        return {
-            data,
-            hash: generateHash(hashData),
-        };
-    };
+    // Pre-beregn hash for metadata - brukes til validering
+    const metadataHash = objectHash(metadata as Record<string, unknown>);
 
     return {
         async hent(): Promise<State | null> {
             try {
-                const rawData: string = await hentMellomlagring(ytelse);
+                const rawData = await hentMellomlagring(ytelse);
                 const wrapper: MellomlagringWrapper<State> = JSON.parse(rawData);
-                return wrapper.data;
+
+                // Returner data kun hvis metadata-hash matcher
+                return wrapper.hash === metadataHash ? wrapper.data : null;
             } catch {
                 return null;
             }
         },
 
         async lagre(data: State): Promise<void> {
-            const wrapper = createStateObject(data);
-            await opprettMellomlagring(ytelse, wrapper as unknown as Record<string, unknown>);
-        },
-
-        async oppdater(data: State): Promise<void> {
-            const wrapper = createStateObject(data);
+            const wrapper: MellomlagringWrapper<State> = {
+                data,
+                hash: metadataHash,
+            };
             await oppdaterMellomlagring(ytelse, wrapper as unknown as Record<string, unknown>);
         },
 
         async slett(): Promise<void> {
             await slettMellomlagring(ytelse);
-        },
-
-        erGyldig(currentState: State, mellomlagring: State): boolean {
-            const currentHash = generateHash(hashDataSelector(currentState));
-            const mellomlagringHash = generateHash(hashDataSelector(mellomlagring));
-            return currentHash === mellomlagringHash;
         },
     };
 };
