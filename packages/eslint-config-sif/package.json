@@ -2,7 +2,7 @@
     "name": "@sif/eslint-config",
     "main": "eslint.config.mjs",
     "type": "module",
-    "version": "1.1.32",
+    "version": "1.1.33",
     "description": "Shared ESLint configuration for SIF projects with minimal boilerplate factory function",
     "exports": {
         ".": "./eslint.config.mjs",
@@ -18,12 +18,12 @@
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "5.2.0",
         "eslint-plugin-simple-import-sort": "12.1.1",
-        "eslint-plugin-storybook": "9.0.15",
+        "eslint-plugin-storybook": "9.0.16",
         "eslint-plugin-unicorn": "59.0.1",
         "eslint-plugin-vitest": "0.5.4",
         "globals": "16.3.0",
         "typescript": "5.8.3",
-        "typescript-eslint": "8.35.1"
+        "typescript-eslint": "8.36.0"
     },
     "packageManager": "yarn@4.3.1"
 }
