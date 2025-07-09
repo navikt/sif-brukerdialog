@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.19",
+    "version": "0.4.20",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -46,7 +46,7 @@
         "@types/node": "24.0.12",
         "@types/react": "19.1.8",
         "@types/react-dom": "19.1.6",
-        "@typescript-eslint/parser": "8.35.1",
+        "@typescript-eslint/parser": "8.36.0",
         "@vitejs/plugin-react": "4.6.0",
         "compression": "1.8.0",
         "eslint": "9.30.1",
