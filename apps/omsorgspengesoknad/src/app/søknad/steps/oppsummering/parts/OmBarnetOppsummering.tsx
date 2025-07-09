@@ -24,7 +24,7 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    {apiData.barn.aktørId ? (
+                    {apiData.barn.norskIdentitetsnummer ? (
                         <RegistrertBarnOppsummering barn={apiData.barn} />
                     ) : (
                         <AnnetBarnOppsummering barn={apiData.barn} relasjonTilBarnet={apiData.relasjonTilBarnet} />
@@ -111,12 +111,12 @@ const AnnetBarnOppsummering = ({
     const { text } = useAppIntl();
     return (
         <>
-            {barn.norskIdentifikator ? (
+            {barn.norskIdentitetsnummer ? (
                 <FormSummary.Answer>
                     <FormSummary.Label>
                         <AppText id="steg.oppsummering.barnet.fnr" />
                     </FormSummary.Label>
-                    <FormSummary.Value>{barn.norskIdentifikator}</FormSummary.Value>
+                    <FormSummary.Value>{barn.norskIdentitetsnummer}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
             {barn.navn ? (
