@@ -84,7 +84,7 @@
         "postcss-import": "16.1.1",
         "react-responsive": "10.0.1",
         "storybook": "9.0.15",
-        "storybook-addon-mock": "5.0.0",
+        "storybook-addon-mock": "6.0.0",
         "tailwindcss": "4.1.11",
         "typescript": "5.8.3",
         "vite": "7.0.2",
