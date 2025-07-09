@@ -4,7 +4,7 @@ import { createYtelseMellomlagringUtils } from '@navikt/sif-common-query';
 
 export type Mellomlagring = Omit<SøknadContextState, 'søker'>;
 
-export type MellomlagringMetaData = Pick<SøknadContextState, 'søker' | 'registrerteBarn' | 'gyldigeVedtak'> & {
+export type MellomlagringMetaData = Pick<SøknadContextState, 'søker' | 'registrerteBarn'> & {
     MELLOMLAGRING_VERSJON: string;
 };
 

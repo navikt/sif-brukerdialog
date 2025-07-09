@@ -5,7 +5,6 @@ import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import { søknadMellomlagring } from '../../utils/søknadMellomlagring';
-import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedtak/hentSisteGyldigeVedtak';
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -22,12 +21,9 @@ function useSøknadInitialDataQuery() {
                 throw new Error('Søker eller barn data mangler');
             }
 
-            const gyldigeVedtak = await hentGyldigeVedtakForRegistrerteBarn(barnQuery.data);
-
             const mellomlagring = await søknadMellomlagring.hent({
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
-                gyldigeVedtak,
                 MELLOMLAGRING_VERSJON,
             });
 
@@ -35,7 +31,6 @@ function useSøknadInitialDataQuery() {
                 versjon: MELLOMLAGRING_VERSJON,
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
-                gyldigeVedtak,
                 søknadsdata: {},
                 ...(mellomlagring || defaultSøknadState),
             };

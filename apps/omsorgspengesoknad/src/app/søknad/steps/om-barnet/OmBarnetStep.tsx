@@ -15,6 +15,8 @@ import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
+import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hent-siste-gyldige-vedtak/useGyldigeVedtakForRegistrerteBarn';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
@@ -46,7 +48,7 @@ const { FormikWrapper } = omBarnetFormComponents;
 
 const OmBarnetStep = () => {
     const {
-        state: { søknadsdata, registrerteBarn, søker, gyldigeVedtak },
+        state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
     const { lagreMellomlagring } = useSøknadMellomlagring();
@@ -57,6 +59,8 @@ const OmBarnetStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const gyldigeVedtak = useGyldigeVedtakForRegistrerteBarn(registrerteBarn, true);
 
     const onValidSubmitHandler = (values: OmBarnetFormValues) => {
         const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, { registrerteBarn });
@@ -75,6 +79,10 @@ const OmBarnetStep = () => {
         },
     );
 
+    if (gyldigeVedtak.isLoading || gyldigeVedtak.data === undefined) {
+        return <LoadingPage />;
+    }
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -91,7 +99,7 @@ const OmBarnetStep = () => {
                                 søker={søker}
                                 registrerteBarn={registrerteBarn}
                                 onVelgAnnetBarn={() => setFieldValue('barnetSøknadenGjelder', undefined)}
-                                gyldigeVedtak={gyldigeVedtak}
+                                gyldigeVedtak={gyldigeVedtak.data}
                             />
                         </>
                     );
