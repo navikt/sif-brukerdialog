@@ -1,5 +1,15 @@
 # @navikt/sif-common-forms-ds
 
+## 19.0.18
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.2.19
+- @navikt/sif-common-formik-ds@2.4.16
+- @navikt/sif-common-utils@3.49.9
+- @navikt/sif-validation@1.0.2
+- @navikt/sif-common-ui@0.9.20
+
 ## 19.0.17
 
 ### Patch Changes
