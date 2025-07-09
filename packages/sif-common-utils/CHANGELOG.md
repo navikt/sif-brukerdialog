@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 3.49.8
 
 ### Patch Changes

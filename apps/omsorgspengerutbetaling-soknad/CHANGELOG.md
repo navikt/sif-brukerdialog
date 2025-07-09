@@ -1,5 +1,24 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.24.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.8
+    - @navikt/sif-common-formik-ds@2.4.16
+    - @navikt/sif-common-soknad-ds@24.0.17
+    - @navikt/sif-common-forms-ds@19.0.17
+    - @navikt/sif-common-core-ds@10.2.18
+    - @navikt/sif-common-sentry@0.28.13
+    - @navikt/sif-common-utils@3.49.9
+    - @navikt/sif-common-api@0.4.16
+    - @navikt/sif-common-ui@0.9.19
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-hooks@0.3.2
+    - @navikt/sif-validation@1.0.2
+
 ## 1.24.19
 
 ### Patch Changes
