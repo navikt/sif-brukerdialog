@@ -15,7 +15,7 @@ import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
-import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hent-siste-gyldige-vedtak/useGyldigeVedtakForRegistrerteBarn';
+import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hooks/useGyldigeVedtakForRegistrerteBarn';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 
 export enum OmBarnetFormFields {

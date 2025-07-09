@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { BarnOppslag } from '@navikt/sif-common-query';
 import { GyldigeVedtak } from '../../types/GyldigeVedtak';
-import { hentGyldigeVedtakForRegistrerteBarn } from './hentSisteGyldigeVedtak';
+import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedtak/hentSisteGyldigeVedtak';
 
 /**
  * Hook for å hente gyldige vedtak for registrerte barn
