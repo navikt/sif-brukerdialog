@@ -41,7 +41,7 @@
         "@playwright/test": "1.53.2",
         "@tailwindcss/postcss": "4.1.11",
         "@tailwindcss/vite": "4.1.11",
-        "@types/node": "24.0.10",
+        "@types/node": "24.0.12",
         "@types/react": "19.1.8",
         "@types/react-dom": "19.1.6",
         "@types/uuid": "10.0.0",
