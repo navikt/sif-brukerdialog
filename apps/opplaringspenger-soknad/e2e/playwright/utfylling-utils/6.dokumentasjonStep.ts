@@ -9,6 +9,6 @@ export const fyllUtDokumentasjon = async (page: Page) => {
     await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
-
+    await page.getByRole('group', { name: 'Skal du ettersende vedlegg' }).getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };

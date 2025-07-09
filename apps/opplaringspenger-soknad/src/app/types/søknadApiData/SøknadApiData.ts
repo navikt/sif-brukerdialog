@@ -3,6 +3,7 @@ import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
+import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 
 export * from './OmBarnetApiData';
 
@@ -88,7 +89,7 @@ export interface PeriodeApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;
 }
-export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
+export interface UtenlandsoppholdApiData extends PeriodeApiData {
     landkode: string;
     landnavn: string;
 }
@@ -106,9 +107,9 @@ export interface OpptjeningIUtlandetApi {
     tilOgMed: ISODate;
 }
 
-export interface UtenlandsoppholdIPeriodenApi {
+export interface UtenlandsoppholdIPeriodenApiData {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: UtenlandsoppholdIPeriodenApiData[];
+    opphold: UtenlandsoppholdApiData[];
 }
 
 export interface FerieuttakIPeriodenApiData {
@@ -151,6 +152,11 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
+    ettersendingAvVedlegg: {
+        skalEttersendeVedlegg: boolean;
+        vedleggSomSkalEttersendes?: VedleggType[];
+    };
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }
