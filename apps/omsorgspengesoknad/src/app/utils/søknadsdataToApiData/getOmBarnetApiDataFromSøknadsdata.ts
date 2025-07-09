@@ -21,7 +21,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                 ...fellesInfo,
                 barn: {
                     norskIdentitetsnummer,
-                    norskIdentifikator: norskIdentitetsnummer,
+                    aktørId: norskIdentitetsnummer,
                     navn: formatName(fornavn, etternavn, mellomnavn),
                     fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
                     _erRegistrertBarn: true,
@@ -33,7 +33,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                 ...fellesInfo,
                 barn: {
                     norskIdentitetsnummer: omBarnet.barnetsFødselsnummer,
-                    norskIdentifikator: omBarnet.barnetsFødselsnummer,
+                    aktørId: omBarnet.barnetsFødselsnummer,
                     navn: omBarnet.barnetsNavn,
                     fødselsdato: omBarnet.barnetsFødselsdato,
                     _erRegistrertBarn: false,

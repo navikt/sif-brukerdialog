@@ -4,7 +4,7 @@ import { Barn, OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdial
 
 export type BarnToSendToApi = Barn & {
     navn: string;
-    norskIdentifikator: string;
+    aktørId: string;
     _erRegistrertBarn: boolean;
 };
 
