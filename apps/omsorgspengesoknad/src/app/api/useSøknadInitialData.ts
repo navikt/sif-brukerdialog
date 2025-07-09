@@ -1,80 +1,57 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { hentBarn, hentSøker } from '@navikt/sif-common-query';
+import { useBarn, useSøker } from '@navikt/sif-common-query';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
-import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import appSentryLogger from '../utils/appSentryLogger';
 import { søknadMellomlagring } from '../utils/søknadMellomlagring';
 
 export type SøknadInitialData = SøknadContextState;
-
-type SøknadInitialSuccess = {
-    status: RequestStatus.success;
-    data: SøknadInitialData;
-};
-
-type SøknadInitialFailed = {
-    status: RequestStatus.error;
-    error: any;
-};
-
-type SøknadInitialLoading = {
-    status: RequestStatus.loading;
-};
-
-type SøknadInitialNotLoggedIn = {
-    status: RequestStatus.redirectingToLogin;
-};
-
-export type SøknadInitialDataState =
-    | SøknadInitialSuccess
-    | SøknadInitialFailed
-    | SøknadInitialLoading
-    | SøknadInitialNotLoggedIn;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-function useSøknadInitialData(): SøknadInitialDataState {
-    const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
+function useSøknadInitialDataQuery() {
+    const søkerQuery = useSøker();
+    const barnQuery = useBarn();
 
-    const fetch = async () => {
-        try {
-            const [søker, registrerteBarn] = await Promise.all([hentSøker(), hentBarn()]);
-            const mellomlagring = await søknadMellomlagring.hent({ søker, registrerteBarn, MELLOMLAGRING_VERSJON });
-            setInitialData({
-                status: RequestStatus.success,
-                data: {
-                    versjon: MELLOMLAGRING_VERSJON,
-                    søker,
-                    registrerteBarn,
-                    søknadsdata: {},
-                    ...(mellomlagring || defaultSøknadState),
-                },
-            });
-        } catch (error: any) {
-            if (isUnauthorized(error)) {
-                setInitialData({
-                    status: RequestStatus.redirectingToLogin,
-                });
-            } else {
-                appSentryLogger.logError('fetchInitialData', error);
-                setInitialData({
-                    status: RequestStatus.error,
-                    error,
-                });
+    return useQuery({
+        queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
+        queryFn: async (): Promise<SøknadInitialData> => {
+            if (!søkerQuery.data || !barnQuery.data) {
+                throw new Error('Søker eller barn data mangler');
             }
-        }
-    };
 
-    useEffect(() => {
-        fetch();
-    }, []);
+            const mellomlagring = await søknadMellomlagring.hent({
+                søker: søkerQuery.data,
+                registrerteBarn: barnQuery.data,
+                MELLOMLAGRING_VERSJON,
+            });
 
-    return initialData;
+            return {
+                versjon: MELLOMLAGRING_VERSJON,
+                søker: søkerQuery.data,
+                registrerteBarn: barnQuery.data,
+                søknadsdata: {},
+                ...(mellomlagring || defaultSøknadState),
+            };
+        },
+        enabled: !!søkerQuery.data && !!barnQuery.data && !søkerQuery.isLoading && !barnQuery.isLoading,
+        retry: (failureCount, error) => {
+            // Ikke retry på unauthorized errors - bare hold loading state
+            if (isUnauthorized(error as any)) {
+                return false;
+            }
+            // Standard retry logikk for andre feil
+            return failureCount < 3;
+        },
+        staleTime: Infinity, // Data endres aldri etter oppstart
+        gcTime: Infinity, // Hold i cache til appen lukkes
+        refetchOnWindowFocus: false, // Ikke refetch ved fokus
+        refetchOnMount: false, // Ikke refetch ved remount
+        refetchOnReconnect: false, // Ikke refetch ved reconnect
+    });
 }
 
-export default useSøknadInitialData;
+export default useSøknadInitialDataQuery;

@@ -6,11 +6,8 @@ import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigation
 const { K9_SAK_INNSYN_FRONTEND_PATH, K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = appEnv;
 
 export enum ApiEndpoint {
-    'soker' = 'oppslag/soker',
-    'barn' = 'oppslag/barn',
     'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
-    'vedlegg' = 'vedlegg',
-    'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
+    // 'vedlegg' = 'vedlegg',
     'innvilget_vedtak' = 'k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
 }
 
