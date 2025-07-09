@@ -23,6 +23,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     norskIdentitetsnummer,
                     navn: formatName(fornavn, etternavn, mellomnavn),
                     fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
+                    _erRegistrertBarn: true,
                 },
             };
         }
@@ -33,6 +34,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     navn: omBarnet.barnetsNavn,
                     norskIdentitetsnummer: omBarnet.barnetsFødselsnummer,
                     fødselsdato: omBarnet.barnetsFødselsdato,
+                    _erRegistrertBarn: false,
                 },
                 relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
             };

@@ -24,7 +24,7 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    {apiData.barn.norskIdentitetsnummer ? (
+                    {apiData.barn._erRegistrertBarn ? (
                         <RegistrertBarnOppsummering barn={apiData.barn} />
                     ) : (
                         <AnnetBarnOppsummering barn={apiData.barn} relasjonTilBarnet={apiData.relasjonTilBarnet} />

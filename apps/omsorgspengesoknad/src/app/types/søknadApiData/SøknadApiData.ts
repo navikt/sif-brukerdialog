@@ -4,6 +4,7 @@ import { Barn, OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdial
 
 export type BarnToSendToApi = Barn & {
     navn: string;
+    _erRegistrertBarn: boolean;
 };
 
 export interface SøknadApiData
