@@ -52,7 +52,6 @@ const søknadsdata: Søknadsdata = {
                 },
             },
         ],
-
         ferieuttakIPerioden: {
             type: 'skalTaUtFerieSøknadsdata',
             skalTaUtFerieIPerioden: true,
@@ -61,6 +60,18 @@ const søknadsdata: Søknadsdata = {
                     id: '8cf1a74c-2e6a-42dc-8f92-221e25c210e7',
                     from: new Date('2024-12-04T00:00:00.000Z'),
                     to: new Date('2024-12-05T00:00:00.000Z'),
+                },
+            ],
+        },
+        utenlandsopphold: {
+            type: 'harUtenlandsopphold',
+            skalOppholdeSegIUtlandetIPerioden: true,
+            utenlandsopphold: [
+                {
+                    type: 'enkel',
+                    landkode: 'ABW',
+                    fom: new Date('2024-12-06T00:00:00.000Z'),
+                    tom: new Date('2024-12-07T00:00:00.000Z'),
                 },
             ],
         },
@@ -144,6 +155,7 @@ const søknadsdata: Søknadsdata = {
     },
     legeerklæring: {
         vedlegg: [],
+        skalEttersendeVedlegg: false,
     },
 };
 export const mellomlagringMock = {
@@ -152,5 +164,5 @@ export const mellomlagringMock = {
 
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
-    versjon: '0.1.0',
+    versjon: '0.2.1',
 };

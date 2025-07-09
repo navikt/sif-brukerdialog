@@ -53,6 +53,17 @@ const nb = {
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
 
+    'steg.kurs.validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
+        'Du må svare på på om du oppholder deg i utlandet i noen av dagene du søker for.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.listIsEmpty':
+        'Du har svart ja til at du oppholder deg i utlandet i noen av dagene du søker for. Legg til minst ett utenlandsopphold.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
+        'Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsoppholdUtenforKursperiode':
+        'Du har lagt inn utenlandsopphold som er utenfor søknadsperioden.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
+        'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
+
     'steg.kurs.godkjentHelseinstitusjon.label': 'Hvilke institusjoner er godkjente?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspenger, må du få opplæringen på en godkjent helseinstitusjon eller ved et spesialpedagogisk kompetansesenter.',
@@ -74,6 +85,11 @@ const nb = {
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
         'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor det er nødvendig å reise på andre dager. Det kan for eksempel være at det er lang reisevei og/eller begrenset mulighet til å reise samme dag.',
+
+    'steg.kurs.utenlandsopphold.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
+    'steg.kurs.utenlandsopphold.listTitle': 'Utenlandsopphold',
+    'steg.kurs.utenlandsopphold.modalTitle': 'Utenlandsopphold',
+    'steg.kurs.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -128,6 +144,19 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.ferie.modalDescription': 'Du kan berre velje dagar som du har søkt om opplæringspengar.',
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, då må du legge til minst éi ferie.',
+
+    'steg.kurs.validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
+        'Du må svare på om du oppheld deg i utlandet i nokre av dagane du søkjer for.',
+
+    'steg.kurs.validation.utenlandsoppholdIPerioden.listIsEmpty':
+        'Du har svart ja til at du oppheld deg i utlandet i nokre av dagane du søkjer for. Legg til minst eitt utanlandsopphald.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
+        'Du har lagt inn utanlandsopphald med datoar som overlappar kvarandre.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsoppholdUtenforKursperiode':
+        'Du har lagt inn utanlandsopphald som er utanfor søknadsperioden.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
+        'Eit utanlandsopphald kan ikkje starte same dag som eit anna avsluttast.',
+
     'steg.kurs.godkjentHelseinstitusjon.label': 'Kva er ein godkjend helseinstitusjon?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspengar, må du få opplæringa på ein godkjend helseinstitusjon eller ved eit spesialpedagogisk kompetansesenter.',
@@ -147,5 +176,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
         'Fordi du reiser på andre dagar enn du har kurs eller opplæring, må du beskrive kvifor det er nødvendig å reise på andre dagar. Det kan for eksempel vere at det er lang reiseveg og/eller avgrensa moglegheit til å reise same dag.',
+    'steg.kurs.utenlandsopphold.spm': 'Oppheld du deg i utlandet i nokre av dagane du søkjer for?',
+    'steg.kurs.utenlandsopphold.listTitle': 'Utanlandsopphald i perioden',
+    'steg.kurs.utenlandsopphold.modalTitle': 'Utanlandsopphald',
+    'steg.kurs.utenlandsopphold.addLabel': 'Legg til utanlandsopphald',
 };
 export const kursMessages = { nb, nn };

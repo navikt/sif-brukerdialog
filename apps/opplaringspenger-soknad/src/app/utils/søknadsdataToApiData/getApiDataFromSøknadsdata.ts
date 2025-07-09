@@ -15,6 +15,7 @@ import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøk
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenApiData';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -62,10 +63,17 @@ export const getApiDataFromSøknadsdata = (
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
+        ettersendingAvVedlegg: {
+            skalEttersendeVedlegg: legeerklæring.skalEttersendeVedlegg,
+            vedleggSomSkalEttersendes: legeerklæring.skalEttersendeVedlegg
+                ? legeerklæring.vedleggSomSkalEttersendes?.sort().reverse() // Hack for å ANNET sist :)
+                : undefined,
+        },
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
+        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
