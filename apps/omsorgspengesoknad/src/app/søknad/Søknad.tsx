@@ -1,5 +1,5 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import useSøknadInitialDataQuery from '../api/useSøknadInitialData';
+import useSøknadInitialDataQuery from '../api/hooks/useSøknadInitialDataQuery';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';

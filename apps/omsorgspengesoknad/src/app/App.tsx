@@ -1,8 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
+import { initK9BrukerdialogProsesseringApiClient } from '@navikt/sif-common-query';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -14,8 +16,6 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import './app.css';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { initK9BrukerdialogProsesseringApiClient } from '@navikt/sif-common-query';
 const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET,
@@ -25,9 +25,9 @@ const {
     APP_VERSION,
 } = appEnv;
 
-ensureBaseNameForReactRouter(PUBLIC_PATH);
 const queryClient = new QueryClient();
 
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 initK9BrukerdialogProsesseringApiClient();
 
 const App = () => {

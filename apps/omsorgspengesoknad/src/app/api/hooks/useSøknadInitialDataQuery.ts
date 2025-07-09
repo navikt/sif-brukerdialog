@@ -1,12 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useBarn, useSøker } from '@navikt/sif-common-query';
-import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
-import { SøknadContextState } from '../types/SøknadContextState';
-import { SøknadRoutes } from '../types/SøknadRoutes';
-import { søknadMellomlagring } from '../utils/søknadMellomlagring';
-
-export type SøknadInitialData = SøknadContextState;
+import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
+import { SøknadContextState } from '../../types/SøknadContextState';
+import { SøknadRoutes } from '../../types/SøknadRoutes';
+import { søknadMellomlagring } from '../../utils/søknadMellomlagring';
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -18,7 +16,7 @@ function useSøknadInitialDataQuery() {
 
     return useQuery({
         queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
-        queryFn: async (): Promise<SøknadInitialData> => {
+        queryFn: async (): Promise<SøknadContextState> => {
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
             }
