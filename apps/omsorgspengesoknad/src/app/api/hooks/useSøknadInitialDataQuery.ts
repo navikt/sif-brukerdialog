@@ -5,7 +5,6 @@ import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import { søknadMellomlagring } from '../../utils/søknadMellomlagring';
-import { queryKeys } from '../queries/queryKeys';
 import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedtak/hentSisteGyldigeVedtak';
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
@@ -17,7 +16,7 @@ function useSøknadInitialDataQuery() {
     const barnQuery = useBarn();
 
     return useQuery({
-        queryKey: [queryKeys.søknadInitialData, søkerQuery.data?.aktørId, barnQuery.data?.length],
+        queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
         queryFn: async (): Promise<SøknadContextState> => {
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
