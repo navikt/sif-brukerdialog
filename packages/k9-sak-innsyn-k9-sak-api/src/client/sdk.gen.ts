@@ -11,7 +11,7 @@ import type {
 } from './types.gen';
 import {
     zHentSisteGyldigeVedtakForAktorIdData,
-    zHentSisteGyldigeVedtakForAktorIdResponse2,
+    zHentSisteGyldigeVedtakForAktorIdResponse,
     zHentOpplæringsinstitusjonerData,
     zHentOpplæringsinstitusjonerResponse,
 } from './zod.gen';
@@ -48,7 +48,7 @@ export class K9SakController {
             },
             responseType: 'json',
             responseValidator: async (data) => {
-                return await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data);
+                return await zHentSisteGyldigeVedtakForAktorIdResponse.parseAsync(data);
             },
             security: [
                 {

@@ -4,13 +4,14 @@ import { Mellomlagring, MellomlagringMetaData, søknadMellomlagring } from '../u
 
 export const useSøknadMellomlagring = () => {
     const {
-        state: { søker, registrerteBarn },
+        state: { søker, registrerteBarn, gyldigeVedtak },
     } = useSøknadContext();
 
     const metaData: MellomlagringMetaData = {
         MELLOMLAGRING_VERSJON,
         søker,
         registrerteBarn,
+        gyldigeVedtak,
     };
 
     return {

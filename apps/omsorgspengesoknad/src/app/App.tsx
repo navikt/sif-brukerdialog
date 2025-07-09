@@ -4,7 +4,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
-import { initK9BrukerdialogProsesseringApiClient } from '@navikt/sif-common-query';
+import { initK9BrukerdialogProsesseringApiClient, initK9SakInnsynApiClient } from '@navikt/sif-common-query';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -28,7 +28,9 @@ const {
 const queryClient = new QueryClient();
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
+
 initK9BrukerdialogProsesseringApiClient();
+initK9SakInnsynApiClient();
 
 const App = () => {
     useEffect(() => {

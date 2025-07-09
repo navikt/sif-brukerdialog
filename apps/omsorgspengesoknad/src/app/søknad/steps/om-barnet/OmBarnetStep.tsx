@@ -14,7 +14,6 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
 
 export enum OmBarnetFormFields {
@@ -47,10 +46,9 @@ const { FormikWrapper } = omBarnetFormComponents;
 
 const OmBarnetStep = () => {
     const {
-        state: { søknadsdata, registrerteBarn, søker },
+        state: { søknadsdata, registrerteBarn, søker, gyldigeVedtak },
     } = useSøknadContext();
 
-    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
     const { lagreMellomlagring } = useSøknadMellomlagring();
 
     const stepId = StepId.OM_BARNET;
@@ -93,7 +91,7 @@ const OmBarnetStep = () => {
                                 søker={søker}
                                 registrerteBarn={registrerteBarn}
                                 onVelgAnnetBarn={() => setFieldValue('barnetSøknadenGjelder', undefined)}
-                                innvilgedeVedtak={innvilgedeVedtak}
+                                gyldigeVedtak={gyldigeVedtak}
                             />
                         </>
                     );

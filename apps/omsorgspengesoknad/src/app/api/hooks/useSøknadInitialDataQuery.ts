@@ -5,6 +5,8 @@ import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import { søknadMellomlagring } from '../../utils/søknadMellomlagring';
+import { queryKeys } from '../queries/queryKeys';
+import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedtak/hentSisteGyldigeVedtak';
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -15,25 +17,31 @@ function useSøknadInitialDataQuery() {
     const barnQuery = useBarn();
 
     return useQuery({
-        queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
+        queryKey: [queryKeys.søknadInitialData, søkerQuery.data?.aktørId, barnQuery.data?.length],
         queryFn: async (): Promise<SøknadContextState> => {
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
             }
 
+            const gyldigeVedtak = await hentGyldigeVedtakForRegistrerteBarn(barnQuery.data);
+
             const mellomlagring = await søknadMellomlagring.hent({
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
+                gyldigeVedtak,
                 MELLOMLAGRING_VERSJON,
             });
 
-            return {
+            const initialData = {
                 versjon: MELLOMLAGRING_VERSJON,
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
+                gyldigeVedtak,
                 søknadsdata: {},
                 ...(mellomlagring || defaultSøknadState),
             };
+
+            return initialData;
         },
         enabled: !!søkerQuery.data && !!barnQuery.data && !søkerQuery.isLoading && !barnQuery.isLoading,
         retry: (failureCount, error) => {

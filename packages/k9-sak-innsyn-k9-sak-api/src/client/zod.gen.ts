@@ -41,7 +41,7 @@ export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
 /**
  * OK
  */
-export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedtakForAktorIdResponse;
+// export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedtakForAktorIdResponse;
 
 export const zHentOpplæringsinstitusjonerData = z.object({
     body: z.never().optional(),

@@ -10,6 +10,7 @@ export const mockInitialSøknadContextState: SøknadContextState = {
     søknadRoute: undefined,
     søknadSendt: false,
     børMellomlagres: false,
+    gyldigeVedtak: {},
 };
 
 export const withSøknadContextProvider = (Story: any, state: Partial<SøknadContextState> = {}) => (
