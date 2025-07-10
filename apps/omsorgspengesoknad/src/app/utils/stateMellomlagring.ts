@@ -8,6 +8,6 @@ export type MellomlagringMetaData = Pick<SøknadContextState, 'søker' | 'regist
     MELLOMLAGRING_VERSJON: string;
 };
 
-export const søknadMellomlagring = createYtelseMellomlagringUtils<Mellomlagring, MellomlagringMetaData>(
+export const stateMellomlagring = createYtelseMellomlagringUtils<Mellomlagring, MellomlagringMetaData>(
     MellomlagringYtelse.OMSORGSPENGER_UTVIDET_RETT,
 );

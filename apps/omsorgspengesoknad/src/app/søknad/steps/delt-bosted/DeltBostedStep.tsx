@@ -13,7 +13,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
-import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
+import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
@@ -25,7 +25,7 @@ const DeltBostedStep = () => {
 
     const stepId = StepId.DELT_BOSTED;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const { lagreMellomlagring } = useSøknadMellomlagring();
+    const { lagreMellomlagring } = useStateMellomlagring();
 
     const { goBack } = useStepNavigation(step);
 

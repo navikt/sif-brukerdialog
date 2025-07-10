@@ -14,7 +14,7 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import { useSøknadMellomlagring } from '../../../hooks/useSøknadMellomlagring';
+import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
 import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hooks/useGyldigeVedtakForRegistrerteBarn';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 
@@ -51,7 +51,7 @@ const OmBarnetStep = () => {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
-    const { lagreMellomlagring } = useSøknadMellomlagring();
+    const { lagreMellomlagring } = useStateMellomlagring();
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);

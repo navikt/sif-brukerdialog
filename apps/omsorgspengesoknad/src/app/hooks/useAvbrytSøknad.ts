@@ -5,12 +5,12 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { relocateToMinSide } from '../utils/navigationUtils';
-import { useSøknadMellomlagring } from './useSøknadMellomlagring';
+import { useStateMellomlagring } from './useStateMellomlagring';
 
 const useAvbrytEllerFortsettSenere = () => {
     const navigate = useNavigate();
     const { dispatch } = useSøknadContext();
-    const { slettMellomlagring } = useSøknadMellomlagring();
+    const { slettMellomlagring } = useStateMellomlagring();
     const { clearAllSteps } = useStepFormValuesContext();
 
     const avbrytSøknad = useCallback(async () => {

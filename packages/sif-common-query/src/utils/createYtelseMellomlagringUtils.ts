@@ -1,5 +1,9 @@
 import objectHash from 'object-hash';
-import { hentMellomlagring, oppdaterMellomlagring, slettMellomlagring } from '../api/mellomlagringApi';
+import {
+    hentYtelseMellomlagring,
+    oppdaterYtelseMellomlagring,
+    slettYtelseMellomlagring,
+} from '../api/ytelseMellomlagringApi';
 import { MellomlagringYtelse } from '../types/mellomlagring';
 import { jsonSort } from '@navikt/sif-common-utils';
 
@@ -43,11 +47,11 @@ export const createYtelseMellomlagringUtils = <State, MetaData = unknown>(
     return {
         async hent(metaData: MetaData): Promise<State | null> {
             try {
-                const wrapper = await hentMellomlagring(ytelse);
+                const wrapper = await hentYtelseMellomlagring(ytelse);
                 if (isValidMellomlagringWrapper(wrapper)) {
                     const erGyldig = wrapper.hash === createHash(metaData);
                     if (!erGyldig) {
-                        await slettMellomlagring(ytelse);
+                        await slettYtelseMellomlagring(ytelse);
                         return null;
                     }
                     return wrapper.data;
@@ -55,7 +59,7 @@ export const createYtelseMellomlagringUtils = <State, MetaData = unknown>(
                     return null;
                 }
             } catch (e) {
-                await slettMellomlagring(ytelse);
+                await slettYtelseMellomlagring(ytelse);
                 return null;
             }
         },
@@ -65,11 +69,11 @@ export const createYtelseMellomlagringUtils = <State, MetaData = unknown>(
                 data,
                 hash: createHash(metaData),
             };
-            await oppdaterMellomlagring(ytelse, wrapper as unknown as Record<string, unknown>);
+            await oppdaterYtelseMellomlagring(ytelse, wrapper as unknown as Record<string, unknown>);
         },
 
         async slett(): Promise<void> {
-            await slettMellomlagring(ytelse);
+            await slettYtelseMellomlagring(ytelse);
         },
     };
 };

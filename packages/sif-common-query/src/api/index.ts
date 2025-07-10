@@ -15,8 +15,8 @@ export { lagreVedlegg, slettVedlegg, hentVedlegg, getVedleggIdFromResponseHeader
 
 // Mellomlagring API
 export {
-    hentMellomlagring,
-    opprettMellomlagring as createMellomlagring,
-    oppdaterMellomlagring as updateMellomlagring,
-    slettMellomlagring as deleteMellomlagring,
-} from './mellomlagringApi';
+    hentYtelseMellomlagring as hentMellomlagring,
+    opprettYtelseMellomlagring as createMellomlagring,
+    oppdaterYtelseMellomlagring as updateMellomlagring,
+    slettYtelseMellomlagring as deleteMellomlagring,
+} from './ytelseMellomlagringApi';

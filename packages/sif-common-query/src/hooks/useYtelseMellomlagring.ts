@@ -2,14 +2,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/mellomlagring';
 import {
-    hentMellomlagring,
-    opprettMellomlagring,
-    oppdaterMellomlagring,
-    slettMellomlagring,
-} from '../api/mellomlagringApi';
+    hentYtelseMellomlagring,
+    opprettYtelseMellomlagring,
+    oppdaterYtelseMellomlagring,
+    slettYtelseMellomlagring,
+} from '../api/ytelseMellomlagringApi';
 
 // Hook for fetching mellomlagring data for a specific ytelse
-export const useGetMellomlagring = (
+export const useGetYtelseMellomlagring = (
     ytelse: MellomlagringYtelse,
     options?: {
         enabled?: boolean;
@@ -17,7 +17,7 @@ export const useGetMellomlagring = (
 ) => {
     return useQuery({
         queryKey: [...sifCommonQueryKeys.mellomlagring, ytelse],
-        queryFn: () => hentMellomlagring(ytelse),
+        queryFn: () => hentYtelseMellomlagring(ytelse),
         enabled: options?.enabled ?? !!ytelse,
         staleTime: 30 * 1000, // 30 seconds - intermediate storage is fairly dynamic
         gcTime: 5 * 60 * 1000, // 5 minutes
@@ -25,12 +25,12 @@ export const useGetMellomlagring = (
 };
 
 // Hook for creating mellomlagring data
-export const useCreateMellomlagring = () => {
+export const useCreateYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return opprettMellomlagring(ytelse, data);
+            return opprettYtelseMellomlagring(ytelse, data);
         },
         onSuccess: (_data, variables) => {
             // Invalidate and refetch the specific mellomlagring
@@ -42,12 +42,12 @@ export const useCreateMellomlagring = () => {
 };
 
 // Hook for updating mellomlagring data
-export const useUpdateMellomlagring = () => {
+export const useUpdateYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async ({ ytelse, data }: { ytelse: MellomlagringYtelse; data: Record<string, unknown> }) => {
-            return oppdaterMellomlagring(ytelse, data);
+            return oppdaterYtelseMellomlagring(ytelse, data);
         },
         onSuccess: (_data, variables) => {
             // Invalidate and refetch the specific mellomlagring
@@ -59,11 +59,11 @@ export const useUpdateMellomlagring = () => {
 };
 
 // Hook for deleting mellomlagring data
-export const useDeleteMellomlagring = () => {
+export const useDeleteYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: slettMellomlagring,
+        mutationFn: slettYtelseMellomlagring,
         onSuccess: (_data, ytelse) => {
             // Remove the specific mellomlagring from cache
             queryClient.removeQueries({
@@ -83,19 +83,19 @@ export const useDeleteMellomlagring = () => {
  *
  * The raw data from API is a JSON string. If you need to parse it, use JSON.parse() on the data.
  */
-export const useMellomlagringService = (
+export const useYtelseMellomlagringService = (
     ytelse: MellomlagringYtelse,
     options?: {
         enabled?: boolean;
     },
 ) => {
-    const fetch = useGetMellomlagring(ytelse, {
+    const fetch = useGetYtelseMellomlagring(ytelse, {
         enabled: options?.enabled,
     });
 
-    const createMutation = useCreateMellomlagring();
-    const updateMutation = useUpdateMellomlagring();
-    const deleteMutation = useDeleteMellomlagring();
+    const createMutation = useCreateYtelseMellomlagring();
+    const updateMutation = useUpdateYtelseMellomlagring();
+    const deleteMutation = useDeleteYtelseMellomlagring();
 
     return {
         // Data and query state

@@ -9,7 +9,7 @@ import { jsonResponseParser } from '../utils/jsonResponseParser';
  * @returns Promise med mellomlagrede data
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
-export const hentMellomlagring = async (ytelse: MellomlagringYtelse): Promise<Record<string, unknown>> => {
+export const hentYtelseMellomlagring = async (ytelse: MellomlagringYtelse): Promise<Record<string, unknown>> => {
     const { data } = await MellomlagringController.getMellomlagring({
         path: { ytelse },
     });
@@ -25,7 +25,7 @@ export const hentMellomlagring = async (ytelse: MellomlagringYtelse): Promise<Re
  * @returns Promise med opprettingsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const opprettMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
+export const opprettYtelseMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
     const response = await MellomlagringController.createMellomlagring({
         path: { ytelse },
         body: data,
@@ -41,7 +41,7 @@ export const opprettMellomlagring = async (ytelse: MellomlagringYtelse, data: Re
  * @returns Promise med oppdateringsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const oppdaterMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
+export const oppdaterYtelseMellomlagring = async (ytelse: MellomlagringYtelse, data: Record<string, unknown>) => {
     const response = await MellomlagringController.updateMellomlagring({
         path: { ytelse },
         body: data,
@@ -56,7 +56,7 @@ export const oppdaterMellomlagring = async (ytelse: MellomlagringYtelse, data: R
  * @returns Promise med slettingsrespons
  * @throws Error hvis API-kallet feiler
  */
-export const slettMellomlagring = async (ytelse: MellomlagringYtelse) => {
+export const slettYtelseMellomlagring = async (ytelse: MellomlagringYtelse) => {
     const response = await MellomlagringController.deleteMellomlagring({
         path: { ytelse },
     });

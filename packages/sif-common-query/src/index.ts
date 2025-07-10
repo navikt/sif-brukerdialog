@@ -13,7 +13,7 @@ export * from './types/vedlegg';
 // All hooks
 export * from './hooks/useArbeidsgivere';
 export * from './hooks/useBarn';
-export * from './hooks/useMellomlagring';
+export * from './hooks/useYtelseMellomlagring';
 export * from './hooks/useSøker';
 export * from './hooks/useValiderFritekst';
 export * from './hooks/useVedlegg';

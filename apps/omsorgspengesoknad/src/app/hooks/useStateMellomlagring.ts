@@ -1,8 +1,8 @@
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { Mellomlagring, MellomlagringMetaData, søknadMellomlagring } from '../utils/søknadMellomlagring';
+import { Mellomlagring, MellomlagringMetaData, stateMellomlagring } from '../utils/stateMellomlagring';
 
-export const useSøknadMellomlagring = () => {
+export const useStateMellomlagring = () => {
     const {
         state: { søker, registrerteBarn },
     } = useSøknadContext();
@@ -14,8 +14,8 @@ export const useSøknadMellomlagring = () => {
     };
 
     return {
-        hentMellomlagring: () => søknadMellomlagring.hent(metaData),
-        slettMellomlagring: søknadMellomlagring.slett,
-        lagreMellomlagring: (data: Mellomlagring) => søknadMellomlagring.lagre(data, metaData),
+        hentMellomlagring: () => stateMellomlagring.hent(metaData),
+        slettMellomlagring: stateMellomlagring.slett,
+        lagreMellomlagring: (data: Mellomlagring) => stateMellomlagring.lagre(data, metaData),
     };
 };

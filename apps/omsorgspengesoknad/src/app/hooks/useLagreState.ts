@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { useSøknadMellomlagring } from './useSøknadMellomlagring';
+import { useStateMellomlagring } from './useStateMellomlagring';
 
 /**
  * Hook for å mellomlagre state i applikasjonen
@@ -14,7 +14,7 @@ import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 export const useLagreState = () => {
     const { dispatch, state } = useSøknadContext();
     const [pending, setPending] = useState(false);
-    const mellomlagring = useSøknadMellomlagring();
+    const mellomlagring = useStateMellomlagring();
 
     useEffect(() => {
         if (state.børMellomlagres) {
