@@ -10,3 +10,5 @@ export * as omsorgspenger from './generated/omsorgspenger';
 
 // Ungdomsytelse API
 export * as ungdomsytelse from './generated/ungdomsytelse';
+
+export * from './initK9BrukerdialogProsesseringApiClients';

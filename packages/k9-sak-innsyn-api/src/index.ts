@@ -10,3 +10,5 @@ export * as k9Sak from './generated/k9-sak';
 
 // Innsyn API
 export * as innsyn from './generated/innsyn';
+
+export * from './initK9SakInnsynApiClients';

@@ -9,7 +9,7 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import { initSøknadApiClients as initSøknadApiClients } from './api/initSøknadApiClient';
+import { initApiClients as initApiClients } from './api/initApiClients';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -29,7 +29,7 @@ const queryClient = new QueryClient();
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-initSøknadApiClients();
+initApiClients();
 
 const App = () => {
     useEffect(() => {
