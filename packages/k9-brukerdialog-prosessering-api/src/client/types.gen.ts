@@ -550,6 +550,12 @@ export type ArbeidsgiverOlp = {
     arbeidsforhold?: ArbeidsforholdOlp;
 };
 
+export type EttersendingAvVedlegg = {
+    skalEttersendeVedlegg: boolean;
+    vedleggSomSkalEttersendes?: Array<'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET'>;
+    isValid: boolean;
+};
+
 export type FrilansOlp = {
     startdato: string;
     sluttdato?: string;
@@ -580,7 +586,7 @@ export type OpplæringspengerSøknad = {
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
     utenlandskNæring: Array<UtenlandskNæring>;
@@ -591,6 +597,7 @@ export type OpplæringspengerSøknad = {
     stønadGodtgjørelse?: StønadGodtgjørelse;
     harVærtEllerErVernepliktig?: boolean;
     dataBruktTilUtledningAnnetData?: string;
+    ettersendingAvVedlegg?: EttersendingAvVedlegg;
     kurs: Kurs;
 };
 

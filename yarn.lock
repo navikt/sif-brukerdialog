@@ -3498,6 +3498,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hey-api/openapi-ts@npm:0.78.2":
+  version: 0.78.2
+  resolution: "@hey-api/openapi-ts@npm:0.78.2"
+  dependencies:
+    "@hey-api/json-schema-ref-parser": "npm:1.0.6"
+    ansi-colors: "npm:4.1.3"
+    c12: "npm:2.0.1"
+    color-support: "npm:1.1.3"
+    commander: "npm:13.0.0"
+    handlebars: "npm:4.7.8"
+    open: "npm:10.1.2"
+  peerDependencies:
+    typescript: ^5.5.3
+  bin:
+    openapi-ts: bin/index.cjs
+  checksum: 10/e3523fe96b37772d411e7cee15993e2a45943a6b353734818a2ea179778660a5087b8e4f07e0f27af3729db3762338ba241c179c34605b9942aebeb6c997871f
+  languageName: node
+  linkType: hard
+
 "@hey-api/openapi-ts@npm:0.78.3":
   version: 0.78.3
   resolution: "@hey-api/openapi-ts@npm:0.78.3"
@@ -5218,6 +5237,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/k9-sak-innsyn-k9-sak-api@workspace:*, @navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api":
+  version: 0.0.0-use.local
+  resolution: "@navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api"
+  dependencies:
+    "@hey-api/client-axios": "npm:0.9.1"
+    "@hey-api/client-fetch": "npm:0.13.1"
+    "@hey-api/openapi-ts": "npm:0.78.2"
+    "@sif/eslint-config": "workspace:*"
+    config: "workspace:*"
+    typescript: "npm:5.8.3"
+    vitest: "npm:3.2.4"
+    zod: "npm:3.25.76"
+  peerDependencies:
+    dayjs: "*"
+    uuid: "*"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/nav-dekoratoren-moduler@npm:3.4.0":
   version: 3.4.0
   resolution: "@navikt/nav-dekoratoren-moduler@npm:3.4.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.4.0%2Fe368316e1b7d6e0fb7f15fbd087c34400a7208f3"
@@ -6178,6 +6215,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/sif-common-query@workspace:packages/sif-common-query":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
+  dependencies:
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
+    "@tanstack/react-query": "npm:5.81.5"
+    "@types/react": "npm:19.1.8"
+    axios: "npm:1.10.0"
+    object-hash: "npm:3.0.0"
+    react: "npm:19.1.0"
+    typescript: "npm:5.8.3"
+    zod: "npm:3.25.76"
+  peerDependencies:
+    dayjs: 1.11.13
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-common-sentry@workspace:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
@@ -6620,6 +6677,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.25.1"
     "@navikt/ds-react": "npm:7.25.1"
     "@navikt/ds-tailwind": "npm:7.25.1"
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-api": "workspace:*"
@@ -9635,6 +9693,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.81.5":
+  version: 5.81.5
+  resolution: "@tanstack/query-core@npm:5.81.5"
+  checksum: 10/a324ab3380c1c282b95520de8b74af537cfe6b44ae06b6639b3e7a70757c81c2db03f765c27aa770d6c44ef8e1f7cbba243863021ded53fff965a522d1e5f698
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-core@npm:5.82.0":
   version: 5.82.0
   resolution: "@tanstack/query-core@npm:5.82.0"
@@ -9660,6 +9725,17 @@ __metadata:
     vinxi:
       optional: true
   checksum: 10/42303ab07502ed7636db972146640ff46d7d10b0d9691067c8bde521e09cb57576f67908758ec14dabecd57bfd49f31f407ae9b85e1c616b47697a284931fe5c
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:5.81.5":
+  version: 5.81.5
+  resolution: "@tanstack/react-query@npm:5.81.5"
+  dependencies:
+    "@tanstack/query-core": "npm:5.81.5"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10/35c75cf902938a76d468c0e1f08d738afc989ddc3728c4d2c00b16975870500da98aea21c1a682726abb3ef5f6348cb739335e3b940224ccc527b27dddc20fd4
   languageName: node
   linkType: hard
 

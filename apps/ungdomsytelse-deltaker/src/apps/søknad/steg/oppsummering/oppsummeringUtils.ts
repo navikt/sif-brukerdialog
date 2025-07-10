@@ -1,4 +1,4 @@
-import { Ungdomsytelsesøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Spørsmål, SøknadSvar } from '../../types';
@@ -15,7 +15,7 @@ export const buildSøknadFromSvar = (
     søkerNorskIdent: string,
     startdato: Date,
     kontonummerFraRegister?: string,
-): Omit<Ungdomsytelsesøknad, 'harBekreftetOpplysninger'> | undefined => {
+): Omit<ungdomsytelse.Ungdomsytelsesøknad, 'harBekreftetOpplysninger'> | undefined => {
     const harKontonummer = !!kontonummerFraRegister;
     if (
         svar[Spørsmål.FORSTÅR_PLIKTER] !== true ||

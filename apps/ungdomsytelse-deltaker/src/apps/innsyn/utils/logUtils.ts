@@ -1,4 +1,4 @@
-import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
@@ -99,7 +99,10 @@ const getSøknadInnsendingMeta = (
     };
 };
 
-export const getOppgaveBekreftelseMeta = (oppgave: BekreftelseOppgave, uttalelse: UngdomsytelseOppgaveUttalelseDto) => {
+export const getOppgaveBekreftelseMeta = (
+    oppgave: BekreftelseOppgave,
+    uttalelse: ungdomsytelse.UngdomsytelseOppgaveUttalelseDto,
+) => {
     return {
         oppgavetype: oppgave.oppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),

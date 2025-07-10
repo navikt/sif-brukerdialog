@@ -1,5 +1,14 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.22
+
+### Patch Changes
+
+- Refactor generering av typer
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.13
+    - @navikt/ung-common@0.0.14
+
 ## 0.6.21
 
 ### Patch Changes
