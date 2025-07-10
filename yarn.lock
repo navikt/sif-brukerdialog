@@ -4806,7 +4806,7 @@ __metadata:
     typescript: "npm:5.8.3"
     uuid: "npm:11.1.0"
     vitest: "npm:3.2.4"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
     zod: "npm:3.25.76"
   languageName: unknown
   linkType: soft
@@ -5776,7 +5776,7 @@ __metadata:
     react-intl: "npm:7.1.11"
     storybook: "npm:9.0.16"
     typescript: "npm:5.8.3"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
     zod: "npm:3.25.76"
   languageName: unknown
   linkType: soft
@@ -5918,7 +5918,7 @@ __metadata:
     vite: "npm:7.0.3"
     vite-plugin-checker: "npm:0.10.0"
     vitest: "npm:3.2.4"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
   peerDependencies:
     formik: 2
     react-intl: 7
@@ -6087,7 +6087,7 @@ __metadata:
     vite: "npm:7.0.3"
     vite-plugin-checker: "npm:0.10.0"
     vitest: "npm:3.2.4"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
   peerDependencies:
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-env": "workspace:*"
@@ -6131,7 +6131,7 @@ __metadata:
     react-intl: "npm:7.1.11"
     storybook: "npm:9.0.16"
     typescript: "npm:5.8.3"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
   languageName: unknown
   linkType: soft
 
@@ -9812,6 +9812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/estree@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@types/estree@npm:1.0.8"
+  checksum: 10/25a4c16a6752538ffde2826c2cc0c6491d90e69cd6187bef4a006dd2c3c45469f049e643d7e516c515f21484dc3d48fd5c870be158a5beb72f5baf3dc43e4099
+  languageName: node
+  linkType: hard
+
 "@types/event-source-polyfill@npm:1.0.5":
   version: 1.0.5
   resolution: "@types/event-source-polyfill@npm:1.0.5"
@@ -11482,6 +11489,15 @@ __metadata:
   peerDependencies:
     acorn: ^8
   checksum: 10/8bfbfbb6e2467b9b47abb4d095df717ab64fce2525da65eabee073e85e7975fb3a176b6c8bba17c99a7d8ede283a10a590272304eb54a93c4aa1af9790d47a8b
+  languageName: node
+  linkType: hard
+
+"acorn-import-phases@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "acorn-import-phases@npm:1.0.3"
+  peerDependencies:
+    acorn: ^8.14.0
+  checksum: 10/5e88a89624463ebbc9d19655d3ca6db4b53d0c2373b35051d842f417fa87d57d0e99c6a02f68b5dcd04fae64abf34b8aac5a45b7b32b87bb4d59955c527c1c4c
   languageName: node
   linkType: hard
 
@@ -15346,6 +15362,16 @@ __metadata:
     graceful-fs: "npm:^4.2.4"
     tapable: "npm:^2.2.0"
   checksum: 10/50e81c7fe2239fba5670ebce78a34709906ed3a79274aa416434f7307b252e0b7824d76a7dd403eca795571dc6afd9a44183fc45a68475e8f2fdfbae6e92fcc3
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^5.17.2":
+  version: 5.18.2
+  resolution: "enhanced-resolve@npm:5.18.2"
+  dependencies:
+    graceful-fs: "npm:^4.2.4"
+    tapable: "npm:^2.2.0"
+  checksum: 10/d1b517c908b69d1afbf87b476bbe7dd8d1daf11070127b9ec4f8553f0c6020d30f79103c938776645d569e954e4e04c326f408d2ea3820ade71e72798fb7d36f
   languageName: node
   linkType: hard
 
@@ -27216,7 +27242,7 @@ __metadata:
     react-intl: "npm:7.1.11"
     storybook: "npm:9.0.16"
     typescript: "npm:5.8.3"
-    webpack: "npm:5.99.9"
+    webpack: "npm:5.100.0"
   languageName: unknown
   linkType: soft
 
@@ -30345,6 +30371,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webpack-sources@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "webpack-sources@npm:3.3.3"
+  checksum: 10/ec5d72607e8068467370abccbfff855c596c098baedbe9d198a557ccf198e8546a322836a6f74241492576adba06100286592993a62b63196832cdb53c8bae91
+  languageName: node
+  linkType: hard
+
 "webpack-virtual-modules@npm:^0.5.0":
   version: 0.5.0
   resolution: "webpack-virtual-modules@npm:0.5.0"
@@ -30359,7 +30392,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5, webpack@npm:5.99.9":
+"webpack@npm:5":
   version: 5.99.9
   resolution: "webpack@npm:5.99.9"
   dependencies:
@@ -30393,6 +30426,44 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 10/cf4a217239bcaa892f93702639ac837a16510edb7a1326955fb042d499d297cbdb16f20a81f3be6ec041b22ab47c599c757e505fdee1dd89b7f7a1ce4337fbf3
+  languageName: node
+  linkType: hard
+
+"webpack@npm:5.100.0":
+  version: 5.100.0
+  resolution: "webpack@npm:5.100.0"
+  dependencies:
+    "@types/eslint-scope": "npm:^3.7.7"
+    "@types/estree": "npm:^1.0.8"
+    "@types/json-schema": "npm:^7.0.15"
+    "@webassemblyjs/ast": "npm:^1.14.1"
+    "@webassemblyjs/wasm-edit": "npm:^1.14.1"
+    "@webassemblyjs/wasm-parser": "npm:^1.14.1"
+    acorn: "npm:^8.15.0"
+    acorn-import-phases: "npm:^1.0.3"
+    browserslist: "npm:^4.24.0"
+    chrome-trace-event: "npm:^1.0.2"
+    enhanced-resolve: "npm:^5.17.2"
+    es-module-lexer: "npm:^1.2.1"
+    eslint-scope: "npm:5.1.1"
+    events: "npm:^3.2.0"
+    glob-to-regexp: "npm:^0.4.1"
+    graceful-fs: "npm:^4.2.11"
+    json-parse-even-better-errors: "npm:^2.3.1"
+    loader-runner: "npm:^4.2.0"
+    mime-types: "npm:^2.1.27"
+    neo-async: "npm:^2.6.2"
+    schema-utils: "npm:^4.3.2"
+    tapable: "npm:^2.1.1"
+    terser-webpack-plugin: "npm:^5.3.11"
+    watchpack: "npm:^2.4.1"
+    webpack-sources: "npm:^3.3.3"
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 10/9b80c544dc2ebc84e679a3449f1a48235bb08e8cc8be98135f5694f997876e3ffe15241f12f0345f02004bef90a82af43675225d0d7980e0d4a867fdeaeca61b
   languageName: node
   linkType: hard
 
