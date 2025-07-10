@@ -2,7 +2,6 @@
 
 import type { Options as ClientOptions, TDataShape, Client } from './client';
 import type { HentSøknaderData, HentSøknaderResponses, HentSøknaderErrors, LastNedArbeidsgivermeldingData, LastNedArbeidsgivermeldingResponses, LastNedArbeidsgivermeldingErrors, HentMineSakerData, HentMineSakerResponses, HentMineSakerErrors, HentSaksbehandlingstidData, HentSaksbehandlingstidResponses, HentSaksbehandlingstidErrors, HentDokumentData, HentDokumentResponses, HentDokumentErrors } from './types.gen';
-import { zHentSøknaderData, zHentSøknaderResponse, zLastNedArbeidsgivermeldingData, zLastNedArbeidsgivermeldingResponse, zHentMineSakerData, zHentMineSakerResponse, zHentSaksbehandlingstidData, zHentSaksbehandlingstidResponse, zHentDokumentData, zHentDokumentResponse } from './zod.gen';
 import { client as _heyApiClient } from './client.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<TData, ThrowOnError> & {
@@ -22,13 +21,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 export class SØknadController {
     public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentSøknaderData.parseAsync(data);
-            },
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentSøknaderResponse.parseAsync(data);
-            },
             security: [
                 {
                     scheme: 'bearer',
@@ -46,13 +39,7 @@ export class SØknadController {
     
     public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).get<LastNedArbeidsgivermeldingResponses, LastNedArbeidsgivermeldingErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zLastNedArbeidsgivermeldingData.parseAsync(data);
-            },
             responseType: 'blob',
-            responseValidator: async (data) => {
-                return await zLastNedArbeidsgivermeldingResponse.parseAsync(data);
-            },
             security: [
                 {
                     scheme: 'bearer',
@@ -75,13 +62,7 @@ export class SakController {
      */
     public static hentMineSaker<ThrowOnError extends boolean = true>(options?: Options<HentMineSakerData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).get<HentMineSakerResponses, HentMineSakerErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentMineSakerData.parseAsync(data);
-            },
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentMineSakerResponse.parseAsync(data);
-            },
             security: [
                 {
                     scheme: 'bearer',
@@ -99,13 +80,7 @@ export class SakController {
     
     public static hentSaksbehandlingstid<ThrowOnError extends boolean = true>(options?: Options<HentSaksbehandlingstidData, ThrowOnError>) {
         return (options?.client ?? _heyApiClient).get<HentSaksbehandlingstidResponses, HentSaksbehandlingstidErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentSaksbehandlingstidData.parseAsync(data);
-            },
             responseType: 'json',
-            responseValidator: async (data) => {
-                return await zHentSaksbehandlingstidResponse.parseAsync(data);
-            },
             security: [
                 {
                     scheme: 'bearer',
@@ -125,13 +100,7 @@ export class SakController {
 export class DokumentController {
     public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
         return (options.client ?? _heyApiClient).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
-            requestValidator: async (data) => {
-                return await zHentDokumentData.parseAsync(data);
-            },
             responseType: 'blob',
-            responseValidator: async (data) => {
-                return await zHentDokumentResponse.parseAsync(data);
-            },
             security: [
                 {
                     scheme: 'bearer',

@@ -29,7 +29,9 @@
         "gen-types": "openapi-ts --file openapi-ts.config.ts",
         "gen-types:innsyn": "openapi-ts --file openapi-ts.config-innsyn.ts",
         "gen-types:k9-sak": "openapi-ts --file openapi-ts.config-k9-sak.ts",
-        "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types"
+        "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types",
+        "fix-regex": "node scripts/fix-generated-regex.mjs",
+        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
