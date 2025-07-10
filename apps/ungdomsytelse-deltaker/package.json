@@ -60,7 +60,7 @@
         "react-intl": "7.1.11",
         "react-router-dom": "7.6.3",
         "uuid": "11.1.0",
-        "zod": "3.25.76",
+        "zod": "4.0.2",
         "zustand": "5.0.6"
     },
     "devDependencies": {
@@ -111,7 +111,7 @@
         "vite": "7.0.3",
         "vite-plugin-checker": "0.10.0",
         "vitest": "3.2.4",
-        "zod": "3.25.76"
+        "zod": "4.0.2"
     },
     "msw": {
         "workerDirectory": [

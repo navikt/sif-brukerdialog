@@ -53,7 +53,7 @@
         "react-router-dom": "7.6.3",
         "remark-gfm": "4.0.1",
         "uuid": "11.1.0",
-        "zod": "3.25.76"
+        "zod": "4.0.2"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
