@@ -25,8 +25,4 @@ Hvis en deltaker får et nytt barn, og fortsatt deltar i programmet, innhenter v
 
 Når en deltaker har arbeidsinntekt ved siden av ungdomsprogramytelsen, reduseres den månedlige utbetalingen med et beløp som tilsvarer 66 prosent av arbeidsinntekten. Likevel får de til sammen mer penger når de både har en inntekt og mottar penger gjennom ungdomsprogramytelsen, enn hvis de bare fikk ytelsen.
 
-Les mer om hvordan arbeidsinntekt påvirker ungdomsprogramytelsen
-
 Det trekkes skatt av pengene før de utbetales til deltakerne. Hvis deltakeren har frikort, trekkes det ikke skatt.
-
-Er det noe du savner informasjon om i denne artikkelen? Ta kontakt med XX.
