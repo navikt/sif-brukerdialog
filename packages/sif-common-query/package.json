@@ -8,7 +8,7 @@
     "description": "TanStack Query hooks for SIF applications",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
-        "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*",
+        "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@tanstack/react-query": "5.81.5",
         "axios": "1.10.0",

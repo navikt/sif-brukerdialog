@@ -4597,9 +4597,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/k9-sak-innsyn-k9-sak-api@workspace:*, @navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api":
+"@navikt/k9-sak-innsyn-api@workspace:*, @navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api":
   version: 0.0.0-use.local
-  resolution: "@navikt/k9-sak-innsyn-k9-sak-api@workspace:packages/k9-sak-innsyn-k9-sak-api"
+  resolution: "@navikt/k9-sak-innsyn-api@workspace:packages/k9-sak-innsyn-api"
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
@@ -4936,6 +4936,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.25.1"
     "@navikt/ds-tailwind": "npm:7.25.1"
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -5582,7 +5583,7 @@ __metadata:
   resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
-    "@navikt/k9-sak-innsyn-k9-sak-api": "workspace:*"
+    "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.81.5"

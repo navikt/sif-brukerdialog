@@ -1,5 +1,5 @@
 import { client as prosesseringClient } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/omsorgspenger/client.gen';
-import { client as innsynClient } from '@navikt/k9-brukerdialog-prosessering-api/';
+import { client as innsynClient } from '@navikt/k9-sak-innsyn-api';
 import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initApiClient } from '@navikt/sif-common-query/src/api-clients/initApiClient';
 
