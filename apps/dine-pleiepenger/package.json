@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.9.21",
+    "version": "1.9.22",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -17,9 +17,9 @@
         "test-w": "vitest"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.18.2",
+        "@grafana/faro-web-sdk": "1.19.0",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/nav-dekoratoren-moduler": "3.3.0",
+        "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@navikt/next-logger": "4.1.5",
         "@navikt/oasis": "3.8.0",
         "@navikt/sif-app-register": "workspace:*",

@@ -5,7 +5,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.33.22",
+    "version": "1.33.23",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
@@ -80,7 +80,7 @@
         "chromatic": "13.1.2",
         "compression": "1.8.0",
         "cross-env": "7.0.3",
-        "dotenv": "17.1.0",
+        "dotenv": "17.2.0",
         "express": "4.21.2",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",

@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.12",
+    "version": "0.4.13",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -10,7 +10,7 @@
         "build": "ncc build ./src/index.ts -o dist -t --no-cache"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.3.0",
+        "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@navikt/oasis": "3.8.0",
         "@navikt/sif-common-env": "workspace:*",
         "cookie-parser": "1.4.7",

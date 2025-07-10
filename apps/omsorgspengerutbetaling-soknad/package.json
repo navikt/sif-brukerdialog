@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.24.21",
+    "version": "1.24.22",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -66,7 +66,7 @@
         "chromatic": "13.1.2",
         "compression": "1.8.0",
         "cross-env": "7.0.3",
-        "dotenv": "17.1.0",
+        "dotenv": "17.2.0",
         "eslint": "9.30.1",
         "eslint-plugin-storybook": "9.0.16",
         "express": "4.21.2",
