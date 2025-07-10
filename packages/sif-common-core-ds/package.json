@@ -2,11 +2,11 @@
     "author": "navikt",
     "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.2.19",
+    "version": "10.2.20",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.18.2",
+        "@grafana/faro-web-sdk": "1.19.0",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",

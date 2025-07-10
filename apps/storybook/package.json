@@ -2,7 +2,7 @@
     "name": "sif-storybook",
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "main": "src/index.ts",
-    "version": "0.0.19",
+    "version": "0.0.20",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -32,7 +32,7 @@
         "react-intl": "7.1.11",
         "storybook": "9.0.16",
         "typescript": "5.8.3",
-        "webpack": "5.99.9"
+        "webpack": "5.100.0"
     },
     "scripts": {
         "build-storybook": "storybook build ",
