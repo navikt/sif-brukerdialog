@@ -1,4 +1,4 @@
-import { Heading, List, VStack } from '@navikt/ds-react';
+import { Box, Heading, List, VStack } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 import getLenker from '../../../utils/lenker';
 import ExternalLink from './external-link/ExternalLink';
@@ -35,14 +35,14 @@ const BehandlingAvPersonopplysningerContent = () => {
                 </List>
             </div>
 
-            <div>
+            <Box marginBlock="0 5">
                 <AppText
                     id="personopplysninger.5"
                     values={{
                         Lenke: (children) => <ExternalLink href={getLenker().personvern}>{children}</ExternalLink>,
                     }}
                 />
-            </div>
+            </Box>
         </VStack>
     );
 };
