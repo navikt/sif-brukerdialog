@@ -25,8 +25,7 @@
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "openapi-ts": "openapi-ts",
-        "gen-types": "yarn openapi-ts",
+        "gen-types": "openapi-ts --file openapi-ts.config.ts",
         "gen-types:omsorgspenger": "openapi-ts --file openapi-ts.config-omsorgspenger.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file openapi-ts.config-ungdomsytelse.ts",
         "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse"

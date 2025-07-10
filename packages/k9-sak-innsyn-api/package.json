@@ -25,8 +25,11 @@
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "openapi-ts": "openapi-ts",
-        "gen-types": "yarn openapi-ts"
+        "build": "tsc",
+        "gen-types": "openapi-ts --file openapi-ts.config.ts",
+        "gen-types:innsyn": "openapi-ts --file openapi-ts.config-innsyn.ts",
+        "gen-types:k9-sak": "openapi-ts --file openapi-ts.config-k9-sak.ts",
+        "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
