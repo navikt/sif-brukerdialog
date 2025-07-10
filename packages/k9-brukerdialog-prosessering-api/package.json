@@ -28,7 +28,7 @@
         "gen-types": "openapi-ts --file openapi-ts.config.ts",
         "gen-types:omsorgspenger": "openapi-ts --file openapi-ts.config-omsorgspenger.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file openapi-ts.config-ungdomsytelse.ts",
-        "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse"
+        "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse && yarn gen-types"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",

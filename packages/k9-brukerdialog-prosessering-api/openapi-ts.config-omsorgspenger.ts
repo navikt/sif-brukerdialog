@@ -22,6 +22,6 @@ export default defineConfig({
             throwOnError: true,
             baseUrl: '',
         },
-        'zod',
+        { name: 'zod', exportFromIndex: true },
     ],
 });

@@ -303,8 +303,7 @@ export type InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError =
-    InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
+export type InnsendingOmsorgspengerKroniskSyktBarnSøknadError = InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors[keyof InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors];
 
 export type InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses = {
     /**
