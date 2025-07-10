@@ -1,9 +1,6 @@
 // Omsorgspenger API
 export * as omsorgspenger from './generated/omsorgspenger';
 
-// Pleiepenger API
-export * as pleiepenger from './generated/pleiepenger';
-
 // Ungdomsytelse API
 export * as ungdomsytelse from './generated/ungdomsytelse';
 
