@@ -1,11 +1,27 @@
 import { FormSummary } from '@navikt/ds-react';
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';
+import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { BarnToSendToApi, OmBarnetApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { getRelasjonTilBarnetIntlKey } from '../../om-barnet/omBarnetStepUtils';
-import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
+
+const apiValueToSøkersRelasjonTilBarnet = (
+    apiValue: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER',
+): SøkersRelasjonTilBarnet => {
+    switch (apiValue) {
+        case 'MOR':
+            return SøkersRelasjonTilBarnet.MOR;
+        case 'FAR':
+            return SøkersRelasjonTilBarnet.FAR;
+        case 'FOSTERFORELDER':
+            return SøkersRelasjonTilBarnet.FOSTERFORELDER;
+        case 'ADOPTIVFORELDER':
+            return SøkersRelasjonTilBarnet.ADOPTIVFORELDER;
+    }
+};
 
 interface Props {
     apiData: OmBarnetApiData;
@@ -24,7 +40,7 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    {apiData.barn._erRegistrertBarn ? (
+                    {apiData.barn.aktørId ? (
                         <RegistrertBarnOppsummering barn={apiData.barn} />
                     ) : (
                         <AnnetBarnOppsummering barn={apiData.barn} relasjonTilBarnet={apiData.relasjonTilBarnet} />
@@ -106,17 +122,17 @@ const AnnetBarnOppsummering = ({
     relasjonTilBarnet,
 }: {
     barn: BarnToSendToApi;
-    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+    relasjonTilBarnet?: omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet'];
 }) => {
     const { text } = useAppIntl();
     return (
         <>
-            {barn.norskIdentitetsnummer ? (
+            {barn.norskIdentifikator ? (
                 <FormSummary.Answer>
                     <FormSummary.Label>
                         <AppText id="steg.oppsummering.barnet.fnr" />
                     </FormSummary.Label>
-                    <FormSummary.Value>{barn.norskIdentitetsnummer}</FormSummary.Value>
+                    <FormSummary.Value>{barn.norskIdentifikator}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
             {barn.navn ? (
@@ -140,7 +156,9 @@ const AnnetBarnOppsummering = ({
                     <FormSummary.Label>
                         <AppText id="steg.oppsummering.barnet.søkersRelasjonTilBarnet" />
                     </FormSummary.Label>
-                    <FormSummary.Value>{text(getRelasjonTilBarnetIntlKey(relasjonTilBarnet))}</FormSummary.Value>
+                    <FormSummary.Value>
+                        {text(getRelasjonTilBarnetIntlKey(apiValueToSøkersRelasjonTilBarnet(relasjonTilBarnet)))}
+                    </FormSummary.Value>
                 </FormSummary.Answer>
             )}
         </>

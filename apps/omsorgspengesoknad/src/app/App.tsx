@@ -4,12 +4,12 @@ import { Navigate, Route } from 'react-router-dom';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
-import { initK9BrukerdialogProsesseringApiClient, initK9SakInnsynApiClient } from '@navikt/sif-common-query';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { initSøknadApiClients as initSøknadApiClients } from './api/initSøknadApiClient';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -29,8 +29,7 @@ const queryClient = new QueryClient();
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-initK9BrukerdialogProsesseringApiClient();
-initK9SakInnsynApiClient();
+initSøknadApiClients();
 
 const App = () => {
     useEffect(() => {

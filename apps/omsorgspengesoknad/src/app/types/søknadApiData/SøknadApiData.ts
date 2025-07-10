@@ -1,18 +1,9 @@
-import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
-import { BarnSammeAdresse } from '../BarnSammeAdresse';
-import { Barn, OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type BarnToSendToApi = Barn & {
-    navn: string;
-    aktørId: string;
-    _erRegistrertBarn: boolean;
-};
+export type BarnToSendToApi = omsorgspenger.Barn;
 
-export interface SøknadApiData
-    extends Omit<OmsorgspengerKroniskSyktBarnSøknad, 'barn' | 'relasjonTilBarnet' | 'sammeAdresse'> {
+export interface SøknadApiData extends omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad {
     barn: BarnToSendToApi;
-    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
-    sammeAdresse?: BarnSammeAdresse;
 }
 
 export type DataBruktTilUtledningAnnetData = Pick<
@@ -23,8 +14,6 @@ export type DataBruktTilUtledningAnnetData = Pick<
 export type OmBarnetApiData = Pick<
     SøknadApiData,
     | 'barn'
-    | 'relasjonTilBarnet'
-    | 'kroniskEllerFunksjonshemming'
     | 'relasjonTilBarnet'
     | 'kroniskEllerFunksjonshemming'
     | 'sammeAdresse'
