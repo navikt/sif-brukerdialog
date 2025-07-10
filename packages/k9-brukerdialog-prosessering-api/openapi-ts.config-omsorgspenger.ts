@@ -20,6 +20,7 @@ export default defineConfig({
         {
             name: '@hey-api/client-axios',
             throwOnError: true,
+            baseUrl: '',
         },
         'zod',
     ],
