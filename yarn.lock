@@ -4901,7 +4901,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
     helmet: "npm:8.1.0"
@@ -4979,7 +4979,7 @@ __metadata:
     csp-header: "npm:6.1.0"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     express: "npm:4.21.2"
     flat: "npm:6.0.1"
     formik: "npm:2.4.6"
@@ -5122,7 +5122,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
     helmet: "npm:8.1.0"
@@ -5237,7 +5237,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-plugin-storybook: "npm:9.0.16"
     express: "npm:4.21.2"
@@ -5312,7 +5312,7 @@ __metadata:
     compression: "npm:1.8.0"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-plugin-storybook: "npm:9.0.16"
     express: "npm:4.21.2"
@@ -5389,7 +5389,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-plugin-prettier: "npm:5.5.1"
     eslint-plugin-react: "npm:7.37.5"
@@ -5468,7 +5468,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-plugin-storybook: "npm:9.0.16"
     express: "npm:4.21.2"
@@ -5562,7 +5562,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-plugin-storybook: "npm:9.0.16"
     express: "npm:4.21.2"
@@ -5641,7 +5641,7 @@ __metadata:
     csp-header: "npm:6.1.0"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint-plugin-storybook: "npm:9.0.16"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
@@ -6264,7 +6264,7 @@ __metadata:
     csp-header: "npm:6.1.0"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
     globals: "npm:16.3.0"
@@ -15144,10 +15144,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:17.1.0":
-  version: 17.1.0
-  resolution: "dotenv@npm:17.1.0"
-  checksum: 10/fa8c04b2c490baf38b29f50ef4d3a10e753f6df033c7ca195f10129ca4b0c699b72f85e38c57a516090ead019841228891562677b0929eb89974a23f01a983d5
+"dotenv@npm:17.2.0":
+  version: 17.2.0
+  resolution: "dotenv@npm:17.2.0"
+  checksum: 10/73d57d7ed8ae46e45c0b1dea382de3f180e71d20a3a4e10a13a3d5271a08639166e6647bb6dc0fa160ea440a55e85ff9be233150d9037d268c823cb72859d87f
   languageName: node
   linkType: hard
 
