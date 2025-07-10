@@ -1,4 +1,5 @@
 import { defineConfig } from '@hey-api/openapi-ts';
+import { defaultPlugins } from '@hey-api/openapi-ts';
 
 export default defineConfig({
     input: 'https://k9-sak-innsyn-api.intern.dev.nav.no/v3/api-docs/innsyn',
@@ -8,20 +9,13 @@ export default defineConfig({
         path: './src/generated/innsyn', // Separat mappe
     },
     plugins: [
-        {
-            name: '@hey-api/typescript',
-            enums: 'typescript',
-        },
-        {
-            name: '@hey-api/sdk',
-            asClass: true,
-            validator: true,
-        },
-        {
-            name: '@hey-api/client-axios',
-            throwOnError: true,
-            baseUrl: '',
-        },
+        ...defaultPlugins,
         'zod',
+        { asClass: true, name: '@hey-api/sdk', validator: true },
+        { name: '@hey-api/client-axios', throwOnError: true, baseUrl: '' },
+        {
+            enums: 'typescript',
+            name: '@hey-api/typescript',
+        },
     ],
 });

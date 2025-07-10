@@ -58,8 +58,7 @@ export type HentSisteGyldigeVedtakForAktorIdErrors = {
     500: ProblemDetail;
 };
 
-export type HentSisteGyldigeVedtakForAktorIdError =
-    HentSisteGyldigeVedtakForAktorIdErrors[keyof HentSisteGyldigeVedtakForAktorIdErrors];
+export type HentSisteGyldigeVedtakForAktorIdError = HentSisteGyldigeVedtakForAktorIdErrors[keyof HentSisteGyldigeVedtakForAktorIdErrors];
 
 export type HentSisteGyldigeVedtakForAktorIdResponses = {
     /**
@@ -68,8 +67,7 @@ export type HentSisteGyldigeVedtakForAktorIdResponses = {
     200: HentSisteGyldigeVedtakForAktorIdResponse;
 };
 
-export type HentSisteGyldigeVedtakForAktorIdResponse2 =
-    HentSisteGyldigeVedtakForAktorIdResponses[keyof HentSisteGyldigeVedtakForAktorIdResponses];
+export type HentSisteGyldigeVedtakForAktorIdResponse2 = HentSisteGyldigeVedtakForAktorIdResponses[keyof HentSisteGyldigeVedtakForAktorIdResponses];
 
 export type HentOpplæringsinstitusjonerData = {
     body?: never;
@@ -97,8 +95,7 @@ export type HentOpplæringsinstitusjonerErrors = {
     500: ProblemDetail;
 };
 
-export type HentOpplæringsinstitusjonerError =
-    HentOpplæringsinstitusjonerErrors[keyof HentOpplæringsinstitusjonerErrors];
+export type HentOpplæringsinstitusjonerError = HentOpplæringsinstitusjonerErrors[keyof HentOpplæringsinstitusjonerErrors];
 
 export type HentOpplæringsinstitusjonerResponses = {
     /**
@@ -107,8 +104,7 @@ export type HentOpplæringsinstitusjonerResponses = {
     200: Array<Opplæringsinstitusjon>;
 };
 
-export type HentOpplæringsinstitusjonerResponse =
-    HentOpplæringsinstitusjonerResponses[keyof HentOpplæringsinstitusjonerResponses];
+export type HentOpplæringsinstitusjonerResponse = HentOpplæringsinstitusjonerResponses[keyof HentOpplæringsinstitusjonerResponses];
 
 export type ClientOptions = {
     baseURL: 'https://k9-sak-innsyn-api.intern.dev.nav.no' | (string & {});
