@@ -4935,6 +4935,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.25.1"
     "@navikt/ds-tailwind": "npm:7.25.1"
+    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
