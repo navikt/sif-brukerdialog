@@ -4,7 +4,7 @@ import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
-import { useMellomlagring } from './useMellomlagring';
+import { useSøknadMellomlagring } from './useSøknadMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
@@ -13,7 +13,7 @@ export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { locale } = useAppIntl();
-    const { slettMellomlagring } = useMellomlagring();
+    const { slettMellomlagring } = useSøknadMellomlagring();
     const navigateTo = useNavigate();
 
     const { logSoknadSent } = useAmplitudeInstance();

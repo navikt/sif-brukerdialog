@@ -1,8 +1,8 @@
 import { Alert, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { InvalidParameterViolation } from '@navikt/sif-common-query';
 import { AppText } from '../../../../i18n';
-import { InvalidParameterViolation } from '@navikt/sif-common-api';
 
 const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
     const erBeskrivelseFeil = invalidParameter.parameterName === 'høyereRisikoForFraværBeskrivelse';

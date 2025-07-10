@@ -564,6 +564,12 @@ export const zArbeidsgiverOlp = z.object({
     arbeidsforhold: zArbeidsforholdOlp.optional(),
 });
 
+export const zEttersendingAvVedlegg = z.object({
+    skalEttersendeVedlegg: z.boolean(),
+    vedleggSomSkalEttersendes: z.array(z.enum(['LEGEERKLÆRING', 'KURSINFORMASJON', 'ANNET'])).optional(),
+    isValid: z.boolean(),
+});
+
 export const zFrilansOlp = z.object({
     startdato: z.string().date(),
     sluttdato: z.string().date().optional(),
@@ -605,7 +611,7 @@ export const zOpplæringspengerSøknad = z.object({
     fraOgMed: z.string().date(),
     tilOgMed: z.string().date(),
     medlemskap: zMedlemskap,
-    utenlandsoppholdIPerioden: zUtenlandsoppholdIPerioden,
+    utenlandsoppholdIPerioden: zUtenlandsoppholdIPerioden.optional(),
     ferieuttakIPerioden: zFerieuttakIPerioden.optional(),
     opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
     utenlandskNæring: z.array(zUtenlandskNæring),
@@ -616,6 +622,7 @@ export const zOpplæringspengerSøknad = z.object({
     stønadGodtgjørelse: zStønadGodtgjørelse.optional(),
     harVærtEllerErVernepliktig: z.boolean().optional(),
     dataBruktTilUtledningAnnetData: z.string().optional(),
+    ettersendingAvVedlegg: zEttersendingAvVedlegg.optional(),
     kurs: zKurs,
 });
 

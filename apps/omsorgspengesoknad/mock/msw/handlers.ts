@@ -12,10 +12,19 @@ export const getHandlers = () => [
             headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
         });
     }),
-    http.get('**/har-gyldig-vedtak', async () => {
-        return HttpResponse.json({
-            harInnvilgedeBehandlinger: false,
-        });
+    http.post('**/har-gyldig-vedtak', async ({ request }) => {
+        const body = (await request.json()) as { pleietrengendeAktørId: string };
+        const { pleietrengendeAktørId } = body;
+
+        return pleietrengendeAktørId !== '123'
+            ? HttpResponse.json({
+                  harInnvilgedeBehandlinger: false,
+              })
+            : HttpResponse.json({
+                  harInnvilgedeBehandlinger: true,
+                  saksnummer: '123',
+                  vedtaksdato: '2020-01-01',
+              });
     }),
     ...getMellomlagringHandlers('omsorgspenger-utvidet-rett-mellomlagring'),
 

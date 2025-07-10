@@ -20,10 +20,11 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
             return {
                 ...fellesInfo,
                 barn: {
+                    norskIdentitetsnummer: aktørId,
                     aktørId,
                     navn: formatName(fornavn, etternavn, mellomnavn),
-                    norskIdentifikator: null,
                     fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
+                    _erRegistrertBarn: true,
                 },
             };
         }
@@ -31,10 +32,11 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
             return {
                 ...fellesInfo,
                 barn: {
-                    aktørId: null,
+                    norskIdentitetsnummer: omBarnet.barnetsFødselsnummer,
+                    aktørId: omBarnet.barnetsFødselsnummer,
                     navn: omBarnet.barnetsNavn,
-                    norskIdentifikator: omBarnet.barnetsFødselsnummer,
                     fødselsdato: omBarnet.barnetsFødselsdato,
+                    _erRegistrertBarn: false,
                 },
                 relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
             };
