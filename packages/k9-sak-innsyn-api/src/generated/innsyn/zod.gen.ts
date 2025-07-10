@@ -23,10 +23,7 @@ export const zAnnenAktivitet = z.object({
 export const zAnnenForelder = z.object({
     norskIdentitetsnummer: z.string(),
     situasjon: z.enum(['INNLAGT_I_HELSEINSTITUSJON', 'UTØVER_VERNEPLIKT', 'FENGSEL', 'SYKDOM', 'ANNET']),
-    situasjonBeskrivelse: z
-        .string()
-
-        .optional(),
+    situasjonBeskrivelse: z.string().optional(),
     periode: z.string().optional(),
 });
 
@@ -136,24 +133,14 @@ export const zJournalpost = z.object({
 });
 
 export const zKursholder = z.object({
-    navn: z
-        .string()
-        .min(0)
-        .max(100)
-
-        .optional(),
+    navn: z.string().min(0).max(100).optional(),
     institusjonsidentifikator: z.string().uuid().optional(),
 });
 
 export const zReise = z.object({
     reiserUtenforKursdager: z.boolean(),
     reisedager: z.array(z.string().date()).optional(),
-    reisedagerBeskrivelse: z
-        .string()
-        .min(0)
-        .max(4000)
-
-        .optional(),
+    reisedagerBeskrivelse: z.string().min(0).max(4000).optional(),
 });
 
 export const zKurs = z.object({
@@ -213,12 +200,7 @@ export const zOmsorgspengerKroniskSyktBarn = zYtelse
             barn: zBarn,
             kroniskEllerFunksjonshemming: z.boolean(),
             høyereRisikoForFravær: z.boolean().optional(),
-            høyereRisikoForFraværBeskrivelse: z
-                .string()
-                .min(1)
-                .max(1000)
-
-                .optional(),
+            høyereRisikoForFraværBeskrivelse: z.string().min(1).max(1000).optional(),
             dataBruktTilUtledning: zDataBruktTilUtledning.optional(),
         }),
     );
@@ -241,10 +223,7 @@ export const zOmsorgspengerMidlertidigAlene = zYtelse
 export const zSelvstendigNæringsdrivende = z.object({
     perioder: z.object({}),
     organisasjonsnummer: z.string().optional(),
-    virksomhetNavn: z
-        .string()
-
-        .optional(),
+    virksomhetNavn: z.string().optional(),
 });
 
 export const zUtenlandskArbeidsforhold = z.object({
@@ -382,21 +361,12 @@ export const zPleipengerLivetsSluttfase = zYtelse
 
 export const zSelvstendigNæringsdrivendePeriodeInfo = z.object({
     virksomhetstyper: z.array(z.enum(['DAGMAMMA', 'FISKE', 'JORDBRUK_SKOGBRUK', 'ANNEN', '-'])).min(1),
-    regnskapsførerNavn: z
-        .string()
-
-        .optional(),
-    regnskapsførerTlf: z
-        .string()
-
-        .optional(),
+    regnskapsførerNavn: z.string().optional(),
+    regnskapsførerTlf: z.string().optional(),
     erVarigEndring: z.boolean().optional(),
     erNyIArbeidslivet: z.boolean().optional(),
     endringDato: z.string().date().optional(),
-    endringBegrunnelse: z
-        .string()
-
-        .optional(),
+    endringBegrunnelse: z.string().optional(),
     bruttoInntekt: z.number().gte(0).lte(10000000).optional(),
     erNyoppstartet: z.boolean().optional(),
     registrertIUtlandet: z.boolean().optional(),
