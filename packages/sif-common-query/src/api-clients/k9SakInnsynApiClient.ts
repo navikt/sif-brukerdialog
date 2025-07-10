@@ -1,4 +1,4 @@
-import { client } from '@navikt/k9-sak-innsyn-k9-sak-api';
+import { client } from '@navikt/k9-sak-innsyn-api';
 import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { initApiClient } from './initApiClient';
 

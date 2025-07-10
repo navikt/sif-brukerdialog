@@ -1,4 +1,4 @@
-import { HentSisteGyldigeVedtakForAktorIdResponse } from '@navikt/k9-sak-innsyn-k9-sak-api';
+import { HentSisteGyldigeVedtakForAktorIdResponse } from '@navikt/k9-sak-innsyn-api';
 
 export interface GyldigeVedtak {
     [key: string]: HentSisteGyldigeVedtakForAktorIdResponse;

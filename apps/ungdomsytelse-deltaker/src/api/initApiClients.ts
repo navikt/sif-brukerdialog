@@ -1,7 +1,7 @@
 import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/ungdomsytelse/client.gen';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
+import { commonRequestHeader, isUnauthorized } from '@navikt/ung-common';
 import { v4 } from 'uuid';
-import { commonRequestHeader, isUnauthorized } from './';
 
 export const initApiClients = () => {
     /** Set config for generert klient */
