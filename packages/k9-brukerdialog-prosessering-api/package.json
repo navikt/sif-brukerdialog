@@ -26,8 +26,10 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "fix": "node ./scripts/fixGen.mjs",
-        "gen-types": "yarn openapi-ts && yarn fix"
+        "gen-types": "yarn openapi-ts",
+        "gen-types:omsorgspenger": "openapi-ts --file openapi-ts.config-omsorgspenger.ts",
+        "gen-types:ungdomsytelse": "openapi-ts --file openapi-ts.config-ungdomsytelse.ts",
+        "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
