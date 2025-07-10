@@ -18,7 +18,7 @@
         "@navikt/sif-validation": "workspace:*"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.3.0",
+        "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
@@ -28,7 +28,7 @@
         "js-cookie": "3.0.5",
         "jsdom": "26.1.0",
         "postcss": "8.5.6",
-        "webpack": "5.99.9"
+        "webpack": "5.100.0"
     },
     "devDependencies": {
         "@babel/core": "7.28.0",
