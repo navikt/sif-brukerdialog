@@ -22,6 +22,7 @@ import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
+import { isApiAxiosError } from '@navikt/sif-common-query';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -56,7 +57,10 @@ const OppsummeringStep = () => {
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
-    const invalidParameters = sendSøknadError ? getInvalidParametersFromAxiosError(sendSøknadError) : undefined;
+    const invalidParameters =
+        sendSøknadError && isApiAxiosError(sendSøknadError)
+            ? getInvalidParametersFromAxiosError(sendSøknadError.originalError)
+            : undefined;
 
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
