@@ -1,4 +1,4 @@
-import { client } from '@navikt/k9-brukerdialog-prosessering-api';
+import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/ungdomsytelse/client.gen';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { v4 } from 'uuid';
 import { commonRequestHeader, isUnauthorized } from './';

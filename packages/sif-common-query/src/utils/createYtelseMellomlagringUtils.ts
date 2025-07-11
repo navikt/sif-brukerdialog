@@ -1,3 +1,4 @@
+import { jsonSort } from '@navikt/sif-common-utils';
 import objectHash from 'object-hash';
 import {
     hentYtelseMellomlagring,
@@ -5,11 +6,9 @@ import {
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
 import { MellomlagringYtelse } from '../types/mellomlagring';
-import { jsonSort } from '@navikt/sif-common-utils';
 
 /**
- * Mellomlagring av state med gyldighetssjekk basert på metadata.
- * Mellomlagring blir ugyldig hvis metadata endres siden lagring.
+ * Mellomlagring av state med gyldighetssjekk basert på metadata. Mellomlagring blir ugyldig hvis metadata endres siden lagring.
  */
 
 interface YtelseMellomlagringUtils<State, Metadata = unknown> {
