@@ -12,7 +12,7 @@ export const zProblemDetail = z.object({
 });
 
 export const zBarn = z.object({
-    norskIdentifikator: z.string().length(11).optional(),
+    norskIdentifikator: z.string().length(11).regex(/^\d+$/).optional(),
     'fødselsdato': z.string().date().optional(),
     navn: z.string().min(1),
     'aktørId': z.string().optional()
