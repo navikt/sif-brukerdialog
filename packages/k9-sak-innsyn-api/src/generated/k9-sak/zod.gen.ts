@@ -8,34 +8,34 @@ export const zProblemDetail = z.object({
     status: z.number().int().optional(),
     detail: z.string().optional(),
     instance: z.string().url().optional(),
-    properties: z.object({}).optional()
+    properties: z.object({}).optional(),
 });
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
-    'pleietrengendeAktørId': z.string()
+    pleietrengendeAktørId: z.string(),
 });
 
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
     saksnummer: z.string().optional(),
-    vedtaksdato: z.string().date().optional()
+    vedtaksdato: z.string().date().optional(),
 });
 
 export const zPeriode = z.object({
     fom: z.string().date(),
-    tom: z.string().date()
+    tom: z.string().date(),
 });
 
 export const zOpplæringsinstitusjon = z.object({
     uuid: z.string().uuid(),
     navn: z.string(),
-    perioder: z.array(zPeriode)
+    perioder: z.array(zPeriode),
 });
 
 export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
     body: zOmsorgsdagerKronsinskSuktBarnRequestDto,
     path: z.never().optional(),
-    query: z.never().optional()
+    query: z.never().optional(),
 });
 
 /**
@@ -46,7 +46,7 @@ export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedta
 export const zHentOpplæringsinstitusjonerData = z.object({
     body: z.never().optional(),
     path: z.never().optional(),
-    query: z.never().optional()
+    query: z.never().optional(),
 });
 
 /**
