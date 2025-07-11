@@ -5,7 +5,7 @@ import Article from './components/Article';
 const DrawerArticles = () => {
     return (
         <VStack gap="10">
-            <VStack gap="2">
+            <VStack gap="4">
                 <Heading level="2" size="medium" spacing={true}>
                     Snakk med deltaker om dette
                 </Heading>
@@ -44,11 +44,12 @@ const DrawerArticles = () => {
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
                         Sjekk at deltakerne har en bankkonto som de kan få utbetalt pengene på. Kontonummeret må de
-                        registrere på Min side på nav.no. Dette får de beskjed om i søknaden.
+                        registrere på Min side på nav.no. Dette får de beskjed om i søknaden. Deltakere som allerede har
+                        registrert kontonummeret sitt hos Nav, trenger ikke å gjøre noe.
                     </ExpansionCard.Content>
                 </ExpansionCard>
             </VStack>
-            <VStack gap="2">
+            <VStack gap="4">
                 <Heading level="2" size="medium" spacing={true}>
                     Om ungdomsprogramytelsen
                 </Heading>
@@ -66,9 +67,9 @@ const DrawerArticles = () => {
                     </ExpansionCard>
                 ))}
             </VStack>
-            <VStack gap="2">
+            <VStack gap="4">
                 <Heading level="2" size="medium" spacing={true}>
-                    Deltaker, deltakelse og oppgaver
+                    Oppgaver og forhåndsvarsel
                 </Heading>
                 {/* <ExpansionCard aria-label="Eksempel på en deltakerreise" size="small">
                     <ExpansionCard.Header>
@@ -138,7 +139,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Enkeltoppgaver
                             </Heading>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Send inn søknad
                                 </Heading>
@@ -147,17 +148,25 @@ const DrawerArticles = () => {
                                     sende inn søknad.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Rapportere inntekt
                                 </Heading>
                                 <BodyLong>
                                     Hver måned mottar deltakeren en oppgave om å rapportere inntekt for forrige måned
-                                    (gjelder ikke måneden deltakeren starter i programmet). Hvis deltakeren ikke
-                                    rapporterer noe, vil det bli registrert som at hen ikke har hatt inntekt den
-                                    måneden.
+                                    (gjelder ikke måneden deltakeren starter i programmet). For alle andre måneder skal
+                                    deltakerne når måneden er slutt rapportere arbeidsinntekt fra og med den 1. og til
+                                    og med den 5. i påfølgende måned.
                                 </BodyLong>
-                                <BodyLong>Noe om viktigheten av å rapportere inntekt</BodyLong>
+                                <BodyLong>
+                                    Hvis deltakeren ikke rapporterer noe, vil det bli registrert som at hen ikke har
+                                    hatt inntekt den måneden.
+                                </BodyLong>
+                                <BodyLong>
+                                    Deltakere som melder fra om riktig inntekt, slipper at kontrollen av inntekt mot
+                                    register fører til forhåndsvarsling, som igjen kan resultere i for sen utbetaling.
+                                    Det er derfor viktig å motivere deltakere med inntekt til å melde fra om denne.
+                                </BodyLong>
                             </VStack>
                             <Heading level="2" size="medium">
                                 Oppgaver knyttet til forhåndsvarsling
@@ -167,7 +176,7 @@ const DrawerArticles = () => {
                                 en behandling som gjelder ungdomsprogramytelsen, så blir deltaker forhåndsvarslet jf.
                                 forvaltningsloven § 16.{' '}
                             </BodyLong>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Endret start- eller sluttdato
                                 </Heading>
@@ -182,7 +191,7 @@ const DrawerArticles = () => {
                                     snakke med veileder først.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Avvik i inntekt
                                 </Heading>
@@ -199,7 +208,7 @@ const DrawerArticles = () => {
                             <Heading level="2" size="medium">
                                 Oppgaver som blir avbrutt eller utløper
                             </Heading>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Avbrutt oppgave
                                 </Heading>
@@ -210,7 +219,7 @@ const DrawerArticles = () => {
                                     oppgaven automatisk avbrutt og erstattet med en ny.
                                 </BodyLong>
                             </VStack>
-                            <VStack gap="2">
+                            <VStack gap="4">
                                 <Heading level="3" size="small">
                                     Utløpt oppgave
                                 </Heading>

@@ -8,5 +8,5 @@ Dersom deltakeren ikke meldes ut, har deltakeren rett til å motta penger gjenno
 
 ## Deltakerne får ytelsen i maks ett år
 
-Deltakerne kan som hovedregel ikke delta i programmet i mer enn ett kalenderår, og deretter kan de motta ytelsen i inntil åtte nye uker.  
+Deltakerne kan som hovedregel ikke delta i ungdomsprogrammet i mer enn ett kalenderår, og deretter kan de motta ytelsen i inntil åtte nye uker.  
 Vedtaksløsningen vil automatisk sende et forhåndsvarsel til deltakeren før det fattes vedtak om opphør.
