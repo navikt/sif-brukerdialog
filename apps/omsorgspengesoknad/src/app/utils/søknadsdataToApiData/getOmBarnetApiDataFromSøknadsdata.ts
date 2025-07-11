@@ -48,7 +48,6 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
             return {
                 ...fellesInfo,
                 barn: {
-                    norskIdentifikator: aktørId,
                     aktørId,
                     navn: formatName(fornavn, etternavn, mellomnavn),
                     fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),

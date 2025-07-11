@@ -9,7 +9,7 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import { initApiClients as initApiClients } from './api/initApiClients';
+import { initApiClients } from './api/initApiClients';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';

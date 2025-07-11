@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
-import { OmsorgspengerUtvidetRettController } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/omsorgspenger';
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { useStateMellomlagring } from './useStateMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
@@ -20,7 +20,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
-        OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad({
+        omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad({
             body: apiData,
             headers: {
                 'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
@@ -28,6 +28,7 @@ export const useSendSøknad = () => {
         })
             .then(onSøknadSendSuccess)
             .catch((error) => {
+                console.error(error);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
