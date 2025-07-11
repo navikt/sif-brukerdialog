@@ -17,7 +17,14 @@ export type Arbeidsgiver = {
     utbetalingsårsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
     perioder?: Array<Utbetalingsperiode>;
     konfliktForklaring?: string;
-    årsakNyoppstartet?: 'JOBBET_HOS_ANNEN_ARBEIDSGIVER' | 'VAR_FRILANSER' | 'VAR_SELVSTENDIGE' | 'SØKTE_ANDRE_UTBETALINGER' | 'ARBEID_I_UTLANDET' | 'UTØVDE_VERNEPLIKT' | 'ANNET';
+    årsakNyoppstartet?:
+        | 'JOBBET_HOS_ANNEN_ARBEIDSGIVER'
+        | 'VAR_FRILANSER'
+        | 'VAR_SELVSTENDIGE'
+        | 'SØKTE_ANDRE_UTBETALINGER'
+        | 'ARBEID_I_UTLANDET'
+        | 'UTØVDE_VERNEPLIKT'
+        | 'ANNET';
     arbeidsgiverHarUtbetaltLønn?: boolean;
     harHattFraværHosArbeidsgiver?: boolean;
 };
@@ -340,7 +347,8 @@ export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError = InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadError =
+    InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors[keyof InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses = {
     /**

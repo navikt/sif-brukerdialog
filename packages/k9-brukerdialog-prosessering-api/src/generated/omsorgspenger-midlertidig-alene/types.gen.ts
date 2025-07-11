@@ -308,7 +308,8 @@ export type InnsendingOmsorgspengerMidlertidigAleneSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadError = InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
+export type InnsendingOmsorgspengerMidlertidigAleneSøknadError =
+    InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
 
 export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
     /**

@@ -15,7 +15,15 @@ export type Ettersendelse = {
     språk: string;
     vedlegg: Array<string>;
     beskrivelse?: string;
-    søknadstype: 'PLEIEPENGER_SYKT_BARN' | 'PLEIEPENGER_LIVETS_SLUTTFASE' | 'OMP_UT_SNF' | 'OMP_UT_ARBEIDSTAKER' | 'OMP_UTV_KS' | 'OMP_UTV_MA' | 'OMP_UTV_AO' | 'OPPLÆRINGSPENGER';
+    søknadstype:
+        | 'PLEIEPENGER_SYKT_BARN'
+        | 'PLEIEPENGER_LIVETS_SLUTTFASE'
+        | 'OMP_UT_SNF'
+        | 'OMP_UT_ARBEIDSTAKER'
+        | 'OMP_UTV_KS'
+        | 'OMP_UTV_MA'
+        | 'OMP_UTV_AO'
+        | 'OPPLÆRINGSPENGER';
     ettersendelsesType: 'LEGEERKLÆRING' | 'ANNET';
     søkerNorskIdent?: string;
     pleietrengende?: Pleietrengende;

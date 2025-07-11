@@ -377,7 +377,8 @@ export type InnsendingOmsorgspengerutbetalingSnfSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgspengerutbetalingSnfSøknadError = InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
+export type InnsendingOmsorgspengerutbetalingSnfSøknadError =
+    InnsendingOmsorgspengerutbetalingSnfSøknadErrors[keyof InnsendingOmsorgspengerutbetalingSnfSøknadErrors];
 
 export type InnsendingOmsorgspengerutbetalingSnfSøknadResponses = {
     /**

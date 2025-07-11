@@ -299,7 +299,8 @@ export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError = InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
+export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadError =
+    InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors[keyof InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors];
 
 export type InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses = {
     /**

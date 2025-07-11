@@ -210,7 +210,9 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdPeriodeInfo = {
     land: string;
-    årsak?: 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning' | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
+    årsak?:
+        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
+        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
     erSammenMedBarnet?: boolean;
 };
 

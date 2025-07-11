@@ -473,7 +473,8 @@ export type InnsendingOpplæringspengerSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingOpplæringspengerSøknadError = InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
+export type InnsendingOpplæringspengerSøknadError =
+    InnsendingOpplæringspengerSøknadErrors[keyof InnsendingOpplæringspengerSøknadErrors];
 
 export type InnsendingOpplæringspengerSøknadResponses = {
     /**

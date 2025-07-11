@@ -211,7 +211,10 @@ export type PleiepengerSyktBarnSøknad = {
      * @deprecated
      */
     stønadGodtgjørelse?: StønadGodtgjørelse;
-    fosterhjemgodtgjørelse?: FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
+    fosterhjemgodtgjørelse?:
+        | FosterhjemsgodtgjørelseFrikjøpt
+        | FosterhjemsgodtgjørelseIkkeFrikjøpt
+        | FosterhjemsgodtgjørelseMottarIkke;
     omsorgsstønad?: OmsorgsstønadMottarDelerAvPerioden | OmsorgsstønadMottarHelePerioden | OmsorgsstønadMottarIkke;
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     barnRelasjon?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
@@ -255,7 +258,10 @@ export type Utenlandsopphold = {
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: Array<Periode>;
-    getårsak?: 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING' | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD' | 'ANNET';
+    getårsak?:
+        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
+        | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
+        | 'ANNET';
 };
 
 export type UtenlandsoppholdIPerioden = {
@@ -559,7 +565,8 @@ export type InnsendingPleiepengerSyktBarnSøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingPleiepengerSyktBarnSøknadError = InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
+export type InnsendingPleiepengerSyktBarnSøknadError =
+    InnsendingPleiepengerSyktBarnSøknadErrors[keyof InnsendingPleiepengerSyktBarnSøknadErrors];
 
 export type InnsendingPleiepengerSyktBarnSøknadResponses = {
     /**
