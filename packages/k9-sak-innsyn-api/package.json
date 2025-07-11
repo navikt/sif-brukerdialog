@@ -1,0 +1,41 @@
+{
+    "name": "@navikt/k9-sak-innsyn-api",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "private": true,
+    "type": "module",
+    "version": "0.0.2",
+    "devDependencies": {
+        "@hey-api/openapi-ts": "0.78.3",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
+        "typescript": "5.8.3",
+        "vitest": "3.2.4",
+        "zod": "3.25.76"
+    },
+    "peerDependencies": {
+        "dayjs": "*",
+        "uuid": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "fix-regex": "node scripts/fix-generated-regex.mjs",
+        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
+        "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types:legacy",
+        "gen-types:innsyn": "openapi-ts --file openapi-ts.config-innsyn.ts",
+        "gen-types:k9-sak": "openapi-ts --file openapi-ts.config-k9-sak.ts",
+        "gen-types:legacy": "openapi-ts --file openapi-ts.config.ts",
+        "gen": "yarn gen-types:all:fixed",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@hey-api/client-axios": "0.9.1",
+        "@hey-api/client-fetch": "0.13.1"
+    }
+}
