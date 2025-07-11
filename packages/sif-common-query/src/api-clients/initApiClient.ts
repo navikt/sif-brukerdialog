@@ -1,4 +1,4 @@
-import { Client } from '@navikt/k9-brukerdialog-prosessering-api/src/client/client';
+import { Client } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/client/client';
 import { AxiosError, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
 

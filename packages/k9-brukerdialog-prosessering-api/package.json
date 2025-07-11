@@ -22,14 +22,16 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "openapi-ts": "openapi-ts",
-        "gen-types": "yarn openapi-ts",
+        "fix-regex": "node scripts/fix-generated-regex.mjs",
+        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
+        "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse && yarn gen-types:legacy",
         "gen-types:omsorgspenger": "openapi-ts --file openapi-ts.config-omsorgspenger.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file openapi-ts.config-ungdomsytelse.ts",
-        "gen-types:all": "yarn gen-types:omsorgspenger &&  yarn gen-types:ungdomsytelse"
+        "gen-types:legacy": "openapi-ts --file openapi-ts.config.ts",
+        "gen": "yarn gen-types:all:fixed",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
