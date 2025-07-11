@@ -45,7 +45,7 @@
         "@babel/core": "7.28.0",
         "@babel/preset-env": "7.28.0",
         "@babel/preset-react": "7.27.1",
-        "@playwright/test": "1.53.2",
+        "@playwright/test": "1.54.0",
         "@sif/eslint-config": "workspace:*",
         "@tailwindcss/postcss": "4.1.11",
         "@tailwindcss/vite": "4.1.11",
