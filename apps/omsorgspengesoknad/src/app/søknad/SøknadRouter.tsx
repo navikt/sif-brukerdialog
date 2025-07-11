@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import { useMellomlagring } from '../hooks/useMellomlagring';
-import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useStateMellomlagring } from '../hooks/useStateMellomlagring';
+import { useLagreState } from '../hooks/useLagreState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
@@ -17,7 +17,7 @@ import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { fetchSøkerId } from '@navikt/sif-common-api';
+import { hentSøkerId } from '@navikt/sif-common-query';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -27,11 +27,11 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const { slettMellomlagring } = useMellomlagring();
+    const { slettMellomlagring } = useStateMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    usePersistSøknadState();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
+    useLagreState();
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, hentSøkerId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
