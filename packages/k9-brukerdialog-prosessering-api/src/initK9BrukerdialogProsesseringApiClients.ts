@@ -1,7 +1,28 @@
-import { omsorgspenger, ungdomsytelse } from '.';
+import {
+    omsorgspenger,
+    ungdomsytelse,
+    ettersendelse,
+    omsorgspengerAleneomsorg,
+    omsorgspengerMidlertidigAlene,
+    omsorgspengerutbetalingArbeidstaker,
+    omsorgspengerutbetalingSnf,
+    opplaeringspenger,
+    pleiepengerLivetsSluttfase,
+    pleiepengerSyktBarnEndringsmelding,
+    pleiepengerSyktBarnSoknad,
+} from '.';
 import { initApiClient } from './utils/initApiClient';
 
 export const initK9BrukerdialogProsesseringApiClients = (frontendPath: string, loginURL: string) => {
     initApiClient(omsorgspenger.client, frontendPath, loginURL);
     initApiClient(ungdomsytelse.client, frontendPath, loginURL);
+    initApiClient(ettersendelse.client, frontendPath, loginURL);
+    initApiClient(omsorgspengerAleneomsorg.client, frontendPath, loginURL);
+    initApiClient(omsorgspengerMidlertidigAlene.client, frontendPath, loginURL);
+    initApiClient(omsorgspengerutbetalingArbeidstaker.client, frontendPath, loginURL);
+    initApiClient(omsorgspengerutbetalingSnf.client, frontendPath, loginURL);
+    initApiClient(opplaeringspenger.client, frontendPath, loginURL);
+    initApiClient(pleiepengerLivetsSluttfase.client, frontendPath, loginURL);
+    initApiClient(pleiepengerSyktBarnEndringsmelding.client, frontendPath, loginURL);
+    initApiClient(pleiepengerSyktBarnSoknad.client, frontendPath, loginURL);
 };
