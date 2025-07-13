@@ -2,6 +2,7 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
+import { execSync } from 'child_process';
 import path from 'path';
 
 console.log('🔧 Removing all regex patterns from generated zod files...');
@@ -37,4 +38,23 @@ if (totalReplacements > 0) {
     console.log(`🎉 Done! Removed ${totalReplacements} regex patterns from ${totalFilesProcessed} zod files.`);
 } else {
     console.log('ℹ️  No regex patterns found in zod files.');
+}
+
+// Format all generated TypeScript files with Prettier
+console.log('💄 Formatting all generated TypeScript files...');
+try {
+    const generatedTsFiles = glob.sync('src/generated/**/*.ts', { cwd: process.cwd() });
+
+    if (generatedTsFiles.length > 0) {
+        // Run prettier on all generated TypeScript files
+        execSync(`npx prettier --write ${generatedTsFiles.map((f) => `"${f}"`).join(' ')}`, {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+        });
+        console.log(`✨ Formatted ${generatedTsFiles.length} TypeScript files`);
+    } else {
+        console.log('ℹ️  No TypeScript files found to format.');
+    }
+} catch (error) {
+    console.warn('⚠️  Warning: Could not format files with Prettier:', error.message);
 }

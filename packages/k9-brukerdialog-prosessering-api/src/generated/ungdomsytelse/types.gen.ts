@@ -319,7 +319,8 @@ export type InnsendingUngdomsytelsesøknadErrors = {
     500: ProblemDetail;
 };
 
-export type InnsendingUngdomsytelsesøknadError = InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
+export type InnsendingUngdomsytelsesøknadError =
+    InnsendingUngdomsytelsesøknadErrors[keyof InnsendingUngdomsytelsesøknadErrors];
 
 export type InnsendingUngdomsytelsesøknadResponses = {
     /**

@@ -341,7 +341,15 @@ export type Søknad = {
     mottattDato: string;
     søker: Søker;
     språk?: 'nb' | 'nn';
-    ytelse: OmsorgspengerAleneOmsorg | OmsorgspengerKroniskSyktBarn | OmsorgspengerMidlertidigAlene | OmsorgspengerUtbetaling | Opplæringspenger | PleiepengerSyktBarn | PleipengerLivetsSluttfase | Ungdomsytelse;
+    ytelse:
+        | OmsorgspengerAleneOmsorg
+        | OmsorgspengerKroniskSyktBarn
+        | OmsorgspengerMidlertidigAlene
+        | OmsorgspengerUtbetaling
+        | Opplæringspenger
+        | PleiepengerSyktBarn
+        | PleipengerLivetsSluttfase
+        | Ungdomsytelse;
     journalposter?: Array<Journalpost>;
     begrunnelseForInnsending?: BegrunnelseForInnsending;
     kildesystem?: string;
@@ -389,7 +397,9 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdPeriodeInfo = {
     land: string;
-    årsak?: 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning' | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
+    årsak?:
+        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
+        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
     erSammenMedBarnet?: boolean;
 };
 
@@ -426,7 +436,18 @@ export type DokumentDto = {
     dokumentInfoId: string;
     saksnummer?: string;
     tittel: string;
-    dokumentType?: 'PLEIEPENGER_SYKT_BARN_SOKNAD' | 'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE' | 'ETTERLYST_INNTEKTSMELDING' | 'ETTERLYST_INNTEKTSMELDING_PURRING' | 'VEDTAK_INNVILGELSE' | 'VEDTAK_AVSLAG' | 'VEDTAK_FRITEKST' | 'VEDTAK_ENDRING' | 'VEDTAK_MANUELT' | 'VEDTAK_UENDRETUTFALL' | 'UKJENT';
+    dokumentType?:
+        | 'PLEIEPENGER_SYKT_BARN_SOKNAD'
+        | 'PLEIEPENGER_SYKT_BARN_ETTERSENDELSE'
+        | 'ETTERLYST_INNTEKTSMELDING'
+        | 'ETTERLYST_INNTEKTSMELDING_PURRING'
+        | 'VEDTAK_INNVILGELSE'
+        | 'VEDTAK_AVSLAG'
+        | 'VEDTAK_FRITEKST'
+        | 'VEDTAK_ENDRING'
+        | 'VEDTAK_MANUELT'
+        | 'VEDTAK_UENDRETUTFALL'
+        | 'UKJENT';
     filtype: string;
     harTilgang: boolean;
     url: string;
@@ -470,7 +491,15 @@ export type PleietrengendeMedSak = {
 
 export type RelevantDatoDto = {
     dato: string;
-    datotype: 'DATO_OPPRETTET' | 'DATO_SENDT_PRINT' | 'DATO_EKSPEDERT' | 'DATO_JOURNALFOERT' | 'DATO_REGISTRERT' | 'DATO_AVS_RETUR' | 'DATO_DOKUMENT' | 'UKJENT';
+    datotype:
+        | 'DATO_OPPRETTET'
+        | 'DATO_SENDT_PRINT'
+        | 'DATO_EKSPEDERT'
+        | 'DATO_JOURNALFOERT'
+        | 'DATO_REGISTRERT'
+        | 'DATO_AVS_RETUR'
+        | 'DATO_DOKUMENT'
+        | 'UKJENT';
 };
 
 export type SakDto = {
@@ -481,7 +510,24 @@ export type SakDto = {
      * bruk ytelseType
      * @deprecated
      */
-    fagsakYtelseType: 'DAGPENGER' | 'FRISINN' | 'SYKEPENGER' | 'PLEIEPENGER_SYKT_BARN' | 'PLEIEPENGER_NÆRSTÅENDE' | 'OMSORGSPENGER' | 'OMSORGSPENGER_KS' | 'OMSORGSPENGER_MA' | 'OMSORGSPENGER_AO' | 'OPPLÆRINGSPENGER' | 'ARBEIDSAVKLARINGSPENGER' | 'ENGANGSTØNAD' | 'FORELDREPENGER' | 'SVANGERSKAPSPENGER' | 'ENSLIG_FORSØRGER' | 'OBSOLETE' | 'UDEFINERT';
+    fagsakYtelseType:
+        | 'DAGPENGER'
+        | 'FRISINN'
+        | 'SYKEPENGER'
+        | 'PLEIEPENGER_SYKT_BARN'
+        | 'PLEIEPENGER_NÆRSTÅENDE'
+        | 'OMSORGSPENGER'
+        | 'OMSORGSPENGER_KS'
+        | 'OMSORGSPENGER_MA'
+        | 'OMSORGSPENGER_AO'
+        | 'OPPLÆRINGSPENGER'
+        | 'ARBEIDSAVKLARINGSPENGER'
+        | 'ENGANGSTØNAD'
+        | 'FORELDREPENGER'
+        | 'SVANGERSKAPSPENGER'
+        | 'ENSLIG_FORSØRGER'
+        | 'OBSOLETE'
+        | 'UDEFINERT';
     ytelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OLP';
     behandlinger: Array<BehandlingDto>;
 };
@@ -572,7 +618,8 @@ export type LastNedArbeidsgivermeldingResponses = {
     200: Blob | File;
 };
 
-export type LastNedArbeidsgivermeldingResponse = LastNedArbeidsgivermeldingResponses[keyof LastNedArbeidsgivermeldingResponses];
+export type LastNedArbeidsgivermeldingResponse =
+    LastNedArbeidsgivermeldingResponses[keyof LastNedArbeidsgivermeldingResponses];
 
 export type HentMineSakerData = {
     body?: never;
