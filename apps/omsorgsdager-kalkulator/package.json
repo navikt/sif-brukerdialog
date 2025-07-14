@@ -38,7 +38,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@playwright/test": "1.53.2",
+        "@playwright/test": "1.54.1",
         "@tailwindcss/postcss": "4.1.11",
         "@tailwindcss/vite": "4.1.11",
         "@types/node": "24.0.12",
