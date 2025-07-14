@@ -25,7 +25,6 @@ export * from './api';
 export * from './utils/createYtelseMellomlagringUtils';
 export * from './utils/dateUtils';
 export * from './utils/jsonResponseParser';
-export * from './utils/nullToUndefined';
 
 // API client initialization and error types
 export * from './api-clients';

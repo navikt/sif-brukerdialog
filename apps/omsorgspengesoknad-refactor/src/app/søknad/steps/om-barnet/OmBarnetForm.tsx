@@ -1,6 +1,6 @@
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { BarnOppslag, Søker } from '@navikt/sif-common-query';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -24,7 +24,7 @@ import { GyldigeVedtak } from '../../../types/GyldigeVedtak';
 
 interface Props {
     values: Partial<OmBarnetFormValues>;
-    registrerteBarn: BarnOppslag[];
+    registrerteBarn: RegistrertBarn[];
     isSubmitting: boolean;
     gyldigeVedtak: GyldigeVedtak;
     søker: Søker;

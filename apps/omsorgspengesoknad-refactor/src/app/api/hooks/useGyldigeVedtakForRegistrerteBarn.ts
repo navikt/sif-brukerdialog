@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { BarnOppslag } from '@navikt/sif-common-query';
+import { RegistrertBarn } from '@navikt/sif-common-query';
 import { GyldigeVedtak } from '../../types/GyldigeVedtak';
 import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedtak/hentSisteGyldigeVedtak';
 
@@ -10,7 +10,7 @@ import { hentGyldigeVedtakForRegistrerteBarn } from '../hent-siste-gyldige-vedta
  * @param enabled - Om query skal kjøre (default: true)
  * @returns TanStack Query result med gyldige vedtak
  */
-export const useGyldigeVedtakForRegistrerteBarn = (registrerteBarn: BarnOppslag[], enabled = true) => {
+export const useGyldigeVedtakForRegistrerteBarn = (registrerteBarn: RegistrertBarn[], enabled = true) => {
     return useQuery<GyldigeVedtak, Error>({
         queryKey: ['gyldigeVedtak', registrerteBarn.map((barn) => barn.aktørId)],
         queryFn: () => hentGyldigeVedtakForRegistrerteBarn(registrerteBarn),

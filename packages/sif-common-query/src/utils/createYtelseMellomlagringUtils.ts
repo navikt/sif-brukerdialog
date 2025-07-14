@@ -5,7 +5,7 @@ import {
     oppdaterYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
-import { MellomlagringYtelse } from '../types/mellomlagring';
+import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 /**
  * Mellomlagring av state med gyldighetssjekk basert på metadata. Mellomlagring blir ugyldig hvis metadata endres siden lagring.

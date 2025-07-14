@@ -1,7 +1,7 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { FormikRadioProp, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { BarnOppslag } from '@navikt/sif-common-query';
+import { RegistrertBarn } from '@navikt/sif-common-query';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppMessageKeys, AppText } from '../../../i18n';
@@ -115,7 +115,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     };
 };
 
-export const mapBarnTilRadioProps = (barn: BarnOppslag, disabled?: boolean): FormikRadioProp => {
+export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): FormikRadioProp => {
     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
     return {

@@ -1,5 +1,5 @@
 import { SØkerController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { Søker, søkerResponseSchema } from '../types/søker';
+import { Søker, søkerSchema } from '../types/søker';
 
 /**
  * Henter informasjon om innlogget bruker fra k9-brukerdialog-prosessering-api
@@ -9,7 +9,7 @@ import { Søker, søkerResponseSchema } from '../types/søker';
  */
 export const hentSøker = async (): Promise<Søker> => {
     const response = await SØkerController.hentSøker();
-    return søkerResponseSchema.parse(response.data);
+    return søkerSchema.parse(response.data);
 };
 
 export const hentSøkerId = async (): Promise<string> => {
