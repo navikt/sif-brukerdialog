@@ -3255,6 +3255,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "@floating-ui/core@npm:1.7.2"
+  dependencies:
+    "@floating-ui/utils": "npm:^0.2.10"
+  checksum: 10/2885a4c824f8d148222714cf2650c29bf3b30b70f465b990734766aafb1366ba23b4a285918c4f3ee67161096e7b9e4fbe0b3ca31e0f78800338cb4e6292912d
+  languageName: node
+  linkType: hard
+
 "@floating-ui/dom@npm:^1.0.0":
   version: 1.7.0
   resolution: "@floating-ui/dom@npm:1.7.0"
@@ -3262,6 +3271,16 @@ __metadata:
     "@floating-ui/core": "npm:^1.7.0"
     "@floating-ui/utils": "npm:^0.2.9"
   checksum: 10/9c3561981ea389fe39b7095d7a3771fd906580eedc43fda0eb554faa5f2f9756169fef1824d66198314a41c7f8d63e56bc7f5b24fc528471c9e6bc43cafa6a00
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "@floating-ui/dom@npm:1.7.2"
+  dependencies:
+    "@floating-ui/core": "npm:^1.7.2"
+    "@floating-ui/utils": "npm:^0.2.10"
+  checksum: 10/2d581459973b66024c47f039cabdc059b39c72abca93a4a0a8110e0a90b79d3fb84e49099afb73e13b3e7f17096070422220d996b206a5f0120c92bd7c48b98b
   languageName: node
   linkType: hard
 
@@ -3289,6 +3308,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/react-dom@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@floating-ui/react-dom@npm:2.1.4"
+  dependencies:
+    "@floating-ui/dom": "npm:^1.7.2"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10/8fad23bd7a94b50bbd715109a272528978511b793b8954098c8e99dd0b63557a8641b315ce09301ef014eada560fd8638e4dea4c21cf7ce8d93f0038a59cd442
+  languageName: node
+  linkType: hard
+
 "@floating-ui/react@npm:0.27.8":
   version: 0.27.8
   resolution: "@floating-ui/react@npm:0.27.8"
@@ -3300,6 +3331,13 @@ __metadata:
     react: ">=17.0.0"
     react-dom: ">=17.0.0"
   checksum: 10/9423e3b7d6298918cb14ad3cfa36ba7b88ef86f18c4c47f7870b367716e918757dc0cf9842ef4995ee784b68aebe725c28c2ae143ecfe16380d3ccfd05cacb43
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.10":
+  version: 0.2.10
+  resolution: "@floating-ui/utils@npm:0.2.10"
+  checksum: 10/b635ea865a8be2484b608b7157f5abf9ed439f351011a74b7e988439e2898199a9a8b790f52291e05bdcf119088160dc782d98cff45cc98c5a271bc6f51327ae
   languageName: node
   linkType: hard
 
@@ -8589,6 +8627,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/ui@npm:^2.16.4":
+  version: 2.16.7
+  resolution: "@sanity/ui@npm:2.16.7"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.1.4"
+    "@juggle/resize-observer": "npm:^3.4.0"
+    "@sanity/color": "npm:^3.0.6"
+    "@sanity/icons": "npm:^3.7.4"
+    csstype: "npm:^3.1.3"
+    framer-motion: "npm:^12.23.3"
+    react-compiler-runtime: "npm:19.1.0-rc.2"
+    react-refractor: "npm:^2.2.0"
+    use-effect-event: "npm:^2.0.2"
+  peerDependencies:
+    react: ^18 || >=19.0.0-0
+    react-dom: ^18 || >=19.0.0-0
+    react-is: ^18 || >=19.0.0-0
+    styled-components: ^5.2 || ^6
+  checksum: 10/37a04df3475ad7975ebdd3f4f539510c5267a1d78f263197abe82ba31a475e94d0b7faf07144b5d83b555479bf020bf3b888a08d5a45fc30f727aaf0d0e04425
+  languageName: node
+  linkType: hard
+
 "@sanity/util@npm:3.68.3":
   version: 3.68.3
   resolution: "@sanity/util@npm:3.68.3"
@@ -8627,9 +8687,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.98.1":
-  version: 3.98.1
-  resolution: "@sanity/vision@npm:3.98.1"
+"@sanity/vision@npm:3.99.0":
+  version: 3.99.0
+  resolution: "@sanity/vision@npm:3.99.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.18.6"
     "@codemirror/commands": "npm:^6.8.1"
@@ -8644,7 +8704,7 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.6"
     "@sanity/icons": "npm:^3.7.4"
-    "@sanity/ui": "npm:^2.16.3"
+    "@sanity/ui": "npm:^2.16.4"
     "@sanity/uuid": "npm:^3.0.2"
     "@uiw/react-codemirror": "npm:^4.23.8"
     is-hotkey-esm: "npm:^1.0.0"
@@ -8660,7 +8720,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/0dee732f239ad953d7900d90bf67c3a8453f717a8738ed4c9b5e59b45571826a8c3c44dc2bfd1d34aeab91261fde5db93b9a6c207ab90e99f2985a7faa3fe447
+  checksum: 10/a71f739d3e16d08a433a983032790b46c55756e330dacfe748027aad528d68f2f7ec6fedc5fb17d8f1073a581a04412ac14af19cc4a69e37345229d5643f6d7f
   languageName: node
   linkType: hard
 
@@ -12123,7 +12183,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:3.98.1"
+    "@sanity/vision": "npm:3.99.0"
     "@types/react": "npm:19.1.8"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.30.1"
@@ -17611,6 +17671,28 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10/61a5bee46a3d354419f63125c3cf745adde06d213caaa2f2a8ff88cc50aea8f9d09558993d86e9fce4251e0438d833de5023778ac33d85e0a8e60fd48354a0b2
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^12.23.3":
+  version: 12.23.3
+  resolution: "framer-motion@npm:12.23.3"
+  dependencies:
+    motion-dom: "npm:^12.23.2"
+    motion-utils: "npm:^12.23.2"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10/9173b6eadc6c6105939ce6500e0ff401de94b55506693123bfe455cb0f119a6c24d2e1ce8c721c201858a22ac6442c0da342cae5d8942ce3fa276c58bee8cfe5
   languageName: node
   linkType: hard
 
@@ -23248,10 +23330,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"motion-dom@npm:^12.23.2":
+  version: 12.23.2
+  resolution: "motion-dom@npm:12.23.2"
+  dependencies:
+    motion-utils: "npm:^12.23.2"
+  checksum: 10/2195031ce2172f3e98da6f10bf49cf1eb1cf3d68f92d5bd57fe4b717fb4d0a539ccd9c890c48b7eb8a5978cc568ae0023207eaa3c88f30d3c9603a692a9832e3
+  languageName: node
+  linkType: hard
+
 "motion-utils@npm:^12.19.0":
   version: 12.19.0
   resolution: "motion-utils@npm:12.19.0"
   checksum: 10/a6fe6b329bf4e2070bb95788218f36f0d7ea6cc3098e6ea2646ed68d5be88d25fa30e55284463ace78d19a5e19714875a7b70055bd86ae6e52a5fdee08438470
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.23.2":
+  version: 12.23.2
+  resolution: "motion-utils@npm:12.23.2"
+  checksum: 10/775da6a08ac09baafe407446cf6d86fb9d2a26f3efc0be458b5fb120c25426c5bd029acd9606b0449894ddf83fcd0f75f7216bfc324f20437cb87ed04d0dacbb
   languageName: node
   linkType: hard
 
