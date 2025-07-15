@@ -10,7 +10,7 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-function useSøknadInitialDataQuery() {
+function useSøknadInitialData() {
     const søkerQuery = useSøker();
     const barnQuery = useBarn();
 
@@ -50,4 +50,4 @@ function useSøknadInitialDataQuery() {
     });
 }
 
-export default useSøknadInitialDataQuery;
+export default useSøknadInitialData;

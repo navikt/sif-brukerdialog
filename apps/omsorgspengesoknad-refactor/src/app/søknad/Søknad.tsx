@@ -1,12 +1,12 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import useSøknadInitialDataQuery from '../api/hooks/useSøknadInitialDataQuery';
+import useSøknadInitialData from '../api/hooks/useSøknadInitialData';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
 import InitialDataErrorPage from '../pages/initial-data-error-page/InitialDataErrorPage';
 
 const Søknad = () => {
-    const initialDataQuery = useSøknadInitialDataQuery();
+    const initialDataQuery = useSøknadInitialData();
 
     /** Error */
     if (initialDataQuery.isError) {
