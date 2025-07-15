@@ -47,10 +47,6 @@ function useSøknadInitialDataQuery() {
             return failureCount < 3;
         },
         staleTime: Infinity, // Data endres aldri etter oppstart
-        gcTime: Infinity, // Hold i cache til appen lukkes
-        refetchOnWindowFocus: false, // Ikke refetch ved fokus
-        refetchOnMount: false, // Ikke refetch ved remount
-        refetchOnReconnect: false, // Ikke refetch ved reconnect
     });
 }
 

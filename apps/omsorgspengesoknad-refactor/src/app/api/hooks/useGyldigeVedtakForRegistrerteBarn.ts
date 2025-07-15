@@ -15,9 +15,7 @@ export const useGyldigeVedtakForRegistrerteBarn = (registrerteBarn: RegistrertBa
         queryKey: ['gyldigeVedtak', registrerteBarn.map((barn) => barn.aktørId)],
         queryFn: () => hentGyldigeVedtakForRegistrerteBarn(registrerteBarn),
         enabled: enabled && registrerteBarn.length > 0,
-        staleTime: 5 * 60 * 1000, // 5 minutter - vedtak endrer seg ikke så ofte
-        gcTime: 10 * 60 * 1000, // 10 minutter i garbage collection
-        retry: 2, // Prøv 2 ganger ekstra ved feil
-        refetchOnWindowFocus: false, // Ikke refetch ved fokus
+        staleTime: Infinity,
+        retry: 1,
     });
 };

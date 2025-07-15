@@ -17,10 +17,6 @@ export const useBarn = (enabled = true) => {
         queryFn: hentBarn,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden
-        gcTime: Infinity, // Hold i cache til appen lukkes
-        retry: 1, // Prøv kun én gang ekstra ved feil
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
+        retry: 1,
     });
 };
