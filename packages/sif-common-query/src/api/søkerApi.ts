@@ -1,5 +1,5 @@
 import { SØkerController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { Søker, søkerSchema } from '../types/søker';
+import { Søker, søkerSchema } from '../types/_Søker';
 
 /**
  * Henter informasjon om innlogget bruker fra k9-brukerdialog-prosessering-api

@@ -2,10 +2,11 @@
 export { sifCommonQueryKeys } from './queryKeys';
 
 // Alle typer som er hensiktsmessig å eksponere
-export * from './types/arbeidsgivere';
-export * from './types/barn';
+export * from './types/_Arbeidsgivere';
+export * from './types/_Barn';
 export * from './types/invalidParameterProblemDetail';
-export * from './types/søker';
+export * from './types/_Søker';
+export * from './types/_MellomlagringYtelse';
 
 // Alle hooks
 export * from './hooks/useArbeidsgivere';

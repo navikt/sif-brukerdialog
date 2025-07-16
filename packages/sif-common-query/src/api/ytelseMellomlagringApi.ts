@@ -1,5 +1,5 @@
 import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
+import { MellomlagringYtelse } from '../types/_MellomlagringYtelse';
 import { jsonParseUtils } from '../utils/jsonParseUtils';
 
 /**

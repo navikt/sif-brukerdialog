@@ -1,4 +1,5 @@
-import { MellomlagringYtelse } from '@navikt/sif-common-api';
+// import { MellomlagringYtelse } from '@navikt/sif-common-api';
+import { MellomlagringYtelse } from '@navikt/sif-common-query/src/types/_MellomlagringYtelse';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { ytelseMellomlagringUtils } from '@navikt/sif-common-query';
 
