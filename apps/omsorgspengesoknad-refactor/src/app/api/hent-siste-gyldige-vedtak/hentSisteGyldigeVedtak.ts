@@ -1,5 +1,5 @@
 import { k9Sak } from '@navikt/k9-sak-innsyn-api';
-import { BarnOppslag } from '@navikt/sif-common-query';
+import { RegistrertBarn } from '@navikt/sif-common-query';
 import { handleApiError } from '@navikt/ung-common';
 import { GyldigeVedtak } from '../../types/GyldigeVedtak';
 
@@ -26,7 +26,9 @@ const hentSisteGyldigeVedtak = async (
 /**
  * Henter gyldige vedtak for alle registrerte barn
  */
-export const hentGyldigeVedtakForRegistrerteBarn = async (registrerteBarn: BarnOppslag[]): Promise<GyldigeVedtak> => {
+export const hentGyldigeVedtakForRegistrerteBarn = async (
+    registrerteBarn: RegistrertBarn[],
+): Promise<GyldigeVedtak> => {
     try {
         const vedtakPromises = registrerteBarn.map((barn) => hentSisteGyldigeVedtak(barn.aktørId));
         const responses = await Promise.all(vedtakPromises);

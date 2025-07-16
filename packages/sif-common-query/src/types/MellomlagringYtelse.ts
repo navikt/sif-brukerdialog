@@ -1,20 +1,3 @@
-export type {
-    DeleteMellomlagringData,
-    DeleteMellomlagringResponses,
-    DeleteMellomlagringErrors,
-    GetMellomlagringData,
-    GetMellomlagringResponses,
-    GetMellomlagringErrors,
-    GetMellomlagringResponse,
-    CreateMellomlagringData,
-    CreateMellomlagringResponses,
-    CreateMellomlagringErrors,
-    UpdateMellomlagringData,
-    UpdateMellomlagringResponses,
-    UpdateMellomlagringErrors,
-} from '@navikt/k9-brukerdialog-prosessering-api';
-
-// Copy of MellomlagringYtelse enum from sif-common-api for type safety
 export enum MellomlagringYtelse {
     'DINE_PLEIEPENGER' = 'DINE_PLEIEPENGER',
     'ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN' = 'ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',

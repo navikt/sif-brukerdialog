@@ -6436,12 +6436,11 @@ __metadata:
     "@tanstack/react-query": "npm:5.83.0"
     "@types/react": "npm:19.1.8"
     axios: "npm:1.10.0"
+    dayjs: "npm:1.11.13"
     object-hash: "npm:3.0.0"
     react: "npm:19.1.0"
     typescript: "npm:5.8.3"
     zod: "npm:3.25.76"
-  peerDependencies:
-    dayjs: 1.11.13
   languageName: unknown
   linkType: soft
 

@@ -1,16 +1,15 @@
 import { zBarnOppslag, zBarnOppslagListe } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '../utils/dateUtils';
+import { jsonParseUtils } from '../utils/jsonParseUtils';
 
 // Schema for barn oppdatert med date for fødselsdato
-export const barnOppslagSchema = zBarnOppslag.extend({
-    fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
+const registrertBarnSchema = zBarnOppslag.extend({
+    fødselsdato: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()),
 });
 
-export const barnOppslagListeSchema = zBarnOppslagListe.extend({
-    barn: z.array(barnOppslagSchema),
+export const registrerteBarnListeSchema = zBarnOppslagListe.extend({
+    barn: z.array(registrertBarnSchema),
 });
 
-// Juster typer for å matche de utvidede schemaene
-export type BarnOppslag = z.infer<typeof barnOppslagSchema>;
-export type BarnOppslagListe = z.infer<typeof barnOppslagListeSchema>;
+// Eksportere type med nytt navn
+export type RegistrertBarn = z.infer<typeof registrertBarnSchema>;

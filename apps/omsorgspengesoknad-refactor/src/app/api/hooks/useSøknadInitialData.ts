@@ -10,7 +10,14 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-function useSøknadInitialDataQuery() {
+/**
+ * Henter grunndata som trengs for underveis i søknaden. Når søker og barn er hentet, lastes
+ * mellomlagring og en ser om denne fortsatt er gyldig. I så fall brukes den som initial data.
+ * Hvis ikke, brukes defaultSøknadState.
+ * @returns initial data for søknaden, inkludert søker, registrerte barn og evt. søknadsdata.
+ */
+
+function useSøknadInitialData() {
     const søkerQuery = useSøker();
     const barnQuery = useBarn();
 
@@ -47,11 +54,7 @@ function useSøknadInitialDataQuery() {
             return failureCount < 3;
         },
         staleTime: Infinity, // Data endres aldri etter oppstart
-        gcTime: Infinity, // Hold i cache til appen lukkes
-        refetchOnWindowFocus: false, // Ikke refetch ved fokus
-        refetchOnMount: false, // Ikke refetch ved remount
-        refetchOnReconnect: false, // Ikke refetch ved reconnect
     });
 }
 
-export default useSøknadInitialDataQuery;
+export default useSøknadInitialData;

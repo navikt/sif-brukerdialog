@@ -5,7 +5,7 @@ import {
     oppdaterYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
-import { MellomlagringYtelse } from '../types/mellomlagring';
+import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 /**
  * Mellomlagring av state med gyldighetssjekk basert på metadata. Mellomlagring blir ugyldig hvis metadata endres siden lagring.
@@ -28,7 +28,7 @@ interface YtelseMellomlagringWrapper<State> {
 /**
  * Returnerer mellomlagring-funksjoner for en ytelse med gyldighetsvalidering
  */
-export const createYtelseMellomlagringUtils = <State, MetaData = unknown>(
+export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
     ytelse: MellomlagringYtelse,
 ): YtelseMellomlagringUtils<State, MetaData> => {
     const isValidMellomlagringWrapper = (wrapper: unknown): wrapper is YtelseMellomlagringWrapper<State> => {
