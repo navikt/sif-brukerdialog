@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { RegistrertBarn } from '../types/_Barn';
+import { RegistrertBarn } from '../types/Barn';
 import { hentBarn } from '../api/barnApi';
 
 /**

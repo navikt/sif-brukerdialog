@@ -6,7 +6,7 @@ import {
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { MellomlagringYtelse } from '../types/_MellomlagringYtelse';
+import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 // Hook for fetching mellomlagring data for a specific ytelse
 export const useGetYtelseMellomlagring = (
