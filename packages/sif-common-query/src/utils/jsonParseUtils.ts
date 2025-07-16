@@ -41,7 +41,9 @@ const getDateFromString = (value?: string): Date | undefined => {
 };
 
 const parseMaybeDateStringToDate = (value: any): Date | undefined => {
-    if (value === null || value === undefined) return undefined;
+    if (value === null || value === undefined) {
+        return undefined;
+    }
     return getDateFromString(value);
 };
 

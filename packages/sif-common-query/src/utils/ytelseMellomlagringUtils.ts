@@ -28,7 +28,7 @@ interface YtelseMellomlagringWrapper<State> {
 /**
  * Returnerer mellomlagring-funksjoner for en ytelse med gyldighetsvalidering
  */
-export const createYtelseMellomlagringUtils = <State, MetaData = unknown>(
+export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
     ytelse: MellomlagringYtelse,
 ): YtelseMellomlagringUtils<State, MetaData> => {
     const isValidMellomlagringWrapper = (wrapper: unknown): wrapper is YtelseMellomlagringWrapper<State> => {

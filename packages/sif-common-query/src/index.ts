@@ -20,6 +20,7 @@ export * from './api';
 
 // Alle utils
 export * from './utils/jsonParseUtils';
+export * from './utils/ytelseMellomlagringUtils';
 
 // API client initialization and error types
 export * from './api-clients';
