@@ -1,5 +1,11 @@
 # config
 
+## 0.11.8
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
 ## 0.11.7
 
 ### Patch Changes
