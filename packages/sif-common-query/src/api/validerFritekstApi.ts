@@ -1,5 +1,4 @@
-import { FeltValideringController } from '@navikt/k9-brukerdialog-prosessering-api';
-import type { Friteksfelt } from '../types/validerFritekst';
+import { FeltValideringController, Friteksfelt } from '@navikt/k9-brukerdialog-prosessering-api';
 
 /**
  * Validerer fritekstfelt mot k9-brukerdialog-prosessering-api

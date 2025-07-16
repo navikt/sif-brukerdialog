@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { sifCommonQueryKeys } from '../queryKeys';
-import { MellomlagringYtelse } from '../types/mellomlagring';
 import {
     hentYtelseMellomlagring,
-    opprettYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
+    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '../api/ytelseMellomlagringApi';
+import { sifCommonQueryKeys } from '../queryKeys';
+import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 // Hook for fetching mellomlagring data for a specific ytelse
 export const useGetYtelseMellomlagring = (

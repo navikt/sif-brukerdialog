@@ -1,11 +1,11 @@
 import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '../utils/dateUtils';
+import { jsonParseUtils } from '../utils/jsonParseUtils';
 
-export const søkerResponseSchema = zSøker.extend({
+export const søkerSchema = zSøker.extend({
     fornavn: z.string().min(1),
     etternavn: z.string().min(1),
-    fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
+    fødselsdato: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()),
 });
 
-export type Søker = z.infer<typeof søkerResponseSchema>;
+export type Søker = z.infer<typeof søkerSchema>;

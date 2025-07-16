@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { BarnOppslag } from '../types/barn';
+import { RegistrertBarn } from '../types/barn';
 import { hentBarn } from '../api/barnApi';
 
 /**
@@ -12,15 +12,11 @@ import { hentBarn } from '../api/barnApi';
  * - Ingen refetch på focus/mount/reconnect
  */
 export const useBarn = (enabled = true) => {
-    return useQuery<BarnOppslag[], Error>({
+    return useQuery<RegistrertBarn[], Error>({
         queryKey: sifCommonQueryKeys.barn,
         queryFn: hentBarn,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg sjelden
-        gcTime: Infinity, // Hold i cache til appen lukkes
-        retry: 1, // Prøv kun én gang ekstra ved feil
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
+        retry: 1,
     });
 };

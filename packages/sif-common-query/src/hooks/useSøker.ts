@@ -17,10 +17,6 @@ export const useSøker = (enabled = true) => {
         queryFn: hentSøker,
         enabled,
         staleTime: Infinity, // Data er alltid fresh - endrer seg aldri
-        gcTime: Infinity, // Hold i cache til appen lukkes
-        retry: 1, // Prøv kun én gang ekstra ved feil
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
+        retry: 1,
     });
 };

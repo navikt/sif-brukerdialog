@@ -1,6 +1,6 @@
 import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { MellomlagringYtelse } from '../types/mellomlagring';
-import { jsonResponseParser } from '../utils/jsonResponseParser';
+import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
+import { jsonParseUtils } from '../utils/jsonParseUtils';
 
 /**
  * Henter mellomlagrede data for en spesifikk ytelse fra k9-brukerdialog-prosessering-api
@@ -13,7 +13,9 @@ export const hentYtelseMellomlagring = async (ytelse: MellomlagringYtelse): Prom
     const { data } = await MellomlagringController.getMellomlagring({
         path: { ytelse },
     });
-    const parsedData = await jsonResponseParser(typeof data === 'string' ? data : JSON.stringify(data));
+    const parsedData = await jsonParseUtils.ytelseMellomlagringJsonParser(
+        typeof data === 'string' ? data : JSON.stringify(data),
+    );
     return parsedData;
 };
 

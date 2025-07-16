@@ -1,5 +1,5 @@
 import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { hentArbeidsgivereResponseSchema, Arbeidsgivere } from '../types/arbeidsgivere';
+import { arbeidsgivereSchema, Arbeidsgivere } from '../types/arbeidsgivere';
 
 /**
  * Henter informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api
@@ -26,5 +26,5 @@ export const hentArbeidsgivere = async (
             ...options,
         },
     });
-    return hentArbeidsgivereResponseSchema.parse(response.data);
+    return arbeidsgivereSchema.parse(response.data);
 };

@@ -13,7 +13,8 @@ import {
 } from '.';
 import { initApiClient } from './utils/initApiClient';
 
-export const initK9BrukerdialogProsesseringApiClients = (frontendPath: string, loginURL: string) => {
+export const initK9BrukerdialogProsesseringApiClients = (config: { frontendPath: string; loginURL: string }) => {
+    const { frontendPath, loginURL } = config;
     initApiClient(omsorgspenger.client, frontendPath, loginURL);
     initApiClient(ungdomsytelse.client, frontendPath, loginURL);
     initApiClient(ettersendelse.client, frontendPath, loginURL);
