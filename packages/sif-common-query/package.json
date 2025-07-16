@@ -12,6 +12,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@tanstack/react-query": "5.83.0",
         "axios": "1.10.0",
+        "dayjs": "1.11.13",
         "object-hash": "3.0.0"
     },
     "devDependencies": {
@@ -20,9 +21,6 @@
         "react": "19.1.0",
         "typescript": "5.8.3",
         "zod": "3.25.76"
-    },
-    "peerDependencies": {
-        "dayjs": "1.11.13"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

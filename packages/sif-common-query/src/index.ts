@@ -19,9 +19,7 @@ export * from './hooks/useVedlegg';
 export * from './api';
 
 // Alle utils
-export * from './utils/createYtelseMellomlagringUtils';
-export * from './utils/dateUtils';
-export * from './utils/jsonResponseParser';
+export * from './utils/jsonParseUtils';
 
 // API client initialization and error types
 export * from './api-clients';

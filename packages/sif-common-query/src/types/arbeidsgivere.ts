@@ -5,22 +5,22 @@ import {
     zFrilansoppdragDto,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '../utils/dateUtils';
+import { jsonParseUtils } from '../utils/jsonParseUtils';
 
 // Schema som konverterer string-dato til Date
 const organisasjonSchema = zOrganisasjonDto.extend({
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
 });
 
 const privatArbeidsgiverSchema = zPrivatArbeidsgiverDto.extend({
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
 });
 
 const frilansoppdragSchema = zFrilansoppdragDto.extend({
-    ansattFom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
-    ansattTom: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattFom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
+    ansattTom: z.preprocess(jsonParseUtils.parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
 });
 
 export const arbeidsgivereSchema = zArbeidsgivereDto.extend({
