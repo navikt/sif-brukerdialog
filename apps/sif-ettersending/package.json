@@ -38,7 +38,7 @@
         "react": "19.1.0",
         "react-day-picker": "9.8.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.6.3"
+        "react-router-dom": "7.7.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
