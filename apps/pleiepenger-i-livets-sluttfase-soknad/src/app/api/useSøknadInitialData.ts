@@ -1,6 +1,6 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
-import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
@@ -45,7 +45,7 @@ const getSøknadInitialData = async (søker: Søker, lagretSøknadState: Melloml
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
-        versjon: SØKNAD_VERSJON,
+        versjon: MELLOMLAGRING_VERSJON,
         søker,
         søknadsdata: {},
         ...lagretSøknadStateToUse,

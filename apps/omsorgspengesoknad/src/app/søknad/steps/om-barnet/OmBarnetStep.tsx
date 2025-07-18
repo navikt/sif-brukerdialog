@@ -27,7 +27,6 @@ export enum OmBarnetFormFields {
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
     sammeAdresse = 'sammeAdresse',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
-    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
 }
 
 export interface OmBarnetFormValues {
@@ -40,7 +39,6 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
     [OmBarnetFormFields.sammeAdresse]?: BarnSammeAdresse;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
-    [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
 }
 
 const { FormikWrapper } = omBarnetFormComponents;
