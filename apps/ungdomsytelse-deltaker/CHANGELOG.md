@@ -1,5 +1,88 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.20
+    - @navikt/sif-common-forms-ds@19.0.20
+    - @navikt/sif-common-core-ds@10.2.21
+    - @navikt/sif-common-api@0.4.19
+    - @navikt/sif-common-ui@0.9.22
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.13
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/ung-common@0.0.14
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.13
+
+## 0.6.22
+
+### Patch Changes
+
+- Refactor generering av typer
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.13
+    - @navikt/ung-common@0.0.14
+
+## 0.6.21
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.13
+    - @navikt/sif-common-soknad-ds@24.0.19
+    - @navikt/sif-common-core-ds@10.2.20
+    - @navikt/sif-common-faro@0.2.4
+    - @navikt/sif-common-api@0.4.18
+    - @navikt/sif-common-ui@0.9.21
+    - @navikt/ung-common@0.0.13
+    - @navikt/sif-common-forms-ds@19.0.19
+
+## 0.6.20
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+    - @navikt/sif-common-api@0.4.17
+    - @navikt/sif-common-soknad-ds@24.0.18
+    - @navikt/sif-common-core-ds@10.2.19
+    - @navikt/sif-common-forms-ds@19.0.18
+    - @navikt/ung-common@0.0.12
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.12
+    - @navikt/sif-common-ui@0.9.20
+
+## 0.6.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.12
+    - @navikt/sif-common-soknad-ds@24.0.17
+    - @navikt/sif-common-forms-ds@19.0.17
+    - @navikt/sif-common-core-ds@10.2.18
+    - @navikt/sif-common-api@0.4.16
+    - @navikt/sif-common-ui@0.9.19
+    - @navikt/ung-common@0.0.12
+    - @navikt/sif-app-register@0.1.7
+
+## 0.6.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.11
+    - @navikt/sif-common-soknad-ds@24.0.16
+    - @navikt/sif-common-forms-ds@19.0.16
+    - @navikt/sif-common-core-ds@10.2.17
+    - @navikt/sif-common-api@0.4.15
+    - @navikt/sif-common-ui@0.9.18
+    - @navikt/ung-common@0.0.11
+    - @navikt/sif-app-register@0.1.7
+
 ## 0.6.17
 
 ### Patch Changes

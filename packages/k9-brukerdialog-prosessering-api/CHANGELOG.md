@@ -1,5 +1,29 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.13
+
+### Patch Changes
+
+- Refactor generering av typer
+
+## 0.0.12
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.0.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+
 ## 0.0.9
 
 ### Patch Changes

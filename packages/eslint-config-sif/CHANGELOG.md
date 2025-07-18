@@ -1,5 +1,23 @@
 # @sif/eslint-config
 
+## 1.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.32
+
+### Patch Changes
+
+- 66f1544: Erstatte gammelt dev-oppsett med vite og msw. Lage egen factory for eslint oppsett pga. module resolution issues med den gamle.
+
 ## 1.1.31
 
 ### Patch Changes

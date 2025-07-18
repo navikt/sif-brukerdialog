@@ -1,5 +1,23 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.0.13
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.0.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+
 ## 0.0.10
 
 ### Patch Changes

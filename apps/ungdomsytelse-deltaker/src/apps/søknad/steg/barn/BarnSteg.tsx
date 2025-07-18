@@ -1,6 +1,7 @@
 import { Alert, BodyLong, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
 import { AppText, useAppIntl } from '../../../../i18n';
@@ -12,7 +13,6 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
-import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 
 const BarnSteg = () => {
     const { text } = useAppIntl();

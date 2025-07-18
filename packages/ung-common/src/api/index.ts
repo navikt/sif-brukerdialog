@@ -2,6 +2,7 @@ import { AxiosError, HttpStatusCode } from 'axios';
 
 export * from './errorHandlers';
 export * from './k9BrukerdialogProsesseringApiClient';
+export * from './k9BrukerdialogProsesseringUngdomsytelseApiClient';
 
 export const isUnauthorized = (error: AxiosError): boolean =>
     error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;

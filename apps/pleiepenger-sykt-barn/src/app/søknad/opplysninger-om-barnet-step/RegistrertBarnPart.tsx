@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAppIntl } from '@i18n/index';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
@@ -5,7 +6,6 @@ import { AnnetBarnValue, VelgBarnInput } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import { useEffect } from 'react';
 
 interface Props {
     søkersBarn: RegistrertBarn[];
