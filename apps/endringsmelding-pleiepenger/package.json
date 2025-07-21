@@ -68,7 +68,7 @@
         "@types/react-document-title": "2.0.10",
         "@types/react-dom": "19.1.6",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "4.6.0",
+        "@vitejs/plugin-react": "4.7.0",
         "axe-core": "4.10.3",
         "babel-polyfill": "6.26.0",
         "compression": "1.8.0",
