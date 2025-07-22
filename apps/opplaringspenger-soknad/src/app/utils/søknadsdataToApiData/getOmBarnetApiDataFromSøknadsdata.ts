@@ -9,7 +9,9 @@ const getRegistrertBarnApiData = (
     omBarnetSøknadsdata: OmBarnetFormSøknadsdata_RegistrertBarn,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetApiData => {
-    const valgtBarn = registrerteBarn.find((currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId);
+    const valgtBarn = registrerteBarn.find(
+        (currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.registrertBarn.aktørId,
+    );
     if (valgtBarn === undefined) {
         throw Error('barnChosenFromList undefined');
     }

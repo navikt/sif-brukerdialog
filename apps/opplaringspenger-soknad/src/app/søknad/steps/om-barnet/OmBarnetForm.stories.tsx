@@ -10,7 +10,6 @@ import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { OmBarnetFormValues } from './om-barnet-form/types';
 
 const initialValues: OmBarnetFormValues = {
-    søknadenGjelderEtAnnetBarn: undefined,
     barnetsFødselsnummer: undefined,
     barnetsNavn: undefined,
     relasjonTilBarnet: undefined,

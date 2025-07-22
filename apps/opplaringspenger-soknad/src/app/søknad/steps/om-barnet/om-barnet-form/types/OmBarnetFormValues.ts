@@ -3,7 +3,6 @@ import { OmBarnetFormFields, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnum
 
 export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetSøknadenGjelder]?: string;
-    [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
     [OmBarnetFormFields.barnetsNavn]?: string;
     [OmBarnetFormFields.barnetsFødselsnummer]?: string;
     [OmBarnetFormFields.barnetsFødselsdato]?: string;
