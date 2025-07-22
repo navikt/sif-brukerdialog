@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.9.23",
+    "version": "1.9.24",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -30,11 +30,11 @@
         "axios": "1.10.0",
         "csp-header": "6.1.0",
         "date-fns": "4.1.0",
-        "html-react-parser": "5.2.5",
+        "html-react-parser": "5.2.6",
         "jsdom": "26.1.0",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",
-        "next": "15.4.1",
+        "next": "15.4.2",
         "next-logger": "5.0.1",
         "pino": "9.7.0",
         "react": "19.1.0",
@@ -42,7 +42,7 @@
         "react-loading-skeleton": "3.5.0",
         "swr": "2.3.4",
         "uuid": "11.1.0",
-        "zod": "3.25.76"
+        "zod": "4.0.5"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
@@ -61,9 +61,9 @@
         "eslint": "9.31.0",
         "eslint-plugin-storybook": "9.0.17",
         "formik": "2.4.6",
-        "jest": "30.0.4",
-        "jest-environment-jsdom": "30.0.4",
-        "next": "15.4.1",
+        "jest": "30.0.5",
+        "jest-environment-jsdom": "30.0.5",
+        "next": "15.4.2",
         "node-fetch": "3.3.2",
         "playwright-core": "1.54.1",
         "postcss": "8.5.6",

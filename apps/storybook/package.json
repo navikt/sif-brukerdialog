@@ -2,7 +2,7 @@
     "name": "sif-storybook",
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "main": "src/index.ts",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -25,7 +25,7 @@
         "dayjs": "1.11.13",
         "globals": "16.3.0",
         "intl": "1.2.5",
-        "less": "4.3.0",
+        "less": "4.4.0",
         "postcss": "8.5.6",
         "react": "19.1.0",
         "react-dom": "19.1.0",
