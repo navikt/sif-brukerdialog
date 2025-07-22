@@ -8,8 +8,8 @@ export const søkerResponseSchema = z.object({
     etternavn: z.string(),
     mellomnavn: z
         .string()
-        .optional()
         .nullable()
-        .transform((v) => (v === null ? undefined : v)),
+        .transform((v) => (v === null ? undefined : v))
+        .optional(),
     fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
 });
