@@ -19,7 +19,7 @@ export * from './ArbeidsforholdApiData';
 export * from './SelvstendigApiData';
 export * from './FrilansApiData';
 
-export const SøknadApiDataVersjon = 'Søknad-1.2.0';
+export const SøknadApiDataVersjon = 'Søknad-1.2.1';
 
 export interface PeriodeApiData {
     fraOgMed: ISODate;

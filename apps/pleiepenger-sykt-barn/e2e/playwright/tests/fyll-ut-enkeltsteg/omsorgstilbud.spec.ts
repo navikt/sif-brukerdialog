@@ -26,10 +26,10 @@ test.afterEach(async ({ page }) => {
 });
 
 test('Fyll ut omsorgstilbud', async ({ page }) => {
+    await page.getByRole('group', { name: 'Har barnet vært fast og' }).getByLabel('Ja, i hele eller deler av').click();
+    await page.getByRole('group', { name: 'Har barnet vært fast og' }).getByLabel('Nei').click();
     await page.getByText('Ja, i hele eller deler av').first().click();
-    await page.getByText('Nei').nth(2).click();
-    await page.getByText('Ja, i hele eller deler av').first().click();
-    await page.getByText('Nei').nth(3).click();
+    await page.getByTestId('erIOmsorgstilbud-fremtid_no').click();
     await page.getByText('Usikker').click();
     await page.getByText('Ja, i hele eller deler av').nth(1).click();
     await page.getByText('Hver uke er lik').click();
