@@ -9,8 +9,7 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
-
-export const STORAGE_VERSION = '2.4';
+import { MELLOMLAGRING_VERSION } from '../constants/MELLOMLAGRING_VERSJON';
 
 interface UserHashInfo {
     søker: Søker;
@@ -62,7 +61,7 @@ export const isStorageDataValid = (
     userHashInfo: UserHashInfo,
 ): SoknadTempStorageData | undefined => {
     if (
-        data?.metadata?.version === STORAGE_VERSION &&
+        data?.metadata?.version === MELLOMLAGRING_VERSION &&
         data?.metadata.lastStepID !== undefined &&
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
@@ -87,7 +86,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
             metadata: {
                 soknadId,
                 lastStepID,
-                version: STORAGE_VERSION,
+                version: MELLOMLAGRING_VERSION,
                 userHash: createHashString(userHashInfo),
             },
         });

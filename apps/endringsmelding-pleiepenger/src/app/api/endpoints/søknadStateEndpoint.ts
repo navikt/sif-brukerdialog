@@ -4,7 +4,7 @@ import { jsonSort } from '@navikt/sif-common-utils';
 import { K9Sak, Søknadsdata, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
-import { APP_VERSJON } from '../../constants/APP_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
@@ -53,7 +53,7 @@ export const isPersistedSøknadStateValid = (
     k9saker: K9Sak[],
 ): boolean => {
     return (
-        søknadState.versjon === APP_VERSJON &&
+        søknadState.versjon === MELLOMLAGRING_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
         k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
         persistedSøknadRouteIsAvailable(søknadState)
@@ -72,7 +72,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
         søker,
     ) => {
         return persistSetup.update({
-            versjon: APP_VERSJON,
+            versjon: MELLOMLAGRING_VERSJON,
             søknadHashString: createHashString({ søker, barnAktørId }),
             barnAktørId,
             søknadsdata,

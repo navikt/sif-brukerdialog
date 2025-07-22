@@ -1,18 +1,19 @@
 import React from 'react';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
 import { purge, rehydrate } from '../api/api';
+import { MELLOMLAGRING_VERSION } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
-import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
+import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
-import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
+import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
