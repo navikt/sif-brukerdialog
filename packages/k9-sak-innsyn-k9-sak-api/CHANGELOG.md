@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.5
+
+### Patch Changes
+
+- Major oppdatering av zod - til versjon 4
+
 ## 0.0.4
 
 ### Patch Changes

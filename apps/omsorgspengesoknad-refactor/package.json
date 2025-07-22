@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad-refactor",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.39.5",
+    "version": "1.39.6",
     "private": true,
     "type": "module",
     "dependencies": {

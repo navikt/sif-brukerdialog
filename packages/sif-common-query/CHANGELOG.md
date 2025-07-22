@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.15
+
 ## 0.1.3
 
 ### Patch Changes
