@@ -1,0 +1,1 @@
+export const MELLOMLAGRING_VERSJON = '14.2.0';
