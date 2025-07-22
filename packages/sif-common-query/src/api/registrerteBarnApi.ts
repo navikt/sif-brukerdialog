@@ -7,7 +7,7 @@ import { registrerteBarnListeSchema, RegistrertBarn } from '../types/Barn';
  * @returns Promise med liste over barn
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
-export const hentBarn = async (): Promise<RegistrertBarn[]> => {
+export const hentRegistrerteBarn = async (): Promise<RegistrertBarn[]> => {
     const response = await BarnController.hentBarn();
     const data = registrerteBarnListeSchema.parse(response.data);
     return data.barn;

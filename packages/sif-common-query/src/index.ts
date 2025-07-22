@@ -10,7 +10,7 @@ export * from './types/MellomlagringYtelse';
 
 // Alle hooks
 export * from './hooks/useArbeidsgivere';
-export * from './hooks/useBarn';
+export * from './hooks/useRegistrerteBarn';
 export * from './hooks/useYtelseMellomlagring';
 export * from './hooks/useSøker';
 export * from './hooks/useValiderFritekst';

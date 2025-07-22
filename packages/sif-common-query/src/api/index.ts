@@ -1,5 +1,5 @@
 // Barn API
-export { hentBarn } from './barnApi';
+export { hentRegistrerteBarn } from './registrerteBarnApi';
 
 // Søker API
 export { hentSøker, hentSøkerId } from './søkerApi';
@@ -15,8 +15,8 @@ export { lagreVedlegg, slettVedlegg, hentVedlegg, getVedleggIdFromResponseHeader
 
 // Mellomlagring API
 export {
-    hentYtelseMellomlagring as hentMellomlagring,
-    opprettYtelseMellomlagring as createMellomlagring,
-    oppdaterYtelseMellomlagring as updateMellomlagring,
-    slettYtelseMellomlagring as deleteMellomlagring,
+    hentYtelseMellomlagring,
+    opprettYtelseMellomlagring,
+    oppdaterYtelseMellomlagring,
+    slettYtelseMellomlagring,
 } from './ytelseMellomlagringApi';

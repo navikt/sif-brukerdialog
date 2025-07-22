@@ -9,10 +9,10 @@ import { useSøker } from '@navikt/sif-common-query';
 
 function MyComponent() {
     const { data: søker, isLoading, error } = useSøker();
-    
+
     if (isLoading) return <div>Laster...</div>;
     if (error) return <div>Feil: {error.message}</div>;
-    
+
     return <div>Hei {søker.fornavn}!</div>;
 }
 ```
@@ -20,7 +20,7 @@ function MyComponent() {
 ## Available hooks
 
 - `useSøker()` - Hent innlogget bruker
-- `useBarn()` - Hent brukerens barn (kommer)
+- `useRegistrerteBarn()` - Hent brukerens barn (kommer)
 - `useArbeidsgivere()` - Hent brukerens arbeidsgivere (kommer)
 
 ## Query client setup
