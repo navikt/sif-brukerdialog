@@ -9,7 +9,7 @@ import { sifCommonQueryKeys } from '../queryKeys';
 import { MellomlagringYtelse } from '../types/MellomlagringYtelse';
 
 // Hook for fetching mellomlagring data for a specific ytelse
-export const useGetYtelseMellomlagring = (
+const useGetYtelseMellomlagring = (
     ytelse: MellomlagringYtelse,
     options?: {
         enabled?: boolean;
@@ -25,7 +25,7 @@ export const useGetYtelseMellomlagring = (
 };
 
 // Hook for creating mellomlagring data
-export const useCreateYtelseMellomlagring = () => {
+const useCreateYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -42,7 +42,7 @@ export const useCreateYtelseMellomlagring = () => {
 };
 
 // Hook for updating mellomlagring data
-export const useUpdateYtelseMellomlagring = () => {
+const useUpdateYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -59,7 +59,7 @@ export const useUpdateYtelseMellomlagring = () => {
 };
 
 // Hook for deleting mellomlagring data
-export const useDeleteYtelseMellomlagring = () => {
+const useDeleteYtelseMellomlagring = () => {
     const queryClient = useQueryClient();
 
     return useMutation({

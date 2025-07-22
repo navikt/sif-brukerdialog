@@ -1,6 +1,6 @@
-import { MellomlagringYtelse } from '@navikt/sif-common-api';
+// import { MellomlagringYtelse } from '@navikt/sif-common-api';
+import { MellomlagringYtelse, ytelseMellomlagringUtils } from '@navikt/sif-common-query';
 import { SøknadContextState } from '../types/SøknadContextState';
-import { ytelseMellomlagringUtils } from '@navikt/sif-common-query';
 
 export type Mellomlagring = Omit<SøknadContextState, 'søker'>;
 

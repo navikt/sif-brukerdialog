@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useBarn, useSøker } from '@navikt/sif-common-query';
+import { useRegistrerteBarn, useSøker } from '@navikt/sif-common-query';
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
@@ -19,7 +19,7 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 function useSøknadInitialData() {
     const søkerQuery = useSøker();
-    const barnQuery = useBarn();
+    const barnQuery = useRegistrerteBarn();
 
     return useQuery({
         queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
