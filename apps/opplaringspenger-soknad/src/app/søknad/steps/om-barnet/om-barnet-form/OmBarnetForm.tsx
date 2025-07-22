@@ -1,13 +1,14 @@
-import { VStack } from '@navikt/ds-react';
+import { Box, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { AnnetBarnValue, FormLayout, VelgBarnInput } from '@navikt/sif-common-ui';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';
-import VelgRegistrertBarn from './components/VelgRegistrertBarn';
-import { OmBarnetFormValues } from './types';
 import { useOmBarnetFormIntl } from './omBarnetFormMessages';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { OmBarnetFormFields, OmBarnetFormValues } from './types';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -28,9 +29,9 @@ const OmBarnetForm = ({
     andreVedlegg,
     goBack,
 }: Props) => {
-    const { intl } = useOmBarnetFormIntl();
-    const { values, setFieldValue } = useFormikContext<OmBarnetFormValues>();
-    const { søknadenGjelderEtAnnetBarn } = values;
+    const { text, intl } = useOmBarnetFormIntl();
+    const { values } = useFormikContext<OmBarnetFormValues>();
+    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === AnnetBarnValue;
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
     return (
@@ -42,13 +43,19 @@ const OmBarnetForm = ({
             runDelayedFormValidation={true}>
             <VStack gap="8">
                 {harRegistrerteBarn ? (
-                    <VelgRegistrertBarn
-                        registrerteBarn={registrerteBarn}
-                        søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                        onAnnetBarnSelected={() => {
-                            setFieldValue('barnetSøknadenGjelder', undefined);
-                        }}
-                    />
+                    <Box>
+                        <Heading level="2" size="medium" spacing={true}>
+                            {text('omBarnetForm.hvilketBarn.spm')}
+                        </Heading>
+                        <FormLayout.Questions>
+                            <VelgBarnInput
+                                name={OmBarnetFormFields.barnetSøknadenGjelder}
+                                registrerteBarn={registrerteBarn}
+                                inkluderAnnetBarn={true}
+                                validate={getRequiredFieldValidator()}
+                            />
+                        </FormLayout.Questions>
+                    </Box>
                 ) : null}
 
                 {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn) && (
