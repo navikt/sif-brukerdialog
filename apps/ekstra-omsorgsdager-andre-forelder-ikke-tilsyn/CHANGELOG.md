@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.33.26
+
+### Patch Changes
+
+- Samkjøre MELLOMLAGRING_VERSJON filer slik at det er konsekvent på tvers av applikasjoner
+
 ## 1.33.25
 
 ### Patch Changes

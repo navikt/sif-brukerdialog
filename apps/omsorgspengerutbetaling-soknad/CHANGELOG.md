@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.24.25
+
+### Patch Changes
+
+- Samkjøre MELLOMLAGRING_VERSJON filer slik at det er konsekvent på tvers av applikasjoner
+
 ## 1.24.24
 
 ### Patch Changes

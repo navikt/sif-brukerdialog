@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.9.26
+
+### Patch Changes
+
+- Samkjøre MELLOMLAGRING_VERSJON filer slik at det er konsekvent på tvers av applikasjoner
+
 ## 4.9.25
 
 ### Patch Changes

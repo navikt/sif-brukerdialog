@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.20.26
+
+### Patch Changes
+
+- Samkjøre MELLOMLAGRING_VERSJON filer slik at det er konsekvent på tvers av applikasjoner
+
 ## 2.20.25
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.46.26
+
+### Patch Changes
+
+- Samkjøre MELLOMLAGRING_VERSJON filer slik at det er konsekvent på tvers av applikasjoner
+
 ## 3.46.25
 
 ### Patch Changes
