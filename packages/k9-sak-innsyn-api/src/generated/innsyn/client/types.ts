@@ -1,4 +1,11 @@
-import type { AxiosError, AxiosInstance, AxiosResponse, AxiosStatic, CreateAxiosDefaults } from 'axios';
+import type {
+    AxiosError,
+    AxiosInstance,
+    AxiosRequestHeaders,
+    AxiosResponse,
+    AxiosStatic,
+    CreateAxiosDefaults,
+} from 'axios';
 
 import type { Auth } from '../core/auth';
 import type { Client as CoreClient, Config as CoreConfig } from '../core/types';
@@ -24,7 +31,7 @@ export interface Config<T extends ClientOptions = ClientOptions>
      * {@link https://developer.mozilla.org/docs/Web/API/Headers/Headers#init See more}
      */
     headers?:
-        | CreateAxiosDefaults['headers']
+        | AxiosRequestHeaders
         | Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
     /**
      * Throw an error instead of returning it in the response?
