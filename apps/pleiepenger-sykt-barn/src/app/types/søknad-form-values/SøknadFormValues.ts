@@ -25,7 +25,6 @@ export enum SøknadFormField {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     relasjonTilBarnet = 'relasjonTilBarnet',
     relasjonTilBarnetBeskrivelse = 'relasjonTilBarnetBeskrivelse',
-    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetHarIkkeFnr = 'barnetHarIkkeFnr',
     årsakManglerIdentitetsnummer = 'årsakManglerIdentitetsnummer',
     fødselsattest = 'fødselsattest',
@@ -74,7 +73,6 @@ export interface SøknadFormValues {
     [SøknadFormField.barnetsFødselsdato]?: string;
     [SøknadFormField.årsakManglerIdentitetsnummer]?: ÅrsakManglerIdentitetsnummer;
     [SøknadFormField.fødselsattest]: Vedlegg[];
-    [SøknadFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [SøknadFormField.barnetHarIkkeFnr]: boolean;
     [SøknadFormField.barnetSøknadenGjelder]: string;
     [SøknadFormField.relasjonTilBarnet]?: BarnRelasjon;
@@ -118,7 +116,6 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.barnetSøknadenGjelder]: '',
     [SøknadFormField.harForståttRettigheterOgPlikter]: false,
     [SøknadFormField.harBekreftetOpplysninger]: false,
-    [SøknadFormField.søknadenGjelderEtAnnetBarn]: false,
     [SøknadFormField.barnetHarIkkeFnr]: false,
     [SøknadFormField.årsakManglerIdentitetsnummer]: undefined,
     [SøknadFormField.fødselsattest]: [],

@@ -10,11 +10,14 @@ import {
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid,
 } from '../stepValidations';
+import { AnnetBarnValue } from '@navikt/sif-common-ui';
+import { BarnRelasjon } from '../../types';
 
 vi.mock('./../fieldValidations', () => {
     return {
         validateNavn: vi.fn(() => undefined),
         validateFødselsnummer: vi.fn(() => undefined),
+        validateRelasjonTilBarnBeskrivelse: vi.fn(() => undefined),
         validateValgtBarn: vi.fn(() => undefined),
     };
 });
@@ -48,17 +51,35 @@ describe('stepValidation tests', () => {
                 vi.resetAllMocks();
             });
 
+            formValues[SøknadFormField.barnetSøknadenGjelder] = AnnetBarnValue;
+            formValues[SøknadFormField.barnetsNavn] = 'Ola Nordmann';
+            formValues[SøknadFormField.barnetsFødselsnummer] = '01010112345';
+            formValues[SøknadFormField.relasjonTilBarnet] = BarnRelasjon.FAR;
+
             it('should be valid if barnetsNavn, barnetsFødselsnummer and are all valid', () => {
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(true);
             });
 
             it(`should be invalid if ${SøknadFormField.barnetsNavn} is invalid`, () => {
+                formValues[SøknadFormField.barnetsNavn] = '';
                 (fieldValidations.validateNavn as Mock).mockReturnValue('some error message');
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
             });
 
             it(`should be invalid if ${SøknadFormField.barnetsFødselsnummer} is invalid`, () => {
                 (fieldValidations.validateFødselsnummer as Mock).mockReturnValue('some error message');
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+
+            it(`should be invalid if ${SøknadFormField.relasjonTilBarnet} is invalid`, () => {
+                formValues[SøknadFormField.relasjonTilBarnet] = undefined;
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+
+            it(`should be invalid if ${SøknadFormField.relasjonTilBarnet} is ANNET and ${SøknadFormField.relasjonTilBarnetBeskrivelse} is invalid`, () => {
+                (fieldValidations.validateRelasjonTilBarnBeskrivelse as Mock).mockReturnValue('some error message');
+                formValues[SøknadFormField.relasjonTilBarnet] = BarnRelasjon.ANNET;
+                formValues[SøknadFormField.relasjonTilBarnetBeskrivelse] = undefined;
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
             });
         });
