@@ -1,7 +1,7 @@
 import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
-import { Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -27,15 +27,22 @@ interface Props {
     soknadId: string;
     søknadstype: Søknadstype;
     søker: Søker;
+    registrerteBarn: RegistrertBarn[];
 }
 
-const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
+const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
     const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
-    const apiValues = mapFormDataToApiData(søker.fødselsnummer, soknadId, values, intl);
+
+    const apiValues = mapFormDataToApiData(søker.fødselsnummer, soknadId, values, registrerteBarn, intl);
+
+    const { registrertBarnAktørId } = values;
+    const registrertBarn = registrertBarnAktørId
+        ? registrerteBarn.find((b) => b.aktørId === values[SoknadFormField.registrertBarnAktørId])
+        : undefined;
 
     useEffectOnce(() => {
         resetSendSøknadStatus();
@@ -108,27 +115,32 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                             <AppText id="steg.oppsummering.barn.spm" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            {values.valgteRegistrertBarn && (
+                                            {registrertBarn ? (
                                                 <div>
                                                     {text('steg.oppsummering.barn.registretBarnInfo', {
-                                                        navn: values.valgteRegistrertBarn?.barnetsNavn,
-                                                        fødselsdato: prettifyDate(
-                                                            values.valgteRegistrertBarn?.barnetsFødselsdato,
+                                                        navn: formatName(
+                                                            registrertBarn?.fornavn,
+                                                            registrertBarn?.etternavn,
+                                                            registrertBarn?.mellomnavn,
                                                         ),
+                                                        fødselsdato: prettifyDate(registrertBarn.fødselsdato),
                                                     })}
                                                 </div>
+                                            ) : (
+                                                <>
+                                                    {apiValues.pleietrengende?.norskIdentitetsnummer && (
+                                                        <div data-testid="fnr-barn">
+                                                            {text('steg.oppsummering.barn.fnr', {
+                                                                fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
+                                                            })}
+                                                        </div>
+                                                    )}
+                                                    {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                                        !apiValues.pleietrengende?.aktørId && (
+                                                            <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
+                                                        )}
+                                                </>
                                             )}
-                                            {apiValues.pleietrengende?.norskIdentitetsnummer && (
-                                                <div data-testid="fnr-barn">
-                                                    {text('steg.oppsummering.barn.fnr', {
-                                                        fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
-                                                    })}
-                                                </div>
-                                            )}
-                                            {!apiValues.pleietrengende?.norskIdentitetsnummer &&
-                                                !apiValues.pleietrengende?.aktørId && (
-                                                    <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
-                                                )}
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}

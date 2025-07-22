@@ -4,12 +4,12 @@ import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { axiosJsonConfig } from '../api/api';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
-import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 
 interface UserHashInfo {
     søker: Søker;
