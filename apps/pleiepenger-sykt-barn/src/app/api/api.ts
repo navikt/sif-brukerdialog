@@ -1,7 +1,7 @@
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosResponse } from 'axios';
 import { axiosConfigPsb } from '../config/axiosConfig';
-import { MELLOMLAGRING_VERSION } from '../constants/MELLOMLAGRING_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { ResourceType } from '../types/ResourceType';
 import { StepID } from '../types/StepID';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
@@ -21,7 +21,7 @@ export const persist = ({ formValues, lastStepID }: { formValues?: SøknadFormVa
             formValues,
             metadata: {
                 lastStepID,
-                version: MELLOMLAGRING_VERSION,
+                version: MELLOMLAGRING_VERSJON,
                 updatedTimestemp: new Date().toISOString(),
                 featureToggles: getFeatureToggles(),
             },
