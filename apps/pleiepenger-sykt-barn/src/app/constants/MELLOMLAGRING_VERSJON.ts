@@ -1,1 +1,1 @@
-export const MELLOMLAGRING_VERSION = '2.4';
+export const MELLOMLAGRING_VERSION = '14.2.0';
