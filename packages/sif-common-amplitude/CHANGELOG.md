@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
 ## 2.28.10
 
 ### Patch Changes

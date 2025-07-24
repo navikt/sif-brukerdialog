@@ -1,5 +1,12 @@
 # @navikt/sif-server
 
+## 0.4.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+
 ## 0.4.15
 
 ### Patch Changes

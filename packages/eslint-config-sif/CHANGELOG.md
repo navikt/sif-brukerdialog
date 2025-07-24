@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
 ## 1.1.35
 
 ### Patch Changes
