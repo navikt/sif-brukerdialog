@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+- Updated dependencies
+- Updated dependencies [f48e4b2]
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.16
+    - @navikt/k9-sak-innsyn-api@0.0.4
+    - @navikt/sif-common-utils@3.49.12
+
 ## 0.1.4
 
 ### Patch Changes
