@@ -5087,7 +5087,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.1.11"
     "@tailwindcss/vite": "npm:4.1.11"
     "@types/react": "npm:19.1.8"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     classnames: "npm:2.5.1"
     csp-header: "npm:6.1.0"
     date-fns: "npm:4.1.0"
@@ -5207,7 +5207,7 @@ __metadata:
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     chromatic: "npm:13.1.2"
     compression: "npm:1.8.1"
@@ -5285,7 +5285,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
     axe-core: "npm:4.10.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     compression: "npm:1.8.1"
     cross-env: "npm:7.0.3"
@@ -5463,7 +5463,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     chromatic: "npm:13.1.2"
     compression: "npm:1.8.1"
@@ -5578,7 +5578,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:13.1.2"
@@ -5654,7 +5654,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:13.1.2"
@@ -5734,7 +5734,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@vitejs/plugin-react": "npm:4.7.0"
     axe-core: "npm:4.10.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
     cors: "npm:2.8.5"
@@ -5815,7 +5815,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@vitejs/plugin-react": "npm:4.7.0"
     axe-core: "npm:4.10.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
     cors: "npm:2.8.5"
@@ -5892,7 +5892,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     chromatic: "npm:13.1.2"
@@ -5987,7 +5987,7 @@ __metadata:
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
     "@types/react-router-dom": "npm:5.3.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
@@ -6066,7 +6066,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.7.0"
     axe-core: "npm:4.10.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
     compression: "npm:1.8.1"
@@ -6115,7 +6115,7 @@ __metadata:
     "@types/morgan": "npm:1.9.10"
     "@types/node": "npm:24.0.15"
     "@vercel/ncc": "npm:0.38.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     cookie-parser: "npm:1.4.7"
     csp-header: "npm:6.1.0"
     express: "npm:4.21.2"
@@ -6194,7 +6194,7 @@ __metadata:
     "@storybook/addon-actions": "npm:9.0.8"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/react": "npm:19.1.8"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
@@ -6244,7 +6244,7 @@ __metadata:
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     browser-image-compression: "npm:2.0.2"
     classnames: "npm:2.5.1"
     config: "workspace:*"
@@ -6386,7 +6386,7 @@ __metadata:
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
@@ -6439,7 +6439,7 @@ __metadata:
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.83.0"
     "@types/react": "npm:19.1.8"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     dayjs: "npm:1.11.13"
     object-hash: "npm:3.0.0"
     react: "npm:19.1.0"
@@ -6457,7 +6457,7 @@ __metadata:
     "@sentry/types": "npm:9.40.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:24.0.15"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
     gh-pages: "npm:6.3.0"
@@ -6506,7 +6506,7 @@ __metadata:
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     csp-header: "npm:6.1.0"
@@ -6707,7 +6707,7 @@ __metadata:
     "@types/uuid": "npm:10.0.0"
     "@vitejs/plugin-react": "npm:4.7.0"
     axe-core: "npm:4.10.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
@@ -6792,7 +6792,7 @@ __metadata:
     "@types/morgan": "npm:1.9.10"
     "@types/node": "npm:24.0.15"
     "@vercel/ncc": "npm:0.38.3"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     cookie-parser: "npm:1.4.7"
     csp-header: "npm:6.1.0"
     express: "npm:4.21.2"
@@ -6915,7 +6915,7 @@ __metadata:
     "@types/react-helmet": "npm:6.1.11"
     "@typescript-eslint/parser": "npm:8.38.0"
     "@vitejs/plugin-react": "npm:4.7.0"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     clsx: "npm:2.1.1"
     compression: "npm:1.8.1"
     csp-header: "npm:6.1.0"
@@ -6994,7 +6994,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.7.0"
     "@vitest/browser": "npm:3.2.4"
     "@vitest/coverage-v8": "npm:3.2.4"
-    axios: "npm:1.10.0"
+    axios: "npm:1.11.0"
     clsx: "npm:2.1.1"
     compression: "npm:1.8.1"
     csp-header: "npm:6.1.0"
@@ -12673,14 +12673,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.10.0":
-  version: 1.10.0
-  resolution: "axios@npm:1.10.0"
+"axios@npm:1.11.0":
+  version: 1.11.0
+  resolution: "axios@npm:1.11.0"
   dependencies:
     follow-redirects: "npm:^1.15.6"
-    form-data: "npm:^4.0.0"
+    form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10/d43c80316a45611fd395743e15d16ea69a95f2b7f7095f2bb12cb78f9ca0a905194a02e52a3bf4e0db9f85fd1186d6c690410644c10ecd8bb0a468e57c2040e4
+  checksum: 10/232df4af7a4e4e07baa84621b9cc4b0c518a757b4eacc7f635c0eb3642cb98dff347326739f24b891b3b4481b7b838c79a3a0c4819c9fbc1fc40232431b9c5dc
   languageName: node
   linkType: hard
 
@@ -17771,6 +17771,19 @@ __metadata:
     es-set-tostringtag: "npm:^2.1.0"
     mime-types: "npm:^2.1.12"
   checksum: 10/82c65b426af4a40090e517a1bc9057f76970b4c6043e37aa49859c447d88553e77d4cc5626395079a53d2b0889ba5f2a49f3900db3ad3f3f1bf76613532572fb
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "form-data@npm:4.0.4"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: 10/a4b62e21932f48702bc468cc26fb276d186e6b07b557e3dd7cc455872bdbb82db7db066844a64ad3cf40eaf3a753c830538183570462d3649fdfd705601cbcfb
   languageName: node
   linkType: hard
 
