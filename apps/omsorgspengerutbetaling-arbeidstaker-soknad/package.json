@@ -42,7 +42,7 @@
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0",
+        "react-router-dom": "7.7.1",
         "ulid": "3.0.1",
         "uuid": "11.1.0"
     },
@@ -69,7 +69,7 @@
         "chromatic": "13.1.2",
         "compression": "1.8.1",
         "cross-env": "7.0.3",
-        "dotenv": "17.2.0",
+        "dotenv": "17.2.1",
         "eslint": "9.31.0",
         "eslint-plugin-storybook": "9.0.18",
         "express": "4.21.2",
