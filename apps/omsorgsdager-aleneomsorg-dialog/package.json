@@ -57,7 +57,7 @@
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0",
+        "react-router-dom": "7.7.1",
         "uuid": "11.1.0"
     },
     "devDependencies": {
@@ -82,7 +82,7 @@
         "compression": "1.8.1",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
-        "dotenv": "17.2.0",
+        "dotenv": "17.2.1",
         "express": "4.21.2",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",

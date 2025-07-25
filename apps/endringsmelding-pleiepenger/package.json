@@ -38,7 +38,7 @@
         "react-day-picker": "9.8.0",
         "react-dom": "19.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0"
+        "react-router-dom": "7.7.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
@@ -73,7 +73,7 @@
         "babel-polyfill": "6.26.0",
         "compression": "1.8.1",
         "cross-env": "7.0.3",
-        "dotenv": "17.2.0",
+        "dotenv": "17.2.1",
         "express": "4.21.2",
         "http-proxy-middleware": "3.0.5",
         "mockdate": "3.0.5",

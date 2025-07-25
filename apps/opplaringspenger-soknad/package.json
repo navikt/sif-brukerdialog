@@ -29,7 +29,7 @@
         "cookie-parser": "1.4.7",
         "csp-header": "6.1.0",
         "dayjs": "1.11.13",
-        "dotenv": "17.2.0",
+        "dotenv": "17.2.1",
         "express": "4.21.2",
         "express-rate-limit": "8.0.1",
         "formik": "2.4.6",
@@ -44,9 +44,9 @@
         "react-dom": "19.1.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0",
+        "react-router-dom": "7.7.1",
         "uuid": "11.1.0",
-        "zod": "4.0.8"
+        "zod": "4.0.10"
     },
     "devDependencies": {
         "@babel/core": "7.28.0",

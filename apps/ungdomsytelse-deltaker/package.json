@@ -59,9 +59,9 @@
         "react-error-boundary": "6.0.0",
         "react-helmet": "6.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0",
+        "react-router-dom": "7.7.1",
         "uuid": "11.1.0",
-        "zod": "4.0.8",
+        "zod": "4.0.10",
         "zustand": "5.0.6"
     },
     "devDependencies": {
@@ -102,7 +102,7 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.7.0",
+        "react-router-dom": "7.7.1",
         "storybook": "9.0.18",
         "stylelint": "16.22.0",
         "tailwindcss": "4.1.11",
