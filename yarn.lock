@@ -3234,6 +3234,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.32.0":
+  version: 9.32.0
+  resolution: "@eslint/js@npm:9.32.0"
+  checksum: 10/a833083a74ed99486c9b72f9be3497ca744692feca12ade7e32119e4b29aba21592055422589a282ed64c46e86b595f147a5270011131a4ea5a2628892bfaf1d
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.6":
   version: 2.1.6
   resolution: "@eslint/object-schema@npm:2.1.6"
@@ -5691,7 +5698,7 @@ __metadata:
     "@babel/preset-react": "npm:7.27.1"
     "@babel/preset-typescript": "npm:7.27.1"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     "@navikt/ds-css": "npm:7.25.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.25.1"
@@ -5774,7 +5781,7 @@ __metadata:
     "@babel/preset-react": "npm:7.27.1"
     "@babel/preset-typescript": "npm:7.27.1"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     "@navikt/ds-css": "npm:7.25.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.25.1"
@@ -6608,7 +6615,7 @@ __metadata:
   resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     "@hookform/resolvers": "npm:5.1.1"
     "@navikt/aksel-icons": "npm:7.25.1"
     "@navikt/ds-css": "npm:7.25.1"
@@ -6872,7 +6879,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.25.1"
     "@navikt/ds-css": "npm:7.25.1"
@@ -6953,7 +6960,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.2"
     "@chromatic-com/storybook": "npm:4.0.1"
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     "@grafana/faro-react": "npm:1.19.0"
     "@navikt/aksel-icons": "npm:7.25.1"
     "@navikt/ds-css": "npm:7.25.1"
@@ -9113,7 +9120,7 @@ __metadata:
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
     "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.31.0"
+    "@eslint/js": "npm:9.32.0"
     eslint: "npm:9.31.0"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
