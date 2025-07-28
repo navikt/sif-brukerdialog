@@ -6973,7 +6973,7 @@ __metadata:
     "@storybook/react-vite": "npm:9.0.18"
     "@tailwindcss/postcss": "npm:4.1.11"
     "@tailwindcss/vite": "npm:4.1.11"
-    "@tanstack/react-form": "npm:1.14.2"
+    "@tanstack/react-form": "npm:1.15.0"
     "@types/node": "npm:24.1.0"
     "@types/react": "npm:19.1.8"
     "@types/react-dom": "npm:19.1.6"
@@ -9923,12 +9923,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/form-core@npm:1.14.2":
-  version: 1.14.2
-  resolution: "@tanstack/form-core@npm:1.14.2"
+"@tanstack/form-core@npm:1.15.0":
+  version: 1.15.0
+  resolution: "@tanstack/form-core@npm:1.15.0"
   dependencies:
     "@tanstack/store": "npm:^0.7.2"
-  checksum: 10/21adbcad3cfee6550150ab5ed297882ad62f054b70322455d80f44d86b6a6acb23b291866cfa6d49fcefebee5daa7ee66f854feed389db6cbc627d8325ca2b52
+  checksum: 10/748194be3b5ce25c269b3905f3b48d47e86365da5bd50958cd0ded641add959efba392f0b58eddc3aa8f85aa07caab46a3197751a8f52a7b2ce89ff2a106c460
   languageName: node
   linkType: hard
 
@@ -9939,11 +9939,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-form@npm:1.14.2":
-  version: 1.14.2
-  resolution: "@tanstack/react-form@npm:1.14.2"
+"@tanstack/react-form@npm:1.15.0":
+  version: 1.15.0
+  resolution: "@tanstack/react-form@npm:1.15.0"
   dependencies:
-    "@tanstack/form-core": "npm:1.14.2"
+    "@tanstack/form-core": "npm:1.15.0"
     "@tanstack/react-store": "npm:^0.7.3"
     decode-formdata: "npm:^0.9.0"
     devalue: "npm:^5.1.1"
@@ -9956,7 +9956,7 @@ __metadata:
       optional: true
     vinxi:
       optional: true
-  checksum: 10/f5edcf68d567d629a54fd27731b4491bf35655235519fda9cabff108d5cd10c9d5103c42b2a914cfef980b4008867a57a776feab7d2d7b8a617b29fafd423188
+  checksum: 10/a74e9d5d49cda0534e940ac4634ed98f849c33c4477b64e70c9defcba81056048ac5297e489bc5a09487644c3aab7487898722cf72699ab78657c26c0d9df447
   languageName: node
   linkType: hard
 
