@@ -79,7 +79,7 @@
         "babel-polyfill": "6.26.0",
         "chromatic": "13.1.2",
         "compression": "1.8.1",
-        "cross-env": "7.0.3",
+        "cross-env": "10.0.0",
         "dotenv": "17.2.1",
         "express": "4.21.2",
         "helmet": "8.1.0",
