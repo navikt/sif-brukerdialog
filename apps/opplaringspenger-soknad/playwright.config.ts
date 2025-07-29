@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './e2e/playwright/playwright.env';
+import { playwrightEnv } from './src/playwright/playwright.env';
 
 export default defineConfig({
-    testDir: './e2e/playwright/tests',
+    testDir: './src/playwright/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,

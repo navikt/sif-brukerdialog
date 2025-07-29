@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 dotenv.config();
 
 export default defineConfig({
-    mode: 'msw',
+    mode: 'e2e',
     plugins: [
         tailwindcss(),
         react({

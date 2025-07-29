@@ -1,22 +1,19 @@
-/* eslint-disable no-console */
 import { http, HttpResponse } from 'msw';
-import { institusjonerMock } from '../data/opplæringsinstitusjon-mock';
-import { søker1Mock } from '../data/soker1';
-
-let mellomlagring: any = {};
+import { mockData } from '../data';
+import { getMellomlagringHandlers } from './mellomlagringHandlers';
 
 export const getHandlers = () => [
     http.get('**/oppslag/soker', () => {
-        return HttpResponse.json(søker1Mock.søker);
+        return HttpResponse.json(mockData.søker);
     }),
     http.get('**/oppslag/barn', () => {
-        return HttpResponse.json(søker1Mock.barn);
+        return HttpResponse.json(mockData.barn);
     }),
     http.get('**/oppslag/arbeidsgiver', () => {
-        return HttpResponse.json(søker1Mock.arbeidsgiver);
+        return HttpResponse.json(mockData.arbeidsgiver);
     }),
     http.get('**/opplaringsinstitusjoner', () => {
-        return HttpResponse.json(institusjonerMock);
+        return HttpResponse.json(mockData.institusjoner);
     }),
     http.post('**/opplaringspenger/innsending', () => {
         return HttpResponse.json({});
@@ -27,23 +24,8 @@ export const getHandlers = () => [
     http.delete('**/vedlegg/*', () => {
         return HttpResponse.json({});
     }),
-    http.get('**/mellomlagring/OPPLARINGSPENGER', () => {
-        return HttpResponse.json(mellomlagring);
-    }),
-    http.post('**/mellomlagring/OPPLARINGSPENGER', ({ request }) => {
-        console.log('Mellomlagring', request.body);
-        mellomlagring = request.body;
-        return HttpResponse.json();
-    }),
-    http.put('**/mellomlagring/OPPLARINGSPENGER', ({ request }) => {
-        console.log('Mellomlagring', request.body);
-        mellomlagring = request.body;
-        return HttpResponse.json();
-    }),
-    http.delete('**/mellomlagring/OPPLARINGSPENGER', () => {
-        mellomlagring = {};
-        return HttpResponse.json();
-    }),
+    ...getMellomlagringHandlers('opplæringspenger_mellomlagring'),
+
     // Stopp alle andre kall (Dekoratøren og andre tredjepartstjenester)
     http.all('*', () => new HttpResponse(null, { status: 200 })),
 ];
