@@ -1,5 +1,31 @@
 # @navikt/sif-demo-app
 
+## 0.4.25
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@24.0.23
+    - @navikt/sif-common-forms-ds@19.0.23
+    - @navikt/sif-common-core-ds@10.2.24
+    - @navikt/sif-common-api@0.4.22
+    - @navikt/sif-common-ui@0.9.25
+
+## 0.4.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+- Updated dependencies
+- Updated dependencies [f48e4b2]
+    - @navikt/sif-common-soknad-ds@24.0.22
+    - @navikt/sif-common-forms-ds@19.0.22
+    - @navikt/sif-common-core-ds@10.2.23
+    - @navikt/sif-common-api@0.4.21
+    - @navikt/sif-common-ui@0.9.24
+
 ## 0.4.23
 
 ### Patch Changes

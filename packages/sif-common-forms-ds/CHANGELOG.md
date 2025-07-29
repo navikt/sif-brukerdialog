@@ -1,5 +1,29 @@
 # @navikt/sif-common-forms-ds
 
+## 19.0.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.21
+    - @navikt/sif-common-core-ds@10.2.24
+    - @navikt/sif-common-utils@3.49.13
+    - @navikt/sif-common-ui@0.9.25
+    - @navikt/sif-validation@1.0.2
+
+## 19.0.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.20
+    - @navikt/sif-common-core-ds@10.2.23
+    - @navikt/sif-common-utils@3.49.12
+    - @navikt/sif-common-ui@0.9.24
+    - @navikt/sif-validation@1.0.2
+
 ## 19.0.21
 
 ### Patch Changes

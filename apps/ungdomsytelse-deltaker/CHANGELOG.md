@@ -1,5 +1,40 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.6.27
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.16
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.17
+    - @navikt/sif-common-soknad-ds@24.0.23
+    - @navikt/sif-common-forms-ds@19.0.23
+    - @navikt/sif-common-core-ds@10.2.24
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-common-api@0.4.22
+    - @navikt/sif-common-ui@0.9.25
+    - @navikt/ung-common@0.0.18
+    - @navikt/sif-app-register@0.1.7
+
+## 0.6.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+- Updated dependencies
+- Updated dependencies [f48e4b2]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.0.15
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.16
+    - @navikt/sif-common-soknad-ds@24.0.22
+    - @navikt/sif-common-forms-ds@19.0.22
+    - @navikt/sif-common-core-ds@10.2.23
+    - @navikt/sif-common-api@0.4.21
+    - @navikt/sif-common-ui@0.9.24
+    - @navikt/ung-common@0.0.17
+    - @navikt/sif-app-register@0.1.7
+
 ## 0.6.25
 
 ### Patch Changes

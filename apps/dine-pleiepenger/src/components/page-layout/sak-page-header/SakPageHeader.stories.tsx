@@ -25,6 +25,7 @@ export const Default: Story = {
             aktørId: '123123123',
             anonymisert: false,
             etternavn: 'Hansen',
+            mellomnavn: 'Von',
             fornavn: 'Ola',
             identitetsnummer: '12345678910',
             fødselsdato: ISODateToDate('2022-01-01'),
