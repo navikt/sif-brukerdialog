@@ -17,7 +17,7 @@ export const fyllUtAnnetBarn = async (page: Page) => {
     await page.getByLabel('År', { exact: true }).selectOption('2022');
     await page.getByLabel('torsdag 8').click();
     await page.getByText('Fosterforelder').click();
-    await lastOppDokument(page, page.locator('input[type="file"]'), './e2e/playwright/files/navlogopng.png');
+    await lastOppDokument(page, page.locator('input[type="file"]'), './src/playwright/files/navlogopng.png');
     await expect(page.getByRole('heading', { name: 'Dokumenter lastet opp (1)' })).toBeVisible();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };

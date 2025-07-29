@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.0.26
+
+### Patch Changes
+
+- Oppdatere dev- og test-oppsett
+
 ## 1.0.27
 
 ### Patch Changes

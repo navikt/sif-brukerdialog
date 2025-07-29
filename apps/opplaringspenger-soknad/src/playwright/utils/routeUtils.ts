@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { BrowserContext, Page } from '@playwright/test';
 import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import { Søknadsdata } from '../../../src/app/types/søknadsdata/Søknadsdata';

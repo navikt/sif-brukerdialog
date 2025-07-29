@@ -3,7 +3,7 @@ import { Locator, Page, expect } from '@playwright/test';
 export const lastOppDokument = async (
     page: Page,
     inputLocator?: Locator | undefined,
-    filePath: string = './e2e/playwright/files/navlogopng.png',
+    filePath: string = './src/playwright/files/navlogopng.png',
     kontrollerListe: boolean = true,
 ) => {
     const input = inputLocator || page.locator('input[type="file"]');

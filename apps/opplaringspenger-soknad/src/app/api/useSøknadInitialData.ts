@@ -47,6 +47,7 @@ const getSøknadInitialData = async (
 ): Promise<SøknadInitialData> => {
     const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
     if (!isValid) {
+        console.log('Mellomlagring er ikke gyldig, sletter mellomlagring');
         await mellomlagringService.purge();
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
