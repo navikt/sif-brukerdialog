@@ -158,10 +158,10 @@ const søknadsdata: Søknadsdata = {
         skalEttersendeVedlegg: false,
     },
 };
+
 export const mellomlagringMock = {
     søknadHashString: '2cc7804fe085530d3864aa8e71c92f08a39d2716',
     søknadsdata,
-
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
     versjon: '0.2.1',

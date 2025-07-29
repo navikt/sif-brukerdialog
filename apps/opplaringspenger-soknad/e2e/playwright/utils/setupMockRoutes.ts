@@ -1,6 +1,5 @@
 import { BrowserContext, Page } from '@playwright/test';
 import { StepId } from '../../../src/app/types/StepId';
-import { barnMock } from '../mock-data/barnMock';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
@@ -20,7 +19,7 @@ export const setupMockRoutes = async (
         await route.fulfill({ status: 200 });
     });
     await page.route('**/oppslag/barn**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(barnMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barn) });
     });
     await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
         await route.fulfill({ status: 200 });
@@ -43,10 +42,10 @@ export const setupMockRoutes = async (
         await route.fulfill({ status: 200 });
     });
     await page.route('**/oppslag/soker', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søker) });
     });
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiverMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiver) });
     });
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({
@@ -58,7 +57,7 @@ export const setupMockRoutes = async (
         });
     });
     await page.route('**/k9sak/opplaringsinstitusjoner', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.institusjonerMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.institusjoner) });
     });
     await page.route('**/innsending', async (route) => {
         await route.fulfill({ status: 200 });
