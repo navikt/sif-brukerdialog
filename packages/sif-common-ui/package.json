@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.9.24",
+    "version": "0.9.25",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -13,14 +13,14 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "9.8.0"
+        "react-day-picker": "9.8.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "9.0.18",
         "@storybook/addon-actions": "9.0.8",
         "@storybook/testing-library": "0.2.2",
-        "@types/react": "19.1.8",
+        "@types/react": "19.1.9",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.13",
@@ -28,12 +28,12 @@
         "intl": "1.2.5",
         "less": "4.4.0",
         "postcss": "8.5.6",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
+        "react": "19.1.1",
+        "react-dom": "19.1.1",
         "react-intl": "7.1.11",
         "storybook": "9.0.18",
         "typescript": "5.8.3",
-        "webpack": "5.100.2"
+        "webpack": "5.101.0"
     },
     "scripts": {
         "build-storybook": "storybook build ",
