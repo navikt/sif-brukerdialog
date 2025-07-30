@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
-import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -28,18 +26,6 @@ const {
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
-    useEffect(() => {
-        if (getMaybeEnv('INJECT_DECORATOR') === 'true') {
-            injectDecoratorClientSide({
-                env: 'dev',
-                params: {
-                    simple: false,
-                    chatbot: true,
-                },
-            });
-        }
-    }, []);
-
     return (
         <SoknadApplication
             appVersion={APP_VERSION}
