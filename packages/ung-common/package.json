@@ -30,7 +30,6 @@
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "test": "vitest run"
+        "lint:tsc": "tsc --noEmit"
     }
 }

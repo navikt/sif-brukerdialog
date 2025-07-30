@@ -47,10 +47,6 @@
         "uuid": "11.1.0"
     },
     "devDependencies": {
-        "@babel/core": "7.28.0",
-        "@babel/preset-env": "7.28.0",
-        "@babel/preset-react": "7.27.1",
-        "@babel/preset-typescript": "7.27.1",
         "@chromatic-com/storybook": "4.0.1",
         "@playwright/test": "1.54.1",
         "@sif/eslint-config": "workspace:*",
@@ -65,7 +61,6 @@
         "@types/react-dom": "19.1.7",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.7.0",
-        "babel-polyfill": "6.26.0",
         "chromatic": "13.1.2",
         "compression": "1.8.1",
         "cross-env": "10.0.0",
