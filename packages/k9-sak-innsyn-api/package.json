@@ -22,7 +22,6 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "build": "tsc",
         "fix-regex": "node scripts/fix-generated-regex.mjs",
         "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
         "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types:legacy",
