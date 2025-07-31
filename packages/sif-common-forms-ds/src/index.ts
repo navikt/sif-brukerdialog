@@ -1,4 +1,4 @@
-export * from './form-parts/velg-barn-form-part/VelgBarnFormPart';
+export * from './form-parts/velg-barn-form-part';
 export * from './forms/annet-barn';
 export * from './forms/bosted-utland';
 export * from './forms/ferieuttak';

@@ -4,11 +4,11 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { FormikRadioGroup, FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { FormikRadioGroupProps } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
+import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { FormsText, useFormsIntl } from '../../i18n/forms.messages';
-import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 
-export const AnnetBarnValue = 'annetBarn';
+export const VelgBarn_AnnetBarnValue = 'annetBarn';
 
 interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios'> {
     legend?: string;
@@ -17,7 +17,13 @@ interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios
     annetBarnOptions?: FormikRadioProp;
 }
 
-const VelgBarnFormPart = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOptions, ...restProps }: Props) => {
+export const VelgBarnFormPart = ({
+    legend,
+    inkluderAnnetBarn,
+    registrerteBarn,
+    annetBarnOptions,
+    ...restProps
+}: Props) => {
     const { text } = useFormsIntl();
 
     const radios = useMemo(() => {
@@ -25,7 +31,7 @@ const VelgBarnFormPart = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBar
         if (inkluderAnnetBarn) {
             options.push(
                 annetBarnOptions || {
-                    value: AnnetBarnValue,
+                    value: VelgBarn_AnnetBarnValue,
                     label: text('@forms.velgBarnFormPart.gjelderAnnetBarn'),
                 },
             );
@@ -66,5 +72,3 @@ const mapBarnTilRadioProps = (barn: RegistrertBarn): FormikRadioProp => {
         ),
     };
 };
-
-export default VelgBarnFormPart;
