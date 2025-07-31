@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.10.0
+
+### Minor Changes
+
+- Flytte komponent fra ui til forms
+
 ## 0.9.25
 
 ### Patch Changes
