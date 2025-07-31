@@ -14,6 +14,8 @@ import {
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 
 export const libMessages = {
     nb: {
@@ -28,6 +30,7 @@ export const libMessages = {
         ...utenlandskNæringMessages.nb,
         ...utenlandsoppholdMessages.nb,
         ...virksomhetMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
         ...bostedUtlandMessages.nn,
@@ -41,6 +44,7 @@ export const libMessages = {
         ...utenlandskNæringMessages.nn,
         ...utenlandsoppholdMessages.nn,
         ...virksomhetMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
 
