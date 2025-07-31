@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { AnnetBarnValue, VelgBarnInput } from '@navikt/sif-common-ui';
+import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
@@ -31,7 +31,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
 
     return (
         <>
-            <VelgBarnInput
+            <VelgBarnFormPart
                 name={SoknadFormField.registrertBarnAktørId}
                 legend={text('step.dokumentType.registrertBarnPart.spm')}
                 description={
@@ -43,7 +43,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                 validate={validateRegistrertBarnAktørId}
                 inkluderAnnetBarn={true}
                 annetBarnOptions={{
-                    value: AnnetBarnValue,
+                    value: VelgBarn_AnnetBarnValue,
                     label: text('step.dokumentType.gjelderAnnetBarn'),
                 }}
             />

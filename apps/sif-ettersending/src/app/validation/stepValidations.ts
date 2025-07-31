@@ -1,4 +1,4 @@
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { hasValue } from '@navikt/sif-validation';
 
@@ -12,7 +12,7 @@ export const dokumentTypeStepIsValid = (values: SoknadFormData) => {
     const { registrertBarnAktørId, barnetsFødselsnummer } = values;
     let isValid = false;
 
-    const gjelderEtAnnetBarn = values[SoknadFormField.registrertBarnAktørId] === AnnetBarnValue;
+    const gjelderEtAnnetBarn = values[SoknadFormField.registrertBarnAktørId] === VelgBarn_AnnetBarnValue;
 
     if (gjelderEtAnnetBarn) {
         isValid = hasValue(barnetsFødselsnummer);
