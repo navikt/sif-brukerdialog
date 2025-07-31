@@ -1,5 +1,18 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.0.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+
 ## 0.0.3
 
 ### Patch Changes

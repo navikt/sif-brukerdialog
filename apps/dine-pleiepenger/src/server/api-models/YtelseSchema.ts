@@ -10,6 +10,7 @@ export const YtelseSchema = z.object({
             z.object({
                 arbeidstidInfo: z.object({
                     perioder: z.record(
+                        z.string(),
                         z.object({
                             faktiskArbeidTimerPerDag: z.string(),
                             jobberNormaltTimerPerDag: z.string(),
