@@ -1,9 +1,9 @@
 import { Heading, VStack } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { VelgBarnInput } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -18,7 +18,7 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn }: Props) => {
                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.label')}
             </Heading>
             <VStack gap="2">
-                <VelgBarnInput
+                <VelgBarnFormPart
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     registrerteBarn={registrerteBarn}
                     inkluderAnnetBarn={true}

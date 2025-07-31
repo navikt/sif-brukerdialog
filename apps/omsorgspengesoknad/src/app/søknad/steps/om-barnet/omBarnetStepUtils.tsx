@@ -1,12 +1,12 @@
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { AppMessageKeys } from '../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -46,7 +46,7 @@ export const getOmBarnetStepInitialValues = (
             case 'annetBarn':
                 return {
                     ...defaultValues,
-                    barnetSøknadenGjelder: AnnetBarnValue,
+                    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
                     barnetsFødselsdato: omBarnet.barnetsFødselsdato,
@@ -70,7 +70,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         ? values.høyereRisikoForFravær === YesOrNo.YES
         : undefined;
 
-    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === AnnetBarnValue;
+    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue;
 
     if (søknadenGjelderAnnetBarn || registrerteBarn.length === 0) {
         if (values.søkersRelasjonTilBarnet === undefined || values.sammeAdresse === undefined) {
@@ -93,7 +93,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     }
     const barn = søknadenGjelderAnnetBarn
         ? undefined
-        : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);
+        : registrerteBarn.find((b) => b.aktørId === values.barnetSøknadenGjelder);
 
     if (!barn) {
         return undefined;

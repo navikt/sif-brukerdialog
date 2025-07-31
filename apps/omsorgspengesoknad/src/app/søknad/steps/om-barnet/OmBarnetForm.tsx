@@ -1,7 +1,8 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { AnnetBarnValue, FormLayout } from '@navikt/sif-common-ui';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -52,7 +53,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
         sammeAdresse === BarnSammeAdresse.NEI && søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
 
     const harIkkeBarn = registrerteBarn.length === 0;
-    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === AnnetBarnValue;
+    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === VelgBarn_AnnetBarnValue;
 
     return (
         <Form
@@ -81,9 +82,9 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
                                     <AppText id="steg.omBarnet.annetBarn.tittel" />
                                 </FormLayout.SectionHeading>
                                 <FormLayout.Questions>
+                                    <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} allowHnr={isDevMode()} />
                                     <AnnetBarnNavnSpørsmål />
-                                    <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnRelasjonSpørsmål />
                                 </FormLayout.Questions>
                             </FormLayout.Section>
