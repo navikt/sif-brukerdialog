@@ -6,17 +6,21 @@ import { uiMessages } from '@navikt/sif-common-ui';
 import { componentMessages } from './componentMessages';
 import { appMessages_nb } from './nb';
 import { appMessages_nn } from './nn';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 
 export const libMessages = {
     nb: {
         ...commonMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
         ...commonMessages.nn,
         ...uiMessages.nn,
         ...soknadMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
 
