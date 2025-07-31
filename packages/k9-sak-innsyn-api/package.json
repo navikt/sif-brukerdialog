@@ -4,14 +4,14 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.79.2",
+        "@hey-api/openapi-ts": "0.80.1",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.8.3",
         "vitest": "3.2.4",
-        "zod": "4.0.5"
+        "zod": "4.0.13"
     },
     "peerDependencies": {
         "dayjs": "*",
@@ -22,7 +22,6 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "build": "tsc",
         "fix-regex": "node scripts/fix-generated-regex.mjs",
         "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
         "gen-types:all": "yarn gen-types:innsyn &&  yarn gen-types:k9-sak && yarn gen-types:legacy",

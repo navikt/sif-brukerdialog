@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { BarnRelasjon } from '../types';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { validateFødselsnummer, validateNavn, validateRelasjonTilBarnBeskrivelse } from './fieldValidations';
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
-import { BarnRelasjon } from '../types';
 
 dayjs.extend(isSameOrBefore);
 
@@ -22,10 +22,13 @@ export const opplysningerOmBarnetStepIsValid = ({
     relasjonTilBarnetBeskrivelse,
 }: SøknadFormValues) => {
     /** Valgt registrert barn */
-    if (barnetSøknadenGjelder !== AnnetBarnValue && validateFødselsnummer(barnetsFødselsnummer) === undefined) {
+    if (
+        barnetSøknadenGjelder !== VelgBarn_AnnetBarnValue &&
+        validateFødselsnummer(barnetsFødselsnummer) === undefined
+    ) {
         return true;
     }
-    if (barnetSøknadenGjelder === AnnetBarnValue) {
+    if (barnetSøknadenGjelder === VelgBarn_AnnetBarnValue) {
         if (barnetHarIkkeFnr && (barnetsFødselsdato === undefined || årsakManglerIdentitetsnummer === undefined)) {
             return false;
         }

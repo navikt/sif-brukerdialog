@@ -1,6 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import { Mock, vi } from 'vitest';
+import { BarnRelasjon } from '../../types';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import * as fieldValidations from '../fieldValidations';
 import {
@@ -10,8 +12,6 @@ import {
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid,
 } from '../stepValidations';
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
-import { BarnRelasjon } from '../../types';
 
 vi.mock('./../fieldValidations', () => {
     return {
@@ -51,7 +51,7 @@ describe('stepValidation tests', () => {
                 vi.resetAllMocks();
             });
 
-            formValues[SøknadFormField.barnetSøknadenGjelder] = AnnetBarnValue;
+            formValues[SøknadFormField.barnetSøknadenGjelder] = VelgBarn_AnnetBarnValue;
             formValues[SøknadFormField.barnetsNavn] = 'Ola Nordmann';
             formValues[SøknadFormField.barnetsFødselsnummer] = '01010112345';
             formValues[SøknadFormField.relasjonTilBarnet] = BarnRelasjon.FAR;

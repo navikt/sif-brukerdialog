@@ -3,7 +3,6 @@ import { AppEnv } from '../../../env.schema';
 
 const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
-    SIF_PUBLIC_FEATURE_NYNORSK: getMaybeEnv('SIF_PUBLIC_FEATURE_NYNORSK') === 'on' ? 'on' : 'off',
     SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE: getMaybeEnv('SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE') === 'on' ? 'on' : 'off',
 });
 

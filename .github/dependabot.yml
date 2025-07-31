@@ -17,9 +17,6 @@ updates:
           - "react"
           - "react-dom"
           - "@types/react"
-      babel:
-        patterns:
-          - "@babel*"
       sentry:
         patterns:
           - "@sentry*"

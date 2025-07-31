@@ -66,6 +66,7 @@ export const getCommonEnv = (): CommonEnv => {
         [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: getRequiredEnv(EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY),
         [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID),
         [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_DATASET),
+        [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: getMaybeEnv(EnvKey.SIF_PUBLIC_FEATURE_NYNORSK) === 'on' ? 'on' : 'off',
         [EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: getRequiredEnv(
             EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
         ),
