@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 20.0.0
+
+### Minor Changes
+
+- Flytte komponent fra ui til forms
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-ui@0.10.0
+
 ## 19.0.23
 
 ### Patch Changes

@@ -12,8 +12,6 @@ import { daySelectorMessages_nb } from '../inputs/day-selector/i18n/nb';
 import { daySelectorMessages_nn } from '../inputs/day-selector/i18n/nn';
 import { durationWeekdaysInputMessages_nb } from '../inputs/duration-weekdays-input/i18n/nb';
 import { durationWeekdaysInputMessages_nn } from '../inputs/duration-weekdays-input/i18n/nn';
-import { registrertBarnInput_nb } from '../inputs/velg-barn-input/i18n/nb';
-import { registrertBarnInput_nn } from '../inputs/velg-barn-input/i18n/nn';
 import { tidFasteUkedagerInputMessages_nb } from '../inputs/tid-faste-ukedager-input/i18n/nb';
 import { tidFasteUkedagerInputMessages_nn } from '../inputs/tid-faste-ukedager-input/i18n/nn';
 
@@ -26,7 +24,6 @@ const nb = {
     ...progressStepperMessages_nb,
     ...tidFasteUkedagerInputMessages_nb,
     ...registrerteBarnListeMessages_nb,
-    ...registrertBarnInput_nb,
     ...registrerteBarnKildeInfoMessages_nb,
 };
 
@@ -39,7 +36,6 @@ const nn: Record<keyof typeof nb, string> = {
     ...progressStepperMessages_nn,
     ...tidFasteUkedagerInputMessages_nn,
     ...registrerteBarnListeMessages_nn,
-    ...registrertBarnInput_nn,
     ...registrerteBarnKildeInfoMessages_nn,
 };
 
