@@ -21,6 +21,7 @@ index-decorated.html
 server/dist
 public/dist
 out
+dist-e2e
 
 # next.js
 /.next/

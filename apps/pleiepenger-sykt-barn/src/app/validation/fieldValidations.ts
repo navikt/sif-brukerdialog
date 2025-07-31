@@ -71,6 +71,16 @@ export const validateNavn = (value: string): ValidationResult<ValidationError> =
         : undefined;
 };
 
+export const validateRelasjonTilBarnBeskrivelse = (value?: string): ValidationResult<ValidationError> => {
+    const error = getStringValidator({ required: true, maxLength: 2000 })(value);
+    return error
+        ? {
+              key: error,
+              values: { min: 5, maks: 2000 },
+          }
+        : undefined;
+};
+
 export const validateFødselsnummer = (value: string): ValidationResult<ValidationError> => {
     return getFødselsnummerValidator({ required: true, allowHnr: isDevMode() })(value);
 };

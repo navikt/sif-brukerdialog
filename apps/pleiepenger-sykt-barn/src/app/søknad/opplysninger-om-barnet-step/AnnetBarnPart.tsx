@@ -12,7 +12,6 @@ import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
-    getStringValidator,
     ValidateDateError,
 } from '@navikt/sif-validation';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
@@ -21,7 +20,7 @@ import { useFormikContext } from 'formik';
 import { AppText } from '../../i18n';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../types';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import { validateNavn } from '../../validation/fieldValidations';
+import { validateNavn, validateRelasjonTilBarnBeskrivelse } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
@@ -177,15 +176,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fø
                                 </>
                             }
                             name={SøknadFormField.relasjonTilBarnetBeskrivelse}
-                            validate={(value) => {
-                                const error = getStringValidator({ required: true, maxLength: 2000 })(value);
-                                return error
-                                    ? {
-                                          key: error,
-                                          values: { min: 0, maks: 2000 },
-                                      }
-                                    : undefined;
-                            }}
+                            validate={validateRelasjonTilBarnBeskrivelse}
                             value={formValues.relasjonTilBarnet || ''}
                             data-testid="opplysninger-om-barnet-relasjonAnnetBeskrivelse"
                         />
