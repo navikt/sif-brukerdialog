@@ -22,11 +22,14 @@ vi.mock('./../fieldValidations', () => {
     };
 });
 
-vi.mock('@navikt/sif-validation', () => ({
-    getDateValidator: () => () => undefined,
-    getFødselsnummerValidator: () => () => undefined,
-    getStringValidator: () => () => undefined,
-}));
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 const formValues: Partial<SøknadFormValues> = {};
 

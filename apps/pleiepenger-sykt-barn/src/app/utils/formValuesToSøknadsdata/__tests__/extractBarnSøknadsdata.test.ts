@@ -2,6 +2,7 @@ import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
+import { vi } from 'vitest';
 
 const formValues: OmBarnetFormValues = {
     barnetsNavn: '',
@@ -10,6 +11,15 @@ const formValues: OmBarnetFormValues = {
     barnetHarIkkeFnr: false,
     fødselsattest: [],
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 describe('extractBarnetSøknadsdata', () => {
     describe('Barn fra Api', () => {
