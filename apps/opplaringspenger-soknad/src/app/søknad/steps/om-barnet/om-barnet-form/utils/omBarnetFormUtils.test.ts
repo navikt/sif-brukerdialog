@@ -1,13 +1,13 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { ÅrsakBarnetManglerIdentitetsnummer, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { OmBarnetFormSøknadsdata } from '../../../../../types/søknadsdata/Søknadsdata';
+import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import {
     getOmBarnetFormInitialValues,
     getOmBarnetSøknadsdataFromFormValues,
     omBarnetFormDefaultValues,
 } from './omBarnetFormUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { OmBarnetFormSøknadsdata } from '../../../../../types/søknadsdata/Søknadsdata';
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
 
 const barn1: RegistrertBarn = {
     fornavn: 'ALFABETISK',
@@ -36,7 +36,7 @@ enum Variant {
 }
 
 const annetBarnFormValues: OmBarnetFormValues = {
-    barnetSøknadenGjelder: AnnetBarnValue,
+    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
 };
 
 const formValuesMedFnr: OmBarnetFormValues = {
@@ -145,7 +145,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
 
 const annetBarnDefaultValues: OmBarnetFormValues = {
     ...omBarnetFormDefaultValues,
-    barnetSøknadenGjelder: AnnetBarnValue,
+    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
 };
 
 describe('getOmBarnetSøknadsdataFromFormValues', () => {

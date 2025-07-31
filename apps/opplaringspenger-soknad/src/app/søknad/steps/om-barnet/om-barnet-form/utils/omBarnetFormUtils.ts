@@ -5,7 +5,7 @@ import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { AnnetBarnValue } from '@navikt/sif-common-ui';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 
 export const omBarnetFormDefaultValues: OmBarnetFormValues = {
     barnetSøknadenGjelder: 'undefined',
@@ -33,7 +33,7 @@ export const getOmBarnetFormInitialValues = (
             case 'annetBarn':
                 return {
                     ...omBarnetFormDefaultValues,
-                    barnetSøknadenGjelder: AnnetBarnValue,
+                    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                     barnetsFødselsnummer: søknadsdata.barnetsFødselsnummer,
                     barnetsFødselsdato: dateToISODate(søknadsdata.barnetsFødselsdato),
                     barnetsNavn: søknadsdata.barnetsNavn,
@@ -46,7 +46,7 @@ export const getOmBarnetFormInitialValues = (
             case 'annetBarnUtenFnr':
                 return {
                     ...omBarnetFormDefaultValues,
-                    barnetSøknadenGjelder: AnnetBarnValue,
+                    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                     barnetHarIkkeFnr: true,
                     årsakManglerIdentitetsnummer: søknadsdata.årsakManglerIdentitetsnummer,
                     barnetsNavn: søknadsdata.barnetsNavn,
@@ -67,7 +67,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetFormSøknadsdata | undefined => {
-    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === AnnetBarnValue;
+    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue;
     const registrertBarn = søknadenGjelderAnnetBarn
         ? undefined
         : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);

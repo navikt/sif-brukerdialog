@@ -2,7 +2,8 @@ import { Box, Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { AnnetBarnValue, FormLayout, VelgBarnInput } from '@navikt/sif-common-ui';
+import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import AnnetBarnPart from './components/AnnetBarnPart';
@@ -31,7 +32,7 @@ const OmBarnetForm = ({
 }: Props) => {
     const { text, intl } = useOmBarnetFormIntl();
     const { values } = useFormikContext<OmBarnetFormValues>();
-    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === AnnetBarnValue;
+    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === VelgBarn_AnnetBarnValue;
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
     return (
@@ -48,7 +49,7 @@ const OmBarnetForm = ({
                             {text('omBarnetForm.hvilketBarn.spm')}
                         </Heading>
                         <FormLayout.Questions>
-                            <VelgBarnInput
+                            <VelgBarnFormPart
                                 name={OmBarnetFormFields.barnetSøknadenGjelder}
                                 registrerteBarn={registrerteBarn}
                                 inkluderAnnetBarn={true}

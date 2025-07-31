@@ -1,5 +1,18 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.0.16
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.0.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+
 ## 0.0.14
 
 ### Patch Changes

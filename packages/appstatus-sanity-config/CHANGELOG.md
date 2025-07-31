@@ -1,5 +1,17 @@
 # appstatus-sanity-config
 
+## 1.2.17
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.2.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
 ## 1.2.15
 
 ### Patch Changes
