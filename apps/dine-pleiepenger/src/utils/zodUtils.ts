@@ -1,22 +1,17 @@
-import { ZodError, ZodIssue } from 'zod';
+import { ZodError } from 'zod';
 
-const getZodIssueDetails = (issue: ZodIssue): any => {
+const getZodIssueDetails = (issue: ZodError<any>['issues'][number]): any => {
     switch (issue.code) {
         case 'invalid_union':
             return {
                 code: issue.code,
                 message: issue.message,
                 path: issue.path,
-                unionErrors: issue.unionErrors.map((unionError) => ({
-                    message: unionError.issues.map(getZodIssueDetails),
-                })),
-            };
-        case 'invalid_literal':
-            return {
-                code: issue.code,
-                message: issue.message,
-                path: issue.path,
-                received: issue.received,
+                unionErrors: Array.isArray((issue as any).unionErrors)
+                    ? (issue as any).unionErrors.map((unionError: any) =>
+                          Array.isArray(unionError.issues) ? unionError.issues.map(getZodIssueDetails) : [],
+                      )
+                    : [],
             };
         default:
             return {
@@ -27,6 +22,6 @@ const getZodIssueDetails = (issue: ZodIssue): any => {
     }
 };
 
-export const getZodErrorsInfo = (error: ZodError): any[] => {
-    return error.errors.map(getZodIssueDetails);
+export const getZodErrorsInfo = (error: ZodError<any>): any[] => {
+    return error.issues.map(getZodIssueDetails);
 };

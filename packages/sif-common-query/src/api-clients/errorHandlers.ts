@@ -61,7 +61,7 @@ export const handleApiError = (
         return {
             type: ApiErrorType.ValidationError,
             context,
-            message: error.errors.map((err) => err.message).join(', '),
+            message: error.issues.map((err) => err.message).join(', '),
             originalError: error,
         };
     } else if (axios.isAxiosError(error)) {
