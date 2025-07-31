@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { registrerteBarnMock } from '../../../storybook/data/registrerteBarn.mock';
-import { withIntlWrapper } from '../../../storybook/decorators/withIntlWrapper';
-import VelgBarnInput from './VelgBarnInput';
-import { withFormikWrapper } from '../../../storybook/decorators';
+import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import VelgBarnFormPart from './VelgBarnFormPart';
 
 const meta: Meta = {
-    title: 'Inputs/Velg barn input',
+    title: 'Form parts/Velg barn',
     parameters: {},
-    decorators: [withFormikWrapper, withIntlWrapper],
+    decorators: [withFormikWrapper, withIntl],
 };
 export default meta;
 
@@ -16,7 +16,7 @@ type Story = StoryObj;
 export const Default: Story = {
     render: () => {
         return (
-            <VelgBarnInput
+            <VelgBarnFormPart
                 inkluderAnnetBarn={false}
                 name="barn"
                 legend="Hvilket barn gjelder søknaden?"
@@ -28,7 +28,7 @@ export const Default: Story = {
 export const MedAnnetBarn: Story = {
     render: () => {
         return (
-            <VelgBarnInput
+            <VelgBarnFormPart
                 inkluderAnnetBarn={true}
                 name="barn"
                 legend="Hvilket barn gjelder søknaden?"

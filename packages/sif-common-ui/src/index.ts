@@ -15,9 +15,7 @@ export { default as SummarySection } from './components/summary-section/SummaryS
 export { default as TallSvar } from './components/summary-answers/TallSvar';
 export { default as TextareaSvar } from './components/summary-answers/TextareaSvar';
 export { default as TidFasteUkedagerInput } from './inputs/tid-faste-ukedager-input/TidFasteUkedagerInput';
-export { default as VelgBarnInput } from './inputs/velg-barn-input/VelgBarnInput';
 export * from './components/duration-text/DurationText';
 export * from './components/duration-text/i18n/nb';
 export * from './components/form-layout';
 export * from './i18n/ui.messages';
-export * from './inputs/velg-barn-input/VelgBarnInput';

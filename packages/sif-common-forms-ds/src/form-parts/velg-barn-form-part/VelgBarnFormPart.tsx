@@ -4,9 +4,9 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { FormikRadioGroup, FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { FormikRadioGroupProps } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
-import RegistrerteBarnListeHeading from '../../components/registrert-barn-liste-heading/RegistrerteBarnListeHeading';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { UiText, useUiIntl } from '../../i18n/ui.messages';
+import { FormsText, useFormsIntl } from '../../i18n/forms.messages';
+import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 
 export const AnnetBarnValue = 'annetBarn';
 
@@ -17,8 +17,8 @@ interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios
     annetBarnOptions?: FormikRadioProp;
 }
 
-const VelgBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOptions, ...restProps }: Props) => {
-    const { text } = useUiIntl();
+const VelgBarnFormPart = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOptions, ...restProps }: Props) => {
+    const { text } = useFormsIntl();
 
     const radios = useMemo(() => {
         const options: FormikRadioProp[] = registrerteBarn.map((barn) => mapBarnTilRadioProps(barn));
@@ -26,7 +26,7 @@ const VelgBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOp
             options.push(
                 annetBarnOptions || {
                     value: AnnetBarnValue,
-                    label: text('@ui.registrertBarnInput.gjelderAnnetBarn'),
+                    label: text('@forms.velgBarnFormPart.gjelderAnnetBarn'),
                 },
             );
         }
@@ -38,7 +38,7 @@ const VelgBarnInput = ({ legend, inkluderAnnetBarn, registrerteBarn, annetBarnOp
             <FormikRadioGroup
                 legend={
                     <RegistrerteBarnListeHeading level="3" size="xsmall">
-                        {legend || text('@ui.registrertBarnInput.legend')}
+                        {legend || text('@forms.velgBarnFormPart.legend')}
                     </RegistrerteBarnListeHeading>
                 }
                 {...restProps}
@@ -57,11 +57,14 @@ const mapBarnTilRadioProps = (barn: RegistrertBarn): FormikRadioProp => {
             <>
                 <div>{barnetsNavn}</div>
                 <div>
-                    <UiText id="@ui.registrertBarnInput.født" values={{ dato: dateFormatter.compact(fødselsdato) }} />
+                    <FormsText
+                        id="@forms.velgBarnFormPart.født"
+                        values={{ dato: dateFormatter.compact(fødselsdato) }}
+                    />
                 </div>
             </>
         ),
     };
 };
 
-export default VelgBarnInput;
+export default VelgBarnFormPart;
