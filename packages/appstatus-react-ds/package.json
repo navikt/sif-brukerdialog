@@ -2,7 +2,7 @@
     "author": "navikt",
     "description": "Sanity utils for sykdom i familien",
     "license": "MIT",
-    "main": "src",
+    "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
     "version": "2.20.17",
     "private": true,
