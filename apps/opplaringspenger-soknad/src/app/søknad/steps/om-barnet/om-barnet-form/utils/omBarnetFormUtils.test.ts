@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
@@ -8,6 +9,15 @@ import {
     getOmBarnetSøknadsdataFromFormValues,
     omBarnetFormDefaultValues,
 } from './omBarnetFormUtils';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 const barn1: RegistrertBarn = {
     fornavn: 'ALFABETISK',
