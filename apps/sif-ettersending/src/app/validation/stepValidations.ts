@@ -1,4 +1,5 @@
-import { SoknadFormData } from '../types/SoknadFormData';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { hasValue } from '@navikt/sif-validation';
 
 export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: SoknadFormData): boolean =>
@@ -8,8 +9,10 @@ export const beskrivelseStepIsValid = (values: SoknadFormData) =>
     hasValue(values.beskrivelse) && welcomingPageIsValid(values);
 
 export const dokumentTypeStepIsValid = (values: SoknadFormData) => {
-    const { registrertBarnAktørId, barnetsFødselsnummer, gjelderEtAnnetBarn } = values;
+    const { registrertBarnAktørId, barnetsFødselsnummer } = values;
     let isValid = false;
+
+    const gjelderEtAnnetBarn = values[SoknadFormField.registrertBarnAktørId] === VelgBarn_AnnetBarnValue;
 
     if (gjelderEtAnnetBarn) {
         isValid = hasValue(barnetsFødselsnummer);

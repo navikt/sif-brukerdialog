@@ -3,6 +3,7 @@ import { ReactNode, useEffect } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
@@ -24,18 +25,18 @@ interface Props {
 
 const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn }: Props) => {
     const { text } = useAppIntl();
-    const {
-        values: { gjelderEtAnnetBarn, dokumentType },
-        setFieldValue,
-    } = useFormikContext<SoknadFormData>();
+    const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
+    const { dokumentType, registrertBarnAktørId } = values;
     const harRegistrerteBarn = registrertBarn.length > 0;
+    const gjelderEtAnnetBarn = registrertBarnAktørId === VelgBarn_AnnetBarnValue;
 
     useEffect(() => {
-        if (!harRegistrerteBarn && gjelderEtAnnetBarn === undefined) {
-            setFieldValue(SoknadFormField.gjelderEtAnnetBarn, true);
+        if (registrertBarnAktørId !== VelgBarn_AnnetBarnValue) {
+            setFieldValue(SoknadFormField.barnetHarIkkeFnr, undefined);
+            setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
         }
-    }, [harRegistrerteBarn, gjelderEtAnnetBarn, setFieldValue]);
+    }, [registrertBarnAktørId]);
 
     return (
         <SoknadFormStep id={StepID.DOKUMENT_TYPE} søknadstype={søknadstype}>

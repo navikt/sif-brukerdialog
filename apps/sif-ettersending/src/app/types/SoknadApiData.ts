@@ -16,7 +16,7 @@ export enum YtelseTypeApi {
 export interface BarnetLegeerklæringGjelderApiData {
     norskIdentitetsnummer?: string;
     aktørId?: string;
-    fødselsdato?: Date;
+    fødselsdato?: string;
     navn?: string;
 }
 

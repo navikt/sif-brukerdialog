@@ -5,6 +5,8 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessagesNB } from './appMessages.nb';
 import { appMessagesNN } from './appMessages.nn';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 
 export const appMessages = {
     nb: appMessagesNB,
@@ -16,11 +18,13 @@ export const libMessages = {
         ...commonMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
         ...commonMessages.nn,
         ...uiMessages.nn,
         ...soknadMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
 
