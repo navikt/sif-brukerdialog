@@ -1,12 +1,13 @@
+import { IntlShape } from 'react-intl';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { IntlShape } from 'react-intl';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { YtelseKey, Ytelser } from '../types/Ytelser';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
     switch (ytelse) {
@@ -43,7 +44,7 @@ const mapBarnFormDataToApiData = (
                 valgtRegistrertBarn.etternavn,
                 valgtRegistrertBarn.mellomnavn,
             ),
-            fødselsdato: valgtRegistrertBarn.fødselsdato,
+            fødselsdato: dateToISODate(valgtRegistrertBarn.fødselsdato),
         };
     }
     if (barnetsFødselsnummer) {
