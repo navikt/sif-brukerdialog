@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.26",
+    "version": "0.4.27",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -35,7 +35,7 @@
         "react": "19.1.1",
         "react-dom": "19.1.1",
         "react-hook-form": "7.61.1",
-        "zod": "4.0.13"
+        "zod": "4.0.14"
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.3.1",
@@ -61,7 +61,7 @@
         "prettier": "3.6.2",
         "stylelint": "16.23.0",
         "tailwindcss": "4.1.11",
-        "typescript": "5.8.3",
+        "typescript": "5.9.2",
         "typescript-eslint": "8.38.0",
         "vite": "7.0.6",
         "vite-plugin-checker": "0.10.2"
