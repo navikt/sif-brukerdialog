@@ -1,22 +1,24 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { enableMocking } from '../../mock/msw/enableMocking';
+import App from './App';
 
-async function enableMocking() {
-    const ENV = getMaybeEnv('ENV');
-    if (ENV !== 'demo') {
-        return;
-    }
-    const { worker } = await import('../msw/browser');
-    // `worker.start()` returns a Promise that resolves
-    // once the Service Worker is up and ready to intercept requests.
-    return worker.start();
+if (getMaybeEnv('INJECT_DECORATOR') === 'true') {
+    injectDecoratorClientSide({
+        env: 'dev',
+        params: {
+            simple: true,
+            chatbot: false,
+        },
+    });
 }
-enableMocking().then(() =>
+
+enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
             <App />
         </StrictMode>,
-    ),
-);
+    );
+});

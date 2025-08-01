@@ -1,9 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -32,18 +30,6 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 initApiClients();
 
 const App = () => {
-    useEffect(() => {
-        if (getMaybeEnv('INJECT_DECORATOR') === 'true') {
-            injectDecoratorClientSide({
-                env: 'dev',
-                params: {
-                    simple: false,
-                    chatbot: true,
-                },
-            });
-        }
-    }, []);
-
     return (
         <SoknadApplication
             appVersion={APP_VERSION}
