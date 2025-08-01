@@ -6360,7 +6360,7 @@ __metadata:
     "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
-    "@tanstack/react-query": "npm:5.83.0"
+    "@tanstack/react-query": "npm:5.84.0"
     "@types/react": "npm:19.1.9"
     axios: "npm:1.11.0"
     dayjs: "npm:1.11.13"
@@ -6819,7 +6819,7 @@ __metadata:
     "@storybook/react-vite": "npm:9.0.18"
     "@tailwindcss/postcss": "npm:4.1.11"
     "@tailwindcss/vite": "npm:4.1.11"
-    "@tanstack/react-query": "npm:5.83.0"
+    "@tanstack/react-query": "npm:5.84.0"
     "@types/node": "npm:24.1.0"
     "@types/react": "npm:19.1.9"
     "@types/react-dom": "npm:19.1.7"
@@ -9996,10 +9996,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.83.0":
-  version: 5.83.0
-  resolution: "@tanstack/query-core@npm:5.83.0"
-  checksum: 10/68d76438ad8b95dce07c848a29bac01144bddbad0a6a860569eae909ecf6ea0dda378b3c5f55c45a415a34af79c90917bb5055912d315307416ef2a28b449699
+"@tanstack/query-core@npm:5.83.1":
+  version: 5.83.1
+  resolution: "@tanstack/query-core@npm:5.83.1"
+  checksum: 10/531650bafd70e2b5219ec79dd487461414e4ed8040067d8e3206d237ee39dd0b34a2573d20f751dfd1413b3d8df0b023fe22469c98765e3c8fab8391acf2f3c8
   languageName: node
   linkType: hard
 
@@ -10024,14 +10024,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.83.0":
-  version: 5.83.0
-  resolution: "@tanstack/react-query@npm:5.83.0"
+"@tanstack/react-query@npm:5.84.0":
+  version: 5.84.0
+  resolution: "@tanstack/react-query@npm:5.84.0"
   dependencies:
-    "@tanstack/query-core": "npm:5.83.0"
+    "@tanstack/query-core": "npm:5.83.1"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/59609393109af3a50fbf5bc84491220b7e171b7e7f67cfc5792dd0c649b26606baf1663c045b531982e4aea7d96214fd6cdcb7d1cf5e14b4846073b46dcd3ac4
+  checksum: 10/f035a575a60f2a0dd7c5aec55ab334f24034c44bd75dbe6e43d163fcd6913bb060277dca2b54079c6fac2ead9462e0c4c9ce09dbcf240ed9f76f55c9fca36d50
   languageName: node
   linkType: hard
 
