@@ -3,9 +3,9 @@ import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { includeDeltBostedStep } from '../søknadStepConfig';
-import { BarnOppslag } from '@navikt/sif-common-query';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
-const registrertBarn: BarnOppslag = {
+const registrertBarn: RegistrertBarn = {
     aktørId: '123',
     etternavn: 'B',
     fornavn: 'A',

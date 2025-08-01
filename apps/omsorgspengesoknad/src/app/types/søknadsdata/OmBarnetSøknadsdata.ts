@@ -1,10 +1,10 @@
-import { BarnOppslag } from '@navikt/sif-common-query';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { BarnSammeAdresse } from '../BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 
 interface OmBarnetSøknadsdata_registrertBarn {
     type: 'registrertBarn';
-    registrertBarn: BarnOppslag;
+    registrertBarn: RegistrertBarn;
     sammeAdresse: BarnSammeAdresse;
     kroniskEllerFunksjonshemming: boolean;
     høyereRisikoForFravær?: boolean;

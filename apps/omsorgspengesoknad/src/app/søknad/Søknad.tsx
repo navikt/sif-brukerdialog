@@ -1,31 +1,52 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import useSøknadInitialDataQuery from '../api/hooks/useSøknadInitialDataQuery';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import useSøknadInitialData from '../api/useSøknadInitialData';
+import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
+import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import InitialDataErrorPage from '../pages/initial-data-error-page/InitialDataErrorPage';
+import { AppText, useAppIntl } from '../i18n';
 
 const Søknad = () => {
-    const initialDataQuery = useSøknadInitialDataQuery();
+    const initialData = useSøknadInitialData();
+    const { text } = useAppIntl();
+    const { status } = initialData;
 
-    /** Error */
-    if (initialDataQuery.isError) {
-        return <InitialDataErrorPage />;
+    /** Loading */
+    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
-
-    /** Success */
-    if (initialDataQuery.data) {
+    /** Error */
+    if (status === 'error') {
         return (
-            <SøknadContextProvider initialData={initialDataQuery.data}>
-                <StepFormValuesContextProvider>
-                    <SøknadRouter />
-                </StepFormValuesContextProvider>
-            </SøknadContextProvider>
+            <ErrorPage
+                pageTitle={text('initialLoadError.pageTitle')}
+                contentRenderer={() => (
+                    <>
+                        <p>
+                            <AppText id="initialLoadError.text.1" />
+                        </p>
+                        <p>
+                            <AppText id="resetMellomlagring.text.1" />
+                        </p>
+                        <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
+                    </>
+                )}
+            />
         );
     }
 
-    // Fallback loading state
-    return <LoadingSpinner size="3xlarge" style="block" />;
+    /** Success */
+    const { data } = initialData;
+
+    return (
+        <SøknadContextProvider initialData={data}>
+            <StepFormValuesContextProvider>
+                <SøknadRouter />
+            </StepFormValuesContextProvider>
+        </SøknadContextProvider>
+    );
 };
 
 export default Søknad;

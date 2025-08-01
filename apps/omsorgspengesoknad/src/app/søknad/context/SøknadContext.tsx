@@ -1,4 +1,5 @@
 import { createContext, Dispatch, FunctionComponent, ReactNode, useMemo, useReducer } from 'react';
+import { SøknadInitialData } from '../../api/useSøknadInitialData';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadContextAction } from './action/actionCreator';
 import { søknadReducer } from './reducer/søknadReducer';
@@ -11,7 +12,7 @@ interface SøknadContextData {
 export const SøknadContext = createContext<SøknadContextData>(null!);
 
 interface Props {
-    initialData: SøknadContextState;
+    initialData: SøknadInitialData;
     children: ReactNode;
 }
 

@@ -2,33 +2,28 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { useStateMellomlagring } from './useStateMellomlagring';
+import { AxiosError } from 'axios';
+import søknadEndpoint from '../api/endpoints/søknadEndpoint';
+import { useMellomlagring } from './useMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { ApiError } from '@navikt/sif-common-query';
 
 export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [sendSøknadError, setSendSøknadError] = useState<ApiError | undefined>();
+    const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { locale } = useAppIntl();
-    const { slettMellomlagring } = useStateMellomlagring();
+    const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
     const { logSoknadSent } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
-        omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad({
-            body: apiData,
-            headers: {
-                'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
-            },
-        })
+        søknadEndpoint
+            .send(apiData)
             .then(onSøknadSendSuccess)
             .catch((error) => {
-                console.error(error);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });

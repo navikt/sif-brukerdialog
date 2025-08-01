@@ -1,6 +1,5 @@
 import { DataBruktTilUtledningAnnetData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { søkersRelasjonTilBarnetToApiValue } from './getOmBarnetApiDataFromSøknadsdata';
 
 /*
 Disse feltene eksisterer ikke på format idag:  
@@ -29,7 +28,7 @@ export const getOmBarnetDataBruktTilUtledningFromSøknadsdata = (
         case 'annetBarn':
             return {
                 ...fellesInfo,
-                relasjonTilBarnet: søkersRelasjonTilBarnetToApiValue(omBarnet.søkersRelasjonTilBarnet),
+                relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
             };
         default:
             return {

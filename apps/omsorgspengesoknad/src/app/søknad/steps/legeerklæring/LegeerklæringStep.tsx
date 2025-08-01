@@ -6,6 +6,7 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -13,7 +14,6 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
-import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
@@ -25,7 +25,6 @@ const LegeerklæringStep = () => {
 
     const stepId = StepId.LEGEERKLÆRING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const { lagreMellomlagring } = useStateMellomlagring();
 
     const { goBack } = useStepNavigation(step);
 
@@ -44,7 +43,7 @@ const LegeerklæringStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreMellomlagring(state);
+            return lagreSøknadState(state);
         },
     );
 
