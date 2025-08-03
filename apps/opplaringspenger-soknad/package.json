@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/opplaringspenger-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.0.28",
+    "version": "1.1.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -87,8 +87,8 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "e2e:build": "vite build --config vite.e2e.config.ts",
-        "e2e:start": "vite preview --base / --config vite.e2e.config.ts",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },

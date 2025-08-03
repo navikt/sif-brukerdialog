@@ -1,6 +1,6 @@
 import { BrowserContext, Page } from '@playwright/test';
-import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
-import { Søknadsdata } from '../../../src/app/types/søknadsdata/Søknadsdata';
+import { SøknadRoutes } from '../../src/app/types/SøknadRoutes';
+import { Søknadsdata } from '../../src/app/types/søknadsdata/Søknadsdata';
 import { mellomlagringMock } from '../mock-data/mellomlagringMock';
 import { setupMockRoutes } from './setupMockRoutes';
 

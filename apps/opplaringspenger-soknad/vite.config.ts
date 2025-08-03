@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
@@ -20,6 +19,18 @@ export default defineConfig({
     resolve: {},
     build: {
         sourcemap: true,
+        target: 'esnext',
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom', 'react-intl'],
+                    router: ['react-router-dom'],
+                    forms: ['formik'],
+                    utils: ['lodash', 'date-fns', 'dayjs', 'axios', 'uuid', 'zod'],
+                    navikt: ['@navikt/ds-react', '@navikt/ds-icons', '@navikt/ds-css', '@navikt/ds-tailwind'],
+                },
+            },
+        },
     },
     css: {
         preprocessorOptions: {

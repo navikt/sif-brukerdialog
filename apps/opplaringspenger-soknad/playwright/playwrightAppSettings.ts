@@ -1,12 +1,10 @@
-import { AppEnv } from '../../env.schema';
+import { AppEnv } from '../env.schema';
 
-export const playwrightEnv: AppEnv = {
+export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'dev',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
     GITHUB_REF_NAME: 'branch-name',
-
-    INJECT_DECORATOR: 'true',
 
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
@@ -27,4 +25,4 @@ export const playwrightEnv: AppEnv = {
     K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-sak-innsyn',
     K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
     K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
-};
+});
