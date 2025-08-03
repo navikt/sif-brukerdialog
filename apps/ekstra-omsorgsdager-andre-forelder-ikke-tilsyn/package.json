@@ -5,31 +5,13 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.33.30",
+    "version": "1.34.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "private": true,
     "type": "module",
-    "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-        "clean": "rm -rf node_modules .dist",
-        "codegen": "playwright codegen",
-        "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
-        "dev": "node ./dev-server.cjs",
-        "e2e": "playwright test",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit",
-        "playwright-test": "playwright test",
-        "start-api-mock": "PORT=8089 node ./server/api-mock.js",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
-        "start-express": "node ./server.cjs",
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
-        "test": "vitest run"
-    },
     "dependencies": {
         "@navikt/ds-css": "7.25.1",
         "@navikt/ds-react": "7.25.1",
@@ -102,5 +84,22 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "msw": {
+        "workerDirectory": [
+            ""
+        ]
+    },
+    "scripts": {
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
+        "clean": "rm -rf node_modules .dist",
+        "dev": "vite --config vite.dev.config.ts",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "playwright-test": "playwright test",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "test": "vitest run"
+    }
 }

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.34.0
+
+### Minor Changes
+
+- Oppdatere dev- og playwright-oppsett
+
 ## 1.33.30
 
 ### Patch Changes
