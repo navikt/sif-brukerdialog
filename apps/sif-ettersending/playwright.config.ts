@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './playwright/playwright.env';
 
 export default defineConfig({
     testDir: './playwright/tests',
@@ -24,6 +23,5 @@ export default defineConfig({
         command: 'yarn pw:build && yarn pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
-        env: playwrightEnv,
     },
 });

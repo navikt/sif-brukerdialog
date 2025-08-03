@@ -3,8 +3,8 @@ import * as dotenv from 'dotenv';
 import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getAppSettings } from './mock/getAppSettings.mjs';
 import tailwindcss from '@tailwindcss/vite';
+import { getPlaywrightEnvs } from './playwright/playwright.env';
 
 dotenv.config();
 
@@ -25,7 +25,7 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getAppSettings()));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getPlaywrightEnvs()));
             },
         },
         {
