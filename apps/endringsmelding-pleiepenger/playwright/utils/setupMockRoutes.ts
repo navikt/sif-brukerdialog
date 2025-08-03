@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
-import { ScenarioType } from '../../../src/app/dev/scenarioer';
-import { getScenarioMockData } from '../../../src/mocks/data/scenario';
+import { ScenarioType } from '../../src/app/dev/scenarioer';
+import { getScenarioMockData } from '../../mock/data/scenario';
 
 export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType) => {
     const mockData = getScenarioMockData(scenario);

@@ -1,4 +1,4 @@
-import { arbeidsukerMockData } from '../../../../mocks/data/app/arbeidsukerMockData';
+import { arbeidsukerMockData } from '../../../../../mock/data/app/arbeidsukerMockData';
 import { getArbeidsukerPerÅr, getUkerForEndring, getUkerSomEndresTekst } from '../endreArbeidstidFormUtils';
 
 const { arbeidsukerEttÅr, arbeidsukerFlereÅr } = arbeidsukerMockData;

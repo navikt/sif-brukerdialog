@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Page } from '@playwright/test';
-import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
-import { mellomlagring } from '../../mock-data/mellomlagring.mock';
+import { ScenarioType } from '../../src/app/dev/scenarioer';
+import { SøknadRoutes } from '../../src/app/søknad/config/SøknadRoutes';
+import { mellomlagring } from '../mock-data/mellomlagring.mock';
 import { setupMockRoutes } from './setupMockRoutes';
-import { ScenarioType } from '../../../src/app/dev/scenarioer';
 
 const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger';
 

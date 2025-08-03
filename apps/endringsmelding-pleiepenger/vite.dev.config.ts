@@ -1,14 +1,20 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
-import { sentryVitePlugin } from '@sentry/vite-plugin';
-import * as path from 'path';
+import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import * as path from 'path';
+import { getDevAppSettings } from './mock/devAppSettings';
+import tailwindcss from '@tailwindcss/vite';
+
+dotenv.config();
 
 export default defineConfig({
+    mode: 'msw',
     plugins: [
+        tailwindcss(),
         react({
-            include: '**/*.{jsx,tsx}',
+            include: '**/*.{tsx}',
         }),
         checker({ typescript: true }),
         {
@@ -17,17 +23,12 @@ export default defineConfig({
                 return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
             },
         },
-        ...[
-            process.env.SENTRY_AUTH_TOKEN
-                ? [
-                      sentryVitePlugin({
-                          org: 'nav',
-                          project: 'sykdom-i-familien',
-                          authToken: process.env.SENTRY_AUTH_TOKEN,
-                      }),
-                  ]
-                : [],
-        ],
+        {
+            name: 'html-transform',
+            transformIndexHtml: (html) => {
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings()));
+            },
+        },
     ],
     resolve: {
         alias: {
@@ -36,8 +37,23 @@ export default defineConfig({
             '@hooks': path.resolve(__dirname, './src/app/hooks'),
         },
     },
+    define: {
+        INJECT_DECORATOR: true,
+    },
+    server: {
+        port: 8080,
+    },
+    preview: {
+        port: 8080,
+    },
+    base: '/',
     build: {
         sourcemap: true,
+        rollupOptions: {
+            input: './index.html',
+        },
+        outDir: './dist-demo',
+        emptyOutDir: true,
     },
     css: {
         preprocessorOptions: {
