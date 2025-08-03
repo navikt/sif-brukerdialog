@@ -1,5 +1,4 @@
 export async function enableMocking() {
-    debugger;
     if (import.meta.env.MODE !== 'msw') {
         return;
     }
