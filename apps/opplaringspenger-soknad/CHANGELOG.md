@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.1.0
+
+### Minor Changes
+
+- Refactor av dev oppsett og foldere slik at det blir konsistent mellom apper
+
 ## 1.0.28
 
 ### Patch Changes
