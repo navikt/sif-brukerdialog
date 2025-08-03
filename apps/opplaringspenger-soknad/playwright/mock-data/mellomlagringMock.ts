@@ -1,6 +1,6 @@
-import { ArbeidIPeriodeType } from '../../../src/app/types/ArbeidIPeriodeType';
-import { ArbeidsgiverType } from '../../../src/app/types/Arbeidsgiver';
-import { Søknadsdata } from '../../../src/app/types/søknadsdata/Søknadsdata';
+import { ArbeidIPeriodeType } from '../../src/app/types/ArbeidIPeriodeType';
+import { ArbeidsgiverType } from '../../src/app/types/Arbeidsgiver';
+import { Søknadsdata } from '../../src/app/types/søknadsdata/Søknadsdata';
 
 const søknadsdata: Søknadsdata = {
     id: 'c53edb47-7ada-4b58-947b-f21f866eb3a9',

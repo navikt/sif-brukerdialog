@@ -1,13 +1,12 @@
+import { List, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper, YesOrNo } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { List, VStack } from '@navikt/ds-react';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -57,21 +56,21 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             <VStack gap="8">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorPanel.info.1'} />
+                        <AppText id="steg.legeerklæring.counsellorPanel.info.1" />
                     </p>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorPanel.info.2.tittel'} />
+                        <AppText id="steg.legeerklæring.counsellorPanel.info.2.tittel" />
                     </p>
                     <List>
                         <List.Item>
-                            <AppText id={'steg.legeerklæring.counsellorPanel.info.2.1'} />
+                            <AppText id="steg.legeerklæring.counsellorPanel.info.2.1" />
                         </List.Item>
                         <List.Item>
-                            <AppText id={'steg.legeerklæring.counsellorPanel.info.2.2'} />
+                            <AppText id="steg.legeerklæring.counsellorPanel.info.2.2" />
                         </List.Item>
                     </List>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorPanel.info.3'} />
+                        <AppText id="steg.legeerklæring.counsellorPanel.info.3" />
                     </p>
                 </SifGuidePanel>
 
@@ -93,7 +92,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
 
                 <YesOrNoQuestion
                     name={LegeerklæringFormFields.skalEttersendeVedlegg}
-                    legend={'Skal du ettersende vedlegg?'}
+                    legend="Skal du ettersende vedlegg?"
                     validate={getYesOrNoValidator()}
                 />
 

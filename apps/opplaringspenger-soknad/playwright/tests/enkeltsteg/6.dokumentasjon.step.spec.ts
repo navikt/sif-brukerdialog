@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
+import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import { mellomlagringMock } from '../../mock-data/mellomlagringMock';
 import { fyllUtDokumentasjon } from '../../utfylling-utils/6.dokumentasjonStep';
 import { routeUtils } from '../../utils/routeUtils';

@@ -1,14 +1,12 @@
 import { BrowserContext, Page } from '@playwright/test';
-import { StepId } from '../../../src/app/types/StepId';
-import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
-import { mockData } from '../../../mock/data';
+import { StepId } from '../../src/app/types/StepId';
+import { mockData } from '../../mock/data';
 
 export const setupMockRoutes = async (
     page: Page,
     context: BrowserContext,
     props?: { mellomlagring: any; lastStep?: StepId },
 ) => {
-    await setupNavnoConsentCookieForPlaywrightTests(context);
     await page.route('**/oppslag/barn**', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.barn) });
     });

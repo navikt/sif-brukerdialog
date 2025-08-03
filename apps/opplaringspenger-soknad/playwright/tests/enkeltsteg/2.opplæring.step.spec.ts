@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
+import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import {
     fyllUtOpplæringEnPeriode,
     fyllUtOpplæringToPerioder,

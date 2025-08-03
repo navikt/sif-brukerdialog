@@ -1,13 +1,9 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-export const getAppSettings = () => ({
+export const getDevAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     IMAGE: `${process.env.IMAGE}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    INJECT_DECORATOR: `${process.env.INJECT_DECORATOR}`,
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
