@@ -1,4 +1,4 @@
-export const getAppSettings = () => ({
+export const getDevAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,

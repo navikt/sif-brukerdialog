@@ -1,6 +1,6 @@
 import { AppEnv } from '../env.schema';
 
-export const getPlaywrightEnvs = (): AppEnv => ({
+export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'dev',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
