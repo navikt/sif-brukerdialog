@@ -1,6 +1,4 @@
-require('dotenv').config();
-
-const getAppSettings = () => ({
+export const getDevAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
@@ -19,5 +17,3 @@ const getAppSettings = () => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
     K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
 });
-
-module.exports = getAppSettings;

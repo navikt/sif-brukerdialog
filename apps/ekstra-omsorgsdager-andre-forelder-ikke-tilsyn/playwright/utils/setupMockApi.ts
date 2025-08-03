@@ -1,10 +1,8 @@
-import { BrowserContext, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { barnMock } from '../mock-data/barnMock';
 import { søkerMock } from '../mock-data/søkerMock';
-import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
-export const setupMockApi = async (page: Page, context: BrowserContext, props?: { mellomlagring: any }) => {
-    setupNavnoConsentCookieForPlaywrightTests(context);
+export const setupMockApi = async (page: Page, props?: { mellomlagring: any }) => {
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });

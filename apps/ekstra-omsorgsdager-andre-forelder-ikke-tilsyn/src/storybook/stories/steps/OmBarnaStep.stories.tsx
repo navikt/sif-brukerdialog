@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import OmBarnaStep from '../../../app/søknad/steps/om-barna/OmBarnaStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';
