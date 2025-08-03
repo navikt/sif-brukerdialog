@@ -25,7 +25,7 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getAppSettings(false)));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getAppSettings()));
             },
         },
         {
@@ -36,7 +36,7 @@ export default defineConfig({
         },
     ],
     define: {
-        __IS_GITHUB_PAGES__: true,
+        INJECT_DECORATOR: false,
     },
     server: {
         port: 8080,

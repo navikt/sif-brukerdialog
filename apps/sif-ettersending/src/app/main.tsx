@@ -1,11 +1,10 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { enableMocking } from '../../mock/msw/enableMocking';
-import { StrictMode } from 'react';
+import App from './App';
 
-if (getMaybeEnv('INJECT_DECORATOR') === 'true') {
+if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {

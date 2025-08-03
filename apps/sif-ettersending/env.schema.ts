@@ -2,7 +2,6 @@ import { commonEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
 export const appEnvSchema = commonEnvSchema.extend({
-    INJECT_DECORATOR: z.enum(['true', 'false']).optional(),
     SIF_PUBLIC_ENDRINGSMELDING_PP: z.string().min(1),
     SIF_PUBLIC_INNSYN_PP: z.string().min(1),
     SIF_PUBLIC_PLEIEPENGER_SYKT_BARN_URL: z.string().min(1),

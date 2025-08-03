@@ -1,11 +1,9 @@
-export const getAppSettings = (INJECT_DECORATOR) => ({
+export const getAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-
-    INJECT_DECORATOR: INJECT_DECORATOR ? 'true' : 'false',
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
