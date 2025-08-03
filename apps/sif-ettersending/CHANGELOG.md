@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.47.0
+
+### Minor Changes
+
+- c99871c: Endre dev og playwright oppsett. Kun bruke msw, droppe dev-api-server
+
 ## 3.46.30
 
 ### Patch Changes
