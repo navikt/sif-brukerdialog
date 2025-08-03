@@ -1,11 +1,11 @@
-require('dotenv').config();
-
-const getAppSettings = () => ({
+export const getAppSettings = (INJECT_DECORATOR) => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
+
+    INJECT_DECORATOR: INJECT_DECORATOR ? 'true' : 'false',
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
@@ -16,7 +16,7 @@ const getAppSettings = () => ({
     SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
     SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
+
     SIF_PUBLIC_PLEIEPENGER_SYKT_BARN_URL: `${process.env.SIF_PUBLIC_PLEIEPENGER_SYKT_BARN_URL}`,
     SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
     SIF_PUBLIC_FEATURE_OPPLARINGSPENGER: `${process.env.SIF_PUBLIC_FEATURE_OPPLARINGSPENGER}`,
@@ -25,5 +25,3 @@ const getAppSettings = () => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
     K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
 });
-
-module.exports = getAppSettings;

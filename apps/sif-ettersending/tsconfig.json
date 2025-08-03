@@ -5,5 +5,12 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "**.js", "dist"],
-    "include": ["./src/**/*", "./playwright-config.ts", "./env.schema.ts", "./e2e/playwright/**/*.ts"]
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./playwright-config.ts",
+        "./env.schema.ts",
+        "./playwright/**/*.ts",
+        "./vite-env.d.ts"
+    ]
 }

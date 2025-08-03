@@ -76,13 +76,18 @@
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "clean": "rm -rf node_modules .dist",
-        "dev-api": "PORT=8089 node ./dev/dev-api-server.cjs",
-        "dev": "node ./dev-server.cjs",
+        "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "test": "vitest run"
+    },
+    "msw": {
+        "workerDirectory": [
+            ""
+        ]
     }
 }
