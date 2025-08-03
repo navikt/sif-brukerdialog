@@ -30,6 +30,7 @@ export default defineConfig({
                     router: ['react-router-dom'],
                     forms: ['formik'],
                     utils: ['lodash', 'date-fns', 'dayjs'],
+                    navikt: ['@navikt/ds-react', '@navikt/ds-icons'],
                 },
             },
         },
