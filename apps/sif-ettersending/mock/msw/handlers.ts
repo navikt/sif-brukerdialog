@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { mockData } from '../data';
 import { getMellomlagringHandlers } from './mellomlagringHandlers';
+import { ApiEndpoint } from '../../src/app/types/ApiEndpoint';
 
 export const getHandlers = () => [
     http.get('**/oppslag/soker', () => {
@@ -9,13 +10,7 @@ export const getHandlers = () => [
     http.get('**/oppslag/barn', () => {
         return HttpResponse.json(mockData.barn);
     }),
-    http.get('**/oppslag/arbeidsgiver', () => {
-        return HttpResponse.json(mockData.arbeidsgiver);
-    }),
-    http.get('**/opplaringsinstitusjoner', () => {
-        return HttpResponse.json(mockData.institusjoner);
-    }),
-    http.post('**/opplaringspenger/innsending', () => {
+    http.post('**/ettersending/innsending', () => {
         return HttpResponse.json({});
     }),
     http.post('**/vedlegg', () => {
@@ -24,7 +19,10 @@ export const getHandlers = () => [
     http.delete('**/vedlegg/*', () => {
         return HttpResponse.json({});
     }),
-    ...getMellomlagringHandlers('opplæringspenger_mellomlagring'),
+    ...getMellomlagringHandlers('ettersending-psb', ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_SYKT_BARN),
+    ...getMellomlagringHandlers('ettersending-pils', ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE),
+    ...getMellomlagringHandlers('ettersending-omp', ApiEndpoint.MELLOMLAGRING_OMP),
+    ...getMellomlagringHandlers('ettersending-opplaringspenger', ApiEndpoint.MELLOMLAGRING_OPPLARINGSPENGER),
 
     // Stopp alle andre kall (Dekoratøren og andre tredjepartstjenester)
     http.all('*', () => new HttpResponse(null, { status: 200 })),
