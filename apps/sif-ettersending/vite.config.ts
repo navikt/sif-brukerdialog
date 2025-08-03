@@ -9,7 +9,9 @@ export default defineConfig({
         react({
             include: '**/*.{tsx}',
         }),
-        checker({ typescript: true }),
+        checker({
+            typescript: true,
+        }),
         {
             name: 'crossorigin',
             transformIndexHtml(html) {
@@ -20,6 +22,17 @@ export default defineConfig({
     resolve: {},
     build: {
         sourcemap: true,
+        target: 'esnext',
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom'],
+                    router: ['react-router-dom'],
+                    forms: ['formik'],
+                    utils: ['lodash', 'date-fns', 'dayjs'],
+                },
+            },
+        },
     },
     css: {
         preprocessorOptions: {

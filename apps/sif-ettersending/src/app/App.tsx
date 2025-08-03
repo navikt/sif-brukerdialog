@@ -1,5 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,9 +11,8 @@ import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import { appEnv } from './utils/appEnv';
-import './app.css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
-import { isProd } from '@navikt/sif-common-env';
+import './app.css';
 
 const {
     PUBLIC_PATH,
