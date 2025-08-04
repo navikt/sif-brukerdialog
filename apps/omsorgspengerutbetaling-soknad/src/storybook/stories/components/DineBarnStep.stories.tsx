@@ -1,15 +1,14 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import DineBarnForm, { DineBarnFormProps } from '../../../app/søknad/steps/dine-barn/DineBarnForm';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
-import { Søker } from '../../../app/types/Søker';
 import { useFormikContext } from 'formik';
 import { DineBarnFormValues } from '../../../app/søknad/steps/dine-barn/DineBarnStep';
 import { barnMockData } from '../../mock-data/barn';
 import { kanFortsetteFraDineBarnStep } from '../../../app/søknad/steps/dine-barn/dineBarnStepUtils';
+import { Søker } from '@navikt/sif-common-api';
 
 const meta: Meta<typeof DineBarnForm> = {
     title: 'Skjema/DineBarnForm',

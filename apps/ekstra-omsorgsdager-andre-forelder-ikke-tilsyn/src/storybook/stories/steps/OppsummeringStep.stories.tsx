@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import Oppsummering from '../../../app/søknad/steps/oppsummering/OppsummeringStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';

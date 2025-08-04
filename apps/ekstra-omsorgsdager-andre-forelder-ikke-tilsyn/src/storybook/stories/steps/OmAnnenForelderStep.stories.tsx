@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import OmAnnenForelderStep from '../../../app/søknad/steps/om-annen-forelder/OmAnnenForelderStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';
