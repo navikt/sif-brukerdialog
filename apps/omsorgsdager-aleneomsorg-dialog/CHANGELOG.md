@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.27.0
+
+### Minor Changes
+
+- Refactor dev og playwright oppsett
+
 ## 2.26.30
 
 ### Patch Changes
