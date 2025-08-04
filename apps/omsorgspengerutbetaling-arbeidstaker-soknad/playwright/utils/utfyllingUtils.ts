@@ -67,7 +67,7 @@ const lastOppLegeerklæring = async (page: Page) => {
         page.waitForEvent('filechooser'),
         await page.locator('input[type="file"]').dispatchEvent('click'),
     ]);
-    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
+    await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
     await page.getByTestId('typedFormikForm-submitButton').click();

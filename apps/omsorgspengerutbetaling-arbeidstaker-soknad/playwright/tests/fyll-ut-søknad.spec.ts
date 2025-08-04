@@ -2,21 +2,13 @@ import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { setNow } from '../utils/setNow';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
-import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupNavnoConsentCookieForPlaywrightTests(context);
 });
 
 test.describe('Fyller ut søknad', () => {
     test.beforeEach(async ({ page }) => {
-        await page.route('https://**.nav.no/**', async (route) => {
-            await route.fulfill({ status: 200 });
-        });
-        await page.route('**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER', async (route) => {
-            await route.fulfill({ status: 200, body: '{}' });
-        });
         await page.route('**/oppslag/soker', async (route) => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
         });
@@ -35,7 +27,17 @@ test.describe('Fyller ut søknad', () => {
                 headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
             });
         });
+
+        await page.route('**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER', async (route) => {
+            await route.fulfill({ status: 200, body: '{}' });
+        });
+
         await page.route('**/innsending', async (route) => {
+            await route.fulfill({ status: 200 });
+        });
+
+        await page.route('*', async (route) => {
+            console.log(route);
             await route.fulfill({ status: 200 });
         });
     });
