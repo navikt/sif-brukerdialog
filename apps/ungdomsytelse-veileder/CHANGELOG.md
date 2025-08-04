@@ -1,5 +1,16 @@
 # @navikt/sif-demo-app
 
+## 0.5.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.26
+    - @navikt/ung-common@0.0.20
+    - @navikt/sif-common-ui@0.10.2
+    - @navikt/sif-common-api@0.4.24
+
 ## 0.5.29
 
 ### Patch Changes
