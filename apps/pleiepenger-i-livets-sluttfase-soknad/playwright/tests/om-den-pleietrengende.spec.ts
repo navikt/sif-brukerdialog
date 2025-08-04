@@ -1,13 +1,13 @@
-import { Page, expect, test } from '@playwright/test';
-import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
-import { routeUtils } from '../utils/routeUtils';
-import { setNow as setNow } from '../utils/setNow';
+import { expect, Page, test } from '@playwright/test';
+import { SøknadRoutes } from '../../src/app/types/SøknadRoutes';
 import {
     fyllUtPleietrengendeMedFnr,
     fyllUtPleietrengendeUtenFnr,
     kontrollerPleietrengendeMedFnr,
     kontrollerPleietrengendeUtenFnr,
 } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
+import { routeUtils } from '../utils/routeUtils';
+import { setNow as setNow } from '../utils/setNow';
 
 const gåTilOppsummering = async (page: Page) => {
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
@@ -18,9 +18,9 @@ const gåTilOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
 };
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE);
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE);
 });
 
 test('Viser riktig informasjon fra mellomlagring', async ({ page }) => {

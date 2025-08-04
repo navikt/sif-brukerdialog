@@ -6,9 +6,9 @@ import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtf
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockRoutes(page, context);
+    await setupMockRoutes(page);
 });
 
 test('Fyll ut søknad med fnr', async ({ page }) => {
@@ -117,7 +117,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         page.waitForEvent('filechooser'),
         await page.locator('input[type="file"]').dispatchEvent('click'),
     ]);
-    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
+    await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();

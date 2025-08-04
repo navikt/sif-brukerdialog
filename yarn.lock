@@ -6000,7 +6000,6 @@ __metadata:
     uuid: "npm:11.1.0"
     vite: "npm:7.0.6"
     vite-plugin-checker: "npm:0.10.2"
-    vitest: "npm:3.2.4"
   languageName: unknown
   linkType: soft
 

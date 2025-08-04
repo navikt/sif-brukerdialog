@@ -1,6 +1,6 @@
-import { AppEnv } from '../../env.schema';
+import { AppEnv } from '../env.schema';
 
-export const playwrightEnv: AppEnv = {
+export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'dev',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',
@@ -19,4 +19,4 @@ export const playwrightEnv: AppEnv = {
         '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/api/k9-brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
-};
+});
