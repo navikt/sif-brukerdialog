@@ -7,10 +7,12 @@
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": [
         "./src/**/*",
-        "./e2e/**/*",
         "./mock/**/*",
         "./playwright-config.ts",
         "./env.schema.ts",
-        "./vite-env.d.ts"
+        "./playwright/**/*.ts",
+        "./vite-env.d.ts",
+        "./tailwind.config.ts",
+        "./postcss.config.ts"
     ]
 }
