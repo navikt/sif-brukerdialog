@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.0
+
+### Minor Changes
+
+- Refactor dev- og playewright-oppsett
+
 ## 1.39.10
 
 ### Patch Changes
