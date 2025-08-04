@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.25.0
+
+### Minor Changes
+
+- Refactor dev og playwright oppsett
+
 ## 1.24.30
 
 ### Patch Changes
