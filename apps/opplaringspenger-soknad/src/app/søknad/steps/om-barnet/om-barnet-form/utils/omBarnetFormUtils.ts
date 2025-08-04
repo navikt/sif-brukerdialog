@@ -5,10 +5,10 @@ import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 
 export const omBarnetFormDefaultValues: OmBarnetFormValues = {
-    barnetSøknadenGjelder: undefined,
-    søknadenGjelderEtAnnetBarn: undefined,
+    barnetSøknadenGjelder: 'undefined',
     barnetsFødselsnummer: '',
     barnetsNavn: '',
     barnetsFødselsdato: '',
@@ -28,13 +28,12 @@ export const getOmBarnetFormInitialValues = (
             case 'registrerteBarn':
                 return {
                     ...omBarnetFormDefaultValues,
-                    søknadenGjelderEtAnnetBarn: undefined,
-                    barnetSøknadenGjelder: søknadsdata.aktørId,
+                    barnetSøknadenGjelder: søknadsdata.registrertBarn.aktørId,
                 };
             case 'annetBarn':
                 return {
                     ...omBarnetFormDefaultValues,
-                    søknadenGjelderEtAnnetBarn: true,
+                    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                     barnetsFødselsnummer: søknadsdata.barnetsFødselsnummer,
                     barnetsFødselsdato: dateToISODate(søknadsdata.barnetsFødselsdato),
                     barnetsNavn: søknadsdata.barnetsNavn,
@@ -47,9 +46,9 @@ export const getOmBarnetFormInitialValues = (
             case 'annetBarnUtenFnr':
                 return {
                     ...omBarnetFormDefaultValues,
+                    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                     barnetHarIkkeFnr: true,
                     årsakManglerIdentitetsnummer: søknadsdata.årsakManglerIdentitetsnummer,
-                    søknadenGjelderEtAnnetBarn: true,
                     barnetsNavn: søknadsdata.barnetsNavn,
                     barnetsFødselsdato: dateToISODate(søknadsdata.barnetsFødselsdato),
                     fødselsattest: søknadsdata.fødselsattest || [],
@@ -68,15 +67,18 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetFormSøknadsdata | undefined => {
-    if (values.barnetSøknadenGjelder) {
+    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue;
+    const registrertBarn = søknadenGjelderAnnetBarn
+        ? undefined
+        : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);
+    if (registrertBarn) {
         return {
             type: 'registrerteBarn',
-            aktørId: values.barnetSøknadenGjelder,
-            registrertBarn: registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder)!,
+            registrertBarn,
         };
     }
 
-    if (!values.barnetSøknadenGjelder && values.barnetsNavn && values.relasjonTilBarnet && values.barnetsFødselsdato) {
+    if (søknadenGjelderAnnetBarn && values.barnetsNavn && values.relasjonTilBarnet && values.barnetsFødselsdato) {
         const relasjonTilBarnetSøknadsdata: RelasjonTilBarnetSøknadsdataBase = {
             relasjonTilBarnet: values.relasjonTilBarnet,
             relasjonTilBarnetBeskrivelse:
