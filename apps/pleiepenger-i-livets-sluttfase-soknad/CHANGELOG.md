@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.21.0
+
+### Minor Changes
+
+- Refactor dev og playwrightoppsett
+
 ## 2.20.31
 
 ### Patch Changes
