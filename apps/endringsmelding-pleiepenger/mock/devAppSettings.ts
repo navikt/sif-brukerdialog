@@ -1,6 +1,4 @@
-require('dotenv').config();
-
-const getAppSettings = (isTest) => {
+export const getDevAppSettings = (isTest?: boolean) => {
     return {
         ENV: `${process.env.ENV}`,
         APP_VERSION: `${process.env.APP_VERSION}`,
@@ -33,5 +31,3 @@ const getAppSettings = (isTest) => {
         NOW: `${process.env.NOW}`,
     };
 };
-
-module.exports = getAppSettings;

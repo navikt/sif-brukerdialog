@@ -1,6 +1,6 @@
-import { AppDevEnv } from '../../env.schema';
+import { AppEnv } from '../env.schema';
 
-export const playwrightEnv: AppDevEnv = {
+export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     NOW: '2023-01-01',
     APP_VERSION: 'dev',
@@ -27,4 +27,4 @@ export const playwrightEnv: AppDevEnv = {
     SIF_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/sif-innsyn',
     SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
     SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
-};
+});

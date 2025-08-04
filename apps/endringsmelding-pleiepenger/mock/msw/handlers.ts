@@ -1,5 +1,5 @@
 import { http, HttpResponse, delay } from 'msw';
-import { getScenarioFromLocalStorage } from '../../app/dev/scenarioer';
+import { getScenarioFromLocalStorage } from '../../src/app/dev/scenarioer';
 import { getScenarioMockData } from '../data/scenario';
 
 const baseUrl = '*';
