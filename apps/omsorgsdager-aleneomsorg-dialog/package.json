@@ -21,8 +21,7 @@
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
-        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
-        "test": "vitest run"
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
         "@navikt/ds-css": "7.25.1",
