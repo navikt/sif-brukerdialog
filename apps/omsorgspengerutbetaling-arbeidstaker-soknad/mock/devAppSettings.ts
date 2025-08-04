@@ -1,8 +1,4 @@
-require('dotenv').config();
-
-const process = require('process');
-
-const getAppSettings = () => ({
+export const getDevAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
@@ -25,5 +21,3 @@ const getAppSettings = () => ({
     MOCK_DATE: `${process.env.MOCK_DATE}`,
     USE_MOCK_DATE: `${process.env.USE_MOCK_DATE}`,
 });
-
-module.exports = getAppSettings;

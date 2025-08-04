@@ -84,19 +84,17 @@
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker",
+        "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
-        "playwright-test": "playwright test",
-        "dev-api": "PORT=8089 node ./mock/mock-server.cjs",
-        "dev": "node ./dev-server.cjs",
-        "start-express": "node ./server.cjs",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
+        "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "build-storybook": "storybook build",
-        "chromatic": "npx chromatic --project-token="
+        "playwright-test": "playwright test",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [
@@ -113,5 +111,10 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "msw": {
+        "workerDirectory": [
+            ""
+        ]
+    }
 }
