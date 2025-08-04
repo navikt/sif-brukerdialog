@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.39.10",
+    "version": "1.40.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -90,8 +90,8 @@
         "lint:fix": "eslint src --fix",
         "lint": "eslint src",
         "playwright-test": "playwright test",
-        "e2e:build": "vite build --config vite.e2e.config.ts",
-        "e2e:start": "vite preview --base / --config vite.e2e.config.ts",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },
@@ -101,8 +101,7 @@
     "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
     "msw": {
         "workerDirectory": [
-            "",
-            "dist-e2e"
+            ""
         ]
     }
 }

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getAppSettings } from './mock/getAppSettings.mjs';
+import { getDevAppSettings } from './mock/devAppSettings';
 import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config();
@@ -25,12 +25,12 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getAppSettings()));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings()));
             },
         },
     ],
     define: {
-        __IS_GITHUB_PAGES__: false,
+        INJECT_DECORATOR: true,
     },
     server: {
         port: 8080,

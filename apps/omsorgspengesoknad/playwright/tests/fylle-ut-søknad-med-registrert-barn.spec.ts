@@ -4,12 +4,12 @@ import { setupMockRoutes } from '../utils/setupMockApi';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockRoutes(page, context);
+    await setupMockRoutes(page);
 });
 
-test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
+test('Fyll ut søknad med registrert barn', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
@@ -20,16 +20,22 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     /** Barn */
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
-    await page.getByText('Ja, barnet har delt fast').click();
+    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
     await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
     await page.getByRole('group', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
-    await fyllUtLegeerklæring(page);
-
-    /** Delt bosted */
-    await fyllUtDeltBosted(page);
+    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./playwright/files/navlogopng.png');
+    const listItems = await page.getByText('navlogopng.png');
+    await expect(listItems).toHaveCount(1);
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
@@ -39,11 +45,8 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await expect(page.getByText('NavnALFABETISK FAGGOTT')).toBeVisible();
     await expect(page.getByText('Fødselsdato8. juni 2019')).toBeVisible();
     await expect(page.getByText('Bor du sammen med barnet?Ja')).toBeVisible();
-    await expect(
-        page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
-    ).toBeTruthy();
+    await expect(page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja')).toBeVisible();
     await expect(page.getByText('navlogopng.png')).toBeVisible();
-    await expect(page.getByText('avtale.png')).toBeVisible();
 
     await page
         .getByLabel(
@@ -63,27 +66,3 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
         }),
     ).toBeVisible();
 });
-
-const fyllUtLegeerklæring = async (page: any) => {
-    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    const [fileChooser] = await Promise.all([
-        page.waitForEvent('filechooser'),
-        await page.locator('input[type="file"]').dispatchEvent('click'),
-    ]);
-    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
-    const listItems = await page.getByText('navlogopng.png');
-    await expect(listItems).toHaveCount(1);
-    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
-};
-
-const fyllUtDeltBosted = async (page: any) => {
-    await page.getByRole('heading', { level: 1, name: 'Delt bosted' });
-    const [fileChooser] = await Promise.all([
-        page.waitForEvent('filechooser'),
-        await page.locator('input[type="file"]').dispatchEvent('click'),
-    ]);
-    await fileChooser.setFiles('./e2e/playwright/files/avtale.png');
-    const listItems = await page.getByText('avtale.png');
-    await expect(listItems).toHaveCount(1);
-    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
-};
