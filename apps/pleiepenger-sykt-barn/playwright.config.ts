@@ -1,40 +1,27 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './e2e/playwright/playwright.env';
 
-type TestOptions = {
-    spørOmSluttetISøknadsperiode: boolean;
-};
-
-export default defineConfig<TestOptions>({
-    testDir: './e2e/playwright/tests',
-    maxFailures: 2,
+export default defineConfig({
+    testDir: './playwright/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : undefined,
-
     reporter: 'html',
     use: {
         trace: 'on-first-retry',
         launchOptions: {
-            slowMo: 20,
+            slowMo: 100,
         },
     },
     projects: [
         {
             name: 'chromium',
-            use: {
-                ...devices['Desktop Chrome'],
-            },
+            use: { ...devices['Desktop Chrome'] },
         },
     ],
     webServer: {
-        command: 'yarn start-e2e-server',
+        command: 'yarn pw:build && yarn pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
-        timeout: 60000,
-        env: {
-            ...playwrightEnv,
-        },
     },
 });

@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
+import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import * as path from 'path';
 
 export default defineConfig({
     plugins: [
         react({
-            include: '**/*.{jsx,tsx}',
+            include: '**/*.{tsx}',
         }),
-        checker({ typescript: true }),
+        checker({
+            typescript: true,
+        }),
         {
             name: 'crossorigin',
             transformIndexHtml(html) {
@@ -25,6 +28,18 @@ export default defineConfig({
     },
     build: {
         sourcemap: true,
+        target: 'esnext',
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom'],
+                    router: ['react-router-dom'],
+                    forms: ['formik'],
+                    utils: ['lodash', 'date-fns', 'dayjs'],
+                    navikt: ['@navikt/ds-react', '@navikt/ds-icons'],
+                },
+            },
+        },
     },
     css: {
         preprocessorOptions: {

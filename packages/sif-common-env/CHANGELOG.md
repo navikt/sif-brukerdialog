@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.1.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.1.4
 
 ### Patch Changes
@@ -29,7 +35,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -37,7 +42,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 
@@ -353,7 +357,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss

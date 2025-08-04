@@ -1,11 +1,9 @@
-import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getMaybeEnv, isDevMode } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import MockDate from 'mockdate';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
@@ -23,28 +21,10 @@ const {
     APP_VERSION,
     SIF_PUBLIC_AMPLITUDE_API_KEY,
 } = appEnv;
-const container = document.getElementById('root');
-const root = createRoot(container!);
+
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
-
-async function prepare() {
-    if (isDevMode()) {
-        const envNow = getMaybeEnv('NOW');
-        if (envNow) {
-            MockDate.set(new Date(envNow));
-        }
-        if (getMaybeEnv('MSW') === 'on' && isE2E !== undefined) {
-            const { worker } = await import('../mocks/msw/browser');
-            return worker.start({
-                onUnhandledRequest: 'bypass',
-                quiet: false,
-            });
-        }
-    }
-    return Promise.resolve();
-}
 
 const App = () => (
     <SoknadApplication
@@ -75,6 +55,4 @@ const App = () => (
     </SoknadApplication>
 );
 
-prepare().then(() => {
-    root.render(<App />);
-});
+export default App;
