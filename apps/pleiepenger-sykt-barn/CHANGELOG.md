@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.10.0
+
+### Minor Changes
+
+- Refactor dev- og playwright-oppsett
+
 ## 4.9.31
 
 ### Patch Changes
