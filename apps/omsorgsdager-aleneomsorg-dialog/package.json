@@ -21,7 +21,8 @@
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
-        "pw:start": "vite preview --base / --config vite.playwright.config.ts"
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
+        "test": "vitest run"
     },
     "dependencies": {
         "@navikt/ds-css": "7.25.1",
@@ -57,7 +58,6 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@chromatic-com/storybook": "4.0.1",
         "@playwright/test": "1.54.1",
         "@sif/eslint-config": "workspace:*",
@@ -82,7 +82,8 @@
         "storybook": "9.1.0",
         "typescript": "5.9.2",
         "vite": "7.0.6",
-        "vite-plugin-checker": "0.10.2"
+        "vite-plugin-checker": "0.10.2",
+        "vitest": "3.2.4"
     },
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
