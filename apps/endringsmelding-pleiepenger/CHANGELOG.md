@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.38.0
+
+### Minor Changes
+
+- Refactor oppsett av dev og playwright
+
 ## 2.37.28
 
 ### Patch Changes
