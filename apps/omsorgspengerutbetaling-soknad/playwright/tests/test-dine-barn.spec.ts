@@ -2,20 +2,12 @@ import { test, expect, Page } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 import { setNow } from '../utils/setNow';
-import { setupNavnoConsentCookieForPlaywrightTests } from '../../../../../packages/sif-common-core-ds/src/utils/navnoConsentCookieUtils';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupNavnoConsentCookieForPlaywrightTests(context);
 });
 
 const startScenario = async (page: Page, barnMockData: any) => {
-    await page.route('https://**.nav.no/**', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('**/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', async (route) => {
-        await route.fulfill({ status: 200, body: '{}' });
-    });
     await page.route('**/oppslag/soker', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
     });
@@ -30,6 +22,13 @@ const startScenario = async (page: Page, barnMockData: any) => {
     });
     await page.route('**/oppslag/barn', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(barnMockData) });
+    });
+    await page.route('**/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', async (route) => {
+        await route.fulfill({ status: 200, body: '{}' });
+    });
+    await page.route('*', async (route) => {
+        console.log(route);
+        await route.fulfill({ status: 200 });
     });
 };
 
