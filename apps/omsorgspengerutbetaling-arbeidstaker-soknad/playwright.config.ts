@@ -20,7 +20,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn pw:build && yarn pw:staackrt',
+        command: 'yarn pw:build && yarn pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
     },
