@@ -70,8 +70,7 @@
         "storybook-addon-mock": "6.0.1",
         "typescript": "5.9.2",
         "vite": "7.0.6",
-        "vite-plugin-checker": "0.10.2",
-        "vitest": "3.2.4"
+        "vite-plugin-checker": "0.10.2"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
@@ -84,8 +83,7 @@
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base / --config vite.playwright.config.ts",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "storybook": "storybook dev -p 6006"
     },
     "eslintConfig": {
         "overrides": [
