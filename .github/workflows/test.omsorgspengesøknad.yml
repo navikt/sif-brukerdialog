@@ -75,5 +75,5 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install chromium
 
-            - name: Run tests
+            - name: Build and run tests
               run: yarn turbo playwright-test --filter=@navikt/omsorgspengesoknad
