@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import DineBarnStep from '../../../app/søknad/steps/dine-barn/DineBarnStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';

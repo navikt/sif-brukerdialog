@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.19
+    - @navikt/k9-sak-innsyn-api@0.0.7
+
+## 0.1.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.18
+    - @navikt/k9-sak-innsyn-api@0.0.6
+    - @navikt/sif-common-utils@3.49.14
+
 ## 0.1.6
 
 ### Patch Changes

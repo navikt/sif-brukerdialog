@@ -1,5 +1,4 @@
 import { Panel } from '@navikt/ds-react';
-import * as React from 'react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import '@navikt/ds-css';
 

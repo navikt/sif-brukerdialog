@@ -1,0 +1,11 @@
+export const frilansoppdragMock = {
+    frilansoppdrag: [
+        {
+            type: 'type oppdrag',
+            organisasjonsnummer: '991012133',
+            navn: 'Hurdal frilanssenter',
+            ansattFom: '2022-01-01',
+            ansattTom: '2022-01-15',
+        },
+    ],
+};
