@@ -1,6 +1,6 @@
-import { AppEnv } from '../../env.schema';
+import { AppEnv } from '../env.schema';
 
-export const playwrightEnv: AppEnv = {
+export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'dev',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg',
@@ -19,4 +19,4 @@ export const playwrightEnv: AppEnv = {
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api/brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
-};
+});

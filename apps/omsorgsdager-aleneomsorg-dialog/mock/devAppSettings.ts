@@ -1,6 +1,4 @@
-require('dotenv').config();
-
-const getAppSettings = () => ({
+export const getDevAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
@@ -15,7 +13,6 @@ const getAppSettings = () => ({
     SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
     SIF_PUBLIC_OMS_IKKE_TILSYN_URL: `${process.env.SIF_PUBLIC_OMS_IKKE_TILSYN_URL}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
     SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
     SIF_PUBLIC_USE_FARO: `${process.env.SIF_PUBLIC_USE_FARO}`,
 
@@ -23,5 +20,3 @@ const getAppSettings = () => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
     K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
 });
-
-module.exports = getAppSettings;
