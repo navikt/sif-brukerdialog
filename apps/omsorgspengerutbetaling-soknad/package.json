@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.24.30",
+    "version": "1.25.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -82,16 +82,15 @@
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
         "clean": "rm -rf node_modules .dist",
-        "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
-        "dev": "node ./dev-server.cjs",
+        "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "chromatic": "npx chromatic --project-token="
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [
@@ -108,5 +107,10 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
+    "msw": {
+        "workerDirectory": [
+            ""
+        ]
+    }
 }

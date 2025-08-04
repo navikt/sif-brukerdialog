@@ -1,6 +1,6 @@
-import { AppDevEnv } from '../../env.schema';
+import { AppDevEnv } from '../env.schema';
 
-export const playwrightEnv: AppDevEnv = {
+export const getPlaywrightAppSettings = (): AppDevEnv => ({
     ENV: 'dev',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
@@ -19,4 +19,4 @@ export const playwrightEnv: AppDevEnv = {
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
     MOCK_DATE: '2024-08-01',
     USE_MOCK_DATE: 'true',
-};
+});
