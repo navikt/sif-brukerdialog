@@ -1,4 +1,4 @@
-import { YesOrNoDontKnow } from '../../../src/app/types/YesOrNoDontKnow';
+import { YesOrNoDontKnow } from '../../src/app/types/YesOrNoDontKnow';
 
 export const mellomlagring = {
     søknadHashString: '2cc7804fe085530d3864aa8e71c92f08a39d2716',
