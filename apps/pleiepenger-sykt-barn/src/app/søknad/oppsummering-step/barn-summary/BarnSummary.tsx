@@ -3,6 +3,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
@@ -10,7 +11,7 @@ import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
 interface Props {
     barn: RegistrertBarn[];
@@ -116,7 +117,8 @@ const relasjonTilBarnetSummary = (apiValues: SøknadApiData) => (
 
 const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
     const apiBarn = barn.find(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
-    const useApiBarn = !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0;
+    const useApiBarn =
+        formValues[SøknadFormField.barnetSøknadenGjelder] !== VelgBarn_AnnetBarnValue && barn && barn.length > 0;
 
     return (
         <>
