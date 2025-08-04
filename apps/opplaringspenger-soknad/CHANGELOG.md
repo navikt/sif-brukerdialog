@@ -1,5 +1,17 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.26
+    - @navikt/sif-common-sentry@0.28.20
+    - @navikt/sif-common-forms-ds@20.0.2
+    - @navikt/sif-common-soknad-ds@25.0.2
+    - @navikt/sif-common-ui@0.10.2
+
 ## 1.1.0
 
 ### Minor Changes

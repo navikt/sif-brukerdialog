@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.27",
+    "version": "0.4.28",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -34,7 +34,7 @@
         "postcss": "8.5.6",
         "react": "19.1.1",
         "react-dom": "19.1.1",
-        "react-hook-form": "7.61.1",
+        "react-hook-form": "7.62.0",
         "zod": "4.0.14"
     },
     "devDependencies": {
