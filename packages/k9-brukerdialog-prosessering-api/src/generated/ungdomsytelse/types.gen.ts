@@ -66,13 +66,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {

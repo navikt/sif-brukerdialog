@@ -20,7 +20,7 @@ export type ArbeidsRedusert = {
     type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
     prosentAvNormalt?: number;
     timerPerUke?: string;
-    arbeidsuker?: Array<ArbeidsUke>;
+    arbeidsuker?: ArbeidsUke[];
 };
 
 export type ArbeidsUke = {
@@ -73,7 +73,7 @@ export type Ferieuttak = {
 
 export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
-    ferieuttak: Array<Ferieuttak>;
+    ferieuttak: Ferieuttak[];
 };
 
 export type Fosterhjemgodtgjørelse = {
@@ -118,9 +118,9 @@ export type Land = {
 
 export type Medlemskap = {
     harBoddIUtlandetSiste12Mnd?: boolean;
-    utenlandsoppholdSiste12Mnd: Array<Bosted>;
+    utenlandsoppholdSiste12Mnd: Bosted[];
     skalBoIUtlandetNeste12Mnd?: boolean;
-    utenlandsoppholdNeste12Mnd: Array<Bosted>;
+    utenlandsoppholdNeste12Mnd: Bosted[];
 };
 
 export type Nattevåk = {
@@ -159,7 +159,7 @@ export type Omsorgstilbud = {
     svarFortid?: 'JA' | 'NEI';
     svarFremtid?: 'JA' | 'NEI' | 'USIKKER';
     erLiktHverUke?: boolean;
-    enkeltdager?: Array<Enkeltdag>;
+    enkeltdager?: Enkeltdag[];
     ukedager?: PlanUkedager;
 };
 
@@ -190,16 +190,16 @@ export type PleiepengerSyktBarnSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: Array<Arbeidsgiver>;
-    vedlegg: Array<string>;
-    fødselsattestVedleggUrls?: Array<string>;
+    arbeidsgivere: Arbeidsgiver[];
+    vedlegg: string[];
+    fødselsattestVedleggUrls?: string[];
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     omsorgstilbud?: Omsorgstilbud;
@@ -257,7 +257,7 @@ export type Utenlandsopphold = {
     erUtenforEøs?: boolean;
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
-    perioderBarnetErInnlagt: Array<Periode>;
+    perioderBarnetErInnlagt: Periode[];
     getårsak?:
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
@@ -266,7 +266,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden?: boolean;
-    opphold: Array<Utenlandsopphold>;
+    opphold: Utenlandsopphold[];
 };
 
 export type VarigEndring = {
@@ -314,13 +314,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {

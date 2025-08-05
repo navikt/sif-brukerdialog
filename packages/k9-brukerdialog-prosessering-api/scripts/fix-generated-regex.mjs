@@ -52,6 +52,13 @@ try {
             cwd: process.cwd(),
         });
         console.log(`✨ Formatted ${generatedTsFiles.length} TypeScript files`);
+        // Run ESLint --fix on all generated TypeScript files
+        console.log('🔧 Running ESLint --fix on generated TypeScript files...');
+        execSync(`yarn lint:fix`, {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+        });
+        console.log(`🔧 ESLint --fix completed for generated TypeScript files`);
     } else {
         console.log('ℹ️  No TypeScript files found to format.');
     }

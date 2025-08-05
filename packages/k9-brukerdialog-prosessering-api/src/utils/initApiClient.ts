@@ -1,5 +1,4 @@
-import { Client } from '@hey-api/client-axios';
-import { AxiosError, HttpStatusCode } from 'axios';
+import { AxiosError, AxiosInstance, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
 
 const isUnauthorized = (error: AxiosError): boolean =>
@@ -11,11 +10,20 @@ const commonRequestHeader = {
 } as any;
 
 /**
+ * Generic client interface that works with both @hey-api/client-axios Client
+ * and generated client types.
+ */
+interface ApiClient {
+    setConfig: (config: any) => any;
+    instance: AxiosInstance;
+}
+
+/**
  * Client er en instans av @navikt/k9-brukerdialog-prosessering-api/src/client/client, men
  * brukes her som en generell type for de andre genererte klientene.
  *
  */
-export const initApiClient = (client: Client, frontendPath: string, loginURL: string) => {
+export const initApiClient = (client: ApiClient, frontendPath: string, loginURL: string) => {
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
