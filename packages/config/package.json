@@ -4,8 +4,8 @@
     "version": "0.11.12",
     "private": true,
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "8.38.0",
-        "@typescript-eslint/parser": "8.38.0",
+        "@typescript-eslint/eslint-plugin": "8.39.0",
+        "@typescript-eslint/parser": "8.39.0",
         "eslint": "9.32.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-jsx-a11y": "6.10.2",
