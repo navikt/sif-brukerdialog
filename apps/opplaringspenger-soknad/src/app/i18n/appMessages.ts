@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';

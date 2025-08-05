@@ -1,14 +1,17 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
+    SkjemagruppeQuestion,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -16,17 +19,14 @@ import {
     getStringValidator,
     ValidateDateError,
 } from '@navikt/sif-validation';
-import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';
+import { AppText } from '../../../../../i18n';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
 import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetManglerIdentitetsnummer';
-import FødselsattestPart from './FødselsattestPart';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { getBarnetsAlder, nYearsAgo } from '../utils/omBarnetFormUtils';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { AppText } from '../../../../../i18n';
+import FødselsattestPart from './FødselsattestPart';
+import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';
 
 interface Props {
     formValues: Partial<OmBarnetFormValues>;

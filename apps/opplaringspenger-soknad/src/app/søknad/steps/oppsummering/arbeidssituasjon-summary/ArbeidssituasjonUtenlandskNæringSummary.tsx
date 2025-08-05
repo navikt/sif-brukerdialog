@@ -56,9 +56,9 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                     <List>
                         <List.Item>
                             {utenlandskNæring.length === 0 ? (
-                                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+                                <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.nei" />
                             ) : (
-                                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.ja'} />
+                                <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.ja" />
                             )}
                         </List.Item>
                         {utenlandskNæring.length > 0 && (

@@ -23,7 +23,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
                 <VStack gap="2" marginBlock="0 8">
                     {ansatt_arbeidsforhold.length > 0 && (
                         <AppText
-                            id={'steg.arbeidssituasjon.veileder.medArbeidsgiver'}
+                            id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
                             values={{ antall: ansatt_arbeidsforhold.length }}
                         />
                     )}
@@ -31,7 +31,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
                         <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
                     )}
                     <ReadMore header="Min arbeidsgiver vises ikke">
-                        <AppText id={'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver'} />
+                        <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />
                     </ReadMore>
                 </VStack>
             </BodyLong>

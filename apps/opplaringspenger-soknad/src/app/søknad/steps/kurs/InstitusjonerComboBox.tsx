@@ -8,7 +8,7 @@ interface Props {
 const InstitusjonerComboBox = ({ institusjoner }: Props) => {
     return (
         <FormikCombobox
-            name={'insitusjoner'}
+            name="insitusjoner"
             allowNewValues={true}
             label="Hva er den aller kuleste Star Wars-filmen noensinne, helt objektivt?"
             options={institusjoner.map((institusjon) => ({ value: institusjon.navn, label: institusjon.navn }))}

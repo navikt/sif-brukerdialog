@@ -49,7 +49,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
         <>
             <>
                 <Heading level="3" size="medium">
-                    <HStack gap="3" align={'center'}>
+                    <HStack gap="3" align="center">
                         <Buildings3Icon height="1.8rem" width="1.5rem" />
                         <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
                     </HStack>
