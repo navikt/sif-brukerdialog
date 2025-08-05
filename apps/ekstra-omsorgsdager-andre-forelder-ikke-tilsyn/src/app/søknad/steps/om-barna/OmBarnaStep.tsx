@@ -1,23 +1,22 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { AndreBarn } from '../../../pre-common/forms/barn';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import actionsCreator from '../../context/action/actionCreator';
-import SøknadStep from '../../SøknadStep';
+import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useAppIntl } from '../../../i18n';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';
-import { useAppIntl } from '../../../i18n';
-import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
