@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.40
+
+### Patch Changes
+
+- f385662: eslint fix
+
 ## 1.1.39
 
 ### Patch Changes

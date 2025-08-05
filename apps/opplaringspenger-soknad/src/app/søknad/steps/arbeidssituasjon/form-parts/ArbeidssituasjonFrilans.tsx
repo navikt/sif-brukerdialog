@@ -1,10 +1,16 @@
 import { BodyShort, Heading, Link, VStack } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import {
+    datepickerUtils,
+    DateRange,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
@@ -13,7 +19,6 @@ import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltT
 import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import InfoJobberNormaltTimerFrilanser from './info/InfoJobberNormaltTimerFrilanser';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum FrilansFormFields {
     harHattInntektSomFrilanser = 'frilans.harHattInntektSomFrilanser',

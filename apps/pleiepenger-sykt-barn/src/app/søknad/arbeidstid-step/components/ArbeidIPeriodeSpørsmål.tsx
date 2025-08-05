@@ -1,8 +1,7 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
+import { FormikRadioProp, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import {
@@ -11,11 +10,11 @@ import {
     ArbeidsforholdType,
 } from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
+import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import {
     ArbeidIPeriodeFormField,
     ArbeidIPeriodeFormValues,
 } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
-import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { getArbeidstidSpørsmålstekst } from '../utils/arbeidIPeriodeTekstUtils';
 import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidStepUtils';

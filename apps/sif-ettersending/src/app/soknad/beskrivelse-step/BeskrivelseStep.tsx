@@ -63,7 +63,7 @@ const BeskrivelseStep = ({ søknadstype }: Props) => {
                                             <Link
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                href={'https://www.nav.no/person/kontakt-oss/nb/'}>
+                                                href="https://www.nav.no/person/kontakt-oss/nb/">
                                                 <AppText id="step.beskrivelse.intro.2.1" />
                                             </Link>
                                         ),

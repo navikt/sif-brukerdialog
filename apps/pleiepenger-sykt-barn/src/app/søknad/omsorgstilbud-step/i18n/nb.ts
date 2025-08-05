@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const omsorgstilbudMessages_nb = {
     'step.omsorgstilbud.pageTitle': 'Pleiepengesøknad - omsorgstilbud',
     'step.omsorgstilbud.stepTitle': 'Omsorgstilbud i søknadsperioden',

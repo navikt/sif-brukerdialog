@@ -6,15 +6,14 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
-import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     ValidateDateError,
 } from '@navikt/sif-validation';
-import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { AppText } from '../../i18n';

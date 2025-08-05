@@ -2,9 +2,8 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Institusjoner } from '../../api/institusjonService';
-import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
@@ -26,10 +25,6 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
         default:
             return FlereSokereApiData.USIKKER;
     }
-};
-
-export const getDataBruktTilUtledningApiData = (_kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    return {};
 };
 
 export const getApiDataFromSøknadsdata = (
@@ -99,8 +94,6 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledningAnnetData: søknadsdata.kurs
-            ? JSON.stringify(getDataBruktTilUtledningApiData(søknadsdata.kurs))
-            : '',
+        dataBruktTilUtledningAnnetData: '',
     };
 };

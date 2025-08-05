@@ -111,9 +111,9 @@ const ErLiktHverUke: React.FunctionComponent = () => {
     const { text } = useAppIntl();
     return (
         <ExpandableInfo title={text('steg.omsorgstilbud.erLiktHverUke.info.tittel')}>
-            <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.1'} />
+            <AppText id="steg.omsorgstilbud.erLiktHverUke.info.1" />
             <br />
-            <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.2'} />
+            <AppText id="steg.omsorgstilbud.erLiktHverUke.info.2" />
         </ExpandableInfo>
     );
 };
@@ -123,7 +123,7 @@ const ErIOmsorgstilbud: React.FunctionComponent = () => {
     return (
         <ExpandableInfo title={text('steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.tittel')}>
             <p>
-                <AppText id={'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.1'} />
+                <AppText id="steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.1" />
             </p>
         </ExpandableInfo>
     );
@@ -132,7 +132,7 @@ const ErIOmsorgstilbud: React.FunctionComponent = () => {
 const HvorMye: React.FunctionComponent = () => {
     return (
         <p>
-            <AppText id={'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.2'} />
+            <AppText id="steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.2" />
         </p>
     );
 };

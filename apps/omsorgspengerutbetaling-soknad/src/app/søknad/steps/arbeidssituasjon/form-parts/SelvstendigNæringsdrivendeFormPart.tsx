@@ -3,10 +3,9 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';

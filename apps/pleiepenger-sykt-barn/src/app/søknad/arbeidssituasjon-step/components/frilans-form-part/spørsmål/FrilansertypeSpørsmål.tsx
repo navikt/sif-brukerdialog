@@ -5,7 +5,7 @@ import { ArbFriFormComponents } from '../FrilanserFormPart';
 const FrilansertypeSpørsmål = () => {
     return (
         <ArbFriFormComponents.RadioGroup
-            legend={'Hva er din situasjon?'}
+            legend="Hva er din situasjon?"
             name={FrilansFormField.frilanstype}
             validate={getCheckedValidator()}
             radios={[

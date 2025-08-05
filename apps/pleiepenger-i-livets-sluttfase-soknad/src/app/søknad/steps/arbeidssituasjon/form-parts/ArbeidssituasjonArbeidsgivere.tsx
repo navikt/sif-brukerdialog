@@ -22,7 +22,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
             <BodyLong as="div">
                 {ansatt_arbeidsforhold.length > 0 && (
                     <AppText
-                        id={'steg.arbeidssituasjon.veileder.medArbeidsgiver'}
+                        id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
                         values={{ antall: ansatt_arbeidsforhold.length }}
                     />
                 )}
@@ -30,7 +30,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
                     <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />
                 )}
                 <p>
-                    <AppText id={'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver'} />
+                    <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />
                 </p>
             </BodyLong>
         </Block>

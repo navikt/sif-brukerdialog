@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { sifCommonPleiepengerMessages_nn } from '../local-sif-common-pleiepenger/i18n/nn';
 import { velkommenPageMessages_nn } from '../pages/velkommen-page/i18n/nn';
 import { confirmationPageMessages_nn } from '../pages/confirmation-page/i18n/nn';

@@ -9,7 +9,7 @@ const GeneralErrorPage = () => {
     const { text } = useAppIntl();
     return (
         <Page title={text('page.generalErrorPage.sidetittel')}>
-            <div className={'generalErrorPage'}>
+            <div className="generalErrorPage">
                 <SifGuidePanel mood="uncertain">
                     <Heading level="2" size="large">
                         <AppText id="page.generalErrorPage.tittel" />

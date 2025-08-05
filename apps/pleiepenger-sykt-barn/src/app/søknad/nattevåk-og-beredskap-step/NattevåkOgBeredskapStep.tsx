@@ -49,19 +49,19 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <p>
-                        <AppText id={'steg.nattevåkOgBeredskap.veileder'} />
+                        <AppText id="steg.nattevåkOgBeredskap.veileder" />
                     </p>
                     <Block>
                         <ExpandableInfo
                             title={text('steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel')}>
-                            <AppText id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
+                            <AppText id="steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn" />
                         </ExpandableInfo>
                     </Block>
                 </SifGuidePanel>
             </Block>
             <FormSection title="Nattevåk" titleLevel="2">
                 <BodyLong>
-                    <AppText id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} />
+                    <AppText id="steg.nattevåkOgBeredskap.nattevåk.veileder" />
                 </BodyLong>
 
                 <FormBlock>
@@ -78,7 +78,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         <ResponsivePanel border={true}>
                             <SøknadFormComponents.Textarea
                                 name={SøknadFormField.harNattevåk_ekstrainfo}
-                                label={<AppText id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
+                                label={<AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm" />}
                                 description={
                                     <Block>
                                         <BodyLong as="div">
@@ -107,7 +107,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
             </FormSection>
             <FormSection title="Beredskap" titleLevel="2">
                 <BodyLong>
-                    <AppText id={'steg.nattevåkOgBeredskap.beredskap.veileder'} />
+                    <AppText id="steg.nattevåkOgBeredskap.beredskap.veileder" />
                 </BodyLong>
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
@@ -122,7 +122,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         <ResponsivePanel border={true}>
                             <SøknadFormComponents.Textarea
                                 name={SøknadFormField.harBeredskap_ekstrainfo}
-                                label={<AppText id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm'} />}
+                                label={<AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm" />}
                                 maxLength={1000}
                                 validate={getStringValidator({ required: true, maxLength: 1000 })}
                                 description={

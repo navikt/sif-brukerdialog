@@ -24,7 +24,7 @@ interface Props {
     values: Partial<KursperiodeFormValues>;
     index: number;
     harFlerePerioder?: boolean;
-    allePerioder: Partial<KursperiodeFormValues>[];
+    allePerioder: Array<Partial<KursperiodeFormValues>>;
     gyldigSøknadsperiode: DateRange;
     onRemove?: () => void;
 }

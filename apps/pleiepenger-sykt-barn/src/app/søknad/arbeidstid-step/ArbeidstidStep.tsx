@@ -46,15 +46,15 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             <Block padBottom="m">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'arbeidIPeriode.StepInfo.1'} />
+                        <AppText id="arbeidIPeriode.StepInfo.1" />
                     </p>
                     <p>
-                        <AppText id={'arbeidIPeriode.StepInfo.2'} />
+                        <AppText id="arbeidIPeriode.StepInfo.2" />
                     </p>
 
                     {visInntektsmeldingInfo && (
                         <p>
-                            <AppText id={'arbeidIPeriode.StepInfo.3'} />
+                            <AppText id="arbeidIPeriode.StepInfo.3" />
                         </p>
                     )}
                 </SifGuidePanel>

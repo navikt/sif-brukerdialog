@@ -20,7 +20,7 @@
         "gh-pages:clean": "rm -rf ../../docs/ungdomsytelse-deltaker",
         "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-deltaker",
         "lint:fix": "eslint src --fix",
-        "lint": "eslint src",
+        "lint:eslint": "eslint src",
         "playwright-test": "playwright test",
         "storybook:build": "storybook build",
         "storybook": "storybook dev -p 6006",

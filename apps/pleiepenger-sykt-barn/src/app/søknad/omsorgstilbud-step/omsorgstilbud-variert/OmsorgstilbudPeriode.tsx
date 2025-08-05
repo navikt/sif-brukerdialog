@@ -47,7 +47,7 @@ const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => 
 
     return (
         <>
-            <Button type="button" onClick={() => setVisPeriode(true)} size={'small'}>
+            <Button type="button" onClick={() => setVisPeriode(true)} size="small">
                 <AppText id="omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel" />
             </Button>
             <OmsorgstilbudPeriodeDialog

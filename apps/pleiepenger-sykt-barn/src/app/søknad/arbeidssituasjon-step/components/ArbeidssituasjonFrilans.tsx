@@ -33,24 +33,24 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     return (
         <div data-testid="arbeidssituasjonFrilanser">
             <p>
-                <AppText id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro'} />
+                <AppText id="steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro" />
             </p>
             <ExpandableInfo title={text('steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tittel')}>
                 <p>
                     <AppText
-                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.1'}
+                        id="steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.1"
                         values={{ strong: (txt) => <strong>{txt}</strong> }}
                     />
                 </p>
                 <p>
                     <AppText
-                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.2'}
+                        id="steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.2"
                         values={{ strong: (txt) => <strong>{txt}</strong> }}
                     />
                 </p>
                 <p>
                     <AppText
-                        id={'steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.3'}
+                        id="steg.arbeidssituasjon.arbeidssituasjonFrilanser.intro.info.tekst.3"
                         values={{ strong: (txt) => <strong>{txt}</strong> }}
                     />
                 </p>
@@ -87,7 +87,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
             ) && (
                 <Block margin="l">
                     <Alert variant="info">
-                        <AppText id={'frilanser.ingenFrilans.info'} />
+                        <AppText id="frilanser.ingenFrilans.info" />
                     </Alert>
                 </Block>
             )}

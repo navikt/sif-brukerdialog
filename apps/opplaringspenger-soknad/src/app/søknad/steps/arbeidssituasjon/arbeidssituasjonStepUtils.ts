@@ -1,10 +1,10 @@
 import {
+    datepickerUtils,
     DateRange,
     getNumberFromNumberInputValue,
     getStringForNumberInputValue,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';

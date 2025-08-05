@@ -6935,7 +6935,6 @@ __metadata:
     "@storybook/react-vite": "npm:9.1.1"
     "@tailwindcss/postcss": "npm:4.1.11"
     "@tailwindcss/vite": "npm:4.1.11"
-    "@tanstack/react-form": "npm:1.17.0"
     "@types/node": "npm:24.2.0"
     "@types/react": "npm:19.1.9"
     "@types/react-dom": "npm:19.1.7"
@@ -10038,40 +10037,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/form-core@npm:1.17.0":
-  version: 1.17.0
-  resolution: "@tanstack/form-core@npm:1.17.0"
-  dependencies:
-    "@tanstack/store": "npm:^0.7.2"
-  checksum: 10/ac38b904ee28fe368c622e2c34637ddba467782d57649cf62d8412b0efc113f86095229dcc11fdf9ae0d39613027be1c23743a2ede3be078b11ca1a00e0fbc45
-  languageName: node
-  linkType: hard
-
 "@tanstack/query-core@npm:5.83.1":
   version: 5.83.1
   resolution: "@tanstack/query-core@npm:5.83.1"
   checksum: 10/531650bafd70e2b5219ec79dd487461414e4ed8040067d8e3206d237ee39dd0b34a2573d20f751dfd1413b3d8df0b023fe22469c98765e3c8fab8391acf2f3c8
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-form@npm:1.17.0":
-  version: 1.17.0
-  resolution: "@tanstack/react-form@npm:1.17.0"
-  dependencies:
-    "@tanstack/form-core": "npm:1.17.0"
-    "@tanstack/react-store": "npm:^0.7.3"
-    decode-formdata: "npm:^0.9.0"
-    devalue: "npm:^5.1.1"
-  peerDependencies:
-    "@tanstack/react-start": ^1.112.0
-    react: ^17.0.0 || ^18.0.0 || ^19.0.0
-    vinxi: ^0.5.0
-  peerDependenciesMeta:
-    "@tanstack/react-start":
-      optional: true
-    vinxi:
-      optional: true
-  checksum: 10/93183049dc673bfe75fba97baee52b7a6e0059a378702d8041919295e11302dfc98ee03988763a2f1229208ce91958b56b50df1823a36369fa3e73a60fc05b56
   languageName: node
   linkType: hard
 
@@ -10083,19 +10052,6 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19
   checksum: 10/b0d195df16d61acddf6bc5ef7acc34a335adcb9658f1f24a229965a7d8ca50fc60040a1dfb871e6f625004ffae26fa16a293d12fb30d9286e5ba35b2fb56ec05
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-store@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "@tanstack/react-store@npm:0.7.3"
-  dependencies:
-    "@tanstack/store": "npm:0.7.2"
-    use-sync-external-store: "npm:^1.5.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/50e70a2ff03915d60e6abcd4d8d14d61cf88dff748687addb6d48e5a943e703d94ba8ae6b365f879ec95a08544022af15cb78cc3d428e1f29de9f8ae2ff8af9f
   languageName: node
   linkType: hard
 
@@ -10120,13 +10076,6 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10/7b64c728ae3666c22f6a1727d464f877c04ae02347480eab482c7a002c2a340167ded856e3dd52b19de34f965aeb01a1e223acdab44d646251c0aa89c3d69539
-  languageName: node
-  linkType: hard
-
-"@tanstack/store@npm:0.7.2, @tanstack/store@npm:^0.7.2":
-  version: 0.7.2
-  resolution: "@tanstack/store@npm:0.7.2"
-  checksum: 10/003b2156c6c2b2c75cbd6a3e6c24de1a3cfc03160646ff6b500198b10fc11685748259cdb80c5e744af95bc4ddeea53204e66c67345f315b9e321fbe16f805b5
   languageName: node
   linkType: hard
 
@@ -15172,13 +15121,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decode-formdata@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "decode-formdata@npm:0.9.0"
-  checksum: 10/90ca2ceeac23a6d7dd6cbd84922c0044f131d42caa244bdeedc57753f4ec7de96d5f309131093b7999ead34f36b6ed06d842e127b552e9bd9f82245b682cfe4f
-  languageName: node
-  linkType: hard
-
 "decode-named-character-reference@npm:^1.0.0":
   version: 1.1.0
   resolution: "decode-named-character-reference@npm:1.1.0"
@@ -15504,13 +15446,6 @@ __metadata:
   version: 1.1.0
   resolution: "detect-node-es@npm:1.1.0"
   checksum: 10/e46307d7264644975b71c104b9f028ed1d3d34b83a15b8a22373640ce5ea630e5640b1078b8ea15f202b54641da71e4aa7597093bd4b91f113db520a26a37449
-  languageName: node
-  linkType: hard
-
-"devalue@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "devalue@npm:5.1.1"
-  checksum: 10/ff36fe61af61636419eb16692d2fe43d793cdfb17f868bb3560c5485e4c25bc38d472304e61efdec6e806a3c4b450c46247decf59968b4a05ddc7714ea64f885
   languageName: node
   linkType: hard
 

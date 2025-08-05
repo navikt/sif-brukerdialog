@@ -42,10 +42,10 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <p>
-                        <AppText id={'steg.legeerklaering.counsellorpanel.1'} />
+                        <AppText id="steg.legeerklaering.counsellorpanel.1" />
                     </p>
                     <p>
-                        <AppText id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
+                        <AppText id="steg.legeerklaering.counsellorpanel.2" />{' '}
                     </p>
                 </SifGuidePanel>
             </Block>

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const arbeidssituasjonMessages_nb = {
     'step.arbeidssituasjon.pageTitle': 'Pleiepengesøknad - opplysninger om din arbeidssituasjon',
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjonen din',

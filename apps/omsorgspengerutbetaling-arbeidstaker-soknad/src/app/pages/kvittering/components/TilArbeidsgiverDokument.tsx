@@ -32,7 +32,7 @@ const isoDurationToMaybeTime = (value: string | null): Time | undefined => {
 
 const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søkersNavn, søknadNavn }: Props) => {
     return (
-        <div className={'pagebreak'}>
+        <div className="pagebreak">
             <Box borderWidth="1" borderColor="border-default" borderRadius="small" padding="5" marginBlock="0 10">
                 <Heading level="2" size="medium">
                     Til {arbeidsgiverDetaljer.navn}
@@ -93,7 +93,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                 <Box borderWidth="1" borderColor="border-default" borderRadius="small" padding="5" marginBlock="0 10">
                     <Alert variant="warning" inline={true}>
                         <AppText id="page.conformation.tilArbeidsgiverDokument.alert.1" />
-                        <Block padBottom={'l'}>
+                        <Block padBottom="l">
                             <strong>
                                 <AppText
                                     id="page.conformation.tilArbeidsgiverDokument.alert.2"
@@ -126,9 +126,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                             className="lenke"
                             target="_blank"
                             rel="noopener noreferrer"
-                            href={
-                                'https://www.nav.no/no/bedrift/tjenester-og-skjemaer/nav-og-altinn-tjenester/inntektsmelding'
-                            }>
+                            href="https://www.nav.no/no/bedrift/tjenester-og-skjemaer/nav-og-altinn-tjenester/inntektsmelding">
                             <AppText id="page.conformation.tilArbeidsgiverDokument.info.4.lenkeTekst" />
                         </a>
                     </p>

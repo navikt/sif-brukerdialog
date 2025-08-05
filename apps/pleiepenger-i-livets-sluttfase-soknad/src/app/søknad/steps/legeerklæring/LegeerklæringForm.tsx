@@ -2,11 +2,10 @@ import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 interface Props {
     legeerklæringer?: Vedlegg[];
@@ -44,7 +43,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
             <VStack gap="6">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'step.legeerklæring.counsellorPanel.info'} />
+                        <AppText id="step.legeerklæring.counsellorPanel.info" />
                     </p>
                 </SifGuidePanel>
                 <FormikFileUpload

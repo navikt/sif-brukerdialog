@@ -8,19 +8,19 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
+    getIntlFormErrorHandler,
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { getDateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../../i18n';
 import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';

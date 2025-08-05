@@ -15,51 +15,51 @@ const InfoNormalarbeidstid = () => {
             </ExpandableInfo>
             <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.tittel')}>
                 <p>
-                    <AppText id={`arbeidsforhold.normalTimer.info.turnus`} />
+                    <AppText id="arbeidsforhold.normalTimer.info.turnus" />
                 </p>
 
                 <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.turnus.tittel')}>
-                    <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.1'} />
+                    <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.1" />
                     <p>
                         <strong>
-                            <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.2'} />
+                            <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.2" />
                         </strong>
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.3'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.3" />
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.4'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.4" />
                         <br />
-                        <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.4a'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.4a" />
                         <br />
-                        <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.4b'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.4b" />
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.5'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.turnus.avsnitt.5" />
                     </p>
                 </ExpandableInfo>
                 <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.varierende.tittel')}>
-                    <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.1'} />
+                    <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.1" />
 
                     <p>
                         <strong>
-                            <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.2'} />
+                            <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.2" />
                         </strong>
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.3'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.3" />
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.4'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.4" />
                     </p>
                     <p>
                         <strong>
-                            <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.5'} />
+                            <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.5" />
                         </strong>
                     </p>
                     <p>
-                        <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.6'} />
+                        <AppText id="arbeidsforhold.normalTimer.info.varierende.avsnitt.6" />
                     </p>
                 </ExpandableInfo>
             </ExpandableInfo>

@@ -1,29 +1,28 @@
-import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import { Alert, Heading, List } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
+import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { ISODate, dateFormatter } from '@navikt/sif-common-utils';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
 import { erFeriedagerEndretIPeriode } from '@utils';
-import { useIntl } from 'react-intl';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
+import { AppText } from '../../../i18n';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import { AppText } from '../../../i18n';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -137,7 +136,7 @@ const LovbestemtFerieStep = () => {
                                     )}
                                     <DateRangeAccordion
                                         dateRanges={sak.søknadsperioder}
-                                        defaultOpenState={'none'}
+                                        defaultOpenState="none"
                                         renderContent={(søknadsperiode) => {
                                             return (
                                                 <Block

@@ -20,9 +20,10 @@ export const getContextForApiHandler = (req: NextApiRequest) => {
 
 export const trimAxiosError = (error: any) => {
     try {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { config, ...rest } = error;
         return rest;
-    } catch (e) {
+    } catch {
         return 'invalid error object';
     }
 };

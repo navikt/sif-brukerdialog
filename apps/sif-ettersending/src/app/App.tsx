@@ -46,10 +46,10 @@ const App = () => {
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route path={'/:soknadstype/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,
-                    <Route path={'/:soknadstype/'} key="søknadstype" element={<Navigate to={'melding'} />} />,
-                    <Route path={'/:soknadstype/feil'} key="søknadstypeFeil" element={<GeneralErrorPage />} />,
-                    <Route path={'/feil'} key="feil" element={<GeneralErrorPage />} />,
-                    <Route path={'/'} key="intro" element={<IntroPage />} />,
+                    <Route path="/:soknadstype/" key="søknadstype" element={<Navigate to="melding" />} />,
+                    <Route path="/:soknadstype/feil" key="søknadstypeFeil" element={<GeneralErrorPage />} />,
+                    <Route path="/feil" key="feil" element={<GeneralErrorPage />} />,
+                    <Route path="/" key="intro" element={<IntroPage />} />,
                 ]}
             />
         </SoknadApplication>

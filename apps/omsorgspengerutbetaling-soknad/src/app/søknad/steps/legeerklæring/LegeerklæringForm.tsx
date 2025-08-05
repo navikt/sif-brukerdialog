@@ -5,8 +5,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 
@@ -44,10 +43,10 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, is
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorpanel.1'} />
+                        <AppText id="steg.legeerklæring.counsellorpanel.1" />
                     </p>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorpanel.2'} />
+                        <AppText id="steg.legeerklæring.counsellorpanel.2" />
                     </p>
                 </SifGuidePanel>
             </Block>

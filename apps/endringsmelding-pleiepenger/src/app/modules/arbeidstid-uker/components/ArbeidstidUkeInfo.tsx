@@ -47,7 +47,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
-        <div className={'endretArbeidstid'}>
+        <div className="endretArbeidstid">
             <div className="endretArbeidstid_faktisk">
                 {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
                 <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">

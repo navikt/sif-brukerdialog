@@ -82,7 +82,7 @@ const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[]
                         <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
+                        <div data-testid="oppsummering-omBarn-fødselsattest">
                             <VedleggSummaryList vedlegg={fødselsattester} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
