@@ -1,6 +1,6 @@
 import { BrowserContext, Page } from '@playwright/test';
-import { memoryStore } from '../../../mock/state/memoryStore';
-import { mockUtils } from '../../../mock/utils/mockUtils';
+import { memoryStore } from '../../mock/state/memoryStore';
+import { mockUtils } from '../../mock/utils/mockUtils';
 
 function extractOppgaveReferanse(url: string) {
     const parts = url.split('/');
