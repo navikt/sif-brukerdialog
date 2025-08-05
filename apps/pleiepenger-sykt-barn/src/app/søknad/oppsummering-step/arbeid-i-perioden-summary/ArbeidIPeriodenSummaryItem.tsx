@@ -44,9 +44,9 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
             <List>
                 <List.Item>
                     {gjelderHonorar ? (
-                        <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar`} />
+                        <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar" />
                     ) : (
-                        <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig`} />
+                        <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig" />
                     )}
                 </List.Item>
             </List>
@@ -58,9 +58,9 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
             <List>
                 <List.Item>
                     {gjelderHonorar ? (
-                        <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar`} />
+                        <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar" />
                     ) : (
-                        <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei`} />
+                        <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.nei" />
                     )}
                 </List.Item>
             </List>

@@ -143,8 +143,8 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                 </BekreftDialog>
             )}
             <Routes>
-                <Route path={'/'} element={<Navigate to={RouteConfig.WELCOMING_PAGE_ROUTE} />} />
-                <Route path={'velkommen'} element={<VelkommenPage onValidSubmit={startSoknad} søker={søker} />} />
+                <Route path="/" element={<Navigate to={RouteConfig.WELCOMING_PAGE_ROUTE} />} />
+                <Route path="velkommen" element={<VelkommenPage onValidSubmit={startSoknad} søker={søker} />} />
 
                 {isAvailable(StepID.OPPLYSNINGER_OM_BARNET, values) && (
                     <Route
@@ -340,12 +340,12 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
 
                 {isAvailable(RouteConfig.SØKNAD_SENDT_ROUTE, values, søknadHasBeenSent) && (
                     <Route
-                        path={'soknad-sendt'}
+                        path="soknad-sendt"
                         element={<ConfirmationPage kvitteringInfo={kvitteringInfo} onUnmount={onKvitteringUnmount} />}
                     />
                 )}
 
-                <Route path="*" element={<Navigate to={'/soknad/velkommen'} replace={true} />} />
+                <Route path="*" element={<Navigate to="/soknad/velkommen" replace={true} />} />
             </Routes>
         </>
     );

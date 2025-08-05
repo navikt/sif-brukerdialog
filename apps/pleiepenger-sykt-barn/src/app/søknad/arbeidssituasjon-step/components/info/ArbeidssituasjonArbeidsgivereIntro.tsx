@@ -14,7 +14,7 @@ const ArbeidssituasjonArbeidsgivereIntro: React.FunctionComponent<Props> = ({ an
             <p>
                 {antallArbeidsforhold > 0 && (
                     <AppText
-                        id={'steg.arbeidssituasjon.veileder.medArbeidsgiver'}
+                        id="steg.arbeidssituasjon.veileder.medArbeidsgiver"
                         values={{ antall: antallArbeidsforhold }}
                     />
                 )}
@@ -22,7 +22,7 @@ const ArbeidssituasjonArbeidsgivereIntro: React.FunctionComponent<Props> = ({ an
             </p>
             <ExpandableInfo title={text('steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.tittel')}>
                 <p>
-                    <AppText id={'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver'} />
+                    <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />
                 </p>
             </ExpandableInfo>
         </>

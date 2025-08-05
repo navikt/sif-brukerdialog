@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { DateRange, ISODateToDate, isISODate } from '@navikt/sif-common-utils';

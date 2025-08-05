@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { omsorgstilbudMessages_nb } from './nb';
 
 export const omsorgstilbudMessages_nn: Record<keyof typeof omsorgstilbudMessages_nb, string> = {

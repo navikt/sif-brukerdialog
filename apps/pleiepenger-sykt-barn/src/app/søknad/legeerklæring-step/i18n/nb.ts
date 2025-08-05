@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const legeerklæringMessages_nb = {
     'step.legeerklaering.pageTitle': 'Pleiepengesøknad - legeerklæring',
     'step.legeerklaering.stepTitle': 'Last opp legeerklæring',

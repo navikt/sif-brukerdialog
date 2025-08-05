@@ -1,13 +1,5 @@
 import { isDevMode } from '@navikt/sif-common-env';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import {
-    getDateRangeValidator,
-    getDateValidator,
-    getFødselsnummerValidator,
-    getStringValidator,
-} from '@navikt/sif-validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -23,12 +15,18 @@ import {
     getValidDurations,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
+import {
+    getDateRangeValidator,
+    getDateValidator,
+    getFødselsnummerValidator,
+    getStringValidator,
+} from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
+import { FosterhjemsgodtgjørelseFormValues } from '../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 import { OmsorgsstønadFormValues } from '../types/søknad-form-values/OmsorgsstønadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
-import { FosterhjemsgodtgjørelseFormValues } from '../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);

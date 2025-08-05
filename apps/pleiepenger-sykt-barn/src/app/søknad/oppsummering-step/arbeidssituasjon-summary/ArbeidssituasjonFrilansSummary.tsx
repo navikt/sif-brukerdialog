@@ -25,7 +25,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser" />
                         </List.Item>
                     </List>
                 </FormSummary.Value>
@@ -44,10 +44,10 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            <AppText id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR" />
                         </List.Item>
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar" />
                         </List.Item>
                     </List>
                 </FormSummary.Value>
@@ -69,12 +69,12 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                     </List.Item>
                     {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === false && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar" />
                         </List.Item>
                     )}
                     {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === true && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar" />
                         </List.Item>
                     )}
                     <List.Item>

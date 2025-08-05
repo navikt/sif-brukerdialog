@@ -2,8 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
-import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
+import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
 import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
@@ -42,7 +41,7 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
             <FormBlock margin="none" paddingBottom="m" key={dayjs(måned.from).format('MM.YYYY')}>
                 {årstallHeaderRenderer && visÅrstallHeading(index) && (
                     <Block margin="l" padBottom="m">
-                        <Heading level={årstallHeadingLevel} size="medium" className={'yearHeader'}>
+                        <Heading level={årstallHeadingLevel} size="medium" className="yearHeader">
                             {årstallHeaderRenderer(måned.from.getFullYear())}:
                         </Heading>
                     </Block>

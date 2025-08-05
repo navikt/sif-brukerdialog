@@ -1,12 +1,11 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import { useAppIntl } from '../../../i18n';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
-import { useAppIntl } from '../../../i18n';
 
 interface OwnProps {
     name: string;

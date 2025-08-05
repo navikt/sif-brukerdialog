@@ -1,8 +1,6 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { getDateValidator } from '@navikt/sif-validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { datepickerUtils, DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
+import { getDateValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 
 export const getFrilansStartdatoValidator =
