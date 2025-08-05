@@ -1,4 +1,4 @@
-import { Veileder } from '../../../../src/types/Veileder';
+import { Veileder } from '../../src/types/Veileder';
 
 export const veilederMock: Veileder = {
     NAVident: 'Z999999',

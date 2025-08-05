@@ -1,15 +1,10 @@
 /* eslint-disable no-constant-condition */
 import { delay, http, HttpResponse } from 'msw';
-import { mockUtils } from '../mocks/mockUtils';
+import { mockUtils } from './mockUtils';
 
 const slowDown = (ms: number) => (1 + 1 === 1 ? Promise.resolve() : delay(ms));
 
 export const handlers = [
-    http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
-    http.get('*login*', () => new HttpResponse(null, { status: 200 })),
-
     http.post<any, any>('**/oppslag/deltaker', async ({ request }) => {
         if (1 + 1 === 3) {
             return HttpResponse.json(
@@ -92,4 +87,6 @@ export const handlers = [
         const response = mockUtils.endreSluttdato(deltakelseId, dato);
         return HttpResponse.json(response);
     }),
+    // Stopp alle andre kall (Dekoratøren og andre tredjepartstjenester)
+    http.all('*', () => new HttpResponse(null, { status: 200 })),
 ];

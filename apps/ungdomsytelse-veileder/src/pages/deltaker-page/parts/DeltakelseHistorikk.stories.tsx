@@ -7,8 +7,8 @@ import { withQueryClientProvider } from '../../../../storybook/decorators/withQu
 import { withVeilederContext } from '../../../../storybook/decorators/withVeilederContext';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
 import { http, HttpResponse } from 'msw';
-import { mockUtils } from '../../../../mock/msw/mocks/mockUtils';
-import { registrertDeltakerMock } from '../../../../mock/msw/mocks/data/registrertDeltakerMock';
+import { mockUtils } from '../../../../mock/msw/mockUtils';
+import { registrertDeltakerMock } from '../../../../mock/data/registrertDeltakerMock';
 
 const meta: Meta<typeof DeltakelseHistorikk> = {
     component: DeltakelseHistorikk,

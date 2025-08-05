@@ -1,9 +1,9 @@
 // /* eslint-disable no-console */
 
 import { v4 } from 'uuid';
-import { deltaker2Mock } from './data/deltaker2';
-import { nyDeltakerMock } from './data/nyDeltakerMock';
-import { registrertDeltakerMock } from './data/registrertDeltakerMock';
+import { deltaker2Mock } from '../data/deltaker2';
+import { nyDeltakerMock } from '../data/nyDeltakerMock';
+import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
