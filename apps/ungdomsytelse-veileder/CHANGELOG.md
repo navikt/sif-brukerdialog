@@ -1,5 +1,17 @@
 # @navikt/sif-demo-app
 
+## 0.5.32
+
+### Patch Changes
+
+- f385662: eslint fix
+    - @navikt/sif-common-api@0.4.25
+    - @navikt/sif-common-core-ds@10.2.27
+    - @navikt/sif-common-formik-ds@2.4.23
+    - @navikt/sif-common-ui@0.10.3
+    - @navikt/sif-validation@1.0.3
+    - @navikt/ung-common@0.0.20
+
 ## 0.5.31
 
 ### Patch Changes
