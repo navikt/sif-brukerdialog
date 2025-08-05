@@ -43,7 +43,7 @@ if (totalReplacements > 0) {
 // Format all generated TypeScript files with Prettier
 console.log('💄 Formatting all generated TypeScript files...');
 try {
-    const generatedTsFiles = glob.sync('src/deltaker/**/*.ts', { cwd: process.cwd() });
+    const generatedTsFiles = glob.sync('src/**/*.ts', { cwd: process.cwd() });
 
     if (generatedTsFiles.length > 0) {
         // Run prettier on all generated TypeScript files
@@ -52,6 +52,13 @@ try {
             cwd: process.cwd(),
         });
         console.log(`✨ Formatted ${generatedTsFiles.length} TypeScript files`);
+        // Run ESLint --fix on all generated TypeScript files
+        console.log('🔧 Running ESLint --fix on generated TypeScript files...');
+        execSync(`yarn lint:fix`, {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+        });
+        console.log(`🔧 ESLint --fix completed for generated TypeScript files`);
     } else {
         console.log('ℹ️  No TypeScript files found to format.');
     }

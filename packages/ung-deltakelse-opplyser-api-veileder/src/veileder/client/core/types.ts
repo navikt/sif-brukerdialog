@@ -39,7 +39,7 @@ export interface Config {
      */
     headers?:
         | RequestInit['headers']
-        | Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
+        | Record<string, string | number | boolean | Array<string | number | boolean> | null | undefined | unknown>;
     /**
      * The request method.
      *
@@ -75,3 +75,15 @@ export interface Config {
      */
     responseValidator?: (data: unknown) => Promise<unknown>;
 }
+
+type IsExactlyNeverOrNeverUndefined<T> = [T] extends [never]
+    ? true
+    : [T] extends [never | undefined]
+      ? [undefined] extends [T]
+          ? false
+          : true
+      : false;
+
+export type OmitNever<T extends Record<string, unknown>> = {
+    [K in keyof T as IsExactlyNeverOrNeverUndefined<T[K]> extends true ? never : K]: T[K];
+};

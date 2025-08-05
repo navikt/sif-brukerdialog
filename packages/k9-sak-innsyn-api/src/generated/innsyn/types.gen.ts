@@ -35,7 +35,7 @@ export type Arbeidstaker = {
 };
 
 export type Arbeidstid = {
-    arbeidstakerList: Array<Arbeidstaker>;
+    arbeidstakerList: Arbeidstaker[];
     frilanserArbeidstidInfo?: ArbeidstidInfo;
     selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
 };
@@ -63,7 +63,7 @@ export type BarnOppslagDto = {
     etternavn: string;
     aktørId: string;
     identitetsnummer?: string;
-    adressebeskyttelse$k9_sak_innsyn_api: Array<Adressebeskyttelse>;
+    adressebeskyttelse$k9_sak_innsyn_api: Adressebeskyttelse[];
 };
 
 export type BegrunnelseForInnsending = {
@@ -142,7 +142,7 @@ export type Journalpost = {
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: Array<string>;
+    kursperioder: string[];
     reise: Reise;
 };
 
@@ -200,7 +200,7 @@ export type OmsorgspengerKroniskSyktBarn = Ytelse & {
 export type OmsorgspengerMidlertidigAlene = Ytelse & {
     type: 'OmsorgspengerMidlertidigAlene';
 } & {
-    barn: Array<Barn>;
+    barn: Barn[];
     annenForelder: AnnenForelder;
     begrunnelse?: string;
     dataBruktTilUtledning?: DataBruktTilUtledning;
@@ -209,17 +209,17 @@ export type OmsorgspengerMidlertidigAlene = Ytelse & {
 export type OmsorgspengerUtbetaling = Ytelse & {
     type: 'OmsorgspengerUtbetaling';
 } & {
-    fosterbarn?: Array<Barn>;
+    fosterbarn?: Barn[];
     aktivitet?: OpptjeningAktivitet;
-    fraværsperioder?: Array<FraværPeriode>;
-    fraværsperioderKorrigeringIm?: Array<FraværPeriode>;
+    fraværsperioder?: FraværPeriode[];
+    fraværsperioderKorrigeringIm?: FraværPeriode[];
     bosteder?: Bosteder;
     utenlandsopphold?: Utenlandsopphold;
     dataBruktTilUtledning?: DataBruktTilUtledning;
 };
 
 export type OppgittInntekt = {
-    oppgittePeriodeinntekter: Array<OppgittInntektForPeriode>;
+    oppgittePeriodeinntekter: OppgittInntektForPeriode[];
 };
 
 export type OppgittInntektForPeriode = {
@@ -233,8 +233,8 @@ export type Opplæringspenger = Ytelse & {
     type: 'Opplæringspenger';
 } & {
     barn: Barn;
-    søknadsperiode: Array<string>;
-    trekkKravPerioder: Array<string>;
+    søknadsperiode: string[];
+    trekkKravPerioder: string[];
     opptjeningAktivitet: OpptjeningAktivitet;
     dataBruktTilUtledning?: DataBruktTilUtledning;
     bosteder: Bosteder;
@@ -247,22 +247,22 @@ export type Opplæringspenger = Ytelse & {
 };
 
 export type OpptjeningAktivitet = {
-    selvstendigNæringsdrivende: Array<SelvstendigNæringsdrivende>;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
     frilanser?: Frilanser;
-    utenlandskeArbeidsforhold: Array<UtenlandskArbeidsforhold>;
-    andreAktiviteter: Array<AnnenAktivitet>;
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+    andreAktiviteter: AnnenAktivitet[];
 };
 
 export type PleiepengerSyktBarn = Ytelse & {
     type: 'PleiepengerSyktBarn';
 } & {
     barn: Barn;
-    søknadsperiode: Array<string>;
+    søknadsperiode: string[];
     /**
      * @deprecated
      */
-    endringsperiode: Array<string>;
-    trekkKravPerioder: Array<string>;
+    endringsperiode: string[];
+    trekkKravPerioder: string[];
     opptjeningAktivitet?: OpptjeningAktivitet;
     dataBruktTilUtledning?: DataBruktTilUtledning;
     annetDataBruktTilUtledning?: DataBruktTilUtledning;
@@ -291,8 +291,8 @@ export type PleipengerLivetsSluttfase = Ytelse & {
     type: 'PleipengerLivetsSluttfase';
 } & {
     pleietrengende: Pleietrengende;
-    søknadsperiode: Array<string>;
-    trekkKravPerioder: Array<string>;
+    søknadsperiode: string[];
+    trekkKravPerioder: string[];
     opptjeningAktivitet?: OpptjeningAktivitet;
     bosteder: Bosteder;
     utenlandsopphold: Utenlandsopphold;
@@ -304,7 +304,7 @@ export type PleipengerLivetsSluttfase = Ytelse & {
 
 export type Reise = {
     reiserUtenforKursdager: boolean;
-    reisedager?: Array<string>;
+    reisedager?: string[];
     reisedagerBeskrivelse?: string;
 };
 
@@ -350,7 +350,7 @@ export type Søknad = {
         | PleiepengerSyktBarn
         | PleipengerLivetsSluttfase
         | Ungdomsytelse;
-    journalposter?: Array<Journalpost>;
+    journalposter?: Journalpost[];
     begrunnelseForInnsending?: BegrunnelseForInnsending;
     kildesystem?: string;
 };
@@ -358,7 +358,7 @@ export type Søknad = {
 export type SøknadDto = {
     barn: BarnOppslagDto;
     søknad: Søknad;
-    søknader?: Array<Søknad>;
+    søknader?: Søknad[];
 };
 
 export type TilsynPeriodeInfo = {
@@ -375,7 +375,7 @@ export type Ungdomsytelse = Ytelse & {
     type: 'Ungdomsytelse';
 } & {
     søknadType: 'DELTAKELSE_SØKNAD' | 'RAPPORTERING_SØKNAD';
-    søktFraDatoer: Array<string>;
+    søktFraDatoer: string[];
     inntekter?: OppgittInntekt;
     deltakelseId?: string;
 };
@@ -426,9 +426,9 @@ export type BehandlingDto = {
     status: 'OPPRETTET' | 'UNDER_BEHANDLING' | 'PÅ_VENT' | 'AVSLUTTET';
     opprettetTidspunkt: string;
     avsluttetTidspunkt?: string;
-    innsendelser: Array<InnsendelserISakDto>;
-    aksjonspunkter: Array<AksjonspunktDto>;
-    utgåendeDokumenter: Array<DokumentDto>;
+    innsendelser: InnsendelserISakDto[];
+    aksjonspunkter: AksjonspunktDto[];
+    utgåendeDokumenter: DokumentDto[];
 };
 
 export type DokumentDto = {
@@ -451,7 +451,7 @@ export type DokumentDto = {
     filtype: string;
     harTilgang: boolean;
     url: string;
-    relevanteDatoer: Array<RelevantDatoDto>;
+    relevanteDatoer: RelevantDatoDto[];
 };
 
 export type InnsendelserISakDto = {
@@ -459,13 +459,13 @@ export type InnsendelserISakDto = {
     mottattTidspunkt: string;
     innsendelsestype: 'SØKNAD' | 'ETTERSENDELSE' | 'ENDRINGSMELDING' | 'UKJENT';
     k9FormatInnsendelse?: Innsending;
-    dokumenter: Array<DokumentDto>;
-    arbeidsgivere?: Array<Organisasjon>;
+    dokumenter: DokumentDto[];
+    arbeidsgivere?: Organisasjon[];
 };
 
 export type Innsending = {
-    mottattDato?: string;
     versjon?: string;
+    mottattDato?: string;
     søker?: Søker;
     søknadId?: string;
 };
@@ -511,30 +511,31 @@ export type SakDto = {
      * @deprecated
      */
     fagsakYtelseType:
-        | 'DAGPENGER'
+        | 'DAG'
         | 'FRISINN'
-        | 'SYKEPENGER'
-        | 'PLEIEPENGER_SYKT_BARN'
-        | 'PLEIEPENGER_NÆRSTÅENDE'
-        | 'OMSORGSPENGER'
-        | 'OMSORGSPENGER_KS'
-        | 'OMSORGSPENGER_MA'
-        | 'OMSORGSPENGER_AO'
-        | 'OPPLÆRINGSPENGER'
-        | 'ARBEIDSAVKLARINGSPENGER'
-        | 'ENGANGSTØNAD'
-        | 'FORELDREPENGER'
-        | 'SVANGERSKAPSPENGER'
-        | 'ENSLIG_FORSØRGER'
+        | 'SP'
+        | 'PSB'
+        | 'PPN'
+        | 'OMP'
+        | 'OMP_KS'
+        | 'OMP_MA'
+        | 'OMP_AO'
+        | 'OLP'
+        | 'AAP'
+        | 'ES'
+        | 'FP'
+        | 'SVP'
+        | 'EF'
+        | 'UNG'
         | 'OBSOLETE'
-        | 'UDEFINERT';
+        | '-';
     ytelseType: 'PSB' | 'PPN' | 'OMP_KS' | 'OMP_MA' | 'OMP_AO' | 'OLP';
-    behandlinger: Array<BehandlingDto>;
+    behandlinger: BehandlingDto[];
 };
 
 export type UtledetStatus = {
     status: 'OPPRETTET' | 'UNDER_BEHANDLING' | 'PÅ_VENT' | 'AVSLUTTET';
-    aksjonspunkter: Array<AksjonspunktDto>;
+    aksjonspunkter: AksjonspunktDto[];
     saksbehandlingsFrist?: string;
 };
 
@@ -574,7 +575,7 @@ export type HentSøknaderResponses = {
     /**
      * OK
      */
-    200: Array<SøknadDto>;
+    200: SøknadDto[];
 };
 
 export type HentSøknaderResponse = HentSøknaderResponses[keyof HentSøknaderResponses];

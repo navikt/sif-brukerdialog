@@ -29,8 +29,8 @@
         "gen-types:k9-sak": "openapi-ts --file configs/openapi-ts.config-k9-sak.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
         "gen": "yarn gen-types:all:fixed",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:eslint": "eslint './src/**/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {

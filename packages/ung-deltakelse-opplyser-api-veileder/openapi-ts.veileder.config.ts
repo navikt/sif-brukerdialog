@@ -1,5 +1,4 @@
-import { defineConfig } from '@hey-api/openapi-ts';
-import { defaultPlugins } from '@hey-api/openapi-ts';
+import { defaultPlugins, defineConfig } from '@hey-api/openapi-ts';
 
 export default defineConfig({
     input: 'https://ung-deltakelse-opplyser.intern.dev.nav.no/v3/api-docs/veileder',

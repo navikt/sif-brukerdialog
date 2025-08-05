@@ -22,11 +22,11 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:eslint": "eslint './src/**/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "gen-types": "yarn openapi-ts"
+        "gen": "yarn openapi-ts"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",

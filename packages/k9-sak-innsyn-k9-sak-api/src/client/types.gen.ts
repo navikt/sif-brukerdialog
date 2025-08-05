@@ -24,7 +24,7 @@ export type HentSisteGyldigeVedtakForAktorIdResponse = {
 export type Opplæringsinstitusjon = {
     uuid: string;
     navn: string;
-    perioder: Array<Periode>;
+    perioder: Periode[];
 };
 
 export type Periode = {
@@ -104,7 +104,7 @@ export type HentOpplæringsinstitusjonerResponses = {
     /**
      * OK
      */
-    200: Array<Opplæringsinstitusjon>;
+    200: Opplæringsinstitusjon[];
 };
 
 export type HentOpplæringsinstitusjonerResponse =

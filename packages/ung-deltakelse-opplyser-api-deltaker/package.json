@@ -26,8 +26,8 @@
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.deltaker.config.ts",
         "gen": "yarn gen-types:fixed",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:eslint": "eslint './src/**/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
