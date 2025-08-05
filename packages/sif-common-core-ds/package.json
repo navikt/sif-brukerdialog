@@ -33,7 +33,7 @@
         "@storybook/builder-vite": "9.1.0",
         "@storybook/react-vite": "9.1.0",
         "@storybook/testing-library": "0.2.2",
-        "@types/node": "24.1.0",
+        "@types/node": "24.2.0",
         "@types/react": "19.1.9",
         "@types/react-dom": "19.1.7",
         "@vitejs/plugin-react": "4.7.0",
