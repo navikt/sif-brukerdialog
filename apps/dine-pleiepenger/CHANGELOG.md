@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.30
+
+### Patch Changes
+
+- f385662: eslint fix
+    - @navikt/appstatus-react-ds@2.20.19
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.14
+    - @navikt/sif-common-core-ds@10.2.27
+    - @navikt/sif-common-sentry@0.28.21
+    - @navikt/sif-common-utils@3.49.15
+
 ## 1.9.29
 
 ### Patch Changes
