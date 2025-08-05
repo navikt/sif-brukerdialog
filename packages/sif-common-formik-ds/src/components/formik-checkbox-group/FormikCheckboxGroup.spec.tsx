@@ -17,7 +17,7 @@ describe('<FormikCheckboxGroup>', () => {
     };
 
     it('rendrer gruppe riktig', async () => {
-        const screen = renderComponent(<Default name={'animals'} legend={'Choose'} checkboxes={mockAnimalOptions} />);
+        const screen = renderComponent(<Default name="animals" legend="Choose" checkboxes={mockAnimalOptions} />);
         const checkbox = screen.getByText('Choose');
         expect(checkbox).toBeDefined();
     });
@@ -26,7 +26,7 @@ describe('<FormikCheckboxGroup>', () => {
         const screen = renderComponent(
             <FormikCheckboxGroup
                 name="animals"
-                legend={'Choose animal'}
+                legend="Choose animal"
                 checkboxes={[
                     ...mockAnimalOptions,
                     { label: 'Dragon', value: 'dragon', 'data-testid': 'dragon-option' },

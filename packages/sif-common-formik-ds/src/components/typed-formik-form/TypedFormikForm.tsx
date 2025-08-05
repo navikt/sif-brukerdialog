@@ -177,7 +177,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                 )}
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
-                        <ButtonRow layout={'normal'}>
+                        <ButtonRow layout="normal">
                             {onBack && (
                                 <Button
                                     variant="secondary"

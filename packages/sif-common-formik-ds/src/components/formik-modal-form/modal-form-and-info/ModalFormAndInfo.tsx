@@ -89,7 +89,7 @@ function ModalFormAndInfo<DataType>({
             <>
                 <div className="modalFormAndInfo__infoWrapper">
                     {wrapInfoInPanel ? (
-                        <Panel border={true} className={'modalFormAndInfo__infoWrapper__panel'}>
+                        <Panel border={true} className="modalFormAndInfo__infoWrapper__panel">
                             {infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })}
                         </Panel>
                     ) : (
@@ -97,7 +97,7 @@ function ModalFormAndInfo<DataType>({
                     )}
                 </div>
                 {renderEditButtons && (
-                    <div className={'modalFormAndInfo__buttons'}>
+                    <div className="modalFormAndInfo__buttons">
                         <Button
                             type="button"
                             onClick={() => setModalState({ isVisible: true, data })}

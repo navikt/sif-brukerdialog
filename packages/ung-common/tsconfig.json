@@ -4,12 +4,6 @@
         "rootDir": "src",
         "baseUrl": "src"
     },
-    "include": [
-        "src/**/*",
-        "../../apps/ungdomsytelse-deltaker/src/types/DeltakelsePeriode.ts",
-        "../../apps/ungdomsytelse-deltaker/src/apps/søknad/utils/formaterKontonummer.ts",
-        "../../apps/ungdomsytelse-deltaker/src/apps/søknad/utils/__tests__",
-        "../../apps/ungdomsytelse-veileder/src/types/Deltaker.ts"
-    ],
-    "exclude": ["node_modules", "_src"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }

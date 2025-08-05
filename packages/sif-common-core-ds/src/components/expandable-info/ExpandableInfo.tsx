@@ -10,7 +10,7 @@ interface Props {
 
 const ExpandableInfo = ({ children, initialOpen, title }: Props) => {
     return (
-        <ReadMore header={title} defaultOpen={initialOpen} className={'sif-read-more'}>
+        <ReadMore header={title} defaultOpen={initialOpen} className="sif-read-more">
             {children}
         </ReadMore>
     );

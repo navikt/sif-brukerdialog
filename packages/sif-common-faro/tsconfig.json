@@ -1,0 +1,10 @@
+{
+    "extends": "../config/tsconfig-packages.json",
+    "compilerOptions": {
+        "outDir": "./lib",
+        "skipLibCheck": true,
+        "noEmit": true
+    },
+    "exclude": ["node_modules", "lib", "dist", ".turbo"],
+    "include": ["src/**/*"]
+}
