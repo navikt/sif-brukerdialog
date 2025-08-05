@@ -68,6 +68,17 @@ export default [
 
             'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
             'jsx-quotes': ['error', 'prefer-double'],
+
+            // Fix for TypeScript ESLint no-unused-expressions rule
+            '@typescript-eslint/no-unused-expressions': [
+                'error',
+                {
+                    allowShortCircuit: false,
+                    allowTernary: false,
+                    allowTaggedTemplates: false,
+                    enforceForJSX: false,
+                },
+            ],
         },
     },
 ];

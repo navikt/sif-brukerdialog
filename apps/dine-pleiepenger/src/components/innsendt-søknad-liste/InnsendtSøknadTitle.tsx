@@ -12,7 +12,7 @@ interface Props {
 const InnsendtSøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
         <div>
-            <HStack gap="2" align={'start'} wrap={false}>
+            <HStack gap="2" align="start" wrap={false}>
                 <Task role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />
                 <div>
                     <BodyShort as="div" size="large" className="font-bold mb-2">
