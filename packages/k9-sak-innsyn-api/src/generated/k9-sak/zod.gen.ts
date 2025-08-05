@@ -3,12 +3,12 @@
 import { z } from 'zod';
 
 export const zProblemDetail = z.object({
-    type: z.string().url().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().url().optional(),
-    properties: z.object({}).optional(),
+    type: z.optional(z.url()),
+    title: z.optional(z.string()),
+    status: z.optional(z.int()),
+    detail: z.optional(z.string()),
+    instance: z.optional(z.url()),
+    properties: z.optional(z.object({})),
 });
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
@@ -17,25 +17,25 @@ export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
 
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     harInnvilgedeBehandlinger: z.boolean(),
-    saksnummer: z.string().optional(),
-    vedtaksdato: z.string().date().optional(),
+    saksnummer: z.optional(z.string()),
+    vedtaksdato: z.optional(z.iso.date()),
 });
 
 export const zPeriode = z.object({
-    fom: z.string().date(),
-    tom: z.string().date(),
+    fom: z.iso.date(),
+    tom: z.iso.date(),
 });
 
 export const zOpplæringsinstitusjon = z.object({
-    uuid: z.string().uuid(),
+    uuid: z.uuid(),
     navn: z.string(),
     perioder: z.array(zPeriode),
 });
 
 export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
     body: zOmsorgsdagerKronsinskSuktBarnRequestDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -44,9 +44,9 @@ export const zHentSisteGyldigeVedtakForAktorIdData = z.object({
 export const zHentSisteGyldigeVedtakForAktorIdResponse2 = zHentSisteGyldigeVedtakForAktorIdResponse;
 
 export const zHentOpplæringsinstitusjonerData = z.object({
-    body: z.never().optional(),
-    path: z.never().optional(),
-    query: z.never().optional(),
+    body: z.optional(z.never()),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
 });
 
 /**

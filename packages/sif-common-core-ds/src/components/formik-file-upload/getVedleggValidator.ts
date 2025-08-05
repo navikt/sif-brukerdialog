@@ -57,7 +57,7 @@ export const getVedleggValidator =
             intlErrorPrefix,
             useDefaultMessages,
         } = options;
-        const uploadedVedlegg = vedlegg.filter((vedlegg) => vedleggIsUploadedAndValid(vedlegg));
+        const uploadedVedlegg = vedlegg.filter((v) => vedleggIsUploadedAndValid(v));
         const allVedlegg = removeDuplicateVedlegg([...uploadedVedlegg, ...(otherVedlegg || [])]);
         const totalSizeInBytes: number = getTotalSizeOfVedlegg(allVedlegg);
 

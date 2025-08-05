@@ -48,18 +48,18 @@ export const StepButtons = ({
                     loading={isLoading || isDisabledAndLoading}
                     style={{ flex: 1 }}
                 >
-                    {isSendButton && <FormattedMessage id={'StepButtons.Send'} />}
+                    {isSendButton && <FormattedMessage id="StepButtons.Send" />}
                     {!isSendButton && !useSimplifiedTexts && !isJumpToEndButton && (
-                        <FormattedMessage id={'StepButtons.Neste'} />
+                        <FormattedMessage id="StepButtons.Neste" />
                     )}
                     {!isSendButton && useSimplifiedTexts && !isJumpToEndButton && (
-                        <FormattedMessage id={'StepButtons.NesteSimple'} />
+                        <FormattedMessage id="StepButtons.NesteSimple" />
                     )}
                     {isJumpToEndButton && !useSimplifiedTexts && (
-                        <FormattedMessage id={'StepButtons.GåTilOppsummering'} />
+                        <FormattedMessage id="StepButtons.GåTilOppsummering" />
                     )}
                     {isJumpToEndButton && useSimplifiedTexts && (
-                        <FormattedMessage id={'StepButtons.GåTilOppsummeringSimple'} />
+                        <FormattedMessage id="StepButtons.GåTilOppsummeringSimple" />
                     )}
                 </Button>
             )}

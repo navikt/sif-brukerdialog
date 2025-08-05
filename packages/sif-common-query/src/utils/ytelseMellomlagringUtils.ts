@@ -57,7 +57,7 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
                 } else {
                     return null;
                 }
-            } catch (e) {
+            } catch {
                 await slettYtelseMellomlagring(ytelse);
                 return null;
             }

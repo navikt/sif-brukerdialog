@@ -1,4 +1,11 @@
-import type { AxiosError, AxiosInstance, AxiosResponse, AxiosStatic, CreateAxiosDefaults } from 'axios';
+import type {
+    AxiosError,
+    AxiosInstance,
+    AxiosRequestHeaders,
+    AxiosResponse,
+    AxiosStatic,
+    CreateAxiosDefaults,
+} from 'axios';
 
 import type { Auth } from '../core/auth';
 import type { Client as CoreClient, Config as CoreConfig } from '../core/types';
@@ -7,12 +14,12 @@ export interface Config<T extends ClientOptions = ClientOptions>
     extends Omit<CreateAxiosDefaults, 'auth' | 'baseURL' | 'headers' | 'method'>,
         CoreConfig {
     /**
-     * Axios implementation. You can use this option to provide a custom
-     * Axios instance.
+     * Axios implementation. You can use this option to provide either an
+     * `AxiosStatic` or an `AxiosInstance`.
      *
      * @default axios
      */
-    axios?: AxiosStatic;
+    axios?: AxiosStatic | AxiosInstance;
     /**
      * Base URL for all requests made by this client.
      */
@@ -24,8 +31,8 @@ export interface Config<T extends ClientOptions = ClientOptions>
      * {@link https://developer.mozilla.org/docs/Web/API/Headers/Headers#init See more}
      */
     headers?:
-        | CreateAxiosDefaults['headers']
-        | Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
+        | AxiosRequestHeaders
+        | Record<string, string | number | boolean | Array<string | number | boolean> | null | undefined | unknown>;
     /**
      * Throw an error instead of returning it in the response?
      *
@@ -49,7 +56,7 @@ export interface RequestOptions<ThrowOnError extends boolean = boolean, Url exte
     /**
      * Security mechanism(s) to use for the request.
      */
-    security?: ReadonlyArray<Auth>;
+    security?: readonly Auth[];
     url: Url;
 }
 

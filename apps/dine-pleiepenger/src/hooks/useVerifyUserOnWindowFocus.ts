@@ -23,5 +23,5 @@ export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Prom
         return () => {
             window.removeEventListener('focus', handleFocus);
         };
-    }, []);
+    }, [getUserId, logHendelse, userId]);
 };

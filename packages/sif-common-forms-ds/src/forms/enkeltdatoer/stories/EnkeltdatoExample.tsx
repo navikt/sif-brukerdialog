@@ -2,9 +2,12 @@ import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     getDate1YearAgo,
@@ -13,6 +16,7 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -99,7 +103,7 @@ const EnkeltdatoExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(EnkeltdatoFormErrors)}
-                        formName={'Enkeltdato'}
+                        formName="Enkeltdato"
                         intlMessages={enkeltdatoMessages}
                     />
                 </Tabs.Panel>

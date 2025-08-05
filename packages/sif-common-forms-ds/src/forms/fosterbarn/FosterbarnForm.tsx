@@ -1,15 +1,14 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { guid } from '@navikt/sif-common-utils';
 import {
     getFødselsnummerValidator,
     getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
 } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { guid } from '@navikt/sif-common-utils';
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './i18n';
 import { Fosterbarn, isFosterbarn } from './types';
 

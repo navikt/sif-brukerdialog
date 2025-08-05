@@ -15,7 +15,7 @@ export type Arbeidsgiver = {
     navn?: string;
     organisasjonsnummer?: string;
     utbetalingsårsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
-    perioder?: Array<Utbetalingsperiode>;
+    perioder?: Utbetalingsperiode[];
     konfliktForklaring?: string;
     årsakNyoppstartet?:
         | 'JOBBET_HOS_ANNEN_ARBEIDSGIVER'
@@ -51,18 +51,18 @@ export type Bosted = {
 };
 
 export type DineBarn = {
-    barn: Array<Barn>;
+    barn: Barn[];
     harDeltBosted: boolean;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     språk: string;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
     bekreftelser?: Bekreftelser;
-    arbeidsgivere?: Array<Arbeidsgiver>;
+    arbeidsgivere?: Arbeidsgiver[];
     dineBarn?: DineBarn;
     hjemmePgaSmittevernhensyn?: boolean;
     hjemmePgaStengtBhgSkole?: boolean;
@@ -96,13 +96,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {

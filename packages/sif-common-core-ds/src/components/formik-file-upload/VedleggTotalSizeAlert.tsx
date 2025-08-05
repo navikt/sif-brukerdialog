@@ -9,7 +9,7 @@ const VedleggTotalSizeAlert = ({ uploadLaterURL }: { uploadLaterURL?: string }) 
                     id="@core.formik-vedlegg-form.alert.totalSize"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link target={'_blank'} rel={'noopener noreferrer'} href={uploadLaterURL}>
+                            <Link target="_blank" rel="noopener noreferrer" href={uploadLaterURL}>
                                 {children}
                             </Link>
                         ),

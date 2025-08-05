@@ -118,7 +118,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                 {text('@ui.daySelector.antallValgteDager')}
                             </BodyShort>
 
-                            <HStack gap={'2'} align={'center'} wrap={true}>
+                            <HStack gap="2" align="center" wrap={true}>
                                 {monthsWithSelectedDates.map((m, index) => {
                                     const antallValgteDager = selectedDaysInMonths[getMonthKey(m.from)].length;
                                     return (

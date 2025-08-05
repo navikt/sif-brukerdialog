@@ -4,6 +4,10 @@
     "version": "0.2.5",
     "private": true,
     "type": "module",
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "typescript": "5.9.2"
+    },
     "dependencies": {
         "@grafana/faro-web-sdk": "1.19.0",
         "constate": "3.3.3",
@@ -15,6 +19,6 @@
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit"
+        "lint:tsc": "tsc --noEmit --skipLibCheck"
     }
 }

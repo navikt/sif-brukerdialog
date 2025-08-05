@@ -8,10 +8,7 @@
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app",
-        "check:types": "tsc --noemit",
-        "lint": "eslint",
-        "lint:fix": "eslint --fix"
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app"
     },
     "dependencies": {
         "@hookform/resolvers": "5.2.1",

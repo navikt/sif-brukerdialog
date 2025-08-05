@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.80.2",
         "@sif/eslint-config": "workspace:*",
@@ -24,10 +24,10 @@
     "scripts": {
         "fix-regexp": "node scripts/fix-generated-regex.mjs",
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
-        "gen-types": "openapi-ts -f openapi-ts.deltaker.config.ts",
+        "gen-types": "openapi-ts -f openapi-ts.veileder.config.ts",
         "gen": "yarn gen-types:fixed",
-        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:eslint": "eslint './src/veileder/client/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/veileder/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {

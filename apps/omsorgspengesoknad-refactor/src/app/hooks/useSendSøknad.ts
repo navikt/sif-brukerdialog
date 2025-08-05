@@ -28,7 +28,6 @@ export const useSendSøknad = () => {
         })
             .then(onSøknadSendSuccess)
             .catch((error) => {
-                console.error(error);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });

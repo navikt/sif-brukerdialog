@@ -9,7 +9,6 @@ import {
     InnsendtSøknadstype,
 } from '../types/InnsendtSøknad';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dayjs/locale/nb');
 
 dayjs.extend(utc);

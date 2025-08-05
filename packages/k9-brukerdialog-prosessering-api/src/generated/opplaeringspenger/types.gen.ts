@@ -13,7 +13,7 @@ export type ProblemDetail = {
 
 export type ArbeidIPeriode = {
     jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
-    enkeltdager?: Array<Enkeltdag>;
+    enkeltdager?: Enkeltdag[];
 };
 
 export type ArbeidsforholdOlp = {
@@ -37,7 +37,7 @@ export type BarnDetaljer = {
     getårsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
     relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
     relasjonTilBarnetBeskrivelse?: string;
-    fødselsattestVedleggUrls?: Array<string>;
+    fødselsattestVedleggUrls?: string[];
 };
 
 export type Bosted = {
@@ -65,7 +65,7 @@ export type Ferieuttak = {
 
 export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
-    ferieuttak: Array<Ferieuttak>;
+    ferieuttak: Ferieuttak[];
 };
 
 export type FrilansOlp = {
@@ -78,7 +78,7 @@ export type FrilansOlp = {
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: Array<string>;
+    kursperioder: string[];
     reise: Reise;
 };
 
@@ -94,9 +94,9 @@ export type Land = {
 
 export type Medlemskap = {
     harBoddIUtlandetSiste12Mnd?: boolean;
-    utenlandsoppholdSiste12Mnd: Array<Bosted>;
+    utenlandsoppholdSiste12Mnd: Bosted[];
     skalBoIUtlandetNeste12Mnd?: boolean;
-    utenlandsoppholdNeste12Mnd: Array<Bosted>;
+    utenlandsoppholdNeste12Mnd: Bosted[];
 };
 
 export type OpplæringspengerSøknad = {
@@ -105,15 +105,15 @@ export type OpplæringspengerSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: Array<ArbeidsgiverOlp>;
-    vedlegg: Array<string>;
+    arbeidsgivere: ArbeidsgiverOlp[];
+    vedlegg: string[];
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     frilans?: FrilansOlp;
@@ -140,7 +140,7 @@ export type Regnskapsfører = {
 
 export type Reise = {
     reiserUtenforKursdager: boolean;
-    reisedager?: Array<string>;
+    reisedager?: string[];
     reisedagerBeskrivelse?: string;
 };
 
@@ -174,7 +174,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: Array<Utenlandsopphold>;
+    opphold: Utenlandsopphold[];
 };
 
 export type VarigEndring = {
@@ -222,13 +222,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {
