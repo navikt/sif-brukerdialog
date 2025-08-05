@@ -1,20 +1,24 @@
 import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { flatten } from 'flat';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import FerieuttakForm, { FerieuttakFormErrors } from '../FerieuttakForm';
 import FerieuttakListAndDialog from '../FerieuttakListAndDialog';
-import { Ferieuttak } from '../types';
-import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import { ferieuttakMessages } from '../i18n';
+import { Ferieuttak } from '../types';
 
 enum FormField {
     'ferie' = 'ferie',
@@ -88,7 +92,7 @@ const FormikExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(FerieuttakFormErrors)}
-                        formName={'Ferieuttak'}
+                        formName="Ferieuttak"
                         intlMessages={ferieuttakMessages}
                     />
                 </Tabs.Panel>

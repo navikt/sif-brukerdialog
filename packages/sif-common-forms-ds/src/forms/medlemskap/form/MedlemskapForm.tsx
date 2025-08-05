@@ -1,12 +1,16 @@
 import { Box, Link, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
 import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n';
 import { getMedlemskapDateRanges } from '../utils';
 import {

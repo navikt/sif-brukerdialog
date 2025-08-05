@@ -1,12 +1,16 @@
 import { useIntl } from 'react-intl';
-import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { DateRange } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import enkeltdatoUtils from './enkeltdatoUtils';
-import { Enkeltdato, EnkeltdatoFormValues } from './types';
 import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './i18n';
-import { DateRange } from '@navikt/sif-common-utils';
+import { Enkeltdato, EnkeltdatoFormValues } from './types';
 
 export interface EnkeltdatoerFormLabels {
     enkeltdato: string;

@@ -1,19 +1,23 @@
 import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
-import { flatten } from 'flat';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
+import { flatten } from 'flat';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import { tidsperiodeMessages } from '../i18n';
 import TidsperiodeForm, { TidsperiodeFormErrors } from '../TidsperiodeForm';
 import TidsperiodeListAndDialog from '../TidsperiodeListAndDialog';
-import { tidsperiodeMessages } from '../i18n';
 import { DateTidsperiode } from '../types';
-import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'tidsperiode' = 'tidsperiode',
@@ -82,7 +86,7 @@ const TidsperiodeExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(TidsperiodeFormErrors)}
-                        formName={'Tidsperiode'}
+                        formName="Tidsperiode"
                         intlMessages={tidsperiodeMessages}
                     />
                 </Tabs.Panel>

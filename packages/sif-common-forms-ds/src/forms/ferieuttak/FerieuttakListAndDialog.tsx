@@ -1,11 +1,11 @@
 import React from 'react';
 import {
     FormikModalFormAndList,
+    ModalFormAndListConfirmDeleteProps,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ModalFormAndListConfirmDeleteProps } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FerieuttakForm from './FerieuttakForm';
 import FerieuttakList, { FerieuttakListProps } from './FerieuttakList';
