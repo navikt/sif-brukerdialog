@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.7.0
+
+### Minor Changes
+
+- Refactor dev og playwright-oppsett
+
 ## 0.6.30
 
 ### Patch Changes
