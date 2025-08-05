@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.8
+
+### Patch Changes
+
+- eslint oppsett og endringer for api
+
 ## 0.0.7
 
 ### Patch Changes
