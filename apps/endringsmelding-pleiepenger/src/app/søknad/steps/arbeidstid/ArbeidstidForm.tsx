@@ -3,8 +3,12 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
 import { AppText } from '../../../i18n';
@@ -117,7 +121,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
 
                 if (arbeidsaktiviteter.length === 0) {
                     return (
-                        <Box marginBlock={'10 0'}>
+                        <Box marginBlock="10 0">
                             <Alert variant="warning">
                                 <AppText
                                     id="arbeidstidStep.ingenArbeidsaktiviteter"

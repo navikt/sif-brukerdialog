@@ -12,7 +12,7 @@ const NyTag: React.FunctionComponent<Props> = (props) => {
     const { children, visIkon, ...rest } = props;
     const { text } = useAppIntl();
     return (
-        <IconTag {...rest} variant={'warning'} icon={visIkon ? <Star /> : undefined}>
+        <IconTag {...rest} variant="warning" icon={visIkon ? <Star /> : undefined}>
             {children || text('tags.nytt')}
         </IconTag>
     );

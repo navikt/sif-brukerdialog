@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SøknadApiData } from '@types';
 import { appSentryLogger } from '@utils';
 import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
+import { useAppIntl } from '../i18n';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';
-import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
     const {
@@ -27,8 +27,6 @@ export const useSendSøknad = () => {
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
-        const meta = getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak);
-        console.log(meta);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)

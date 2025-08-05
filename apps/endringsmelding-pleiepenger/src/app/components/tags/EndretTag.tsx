@@ -12,7 +12,7 @@ const EndretTag: React.FunctionComponent<Props> = (props) => {
     const { children, visIkon, ...rest } = props;
     const { text } = useAppIntl();
     return (
-        <IconTag {...rest} variant={'info'} icon={visIkon ? <Edit /> : undefined}>
+        <IconTag {...rest} variant="info" icon={visIkon ? <Edit /> : undefined}>
             {children || text('tags.endret')}
         </IconTag>
     );

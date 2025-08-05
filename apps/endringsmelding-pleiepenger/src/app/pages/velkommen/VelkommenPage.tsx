@@ -4,13 +4,12 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
+import { getListValidator } from '@navikt/sif-validation';
 import { EndringType } from '@types';
-import OmSøknaden from './OmSøknaden';
 import { AppText, useAppIntl } from '../../i18n';
+import OmSøknaden from './OmSøknaden';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -58,7 +57,7 @@ const VelkommenPage = () => {
                                 <CheckboxGroup
                                     name={VelkommenFormFields.hvaSkalEndres}
                                     legend={
-                                        <Heading level={'2'} size="small">
+                                        <Heading level="2" size="small">
                                             <AppText id="velkommenPage.endre.spm" />
                                         </Heading>
                                     }
