@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
+import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';

@@ -8,7 +8,7 @@ import { withVeilederContext } from '../../../storybook/decorators/withVeilederC
 import { ThemeProvider } from '../../context/ThemeContext';
 import DeltakerPage from './DeltakerPage';
 import { MemoryRouter } from 'react-router-dom';
-import { registrertDeltakerMock } from '../../../mock/msw/mocks/data/registrertDeltakerMock';
+import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
 import AppRoutes from '../../AppRoutes';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 
