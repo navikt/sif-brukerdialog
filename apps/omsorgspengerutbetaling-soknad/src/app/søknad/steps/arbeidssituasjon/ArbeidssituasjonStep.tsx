@@ -2,10 +2,12 @@ import { Alert } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import {
+    FormikInputGroup,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -115,7 +117,7 @@ const ArbeidssituasjonStep = () => {
                                 </SifGuidePanel>
 
                                 <FormikInputGroup
-                                    name={'arbeidssituasjon_tidsrom'}
+                                    name="arbeidssituasjon_tidsrom"
                                     hideLegend={true}
                                     errorPropagation={false}
                                     legend="Registrer frilans og/eller selvstendig næringsdrivende"

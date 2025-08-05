@@ -1,8 +1,12 @@
 import { Box } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import {
+    FormikInputGroup,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { useAppIntl } from '../../../i18n';
@@ -54,7 +58,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             runDelayedFormValidation={true}>
             <DineBarnStepIntro />
 
-            <Box paddingBlock={'8 0'}>
+            <Box paddingBlock="8 0">
                 <RegistrerteBarnListe.Heading level="2" size="medium">
                     {text('step.dineBarn.seksjonsTittel')}
                 </RegistrerteBarnListe.Heading>
@@ -70,7 +74,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                         return 'ingenBarn';
                     }
                 }}>
-                <Box paddingBlock={'4 6'}>
+                <Box paddingBlock="4 6">
                     <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
                 </Box>
 
