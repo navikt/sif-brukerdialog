@@ -1,11 +1,10 @@
-import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
-import { opplysningerOmPleietrengendeMessages_nb } from '../søknad/steps/opplysninger-om-pleietrengende/i18n/nb';
 import { dagerMedTidMessages_nb } from '../components/dager-med-tid-liste/i18n/nb';
 import { kvitteringMessages_nb } from '../pages/kvittering/i18n/nb';
+import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
 import { arbeidssituasjonMessages_nb } from '../søknad/steps/arbeidssituasjon/i18n/nb';
-import { arbeidstidMessages_nb } from '../søknad/steps/arbeidstid/i18n/nb';
-import { arbeidstidPeriodeMessages_nb } from '../søknad/steps/arbeidstid/i18n/nb';
+import { arbeidstidMessages_nb, arbeidstidPeriodeMessages_nb } from '../søknad/steps/arbeidstid/i18n/nb';
 import { legeerklæringMessages_nb } from '../søknad/steps/legeerklæring/i18n/nb';
+import { opplysningerOmPleietrengendeMessages_nb } from '../søknad/steps/opplysninger-om-pleietrengende/i18n/nb';
 import { oppsummeringMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
 import { tidsromMessages_nb } from '../søknad/steps/tidsrom/i18n/nb';
 

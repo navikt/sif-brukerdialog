@@ -4,9 +4,12 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import {
+    DateRange,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -230,12 +233,12 @@ const ArbeidstidStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <AppText id={'arbeidIPeriode.StepInfo.1'} />
+                                            <AppText id="arbeidIPeriode.StepInfo.1" />
                                         </p>
 
                                         {ansattArbeidstid && ansattArbeidstid.length > 0 && (
                                             <p>
-                                                <AppText id={'arbeidIPeriode.StepInfo.2'} />
+                                                <AppText id="arbeidIPeriode.StepInfo.2" />
                                             </p>
                                         )}
                                     </SifGuidePanel>

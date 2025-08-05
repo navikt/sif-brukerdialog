@@ -21,7 +21,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                 <List>
                     {selvstendigNæringsdrivende === undefined && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
+                            <AppText id="oppsummering.arbeidssituasjon.selvstendig.erIkkeSN" />
                         </List.Item>
                     )}
                     {virksomhet && arbeidsforhold && (
@@ -39,7 +39,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                             {arbeidsforhold.jobberNormaltTimer && (
                                 <List.Item>
                                     <AppText
-                                        id={`oppsummering.arbeidssituasjon.tid`}
+                                        id="oppsummering.arbeidssituasjon.tid"
                                         values={{ timer: arbeidsforhold.jobberNormaltTimer }}
                                     />
                                 </List.Item>

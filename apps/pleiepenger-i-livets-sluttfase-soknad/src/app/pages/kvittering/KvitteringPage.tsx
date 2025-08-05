@@ -28,7 +28,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                     {kvitteringInfo?.arbeidsgivere && (
                         <li>
                             <AppText
-                                id={'page.kvittering.list.item.1'}
+                                id="page.kvittering.list.item.1"
                                 values={{ antall: kvitteringInfo.arbeidsgivere.length }}
                             />
                         </li>
