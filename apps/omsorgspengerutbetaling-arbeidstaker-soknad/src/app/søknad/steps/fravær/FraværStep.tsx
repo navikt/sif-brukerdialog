@@ -6,15 +6,15 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import {
     DateRange,
     FormikValuesObserver,
+    getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import FormSection from '../../../components/form-section/FormSection';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -168,10 +168,10 @@ const FraværStep: React.FC = () => {
                                 runDelayedFormValidation={true}>
                                 <FormBlock>
                                     <SifGuidePanel>
-                                        <AppText id={'step.fravær.info.1'} />
-                                        <Block margin={'m'}>
+                                        <AppText id="step.fravær.info.1" />
+                                        <Block margin="m">
                                             <AppText
-                                                id={'step.fravær.info.2'}
+                                                id="step.fravær.info.2"
                                                 values={{
                                                     strong: (msg): React.ReactNode => <strong>{msg}</strong>,
                                                 }}

@@ -7,7 +7,7 @@ import './stateInfo.scss';
 const StateInfo = () => {
     const {
         state: {
-            // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             søknadsdata: { id, oppsummering, velkommen, ...rest },
         },
     } = useSøknadContext();

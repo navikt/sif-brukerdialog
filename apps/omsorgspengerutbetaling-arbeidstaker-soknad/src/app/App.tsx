@@ -38,7 +38,6 @@ const handleResetSoknad = async () => {
     relocateToWelcomePage();
 };
 
-console.log(appEnv);
 const App = () => (
     <SoknadApplication
         appVersion={APP_VERSION}

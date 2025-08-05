@@ -7,8 +7,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getDateToday } from '@navikt/sif-common-utils';
 import FormSection from '../../../components/form-section/FormSection';
@@ -26,6 +25,7 @@ import {
     checkHarKlikketNeiPåAlle,
 } from '../../../utils/arbeidsforholdValidations';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/søknadVedleggUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -38,7 +38,6 @@ import {
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
 } from './SituasjonStepUtils';
-import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/søknadVedleggUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -192,18 +191,16 @@ const SituasjonStep = () => {
 
                                 {arbeidsforhold.length === 0 && (
                                     <FormBlock>
-                                        <Alert variant={'info'}>
-                                            <AppText id={'step.situasjon.arbeidsforhold.ingen.info.text'} />
+                                        <Alert variant="info">
+                                            <AppText id="step.situasjon.arbeidsforhold.ingen.info.text" />
                                         </Alert>
                                     </FormBlock>
                                 )}
 
                                 {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
-                                    <FormBlock paddingBottom={'l'}>
-                                        <Alert variant={'warning'}>
-                                            <AppText
-                                                id={'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei'}
-                                            />
+                                    <FormBlock paddingBottom="l">
+                                        <Alert variant="warning">
+                                            <AppText id="step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei" />
                                         </Alert>
                                     </FormBlock>
                                 )}

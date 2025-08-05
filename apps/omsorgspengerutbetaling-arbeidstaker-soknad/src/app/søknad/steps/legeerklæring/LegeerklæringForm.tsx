@@ -1,14 +1,13 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { FormikFileUpload } from '@navikt/sif-common-core-ds/src';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -44,10 +43,10 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             <VStack gap="6">
                 <SifGuidePanel>
                     <p style={{ marginTop: 0 }}>
-                        <AppText id={'step.legeerklæring.counsellorpanel.1'} />
+                        <AppText id="step.legeerklæring.counsellorpanel.1" />
                     </p>
                     <p>
-                        <AppText id={'step.legeerklæring.counsellorpanel.2'} />
+                        <AppText id="step.legeerklæring.counsellorpanel.2" />
                     </p>
                 </SifGuidePanel>
                 <FormikFileUpload
