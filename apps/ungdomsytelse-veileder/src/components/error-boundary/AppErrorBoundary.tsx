@@ -29,6 +29,7 @@ class AppErrorBoundary extends React.Component<Props, State> {
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
         this.setState({ hasError: true, error });
+        // eslint-disable-next-line no-console
         console.error('Error caught by ErrorBoundary:', error, errorInfo);
 
         // Eksempel på logging (kan tilpasses med Sentry eller annen logger)
