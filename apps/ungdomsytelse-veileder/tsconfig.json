@@ -12,7 +12,7 @@
         "./vite-env.d.ts",
         "./storybook/**/*",
         "./vite.config.ts",
-        "vite.demo.config.ts",
+        "vite.playwright.config.ts",
         "vite.storybook.config.ts"
     ]
 }

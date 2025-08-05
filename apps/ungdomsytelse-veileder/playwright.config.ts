@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    testDir: './e2e/playwright/tests',
+    testDir: './playwright/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
@@ -35,7 +35,7 @@ export default defineConfig({
     ],
 
     webServer: {
-        command: 'yarn e2e:start',
+        command: 'yarn pw:build && yarn pw:start',
         url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
         reuseExistingServer: true,
     },
