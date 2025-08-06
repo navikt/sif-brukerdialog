@@ -23,6 +23,8 @@ import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
 import ApiDataErrorPage from './parts/ApiDataErrorPage';
+import { useNavigate } from 'react-router-dom';
+import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -52,6 +54,7 @@ const OppsummeringStep = () => {
     const hasInvalidSteps = invalidSteps.length > 0;
 
     const { goBack } = useStepNavigation(step);
+    const navigate = useNavigate();
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -108,7 +111,12 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <VStack gap="8">
                                     <OmSøkerOppsummering søker={søker} />
-                                    <OmBarnetOppsummering apiData={apiData} />
+                                    <OmBarnetOppsummering
+                                        apiData={apiData}
+                                        onEdit={() => {
+                                            navigate(getSøknadStepRoute(StepId.OM_BARNET));
+                                        }}
+                                    />
                                     <VedleggOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklaering}

@@ -7,6 +7,7 @@ import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { BarnToSendToApi, OmBarnetApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { getRelasjonTilBarnetIntlKey } from '../../om-barnet/omBarnetStepUtils';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 
 const apiValueToSøkersRelasjonTilBarnet = (
     apiValue: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER',
@@ -25,9 +26,10 @@ const apiValueToSøkersRelasjonTilBarnet = (
 
 interface Props {
     apiData: OmBarnetApiData;
+    onEdit?: () => void;
 }
 
-const OmBarnetOppsummering = ({ apiData }: Props) => {
+const OmBarnetOppsummering = ({ apiData, onEdit }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 
@@ -38,6 +40,7 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.barnet.header" />
                     </FormSummary.Heading>
+                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     {apiData.barn.aktørId ? (
