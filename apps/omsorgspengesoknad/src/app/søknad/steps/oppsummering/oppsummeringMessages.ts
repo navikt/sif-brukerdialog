@@ -32,7 +32,7 @@ const nb = {
     'apiDataValideringsfeil.tekst.generell.2':
         'Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder. Du fikser dette ved å skrive inn teksten på ny, uten å kopiere den fra et annet sted.',
     'apiDataValideringsfeil.tekst.generell.3':
-        'Noen ganger vil de ugyldige tegnene være synlige som små firkanter inne i teksten. Da kan det være det holder å fjerne disse.',
+        'Noen ganger vil de ugyldige tegnene være synlige som små firkanter inne i teksten. Da kan det være det holder å fjerne disse. Emojier er ikke tillatt.',
     'apiDataValideringsfeil.tekst.generell.4':
         'Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på <Telefon>55 55 33 33</Telefon> for videre veiledning.',
 };
@@ -71,7 +71,7 @@ const nn: Record<keyof typeof nb, string> = {
     'apiDataValideringsfeil.tekst.generell.2':
         'Når du sjølv skriv inn tekst i eit felt i søknaden, kan nokre teikn vera ugyldige ut frå informasjonen me ber om. Dette skjer vanlegvis viss du kopierer og limer inn tekst frå andre stader. Du fiksar dette ved å skriva inn teksten på ny, utan å kopiera den frå ein annan stad.',
     'apiDataValideringsfeil.tekst.generell.3':
-        'Nokre gonger vil dei ugyldige teikna vera synlege som små firkantar inne i teksten. Då kan det vera det held å fjerna desse.',
+        'Nokre gonger vil dei ugyldige teikna vera synlege som små firkantar inne i teksten. Då kan det vera det held å fjerna desse. Emojier er ikkje tillate.',
     'apiDataValideringsfeil.tekst.generell.4':
         'Viss du har sjekka dette, og framleis ikkje kjem vidare, ber me deg kontakta oss på <Telefon>55 55 33 33</Telefon> for vidare rettleiing.',
 };

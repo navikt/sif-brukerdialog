@@ -106,13 +106,6 @@ const OppsummeringStep = () => {
                 <LoadingSpinner size="3xlarge" style="block" />
             ) : (
                 <VStack gap="8">
-                    {fritekstInvalidParameters && (
-                        <ApiDataValideringsfeilAlert
-                            invalidParameter={fritekstInvalidParameters}
-                            gjelderBeskrivelseFritekst={true}
-                        />
-                    )}
-
                     <FormikWrapper
                         initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                         onSubmit={(values) => {
@@ -154,6 +147,13 @@ const OppsummeringStep = () => {
                                                 legeerklæringSøknadsdata={søknadsdata.legeerklaering}
                                                 samværsavtaleSøknadsdata={søknadsdata.deltBosted}
                                             />
+                                            {fritekstInvalidParameters && (
+                                                <ApiDataValideringsfeilAlert
+                                                    invalidParameter={fritekstInvalidParameters}
+                                                    gjelderBeskrivelseFritekst={true}
+                                                />
+                                            )}
+
                                             <ConfirmationCheckbox
                                                 disabled={isSubmitting}
                                                 label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
