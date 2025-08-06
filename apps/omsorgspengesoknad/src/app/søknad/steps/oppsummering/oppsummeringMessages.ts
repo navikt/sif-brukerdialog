@@ -27,6 +27,7 @@ const nb = {
     'innsendingFeilet.tittel': 'Oops, noe gikk galt.',
     'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil':
         'Beskrivelsen på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb inneholder tegn som ikke er tillatt. Gå tilbake til steg én og se over teksten.',
+    'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn': 'Ugyldige tegn i teksten:',
     'innsendingFeilet.tekst.generell.1': 'Søknaden din inneholder ugyldig informasjon.',
     'innsendingFeilet.tekst.generell.2':
         'Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder. Du fikser dette ved å skrive inn teksten på ny, uten å kopiere den fra et annet sted.',
@@ -65,6 +66,7 @@ const nn: Record<keyof typeof nb, string> = {
     'innsendingFeilet.tittel': 'Oops, noko gjekk gale.',
     'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil':
         'Skildringa på korleis sjukdommen eller funksjonshemminga til barnet gir markert høgare risiko for fråvær frå jobb inneheld teikn som ikkje er tillate. Gå tilbake til steig éin og sjå over teksten.',
+    'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn': 'Ugyldige teikn i teksten:',
     'innsendingFeilet.tekst.generell.1': 'Søknaden din inneheld ugyldig informasjon.',
     'innsendingFeilet.tekst.generell.2':
         'Når du sjølv skriv inn tekst i eit felt i søknaden, kan nokre teikn vera ugyldige ut frå informasjonen me ber om. Dette skjer vanlegvis viss du kopierer og limer inn tekst frå andre stader. Du fiksar dette ved å skriva inn teksten på ny, utan å kopiera den frå ein annan stad.',

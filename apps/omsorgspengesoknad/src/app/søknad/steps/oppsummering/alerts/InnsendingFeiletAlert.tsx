@@ -1,5 +1,4 @@
-import { Alert, List } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, Box, List, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { InvalidParameterViolation } from '@navikt/sif-common-query';
 import { AppText } from '../../../../i18n';
@@ -12,6 +11,14 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
                 <List>
                     <List.Item>
                         <AppText id="innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil" />
+                    </List.Item>
+                    <List.Item>
+                        <VStack gap="2">
+                            <AppText id="innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn" />
+                            <Box padding="4" background="bg-default" borderRadius="medium">
+                                {invalidParameter.invalidValue}
+                            </Box>
+                        </VStack>
                     </List.Item>
                 </List>
             ) : (
@@ -27,7 +34,7 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
             </p>
             <p>
                 <AppText
-                    id="innsendingFeilet.tekst.generell.3"
+                    id="innsendingFeilet.tekst.generell.4"
                     values={{ Telefon: (value) => <span style={{ whiteSpace: 'nowrap' }}>{value}</span> }}
                 />
             </p>
@@ -47,14 +54,12 @@ interface Props {
 
 const InnsendingFeiletAlert = ({ invalidParameter }: Props) => {
     return (
-        <FormBlock>
-            <Alert variant="error">
-                <p style={{ marginTop: '.2em' }}>
-                    <AppText id="innsendingFeilet.tittel" />
-                </p>
-                {renderFeilmelding(invalidParameter[0])}
-            </Alert>
-        </FormBlock>
+        <Alert variant="error">
+            <p style={{ marginTop: '.2em' }}>
+                <AppText id="innsendingFeilet.tittel" />
+            </p>
+            {renderFeilmelding(invalidParameter[0])}
+        </Alert>
     );
 };
 
