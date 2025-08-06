@@ -22,11 +22,9 @@ const {
     SIF_PUBLIC_AMPLITUDE_API_KEY,
     APP_VERSION,
 } = appEnv;
-
 const queryClient = new QueryClient();
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
-
 initApiClients();
 
 const App = () => {

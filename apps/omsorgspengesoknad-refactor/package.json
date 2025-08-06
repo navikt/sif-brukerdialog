@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad-refactor",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.39.13",
+    "version": "1.40.2",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,8 +14,6 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.25.1",
         "@navikt/ds-tailwind": "7.25.1",
-        "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
-        "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -23,7 +21,6 @@
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-query": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
@@ -90,11 +87,12 @@
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
         "clean": "rm -rf node_modules .dist",
         "dev": "vite --config vite.dev.config.ts",
-        "lint:fix": "eslint src --fix",
-        "lint": "eslint src",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "e2e:build": "vite build --config vite.e2e.config.ts",
-        "e2e:start": "vite preview --base / --config vite.e2e.config.ts",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:start": "vite preview --base / --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },
@@ -104,8 +102,7 @@
     "homepage": "https://github.com/navikt/sif-brukerdialog#readme",
     "msw": {
         "workerDirectory": [
-            "",
-            "dist-e2e"
+            ""
         ]
     }
 }
