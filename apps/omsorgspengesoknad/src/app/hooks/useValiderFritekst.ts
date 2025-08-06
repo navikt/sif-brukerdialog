@@ -1,35 +1,48 @@
-import { useEffect, useState } from 'react';
-import { handleApiError, InvalidParameterViolation, isApiAxiosError } from '@navikt/sif-common-query';
+import { useState, useCallback } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { handleApiError, InvalidParameterViolation, isApiAxiosError, validerFritekst } from '@navikt/sif-common-query';
 import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
-import { useValiderFritekstFelt } from '../api/hooks/useValiderFritekstFelt';
 
-export const useValiderFritekst = (fritekst?: string) => {
-    const result = useValiderFritekstFelt(fritekst);
-    const [invalidParameters, setInvalidParameter] = useState<InvalidParameterViolation[] | null>(null);
+export const useValiderFritekst = () => {
+    const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
 
-    useEffect(() => {
-        if (result.isError) {
+    const mutation = useMutation({
+        mutationFn: validerFritekst,
+        onError: (error) => {
             try {
-                const error = handleApiError(result.error);
-                if (isApiAxiosError(error)) {
-                    const parameters = getInvalidParametersFromAxiosError(error.originalError);
-                    setInvalidParameter(parameters);
+                const handledError = handleApiError(error);
+                if (isApiAxiosError(handledError)) {
+                    const parameters = getInvalidParametersFromAxiosError(handledError.originalError);
+                    setInvalidParameters(parameters && parameters.length > 0 ? parameters : undefined);
                 } else {
-                    setInvalidParameter(null);
+                    setInvalidParameters(undefined);
                 }
             } catch (err) {
                 // eslint-disable-next-line no-console
                 console.error('Error parsing validation error:', err);
-                setInvalidParameter(null);
+                setInvalidParameters(undefined);
             }
-        } else {
-            setInvalidParameter(null);
-        }
-    }, [result.isError, result.error]);
+        },
+        onSuccess: () => {
+            setInvalidParameters(undefined);
+        },
+    });
+
+    const validateFritekst = useCallback(
+        (fritekst?: string) => {
+            console.log('sdf');
+            if (fritekst && fritekst.trim().length > 0) {
+                mutation.mutate({ verdi: fritekst });
+            } else {
+                setInvalidParameters(undefined);
+            }
+        },
+        [mutation.mutate],
+    );
 
     return {
-        isPending: result.isEnabled ? result.isPending : false,
-        isFetched: result.isFetched,
-        invalidParameters: invalidParameters && invalidParameters.length > 0 ? invalidParameters : undefined,
+        validateFritekst,
+        isPending: mutation.isPending,
+        invalidParameters,
     };
 };

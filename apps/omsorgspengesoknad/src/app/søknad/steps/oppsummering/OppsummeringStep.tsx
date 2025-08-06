@@ -83,9 +83,18 @@ const OppsummeringStep = () => {
 
     const apiData = getApiDataFromSøknadsdata(søknadsdata, locale);
 
-    const { isPending: fritekstIsPending, invalidParameters: fritekstInvalidParameters } = useValiderFritekst(
-        apiData?.høyereRisikoForFraværBeskrivelse,
-    );
+    const {
+        validateFritekst,
+        isPending: fritekstIsPending,
+        invalidParameters: fritekstInvalidParameters,
+    } = useValiderFritekst();
+
+    // Valider høyereRisikoForFraværBeskrivelse for å se om det har ugyldige tegn
+    useEffect(() => {
+        if (apiData?.høyereRisikoForFraværBeskrivelse) {
+            validateFritekst(apiData.høyereRisikoForFraværBeskrivelse);
+        }
+    }, [apiData?.høyereRisikoForFraværBeskrivelse, validateFritekst]);
 
     if (!apiData) {
         return <ApiDataErrorPage />;
