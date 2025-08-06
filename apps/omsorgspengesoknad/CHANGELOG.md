@@ -1,23 +1,15 @@
 # @navikt/omsorgspengesoknad
 
-## 1.40.2
+## 1.39.13
 
 ### Patch Changes
 
-- f385662: eslint fix
-    - @navikt/sif-app-register@0.1.8
-    - @navikt/sif-common-amplitude@2.28.14
-    - @navikt/sif-common-core-ds@10.2.27
-    - @navikt/sif-common-formik-ds@2.4.23
-    - @navikt/sif-common-forms-ds@20.0.3
-    - @navikt/sif-common-hooks@0.3.4
-    - @navikt/sif-common-sentry@0.28.21
-    - @navikt/sif-common-soknad-ds@25.0.3
-    - @navikt/sif-common-ui@0.10.3
-    - @navikt/sif-common-utils@3.49.15
-    - @navikt/sif-validation@1.0.3
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.20
+    - @navikt/k9-sak-innsyn-api@0.0.8
+    - @navikt/sif-common-query@0.1.10
 
-## 1.40.1
+## 1.39.12
 
 ### Patch Changes
 
@@ -31,48 +23,51 @@
     - @navikt/sif-common-sentry@0.28.21
     - @navikt/sif-common-utils@3.49.15
     - @navikt/sif-common-ui@0.10.3
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.19
+    - @navikt/k9-sak-innsyn-api@0.0.7
     - @navikt/sif-app-register@0.1.8
     - @navikt/sif-common-hooks@0.3.4
+    - @navikt/sif-common-query@0.1.9
     - @navikt/sif-validation@1.0.3
 
-## 1.40.0
-
-### Minor Changes
-
-- Refactor dev- og playewright-oppsett
-
-## 1.39.10
+## 1.39.11
 
 ### Patch Changes
 
 - Pakkeoppdateringer - minor/patch + sentry 10
 - Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.19
     - @navikt/sif-common-core-ds@10.2.26
+    - @navikt/k9-sak-innsyn-api@0.0.7
     - @navikt/sif-common-sentry@0.28.20
+    - @navikt/sif-common-query@0.1.8
     - @navikt/sif-common-forms-ds@20.0.2
     - @navikt/sif-common-soknad-ds@25.0.2
     - @navikt/sif-common-ui@0.10.2
 
-## 1.39.9
+## 1.39.10
 
 ### Patch Changes
 
 - Pakkeoppdateringer - minor/patch
 - Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.18
     - @navikt/sif-common-amplitude@2.28.13
     - @navikt/sif-common-formik-ds@2.4.22
     - @navikt/sif-common-soknad-ds@25.0.1
     - @navikt/sif-common-forms-ds@20.0.1
     - @navikt/sif-common-core-ds@10.2.25
+    - @navikt/k9-sak-innsyn-api@0.0.6
     - @navikt/sif-common-sentry@0.28.19
     - @navikt/sif-app-register@0.1.8
     - @navikt/sif-common-hooks@0.3.4
+    - @navikt/sif-common-query@0.1.7
     - @navikt/sif-common-utils@3.49.14
     - @navikt/sif-common-env@0.1.5
     - @navikt/sif-validation@1.0.3
     - @navikt/sif-common-ui@0.10.1
 
-## 1.39.8
+## 1.39.9
 
 ### Patch Changes
 
@@ -81,41 +76,56 @@
     - @navikt/sif-common-ui@0.10.0
     - @navikt/sif-common-soknad-ds@25.0.0
 
-## 1.39.7
+## 1.39.8
 
 ### Patch Changes
 
 - Pakkeoppdateringer
 - Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.17
     - @navikt/sif-common-amplitude@2.28.12
     - @navikt/sif-common-formik-ds@2.4.21
     - @navikt/sif-common-soknad-ds@24.0.23
     - @navikt/sif-common-forms-ds@19.0.23
     - @navikt/sif-common-core-ds@10.2.24
+    - @navikt/k9-sak-innsyn-api@0.0.5
     - @navikt/sif-common-sentry@0.28.18
     - @navikt/sif-common-hooks@0.3.3
+    - @navikt/sif-common-query@0.1.6
     - @navikt/sif-common-utils@3.49.13
     - @navikt/sif-common-ui@0.9.25
     - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-validation@1.0.2
+
+## 1.39.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- Updated dependencies
+- Updated dependencies [f48e4b2]
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.16
+    - @navikt/sif-common-amplitude@2.28.11
+    - @navikt/sif-common-formik-ds@2.4.20
+    - @navikt/sif-common-soknad-ds@24.0.22
+    - @navikt/sif-common-forms-ds@19.0.22
+    - @navikt/sif-common-core-ds@10.2.23
+    - @navikt/k9-sak-innsyn-api@0.0.4
+    - @navikt/sif-common-sentry@0.28.17
+    - @navikt/sif-common-query@0.1.5
+    - @navikt/sif-common-utils@3.49.12
+    - @navikt/sif-common-ui@0.9.24
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-hooks@0.3.2
     - @navikt/sif-validation@1.0.2
 
 ## 1.39.6
 
 ### Patch Changes
 
-- Pakkeoppdateringer - minor/major + zod4
 - Updated dependencies
-    - @navikt/sif-common-amplitude@2.28.11
-    - @navikt/sif-common-formik-ds@2.4.20
-    - @navikt/sif-common-soknad-ds@24.0.22
-    - @navikt/sif-common-forms-ds@19.0.22
-    - @navikt/sif-common-core-ds@10.2.23
-    - @navikt/sif-common-sentry@0.28.17
-    - @navikt/sif-common-utils@3.49.12
-    - @navikt/sif-common-ui@0.9.24
-    - @navikt/sif-app-register@0.1.7
-    - @navikt/sif-common-hooks@0.3.2
-    - @navikt/sif-validation@1.0.2
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.15
+    - @navikt/sif-common-query@0.1.4
 
 ## 1.39.5
 
@@ -123,14 +133,17 @@
 
 - Pakkeoppdateringer
 - Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.14
     - @navikt/sif-common-amplitude@2.28.10
     - @navikt/sif-common-formik-ds@2.4.19
     - @navikt/sif-common-soknad-ds@24.0.21
     - @navikt/sif-common-forms-ds@19.0.21
     - @navikt/sif-common-core-ds@10.2.22
+    - @navikt/k9-sak-innsyn-api@0.0.3
     - @navikt/sif-common-sentry@0.28.16
     - @navikt/sif-common-utils@3.49.11
     - @navikt/sif-common-ui@0.9.23
+    - @navikt/sif-common-query@0.1.3
     - @navikt/sif-app-register@0.1.7
     - @navikt/sif-common-hooks@0.3.2
     - @navikt/sif-validation@1.0.2
@@ -147,8 +160,11 @@
     - @navikt/sif-common-forms-ds@19.0.20
     - @navikt/sif-common-core-ds@10.2.21
     - @navikt/sif-common-sentry@0.28.15
+    - @navikt/sif-common-query@0.1.2
     - @navikt/sif-common-utils@3.49.10
     - @navikt/sif-common-ui@0.9.22
+    - @navikt/k9-brukerdialog-prosessering-api@0.0.13
+    - @navikt/k9-sak-innsyn-api@0.0.2
     - @navikt/sif-app-register@0.1.7
     - @navikt/sif-common-hooks@0.3.2
     - @navikt/sif-validation@1.0.2

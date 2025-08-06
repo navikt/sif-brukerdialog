@@ -6,7 +6,6 @@ import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -15,7 +14,9 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
+import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
+import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hooks/useGyldigeVedtakForRegistrerteBarn';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
@@ -48,7 +49,7 @@ const OmBarnetStep = () => {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
-    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+    const { lagreMellomlagring } = useStateMellomlagring();
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -56,6 +57,8 @@ const OmBarnetStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const gyldigeVedtak = useGyldigeVedtakForRegistrerteBarn(registrerteBarn, true);
 
     const onValidSubmitHandler = (values: OmBarnetFormValues) => {
         const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, { registrerteBarn });
@@ -70,9 +73,13 @@ const OmBarnetStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return lagreMellomlagring(state);
         },
     );
+
+    if (gyldigeVedtak.isLoading || gyldigeVedtak.data === undefined) {
+        return <LoadingPage />;
+    }
 
     return (
         <SøknadStep stepId={stepId}>
@@ -90,7 +97,7 @@ const OmBarnetStep = () => {
                                 søker={søker}
                                 registrerteBarn={registrerteBarn}
                                 onVelgAnnetBarn={() => setFieldValue('barnetSøknadenGjelder', undefined)}
-                                innvilgedeVedtak={innvilgedeVedtak}
+                                gyldigeVedtak={gyldigeVedtak.data}
                             />
                         </>
                     );
