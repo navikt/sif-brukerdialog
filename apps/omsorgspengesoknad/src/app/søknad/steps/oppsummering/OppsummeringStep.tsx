@@ -5,9 +5,8 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
 import { isApiAxiosError } from '@navikt/sif-common-query';
-import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
+import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -23,6 +22,7 @@ import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
+import ApiDataErrorPage from './parts/ApiDataErrorPage';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -57,6 +57,7 @@ const OppsummeringStep = () => {
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
+    // Sjekk om det er feil på parametre som er sendt til API-et i feilmeldingen fra backend
     const invalidParameters =
         sendSøknadError && isApiAxiosError(sendSøknadError)
             ? getInvalidParametersFromAxiosError(sendSøknadError.originalError)
@@ -78,23 +79,7 @@ const OppsummeringStep = () => {
     const apiData = getApiDataFromSøknadsdata(søknadsdata, locale);
 
     if (!apiData) {
-        return (
-            <ErrorPage
-                contentRenderer={() => {
-                    return (
-                        <>
-                            <p>
-                                <AppText id="apiDataValidation.undefined" />
-                            </p>
-                            <p>
-                                <AppText id="resetMellomlagring.text.1" />
-                            </p>
-                            <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
-                        </>
-                    );
-                }}
-            />
-        );
+        return <ApiDataErrorPage />;
     }
 
     return (
