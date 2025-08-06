@@ -4,7 +4,7 @@ import { useRegistrerteBarn, useSøker } from '@navikt/sif-common-query';
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
-import { søknadMellomlagring } from '../../utils/søknadMellomlagring';
+import { mellomlagringUtils } from '../../utils/mellomlagringUtils';
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -27,7 +27,7 @@ function useSøknadInitialData() {
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
             }
-            const mellomlagring = await søknadMellomlagring.hent({
+            const mellomlagring = await mellomlagringUtils.hent({
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
                 MELLOMLAGRING_VERSJON,

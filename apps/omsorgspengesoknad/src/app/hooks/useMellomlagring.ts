@@ -1,6 +1,7 @@
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { Mellomlagring, MellomlagringMetaData, søknadMellomlagring } from '../utils/søknadMellomlagring';
+import { Mellomlagring, MellomlagringMetaData } from '../types/Mellomlagring';
+import { mellomlagringUtils } from '../utils/mellomlagringUtils';
 
 export const useMellomlagring = () => {
     const {
@@ -14,8 +15,8 @@ export const useMellomlagring = () => {
     };
 
     return {
-        hentMellomlagring: () => søknadMellomlagring.hent(metaData),
-        slettMellomlagring: søknadMellomlagring.slett,
-        lagreMellomlagring: (data: Mellomlagring) => søknadMellomlagring.lagre(data, metaData),
+        hentMellomlagring: () => mellomlagringUtils.hent(metaData),
+        slettMellomlagring: mellomlagringUtils.slett,
+        lagreMellomlagring: (data: Mellomlagring) => mellomlagringUtils.lagre(data, metaData),
     };
 };
