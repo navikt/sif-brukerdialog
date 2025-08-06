@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import { barnMock } from '../mock-data/barnMock';
 import { søkerMock } from '../mock-data/søkerMock';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
+export const setupMockRoutes = async (page: Page, props?: { mellomlagring?: any; barnResponse: any }) => {
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({
             status: 200,
@@ -20,7 +20,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
         await route.fulfill({ status: 200, body: JSON.stringify(søkerMock) });
     });
     await page.route('**/oppslag/barn**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(barnMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(props?.barnResponse || barnMock) });
     });
     await page.route('**/innsending', async (route) => {
         await route.fulfill({ status: 200 });

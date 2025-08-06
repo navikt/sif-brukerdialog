@@ -24,9 +24,18 @@ function useSøknadInitialData() {
     return useQuery({
         queryKey: ['søknadInitialData', søkerQuery.data?.aktørId, barnQuery.data?.length],
         queryFn: async (): Promise<SøknadContextState> => {
+            // Sjekk om noen av de underliggende query-ene har feilet
+            if (søkerQuery.isError) {
+                throw søkerQuery.error || new Error('Feil ved henting av søker');
+            }
+            if (barnQuery.isError) {
+                throw barnQuery.error || new Error('Feil ved henting av barn');
+            }
+
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
             }
+
             const mellomlagring = await mellomlagringUtils.hent({
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
@@ -43,14 +52,14 @@ function useSøknadInitialData() {
 
             return initialData;
         },
-        enabled: !!søkerQuery.data && !!barnQuery.data && !søkerQuery.isLoading && !barnQuery.isLoading,
+        enabled: !søkerQuery.isLoading && !barnQuery.isLoading,
         retry: (failureCount, error) => {
             // Ikke retry på unauthorized errors - bare hold loading state
             if (isUnauthorized(error as any)) {
                 return false;
             }
             // Standard retry logikk for andre feil
-            return failureCount < 3;
+            return failureCount < 1;
         },
         staleTime: Infinity, // Data endres aldri etter oppstart
     });

@@ -14,7 +14,7 @@ export const useGyldigeVedtakForRegistrerteBarn = (registrerteBarn: RegistrertBa
     return useQuery<GyldigeVedtak, Error>({
         queryKey: ['gyldigeVedtak', registrerteBarn.map((barn) => barn.aktørId)],
         queryFn: () => hentGyldigeVedtakForRegistrerteBarn(registrerteBarn),
-        enabled: enabled && registrerteBarn.length > 0,
+        enabled,
         staleTime: Infinity,
         retry: 1,
     });
