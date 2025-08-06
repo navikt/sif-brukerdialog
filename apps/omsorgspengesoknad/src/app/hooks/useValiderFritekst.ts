@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { InvalidParameterViolation } from '@navikt/sif-common-api';
-import { useValiderFritekstFelt } from '../api/hooks/useValiderFritekstFelt';
-import { handleApiError, isApiAxiosError } from '@navikt/sif-common-query';
+import { handleApiError, InvalidParameterViolation, isApiAxiosError } from '@navikt/sif-common-query';
 import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
+import { useValiderFritekstFelt } from '../api/hooks/useValiderFritekstFelt';
 
 export const useValiderFritekst = (fritekst?: string) => {
     const result = useValiderFritekstFelt(fritekst);
