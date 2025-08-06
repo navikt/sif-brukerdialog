@@ -128,6 +128,7 @@ const OppsummeringStep = () => {
                                             fritekstIsPending ||
                                             fritekstInvalidParameters !== undefined
                                         }
+                                        includeButtons={fritekstInvalidParameters === undefined}
                                         includeValidationSummary={true}
                                         submitButtonLabel={text('step.oppsummering.sendSøknad')}
                                         isFinalSubmit={true}
@@ -147,19 +148,19 @@ const OppsummeringStep = () => {
                                                 legeerklæringSøknadsdata={søknadsdata.legeerklaering}
                                                 samværsavtaleSøknadsdata={søknadsdata.deltBosted}
                                             />
-                                            {fritekstInvalidParameters && (
+                                            {fritekstInvalidParameters ? (
                                                 <ApiDataValideringsfeilAlert
                                                     invalidParameter={fritekstInvalidParameters}
                                                     gjelderBeskrivelseFritekst={true}
                                                 />
+                                            ) : (
+                                                <ConfirmationCheckbox
+                                                    disabled={isSubmitting}
+                                                    label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
+                                                    validate={getCheckedValidator()}
+                                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                                />
                                             )}
-
-                                            <ConfirmationCheckbox
-                                                disabled={isSubmitting}
-                                                label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
-                                                validate={getCheckedValidator()}
-                                                name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                            />
                                         </VStack>
                                     </Form>
 
