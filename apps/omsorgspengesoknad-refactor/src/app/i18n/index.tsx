@@ -1,6 +1,8 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { componentMessages } from './componentMessages';
@@ -12,11 +14,13 @@ export const libMessages = {
         ...commonMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
         ...commonMessages.nn,
         ...uiMessages.nn,
         ...soknadMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
 

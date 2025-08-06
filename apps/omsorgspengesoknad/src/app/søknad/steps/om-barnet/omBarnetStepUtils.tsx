@@ -1,12 +1,12 @@
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import { AppMessageKeys } from '../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
-import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
