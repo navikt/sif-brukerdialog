@@ -18,6 +18,7 @@ export const useValiderFritekst = (fritekst?: string) => {
                     setInvalidParameter(null);
                 }
             } catch (err) {
+                // eslint-disable-next-line no-console
                 console.error('Error parsing validation error:', err);
                 setInvalidParameter(null);
             }
