@@ -8,8 +8,16 @@ import {
     getNumberFromNumberInputValue,
     getTypedFormComponents,
     ISOStringToDate,
+    ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import {
+    getDate3YearsAgo,
+    getDate4YearsAgo,
+    getDate99YearsFromNow,
+    getDateToday,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
 import {
     getDateRangeValidator,
     getDateValidator,
@@ -26,18 +34,10 @@ import {
     ValidateStringError,
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import {
-    getDate3YearsAgo,
-    getDate4YearsAgo,
-    getDate99YearsFromNow,
-    getDateToday,
-    prettifyDate,
-} from '@navikt/sif-common-utils';
 import { FormikProps } from 'formik';
 import { handleDateRangeValidationError } from '../../utils';
-import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';
 import { useVirksomhetIntl } from './i18n';
+import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';
 import {
     cleanupVirksomhetFormValues,
     erFiskerNæringstype,

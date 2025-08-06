@@ -3,56 +3,56 @@
 import { z } from 'zod';
 
 export const zProblemDetail = z.object({
-    type: z.string().url().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().url().optional(),
-    properties: z.object({}).optional(),
+    type: z.optional(z.url()),
+    title: z.optional(z.string()),
+    status: z.optional(z.int()),
+    detail: z.optional(z.string()),
+    instance: z.optional(z.url()),
+    properties: z.optional(z.object({})),
 });
 
 export const zEndrePeriodeDatoDto = z.object({
-    dato: z.string().date(),
+    dato: z.iso.date(),
 });
 
 export const zDeltakerDto = z.object({
-    id: z.string().uuid().optional(),
+    id: z.optional(z.uuid()),
     deltakerIdent: z.string(),
 });
 
 export const zDeltakelseDto = z.object({
-    id: z.string().uuid().optional(),
+    id: z.optional(z.uuid()),
     deltaker: zDeltakerDto,
-    fraOgMed: z.string().date(),
-    tilOgMed: z.string().date().optional(),
-    søktTidspunkt: z.string().datetime().optional(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.optional(z.iso.date()),
+    søktTidspunkt: z.optional(z.iso.datetime()),
 });
 
 export const zDeltakelseUtmeldingDto = z.object({
-    utmeldingsdato: z.string().date(),
+    utmeldingsdato: z.iso.date(),
 });
 
 export const zDeltakelseInnmeldingDto = z.object({
     deltakerIdent: z.string(),
-    startdato: z.string().date(),
+    startdato: z.iso.date(),
 });
 
 export const zNavn = z.object({
     fornavn: z.string(),
-    mellomnavn: z.string().optional(),
+    mellomnavn: z.optional(z.string()),
     etternavn: z.string(),
 });
 
 export const zDiskresjonskode = z.enum(['KODE6', 'KODE7', 'SKJERMET']);
 
 export const zDeltakerPersonalia = z.object({
-    id: z.string().uuid().optional(),
+    id: z.optional(z.uuid()),
     deltakerIdent: z.string(),
     navn: zNavn,
-    fødselsdato: z.string().date(),
+    fødselsdato: z.iso.date(),
     diskresjonskoder: z.array(zDiskresjonskode),
-    førsteMuligeInnmeldingsdato: z.string().date(),
-    sisteMuligeInnmeldingsdato: z.string().date(),
+    førsteMuligeInnmeldingsdato: z.iso.date(),
+    sisteMuligeInnmeldingsdato: z.iso.date(),
 });
 
 export const zEndringstype = z.enum([
@@ -66,7 +66,7 @@ export const zEndringstype = z.enum([
 export const zRevisjonstype = z.enum(['OPPRETTET', 'ENDRET', 'SLETTET', 'UKJENT']);
 
 export const zDeltakelseHistorikkDto = z.object({
-    tidspunkt: z.string().datetime(),
+    tidspunkt: z.iso.datetime(),
     endringstype: zEndringstype,
     revisjonstype: zRevisjonstype,
     endring: z.string(),
@@ -76,9 +76,9 @@ export const zDeltakelseHistorikkDto = z.object({
 export const zEndreStartdatoData = z.object({
     body: zEndrePeriodeDatoDto,
     path: z.object({
-        deltakelseId: z.string().uuid(),
+        deltakelseId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -89,9 +89,9 @@ export const zEndreStartdatoResponse = zDeltakelseDto;
 export const zEndreSluttdatoData = z.object({
     body: zEndrePeriodeDatoDto,
     path: z.object({
-        deltakelseId: z.string().uuid(),
+        deltakelseId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -102,9 +102,9 @@ export const zEndreSluttdatoResponse = zDeltakelseDto;
 export const zMeldUtDeltakerData = z.object({
     body: zDeltakelseUtmeldingDto,
     path: z.object({
-        deltakelseId: z.string().uuid(),
+        deltakelseId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -114,8 +114,8 @@ export const zMeldUtDeltakerResponse = zDeltakelseDto;
 
 export const zMeldInnDeltakerData = z.object({
     body: zDeltakelseInnmeldingDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -125,8 +125,8 @@ export const zMeldInnDeltakerResponse = zDeltakelseDto;
 
 export const zHentDeltakerInfoGittDeltakerData = z.object({
     body: zDeltakerDto,
-    path: z.never().optional(),
-    query: z.never().optional(),
+    path: z.optional(z.never()),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -135,11 +135,11 @@ export const zHentDeltakerInfoGittDeltakerData = z.object({
 export const zHentDeltakerInfoGittDeltakerResponse = zDeltakerPersonalia;
 
 export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
-    body: z.never().optional(),
+    body: z.optional(z.never()),
     path: z.object({
-        deltakerId: z.string().uuid(),
+        deltakerId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -148,11 +148,11 @@ export const zHentAlleDeltakelserGittDeltakerIdData = z.object({
 export const zHentAlleDeltakelserGittDeltakerIdResponse = z.array(zDeltakelseDto);
 
 export const zDeltakelseHistorikkData = z.object({
-    body: z.never().optional(),
+    body: z.optional(z.never()),
     path: z.object({
-        deltakelseId: z.string().uuid(),
+        deltakelseId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -161,11 +161,11 @@ export const zDeltakelseHistorikkData = z.object({
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
 
 export const zHentDeltakerInfoGittDeltakerIdData = z.object({
-    body: z.never().optional(),
+    body: z.optional(z.never()),
     path: z.object({
-        id: z.string().uuid(),
+        id: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**
@@ -174,11 +174,11 @@ export const zHentDeltakerInfoGittDeltakerIdData = z.object({
 export const zHentDeltakerInfoGittDeltakerIdResponse = zDeltakerPersonalia;
 
 export const zFjernFraProgramData = z.object({
-    body: z.never().optional(),
+    body: z.optional(z.never()),
     path: z.object({
-        deltakerId: z.string().uuid(),
+        deltakerId: z.uuid(),
     }),
-    query: z.never().optional(),
+    query: z.optional(z.never()),
 });
 
 /**

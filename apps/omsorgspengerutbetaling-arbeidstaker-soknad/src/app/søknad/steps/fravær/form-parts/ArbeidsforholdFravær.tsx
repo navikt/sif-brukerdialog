@@ -1,12 +1,17 @@
 import { BodyLong } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { getTypedFormComponents, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
-import { validateAll } from '@navikt/sif-common-formik-ds';
+import {
+    getTypedFormComponents,
+    validateAll,
+    ValidationError,
+    ValidationResult,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
 import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';
 import {
@@ -89,7 +94,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
 
             {/* DAGER MED FULLT FRAVÆR*/}
             {harPerioderMedFravær === YesOrNo.YES && (
-                <FormBlock margin={'m'}>
+                <FormBlock margin="m">
                     <FraværPerioderListAndDialog
                         name={getFieldName(FraværFormFields.fraværPerioder)}
                         periodeDescription={getTidsromBegrensningInfo()}
@@ -135,7 +140,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
             {/* DAGER MED DELVIS FRAVÆR*/}
             {harDagerMedDelvisFravær === YesOrNo.YES && (
                 <>
-                    <FormBlock margin={'m'}>
+                    <FormBlock margin="m">
                         <FraværDagerListAndDialog
                             name={getFieldName(FraværFormFields.fraværDager)}
                             dagDescription={getTidsromBegrensningInfo(true)}

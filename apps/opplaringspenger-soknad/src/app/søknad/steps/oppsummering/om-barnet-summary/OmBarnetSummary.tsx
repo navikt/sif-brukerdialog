@@ -86,7 +86,7 @@ const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApi
                         {fødselsattester.length === 0 ? (
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
                         ) : (
-                            <div data-testid={'oppsummering-omBarn-fødselsattest'}>
+                            <div data-testid="oppsummering-omBarn-fødselsattest">
                                 <VedleggSummaryList vedlegg={fødselsattester} />
                             </div>
                         )}

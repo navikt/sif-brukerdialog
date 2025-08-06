@@ -57,7 +57,14 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
                     />
                     <Route
                         path={StepID.OPPSUMMERING}
-                        element={<OppsummeringStep soknadId={soknadId} søknadstype={søknadstype} søker={søker} />}
+                        element={
+                            <OppsummeringStep
+                                soknadId={soknadId}
+                                søknadstype={søknadstype}
+                                søker={søker}
+                                registrerteBarn={registrertBarn}
+                            />
+                        }
                     />
                     <Route
                         path="*"

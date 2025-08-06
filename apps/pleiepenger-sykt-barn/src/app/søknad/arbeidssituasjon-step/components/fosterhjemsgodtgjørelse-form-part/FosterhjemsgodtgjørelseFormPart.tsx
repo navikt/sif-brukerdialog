@@ -65,11 +65,7 @@ const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søk
                                 <FosterhjemsgodtgjørelseComponents.Textarea
                                     name={FosterhjemsgodtgjørelseFormField.frikjøptBeskrivelse}
                                     label={
-                                        <AppText
-                                            id={
-                                                'steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.beskrivelse.label'
-                                            }
-                                        />
+                                        <AppText id="steg.arbeidssituasjon.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.beskrivelse.label" />
                                     }
                                     description={
                                         <List>

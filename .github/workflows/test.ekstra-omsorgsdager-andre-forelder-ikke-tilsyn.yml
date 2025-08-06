@@ -74,8 +74,5 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install chromium
 
-            - name: Build application
-              run: yarn build --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-
-            - name: Run tests
+            - name: Build and run tests
               run: yarn turbo playwright-test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

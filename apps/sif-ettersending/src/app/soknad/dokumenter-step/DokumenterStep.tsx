@@ -43,13 +43,13 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
             <VStack gap="8">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.dokumenter.infopanel.1'} />
+                        <AppText id="steg.dokumenter.infopanel.1" />
                     </p>
                     <p>
-                        <AppText id={'steg.dokumenter.infopanel.2'} />
+                        <AppText id="steg.dokumenter.infopanel.2" />
                     </p>
                     <p>
-                        <AppText id={'steg.dokumenter.infopanel.3'} />
+                        <AppText id="steg.dokumenter.infopanel.3" />
                     </p>
                 </SifGuidePanel>
 

@@ -7,9 +7,11 @@ import checker from 'vite-plugin-checker';
 export default defineConfig({
     plugins: [
         react({
-            include: '**/*.{jsx,tsx}',
+            include: '**/*.{tsx}',
         }),
-        checker({ typescript: true }),
+        checker({
+            typescript: true,
+        }),
         {
             name: 'crossorigin',
             transformIndexHtml(html) {
@@ -19,11 +21,19 @@ export default defineConfig({
     ],
     resolve: {},
     build: {
-        manifest: true,
-        rollupOptions: {
-            external: ['./nais.js'],
-        },
         sourcemap: true,
+        target: 'esnext',
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom'],
+                    router: ['react-router-dom'],
+                    forms: ['formik'],
+                    utils: ['lodash', 'date-fns', 'dayjs'],
+                    navikt: ['@navikt/ds-react', '@navikt/ds-icons'],
+                },
+            },
+        },
     },
     css: {
         preprocessorOptions: {

@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import { ProgressStep } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../i18n';
-import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 
 interface Props {
     id: StepID;
-    onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
     onSendSoknad?: () => void;
     submitButtonLabel?: string;
     isFinalSubmit?: boolean;
@@ -30,7 +27,6 @@ interface Props {
 
 const SoknadFormStep = ({
     id,
-    onStepCleanup,
     onSendSoknad,
     children,
     showButtonSpinner,
@@ -87,7 +83,6 @@ const SoknadFormStep = ({
                         : undefined
                 }
                 runDelayedFormValidation={true}
-                cleanup={onStepCleanup}
                 onValidSubmit={onSendSoknad ? onSendSoknad : gotoNextStep}>
                 {children}
             </SoknadFormComponents.Form>

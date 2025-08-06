@@ -65,7 +65,7 @@ export const MessagesTable = ({
     return (
         <VStack gap="4">
             {messagesPerPage < totalMessages && (
-                <HStack gap="1" align={'center'}>
+                <HStack gap="1" align="center">
                     <BodyShort size="large" weight="semibold">
                         Sider:
                     </BodyShort>

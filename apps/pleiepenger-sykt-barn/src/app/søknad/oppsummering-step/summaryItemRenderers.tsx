@@ -89,7 +89,7 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
                                             values={{ land: opphold.landnavn }}
                                         />
                                     ) : (
-                                        <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
+                                        <AppText id="@forms.utenlandsopphold.oppsummering.årsak.ANNET" />
                                     )}
                                 </FormSummary.Value>
                             </FormSummary.Answer>

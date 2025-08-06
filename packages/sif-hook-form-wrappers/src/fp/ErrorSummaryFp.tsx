@@ -17,7 +17,7 @@ export const ErrorSummaryFp = ({ errorRef, errors }: Props) => {
             size="small"
             ref={errorRef}
             headingTag="h3"
-            heading={<FormattedMessage id={'ErrorSummaryFp.Tittel'} />}
+            heading={<FormattedMessage id="ErrorSummaryFp.Tittel" />}
         >
             {Object.values(errors).map((error) => (
                 <ErrorSummary.Item

@@ -42,7 +42,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                             ? 'lovbestemtFerieListe__ferie__periode--fjernet'
                                             : undefined
                                     }`}>
-                                    <span className={'dato'}>{periodeTekst}</span>
+                                    <span className="dato">{periodeTekst}</span>
                                     {periode.liggerISak && periode.skalHaFerie === false && (
                                         <FerieTag type="fjernet">
                                             <AppText id="lovbestemtFerieListe.ferieFjernet" />

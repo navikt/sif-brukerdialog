@@ -156,13 +156,7 @@ export const RegistrertBarnSpørsmålStory: Story = {
     name: 'RegistrertBarn',
     render: () => (
         <SpørsmålWrapper
-            spørsmål={
-                <RegistrertBarnSpørsmål
-                    onAnnetBarnSelected={() => null}
-                    registrerteBarn={RegistrerteBarnMock}
-                    søknadenGjelderEtAnnetBarn={false}
-                />
-            }
+            spørsmål={<RegistrertBarnSpørsmål registrerteBarn={RegistrerteBarnMock} />}
             formErrorHandlerIntlKey="steg.omBarnet.validation"
             messageIntlKeys={getScopedIntlKeys('steg.omBarnet.spm.gjelderAnnetBarn.')}
             validationErrorIntlKeys={getValidationIntlKeys(

@@ -16,20 +16,20 @@ describe('<FormikCheckbox>', () => {
     const label = 'Checkbox label';
 
     it('rendrer checkbox riktig', async () => {
-        const screen = renderComponent(<Default name={'abc'} value="1" label={label}></Default>);
+        const screen = renderComponent(<Default name="abc" value="1" label={label}></Default>);
         const checkbox = screen.getByText(label);
         expect(checkbox).toBeDefined();
     });
 
     it('kaller afterOnChange etter at bruker endrer state', async () => {
-        const screen = renderComponent(<Default afterOnChange={handleChange} name={'abc'} label={label} />);
+        const screen = renderComponent(<Default afterOnChange={handleChange} name="abc" label={label} />);
         const checkbox = screen.getByText(label);
         userEvent.click(checkbox);
         await waitFor(() => expect(handleChange).toHaveBeenCalled());
     });
 
     it('kaller ikke afterOnChange dersom denne ikke er satt og bruker endrer state', async () => {
-        const screen = renderComponent(<Default name={'abc'} label={label} />);
+        const screen = renderComponent(<Default name="abc" label={label} />);
         const checkbox = screen.getByText(label);
         userEvent.click(checkbox);
         await waitFor(() => expect(handleChange).not.toHaveBeenCalled());

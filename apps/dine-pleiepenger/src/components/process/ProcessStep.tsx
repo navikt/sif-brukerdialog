@@ -69,7 +69,7 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
                 completed && current && isLastStep ? 'process__step--completed process__item--current' : '',
                 current && !isLastStep ? 'process__item--current' : '',
             )}>
-            <span className={`process__circle`} aria-hidden="true">
+            <span className="process__circle" aria-hidden="true">
                 {getCircleContent()}
             </span>
             <BodyShort as="div" className="process__content">

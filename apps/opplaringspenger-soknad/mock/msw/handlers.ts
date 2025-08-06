@@ -19,7 +19,7 @@ export const getHandlers = () => [
         return HttpResponse.json({});
     }),
     http.post('**/vedlegg', () => {
-        return HttpResponse.json({}).headers.set('location', 'abc');
+        return HttpResponse.json({}, { headers: { location: '/vedlegg/123' } });
     }),
     http.delete('**/vedlegg/*', () => {
         return HttpResponse.json({});

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const nattevåkOgBeredskapMessages_nb = {
     'step.nattevåkOgBeredskap.pageTitle': 'Pleiepengesøknad - nattevåk og beredskap',
     'step.nattevåkOgBeredskap.stepTitle': 'Nattevåk og beredskap',

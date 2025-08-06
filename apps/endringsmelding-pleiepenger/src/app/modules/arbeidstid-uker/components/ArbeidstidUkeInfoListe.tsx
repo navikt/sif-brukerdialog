@@ -35,7 +35,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                             <>
                                 <DurationText duration={uke.endret.faktisk} />
                                 {uke.endret && uke.endret.endretProsent !== undefined && (
-                                    <span className={'endretArbeidstid__prosent'}>
+                                    <span className="endretArbeidstid__prosent">
                                         {' '}
                                         ({intl.formatNumber(uke.endret.endretProsent)} %)
                                     </span>
@@ -67,16 +67,16 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                             <DurationText duration={uke.endret.faktisk} />
                         </strong>
                         {erEndret && uke.endret.endretProsent !== undefined && (
-                            <span className={'endretArbeidstid__prosent'}>
+                            <span className="endretArbeidstid__prosent">
                                 {' '}
                                 ({intl.formatNumber(uke.endret.endretProsent)} %)
                             </span>
                         )}
                     </>
                     {erEndret && (
-                        <div className={'endretArbeidstid__opprinnelig'}>
+                        <div className="endretArbeidstid__opprinnelig">
                             <AriaText>Endret fra </AriaText>
-                            <span className={'endretArbeidstid__timer'} data-testid="timer-opprinnelig">
+                            <span className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
                                 {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                             </span>
                         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
@@ -61,7 +60,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
             }
             width="xs"
             validate={(value) => {
-                return !!timerOmsorgsstønad
+                return timerOmsorgsstønad
                     ? getArbeiderNormaltTimerFrilanserIUkenValidator({
                           ...intlValues,
                           jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',

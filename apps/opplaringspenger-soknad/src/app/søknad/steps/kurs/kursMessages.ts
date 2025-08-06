@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.kurs.counsellorPanel.avsnitt.1':
         'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring. Du kan få opplæringspenger for perioder du er på kurs eller opplæring, og for eventuell reisetid til og fra opplæringsstedet.',

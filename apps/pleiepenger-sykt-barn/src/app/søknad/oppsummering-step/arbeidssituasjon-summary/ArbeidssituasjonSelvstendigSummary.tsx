@@ -24,7 +24,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                 <List>
                     {selvstendig.harInntektSomSelvstendig === false ? (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
+                            <AppText id="oppsummering.arbeidssituasjon.selvstendig.erIkkeSN" />
                         </List.Item>
                     ) : (
                         <>

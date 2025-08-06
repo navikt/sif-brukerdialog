@@ -12,7 +12,7 @@ export default {
 } as Meta<typeof TidFasteUkedagerInput>;
 
 const Template: StoryFn<typeof TidFasteUkedagerInput> = () => {
-    return <TidFasteUkedagerInput name={'abc'} />;
+    return <TidFasteUkedagerInput name="abc" />;
 };
 
 export const Default = Template.bind({});

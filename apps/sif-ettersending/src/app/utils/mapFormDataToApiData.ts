@@ -1,9 +1,12 @@
+import { IntlShape } from 'react-intl';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { IntlShape } from 'react-intl';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
-import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { YtelseKey, Ytelser } from '../types/Ytelser';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
@@ -26,20 +29,27 @@ const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
 };
 
 const mapBarnFormDataToApiData = (
-    gjelderEtAnnetBarn?: boolean,
+    registrerteBarn: RegistrertBarn[],
     barnetsFødselsnummer?: string,
-    valgteRegistrertBarn?: RegistrertBarnFormData,
+    registrertBarnAktørId?: string,
 ): BarnetLegeerklæringGjelderApiData | undefined => {
-    if (gjelderEtAnnetBarn !== false && barnetsFødselsnummer) {
+    const valgtRegistrertBarn = registrertBarnAktørId
+        ? registrerteBarn.find((b) => b.aktørId === registrertBarnAktørId)
+        : undefined;
+    if (valgtRegistrertBarn) {
         return {
-            norskIdentitetsnummer: barnetsFødselsnummer,
+            aktørId: valgtRegistrertBarn.aktørId,
+            navn: formatName(
+                valgtRegistrertBarn.fornavn,
+                valgtRegistrertBarn.etternavn,
+                valgtRegistrertBarn.mellomnavn,
+            ),
+            fødselsdato: dateToISODate(valgtRegistrertBarn.fødselsdato),
         };
     }
-    if (valgteRegistrertBarn) {
+    if (barnetsFødselsnummer) {
         return {
-            aktørId: valgteRegistrertBarn.aktørId,
-            navn: valgteRegistrertBarn.barnetsNavn,
-            fødselsdato: valgteRegistrertBarn.barnetsFødselsdato,
+            norskIdentitetsnummer: barnetsFødselsnummer,
         };
     }
 
@@ -56,10 +66,10 @@ export const mapFormDataToApiData = (
         dokumenter,
         ytelse,
         dokumentType,
-        gjelderEtAnnetBarn,
         barnetsFødselsnummer,
-        valgteRegistrertBarn,
+        registrertBarnAktørId,
     }: SoknadFormData,
+    registrerteBarn: RegistrertBarn[],
     intl: IntlShape,
 ): SoknadApiData => {
     if (!ytelse) {
@@ -79,7 +89,7 @@ export const mapFormDataToApiData = (
         ettersendelsesType,
         pleietrengende:
             ytelse === YtelseKey.pleiepengerSyktBarn
-                ? mapBarnFormDataToApiData(gjelderEtAnnetBarn, barnetsFødselsnummer, valgteRegistrertBarn)
+                ? mapBarnFormDataToApiData(registrerteBarn, barnetsFødselsnummer, registrertBarnAktørId)
                 : undefined,
         beskrivelse,
         vedlegg: getVedleggApiData(dokumenter),

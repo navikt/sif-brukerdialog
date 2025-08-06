@@ -2,11 +2,11 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import BarnForm from './BarnForm';
 import BarnList from './BarnList';
 import { AndreBarn } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;

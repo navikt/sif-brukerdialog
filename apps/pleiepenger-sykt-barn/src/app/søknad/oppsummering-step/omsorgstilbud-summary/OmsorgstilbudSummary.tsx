@@ -38,7 +38,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                                     <AppText id="steg.oppsummering.omsorgstilbud.fortid.spm" />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
+                                    <AppText id="steg.oppsummering.omsorgstilbud.fortid.svar.NEI" />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                         )}
@@ -54,7 +54,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                                     />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <AppText id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
+                                    <AppText id="steg.oppsummering.omsorgstilbud.fremtid.svar.NEI" />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                         )}

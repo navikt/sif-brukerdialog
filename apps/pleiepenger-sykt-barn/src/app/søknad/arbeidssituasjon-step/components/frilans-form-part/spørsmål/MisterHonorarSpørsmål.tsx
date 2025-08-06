@@ -23,7 +23,7 @@ const MisterHonorarSpørsmål: React.FunctionComponent<Props> = ({ misterHonorar
                 value={misterHonorar}
                 description={
                     <ExpandableInfo title={text('frilanser.misterHonorar.description.tittel')}>
-                        <AppText id={'frilanser.misterHonorar.description'} />
+                        <AppText id="frilanser.misterHonorar.description" />
                     </ExpandableInfo>
                 }
             />

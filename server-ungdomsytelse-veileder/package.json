@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.16",
+    "version": "0.0.18",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -20,18 +20,18 @@
         "http-proxy-middleware": "3.0.5",
         "jsdom": "26.1.0",
         "react": "19.1.1",
-        "zod": "4.0.13"
+        "zod": "4.0.14"
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.9",
         "@types/express": "5.0.3",
         "@types/morgan": "1.9.10",
-        "@types/node": "24.1.0",
+        "@types/node": "24.2.0",
         "@vercel/ncc": "0.38.3",
         "axios": "1.11.0",
         "morgan": "1.10.1",
         "prettier": "3.6.2",
-        "typescript": "5.8.3",
+        "typescript": "5.9.2",
         "winston": "3.17.0"
     },
     "packageManager": "yarn@4.5.0"

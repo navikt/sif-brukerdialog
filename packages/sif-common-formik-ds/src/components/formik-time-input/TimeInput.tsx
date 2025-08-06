@@ -105,9 +105,9 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                             ref={refs?.hours}
                             className={bem.element('hours')}
                             type="text"
-                            autoComplete={'off'}
-                            inputMode={'numeric'}
-                            pattern={'[0-9]*'}
+                            autoComplete="off"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             placeholder={placeholders?.hours}
                             min={0}
                             max={maxHours}
@@ -137,10 +137,10 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                             className={bem.element('minutes')}
                             ref={refs?.minutes}
                             type="text"
-                            autoComplete={'off'}
-                            inputMode={'numeric'}
+                            autoComplete="off"
+                            inputMode="numeric"
                             placeholder={placeholders?.minutes}
-                            pattern={'[0-9]*'}
+                            pattern="[0-9]*"
                             min={0}
                             maxLength={2}
                             max={maxMinutes}
@@ -164,7 +164,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
 const DisabledInput = ({ className }: { className: string }) => {
     return (
         <div className={className} role="presentation" aria-hidden={true}>
-            <div className={`navds-text-field__input navds-form-field--medium fakeDisabledInput`}> </div>
+            <div className="navds-text-field__input navds-form-field--medium fakeDisabledInput"> </div>
         </div>
     );
 };

@@ -54,7 +54,7 @@ export enum KursFormFields {
 
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
-    [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
+    [KursFormFields.kursperioder]: Array<Partial<KursperiodeFormValues>>;
     [KursFormFields.reisedager]?: Enkeltdato[];
     [KursFormFields.reisedagerBeskrivelse]?: string;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
@@ -137,7 +137,7 @@ const KursStep = () => {
                                 submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap={'8'}>
+                                <VStack gap="8">
                                     <SifGuidePanel>
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
@@ -148,7 +148,7 @@ const KursStep = () => {
                                         <GodkjentHelseinstitusjonInfo />
                                     </SifGuidePanel>
 
-                                    <VStack gap={'4'}>
+                                    <VStack gap="4">
                                         <Combobox
                                             name={KursFormFields.opplæringsinstitusjon}
                                             allowNewValues={true}

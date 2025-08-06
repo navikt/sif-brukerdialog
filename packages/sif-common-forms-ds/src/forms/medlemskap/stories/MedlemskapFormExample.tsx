@@ -76,7 +76,7 @@ const MedlemskapFormExample = () => {
                         validationErrorIntlKeys={{
                             ...flatten(MedlemskapFormErrors),
                         }}
-                        formName={'medlemskapForm'}
+                        formName="medlemskapForm"
                         intlMessages={medlemskapFormMessages}
                     />
                 </Tabs.Panel>

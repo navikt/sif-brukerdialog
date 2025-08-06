@@ -24,7 +24,7 @@ describe('arbeidstidStepUtils', () => {
             const resultat = begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(ISODateRangeToDateRange(periodeFomFredag));
             expect(dateRangeToISODateRange(resultat)).toEqual(periodeFomFredag);
         });
-        it('beholder hele periode hvis den starter på en fredag', () => {
+        it('justerer periode til å starte på påfølgende mandag hvis den starter på en lørdag inne i måneden', () => {
             const resultat = begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(
                 ISODateRangeToDateRange(periodeFomLørdagInneIMåned),
             );

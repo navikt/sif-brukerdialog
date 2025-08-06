@@ -9,7 +9,6 @@ interface SøknadContextData {
     dispatch: Dispatch<SøknadContextAction>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const SøknadContext = createContext<SøknadContextData>(null!);
 
 interface Props {

@@ -1,4 +1,6 @@
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { FormikValuesObserver, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -12,9 +14,6 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
-import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 

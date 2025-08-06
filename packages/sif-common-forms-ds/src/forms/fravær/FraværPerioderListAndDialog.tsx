@@ -3,8 +3,8 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FraværPeriodeForm from './FraværPeriodeForm';
 import FraværPerioderList from './FraværPerioderList';

@@ -131,7 +131,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                             <VStack gap="2">
                                 <FormikYesOrNoQuestion
                                     name={`${parentFieldName}.mottarOmsorgsstønad`}
-                                    legend={'Mottar du omsorgsstønad i perioden du skal endre?'}
+                                    legend="Mottar du omsorgsstønad i perioden du skal endre?"
                                 />
                                 {mottarOmsorgsstønad === YesOrNo.YES && (
                                     <Alert variant="info">

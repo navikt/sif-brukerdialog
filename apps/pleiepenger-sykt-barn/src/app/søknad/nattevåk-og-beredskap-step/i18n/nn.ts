@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { nattevåkOgBeredskapMessages_nb } from './nb';
 
 export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBeredskapMessages_nb, string> = {

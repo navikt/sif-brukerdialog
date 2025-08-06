@@ -1,6 +1,12 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
@@ -10,16 +16,14 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
 } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { handleDateRangeValidationError } from '../../utils';
+import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './i18n';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
 import {
     isValidUtenlandskNæring,
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
-import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './i18n';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { legeerklæringMessages_nb } from './nb';
 
 export const legeerklæringMessages_nn: Record<keyof typeof legeerklæringMessages_nb, string> = {

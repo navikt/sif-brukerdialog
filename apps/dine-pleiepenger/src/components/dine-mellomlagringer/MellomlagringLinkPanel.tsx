@@ -24,7 +24,7 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
                 focus-within:shadow-focus
                 focus-within:bg-deepblue-700
                 focus-within:shadow-border-on-inverted">
-            <HStack gap="4" align={'center'} wrap={false}>
+            <HStack gap="4" align="center" wrap={false}>
                 <Hide below="sm">
                     {icon ? (
                         <Box className="rounded-md bg-blue-600 group-hover:bg-blue-500 p-4">{icon}</Box>

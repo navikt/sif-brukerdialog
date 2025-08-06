@@ -1,6 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import { Mock, vi } from 'vitest';
+import { BarnRelasjon } from '../../types';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import * as fieldValidations from '../fieldValidations';
 import {
@@ -15,15 +17,19 @@ vi.mock('./../fieldValidations', () => {
     return {
         validateNavn: vi.fn(() => undefined),
         validateFødselsnummer: vi.fn(() => undefined),
+        validateRelasjonTilBarnBeskrivelse: vi.fn(() => undefined),
         validateValgtBarn: vi.fn(() => undefined),
     };
 });
 
-vi.mock('@navikt/sif-validation', () => ({
-    getDateValidator: () => () => undefined,
-    getFødselsnummerValidator: () => () => undefined,
-    getStringValidator: () => () => undefined,
-}));
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 const formValues: Partial<SøknadFormValues> = {};
 
@@ -48,17 +54,35 @@ describe('stepValidation tests', () => {
                 vi.resetAllMocks();
             });
 
+            formValues[SøknadFormField.barnetSøknadenGjelder] = VelgBarn_AnnetBarnValue;
+            formValues[SøknadFormField.barnetsNavn] = 'Ola Nordmann';
+            formValues[SøknadFormField.barnetsFødselsnummer] = '01010112345';
+            formValues[SøknadFormField.relasjonTilBarnet] = BarnRelasjon.FAR;
+
             it('should be valid if barnetsNavn, barnetsFødselsnummer and are all valid', () => {
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(true);
             });
 
             it(`should be invalid if ${SøknadFormField.barnetsNavn} is invalid`, () => {
+                formValues[SøknadFormField.barnetsNavn] = '';
                 (fieldValidations.validateNavn as Mock).mockReturnValue('some error message');
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
             });
 
             it(`should be invalid if ${SøknadFormField.barnetsFødselsnummer} is invalid`, () => {
                 (fieldValidations.validateFødselsnummer as Mock).mockReturnValue('some error message');
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+
+            it(`should be invalid if ${SøknadFormField.relasjonTilBarnet} is invalid`, () => {
+                formValues[SøknadFormField.relasjonTilBarnet] = undefined;
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+
+            it(`should be invalid if ${SøknadFormField.relasjonTilBarnet} is ANNET and ${SøknadFormField.relasjonTilBarnetBeskrivelse} is invalid`, () => {
+                (fieldValidations.validateRelasjonTilBarnBeskrivelse as Mock).mockReturnValue('some error message');
+                formValues[SøknadFormField.relasjonTilBarnet] = BarnRelasjon.ANNET;
+                formValues[SøknadFormField.relasjonTilBarnetBeskrivelse] = undefined;
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
             });
         });

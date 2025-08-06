@@ -85,7 +85,7 @@ const FormikExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(BostedUtlandFormErrors)}
-                        formName={'bostedUtland'}
+                        formName="bostedUtland"
                         intlMessages={bostedUtlandMessages}
                     />
                 </Tabs.Panel>

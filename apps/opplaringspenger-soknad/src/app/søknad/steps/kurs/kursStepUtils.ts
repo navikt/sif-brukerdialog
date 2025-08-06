@@ -1,30 +1,29 @@
-import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { datepickerUtils, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Enkeltdato, Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 import {
+    dateFormatter,
+    DateRange,
+    dateRangeUtils,
     getDate1YearFromNow,
     getDate3YearsAgo,
-    dateRangeUtils,
-    DateRange,
-    isDateInDateRanges,
     getDatesInDateRange,
-    dateFormatter,
     getDatesInDateRanges,
+    isDateInDateRanges,
     sortDateRange,
 } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { KursFormFields, KursFormValues } from './KursStep';
-import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
-import kursperiodeUtils from './kursperiodeUtils';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
+import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
 import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
-import { Enkeltdato, Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import kursperiodeUtils from './kursperiodeUtils';
+import { KursFormFields, KursFormValues } from './KursStep';
 
 dayjs.extend(isoWeek);
 
@@ -214,7 +213,7 @@ export const extractReisedagerSøknadsdata = (values: KursFormValues): Reisedage
 };
 
 export const getDateRangesFromKursperiodeFormValues = (
-    kursperioderValues?: Partial<KursperiodeFormValues>[],
+    kursperioderValues?: Array<Partial<KursperiodeFormValues>>,
 ): DateRange[] => {
     if (!kursperioderValues) {
         return [];
@@ -236,7 +235,7 @@ export const getDateRangesFromKursperiodeFormValues = (
 };
 
 export const getSøknadsperiodeFromKursperioderFormValues = (
-    kursperioderValues?: Partial<KursperiodeFormValues>[],
+    kursperioderValues?: Array<Partial<KursperiodeFormValues>>,
 ): DateRange | undefined => {
     const ranges = getDateRangesFromKursperiodeFormValues(kursperioderValues);
     if (ranges.length === 0) {

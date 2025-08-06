@@ -111,7 +111,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         />
                     </FormBlock>
                     <FormBlock>
-                        <VStack gap={'4'}>
+                        <VStack gap="4">
                             <FormikFileUpload
                                 headingLevel="3"
                                 label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}

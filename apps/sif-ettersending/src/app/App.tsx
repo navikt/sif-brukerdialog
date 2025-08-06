@@ -1,5 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,9 +11,8 @@ import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import { appEnv } from './utils/appEnv';
-import './app.css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
-import { isProd } from '@navikt/sif-common-env';
+import './app.css';
 
 const {
     PUBLIC_PATH,
@@ -46,10 +46,10 @@ const App = () => {
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route path={'/:soknadstype/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,
-                    <Route path={'/:soknadstype/'} key="søknadstype" element={<Navigate to={'melding'} />} />,
-                    <Route path={'/:soknadstype/feil'} key="søknadstypeFeil" element={<GeneralErrorPage />} />,
-                    <Route path={'/feil'} key="feil" element={<GeneralErrorPage />} />,
-                    <Route path={'/'} key="intro" element={<IntroPage />} />,
+                    <Route path="/:soknadstype/" key="søknadstype" element={<Navigate to="melding" />} />,
+                    <Route path="/:soknadstype/feil" key="søknadstypeFeil" element={<GeneralErrorPage />} />,
+                    <Route path="/feil" key="feil" element={<GeneralErrorPage />} />,
+                    <Route path="/" key="intro" element={<IntroPage />} />,
                 ]}
             />
         </SoknadApplication>

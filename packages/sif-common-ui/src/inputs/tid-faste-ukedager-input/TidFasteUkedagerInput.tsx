@@ -2,12 +2,11 @@ import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import './tidFasteUkedagerInput.css';
 import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
+import './tidFasteUkedagerInput.css';
 
 interface OwnProps {
     name: string;

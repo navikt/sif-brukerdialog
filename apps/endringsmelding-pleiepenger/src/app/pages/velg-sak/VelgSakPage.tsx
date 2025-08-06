@@ -1,18 +1,17 @@
-import { useSøknadContext } from '@hooks';
 import { BodyShort, Heading } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+import { useSøknadContext } from '@hooks';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';
-import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import { StepId } from '../../søknad/config/StepId';
-import { SøknadRoutes, getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
+import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 
 enum FormFields {

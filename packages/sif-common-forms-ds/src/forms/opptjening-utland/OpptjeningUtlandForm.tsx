@@ -1,15 +1,19 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getIntlFormErrorHandler, getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
+    hasValue,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
 } from '@navikt/sif-validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { hasValue } from '@navikt/sif-validation';
 import { handleDateRangeValidationError } from '../../utils';
 import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './i18n';
 import utils from './opptjeningUtlandUtils';

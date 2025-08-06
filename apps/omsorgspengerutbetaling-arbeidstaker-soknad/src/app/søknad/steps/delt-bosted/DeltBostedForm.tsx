@@ -2,13 +2,12 @@ import { Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -43,14 +42,14 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <p style={{ marginTop: 0 }}>
-                        <AppText id={'step.deltBosted.info.1'} />
+                        <AppText id="step.deltBosted.info.1" />
                     </p>
                     <p>
                         <AppText
-                            id={'step.deltBosted.info.2'}
+                            id="step.deltBosted.info.2"
                             values={{
                                 Lenke: (children) => (
-                                    <Link target={'_blank'} href={getLenker(intl.locale).deltFastBosted}>
+                                    <Link target="_blank" href={getLenker(intl.locale).deltFastBosted}>
                                         {children}
                                     </Link>
                                 ),
@@ -58,10 +57,10 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         />
                     </p>
                     <p>
-                        <AppText id={'step.deltBosted.info.3'} />
+                        <AppText id="step.deltBosted.info.3" />
                     </p>
                     <p>
-                        <AppText id={'step.deltBosted.info.4'} />
+                        <AppText id="step.deltBosted.info.4" />
                     </p>
                 </SifGuidePanel>
             </Block>

@@ -1,11 +1,10 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-validation';
-import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -17,13 +16,13 @@ import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søk
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import DineBarnOppsummering from './components/DineBarnOppsummering';
+import FraværSummary from './components/FraværSummary';
 import FrilansOppsummering from './components/FrilansOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import FraværSummary from './components/FraværSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',

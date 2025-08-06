@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const nb = {
     'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',

@@ -33,7 +33,7 @@ const SectionHeading = ({ children }: { children?: React.ReactNode }) => (
  * @children Innholdet
  */
 export const QuestionRelatedMessage = ({ children }: { children: React.ReactNode }) => {
-    return <Bleed marginBlock={'6 0'}>{children}</Bleed>;
+    return <Bleed marginBlock="6 0">{children}</Bleed>;
 };
 
 /**
@@ -41,7 +41,7 @@ export const QuestionRelatedMessage = ({ children }: { children: React.ReactNode
  * @children Innholdet
  */
 export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) => {
-    return <Bleed marginBlock={'6 0'}>{children}</Bleed>;
+    return <Bleed marginBlock="6 0">{children}</Bleed>;
 };
 
 /**

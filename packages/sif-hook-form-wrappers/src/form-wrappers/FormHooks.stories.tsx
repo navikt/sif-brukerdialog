@@ -1,20 +1,18 @@
+import { Alert, BodyShort, Checkbox as DsCheckbox, Heading, HStack, Label, Radio, VStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
-
-import { Alert, BodyShort, Checkbox as DsCheckbox, HStack, Heading, Label, Radio, VStack } from '@navikt/ds-react';
-
+import { IntlProvider } from 'react-intl';
+import dayjs from 'dayjs';
 import { RhfCheckbox } from './RhfCheckbox';
 import { RhfCheckboxGroup } from './RhfCheckboxGroup';
 import { RhfCombobox } from './RhfCombobox';
-import { RhfDateRangepicker } from './RhfDateRangepicker';
 import { RhfDatepicker } from './RhfDatepicker';
+import { RhfDateRangepicker } from './RhfDateRangepicker';
 import { RhfForm } from './RhfForm';
 import { RhfRadioGroup } from './RhfRadioGroup';
 import { RhfSelect } from './RhfSelect';
-import { RhfTextField } from './RhfTextField';
 import { RhfTextarea } from './RhfTextarea';
-import { IntlProvider } from 'react-intl';
+import { RhfTextField } from './RhfTextField';
 
 const meta = {
     title: 'FormHooks',
@@ -27,6 +25,7 @@ const meta = {
     ],
 
     render: () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const formMethods = useForm({
             defaultValues: {
                 radio: undefined,
