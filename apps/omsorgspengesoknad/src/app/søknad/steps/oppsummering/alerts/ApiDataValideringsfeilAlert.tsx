@@ -3,18 +3,19 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import { InvalidParameterViolation } from '@navikt/sif-common-query';
 import { AppText } from '../../../../i18n';
 
-const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
-    const erBeskrivelseFeil = invalidParameter.parameterName === 'høyereRisikoForFraværBeskrivelse';
+const renderFeilmelding = (invalidParameter: InvalidParameterViolation, gjelderBeskrivelseFritekst?: boolean) => {
+    const erBeskrivelseFeil =
+        gjelderBeskrivelseFritekst || invalidParameter.parameterName === 'høyereRisikoForFraværBeskrivelse';
     return (
         <>
             {erBeskrivelseFeil ? (
                 <List>
                     <List.Item>
-                        <AppText id="innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil" />
+                        <AppText id="apiDataValideringsfeil.tekst.høyereRisikoForFraværBeskrivelseFeil" />
                     </List.Item>
                     <List.Item>
                         <VStack gap="2">
-                            <AppText id="innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn" />
+                            <AppText id="apiDataValideringsfeil.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn" />
                             <Box padding="4" background="bg-default" borderRadius="medium">
                                 {invalidParameter.invalidValue}
                             </Box>
@@ -23,18 +24,18 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
                 </List>
             ) : (
                 <p>
-                    <AppText id="innsendingFeilet.tekst.generell.1" />
+                    <AppText id="apiDataValideringsfeil.tekst.generell.1" />
                 </p>
             )}
             <p>
-                <AppText id="innsendingFeilet.tekst.generell.2" />
+                <AppText id="apiDataValideringsfeil.tekst.generell.2" />
             </p>
             <p>
-                <AppText id="innsendingFeilet.tekst.generell.3" />
+                <AppText id="apiDataValideringsfeil.tekst.generell.3" />
             </p>
             <p>
                 <AppText
-                    id="innsendingFeilet.tekst.generell.4"
+                    id="apiDataValideringsfeil.tekst.generell.4"
                     values={{ Telefon: (value) => <span style={{ whiteSpace: 'nowrap' }}>{value}</span> }}
                 />
             </p>
@@ -50,17 +51,18 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
 
 interface Props {
     invalidParameter: InvalidParameterViolation[];
+    gjelderBeskrivelseFritekst?: boolean;
 }
 
-const InnsendingFeiletAlert = ({ invalidParameter }: Props) => {
+const ApiDataValideringsfeilAlert = ({ invalidParameter, gjelderBeskrivelseFritekst }: Props) => {
     return (
         <Alert variant="error">
             <p style={{ marginTop: '.2em' }}>
-                <AppText id="innsendingFeilet.tittel" />
+                <AppText id="apiDataValideringsfeil.tittel" />
             </p>
-            {renderFeilmelding(invalidParameter[0])}
+            {renderFeilmelding(invalidParameter[0], gjelderBeskrivelseFritekst)}
         </Alert>
     );
 };
 
-export default InnsendingFeiletAlert;
+export default ApiDataValideringsfeilAlert;

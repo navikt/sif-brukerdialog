@@ -19,7 +19,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
-import InnsendingFeiletAlert from './alerts/InnsendingFeiletAlert';
+import ApiDataValideringsfeilAlert from './alerts/ApiDataValideringsfeilAlert';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import ApiDataErrorPage from './parts/ApiDataErrorPage';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
@@ -98,7 +98,10 @@ const OppsummeringStep = () => {
             ) : (
                 <VStack gap="8">
                     {fritekstInvalidParameters && (
-                        <InnsendingFeiletAlert invalidParameter={fritekstInvalidParameters} />
+                        <ApiDataValideringsfeilAlert
+                            invalidParameter={fritekstInvalidParameters}
+                            gjelderBeskrivelseFritekst={true}
+                        />
                     )}
 
                     <FormikWrapper
@@ -160,7 +163,7 @@ const OppsummeringStep = () => {
                                     )}
                                     {sendSøknadError && invalidParameters && (
                                         <FormBlock>
-                                            <InnsendingFeiletAlert invalidParameter={invalidParameters} />
+                                            <ApiDataValideringsfeilAlert invalidParameter={invalidParameters} />
                                         </FormBlock>
                                     )}
                                 </>

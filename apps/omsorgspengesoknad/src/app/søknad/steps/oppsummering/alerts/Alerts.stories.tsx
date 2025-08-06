@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { StoryFn } from '@storybook/react-vite';
 import AlertStoryWrapper from '../../../../../storybook/components/AlertStoryWrapper';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import InnsendingFeiletAlert from './InnsendingFeiletAlert';
+import ApiDataValideringsfeilAlert from './ApiDataValideringsfeilAlert';
 
 export default {
     title: 'Steps/Oppsummering/Alerts',
@@ -12,8 +12,8 @@ export default {
 const Template: StoryFn = () => {
     return (
         <VStack gap="8">
-            <AlertStoryWrapper title="Feilmelding når innsending feiler" intlScope="innsendingFeilet.">
-                <InnsendingFeiletAlert invalidParameter={[{ parameterName: 'enVerdiSomFeilet' } as any]} />
+            <AlertStoryWrapper title="Feilmelding når innsending feiler" intlScope="apiDataValideringsfeil.">
+                <ApiDataValideringsfeilAlert invalidParameter={[{ parameterName: 'enVerdiSomFeilet' } as any]} />
             </AlertStoryWrapper>
         </VStack>
     );
