@@ -70,18 +70,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:2.21.1":
-  version: 2.21.1
-  resolution: "@amplitude/analytics-browser@npm:2.21.1"
+"@amplitude/analytics-browser@npm:2.22.0":
+  version: 2.22.0
+  resolution: "@amplitude/analytics-browser@npm:2.22.0"
   dependencies:
-    "@amplitude/analytics-core": "npm:^2.19.0"
+    "@amplitude/analytics-core": "npm:^2.20.0"
     "@amplitude/analytics-remote-config": "npm:^0.4.0"
-    "@amplitude/plugin-autocapture-browser": "npm:^1.8.1"
-    "@amplitude/plugin-network-capture-browser": "npm:^1.4.2"
-    "@amplitude/plugin-page-view-tracking-browser": "npm:^2.3.37"
-    "@amplitude/plugin-web-vitals-browser": "npm:^0.1.0-beta.12"
+    "@amplitude/plugin-autocapture-browser": "npm:^1.8.2"
+    "@amplitude/plugin-network-capture-browser": "npm:^1.4.3"
+    "@amplitude/plugin-page-view-tracking-browser": "npm:^2.3.38"
+    "@amplitude/plugin-web-vitals-browser": "npm:^0.1.0-beta.13"
     tslib: "npm:^2.4.1"
-  checksum: 10/c54b96b1259deea19b04642f6085cc2bd1415d0b037e43f5b6e98d2e11ad40523de09ea0c02775b53411bfab5b7fcce81ff32e6d7706ce0debe9a67e2fd36163
+  checksum: 10/e4179bf7614f66f4d987d1fd48a8dcf90e7ee78210559b9ae0e152f17a81e93ab5e8bb3237e577be999003884439919066c5aa9b149983b1ae82763c6deb8193
   languageName: node
   linkType: hard
 
@@ -97,15 +97,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-client-common@npm:^2.3.31":
-  version: 2.3.31
-  resolution: "@amplitude/analytics-client-common@npm:2.3.31"
+"@amplitude/analytics-client-common@npm:^2.3.32":
+  version: 2.3.32
+  resolution: "@amplitude/analytics-client-common@npm:2.3.32"
   dependencies:
     "@amplitude/analytics-connector": "npm:^1.4.8"
-    "@amplitude/analytics-core": "npm:^2.19.0"
+    "@amplitude/analytics-core": "npm:^2.20.0"
     "@amplitude/analytics-types": "npm:^2.9.2"
     tslib: "npm:^2.4.1"
-  checksum: 10/21fa16c37aad9620f4e58ea7541c66f04a20d97c4d1e0b3c00b096de08364cffc37d7df63b13d7e38d9ae96fb668a3e62604552b0904d1a62021f764b2415bd0
+  checksum: 10/27d6d976187bc08c7bbe7c70fac539f86afb65d765a9618ee8d9f43e3c2b4a6a0847f61f9dd541176dcd7e329b826b79ac1a926a6fbf56a66465dbc8eaba9a9d
   languageName: node
   linkType: hard
 
@@ -146,13 +146,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-core@npm:^2.19.0":
-  version: 2.19.0
-  resolution: "@amplitude/analytics-core@npm:2.19.0"
+"@amplitude/analytics-core@npm:^2.20.0":
+  version: 2.20.0
+  resolution: "@amplitude/analytics-core@npm:2.20.0"
   dependencies:
     "@amplitude/analytics-connector": "npm:^1.6.4"
     tslib: "npm:^2.4.1"
-  checksum: 10/a1ed5b4d26388430710381d90b10ee889cdfdc5b18ad0012bc9c99dfd4cca62e4a95f458d209009f46f2c4d6f806116d286be2cade7b8163380a118ee67de97e
+  checksum: 10/379bc91a0423510a759a370d8296f03dc855c78d9e712b885149f0d951186042b080774f9509d625cb08f632357ecc161e431436d4a946a08f4cfb8236d8d9a8
   languageName: node
   linkType: hard
 
@@ -193,41 +193,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-autocapture-browser@npm:^1.8.1":
-  version: 1.8.1
-  resolution: "@amplitude/plugin-autocapture-browser@npm:1.8.1"
+"@amplitude/plugin-autocapture-browser@npm:^1.8.2":
+  version: 1.8.2
+  resolution: "@amplitude/plugin-autocapture-browser@npm:1.8.2"
   dependencies:
-    "@amplitude/analytics-core": "npm:^2.19.0"
+    "@amplitude/analytics-core": "npm:^2.20.0"
     "@amplitude/analytics-remote-config": "npm:^0.6.3"
     rxjs: "npm:^7.8.1"
     tslib: "npm:^2.4.1"
-  checksum: 10/3be48e4f1ff4a3abdd1119722b0c416ef9cb69e3446cb0cef8aeeef152ae30b9ea8294c088e3be690ecac363da0c240a6a404252a4ab2dcdaa1f2350b5641a4e
+  checksum: 10/961add86f79aa5b4b5fb16c6ec8f5a4810897be44b41653ae3e269ad060fa3423a51e0c21985cd94afb3df4565dbd0919c78882aefbfea9be2f563e4d226b515
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-network-capture-browser@npm:^1.4.2":
-  version: 1.4.2
-  resolution: "@amplitude/plugin-network-capture-browser@npm:1.4.2"
+"@amplitude/plugin-network-capture-browser@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@amplitude/plugin-network-capture-browser@npm:1.4.3"
   dependencies:
-    "@amplitude/analytics-core": "npm:^2.19.0"
+    "@amplitude/analytics-core": "npm:^2.20.0"
     rxjs: "npm:^7.8.1"
     tslib: "npm:^2.4.1"
-  checksum: 10/1746a5a54889a513d531598ae9234e47dbf88338b832c0f0576428fcc8e5dd5e1a7224588b795c4662cee529261b7d0fdc5446836a55276a851df8a212f3dd9e
+  checksum: 10/901d6d18b369516ccd037601c417490226e74b63483f101ce3775cc3a0a9d1740244001e9b074c74b0796a786da305b7b22ebcfb340cdef95e9315749b640381
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-page-view-tracking-browser@npm:^2.3.37":
-  version: 2.3.37
-  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.3.37"
+"@amplitude/plugin-page-view-tracking-browser@npm:^2.3.38":
+  version: 2.3.38
+  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.3.38"
   dependencies:
-    "@amplitude/analytics-client-common": "npm:^2.3.31"
+    "@amplitude/analytics-client-common": "npm:^2.3.32"
     "@amplitude/analytics-types": "npm:^2.9.2"
     tslib: "npm:^2.4.1"
-  checksum: 10/4dfbf96317cce1e77e51946c6f087d3e9a7e92cd9391527b4655326a41d3c77d0b64ce1b50f21a6e568ab8e5c75ee81683ab6a2f2623df1db8aedcd15bbff756
+  checksum: 10/7357477b76e6f5eef1a5fa0a30ff54e8f5d2f9b6ac7a72b50f8f1ca38ea0e9174a3ac8af4a8cdee4b5813aa5cc6f9bcd18dae5541307a25bf7f6441e9cc026b1
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-web-vitals-browser@npm:^0.1.0-beta.12":
+"@amplitude/plugin-web-vitals-browser@npm:^0.1.0-beta.13":
   version: 0.1.0-frustrationanalytics.0
   resolution: "@amplitude/plugin-web-vitals-browser@npm:0.1.0-frustrationanalytics.0"
   dependencies:
@@ -6136,7 +6136,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@amplitude/analytics-browser": "npm:2.21.1"
+    "@amplitude/analytics-browser": "npm:2.22.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:24.2.0"
     "@types/react": "npm:19.1.9"
