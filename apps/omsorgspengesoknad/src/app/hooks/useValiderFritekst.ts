@@ -28,7 +28,7 @@ export const useValiderFritekst = (fritekst?: string) => {
     }, [result.isError, result.error]);
 
     return {
-        isPending: result.isPending,
+        isPending: result.isEnabled ? result.isPending : false,
         isFetched: result.isFetched,
         invalidParameters: invalidParameters && invalidParameters.length > 0 ? invalidParameters : undefined,
     };
