@@ -13,7 +13,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
-import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
+import { useMellomlagring } from '../../../hooks/useMellomlagring';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
@@ -25,7 +25,7 @@ const LegeerklæringStep = () => {
 
     const stepId = StepId.LEGEERKLÆRING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const { lagreMellomlagring } = useStateMellomlagring();
+    const { lagreMellomlagring } = useMellomlagring();
 
     const { goBack } = useStepNavigation(step);
 

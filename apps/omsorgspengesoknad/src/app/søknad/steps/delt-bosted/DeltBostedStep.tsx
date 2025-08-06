@@ -3,6 +3,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormikValuesObserver, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useMellomlagring } from '../../../hooks/useMellomlagring';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -13,7 +14,6 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
-import { useStateMellomlagring } from '../../../hooks/useStateMellomlagring';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
@@ -25,7 +25,7 @@ const DeltBostedStep = () => {
 
     const stepId = StepId.DELT_BOSTED;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const { lagreMellomlagring } = useStateMellomlagring();
+    const { lagreMellomlagring } = useMellomlagring();
 
     const { goBack } = useStepNavigation(step);
 
