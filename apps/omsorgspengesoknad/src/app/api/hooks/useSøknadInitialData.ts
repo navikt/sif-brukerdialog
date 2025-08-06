@@ -27,7 +27,6 @@ function useSøknadInitialData() {
             if (!søkerQuery.data || !barnQuery.data) {
                 throw new Error('Søker eller barn data mangler');
             }
-
             const mellomlagring = await søknadMellomlagring.hent({
                 søker: søkerQuery.data,
                 registrerteBarn: barnQuery.data,
