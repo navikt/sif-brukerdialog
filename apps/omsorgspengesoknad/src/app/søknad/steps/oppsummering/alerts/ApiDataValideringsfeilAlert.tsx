@@ -1,4 +1,4 @@
-import { Alert, Box, List, VStack } from '@navikt/ds-react';
+import { Alert, List } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { InvalidParameterViolation } from '@navikt/sif-common-query';
 import { AppText } from '../../../../i18n';
@@ -12,14 +12,6 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation, gjelderB
                 <List>
                     <List.Item>
                         <AppText id="apiDataValideringsfeil.tekst.høyereRisikoForFraværBeskrivelseFeil" />
-                    </List.Item>
-                    <List.Item>
-                        <VStack gap="2">
-                            <AppText id="apiDataValideringsfeil.tekst.høyereRisikoForFraværBeskrivelseFeil.tegn" />
-                            <Box padding="4" background="bg-default" borderRadius="medium">
-                                {invalidParameter.invalidValue}
-                            </Box>
-                        </VStack>
                     </List.Item>
                 </List>
             ) : (
