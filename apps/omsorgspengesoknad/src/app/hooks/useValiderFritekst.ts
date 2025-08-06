@@ -30,7 +30,6 @@ export const useValiderFritekst = () => {
 
     const validateFritekst = useCallback(
         (fritekst?: string) => {
-            console.log('sdf');
             if (fritekst && fritekst.trim().length > 0) {
                 mutation.mutate({ verdi: fritekst });
             } else {
