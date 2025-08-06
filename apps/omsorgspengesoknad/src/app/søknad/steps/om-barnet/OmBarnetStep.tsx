@@ -1,5 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
+import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hooks/useGyldigeVedtakForRegistrerteBarn';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useMellomlagring } from '../../../hooks/useMellomlagring';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -14,9 +17,6 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import { useMellomlagring } from '../../../hooks/useMellomlagring';
-import { useGyldigeVedtakForRegistrerteBarn } from '../../../api/hooks/useGyldigeVedtakForRegistrerteBarn';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds/src';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
