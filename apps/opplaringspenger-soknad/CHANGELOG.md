@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.1.5
+
+### Patch Changes
+
+- Bugfix av feil når bruker ikke har registrerte barn. Relatert til samme feil i psb.
+
 ## 1.1.4
 
 ### Patch Changes
