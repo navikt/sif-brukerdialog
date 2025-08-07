@@ -1,16 +1,31 @@
-import { useState, useCallback } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { handleApiError, InvalidParameterViolation, isApiAxiosError, validerFritekst } from '@navikt/sif-common-query';
+import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import {
+    handleApiError,
+    InvalidParameterViolation,
+    isApiAxiosError,
+    validerFritekst,
+    sifCommonQueryKeys,
+} from '@navikt/sif-common-query';
 import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 
-export const useValiderFritekst = () => {
+export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
 
-    const mutation = useMutation({
-        mutationFn: validerFritekst,
-        onError: (error) => {
+    const query = useQuery({
+        queryKey: [...sifCommonQueryKeys.validerFritekst, fritekst],
+        queryFn: () => validerFritekst({ verdi: fritekst! }),
+        enabled: !!fritekst && fritekst.trim().length > 0,
+        retry: 0,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+    });
+
+    useEffect(() => {
+        if (query.isError) {
             try {
-                const handledError = handleApiError(error);
+                const handledError = handleApiError(query.error);
                 if (isApiAxiosError(handledError)) {
                     const parameters = getInvalidParametersFromAxiosError(handledError.originalError);
                     setInvalidParameters(parameters && parameters.length > 0 ? parameters : undefined);
@@ -22,26 +37,13 @@ export const useValiderFritekst = () => {
                 console.error('Error parsing validation error:', err);
                 setInvalidParameters(undefined);
             }
-        },
-        onSuccess: () => {
+        } else {
             setInvalidParameters(undefined);
-        },
-    });
-
-    const validateFritekst = useCallback(
-        (fritekst?: string) => {
-            if (fritekst && fritekst.trim().length > 0) {
-                mutation.mutate({ verdi: fritekst });
-            } else {
-                setInvalidParameters(undefined);
-            }
-        },
-        [mutation.mutate],
-    );
+        }
+    }, [query.isError, query.error]);
 
     return {
-        validateFritekst,
-        isPending: mutation.isPending,
+        isPending: query.isPending,
         invalidParameters,
     };
 };
