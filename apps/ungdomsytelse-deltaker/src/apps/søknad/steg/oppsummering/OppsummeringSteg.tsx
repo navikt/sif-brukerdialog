@@ -4,6 +4,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { AppText, useAppIntl } from '../../../../i18n';
+import { useAnalyticsInstance } from '../../../../utils/analytics';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
@@ -12,8 +13,7 @@ import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar } from './oppsummeringUtils';
-import { useAnalyticsInstance } from '../../../../utils/analytics';
-import { DeltakerSkjemaType } from '../../../innsyn/utils/logUtils';
+import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
 
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();
@@ -49,7 +49,7 @@ const OppsummeringSteg = () => {
                 gotoKvittering();
             } catch {
                 // Håndteres gjennom error objektet i useSendSøknad
-                logSkjemaFeilet(DeltakerSkjemaType.SØKNAD);
+                logSkjemaFeilet(DeltakerSkjemaId.SØKNAD);
             }
         }
     };

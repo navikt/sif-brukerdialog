@@ -82,20 +82,20 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
 
     async function logSkjemaStartet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaStartet, {
-            skjemanavn,
+            skjema: skjemanavn,
         });
     }
 
     async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
         return logEvent(AnalyticsEvents.skjemaSendt, {
-            skjemanavn,
+            skjema: skjemanavn,
             ...metadata,
         });
     }
 
     async function logSkjemaFeilet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaFeilet, {
-            skjemanavn,
+            skjema: skjemanavn,
         });
     }
 

@@ -2,14 +2,15 @@ import React, { createContext, useState } from 'react';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
+import { SøkYtelseOppgave } from '../../../types/Oppgave';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
-import { DeltakerSkjemaType, logUtils } from '../../innsyn/utils/logUtils';
+import { logUtils } from '../../innsyn/utils/logUtils';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
-import { SøkYtelseOppgave } from '../../../types/Oppgave';
-import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 import { formaterKontonummer } from '../utils/formaterKontonummer';
+import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
@@ -65,7 +66,7 @@ export const SøknadProvider = ({
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
         logSkjemaFullført(
-            DeltakerSkjemaType.SØKNAD,
+            DeltakerSkjemaId.SØKNAD,
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
