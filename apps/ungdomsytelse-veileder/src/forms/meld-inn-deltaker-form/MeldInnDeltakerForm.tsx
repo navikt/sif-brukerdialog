@@ -79,12 +79,13 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
                             <FormikYesOrNoQuestion
                                 name="erVedtaksbrevSendt"
-                                legend="Er vedtaksbrev fra gosys sendt?"
+                                legend="Er vedtaksbrev om deltakelse i ungdomsprgrammet sendt fra gosys?"
                                 validate={getYesOrNoValidator()}
                             />
                             {erVedtaksbrevSendt === YesOrNo.NO && (
                                 <Alert variant="warning">
-                                    Du må sende vedtaksbrev fra gosys før du kan registrere deltakelsen.
+                                    Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan behandle en
+                                    søknad om ungdomsprogramytelse.
                                 </Alert>
                             )}
 
