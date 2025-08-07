@@ -3,7 +3,7 @@ import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
-import { LogMetaInfoType, logUtils } from '../../innsyn/utils/logUtils';
+import { DeltakerSkjemaType, logUtils } from '../../innsyn/utils/logUtils';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
@@ -37,7 +37,7 @@ export const SøknadProvider = ({
 }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
-    const { logHendelse, logEvent, logSoknadStartet, logSoknadSent } = useAnalyticsInstance();
+    const { logHendelse, logSkjemaStartet, logSkjemaFullført } = useAnalyticsInstance();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
     const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter ? true : false);
@@ -58,15 +58,14 @@ export const SøknadProvider = ({
             harForståttRettigheterOgPlikter,
         });
         setSøknadStartet(true);
-        logSoknadStartet(UngdomsytelseDeltakerApp.key);
+        logSkjemaStartet(UngdomsytelseDeltakerApp.key);
         gotoSteg(Steg.KONTONUMMER);
     };
 
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
-        logSoknadSent(UngdomsytelseDeltakerApp.key);
-        logEvent(
-            LogMetaInfoType.SØKNAD_SENDT,
+        logSkjemaFullført(
+            DeltakerSkjemaType.SØKNAD,
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,

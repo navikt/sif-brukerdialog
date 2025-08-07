@@ -40,7 +40,10 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const registerAnalytics = () => {
+export const registerAnalytics = (websiteId?: string) => {
+    if (!websiteId) {
+        return;
+    }
     return (
         <Helmet>
             <script
@@ -48,7 +51,7 @@ export const registerAnalytics = () => {
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
-                data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
+                data-website-id={websiteId}></script>
         </Helmet>
     );
 };
@@ -77,25 +80,22 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         return Promise.resolve();
     }
 
-    async function logSoknadStartet(skjemanavn: string) {
+    async function logSkjemaStartet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaStartet, {
             skjemanavn,
-            skjemaId: applicationKey,
         });
     }
 
-    async function logSoknadSent(skjemanavn: string, locale?: string) {
+    async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
         return logEvent(AnalyticsEvents.skjemaSendt, {
             skjemanavn,
-            skjemaId: applicationKey,
-            locale,
+            ...metadata,
         });
     }
 
-    async function logSoknadFailed(skjemanavn: string) {
+    async function logSkjemaFeilet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaFeilet, {
             skjemanavn,
-            skjemaId: applicationKey,
         });
     }
 
@@ -114,14 +114,13 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
     }
 
     async function logInfo(details: EventProperties) {
-        return logEvent(AnalyticsEvents.applikasjonInfo, details);
+        return logEvent(AnalyticsEvents.applikasjonInfo, { ...details });
     }
 
     return {
-        logEvent,
-        logSoknadStartet,
-        logSoknadSent,
-        logSoknadFailed,
+        logSkjemaStartet,
+        logSkjemaFullført,
+        logSkjemaFeilet,
         logHendelse,
         logInfo,
         logApiError,

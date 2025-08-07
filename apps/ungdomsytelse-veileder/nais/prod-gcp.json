@@ -30,7 +30,7 @@
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://prod-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
 
-        "SIF_PUBLIC_UMAMI_NETTSIDE_ID": "8ab9035b-69e3-4145-8c44-19d1bd3d7bd9",
+        "SIF_PUBLIC_UMAMI_NETTSIDE_ID": "35abb2b7-3f97-42ce-931b-cf547d40d967",
         "SIF_PUBLIC_USE_FARO": true,
         "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.nav.no/collect"
     }

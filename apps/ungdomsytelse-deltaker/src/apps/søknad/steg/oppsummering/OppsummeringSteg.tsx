@@ -13,13 +13,13 @@ import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar } from './oppsummeringUtils';
 import { useAnalyticsInstance } from '../../../../utils/analytics';
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { DeltakerSkjemaType } from '../../../innsyn/utils/logUtils';
 
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();
     const { søker, deltakelsePeriode, søknadOppgave, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
     const { gotoSteg, gotoKvittering } = useSøknadNavigation();
-    const { logSoknadFailed } = useAnalyticsInstance();
+    const { logSkjemaFeilet } = useAnalyticsInstance();
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
@@ -49,7 +49,7 @@ const OppsummeringSteg = () => {
                 gotoKvittering();
             } catch {
                 // Håndteres gjennom error objektet i useSendSøknad
-                logSoknadFailed(UngdomsytelseDeltakerApp.key);
+                logSkjemaFeilet(DeltakerSkjemaType.SØKNAD);
             }
         }
     };
