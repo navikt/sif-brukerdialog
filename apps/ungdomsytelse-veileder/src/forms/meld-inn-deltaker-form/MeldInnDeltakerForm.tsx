@@ -79,7 +79,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
                             <FormikYesOrNoQuestion
                                 name="erVedtaksbrevSendt"
-                                legend="Er vedtaksbrev fra gosys sendt til deltaker?"
+                                legend="Er vedtaksbrev fra gosys sendt?"
                                 validate={getYesOrNoValidator()}
                             />
                             {erVedtaksbrevSendt === YesOrNo.NO && (
