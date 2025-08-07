@@ -11,6 +11,7 @@ const localSchema = z.object({
         .union([z.boolean(), z.string()])
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
+    SIF_PUBLIC_UMAMI_NETTSIDE_ID: z.string().optional(),
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: z.string().optional(),
 });
 

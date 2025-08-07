@@ -11,7 +11,7 @@ export const extractBarnSøknadsdata = (values: OmBarnetFormValues): OmBarnetSø
         };
     }
 
-    if (values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue) {
+    if (values.barnetSøknadenGjelder === '' || values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue) {
         if (values.barnetsFødselsnummer) {
             return {
                 type: 'annetBarn',
