@@ -36,7 +36,12 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const registerAnalytics = () => {
+export const registerAnalytics = (sporingskode?: string) => {
+    if (!sporingskode) {
+        // eslint-disable-next-line no-console
+        console.warn('Sporingskode is not provided, analytics will not be registered.');
+        return null;
+    }
     return (
         <Helmet>
             <script
@@ -44,14 +49,14 @@ export const registerAnalytics = () => {
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
-                data-website-id="a9f8b8e4-a401-47ad-93c4-df596c00bed6"></script>
+                data-website-id={sporingskode}></script>
             <script
                 defer
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-domains="localhost"
                 data-auto-track="false"
-                data-website-id="a9f8b8e4-a401-47ad-93c4-df596c00bed6"></script>
+                data-website-id={sporingskode}></script>
         </Helmet>
     );
 };
