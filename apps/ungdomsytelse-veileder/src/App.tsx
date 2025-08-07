@@ -29,7 +29,7 @@ const App = () => {
 
     return (
         <ThemeProvider>
-            {registerAnalytics()}
+            {registerAnalytics(env.SIF_PUBLIC_UMAMI_SPORINGSKODE)}
             <VeilederProvider>
                 <FaroProvider
                     appVersion={env.APP_VERSION}
