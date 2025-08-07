@@ -1,13 +1,17 @@
 import { Page } from '@playwright/test';
 import { mockData } from '../mock-data';
 import { StepID } from '../../src/app/types/StepID';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep?: StepID }) => {
+export const setupMockRoutes = async (
+    page: Page,
+    props?: { barnRespons?: { barn: RegistrertBarn[] }; mellomlagring?: any; lastStep?: StepID },
+) => {
     await page.route('**/oppslag/soker', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.søker) });
     });
     await page.route('**/oppslag/barn', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(mockData.barn) });
+        await route.fulfill({ status: 200, body: JSON.stringify(props?.barnRespons || mockData.barn) });
     });
     await page.route('**/oppslag/arbeidsgiver*', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.arbeidsgiver) });
@@ -43,6 +47,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; 
         await route.fulfill({ status: 200, body: '{}' });
     });
     await page.route('*', async (route) => {
+        // eslint-disable-next-line no-console
         console.log(route);
         await route.fulfill({ status: 200 });
     });
