@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.47.2",
+    "version": "3.47.3",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -71,7 +71,7 @@
         "vite": "7.0.6",
         "vite-plugin-checker": "0.10.2",
         "vitest": "3.2.4",
-        "zod": "4.0.14"
+        "zod": "4.0.15"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",

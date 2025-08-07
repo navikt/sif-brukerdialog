@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.40.2",
+    "version": "1.40.3",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -65,7 +65,7 @@
         "cross-env": "10.0.0",
         "dotenv": "17.2.1",
         "eslint": "9.32.0",
-        "eslint-plugin-prettier": "5.5.3",
+        "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-storybook": "9.1.1",

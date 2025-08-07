@@ -4,12 +4,14 @@ import { PaperplaneIcon } from '@navikt/aksel-icons';
 import {
     FormikConfirmationCheckbox,
     FormikDatepicker,
+    FormikYesOrNoQuestion,
     getIntlFormErrorHandler,
     TypedFormikForm,
     TypedFormikWrapper,
+    YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getDateValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorType } from '@navikt/ung-common';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
@@ -27,6 +29,7 @@ interface Props {
 
 interface FormValues {
     startDato: string;
+    erVedtaksbrevSendt?: YesOrNo;
     bekreftRegistrering: boolean;
 }
 
@@ -63,7 +66,8 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
         <TypedFormikWrapper<FormValues>
             initialValues={{}}
             onSubmit={handleOnSubmit}
-            renderForm={() => {
+            renderForm={({ values }) => {
+                const { erVedtaksbrevSendt } = values;
                 return (
                     <TypedFormikForm
                         showSubmitButton={false}
@@ -73,51 +77,69 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
                                 Registrer ny deltaker
                             </Heading>
 
-                            <FormikDatepicker
-                                name="startDato"
-                                label="Når starter deltakeren i ungdomsprogrammet?"
-                                disableWeekends={true}
-                                description={<>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>}
-                                minDate={startdatoMinMax.from}
-                                maxDate={startdatoMinMax.to}
-                                defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
-                                validate={(value) => {
-                                    const e = getDateValidator({
-                                        required: true,
-                                        min: startdatoMinMax.from,
-                                        max: startdatoMinMax.to,
-                                        onlyWeekdays: true,
-                                    })(value);
-                                    return e
-                                        ? {
-                                              key: e,
-                                              values: {
-                                                  min: dateFormatter.compact(startdatoMinMax.from),
-                                                  max: dateFormatter.compact(startdatoMinMax.to),
-                                              },
-                                          }
-                                        : undefined;
-                                }}
+                            <FormikYesOrNoQuestion
+                                name="erVedtaksbrevSendt"
+                                legend="Er vedtaksbrev om deltakelse i ungdomsprgrammet sendt fra gosys?"
+                                validate={getYesOrNoValidator()}
                             />
-                            <FormikConfirmationCheckbox
-                                label={<BodyShort>Bekreft deltakelse</BodyShort>}
-                                name="bekreftRegistrering"
-                                validate={getCheckedValidator()}
-                            />
+                            {erVedtaksbrevSendt === YesOrNo.NO && (
+                                <Alert variant="warning">
+                                    Deltaker må ha et vedtak om at de er med i ungdomsprogrammet før vi kan behandle en
+                                    søknad om ungdomsprogramytelse.
+                                </Alert>
+                            )}
 
-                            <HStack gap="2">
-                                <Button
-                                    type="submit"
-                                    variant="primary"
-                                    loading={isPending}
-                                    iconPosition="right"
-                                    icon={<PaperplaneIcon aria-hidden />}>
-                                    Registrer
-                                </Button>
-                                <Button type="button" variant="tertiary" onClick={onCancel}>
-                                    Avbryt
-                                </Button>
-                            </HStack>
+                            {erVedtaksbrevSendt === YesOrNo.YES && (
+                                <>
+                                    <FormikDatepicker
+                                        name="startDato"
+                                        label="Når starter deltakeren i ungdomsprogrammet?"
+                                        disableWeekends={true}
+                                        description={
+                                            <>Tidligste startdato er {dateFormatter.compact(startdatoMinMax.from)}</>
+                                        }
+                                        minDate={startdatoMinMax.from}
+                                        maxDate={startdatoMinMax.to}
+                                        defaultMonth={dayjs.max([dayjs(startdatoMinMax.from), dayjs()]).toDate()}
+                                        validate={(value) => {
+                                            const e = getDateValidator({
+                                                required: true,
+                                                min: startdatoMinMax.from,
+                                                max: startdatoMinMax.to,
+                                                onlyWeekdays: true,
+                                            })(value);
+                                            return e
+                                                ? {
+                                                      key: e,
+                                                      values: {
+                                                          min: dateFormatter.compact(startdatoMinMax.from),
+                                                          max: dateFormatter.compact(startdatoMinMax.to),
+                                                      },
+                                                  }
+                                                : undefined;
+                                        }}
+                                    />
+                                    <FormikConfirmationCheckbox
+                                        label={<BodyShort>Bekreft deltakelse</BodyShort>}
+                                        name="bekreftRegistrering"
+                                        validate={getCheckedValidator()}
+                                    />
+
+                                    <HStack gap="2">
+                                        <Button
+                                            type="submit"
+                                            variant="primary"
+                                            loading={isPending}
+                                            iconPosition="right"
+                                            icon={<PaperplaneIcon aria-hidden />}>
+                                            Registrer
+                                        </Button>
+                                        <Button type="button" variant="tertiary" onClick={onCancel}>
+                                            Avbryt
+                                        </Button>
+                                    </HStack>
+                                </>
+                            )}
                             {error && error.type === ApiErrorType.NetworkError && error.originalError ? (
                                 <ApiErrorAlert error={error} />
                             ) : null}

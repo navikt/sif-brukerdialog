@@ -14,6 +14,7 @@ test('Søk opp og legg til ny deltaker', async ({ page }) => {
     await expect(page.getByText('Ikke registrert som deltaker')).toBeVisible();
 
     await page.getByText('Registrer som ny deltaker').click();
+    await page.getByRole('radio', { name: 'Ja' }).check();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByRole('button', { name: 'torsdag 29' }).click();
     await page.locator('label').filter({ hasText: 'Bekreft deltakelse' }).click();
