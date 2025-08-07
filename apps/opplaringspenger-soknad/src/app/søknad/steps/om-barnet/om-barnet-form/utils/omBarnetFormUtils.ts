@@ -68,12 +68,12 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetFormSøknadsdata | undefined => {
     const søknadenGjelderAnnetBarn =
-        values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue ||
-        !values.barnetSøknadenGjelder ||
-        values.barnetSøknadenGjelder === '';
+        values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue || !values.barnetSøknadenGjelder;
+
     const registrertBarn = søknadenGjelderAnnetBarn
         ? undefined
         : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);
+
     if (registrertBarn) {
         return {
             type: 'registrerteBarn',
