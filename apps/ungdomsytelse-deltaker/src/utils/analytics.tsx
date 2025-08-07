@@ -40,7 +40,10 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const registerAnalytics = () => {
+export const registerAnalytics = (websiteId?: string) => {
+    if (!websiteId) {
+        return;
+    }
     return (
         <Helmet>
             <script
@@ -48,7 +51,7 @@ export const registerAnalytics = () => {
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
-                data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
+                data-website-id={websiteId}></script>
         </Helmet>
     );
 };

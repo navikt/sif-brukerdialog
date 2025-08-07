@@ -22,6 +22,7 @@
         "PUBLIC_PATH": "/ungdomsprogrammet/ytelsen",
         "NPM_CONFIG_CACHE": "/tmp",
 
+        "SIF_PUBLIC_UMAMI_NETTSIDE_ID": "d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c",
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
         "SIF_PUBLIC_USE_AMPLITUDE": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
