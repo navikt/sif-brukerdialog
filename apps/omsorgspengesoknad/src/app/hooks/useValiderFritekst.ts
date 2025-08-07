@@ -12,7 +12,7 @@ import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
 
-    const { isPending, isError, error } = useQuery({
+    const { isPending, isError, error, isEnabled } = useQuery({
         queryKey: [...sifCommonQueryKeys.validerFritekst, fritekst],
         queryFn: () => validerFritekst({ verdi: fritekst! }),
         enabled: !!fritekst && fritekst.trim().length > 0,
@@ -23,6 +23,9 @@ export const useValiderFritekst = (fritekst?: string) => {
     });
 
     useEffect(() => {
+        if (!isEnabled) {
+            return;
+        }
         if (isError) {
             try {
                 const handledError = handleApiError(error);
@@ -40,10 +43,10 @@ export const useValiderFritekst = (fritekst?: string) => {
         } else {
             setInvalidParameters(undefined);
         }
-    }, [isError, error]);
+    }, [isError, error, isEnabled]);
 
     return {
-        isPending: isPending,
+        isPending: isEnabled && isPending,
         invalidParameters,
     };
 };
