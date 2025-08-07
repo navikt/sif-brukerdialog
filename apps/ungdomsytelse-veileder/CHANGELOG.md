@@ -13,6 +13,7 @@
     - @navikt/sif-common-formik-ds@2.4.23
     - @navikt/sif-common-ui@0.10.4
     - @navikt/sif-validation@1.0.3
+- Legge til spørsmål om vedtaksbrev fra gosys og endre noen tekster
 
 ## 0.5.33
 

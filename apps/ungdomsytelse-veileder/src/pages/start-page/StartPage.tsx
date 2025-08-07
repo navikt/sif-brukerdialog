@@ -41,7 +41,7 @@ const StartPage = () => {
                                     Deltakerregistrering - ungdomsprogrammet
                                 </Heading>
                                 <BodyLong size="large">
-                                    Her registrerer du deltakerne i ungdoms&shy;programmet, slik at de får
+                                    Her registrerer du at deltakere er med i ungdoms&shy;programmet, slik at de får
                                     ungdoms&shy;program&shy;ytelsen til riktig tid.
                                 </BodyLong>
                             </VStack>
