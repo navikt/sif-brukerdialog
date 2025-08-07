@@ -8,7 +8,7 @@ import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 
 export const omBarnetFormDefaultValues: OmBarnetFormValues = {
-    barnetSøknadenGjelder: 'undefined',
+    barnetSøknadenGjelder: undefined,
     barnetsFødselsnummer: '',
     barnetsNavn: '',
     barnetsFødselsdato: '',
@@ -67,7 +67,10 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetFormSøknadsdata | undefined => {
-    const søknadenGjelderAnnetBarn = values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue;
+    const søknadenGjelderAnnetBarn =
+        values.barnetSøknadenGjelder === VelgBarn_AnnetBarnValue ||
+        !values.barnetSøknadenGjelder ||
+        values.barnetSøknadenGjelder === '';
     const registrertBarn = søknadenGjelderAnnetBarn
         ? undefined
         : registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder);
