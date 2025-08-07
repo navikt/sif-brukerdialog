@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/opplaringspenger-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -39,14 +39,14 @@
         "lodash": "4.17.21",
         "mustache-express": "1.3.2",
         "object-hash": "3.0.0",
-        "openid-client": "6.6.2",
+        "openid-client": "6.6.3",
         "react": "19.1.1",
         "react-dom": "19.1.1",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
         "react-router-dom": "7.7.1",
         "uuid": "11.1.0",
-        "zod": "4.0.14"
+        "zod": "4.0.15"
     },
     "devDependencies": {
         "@playwright/test": "1.54.2",

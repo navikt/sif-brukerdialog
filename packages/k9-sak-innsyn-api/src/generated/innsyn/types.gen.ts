@@ -465,8 +465,8 @@ export type InnsendelserISakDto = {
 
 export type Innsending = {
     versjon?: string;
-    mottattDato?: string;
     søker?: Søker;
+    mottattDato?: string;
     søknadId?: string;
 };
 

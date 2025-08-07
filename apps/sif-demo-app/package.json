@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.29",
+    "version": "0.4.30",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -32,7 +32,7 @@
         "react": "19.1.1",
         "react-dom": "19.1.1",
         "react-hook-form": "7.62.0",
-        "zod": "4.0.14"
+        "zod": "4.0.15"
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.3.1",
@@ -47,7 +47,7 @@
         "@vitejs/plugin-react": "4.7.0",
         "compression": "1.8.1",
         "eslint": "9.32.0",
-        "eslint-plugin-prettier": "5.5.3",
+        "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "express": "4.21.2",

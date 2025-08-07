@@ -1,7 +1,7 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.11.13",
+    "version": "0.11.14",
     "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "8.39.0",
@@ -9,7 +9,7 @@
         "eslint": "9.32.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-jsx-a11y": "6.10.2",
-        "eslint-plugin-prettier": "5.5.3",
+        "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "5.2.0",
         "eslint-plugin-storybook": "9.1.1",
