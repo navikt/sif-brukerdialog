@@ -3,6 +3,7 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
 import { isApiAxiosError } from '@navikt/sif-common-query';
@@ -11,6 +12,7 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useValiderFritekst } from '../../../hooks/useValiderFritekst';
 import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
@@ -25,8 +27,6 @@ import ApiDataErrorPage from './parts/ApiDataErrorPage';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
-import { useValiderFritekst } from '../../../hooks/useValiderFritekst';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -61,7 +61,6 @@ const OppsummeringStep = () => {
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
-
     // Sjekk om det er feil på parametre som er sendt til API-et i feilmeldingen fra backend
     const invalidParameters =
         sendSøknadError && isApiAxiosError(sendSøknadError)
@@ -85,7 +84,7 @@ const OppsummeringStep = () => {
 
     const {
         validateFritekst,
-        isPending: fritekstIsPending,
+        isPending: validerFritekstIsPending,
         invalidParameters: fritekstInvalidParameters,
     } = useValiderFritekst();
 
@@ -102,7 +101,7 @@ const OppsummeringStep = () => {
 
     return (
         <SøknadStep stepId={StepId.OPPSUMMERING}>
-            {fritekstIsPending ? (
+            {validerFritekstIsPending ? (
                 <LoadingSpinner size="3xlarge" style="block" />
             ) : (
                 <VStack gap="8">
@@ -125,7 +124,7 @@ const OppsummeringStep = () => {
                                         submitDisabled={
                                             isSubmitting ||
                                             hasInvalidSteps ||
-                                            fritekstIsPending ||
+                                            validerFritekstIsPending ||
                                             fritekstInvalidParameters !== undefined
                                         }
                                         includeButtons={fritekstInvalidParameters === undefined}
