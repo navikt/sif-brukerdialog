@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.10.3
+
+### Patch Changes
+
+- Fiks feil som kom i søknaden når bruker ikke har registrerte barn. Dette medførte til undefined feil ved uthenting av søknadsdata
+
 ## 4.10.2
 
 ### Patch Changes
