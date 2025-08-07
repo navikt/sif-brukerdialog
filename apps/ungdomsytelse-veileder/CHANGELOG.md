@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.5.34
+
+### Patch Changes
+
+- Legge til spørsmål om vedtaksbrev fra gosys og endre noen tekster
+
 ## 0.5.33
 
 ### Patch Changes
