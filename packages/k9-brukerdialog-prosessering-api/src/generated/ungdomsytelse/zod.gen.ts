@@ -8,7 +8,7 @@ export const zProblemDetail = z.object({
     status: z.optional(z.int()),
     detail: z.optional(z.string()),
     instance: z.optional(z.url()),
-    properties: z.optional(z.object({})),
+    properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
 export const zUngdomsytelsesøknad = z.object({
@@ -119,7 +119,7 @@ export const zGetMellomlagringData = z.object({
 export const zGetMellomlagringResponse = z.string();
 
 export const zCreateMellomlagringData = z.object({
-    body: z.object({}),
+    body: z.record(z.string(), z.unknown()),
     path: z.object({
         ytelse: z.string(),
     }),
@@ -127,7 +127,7 @@ export const zCreateMellomlagringData = z.object({
 });
 
 export const zUpdateMellomlagringData = z.object({
-    body: z.object({}),
+    body: z.record(z.string(), z.unknown()),
     path: z.object({
         ytelse: z.string(),
     }),
