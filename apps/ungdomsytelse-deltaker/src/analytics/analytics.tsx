@@ -1,6 +1,6 @@
+import { Helmet } from 'react-helmet';
 import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
-import { Helmet } from 'react-helmet';
 
 const MAX_AWAIT_TIME = 500;
 
@@ -22,8 +22,6 @@ export enum ApplikasjonHendelse {
 
 export enum ApiError {
     'oppstartsinfo' = 'oppstartsinfo',
-    'søkerinfo' = 'søkerinfo',
-    'deltakelsePeriode' = 'deltakelsePeriode',
     'barn' = 'barn',
     'kontonummer' = 'kontonummer',
 }
@@ -82,20 +80,20 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
 
     async function logSkjemaStartet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaStartet, {
-            skjemanavn,
+            skjema: skjemanavn,
         });
     }
 
     async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
         return logEvent(AnalyticsEvents.skjemaSendt, {
-            skjemanavn,
+            skjema: skjemanavn,
             ...metadata,
         });
     }
 
     async function logSkjemaFeilet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaFeilet, {
-            skjemanavn,
+            skjema: skjemanavn,
         });
     }
 

@@ -4,12 +4,6 @@ import dayjs from 'dayjs';
 import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
-export enum DeltakerSkjemaType {
-    SØKNAD = 'ungdomsytelse_søknad',
-    OPPGAVEBEKREFTELSE = 'ungdomsytelse_oppgavebekreftelse',
-    INNTEKT_RAPPORTERT = 'inntektsrapportering',
-}
-
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;
     harStartet: boolean;
