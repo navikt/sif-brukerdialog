@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
@@ -71,11 +71,6 @@ const DeltakerInfoLoader = () => {
 
     const aktivPathBasertPåDeltaker = deltakerHarSøkt ? AppRoutes.innsyn : AppRoutes.soknad;
 
-    const OppgaveRedirect = () => {
-        const { oppgaveReferanse } = useParams<{ oppgaveReferanse: string }>();
-        return <Navigate to={`${AppRoutes.innsyn}/oppgave/${oppgaveReferanse}`} replace />;
-    };
-
     return (
         <DeltakerContextProvider
             søker={søker.data}
@@ -85,8 +80,6 @@ const DeltakerInfoLoader = () => {
                 <Routes>
                     <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
                     <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
-                    {/* Fallback for tidligere routes */}
-                    <Route path="oppgave/:oppgaveReferanse" element={<OppgaveRedirect />} />
                     {/* Fallback for andre routes */}
                     <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
                 </Routes>

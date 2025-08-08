@@ -113,7 +113,7 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
 
 ## Analytics-system
 
-Appen bruker NAV Dekoratørens analytics-system via `@navikt/nav-dekoratoren-moduler`. Analytics kan konfigureres til å logge kun til konsoll for utvikling ved å sette `logToConsoleOnly: true`.
+Appen bruker NAV Dekoratørens analytics-system via `@navikt/nav-dekoratoren-moduler`.
 
 ## Konfigurerte hendelsestyper
 

@@ -1,5 +1,12 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 1.40.3
 
 ### Patch Changes

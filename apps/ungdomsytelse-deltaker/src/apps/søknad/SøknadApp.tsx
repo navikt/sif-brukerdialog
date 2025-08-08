@@ -27,7 +27,6 @@ const SøknadApp = () => {
     useEffect(() => {
         if (deltakelsePeriode.søktTidspunkt !== undefined && !pathname.includes('kvittering')) {
             navigate(AppRoutes.innsyn);
-            return;
         }
     }, [søktTidspunkt, pathname]);
 
