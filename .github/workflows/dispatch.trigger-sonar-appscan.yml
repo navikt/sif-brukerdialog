@@ -1,0 +1,23 @@
+name: Trigger sonar app scan
+run-name: Sonar scan ${{ inputs.app-name }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            app-name:
+                description: Choose application
+                type: choice
+                options:
+                    - ungdomsytelse-deltaker
+                required: true
+
+jobs:
+    trigger-scan:
+        name: Trigger sonar scan on ${{ inputs.app-name }}
+        uses: ./.github/workflows/.sonarcloud.app-scan.yml
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app: '${{ inputs.app-name }}'
+            working-directory: 'apps/${{ inputs.app-name }}'

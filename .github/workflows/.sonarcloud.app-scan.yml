@@ -1,0 +1,30 @@
+name: SonarCloud app scan
+
+on:
+    workflow_call:
+        inputs:
+            app:
+                description: 'App-mappen under ./apps'
+                required: true
+                type: string
+            working-directory:
+                type: string
+                required: true
+
+jobs:
+    scan:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: SonarCloud scan
+              uses: SonarSource/sonarqube-scan-action@v2
+              with:
+                  args: >
+                      -Dproject.settings=apps/${{ inputs.app }}/sonar-project.properties
+                      -Dsonar.projectBaseDir=apps/${{ inputs.app }}
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
