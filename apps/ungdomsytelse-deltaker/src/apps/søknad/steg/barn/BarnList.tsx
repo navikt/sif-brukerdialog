@@ -8,8 +8,8 @@ interface Props {
 
 const BarnList = ({ barn }: Props) => (
     <List>
-        {barn.map((b, index) => (
-            <List.Item key={index}>{formatName(b)}</List.Item>
+        {barn.map((b) => (
+            <List.Item key={b.aktørId}>{formatName(b)}</List.Item>
         ))}
     </List>
 );

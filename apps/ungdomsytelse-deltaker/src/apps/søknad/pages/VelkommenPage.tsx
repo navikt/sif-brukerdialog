@@ -21,7 +21,6 @@ const VelkommenPage = () => {
         evt.preventDefault();
         if (!infoStemmer) {
             setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
-            return;
         } else {
             startSøknad(infoStemmer);
         }

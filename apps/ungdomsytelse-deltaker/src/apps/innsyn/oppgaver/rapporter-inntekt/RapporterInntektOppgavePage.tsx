@@ -1,7 +1,8 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
-import RapporterInntektOppgave from './parts/RapporterInntektOppgave';
+import { RapporterInntektOppgave } from '../../../../types/Oppgave';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
+import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 interface Props {
     deltakerNavn: string;
@@ -14,7 +15,7 @@ const RapporterInntektOppgavePage = ({ oppgave, deltakerNavn }: Props) => {
             documentTitle={getDokumentTittel(
                 `Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)}`,
             )}>
-            <RapporterInntektOppgave oppgave={oppgave} deltakerNavn={deltakerNavn} />
+            <RapporterInntektOppgavePart oppgave={oppgave} deltakerNavn={deltakerNavn} />
         </DefaultPageLayout>
     );
 };

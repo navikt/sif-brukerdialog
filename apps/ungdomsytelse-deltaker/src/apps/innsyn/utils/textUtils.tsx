@@ -78,7 +78,7 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 ),
             };
         default:
-            throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';
+            throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }
 };
 
