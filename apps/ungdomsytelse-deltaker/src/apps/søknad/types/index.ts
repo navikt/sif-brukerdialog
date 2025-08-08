@@ -40,7 +40,7 @@ export interface SøknadContextType {
     søknadSendt: boolean;
     kontonummerInfo: KontonummerInfo;
     barn: RegistrertBarn[];
-    setSpørsmålSvar: (key: Spørsmål, value: unknown | undefined) => void;
+    setSpørsmålSvar: (key: Spørsmål, value: unknown) => void;
     setSøknadSendt: () => void;
     startSøknad: (bekrefter: true) => void;
     avbrytOgSlett: () => void;

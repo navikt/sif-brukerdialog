@@ -1,14 +1,10 @@
 import { usePrevious } from '@navikt/sif-common-hooks';
+import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import LøstOppgavebekreftelse from './parts/LøstOppgavebekreftelse';
 import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';
-import { BekreftelseOppgave } from '../../../../types/Oppgave';
-import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgavebekreftelseTekster } from './types';
 
-export interface OppgavebekreftelseTekster {
-    sidetittel: string;
-    oppgavetittel: React.ReactNode;
-    harTilbakemeldingSpørsmål: string;
-}
 interface Props {
     tekster: OppgavebekreftelseTekster;
     oppsummering: React.ReactNode;

@@ -20,7 +20,7 @@ interface Props {
     oppgave: RapporterInntektOppgave;
 }
 
-const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
+const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave }: Props) => {
     const [visKvittering, setVisKvittering] = useState<boolean>(false);
     const navigate = useNavigate();
 
@@ -124,4 +124,4 @@ const RapporterInntektOppgave = ({ deltakerNavn, oppgave }: Props) => {
     );
 };
 
-export default RapporterInntektOppgave;
+export default RapporterInntektOppgavePart;

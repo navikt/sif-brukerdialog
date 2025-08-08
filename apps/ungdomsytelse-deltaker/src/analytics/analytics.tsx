@@ -1,6 +1,6 @@
+import { Helmet } from 'react-helmet';
 import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
-import { Helmet } from 'react-helmet';
 
 const MAX_AWAIT_TIME = 500;
 
@@ -22,15 +22,12 @@ export enum ApplikasjonHendelse {
 
 export enum ApiError {
     'oppstartsinfo' = 'oppstartsinfo',
-    'søkerinfo' = 'søkerinfo',
-    'deltakelsePeriode' = 'deltakelsePeriode',
     'barn' = 'barn',
     'kontonummer' = 'kontonummer',
 }
 
 interface Props {
     applicationKey: string;
-    logToConsoleOnly?: boolean;
     isActive?: boolean;
     children: React.ReactNode;
     maxAwaitTime?: number;
@@ -40,7 +37,10 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const registerAnalytics = () => {
+export const registerAnalytics = (websiteId?: string) => {
+    if (!websiteId) {
+        return;
+    }
     return (
         <Helmet>
             <script
@@ -48,13 +48,13 @@ export const registerAnalytics = () => {
                 src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
-                data-website-id="d2348a9e-b7dc-42a1-ad51-02a6e2eadc5c"></script>
+                data-website-id={websiteId}></script>
         </Helmet>
     );
 };
 
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME } = props;
 
     async function logEvent(eventName: string, eventProperties?: EventProperties) {
         const logger = getAnalyticsInstance('dekoratoren');
@@ -62,40 +62,31 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, applikasjon: applicationKey };
-                if (logToConsoleOnly) {
-                    // eslint-disable-next-line no-console
-                    console.log({ eventName, eventProperties: eventProps });
+                logger(eventName, eventProps).catch(() => {
                     resolve(true);
-                } else {
-                    logger(eventName, eventProps).catch(() => {
-                        resolve(true);
-                    });
-                }
+                });
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
         return Promise.resolve();
     }
 
-    async function logSoknadStartet(skjemanavn: string) {
+    async function logSkjemaStartet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaStartet, {
-            skjemanavn,
-            skjemaId: applicationKey,
+            skjema: skjemanavn,
         });
     }
 
-    async function logSoknadSent(skjemanavn: string, locale?: string) {
+    async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
         return logEvent(AnalyticsEvents.skjemaSendt, {
-            skjemanavn,
-            skjemaId: applicationKey,
-            locale,
+            skjema: skjemanavn,
+            ...metadata,
         });
     }
 
-    async function logSoknadFailed(skjemanavn: string) {
+    async function logSkjemaFeilet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaFeilet, {
-            skjemanavn,
-            skjemaId: applicationKey,
+            skjema: skjemanavn,
         });
     }
 
@@ -114,14 +105,13 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
     }
 
     async function logInfo(details: EventProperties) {
-        return logEvent(AnalyticsEvents.applikasjonInfo, details);
+        return logEvent(AnalyticsEvents.applikasjonInfo, { ...details });
     }
 
     return {
-        logEvent,
-        logSoknadStartet,
-        logSoknadSent,
-        logSoknadFailed,
+        logSkjemaStartet,
+        logSkjemaFullført,
+        logSkjemaFeilet,
         logHendelse,
         logInfo,
         logApiError,

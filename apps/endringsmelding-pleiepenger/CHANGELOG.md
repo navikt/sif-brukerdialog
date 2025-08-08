@@ -1,5 +1,12 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.38.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 2.38.4
 
 ### Patch Changes

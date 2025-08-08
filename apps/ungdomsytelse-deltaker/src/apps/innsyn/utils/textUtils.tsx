@@ -1,8 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { AppIntlShape } from '../../../i18n';
-import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/Oppgavebekreftelse';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppIntlShape } from '../../../i18n';
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
@@ -10,6 +9,7 @@ import {
     OppgaveBase,
     RapporterInntektOppgave,
 } from '../../../types/Oppgave';
+import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
 
 export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
@@ -62,12 +62,6 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
 export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShape): OppgavebekreftelseTekster => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return {
-                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
-                oppgavetittel: getOppgaveTittel(oppgave, intl),
-                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
-            };
-
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return {
                 sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
@@ -84,7 +78,7 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 ),
             };
         default:
-            throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';
+            throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }
 };
 
@@ -140,7 +134,7 @@ export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | unde
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return getEndretSluttdatoOppsummering(oppgave);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return 'TODO';
+            return 'Oppsummering ikke laget';
         case Oppgavetype.RAPPORTER_INNTEKT:
             return getRapporterInntektOppsummering(oppgave);
         default:

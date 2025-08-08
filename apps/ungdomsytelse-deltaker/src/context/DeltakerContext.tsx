@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useMemo } from 'react';
 import { Søker } from '@navikt/sif-common-api';
 import { DeltakelsePeriode } from '../types/DeltakelsePeriode';
 
@@ -20,9 +20,10 @@ export const DeltakerContextProvider = ({
     deltakelsePeriode,
     refetchDeltakelser,
 }: DeltakerContextProviderProps) => {
-    return (
-        <DeltakerContext.Provider value={{ søker, deltakelsePeriode, refetchDeltakelser }}>
-            {children}
-        </DeltakerContext.Provider>
+    const value = useMemo(
+        () => ({ søker, deltakelsePeriode, refetchDeltakelser }),
+        [søker, deltakelsePeriode, refetchDeltakelser],
     );
+
+    return <DeltakerContext.Provider value={value}>{children}</DeltakerContext.Provider>;
 };

@@ -4,12 +4,6 @@ import dayjs from 'dayjs';
 import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
-export enum LogMetaInfoType {
-    SØKNAD_SENDT = 'søknad sendt',
-    OPPGAVEBEKREFTELSE_SENDT = 'oppgavebekreftelse sendt',
-    INNTEKT_RAPPORTERT = 'inntekt rapportert',
-}
-
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;
     harStartet: boolean;

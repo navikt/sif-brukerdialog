@@ -11,7 +11,6 @@ export const getStegFraPath = (path: string): Steg | undefined => {
     if (steg) {
         return steg;
     }
-    return;
 };
 
 export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: KontonummerInfo): Steg[] => {

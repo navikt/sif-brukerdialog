@@ -1,16 +1,15 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveBase } from '../../../../../types/Oppgave';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
 import OppgaveStatusTag from '../../oppgave-status-tag/OppgaveStatusTag';
-import { OppgavebekreftelseTekster } from '../Oppgavebekreftelse';
+import { OppgavebekreftelseTekster } from '../types';
 import OppgaveUttalelse from './OppgaveUttalelse';
-import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { OppgaveBase } from '../../../../../types/Oppgave';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
-    deltakerNavn: string;
     bekreftelse?: BekreftelseDto;
     oppsummering: React.ReactNode;
     oppgave: OppgaveBase;

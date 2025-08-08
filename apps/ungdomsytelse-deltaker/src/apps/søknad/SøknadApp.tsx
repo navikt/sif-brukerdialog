@@ -1,6 +1,8 @@
 import { Theme } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { ApiError, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
@@ -11,7 +13,6 @@ import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 const SøknadApp = () => {
     const { søker, deltakelsePeriode } = useDeltakerContext();
@@ -20,12 +21,12 @@ const SøknadApp = () => {
     const kontonummer = useKontonummer();
     const barn = useBarn();
     const { text } = useAppIntl();
+    const { logApiError } = useAnalyticsInstance();
 
     const { søktTidspunkt } = deltakelsePeriode;
     useEffect(() => {
         if (deltakelsePeriode.søktTidspunkt !== undefined && !pathname.includes('kvittering')) {
             navigate(AppRoutes.innsyn);
-            return;
         }
     }, [søktTidspunkt, pathname]);
 
@@ -34,6 +35,12 @@ const SøknadApp = () => {
     }
 
     if (barn.isError || kontonummer.isError) {
+        if (barn.isError) {
+            logApiError(ApiError.barn, { error: barn.error });
+        }
+        if (kontonummer.isError) {
+            logApiError(ApiError.kontonummer, { error: kontonummer.error });
+        }
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 

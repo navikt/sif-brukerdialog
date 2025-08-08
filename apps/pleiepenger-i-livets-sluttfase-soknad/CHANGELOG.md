@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.21.3
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 2.21.2
 
 ### Patch Changes

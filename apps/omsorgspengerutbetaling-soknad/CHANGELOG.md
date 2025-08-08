@@ -1,5 +1,12 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.25.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 1.25.3
 
 ### Patch Changes

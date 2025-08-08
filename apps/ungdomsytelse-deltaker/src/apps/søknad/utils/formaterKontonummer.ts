@@ -1,5 +1,5 @@
 const inneholderKunTall = (value: string): boolean => {
-    return /^[0-9]+$/.test(value);
+    return /^\d+$/.test(value);
 };
 
 export const formaterKontonummer = (value?: string): string => {

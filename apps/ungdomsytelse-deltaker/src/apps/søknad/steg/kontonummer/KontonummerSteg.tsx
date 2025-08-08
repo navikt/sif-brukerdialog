@@ -44,46 +44,44 @@ const KontonummerSteg = () => {
                         <AppText id="kontonummerSteg.beskrivelse" />
                     </GuidePanel>
                     {kontonummerInfo.harKontonummer ? (
-                        <>
-                            <VStack gap="4">
-                                <RadioGroup
-                                    legend={text('kontonummerSteg.kontonummer.spm', {
-                                        kontonummer: kontonummerInfo.formatertKontonummer,
-                                    })}
-                                    error={error}
-                                    value={infoStemmer}
-                                    onChange={(value: YesOrNo) => {
-                                        setError(undefined);
-                                        setSpørsmålSvar(Spørsmål.KONTONUMMER, value);
-                                    }}>
-                                    <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
-                                        <AppText id="kontonummerSteg.kontonummer.ja.label" />
-                                    </Radio>
-                                    <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
-                                        <AppText id="kontonummerSteg.kontonummer.nei.label" />
-                                    </Radio>
-                                </RadioGroup>
-                                <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
-                                    <Alert variant="info">
-                                        <BodyShort spacing>
-                                            <AppText
-                                                id="kontonummerSteg.kontonummer.stemmerIkke.info"
-                                                values={{
-                                                    Lenke: (children) => (
-                                                        <ExternalLink href={getLenker().personopplysninger}>
-                                                            {children}
-                                                        </ExternalLink>
-                                                    ),
-                                                }}
-                                            />
-                                        </BodyShort>
-                                        <BodyShort>
-                                            <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
-                                        </BodyShort>
-                                    </Alert>
-                                </AriaLiveRegion>
-                            </VStack>
-                        </>
+                        <VStack gap="4">
+                            <RadioGroup
+                                legend={text('kontonummerSteg.kontonummer.spm', {
+                                    kontonummer: kontonummerInfo.formatertKontonummer,
+                                })}
+                                error={error}
+                                value={infoStemmer}
+                                onChange={(value: YesOrNo) => {
+                                    setError(undefined);
+                                    setSpørsmålSvar(Spørsmål.KONTONUMMER, value);
+                                }}>
+                                <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
+                                    <AppText id="kontonummerSteg.kontonummer.ja.label" />
+                                </Radio>
+                                <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
+                                    <AppText id="kontonummerSteg.kontonummer.nei.label" />
+                                </Radio>
+                            </RadioGroup>
+                            <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
+                                <Alert variant="info">
+                                    <BodyShort spacing>
+                                        <AppText
+                                            id="kontonummerSteg.kontonummer.stemmerIkke.info"
+                                            values={{
+                                                Lenke: (children) => (
+                                                    <ExternalLink href={getLenker().personopplysninger}>
+                                                        {children}
+                                                    </ExternalLink>
+                                                ),
+                                            }}
+                                        />
+                                    </BodyShort>
+                                    <BodyShort>
+                                        <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
+                                    </BodyShort>
+                                </Alert>
+                            </AriaLiveRegion>
+                        </VStack>
                     ) : (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>

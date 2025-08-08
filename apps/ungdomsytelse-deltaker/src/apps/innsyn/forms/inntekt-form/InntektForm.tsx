@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-binary-expression */
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
@@ -9,7 +8,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getCheckedValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
 import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
@@ -44,7 +43,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
         mutateAsync: rapporterMutateAsync,
     } = useRapporterInntekt();
     const { error: lukkError, isPending: lukkPending, mutateAsync: lukkMutateAsync } = useMarkerOppgaveSomLukket();
-    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput, ConfirmationCheckbox } = inntektFormComponents;
+    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
         const harArbeidstakerOgFrilansInntekt =
@@ -60,7 +59,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                     arbeidstakerOgFrilansInntekt,
                 },
                 oppgaveReferanse,
-                harBekreftetInntekt: true, // TODO - evt. beholde eller gjerne validering i backend // values.bekrefterInntekt === true,
+                harBekreftetInntekt: true,
             };
             rapporterMutateAsync(data).then(() => onSuccess(data));
         } else {
@@ -111,9 +110,11 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                                     Mottar du andre ytelser fra Nav skal du ikke ta med dette.
                                                 </BodyLong>
                                                 <ReadMore header="Hvor finner jeg ut hva jeg tjente før skatt?">
-                                                    TODO
+                                                    Info kommer
                                                 </ReadMore>
-                                                <ReadMore header="Hva betyr arbeidstaker og frilanse?">TODO</ReadMore>
+                                                <ReadMore header="Hva betyr arbeidstaker og frilanse?">
+                                                    Info kommer
+                                                </ReadMore>
                                             </VStack>
                                         }
                                         validate={getNumberValidator({
@@ -124,14 +125,6 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                         })}
                                     />
                                 ) : null}
-                                {1 + 1 === 3 && (
-                                    // TODO
-                                    <ConfirmationCheckbox
-                                        name={InntektFormFields.bekrefterInntekt}
-                                        label="Jeg bekrefter at opplysningene er korrekte"
-                                        validate={getCheckedValidator()}
-                                    />
-                                )}
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}
                         </VStack>

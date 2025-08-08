@@ -25,15 +25,8 @@ const getLenkerBokmål = (): Lenker => ({
     dokumentarkiv: getRequiredEnv(AppEnvKey.SIF_PUBLIC_URL_DOKUMENTARKIV),
 });
 
-const getLenker = (locale: string = 'nb'): Lenker => {
-    const bokmål = getLenkerBokmål();
-    switch (locale) {
-        case 'nn':
-            return bokmål;
-
-        default:
-            return bokmål;
-    }
+const getLenker = (): Lenker => {
+    return getLenkerBokmål();
 };
 
 export default getLenker;

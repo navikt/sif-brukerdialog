@@ -12,6 +12,14 @@ const DevFooter = () => {
 
     const [scenarioType, setScenarioType] = useState<Scenario>(initialScenario);
 
+    useEffectOnce(() => {
+        document.addEventListener('keydown', (e) => {
+            if (e.shiftKey && e.ctrlKey && e.code === 'KeyB') {
+                setShowModal(!showModal);
+            }
+        });
+    });
+
     if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
         return null;
     }
@@ -23,13 +31,6 @@ const DevFooter = () => {
         }
     };
 
-    useEffectOnce(() => {
-        document.addEventListener('keydown', (e) => {
-            if (e.shiftKey && e.ctrlKey && e.code === 'KeyB') {
-                setShowModal(!showModal);
-            }
-        });
-    });
     return (
         <>
             <div className="settingsWrapper" style={{ position: 'fixed', bottom: '1rem', right: '1rem', zIndex: 50 }}>
@@ -39,7 +40,7 @@ const DevFooter = () => {
                     variant="secondary"
                     onClick={() => setShowModal(true)}
                     className="bg-white"
-                    icon={<Settings role="presentation" aria-hidden={true} />}>
+                    icon={<Settings aria-hidden={true} />}>
                     {scenarioType.name}
                 </Button>
             </div>

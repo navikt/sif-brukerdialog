@@ -15,6 +15,7 @@ coverage
 index-decorated.html
 .idea
 .sanity
+.scannerwork
 *.code-workspace
 *.zip
 

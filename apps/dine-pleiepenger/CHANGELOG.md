@@ -1,5 +1,12 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.32
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 1.9.31
 
 ### Patch Changes
