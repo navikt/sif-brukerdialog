@@ -76,6 +76,13 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         return Promise.resolve();
     }
 
+    async function logSoknadStartet(skjemanavn: string) {
+        return logEvent(AmplitudeEvents.søknadStartet, {
+            skjemanavn,
+            skjemaId: applicationKey,
+        });
+    }
+
     async function logSoknadSent(skjemanavn: string, locale?: string) {
         return logEvent(AmplitudeEvents.søknadSendt, {
             skjemanavn,
