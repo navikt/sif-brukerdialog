@@ -49,7 +49,6 @@ export enum ApiError {
 interface Props {
     applicationKey: string;
     apiKey: string;
-    logToConsoleOnly?: boolean;
     isActive?: boolean;
     children: React.ReactNode;
     maxAwaitTime?: number;
@@ -60,7 +59,7 @@ type EventProperties = {
 };
 
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, apiKey } = props;
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
         const logger = getAmplitudeInstance('dekoratoren');
@@ -68,26 +67,13 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
-                if (logToConsoleOnly) {
-                    // eslint-disable-next-line no-console
-                    console.log({ eventName, eventProperties: eventProps });
+                logger(eventName, eventProps).catch(() => {
                     resolve(true);
-                } else {
-                    logger(eventName, eventProps).catch(() => {
-                        resolve(true);
-                    });
-                }
+                });
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
         return Promise.resolve();
-    }
-
-    async function logSoknadStartet(skjemanavn: string) {
-        return logEvent(AmplitudeEvents.søknadStartet, {
-            skjemanavn,
-            skjemaId: applicationKey,
-        });
     }
 
     async function logSoknadSent(skjemanavn: string, locale?: string) {

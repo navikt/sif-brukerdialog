@@ -26,7 +26,6 @@ export enum AppHendelse {
 
 interface Props {
     applicationKey: string;
-    logToConsoleOnly?: boolean;
     isActive?: boolean;
     children: React.ReactNode;
     maxAwaitTime?: number;
@@ -62,7 +61,7 @@ export const registerAnalytics = (sporingskode?: string) => {
 };
 
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME } = props;
 
     async function logEvent(eventName: string, eventProperties?: EventProperties) {
         const umamiTracker = (window as any).umami;
@@ -70,18 +69,11 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, applikasjon: applicationKey };
-                if (logToConsoleOnly) {
-                    // eslint-disable-next-line no-console
-                    console.log({ eventName, eventProperties: eventProps });
-                    resolve(true);
-                } else {
-                    umamiTracker.track(eventName, eventProps);
-                    resolve(true);
-                }
+                umamiTracker.track(eventName, eventProps);
+                resolve(true);
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
-        return Promise.resolve();
     }
 
     async function logAppHendelse(hendelse: AppHendelse, details?: EventProperties) {
