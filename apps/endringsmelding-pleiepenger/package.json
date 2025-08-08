@@ -80,7 +80,7 @@
         "storybook-addon-mock": "6.0.1",
         "tailwindcss": "4.1.11",
         "typescript": "5.9.2",
-        "vite": "7.0.6",
+        "vite": "7.1.1",
         "vite-plugin-checker": "0.10.2",
         "vitest": "3.2.4"
     },
