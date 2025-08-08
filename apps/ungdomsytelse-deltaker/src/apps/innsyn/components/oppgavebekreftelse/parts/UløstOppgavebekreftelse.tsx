@@ -5,7 +5,7 @@ import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-proses
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { DeltakerSkjemaId } from '../../../../../types/DeltakerSkjemaId';
 import { BekreftelseOppgave } from '../../../../../types/Oppgave';
-import { useAnalyticsInstance } from '../../../../../utils/analytics';
+import { useAnalyticsInstance } from '../../../../../analytics/analytics';
 import { AppRoutes } from '../../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';

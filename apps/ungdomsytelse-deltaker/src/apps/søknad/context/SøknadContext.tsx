@@ -4,7 +4,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 import { SøkYtelseOppgave } from '../../../types/Oppgave';
-import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../utils/analytics';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
 import { logUtils } from '../../innsyn/utils/logUtils';
 import { MellomlagringDTO } from '../api/mellomlagring/mellomlagring';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';

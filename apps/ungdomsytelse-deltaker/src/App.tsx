@@ -8,7 +8,7 @@ import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
+import { AnalyticsProvider, registerAnalytics } from './analytics/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
