@@ -134,7 +134,7 @@ export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | unde
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return getEndretSluttdatoOppsummering(oppgave);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return 'TODO';
+            return 'Oppsummering ikke laget';
         case Oppgavetype.RAPPORTER_INNTEKT:
             return getRapporterInntektOppsummering(oppgave);
         default:
