@@ -9,9 +9,11 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/test.ungdomsytelse-deltaker.yml
+            - .github/workflows/.sonarcloud.app-scan.yml
             - yarn.lock
 
     workflow_call:
+    workflow_dispatch:
 
 env:
     APP_NAME: 'ungdomsytelse-deltaker'
@@ -80,3 +82,10 @@ jobs:
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-deltaker
+
+    sonar:
+        uses: ./.github/workflows/.sonarcloud.app-scan.yml
+        with:
+            app: ungdomsytelse-deltaker
+            working-directory: 'apps/ungdomsytelse-deltaker'
+        secrets: inherit

@@ -28,9 +28,6 @@ const getLenkerBokmål = (): Lenker => ({
 const getLenker = (locale: string = 'nb'): Lenker => {
     const bokmål = getLenkerBokmål();
     switch (locale) {
-        case 'nn':
-            return bokmål;
-
         default:
             return bokmål;
     }
