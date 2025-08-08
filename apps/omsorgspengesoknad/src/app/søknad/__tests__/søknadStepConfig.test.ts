@@ -3,7 +3,7 @@ import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { includeDeltBostedStep } from '../søknadStepConfig';
-import { RegistrertBarn } from '@navikt/sif-common-api';
+import { RegistrertBarn } from '@navikt/sif-common-query';
 
 const registrertBarn: RegistrertBarn = {
     aktørId: '123',

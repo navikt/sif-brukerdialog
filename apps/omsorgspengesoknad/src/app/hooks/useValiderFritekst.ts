@@ -1,13 +1,13 @@
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import {
     handleApiError,
     InvalidParameterViolation,
     isApiAxiosError,
-    sifCommonQueryKeys,
     validerFritekst,
+    sifCommonQueryKeys,
 } from '@navikt/sif-common-query';
-import { getInvalidParameterViolations } from '../utils/getInvalidParameterViolations';
+import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 
 export const useValiderFritekst = (fritekst?: string) => {
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>(undefined);
@@ -30,7 +30,7 @@ export const useValiderFritekst = (fritekst?: string) => {
             try {
                 const handledError = handleApiError(error);
                 if (isApiAxiosError(handledError)) {
-                    const parameters = getInvalidParameterViolations(handledError.originalError);
+                    const parameters = getInvalidParametersFromAxiosError(handledError.originalError);
                     setInvalidParameters(parameters && parameters.length > 0 ? parameters : undefined);
                 } else {
                     setInvalidParameters(undefined);
