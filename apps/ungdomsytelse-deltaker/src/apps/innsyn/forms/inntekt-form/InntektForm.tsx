@@ -43,7 +43,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
         mutateAsync: rapporterMutateAsync,
     } = useRapporterInntekt();
     const { error: lukkError, isPending: lukkPending, mutateAsync: lukkMutateAsync } = useMarkerOppgaveSomLukket();
-    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput, ConfirmationCheckbox } = inntektFormComponents;
+    const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
         const harArbeidstakerOgFrilansInntekt =
