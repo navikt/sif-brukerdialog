@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.16
+
+### Patch Changes
+
+- Fjerne logToConsole funksjonalitet for analytics.
+
 ## 2.28.15
 
 ### Patch Changes

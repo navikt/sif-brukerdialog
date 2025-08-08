@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.10.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 4.10.3
 
 ### Patch Changes

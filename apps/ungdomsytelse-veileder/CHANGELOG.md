@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.5.35
+
+### Patch Changes
+
+- Fjerne logToConsole funksjonalitet for analytics.
+
 ## 0.5.34
 
 ### Patch Changes

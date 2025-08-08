@@ -1,5 +1,12 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
 ## 1.1.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.7.4
+
+### Patch Changes
+
+- Fjerne logToConsole funksjonalitet for analytics.
+
 ## 0.7.3
 
 ### Patch Changes
