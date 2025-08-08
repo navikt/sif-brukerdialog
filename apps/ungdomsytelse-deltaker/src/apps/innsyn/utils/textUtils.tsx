@@ -78,7 +78,7 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 ),
             };
         default:
-            throw 'getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave';
+            throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }
 };
 
@@ -134,7 +134,7 @@ export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | unde
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return getEndretSluttdatoOppsummering(oppgave);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return 'TODO';
+            return 'Oppsummering ikke laget';
         case Oppgavetype.RAPPORTER_INNTEKT:
             return getRapporterInntektOppsummering(oppgave);
         default:

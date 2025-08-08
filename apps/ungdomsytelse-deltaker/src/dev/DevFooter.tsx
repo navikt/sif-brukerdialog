@@ -40,7 +40,7 @@ const DevFooter = () => {
                     variant="secondary"
                     onClick={() => setShowModal(true)}
                     className="bg-white"
-                    icon={<Settings role="presentation" aria-hidden={true} />}>
+                    icon={<Settings aria-hidden={true} />}>
                     {scenarioType.name}
                 </Button>
             </div>

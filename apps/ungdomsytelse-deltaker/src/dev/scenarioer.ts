@@ -1,5 +1,3 @@
-// import { deltakelserMockStorage } from '../../mock/msw/handlers/mockStorage';
-
 import { ScenarioType } from '../../mock/scenarios/types';
 
 export interface Scenario {
