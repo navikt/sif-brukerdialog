@@ -79,7 +79,7 @@
         "@types/react-dom": "19.1.7",
         "@types/react-helmet": "6.1.11",
         "@typescript-eslint/parser": "8.39.0",
-        "@vitejs/plugin-react": "4.7.0",
+        "@vitejs/plugin-react": "5.0.0",
         "compression": "1.8.1",
         "eslint": "9.32.0",
         "eslint-plugin-prettier": "5.5.4",
