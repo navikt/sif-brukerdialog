@@ -9,6 +9,7 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/test.ungdomsytelse-deltaker.yml
+            - .github/workflows/.sonarcloud.app-scan.yml
             - yarn.lock
 
     workflow_call:
