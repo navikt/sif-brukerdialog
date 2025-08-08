@@ -18,9 +18,9 @@ const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true
 
     return (
         <VStack gap="4">
-            {oppgaver.map((oppgave, index) => (
+            {oppgaver.map((oppgave) => (
                 <OppgaveLinkPanel
-                    key={index}
+                    key={oppgave.oppgaveReferanse}
                     beskrivelse={visBeskrivelse ? getOppgaveInfo(oppgave, intl) : undefined}
                     tittel={getOppgaveTittel(oppgave, intl)}
                     oppgaveStatus={oppgave.status}

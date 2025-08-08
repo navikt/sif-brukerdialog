@@ -15,18 +15,16 @@ const ForsidePageLayout = ({ children, documentTitle, footer }: Props) => {
     }, []);
     useDocumentTitle(documentTitle);
     return (
-        <>
-            <div role="main" aria-label="Hovedinnhold">
-                <PageContentWrapper>
-                    <VStack gap="10">{children}</VStack>
-                </PageContentWrapper>
-                {footer && (
-                    <Box className="bg-[#FFEBC7]" marginBlock={{ sm: '8 0', xs: '3 0' }} paddingBlock={{ sm: '8 0' }}>
-                        <PageContentWrapper>{footer}</PageContentWrapper>
-                    </Box>
-                )}
-            </div>
-        </>
+        <main aria-label="Hovedinnhold">
+            <PageContentWrapper>
+                <VStack gap="10">{children}</VStack>
+            </PageContentWrapper>
+            {footer && (
+                <Box className="bg-[#FFEBC7]" marginBlock={{ sm: '8 0', xs: '3 0' }} paddingBlock={{ sm: '8 0' }}>
+                    <PageContentWrapper>{footer}</PageContentWrapper>
+                </Box>
+            )}
+        </main>
     );
 };
 

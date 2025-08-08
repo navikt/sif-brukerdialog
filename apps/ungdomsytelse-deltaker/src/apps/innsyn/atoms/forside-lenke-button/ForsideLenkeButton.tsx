@@ -15,7 +15,7 @@ const ForsideLenkeButton = () => {
                 navigate(AppRoutes.innsyn);
             }}
             variant="primary"
-            icon={<ArrowLeftIcon role="presentation" />}
+            icon={<ArrowLeftIcon aria-hidden="true" />}
             iconPosition="left">
             Tilbake til oversikten
         </Button>

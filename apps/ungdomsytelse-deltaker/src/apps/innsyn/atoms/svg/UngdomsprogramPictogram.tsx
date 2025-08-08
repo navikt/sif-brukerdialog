@@ -6,7 +6,6 @@ export const UngdomsprogramPictogram = ({ style }: { style?: React.CSSProperties
         viewBox="0 0 80 78"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        role="presentation"
         style={{ flexShrink: 0, ...style }}
         aria-hidden>
         <path
