@@ -27,6 +27,8 @@ jobs:
                   args: >
                       -Dproject.settings=apps/${{ inputs.app }}/sonar-project.properties
                       -Dsonar.projectBaseDir=apps/${{ inputs.app }}
+                      -Dsonar.verbose=true
+                      -Dsonar.log.level=DEBUG
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
