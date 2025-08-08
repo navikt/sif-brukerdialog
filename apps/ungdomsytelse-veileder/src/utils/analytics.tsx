@@ -50,6 +50,13 @@ export const registerAnalytics = (sporingskode?: string) => {
                 data-host-url="https://umami.nav.no"
                 data-auto-track="true"
                 data-website-id={sporingskode}></script>
+            <script
+                defer
+                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+                data-host-url="https://umami.nav.no"
+                data-domains="localhost"
+                data-auto-track="false"
+                data-website-id={sporingskode}></script>
         </Helmet>
     );
 };
