@@ -10,7 +10,6 @@ import OppgaveUttalelse from './OppgaveUttalelse';
 
 interface Props {
     tekster: OppgavebekreftelseTekster;
-    deltakerNavn: string;
     bekreftelse?: BekreftelseDto;
     oppsummering: React.ReactNode;
     oppgave: OppgaveBase;
