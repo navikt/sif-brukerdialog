@@ -1,4 +1,6 @@
 name: SonarCloud app scan
+permissions:
+    contents: read
 
 on:
     workflow_call:
