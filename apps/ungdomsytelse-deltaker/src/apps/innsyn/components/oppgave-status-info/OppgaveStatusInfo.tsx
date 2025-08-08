@@ -8,13 +8,6 @@ interface Props {
 const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
     switch (oppgaveStatus) {
         case OppgaveStatus.UTLØPT:
-            return (
-                <Alert variant="info">
-                    <Box>
-                        <BodyLong>Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.</BodyLong>
-                    </Box>
-                </Alert>
-            );
         case OppgaveStatus.AVBRUTT:
             return (
                 <Alert variant="info">

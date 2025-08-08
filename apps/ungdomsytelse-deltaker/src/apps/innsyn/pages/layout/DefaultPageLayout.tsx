@@ -13,9 +13,9 @@ const DefaultPageLayout = ({ documentTitle, children }: Props) => {
     }, []);
     useDocumentTitle(documentTitle);
     return (
-        <div role="main" aria-label="Hovedinnhold">
+        <main aria-label="Hovedinnhold">
             <PageContentWrapper>{children}</PageContentWrapper>
-        </div>
+        </main>
     );
 };
 
