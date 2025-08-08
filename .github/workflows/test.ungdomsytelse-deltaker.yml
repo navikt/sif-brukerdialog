@@ -12,6 +12,7 @@ on:
             - yarn.lock
 
     workflow_call:
+    workflow_dispatch:
 
 env:
     APP_NAME: 'ungdomsytelse-deltaker'
