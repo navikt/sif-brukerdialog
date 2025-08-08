@@ -85,4 +85,5 @@ jobs:
         uses: ./.github/workflows/.sonarcloud.app-scan.yml
         with:
             app: ungdomsytelse-deltaker
+            working-directory: 'apps/ungdomsytelse-deltaker'
         secrets: inherit

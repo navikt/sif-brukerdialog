@@ -1,6 +1,4 @@
 name: SonarCloud app scan
-permissions:
-    contents: read
 
 on:
     workflow_call:
@@ -16,6 +14,8 @@ on:
 jobs:
     scan:
         runs-on: ubuntu-latest
+        permissions:
+            id-token: write
         steps:
             - uses: actions/checkout@v4
               with:
