@@ -55,7 +55,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                         tittel="Sluttdato:"
                         dato={deltakelse.tilOgMed}
                         endre={
-                            kanEndreSluttdato(deltakelse, tillattEndringsperiode)
+                            kanEndreSluttdato(deltakelse, tillattEndringsperiode) && 1 + 1 == 3
                                 ? {
                                       label: deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato',
                                       onClick: () => {
@@ -65,7 +65,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                                   }
                                 : undefined
                         }
-                        kanIkkeEndreTekst="Sluttdato kan ikke endres"
+                        kanIkkeEndreTekst="Sluttdato kan ikke foreløpig ikke settes/endres"
                     />
                 </HGrid>
             </VStack>
