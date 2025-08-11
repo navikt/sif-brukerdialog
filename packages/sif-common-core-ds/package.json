@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.2.28",
+    "version": "10.2.29",
     "private": true,
     "type": "module",
     "dependencies": {
