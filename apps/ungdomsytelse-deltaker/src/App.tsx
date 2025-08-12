@@ -43,7 +43,6 @@ function App() {
     const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true';
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
-            {/* {analyticsIsActive && registerAnalytics(env.SIF_PUBLIC_UMAMI_NETTSIDE_ID)} */}
             <FaroProvider
                 appVersion={env.APP_VERSION}
                 applicationKey={UngdomsytelseDeltakerApp.key}
