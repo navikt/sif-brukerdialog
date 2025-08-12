@@ -1,5 +1,5 @@
 export enum DeltakerSkjemaId {
-    SØKNAD = 'søknad',
-    OPPGAVEBEKREFTELSE = 'oppgavebekreftelse',
-    INNTEKTSRAPPORTERING = 'inntektsrapportering',
+    SØKNAD = 'ungdomsprogramytelse_søknad',
+    OPPGAVEBEKREFTELSE = 'ungdomsprogramytelse_oppgavebekreftelse',
+    INNTEKTSRAPPORTERING = 'ungdomsprogramytelse_inntektsrapportering',
 }
