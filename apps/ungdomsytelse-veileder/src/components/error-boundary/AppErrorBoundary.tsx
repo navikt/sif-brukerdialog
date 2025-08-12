@@ -11,7 +11,6 @@ interface State {
 }
 
 interface Props {
-    appKey: string;
     children: React.ReactNode;
     appTitle: string;
     onResetSoknad?: () => void;
@@ -31,11 +30,6 @@ class AppErrorBoundary extends React.Component<Props, State> {
         this.setState({ hasError: true, error });
         // eslint-disable-next-line no-console
         console.error('Error caught by ErrorBoundary:', error, errorInfo);
-
-        // Eksempel på logging (kan tilpasses med Sentry eller annen logger)
-        // if (this.props.appKey) {
-        //     getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
-        // }
     }
 
     resetSoknad = () => {

@@ -14,19 +14,14 @@ export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorE
      */
     index?: number;
     /**
-     * Makes step non-interactive if false. Step will be set to a <div>, overriding `as`-prop
-     * @default true
-     */
-    interactive?: boolean;
-    /**
      * If a step is completed or not
      */
     completed?: boolean;
     current?: boolean;
-    icon?: React.ReactNode;
     isContinuation?: boolean;
-    isLastStep?: boolean;
+    icon?: React.ReactNode;
     headingId?: string;
+    isLastStep?: boolean;
 }
 
 export interface ProcessStepData {

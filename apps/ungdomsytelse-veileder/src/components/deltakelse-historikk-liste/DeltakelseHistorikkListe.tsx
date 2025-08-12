@@ -73,7 +73,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlerehistorikkInnslag}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
+                            <Add aria-hidden="true" />
                             Vis flere
                         </HStack>
                     </Button>
