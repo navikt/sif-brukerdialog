@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
 
@@ -37,22 +36,6 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const registerAnalytics = (websiteId?: string) => {
-    if (!websiteId) {
-        return;
-    }
-    return (
-        <Helmet>
-            <script
-                defer
-                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-                data-host-url="https://umami.nav.no"
-                data-auto-track="true"
-                data-website-id={websiteId}></script>
-        </Helmet>
-    );
-};
-
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME } = props;
 
@@ -73,20 +56,20 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
 
     async function logSkjemaStartet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaStartet, {
-            skjema: skjemanavn,
+            skjemanavn,
         });
     }
 
     async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
         return logEvent(AnalyticsEvents.skjemaSendt, {
-            skjema: skjemanavn,
+            skjemanavn,
             ...metadata,
         });
     }
 
     async function logSkjemaFeilet(skjemanavn: string) {
         return logEvent(AnalyticsEvents.skjemaFeilet, {
-            skjema: skjemanavn,
+            skjemanavn,
         });
     }
 

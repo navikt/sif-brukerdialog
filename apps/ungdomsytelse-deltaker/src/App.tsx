@@ -8,7 +8,7 @@ import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import DevFooter from './dev/DevFooter';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { AnalyticsProvider, registerAnalytics } from './analytics/analytics';
+import { AnalyticsProvider } from './analytics/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
@@ -43,7 +43,6 @@ function App() {
     const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_AMPLITUDE] === 'true';
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
-            {analyticsIsActive && registerAnalytics(env.SIF_PUBLIC_UMAMI_NETTSIDE_ID)}
             <FaroProvider
                 appVersion={env.APP_VERSION}
                 applicationKey={UngdomsytelseDeltakerApp.key}
