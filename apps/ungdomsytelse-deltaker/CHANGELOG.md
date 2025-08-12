@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.0.0
+
+### Major Changes
+
+- Liten endring, men bumper major allikevel - i og med appen ble prodsatt i går. Denne endringen er kun justeringer i bruken av analytics -> kun bruke dekoratørens script.
+
 ## 0.7.4
 
 ### Patch Changes
