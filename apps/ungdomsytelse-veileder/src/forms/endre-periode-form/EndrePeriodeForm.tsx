@@ -63,8 +63,6 @@ const EndrePeriodeForm = ({ variant, deltakelse, deltaker, onCancel, onDeltakels
         deltakerId: deltaker.id,
     });
 
-    // const deltakernavn = formatName(deltaker.navn);
-
     const startdatoMinMax = getStartdatobegrensningForDeltaker(
         deltaker.førsteMuligeInnmeldingsdato,
         deltaker.sisteMuligeInnmeldingsdato,

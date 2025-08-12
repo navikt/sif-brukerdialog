@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.5.37
+
+### Patch Changes
+
+- Diverse kodejusteringer i henhold til sonar scanning
+
 ## 0.5.36
 
 ### Patch Changes

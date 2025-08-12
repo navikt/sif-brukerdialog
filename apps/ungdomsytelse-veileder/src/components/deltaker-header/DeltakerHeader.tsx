@@ -18,7 +18,7 @@ const DeltakerHeader = ({
         <HGrid columns="1fr auto">
             <HStack align="center" gap="4" className="nowrap">
                 <Hide below="md">
-                    <PersonNøytral width="3.5rem" height="3.5rem" role="presentation" />
+                    <PersonNøytral width="3.5rem" height="3.5rem" aria-hidden="true" />
                 </Hide>
                 <VStack gap="0">
                     <BodyShort size="small">Deltaker</BodyShort>

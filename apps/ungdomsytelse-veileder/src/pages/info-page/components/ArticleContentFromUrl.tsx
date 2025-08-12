@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
+import { MarkdownArticle } from '../../../types/MarkdownArticle';
 import Article from './Article';
-import { MarkdownArticle } from '../InfoInnhold';
 
 const ArticleContentFromUrl = ({ articleList }: { articleList: MarkdownArticle[] }) => {
     const { articleId } = useParams();
