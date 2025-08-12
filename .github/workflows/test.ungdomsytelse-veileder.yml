@@ -80,3 +80,9 @@ jobs:
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=@navikt/ungdomsytelse-veileder
+    sonar:
+        uses: ./.github/workflows/.sonarcloud.app-scan.yml
+        with:
+            app: ungdomsytelse-veileder
+            working-directory: 'apps/ungdomsytelse-veileder'
+        secrets: inherit

@@ -12,8 +12,8 @@ const DiskresjonskoderTags = ({ koder }: Props) => {
     }
     return (
         <HStack gap="2">
-            {koder.map((kode, index) => (
-                <DiskresjonskodeTag key={index} kode={kode} />
+            {koder.map((kode) => (
+                <DiskresjonskodeTag key={kode} kode={kode} />
             ))}
         </HStack>
     );

@@ -35,8 +35,14 @@ export const articleList = Object.keys(articles).map((path): MarkdownArticle => 
         ingress = (lines[ingressIndex + 1] || '').trim();
     }
 
-    // Content starter etter ingress-linjen
-    const contentStart = ingressIndex !== -1 ? ingressIndex + 2 : tittelIndex !== -1 ? tittelIndex + 2 : 0;
+    // Content starter etter ingress-linjen eller tittel-linjen
+    const getContentStartIndex = () => {
+        if (ingressIndex !== -1) return ingressIndex + 2;
+        if (tittelIndex !== -1) return tittelIndex + 2;
+        return 0;
+    };
+
+    const contentStart = getContentStartIndex();
     content = lines.slice(contentStart).join('\n').trim();
 
     return { id, title, ingress, content };
