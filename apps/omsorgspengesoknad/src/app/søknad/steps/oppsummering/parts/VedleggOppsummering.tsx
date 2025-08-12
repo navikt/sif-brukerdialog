@@ -57,7 +57,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                             {samværsavtaler.length > 0 ? (
                                 <VedleggSummaryList vedlegg={samværsavtaler} />
                             ) : (
-                                <Alert inline={true} variant="warning">
+                                <Alert inline={true} variant="info">
                                     <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
                                 </Alert>
                             )}

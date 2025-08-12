@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.6
+
+### Patch Changes
+
+- Endre ikon til info-ikon for manglende vedlegg angående fast delt bosted på oppsummeringssiden.
+
 ## 1.40.5
 
 ### Patch Changes
