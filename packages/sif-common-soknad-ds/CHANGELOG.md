@@ -1,5 +1,20 @@
 # @navikt/sif-common-soknad-ds
 
+## 25.0.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.24
+    - @navikt/sif-common-forms-ds@20.0.5
+    - @navikt/sif-common-core-ds@10.2.29
+    - @navikt/sif-common-sentry@0.28.23
+    - @navikt/sif-common-utils@3.49.16
+    - @navikt/sif-common-ui@0.10.5
+    - @navikt/sif-common-hooks@0.3.4
+    - @navikt/sif-validation@1.0.3
+
 ## 25.0.4
 
 ### Patch Changes
