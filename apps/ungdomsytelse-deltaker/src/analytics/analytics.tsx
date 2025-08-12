@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
 
@@ -35,22 +34,6 @@ interface Props {
 
 type EventProperties = {
     [key: string]: any;
-};
-
-export const registerAnalytics = (websiteId?: string) => {
-    if (!websiteId) {
-        return;
-    }
-    return (
-        <Helmet>
-            <script
-                defer
-                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-                data-host-url="https://umami.nav.no"
-                data-auto-track="true"
-                data-website-id={websiteId}></script>
-        </Helmet>
-    );
 };
 
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
