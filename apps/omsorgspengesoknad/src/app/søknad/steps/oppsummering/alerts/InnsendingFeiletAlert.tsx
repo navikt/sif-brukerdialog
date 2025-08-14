@@ -1,6 +1,5 @@
 import { Alert, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../../i18n';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 
@@ -27,16 +26,10 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
             </p>
             <p>
                 <AppText
-                    id="innsendingFeilet.tekst.generell.3"
+                    id="innsendingFeilet.tekst.generell.4"
                     values={{ Telefon: (value) => <span style={{ whiteSpace: 'nowrap' }}>{value}</span> }}
                 />
             </p>
-
-            {!erBeskrivelseFeil && (
-                <ExpandableInfo title="Detaljert info (teknisk)">
-                    <p style={{ wordBreak: 'break-word' }}>{invalidParameter.parameterName}</p>
-                </ExpandableInfo>
-            )}
         </>
     );
 };
