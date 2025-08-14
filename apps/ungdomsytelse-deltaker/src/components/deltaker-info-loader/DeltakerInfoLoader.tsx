@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
+import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
@@ -27,7 +27,7 @@ const DeltakerInfoLoader = () => {
     }
 
     if (error) {
-        logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
+        logApiError(ApiErrorKey.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
         logFaroError(
             'DeltakerInfoLoader.Error',
             JSON.stringify({ søker: søker.error, deltakelsePerioder: deltakelsePerioder.error }),
@@ -36,7 +36,7 @@ const DeltakerInfoLoader = () => {
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
-        logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
+        logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
         logFaroError(
             'DeltakerInfoLoader.ManglendeData',
             JSON.stringify({
