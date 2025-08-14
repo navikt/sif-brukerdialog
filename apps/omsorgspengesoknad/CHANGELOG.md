@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.7
+
+### Patch Changes
+
+- Justere melding og plassering av melding når fritekst inneholder ugyldige tegn.
+
 ## 1.40.6
 
 ### Patch Changes
