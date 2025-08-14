@@ -13,6 +13,15 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
+import { ApiError } from '@navikt/ung-common';
+
+const getErrorInfoToLog = (error: ApiError | null) => {
+    if (!error || error === null) {
+        return null;
+    }
+    const { context, message, type } = error;
+    return { context, message, type };
+};
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -27,11 +36,10 @@ const DeltakerInfoLoader = () => {
     }
 
     if (error) {
-        logApiError(ApiErrorKey.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
-        logFaroError(
-            'DeltakerInfoLoader.Error',
-            JSON.stringify({ søker: søker.error, deltakelsePerioder: deltakelsePerioder.error }),
-        );
+        const søkerError = getErrorInfoToLog(søker.error);
+        const deltakelsePerioderError = getErrorInfoToLog(deltakelsePerioder.error);
+        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError });
+        logFaroError('DeltakerInfoLoader.Error', JSON.stringify({ søkerError, deltakelsePerioderError }));
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
@@ -40,8 +48,8 @@ const DeltakerInfoLoader = () => {
         logFaroError(
             'DeltakerInfoLoader.ManglendeData',
             JSON.stringify({
-                søker: søker.error,
-                deltakelsePerioder: deltakelsePerioder.error,
+                søkerHarData: søker.data !== undefined,
+                deltakelsePerioder: deltakelsePerioder.data !== undefined,
             }),
         );
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
