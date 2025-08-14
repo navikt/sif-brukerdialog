@@ -11,7 +11,7 @@ export const useDeltakelsePerioder = (enabled = true) => {
     return useQuery<DeltakelsePeriode[], ApiError>({
         queryKey: commonQueryKeys.deltakelseperioder,
         queryFn: () => getDeltakelsePerioder(),
-        staleTime: 1000 * 60 * 20, // 5 minutter
+        staleTime: 1000 * 60 * 20, // 20 minutter
         enabled,
         retry: 1,
         refetchOnWindowFocus: false,
