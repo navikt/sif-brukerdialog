@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { ApiError, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
+import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
@@ -13,6 +13,15 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
+import { ApiError } from '@navikt/ung-common';
+
+const getErrorInfoToLog = (error: ApiError | null) => {
+    if (!error || error === null) {
+        return null;
+    }
+    const { context, message, type } = error;
+    return { context, message, type };
+};
 
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
@@ -27,17 +36,22 @@ const DeltakerInfoLoader = () => {
     }
 
     if (error) {
-        logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
-        logFaroError('DeltakerInfoLoader.Error', { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
+        const søkerError = getErrorInfoToLog(søker.error);
+        const deltakelsePerioderError = getErrorInfoToLog(deltakelsePerioder.error);
+        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError });
+        logFaroError('DeltakerInfoLoader.Error', JSON.stringify({ søkerError, deltakelsePerioderError }));
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
-        logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
-        logFaroError('DeltakerInfoLoader.ManglendeData', {
-            søker: søker.error,
-            deltakelsePerioder: deltakelsePerioder.error,
-        });
+        logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
+        logFaroError(
+            'DeltakerInfoLoader.ManglendeData',
+            JSON.stringify({
+                søkerHarData: søker.data !== undefined,
+                deltakelsePerioder: deltakelsePerioder.data !== undefined,
+            }),
+        );
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -48,10 +62,13 @@ const DeltakerInfoLoader = () => {
 
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
-        logFaroError('DeltakerInfoLoader.FlereDeltakelser', {
-            søker: søker.error,
-            deltakelsePerioder: deltakelsePerioder.error,
-        });
+        logFaroError(
+            'DeltakerInfoLoader.FlereDeltakelser',
+            JSON.stringify({
+                søker: søker.error,
+                deltakelsePerioder: deltakelsePerioder.error,
+            }),
+        );
         return <FlereDeltakelserPage />;
     }
 
