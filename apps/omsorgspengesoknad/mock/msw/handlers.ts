@@ -17,6 +17,27 @@ export const getHandlers = () => [
             harInnvilgedeBehandlinger: false,
         });
     }),
+    http.post('**/omsorgspenger-utvidet-rett/innsending', async () => {
+        return HttpResponse.json(
+            {
+                violations: [
+                    {
+                        invalidValue: 'K9-format valideringsfeil',
+                        parameterName: 'ytelse.høyereRisikoForFraværBeskrivelse',
+                        parameterType: 'ENTITY',
+                        reason: 'matcher ikke tillatt pattern [^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}§]+$]',
+                    },
+                ],
+                detail: 'Forespørselen inneholder valideringsfeil',
+                instance: '/omsorgspenger-utvidet-rett/innsending',
+                properties: null,
+                status: 400,
+                title: 'invalid-request-parameters',
+                type: '/problem-details/invalid-request-parameters',
+            },
+            { status: 400 },
+        );
+    }),
     ...getMellomlagringHandlers('omsorgspenger-utvidet-rett-mellomlagring'),
 
     // Stopp alle andre kall (Dekoratøren og andre tredjepartstjenester)
