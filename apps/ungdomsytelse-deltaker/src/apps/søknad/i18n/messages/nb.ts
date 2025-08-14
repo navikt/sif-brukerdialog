@@ -83,7 +83,7 @@ export const ungSoknadMessages_nb = {
         'Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret med én gang slik at pengene ikke blir forsinket.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikke se om du har kontonummer registrert hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
-        'For at du skal få utbetalt pengene til rett konto, er det viktig at du sjekker vi har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysninger på Min side</Lenke> for å sjekke dette.',
+        'For at du skal få utbetalt pengene til rett konto, er det viktig at du har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysninger på Min side</Lenke> for å sjekke dette.',
     'kontonummerSteg.kontonummerInfoMangler.info.3':
         'Du kan fremdeles sende inn søknaden, men vi anbefaler at du sjekker med én gang slik at pengene ikke blir forsinket.',
 

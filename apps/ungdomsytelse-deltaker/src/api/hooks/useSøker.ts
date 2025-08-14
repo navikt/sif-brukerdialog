@@ -11,7 +11,8 @@ export const useSøker = (enabled = true) => {
         queryKey: commonQueryKeys.søker,
         queryFn: () => fetchSøker(),
         enabled,
-        staleTime: 1000 * 60 * 5, // 5 minutter
+        staleTime: 1000 * 60 * 20, // 5 minutter
         retry: 1,
+        refetchOnWindowFocus: false,
     });
 };

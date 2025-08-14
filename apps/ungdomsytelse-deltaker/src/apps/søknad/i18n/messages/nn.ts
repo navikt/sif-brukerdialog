@@ -86,7 +86,7 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
         'Du kan framleis sende inn søknaden, men vi rår deg til å leggje inn kontonummeret med ein gong slik at pengane ikkje blir forseinka.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikkje sjå om du har kontonummer hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
-        'For at du skal få utbetalt pengane til rett konto, er det viktig at du sjekker vi har registrert kontonummeret ditt. Gå til <Lenke>personopplysningar på Min side</Lenke> for å sjekke dette.',
+        'For at du skal få utbetalt pengane til rett konto, er det viktig at du har registrert kontonummeret ditt. Gå til <Lenke>personopplysningar på Min side</Lenke> for å sjekke dette.',
     'kontonummerSteg.kontonummerInfoMangler.info.3':
         'Du kan framleis sende inn søknaden, men vi rår deg til å sjekke kontonummeret med ein gong slik at pengane ikkje blir forseinka.',
 
