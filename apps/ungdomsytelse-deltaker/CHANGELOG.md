@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.0.2
+
+### Patch Changes
+
+- Justere logging til faro og umami
+
 ## 1.0.1
 
 ### Patch Changes
