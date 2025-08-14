@@ -15,7 +15,6 @@ import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
 import { KontonummerInfo } from './types';
 import { formaterKontonummer } from './utils/formaterKontonummer';
-import { isApiAxiosError } from '@navikt/ung-common';
 
 const SøknadApp = () => {
     const { søker, deltakelsePeriode } = useDeltakerContext();
@@ -42,11 +41,11 @@ const SøknadApp = () => {
         logApiError(ApiErrorKey.barn, { error: { context, message, type } });
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
-    if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
-        const { context, message, type } = kontonummer.error;
-        logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
-        return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
-    }
+    // if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
+    //     const { context, message, type } = kontonummer.error;
+    //     logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
+    //     return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
+    // }
 
     const getKontonummerInfo = (): KontonummerInfo => {
         if (kontonummer.error) {
