@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.oppsummering.søker.header': 'Om deg',
     'steg.oppsummering.søker.navn': 'Navn',
@@ -29,9 +30,9 @@ const nb = {
         'Beskrivelsen på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb inneholder tegn som ikke er tillatt. Gå tilbake til steg én og se over teksten.',
     'innsendingFeilet.tekst.generell.1': 'Søknaden din inneholder ugyldig informasjon.',
     'innsendingFeilet.tekst.generell.2':
-        'Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder. Du fikser dette ved å skrive inn teksten på ny, uten å kopiere den fra et annet sted.',
+        'Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder. Du fikser dette ved å skrive inn teksten på ny direkte i feltet, uten å kopiere den fra et annet sted.',
     'innsendingFeilet.tekst.generell.3':
-        'Noen ganger vil de ugyldige tegnene være synlige som små firkanter inne i teksten. Da kan det være det holder å fjerne disse.',
+        'Noen ganger vil de ugyldige tegnene være tegn en ser på som vanlige, f.eks. emojier, «, » eller «§», mens andre ganger kan det være synlige som små firkanter inne i teksten.',
     'innsendingFeilet.tekst.generell.4':
         'Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på <Telefon>55 55 33 33</Telefon> for videre veiledning.',
 };

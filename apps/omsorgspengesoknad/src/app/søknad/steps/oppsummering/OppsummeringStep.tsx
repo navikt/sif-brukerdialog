@@ -132,6 +132,9 @@ const OppsummeringStep = () => {
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
                                 </VStack>
+                                {sendSøknadError && invalidParameters && (
+                                    <InnsendingFeiletAlert invalidParameter={invalidParameters} />
+                                )}
                             </Form>
                             {sendSøknadError && !invalidParameters && (
                                 <FormBlock>
@@ -139,9 +142,6 @@ const OppsummeringStep = () => {
                                         <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                                     </ErrorSummary>
                                 </FormBlock>
-                            )}
-                            {sendSøknadError && invalidParameters && (
-                                <InnsendingFeiletAlert invalidParameter={invalidParameters} />
                             )}
                         </>
                     );
