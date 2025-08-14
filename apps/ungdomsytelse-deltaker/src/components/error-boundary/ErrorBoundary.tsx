@@ -42,7 +42,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         const { fallback, children } = this.props;
 
         if (hasError) {
-            logFaroError('ErrorBoundary', error);
+            logFaroError('ErrorBoundary', JSON.stringify(error));
             return (
                 fallback || (
                     <div style={{ padding: '2rem', textAlign: 'center' }}>

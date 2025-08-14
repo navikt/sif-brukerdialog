@@ -28,16 +28,22 @@ const DeltakerInfoLoader = () => {
 
     if (error) {
         logApiError(ApiError.oppstartsinfo, { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
-        logFaroError('DeltakerInfoLoader.Error', { søker: søker.error, deltakelsePerioder: deltakelsePerioder.error });
+        logFaroError(
+            'DeltakerInfoLoader.Error',
+            JSON.stringify({ søker: søker.error, deltakelsePerioder: deltakelsePerioder.error }),
+        );
         return <HentDeltakerErrorPage error="Feil ved lasting" />;
     }
 
     if (!deltakelsePerioder.data || !søker.data) {
         logApiError(ApiError.oppstartsinfo, { info: 'Ingen data lastet' });
-        logFaroError('DeltakerInfoLoader.ManglendeData', {
-            søker: søker.error,
-            deltakelsePerioder: deltakelsePerioder.error,
-        });
+        logFaroError(
+            'DeltakerInfoLoader.ManglendeData',
+            JSON.stringify({
+                søker: søker.error,
+                deltakelsePerioder: deltakelsePerioder.error,
+            }),
+        );
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -48,10 +54,13 @@ const DeltakerInfoLoader = () => {
 
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
-        logFaroError('DeltakerInfoLoader.FlereDeltakelser', {
-            søker: søker.error,
-            deltakelsePerioder: deltakelsePerioder.error,
-        });
+        logFaroError(
+            'DeltakerInfoLoader.FlereDeltakelser',
+            JSON.stringify({
+                søker: søker.error,
+                deltakelsePerioder: deltakelsePerioder.error,
+            }),
+        );
         return <FlereDeltakelserPage />;
     }
 
