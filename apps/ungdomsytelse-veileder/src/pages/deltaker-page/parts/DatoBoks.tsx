@@ -26,17 +26,15 @@ const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => 
                     </BodyShort>
                 </div>
                 {endre ? (
-                    <>
-                        <div>
-                            <Button
-                                variant="primary"
-                                size="medium"
-                                icon={<PencilFillIcon aria-hidden="true" />}
-                                onClick={endre.onClick}>
-                                {endre.label}
-                            </Button>
-                        </div>
-                    </>
+                    <div>
+                        <Button
+                            variant="primary"
+                            size="medium"
+                            icon={<PencilFillIcon aria-hidden="true" />}
+                            onClick={endre.onClick}>
+                            {endre.label}
+                        </Button>
+                    </div>
                 ) : (
                     <Alert variant="info" inline>
                         {kanIkkeEndreTekst}
