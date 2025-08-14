@@ -29,6 +29,9 @@ export type KontonummerInfo =
       }
     | {
           harKontonummer: false;
+      }
+    | {
+          harKontonummer: undefined;
       };
 
 export interface SøknadContextType {

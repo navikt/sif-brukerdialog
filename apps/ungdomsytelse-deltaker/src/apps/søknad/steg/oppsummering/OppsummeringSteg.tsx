@@ -90,7 +90,7 @@ const OppsummeringSteg = () => {
                             />
                         </FormSummary.Header>
                         <FormSummary.Answers>
-                            {kontonummerInfo.harKontonummer ? (
+                            {kontonummerInfo.harKontonummer === true && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText
@@ -104,13 +104,24 @@ const OppsummeringSteg = () => {
                                             : text('kontonummerSteg.kontonummer.nei.label')}
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
-                            ) : (
+                            )}
+                            {kontonummerInfo.harKontonummer === false && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.ingenKontonummer.tittel" />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <AppText id="oppsummeringSteg.kontonummer.ingenKontonummer.tekst" />
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                            {kontonummerInfo.harKontonummer === undefined && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="oppsummeringSteg.kontonummer.kontonummerInfoMangler.tittel" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <AppText id="oppsummeringSteg.kontonummer.kontonummerInfoMangler.tekst" />
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}

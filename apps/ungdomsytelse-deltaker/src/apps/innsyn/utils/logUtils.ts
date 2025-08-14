@@ -72,7 +72,7 @@ const getSøknadInnsendingMeta = (
     }: {
         antallBarn: number;
         barnStemmer: boolean;
-        harKontonummer: boolean;
+        harKontonummer?: boolean;
         kontonummerStemmer?: boolean;
     },
 ) => {

@@ -43,7 +43,7 @@ const KontonummerSteg = () => {
                     <GuidePanel>
                         <AppText id="kontonummerSteg.beskrivelse" />
                     </GuidePanel>
-                    {kontonummerInfo.harKontonummer ? (
+                    {kontonummerInfo.harKontonummer === true && (
                         <VStack gap="4">
                             <RadioGroup
                                 legend={text('kontonummerSteg.kontonummer.spm', {
@@ -82,7 +82,8 @@ const KontonummerSteg = () => {
                                 </Alert>
                             </AriaLiveRegion>
                         </VStack>
-                    ) : (
+                    )}
+                    {kontonummerInfo.harKontonummer === false && (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>
                                 <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
@@ -99,6 +100,26 @@ const KontonummerSteg = () => {
                             </BodyLong>
                             <BodyLong>
                                 <AppText id="kontonummerSteg.harIkkeKontonummer.info.3" />
+                            </BodyLong>
+                        </Alert>
+                    )}
+                    {kontonummerInfo.harKontonummer === undefined && (
+                        <Alert variant="warning">
+                            <Heading level="3" size="small" spacing>
+                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
+                            </Heading>
+                            <BodyLong spacing>
+                                <AppText
+                                    id="kontonummerSteg.kontonummerInfoMangler.info.2"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                            <BodyLong>
+                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
                             </BodyLong>
                         </Alert>
                     )}

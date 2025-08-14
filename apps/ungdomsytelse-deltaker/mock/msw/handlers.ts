@@ -20,7 +20,8 @@ export const getHandlers = () => [
 
     // App api mocking
     http.get('**/deltaker/hent-kontonummer', () =>
-        HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' }),
+        // HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' }, { status: 503,  }),
+        HttpResponse.json({ error: { message: '503' } }, { status: 503 }),
     ),
 
     http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker)),

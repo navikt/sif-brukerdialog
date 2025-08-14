@@ -13,6 +13,9 @@ import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
+import { KontonummerInfo } from './types';
+import { formaterKontonummer } from './utils/formaterKontonummer';
+import { isApiAxiosError } from '@navikt/ung-common';
 
 const SøknadApp = () => {
     const { søker, deltakelsePeriode } = useDeltakerContext();
@@ -34,15 +37,33 @@ const SøknadApp = () => {
         return <UngLoadingPage />;
     }
 
-    if (barn.isError || kontonummer.isError) {
-        if (barn.isError) {
-            logApiError(ApiError.barn, { error: barn.error });
-        }
-        if (kontonummer.isError) {
-            logApiError(ApiError.kontonummer, { error: kontonummer.error });
-        }
+    console.log(kontonummer.error);
+
+    if (
+        barn.isError ||
+        (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status === 502)
+    ) {
+        logApiError(ApiError.barn, { error: barn.error });
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
+
+    const getKontonummerInfo = (): KontonummerInfo => {
+        if (kontonummer.error) {
+            return {
+                harKontonummer: undefined,
+            };
+        }
+
+        return kontonummer.data?.harKontonummer && kontonummer.data.kontonummer
+            ? {
+                  harKontonummer: true,
+                  kontonummerFraRegister: kontonummer.data.kontonummer,
+                  formatertKontonummer: formaterKontonummer(kontonummer.data.kontonummer),
+              }
+            : {
+                  harKontonummer: false,
+              };
+    };
 
     const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
 
@@ -56,7 +77,7 @@ const SøknadApp = () => {
                 søknadOppgave={søknadOppgave}
                 søker={søker}
                 deltakelsePeriode={deltakelsePeriode}
-                kontonummer={kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined}
+                kontonummerInfo={getKontonummerInfo()}
                 barn={barn.data || []}>
                 <SøknadRouter />
             </SøknadProvider>
