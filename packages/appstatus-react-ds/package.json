@@ -17,7 +17,7 @@
         "@navikt/ds-react": "7.25.1",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "24.2.1",
-        "@types/react": "19.1.9",
+        "@types/react": "19.1.10",
         "@types/react-dom": "19.1.7",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
