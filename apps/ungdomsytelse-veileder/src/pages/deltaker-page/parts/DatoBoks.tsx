@@ -31,7 +31,7 @@ const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => 
                             <Button
                                 variant="primary"
                                 size="medium"
-                                icon={<PencilFillIcon role="presentation" />}
+                                icon={<PencilFillIcon aria-hidden="true" />}
                                 onClick={endre.onClick}>
                                 {endre.label}
                             </Button>

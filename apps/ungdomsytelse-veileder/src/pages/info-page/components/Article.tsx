@@ -1,7 +1,7 @@
 import { BodyLong, Heading, List } from '@navikt/ds-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'; // Støtte for tabeller, sjekklister, gjennomstreking
-import { MarkdownArticle } from '../InfoInnhold';
+import { MarkdownArticle } from '../../../types/MarkdownArticle';
 
 interface Props {
     article: MarkdownArticle;

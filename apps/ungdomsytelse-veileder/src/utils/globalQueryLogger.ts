@@ -15,7 +15,6 @@ export const GlobalQueryLogger = () => {
                 const query = event.query;
                 const state = query.state;
                 if (state.status === 'error' && state.error) {
-                    // console.error('Query error:', JSON.stringify(state.error));
                     faro.api.pushError(state.error, { type: 'ApiQueryError' });
                 }
             }
@@ -26,7 +25,6 @@ export const GlobalQueryLogger = () => {
                 const mutation = event.mutation;
                 const state = mutation.state;
                 if (state.status === 'error' && state.error) {
-                    // console.error('Mutation error:', state.error);
                     faro.api.pushError(state.error, { type: 'ApiMutateError' });
                 }
             }

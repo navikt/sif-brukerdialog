@@ -1,17 +1,11 @@
 import { Box, Heading, HGrid, Link } from '@navikt/ds-react';
-import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { MarkdownArticle } from '../../types/MarkdownArticle';
 import ArticleContentFromUrl from './components/ArticleContentFromUrl';
 
 // Dynamisk import av alle markdown-filer i articles-mappen
 const articles = import.meta.glob('../../articles/*.md', { eager: true, as: 'raw' });
-
-export interface MarkdownArticle {
-    id: string;
-    title: string;
-    ingress?: string;
-    content: string;
-}
 
 export const articleList = Object.keys(articles).map((path): MarkdownArticle => {
     const fileName = path.split('/').pop() || '';
@@ -35,8 +29,14 @@ export const articleList = Object.keys(articles).map((path): MarkdownArticle => 
         ingress = (lines[ingressIndex + 1] || '').trim();
     }
 
-    // Content starter etter ingress-linjen
-    const contentStart = ingressIndex !== -1 ? ingressIndex + 2 : tittelIndex !== -1 ? tittelIndex + 2 : 0;
+    // Content starter etter ingress-linjen eller tittel-linjen
+    const getContentStartIndex = () => {
+        if (ingressIndex !== -1) return ingressIndex + 2;
+        if (tittelIndex !== -1) return tittelIndex + 2;
+        return 0;
+    };
+
+    const contentStart = getContentStartIndex();
     content = lines.slice(contentStart).join('\n').trim();
 
     return { id, title, ingress, content };

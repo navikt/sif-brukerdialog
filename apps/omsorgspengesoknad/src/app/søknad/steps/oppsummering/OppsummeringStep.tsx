@@ -6,7 +6,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
-import { isApiAxiosError } from '@navikt/sif-common-query';
 import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -27,6 +26,7 @@ import ApiDataErrorPage from './parts/ApiDataErrorPage';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
+import { isAxiosError } from 'axios';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -61,10 +61,11 @@ const OppsummeringStep = () => {
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+
     // Sjekk om det er feil på parametre som er sendt til API-et i feilmeldingen fra backend
     const invalidParameters =
-        sendSøknadError && isApiAxiosError(sendSøknadError)
-            ? getInvalidParametersFromAxiosError(sendSøknadError.originalError)
+        sendSøknadError && isAxiosError(sendSøknadError)
+            ? getInvalidParametersFromAxiosError(sendSøknadError)
             : undefined;
 
     useEffect(() => {
@@ -152,6 +153,11 @@ const OppsummeringStep = () => {
                                                 />
                                             )}
                                         </VStack>
+                                        {sendSøknadError && invalidParameters && (
+                                            <FormBlock>
+                                                <ApiDataValideringsfeilAlert invalidParameter={invalidParameters} />
+                                            </FormBlock>
+                                        )}
                                     </Form>
 
                                     {sendSøknadError && !invalidParameters && (
@@ -159,11 +165,6 @@ const OppsummeringStep = () => {
                                             <ErrorSummary ref={sendSøknadErrorSummary}>
                                                 <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                                             </ErrorSummary>
-                                        </FormBlock>
-                                    )}
-                                    {sendSøknadError && invalidParameters && (
-                                        <FormBlock>
-                                            <ApiDataValideringsfeilAlert invalidParameter={invalidParameters} />
                                         </FormBlock>
                                     )}
                                 </>

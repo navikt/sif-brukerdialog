@@ -24,38 +24,34 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
     ({ children, className, useIndex, ...rest }, ref) => {
         return (
             <ol {...rest} ref={ref} className={cl('process', className)}>
-                <>
-                    {React.Children.map(children, (step, index) => {
-                        const stepIndex = index + 1;
-                        const isCurrent = React.isValidElement<ProcessStepProps>(step) ? step.props.current : undefined;
-                        const headingId = React.isValidElement<ProcessStepProps>(step)
-                            ? step.props.headingId
-                            : undefined;
-                        const isContinuation = React.isValidElement<ProcessStepProps>(step)
-                            ? step.props.isContinuation
-                            : undefined;
-                        return (
-                            <li
-                                aria-labelledby={headingId}
-                                className={cl(
-                                    'process__item',
-                                    isCurrent ? 'process__item__variant process__item__variant--CURRENT' : undefined,
-                                    isContinuation ? 'process__item--CONTINUATION' : undefined,
-                                )}
-                                aria-current={isCurrent}
-                                key={stepIndex + (children?.toString?.() ?? '')}>
-                                <span className={cl('process__line process__line--1')} />
-                                {React.isValidElement<ProcessStepProps>(step)
-                                    ? React.cloneElement(step, {
-                                          ...step.props,
-                                          index: useIndex ? stepIndex : undefined,
-                                      })
-                                    : step}
-                                <span className="process__line process__line--2" />
-                            </li>
-                        );
-                    })}
-                </>
+                {React.Children.map(children, (step, index) => {
+                    const stepIndex = index + 1;
+                    const isCurrent = React.isValidElement<ProcessStepProps>(step) ? step.props.current : undefined;
+                    const headingId = React.isValidElement<ProcessStepProps>(step) ? step.props.headingId : undefined;
+                    const isContinuation = React.isValidElement<ProcessStepProps>(step)
+                        ? step.props.isContinuation
+                        : undefined;
+                    return (
+                        <li
+                            aria-labelledby={headingId}
+                            className={cl(
+                                'process__item',
+                                isCurrent ? 'process__item__variant process__item__variant--CURRENT' : undefined,
+                                isContinuation ? 'process__item--CONTINUATION' : undefined,
+                            )}
+                            aria-current={isCurrent}
+                            key={stepIndex + (children?.toString?.() ?? '')}>
+                            <span className={cl('process__line process__line--1')} />
+                            {React.isValidElement<ProcessStepProps>(step)
+                                ? React.cloneElement(step, {
+                                      ...step.props,
+                                      index: useIndex ? stepIndex : undefined,
+                                  })
+                                : step}
+                            <span className="process__line process__line--2" />
+                        </li>
+                    );
+                })}
             </ol>
         );
     },

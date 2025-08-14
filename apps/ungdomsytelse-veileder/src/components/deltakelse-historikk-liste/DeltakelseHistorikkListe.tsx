@@ -59,7 +59,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Table.Body>
                     {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
-                            <Table.Row key={index} ref={index === focusIndex ? ref : undefined}>
+                            <Table.Row key={tidspunkt.toDateString()} ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
                                 <Table.DataCell>{getEndringstypeTekst(endringstype)}</Table.DataCell>
                                 <Table.DataCell>{endring}</Table.DataCell>
@@ -73,7 +73,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlerehistorikkInnslag}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
+                            <Add aria-hidden="true" />
                             Vis flere
                         </HStack>
                     </Button>
