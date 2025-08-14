@@ -2,7 +2,7 @@ import { Theme } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { ApiError, useAnalyticsInstance } from '../../analytics/analytics';
+import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
@@ -37,13 +37,14 @@ const SøknadApp = () => {
         return <UngLoadingPage />;
     }
 
-    console.log(kontonummer.error);
-
-    if (
-        barn.isError ||
-        (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status === 502)
-    ) {
-        logApiError(ApiError.barn, { error: barn.error });
+    if (barn.isError) {
+        const { context, message, type } = barn.error;
+        logApiError(ApiErrorKey.barn, { error: { context, message, type } });
+        return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
+    }
+    if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
+        const { context, message, type } = kontonummer.error;
+        logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 
