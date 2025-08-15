@@ -12,6 +12,7 @@ import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
+import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import SøknadRouter from './SøknadRouter';
 import { KontonummerInfo } from './types';
 import { formaterKontonummer } from './utils/formaterKontonummer';
@@ -41,6 +42,7 @@ const SøknadApp = () => {
         logApiError(ApiErrorKey.barn, { error: { context, message, type } });
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
+
     // if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
     //     const { context, message, type } = kontonummer.error;
     //     logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
@@ -50,18 +52,18 @@ const SøknadApp = () => {
     const getKontonummerInfo = (): KontonummerInfo => {
         if (kontonummer.error) {
             return {
-                harKontonummer: undefined,
+                harKontonummer: HarKontonummerEnum.UKJENT,
             };
         }
 
         return kontonummer.data?.harKontonummer && kontonummer.data.kontonummer
             ? {
-                  harKontonummer: true,
+                  harKontonummer: HarKontonummerEnum.JA,
                   kontonummerFraRegister: kontonummer.data.kontonummer,
                   formatertKontonummer: formaterKontonummer(kontonummer.data.kontonummer),
               }
             : {
-                  harKontonummer: false,
+                  harKontonummer: HarKontonummerEnum.NEI,
               };
     };
 

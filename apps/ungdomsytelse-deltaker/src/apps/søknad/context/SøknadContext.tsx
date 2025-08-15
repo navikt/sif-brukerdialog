@@ -67,7 +67,7 @@ export const SøknadProvider = ({
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-                harKontonummer: kontonummerInfo.harKontonummer !== undefined,
+                harKontonummer: kontonummerInfo.harKontonummer,
                 kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
             }),
         );

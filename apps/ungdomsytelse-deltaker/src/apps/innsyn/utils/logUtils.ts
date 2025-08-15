@@ -1,8 +1,9 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
-import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
+import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
+import { HarKontonummerEnum } from '../../søknad/steg/oppsummering/oppsummeringUtils';
 
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;
@@ -72,7 +73,7 @@ const getSøknadInnsendingMeta = (
     }: {
         antallBarn: number;
         barnStemmer: boolean;
-        harKontonummer?: boolean;
+        harKontonummer?: HarKontonummerEnum;
         kontonummerStemmer?: boolean;
     },
 ) => {

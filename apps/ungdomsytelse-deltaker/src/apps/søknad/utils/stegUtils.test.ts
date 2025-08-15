@@ -1,14 +1,16 @@
-import { describe, it, expect } from 'vitest';
-import { getTilgjengeligeSteg, erStegTilgjengelig } from './stegUtils';
-import { Steg, Spørsmål, SøknadSvar, KontonummerInfo } from '../types';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { describe, expect, it } from 'vitest';
+import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
+import { KontonummerInfo, Spørsmål, Steg, SøknadSvar } from '../types';
+import { erStegTilgjengelig, getTilgjengeligeSteg } from './stegUtils';
 
 describe('stegUtils', () => {
     const kontonummerInfoMedKontonummer: KontonummerInfo = {
-        harKontonummer: true,
+        harKontonummer: HarKontonummerEnum.JA,
+        formatertKontonummer: '1234 56 78901',
         kontonummerFraRegister: '12345678901',
     };
-    const kontonummerInfoUtenKontonummer: KontonummerInfo = { harKontonummer: false };
+    const kontonummerInfoUtenKontonummer: KontonummerInfo = { harKontonummer: HarKontonummerEnum.NEI };
 
     describe('getTilgjengeligeSteg', () => {
         it('returnerer ingen steg hvis FORSTÅR_PLIKTER ikke er true', () => {

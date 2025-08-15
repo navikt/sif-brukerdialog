@@ -1,11 +1,12 @@
+import { Theme } from '@navikt/ds-react';
+import { barnResponseSchema } from '@navikt/sif-common-api';
 import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { SøknadProvider } from '../../src/apps/søknad/context/SøknadContext';
-import { barnResponseSchema } from '@navikt/sif-common-api';
+import { HarKontonummerEnum } from '../../src/apps/søknad/steg/oppsummering/oppsummeringUtils';
 import { SøknadContextType } from '../../src/apps/søknad/types';
-import { Theme } from '@navikt/ds-react';
-import { SøkYtelseOppgave } from '../../src/types/Oppgave';
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../src/types/DeltakelsePeriode';
+import { SøkYtelseOppgave } from '../../src/types/Oppgave';
 
 const data = getScenarioMockData(ScenarioType.harIkkeSøkt);
 
@@ -17,7 +18,7 @@ export const withSøknadContext = (Story: any, context?: Partial<SøknadContextT
         <Theme>
             <SøknadProvider
                 barn={context?.barn || barn}
-                kontonummerInfo={context?.kontonummerInfo || { harKontonummer: undefined }}
+                kontonummerInfo={context?.kontonummerInfo || { harKontonummer: HarKontonummerEnum.UKJENT }}
                 deltakelsePeriode={deltakelse as DeltakelsePeriode}
                 søker={data.søker}
                 initialSvar={context?.svar}

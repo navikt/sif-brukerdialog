@@ -1,3 +1,4 @@
+import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
 import { KontonummerInfo, Spørsmål, Steg, SøknadSvar } from '../types';
 
 export const søknadSteg = [Steg.KONTONUMMER, Steg.BARN, Steg.OPPSUMMERING];
@@ -17,7 +18,8 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: Kontonu
     const tilgjengeligeSteg: Steg[] = [];
 
     const velkommenOk: boolean = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-    const kontonummerOk: boolean = kontonummerInfo.harKontonummer ? svar[Spørsmål.KONTONUMMER] !== undefined : true;
+    const kontonummerOk: boolean =
+        kontonummerInfo.harKontonummer === HarKontonummerEnum.JA ? svar[Spørsmål.KONTONUMMER] !== undefined : true;
     const barnOk: boolean = kontonummerOk && svar[Spørsmål.BARN] !== undefined;
 
     if (velkommenOk) {

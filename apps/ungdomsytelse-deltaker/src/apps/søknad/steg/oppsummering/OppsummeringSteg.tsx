@@ -12,7 +12,7 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
-import { buildSøknadFromSvar } from './oppsummeringUtils';
+import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
 
 const OppsummeringSteg = () => {
@@ -25,14 +25,14 @@ const OppsummeringSteg = () => {
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = buildSøknadFromSvar(
-        deltakelsePeriode.id,
-        søknadOppgave.oppgaveReferanse,
+    const søknad = buildSøknadFromSvar({
+        deltakelseId: deltakelsePeriode.id,
+        oppgaveReferanse: søknadOppgave.oppgaveReferanse,
         svar,
-        søker.fødselsnummer,
-        deltakelsePeriode.programPeriode.from,
-        kontonummerInfo.harKontonummer ? kontonummerInfo.kontonummerFraRegister : undefined,
-    );
+        søkerNorskIdent: søker.fødselsnummer,
+        startdato: deltakelsePeriode.programPeriode.from,
+        kontonummerInfo,
+    });
 
     const søknadError = søknad ? undefined : text('oppsummeringSteg.søknadIkkeGyldig');
 
@@ -90,7 +90,7 @@ const OppsummeringSteg = () => {
                             />
                         </FormSummary.Header>
                         <FormSummary.Answers>
-                            {kontonummerInfo.harKontonummer === true && (
+                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText
@@ -105,7 +105,7 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
-                            {kontonummerInfo.harKontonummer === false && (
+                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.ingenKontonummer.tittel" />
@@ -115,7 +115,7 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
-                            {kontonummerInfo.harKontonummer === undefined && (
+                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.UKJENT && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.kontonummerInfoMangler.tittel" />

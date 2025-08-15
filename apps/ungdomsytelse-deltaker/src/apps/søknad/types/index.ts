@@ -1,7 +1,8 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { SøkYtelseOppgave } from '../../../types/Oppgave';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
+import { SøkYtelseOppgave } from '../../../types/Oppgave';
+import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',
@@ -21,18 +22,21 @@ export type SøknadSvar = {
     [Spørsmål.BARN]?: YesOrNo;
 };
 
-export type KontonummerInfo =
-    | {
-          harKontonummer: true;
-          kontonummerFraRegister: string;
-          formatertKontonummer?: string;
-      }
-    | {
-          harKontonummer: false;
-      }
-    | {
-          harKontonummer: undefined;
-      };
+type HarKontonummerInfo = {
+    harKontonummer: HarKontonummerEnum.JA;
+    kontonummerFraRegister: string;
+    formatertKontonummer: string;
+};
+
+type HarIkkeKontonummerInfo = {
+    harKontonummer: HarKontonummerEnum.NEI;
+};
+
+type KontonummerInfoUkjent = {
+    harKontonummer: HarKontonummerEnum.UKJENT;
+};
+
+export type KontonummerInfo = HarKontonummerInfo | HarIkkeKontonummerInfo | KontonummerInfoUkjent;
 
 export interface SøknadContextType {
     søker: Søker;
