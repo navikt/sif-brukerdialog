@@ -15,6 +15,12 @@ export type Friteksfelt = {
     verdi: string;
 };
 
+export type KontonummerInfo = {
+    harKontonummer: 'JA' | 'NEI' | 'UVISST';
+    kontonummerFraRegister?: string;
+    kontonummerErRiktig?: boolean;
+};
+
 export type Ungdomsytelsesøknad = {
     oppgaveReferanse: string;
     deltakelseId: string;
@@ -22,8 +28,7 @@ export type Ungdomsytelsesøknad = {
     startdato: string;
     søkerNorskIdent: string;
     barnErRiktig: boolean;
-    kontonummerFraRegister?: string;
-    kontonummerErRiktig?: boolean;
+    kontonummerInfo: KontonummerInfo;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
 };
@@ -1016,9 +1021,7 @@ export type InnsendingUngdomsytelsesøknadData = {
         'X-Brukerdialog-Git-Sha': string;
     };
     path?: never;
-    query?: {
-        enabled?: boolean;
-    };
+    query?: never;
     url: '/ungdomsytelse/soknad/innsending';
 };
 
@@ -1057,9 +1060,7 @@ export type OppgavebekreftelseData = {
         'X-Brukerdialog-Git-Sha': string;
     };
     path?: never;
-    query?: {
-        enabled?: boolean;
-    };
+    query?: never;
     url: '/ungdomsytelse/oppgavebekreftelse/innsending';
 };
 
@@ -1097,9 +1098,7 @@ export type InntektrapporteringData = {
         'X-Brukerdialog-Git-Sha': string;
     };
     path?: never;
-    query?: {
-        enabled?: boolean;
-    };
+    query?: never;
     url: '/ungdomsytelse/inntektsrapportering/innsending';
 };
 

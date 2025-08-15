@@ -4,6 +4,7 @@ import KontonummerSteg from './KontonummerSteg';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const meta: Meta = {
     title: 'Søknad/Steg/Kontonummer',
@@ -12,7 +13,11 @@ const meta: Meta = {
         withIntl,
         (Story) =>
             withSøknadContext(Story, {
-                kontonummerInfo: { harKontonummer: true, kontonummerFraRegister: '112233445' },
+                kontonummerInfo: {
+                    harKontonummer: HarKontonummerEnum.JA,
+                    kontonummerFraRegister: '11112233333',
+                    formatertKontonummer: '1111.22.33333',
+                },
             }),
         withRouter,
     ],
@@ -30,7 +35,7 @@ export const UtenKontonummer: Story = {
     decorators: [
         (Story) =>
             withSøknadContext(Story, {
-                kontonummerInfo: { harKontonummer: false },
+                kontonummerInfo: { harKontonummer: HarKontonummerEnum.NEI },
             }),
     ],
 };

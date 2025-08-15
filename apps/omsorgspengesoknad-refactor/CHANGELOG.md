@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.39.18
+
+### Patch Changes
+
+- Updated dependencies [6acb88a]
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.0
+    - @navikt/sif-common-query@0.1.14
+
 ## 1.39.17
 
 ### Patch Changes

@@ -11,6 +11,7 @@ import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
+import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();
@@ -21,7 +22,7 @@ const KontonummerSteg = () => {
     const [error, setError] = useState<string | undefined>(undefined);
 
     const handleOnSubmit = () => {
-        if (kontonummerInfo.harKontonummer) {
+        if (kontonummerInfo.harKontonummer === HarKontonummerEnum.JA) {
             const err = getYesOrNoValidator()(infoStemmer);
             if (err) {
                 setError('Du må svare på spørsmålet');
@@ -43,7 +44,7 @@ const KontonummerSteg = () => {
                     <GuidePanel>
                         <AppText id="kontonummerSteg.beskrivelse" />
                     </GuidePanel>
-                    {kontonummerInfo.harKontonummer ? (
+                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
                         <VStack gap="4">
                             <RadioGroup
                                 legend={text('kontonummerSteg.kontonummer.spm', {
@@ -82,7 +83,8 @@ const KontonummerSteg = () => {
                                 </Alert>
                             </AriaLiveRegion>
                         </VStack>
-                    ) : (
+                    )}
+                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>
                                 <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
@@ -99,6 +101,26 @@ const KontonummerSteg = () => {
                             </BodyLong>
                             <BodyLong>
                                 <AppText id="kontonummerSteg.harIkkeKontonummer.info.3" />
+                            </BodyLong>
+                        </Alert>
+                    )}
+                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
+                        <Alert variant="warning">
+                            <Heading level="3" size="small" spacing>
+                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
+                            </Heading>
+                            <BodyLong spacing>
+                                <AppText
+                                    id="kontonummerSteg.kontonummerInfoMangler.info.2"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <ExternalLink href={getLenker().endreKontonummer}>{children}</ExternalLink>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                            <BodyLong>
+                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
                             </BodyLong>
                         </Alert>
                     )}

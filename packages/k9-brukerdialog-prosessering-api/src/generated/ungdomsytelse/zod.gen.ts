@@ -11,6 +11,12 @@ export const zProblemDetail = z.object({
     properties: z.optional(z.record(z.string(), z.unknown())),
 });
 
+export const zKontonummerInfo = z.object({
+    harKontonummer: z.enum(['JA', 'NEI', 'UVISST']),
+    kontonummerFraRegister: z.optional(z.string()),
+    kontonummerErRiktig: z.optional(z.boolean()),
+});
+
 export const zUngdomsytelsesøknad = z.object({
     oppgaveReferanse: z.string(),
     deltakelseId: z.string(),
@@ -18,8 +24,7 @@ export const zUngdomsytelsesøknad = z.object({
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
     barnErRiktig: z.boolean(),
-    kontonummerFraRegister: z.optional(z.string()),
-    kontonummerErRiktig: z.optional(z.boolean()),
+    kontonummerInfo: zKontonummerInfo,
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
 });
@@ -147,11 +152,7 @@ export const zLagreVedleggData = z.object({
 export const zInnsendingUngdomsytelsesøknadData = z.object({
     body: zUngdomsytelsesøknad,
     path: z.optional(z.never()),
-    query: z.optional(
-        z.object({
-            enabled: z.optional(z.boolean()),
-        }),
-    ),
+    query: z.optional(z.never()),
     headers: z.object({
         'X-Brukerdialog-Git-Sha': z.string(),
     }),
@@ -160,11 +161,7 @@ export const zInnsendingUngdomsytelsesøknadData = z.object({
 export const zOppgavebekreftelseData = z.object({
     body: zUngdomsytelseOppgavebekreftelse,
     path: z.optional(z.never()),
-    query: z.optional(
-        z.object({
-            enabled: z.optional(z.boolean()),
-        }),
-    ),
+    query: z.optional(z.never()),
     headers: z.object({
         'X-Brukerdialog-Git-Sha': z.string(),
     }),
@@ -173,11 +170,7 @@ export const zOppgavebekreftelseData = z.object({
 export const zInntektrapporteringData = z.object({
     body: zUngdomsytelseInntektsrapportering,
     path: z.optional(z.never()),
-    query: z.optional(
-        z.object({
-            enabled: z.optional(z.boolean()),
-        }),
-    ),
+    query: z.optional(z.never()),
     headers: z.object({
         'X-Brukerdialog-Git-Sha': z.string(),
     }),
