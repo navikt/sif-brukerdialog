@@ -14,7 +14,8 @@ const DeltakelseIkkeStartetInfo = ({ fraOgMed }: Props) => (
                 mottar du penger gjennom ungdomsprogramytelsen.
             </BodyLong>
             <BodyLong size="large" weight="semibold">
-                Etter første måned i ungdomsprogrammet må du melde ifra hvis du starter å jobbe og får utbetalt lønn.
+                På denne siden får du oppgaver mens du er i ungdomsprogrammet. Du trenger ikke gjøre noe med oppgavene
+                før du får et varsel på SMS om det.
             </BodyLong>
         </VStack>
     </InnsynBlueBox>
