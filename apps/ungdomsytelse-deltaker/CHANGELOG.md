@@ -1,5 +1,18 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.0
+
+### Minor Changes
+
+- 6acb88a: Håndtere og godta at kontonummeroppslag kan feile. Viser da at den infoen er uviss, og ber bruker sjekke selv.
+
+### Patch Changes
+
+- Updated dependencies [6acb88a]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.0
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.0
+    - @navikt/ung-common@0.0.25
+
 ## 1.0.3
 
 ### Patch Changes
