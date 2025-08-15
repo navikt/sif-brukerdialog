@@ -2,7 +2,7 @@ import { Theme } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { ApiError, useAnalyticsInstance } from '../../analytics/analytics';
+import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
@@ -36,10 +36,12 @@ const SøknadApp = () => {
 
     if (barn.isError || kontonummer.isError) {
         if (barn.isError) {
-            logApiError(ApiError.barn, { error: barn.error });
+            const { type, message, context } = barn.error;
+            logApiError(ApiErrorKey.barn, { type, message, context });
         }
         if (kontonummer.isError) {
-            logApiError(ApiError.kontonummer, { error: kontonummer.error });
+            const { type, message, context } = kontonummer.error;
+            logApiError(ApiErrorKey.kontonummer, { type, message, context });
         }
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }

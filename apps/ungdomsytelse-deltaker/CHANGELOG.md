@@ -1,10 +1,16 @@
 # @navikt/ungdomsytelse-søknad
 
-## 1.0.2
+## 1.0.3
 
 ### Patch Changes
 
 - Tekstjustering på velkommen-melding i ungdomsytelse-deltaker-forside
+
+## 1.0.2
+
+### Patch Changes
+
+- Justere logging til faro og umami
 
 ## 1.0.1
 
