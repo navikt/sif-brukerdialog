@@ -104,7 +104,7 @@ const KontonummerSteg = () => {
                             </BodyLong>
                         </Alert>
                     )}
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.UKJENT && (
+                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>
                                 <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />

@@ -1,50 +1,43 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { KontonummerInfo, Spørsmål, SøknadSvar } from '../../types';
+import { Spørsmål, SøknadSvar } from '../../types';
 
 const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;
 };
 
+export type HarKontonummerValues = Pick<KontonummerInfo, 'harKontonummer'>;
+
 export enum HarKontonummerEnum {
     JA = 'JA',
     NEI = 'NEI',
-    UKJENT = 'UKJENT',
+    UVISST = 'UVISST',
 }
 
-export type KontoummerApiInfo = {
-    harKontonummer: HarKontonummerEnum;
-    kontonummerFraRegister?: string;
-    kontonummerErRiktig?: boolean;
-};
-
-export type SøknadApiData = { kontonummerInfo: KontoummerApiInfo } & Omit<
-    ungdomsytelse.Ungdomsytelsesøknad,
-    'harBekreftetOpplysninger' | 'kontonummerErRiktig'
->;
+export type SøknadApiData = Omit<ungdomsytelse.Ungdomsytelsesøknad, 'harBekreftetOpplysninger' | 'kontonummerErRiktig'>;
 
 export const getKontonummerApiInfo = (
     kontonummerInfo: KontonummerInfo,
     kontonummerErRiktigSvar?: YesOrNo,
-): KontoummerApiInfo | undefined => {
+): KontonummerInfo | undefined => {
     switch (kontonummerInfo.harKontonummer) {
-        case HarKontonummerEnum.UKJENT:
+        case 'UVISST':
             return {
-                harKontonummer: HarKontonummerEnum.UKJENT,
+                harKontonummer: 'UVISST',
             };
-        case HarKontonummerEnum.JA:
+        case 'JA':
             if (!isYesOrNoAnswered(kontonummerErRiktigSvar)) {
                 return undefined;
             }
             return {
-                harKontonummer: HarKontonummerEnum.JA,
+                harKontonummer: 'JA',
                 kontonummerFraRegister: kontonummerInfo.kontonummerFraRegister,
                 kontonummerErRiktig: kontonummerErRiktigSvar === YesOrNo.YES,
             };
-        case HarKontonummerEnum.NEI:
+        case 'NEI':
             return {
-                harKontonummer: HarKontonummerEnum.NEI,
+                harKontonummer: 'NEI',
             };
     }
 };

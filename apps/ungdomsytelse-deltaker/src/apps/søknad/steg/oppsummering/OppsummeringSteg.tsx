@@ -115,7 +115,7 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
-                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.UKJENT && (
+                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.kontonummerInfoMangler.tittel" />

@@ -14,7 +14,7 @@ import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
 import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import SøknadRouter from './SøknadRouter';
-import { KontonummerInfo } from './types';
+import { KontonummerOppslagInfo } from './types';
 import { formaterKontonummer } from './utils/formaterKontonummer';
 
 const SøknadApp = () => {
@@ -49,10 +49,10 @@ const SøknadApp = () => {
     //     return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     // }
 
-    const getKontonummerInfo = (): KontonummerInfo => {
+    const getKontonummerInfo = (): KontonummerOppslagInfo => {
         if (kontonummer.error) {
             return {
-                harKontonummer: HarKontonummerEnum.UKJENT,
+                harKontonummer: HarKontonummerEnum.UVISST,
             };
         }
 

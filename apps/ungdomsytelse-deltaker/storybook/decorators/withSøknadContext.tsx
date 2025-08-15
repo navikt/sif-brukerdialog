@@ -18,7 +18,7 @@ export const withSøknadContext = (Story: any, context?: Partial<SøknadContextT
         <Theme>
             <SøknadProvider
                 barn={context?.barn || barn}
-                kontonummerInfo={context?.kontonummerInfo || { harKontonummer: HarKontonummerEnum.UKJENT }}
+                kontonummerInfo={context?.kontonummerInfo || { harKontonummer: HarKontonummerEnum.UVISST }}
                 deltakelsePeriode={deltakelse as DeltakelsePeriode}
                 søker={data.søker}
                 initialSvar={context?.svar}
