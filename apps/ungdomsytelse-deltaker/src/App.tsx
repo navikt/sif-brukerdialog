@@ -78,6 +78,7 @@ function App() {
                     )}
                     unavailableContentRenderer={() => (
                         <ErrorPage
+                            bannerTitle="Ungdomsprogramytelsen"
                             pageTitle="Vi utfører vedlikehold"
                             contentRenderer={() => (
                                 <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
