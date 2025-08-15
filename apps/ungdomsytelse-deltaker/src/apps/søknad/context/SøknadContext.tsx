@@ -1,5 +1,4 @@
 import React, { createContext, useMemo, useState } from 'react';
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
@@ -9,14 +8,14 @@ import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
 import { SøkYtelseOppgave } from '../../../types/Oppgave';
 import { logUtils } from '../../innsyn/utils/logUtils';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
+import { KontonummerOppslagInfo, Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
 interface SøknadProviderProps {
     children: React.ReactNode;
     barn: RegistrertBarn[];
-    kontonummerInfo: KontonummerInfo;
+    kontonummerInfo: KontonummerOppslagInfo;
     søker: Søker;
     initialSvar?: SøknadSvar;
     søknadOppgave: SøkYtelseOppgave;
@@ -68,7 +67,8 @@ export const SøknadProvider = ({
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-                kontonummerInfo,
+                kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
+                kontonummerOppslagInfo: kontonummerInfo,
             }),
         );
     };

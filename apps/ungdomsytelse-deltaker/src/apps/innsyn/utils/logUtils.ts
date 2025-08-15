@@ -1,8 +1,10 @@
-import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
+import { HarKontonummerEnum } from '../../søknad/steg/oppsummering/oppsummeringUtils';
+import { KontonummerOppslagInfo } from '../../søknad/types';
 
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;
@@ -67,20 +69,22 @@ const getSøknadInnsendingMeta = (
     {
         antallBarn,
         barnStemmer,
-        kontonummerInfo,
+        kontonummerStemmer,
+        kontonummerOppslagInfo,
     }: {
         antallBarn: number;
         barnStemmer: boolean;
-        kontonummerInfo: KontonummerInfo;
+        kontonummerStemmer?: boolean;
+        kontonummerOppslagInfo: KontonummerOppslagInfo;
     },
 ) => {
     const meta = getDeltakelsePeriodeMeta(deltakelse);
-    const { harKontonummer, kontonummerErRiktig } = kontonummerInfo;
+    const { harKontonummer } = kontonummerOppslagInfo;
     return {
         harBarn: antallBarn > 0,
         barnStemmer,
         harKontonummer,
-        kontonummerStemmer: harKontonummer ? kontonummerErRiktig : undefined,
+        kontonummerStemmer: harKontonummer === HarKontonummerEnum.JA ? kontonummerStemmer : undefined,
         harStartet: meta.harStartet,
         harSluttdato: meta.harSluttdato,
         antallOppgaverTotalt: meta.antallOppgaverTotalt,

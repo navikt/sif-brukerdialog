@@ -22,7 +22,7 @@ export type SøknadSvar = {
     [Spørsmål.BARN]?: YesOrNo;
 };
 
-export type KontonummerOppslagInfo = KontonummerInfo & {
+export type KontonummerOppslagInfo = Omit<KontonummerInfo, 'kontonummerErRiktig'> & {
     formatertKontonummer?: string;
 };
 
