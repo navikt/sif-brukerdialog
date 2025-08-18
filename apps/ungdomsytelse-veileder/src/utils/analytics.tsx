@@ -20,7 +20,7 @@ export enum AppHendelse {
     deltakerRegistrert = 'deltaker-registrert',
     deltakerSlettet = 'deltaker-slettet',
     startdatoEndret = 'startdato-endret',
-    deltakerMeldtUt = 'deltaker-meldt-ut',
+    sluttdatoSattFørsteGang = 'sluttdato-satt-første-gang',
     sluttdatoEndret = 'sluttdato-endret',
 }
 

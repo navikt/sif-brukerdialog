@@ -74,7 +74,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
         if (erEndringAvSluttdato) {
             await logAppHendelse(AppHendelse.sluttdatoEndret);
         } else {
-            await logAppHendelse(AppHendelse.deltakerMeldtUt, { årsak: values[FieldNames.årsak] });
+            await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang, { årsak: values[FieldNames.årsak] });
         }
     };
 
