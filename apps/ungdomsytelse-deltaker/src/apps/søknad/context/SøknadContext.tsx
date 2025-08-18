@@ -8,15 +8,14 @@ import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
 import { SøkYtelseOppgave } from '../../../types/Oppgave';
 import { logUtils } from '../../innsyn/utils/logUtils';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
-import { formaterKontonummer } from '../utils/formaterKontonummer';
+import { KontonummerOppslagInfo, Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 
 interface SøknadProviderProps {
     children: React.ReactNode;
     barn: RegistrertBarn[];
-    kontonummer?: string;
+    kontonummerInfo: KontonummerOppslagInfo;
     søker: Søker;
     initialSvar?: SøknadSvar;
     søknadOppgave: SøkYtelseOppgave;
@@ -27,7 +26,7 @@ const initialData: SøknadSvar = {};
 
 export const SøknadProvider = ({
     children,
-    kontonummer,
+    kontonummerInfo,
     barn,
     søknadOppgave,
     deltakelsePeriode,
@@ -68,8 +67,8 @@ export const SøknadProvider = ({
             logUtils.getSøknadInnsendingMeta(deltakelsePeriode, søknadOppgave, {
                 antallBarn: barn.length,
                 barnStemmer: svar[Spørsmål.BARN] === YesOrNo.YES,
-                harKontonummer: kontonummer !== undefined,
                 kontonummerStemmer: svar[Spørsmål.KONTONUMMER] === YesOrNo.YES,
+                kontonummerOppslagInfo: kontonummerInfo,
             }),
         );
     };
@@ -78,15 +77,7 @@ export const SøknadProvider = ({
         () => ({
             svar,
             søknadSendt,
-            kontonummerInfo: kontonummer
-                ? {
-                      harKontonummer: true,
-                      kontonummerFraRegister: kontonummer,
-                      formatertKontonummer: formaterKontonummer(kontonummer),
-                  }
-                : {
-                      harKontonummer: false,
-                  },
+            kontonummerInfo,
             barn,
             søknadOppgave,
             søknadStartet,
@@ -100,7 +91,7 @@ export const SøknadProvider = ({
         [
             svar,
             søknadSendt,
-            kontonummer,
+            kontonummerInfo,
             barn,
             søknadOppgave,
             søknadStartet,

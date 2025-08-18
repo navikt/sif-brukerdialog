@@ -2,7 +2,7 @@ import { Theme } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { ApiError, useAnalyticsInstance } from '../../analytics/analytics';
+import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
@@ -12,7 +12,10 @@ import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
+import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import SøknadRouter from './SøknadRouter';
+import { KontonummerOppslagInfo } from './types';
+import { formaterKontonummer } from './utils/formaterKontonummer';
 
 const SøknadApp = () => {
     const { søker, deltakelsePeriode } = useDeltakerContext();
@@ -34,15 +37,35 @@ const SøknadApp = () => {
         return <UngLoadingPage />;
     }
 
-    if (barn.isError || kontonummer.isError) {
-        if (barn.isError) {
-            logApiError(ApiError.barn, { error: barn.error });
-        }
-        if (kontonummer.isError) {
-            logApiError(ApiError.kontonummer, { error: kontonummer.error });
-        }
+    if (barn.isError) {
+        const { context, message, type } = barn.error;
+        logApiError(ApiErrorKey.barn, { error: { context, message, type } });
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
+
+    // if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
+    //     const { context, message, type } = kontonummer.error;
+    //     logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
+    //     return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
+    // }
+
+    const getKontonummerInfo = (): KontonummerOppslagInfo => {
+        if (kontonummer.error) {
+            return {
+                harKontonummer: HarKontonummerEnum.UVISST,
+            };
+        }
+
+        return kontonummer.data?.harKontonummer && kontonummer.data.kontonummer
+            ? {
+                  harKontonummer: HarKontonummerEnum.JA,
+                  kontonummerFraRegister: kontonummer.data.kontonummer,
+                  formatertKontonummer: formaterKontonummer(kontonummer.data.kontonummer),
+              }
+            : {
+                  harKontonummer: HarKontonummerEnum.NEI,
+              };
+    };
 
     const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
 
@@ -56,7 +79,7 @@ const SøknadApp = () => {
                 søknadOppgave={søknadOppgave}
                 søker={søker}
                 deltakelsePeriode={deltakelsePeriode}
-                kontonummer={kontonummer.data?.harKontonummer ? kontonummer.data.kontonummer : undefined}
+                kontonummerInfo={getKontonummerInfo()}
                 barn={barn.data || []}>
                 <SøknadRouter />
             </SøknadProvider>

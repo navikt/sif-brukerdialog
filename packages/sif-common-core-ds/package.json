@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.2.30",
+    "version": "10.2.31",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -16,7 +16,7 @@
         "dayjs": "1.11.13",
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.14.0",
-        "tailwindcss": "4.1.11"
+        "tailwindcss": "4.1.12"
     },
     "devDependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -33,7 +33,7 @@
         "@storybook/builder-vite": "9.1.2",
         "@storybook/react-vite": "9.1.2",
         "@storybook/testing-library": "0.2.2",
-        "@types/node": "24.2.1",
+        "@types/node": "24.3.0",
         "@types/react": "19.1.10",
         "@types/react-dom": "19.1.7",
         "@vitejs/plugin-react": "5.0.0",
@@ -46,7 +46,7 @@
         "postcss": "8.5.6",
         "prop-types": "15.8.1",
         "react": "19.1.1",
-        "react-day-picker": "9.8.1",
+        "react-day-picker": "9.9.0",
         "react-dom": "19.1.1",
         "react-intl": "7.1.11",
         "react-responsive": "10.0.1",

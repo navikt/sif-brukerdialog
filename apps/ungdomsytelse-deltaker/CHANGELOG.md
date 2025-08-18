@@ -1,5 +1,45 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.1
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.1
+    - @navikt/sif-common-soknad-ds@25.0.7
+    - @navikt/sif-common-forms-ds@20.0.7
+    - @navikt/sif-common-core-ds@10.2.31
+    - @navikt/sif-common-api@0.4.29
+    - @navikt/sif-common-ui@0.10.7
+    - @navikt/ung-common@0.0.26
+
+## 1.1.0
+
+### Minor Changes
+
+- 6acb88a: Håndtere og godta at kontonummeroppslag kan feile. Viser da at den infoen er uviss, og ber bruker sjekke selv.
+
+### Patch Changes
+
+- Updated dependencies [6acb88a]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.0
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.0
+    - @navikt/ung-common@0.0.25
+
+## 1.0.3
+
+### Patch Changes
+
+- Tekstjustering på velkommen-melding i ungdomsytelse-deltaker-forside
+
+## 1.0.2
+
+### Patch Changes
+
+- Justere logging til faro og umami
+
 ## 1.0.1
 
 ### Patch Changes

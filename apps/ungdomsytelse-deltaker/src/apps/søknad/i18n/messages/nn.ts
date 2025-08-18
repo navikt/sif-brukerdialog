@@ -84,6 +84,11 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
         'Registrer bankkontonummeret ditt hos Nav slik at du får pengane utbetalt til rett konto. Gå til <Lenke>personopplysningar på Min side</Lenke> for å leggje inn kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.3':
         'Du kan framleis sende inn søknaden, men vi rår deg til å leggje inn kontonummeret med ein gong slik at pengane ikkje blir forseinka.',
+    'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikkje sjå om du har kontonummer hos oss',
+    'kontonummerSteg.kontonummerInfoMangler.info.2':
+        'For at du skal få utbetalt pengane til rett konto, er det viktig at du har registrert kontonummeret ditt. Gå til <Lenke>personopplysningar på Min side</Lenke> for å sjekke dette.',
+    'kontonummerSteg.kontonummerInfoMangler.info.3':
+        'Du kan framleis sende inn søknaden, men vi rår deg til å sjekke kontonummeret med ein gong slik at pengane ikkje blir forseinka.',
 
     /** BarnSteg */
     'barnSteg.tittel': 'Barn',
@@ -105,6 +110,9 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'oppsummeringSteg.kontonummer.tittel': 'Kontonummer for utbetaling',
     'oppsummeringSteg.kontonummer.ingenKontonummer.tittel': 'Kontonummer for utbetaling',
     'oppsummeringSteg.kontonummer.ingenKontonummer.tekst': 'Vi har ikkje registrert noko kontonummer på deg.',
+    'oppsummeringSteg.kontonummer.kontonummerInfoMangler.tittel': 'Kontonummer for utbetaling',
+    'oppsummeringSteg.kontonummer.kontonummerInfoMangler.tekst':
+        'Vi klarer ikkje sjå om du har registrert kontonummer hos oss.',
     'oppsummeringSteg.barn.tittel': 'Barn',
     'oppsummeringSteg.bekreft.hiddenLegend': 'Stadfest opplysningar',
     'oppsummeringSteg.bekreft.tekst':

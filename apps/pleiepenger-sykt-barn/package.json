@@ -4,7 +4,7 @@
   "license": "MIT",
   "name": "@navikt/pleiepenger-sykt-barn",
   "repository": "https://github.com/navikt/sif-brukerdialog",
-  "version": "4.10.6",
+  "version": "4.10.7",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -36,8 +36,8 @@
     "lodash.groupby": "4.6.0",
     "mockdate": "3.0.5",
     "react": "19.1.1",
-    "react-day-picker": "9.8.1",
-    "react-router-dom": "7.8.0",
+    "react-day-picker": "9.9.0",
+    "react-router-dom": "7.8.1",
     "uuid": "11.1.0"
   },
   "devDependencies": {
