@@ -2,7 +2,7 @@
     "name": "sif-storybook",
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "main": "src/index.ts",
-    "version": "0.0.30",
+    "version": "0.0.31",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,7 +14,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "react-day-picker": "9.8.1"
+        "react-day-picker": "9.9.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -32,7 +32,7 @@
         "react-intl": "7.1.11",
         "storybook": "9.1.2",
         "typescript": "5.9.2",
-        "webpack": "5.101.1"
+        "webpack": "5.101.2"
     },
     "scripts": {
         "build-storybook": "storybook build ",
