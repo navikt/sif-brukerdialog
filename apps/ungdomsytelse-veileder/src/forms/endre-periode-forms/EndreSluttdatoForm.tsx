@@ -17,16 +17,18 @@ import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
-import { UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
+import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 enum FieldNames {
     sluttdato = 'sluttdato',
     erVedtaksbrevSendt = 'erVedtaksbrevSendt',
+    årsak = 'årsak',
     bekrefterEndring = 'bekrefterEndring',
 }
 type FormValues = {
     [FieldNames.sluttdato]: string;
+    [FieldNames.årsak]: Utmeldingsårsak;
     [FieldNames.erVedtaksbrevSendt]: YesOrNo;
     [FieldNames.bekrefterEndring]: boolean;
 };
@@ -54,6 +56,8 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
         deltakerId: deltaker.id,
     });
 
+    const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
+
     const handleOnSubmit = async (values: FormValues) => {
         const { sluttdato } = values;
         if (!sluttdato) {
@@ -67,10 +71,12 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 onSuccess: onDeltakelseChanged,
             },
         );
-        await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang);
+        if (erEndringAvSluttdato) {
+            await logAppHendelse(AppHendelse.sluttdatoEndret);
+        } else {
+            await logAppHendelse(AppHendelse.deltakerMeldtUt, { årsak: values[FieldNames.årsak] });
+        }
     };
-
-    const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
 
     const sluttdatoMinMax = {
         from: deltakelse.fraOgMed,
@@ -140,7 +146,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                             />
                                             {erEndringAvSluttdato === false && (
                                                 <FormikRadioGroup
-                                                    name="årsak"
+                                                    name={FieldNames.årsak}
                                                     legend="Hvorfor meldes deltaker ut?"
                                                     radios={UtmeldingsårsakerList.map((årsak) => ({
                                                         value: årsak,
