@@ -35,12 +35,22 @@ const ErrorPageContent = ({ error, visTips }: Props) => {
                                 <List>
                                     <List.Item>
                                         vente litt og{' '}
-                                        <Link href="#" onClick={() => location.reload()}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                location.reload();
+                                            }}>
                                             laste siden på nytt
                                         </Link>
                                     </List.Item>
                                     <List.Item>
-                                        <Link href="#" onClick={() => navigate('/')}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                navigate('/');
+                                            }}>
                                             gå tilbake til forsiden og prøve igjen
                                         </Link>
                                     </List.Item>

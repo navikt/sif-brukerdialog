@@ -7,7 +7,7 @@ import ArticleContentFromUrl from './components/ArticleContentFromUrl';
 // Dynamisk import av alle markdown-filer i articles-mappen (Vite v5: bruk query:'?raw', import:'default')
 const articles = import.meta.glob('../../articles/*.md', { eager: true, query: '?raw', import: 'default' });
 
-export const articleList = Object.keys(articles).map((path): MarkdownArticle => {
+const rawArticleList: MarkdownArticle[] = Object.keys(articles).map((path): MarkdownArticle => {
     const fileName = path.split('/').pop() || '';
     const id = fileName.replace('.md', '');
     const raw = articles[path] as string;
@@ -41,6 +41,18 @@ export const articleList = Object.keys(articles).map((path): MarkdownArticle => 
 
     return { id, title, ingress, content };
 });
+
+const getOrder = (id: string) => {
+    const prefix = id.split('-')[0];
+    const n = parseInt(prefix, 10);
+    return isNaN(n) ? Number.MAX_SAFE_INTEGER : n;
+};
+
+export const articleList = rawArticleList
+    // Filtrer vekk duplikater/arbeidskopier
+    .filter((a) => !a.id.toLowerCase().includes(' copy'))
+    // Sorter på numerisk prefiks slik at rekkefølgen blir stabil
+    .sort((a, b) => getOrder(a.id) - getOrder(b.id));
 
 const InfoInnhold = () => {
     const navigate = useNavigate();
