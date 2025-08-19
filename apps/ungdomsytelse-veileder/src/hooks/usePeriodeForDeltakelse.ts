@@ -3,7 +3,7 @@ import { ApiError } from '@navikt/ung-common';
 import { EndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';
 import { endreStartdatoForDeltakelse } from '../api/deltakelse/endreStartdatoForDeltakelse';
-import { queries } from '../queries/queryKeys';
+import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';
 import { EndrePeriodeVariant } from '../types/EndrePeriodeVariant';
 
@@ -29,8 +29,8 @@ export const usePeriodeForDeltakelse = ({
                 ? endreStartdatoForDeltakelse(deltakelseId, data)
                 : endreSluttdatoForDeltakelse(deltakelseId, data),
         onSuccess: () => {
-            queryClient.invalidateQueries(queries.deltakelserForDeltaker(deltakerId));
-            queryClient.invalidateQueries(queries.deltakelseHistorikk(deltakelseId));
+            queryClient.invalidateQueries({ queryKey: queryKeys.deltakelserForDeltaker(deltakerId) });
+            queryClient.invalidateQueries({ queryKey: queryKeys.deltakelseHistorikk(deltakelseId) });
         },
     });
 };
