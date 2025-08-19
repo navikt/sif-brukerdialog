@@ -15,7 +15,8 @@ import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { AppHendelse } from '../../utils/analytics';
+import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
 import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
 import { dateToISODate } from '@navikt/sif-common-utils';
@@ -48,7 +49,7 @@ interface Props {
 
 const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
-    const { logAppHendelse } = useAnalyticsInstance();
+    const { log } = useAppEventLogger();
 
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant: EndrePeriodeVariant.endreSluttdato,
@@ -72,9 +73,9 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
             },
         );
         if (erEndringAvSluttdato) {
-            await logAppHendelse(AppHendelse.sluttdatoEndret);
+            await log(AppHendelse.sluttdatoEndret);
         } else {
-            await logAppHendelse(AppHendelse.sluttdatoSattFørsteGang, { årsak: values[FieldNames.årsak] });
+            await log(AppHendelse.sluttdatoSattFørsteGang, { årsak: values[FieldNames.årsak] });
         }
     };
 

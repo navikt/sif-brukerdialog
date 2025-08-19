@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SlettDeltakerForm from './SlettDeltakerForm';
 import { useQueryClient } from '@tanstack/react-query';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { AppHendelse } from '../../utils/analytics';
+import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { Deltaker } from '../../types/Deltaker';
 
 interface Props {
@@ -13,11 +14,11 @@ interface Props {
 
 const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
-    const { logAppHendelse } = useAnalyticsInstance();
+    const { log } = useAppEventLogger();
 
     const handleOnDeltakelseSlettet = async () => {
         setDeltakelseSlettet(true);
-        await logAppHendelse(AppHendelse.deltakerSlettet);
+        await log(AppHendelse.deltakerSlettet);
     };
 
     const navigate = useNavigate();

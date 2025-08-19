@@ -10,7 +10,8 @@ import StartdatoInfo from '../../pages/deltaker-page/StartdatoInfo';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { AppHendelse } from '../../utils/analytics';
+import { useAppEventLogger } from '../../utils/analyticsHelper';
 import {
     getStartdatobegrensningForDeltaker,
     getTillattEndringsperiode,
@@ -42,7 +43,7 @@ interface Props {
 
 const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
-    const { logAppHendelse } = useAnalyticsInstance();
+    const { log } = useAppEventLogger();
 
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant: EndrePeriodeVariant.startdato,
@@ -78,7 +79,7 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 onSuccess: onDeltakelseChanged,
             },
         );
-        await logAppHendelse(AppHendelse.startdatoEndret, {
+        await log(AppHendelse.startdatoEndret, {
             endring: dayjs(startdato).diff(deltakelse.fraOgMed, 'day'),
         });
     };
