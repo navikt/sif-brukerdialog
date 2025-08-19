@@ -122,7 +122,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         <>
                                             <FormikYesOrNoQuestion
                                                 name="erVedtaksbrevSendt"
-                                                legend="Er vedtaksbrev om at deltaker er meldt ut av ungdomsprgrammet sendt fra gosys?"
+                                                legend="Er vedtaksbrev om at deltaker er meldt ut av ungdomsprogrammet sendt fra gosys?"
                                                 validate={getYesOrNoValidator()}
                                             />
                                             {erVedtaksbrevSendt === YesOrNo.NO && (

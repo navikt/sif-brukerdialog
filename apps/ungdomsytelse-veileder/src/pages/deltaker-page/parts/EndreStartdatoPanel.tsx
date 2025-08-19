@@ -4,40 +4,36 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import InfoBox from '../../../atoms/InfoBox';
 
 interface DatoBoksProps {
-    tittel: string;
-    dato?: Date;
-    endre?: {
-        label: string;
-        onClick: () => void;
-    };
-    kanIkkeEndreTekst: string;
+    dato: Date;
+    kanEndreStartdato: boolean;
+    onClickEndreButton: () => void;
 }
 
-const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => {
+const EndreStartdatoPanel = ({ dato, kanEndreStartdato, onClickEndreButton }: DatoBoksProps) => {
     return (
         <InfoBox>
             <VStack gap="6">
                 <div>
                     <Heading level="3" size="xsmall" spacing>
-                        <BodyShort as="span">{tittel}</BodyShort>
+                        <BodyShort as="span">Startdato:</BodyShort>
                     </Heading>
                     <BodyShort size="large" weight="semibold" className="text-2xl capitalize">
                         {dato ? dateFormatter.dayCompactDate(dato) : '-'}
                     </BodyShort>
                 </div>
-                {endre ? (
+                {kanEndreStartdato ? (
                     <div>
                         <Button
                             variant="primary"
                             size="medium"
                             icon={<PencilFillIcon aria-hidden="true" />}
-                            onClick={endre.onClick}>
-                            {endre.label}
+                            onClick={onClickEndreButton}>
+                            Endre startdato
                         </Button>
                     </div>
                 ) : (
                     <Alert variant="info" inline>
-                        {kanIkkeEndreTekst}
+                        Startdato kan ikke endres
                     </Alert>
                 )}
             </VStack>
@@ -45,4 +41,4 @@ const DatoBoks = ({ tittel, dato, endre, kanIkkeEndreTekst }: DatoBoksProps) => 
     );
 };
 
-export default DatoBoks;
+export default EndreStartdatoPanel;
