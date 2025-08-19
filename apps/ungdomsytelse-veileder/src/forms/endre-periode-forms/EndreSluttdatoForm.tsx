@@ -160,8 +160,8 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                     name={FieldNames.bekrefterEndring}
                                                     label={
                                                         erEndringAvSluttdato
-                                                            ? 'Jeg bekrefter registrering av sluttdato'
-                                                            : 'Jeg bekrefter endring av sluttdato'
+                                                            ? 'Jeg bekrefter endring av sluttdato'
+                                                            : 'Jeg bekrefter registrering av sluttdato'
                                                     }
                                                     validate={getCheckedValidator()}
                                                 />

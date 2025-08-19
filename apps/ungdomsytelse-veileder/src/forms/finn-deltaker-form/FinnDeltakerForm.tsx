@@ -107,26 +107,24 @@ const FinnDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                         }
                         hideLegend={false}>
                         <HStack gap="2" align="end" paddingBlock="2 0">
-                            <HStack gap="2" align="end" paddingBlock="2 0">
-                                <TextField
-                                    name="fnr"
-                                    value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
-                                    label="Fødselsnummer/d-nummer:"
-                                    autoComplete="off"
-                                    onChange={(evt) => {
-                                        setFnrValue(evt.target.value);
-                                        setNyDeltaker(undefined);
-                                    }}
-                                    size="medium"
-                                    maxLength={11}
-                                    {...textFieldFormatterProps}
-                                />
-                                <Box>
-                                    <Button type="submit" variant="primary" loading={isLoading}>
-                                        Søk
-                                    </Button>
-                                </Box>
-                            </HStack>
+                            <TextField
+                                name="fnr"
+                                value={hasFocus ? fnrValue || '' : fødselsnummerFormatter.applyFormat(fnrValue)}
+                                label="Fødselsnummer/d-nummer:"
+                                autoComplete="off"
+                                onChange={(evt) => {
+                                    setFnrValue(evt.target.value);
+                                    setNyDeltaker(undefined);
+                                }}
+                                size="medium"
+                                maxLength={11}
+                                {...textFieldFormatterProps}
+                            />
+                            <Box>
+                                <Button type="submit" variant="primary" loading={isLoading}>
+                                    Søk
+                                </Button>
+                            </Box>
                         </HStack>
                     </Fieldset>
                 </form>
