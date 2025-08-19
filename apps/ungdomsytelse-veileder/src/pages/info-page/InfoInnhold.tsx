@@ -4,8 +4,8 @@ import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { MarkdownArticle } from '../../types/MarkdownArticle';
 import ArticleContentFromUrl from './components/ArticleContentFromUrl';
 
-// Dynamisk import av alle markdown-filer i articles-mappen
-const articles = import.meta.glob('../../articles/*.md', { eager: true, as: 'raw' });
+// Dynamisk import av alle markdown-filer i articles-mappen (Vite v5: bruk query:'?raw', import:'default')
+const articles = import.meta.glob('../../articles/*.md', { eager: true, query: '?raw', import: 'default' });
 
 export const articleList = Object.keys(articles).map((path): MarkdownArticle => {
     const fileName = path.split('/').pop() || '';
