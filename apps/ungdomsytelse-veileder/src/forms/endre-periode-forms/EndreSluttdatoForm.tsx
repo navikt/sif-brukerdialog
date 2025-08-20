@@ -51,13 +51,13 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     const intl = useIntl();
     const { log } = useAppEventLogger();
 
+    const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
+
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
-        variant: EndrePeriodeVariant.endreSluttdato,
+        variant: erEndringAvSluttdato ? EndrePeriodeVariant.endreSluttdato : EndrePeriodeVariant.meldUtDeltaker,
         deltakelseId: deltakelse.id,
         deltakerId: deltaker.id,
     });
-
-    const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
 
     const handleOnSubmit = async (values: FormValues) => {
         const { sluttdato } = values;
