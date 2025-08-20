@@ -8,6 +8,9 @@
         "e2e:build": {
             "outputs": ["dist-demo/**"]
         },
+        "gen:types": {
+            "outputs": []
+        },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build"]
