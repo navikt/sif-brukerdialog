@@ -8,9 +8,6 @@
         "e2e:build": {
             "outputs": ["dist-demo/**"]
         },
-        "gen:types": {
-            "outputs": []
-        },
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build"]
@@ -31,6 +28,10 @@
         },
         "lint:eslint": {},
         "lint:tsc": {},
+        "codegen": {
+            "outputs": [],
+            "cache": false
+        },
         "clean": {
             "cache": false
         },

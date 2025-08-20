@@ -22,11 +22,12 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "lint:eslint": "eslint './src/**/*.gen.ts'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
+        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "gen": "yarn openapi-ts"
+        "codegen": "yarn openapi-ts",
+        "gen": "yarn codegen"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
