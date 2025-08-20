@@ -71,6 +71,7 @@ const InfoInnhold = () => {
                                     variant="neutral"
                                     href="#"
                                     className="w-full pt-2 p-2"
+                                    role="button"
                                     onClick={(evt) => {
                                         evt.stopPropagation();
                                         evt.preventDefault();

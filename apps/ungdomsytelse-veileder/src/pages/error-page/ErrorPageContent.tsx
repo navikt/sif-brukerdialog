@@ -8,11 +8,9 @@ interface Props {
     visTips?: boolean;
 }
 
-/** Denne er ikke bra - må fikses */
 const ErrorPageContent = ({ error, visTips }: Props) => {
     const navigate = useNavigate();
     return (
-        // TODO: Legg til feilmeldinger fra backend
         <Box className="p-10">
             <HGrid columns="minmax(auto,600px)">
                 <VStack gap="16">
