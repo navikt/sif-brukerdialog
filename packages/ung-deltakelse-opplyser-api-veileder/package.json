@@ -26,7 +26,6 @@
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.veileder.config.ts",
         "codegen": "yarn gen-types:fixed",
-        "gen": "yarn codegen",
         "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/**/client/**' --ignore-pattern './src/**/core/**'",
         "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/**/client/**' --ignore-pattern './src/**/core/**'",
         "lint:tsc": "tsc --noEmit"
