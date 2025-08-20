@@ -2,7 +2,7 @@
     "name": "@sif/eslint-config",
     "main": "eslint.config.mjs",
     "type": "module",
-    "version": "1.1.43",
+    "version": "1.1.44",
     "description": "Shared ESLint configuration for SIF projects with minimal boilerplate factory function",
     "exports": {
         ".": "./eslint.config.mjs",
