@@ -4937,7 +4937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lezer/highlight@npm:^1.0.0, @lezer/highlight@npm:^1.1.3":
+"@lezer/highlight@npm:^1.0.0, @lezer/highlight@npm:^1.1.3, @lezer/highlight@npm:^1.2.1":
   version: 1.2.1
   resolution: "@lezer/highlight@npm:1.2.1"
   dependencies:
@@ -8993,9 +8993,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:4.4.1":
-  version: 4.4.1
-  resolution: "@sanity/vision@npm:4.4.1"
+"@sanity/vision@npm:4.5.0":
+  version: 4.5.0
+  resolution: "@sanity/vision@npm:4.5.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.18.6"
     "@codemirror/commands": "npm:^6.8.1"
@@ -9005,16 +9005,16 @@ __metadata:
     "@codemirror/state": "npm:^6.5.2"
     "@codemirror/view": "npm:^6.38.1"
     "@juggle/resize-observer": "npm:^3.4.0"
-    "@lezer/highlight": "npm:^1.0.0"
+    "@lezer/highlight": "npm:^1.2.1"
     "@rexxars/react-json-inspector": "npm:^9.0.1"
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.6"
     "@sanity/icons": "npm:^3.7.4"
     "@sanity/ui": "npm:^3.0.7"
     "@sanity/uuid": "npm:^3.0.2"
-    "@uiw/react-codemirror": "npm:^4.24.1"
+    "@uiw/react-codemirror": "npm:^4.25.1"
     is-hotkey-esm: "npm:^1.0.0"
-    json-2-csv: "npm:^5.5.1"
+    json-2-csv: "npm:^5.5.9"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
@@ -9026,7 +9026,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/5d87d300bda204223420a4d114f0c6377521eaab1ac61fac669cff5ef175be06c0cb5d4daae9d25be3f2a9981c55bd88bf14e73a207ec56c3c92fbdbf824ee9c
+  checksum: 10/a2d4931cbec6e16765ea72f05233803e66b2ee62cc0b3ce803553b700e9052217c85ecddae634d51b4fabe70230e92893f2f1b1ec5d91012a507c56e0068f9c9
   languageName: node
   linkType: hard
 
@@ -11445,9 +11445,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uiw/codemirror-extensions-basic-setup@npm:4.24.1":
-  version: 4.24.1
-  resolution: "@uiw/codemirror-extensions-basic-setup@npm:4.24.1"
+"@uiw/codemirror-extensions-basic-setup@npm:4.25.1":
+  version: 4.25.1
+  resolution: "@uiw/codemirror-extensions-basic-setup@npm:4.25.1"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.0.0"
     "@codemirror/commands": "npm:^6.0.0"
@@ -11464,19 +11464,19 @@ __metadata:
     "@codemirror/search": ">=6.0.0"
     "@codemirror/state": ">=6.0.0"
     "@codemirror/view": ">=6.0.0"
-  checksum: 10/1fd9e5afaa23e708149170e6ae06927c48eeab5f46675c86ad658ff0eca4ffeb8cbf55b7cb0e37aa3a1a9622b7ee346e694119bff976b4e3de45c7b1aef66ae4
+  checksum: 10/61d128a7896e086c3cc0558e0b5f85715f5387ee983cc9f1e341db4b383ade1973f389a63cdf9312a5421a0f5a6044755a573d6dd7bb805dc256d9f9ce4f0d15
   languageName: node
   linkType: hard
 
-"@uiw/react-codemirror@npm:^4.24.1":
-  version: 4.24.1
-  resolution: "@uiw/react-codemirror@npm:4.24.1"
+"@uiw/react-codemirror@npm:^4.25.1":
+  version: 4.25.1
+  resolution: "@uiw/react-codemirror@npm:4.25.1"
   dependencies:
     "@babel/runtime": "npm:^7.18.6"
     "@codemirror/commands": "npm:^6.1.0"
     "@codemirror/state": "npm:^6.1.1"
     "@codemirror/theme-one-dark": "npm:^6.0.0"
-    "@uiw/codemirror-extensions-basic-setup": "npm:4.24.1"
+    "@uiw/codemirror-extensions-basic-setup": "npm:4.25.1"
     codemirror: "npm:^6.0.0"
   peerDependencies:
     "@babel/runtime": ">=7.11.0"
@@ -11484,9 +11484,9 @@ __metadata:
     "@codemirror/theme-one-dark": ">=6.0.0"
     "@codemirror/view": ">=6.0.0"
     codemirror: ">=6.0.0"
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10/0b5057d5fda5e75bc404a6d0280ab1daa31a80e206dbe0353682a421a86e3edf55239510193d0a3c362d3fe8193249b375a1b1be7006b04fdb0b1ad7290d9a77
+    react: ">=17.0.0"
+    react-dom: ">=17.0.0"
+  checksum: 10/32311a3b2037bf57533bd4d7c50117385c6e3cfce8dcd45f2c2ff8d9170f8ae53bc868b4ac91a58f5502ed065fce11bfffb8af5e829e8a5609290053dcdb0b2e
   languageName: node
   linkType: hard
 
@@ -12491,7 +12491,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:4.4.1"
+    "@sanity/vision": "npm:4.5.0"
     "@types/react": "npm:19.1.10"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.33.0"
@@ -21636,7 +21636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-2-csv@npm:^5.5.1":
+"json-2-csv@npm:^5.5.9":
   version: 5.5.9
   resolution: "json-2-csv@npm:5.5.9"
   dependencies:
