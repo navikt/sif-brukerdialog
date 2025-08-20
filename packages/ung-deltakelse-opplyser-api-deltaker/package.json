@@ -4,9 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.80.11",
+        "@hey-api/openapi-ts": "0.80.15",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",
@@ -25,9 +25,9 @@
         "fix-regexp": "node scripts/fix-generated-regex.mjs",
         "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.deltaker.config.ts",
-        "gen": "yarn gen-types:fixed",
-        "lint:eslint": "eslint './src/**/*.gen.ts'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
+        "codegen": "yarn gen-types:fixed",
+        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {

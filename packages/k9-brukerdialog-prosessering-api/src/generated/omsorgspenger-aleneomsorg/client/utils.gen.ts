@@ -124,6 +124,24 @@ export const createQuerySerializer = <T = unknown>({ allowReserved, array, objec
     return querySerializer;
 };
 
+const checkForExistence = (
+    options: Pick<RequestOptions, 'auth' | 'query'> & {
+        headers: Record<any, unknown>;
+    },
+    name?: string,
+): boolean => {
+    if (!name) {
+        return false;
+    }
+    if (name in options.headers || options.query?.[name]) {
+        return true;
+    }
+    if ('Cookie' in options.headers && options.headers['Cookie'] && typeof options.headers['Cookie'] === 'string') {
+        return options.headers['Cookie'].includes(`${name}=`);
+    }
+    return false;
+};
+
 export const setAuthParams = async ({
     security,
     ...options
@@ -132,6 +150,9 @@ export const setAuthParams = async ({
         headers: Record<any, unknown>;
     }) => {
     for (const auth of security) {
+        if (checkForExistence(options, auth.name)) {
+            continue;
+        }
         const token = await getAuthToken(auth, options.auth);
 
         if (!token) {
@@ -161,8 +182,6 @@ export const setAuthParams = async ({
                 options.headers[name] = token;
                 break;
         }
-
-        return;
     }
 };
 
