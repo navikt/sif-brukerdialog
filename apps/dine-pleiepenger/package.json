@@ -46,10 +46,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@navikt/ds-css": "7.25.1",
+        "@navikt/ds-css": "7.28.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.25.1",
-        "@navikt/ds-tailwind": "7.25.1",
+        "@navikt/ds-react": "7.28.1",
+        "@navikt/ds-tailwind": "7.28.1",
         "@playwright/test": "1.55.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/nextjs": "9.1.2",
