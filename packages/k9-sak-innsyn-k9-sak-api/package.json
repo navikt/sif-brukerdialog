@@ -4,9 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.14",
+    "version": "0.0.16",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.80.11",
+        "@hey-api/openapi-ts": "0.80.16",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",
@@ -22,11 +22,11 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "lint:eslint": "eslint './src/**/*.gen.ts'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
+        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "gen": "yarn openapi-ts"
+        "codegen": "yarn openapi-ts"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",

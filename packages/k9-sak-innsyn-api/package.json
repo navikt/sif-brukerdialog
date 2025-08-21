@@ -4,9 +4,9 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.12",
+    "version": "0.0.14",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.80.11",
+        "@hey-api/openapi-ts": "0.80.16",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",
@@ -28,9 +28,9 @@
         "gen-types:innsyn": "openapi-ts --file configs/openapi-ts.config-innsyn.ts",
         "gen-types:k9-sak": "openapi-ts --file configs/openapi-ts.config-k9-sak.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
-        "gen": "yarn gen-types:all:fixed",
-        "lint:eslint": "eslint './src/**/*.gen.ts'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts'",
+        "codegen": "yarn gen-types:all:fixed",
+        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
