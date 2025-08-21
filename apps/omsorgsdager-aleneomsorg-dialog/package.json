@@ -57,7 +57,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@chromatic-com/storybook": "4.1.0",
+        "@chromatic-com/storybook": "4.1.1",
         "@playwright/test": "1.55.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.1.2",
