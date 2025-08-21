@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.17
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.3
+    - @navikt/k9-sak-innsyn-api@0.0.14
+
 ## 0.1.16
 
 ### Patch Changes

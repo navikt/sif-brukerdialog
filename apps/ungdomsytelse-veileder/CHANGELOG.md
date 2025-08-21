@@ -1,5 +1,13 @@
 # @navikt/sif-demo-app
 
+## 0.5.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/ung-common@0.0.28
+    - @navikt/sif-common-core-ds@10.2.32
+
 ## 0.5.41
 
 ### Patch Changes
