@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.27.8",
+    "version": "2.27.9",
     "private": true,
     "type": "module",
     "scripts": {
@@ -57,7 +57,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@chromatic-com/storybook": "4.1.0",
+        "@chromatic-com/storybook": "4.1.1",
         "@playwright/test": "1.55.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "9.1.2",

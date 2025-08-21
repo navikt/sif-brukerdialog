@@ -4,7 +4,7 @@
   "license": "MIT",
   "name": "@navikt/pleiepenger-sykt-barn",
   "repository": "https://github.com/navikt/sif-brukerdialog",
-  "version": "4.10.8",
+  "version": "4.10.9",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
-    "@chromatic-com/storybook": "4.1.0",
+    "@chromatic-com/storybook": "4.1.1",
     "@playwright/test": "1.55.0",
     "@sentry/vite-plugin": "4.1.1",
     "@sif/eslint-config": "workspace:*",

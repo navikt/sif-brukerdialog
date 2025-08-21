@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 25.0.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-core-ds@10.2.32
+
 ## 25.0.8
 
 ### Patch Changes

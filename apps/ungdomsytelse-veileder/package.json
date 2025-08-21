@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "module",
     "private": true,
-    "version": "0.5.41",
+    "version": "0.5.42",
     "scripts": {
         "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
         "dev:debug": "vite --debug",
@@ -56,7 +56,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@chromatic-com/storybook": "4.1.0",
+        "@chromatic-com/storybook": "4.1.1",
         "@eslint/eslintrc": "3.3.1",
         "@eslint/js": "9.33.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
