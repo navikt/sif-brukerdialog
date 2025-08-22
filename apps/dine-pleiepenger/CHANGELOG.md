@@ -1,5 +1,20 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.38
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+- Updated dependencies [dfeb776]
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.20
+    - @navikt/sif-common-core-ds@10.2.33
+    - @navikt/appstatus-react-ds@2.20.25
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-common-utils@3.49.18
+
 ## 1.9.37
 
 ### Patch Changes
