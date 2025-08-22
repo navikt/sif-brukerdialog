@@ -28,6 +28,10 @@
         },
         "lint:eslint": {},
         "lint:tsc": {},
+        "codegen": {
+            "outputs": [],
+            "cache": false
+        },
         "clean": {
             "cache": false
         },

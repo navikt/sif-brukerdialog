@@ -19,7 +19,7 @@ export enum ApplikasjonHendelse {
     'harFlereDeltakelser' = 'harFlereDeltakelser',
 }
 
-export enum ApiError {
+export enum ApiErrorKey {
     'oppstartsinfo' = 'oppstartsinfo',
     'barn' = 'barn',
     'kontonummer' = 'kontonummer',
@@ -80,7 +80,7 @@ export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props)
         });
     }
 
-    async function logApiError(error: ApiError, details?: EventProperties) {
+    async function logApiError(error: ApiErrorKey, details?: EventProperties) {
         return logEvent(AnalyticsEvents.apiError, {
             error,
             details,

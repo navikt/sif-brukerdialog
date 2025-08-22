@@ -12,7 +12,8 @@ export const useKontonummer = (enabled = true) => {
         queryKey: søknadQueryKeys.kontonummer,
         queryFn: getKontonummer,
         enabled,
-        staleTime: 1000 * 60 * 5, // 5 minutter
-        retry: 0,
+        staleTime: 1000 * 60 * 20, // 20 minutter
+        retry: 1,
+        refetchOnWindowFocus: false,
     });
 };

@@ -1,5 +1,29 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.0
+
+### Minor Changes
+
+- 6acb88a: Oppdaterte genererte typer
+
 ## 0.0.22
 
 ### Patch Changes
