@@ -1,5 +1,14 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.28
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+    - @navikt/sif-common-utils@3.49.18
+    - @navikt/sif-validation@1.0.3
+
 ## 2.4.27
 
 ### Patch Changes
