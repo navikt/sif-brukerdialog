@@ -16,7 +16,7 @@ const Søknad = () => {
     /** Success */
     if (initialDataQuery.data) {
         return (
-            <SøknadContextProvider initialData={initialDataQuery.data}>
+            <SøknadContextProvider initialState={initialDataQuery.data}>
                 <StepFormValuesContextProvider>
                     <SøknadRouter />
                 </StepFormValuesContextProvider>

@@ -11,12 +11,12 @@ interface SøknadContextData {
 export const SøknadContext = createContext<SøknadContextData>(null!);
 
 interface Props {
-    initialData: SøknadContextState;
+    initialState: SøknadContextState;
     children: ReactNode;
 }
 
-export const SøknadContextProvider: FunctionComponent<Props> = ({ children, initialData }) => {
-    const [state, dispatch] = useReducer(søknadReducer, initialData);
+export const SøknadContextProvider: FunctionComponent<Props> = ({ children, initialState }) => {
+    const [state, dispatch] = useReducer(søknadReducer, initialState);
 
     const contextValue = useMemo(() => {
         return { state, dispatch };

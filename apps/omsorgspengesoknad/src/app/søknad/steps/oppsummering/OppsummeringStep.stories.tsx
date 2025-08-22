@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Template: StoryFn<Props> = ({ context }: Props) => (
-    <SøknadContextProvider initialData={context}>
+    <SøknadContextProvider initialState={context}>
         <Tabs defaultValue="steg">
             <Tabs.List>
                 <Tabs.Tab value="steg" label="Steg" />
