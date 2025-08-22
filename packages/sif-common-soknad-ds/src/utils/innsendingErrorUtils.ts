@@ -1,13 +1,13 @@
 import {
     InvalidParameterViolation,
     InvalidParameterErrorResponse,
-    invalidParameterErrorResponse,
+    invalidParameterErrorResponseSchema,
 } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
 
 export const isInvalidParameterErrorResponse = (data: AxiosError<any> | any): data is InvalidParameterErrorResponse => {
     try {
-        return invalidParameterErrorResponse.parse(data) !== undefined;
+        return invalidParameterErrorResponseSchema.parse(data) !== undefined;
     } catch {
         return false;
     }
