@@ -1,5 +1,12 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.15
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
 ## 0.0.14
 
 ### Patch Changes

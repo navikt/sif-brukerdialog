@@ -98,20 +98,20 @@ const SoknadApplication = ({
                             messages={localeMessages}>
                             <BrowserRouter basename={publicPath}>
                                 {/* Staging-datasettet er slettet på grunn av økonomi */}
-                                {appStatus.sanityConfig.dataset === 'staging' ? (
+                                {/* {appStatus.sanityConfig.dataset === 'staging' ? (
                                     children
-                                ) : (
-                                    <AppStatusWrapper
-                                        applicationKey={appKey}
-                                        sanityConfig={appStatus.sanityConfig}
-                                        contentRenderer={() => <>{children}</>}
-                                        unavailableContentRenderer={() => (
-                                            <ErrorPage
-                                                contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                            />
-                                        )}
-                                    />
-                                )}
+                                ) : ( */}
+                                <AppStatusWrapper
+                                    applicationKey={appKey}
+                                    sanityConfig={appStatus.sanityConfig}
+                                    contentRenderer={() => <>{children}</>}
+                                    unavailableContentRenderer={() => (
+                                        <ErrorPage
+                                            contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
+                                        />
+                                    )}
+                                />
+                                {/* )} */}
                                 <DevBranchInfo />
                             </BrowserRouter>
                         </IntlProvider>

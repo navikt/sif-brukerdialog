@@ -1,5 +1,12 @@
 # @sif/eslint-config
 
+## 1.1.45
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
 ## 1.1.44
 
 ### Patch Changes

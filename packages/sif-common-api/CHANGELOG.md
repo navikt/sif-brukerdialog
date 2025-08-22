@@ -1,5 +1,18 @@
 # @navikt/sif-common-ui
 
+## 0.4.31
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+- Updated dependencies [dfeb776]
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.28
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-common-utils@3.49.18
+    - @navikt/sif-validation@1.0.3
+
 ## 0.4.30
 
 ### Patch Changes
