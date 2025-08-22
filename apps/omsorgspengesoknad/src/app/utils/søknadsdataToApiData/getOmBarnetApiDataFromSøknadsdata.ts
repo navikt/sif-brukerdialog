@@ -1,10 +1,10 @@
+import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
+import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
-import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 
 export const søkersRelasjonTilBarnetToApiValue = (
     relasjon: SøkersRelasjonTilBarnet,

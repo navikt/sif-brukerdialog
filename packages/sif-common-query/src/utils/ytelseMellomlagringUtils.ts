@@ -36,10 +36,11 @@ export const ytelseMellomlagringUtils = <State, MetaData = unknown>(
             return false;
         }
         const castedWrapper = wrapper as YtelseMellomlagringWrapper<State>;
-        if (!castedWrapper.søknadsdata || typeof castedWrapper.søknadHashString !== 'string') {
-            return false;
-        }
-        return true;
+        return (
+            'søknadsdata' in castedWrapper &&
+            'søknadHashString' in castedWrapper &&
+            typeof castedWrapper.søknadHashString === 'string'
+        );
     };
 
     const createHash = (metaData: MetaData): string => {
