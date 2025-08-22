@@ -5931,85 +5931,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/omsorgspengesoknad-refactor@workspace:apps/omsorgspengesoknad-refactor":
-  version: 0.0.0-use.local
-  resolution: "@navikt/omsorgspengesoknad-refactor@workspace:apps/omsorgspengesoknad-refactor"
-  dependencies:
-    "@axe-core/playwright": "npm:4.10.2"
-    "@eslint/eslintrc": "npm:3.3.1"
-    "@eslint/js": "npm:9.33.0"
-    "@navikt/ds-css": "npm:7.28.1"
-    "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:7.28.1"
-    "@navikt/ds-tailwind": "npm:7.28.1"
-    "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
-    "@navikt/k9-sak-innsyn-api": "workspace:*"
-    "@navikt/sif-app-register": "workspace:*"
-    "@navikt/sif-common-amplitude": "workspace:*"
-    "@navikt/sif-common-core-ds": "workspace:*"
-    "@navikt/sif-common-env": "workspace:*"
-    "@navikt/sif-common-formik-ds": "workspace:*"
-    "@navikt/sif-common-forms-ds": "workspace:*"
-    "@navikt/sif-common-hooks": "workspace:*"
-    "@navikt/sif-common-query": "workspace:*"
-    "@navikt/sif-common-sentry": "workspace:*"
-    "@navikt/sif-common-soknad-ds": "workspace:*"
-    "@navikt/sif-common-ui": "workspace:*"
-    "@navikt/sif-common-utils": "workspace:*"
-    "@navikt/sif-validation": "workspace:*"
-    "@playwright/test": "npm:1.55.0"
-    "@sif/eslint-config": "workspace:*"
-    "@storybook/addon-a11y": "npm:9.1.3"
-    "@storybook/addon-actions": "npm:9.0.8"
-    "@storybook/testing-library": "npm:0.2.2"
-    "@tailwindcss/postcss": "npm:4.1.12"
-    "@tailwindcss/vite": "npm:4.1.12"
-    "@testing-library/dom": "npm:10.4.1"
-    "@testing-library/react": "npm:16.3.0"
-    "@types/object-hash": "npm:3.0.6"
-    "@types/react": "npm:19.1.10"
-    "@types/react-dom": "npm:19.1.7"
-    "@vitejs/plugin-react": "npm:5.0.1"
-    axe-core: "npm:4.10.3"
-    axios: "npm:1.11.0"
-    busboy: "npm:1.6.0"
-    compression: "npm:1.8.1"
-    cors: "npm:2.8.5"
-    cross-env: "npm:10.0.0"
-    csp-header: "npm:6.1.0"
-    dayjs: "npm:1.11.13"
-    dotenv: "npm:17.2.1"
-    eslint: "npm:9.33.0"
-    eslint-plugin-prettier: "npm:5.5.4"
-    eslint-plugin-react: "npm:7.37.5"
-    eslint-plugin-simple-import-sort: "npm:12.1.1"
-    eslint-plugin-storybook: "npm:9.1.3"
-    express: "npm:4.21.2"
-    formik: "npm:2.4.6"
-    helmet: "npm:8.1.0"
-    html-react-parser: "npm:5.2.6"
-    jsdom: "npm:26.1.0"
-    lodash: "npm:4.17.21"
-    mustache-express: "npm:1.3.2"
-    object-hash: "npm:3.0.0"
-    playwright-core: "npm:1.55.0"
-    postcss: "npm:8.5.6"
-    react: "npm:19.1.1"
-    react-dom: "npm:19.1.1"
-    react-fast-compare: "npm:3.2.2"
-    react-hook-form: "npm:7.62.0"
-    react-intl: "npm:7.1.11"
-    react-router-dom: "npm:7.8.1"
-    storybook: "npm:9.1.3"
-    tailwindcss: "npm:4.1.12"
-    typescript: "npm:5.9.2"
-    typescript-eslint: "npm:8.40.0"
-    vite: "npm:7.1.3"
-    vite-plugin-checker: "npm:0.10.2"
-    vitest: "npm:3.2.4"
-  languageName: unknown
-  linkType: soft
-
 "@navikt/omsorgspengesoknad@workspace:apps/omsorgspengesoknad":
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengesoknad@workspace:apps/omsorgspengesoknad"
@@ -6634,7 +6555,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-query@workspace:*, @navikt/sif-common-query@workspace:packages/sif-common-query":
+"@navikt/sif-common-query@workspace:packages/sif-common-query":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-query@workspace:packages/sif-common-query"
   dependencies:
