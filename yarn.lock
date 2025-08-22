@@ -5314,7 +5314,7 @@ __metadata:
     "@navikt/ds-css": "npm:7.28.1"
     "@navikt/ds-react": "npm:7.28.1"
     "@navikt/sif-common-hooks": "workspace:*"
-    "@portabletext/react": "npm:3.2.1"
+    "@portabletext/react": "npm:4.0.1"
     "@sanity/client": "npm:7.9.0"
     "@sif/eslint-config": "workspace:*"
     "@types/node": "npm:24.3.0"
@@ -8027,7 +8027,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:3.2.1, @portabletext/react@npm:^3.2.1":
+"@portabletext/react@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@portabletext/react@npm:4.0.1"
+  dependencies:
+    "@portabletext/toolkit": "npm:^3.0.0"
+    "@portabletext/types": "npm:^2.0.15"
+  peerDependencies:
+    react: ^18.2 || ^19
+  checksum: 10/a3608676edc8d89ee495e33764ec4307d5cf16194a483d2e2ccbb6b18ea61dd7b908f81b9ae12b60578529acad78b3443b8f5d92c27a23c0023ab205973c7d5c
+  languageName: node
+  linkType: hard
+
+"@portabletext/react@npm:^3.2.1":
   version: 3.2.1
   resolution: "@portabletext/react@npm:3.2.1"
   dependencies:
@@ -8079,10 +8091,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@portabletext/toolkit@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@portabletext/toolkit@npm:3.0.0"
+  dependencies:
+    "@portabletext/types": "npm:^2.0.13"
+  checksum: 10/5f81627ad41a53487802de826d7acb03b2c5b14788db40acb2428490af839a4f4d0db91745fe00e89da4ec760e7ffddfdb7dfa957797fed5bf59cf78f320e39c
+  languageName: node
+  linkType: hard
+
 "@portabletext/types@npm:^2.0.13":
   version: 2.0.13
   resolution: "@portabletext/types@npm:2.0.13"
   checksum: 10/c0eb64db2e8edc8d5ae291687fc9447e67785bfee0542b3d2e4fd0fc5823f3c45e2a42a729b545d7c69784a7c4280f705143a66b6e082dd7c674483553f8b1cd
+  languageName: node
+  linkType: hard
+
+"@portabletext/types@npm:^2.0.15":
+  version: 2.0.15
+  resolution: "@portabletext/types@npm:2.0.15"
+  checksum: 10/392417a6b964a7563adac06c0143779ce7e9a9487a7f18e67159616d9fb28ac14679911bdd89c8ac972e02d1e6032d3dd183d441a835b676ae44cc9b9ec00001
   languageName: node
   linkType: hard
 
