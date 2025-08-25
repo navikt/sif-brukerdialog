@@ -1,5 +1,18 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.21
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.20
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
 ## 2.28.19
 
 ### Patch Changes

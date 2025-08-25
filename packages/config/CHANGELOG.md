@@ -1,5 +1,18 @@
 # config
 
+## 0.11.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.18
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
 ## 0.11.17
 
 ### Patch Changes

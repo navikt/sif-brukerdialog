@@ -1,5 +1,25 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.19
+    - @navikt/sif-common-api@0.4.32
+
+## 10.2.33
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+- Updated dependencies [dfeb776]
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.31
+    - @navikt/sif-common-utils@3.49.18
+
 ## 10.2.32
 
 ### Patch Changes

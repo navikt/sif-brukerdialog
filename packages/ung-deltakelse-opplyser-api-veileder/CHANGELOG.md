@@ -1,5 +1,18 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.1.4
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
 ## 0.1.3
 
 ### Patch Changes
