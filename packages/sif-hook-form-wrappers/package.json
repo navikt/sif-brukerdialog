@@ -22,7 +22,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.28.1",
         "@navikt/sif-common-utils": "workspace:*",
-        "@types/react": "19.1.10",
+        "@types/react": "19.1.11",
         "@types/react-dom": "19.1.7",
         "dayjs": "1.11.13",
         "react": "19.1.1",
