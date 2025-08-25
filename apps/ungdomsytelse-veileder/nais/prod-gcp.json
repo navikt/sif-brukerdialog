@@ -26,7 +26,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
 
-        "API_BASE_URL": "https://ungdomsytelse-veileder.intern.nav.no",
+        "SIF_PUBLIC_API_BASE_URL": "https://ungdomsytelse-veileder.intern.nav.no",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://prod-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
