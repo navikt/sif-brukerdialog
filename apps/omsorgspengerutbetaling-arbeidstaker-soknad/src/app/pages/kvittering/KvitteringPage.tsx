@@ -25,6 +25,9 @@ const KvitteringPage = () => {
                             <AppText id="page.conformation.alert.info.1" />
                         </li>
                         <li>
+                            <AppText id="page.conformation.alert.info.2" />
+                        </li>
+                        <li>
                             <AppText id="page.conformation.alert.info.3" />
                         </li>
                     </Infolist>
