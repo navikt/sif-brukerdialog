@@ -4,7 +4,7 @@
   "license": "MIT",
   "name": "@navikt/pleiepenger-sykt-barn",
   "repository": "https://github.com/navikt/sif-brukerdialog",
-  "version": "4.10.10",
+  "version": "4.10.11",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -37,7 +37,7 @@
     "mockdate": "3.0.5",
     "react": "19.1.1",
     "react-day-picker": "9.9.0",
-    "react-router-dom": "7.8.1",
+    "react-router-dom": "7.8.2",
     "uuid": "11.1.0"
   },
   "devDependencies": {
@@ -52,7 +52,7 @@
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
     "@types/lodash.groupby": "4.6.9",
-    "@types/react": "19.1.10",
+    "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7",
     "@types/react-router-dom": "5.3.3",
     "@vitejs/plugin-react": "5.0.1",

@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.25",
+    "version": "2.20.26",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -17,7 +17,7 @@
         "@navikt/ds-react": "7.28.1",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "24.3.0",
-        "@types/react": "19.1.10",
+        "@types/react": "19.1.11",
         "@types/react-dom": "19.1.7",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
