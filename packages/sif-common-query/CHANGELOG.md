@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.5
+    - @navikt/k9-sak-innsyn-api@0.0.16
+    - @navikt/sif-common-utils@3.49.19
+
 ## 0.1.18
 
 ### Patch Changes
