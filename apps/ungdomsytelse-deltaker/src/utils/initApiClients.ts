@@ -4,9 +4,14 @@ import {
     initK9BrukerdialogProsesseringUngdomsytelseApiClient,
 } from '@navikt/ung-common';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { getAppEnv } from './appEnv';
 
 export const initApiClients = () => {
-    const baseURL = getUngDeltakelseOpplyserBrowserEnv()[EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH];
+    const frontendPath = getUngDeltakelseOpplyserBrowserEnv()[EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH];
+    const publicPath = getAppEnv()['PUBLIC_PATH'];
+    const apiBaseUrl = getAppEnv()['SIF_PUBLIC_API_BASE_URL'];
+    const baseURL = `${apiBaseUrl}${publicPath}${frontendPath}`;
+
     initUngDeltakelseOpplyserApiDeltakerClient(baseURL, {
         onUnAuthorized: () => {
             window.location.reload();
