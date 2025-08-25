@@ -1,5 +1,14 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.6
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.6
+    - @navikt/ung-common@0.0.31
+
 ## 1.1.5
 
 ### Patch Changes

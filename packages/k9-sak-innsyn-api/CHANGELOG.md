@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.17
+
+### Patch Changes
+
+- Generere api-kode
+
 ## 0.0.16
 
 ### Patch Changes
