@@ -42,7 +42,7 @@
         "react-loading-skeleton": "3.5.0",
         "swr": "2.3.6",
         "uuid": "11.1.0",
-        "zod": "4.0.17"
+        "zod": "4.1.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
