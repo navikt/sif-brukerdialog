@@ -57,6 +57,7 @@ export const zDeltakerPersonalia = z.object({
 
 export const zEndringstype = z.enum([
     'DELTAKER_MELDT_INN',
+    'DELTAKER_MELDT_UT',
     'ENDRET_STARTDATO',
     'ENDRET_SLUTTDATO',
     'DELTAKER_HAR_SØKT_YTELSE',

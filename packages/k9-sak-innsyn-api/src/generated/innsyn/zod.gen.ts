@@ -445,9 +445,9 @@ export const zAksjonspunktDto = z.object({
 });
 
 export const zInnsending = z.object({
-    mottattDato: z.optional(z.iso.datetime()),
-    søker: z.optional(zSøker),
     versjon: z.optional(z.string()),
+    søker: z.optional(zSøker),
+    mottattDato: z.optional(z.iso.datetime()),
     søknadId: z.optional(z.string()),
 });
 

@@ -12,6 +12,7 @@ import * as z from 'zod';
 export enum AppEnvKey {
     'VELG_SCENARIO' = 'VELG_SCENARIO',
     'DEV_IS_STORYBOOK' = 'DEV_IS_STORYBOOK',
+    'SIF_PUBLIC_API_BASE_URL' = 'SIF_PUBLIC_API_BASE_URL',
     'SIF_PUBLIC_URL_RETT_OG_PLIKT' = 'SIF_PUBLIC_URL_RETT_OG_PLIKT',
     'SIF_PUBLIC_URL_PERSONOPPLYSNINGER' = 'SIF_PUBLIC_URL_PERSONOPPLYSNINGER',
     'SIF_PUBLIC_URL_PERSONVERN' = 'SIF_PUBLIC_URL_PERSONVERN',
@@ -29,6 +30,7 @@ export const appEnvSchema = z
     .object({
         [AppEnvKey.VELG_SCENARIO]: z.string().optional(),
         [AppEnvKey.DEV_IS_STORYBOOK]: z.string().optional(),
+        [AppEnvKey.SIF_PUBLIC_API_BASE_URL]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_RETT_OG_PLIKT]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_PERSONOPPLYSNINGER]: z.string(),
         [AppEnvKey.SIF_PUBLIC_URL_PERSONVERN]: z.string(),

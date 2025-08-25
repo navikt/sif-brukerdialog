@@ -3731,9 +3731,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.80.18":
-  version: 0.80.18
-  resolution: "@hey-api/openapi-ts@npm:0.80.18"
+"@hey-api/openapi-ts@npm:0.81.1":
+  version: 0.81.1
+  resolution: "@hey-api/openapi-ts@npm:0.81.1"
   dependencies:
     "@hey-api/json-schema-ref-parser": "npm:1.0.6"
     ansi-colors: "npm:4.1.3"
@@ -3748,7 +3748,7 @@ __metadata:
     typescript: ^5.5.3
   bin:
     openapi-ts: bin/index.cjs
-  checksum: 10/274305e7d16863d9b050bd299aa482b454dc415766918cf59d836b4335a991a9eb2224dc242a61ef758e64c6f3ecb6875fa272c403ccd79bab3415aea6e83c2d
+  checksum: 10/c515674f69e35201e1798989e6a5ff9ca00bd96bfde72316576014fa14bcc57ec7eb44d797df9558d84956324c3abb25db43b4083305dd310a6f95fa63f28ce7
   languageName: node
   linkType: hard
 
@@ -5600,7 +5600,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.80.18"
+    "@hey-api/openapi-ts": "npm:0.81.1"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -5618,7 +5618,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.80.18"
+    "@hey-api/openapi-ts": "npm:0.81.1"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -5636,7 +5636,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.80.18"
+    "@hey-api/openapi-ts": "npm:0.81.1"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -6402,7 +6402,7 @@ __metadata:
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-responsive: "npm:10.0.1"
-    react-syntax-highlighter: "npm:15.6.3"
+    react-syntax-highlighter: "npm:15.6.4"
     rimraf: "npm:6.0.1"
     storybook: "npm:9.1.3"
     tailwindcss: "npm:4.1.12"
@@ -6478,7 +6478,7 @@ __metadata:
     react-dropzone: "npm:14.3.8"
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.1.11"
-    react-syntax-highlighter: "npm:15.6.3"
+    react-syntax-highlighter: "npm:15.6.4"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.5"
     storybook: "npm:9.1.3"
@@ -6969,7 +6969,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.80.18"
+    "@hey-api/openapi-ts": "npm:0.81.1"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -6987,7 +6987,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.80.18"
+    "@hey-api/openapi-ts": "npm:0.81.1"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -26662,9 +26662,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-syntax-highlighter@npm:15.6.3":
-  version: 15.6.3
-  resolution: "react-syntax-highlighter@npm:15.6.3"
+"react-syntax-highlighter@npm:15.6.4":
+  version: 15.6.4
+  resolution: "react-syntax-highlighter@npm:15.6.4"
   dependencies:
     "@babel/runtime": "npm:^7.3.1"
     highlight.js: "npm:^10.4.1"
@@ -26674,7 +26674,7 @@ __metadata:
     refractor: "npm:^3.6.0"
   peerDependencies:
     react: ">= 0.14.0"
-  checksum: 10/0e2afaa47afb2e60106b17d0f166cbc77383cb4be616928c2ac8f8307ce5e0f88ae396c4e8d1ecafebb2e5d506b1457d65131cae48dcf9de383952c31bb323a3
+  checksum: 10/908d8d3a58e4b8c3638a94fd89d0107eb8e763345184ad92ae7155c28f7e0c12e00c86d652953dce638fb7e9f6e584e1f2ee7bc3cc850af623e80bc81c7996c1
   languageName: node
   linkType: hard
 
