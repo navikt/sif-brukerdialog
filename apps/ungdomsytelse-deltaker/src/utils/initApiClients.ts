@@ -8,9 +8,8 @@ import { getAppEnv } from './appEnv';
 
 export const initApiClients = () => {
     const frontendPath = getUngDeltakelseOpplyserBrowserEnv()[EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH];
-    const publicPath = getAppEnv()['PUBLIC_PATH'];
     const apiBaseUrl = getAppEnv()['SIF_PUBLIC_API_BASE_URL'];
-    const baseURL = `${apiBaseUrl}${publicPath}${frontendPath}`;
+    const baseURL = `${apiBaseUrl}${frontendPath}`;
 
     initUngDeltakelseOpplyserApiDeltakerClient(baseURL, {
         onUnAuthorized: () => {
