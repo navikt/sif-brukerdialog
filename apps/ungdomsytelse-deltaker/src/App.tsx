@@ -52,8 +52,6 @@ function App() {
         dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
     };
 
-    console.log(sanityConfig);
-
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
             <AppIntlMessageProvider>

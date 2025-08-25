@@ -101,7 +101,8 @@
     },
     "msw": {
         "workerDirectory": [
-            "dist"
+            "dist",
+            ""
         ]
     },
     "eslintConfig": {

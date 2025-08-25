@@ -7,6 +7,7 @@ import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
+import { queryKeys } from '../../queries/queryKeys';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { erÅpnetForRegistrering } from '../../utils/deltakelseUtils';
@@ -22,7 +23,7 @@ const StartPage = () => {
     }, []);
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
-        queryClient.setQueryData(['deltaker', deltaker.id], deltaker); // Lagre deltaker i cache
+        queryClient.setQueryData(queryKeys.deltakerById(deltaker.id), deltaker); // Lagre deltaker i cache
         navigate(`/deltaker/${deltaker.id}`);
     };
 

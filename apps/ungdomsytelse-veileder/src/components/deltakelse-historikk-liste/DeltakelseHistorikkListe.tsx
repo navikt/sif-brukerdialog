@@ -12,6 +12,8 @@ const getEndringstypeTekst = (type: Endringstype): string => {
     switch (type) {
         case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
             return 'Søknad sendt inn';
+        case Endringstype.DELTAKER_MELDT_UT:
+            return 'Deltakelse avsluttet';
         case Endringstype.DELTAKER_MELDT_INN:
             return 'Deltakelse opprettet';
         case Endringstype.ENDRET_SLUTTDATO:
@@ -59,7 +61,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Table.Body>
                     {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
-                            <Table.Row key={tidspunkt.toDateString()} ref={index === focusIndex ? ref : undefined}>
+                            <Table.Row key={tidspunkt.getTime()} ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
                                 <Table.DataCell>{getEndringstypeTekst(endringstype)}</Table.DataCell>
                                 <Table.DataCell>{endring}</Table.DataCell>

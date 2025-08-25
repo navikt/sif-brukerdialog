@@ -20,8 +20,8 @@ export enum AppHendelse {
     deltakerRegistrert = 'deltaker-registrert',
     deltakerSlettet = 'deltaker-slettet',
     startdatoEndret = 'startdato-endret',
-    sluttdatoEndret = 'sluttdato-endret',
     sluttdatoSattFørsteGang = 'sluttdato-satt-første-gang',
+    sluttdatoEndret = 'sluttdato-endret',
 }
 
 interface Props {

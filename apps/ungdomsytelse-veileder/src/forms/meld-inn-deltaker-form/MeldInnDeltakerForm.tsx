@@ -18,7 +18,8 @@ import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
+import { AppHendelse } from '../../utils/analytics';
+import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getStartdatobegrensningForDeltaker } from '../../utils/deltakelseUtils';
 
 interface Props {
@@ -37,14 +38,14 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
     const intl = useIntl();
 
     const { mutateAsync, isPending, error } = useMeldInnDeltaker(deltaker.deltakerIdent);
-    const { logAppHendelse } = useAnalyticsInstance();
+    const { log } = useAppEventLogger();
 
     const handleOnSubmit = async (values: FormValues) => {
         const deltakelse = await mutateAsync({
             deltakerIdent: deltaker.deltakerIdent,
             startdato: values.startDato,
         });
-        await logAppHendelse(AppHendelse.deltakerRegistrert);
+        await log(AppHendelse.deltakerRegistrert);
         onDeltakelseRegistrert(deltakelse);
     };
 
@@ -79,7 +80,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
 
                             <FormikYesOrNoQuestion
                                 name="erVedtaksbrevSendt"
-                                legend="Er vedtaksbrev om deltakelse i ungdomsprgrammet sendt fra gosys?"
+                                legend="Er vedtaksbrev om deltakelse i ungdomsprogrammet sendt fra gosys?"
                                 validate={getYesOrNoValidator()}
                             />
                             {erVedtaksbrevSendt === YesOrNo.NO && (

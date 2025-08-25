@@ -1,4 +1,4 @@
-import { Bleed, BodyShort, Box, Button, HGrid, HStack, Show, Tag, VStack } from '@navikt/ds-react';
+import { Bleed, BodyShort, Box, BoxNew, Button, HGrid, HStack, Show, Tag, VStack } from '@navikt/ds-react';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
@@ -26,7 +26,7 @@ const DeltakerKort = ({
     const alder = dayjs().diff(dayjs(fødselsdato), 'year');
 
     return (
-        <Box.New
+        <BoxNew
             className="rounded-md p-4 items-center w-full"
             background="info-soft"
             borderColor="info-subtle"
@@ -72,7 +72,7 @@ const DeltakerKort = ({
                     </Bleed>
                 ) : null}
             </HGrid>
-        </Box.New>
+        </BoxNew>
     );
 };
 export const DeltakerKortSkeleton = () => (

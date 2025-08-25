@@ -1,4 +1,5 @@
 export enum EndrePeriodeVariant {
     startdato = 'startdato',
-    sluttdato = 'sluttdato',
+    meldUtDeltaker = 'meldUtDeltaker',
+    endreSluttdato = 'endreSluttdato',
 }
