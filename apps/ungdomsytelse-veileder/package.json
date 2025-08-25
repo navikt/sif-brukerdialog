@@ -58,7 +58,7 @@
         "@axe-core/playwright": "4.10.2",
         "@chromatic-com/storybook": "4.1.1",
         "@eslint/eslintrc": "3.3.1",
-        "@eslint/js": "9.33.0",
+        "@eslint/js": "9.34.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@playwright/test": "1.55.0",
         "@storybook/experimental-addon-test": "8.6.14",
