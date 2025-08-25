@@ -26,7 +26,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søker, kvitteringInfo, søknadRoute: stateSøknadRoute, isReloadingApp },
+        state: { søknadSendt, søknadsdata, søker, søknadRoute: stateSøknadRoute, isReloadingApp },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -87,10 +87,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route
-                path={SøknadStepRoutePath[StepId.KVITTERING]}
-                element={<KvitteringPage søker={søker} kvitteringInfo={kvitteringInfo} />}
-            />
+            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
             <Route
                 path="*"
                 element={
