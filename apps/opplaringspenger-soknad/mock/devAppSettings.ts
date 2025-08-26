@@ -1,25 +1,28 @@
 export const getDevAppSettings = () => ({
-    ENV: `${process.env.ENV}`,
-    APP_VERSION: `${process.env.APP_VERSION}`,
-    GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    IMAGE: `${process.env.IMAGE}`,
-    PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+    ENV: 'dev',
+    APP_VERSION: 'dev',
+    GITHUB_REF_NAME: 'branch-name',
+    IMAGE: 'unknown',
+    PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
-    SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,
-    SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
-    SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
-    SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
-    SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: `${process.env.SIF_PUBLIC_SKIP_ORGNUM_VALIDATION}`,
-    SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
-    SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
+    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+    SIF_PUBLIC_DEKORATOR_URL:
+        'https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger/oauth2/logout',
+    SIF_PUBLIC_LOGIN_URL:
+        'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
+    SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
+    SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: 'true',
+    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_FEATURE_NYNORSK: 'on',
 
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
-    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
+        '/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-brukerdialog',
 
-    K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-    K9_SAK_INNSYN_API_SCOPE: `${process.env.K9_SAK_INNSYN_API_SCOPE}`,
-    K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_API_URL}`,
+    K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-sak-innsyn',
+    K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
+    K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
 });

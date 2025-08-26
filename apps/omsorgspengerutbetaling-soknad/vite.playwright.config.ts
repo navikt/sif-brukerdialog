@@ -1,12 +1,9 @@
 import react from '@vitejs/plugin-react';
-import * as dotenv from 'dotenv';
 import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getPlaywrightAppSettings } from './playwright/playwrightAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings';
 import tailwindcss from '@tailwindcss/vite';
-
-dotenv.config();
 
 export default defineConfig({
     mode: 'playwright',
@@ -25,7 +22,7 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getPlaywrightAppSettings()));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings()));
             },
         },
         {

@@ -1,33 +1,36 @@
+// Static dev app settings (supports optional test overrides like original isTest flag)
 export const getDevAppSettings = (isTest?: boolean) => {
     return {
-        ENV: `${process.env.ENV}`,
-        APP_VERSION: `${process.env.APP_VERSION}`,
-        NODE_ENV: `${process.env.NODE_ENV}`,
-        PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
+        ENV: 'dev',
+        APP_VERSION: 'dev',
+        NODE_ENV: 'development',
+        PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
+        GITHUB_REF_NAME: 'some_branch_name',
 
-        SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
-        SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
-        SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,
-        SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
-        SIF_PUBLIC_DOMAIN_URL: `${process.env.SIF_PUBLIC_DOMAIN_URL}`,
-        SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
-        SIF_PUBLIC_INNSYN_URL: `${process.env.SIF_PUBLIC_INNSYN_URL}`,
-        SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
-        SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
-        SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
+        SIF_PUBLIC_AMPLITUDE_API_KEY: 'key',
+        SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+        SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+        SIF_PUBLIC_DEKORATOR_URL:
+            'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout',
+        SIF_PUBLIC_DOMAIN_URL: 'http://localhost:8080',
+        SIF_PUBLIC_FEATURE_NYNORSK: 'on',
+        SIF_PUBLIC_INNSYN_URL: 'https://dine-pleiepenger.intern.dev.nav.no/innsyn',
+        SIF_PUBLIC_LOGIN_URL:
+            'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
+        SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
+        SIF_PUBLIC_USE_AMPLITUDE: 'false',
 
-        K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
-        K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
-        K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-        SIF_INNSYN_FRONTEND_PATH: `${process.env.SIF_INNSYN_FRONTEND_PATH}`,
-        SIF_INNSYN_API_SCOPE: `${process.env.SIF_INNSYN_API_SCOPE}`,
-        SIF_INNSYN_API_URL: `${process.env.SIF_INNSYN_API_URL}`,
+        K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
+            '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog',
+        K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
+        K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+        SIF_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/sif-innsyn',
+        SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
+        SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
 
-        VELG_SCENARIO: isTest ? 'on' : `${process.env.VELG_SCENARIO}`,
-
-        MSW: isTest ? 'off' : `${process.env.MSW}`,
+        VELG_SCENARIO: isTest ? 'on' : 'on',
+        MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,
-        NOW: `${process.env.NOW}`,
+        NOW: '2023-01-25',
     };
 };
