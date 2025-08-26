@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.8
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 1.1.7
 
 ### Patch Changes
