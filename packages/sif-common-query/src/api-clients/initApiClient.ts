@@ -16,11 +16,12 @@ const commonRequestHeader = {
  *
  */
 export const initApiClient = (client: Client, frontendPath: string, loginURL: string) => {
+    const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
-        baseURL: frontendPath,
+        baseURL: `${apiBaseUrl}${frontendPath}`,
     });
 
     /**
