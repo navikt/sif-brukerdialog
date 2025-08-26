@@ -1,5 +1,27 @@
 # @navikt/sif-demo-app
 
+## 0.5.46
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+- Updated dependencies
+    - @navikt/ung-common@0.0.32
+
+## 0.5.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.30
+    - @navikt/sif-common-core-ds@10.2.35
+    - @navikt/sif-common-api@0.4.33
+    - @navikt/ung-common@0.0.31
+    - @navikt/sif-common-ui@0.10.11
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
 ## 0.5.44
 
 ### Patch Changes
