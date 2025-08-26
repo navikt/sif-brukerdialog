@@ -55,7 +55,6 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cross-env": "10.0.0",
-        "dotenv": "17.2.1",
         "express": "4.21.2",
         "globals": "16.3.0",
         "helmet": "8.1.0",

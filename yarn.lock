@@ -6837,7 +6837,6 @@ __metadata:
     csp-header: "npm:6.1.0"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    dotenv: "npm:17.2.1"
     express: "npm:4.21.2"
     formik: "npm:2.4.6"
     globals: "npm:16.3.0"
