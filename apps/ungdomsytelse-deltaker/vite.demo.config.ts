@@ -1,51 +1,49 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
-import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { AppEnv } from './env.schema';
 import tailwindcss from '@tailwindcss/vite';
 
-dotenv.config();
-
 export const getAppSettings = (): AppEnv & { VITE: true } => ({
     VITE: true,
 
-    ENV: `${process.env.ENV}`,
-    APP_VERSION: `${process.env.APP_VERSION}`,
-    GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+    ENV: 'development',
+    APP_VERSION: 'dev',
+    GITHUB_REF_NAME: 'dev',
+    PUBLIC_PATH: '/ungdomsprogrammet/ytelsen',
 
-    VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
-    DEV_IS_STORYBOOK: `${process.env.DEV_IS_STORYBOOK}`,
+    VELG_SCENARIO: 'on',
+    DEV_IS_STORYBOOK: undefined,
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
-    SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,
-    SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
-    SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
-    SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
-    SIF_PUBLIC_URL_DOKUMENTARKIV: `${process.env.SIF_PUBLIC_URL_DOKUMENTARKIV}`,
-    SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
+    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'production',
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+    SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
+    SIF_PUBLIC_LOGIN_URL:
+        'https://ungdomsytelse-deltaker.intern.dev.nav.no/oauth2/login?redirect=/ungdomsytelse-deltaker',
+    SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
+    SIF_PUBLIC_URL_DOKUMENTARKIV: 'https://www.dev.nav.no/dokumentarkiv/tema/UNG',
+    SIF_PUBLIC_USE_AMPLITUDE: 'true',
 
-    SIF_PUBLIC_USE_FARO: process.env.SIF_PUBLIC_USE_FARO,
-    SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: `${process.env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}`,
+    SIF_PUBLIC_USE_FARO: 'true',
+    SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
 
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
-    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api/brukerdialog',
 
-    UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
-    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
-    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
+    UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://ung-deltakelse-opplyser.k9saksbehandling',
+    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-deltakelse-opplyser',
+    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
 
-    SIF_PUBLIC_URL_RETT_OG_PLIKT: `${process.env.SIF_PUBLIC_URL_RETT_OG_PLIKT}`,
-    SIF_PUBLIC_URL_PERSONOPPLYSNINGER: `${process.env.SIF_PUBLIC_URL_PERSONOPPLYSNINGER}`,
-    SIF_PUBLIC_URL_PERSONVERN: `${process.env.SIF_PUBLIC_URL_PERSONVERN}`,
-    SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: `${process.env.SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN}`,
-    SIF_PUBLIC_URL_SKATTEETATEN: `${process.env.SIF_PUBLIC_URL_SKATTEETATEN}`,
-    SIF_PUBLIC_URL_ENDRE_KONTONUMMER: `${process.env.SIF_PUBLIC_URL_ENDRE_KONTONUMMER}`,
-    SIF_PUBLIC_URL_SKRIV_TIL_OSS: `${process.env.SIF_PUBLIC_URL_SKRIV_TIL_OSS}`,
+    SIF_PUBLIC_URL_RETT_OG_PLIKT: 'https://www.ansatt.dev.nav.no/endringer',
+    SIF_PUBLIC_URL_PERSONOPPLYSNINGER: 'https://www.ansatt.dev.nav.no/person/personopplysninger/nb/',
+    SIF_PUBLIC_URL_PERSONVERN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
+    SIF_PUBLIC_URL_OM_UNGDOMSPROGRAMYTELSEN: 'https://www.ansatt.dev.nav.no/personvernerklaering',
+    SIF_PUBLIC_URL_SKATTEETATEN: 'https://www.skatteetaten.no',
+    SIF_PUBLIC_URL_ENDRE_KONTONUMMER: 'https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer',
+    SIF_PUBLIC_URL_SKRIV_TIL_OSS: 'https://www.nav.no/skriv-til-oss',
 });
 
 export default defineConfig({
