@@ -16,8 +16,6 @@ export const getAppSettings = (): AppEnv & { VITE: true } => ({
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
 
-    SIF_PUBLIC_API_BASE_URL: `${process.env.SIF_PUBLIC_API_BASE_URL}`,
-
     VELG_SCENARIO: `${process.env.VELG_SCENARIO}`,
     DEV_IS_STORYBOOK: `${process.env.DEV_IS_STORYBOOK}`,
 

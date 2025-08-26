@@ -6,7 +6,6 @@ export const getAppEnv = (): AppEnv => ({
     ...getUngDeltakelseOpplyserBrowserEnv(),
 
     [AppEnvKey.VELG_SCENARIO]: getMaybeEnv(AppEnvKey.VELG_SCENARIO),
-    [AppEnvKey.SIF_PUBLIC_API_BASE_URL]: getRequiredEnv(AppEnvKey.SIF_PUBLIC_API_BASE_URL),
     [AppEnvKey.SIF_PUBLIC_USE_FARO]: getMaybeEnv(AppEnvKey.SIF_PUBLIC_USE_FARO),
     [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: getMaybeEnv(
         AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,

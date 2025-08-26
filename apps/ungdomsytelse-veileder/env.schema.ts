@@ -7,7 +7,6 @@ const localSchema = z.object({
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true'))
         .optional(),
-    SIF_PUBLIC_API_BASE_URL: z.string(),
     SIF_PUBLIC_USE_FARO: z
         .union([z.boolean(), z.string()])
         .optional()

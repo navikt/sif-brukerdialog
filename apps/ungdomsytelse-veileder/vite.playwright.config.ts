@@ -11,8 +11,6 @@ const appSettings: AppEnv = {
     PUBLIC_PATH: 'sif-brukerdialog/ungdomsytelse-veileder',
     GITHUB_REF_NAME: 'local',
 
-    SIF_PUBLIC_API_BASE_URL: 'http://localhost:8088',
-
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
     UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://localhost:8089',
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:dusseldorf:ung-deltakelse-opplyser',
