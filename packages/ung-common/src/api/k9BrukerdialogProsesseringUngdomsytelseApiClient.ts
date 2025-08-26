@@ -4,11 +4,12 @@ import { commonRequestHeader, isUnauthorized } from '.';
 import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/ungdomsytelse/client.gen';
 
 export const initK9BrukerdialogProsesseringUngdomsytelseApiClient = () => {
+    const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
-        baseURL: getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH'),
+        baseURL: `${apiBaseUrl}${getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH')}`,
     });
 
     /**

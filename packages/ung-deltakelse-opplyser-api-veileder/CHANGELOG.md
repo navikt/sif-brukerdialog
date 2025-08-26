@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.7
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+
 ## 0.1.6
 
 ### Patch Changes

@@ -1,4 +1,3 @@
-import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import {
     initK9BrukerdialogProsesseringApiClient,
     initK9BrukerdialogProsesseringUngdomsytelseApiClient,
@@ -6,8 +5,7 @@ import {
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 export const initApiClients = () => {
-    const baseURL = getUngDeltakelseOpplyserBrowserEnv()[EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH];
-    initUngDeltakelseOpplyserApiDeltakerClient(baseURL, {
+    initUngDeltakelseOpplyserApiDeltakerClient({
         onUnAuthorized: () => {
             window.location.reload();
         },
