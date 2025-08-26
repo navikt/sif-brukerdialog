@@ -4,11 +4,12 @@ import { v4 } from 'uuid';
 import { commonRequestHeader, isUnauthorized } from './';
 
 export const initK9BrukerdialogProsesseringApiClient = () => {
+    const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
-        baseURL: getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH'),
+        baseURL: `${apiBaseUrl}${getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH')}`,
     });
 
     /**

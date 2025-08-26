@@ -6970,6 +6970,7 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.81.1"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
