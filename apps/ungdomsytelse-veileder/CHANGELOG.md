@@ -1,5 +1,13 @@
 # @navikt/sif-demo-app
 
+## 0.5.46
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+- Updated dependencies
+    - @navikt/ung-common@0.0.32
+
 ## 0.5.45
 
 ### Patch Changes
