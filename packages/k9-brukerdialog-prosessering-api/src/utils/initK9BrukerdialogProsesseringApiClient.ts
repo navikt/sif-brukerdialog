@@ -23,12 +23,13 @@ interface ApiClient {
  * brukes her som en generell type for de andre genererte klientene.
  *
  */
-export const initApiClient = (client: ApiClient, frontendPath: string, loginURL: string) => {
+export const initK9BrukerdialogProsesseringApiClient = (client: ApiClient, frontendPath: string, loginURL: string) => {
+    const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
-        baseURL: frontendPath,
+        baseURL: `${apiBaseUrl}${frontendPath}`,
     });
 
     /**
