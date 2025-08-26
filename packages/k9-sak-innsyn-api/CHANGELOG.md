@@ -1,5 +1,23 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.18
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+
+## 0.0.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.16
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
 ## 0.0.15
 
 ### Patch Changes

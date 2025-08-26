@@ -1,5 +1,55 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.8
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
+## 1.1.7
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.7
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.7
+    - @navikt/ung-common@0.0.32
+
+## 1.1.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.6
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.6
+    - @navikt/sif-common-soknad-ds@25.0.12
+    - @navikt/sif-common-forms-ds@20.0.11
+    - @navikt/sif-common-core-ds@10.2.35
+    - @navikt/sif-common-api@0.4.33
+    - @navikt/ung-common@0.0.31
+    - @navikt/sif-common-ui@0.10.11
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-faro@0.2.5
+
+## 1.1.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.5
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.5
+    - @navikt/sif-common-soknad-ds@25.0.11
+    - @navikt/sif-common-forms-ds@20.0.10
+    - @navikt/sif-common-core-ds@10.2.34
+    - @navikt/sif-common-api@0.4.32
+    - @navikt/sif-common-ui@0.10.10
+    - @navikt/ung-common@0.0.30
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-faro@0.2.5
+
 ## 1.1.4
 
 ### Patch Changes

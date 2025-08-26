@@ -1,3 +1,4 @@
+import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
 import { client } from './veileder';
@@ -8,12 +9,13 @@ interface InitOptions {
     headers?: Record<string, string>;
 }
 
-export const initUngDeltakelseOpplyserApiVeilederClient = (baseURL: string, options?: InitOptions) => {
+export const initUngDeltakelseOpplyserApiVeilederClient = (options?: InitOptions) => {
+    const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     client.setConfig({
         withCredentials: false,
         headers: options?.headers,
-        baseURL,
+        baseURL: `${apiBaseUrl}${getUngDeltakelseOpplyserBrowserEnv()[EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH]}`,
     });
 
     /**

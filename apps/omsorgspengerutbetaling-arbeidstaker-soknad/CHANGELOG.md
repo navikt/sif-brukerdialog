@@ -1,5 +1,49 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.15.13
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
+## 1.15.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.22
+    - @navikt/sif-common-formik-ds@2.4.30
+    - @navikt/sif-common-soknad-ds@25.0.12
+    - @navikt/sif-common-forms-ds@20.0.11
+    - @navikt/sif-common-core-ds@10.2.35
+    - @navikt/sif-common-utils@3.49.20
+    - @navikt/sif-common-api@0.4.33
+    - @navikt/sif-common-ui@0.10.11
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-hooks@0.3.4
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-validation@1.0.3
+
+## 1.15.11
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.21
+    - @navikt/sif-common-formik-ds@2.4.29
+    - @navikt/sif-common-soknad-ds@25.0.11
+    - @navikt/sif-common-forms-ds@20.0.10
+    - @navikt/sif-common-core-ds@10.2.34
+    - @navikt/sif-common-utils@3.49.19
+    - @navikt/sif-common-api@0.4.32
+    - @navikt/sif-common-ui@0.10.10
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-hooks@0.3.4
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-validation@1.0.3
+
 ## 1.15.10
 
 ### Patch Changes

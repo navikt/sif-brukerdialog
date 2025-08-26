@@ -10,6 +10,7 @@ import type {
 } from 'axios';
 
 import type { Auth } from '../core/auth.gen';
+import type { ServerSentEventsOptions, ServerSentEventsResult } from '../core/serverSentEvents.gen';
 import type { Client as CoreClient, Config as CoreConfig } from '../core/types.gen';
 
 export interface Config<T extends ClientOptions = ClientOptions>
@@ -43,10 +44,14 @@ export interface Config<T extends ClientOptions = ClientOptions>
     throwOnError?: T['throwOnError'];
 }
 
-export interface RequestOptions<ThrowOnError extends boolean = boolean, Url extends string = string>
+export interface RequestOptions<TData = unknown, ThrowOnError extends boolean = boolean, Url extends string = string>
     extends Config<{
-        throwOnError: ThrowOnError;
-    }> {
+            throwOnError: ThrowOnError;
+        }>,
+        Pick<
+            ServerSentEventsOptions<TData>,
+            'onSseError' | 'onSseEvent' | 'sseDefaultRetryDelay' | 'sseMaxRetryAttempts' | 'sseMaxRetryDelay'
+        > {
     /**
      * Any body that you want to add to your request.
      *
@@ -60,6 +65,11 @@ export interface RequestOptions<ThrowOnError extends boolean = boolean, Url exte
      */
     security?: readonly Auth[];
     url: Url;
+}
+
+export interface ClientOptions {
+    baseURL?: string;
+    throwOnError?: boolean;
 }
 
 export type RequestResult<
@@ -76,17 +86,17 @@ export type RequestResult<
             })
       >;
 
-export interface ClientOptions {
-    baseURL?: string;
-    throwOnError?: boolean;
-}
-
 type MethodFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false>(
-    options: Omit<RequestOptions<ThrowOnError>, 'method'>,
+    options: Omit<RequestOptions<TData, ThrowOnError>, 'method'>,
 ) => RequestResult<TData, TError, ThrowOnError>;
 
+type SseFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false>(
+    options: Omit<RequestOptions<TData, ThrowOnError>, 'method'>,
+) => Promise<ServerSentEventsResult<TData, TError>>;
+
 type RequestFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false>(
-    options: Omit<RequestOptions<ThrowOnError>, 'method'> & Pick<Required<RequestOptions<ThrowOnError>>, 'method'>,
+    options: Omit<RequestOptions<TData, ThrowOnError>, 'method'> &
+        Pick<Required<RequestOptions<TData, ThrowOnError>>, 'method'>,
 ) => RequestResult<TData, TError, ThrowOnError>;
 
 type BuildUrlFn = <
@@ -100,7 +110,7 @@ type BuildUrlFn = <
     options: Pick<TData, 'url'> & Omit<Options<TData>, 'axios'>,
 ) => string;
 
-export type Client = CoreClient<RequestFn, Config, MethodFn, BuildUrlFn> & {
+export type Client = CoreClient<RequestFn, Config, MethodFn, BuildUrlFn, SseFn> & {
     instance: AxiosInstance;
 };
 
@@ -126,16 +136,20 @@ export interface TDataShape {
 
 type OmitKeys<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = OmitKeys<
-    RequestOptions<ThrowOnError>,
-    'body' | 'path' | 'query' | 'url'
-> &
-    Omit<TData, 'url'>;
+export type Options<
+    TData extends TDataShape = TDataShape,
+    ThrowOnError extends boolean = boolean,
+    TResponse = unknown,
+> = OmitKeys<RequestOptions<TResponse, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> & Omit<TData, 'url'>;
 
 export type OptionsLegacyParser<TData = unknown, ThrowOnError extends boolean = boolean> = TData extends { body?: any }
     ? TData extends { headers?: any }
-        ? OmitKeys<RequestOptions<ThrowOnError>, 'body' | 'headers' | 'url'> & TData
-        : OmitKeys<RequestOptions<ThrowOnError>, 'body' | 'url'> & TData & Pick<RequestOptions<ThrowOnError>, 'headers'>
+        ? OmitKeys<RequestOptions<unknown, ThrowOnError>, 'body' | 'headers' | 'url'> & TData
+        : OmitKeys<RequestOptions<unknown, ThrowOnError>, 'body' | 'url'> &
+              TData &
+              Pick<RequestOptions<unknown, ThrowOnError>, 'headers'>
     : TData extends { headers?: any }
-      ? OmitKeys<RequestOptions<ThrowOnError>, 'headers' | 'url'> & TData & Pick<RequestOptions<ThrowOnError>, 'body'>
-      : OmitKeys<RequestOptions<ThrowOnError>, 'url'> & TData;
+      ? OmitKeys<RequestOptions<unknown, ThrowOnError>, 'headers' | 'url'> &
+            TData &
+            Pick<RequestOptions<unknown, ThrowOnError>, 'body'>
+      : OmitKeys<RequestOptions<unknown, ThrowOnError>, 'url'> & TData;

@@ -1,5 +1,47 @@
 # @navikt/sif-demo-app
 
+## 0.5.47
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
+## 0.5.46
+
+### Patch Changes
+
+- Refactoring av initApiClients pga breaking changes i hey-api/openapi-ts
+- Updated dependencies
+    - @navikt/ung-common@0.0.32
+
+## 0.5.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.30
+    - @navikt/sif-common-core-ds@10.2.35
+    - @navikt/sif-common-api@0.4.33
+    - @navikt/ung-common@0.0.31
+    - @navikt/sif-common-ui@0.10.11
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
+## 0.5.44
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.29
+    - @navikt/sif-common-core-ds@10.2.34
+    - @navikt/sif-common-api@0.4.32
+    - @navikt/sif-common-ui@0.10.10
+    - @navikt/ung-common@0.0.30
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
 ## 0.5.43
 
 ### Patch Changes

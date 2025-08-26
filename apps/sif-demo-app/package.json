@@ -2,11 +2,12 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.36",
+    "version": "0.4.39",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
+        "dev:config": "node -e 'console.log(JSON.stringify(require(\"./dist/devAppSettings.js\").getDevAppSettings(), null, 2))'",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app"
     },
@@ -32,21 +33,21 @@
         "react": "19.1.1",
         "react-dom": "19.1.1",
         "react-hook-form": "7.62.0",
-        "zod": "4.0.17"
+        "zod": "4.1.3"
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.3.1",
-        "@eslint/js": "9.33.0",
+        "@eslint/js": "9.34.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@tailwindcss/postcss": "4.1.12",
         "@tailwindcss/vite": "4.1.12",
         "@types/node": "24.3.0",
-        "@types/react": "19.1.10",
-        "@types/react-dom": "19.1.7",
-        "@typescript-eslint/parser": "8.40.0",
+        "@types/react": "19.1.11",
+        "@types/react-dom": "19.1.8",
+        "@typescript-eslint/parser": "8.41.0",
         "@vitejs/plugin-react": "5.0.1",
         "compression": "1.8.1",
-        "eslint": "9.33.0",
+        "eslint": "9.34.0",
         "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-simple-import-sort": "12.1.1",
@@ -59,8 +60,8 @@
         "stylelint": "16.23.1",
         "tailwindcss": "4.1.12",
         "typescript": "5.9.2",
-        "typescript-eslint": "8.40.0",
+        "typescript-eslint": "8.41.0",
         "vite": "7.1.3",
-        "vite-plugin-checker": "0.10.2"
+        "vite-plugin-checker": "0.10.3"
     }
 }

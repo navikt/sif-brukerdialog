@@ -1,12 +1,9 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
-import * as dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { getDevAppSettings } from './mock/devAppSettings';
 import tailwindcss from '@tailwindcss/vite';
-
-dotenv.config();
 
 export default defineConfig({
     mode: 'msw',
