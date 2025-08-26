@@ -28,11 +28,11 @@ export const getDevAppSettings = (): AppEnv & { VITE?: string; DEV_IS_STORYBOOK?
     SIF_PUBLIC_URL_ENDRE_KONTONUMMER: 'https://www.ansatt.dev.nav.no/start/soknad-endring-bankkontonummer',
     SIF_PUBLIC_URL_SKRIV_TIL_OSS: 'https://www.nav.no/skriv-til-oss',
 
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api/brukerdialog',
 
-    UNG_DELTAKELSE_OPPLYSER_API_URL: 'http://ung-deltakelse-opplyser.k9saksbehandling',
+    UNG_DELTAKELSE_OPPLYSER_API_URL: '#',
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-deltakelse-opplyser',
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
 });

@@ -6,7 +6,7 @@ export const getDevAppSettings = () => ({
     GITHUB_REF_NAME: 'branch-name',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
 
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api',
 

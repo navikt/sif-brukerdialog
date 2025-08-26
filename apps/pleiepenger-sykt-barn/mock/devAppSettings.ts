@@ -20,7 +20,7 @@ export const getDevAppSettings = (): AppEnv => ({
 
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger/api/k9-brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
 
     MOCK_DATE: '2023-01-01',
     USE_MOCK_DATE: 'true',
