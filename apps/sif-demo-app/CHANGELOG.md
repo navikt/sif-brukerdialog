@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.4.39
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 0.4.38
 
 ### Patch Changes

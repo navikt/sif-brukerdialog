@@ -4,7 +4,7 @@ import * as z from 'zod';
 /**
  * For at disse skal bli tilgjengelige i appen, må disse filene oppdateres:
  * - appEnv.ts - på server
- * - getAppSettings.cjs (lokalt)
+ * - src/devAppSettings.ts (lokalt)
  *
  * I tillegg til at env filene må inneholde verdiene
  */
