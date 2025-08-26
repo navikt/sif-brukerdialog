@@ -5,10 +5,12 @@ import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeri
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
+import { Features } from '../../../types/Features';
 import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
 import EndreSluttdatoPanel from './EndreSluttdatoPanel';
 import EndreStartdatoPanel from './EndreStartdatoPanel';
 import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
+import SluttdatoKanIkkeEndresPanel from './SluttdatoKanIkkeEndresPanel';
 
 interface Props {
     deltaker: Deltaker;
@@ -47,23 +49,29 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                             setFormVariant(EndrePeriodeVariant.startdato);
                         }}
                     />
-                    {deltakerHarSøkt && deltakelse.tilOgMed && (
-                        <EndreSluttdatoPanel
-                            tilOgMed={deltakelse.tilOgMed}
-                            kanEndreSluttdato={kanEndreSluttdato(deltakelse, tillattEndringsperiode)}
-                            onClickEndreSluttdato={() => {
-                                setEndretDeltakelse(undefined);
-                                setFormVariant(EndrePeriodeVariant.endreSluttdato);
-                            }}
-                        />
-                    )}
-                    {deltakerHarSøkt && !deltakelse.tilOgMed && (
-                        <MeldUtDeltakerPanel
-                            onClickMeldUtButton={() => {
-                                setEndretDeltakelse(undefined);
-                                setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
-                            }}
-                        />
+                    {Features.endreSluttdato ? (
+                        <>
+                            {deltakerHarSøkt && deltakelse.tilOgMed && (
+                                <EndreSluttdatoPanel
+                                    tilOgMed={deltakelse.tilOgMed}
+                                    kanEndreSluttdato={kanEndreSluttdato(deltakelse, tillattEndringsperiode)}
+                                    onClickEndreSluttdato={() => {
+                                        setEndretDeltakelse(undefined);
+                                        setFormVariant(EndrePeriodeVariant.endreSluttdato);
+                                    }}
+                                />
+                            )}
+                            {deltakerHarSøkt && !deltakelse.tilOgMed && (
+                                <MeldUtDeltakerPanel
+                                    onClickMeldUtButton={() => {
+                                        setEndretDeltakelse(undefined);
+                                        setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
+                                    }}
+                                />
+                            )}
+                        </>
+                    ) : (
+                        <SluttdatoKanIkkeEndresPanel />
                     )}
                 </HGrid>
             </VStack>

@@ -26,6 +26,8 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
 
+        "SIF_PUBLIC_FEATURE_ENDRE_SLUTTDATO": "off",
+
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://prod-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
