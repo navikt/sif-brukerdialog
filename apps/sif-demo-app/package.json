@@ -2,11 +2,12 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.38",
+    "version": "0.4.39",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
+        "dev:config": "node -e 'console.log(JSON.stringify(require(\"./dist/devAppSettings.js\").getDevAppSettings(), null, 2))'",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app"
     },

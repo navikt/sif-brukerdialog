@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.15
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 1.40.14
 
 ### Patch Changes

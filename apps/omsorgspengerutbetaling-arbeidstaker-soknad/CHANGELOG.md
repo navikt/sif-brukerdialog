@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.15.13
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 1.15.12
 
 ### Patch Changes

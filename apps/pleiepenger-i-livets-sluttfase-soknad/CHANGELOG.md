@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.21.12
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 2.21.11
 
 ### Patch Changes

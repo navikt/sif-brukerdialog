@@ -2,8 +2,8 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getMockAppSettings } from './mock/getMockAppSettings';
 import tailwindcss from '@tailwindcss/vite';
+import { getDevAppSettings } from './src/devAppSettings';
 
 export default defineConfig({
     mode: 'msw',
@@ -22,7 +22,7 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getMockAppSettings()));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings()));
             },
         },
     ],

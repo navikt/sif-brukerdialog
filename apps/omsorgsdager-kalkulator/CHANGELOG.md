@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.31
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
 ## 3.12.30
 
 ### Patch Changes
