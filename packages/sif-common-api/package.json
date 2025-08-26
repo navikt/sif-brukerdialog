@@ -2,7 +2,7 @@
     "name": "@navikt/sif-common-api",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.4.32",
+    "version": "0.4.33",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -17,7 +17,7 @@
         "classnames": "2.5.1",
         "dayjs": "1.11.13",
         "react-day-picker": "9.9.0",
-        "zod": "4.1.1"
+        "zod": "4.1.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
