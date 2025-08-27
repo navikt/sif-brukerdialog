@@ -59,7 +59,7 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Table.Body>
                     {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
-                            <Table.Row key={tidspunkt.toDateString()} ref={index === focusIndex ? ref : undefined}>
+                            <Table.Row key={tidspunkt.getTime()} ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200">{dateFormatter.compactWithTime(tidspunkt)}</Table.DataCell>
                                 <Table.DataCell>{getEndringstypeTekst(endringstype)}</Table.DataCell>
                                 <Table.DataCell>{endring}</Table.DataCell>
