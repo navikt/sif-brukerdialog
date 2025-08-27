@@ -2725,7 +2725,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/react-dom@npm:^2.0.9, @floating-ui/react-dom@npm:^2.1.2, @floating-ui/react-dom@npm:^2.1.5":
+"@floating-ui/react-dom@npm:^2.0.9, @floating-ui/react-dom@npm:^2.1.2, @floating-ui/react-dom@npm:^2.1.6":
   version: 2.1.6
   resolution: "@floating-ui/react-dom@npm:2.1.6"
   dependencies:
@@ -4715,6 +4715,7 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.81.1"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -5639,6 +5640,7 @@ __metadata:
   dependencies:
     "@navikt/k9-brukerdialog-prosessering-api": "workspace:*"
     "@navikt/k9-sak-innsyn-api": "workspace:*"
+    "@navikt/sif-common-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:5.85.5"
@@ -6060,6 +6062,7 @@ __metadata:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
     "@hey-api/openapi-ts": "npm:0.81.1"
+    "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -7912,10 +7915,10 @@ __metadata:
   linkType: hard
 
 "@sanity/ui@npm:^3.0.0, @sanity/ui@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "@sanity/ui@npm:3.0.7"
+  version: 3.0.8
+  resolution: "@sanity/ui@npm:3.0.8"
   dependencies:
-    "@floating-ui/react-dom": "npm:^2.1.5"
+    "@floating-ui/react-dom": "npm:^2.1.6"
     "@juggle/resize-observer": "npm:^3.4.0"
     "@sanity/color": "npm:^3.0.6"
     "@sanity/icons": "npm:^3.7.4"
@@ -7929,7 +7932,7 @@ __metadata:
     react-dom: ^18 || >=19.0.0-0
     react-is: ^18 || >=19.0.0-0
     styled-components: ^5.2 || ^6
-  checksum: 10/aa731a73ec9f4e9c4eba2fd708f9c1be0d9497d7ba0151a006b8e34bfce5c28d38fa27ec4ca9f63b7d7e14d87d3905a260c96051b859a6ec500a725f4a234f70
+  checksum: 10/564adfa34c24b0b6364c924d84ed0e6018967bfa4d738eb3742b116e94e74f26f1df39edac38ed6f172c7b79ad24130ebf514d0cf092f2c94639ece7d0c2b175
   languageName: node
   linkType: hard
 
