@@ -18,9 +18,9 @@
     "dependencies": {
         "@hookform/error-message": "2.0.1",
         "@navikt/aksel-icons": "7.28.1",
-        "@navikt/ds-css": "7.28.1",
+        "@navikt/ds-css": "7.29.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.28.1",
+        "@navikt/ds-react": "7.29.0",
         "@navikt/sif-common-utils": "workspace:*",
         "@types/react": "19.1.11",
         "@types/react-dom": "19.1.8",
