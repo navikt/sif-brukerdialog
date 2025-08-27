@@ -38,4 +38,4 @@ export * as pleiepengerSyktBarnEndringsmelding from './generated/pleiepenger-syk
 // Pleiepenger Sykt Barn Søknad API
 export * as pleiepengerSyktBarnSoknad from './generated/pleiepenger-sykt-barn-soknad';
 
-export * from './initAllK9BrukerdialogProsesseringApiClients';
+export * from './initK9BrukerdialogProsesseringApiClients';

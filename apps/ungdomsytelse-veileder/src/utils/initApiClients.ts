@@ -2,7 +2,7 @@ import { initUngDeltakelseOpplyserApiVeilederClient } from '@navikt/ung-deltakel
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiVeilederClient({
-        onUnAuthorized: () => {
+        onUnauthorized: () => {
             window.location.reload();
         },
     });

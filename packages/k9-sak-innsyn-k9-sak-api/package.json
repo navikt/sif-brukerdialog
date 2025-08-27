@@ -7,6 +7,7 @@
     "version": "0.0.20",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.81.1",
+        "@navikt/sif-common-api": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",

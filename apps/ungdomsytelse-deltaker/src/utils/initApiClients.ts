@@ -6,7 +6,7 @@ import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakel
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({
-        onUnAuthorized: () => {
+        onUnauthorized: () => {
             window.location.reload();
         },
     });
