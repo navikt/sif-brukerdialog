@@ -5307,7 +5307,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:7.28.1, @navikt/aksel-icons@npm:^7.28.1":
+"@navikt/aksel-icons@npm:7.29.0":
+  version: 7.29.0
+  resolution: "@navikt/aksel-icons@npm:7.29.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.29.0%2F1e7bb0845b5399758f391e7fbadad8c43e480ce9"
+  checksum: 10/a6445a85094aec45bf2118d92247f15cf966fa73b12411cc9ad3da68441a3803727ae00eeb0836a22727b1f15fe5ccab2c25425dee6338b314c95478f16c2677
+  languageName: node
+  linkType: hard
+
+"@navikt/aksel-icons@npm:^7.28.1":
   version: 7.28.1
   resolution: "@navikt/aksel-icons@npm:7.28.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.28.1%2Fa17d463dfd055d17cb8ed24b48e264ce055b39aa"
   checksum: 10/f552e9f3581621d888a893448332ea3d1f05e265130cdf16fafec75e296801acabb92c22bef5a79bfb1833cee9228388d0dc638d990a836cc4737afc68e6d15a
@@ -6738,7 +6745,7 @@ __metadata:
     "@eslint/eslintrc": "npm:3.3.1"
     "@eslint/js": "npm:9.34.0"
     "@hookform/resolvers": "npm:5.2.1"
-    "@navikt/aksel-icons": "npm:7.28.1"
+    "@navikt/aksel-icons": "npm:7.29.0"
     "@navikt/ds-css": "npm:7.28.1"
     "@navikt/ds-react": "npm:7.28.1"
     "@navikt/ds-tailwind": "npm:7.28.1"
@@ -6859,7 +6866,7 @@ __metadata:
   resolution: "@navikt/sif-hook-form-wrappers@workspace:packages/sif-hook-form-wrappers"
   dependencies:
     "@hookform/error-message": "npm:2.0.1"
-    "@navikt/aksel-icons": "npm:7.28.1"
+    "@navikt/aksel-icons": "npm:7.29.0"
     "@navikt/ds-css": "npm:7.28.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.28.1"
@@ -6998,7 +7005,7 @@ __metadata:
     "@eslint/eslintrc": "npm:3.3.1"
     "@eslint/js": "npm:9.34.0"
     "@grafana/faro-react": "npm:1.19.0"
-    "@navikt/aksel-icons": "npm:7.28.1"
+    "@navikt/aksel-icons": "npm:7.29.0"
     "@navikt/ds-css": "npm:7.28.1"
     "@navikt/ds-react": "npm:7.28.1"
     "@navikt/ds-tailwind": "npm:7.28.1"
@@ -7079,7 +7086,7 @@ __metadata:
     "@eslint/eslintrc": "npm:3.3.1"
     "@eslint/js": "npm:9.34.0"
     "@grafana/faro-react": "npm:1.19.0"
-    "@navikt/aksel-icons": "npm:7.28.1"
+    "@navikt/aksel-icons": "npm:7.29.0"
     "@navikt/ds-css": "npm:7.28.1"
     "@navikt/ds-react": "npm:7.28.1"
     "@navikt/ds-tailwind": "npm:7.28.1"
