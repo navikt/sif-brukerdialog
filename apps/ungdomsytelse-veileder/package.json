@@ -28,7 +28,6 @@
         "@navikt/ds-react": "7.28.1",
         "@navikt/ds-tailwind": "7.28.1",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
-        "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-faro": "workspace:*",

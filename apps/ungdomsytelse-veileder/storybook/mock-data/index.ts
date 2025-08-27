@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
 export const SøkerMock: Søker = {

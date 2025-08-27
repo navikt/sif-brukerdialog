@@ -11,7 +11,7 @@ import {
 export * from './schemas';
 export * from './services';
 export * from './types';
-export * from './apiClient';
+export * from './k9BrukerdialogApiClient';
 
 export const commonApiService = {
     deleteVedlegg,

@@ -1,4 +1,4 @@
-import { k9BrukerdialogApiClient } from '../apiClient';
+import { k9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { InnsendingType } from '../types';
 
 const getBackendRouteForInnsendingType = (innsendingType: InnsendingType) => {

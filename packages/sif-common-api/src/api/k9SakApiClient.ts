@@ -1,7 +1,7 @@
-import { getCommonEnv, getK9SakInnsynEnv } from '@navikt/sif-common-env';
+import { EnvKey, getK9SakInnsynEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import axios from 'axios';
 import { v4 } from 'uuid';
-import { axiosConfig, isUnauthorized } from './apiClient';
+import { axiosConfig, isUnauthorized } from './k9BrukerdialogApiClient';
 
 export const k9SakApiClient = axios.create({
     ...axiosConfig,
@@ -15,7 +15,7 @@ k9SakApiClient.interceptors.response.use(
     (response) => response,
     (error) => {
         if (isUnauthorized(error)) {
-            window.location.assign(getCommonEnv().SIF_PUBLIC_LOGIN_URL);
+            window.location.assign(getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL));
         }
         return Promise.reject(error);
     },

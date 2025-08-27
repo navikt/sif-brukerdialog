@@ -7,6 +7,7 @@
     "version": "0.0.32",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-common-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
     },
