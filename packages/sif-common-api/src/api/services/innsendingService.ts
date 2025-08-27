@@ -1,4 +1,4 @@
-import { k9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
+import { getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { InnsendingType } from '../types';
 
 const getBackendRouteForInnsendingType = (innsendingType: InnsendingType) => {
@@ -21,7 +21,7 @@ export function getInnsendingService<ApiData>(innsendingType: InnsendingType) {
     }
     return {
         send: async (apiData: ApiData) => {
-            return await k9BrukerdialogApiClient.post(backendRoute, apiData);
+            return await getK9BrukerdialogApiClient().post(backendRoute, apiData);
         },
     };
 }
