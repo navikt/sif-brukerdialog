@@ -12,7 +12,7 @@ const SluttdatoKanIkkeEndresPanel = () => (
                     -
                 </BodyShort>
                 <Alert variant="info" inline>
-                    Sluttdato kan ikke foreløpig ikke settes.
+                    Sluttdato kan foreløpig ikke settes.
                 </Alert>
             </VStack>
         </VStack>
