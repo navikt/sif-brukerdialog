@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { MemoryRouter } from 'react-router-dom';
+import { getRequiredEnv } from '@navikt/sif-common-env';
 import { http, HttpResponse } from 'msw';
+import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import AppRoutes from '../../AppRoutes';
 import { ThemeProvider } from '../../context/ThemeContext';
 import DeltakerPage from './DeltakerPage';
-import { MemoryRouter } from 'react-router-dom';
-import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
-import AppRoutes from '../../AppRoutes';
-import { getRequiredEnv } from '@navikt/sif-common-env';
 
 const meta: Meta<typeof DeltakerPage> = {
     component: DeltakerPage,

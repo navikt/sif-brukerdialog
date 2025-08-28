@@ -1,23 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import { hentSøkerId } from '@navikt/sif-common-query';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import { useMellomlagring } from '../hooks/useMellomlagring';
-import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useAutoMellomlagring } from '../hooks/useAutoMellomlagring';
 import { useResetSøknad } from '../hooks/useResetSøknad';
+import { useMellomlagring } from '../hooks/useMellomlagring';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { fetchSøkerId } from '@navikt/sif-common-api';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -30,8 +30,8 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    usePersistSøknadState();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
+    useAutoMellomlagring();
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, hentSøkerId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {

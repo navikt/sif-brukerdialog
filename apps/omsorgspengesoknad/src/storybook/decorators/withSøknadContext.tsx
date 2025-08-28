@@ -13,7 +13,7 @@ export const mockInitialSøknadContextState: SøknadContextState = {
 };
 
 export const withSøknadContextProvider = (Story: any, state: Partial<SøknadContextState> = {}) => (
-    <SøknadContextProvider initialData={{ ...mockInitialSøknadContextState, ...state }}>
+    <SøknadContextProvider initialState={{ ...mockInitialSøknadContextState, ...state }}>
         <Story />
     </SøknadContextProvider>
 );

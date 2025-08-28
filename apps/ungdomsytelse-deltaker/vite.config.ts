@@ -1,26 +1,10 @@
 /// <reference types="vitest" />
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import checker from 'vite-plugin-checker';
-import tailwindcss from '@tailwindcss/vite';
+import { basicPlugins, commonDefines } from './vite.shared.config';
 
 export default defineConfig({
-    plugins: [
-        tailwindcss(),
-        react({
-            include: '**/*.{tsx}',
-        }),
-        checker({ typescript: true }),
-        {
-            name: 'crossorigin',
-            transformIndexHtml(html) {
-                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
-            },
-        },
-    ],
-    define: {
-        __IS_GITHUB_PAGES__: false,
-    },
+    plugins: basicPlugins,
+    define: commonDefines.production,
     server: {
         port: 8080,
     },
