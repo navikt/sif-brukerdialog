@@ -1,10 +1,9 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SlettDeltakerForm from './SlettDeltakerForm';
-import { useQueryClient } from '@tanstack/react-query';
-import { AppHendelse, useAnalyticsInstance } from '../../utils/analytics';
 import { Deltaker } from '../../types/Deltaker';
+import SlettDeltakerForm from './SlettDeltakerForm';
 
 interface Props {
     deltaker: Deltaker;
@@ -13,11 +12,9 @@ interface Props {
 
 const SlettDeltakerModal = ({ deltaker, onCancel }: Props) => {
     const [deltakelseSlettet, setDeltakelseSlettet] = useState(false);
-    const { logAppHendelse } = useAnalyticsInstance();
 
-    const handleOnDeltakelseSlettet = async () => {
+    const handleOnDeltakelseSlettet = () => {
         setDeltakelseSlettet(true);
-        await logAppHendelse(AppHendelse.deltakerSlettet);
     };
 
     const navigate = useNavigate();

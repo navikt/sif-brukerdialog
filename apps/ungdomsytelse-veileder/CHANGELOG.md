@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.6.0
+
+### Minor Changes
+
+- Tilrettelegge for å endre sluttdato. Featuretogglet av frem til tekster er endelig bestemt.
+
 ## 0.5.48
 
 ### Patch Changes
