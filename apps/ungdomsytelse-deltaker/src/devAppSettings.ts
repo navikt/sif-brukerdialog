@@ -16,8 +16,8 @@ export const getDevAppSettings = (): AppEnv & { VITE?: string; DEV_IS_STORYBOOK?
     SIF_PUBLIC_LOGIN_URL:
         'https://ungdomsytelse-deltaker.intern.dev.nav.no/oauth2/login?redirect=/ungdomsprogrammet/ytelsen',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
-    SIF_PUBLIC_USE_FARO: 'true',
+    SIF_PUBLIC_USE_AMPLITUDE: 'false',
+    SIF_PUBLIC_USE_FARO: 'false',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
     SIF_PUBLIC_URL_DOKUMENTARKIV: 'https://www.dev.nav.no/dokumentarkiv/tema/UNG',
     SIF_PUBLIC_URL_RETT_OG_PLIKT: 'https://www.ansatt.dev.nav.no/endringer',
