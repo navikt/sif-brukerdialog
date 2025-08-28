@@ -45,7 +45,7 @@
         "config": "workspace:*",
         "eslint": "9.34.0",
         "eslint-config-next": "15.5.0",
-        "jest": "30.0.5",
+        "jest": "30.1.1",
         "jest-environment-jsdom": "30.0.5",
         "playwright-core": "1.55.0",
         "postcss": "8.5.6",

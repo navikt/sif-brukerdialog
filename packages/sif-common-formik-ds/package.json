@@ -45,7 +45,7 @@
         "date-fns": "4.1.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
-        "jest": "30.0.5",
+        "jest": "30.1.1",
         "prop-types": "15.8.1",
         "react": "19.1.1",
         "react-day-picker": "9.9.0",
