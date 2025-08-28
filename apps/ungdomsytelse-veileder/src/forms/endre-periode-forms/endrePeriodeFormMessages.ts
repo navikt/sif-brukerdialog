@@ -16,8 +16,8 @@ const nb = {
     'endrePeriodeForm.deltakerErInformert.noValue': 'Du må svare på om deltaker er informert',
     'endrePeriodeForm.bekrefterEndring.notChecked': 'Du må krysse av for at du bekrefter endringen',
 
-    'utmeldingsårsak.i-arbeid': 'Deltakeren har fått arbeid',
-    'utmeldingsårsak.i-utdanning': 'Deltakeren har begynt i utdanning',
+    'utmeldingsårsak.arbeid': 'Arbeid',
+    'utmeldingsårsak.utdanning': 'Utdanning',
     'utmeldingsårsak.manglende-deltakelse': 'Manglende deltakelse',
     'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
     'utmeldingsårsak.annet': 'Annet',
