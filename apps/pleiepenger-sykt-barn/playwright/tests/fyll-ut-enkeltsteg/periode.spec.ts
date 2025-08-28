@@ -26,13 +26,13 @@ test('Fyll ut periodesteget', async ({ page }) => {
         .getByRole('button')
         .click();
     await page.getByRole('button', { name: 'søndag 15' }).click();
-    await page.getByLabel('Fra og med').fill('03.01.2023');
+    await page.getByLabel('Fra og med', { exact: true }).fill('03.01.2023');
     await page
         .locator('div')
         .filter({ hasText: /^Fra og medÅpne datovelger$/ })
         .getByRole('button')
         .press('Tab');
-    await page.getByLabel('Til og med').fill('10.01.2023');
+    await page.getByLabel('Til og med', { exact: true }).fill('10.01.2023');
     await page
         .locator('div')
         .filter({ hasText: /^Til og medÅpne datovelger$/ })
