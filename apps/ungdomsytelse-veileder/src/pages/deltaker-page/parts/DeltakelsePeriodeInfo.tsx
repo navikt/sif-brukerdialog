@@ -65,7 +65,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                                   }
                                 : undefined
                         }
-                        kanIkkeEndreTekst="Sluttdato kan ikke foreløpig ikke settes/endres"
+                        kanIkkeEndreTekst="Sluttdato kan foreløpig ikke settes"
                     />
                 </HGrid>
             </VStack>
