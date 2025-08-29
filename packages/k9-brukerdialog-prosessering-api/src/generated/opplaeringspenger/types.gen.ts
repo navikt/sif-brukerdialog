@@ -12,8 +12,7 @@ export type ProblemDetail = {
 };
 
 export type ArbeidIPeriode = {
-    jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
-    enkeltdager?: Enkeltdag[];
+    [key: string]: unknown;
 };
 
 export type ArbeidsforholdOlp = {
@@ -22,11 +21,7 @@ export type ArbeidsforholdOlp = {
 };
 
 export type ArbeidsgiverOlp = {
-    organisasjonsnummer?: string;
-    navn?: string;
-    erAnsatt?: boolean;
-    sluttetFørSøknadsperiode?: boolean;
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type BarnDetaljer = {
@@ -37,7 +32,7 @@ export type BarnDetaljer = {
     getårsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
     relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
     relasjonTilBarnetBeskrivelse?: string;
-    fødselsattestVedleggUrls?: string[];
+    fødselsattestVedleggUrls?: Array<string>;
 };
 
 export type Bosted = {
@@ -65,7 +60,7 @@ export type Ferieuttak = {
 
 export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
-    ferieuttak: Ferieuttak[];
+    ferieuttak: Array<Ferieuttak>;
 };
 
 export type FrilansOlp = {
@@ -78,7 +73,7 @@ export type FrilansOlp = {
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: string[];
+    kursperioder: Array<string>;
     reise: Reise;
 };
 
@@ -94,9 +89,9 @@ export type Land = {
 
 export type Medlemskap = {
     harBoddIUtlandetSiste12Mnd?: boolean;
-    utenlandsoppholdSiste12Mnd: Bosted[];
+    utenlandsoppholdSiste12Mnd: Array<Bosted>;
     skalBoIUtlandetNeste12Mnd?: boolean;
-    utenlandsoppholdNeste12Mnd: Bosted[];
+    utenlandsoppholdNeste12Mnd: Array<Bosted>;
 };
 
 export type OpplæringspengerSøknad = {
@@ -105,15 +100,15 @@ export type OpplæringspengerSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: ArbeidsgiverOlp[];
-    vedlegg: string[];
+    arbeidsgivere: Array<ArbeidsgiverOlp>;
+    vedlegg: Array<string>;
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: OpptjeningIUtlandet[];
-    utenlandskNæring: UtenlandskNæring[];
+    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
+    utenlandskNæring: Array<UtenlandskNæring>;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     frilans?: FrilansOlp;
@@ -140,7 +135,7 @@ export type Regnskapsfører = {
 
 export type Reise = {
     reiserUtenforKursdager: boolean;
-    reisedager?: string[];
+    reisedager?: Array<string>;
     reisedagerBeskrivelse?: string;
 };
 
@@ -174,7 +169,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: Utenlandsopphold[];
+    opphold: Array<Utenlandsopphold>;
 };
 
 export type VarigEndring = {
@@ -193,8 +188,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -222,13 +215,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+    barn: Array<BarnOppslag>;
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: Array<OrganisasjonDto>;
+    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
+    frilansoppdrag?: Array<FrilansoppdragDto>;
 };
 
 export type FrilansoppdragDto = {
@@ -251,6 +244,36 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type ArbeidIPeriodeWritable = {
+    jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
+    enkeltdager?: Array<Enkeltdag>;
+};
+
+export type ArbeidsgiverOlpWritable = {
+    organisasjonsnummer?: string;
+    navn?: string;
+    erAnsatt?: boolean;
+    sluttetFørSøknadsperiode?: boolean;
+    arbeidsforhold?: ArbeidsforholdOlp;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
 };
 
 export type DeleteMellomlagringData = {

@@ -45,9 +45,9 @@ export type DeltakerPersonalia = {
     /**
      * Diskresjonskoder som gjelder for deltakeren. Vil være tom hvis deltaker ikke har diskresjonskoder satt.
      */
-    diskresjonskoder: Diskresjonskode[];
-    førsteMuligeInnmeldingsdato: string;
+    diskresjonskoder: Array<Diskresjonskode>;
     sisteMuligeInnmeldingsdato: string;
+    førsteMuligeInnmeldingsdato: string;
 };
 
 export enum Diskresjonskode {
@@ -290,7 +290,7 @@ export type HentAlleDeltakelserGittDeltakerIdResponses = {
     /**
      * OK
      */
-    200: DeltakelseDto[];
+    200: Array<DeltakelseDto>;
 };
 
 export type HentAlleDeltakelserGittDeltakerIdResponse =
@@ -326,7 +326,7 @@ export type DeltakelseHistorikkResponses = {
     /**
      * OK
      */
-    200: DeltakelseHistorikkDto[];
+    200: Array<DeltakelseHistorikkDto>;
 };
 
 export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];

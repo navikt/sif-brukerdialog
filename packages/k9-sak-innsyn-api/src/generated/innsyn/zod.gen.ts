@@ -110,7 +110,6 @@ export const zFraværPeriode = z.object({
         .array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET']))
         .min(1)
         .max(2),
-    organisasjonsnummer: z.optional(z.string()),
     arbeidsforholdId: z.optional(z.string()),
     arbeidsgiverOrgNr: z.optional(z.string()),
 });
@@ -326,7 +325,7 @@ export const zOpplæringspenger = zYtelse
             arbeidstid: zArbeidstid,
             uttak: zUttak,
             omsorg: zOmsorg,
-            kurs: zKurs,
+            kurs: z.optional(zKurs),
         }),
     );
 
@@ -445,9 +444,9 @@ export const zAksjonspunktDto = z.object({
 });
 
 export const zInnsending = z.object({
+    mottattDato: z.optional(z.iso.datetime()),
     versjon: z.optional(z.string()),
     søker: z.optional(zSøker),
-    mottattDato: z.optional(z.iso.datetime()),
     søknadId: z.optional(z.string()),
 });
 
@@ -564,6 +563,23 @@ export const zPleietrengendeMedSak = z.object({
 
 export const zSaksbehandlingtidDto = z.object({
     saksbehandlingstidUker: z.coerce.bigint(),
+});
+
+export const zFraværPeriodeWritable = z.object({
+    periode: z.string(),
+    duration: z.optional(z.string()),
+    delvisFravær: z.optional(zDelvisFravær),
+    årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']),
+    søknadÅrsak: z.optional(
+        z.enum(['ARBEIDSGIVER_KONKURS', 'NYOPPSTARTET_HOS_ARBEIDSGIVER', 'KONFLIKT_MED_ARBEIDSGIVER']),
+    ),
+    aktivitetFravær: z
+        .array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET']))
+        .min(1)
+        .max(2),
+    organisasjonsnummer: z.optional(z.string()),
+    arbeidsforholdId: z.optional(z.string()),
+    arbeidsgiverOrgNr: z.optional(z.string()),
 });
 
 export const zHentSøknaderData = z.object({

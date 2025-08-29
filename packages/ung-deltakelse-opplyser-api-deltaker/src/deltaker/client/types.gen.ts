@@ -28,7 +28,7 @@ export type DeltakelseKomposittDto = {
     fraOgMed: string;
     tilOgMed?: string;
     søktTidspunkt?: string;
-    oppgaver: OppgaveDto[];
+    oppgaver: Array<OppgaveDto>;
 };
 
 export type DeltakerDto = {
@@ -101,8 +101,8 @@ export type RapportertInntektPeriodeinfoDto = {
 };
 
 export type RegisterinntektDto = {
-    arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[];
-    ytelseInntekter: YtelseRegisterInntektDto[];
+    arbeidOgFrilansInntekter: Array<ArbeidOgFrilansRegisterInntektDto>;
+    ytelseInntekter: Array<YtelseRegisterInntektDto>;
     totalInntektArbeidOgFrilans: number;
     totalInntektYtelse: number;
     totalInntekt: number;
@@ -366,7 +366,7 @@ export type HentAlleMineDeltakelserResponses = {
     /**
      * OK
      */
-    200: DeltakelseKomposittDto[];
+    200: Array<DeltakelseKomposittDto>;
 };
 
 export type HentAlleMineDeltakelserResponse = HentAlleMineDeltakelserResponses[keyof HentAlleMineDeltakelserResponses];

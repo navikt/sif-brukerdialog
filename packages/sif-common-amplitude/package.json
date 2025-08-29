@@ -11,7 +11,7 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "2.23.4"
+        "@amplitude/analytics-browser": "2.23.5"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

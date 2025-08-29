@@ -24,7 +24,7 @@ export type Barn = {
 export type OmsorgsdagerAleneOmOmsorgenSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    barn: Barn[];
+    barn: Array<Barn>;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     dataBruktTilUtledningAnnetData?: string;
@@ -48,13 +48,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+    barn: Array<BarnOppslag>;
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: Array<OrganisasjonDto>;
+    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
+    frilansoppdrag?: Array<FrilansoppdragDto>;
 };
 
 export type FrilansoppdragDto = {

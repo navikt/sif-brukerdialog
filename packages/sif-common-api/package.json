@@ -17,7 +17,7 @@
         "classnames": "2.5.1",
         "dayjs": "1.11.15",
         "react-day-picker": "9.9.0",
-        "zod": "4.1.4"
+        "zod": "4.1.5"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
