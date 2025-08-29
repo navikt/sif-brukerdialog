@@ -5,6 +5,7 @@ import { getApplicationPageRoute } from '../utils/routeUtils';
 export enum StepID {
     'BESKRIVELSE' = 'beskrivelse',
     'DOKUMENT_TYPE' = 'dokumentType',
+    'ETTERSENDELSE_GJELDER' = 'ettersendelseGjelder',
     'DOKUMENTER' = 'dokumenter',
     'OPPSUMMERING' = 'oppsummering',
     'OMS_TYPE' = 'omsorgspenger_type',
@@ -23,6 +24,8 @@ export const getFirstStep = (applicationType: Søknadstype): StepID => {
             return StepID.BESKRIVELSE;
         case Søknadstype.omsorgspenger:
             return StepID.OMS_TYPE;
+        case Søknadstype.opplaringspenger:
+            return StepID.ETTERSENDELSE_GJELDER;
         default:
             return StepID.DOKUMENTER;
     }
@@ -31,11 +34,13 @@ export const getFirstStep = (applicationType: Søknadstype): StepID => {
 const getSoknadSteps = (søknadstype: Søknadstype): StepID[] => {
     const visBeskrivelseStep = søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
     const visDokumentTypeStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
+    const visEttersendelseGjelderStep = søknadstype === Søknadstype.opplaringspenger;
     const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
     const allSteps: ConfigStepHelperType[] = [
         { stepID: StepID.BESKRIVELSE, included: visBeskrivelseStep },
         { stepID: StepID.DOKUMENT_TYPE, included: visDokumentTypeStep },
+        { stepID: StepID.ETTERSENDELSE_GJELDER, included: visEttersendelseGjelderStep },
         { stepID: StepID.OMS_TYPE, included: visOmsTypeStep },
         { stepID: StepID.DOKUMENTER, included: true },
         { stepID: StepID.OPPSUMMERING, included: true },

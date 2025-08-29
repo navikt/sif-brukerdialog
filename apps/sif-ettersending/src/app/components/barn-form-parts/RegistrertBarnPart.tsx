@@ -33,10 +33,10 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
         <>
             <VelgBarnFormPart
                 name={SoknadFormField.registrertBarnAktørId}
-                legend={text('step.dokumentType.registrertBarnPart.spm')}
+                legend={text('formPart.registrertBarn.spm')}
                 description={
                     <p>
-                        <AppText id="step.dokumentType.registrertBarnPart.spm.description" />
+                        <AppText id="formPart.registrertBarn.spm.description" />
                     </p>
                 }
                 registrerteBarn={registrertBarn}
@@ -44,7 +44,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                 inkluderAnnetBarn={true}
                 annetBarnOptions={{
                     value: VelgBarn_AnnetBarnValue,
-                    label: text('step.dokumentType.gjelderAnnetBarn'),
+                    label: text('formPart.registrertBarn.gjelderAnnetBarn'),
                 }}
             />
         </>

@@ -14,8 +14,8 @@ import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import AnnetBarnPart from './AnnetBarnPart';
-import RegistrertBarnPart from './RegistrertBarnPart';
+import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
+import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
 
 interface Props {
     søknadstype: Søknadstype;

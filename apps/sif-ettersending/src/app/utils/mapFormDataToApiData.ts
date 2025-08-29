@@ -88,7 +88,7 @@ export const mapFormDataToApiData = (
         søknadstype: getYtelseTypeApiKey(ytelse),
         ettersendelsesType,
         pleietrengende:
-            ytelse === YtelseKey.pleiepengerSyktBarn
+            ytelse === YtelseKey.pleiepengerSyktBarn || YtelseKey.opplaringspenger
                 ? mapBarnFormDataToApiData(registrerteBarn, barnetsFødselsnummer, registrertBarnAktørId)
                 : undefined,
         beskrivelse,

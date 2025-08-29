@@ -72,9 +72,12 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
         'Du kan ikkje skrive spørsmål til oss her. Sjå informasjon om korleis du kjem i {kontaktMedOssLink}.',
     'step.beskrivelse.intro.2.1': 'kontakt med oss',
 
+    'step.ettersendelseGjelder.stepTitle': 'Kva barn gjeld ettersendinga?',
+    'step.ettersendelseGjelder.stepIndicatorLabel': 'Kva barn gjeld ettersendinga?',
+
     'step.dokumentType.stepTitle': 'Kva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Kva skal du ettersende?',
-    'step.dokumentType.nextButtonLabel': 'Fortset',
+
     'step.dokumentType.info': 'Her skildrar du kva dokumentasjon du skal sende oss.',
     'step.dokumentType.info.1':
         'Dersom ein annan søkjar har sendt inn same dokumentasjon for barnet i perioden du søkjer, treng du ikkje sende inn denne på nytt.',
@@ -83,19 +86,19 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'step.dokumentType.info.3': 'For andre førespurnader, send oss ei melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Kva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
-    'step.dokumentType.registrertBarnPart.spm': 'Vel barnet ettersendinga gjeld',
-    'step.dokumentType.registrertBarnPart.spm.description':
+    'formPart.registrertBarn.spm': 'Vel barnet ettersendinga gjeld',
+    'formPart.registrertBarn.spm.description':
         'Vi må vite kva barn ettersendinga gjeld, for å kunne knyte dokumentet til rett sak',
-    'step.dokumentType.registrertBarnPart.hvilketBarn.født': 'Fødd {dato}',
+    'formPart.registrertBarn.hvilketBarn.født': 'Fødd {dato}',
     'step.dokumentType.barn.info.tittel': 'Hugs søknad, også ved forlengingar',
     'step.dokumentType.barn.info.1.1':
         'For å handsame saka di om pleiepengar må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjeld òg ved forlengingar.',
     'step.dokumentType.barn.info.lenke': 'søknad om pleiepengar for sjukt barn',
-    'step.dokumentType.gjelderAnnetBarn': 'Ettersending gjeld eit anna barn',
-    'step.dokumentType.annetBarn.tittel': 'Anna barn',
-    'step.dokumentType.annetBarn.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
-    'step.dokumentType.annetBarn.fnr.spm.description': 'Vi må vite dette for å knyte dokumentet til rett sak',
-    'steg.dokumentType.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
+    'formPart.registrertBarn.gjelderAnnetBarn': 'Ettersending gjeld eit anna barn',
+    'formPart.annetBarn.tittel': 'Anna barn',
+    'formPart.annetBarn.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
+    'formPart.annetBarn.fnr.spm.description': 'Vi må vite dette for å knyte dokumentet til rett sak',
+    'formPart.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
     'step.dokumentType.dokumentType.ANNET': 'Anna',
     'step.dokumentType.annet.info.1': 'Har vi bede om meir dokumentasjon frå deg?',
     'step.dokumentType.annet.info.2':
@@ -103,12 +106,10 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'step.omsorgspenger_type.stepTitle': 'Kva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspengar type',
-    'step.omsorgspenger_type.nextButtonLabel': 'Fortset',
     'step.omsorgspenger_type.søknadstype.spm': 'Kva gjeld denne ettersendinga?',
 
     'step.dokumenter.stepTitle': 'No skal du laste opp dokumenta dine',
     'step.dokumenter.stepIndicatorLabel': 'Last opp dokument',
-    'step.dokumenter.nextButtonLabel': 'Fortset',
     'steg.dokumenter.vedlegg': 'Last opp dokument',
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokument, må du anten ta bilete av dokumenta eller skanne dei.',
