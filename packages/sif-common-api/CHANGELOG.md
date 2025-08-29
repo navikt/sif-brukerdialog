@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.4.35
+
+### Patch Changes
+
+- Oppdaterte pakker - minor/patch + codegen
+
 ## 0.4.34
 
 ### Patch Changes

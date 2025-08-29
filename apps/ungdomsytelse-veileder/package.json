@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "module",
     "private": true,
-    "version": "0.6.0",
+    "version": "0.6.1",
     "scripts": {
         "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
         "dev:debug": "vite --debug",
@@ -52,7 +52,7 @@
         "react-router-dom": "7.8.2",
         "remark-gfm": "4.0.1",
         "uuid": "11.1.0",
-        "zod": "4.1.4"
+        "zod": "4.1.5"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",

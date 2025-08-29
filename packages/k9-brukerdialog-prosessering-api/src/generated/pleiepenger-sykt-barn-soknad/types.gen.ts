@@ -20,7 +20,7 @@ export type ArbeidsRedusert = {
     type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
     prosentAvNormalt?: number;
     timerPerUke?: string;
-    arbeidsuker?: ArbeidsUke[];
+    arbeidsuker?: Array<ArbeidsUke>;
 };
 
 export type ArbeidsUke = {
@@ -73,7 +73,7 @@ export type Ferieuttak = {
 
 export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
-    ferieuttak: Ferieuttak[];
+    ferieuttak: Array<Ferieuttak>;
 };
 
 export type Fosterhjemgodtgjørelse = {
@@ -118,9 +118,9 @@ export type Land = {
 
 export type Medlemskap = {
     harBoddIUtlandetSiste12Mnd?: boolean;
-    utenlandsoppholdSiste12Mnd: Bosted[];
+    utenlandsoppholdSiste12Mnd: Array<Bosted>;
     skalBoIUtlandetNeste12Mnd?: boolean;
-    utenlandsoppholdNeste12Mnd: Bosted[];
+    utenlandsoppholdNeste12Mnd: Array<Bosted>;
 };
 
 export type Nattevåk = {
@@ -159,7 +159,7 @@ export type Omsorgstilbud = {
     svarFortid?: 'JA' | 'NEI';
     svarFremtid?: 'JA' | 'NEI' | 'USIKKER';
     erLiktHverUke?: boolean;
-    enkeltdager?: Enkeltdag[];
+    enkeltdager?: Array<Enkeltdag>;
     ukedager?: PlanUkedager;
 };
 
@@ -190,16 +190,16 @@ export type PleiepengerSyktBarnSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: Arbeidsgiver[];
-    vedlegg: string[];
-    fødselsattestVedleggUrls?: string[];
+    arbeidsgivere: Array<Arbeidsgiver>;
+    vedlegg: Array<string>;
+    fødselsattestVedleggUrls?: Array<string>;
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: OpptjeningIUtlandet[];
-    utenlandskNæring: UtenlandskNæring[];
+    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
+    utenlandskNæring: Array<UtenlandskNæring>;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     omsorgstilbud?: Omsorgstilbud;
@@ -257,7 +257,7 @@ export type Utenlandsopphold = {
     erUtenforEøs?: boolean;
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
-    perioderBarnetErInnlagt: Periode[];
+    perioderBarnetErInnlagt: Array<Periode>;
     getårsak?:
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
@@ -266,7 +266,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden?: boolean;
-    opphold: Utenlandsopphold[];
+    opphold: Array<Utenlandsopphold>;
 };
 
 export type VarigEndring = {
@@ -285,8 +285,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -314,13 +312,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+    barn: Array<BarnOppslag>;
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: Array<OrganisasjonDto>;
+    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
+    frilansoppdrag?: Array<FrilansoppdragDto>;
 };
 
 export type FrilansoppdragDto = {
@@ -343,6 +341,23 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
 };
 
 export type DeleteMellomlagringData = {

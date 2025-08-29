@@ -15,7 +15,7 @@ export type Arbeidsgiver = {
     navn?: string;
     organisasjonsnummer?: string;
     utbetalingsårsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
-    perioder?: Utbetalingsperiode[];
+    perioder?: Array<Utbetalingsperiode>;
     konfliktForklaring?: string;
     årsakNyoppstartet?:
         | 'JOBBET_HOS_ANNEN_ARBEIDSGIVER'
@@ -51,22 +51,16 @@ export type Bosted = {
 };
 
 export type DineBarn = {
-    barn: Barn[];
+    barn: Array<unknown>;
     harDeltBosted: boolean;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     språk: string;
-    vedlegg: string[];
+    vedlegg: Array<string>;
     søkerNorskIdent?: string;
-    bosteder: Bosted[];
-    opphold: Bosted[];
-    bekreftelser?: Bekreftelser;
-    arbeidsgivere?: Arbeidsgiver[];
-    dineBarn?: DineBarn;
-    hjemmePgaSmittevernhensyn?: boolean;
-    hjemmePgaStengtBhgSkole?: boolean;
-    dataBruktTilUtledningAnnetData?: string;
+    bosteder: Array<unknown>;
+    opphold: Array<unknown>;
 };
 
 export type Utbetalingsperiode = {
@@ -96,13 +90,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+    barn: Array<BarnOppslag>;
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: Array<OrganisasjonDto>;
+    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
+    frilansoppdrag?: Array<FrilansoppdragDto>;
 };
 
 export type FrilansoppdragDto = {
@@ -125,6 +119,25 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type DineBarnWritable = {
+    barn: Array<Barn>;
+    harDeltBosted: boolean;
+};
+
+export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
+    språk: string;
+    vedlegg: Array<string>;
+    søkerNorskIdent?: string;
+    bosteder: Array<Bosted>;
+    opphold: Array<Bosted>;
+    bekreftelser?: Bekreftelser;
+    arbeidsgivere?: Array<Arbeidsgiver>;
+    dineBarn?: DineBarnWritable;
+    hjemmePgaSmittevernhensyn?: boolean;
+    hjemmePgaStengtBhgSkole?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
 };
 
 export type DeleteMellomlagringData = {

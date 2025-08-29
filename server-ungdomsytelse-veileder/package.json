@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.24",
+    "version": "0.0.25",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -20,7 +20,7 @@
         "http-proxy-middleware": "3.0.5",
         "jsdom": "26.1.0",
         "react": "19.1.1",
-        "zod": "4.1.4"
+        "zod": "4.1.5"
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.9",

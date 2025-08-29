@@ -46,19 +46,18 @@ export type Land = {
 export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Bosted[];
-    opphold: Bosted[];
-    spørsmål: SpørsmålOgSvar[];
+    bosteder: Array<unknown>;
+    opphold: Array<unknown>;
+    spørsmål: Array<SpørsmålOgSvar>;
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Utbetalingsperiode[];
-    barn: Barn[];
-    frilans?: Frilans;
+    utbetalingsperioder: Array<unknown>;
+    barn: Array<unknown>;
     selvstendigNæringsdrivende?: Virksomhet;
     erArbeidstakerOgså: boolean;
-    vedlegg: string[];
+    vedlegg: Array<string>;
     dataBruktTilUtledningAnnetData?: string;
 };
 
@@ -97,8 +96,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -126,13 +123,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+    barn: Array<BarnOppslag>;
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: Array<OrganisasjonDto>;
+    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
+    frilansoppdrag?: Array<FrilansoppdragDto>;
 };
 
 export type FrilansoppdragDto = {
@@ -155,6 +152,42 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type OmsorgspengerutbetalingSnfSøknadWritable = {
+    språk: string;
+    søkerNorskIdent?: string;
+    bosteder: Array<Bosted>;
+    opphold: Array<Bosted>;
+    spørsmål: Array<SpørsmålOgSvar>;
+    harDekketTiFørsteDagerSelv?: boolean;
+    harSyktBarn?: boolean;
+    harAleneomsorg?: boolean;
+    bekreftelser: Bekreftelser;
+    utbetalingsperioder: Array<Utbetalingsperiode>;
+    barn: Array<Barn>;
+    frilans?: Frilans;
+    selvstendigNæringsdrivende?: VirksomhetWritable;
+    erArbeidstakerOgså: boolean;
+    vedlegg: Array<string>;
+    dataBruktTilUtledningAnnetData?: string;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
 };
 
 export type DeleteMellomlagringData = {
