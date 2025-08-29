@@ -7,7 +7,7 @@ import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import SoknadFormComponents from '../SoknadFormComponents';
+import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -28,16 +28,14 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                 legend={
                     harRegistrerteBarn ? (
                         <Heading level="2" size="small" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                            {text('step.dokumentType.annetBarn.tittel')}
+                            {text('formPart.annetBarn.tittel')}
                         </Heading>
                     ) : undefined
                 }>
                 <div>
                     <SoknadFormComponents.TextField
-                        label={text('step.dokumentType.annetBarn.fnr.spm')}
-                        description={
-                            !harRegistrerteBarn ? text('step.dokumentType.annetBarn.fnr.spm.description') : undefined
-                        }
+                        label={text('formPart.annetBarn.fnr.spm')}
+                        description={!harRegistrerteBarn ? text('formPart.annetBarn.fnr.spm.description') : undefined}
                         name={SoknadFormField.barnetsFødselsnummer}
                         validate={
                             !barnetHarIkkeFnr
@@ -56,7 +54,7 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                 </div>
                 <FormBlock margin="l">
                     <SoknadFormComponents.Checkbox
-                        label={text('steg.dokumentType.annetBarn.fnr.barnHarIkkeFnr')}
+                        label={text('formPart.annetBarn.fnr.barnHarIkkeFnr')}
                         name={SoknadFormField.barnetHarIkkeFnr}
                         afterOnChange={(newValue) => {
                             if (newValue) {

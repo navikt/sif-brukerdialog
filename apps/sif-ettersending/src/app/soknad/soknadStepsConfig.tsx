@@ -18,6 +18,7 @@ interface ConfigStepHelperType {
 export const getFirstStep = (applicationType: Søknadstype): StepID => {
     switch (applicationType) {
         case Søknadstype.pleiepengerSyktBarn:
+        case Søknadstype.opplaringspenger:
             return StepID.DOKUMENT_TYPE;
         case Søknadstype.pleiepengerLivetsSluttfase:
             return StepID.BESKRIVELSE;
@@ -28,9 +29,12 @@ export const getFirstStep = (applicationType: Søknadstype): StepID => {
     }
 };
 
+export const inkluderDokumentTypeSteg = (søknadstype: Søknadstype): boolean =>
+    [Søknadstype.pleiepengerSyktBarn, Søknadstype.opplaringspenger].includes(søknadstype);
+
 const getSoknadSteps = (søknadstype: Søknadstype): StepID[] => {
     const visBeskrivelseStep = søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
-    const visDokumentTypeStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
+    const visDokumentTypeStep = inkluderDokumentTypeSteg(søknadstype);
     const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
     const allSteps: ConfigStepHelperType[] = [
