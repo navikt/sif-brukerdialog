@@ -72,9 +72,6 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
         'Du kan ikkje skrive spørsmål til oss her. Sjå informasjon om korleis du kjem i {kontaktMedOssLink}.',
     'step.beskrivelse.intro.2.1': 'kontakt med oss',
 
-    'step.ettersendelseGjelder.stepTitle': 'Kva barn gjeld ettersendinga?',
-    'step.ettersendelseGjelder.stepIndicatorLabel': 'Kva barn gjeld ettersendinga?',
-
     'step.dokumentType.stepTitle': 'Kva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Kva skal du ettersende?',
 
@@ -86,6 +83,7 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'step.dokumentType.info.3': 'For andre førespurnader, send oss ei melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Kva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
+    'step.dokumentType.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
     'formPart.registrertBarn.spm': 'Vel barnet ettersendinga gjeld',
     'formPart.registrertBarn.spm.description':
         'Vi må vite kva barn ettersendinga gjeld, for å kunne knyte dokumentet til rett sak',

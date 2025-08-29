@@ -70,9 +70,6 @@ export const appMessagesNB = {
         'Du kan ikke skrive spørsmål til oss her. Se informasjon om hvordan du kommer i {kontaktMedOssLink}.',
     'step.beskrivelse.intro.2.1': 'kontakt med oss',
 
-    'step.ettersendelseGjelder.stepTitle': 'Hvilket barn gjelder ettersendelsen?',
-    'step.ettersendelseGjelder.stepIndicatorLabel': 'Hvilket barn gjelder ettersendelsen?',
-
     'step.dokumentType.stepTitle': 'Hva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Hva skal du ettersende?',
 
@@ -84,6 +81,7 @@ export const appMessagesNB = {
     'step.dokumentType.info.3': 'For andre henvendelser send oss en melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Hva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysninger',
+    'step.dokumentType.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
     'formPart.registrertBarn.spm': 'Velg hvilket barn ettersendelsen gjelder',
     'formPart.registrertBarn.spm.description':
         'Vi må vite hvilket barn ettersendelsen gjelder, for å kunne koble dokumentet til rett sak',

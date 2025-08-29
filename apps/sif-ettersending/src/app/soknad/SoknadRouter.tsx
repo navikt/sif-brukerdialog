@@ -17,7 +17,6 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
-import EttersendelseGjelderStep from './ettersendelse-gjelder-step/EttersendelseGjelderStep';
 
 interface Props {
     søker: Søker;
@@ -45,16 +44,6 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
                         path={StepID.DOKUMENT_TYPE}
                         element={
                             <DokumentTypeStep
-                                søknadstype={søknadstype}
-                                søkersFødselsnummer={søker.fødselsnummer}
-                                registrertBarn={registrertBarn}
-                            />
-                        }
-                    />
-                    <Route
-                        path={StepID.ETTERSENDELSE_GJELDER}
-                        element={
-                            <EttersendelseGjelderStep
                                 søknadstype={søknadstype}
                                 søkersFødselsnummer={søker.fødselsnummer}
                                 registrertBarn={registrertBarn}
