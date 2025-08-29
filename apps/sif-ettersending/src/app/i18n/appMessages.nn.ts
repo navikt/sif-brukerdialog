@@ -131,7 +131,9 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'steg.oppsummering.barn.harIkkefnr': 'Barnet har ikkje fødselsnummer/D-nummer',
     'steg.oppsummering.hvaGjelder.header': 'Kva gjeld ettersendinga?',
     'steg.oppsummering.dokumentType.header': 'Kva skal du ettersende?',
-    'steg.oppsummering.dokumentType.legeerklæring': 'Legeerklæring og andre medisinske opplysningar',
+    'steg.oppsummering.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
+    'steg.oppsummering.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
+    'steg.oppsummering.dokumentType.ANNET': 'Annen informasjon',
     'steg.oppsummering.dokumenter.header': 'Dokument',
     'steg.oppsummering.bekrefterOpplysninger':
         'Eg stadfestar at opplysningane eg har gjeve er rette, og at eg ikkje har halde tilbake opplysningar som har noko å seie for saka mi. ',

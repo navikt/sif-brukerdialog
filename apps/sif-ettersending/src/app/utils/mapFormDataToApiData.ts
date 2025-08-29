@@ -76,8 +76,10 @@ export const mapFormDataToApiData = (
         throw new Error('ytelse mangler');
     }
 
-    const ettersendelsesType =
-        ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType ? dokumentType : DokumentType.annet;
+    const gjelderPsbEllerOpplæringspenger = [YtelseKey.pleiepengerSyktBarn, YtelseKey.opplaringspenger].includes(
+        ytelse,
+    );
+    const ettersendelsesType = gjelderPsbEllerOpplæringspenger && dokumentType ? dokumentType : DokumentType.annet;
 
     const apiData: SoknadApiData = {
         søkerNorskIdent,
@@ -87,10 +89,9 @@ export const mapFormDataToApiData = (
         harForståttRettigheterOgPlikter,
         søknadstype: getYtelseTypeApiKey(ytelse),
         ettersendelsesType,
-        pleietrengende:
-            ytelse === YtelseKey.pleiepengerSyktBarn || YtelseKey.opplaringspenger
-                ? mapBarnFormDataToApiData(registrerteBarn, barnetsFødselsnummer, registrertBarnAktørId)
-                : undefined,
+        pleietrengende: gjelderPsbEllerOpplæringspenger
+            ? mapBarnFormDataToApiData(registrerteBarn, barnetsFødselsnummer, registrertBarnAktørId)
+            : undefined,
         beskrivelse,
         vedlegg: getVedleggApiData(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,
