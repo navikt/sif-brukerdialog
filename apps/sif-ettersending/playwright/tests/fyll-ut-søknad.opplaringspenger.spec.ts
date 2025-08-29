@@ -16,7 +16,7 @@ test.describe('Start og innsending av ettersending - Opplæringspenger', () => {
         await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
             await route.fulfill({ status: 200 });
         });
-        await page.route('**/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', async (route) => {
+        await page.route('**/mellomlagring/ETTERSENDING_OPPLARINGSPENGER', async (route) => {
             await route.fulfill({ status: 200, body: '{}' });
         });
         await page.route('**/oppslag/soker', async (route) => {
