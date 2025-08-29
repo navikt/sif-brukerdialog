@@ -3719,23 +3719,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hey-api/json-schema-ref-parser@npm:1.0.6":
-  version: 1.0.6
-  resolution: "@hey-api/json-schema-ref-parser@npm:1.0.6"
+"@hey-api/json-schema-ref-parser@npm:1.0.7":
+  version: 1.0.7
+  resolution: "@hey-api/json-schema-ref-parser@npm:1.0.7"
   dependencies:
     "@jsdevtools/ono": "npm:^7.1.3"
     "@types/json-schema": "npm:^7.0.15"
     js-yaml: "npm:^4.1.0"
     lodash: "npm:^4.17.21"
-  checksum: 10/a55c59f0ad6933b0ede43b462eb30320fdb3da6ef186fa5c47c681b4ee59fa2f54642fe982f897eef0d6a631d521fcfbea237036f3833255fd17f96c0ee021db
+  checksum: 10/f386f284f4e576c6e98f83dc76f8c3459ffb447fd6bc61eead05fdf48951ed4e5ee3d6d163c9e0226d99d8a73c4dfe4f816dff9d5b55f5b7bf707a5eaee27926
   languageName: node
   linkType: hard
 
-"@hey-api/openapi-ts@npm:0.81.1":
-  version: 0.81.1
-  resolution: "@hey-api/openapi-ts@npm:0.81.1"
+"@hey-api/openapi-ts@npm:0.82.0":
+  version: 0.82.0
+  resolution: "@hey-api/openapi-ts@npm:0.82.0"
   dependencies:
-    "@hey-api/json-schema-ref-parser": "npm:1.0.6"
+    "@hey-api/json-schema-ref-parser": "npm:1.0.7"
     ansi-colors: "npm:4.1.3"
     c12: "npm:2.0.1"
     color-support: "npm:1.1.3"
@@ -3748,7 +3748,7 @@ __metadata:
     typescript: ^5.5.3
   bin:
     openapi-ts: bin/index.cjs
-  checksum: 10/c515674f69e35201e1798989e6a5ff9ca00bd96bfde72316576014fa14bcc57ec7eb44d797df9558d84956324c3abb25db43b4083305dd310a6f95fa63f28ce7
+  checksum: 10/e135d29a79cb06e071254f3aeeea653ba8d7f2ba3a7b1dd6c8cb33e92b0b50fd80f05c6998999eba90f0cc6b83b960237718a216024ec9477b39670a55e8df92
   languageName: node
   linkType: hard
 
@@ -5598,7 +5598,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.81.1"
+    "@hey-api/openapi-ts": "npm:0.82.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -5616,7 +5616,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.81.1"
+    "@hey-api/openapi-ts": "npm:0.82.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -5634,7 +5634,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.81.1"
+    "@hey-api/openapi-ts": "npm:0.82.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
@@ -6959,7 +6959,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.81.1"
+    "@hey-api/openapi-ts": "npm:0.82.0"
     "@navikt/sif-common-api": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
@@ -6978,7 +6978,7 @@ __metadata:
   dependencies:
     "@hey-api/client-axios": "npm:0.9.1"
     "@hey-api/client-fetch": "npm:0.13.1"
-    "@hey-api/openapi-ts": "npm:0.81.1"
+    "@hey-api/openapi-ts": "npm:0.82.0"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     typescript: "npm:5.9.2"
