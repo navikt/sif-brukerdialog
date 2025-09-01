@@ -82,6 +82,14 @@ export const appMessagesNB = {
     'step.dokumentType.dokumentType.spm': 'Hva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysninger',
     'step.dokumentType.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
+    'step.dokumentType.dokumentType.ANNET': 'Annet',
+    'step.dokumentType.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
+    'step.dokumentType.annet.info.2':
+        'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
+
+    'step.barn.stepTitle': 'Hvem gjelder ettersendelsen?',
+    'step.barn.stepIndicatorLabel': 'Hvem gjelder ettersendelsen?',
+
     'formPart.registrertBarn.spm': 'Velg hvilket barn ettersendelsen gjelder',
     'formPart.registrertBarn.spm.description':
         'Vi må vite hvilket barn ettersendelsen gjelder, for å kunne koble dokumentet til rett sak',
@@ -95,10 +103,6 @@ export const appMessagesNB = {
     'formPart.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
     'formPart.annetBarn.fnr.spm.description': 'Vi må vite dette for å koble dokumentet til rett sak',
     'formPart.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikke fødselsnummer/D-nummer',
-    'step.dokumentType.dokumentType.ANNET': 'Annet',
-    'step.dokumentType.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
-    'step.dokumentType.annet.info.2':
-        'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
 
     'step.omsorgspenger_type.stepTitle': 'Hva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspenger type',

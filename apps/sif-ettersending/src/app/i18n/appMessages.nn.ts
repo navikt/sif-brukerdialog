@@ -84,6 +84,14 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'step.dokumentType.dokumentType.spm': 'Kva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
     'step.dokumentType.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
+    'step.dokumentType.dokumentType.ANNET': 'Anna',
+    'step.dokumentType.annet.info.1': 'Har vi bede om meir dokumentasjon frå deg?',
+    'step.dokumentType.annet.info.2':
+        'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein sakshandsamar har bede om noko konkret frå deg.',
+
+    'step.barn.stepTitle': 'Kven gjeld ettersendinga?',
+    'step.barn.stepIndicatorLabel': 'Kven gjeld ettersendinga?',
+
     'formPart.registrertBarn.spm': 'Vel barnet ettersendinga gjeld',
     'formPart.registrertBarn.spm.description':
         'Vi må vite kva barn ettersendinga gjeld, for å kunne knyte dokumentet til rett sak',
@@ -97,10 +105,6 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'formPart.annetBarn.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
     'formPart.annetBarn.fnr.spm.description': 'Vi må vite dette for å knyte dokumentet til rett sak',
     'formPart.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
-    'step.dokumentType.dokumentType.ANNET': 'Anna',
-    'step.dokumentType.annet.info.1': 'Har vi bede om meir dokumentasjon frå deg?',
-    'step.dokumentType.annet.info.2':
-        'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein sakshandsamar har bede om noko konkret frå deg.',
 
     'step.omsorgspenger_type.stepTitle': 'Kva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspengar type',
