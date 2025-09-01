@@ -95,7 +95,7 @@ const kontrollerOppsummeringBarn = async (
     }
 
     if (barnFnr) {
-        await expect(page.getByText('Hvilket barn gjelder')).toBeVisible();
+        await expect(page.getByText('Hvilket barn gjelder ettersendelsen?Fødselsnummer:')).toBeVisible();
         await expect(page.getByText(`Fødselsnummer: ${barnFnr}`)).toBeVisible();
     }
 
