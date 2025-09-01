@@ -157,7 +157,7 @@ export const createSseClient = <TData = unknown>({
 
                         for (const chunk of chunks) {
                             const lines = chunk.split('\n');
-                            const dataLines: Array<string> = [];
+                            const dataLines: string[] = [];
                             let eventName: string | undefined;
 
                             for (const line of lines) {

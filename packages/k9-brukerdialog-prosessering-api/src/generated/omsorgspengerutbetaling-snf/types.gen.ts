@@ -46,18 +46,18 @@ export type Land = {
 export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Array<unknown>;
-    opphold: Array<unknown>;
-    spørsmål: Array<SpørsmålOgSvar>;
+    bosteder: unknown[];
+    opphold: unknown[];
+    spørsmål: SpørsmålOgSvar[];
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Array<unknown>;
-    barn: Array<unknown>;
+    utbetalingsperioder: unknown[];
+    barn: unknown[];
     selvstendigNæringsdrivende?: Virksomhet;
     erArbeidstakerOgså: boolean;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     dataBruktTilUtledningAnnetData?: string;
 };
 
@@ -123,13 +123,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {
@@ -157,19 +157,19 @@ export type PrivatArbeidsgiverDto = {
 export type OmsorgspengerutbetalingSnfSøknadWritable = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
-    spørsmål: Array<SpørsmålOgSvar>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    spørsmål: SpørsmålOgSvar[];
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Array<Utbetalingsperiode>;
-    barn: Array<Barn>;
+    utbetalingsperioder: Utbetalingsperiode[];
+    barn: Barn[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: VirksomhetWritable;
     erArbeidstakerOgså: boolean;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     dataBruktTilUtledningAnnetData?: string;
 };
 

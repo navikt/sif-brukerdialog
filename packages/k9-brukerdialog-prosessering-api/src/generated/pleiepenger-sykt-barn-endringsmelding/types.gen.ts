@@ -24,7 +24,7 @@ export type Arbeidstaker = {
 };
 
 export type Arbeidstid = {
-    arbeidstakerList: Array<Arbeidstaker>;
+    arbeidstakerList: Arbeidstaker[];
     frilanserArbeidstidInfo?: ArbeidstidInfo;
     selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
 };
@@ -81,7 +81,7 @@ export type DataBruktTilUtledning = {
 export type Endringsmelding = {
     språk: string;
     pleietrengendeNavn?: string;
-    gyldigeEndringsPerioder?: Array<string>;
+    gyldigeEndringsPerioder?: string[];
     søkerNorskIdent?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
@@ -127,20 +127,20 @@ export type Omsorg = {
 };
 
 export type OpptjeningAktivitet = {
-    selvstendigNæringsdrivende: Array<SelvstendigNæringsdrivende>;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
     frilanser?: Frilanser;
-    utenlandskeArbeidsforhold: Array<UtenlandskArbeidsforhold>;
-    andreAktiviteter: Array<AnnenAktivitet>;
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+    andreAktiviteter: AnnenAktivitet[];
 };
 
 export type PleiepengerSyktBarn = {
     barn: Barn;
-    søknadsperiode: Array<string>;
+    søknadsperiode: string[];
     /**
      * @deprecated
      */
-    endringsperiode: Array<string>;
-    trekkKravPerioder: Array<string>;
+    endringsperiode: string[];
+    trekkKravPerioder: string[];
     opptjeningAktivitet?: OpptjeningAktivitet;
     dataBruktTilUtledning?: DataBruktTilUtledning;
     annetDataBruktTilUtledning?: DataBruktTilUtledning;
@@ -244,13 +244,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {

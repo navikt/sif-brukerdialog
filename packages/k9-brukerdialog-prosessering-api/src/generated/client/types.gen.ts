@@ -66,7 +66,7 @@ export type ArbeidsRedusert = {
     type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
     prosentAvNormalt?: number;
     timerPerUke?: string;
-    arbeidsuker?: Array<ArbeidsUke>;
+    arbeidsuker?: ArbeidsUke[];
 };
 
 export type ArbeidsUke = {
@@ -119,7 +119,7 @@ export type Ferieuttak = {
 
 export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
-    ferieuttak: Array<Ferieuttak>;
+    ferieuttak: Ferieuttak[];
 };
 
 export type Fosterhjemgodtgjørelse = {
@@ -164,9 +164,9 @@ export type Land = {
 
 export type Medlemskap = {
     harBoddIUtlandetSiste12Mnd?: boolean;
-    utenlandsoppholdSiste12Mnd: Array<Bosted>;
+    utenlandsoppholdSiste12Mnd: Bosted[];
     skalBoIUtlandetNeste12Mnd?: boolean;
-    utenlandsoppholdNeste12Mnd: Array<Bosted>;
+    utenlandsoppholdNeste12Mnd: Bosted[];
 };
 
 export type Nattevåk = {
@@ -205,7 +205,7 @@ export type Omsorgstilbud = {
     svarFortid?: 'JA' | 'NEI';
     svarFremtid?: 'JA' | 'NEI' | 'USIKKER';
     erLiktHverUke?: boolean;
-    enkeltdager?: Array<Enkeltdag>;
+    enkeltdager?: Enkeltdag[];
     ukedager?: PlanUkedager;
 };
 
@@ -236,16 +236,16 @@ export type PleiepengerSyktBarnSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: Array<Arbeidsgiver>;
-    vedlegg: Array<string>;
-    fødselsattestVedleggUrls?: Array<string>;
+    arbeidsgivere: Arbeidsgiver[];
+    vedlegg: string[];
+    fødselsattestVedleggUrls?: string[];
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     omsorgstilbud?: Omsorgstilbud;
@@ -303,7 +303,7 @@ export type Utenlandsopphold = {
     erUtenforEøs?: boolean;
     erSammenMedBarnet?: boolean;
     erBarnetInnlagt?: boolean;
-    perioderBarnetErInnlagt: Array<Periode>;
+    perioderBarnetErInnlagt: Periode[];
     getårsak?:
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
@@ -312,7 +312,7 @@ export type Utenlandsopphold = {
 
 export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden?: boolean;
-    opphold: Array<Utenlandsopphold>;
+    opphold: Utenlandsopphold[];
 };
 
 export type VarigEndring = {
@@ -353,7 +353,7 @@ export type Arbeidstaker = {
 };
 
 export type Arbeidstid = {
-    arbeidstakerList: Array<Arbeidstaker>;
+    arbeidstakerList: Arbeidstaker[];
     frilanserArbeidstidInfo?: ArbeidstidInfo;
     selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
 };
@@ -397,7 +397,7 @@ export type DataBruktTilUtledning = {
 export type Endringsmelding = {
     språk: string;
     pleietrengendeNavn?: string;
-    gyldigeEndringsPerioder?: Array<string>;
+    gyldigeEndringsPerioder?: string[];
     søkerNorskIdent?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
@@ -430,20 +430,20 @@ export type Omsorg = {
 };
 
 export type OpptjeningAktivitet = {
-    selvstendigNæringsdrivende: Array<SelvstendigNæringsdrivende>;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
     frilanser?: Frilanser;
-    utenlandskeArbeidsforhold: Array<UtenlandskArbeidsforhold>;
-    andreAktiviteter: Array<AnnenAktivitet>;
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+    andreAktiviteter: AnnenAktivitet[];
 };
 
 export type PleiepengerSyktBarn = {
     barn: Barn;
-    søknadsperiode: Array<string>;
+    søknadsperiode: string[];
     /**
      * @deprecated
      */
-    endringsperiode: Array<string>;
-    trekkKravPerioder: Array<string>;
+    endringsperiode: string[];
+    trekkKravPerioder: string[];
     opptjeningAktivitet?: OpptjeningAktivitet;
     dataBruktTilUtledning?: DataBruktTilUtledning;
     annetDataBruktTilUtledning?: DataBruktTilUtledning;
@@ -494,17 +494,17 @@ export type PleiepengerILivetsSluttfaseSøknad = {
     fraOgMed: string;
     tilOgMed: string;
     skalJobbeOgPleieSammeDag: boolean;
-    dagerMedPleie: Array<string>;
-    vedleggUrls: Array<string>;
-    opplastetIdVedleggUrls: Array<string>;
+    dagerMedPleie: string[];
+    vedleggUrls: string[];
+    opplastetIdVedleggUrls: string[];
     pleietrengende: Pleietrengende;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
-    arbeidsgivere: Array<Arbeidsgiver>;
+    arbeidsgivere: Arbeidsgiver[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivende;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harVærtEllerErVernepliktig?: boolean;
     pleierDuDenSykeHjemme?: boolean;
     søkerNorskIdent?: string;
@@ -521,7 +521,7 @@ export type Pleietrengende = {
 
 export type FamiliePdfPostRequest = {
     label: string;
-    verdiliste: Array<VerdilisteElement>;
+    verdiliste: VerdilisteElement[];
     pdfConfig: PdfConfig;
     skjemanummer?: string;
 };
@@ -563,7 +563,7 @@ export type FrilansOlp = {
 
 export type Kurs = {
     kursholder: Kursholder;
-    kursperioder: Array<string>;
+    kursperioder: string[];
     reise: Reise;
 };
 
@@ -578,15 +578,15 @@ export type OpplæringspengerSøknad = {
     språk: 'nb' | 'nn';
     søkerNorskIdent?: string;
     barn: BarnDetaljer;
-    arbeidsgivere: Array<ArbeidsgiverOlp>;
-    vedlegg: Array<string>;
+    arbeidsgivere: ArbeidsgiverOlp[];
+    vedlegg: string[];
     fraOgMed: string;
     tilOgMed: string;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPerioden;
     ferieuttakIPerioden?: FerieuttakIPerioden;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     frilans?: FrilansOlp;
@@ -600,7 +600,7 @@ export type OpplæringspengerSøknad = {
 
 export type Reise = {
     reiserUtenforKursdager: boolean;
-    reisedager?: Array<string>;
+    reisedager?: string[];
     reisedagerBeskrivelse?: string;
 };
 
@@ -612,8 +612,8 @@ export type SelvstendigNæringsdrivendeOlp = {
 export type OmsorgspengerKroniskSyktBarnSøknad = {
     språk: string;
     barn: Barn;
-    legeerklæring: Array<string>;
-    samværsavtale?: Array<string>;
+    legeerklæring: string[];
+    samværsavtale?: string[];
     relasjonTilBarnet?: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER';
     kroniskEllerFunksjonshemming: boolean;
     søkerNorskIdent?: string;
@@ -633,19 +633,19 @@ export type Bekreftelser = {
 export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
-    spørsmål: Array<SpørsmålOgSvar>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    spørsmål: SpørsmålOgSvar[];
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Array<unknown>;
-    barn: Array<Barn>;
+    utbetalingsperioder: unknown[];
+    barn: Barn[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: Virksomhet;
     erArbeidstakerOgså: boolean;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     dataBruktTilUtledningAnnetData?: string;
 };
 
@@ -664,16 +664,16 @@ export type Utbetalingsperiode = {
 };
 
 export type DineBarn = {
-    barn: Array<Barn>;
+    barn: Barn[];
     harDeltBosted: boolean;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     språk: string;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
 };
 
 export type AnnenForelder = {
@@ -691,7 +691,7 @@ export type OmsorgspengerMidlertidigAleneSøknad = {
     språk: string;
     søkerNorskIdent?: string;
     annenForelder: AnnenForelder;
-    barn: Array<Barn>;
+    barn: Barn[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     dataBruktTilUtledningAnnetData?: string;
@@ -700,7 +700,7 @@ export type OmsorgspengerMidlertidigAleneSøknad = {
 export type OmsorgsdagerAleneOmOmsorgenSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    barn: Array<Barn>;
+    barn: Barn[];
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     dataBruktTilUtledningAnnetData?: string;
@@ -708,7 +708,7 @@ export type OmsorgsdagerAleneOmOmsorgenSøknad = {
 
 export type Ettersendelse = {
     språk: string;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     beskrivelse?: string;
     søknadstype:
         | 'PLEIEPENGER_SYKT_BARN'
@@ -744,13 +744,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {
@@ -797,17 +797,17 @@ export type PleiepengerILivetsSluttfaseSøknadWritable = {
     fraOgMed: string;
     tilOgMed: string;
     skalJobbeOgPleieSammeDag: boolean;
-    dagerMedPleie: Array<string>;
-    vedleggUrls: Array<string>;
-    opplastetIdVedleggUrls: Array<string>;
+    dagerMedPleie: string[];
+    vedleggUrls: string[];
+    opplastetIdVedleggUrls: string[];
     pleietrengende: Pleietrengende;
     medlemskap: Medlemskap;
     utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
-    arbeidsgivere: Array<Arbeidsgiver>;
+    arbeidsgivere: Arbeidsgiver[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivende;
-    opptjeningIUtlandet: Array<OpptjeningIUtlandet>;
-    utenlandskNæring: Array<UtenlandskNæring>;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
     harVærtEllerErVernepliktig?: boolean;
     pleierDuDenSykeHjemme?: boolean;
     søkerNorskIdent?: string;
@@ -828,30 +828,30 @@ export type ArbeidsgiverOlpWritable = {
 export type OmsorgspengerutbetalingSnfSøknadWritable = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
-    spørsmål: Array<SpørsmålOgSvar>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    spørsmål: SpørsmålOgSvar[];
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Array<Utbetalingsperiode>;
-    barn: Array<Barn>;
+    utbetalingsperioder: Utbetalingsperiode[];
+    barn: Barn[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: VirksomhetWritable;
     erArbeidstakerOgså: boolean;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     dataBruktTilUtledningAnnetData?: string;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
     språk: string;
-    vedlegg: Array<string>;
+    vedlegg: string[];
     søkerNorskIdent?: string;
-    bosteder: Array<Bosted>;
-    opphold: Array<Bosted>;
+    bosteder: Bosted[];
+    opphold: Bosted[];
     bekreftelser?: Bekreftelser;
-    arbeidsgivere?: Array<Arbeidsgiver>;
+    arbeidsgivere?: Arbeidsgiver[];
     dineBarn?: DineBarn;
     hjemmePgaSmittevernhensyn?: boolean;
     hjemmePgaStengtBhgSkole?: boolean;

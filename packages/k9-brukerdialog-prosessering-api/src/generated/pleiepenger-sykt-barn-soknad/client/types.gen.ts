@@ -35,7 +35,7 @@ export interface Config<T extends ClientOptions = ClientOptions>
      */
     headers?:
         | AxiosRequestHeaders
-        | Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
+        | Record<string, string | number | boolean | Array<string | number | boolean> | null | undefined | unknown>;
     /**
      * Throw an error instead of returning it in the response?
      *
@@ -63,7 +63,7 @@ export interface RequestOptions<TData = unknown, ThrowOnError extends boolean = 
     /**
      * Security mechanism(s) to use for the request.
      */
-    security?: ReadonlyArray<Auth>;
+    security?: readonly Auth[];
     url: Url;
 }
 

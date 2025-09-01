@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.10.13",
+    "version": "0.10.14",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -23,7 +23,7 @@
         "@types/react": "19.1.12",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
-        "dayjs": "1.11.15",
+        "dayjs": "1.11.18",
         "globals": "16.3.0",
         "intl": "1.2.5",
         "less": "4.4.1",
