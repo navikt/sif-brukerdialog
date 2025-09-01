@@ -69,7 +69,7 @@
         "express": "4.21.2",
         "http-proxy-middleware": "3.0.5",
         "mockdate": "3.0.5",
-        "msw": "2.10.5",
+        "msw": "2.11.1",
         "mustache-express": "1.3.2",
         "playwright-core": "1.55.0",
         "postcss": "8.5.6",
