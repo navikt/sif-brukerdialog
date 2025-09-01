@@ -21,8 +21,8 @@ export type Barn = {
 export type OmsorgspengerKroniskSyktBarnSøknad = {
     språk: string;
     barn: Barn;
-    legeerklæring: Array<string>;
-    samværsavtale?: Array<string>;
+    legeerklæring: string[];
+    samværsavtale?: string[];
     relasjonTilBarnet?: 'MOR' | 'FAR' | 'FOSTERFORELDER' | 'ADOPTIVFORELDER';
     kroniskEllerFunksjonshemming: boolean;
     søkerNorskIdent?: string;
@@ -52,13 +52,13 @@ export type BarnOppslag = {
 };
 
 export type BarnOppslagListe = {
-    barn: Array<BarnOppslag>;
+    barn: BarnOppslag[];
 };
 
 export type ArbeidsgivereDto = {
-    organisasjoner: Array<OrganisasjonDto>;
-    privateArbeidsgivere?: Array<PrivatArbeidsgiverDto>;
-    frilansoppdrag?: Array<FrilansoppdragDto>;
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+    frilansoppdrag?: FrilansoppdragDto[];
 };
 
 export type FrilansoppdragDto = {
