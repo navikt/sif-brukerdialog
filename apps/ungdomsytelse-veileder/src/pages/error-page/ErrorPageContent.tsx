@@ -8,11 +8,9 @@ interface Props {
     visTips?: boolean;
 }
 
-/** Denne er ikke bra - må fikses */
 const ErrorPageContent = ({ error, visTips }: Props) => {
     const navigate = useNavigate();
     return (
-        // TODO: Legg til feilmeldinger fra backend
         <Box className="p-10">
             <HGrid columns="minmax(auto,600px)">
                 <VStack gap="16">
@@ -35,12 +33,22 @@ const ErrorPageContent = ({ error, visTips }: Props) => {
                                 <List>
                                     <List.Item>
                                         vente litt og{' '}
-                                        <Link href="#" onClick={() => location.reload()}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                location.reload();
+                                            }}>
                                             laste siden på nytt
                                         </Link>
                                     </List.Item>
                                     <List.Item>
-                                        <Link href="#" onClick={() => navigate('/')}>
+                                        <Link
+                                            href="#"
+                                            onClick={(evt) => {
+                                                evt.preventDefault();
+                                                navigate('/');
+                                            }}>
                                             gå tilbake til forsiden og prøve igjen
                                         </Link>
                                     </List.Item>

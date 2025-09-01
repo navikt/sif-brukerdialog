@@ -2,7 +2,7 @@
     "name": "@navikt/sif-common-api",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.4.34",
+    "version": "0.4.36",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -15,9 +15,9 @@
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.11.0",
         "classnames": "2.5.1",
-        "dayjs": "1.11.15",
+        "dayjs": "1.11.18",
         "react-day-picker": "9.9.0",
-        "zod": "4.1.4"
+        "zod": "4.1.5"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -27,7 +27,7 @@
         "@types/react": "19.1.12",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
-        "dayjs": "1.11.15",
+        "dayjs": "1.11.18",
         "globals": "16.3.0",
         "intl": "1.2.5",
         "less": "4.4.1",

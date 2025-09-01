@@ -65,7 +65,7 @@ export const zBosted = z.object({
 });
 
 export const zDineBarn = z.object({
-    barn: z.array(zBarn),
+    barn: z.array(z.unknown()),
     harDeltBosted: z.boolean(),
 });
 
@@ -73,14 +73,8 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknad = z.object({
     språk: z.string(),
     vedlegg: z.array(z.string()),
     søkerNorskIdent: z.optional(z.string()),
-    bosteder: z.array(zBosted),
-    opphold: z.array(zBosted),
-    bekreftelser: z.optional(zBekreftelser),
-    arbeidsgivere: z.optional(z.array(zArbeidsgiver)),
-    dineBarn: z.optional(zDineBarn),
-    hjemmePgaSmittevernhensyn: z.optional(z.boolean()),
-    hjemmePgaStengtBhgSkole: z.optional(z.boolean()),
-    dataBruktTilUtledningAnnetData: z.optional(z.string()),
+    bosteder: z.array(z.unknown()),
+    opphold: z.array(z.unknown()),
 });
 
 export const zSøker = z.object({
@@ -130,6 +124,25 @@ export const zArbeidsgivereDto = z.object({
     organisasjoner: z.array(zOrganisasjonDto),
     privateArbeidsgivere: z.optional(z.array(zPrivatArbeidsgiverDto)),
     frilansoppdrag: z.optional(z.array(zFrilansoppdragDto)),
+});
+
+export const zDineBarnWritable = z.object({
+    barn: z.array(zBarn),
+    harDeltBosted: z.boolean(),
+});
+
+export const zOmsorgspengerutbetalingArbeidstakerSøknadWritable = z.object({
+    språk: z.string(),
+    vedlegg: z.array(z.string()),
+    søkerNorskIdent: z.optional(z.string()),
+    bosteder: z.array(zBosted),
+    opphold: z.array(zBosted),
+    bekreftelser: z.optional(zBekreftelser),
+    arbeidsgivere: z.optional(z.array(zArbeidsgiver)),
+    dineBarn: z.optional(zDineBarnWritable),
+    hjemmePgaSmittevernhensyn: z.optional(z.boolean()),
+    hjemmePgaStengtBhgSkole: z.optional(z.boolean()),
+    dataBruktTilUtledningAnnetData: z.optional(z.string()),
 });
 
 export const zDeleteMellomlagringData = z.object({

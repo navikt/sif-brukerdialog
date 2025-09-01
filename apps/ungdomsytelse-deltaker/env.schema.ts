@@ -2,12 +2,9 @@ import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-com
 import * as z from 'zod';
 
 /**
- * For at disse skal bli tilgjengelige i appen, må disse filene oppdateres:
+ * For at disse skal bli tilgjengelige i appen, må denne filen oppdateres:
  * - appEnv.ts - på server
- * - src/devAppSettings.ts (lokalt)
- *
- * I tillegg til at env filene må inneholde verdiene
- */
+ * */
 
 export enum AppEnvKey {
     'VELG_SCENARIO' = 'VELG_SCENARIO',

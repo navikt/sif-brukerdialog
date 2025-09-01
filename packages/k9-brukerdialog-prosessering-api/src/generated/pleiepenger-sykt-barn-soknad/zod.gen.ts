@@ -250,16 +250,6 @@ export const zStønadGodtgjørelse = z.object({
     sluttdato: z.optional(z.iso.date()),
 });
 
-export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
-    oppstartsdato: z.optional(z.iso.date()),
-});
-
-export const zVarigEndring = z.object({
-    dato: z.optional(z.iso.date()),
-    inntektEtterEndring: z.optional(z.int()),
-    forklaring: z.optional(z.string()),
-});
-
 export const zRegnskapsfører = z.object({
     navn: z.optional(z.string()),
     telefon: z.optional(z.string()),
@@ -275,8 +265,6 @@ export const zVirksomhet = z.object({
     organisasjonsnummer: z.optional(z.string().min(0).max(20)),
     registrertINorge: z.boolean(),
     registrertIUtlandet: z.optional(zLand),
-    yrkesaktivSisteTreFerdigliknedeÅrene: z.optional(zYrkesaktivSisteTreFerdigliknedeArene),
-    varigEndring: z.optional(zVarigEndring),
     regnskapsfører: z.optional(zRegnskapsfører),
     erNyoppstartet: z.boolean(),
     harFlereAktiveVirksomheter: z.boolean(),
@@ -328,6 +316,16 @@ export const zPleiepengerSyktBarnSøknad = z.object({
     dataBruktTilUtledningAnnetData: z.optional(z.string()),
 });
 
+export const zVarigEndring = z.object({
+    dato: z.optional(z.iso.date()),
+    inntektEtterEndring: z.optional(z.int()),
+    forklaring: z.optional(z.string()),
+});
+
+export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
+    oppstartsdato: z.optional(z.iso.date()),
+});
+
 export const zSøker = z.object({
     aktørId: z.string(),
     fødselsdato: z.iso.date(),
@@ -375,6 +373,23 @@ export const zArbeidsgivereDto = z.object({
     organisasjoner: z.array(zOrganisasjonDto),
     privateArbeidsgivere: z.optional(z.array(zPrivatArbeidsgiverDto)),
     frilansoppdrag: z.optional(z.array(zFrilansoppdragDto)),
+});
+
+export const zVirksomhetWritable = z.object({
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.optional(z.iso.date()),
+    næringstype: z.enum(['FISKE', 'JORDBRUK_SKOGBRUK', 'DAGMAMMA', 'ANNEN']),
+    fiskerErPåBladB: z.optional(z.boolean()),
+    næringsinntekt: z.optional(z.int()),
+    navnPåVirksomheten: z.string(),
+    organisasjonsnummer: z.optional(z.string().min(0).max(20)),
+    registrertINorge: z.boolean(),
+    registrertIUtlandet: z.optional(zLand),
+    yrkesaktivSisteTreFerdigliknedeÅrene: z.optional(zYrkesaktivSisteTreFerdigliknedeArene),
+    varigEndring: z.optional(zVarigEndring),
+    regnskapsfører: z.optional(zRegnskapsfører),
+    erNyoppstartet: z.boolean(),
+    harFlereAktiveVirksomheter: z.boolean(),
 });
 
 export const zDeleteMellomlagringData = z.object({

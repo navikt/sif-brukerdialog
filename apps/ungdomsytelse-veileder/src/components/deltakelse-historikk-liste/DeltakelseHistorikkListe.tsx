@@ -12,6 +12,8 @@ const getEndringstypeTekst = (type: Endringstype): string => {
     switch (type) {
         case Endringstype.DELTAKER_HAR_SØKT_YTELSE:
             return 'Søknad sendt inn';
+        case Endringstype.DELTAKER_MELDT_UT:
+            return 'Deltakelse avsluttet';
         case Endringstype.DELTAKER_MELDT_INN:
             return 'Deltakelse opprettet';
         case Endringstype.ENDRET_SLUTTDATO:

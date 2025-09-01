@@ -51,7 +51,7 @@ export type Bosted = {
 };
 
 export type DineBarn = {
-    barn: Barn[];
+    barn: unknown[];
     harDeltBosted: boolean;
 };
 
@@ -59,14 +59,8 @@ export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     språk: string;
     vedlegg: string[];
     søkerNorskIdent?: string;
-    bosteder: Bosted[];
-    opphold: Bosted[];
-    bekreftelser?: Bekreftelser;
-    arbeidsgivere?: Arbeidsgiver[];
-    dineBarn?: DineBarn;
-    hjemmePgaSmittevernhensyn?: boolean;
-    hjemmePgaStengtBhgSkole?: boolean;
-    dataBruktTilUtledningAnnetData?: string;
+    bosteder: unknown[];
+    opphold: unknown[];
 };
 
 export type Utbetalingsperiode = {
@@ -125,6 +119,25 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type DineBarnWritable = {
+    barn: Barn[];
+    harDeltBosted: boolean;
+};
+
+export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
+    språk: string;
+    vedlegg: string[];
+    søkerNorskIdent?: string;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    bekreftelser?: Bekreftelser;
+    arbeidsgivere?: Arbeidsgiver[];
+    dineBarn?: DineBarnWritable;
+    hjemmePgaSmittevernhensyn?: boolean;
+    hjemmePgaStengtBhgSkole?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
 };
 
 export type DeleteMellomlagringData = {

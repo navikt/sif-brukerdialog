@@ -1,12 +1,16 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
-import { getDateToday } from '@navikt/sif-common-utils';
 import { useState } from 'react';
-import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
+import { getDateToday } from '@navikt/sif-common-utils';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
-import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
-import DatoBoks from './DatoBoks';
-import { Deltaker } from '../../../types/Deltaker';
 import { Deltakelse } from '../../../types/Deltakelse';
+import { Deltaker } from '../../../types/Deltaker';
+import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
+import { Features } from '../../../types/Features';
+import { getTillattEndringsperiode, kanEndreSluttdato, kanEndreStartdato } from '../../../utils/deltakelseUtils';
+import EndreSluttdatoPanel from './EndreSluttdatoPanel';
+import EndreStartdatoPanel from './EndreStartdatoPanel';
+import MeldUtDeltakerPanel from './MeldUtDeltakerPanel';
+import SluttdatoKanIkkeEndresPanel from './SluttdatoKanIkkeEndresPanel';
 
 interface Props {
     deltaker: Deltaker;
@@ -28,6 +32,8 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
 
     const tillattEndringsperiode = getTillattEndringsperiode(getDateToday());
 
+    const deltakerHarSøkt = deltakelse.søktTidspunkt;
+
     return (
         <>
             <VStack gap="3">
@@ -35,38 +41,38 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     Deltakerperiode
                 </Heading>
                 <HGrid gap="4" columns={{ sm: 1, md: '1fr 1fr' }}>
-                    <DatoBoks
-                        tittel="Startdato:"
+                    <EndreStartdatoPanel
                         dato={deltakelse.fraOgMed}
-                        endre={
-                            kanEndreStartdato(deltakelse, tillattEndringsperiode)
-                                ? {
-                                      label: 'Endre startdato',
-                                      onClick: () => {
-                                          setEndretDeltakelse(undefined);
-                                          setFormVariant(EndrePeriodeVariant.startdato);
-                                      },
-                                  }
-                                : undefined
-                        }
-                        kanIkkeEndreTekst="Startdato kan ikke endres"
+                        kanEndreStartdato={kanEndreStartdato(deltakelse, tillattEndringsperiode)}
+                        onClickEndreButton={() => {
+                            setEndretDeltakelse(undefined);
+                            setFormVariant(EndrePeriodeVariant.startdato);
+                        }}
                     />
-                    <DatoBoks
-                        tittel="Sluttdato:"
-                        dato={deltakelse.tilOgMed}
-                        endre={
-                            kanEndreSluttdato(deltakelse, tillattEndringsperiode) && 1 + 1 == 3
-                                ? {
-                                      label: deltakelse.tilOgMed ? 'Endre sluttdato' : 'Registrer sluttdato',
-                                      onClick: () => {
-                                          setEndretDeltakelse(undefined);
-                                          setFormVariant(EndrePeriodeVariant.sluttdato);
-                                      },
-                                  }
-                                : undefined
-                        }
-                        kanIkkeEndreTekst="Sluttdato kan foreløpig ikke settes"
-                    />
+                    {Features.endreSluttdato ? (
+                        <>
+                            {deltakerHarSøkt && deltakelse.tilOgMed && (
+                                <EndreSluttdatoPanel
+                                    tilOgMed={deltakelse.tilOgMed}
+                                    kanEndreSluttdato={kanEndreSluttdato(deltakelse, tillattEndringsperiode)}
+                                    onClickEndreSluttdato={() => {
+                                        setEndretDeltakelse(undefined);
+                                        setFormVariant(EndrePeriodeVariant.endreSluttdato);
+                                    }}
+                                />
+                            )}
+                            {deltakerHarSøkt && !deltakelse.tilOgMed && (
+                                <MeldUtDeltakerPanel
+                                    onClickMeldUtButton={() => {
+                                        setEndretDeltakelse(undefined);
+                                        setFormVariant(EndrePeriodeVariant.meldUtDeltaker);
+                                    }}
+                                />
+                            )}
+                        </>
+                    ) : (
+                        <SluttdatoKanIkkeEndresPanel />
+                    )}
                 </HGrid>
             </VStack>
             {formVariant ? (
