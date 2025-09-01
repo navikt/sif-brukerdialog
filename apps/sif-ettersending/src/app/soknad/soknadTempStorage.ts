@@ -11,11 +11,12 @@ import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
 
-interface UserHashInfo {
+interface StateHashInfo {
     søker: Søker;
+    features: string;
 }
 
-const createHashString = (info: UserHashInfo) => {
+const createHashString = (info: StateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
@@ -25,7 +26,7 @@ interface SoknadTemporaryStorage
         soknadId: string,
         formData: Partial<SoknadFormData>,
         lastStepID: StepID,
-        søkerInfo: UserHashInfo,
+        stateHashInfo: StateHashInfo,
         søknadstype: Søknadstype,
     ) => Promise<AxiosResponse>;
     create: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
@@ -58,7 +59,7 @@ const persistSetup = (søknadstype: Søknadstype) =>
 
 export const isStorageDataValid = (
     data: SoknadTempStorageData,
-    userHashInfo: UserHashInfo,
+    userHashInfo: StateHashInfo,
 ): SoknadTempStorageData | undefined => {
     if (
         data?.metadata?.version === MELLOMLAGRING_VERSJON &&
@@ -78,7 +79,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
         soknadId: string,
         formData: SoknadFormData,
         lastStepID: StepID,
-        userHashInfo: UserHashInfo,
+        userHashInfo: StateHashInfo,
         søknadstype: Søknadstype,
     ) => {
         return persistSetup(søknadstype).update({
