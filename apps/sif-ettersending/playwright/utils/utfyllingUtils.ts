@@ -40,7 +40,7 @@ const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType) 
 };
 
 const fyllUtBarnSteg = async (page: Page, barnFnr?: string) => {
-    await expect(page.getByRole('heading', { name: 'Hvem gjelder ettersendelsen?', level: 1 })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hvilket barn gjelder ettersendelsen?', level: 1 })).toBeVisible();
 
     await page.getByRole('button').getByText('Neste').click();
     await expect(page.getByRole('heading', { name: 'Feil i skjema' })).toBeVisible();

@@ -89,8 +89,8 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'step.dokumentType.annet.info.2':
         'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein sakshandsamar har bede om noko konkret frå deg.',
 
-    'step.barn.stepTitle': 'Kven gjeld ettersendinga?',
-    'step.barn.stepIndicatorLabel': 'Kven gjeld ettersendinga?',
+    'step.barn.stepTitle': 'Kva barn gjeld ettersendinga?',
+    'step.barn.stepIndicatorLabel': 'Kva barn gjeld ettersendinga?',
 
     'formPart.registrertBarn.spm': 'Vel barnet ettersendinga gjeld',
     'formPart.registrertBarn.spm.description':
