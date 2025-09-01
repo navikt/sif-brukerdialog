@@ -22,7 +22,7 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start ettersendelse').click();
 };
 
-const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType, barnFnr?: string) => {
+const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType) => {
     await expect(page.getByRole('heading', { name: 'Hva skal du ettersende?', level: 1 })).toBeVisible();
 
     await page.getByRole('button').getByText('Neste').click();
@@ -37,7 +37,13 @@ const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType, 
     }
 
     await page.getByRole('button').getByText('Neste').click();
-    await expect(page.getByText('Feil i skjema')).toBeVisible();
+};
+
+const fyllUtBarnSteg = async (page: Page, barnFnr?: string) => {
+    await expect(page.getByRole('heading', { name: 'Hvem gjelder ettersendelsen?', level: 1 })).toBeVisible();
+
+    await page.getByRole('button').getByText('Neste').click();
+    await expect(page.getByRole('heading', { name: 'Feil i skjema' })).toBeVisible();
 
     if (barnFnr) {
         await page.getByText('Ettersendelse gjelder et annet barn').click();
@@ -117,6 +123,7 @@ export const utfyllingUtils = {
     velgYtelseOpplæringspenger,
     startSøknad,
     fyllUtdokumentTypeSteg,
+    fyllUtBarnSteg,
     fyllUtDokumenterSteg,
     kontrollerOppsummeringBarn,
     sendInnDokumenter,

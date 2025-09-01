@@ -43,15 +43,18 @@ test.describe('Start og innsending av ettersending - Pleiepenger sykt barn', () 
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(page, DokumentType.annet, YtelseKey.pleiepengerSyktBarn);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
+
     test('Fyller ut og sender inn legeerklæring med barn fra liste', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.legeerklæring);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(
             page,
@@ -65,7 +68,8 @@ test.describe('Start og innsending av ettersending - Pleiepenger sykt barn', () 
     test('Fyller ut og sender inn annet med annet barn', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet, '02869599258');
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page, '02869599258');
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(
             page,

@@ -43,6 +43,7 @@ test.describe('Start og innsending av ettersending - Opplæringspenger', () => {
         await utfyllingUtils.velgYtelseOpplæringspenger(page);
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(page, DokumentType.annet, YtelseKey.opplaringspenger);
         await utfyllingUtils.sendInnDokumenter(page);
@@ -52,6 +53,7 @@ test.describe('Start og innsending av ettersending - Opplæringspenger', () => {
         await utfyllingUtils.velgYtelseOpplæringspenger(page);
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.legeerklæring);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(page, DokumentType.legeerklæring, YtelseKey.opplaringspenger);
         await utfyllingUtils.sendInnDokumenter(page);
@@ -61,7 +63,8 @@ test.describe('Start og innsending av ettersending - Opplæringspenger', () => {
     test('Fyller ut og sender inn annet med annet barn', async ({ page }) => {
         await utfyllingUtils.velgYtelseOpplæringspenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet, '02869599258');
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page, '02869599258');
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummeringBarn(
             page,
