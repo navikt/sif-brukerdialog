@@ -115,7 +115,6 @@ export type FraværPeriode = {
     årsak: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
     søknadÅrsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
     aktivitetFravær: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    organisasjonsnummer?: string;
     arbeidsforholdId?: string;
     arbeidsgiverOrgNr?: string;
 };
@@ -243,7 +242,7 @@ export type Opplæringspenger = Ytelse & {
     arbeidstid: Arbeidstid;
     uttak: Uttak;
     omsorg: Omsorg;
-    kurs: Kurs;
+    kurs?: Kurs;
 };
 
 export type OpptjeningAktivitet = {
@@ -464,9 +463,9 @@ export type InnsendelserISakDto = {
 };
 
 export type Innsending = {
+    mottattDato?: string;
     versjon?: string;
     søker?: Søker;
-    mottattDato?: string;
     søknadId?: string;
 };
 
@@ -541,6 +540,18 @@ export type UtledetStatus = {
 
 export type SaksbehandlingtidDto = {
     saksbehandlingstidUker: number;
+};
+
+export type FraværPeriodeWritable = {
+    periode: string;
+    duration?: string;
+    delvisFravær?: DelvisFravær;
+    årsak: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+    søknadÅrsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
+    aktivitetFravær: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    organisasjonsnummer?: string;
+    arbeidsforholdId?: string;
+    arbeidsgiverOrgNr?: string;
 };
 
 export type HentSøknaderData = {

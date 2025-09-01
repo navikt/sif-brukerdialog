@@ -46,16 +46,15 @@ export type Land = {
 export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     søkerNorskIdent?: string;
-    bosteder: Bosted[];
-    opphold: Bosted[];
+    bosteder: unknown[];
+    opphold: unknown[];
     spørsmål: SpørsmålOgSvar[];
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Utbetalingsperiode[];
-    barn: Barn[];
-    frilans?: Frilans;
+    utbetalingsperioder: unknown[];
+    barn: unknown[];
     selvstendigNæringsdrivende?: Virksomhet;
     erArbeidstakerOgså: boolean;
     vedlegg: string[];
@@ -97,8 +96,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -155,6 +152,42 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type OmsorgspengerutbetalingSnfSøknadWritable = {
+    språk: string;
+    søkerNorskIdent?: string;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    spørsmål: SpørsmålOgSvar[];
+    harDekketTiFørsteDagerSelv?: boolean;
+    harSyktBarn?: boolean;
+    harAleneomsorg?: boolean;
+    bekreftelser: Bekreftelser;
+    utbetalingsperioder: Utbetalingsperiode[];
+    barn: Barn[];
+    frilans?: Frilans;
+    selvstendigNæringsdrivende?: VirksomhetWritable;
+    erArbeidstakerOgså: boolean;
+    vedlegg: string[];
+    dataBruktTilUtledningAnnetData?: string;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
 };
 
 export type DeleteMellomlagringData = {

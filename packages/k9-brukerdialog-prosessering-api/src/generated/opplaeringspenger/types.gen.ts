@@ -12,8 +12,7 @@ export type ProblemDetail = {
 };
 
 export type ArbeidIPeriode = {
-    jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
-    enkeltdager?: Enkeltdag[];
+    [key: string]: unknown;
 };
 
 export type ArbeidsforholdOlp = {
@@ -22,11 +21,7 @@ export type ArbeidsforholdOlp = {
 };
 
 export type ArbeidsgiverOlp = {
-    organisasjonsnummer?: string;
-    navn?: string;
-    erAnsatt?: boolean;
-    sluttetFørSøknadsperiode?: boolean;
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type BarnDetaljer = {
@@ -193,8 +188,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -251,6 +244,36 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type ArbeidIPeriodeWritable = {
+    jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
+    enkeltdager?: Enkeltdag[];
+};
+
+export type ArbeidsgiverOlpWritable = {
+    organisasjonsnummer?: string;
+    navn?: string;
+    erAnsatt?: boolean;
+    sluttetFørSøknadsperiode?: boolean;
+    arbeidsforhold?: ArbeidsforholdOlp;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
 };
 
 export type DeleteMellomlagringData = {

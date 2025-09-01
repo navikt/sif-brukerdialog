@@ -8,7 +8,9 @@ export default defineConfig({
         react({
             include: '**/*.{tsx}',
         }),
-        checker({ typescript: true }),
+        // TypeScript checking disabled in Vite to avoid errors from external generated files
+        // Use 'yarn check:types' for TypeScript validation
+        checker({ typescript: false }),
         {
             name: 'crossorigin',
             transformIndexHtml(html) {

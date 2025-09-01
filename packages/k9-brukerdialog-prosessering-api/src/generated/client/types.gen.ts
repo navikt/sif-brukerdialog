@@ -331,8 +331,6 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
-    varigEndring?: VarigEndring;
     regnskapsfører?: Regnskapsfører;
     erNyoppstartet: boolean;
     harFlereAktiveVirksomheter: boolean;
@@ -512,8 +510,6 @@ export type PleiepengerILivetsSluttfaseSøknad = {
     søkerNorskIdent?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    flereSokere?: 'JA' | 'NEI' | 'USIKKER';
-    dataBruktTilUtledningAnnetData?: string;
 };
 
 export type Pleietrengende = {
@@ -548,11 +544,7 @@ export type ArbeidsforholdOlp = {
 };
 
 export type ArbeidsgiverOlp = {
-    organisasjonsnummer?: string;
-    navn?: string;
-    erAnsatt?: boolean;
-    sluttetFørSøknadsperiode?: boolean;
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type EttersendingAvVedlegg = {
@@ -648,7 +640,7 @@ export type OmsorgspengerutbetalingSnfSøknad = {
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     bekreftelser: Bekreftelser;
-    utbetalingsperioder: Utbetalingsperiode[];
+    utbetalingsperioder: unknown[];
     barn: Barn[];
     frilans?: Frilans;
     selvstendigNæringsdrivende?: Virksomhet;
@@ -682,12 +674,6 @@ export type OmsorgspengerutbetalingArbeidstakerSøknad = {
     søkerNorskIdent?: string;
     bosteder: Bosted[];
     opphold: Bosted[];
-    bekreftelser?: Bekreftelser;
-    arbeidsgivere?: Arbeidsgiver[];
-    dineBarn?: DineBarn;
-    hjemmePgaSmittevernhensyn?: boolean;
-    hjemmePgaStengtBhgSkole?: boolean;
-    dataBruktTilUtledningAnnetData?: string;
 };
 
 export type AnnenForelder = {
@@ -787,6 +773,89 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
     ansattFom?: string;
     ansattTom?: string;
+};
+
+export type VirksomhetWritable = {
+    fraOgMed: string;
+    tilOgMed?: string;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    fiskerErPåBladB?: boolean;
+    næringsinntekt?: number;
+    navnPåVirksomheten: string;
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+    varigEndring?: VarigEndring;
+    regnskapsfører?: Regnskapsfører;
+    erNyoppstartet: boolean;
+    harFlereAktiveVirksomheter: boolean;
+};
+
+export type PleiepengerILivetsSluttfaseSøknadWritable = {
+    språk: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    skalJobbeOgPleieSammeDag: boolean;
+    dagerMedPleie: string[];
+    vedleggUrls: string[];
+    opplastetIdVedleggUrls: string[];
+    pleietrengende: Pleietrengende;
+    medlemskap: Medlemskap;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPerioden;
+    arbeidsgivere: Arbeidsgiver[];
+    frilans?: Frilans;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivende;
+    opptjeningIUtlandet: OpptjeningIUtlandet[];
+    utenlandskNæring: UtenlandskNæring[];
+    harVærtEllerErVernepliktig?: boolean;
+    pleierDuDenSykeHjemme?: boolean;
+    søkerNorskIdent?: string;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    flereSokere?: 'JA' | 'NEI' | 'USIKKER';
+    dataBruktTilUtledningAnnetData?: string;
+};
+
+export type ArbeidsgiverOlpWritable = {
+    organisasjonsnummer?: string;
+    navn?: string;
+    erAnsatt?: boolean;
+    sluttetFørSøknadsperiode?: boolean;
+    arbeidsforhold?: ArbeidsforholdOlp;
+};
+
+export type OmsorgspengerutbetalingSnfSøknadWritable = {
+    språk: string;
+    søkerNorskIdent?: string;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    spørsmål: SpørsmålOgSvar[];
+    harDekketTiFørsteDagerSelv?: boolean;
+    harSyktBarn?: boolean;
+    harAleneomsorg?: boolean;
+    bekreftelser: Bekreftelser;
+    utbetalingsperioder: Utbetalingsperiode[];
+    barn: Barn[];
+    frilans?: Frilans;
+    selvstendigNæringsdrivende?: VirksomhetWritable;
+    erArbeidstakerOgså: boolean;
+    vedlegg: string[];
+    dataBruktTilUtledningAnnetData?: string;
+};
+
+export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
+    språk: string;
+    vedlegg: string[];
+    søkerNorskIdent?: string;
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    bekreftelser?: Bekreftelser;
+    arbeidsgivere?: Arbeidsgiver[];
+    dineBarn?: DineBarn;
+    hjemmePgaSmittevernhensyn?: boolean;
+    hjemmePgaStengtBhgSkole?: boolean;
+    dataBruktTilUtledningAnnetData?: string;
 };
 
 export type DeleteMellomlagringData = {
