@@ -9,7 +9,8 @@ export const verifyToken = async (request: Request, response: Response, next: Ne
         logger.warning(
             `No token found in request - ${request.method} ${request.url} (correlationId: ${request.headers['X-Correlation-ID']})`,
         );
-        return response.status(401).send();
+        response.status(401).send();
+        return;
     }
 
     const validation = await validateToken(token);
@@ -17,8 +18,9 @@ export const verifyToken = async (request: Request, response: Response, next: Ne
         logger.warning(
             `Invalid token validation - ${request.method} ${request.url} (correlationId: ${request.headers['X-Correlation-ID']}) - ${JSON.stringify(validation)}`,
         );
-        return response.status(403).send();
+        response.status(403).send();
+        return;
     }
 
-    return next();
+    next();
 };

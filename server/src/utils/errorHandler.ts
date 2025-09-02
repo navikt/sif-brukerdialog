@@ -31,16 +31,17 @@ export function errorHandling(
         });
 
         // Return more specific error for axios errors
-        return response.status(error.response?.status || 500).json({
+        response.status(error.response?.status || 500).json({
             error: 'External service error',
             message: process.env.NODE_ENV === 'development' ? error.message : 'An error occurred',
         });
+        return;
     }
 
     // Log general errors
     logger.error('Server error occurred', errorInfo);
 
-    return response.status(500).json({
+    response.status(500).json({
         error: 'Internal server error',
         message: process.env.NODE_ENV === 'development' ? error.message : 'An error occurred',
     });
