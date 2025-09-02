@@ -27,6 +27,11 @@ const colors = {
 
 winston.addColors(colors);
 
+// Add custom morgan token for correlation ID
+morgan.token('correlation-id', (req) => {
+    return (req.headers['X-Correlation-ID'] as string) || '-';
+});
+
 const stdoutLogger = winston.createLogger({
     level: level(),
     levels,
@@ -59,12 +64,27 @@ const error = (msg: any, err: any) => {
 
 const stream = {
     // Use the http severity
-    write: (message: any) => stdoutLogger.http(message),
+    write: (message: string) => {
+        // Remove newline that morgan adds and log as structured message
+        stdoutLogger.http(message.trim());
+    },
 };
 
-const vanligFormat = ':method :url :status :res[content-length] - :response-time ms';
+// More detailed format for better debugging
+const detailedFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id - :user-agent';
+const vanligFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id';
 
-const morganMiddleware = morgan(vanligFormat, { stream });
+// Use detailed format in development, simple in production
+const logFormat = config.app.env === 'dev' ? detailedFormat : vanligFormat;
+
+const morganMiddleware = morgan(logFormat as any, {
+    stream,
+    // Skip logging for health checks and static assets to reduce noise
+    skip: (req, _res) => {
+        const skipUrls = ['/health', '/isAlive', '/isReady'];
+        return skipUrls.includes(req.url || '') || req.url?.startsWith('/assets/') || false;
+    },
+});
 
 export default {
     debug,
