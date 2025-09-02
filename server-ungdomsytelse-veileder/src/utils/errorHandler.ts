@@ -9,38 +9,21 @@ export function errorHandling(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _next: NextFunction,
 ) {
-    // Log error med mer kontekst
     const errorInfo = {
         message: error.message,
-        stack: error.stack,
         url: request.url,
         method: request.method,
         timestamp: new Date().toISOString(),
-        correlationId: request.headers['X-Correlation-ID'],
     };
 
     if (axios.isAxiosError(error)) {
         logger.error('Axios error occurred', {
             ...errorInfo,
             statusCode: error.response?.status,
-            responseData: error.response?.data,
-            config: {
-                url: error.config?.url,
-                method: error.config?.method,
-            },
         });
-
-        // Return more specific error for axios errors
-        response.status(error.response?.status || 500).json({
-            error: 'External service error',
-        });
-        return;
+    } else {
+        logger.error('Server error occurred', errorInfo);
     }
 
-    // Log general errors
-    logger.error('Server error occurred', errorInfo);
-
-    response.status(500).json({
-        error: 'Internal server error',
-    });
+    response.status(500).json({ error: 'Internal server error' });
 }
