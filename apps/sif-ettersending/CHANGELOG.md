@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.47.17
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 3.47.16
 
 ### Patch Changes

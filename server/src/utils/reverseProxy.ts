@@ -2,6 +2,7 @@ import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
+import logger from './log.js';
 import { v4 as uuid } from 'uuid';
 
 type ProxyOptions = {
@@ -27,9 +28,9 @@ export function configureReverseProxyApi(app: Express) {
                     outgoingUrl: proxy.apiUrl,
                     scope: proxy.apiScope,
                 });
-                console.info('Reverse proxyHandler added', proxy);
+                logger.info(`Reverse proxyHandler added for ${key}: ${proxy.frontendPath} -> ${proxy.apiUrl}`);
             } catch (e) {
-                console.error('Missing info setting up reverse proxy for', key);
+                logger.error(`Missing info setting up reverse proxy for ${key}`, e);
             }
         });
 }
@@ -48,15 +49,16 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
 
             const token = getToken(request);
             if (!token) {
-                return response.status(401).send();
+                response.status(401).send();
+                return;
             }
             const obo = await requestTokenxOboToken(token, scope);
             if (obo.ok) {
                 request.headers['obo-token'] = obo.token;
-                return next();
+                next();
             } else {
-                console.log('OBO-exchange failed', obo.error);
-                return response.status(403).send();
+                logger.warning(`OBO-exchange failed for scope ${scope}: ${obo.error}`);
+                response.status(403).send();
             }
         },
         createProxyMiddleware({
@@ -71,7 +73,7 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
                         proxyRequest.removeHeader('cookie');
                         proxyRequest.setHeader('Authorization', `Bearer ${obo}`);
                     } else {
-                        console.log(`Access token var not present in session for scope ${scope}`);
+                        logger.warning(`Access token not present in session for scope ${scope}`);
                     }
                 },
             },

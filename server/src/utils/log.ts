@@ -14,7 +14,7 @@ const levels = {
 };
 
 const level = () => {
-    return config.app.env === 'dev' ? 'debug' : 'info';
+    return config.app.env === 'prod' ? 'info' : 'debug';
 };
 
 const colors = {
@@ -26,6 +26,11 @@ const colors = {
 };
 
 winston.addColors(colors);
+
+// Add custom morgan token for correlation ID
+morgan.token('correlation-id', (req) => {
+    return (req.headers['X-Correlation-ID'] as string) || '-';
+});
 
 const stdoutLogger = winston.createLogger({
     level: level(),
@@ -59,12 +64,23 @@ const error = (msg: any, err: any) => {
 
 const stream = {
     // Use the http severity
-    write: (message: any) => stdoutLogger.http(message),
+    write: (message: string) => {
+        // Remove newline that morgan adds and log as structured message
+        stdoutLogger.http(message.trim());
+    },
 };
 
-const vanligFormat = ':method :url :status :res[content-length] - :response-time ms';
+// Production optimized format - simple and efficient
+const prodFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id';
 
-const morganMiddleware = morgan(vanligFormat, { stream });
+const morganMiddleware = morgan(prodFormat as any, {
+    stream,
+    // Skip logging for health checks to reduce noise
+    skip: (req, _res) => {
+        const skipUrls = ['/internal/health/isAlive', '/internal/health/isReady'];
+        return skipUrls.includes(req.url || '') || req.url?.startsWith('/assets/') || false;
+    },
+});
 
 export default {
     debug,

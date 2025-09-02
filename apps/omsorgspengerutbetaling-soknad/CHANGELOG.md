@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.25.17
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 1.25.16
 
 ### Patch Changes

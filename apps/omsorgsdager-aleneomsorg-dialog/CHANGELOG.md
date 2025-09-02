@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.27.17
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 2.27.16
 
 ### Patch Changes

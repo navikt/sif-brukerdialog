@@ -1,18 +1,26 @@
 import { getToken, validateToken } from '@navikt/oasis';
 import { NextFunction, Request, Response } from 'express';
+import logger from './log.js';
 
 export const verifyToken = async (request: Request, response: Response, next: NextFunction) => {
     const token = getToken(request);
 
     if (!token) {
-        return response.status(401).send();
+        logger.warning(
+            `No token found in request - ${request.method} ${request.url} (correlationId: ${request.headers['X-Correlation-ID']})`,
+        );
+        response.status(401).send();
+        return;
     }
 
     const validation = await validateToken(token);
     if (!validation.ok) {
-        console.log('Invalid token validation', validation);
-        return response.status(403).send();
+        logger.warning(
+            `Invalid token validation - ${request.method} ${request.url} (correlationId: ${request.headers['X-Correlation-ID']}) - ${JSON.stringify(validation)}`,
+        );
+        response.status(403).send();
+        return;
     }
 
-    return next();
+    next();
 };
