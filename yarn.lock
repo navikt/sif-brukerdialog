@@ -6254,21 +6254,15 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-common-env": "workspace:*"
-    "@types/cookie-parser": "npm:1.4.9"
     "@types/express": "npm:5.0.3"
     "@types/morgan": "npm:1.9.10"
     "@types/node": "npm:24.3.0"
     "@vercel/ncc": "npm:0.38.3"
     axios: "npm:1.11.0"
-    cookie-parser: "npm:1.4.7"
-    csp-header: "npm:6.1.0"
     express: "npm:5.1.0"
-    html-react-parser: "npm:5.2.6"
     http-proxy-middleware: "npm:3.0.5"
-    jsdom: "npm:26.1.0"
     morgan: "npm:1.10.1"
     prettier: "npm:3.6.2"
-    react: "npm:19.1.1"
     typescript: "npm:5.9.2"
     winston: "npm:3.17.0"
     zod: "npm:4.1.5"
@@ -10574,15 +10568,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10/7eb1bc5342a9604facd57598a6c62621e244822442976c443efb84ff745246b10d06e8b309b6e80130026a396f19bf6793b7cecd7380169f369dac3bfc46fb99
-  languageName: node
-  linkType: hard
-
-"@types/cookie-parser@npm:1.4.9":
-  version: 1.4.9
-  resolution: "@types/cookie-parser@npm:1.4.9"
-  peerDependencies:
-    "@types/express": "*"
-  checksum: 10/6192a4899b5412a4c3be0f47158321aef73a4cd7e7a4f7b2a37e2e1045f11a21209681cb1bc5335f250ee2a6ce64d8a3fefb851181a98e6415d3716ef9ed1f62
   languageName: node
   linkType: hard
 
