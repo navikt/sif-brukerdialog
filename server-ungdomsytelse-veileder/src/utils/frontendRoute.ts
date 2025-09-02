@@ -4,6 +4,7 @@ import fs from 'fs';
 import { getToken, parseAzureUserToken } from '@navikt/oasis';
 import { appEnvSchema } from '../env.schema.js';
 import serverConfig from './serverConfig.js';
+import logger from './log.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -21,7 +22,7 @@ export const setupAndServeHtml = async (app: Express) => {
     });
 
     if (!envs.success) {
-        console.error('Invalid environment variables:', envs.error.format());
+        logger.error('Invalid environment variables:', envs.error.format());
         process.exit(1); // Exit the server if validation fails
     }
 
@@ -37,7 +38,7 @@ export const setupAndServeHtml = async (app: Express) => {
                     NAVIdent: parse.NAVident,
                 });
             } else {
-                console.error('Failed to parse Azure user token', parse.error);
+                logger.error('Failed to parse Azure user token', parse.error);
             }
         }
         response.json({});
@@ -54,10 +55,10 @@ export const setupAndServeHtml = async (app: Express) => {
                     NAVident: parse.NAVident,
                 };
             } else {
-                console.error('Failed to parse Azure user token', parse.error);
+                logger.error('Failed to parse Azure user token', parse.error);
             }
         }
         const responseHtml = renderedHtml.replaceAll('{{{USER_INFO}}}', JSON.stringify(userInfo));
-        return response.send(responseHtml);
+        response.send(responseHtml);
     });
 };
