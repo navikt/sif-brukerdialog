@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.40.19
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 1.40.18
 
 ### Patch Changes

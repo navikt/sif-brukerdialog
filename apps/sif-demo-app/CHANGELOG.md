@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.4.43
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 0.4.42
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.27
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 0.4.26
 
 ### Patch Changes

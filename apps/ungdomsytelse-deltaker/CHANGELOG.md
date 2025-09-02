@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.12
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 1.1.11
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.34.18
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 1.34.17
 
 ### Patch Changes
