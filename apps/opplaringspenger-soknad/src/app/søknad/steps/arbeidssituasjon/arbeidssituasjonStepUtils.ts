@@ -56,7 +56,6 @@ export const visVernepliktSpørsmål = (
         if (ansatt_arbeidsforhold.some((a) => a.erAnsatt === YesOrNo.YES)) {
             return false;
         }
-        return ansatt_arbeidsforhold.some((a) => a.erAnsatt === YesOrNo.NO) === false;
     }
     return true;
 };
