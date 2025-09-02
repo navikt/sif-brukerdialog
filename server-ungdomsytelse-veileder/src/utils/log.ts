@@ -14,7 +14,7 @@ const levels = {
 };
 
 const level = () => {
-    return config.app.env === 'dev' ? 'debug' : 'info';
+    return config.app.env === 'prod' ? 'info' : 'debug';
 };
 
 const colors = {
@@ -70,18 +70,14 @@ const stream = {
     },
 };
 
-// More detailed format for better debugging
-const detailedFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id - :user-agent';
-const vanligFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id';
+// Production optimized format - simple and efficient
+const prodFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id';
 
-// Use detailed format in development, simple in production
-const logFormat = config.app.env === 'dev' ? detailedFormat : vanligFormat;
-
-const morganMiddleware = morgan(logFormat as any, {
+const morganMiddleware = morgan(prodFormat as any, {
     stream,
-    // Skip logging for health checks and static assets to reduce noise
+    // Skip logging for health checks to reduce noise
     skip: (req, _res) => {
-        const skipUrls = ['/health', '/isAlive', '/isReady'];
+        const skipUrls = ['/internal/health/isAlive', '/internal/health/isReady'];
         return skipUrls.includes(req.url || '') || req.url?.startsWith('/assets/') || false;
     },
 });
