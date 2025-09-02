@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.15.17
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 1.15.16
 
 ### Patch Changes

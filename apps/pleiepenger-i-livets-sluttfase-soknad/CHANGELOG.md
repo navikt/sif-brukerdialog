@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.21.16
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 2.21.15
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.38.18
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 2.38.17
 
 ### Patch Changes

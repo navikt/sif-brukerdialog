@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.10.17
+
+### Patch Changes
+
+- Oppdatere til express 5
+
 ## 4.10.16
 
 ### Patch Changes
