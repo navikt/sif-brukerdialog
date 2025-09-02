@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.35.0
+
+### Minor Changes
+
+- Vise ekstra melding om feil tegn ved innsending, hvis innsendingen feiler pga ugyldige tegn.
+
 ## 1.34.18
 
 ### Patch Changes
