@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import '@navikt/ds-css' layer(components);
+@import '@navikt/ds-css/darkside';
 @import '../components/page-layout/sak-page-header/sakPageHeader.css' layer(utilities);
 
 @config '../../tailwind.config.ts';
