@@ -7,17 +7,6 @@ import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosess
 store.init(ScenarioType.harSøkt);
 
 export const getHandlers = () => [
-    // Mock andre kall som kommer fra dekoratør
-    http.get('*skyra*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*skyra*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*sentry*', () => new HttpResponse(null, { status: 200 })),
-    http.get('*amplitude*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
-    http.post('*hotjar*', () => new HttpResponse(null, { status: 200 })),
-    http.get('*nav.no*', () => new HttpResponse(null, { status: 200 })),
-    http.get('*www.nav.no/dekoratoren*', () => new HttpResponse(null, { status: 200 })),
-    http.get('*login*', () => new HttpResponse(null, { status: 200 })),
-
     // App api mocking
     http.get('**/deltaker/hent-kontonummer', () => {
         return HttpResponse.json({ harKontonummer: false, kontonummer: '12345678901' });
@@ -71,4 +60,7 @@ export const getHandlers = () => [
         mockUtils.setRapportertInntekt(parsed.oppgaveReferanse, parsed);
         return new HttpResponse(null, { status: 200 });
     }),
+
+    http.get('*', () => new HttpResponse(null, { status: 200 })),
+    http.post('*', () => new HttpResponse(null, { status: 200 })),
 ];
