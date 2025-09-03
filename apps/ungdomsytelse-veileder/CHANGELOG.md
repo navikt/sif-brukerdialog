@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.7.0
+
+### Minor Changes
+
+- Tekstendring på utbetaling; fra 10. til 12.
+
 ## 0.6.5
 
 ### Patch Changes

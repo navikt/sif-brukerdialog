@@ -13,7 +13,7 @@ For alle andre måneder skal deltakerne når måneden er slutt rapportere arbeid
 
 ## Inntekten de rapporterer om, kontrolleres opp mot a-inntekt
 
-Den 6. hver måned gjøres det en kontroll mot opplysningene om inntekt fra a-registeret. Hvis opplysningene vi har mottatt fra en deltaker ikke stemmer med opplysningene vi mottar fra a-registeret/arbeidsgiver, sendes det et forhåndsvarsel til deltakeren. For å kunne sikre at pengene utbetales innen den 10. i påfølgende måned, er det viktig at de selv rapporterer om så riktig inntekt som mulig.
+Den 6. hver måned gjøres det en kontroll mot opplysningene om inntekt fra a-registeret. Hvis opplysningene vi har mottatt fra en deltaker ikke stemmer med opplysningene vi mottar fra a-registeret/arbeidsgiver, sendes det et forhåndsvarsel til deltakeren. For å kunne sikre at pengene utbetales innen den 12. i påfølgende måned, er det viktig at de selv rapporterer om så riktig inntekt som mulig.
 
 ## Hva slags inntekt skal deltakerne rapportere om?
 
