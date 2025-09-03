@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.34
+
+### Patch Changes
+
+- Endre label på forrige steg knapp til Førre steg på nynorsk
+
 ## 2.4.33
 
 ### Patch Changes
