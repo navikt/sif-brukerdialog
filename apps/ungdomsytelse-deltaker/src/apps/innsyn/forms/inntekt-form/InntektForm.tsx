@@ -1,4 +1,4 @@
-import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
+import { ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
@@ -91,7 +91,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
-                                    legend={`Hadde du lønn i ${måned}?`}
+                                    legend={`Fikk du utbetalt lønn i ${måned}?`}
                                     validate={(v) => {
                                         const vError = getYesOrNoValidator()(v);
                                         return vError ? { key: vError, values: { måned } } : undefined;
@@ -99,31 +99,27 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                 />
 
                                 {harArbeidstakerOgFrilansInntekt ? (
-                                    <NumberInput
-                                        name={InntektFormFields.ansattInntekt}
-                                        label={`Hvor mye tjente du i ${måned}`}
-                                        integerValue={true}
-                                        description={
-                                            <VStack gap="2" marginBlock="2 0">
-                                                <BodyLong>
-                                                    Oppgi hva du tjente før skatt som arbeidstaker eller frilanser.
-                                                    Mottar du andre ytelser fra Nav skal du ikke ta med dette.
-                                                </BodyLong>
-                                                <ReadMore header="Hvor finner jeg ut hva jeg tjente før skatt?">
-                                                    Info kommer
-                                                </ReadMore>
-                                                <ReadMore header="Hva betyr arbeidstaker og frilanse?">
-                                                    Info kommer
-                                                </ReadMore>
-                                            </VStack>
-                                        }
-                                        validate={getNumberValidator({
-                                            min: 1,
-                                            max: 999999,
-                                            required: true,
-                                            allowDecimals: false,
-                                        })}
-                                    />
+                                    <VStack gap="4">
+                                        <NumberInput
+                                            name={InntektFormFields.ansattInntekt}
+                                            label="Hvor mye fikk du i lønn før skatt?"
+                                            integerValue={true}
+                                            description="Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den."
+                                            validate={getNumberValidator({
+                                                min: 1,
+                                                max: 999999,
+                                                required: true,
+                                                allowDecimals: false,
+                                            })}
+                                        />
+                                        <ReadMore header="Hvordan finner du ut hva lønnen din var før skatt?">
+                                            Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra
+                                            arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er
+                                            før det blir trukket skatt av den, og det er det tallet du skal skrive inn
+                                            her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner
+                                            lønnsslippen.
+                                        </ReadMore>
+                                    </VStack>
                                 ) : null}
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}

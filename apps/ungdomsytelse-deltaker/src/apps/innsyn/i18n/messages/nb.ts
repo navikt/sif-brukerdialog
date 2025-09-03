@@ -33,11 +33,9 @@ export const innsynMessages_nb = {
         'Har du en tilbakemelding på inntekten som er rapportert?',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
-    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld fra om du hadde inntekt {måned}',
+    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld fra om du fikk utbetalt lønn i {månedOgÅr}',
     'oppgavetype.RAPPORTER_INNTEKT.info':
-        'Meld fra om du jobbet og fikk utbetalt lønn i september. Hadde du ingen inntekt, trenger du ikke gjøre noe.',
-    'oppgavetype.RAPPORTER_INNTEKT.info.rapportert': 'Du meldte at du hadde {inntekt} kr i inntekt i {måned}.',
-    'oppgavetype.RAPPORTER_INNTEKT.info.ikkeRapportert': 'Du meldte at du ikke hadde inntekt i {måned}.',
+        'Meld fra om du fikk utbetalt lønn i {måned}. Hvis du ikke fikk utbetalt lønn, trenger du ikke gjøre noe.',
 
     'oppgavetype.SØK_YTELSE.sidetittel': 'Søknad for ungdomsprogramytelsen',
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
