@@ -1,14 +1,13 @@
-import { Alert } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, Bleed, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
-    getTypedFormComponents,
     datepickerUtils,
     getIntlFormErrorHandler,
+    getTypedFormComponents,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -108,138 +107,158 @@ const AnnenForelderenSituasjonStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>{text('step.annenForeldrensSituasjon.banner.1')}</SifGuidePanel>
+                                <VStack gap="8">
+                                    <SifGuidePanel>{text('step.annenForeldrensSituasjon.banner.1')}</SifGuidePanel>
 
-                                <Block margin="xxl">
-                                    <RadioGroup
-                                        legend={text('step.annenForeldrensSituasjon.grunn.spm')}
-                                        name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
-                                        radios={Object.keys(AnnenForeldrenSituasjon).map(
-                                            (grunn: AnnenForeldrenSituasjonType) => {
-                                                return {
-                                                    label: text(`step.annenForeldrensSituasjon.grunn.${grunn}`),
-                                                    value: AnnenForeldrenSituasjon[grunn],
-                                                };
-                                            },
-                                        )}
-                                        validate={getRequiredFieldValidator()}
-                                        afterOnChange={(newValue) => {
-                                            if (
-                                                newValue &&
-                                                (newValue === AnnenForeldrenSituasjon.fengsel ||
-                                                    AnnenForeldrenSituasjon.utøverVerneplikt)
-                                            ) {
-                                                setFieldValue(
-                                                    AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
-                                                    false,
-                                                );
-                                            }
-                                        }}
-                                    />
-                                </Block>
-
-                                {(annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
-                                    annenForelderSituasjon === AnnenForeldrenSituasjon.annet) && (
-                                    <>
-                                        {annenForelderSituasjon === AnnenForeldrenSituasjon.annet && (
-                                            <FormBlock margin="m">
-                                                <Alert variant="info">
-                                                    <AppText id="step.annenForeldrensSituasjon.grunn.annet.info" />
-                                                </Alert>
-                                            </FormBlock>
-                                        )}
-                                        <FormBlock>
-                                            <Textarea
-                                                name={
-                                                    AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse
+                                    <FormLayout.Questions>
+                                        <RadioGroup
+                                            legend={text('step.annenForeldrensSituasjon.grunn.spm')}
+                                            name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
+                                            radios={Object.keys(AnnenForeldrenSituasjon).map(
+                                                (grunn: AnnenForeldrenSituasjonType) => {
+                                                    return {
+                                                        label: text(`step.annenForeldrensSituasjon.grunn.${grunn}`),
+                                                        value: AnnenForeldrenSituasjon[grunn],
+                                                    };
+                                                },
+                                            )}
+                                            validate={getRequiredFieldValidator()}
+                                            afterOnChange={(newValue) => {
+                                                if (
+                                                    newValue &&
+                                                    (newValue === AnnenForeldrenSituasjon.fengsel ||
+                                                        AnnenForeldrenSituasjon.utøverVerneplikt)
+                                                ) {
+                                                    setFieldValue(
+                                                        AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
+                                                        false,
+                                                    );
                                                 }
-                                                label={text(
-                                                    'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
+                                            }}
+                                        />
+
+                                        {(annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
+                                            annenForelderSituasjon === AnnenForeldrenSituasjon.annet) && (
+                                            <>
+                                                {annenForelderSituasjon === AnnenForeldrenSituasjon.annet && (
+                                                    <FormLayout.QuestionBleedTop>
+                                                        <Alert variant="info">
+                                                            <AppText id="step.annenForeldrensSituasjon.grunn.annet.info" />
+                                                        </Alert>
+                                                    </FormLayout.QuestionBleedTop>
                                                 )}
-                                                minLength={5}
-                                                maxLength={1000}
-                                                validate={validateTextArea}
-                                            />
-                                        </FormBlock>
-                                    </>
-                                )}
 
-                                {annenForelderSituasjon && (
-                                    <FormBlock>
-                                        <DateRangePicker
-                                            legend={text(
-                                                `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`,
-                                            )}
-                                            fromInputProps={{
-                                                label: text('step.annenForeldrensSituasjon.periode.fra'),
-                                                name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
-                                                validate: (value) =>
-                                                    validateFraDato(value, periodeTil, annenForelderSituasjon),
-                                            }}
-                                            toInputProps={{
-                                                label: text('step.annenForeldrensSituasjon.periode.til'),
-                                                name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                                                validate: annenForelderPeriodeVetIkkeTom
-                                                    ? undefined
-                                                    : (value) =>
-                                                          validateTildato(value, periodeFra, annenForelderSituasjon),
-                                                inputDisabled: annenForelderPeriodeVetIkkeTom,
-                                            }}
-                                        />
-
-                                        {annenForelderSituasjon !== AnnenForeldrenSituasjon.fengsel &&
-                                            annenForelderSituasjon !== AnnenForeldrenSituasjon.utøverVerneplikt && (
-                                                <Checkbox
-                                                    label={text(
-                                                        'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom',
-                                                    )}
+                                                <Textarea
                                                     name={
-                                                        AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom
+                                                        AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse
                                                     }
-                                                    afterOnChange={(newValue) => {
-                                                        if (newValue) {
-                                                            setFieldValue(
-                                                                AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                                                                undefined,
-                                                            );
-                                                        } else {
-                                                            setFieldValue(
-                                                                AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder,
-                                                                YesOrNo.UNANSWERED,
-                                                            );
-                                                        }
-                                                    }}
+                                                    label={text(
+                                                        'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
+                                                    )}
+                                                    minLength={5}
+                                                    maxLength={1000}
+                                                    validate={validateTextArea}
                                                 />
-                                            )}
-
-                                        {annenForelderPeriodeFom &&
-                                            annenForelderPeriodeTom &&
-                                            isPeriodeLess6month(annenForelderPeriodeFom, annenForelderPeriodeTom) && (
-                                                <FormBlock>
-                                                    <Alert variant="info">
-                                                        {text('step.annenForeldrensSituasjon.advarsel.1')}
-                                                    </Alert>
-                                                </FormBlock>
-                                            )}
-                                    </FormBlock>
-                                )}
-
-                                {annenForelderPeriodeVetIkkeTom && (
-                                    <FormBlock>
-                                        <YesOrNoQuestion
-                                            name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
-                                            legend={text('step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm')}
-                                            validate={getYesOrNoValidator()}
-                                        />
-                                        {annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
-                                            <FormBlock>
-                                                <Alert variant="info">
-                                                    {text('step.annenForeldrensSituasjon.advarsel.1')}
-                                                </Alert>
-                                            </FormBlock>
+                                            </>
                                         )}
-                                    </FormBlock>
-                                )}
+
+                                        {annenForelderSituasjon && (
+                                            <>
+                                                {/* Motvirker margin i dataRangePicker */}
+                                                <Bleed marginBlock="0 4">
+                                                    <DateRangePicker
+                                                        legend={text(
+                                                            `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`,
+                                                        )}
+                                                        fromInputProps={{
+                                                            label: text('step.annenForeldrensSituasjon.periode.fra'),
+                                                            name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
+                                                            validate: (value) =>
+                                                                validateFraDato(
+                                                                    value,
+                                                                    periodeTil,
+                                                                    annenForelderSituasjon,
+                                                                ),
+                                                        }}
+                                                        toInputProps={{
+                                                            label: text('step.annenForeldrensSituasjon.periode.til'),
+                                                            name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
+                                                            validate: annenForelderPeriodeVetIkkeTom
+                                                                ? undefined
+                                                                : (value) =>
+                                                                      validateTildato(
+                                                                          value,
+                                                                          periodeFra,
+                                                                          annenForelderSituasjon,
+                                                                      ),
+                                                            inputDisabled: annenForelderPeriodeVetIkkeTom,
+                                                        }}
+                                                    />
+                                                </Bleed>
+
+                                                {annenForelderSituasjon !== AnnenForeldrenSituasjon.fengsel &&
+                                                    annenForelderSituasjon !==
+                                                        AnnenForeldrenSituasjon.utøverVerneplikt && (
+                                                        <FormLayout.QuestionBleedTop>
+                                                            <Checkbox
+                                                                label={text(
+                                                                    'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom',
+                                                                )}
+                                                                name={
+                                                                    AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom
+                                                                }
+                                                                afterOnChange={(newValue) => {
+                                                                    if (newValue) {
+                                                                        setFieldValue(
+                                                                            AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
+                                                                            undefined,
+                                                                        );
+                                                                    } else {
+                                                                        setFieldValue(
+                                                                            AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder,
+                                                                            YesOrNo.UNANSWERED,
+                                                                        );
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </FormLayout.QuestionBleedTop>
+                                                    )}
+
+                                                {annenForelderPeriodeFom &&
+                                                    annenForelderPeriodeTom &&
+                                                    isPeriodeLess6month(
+                                                        annenForelderPeriodeFom,
+                                                        annenForelderPeriodeTom,
+                                                    ) && (
+                                                        <Alert variant="info">
+                                                            {text('step.annenForeldrensSituasjon.advarsel.1')}
+                                                        </Alert>
+                                                    )}
+                                            </>
+                                        )}
+
+                                        {annenForelderPeriodeVetIkkeTom && (
+                                            <>
+                                                <YesOrNoQuestion
+                                                    name={
+                                                        AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder
+                                                    }
+                                                    legend={text(
+                                                        'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm',
+                                                    )}
+                                                    validate={getYesOrNoValidator()}
+                                                />
+                                                {annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
+                                                    <FormLayout.QuestionBleedTop>
+                                                        <Alert variant="info">
+                                                            {text('step.annenForeldrensSituasjon.advarsel.1')}
+                                                        </Alert>
+                                                    </FormLayout.QuestionBleedTop>
+                                                )}
+                                            </>
+                                        )}
+                                    </FormLayout.Questions>
+                                </VStack>
                             </Form>
                         </>
                     );

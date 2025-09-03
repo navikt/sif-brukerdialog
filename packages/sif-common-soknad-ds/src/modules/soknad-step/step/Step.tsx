@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
 import './step.scss';
+import { VStack } from '@navikt/ds-react';
 
 const bem = bemHelper('step');
 
@@ -55,8 +55,14 @@ function Step({
                 </>
             )}>
             <section aria-label="Skjema" ref={sectionRef}>
-                <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
-                <Block margin="xxl">{children}</Block>
+                <VStack gap="10">
+                    <ProgressStepper
+                        steps={steps}
+                        currentStepIndex={currentStepIndex}
+                        onStepSelect={handleOnStepSelect}
+                    />
+                    <div>{children}</div>
+                </VStack>
             </section>
             {(onCancel || onContinueLater) && (
                 <div
