@@ -7,7 +7,7 @@ const invalidParameterViolation = z.object({
     reason: z.string(),
 });
 
-export const invalidParameterErrorResponse = z.object({
+export const invalidParameterErrorResponseSchema = z.object({
     violations: z.array(invalidParameterViolation),
     detail: z.string(),
     status: z.number(),
@@ -15,5 +15,5 @@ export const invalidParameterErrorResponse = z.object({
     type: z.string(),
 });
 
-export type InvalidParameterErrorResponse = z.infer<typeof invalidParameterErrorResponse>;
+export type InvalidParameterErrorResponse = z.infer<typeof invalidParameterErrorResponseSchema>;
 export type InvalidParameterViolation = z.infer<typeof invalidParameterViolation>;

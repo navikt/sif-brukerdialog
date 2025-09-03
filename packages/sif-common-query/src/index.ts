@@ -13,7 +13,6 @@ export * from './hooks/useArbeidsgivere';
 export * from './hooks/useRegistrerteBarn';
 export * from './hooks/useYtelseMellomlagring';
 export * from './hooks/useSøker';
-export * from './hooks/useValiderFritekst';
 export * from './hooks/useVedlegg';
 
 // Alle API kall (for non-React usage)
