@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "2.27.17",
+    "version": "2.27.19",
     "private": true,
     "type": "module",
     "scripts": {
@@ -24,9 +24,9 @@
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.29.0",
-        "@navikt/ds-react": "7.29.0",
-        "@navikt/ds-tailwind": "7.29.0",
+        "@navikt/ds-css": "7.29.1",
+        "@navikt/ds-react": "7.29.1",
+        "@navikt/ds-tailwind": "7.29.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -60,7 +60,7 @@
         "@chromatic-com/storybook": "4.1.1",
         "@playwright/test": "1.55.0",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/react-vite": "9.1.3",
+        "@storybook/react-vite": "9.1.4",
         "@testing-library/dom": "10.4.1",
         "@types/object-hash": "3.0.6",
         "@types/react": "19.1.12",
@@ -77,9 +77,9 @@
         "less": "4.4.1",
         "mustache-express": "1.3.2",
         "playwright-core": "1.55.0",
-        "storybook": "9.1.3",
+        "storybook": "9.1.4",
         "typescript": "5.9.2",
-        "vite": "7.1.3",
+        "vite": "7.1.4",
         "vite-plugin-checker": "0.10.3",
         "vitest": "3.2.4"
     },
