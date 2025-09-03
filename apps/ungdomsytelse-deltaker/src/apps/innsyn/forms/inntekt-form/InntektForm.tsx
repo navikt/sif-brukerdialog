@@ -117,7 +117,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                             arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er
                                             før det blir trukket skatt av den, og det er det tallet du skal skrive inn
                                             her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner
-                                            lønnsslippen.{' '}
+                                            lønnsslippen.
                                         </ReadMore>
                                     </VStack>
                                 ) : null}
