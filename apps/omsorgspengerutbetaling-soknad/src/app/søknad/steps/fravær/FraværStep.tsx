@@ -264,6 +264,8 @@ const FraværStep = () => {
                                                     labels={{
                                                         addLabel: text('step.fravaer.utenlandsopphold.addLabel'),
                                                         modalTitle: text('step.fravaer.utenlandsopphold.modalTitle'),
+                                                        listTitle: text('step.fravaer.utenlandsopphold.listTitle'),
+                                                        hideListTitle: true,
                                                     }}
                                                     validate={getListValidator({ required: true })}
                                                 />

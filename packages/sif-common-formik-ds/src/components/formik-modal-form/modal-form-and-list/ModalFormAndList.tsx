@@ -147,35 +147,33 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </Modal.Body>
                 </Modal>
             ) : null}
+
             <SkjemagruppeQuestion
                 ref={fieldsetRef}
                 legend={labels.listTitle}
+                hideLegend={labels.hideListTitle}
                 error={error}
                 tabIndex={-1}
                 description={labels.description}
                 className="modalFormAndListFieldset">
-                {items.length > 0 && (
-                    <div className="modalFormAndList__listWrapper">
-                        {listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}
-                    </div>
-                )}
-                {items.length === 0 && labels.emptyListText && (
-                    <div style={{ marginTop: labels.listTitle ? '1rem' : 'none', paddingBottom: '.5rem' }}>
-                        <Alert variant="info">{labels.emptyListText}</Alert>
-                    </div>
-                )}
-                {(maxItems === undefined || maxItems > items.length) && (
-                    <div style={{ marginTop: '1rem' }} className={'modalFormAndList__addButton'}>
-                        <Button
-                            ref={addButtonRef}
-                            type="button"
-                            onClick={() => setModalState({ ...modalState, isVisible: true })}
-                            size="small"
-                            variant="secondary">
-                            {labels.addLabel}
-                        </Button>
-                    </div>
-                )}
+                <VStack gap="6">
+                    {items.length > 0 && (
+                        <div>{listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}</div>
+                    )}
+                    {items.length === 0 && labels.emptyListText && <Alert variant="info">{labels.emptyListText}</Alert>}
+                    {(maxItems === undefined || maxItems > items.length) && (
+                        <div>
+                            <Button
+                                ref={addButtonRef}
+                                type="button"
+                                onClick={() => setModalState({ ...modalState, isVisible: true })}
+                                size="small"
+                                variant="secondary">
+                                {labels.addLabel}
+                            </Button>
+                        </div>
+                    )}
+                </VStack>
             </SkjemagruppeQuestion>
 
             {confirmDelete && itemToDelete && (

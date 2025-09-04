@@ -105,11 +105,9 @@ const OmBarnaStep = () => {
                                                 name={OmBarnaFormFields.andreBarn}
                                                 labels={{
                                                     addLabel: text('step.omBarna.listDialog.knapplabel'),
-                                                    listTitle:
-                                                        andreBarn && andreBarn.length > 0
-                                                            ? text('step.omBarna.listDialog.listTitle')
-                                                            : undefined,
+                                                    listTitle: text('step.omBarna.listDialog.listTitle'),
                                                     modalTitle: text('step.omBarna.listDialog.modalTitle'),
+                                                    hideListTitle: andreBarn === undefined || andreBarn.length === 0,
                                                 }}
                                                 disallowedFødselsnumre={[
                                                     ...[søker.fødselsnummer],

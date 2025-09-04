@@ -10,6 +10,7 @@ export const fraværStepMessages_nn: Record<keyof typeof fraværStepMessages_nb,
     'step.fravær.heledager.spm': 'Har du hatt heile dagar med fråvær frå jobb?',
     'step.fravær.heledager.perioderModal.label': 'Legg til ny periode med fullt fråvær',
     'step.fravær.heledager.perioderModal.title': 'Fråvær heile dagar',
+    'step.fravær.heledager.perioderModal.listTitle': 'Heile dagar med fråvær',
     'step.fravær.perioderDagModal.begrensTilSammeÅrInfo':
         'Du kan berre søkje innanfor eitt kalenderår om gongen. Dersom du skal søkje for fleire år, må du sende ein søknad for kvart av åra.',
     'step.fravær.delvisdag.spm': 'Har du hatt dagar med delvis fråvær frå jobb?',
@@ -24,4 +25,5 @@ export const fraværStepMessages_nn: Record<keyof typeof fraværStepMessages_nb,
     'step.fravær.værtIUtlandet.spm': 'Har du vore i utlandet nokre av dagane du søkjer omsorgspengar for?',
     'step.fravær.værtIUtlandet.leggTilLabel': 'Legg til nytt utanlandsopphald',
     'step.fravær.værtIUtlandet.modalTittel': 'Utanlandsopphald',
+    'step.fravær.værtIUtlandet.listTitle': 'Utanlandsopphald',
 };

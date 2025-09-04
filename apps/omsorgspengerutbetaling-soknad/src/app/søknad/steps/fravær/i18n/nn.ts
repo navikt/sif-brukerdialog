@@ -37,6 +37,7 @@ export const fraværStepMessages_nn: Record<keyof typeof fraværStepMessages_nb,
     'step.fravaer.utenlandsopphold.tittel': 'Utanlandsopphald i dagane med fråvær',
     'step.fravaer.utenlandsopphold.addLabel': 'Legg til utanlandsopphald',
     'step.fravaer.utenlandsopphold.modalTitle': 'Utanlandsopphald',
+    'step.fravaer.utenlandsopphold.listTitle': 'Utanlandsopphald',
 
     'fravær.antallTimer': 'Tal på timar',
     'fravær.time': 'time',
