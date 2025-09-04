@@ -1,5 +1,16 @@
 # @navikt/sif-common-soknad-ds
 
+## 25.0.18
+
+### Patch Changes
+
+- Tilrettelegge for darkside i noen fellespakker + oppdatere til darkside i oms-ikke-tilsyn
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.35
+    - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-ui@0.10.17
+    - @navikt/sif-common-forms-ds@20.0.17
+
 ## 25.0.17
 
 ### Patch Changes

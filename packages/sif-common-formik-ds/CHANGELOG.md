@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.35
+
+### Patch Changes
+
+- Tilrettelegge for darkside i noen fellespakker + oppdatere til darkside i oms-ikke-tilsyn
+
 ## 2.4.34
 
 ### Patch Changes

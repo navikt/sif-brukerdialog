@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.41
+
+### Patch Changes
+
+- Tilrettelegge for darkside i noen fellespakker + oppdatere til darkside i oms-ikke-tilsyn
+    - @navikt/sif-common-api@0.4.39
+
 ## 10.2.40
 
 ### Patch Changes
