@@ -9,7 +9,7 @@ interface Props {
 }
 
 const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1' }) => (
-    <div style={{ borderBottom: '4px var(--ax-bg-brand-blue-strong) solid' }}>
+    <div style={{ borderBottom: '4px var(--a-deepblue-400, var(--ax-bg-brand-blue-strong)) solid' }}>
         <PageBoundary>
             <HStack gap="4" paddingBlock="2 2" align="center" wrap={false}>
                 <Show above="sm">

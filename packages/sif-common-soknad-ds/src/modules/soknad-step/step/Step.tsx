@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -6,7 +7,6 @@ import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
 import './step.scss';
-import { VStack } from '@navikt/ds-react';
 
 const bem = bemHelper('step');
 

@@ -3,7 +3,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { UiText } from '../../i18n/ui.messages';
-import ItemListDark from '../item-list-dark/ItemListDark';
+import ItemListDarkside from '../item-list-darkside/ItemListDarkside';
 import RegistrerteBarnListeHeading, {
     RegistrerteBarnListeHeadingProps,
 } from '../registrert-barn-liste-heading/RegistrerteBarnListeHeading';
@@ -18,7 +18,7 @@ const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
             <UiText id="registrerteBarnListe.ingenbarn" />
         </Alert>
     ) : (
-        <ItemListDark<RegistrertBarn>
+        <ItemListDarkside<RegistrertBarn>
             getItemId={(barn): string => barn.aktørId}
             getItemTitle={(barn): string => barn.etternavn}
             labelRenderer={(barn): React.ReactNode => (

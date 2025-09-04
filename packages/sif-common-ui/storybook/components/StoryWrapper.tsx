@@ -1,7 +1,6 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-// import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 export interface IntlProviderProps {
     children: React.ReactNode;

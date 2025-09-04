@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ActionLink from '../../atoms/action-link/ActionLink';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import bemUtils from '../../utils/bemUtils';
-import './itemList.scss';
+import './itemListDarkside.scss';
 
 interface Props<T> {
     items: T[];
@@ -18,11 +18,11 @@ interface Props<T> {
     deleteRenderer?: (item: T) => React.ReactNode;
 }
 
-const bem = bemUtils('itemListDark');
+const bem = bemUtils('itemListDarkside');
 
 const bemItem = bem.child('item');
 
-function ItemListDark<T>({
+function ItemListDarkside<T>({
     items,
     onDelete,
     onEdit,
@@ -69,4 +69,4 @@ function ItemListDark<T>({
         </ol>
     );
 }
-export default ItemListDark;
+export default ItemListDarkside;
