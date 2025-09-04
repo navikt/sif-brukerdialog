@@ -120,8 +120,6 @@ const OmBarnaStep = () => {
                                         </VStack>
                                     </div>
 
-                                    {/* <Block margin={andreBarn && andreBarn.length === 0 ? 'm' : 'l'}> */}
-                                    {/* </Block> */}
                                     {andreBarn && andreBarn.length === 0 && registrerteBarn.length === 0 && (
                                         <Alert variant="warning">{text('step.omBarna.info.ingenbarn.2')}</Alert>
                                     )}
