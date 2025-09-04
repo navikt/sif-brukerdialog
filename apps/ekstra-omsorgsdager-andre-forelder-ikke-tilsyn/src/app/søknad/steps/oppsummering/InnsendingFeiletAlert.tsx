@@ -1,5 +1,4 @@
 import { Alert, List } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { AppText } from '../../../i18n';
 
@@ -40,14 +39,12 @@ interface Props {
 
 const InnsendingFeiletAlert = ({ invalidParameter }: Props) => {
     return (
-        <FormBlock>
-            <Alert variant="error">
-                <p style={{ marginTop: '.2em' }}>
-                    <AppText id="innsendingFeilet.tittel" />
-                </p>
-                {renderFeilmelding(invalidParameter[0])}
-            </Alert>
-        </FormBlock>
+        <Alert variant="error">
+            <p style={{ marginTop: '.2em' }}>
+                <AppText id="innsendingFeilet.tittel" />
+            </p>
+            {renderFeilmelding(invalidParameter[0])}
+        </Alert>
     );
 };
 

@@ -1,9 +1,9 @@
-import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { UiText } from '../../i18n/ui.messages';
+import ItemListDark from '../item-list-dark/ItemListDark';
 import RegistrerteBarnListeHeading, {
     RegistrerteBarnListeHeadingProps,
 } from '../registrert-barn-liste-heading/RegistrerteBarnListeHeading';
@@ -18,24 +18,22 @@ const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
             <UiText id="registrerteBarnListe.ingenbarn" />
         </Alert>
     ) : (
-        <VStack gap="4">
-            <ItemList<RegistrertBarn>
-                getItemId={(barn): string => barn.aktørId}
-                getItemTitle={(barn): string => barn.etternavn}
-                labelRenderer={(barn): React.ReactNode => (
-                    <HStack gap="4">
-                        <Box>
-                            <UiText
-                                id="registrertBarnListe.barn.født"
-                                values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
-                            />
-                        </Box>
-                        <Box>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</Box>
-                    </HStack>
-                )}
-                items={registrerteBarn}
-            />
-        </VStack>
+        <ItemListDark<RegistrertBarn>
+            getItemId={(barn): string => barn.aktørId}
+            getItemTitle={(barn): string => barn.etternavn}
+            labelRenderer={(barn): React.ReactNode => (
+                <HStack gap="4">
+                    <Box>
+                        <UiText
+                            id="registrertBarnListe.barn.født"
+                            values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
+                        />
+                    </Box>
+                    <Box>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</Box>
+                </HStack>
+            )}
+            items={registrerteBarn}
+        />
     );
 };
 

@@ -1,7 +1,6 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
@@ -97,7 +96,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <>
+                        <VStack gap="8">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -125,19 +124,17 @@ const OppsummeringStep = () => {
                                         validate={getCheckedValidator()}
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
+                                    {sendSøknadError && invalidParameters && (
+                                        <InnsendingFeiletAlert invalidParameter={invalidParameters} />
+                                    )}
                                 </VStack>
-                                {sendSøknadError && invalidParameters && (
-                                    <InnsendingFeiletAlert invalidParameter={invalidParameters} />
-                                )}
                             </Form>
                             {sendSøknadError && !invalidParameters && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
+                                <ErrorSummary ref={sendSøknadErrorSummary}>
+                                    <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                </ErrorSummary>
                             )}
-                        </>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { applicationIntlMessages } from '../../app/i18n';
+import { Theme } from '@navikt/ds-react';
 
 export interface IntlProviderProps {
     locale: string;
@@ -20,9 +21,11 @@ const allMessages = {
 const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
     const messages = locale === 'nb' ? allMessages.nb : allMessages.nn;
     return (
-        <IntlProvider locale={locale} messages={messages} onError={onError}>
-            {children}
-        </IntlProvider>
+        <Theme>
+            <IntlProvider locale={locale} messages={messages} onError={onError}>
+                {children}
+            </IntlProvider>
+        </Theme>
     );
 };
 
