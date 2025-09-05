@@ -1,8 +1,7 @@
-import { Button } from '@navikt/ds-react';
+import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { fetchSøkerId } from '@navikt/sif-common-api';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
@@ -142,12 +141,12 @@ const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: (
     appSentryLogger.logError('ukjentPath', pathname);
     return (
         <SifGuidePanel mood="uncertain">
-            Oops, det oppstod en feil.
-            <FormBlock>
+            <VStack gap="6">
+                <BodyShort>Oops, det oppstod en feil.</BodyShort>
                 <Button type="button" onClick={onReset}>
                     Start på nytt
                 </Button>
-            </FormBlock>
+            </VStack>
         </SifGuidePanel>
     );
 };

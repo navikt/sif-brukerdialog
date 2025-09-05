@@ -1,7 +1,5 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import {
     FormikNumberInput,
     FormikYesOrNoQuestion,
@@ -26,6 +24,8 @@ import {
     getUkjentArbeidsforholdStepInitialValues,
     getUkjentArbeidsforholdSøknadsdataFromFormValues,
 } from './ukjentArbeidsforholdStepUtils';
+import { VStack } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum UkjentArbeidsgiverFormField {
     erAnsatt = 'erAnsatt',
@@ -111,46 +111,48 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {arbeidsgivereIkkeISak.map((arbeidsgiver) => {
-                                const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;
-                                const arbeidsgiverValues = (values.arbeidsforhold || {})[arbeidsgiver.key];
-                                return (
-                                    <FormBlock
-                                        key={arbeidsgiver.key}
-                                        data-testid={`ukjentArbeidsforhold_${arbeidsgiver.key}`}>
-                                        <ArbeidsaktivitetBlock
-                                            type={ArbeidsaktivitetType.arbeidstaker}
-                                            navn={arbeidsgiver.navn}
-                                            arbeidsgiver={arbeidsgiver}
-                                            renderAsExpansionCard={false}>
-                                            <FormikYesOrNoQuestion
-                                                name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.erAnsatt}`}
-                                                validate={getErAnsattValidator(arbeidsgiver.navn)}
-                                                legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}
-                                            />
-                                            {arbeidsgiverValues.erAnsatt === YesOrNo.NO && (
-                                                <Block margin="l" padBottom="l">
-                                                    <IkkeAnsattMelding />
-                                                </Block>
-                                            )}
-                                            {arbeidsgiverValues.erAnsatt === YesOrNo.YES && (
-                                                <FormBlock>
-                                                    <FormikNumberInput
-                                                        name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.timerPerUke}`}
-                                                        label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
-                                                        description={<InfoNormalarbeidstid />}
-                                                        min={0}
-                                                        max={100}
-                                                        width="xs"
-                                                        maxLength={5}
-                                                        validate={getTimerPerUkeValidator(arbeidsgiver.navn)}
+                            <VStack gap="8">
+                                {arbeidsgivereIkkeISak.map((arbeidsgiver) => {
+                                    const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;
+                                    const arbeidsgiverValues = (values.arbeidsforhold || {})[arbeidsgiver.key];
+                                    return (
+                                        <div
+                                            key={arbeidsgiver.key}
+                                            data-testid={`ukjentArbeidsforhold_${arbeidsgiver.key}`}>
+                                            <ArbeidsaktivitetBlock
+                                                type={ArbeidsaktivitetType.arbeidstaker}
+                                                navn={arbeidsgiver.navn}
+                                                arbeidsgiver={arbeidsgiver}
+                                                renderAsExpansionCard={false}>
+                                                <FormLayout.Questions>
+                                                    <FormikYesOrNoQuestion
+                                                        name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.erAnsatt}`}
+                                                        validate={getErAnsattValidator(arbeidsgiver.navn)}
+                                                        legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}
                                                     />
-                                                </FormBlock>
-                                            )}
-                                        </ArbeidsaktivitetBlock>
-                                    </FormBlock>
-                                );
-                            })}
+                                                    {arbeidsgiverValues.erAnsatt === YesOrNo.NO && (
+                                                        <FormLayout.QuestionRelatedMessage>
+                                                            <IkkeAnsattMelding />
+                                                        </FormLayout.QuestionRelatedMessage>
+                                                    )}
+                                                    {arbeidsgiverValues.erAnsatt === YesOrNo.YES && (
+                                                        <FormikNumberInput
+                                                            name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.timerPerUke}`}
+                                                            label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
+                                                            description={<InfoNormalarbeidstid />}
+                                                            min={0}
+                                                            max={100}
+                                                            width="xs"
+                                                            maxLength={5}
+                                                            validate={getTimerPerUkeValidator(arbeidsgiver.navn)}
+                                                        />
+                                                    )}
+                                                </FormLayout.Questions>
+                                            </ArbeidsaktivitetBlock>
+                                        </div>
+                                    );
+                                })}
+                            </VStack>
                         </Form>
                     </>
                 );

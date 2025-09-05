@@ -1,6 +1,5 @@
-import { Button } from '@navikt/ds-react';
+import { Button, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FerieuttakForm from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -38,7 +37,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
     };
 
     return (
-        <>
+        <VStack gap="4">
             <LovbestemtFerieListe
                 perioder={perioder}
                 onUndoDelete={(periode) => {
@@ -54,7 +53,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                 }}
             />
 
-            <Block>
+            <div>
                 <Button
                     data-testid="leggTilFerieKnapp"
                     onClick={() => {
@@ -67,7 +66,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                     size="small">
                     <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
-            </Block>
+            </div>
 
             {visFerieModal && (
                 <LovbestemtFerieModal
@@ -91,7 +90,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                     />
                 </LovbestemtFerieModal>
             )}
-        </>
+        </VStack>
     );
 };
 

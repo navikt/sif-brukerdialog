@@ -1,8 +1,7 @@
-import { Alert, Box, Link } from '@navikt/ds-react';
+import { Alert, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -121,18 +120,16 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
 
                 if (arbeidsaktiviteter.length === 0) {
                     return (
-                        <Box marginBlock="10 0">
-                            <Alert variant="warning">
-                                <AppText
-                                    id="arbeidstidStep.ingenArbeidsaktiviteter"
-                                    values={{
-                                        Lenke: (txt: string) => (
-                                            <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
-                                        ),
-                                    }}
-                                />
-                            </Alert>
-                        </Box>
+                        <Alert variant="warning">
+                            <AppText
+                                id="arbeidstidStep.ingenArbeidsaktiviteter"
+                                values={{
+                                    Lenke: (txt: string) => (
+                                        <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                    ),
+                                }}
+                            />
+                        </Alert>
                     );
                 }
 
@@ -145,9 +142,10 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {arbeidsaktiviteter.map((arbeidsaktivitet) => (
-                                <Block margin="l" key={arbeidsaktivitet.key}>
+                            <VStack gap="4">
+                                {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart
+                                        key={arbeidsaktivitet.key}
                                         arbeidsaktivitet={arbeidsaktivitet}
                                         lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                         aktivitetFormValues={(values.arbeidsaktivitet || {})[arbeidsaktivitet.key]}
@@ -169,8 +167,8 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                                 arbeidsaktivitet.erUkjentArbeidsforhold === true)
                                         }
                                     />
-                                </Block>
-                            ))}
+                                ))}
+                            </VStack>
                         </Form>
                     </>
                 );

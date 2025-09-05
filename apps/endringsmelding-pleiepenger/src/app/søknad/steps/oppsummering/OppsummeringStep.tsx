@@ -1,10 +1,8 @@
-import { Alert, Button, ErrorSummary, Heading } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -86,65 +84,61 @@ const OppsummeringStep = () => {
                     <AppText id="oppsummeringStep.guide" />
                 </p>
             </SifGuidePanel>
-
-            {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
-                <Block margin="xxl">
+            <VStack gap="12">
+                {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                     <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                        {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
-                            const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
-                            );
+                        <VStack gap="10">
+                            {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
+                                const arbeidsforhold = ukjenteArbeidsforhold.find(
+                                    (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
+                                );
 
-                            if (!arbeidsforhold) {
-                                return;
-                            }
-                            const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
-                            return (
-                                <Block key={arbeidsgiver.key} padBottom="l">
-                                    <Heading level="3" size="small">
-                                        {arbeidsgiver.navn}
-                                    </Heading>
-                                    <Heading level="4" size="xsmall" spacing={true}>
-                                        <AppText
-                                            id="oppsummeringStep.arbeidsgiver.erAnsatt"
-                                            values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                        />
-                                    </Heading>
-                                    <div data-testid={getTestKey('erAnsatt')}>
-                                        <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                    </div>
-                                    {arbeidsforhold.erAnsatt === false && (
-                                        <Block>
-                                            <IkkeAnsattMelding />
-                                        </Block>
-                                    )}
-                                    {arbeidsforhold.erAnsatt && (
-                                        <>
-                                            <Heading level="4" size="xsmall" spacing={true}>
+                                if (!arbeidsforhold) {
+                                    return;
+                                }
+                                const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
+                                return (
+                                    <VStack gap="4" key={arbeidsgiver.key}>
+                                        <Heading level="3" size="small">
+                                            {arbeidsgiver.navn}
+                                        </Heading>
+                                        <VStack gap="1">
+                                            <Heading level="4" size="xsmall">
                                                 <AppText
-                                                    id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                                    id="oppsummeringStep.arbeidsgiver.erAnsatt"
                                                     values={{ arbeidsgivernavn: arbeidsgiver.navn }}
                                                 />
                                             </Heading>
-
-                                            <div data-testid={getTestKey('timerPerUke')}>
-                                                <DurationText
-                                                    duration={ISODurationToDuration(
-                                                        arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                    )}
-                                                />
+                                            <div data-testid={getTestKey('erAnsatt')}>
+                                                <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                             </div>
-                                        </>
-                                    )}
-                                </Block>
-                            );
-                        })}
+                                        </VStack>
+                                        {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
+                                        {arbeidsforhold.erAnsatt && (
+                                            <VStack gap="1">
+                                                <Heading level="4" size="xsmall">
+                                                    <AppText
+                                                        id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                                        values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                                    />
+                                                </Heading>
+                                                <div data-testid={getTestKey('timerPerUke')}>
+                                                    <DurationText
+                                                        duration={ISODurationToDuration(
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
+                                                        )}
+                                                    />
+                                                </div>
+                                            </VStack>
+                                        )}
+                                    </VStack>
+                                );
+                            })}
+                        </VStack>
                     </SummarySection>
-                </Block>
-            )}
+                )}
 
-            {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                <Block margin="xxl">
+                {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
                     <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
                         {arbeidstid && arbeidstidErEndret ? (
                             <>
@@ -153,50 +147,40 @@ const OppsummeringStep = () => {
                                     arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
                                 />
                                 {!harGyldigArbeidstid && (
-                                    <Block margin="none" padBottom="l">
-                                        <Alert variant="error">
-                                            <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
-                                        </Alert>
-                                    </Block>
+                                    <Alert variant="error">
+                                        <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
+                                    </Alert>
                                 )}
                             </>
                         ) : (
-                            <Block padBottom="l">
-                                <Alert variant="info">
-                                    <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
-                                </Alert>
-                            </Block>
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
+                            </Alert>
                         )}
                     </SummarySection>
-                </Block>
-            )}
-            {valgteEndringer.lovbestemtFerie && (
-                <Block margin="xxl" padBottom="m">
+                )}
+                {valgteEndringer.lovbestemtFerie && (
                     <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (
-                            <Block padBottom="l">
-                                <Alert variant="info">
-                                    <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                                </Alert>
-                            </Block>
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                            </Alert>
                         )}
                     </SummarySection>
-                </Block>
-            )}
-            {harIngenEndringer ? (
-                <FormBlock margin="l">
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={goBack}
-                        icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
-                        <AppText id="oppsummeringStep.forrige" />
-                    </Button>
-                </FormBlock>
-            ) : (
-                <FormBlock margin="l">
+                )}
+                {harIngenEndringer ? (
+                    <div>
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={goBack}
+                            icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
+                            <AppText id="oppsummeringStep.forrige" />
+                        </Button>
+                    </div>
+                ) : (
                     <FormikWrapper
                         initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                         onSubmit={(values) => {
@@ -210,7 +194,7 @@ const OppsummeringStep = () => {
                         }}
                         renderForm={() => {
                             return (
-                                <>
+                                <VStack gap="8">
                                     <Form
                                         formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
                                         submitDisabled={
@@ -231,18 +215,16 @@ const OppsummeringStep = () => {
                                         />
                                     </Form>
                                     {sendSøknadError && (
-                                        <FormBlock>
-                                            <ErrorSummary ref={sendSøknadErrorSummary}>
-                                                <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                            </ErrorSummary>
-                                        </FormBlock>
+                                        <ErrorSummary ref={sendSøknadErrorSummary}>
+                                            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                        </ErrorSummary>
                                     )}
-                                </>
+                                </VStack>
                             );
                         }}
                     />
-                </FormBlock>
-            )}
+                )}
+            </VStack>
         </SøknadStep>
     );
 };

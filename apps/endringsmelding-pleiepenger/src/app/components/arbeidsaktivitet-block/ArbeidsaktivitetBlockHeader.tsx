@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -7,6 +7,7 @@ import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
+import TagsContainer from '../tags/tags-container/TagsContainer';
 import './arbeidsaktivitetBlockHeader.scss';
 
 interface Props {
@@ -36,38 +37,40 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                     <Heading level="2" size="medium">
                         {navn}
                     </Heading>
-                    {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
-                        <BodyLong as="div">
-                            <div>
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
-                                    values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
-                                />
-                            </div>
-                            {arbeidsgiver.ansattFom && (
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
-                                    values={{ dato: dateFormatter.full(arbeidsgiver.ansattFom) }}
-                                />
-                            )}
-                            {arbeidsgiver.ansattTom && (
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
-                                    values={{ dato: dateFormatter.full(arbeidsgiver.ansattTom) }}
-                                />
-                            )}
-                        </BodyLong>
-                    ) : undefined}
-                    {(endret || erUkjentAktivitet) && (
-                        <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
-                            {endret && <EndretTag>{endret.tekst}</EndretTag>}
-                            {erUkjentAktivitet && (
-                                <NyTag>
-                                    <AppText id="arbeidsaktivitetBlockHeader.nyttArbeidsforhold" />
-                                </NyTag>
-                            )}
-                        </Block>
-                    )}
+                    <VStack gap="2">
+                        {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
+                            <BodyLong as="div">
+                                <div>
+                                    <AppText
+                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
+                                        values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
+                                    />
+                                </div>
+                                {arbeidsgiver.ansattFom && (
+                                    <AppText
+                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
+                                        values={{ dato: dateFormatter.full(arbeidsgiver.ansattFom) }}
+                                    />
+                                )}
+                                {arbeidsgiver.ansattTom && (
+                                    <AppText
+                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
+                                        values={{ dato: dateFormatter.full(arbeidsgiver.ansattTom) }}
+                                    />
+                                )}
+                            </BodyLong>
+                        ) : undefined}
+                        {(endret || erUkjentAktivitet) && (
+                            <TagsContainer>
+                                {endret && <EndretTag>{endret.tekst}</EndretTag>}
+                                {erUkjentAktivitet && (
+                                    <NyTag>
+                                        <AppText id="arbeidsaktivitetBlockHeader.nyttArbeidsforhold" />
+                                    </NyTag>
+                                )}
+                            </TagsContainer>
+                        )}
+                    </VStack>
                 </div>
             </div>
         </Block>

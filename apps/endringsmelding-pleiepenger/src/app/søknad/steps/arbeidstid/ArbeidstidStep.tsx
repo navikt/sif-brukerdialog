@@ -1,5 +1,4 @@
 import { Alert, Heading, List } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../components/arbeidsaktiviteter-med-ukjent-arbeidsgiver/ArbeidsaktiviteterMedUkjentArbeidsgiver';
 import { useSøknadContext } from '../../../hooks';
@@ -43,11 +42,9 @@ const ArbeidstidStep = () => {
             </SifGuidePanel>
 
             {harFjernetFerie && (
-                <Block margin="xl">
-                    <Alert variant="warning">
-                        <AppText id="arbeidstidStep.fjernetFerie.melding" />
-                    </Alert>
-                </Block>
+                <Alert variant="warning">
+                    <AppText id="arbeidstidStep.fjernetFerie.melding" />
+                </Alert>
             )}
 
             {arbeidsaktivitetMedUkjentArbeidsgiver.length === 0 ? null : (

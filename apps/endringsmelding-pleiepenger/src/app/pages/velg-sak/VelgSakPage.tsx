@@ -1,8 +1,7 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
@@ -52,16 +51,17 @@ const VelgSakPage = () => {
 
     return (
         <Page title="Velkommen">
-            <SifGuidePanel>
-                <Heading level="1" size="large" spacing={true}>
-                    Hei {søker.fornavn}
-                </Heading>
-                <p>
-                    Vi ser at du har pleiepengesaker for flere barn. Du kan kun endre én sak om gangen, så du må velge
-                    hvilken sak du ønsker å sende inn endring på.
-                </p>
-            </SifGuidePanel>
-            <FormBlock>
+            <VStack gap="8">
+                <SifGuidePanel>
+                    <Heading level="1" size="large" spacing={true}>
+                        Hei {søker.fornavn}
+                    </Heading>
+                    <p>
+                        Vi ser at du har pleiepengesaker for flere barn. Du kan kun endre én sak om gangen, så du må
+                        velge hvilken sak du ønsker å sende inn endring på.
+                    </p>
+                </SifGuidePanel>
+
                 <FormikWrapper
                     onSubmit={(values) => velgSak(values)}
                     initialValues={{}}
@@ -101,7 +101,7 @@ const VelgSakPage = () => {
                         );
                     }}
                 />
-            </FormBlock>
+            </VStack>
         </Page>
     );
 };
