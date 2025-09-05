@@ -13,14 +13,13 @@ import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
-import { DokumentType } from '../../types/DokumentType';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
 import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
+import { inkluderDokumentTypeSteg, StepID } from '../soknadStepsConfig';
 import './oppsummeringStep.css';
 
 interface Props {
@@ -47,6 +46,8 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
     useEffectOnce(() => {
         resetSendSøknadStatus();
     });
+
+    const brukerHarValgtDokumenttype = inkluderDokumentTypeSteg(søknadstype);
 
     return (
         <SoknadFormStep
@@ -98,13 +99,15 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                                     </FormSummary.Label>
                                     <FormSummary.Value>{apiValues.ytelseTittel}</FormSummary.Value>
                                 </FormSummary.Answer>
-                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                {brukerHarValgtDokumenttype && (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
                                             <AppText id="steg.oppsummering.dokumentType.header" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <AppText id="steg.oppsummering.dokumentType.legeerklæring" />
+                                            <AppText
+                                                id={`steg.oppsummering.dokumentType.${apiValues.ettersendelsesType}`}
+                                            />
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}

@@ -6,7 +6,6 @@ import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
-import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
 
 enum PageFormField {
@@ -48,13 +47,11 @@ const IntroPage = () => {
                             value: Søknadstype.omsorgspenger,
                             label: text('page.intro.type.omsorgspenger'),
                         },
-                    ];
-                    if (isFeatureEnabled(Feature.OPPLARINGSPENGER)) {
-                        radios.push({
+                        {
                             value: Søknadstype.opplaringspenger,
                             label: text('page.intro.type.opplaringspenger'),
-                        });
-                    }
+                        },
+                    ];
                     return (
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}

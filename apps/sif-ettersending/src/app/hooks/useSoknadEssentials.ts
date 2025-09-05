@@ -55,7 +55,7 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
 
     const fetch = async () => {
         try {
-            if (søknadstype === Søknadstype.pleiepengerSyktBarn) {
+            if (søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.opplaringspenger) {
                 const [søker, barn, mellomlagring] = await Promise.all([
                     fetchSøker(),
                     fetchBarn(),

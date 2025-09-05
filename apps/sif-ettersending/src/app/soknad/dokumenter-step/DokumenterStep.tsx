@@ -8,6 +8,7 @@ import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
+import { getFeaturesHashString } from '../../utils/featureToggleUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
@@ -31,6 +32,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
             StepID.DOKUMENTER,
             {
                 søker,
+                features: getFeaturesHashString(),
             },
             søknadstype,
         );
