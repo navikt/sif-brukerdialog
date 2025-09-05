@@ -19,14 +19,16 @@ const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, o
                     </Alert>
                 )}
             </div>
-            <Button
-                icon={<Edit role="presentation" aria-hidden={true} />}
-                variant="primary"
-                type="button"
-                data-testid="endre-flere-uker-button"
-                onClick={onEndreUker}>
-                <AppText id="endreUkerFooter.endreButton.label" />
-            </Button>
+            <div>
+                <Button
+                    icon={<Edit role="presentation" aria-hidden={true} />}
+                    variant="primary"
+                    type="button"
+                    data-testid="endre-flere-uker-button"
+                    onClick={onEndreUker}>
+                    <AppText id="endreUkerFooter.endreButton.label" />
+                </Button>
+            </div>
         </VStack>
     );
 };

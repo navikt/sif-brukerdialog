@@ -1,4 +1,4 @@
-import { Button, VStack } from '@navikt/ds-react';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
@@ -7,13 +7,13 @@ import { getDateRangeText } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
+import { AppText, useAppIntl } from '../../i18n';
 import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
 import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
+import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
 import './arbeidstidUker.scss';
-import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];
@@ -54,6 +54,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
+    console.log(renderAsList);
 
     const korteUker = visibleItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
     const ukerMedFerie = visibleItems
@@ -109,7 +110,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const renderLastInnFlereUker = () => {
         if (paginering && hasMoreItems) {
             return (
-                <div style={{ gap: '.5rem', display: 'flex' }}>
+                <HStack gap="2">
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
@@ -124,7 +125,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                         onClick={showAllItems}>
                         <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
                     </Button>
-                </div>
+                </HStack>
             );
         }
         return null;

@@ -21,9 +21,7 @@ const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open 
                 heading: title,
                 closeButton: true,
             }}>
-            <Modal.Body>
-                <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>{children}</div>
-            </Modal.Body>
+            <Modal.Body>{children}</Modal.Body>
         </Modal>
     ) : null;
 };

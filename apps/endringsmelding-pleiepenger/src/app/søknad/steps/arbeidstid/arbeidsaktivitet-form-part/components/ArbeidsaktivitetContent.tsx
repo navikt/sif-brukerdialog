@@ -1,5 +1,6 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
@@ -8,9 +9,9 @@ import {
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
     ArbeidsaktivitetType,
-    ArbeiderIPeriodenSvar,
     ArbeidstidEndringMap,
     Arbeidsuke,
     LovbestemtFerieSøknadsdata,
@@ -21,6 +22,7 @@ import DateRangeAccordion from '../../../../../components/date-range-accordion/D
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
+import { AppText } from '../../../../../i18n';
 import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
@@ -31,11 +33,9 @@ import {
     getUkjentArbeidsaktivitetArbeidstidValidator,
 } from '../../arbeidstidStepUtils';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
-import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
+import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import './arbeidsaktivitetContent.scss';
-import { AppText } from '../../../../../i18n';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -151,30 +151,32 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                             values={{ antallPerioder: perioder.length }}
                                         />
                                     </Heading>
-                                    <ArbeidsaktivitetUtenforPeriodeInfo
-                                        arbeidsaktivitet={arbeidsaktivitet}
-                                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
-                                    />
-                                    <FormikInputGroup
-                                        legend={arbeidsaktivitet.navn}
-                                        hideLegend={true}
-                                        errorPropagation={false}
-                                        name={`arbeidsgiver_${arbeidsaktivitet.key}`}
-                                        validate={getUkjentArbeidsaktivitetArbeidstidValidator(
-                                            arbeidsaktivitet,
-                                            endringer,
-                                            arbeiderIPerioden,
-                                        )}>
-                                        {perioder.length === 1 ? (
-                                            renderArbeidstidUker(perioder[0])
-                                        ) : (
-                                            <DateRangeAccordion
-                                                dateRanges={perioder}
-                                                renderContent={(periode) => renderArbeidstidUker(periode)}
-                                                renderHeader={(periode) => renderAccordionHeader(periode)}
-                                            />
-                                        )}
-                                    </FormikInputGroup>
+                                    <VStack gap="6">
+                                        <ArbeidsaktivitetUtenforPeriodeInfo
+                                            arbeidsaktivitet={arbeidsaktivitet}
+                                            tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                        />
+                                        <FormikInputGroup
+                                            legend={arbeidsaktivitet.navn}
+                                            hideLegend={true}
+                                            errorPropagation={false}
+                                            name={`arbeidsgiver_${arbeidsaktivitet.key}`}
+                                            validate={getUkjentArbeidsaktivitetArbeidstidValidator(
+                                                arbeidsaktivitet,
+                                                endringer,
+                                                arbeiderIPerioden,
+                                            )}>
+                                            {perioder.length === 1 ? (
+                                                renderArbeidstidUker(perioder[0])
+                                            ) : (
+                                                <DateRangeAccordion
+                                                    dateRanges={perioder}
+                                                    renderContent={(periode) => renderArbeidstidUker(periode)}
+                                                    renderHeader={(periode) => renderAccordionHeader(periode)}
+                                                />
+                                            )}
+                                        </FormikInputGroup>
+                                    </VStack>
                                 </>
                             ) : (
                                 <>

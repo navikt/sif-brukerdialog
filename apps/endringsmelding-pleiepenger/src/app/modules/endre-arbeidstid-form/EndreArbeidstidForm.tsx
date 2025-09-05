@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useSøknadContext } from '@hooks';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -142,7 +142,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                 });
 
                 return (
-                    <VStack gap="6" className="endreArbeidstidForm">
+                    <VStack gap="8" className="endreArbeidstidForm">
                         <div>
                             <Heading size="large" level="2" spacing={true}>
                                 {arbeidsuker.length === 1
@@ -269,14 +269,12 @@ const getUkerOgÅrBeskrivelse = (
             ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
-            <BodyShort as="div" className="capsFirstChar">
-                {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
-                {dagerMedFerie.length > 0 && (
-                    <Box marginBlock="0 5">
-                        <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
-                    </Box>
-                )}
-            </BodyShort>
+            <VStack gap="2">
+                <BodyShort as="div" className="capsFirstChar">
+                    {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
+                </BodyShort>
+                {dagerMedFerie.length > 0 && <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />}
+            </VStack>
         );
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);

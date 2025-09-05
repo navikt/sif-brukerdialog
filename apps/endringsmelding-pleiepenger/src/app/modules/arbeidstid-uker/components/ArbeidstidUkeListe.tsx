@@ -50,7 +50,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     <Heading level="3" size="xsmall">
                                         <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                     </Heading>
-
                                     <BodyShort as="div">
                                         {dateFormatter.compact(uke.periode.from)} - {` `}
                                         {dateFormatter.compact(uke.periode.to)}
@@ -60,12 +59,11 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                             dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                         />
                                     </BodyShort>
-                                    <div style={{ padding: '.5rem 0' }}>
-                                        <ArbeidstidUkeInfoListe
-                                            uke={uke}
-                                            visEndringSomOpprinnelig={visEndringSomOpprinnelig}
-                                        />
-                                    </div>
+
+                                    <ArbeidstidUkeInfoListe
+                                        uke={uke}
+                                        visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                                    />
                                 </VStack>
                             </div>
                             {singleSelectEnabled && (
