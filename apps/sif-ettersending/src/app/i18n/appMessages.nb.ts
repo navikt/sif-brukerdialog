@@ -87,8 +87,8 @@ export const appMessagesNB = {
     'step.dokumentType.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
 
-    'step.barn.stepTitle': 'Hvem gjelder ettersendelsen?',
-    'step.barn.stepIndicatorLabel': 'Hvem gjelder ettersendelsen?',
+    'step.barn.stepTitle': 'Hvilket barn gjelder ettersendelsen?',
+    'step.barn.stepIndicatorLabel': 'Hvilket barn gjelder ettersendelsen?',
 
     'formPart.registrertBarn.spm': 'Velg hvilket barn ettersendelsen gjelder',
     'formPart.registrertBarn.spm.description':
