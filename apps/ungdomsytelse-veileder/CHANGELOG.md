@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.7.2
+
+### Patch Changes
+
+- Endre tekst fra 1-5 -> 1-7
+
 ## 0.7.1
 
 ### Patch Changes
