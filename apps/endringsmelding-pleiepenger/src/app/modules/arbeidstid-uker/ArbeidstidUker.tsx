@@ -1,8 +1,7 @@
-import { Button } from '@navikt/ds-react';
+import { Button, VStack } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
@@ -110,7 +109,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const renderLastInnFlereUker = () => {
         if (paginering && hasMoreItems) {
             return (
-                <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
+                <div style={{ gap: '.5rem', display: 'flex' }}>
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
@@ -125,7 +124,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                         onClick={showAllItems}>
                         <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
                     </Button>
-                </Block>
+                </div>
             );
         }
         return null;
@@ -148,7 +147,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
     if (renderAsList) {
         return (
-            <div className="arbeidstidUkeListeWrapper">
+            <VStack gap="4" className="arbeidstidUkeListeWrapper">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
                     uker={visibleItems}
@@ -157,12 +156,12 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                     renderEditButton={renderEditButton}
                 />
                 {renderUkerFooter()}
-            </div>
+            </VStack>
         );
     }
 
     return (
-        <>
+        <VStack gap="4">
             {renderEndreUkerHeader()}
 
             <ArbeidstidUkeTabell
@@ -175,7 +174,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                 renderCompactTable={renderCompactTable}
             />
             {renderUkerFooter()}
-        </>
+        </VStack>
     );
 };
 

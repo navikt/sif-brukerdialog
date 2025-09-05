@@ -1,6 +1,5 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
@@ -118,83 +117,79 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const visPerioder = spørOmOmsorgsstønad === false || (spørOmOmsorgsstønad && mottarOmsorgsstønad !== undefined);
 
     return (
-        <>
+        <VStack gap="8">
             {erNyArbeidsgiver && (
-                <Block>
-                    <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
-                </Block>
+                <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
-                <Block margin={erNyArbeidsgiver ? 'xl' : 'none'}>
-                    <VStack gap="8">
-                        {spørOmOmsorgsstønad && (
-                            <VStack gap="2">
-                                <FormikYesOrNoQuestion
-                                    name={`${parentFieldName}.mottarOmsorgsstønad`}
-                                    legend="Mottar du omsorgsstønad i perioden du skal endre?"
-                                />
-                                {mottarOmsorgsstønad === YesOrNo.YES && (
-                                    <Alert variant="info">
-                                        <BodyShort spacing={true}>
-                                            <AppText id="arbeidsaktivitetContent.omsorgsstønad.1" />
-                                        </BodyShort>
-                                        <BodyShort>
-                                            <AppText id="arbeidsaktivitetContent.omsorgsstønad.2" />
-                                        </BodyShort>
-                                    </Alert>
-                                )}
-                            </VStack>
-                        )}
-                        {visPerioder && (
-                            <div>
-                                {perioder.length > 0 ? (
-                                    <>
-                                        <Heading level="3" size="small" spacing={true}>
-                                            <AppText
-                                                id="arbeidsaktivitetContent.heading.perioder"
-                                                values={{ antallPerioder: perioder.length }}
+                <>
+                    {spørOmOmsorgsstønad && (
+                        <VStack gap="2">
+                            <FormikYesOrNoQuestion
+                                name={`${parentFieldName}.mottarOmsorgsstønad`}
+                                legend="Mottar du omsorgsstønad i perioden du skal endre?"
+                            />
+                            {mottarOmsorgsstønad === YesOrNo.YES && (
+                                <Alert variant="info">
+                                    <BodyShort spacing={true}>
+                                        <AppText id="arbeidsaktivitetContent.omsorgsstønad.1" />
+                                    </BodyShort>
+                                    <BodyShort>
+                                        <AppText id="arbeidsaktivitetContent.omsorgsstønad.2" />
+                                    </BodyShort>
+                                </Alert>
+                            )}
+                        </VStack>
+                    )}
+                    {visPerioder && (
+                        <div>
+                            {perioder.length > 0 ? (
+                                <>
+                                    <Heading level="3" size="small" spacing={true}>
+                                        <AppText
+                                            id="arbeidsaktivitetContent.heading.perioder"
+                                            values={{ antallPerioder: perioder.length }}
+                                        />
+                                    </Heading>
+                                    <ArbeidsaktivitetUtenforPeriodeInfo
+                                        arbeidsaktivitet={arbeidsaktivitet}
+                                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                    />
+                                    <FormikInputGroup
+                                        legend={arbeidsaktivitet.navn}
+                                        hideLegend={true}
+                                        errorPropagation={false}
+                                        name={`arbeidsgiver_${arbeidsaktivitet.key}`}
+                                        validate={getUkjentArbeidsaktivitetArbeidstidValidator(
+                                            arbeidsaktivitet,
+                                            endringer,
+                                            arbeiderIPerioden,
+                                        )}>
+                                        {perioder.length === 1 ? (
+                                            renderArbeidstidUker(perioder[0])
+                                        ) : (
+                                            <DateRangeAccordion
+                                                dateRanges={perioder}
+                                                renderContent={(periode) => renderArbeidstidUker(periode)}
+                                                renderHeader={(periode) => renderAccordionHeader(periode)}
                                             />
-                                        </Heading>
-                                        <ArbeidsaktivitetUtenforPeriodeInfo
-                                            arbeidsaktivitet={arbeidsaktivitet}
-                                            tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
-                                        />
-                                        <FormikInputGroup
-                                            legend={arbeidsaktivitet.navn}
-                                            hideLegend={true}
-                                            errorPropagation={false}
-                                            name={`arbeidsgiver_${arbeidsaktivitet.key}`}
-                                            validate={getUkjentArbeidsaktivitetArbeidstidValidator(
-                                                arbeidsaktivitet,
-                                                endringer,
-                                                arbeiderIPerioden,
-                                            )}>
-                                            {perioder.length === 1 ? (
-                                                renderArbeidstidUker(perioder[0])
-                                            ) : (
-                                                <DateRangeAccordion
-                                                    dateRanges={perioder}
-                                                    renderContent={(periode) => renderArbeidstidUker(periode)}
-                                                    renderHeader={(periode) => renderAccordionHeader(periode)}
-                                                />
-                                            )}
-                                        </FormikInputGroup>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Heading level="3" size="small" spacing={true}>
-                                            <AppText id="arbeidsaktivitetContent.heading.ingenPerioder" />
-                                        </Heading>
-                                        <ArbeidsaktivitetUtenforPeriodeInfo
-                                            arbeidsaktivitet={arbeidsaktivitet}
-                                            tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
-                                        />
-                                    </>
-                                )}
-                            </div>
-                        )}
-                    </VStack>
-                </Block>
+                                        )}
+                                    </FormikInputGroup>
+                                </>
+                            ) : (
+                                <>
+                                    <Heading level="3" size="small" spacing={true}>
+                                        <AppText id="arbeidsaktivitetContent.heading.ingenPerioder" />
+                                    </Heading>
+                                    <ArbeidsaktivitetUtenforPeriodeInfo
+                                        arbeidsaktivitet={arbeidsaktivitet}
+                                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                    />
+                                </>
+                            )}
+                        </div>
+                    )}
+                </>
             )}
             <EndreArbeidstidModal
                 title={arbeidsaktivitet.navn}
@@ -228,7 +223,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     }}
                 />
             </EndreArbeidstidModal>
-        </>
+        </VStack>
     );
 };
 

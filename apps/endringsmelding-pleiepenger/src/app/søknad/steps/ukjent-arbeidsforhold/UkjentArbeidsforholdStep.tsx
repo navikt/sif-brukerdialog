@@ -1,6 +1,5 @@
 import { useSøknadContext } from '@hooks';
 import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useStepConfig } from '../../../hooks/useStepConfig';
@@ -29,15 +28,13 @@ const UkjentArbeidsforholdStep = () => {
                 </p>
             </SifGuidePanel>
 
-            <Block margin="xl">
-                <UkjentArbeidsforholdForm
-                    stepId={stepId}
-                    goBack={goBack}
-                    arbeidsgivere={arbeidsgivere}
-                    arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
-                    ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
-                />
-            </Block>
+            <UkjentArbeidsforholdForm
+                stepId={stepId}
+                goBack={goBack}
+                arbeidsgivere={arbeidsgivere}
+                arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
+                ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
+            />
         </SøknadStep>
     );
 };
