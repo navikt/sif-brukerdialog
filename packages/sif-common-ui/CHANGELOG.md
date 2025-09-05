@@ -4,10 +4,10 @@
 
 ### Patch Changes
 
-- Tilrettelegge for darkside i noen fellespakker + oppdatere til darkside i oms-ikke-tilsyn
 - Updated dependencies
     - @navikt/sif-common-formik-ds@2.4.35
     - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-utils@3.49.23
 
 ## 0.10.16
 

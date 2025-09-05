@@ -16,7 +16,7 @@
         "dayjs": "1.11.18",
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.14.0",
-        "tailwindcss": "4.1.12"
+        "tailwindcss": "4.1.13"
     },
     "devDependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -33,7 +33,7 @@
         "@storybook/builder-vite": "9.1.4",
         "@storybook/react-vite": "9.1.4",
         "@storybook/testing-library": "0.2.2",
-        "@types/node": "24.3.0",
+        "@types/node": "24.3.1",
         "@types/react": "19.1.12",
         "@types/react-dom": "19.1.9",
         "@vitejs/plugin-react": "5.0.2",

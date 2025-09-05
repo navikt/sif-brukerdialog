@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
-- Tilrettelegge for darkside i noen fellespakker + oppdatere til darkside i oms-ikke-tilsyn
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.23
     - @navikt/sif-common-api@0.4.39
 
 ## 10.2.40

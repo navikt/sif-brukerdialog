@@ -6,6 +6,8 @@
 
 - Updated dependencies
     - @navikt/sif-common-formik-ds@2.4.35
+    - @navikt/sif-common-sentry@0.28.28
+    - @navikt/sif-common-utils@3.49.23
 
 ## 0.4.38
 
