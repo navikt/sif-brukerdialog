@@ -53,7 +53,6 @@ const nb = {
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos  {navn} i perioden du søker for?',
     'arbeidsforhold.harFrilansoppdrag.spm':
         'Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?',
-    'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
     'arbeidsforhold.avsluttet.info':
         'Sluttdato var innenfor perioden du søker om opplæringspenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}',
 
@@ -159,7 +158,6 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er tilsett hos {navn} i perioden du søkjer for?',
     'arbeidsforhold.harFrilansoppdrag.spm':
         'Stemmer det at du har eit frilansoppdrag hos {navn} i perioden du søkjer for?',
-    'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Slutta du hos {navn} før {fraDato}?',
     'arbeidsforhold.avsluttet.info':
         'Sluttdato var innanfor perioden du søkjer opplæringspengar for. Vi treng difor å vite korleis normalarbeidstida di var hos {navn}.',
 

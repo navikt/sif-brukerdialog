@@ -163,5 +163,5 @@ export const mellomlagringMock = {
     søknadsdata,
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
-    versjon: '0.2.2',
+    versjon: '0.2.3',
 };

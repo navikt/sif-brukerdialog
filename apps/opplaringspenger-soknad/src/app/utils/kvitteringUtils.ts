@@ -10,9 +10,7 @@ export const getKvitteringInfoFromApiData = (
     { arbeidsgivere, fraOgMed, tilOgMed }: KvitteringApiData,
     søker: Søker,
 ): KvitteringInfo | undefined => {
-    const arbeidsgivereISøknadsperiode = (arbeidsgivere || [])?.filter(
-        (a) => a.arbeidsforhold !== undefined && a.sluttetFørSøknadsperiode !== true,
-    );
+    const arbeidsgivereISøknadsperiode = (arbeidsgivere || [])?.filter((a) => a.arbeidsforhold !== undefined);
     if (arbeidsgivereISøknadsperiode.length > 0) {
         const { fornavn, mellomnavn, etternavn } = søker;
         return {

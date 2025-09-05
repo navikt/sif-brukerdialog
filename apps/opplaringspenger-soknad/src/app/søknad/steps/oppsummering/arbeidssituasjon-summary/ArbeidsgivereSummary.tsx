@@ -1,7 +1,6 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
 import { ArbeidsgiverApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
@@ -10,7 +9,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
+const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere }) => {
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
             <FormSummary.Answer>
@@ -40,7 +39,6 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                             </Heading>
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            {' '}
                             <List>
                                 <List.Item>
                                     <AppText
@@ -64,21 +62,6 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                             />
                                         </List.Item>
                                     </>
-                                )}
-                                {erAnsatt === false && (
-                                    <List.Item>
-                                        <AppText
-                                            id={
-                                                arbeidsgiver.sluttetFørSøknadsperiode
-                                                    ? 'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode'
-                                                    : 'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode'
-                                            }
-                                            values={{
-                                                periodeFra: prettifyDateExtended(søknadsperiode.from),
-                                                periodeTil: prettifyDateExtended(søknadsperiode.to),
-                                            }}
-                                        />
-                                    </List.Item>
                                 )}
                             </List>
                         </FormSummary.Value>
