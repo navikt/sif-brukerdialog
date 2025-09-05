@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.39.0
+
+### Minor Changes
+
+- Oppdatere layout og noen komponenter til aksel darkside
+
 ## 2.38.21
 
 ### Patch Changes
