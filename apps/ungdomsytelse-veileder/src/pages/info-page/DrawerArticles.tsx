@@ -156,7 +156,7 @@ const DrawerArticles = () => {
                                     Hver måned mottar deltakeren en oppgave om å rapportere inntekt for forrige måned
                                     (gjelder ikke måneden deltakeren starter i programmet). For alle andre måneder skal
                                     deltakerne når måneden er slutt rapportere arbeidsinntekt fra og med den 1. og til
-                                    og med den 5. i påfølgende måned.
+                                    og med den 7. i påfølgende måned.
                                 </BodyLong>
                                 <BodyLong>
                                     Hvis deltakeren ikke rapporterer noe, vil det bli registrert som at hen ikke har
