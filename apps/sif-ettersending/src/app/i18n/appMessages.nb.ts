@@ -18,14 +18,14 @@ export const appMessagesNB = {
         'Ettersendelse av dokumentasjon til søknad om pleiepenger i livets sluttfase',
     'application.title.omsorgspenger': 'Ettersendelse av dokumentasjon for omsorgspenger',
     'application.title.ekstraomsorgsdager':
-        'Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+        'Ettersendelse av dokumentasjon til søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     'application.title.utbetaling':
-        'Ettersendelse av dokumentasjon  - Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
+        'Ettersendelse av dokumentasjon til søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
     'application.title.utbetalingarbeidstaker':
-        'Ettersendelse av dokumentasjon - Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
+        'Ettersendelse av dokumentasjon til søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
     'application.title.regnetsomalene':
-        'Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
-    'application.title.opplaringspenger': 'Søknad om opplæringspengar',
+        'Ettersendelse av dokumentasjon til søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+    'application.title.opplaringspenger': 'Ettersending av dokumentasjon til søknad om opplæringspenger',
 
     'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
     'modal.personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
@@ -87,8 +87,8 @@ export const appMessagesNB = {
     'step.dokumentType.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
 
-    'step.barn.stepTitle': 'Hvilket barn gjelder ettersendelsen?',
-    'step.barn.stepIndicatorLabel': 'Hvilket barn gjelder ettersendelsen?',
+    'step.barn.stepTitle': 'Hvem gjelder ettersendelsen?',
+    'step.barn.stepIndicatorLabel': 'Hvem gjelder ettersendelsen?',
 
     'formPart.registrertBarn.spm': 'Velg hvilket barn ettersendelsen gjelder',
     'formPart.registrertBarn.spm.description':

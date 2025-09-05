@@ -20,14 +20,14 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
         'Ettersending av dokumentasjon til søknad om pleiepengar i livets sluttfase',
     'application.title.omsorgspenger': 'Ettersending av dokumentasjon for omsorgspengar',
     'application.title.ekstraomsorgsdager':
-        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
+        'Ettersending av dokumentasjon til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'application.title.utbetaling':
-        'Ettersending av dokumentasjon  - Søknad om utbetaling av omsorgspengar for sjølvstendig næringsdrivande og frilansarar',
+        'Ettersending av dokumentasjon til søknad om utbetaling av omsorgspengar for sjølvstendig næringsdrivande og frilansarar',
     'application.title.utbetalingarbeidstaker':
-        'Ettersending av dokumentasjon - Søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje betaler ut',
+        'Ettersending av dokumentasjon til søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje betaler ut',
     'application.title.regnetsomalene':
-        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
-    'application.title.opplaringspenger': 'Søknad om opplæringspengar',
+        'Ettersending av dokumentasjon til søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
+    'application.title.opplaringspenger': 'Ettersending av dokumentasjon til søknad om opplæringspengar',
 
     'modal.personopplysninger.dialogtittel': 'Slik handsamar Nav personopplysningane dine',
     'modal.personopplysninger.1': 'Slik handsamar Nav personopplysningane dine',
