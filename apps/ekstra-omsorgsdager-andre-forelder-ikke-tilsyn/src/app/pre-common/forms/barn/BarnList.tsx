@@ -1,6 +1,5 @@
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import ItemListDarkside from '@navikt/sif-common-ui/src/components/item-list-darkside/ItemListDarkside';
+import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
 import { useAppIntl } from '../../../i18n';
 import { AndreBarn } from './types';
 import './barnList.scss';

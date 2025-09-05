@@ -2,7 +2,7 @@ import { BodyLong, ErrorSummary } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
+import { ActionLink } from '@navikt/sif-common-ui';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../i18n';
