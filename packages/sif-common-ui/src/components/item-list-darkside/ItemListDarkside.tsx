@@ -1,10 +1,10 @@
-import { Link } from '@navikt/ds-react';
 import React from 'react';
 import { guid } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import DeleteButton from '../../../atoms/delete-button/DeleteButton';
-import bemUtils from '../../../utils/bemUtils';
-import './itemList.scss';
+import ActionLink from '../../atoms/action-link/ActionLink';
+import DeleteButton from '../../atoms/delete-button/DeleteButton';
+import bemUtils from '../../utils/bemUtils';
+import './itemListDarkside.scss';
 
 interface Props<T> {
     items: T[];
@@ -18,11 +18,11 @@ interface Props<T> {
     deleteRenderer?: (item: T) => React.ReactNode;
 }
 
-const bem = bemUtils('itemList');
+const bem = bemUtils('itemListDarkside');
 
 const bemItem = bem.child('item');
 
-function ItemList<T>({
+function ItemListDarkside<T>({
     items,
     onDelete,
     onEdit,
@@ -48,15 +48,7 @@ function ItemList<T>({
                             {labelRenderer ? (
                                 labelRenderer(item)
                             ) : onEdit ? (
-                                <Link
-                                    href="#"
-                                    onClick={(evt) => {
-                                        evt.stopPropagation();
-                                        evt.preventDefault();
-                                        onEdit(item);
-                                    }}>
-                                    {itemTitle}
-                                </Link>
+                                <ActionLink onClick={() => onEdit(item)}>{itemTitle}</ActionLink>
                             ) : (
                                 itemTitle
                             )}
@@ -77,4 +69,4 @@ function ItemList<T>({
         </ol>
     );
 }
-export default ItemList;
+export default ItemListDarkside;

@@ -1,7 +1,7 @@
-import { Panel } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 import * as React from 'react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import '@navikt/ds-css';
+import StoryIntlProvider from './StoryIntlProvider';
 
 interface Props {
     parameters?: {
@@ -14,25 +14,27 @@ interface Props {
 
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
     const { children, parameters } = props;
-    const { formik, maxWidth = '800px', includeButtons = true } = parameters || {};
+    const { formik, maxWidth = '800px', includeButtons = false } = parameters || {};
     const initialValues = formik?.initialValues || {};
 
     return (
-        <TypedFormikWrapper
-            initialValues={initialValues}
-            onSubmit={(values) => {
-                // eslint-disable-next-line no-console
-                console.log('StoryFormikProvider', values);
-            }}
-            renderForm={() => {
-                return (
-                    <TypedFormikForm includeButtons={includeButtons}>
-                        <Panel style={{ maxWidth: maxWidth }} border={true}>
-                            {children}
-                        </Panel>
-                    </TypedFormikForm>
-                );
-            }}
-        />
+        <StoryIntlProvider locale="nb">
+            <TypedFormikWrapper
+                initialValues={initialValues}
+                onSubmit={(values) => {
+                    // eslint-disable-next-line no-console
+                    console.log('StoryFormikProvider', values);
+                }}
+                renderForm={() => {
+                    return (
+                        <TypedFormikForm includeButtons={includeButtons}>
+                            <Box.New style={{ maxWidth: maxWidth }} borderColor="neutral" borderWidth="1">
+                                {children}
+                            </Box.New>
+                        </TypedFormikForm>
+                    );
+                }}
+            />
+        </StoryIntlProvider>
     );
 };
