@@ -45,7 +45,7 @@
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.8.0",
-        "@tanstack/react-query": "5.85.9",
+        "@tanstack/react-query": "5.86.0",
         "axios": "1.11.0",
         "clsx": "2.1.1",
         "csp-header": "6.1.0",

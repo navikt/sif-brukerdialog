@@ -6565,7 +6565,7 @@ __metadata:
     "@navikt/k9-sak-innsyn-api": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sif/eslint-config": "workspace:*"
-    "@tanstack/react-query": "npm:5.85.9"
+    "@tanstack/react-query": "npm:5.86.0"
     "@types/react": "npm:19.1.12"
     axios: "npm:1.11.0"
     dayjs: "npm:1.11.18"
@@ -7018,7 +7018,7 @@ __metadata:
     "@storybook/react-vite": "npm:9.1.4"
     "@tailwindcss/postcss": "npm:4.1.12"
     "@tailwindcss/vite": "npm:4.1.12"
-    "@tanstack/react-query": "npm:5.85.9"
+    "@tanstack/react-query": "npm:5.86.0"
     "@types/node": "npm:24.3.0"
     "@types/react": "npm:19.1.12"
     "@types/react-dom": "npm:19.1.9"
@@ -10285,21 +10285,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.85.9":
-  version: 5.85.9
-  resolution: "@tanstack/query-core@npm:5.85.9"
-  checksum: 10/082bdb4be2c060728e3209e29801b797a24044f0cbd4d04203b322333eaf9b5af072beb6328af626b519a56410f478b49c2c65668a0c82c48569ce07bbf55d7f
+"@tanstack/query-core@npm:5.86.0":
+  version: 5.86.0
+  resolution: "@tanstack/query-core@npm:5.86.0"
+  checksum: 10/66c6811dc39e56d59d8c3a996743b067ca45add7eab193f788e6041713b730bf7859b693f31cbda0eda92fef4dd3ff969f1ac0bbd553f554c497da322ff45871
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.85.9":
-  version: 5.85.9
-  resolution: "@tanstack/react-query@npm:5.85.9"
+"@tanstack/react-query@npm:5.86.0":
+  version: 5.86.0
+  resolution: "@tanstack/react-query@npm:5.86.0"
   dependencies:
-    "@tanstack/query-core": "npm:5.85.9"
+    "@tanstack/query-core": "npm:5.86.0"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/0287a07daf67cbaafa8db42f0fcf56aa295c1231dc685b854194effab87d894a732f5cfd79199b83f8a179d8df46320f2448bbcd03009744eba1e85d86521c9d
+  checksum: 10/1d78a52c917f14bb5add0e644218a3399b636c9935356d6d68148668371f4a098489bba0ce35a854b0ff0a3935ee2c493ad020a178afc28fc1f08e78e8a26443
   languageName: node
   linkType: hard
 
