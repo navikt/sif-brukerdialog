@@ -137,29 +137,27 @@ const AnnenForelderenSituasjonStep = () => {
                                             }}
                                         />
 
+                                        {annenForelderSituasjon === AnnenForeldrenSituasjon.annet && (
+                                            <FormLayout.QuestionBleedTop>
+                                                <Alert variant="info">
+                                                    <AppText id="step.annenForeldrensSituasjon.grunn.annet.info" />
+                                                </Alert>
+                                            </FormLayout.QuestionBleedTop>
+                                        )}
+
                                         {(annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
                                             annenForelderSituasjon === AnnenForeldrenSituasjon.annet) && (
-                                            <>
-                                                {annenForelderSituasjon === AnnenForeldrenSituasjon.annet && (
-                                                    <FormLayout.QuestionBleedTop>
-                                                        <Alert variant="info">
-                                                            <AppText id="step.annenForeldrensSituasjon.grunn.annet.info" />
-                                                        </Alert>
-                                                    </FormLayout.QuestionBleedTop>
+                                            <Textarea
+                                                name={
+                                                    AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse
+                                                }
+                                                label={text(
+                                                    'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
                                                 )}
-
-                                                <Textarea
-                                                    name={
-                                                        AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse
-                                                    }
-                                                    label={text(
-                                                        'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
-                                                    )}
-                                                    minLength={5}
-                                                    maxLength={1000}
-                                                    validate={validateTextArea}
-                                                />
-                                            </>
+                                                minLength={5}
+                                                maxLength={1000}
+                                                validate={validateTextArea}
+                                            />
                                         )}
 
                                         {annenForelderSituasjon && (
