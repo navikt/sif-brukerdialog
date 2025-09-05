@@ -1,4 +1,4 @@
-import { Alert, Box, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Heading, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
@@ -87,7 +87,7 @@ const OppsummeringStep = () => {
 
             {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                 <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                    <VStack gap="8">
+                    <VStack gap="10">
                         {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
                                 (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
@@ -113,11 +113,7 @@ const OppsummeringStep = () => {
                                             <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                         </div>
                                     </VStack>
-                                    {arbeidsforhold.erAnsatt === false && (
-                                        <Box marginBlock="4">
-                                            <IkkeAnsattMelding />
-                                        </Box>
-                                    )}
+                                    {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
                                     {arbeidsforhold.erAnsatt && (
                                         <VStack gap="1">
                                             <Heading level="4" size="xsmall">
