@@ -84,146 +84,147 @@ const OppsummeringStep = () => {
                     <AppText id="oppsummeringStep.guide" />
                 </p>
             </SifGuidePanel>
+            <VStack gap="12">
+                {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
+                    <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
+                        <VStack gap="10">
+                            {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
+                                const arbeidsforhold = ukjenteArbeidsforhold.find(
+                                    (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
+                                );
 
-            {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
-                <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
-                    <VStack gap="10">
-                        {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
-                            const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
-                            );
-
-                            if (!arbeidsforhold) {
-                                return;
-                            }
-                            const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
-                            return (
-                                <VStack gap="4" key={arbeidsgiver.key}>
-                                    <Heading level="3" size="small">
-                                        {arbeidsgiver.navn}
-                                    </Heading>
-                                    <VStack gap="1">
-                                        <Heading level="4" size="xsmall">
-                                            <AppText
-                                                id="oppsummeringStep.arbeidsgiver.erAnsatt"
-                                                values={{ arbeidsgivernavn: arbeidsgiver.navn }}
-                                            />
+                                if (!arbeidsforhold) {
+                                    return;
+                                }
+                                const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
+                                return (
+                                    <VStack gap="4" key={arbeidsgiver.key}>
+                                        <Heading level="3" size="small">
+                                            {arbeidsgiver.navn}
                                         </Heading>
-                                        <div data-testid={getTestKey('erAnsatt')}>
-                                            <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                        </div>
-                                    </VStack>
-                                    {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
-                                    {arbeidsforhold.erAnsatt && (
                                         <VStack gap="1">
                                             <Heading level="4" size="xsmall">
                                                 <AppText
-                                                    id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                                    id="oppsummeringStep.arbeidsgiver.erAnsatt"
                                                     values={{ arbeidsgivernavn: arbeidsgiver.navn }}
                                                 />
                                             </Heading>
-                                            <div data-testid={getTestKey('timerPerUke')}>
-                                                <DurationText
-                                                    duration={ISODurationToDuration(
-                                                        arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                    )}
-                                                />
+                                            <div data-testid={getTestKey('erAnsatt')}>
+                                                <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                             </div>
                                         </VStack>
+                                        {arbeidsforhold.erAnsatt === false && <IkkeAnsattMelding />}
+                                        {arbeidsforhold.erAnsatt && (
+                                            <VStack gap="1">
+                                                <Heading level="4" size="xsmall">
+                                                    <AppText
+                                                        id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                                        values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                                    />
+                                                </Heading>
+                                                <div data-testid={getTestKey('timerPerUke')}>
+                                                    <DurationText
+                                                        duration={ISODurationToDuration(
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
+                                                        )}
+                                                    />
+                                                </div>
+                                            </VStack>
+                                        )}
+                                    </VStack>
+                                );
+                            })}
+                        </VStack>
+                    </SummarySection>
+                )}
+
+                {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
+                    <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
+                        {arbeidstid && arbeidstidErEndret ? (
+                            <>
+                                <ArbeidstidOppsummering
+                                    arbeidstid={arbeidstid}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                                />
+                                {!harGyldigArbeidstid && (
+                                    <Alert variant="error">
+                                        <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
+                                    </Alert>
+                                )}
+                            </>
+                        ) : (
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
+                            </Alert>
+                        )}
+                    </SummarySection>
+                )}
+                {valgteEndringer.lovbestemtFerie && (
+                    <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
+                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
+                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
+                        ) : (
+                            <Alert variant="info">
+                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                            </Alert>
+                        )}
+                    </SummarySection>
+                )}
+                {harIngenEndringer ? (
+                    <div>
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={goBack}
+                            icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
+                            <AppText id="oppsummeringStep.forrige" />
+                        </Button>
+                    </div>
+                ) : (
+                    <FormikWrapper
+                        initialValues={getOppsummeringStepInitialValues(søknadsdata)}
+                        onSubmit={(values) => {
+                            if (apiData) {
+                                sendSøknad({
+                                    ...apiData,
+                                    harBekreftetOpplysninger:
+                                        values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                                });
+                            }
+                        }}
+                        renderForm={() => {
+                            return (
+                                <VStack gap="8">
+                                    <Form
+                                        formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
+                                        submitDisabled={
+                                            isSubmitting || hasInvalidSteps || harIngenEndringer || !harGyldigArbeidstid
+                                        }
+                                        includeValidationSummary={true}
+                                        submitButtonLabel={text('oppsummeringStep.submit.label')}
+                                        isFinalSubmit={true}
+                                        submitPending={isSubmitting}
+                                        backButtonDisabled={isSubmitting}
+                                        onBack={goBack}>
+                                        <ConfirmationCheckbox
+                                            disabled={isSubmitting || harIngenEndringer || !harGyldigArbeidstid}
+                                            label={text('oppsummeringStep.bekrefter.tekst')}
+                                            validate={getCheckedValidator()}
+                                            data-testid="bekreft-opplysninger"
+                                            name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                        />
+                                    </Form>
+                                    {sendSøknadError && (
+                                        <ErrorSummary ref={sendSøknadErrorSummary}>
+                                            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                        </ErrorSummary>
                                     )}
                                 </VStack>
                             );
-                        })}
-                    </VStack>
-                </SummarySection>
-            )}
-
-            {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
-                    {arbeidstid && arbeidstidErEndret ? (
-                        <>
-                            <ArbeidstidOppsummering
-                                arbeidstid={arbeidstid}
-                                arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                            />
-                            {!harGyldigArbeidstid && (
-                                <Alert variant="error">
-                                    <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
-                                </Alert>
-                            )}
-                        </>
-                    ) : (
-                        <Alert variant="info">
-                            <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
-                        </Alert>
-                    )}
-                </SummarySection>
-            )}
-            {valgteEndringer.lovbestemtFerie && (
-                <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
-                    {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
-                        <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
-                    ) : (
-                        <Alert variant="info">
-                            <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                        </Alert>
-                    )}
-                </SummarySection>
-            )}
-            {harIngenEndringer ? (
-                <div>
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={goBack}
-                        icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
-                        <AppText id="oppsummeringStep.forrige" />
-                    </Button>
-                </div>
-            ) : (
-                <FormikWrapper
-                    initialValues={getOppsummeringStepInitialValues(søknadsdata)}
-                    onSubmit={(values) => {
-                        if (apiData) {
-                            sendSøknad({
-                                ...apiData,
-                                harBekreftetOpplysninger:
-                                    values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                            });
-                        }
-                    }}
-                    renderForm={() => {
-                        return (
-                            <VStack gap="8">
-                                <Form
-                                    formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
-                                    submitDisabled={
-                                        isSubmitting || hasInvalidSteps || harIngenEndringer || !harGyldigArbeidstid
-                                    }
-                                    includeValidationSummary={true}
-                                    submitButtonLabel={text('oppsummeringStep.submit.label')}
-                                    isFinalSubmit={true}
-                                    submitPending={isSubmitting}
-                                    backButtonDisabled={isSubmitting}
-                                    onBack={goBack}>
-                                    <ConfirmationCheckbox
-                                        disabled={isSubmitting || harIngenEndringer || !harGyldigArbeidstid}
-                                        label={text('oppsummeringStep.bekrefter.tekst')}
-                                        validate={getCheckedValidator()}
-                                        data-testid="bekreft-opplysninger"
-                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                    />
-                                </Form>
-                                {sendSøknadError && (
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                )}
-                            </VStack>
-                        );
-                    }}
-                />
-            )}
+                        }}
+                    />
+                )}
+            </VStack>
         </SøknadStep>
     );
 };
