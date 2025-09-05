@@ -20,7 +20,7 @@ const nb = {
     'arbeidstid.faktisk.mangler':
         'Du har ikke oppgitt hvor mye du jobber hos {navn} for alle uker i perioden med pleiepenger',
 
-    'arbeidsaktivitetFormPart.aktivitet.erEndret': 'Endret arbeidstid',
+    'arbeidsaktivitetFormPart.aktivitet.erEndret': 'Arbeidstid endret',
 
     'arbeidsaktivitetContent.tags.endretArbeid': 'Arbeidstid endret',
     'arbeidsaktivitetContent.tags.ferieFjernet': 'Ferie fjernet',
