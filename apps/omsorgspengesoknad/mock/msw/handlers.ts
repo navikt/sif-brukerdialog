@@ -48,7 +48,8 @@ export const getHandlers = () => [
                   vedtaksdato: '2020-01-01',
               });
     }),
-    http.post('**/omsorgspenger-utvidet-rett/innsending', async () => {
+    http.post('**/omsorgspenger-utvidet-rett/innsending', async () => HttpResponse.json({})),
+    http.post('**/omsorgspenger-utvidet-rett/innsending-ugyldig', async () => {
         return HttpResponse.json(
             {
                 violations: [
