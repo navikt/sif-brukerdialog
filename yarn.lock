@@ -5410,7 +5410,7 @@ __metadata:
     swr: "npm:2.3.6"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vitest: "npm:3.2.4"
     webpack: "npm:5.101.3"
     zod: "npm:4.1.5"
@@ -5760,7 +5760,7 @@ __metadata:
     react-router-dom: "npm:7.8.2"
     storybook: "npm:9.1.4"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -5806,7 +5806,7 @@ __metadata:
     react-intl: "npm:7.1.11"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
   languageName: unknown
   linkType: soft
 
@@ -5875,7 +5875,7 @@ __metadata:
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
     ulid: "npm:3.0.1"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -5943,7 +5943,7 @@ __metadata:
     storybook: "npm:9.1.4"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6090,7 +6090,7 @@ __metadata:
     storybook: "npm:9.1.4"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6175,7 +6175,7 @@ __metadata:
     storybook: "npm:9.1.4"
     storybook-addon-mock: "npm:6.0.1"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
   languageName: unknown
@@ -6247,7 +6247,7 @@ __metadata:
     react-router-dom: "npm:7.8.2"
     storybook: "npm:9.1.4"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6409,7 +6409,7 @@ __metadata:
     storybook: "npm:9.1.4"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6486,7 +6486,7 @@ __metadata:
     storybook: "npm:9.1.4"
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6666,7 +6666,7 @@ __metadata:
     storybook: "npm:9.1.4"
     style-loader: "npm:4.0.0"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -6737,7 +6737,7 @@ __metadata:
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vitest: "npm:3.2.4"
   languageName: unknown
   linkType: soft
@@ -6857,7 +6857,7 @@ __metadata:
     react-router-dom: "npm:7.8.2"
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -7066,7 +7066,7 @@ __metadata:
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
     typescript-eslint: "npm:8.42.0"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -7147,7 +7147,7 @@ __metadata:
     tailwindcss: "npm:4.1.13"
     typescript: "npm:5.9.2"
     typescript-eslint: "npm:8.42.0"
-    uuid: "npm:11.1.0"
+    uuid: "npm:12.0.0"
     vite: "npm:7.1.4"
     vite-plugin-checker: "npm:0.10.3"
     vitest: "npm:3.2.4"
@@ -30584,7 +30584,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:11.1.0, uuid@npm:^11.0.4, uuid@npm:^11.1.0":
+"uuid@npm:12.0.0":
+  version: 12.0.0
+  resolution: "uuid@npm:12.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 10/18079c61ec2ca899d8df034ed543dc4844ec14d3bddc3099149d4c076a28c76dfc7434bcc5fafae8799f894da6acaa055bd7e97eedb6cba2840994f02849b801
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^11.0.4, uuid@npm:^11.1.0":
   version: 11.1.0
   resolution: "uuid@npm:11.1.0"
   bin:
