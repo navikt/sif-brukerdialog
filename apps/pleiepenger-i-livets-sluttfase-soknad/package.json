@@ -57,7 +57,7 @@
         "@types/react-router-dom": "5.3.3",
         "compression": "1.8.1",
         "cross-env": "10.0.0",
-        "eslint": "9.34.0",
+        "eslint": "9.35.0",
         "eslint-plugin-storybook": "9.1.4",
         "express": "5.1.0",
         "helmet": "8.1.0",
