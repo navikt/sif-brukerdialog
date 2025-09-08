@@ -1,4 +1,3 @@
-import { Box } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import {
@@ -14,6 +13,7 @@ import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
+import { VStack } from '@navikt/ds-react';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -56,39 +56,40 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             submitDisabled={isSubmitting || kanFortsette === false}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <DineBarnStepIntro />
+            <VStack gap="8">
+                <DineBarnStepIntro />
 
-            <Box paddingBlock="8 0">
-                <RegistrerteBarnListe.Heading level="2" size="medium">
-                    {text('step.dineBarn.seksjonsTittel')}
-                </RegistrerteBarnListe.Heading>
-            </Box>
+                <VStack gap="4">
+                    <RegistrerteBarnListe.Heading level="2" size="medium">
+                        {text('step.dineBarn.seksjonsTittel')}
+                    </RegistrerteBarnListe.Heading>
+                    <FormikInputGroup
+                        legend={text('step.dineBarn.seksjonsTittel')}
+                        hideLegend={true}
+                        name="barn"
+                        validate={() => {
+                            const antallBarn = andreBarn.length + registrerteBarn.length;
+                            if (antallBarn === 0) {
+                                return 'ingenBarn';
+                            }
+                        }}>
+                        <VStack gap="8">
+                            <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
 
-            <FormikInputGroup
-                legend={text('step.dineBarn.seksjonsTittel')}
-                hideLegend={true}
-                name="barn"
-                validate={() => {
-                    const antallBarn = andreBarn.length + registrerteBarn.length;
-                    if (antallBarn === 0) {
-                        return 'ingenBarn';
-                    }
-                }}>
-                <Box paddingBlock="4 6">
-                    <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
-                </Box>
+                            <AndreBarnPart
+                                harRegistrerteBarn={registrerteBarn.length > 0}
+                                søkerFnr={søker.fødselsnummer}
+                                andreBarn={andreBarn}
+                                onAndreBarnChange={oppdatereAndreBarn}
+                            />
+                        </VStack>
+                    </FormikInputGroup>
+                </VStack>
 
-                <AndreBarnPart
-                    harRegistrerteBarn={registrerteBarn.length > 0}
-                    søkerFnr={søker.fødselsnummer}
-                    andreBarn={andreBarn}
-                    onAndreBarnChange={oppdatereAndreBarn}
-                />
-            </FormikInputGroup>
-
-            {andreBarn.length + registrerteBarn.length > 0 ? (
-                <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
-            ) : null}
+                {andreBarn.length + registrerteBarn.length > 0 ? (
+                    <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
+                ) : null}
+            </VStack>
         </Form>
     );
 };

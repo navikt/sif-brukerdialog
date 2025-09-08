@@ -19,7 +19,11 @@ const getOptions = (maksTid: number): number[] => {
 const FraværTimerSelect = ({ name, validate, label, maksTid = 7.5 }: Props) => {
     const { text, number } = useFraværIntl();
     return (
-        <FraværDagForm.Select label={label || 'Antall timer'} name={name} validate={validate}>
+        <FraværDagForm.Select
+            label={label || 'Antall timer'}
+            name={name}
+            validate={validate}
+            style={{ maxWidth: '14rem' }}>
             <option />
             {getOptions(maksTid).map((tid) => (
                 <option key={tid} value={tid}>

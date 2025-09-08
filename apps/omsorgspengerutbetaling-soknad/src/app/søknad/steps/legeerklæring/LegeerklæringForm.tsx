@@ -1,13 +1,13 @@
 import React from 'react';
 import { useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { FormikFileUpload } from '@navikt/sif-common-core-ds/src';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -40,7 +40,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, is
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <VStack gap="8">
                 <SifGuidePanel>
                     <p>
                         <AppText id="steg.legeerklæring.counsellorpanel.1" />
@@ -49,16 +49,16 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, is
                         <AppText id="steg.legeerklæring.counsellorpanel.2" />
                     </p>
                 </SifGuidePanel>
-            </Block>
 
-            <FormikFileUpload
-                fieldName={LegeerklæringFormFields.vedlegg}
-                initialFiles={legeerklæringer}
-                label={text('steg.legeerklæring.vedlegg.knappLabel')}
-                validate={getVedleggValidator({ useDefaultMessages: true })}
-                uploadLaterURL={getLenker(intl.locale).ettersending}
-                showPictureScanningGuide={true}
-            />
+                <FormikFileUpload
+                    fieldName={LegeerklæringFormFields.vedlegg}
+                    initialFiles={legeerklæringer}
+                    label={text('steg.legeerklæring.vedlegg.knappLabel')}
+                    validate={getVedleggValidator({ useDefaultMessages: true })}
+                    uploadLaterURL={getLenker(intl.locale).ettersending}
+                    showPictureScanningGuide={true}
+                />
+            </VStack>
         </Form>
     );
 };

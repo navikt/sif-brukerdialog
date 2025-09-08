@@ -1,7 +1,5 @@
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import {
     datepickerUtils,
     FormikDatepickerProps,
@@ -27,6 +25,7 @@ import {
     validateNotHelgedag,
 } from './fraværValidationUtils';
 import { FraværDag, FraværDagFormValues } from './types';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export interface FraværDagFormLabels {
     tittel: string;
@@ -167,19 +166,17 @@ const FraværDagFormView = ({
                             showButtonArrows={false}
                             onCancel={onCancel}
                             formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fraværDagForm')}>
-                            {headerContent && <Block>{headerContent}</Block>}
+                            <FormLayout.Questions>
+                                {headerContent && <>{headerContent}</>}
 
-                            <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
+                                <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
 
-                            <FormBlock>
                                 <FraværTimerSelect
                                     name={FraværDagFormFields.timerArbeidsdag}
                                     validate={getRequiredFieldValidator()}
                                     label={formLabels.antallArbeidstimer}
                                     maksTid={maksArbeidstidPerDag}
                                 />
-                            </FormBlock>
-                            <FormBlock>
                                 <FraværTimerSelect
                                     name={FraværDagFormFields.timerFravær}
                                     validate={(value) => {
@@ -194,7 +191,7 @@ const FraværDagFormView = ({
                                     label={formLabels.timerFravær}
                                     maksTid={maksArbeidstidPerDag}
                                 />
-                            </FormBlock>
+                            </FormLayout.Questions>
                         </FraværDagForm.Form>
                     );
                 }}

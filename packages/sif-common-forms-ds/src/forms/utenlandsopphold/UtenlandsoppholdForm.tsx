@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import {
     DateRange,
     getCountryName,
@@ -29,6 +28,7 @@ import {
     mapFormValuesToUtenlandsopphold,
     mapUtenlandsoppholdToFormValues,
 } from './utenlandsoppholdUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     variant: UtenlandsoppholdVariant;
@@ -146,53 +146,51 @@ const UtenlandsoppholdForm = ({
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, '@forms.utenlandsoppholdForm')}>
-                        <Form.DateRangePicker
-                            legend={text('@forms.utenlandsopphold.form.tidsperiode.spm')}
-                            disabledDateRanges={[
-                                ...registrerteTidsperioder,
-                                ...(disabledDateRanges ? disabledDateRanges : []),
-                            ]}
-                            minDate={minDate}
-                            maxDate={maxDate}
-                            fromInputProps={{
-                                name: UtenlandsoppholdFormFields.fom,
-                                label: text('@forms.utenlandsopphold.form.tidsperiode.fraDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: ISOStringToDate(tom),
-                                    }).validateFromDate(value);
-                                    return handleDateRangeValidationError(error, minDate, maxDate);
-                                },
-                            }}
-                            toInputProps={{
-                                name: UtenlandsoppholdFormFields.tom,
-                                label: text('@forms.utenlandsopphold.form.tidsperiode.tilDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: ISOStringToDate(fom),
-                                    }).validateToDate(value);
-                                    return handleDateRangeValidationError(error, minDate, maxDate);
-                                },
-                            }}
-                        />
+                        <FormLayout.Questions>
+                            <Form.DateRangePicker
+                                legend={text('@forms.utenlandsopphold.form.tidsperiode.spm')}
+                                disabledDateRanges={[
+                                    ...registrerteTidsperioder,
+                                    ...(disabledDateRanges ? disabledDateRanges : []),
+                                ]}
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                fromInputProps={{
+                                    name: UtenlandsoppholdFormFields.fom,
+                                    label: text('@forms.utenlandsopphold.form.tidsperiode.fraDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: ISOStringToDate(tom),
+                                        }).validateFromDate(value);
+                                        return handleDateRangeValidationError(error, minDate, maxDate);
+                                    },
+                                }}
+                                toInputProps={{
+                                    name: UtenlandsoppholdFormFields.tom,
+                                    label: text('@forms.utenlandsopphold.form.tidsperiode.tilDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: ISOStringToDate(fom),
+                                        }).validateToDate(value);
+                                        return handleDateRangeValidationError(error, minDate, maxDate);
+                                    },
+                                }}
+                            />
 
-                        <FormBlock>
                             <Form.CountrySelect
                                 name={UtenlandsoppholdFormFields.landkode}
                                 label={text('@forms.utenlandsopphold.form.land.spm')}
                                 validate={getRequiredFieldValidator()}
                             />
-                        </FormBlock>
 
-                        {landkode && variant === 'utvidet' && (
-                            <>
-                                <FormBlock>
+                            {landkode && variant === 'utvidet' && (
+                                <>
                                     <Form.YesOrNoQuestion
                                         name={UtenlandsoppholdFormFields.erSammenMedBarnet}
                                         legend={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', {
@@ -208,10 +206,8 @@ const UtenlandsoppholdForm = ({
                                                 : undefined;
                                         }}
                                     />
-                                </FormBlock>
 
-                                {showInnlagtQuestion && (
-                                    <FormBlock>
+                                    {showInnlagtQuestion && (
                                         <Form.YesOrNoQuestion
                                             name={UtenlandsoppholdFormFields.erBarnetInnlagt}
                                             legend={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
@@ -227,10 +223,8 @@ const UtenlandsoppholdForm = ({
                                                     : undefined;
                                             }}
                                         />
-                                    </FormBlock>
-                                )}
-                                {showInnlagtPerioderQuestion && (
-                                    <FormBlock margin="l">
+                                    )}
+                                    {showInnlagtPerioderQuestion && (
                                         <TidsperiodeListAndDialog
                                             name={UtenlandsoppholdFormFields.barnInnlagtPerioder}
                                             minDate={ISOStringToDate(fom)}
@@ -248,44 +242,40 @@ const UtenlandsoppholdForm = ({
                                                 ),
                                             }}
                                         />
-                                    </FormBlock>
-                                )}
-                                {showÅrsakQuestion && (
-                                    <>
-                                        <FormBlock>
-                                            <Form.RadioGroup
-                                                legend={text('@forms.utenlandsopphold.form.årsak.spm', {
-                                                    land: getCountryName(landkode, intl.locale),
-                                                })}
-                                                name={UtenlandsoppholdFormFields.årsak}
-                                                validate={getRequiredFieldValidator()}
-                                                radios={[
-                                                    {
-                                                        value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
-                                                        label: text(
-                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
-                                                        ),
-                                                    },
-                                                    {
-                                                        value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND,
-                                                        label: text(
-                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
-                                                            { land: getCountryName(landkode, intl.locale) },
-                                                        ),
-                                                    },
-                                                    {
-                                                        value: UtenlandsoppholdÅrsak.ANNET,
-                                                        label: text(
-                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
-                                                        ),
-                                                    },
-                                                ]}
-                                            />
-                                        </FormBlock>
-                                    </>
-                                )}
-                            </>
-                        )}
+                                    )}
+                                    {showÅrsakQuestion && (
+                                        <Form.RadioGroup
+                                            legend={text('@forms.utenlandsopphold.form.årsak.spm', {
+                                                land: getCountryName(landkode, intl.locale),
+                                            })}
+                                            name={UtenlandsoppholdFormFields.årsak}
+                                            validate={getRequiredFieldValidator()}
+                                            radios={[
+                                                {
+                                                    value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
+                                                    label: text(
+                                                        `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
+                                                    ),
+                                                },
+                                                {
+                                                    value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND,
+                                                    label: text(
+                                                        `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
+                                                        { land: getCountryName(landkode, intl.locale) },
+                                                    ),
+                                                },
+                                                {
+                                                    value: UtenlandsoppholdÅrsak.ANNET,
+                                                    label: text(
+                                                        `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
+                                                    ),
+                                                },
+                                            ]}
+                                        />
+                                    )}
+                                </>
+                            )}
+                        </FormLayout.Questions>
                     </Form.Form>
                 );
             }}

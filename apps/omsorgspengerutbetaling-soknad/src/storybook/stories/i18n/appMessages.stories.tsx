@@ -4,7 +4,6 @@ import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { appMessages } from '../../../app/i18n';
 
@@ -23,9 +22,7 @@ export default {
 
 const Template = () => (
     <>
-        <Block margin="xxl" padBottom="l">
-            <MessagesPreview messages={appMessages} showExplanation={false} />
-        </Block>
+        <MessagesPreview messages={appMessages} showExplanation={false} />
     </>
 );
 
