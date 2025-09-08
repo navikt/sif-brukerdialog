@@ -57,7 +57,7 @@
         "postcss-import": "16.1.1",
         "postcss-styled-syntax": "0.7.1",
         "prettier": "3.6.2",
-        "stylelint": "16.23.1",
+        "stylelint": "16.24.0",
         "tailwindcss": "4.1.13",
         "typescript": "5.9.2",
         "typescript-eslint": "8.42.0",
