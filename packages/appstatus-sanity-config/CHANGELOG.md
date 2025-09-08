@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
 ## 1.2.27
 
 ### Patch Changes

@@ -43,9 +43,7 @@ export const fyllUtArbeidssituasjonStep = async (page: Page) => {
 };
 
 export const kontrollerArbeidssituasjonOppsummering = async (page: Page) => {
-    await expect(
-        page.getByText('Arbeids- og velferdsetaten (organisasjonsnummer 123451234) Er ansatt i'),
-    ).toBeVisible();
+    await expect(page.getByText('Arbeids- og velferdsetaten (organisasjonsnummer 123451234)Er ansatt i')).toBeVisible();
     await expect(page.getByText('Jobber normalt 20 timer per')).toBeVisible();
     await expect(page.getByText('FrilanserStartet som frilanser 06.12.2021')).toBeVisible();
     await expect(page.getByText('Er ikke selvstendig næ')).toBeVisible();

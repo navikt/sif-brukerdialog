@@ -3,14 +3,14 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.49.23",
+    "version": "3.49.24",
     "private": true,
     "type": "module",
     "dependencies": {
         "dayjs": "1.11.18",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
-        "uuid": "11.1.0"
+        "uuid": "12.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
