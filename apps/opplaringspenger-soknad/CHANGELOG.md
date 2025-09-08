@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.2.0
+
+### Minor Changes
+
+- Endre spørsmål om normalarbeidstid. Bruker må nå alltid svare på hvor mye en jobber/jobbet normalt.
+
 ## 1.1.23
 
 ### Patch Changes
