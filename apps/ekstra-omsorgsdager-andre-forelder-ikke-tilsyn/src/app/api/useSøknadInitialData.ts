@@ -21,7 +21,7 @@ type SøknadInitialSuccess = {
 
 type SøknadInitialFailed = {
     status: RequestStatus.error;
-    error: any;
+    error: unknown;
 };
 
 type SøknadInitialLoading = {

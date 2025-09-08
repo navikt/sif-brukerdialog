@@ -13,12 +13,12 @@ De får en beregnet dagsats, og de får penger for alle dager unntatt lørdag og
 
 ## Pengene utbetales etterskuddsvis
 
-Pengene utbetales etterskuddsvis, og som hovedregel innen den 10. i påfølgende måned.
+Pengene utbetales etterskuddsvis, og som hovedregel før den 12. i påfølgende måned.
 
-Grunnen til at pengene utbetales på etterskudd, er at beløpet skal reduseres dersom de har hatt arbeidsinntekt ved siden av. Les mer om dette under punktet <strong>Inntekt ved siden</strong>.
+Grunnen til at pengene utbetales på etterskudd, er at beløpet skal reduseres dersom de har hatt arbeidsinntekt ved siden av. Les mer om dette under punktet **Inntekt ved siden**.
 
 ## Eksempel
 
-Veilederen registrerer deltakeren inn i ungdomsprogrammet mandag 15. september 2025, og deltakeren søker om ungdomsprogramytelsen. Da får deltaker penger fra og med 15. september og til og med 30. september utbetalt innen 10. oktober.
+Veilederen registrerer deltakeren inn i ungdomsprogrammet mandag 15. september 2025, og deltakeren søker om ungdomsprogramytelsen. Da får deltaker penger fra og med 15. september og til og med 30. september utbetalt før 12. oktober.
 
-Utbetalingen for oktober mottas 10. november og så videre.
+Utbetalingen for oktober mottas 12. november og så videre.

@@ -54,7 +54,6 @@ export interface ArbeidsgiverApiData {
     ansattFom?: ISODate;
     ansattTom?: ISODate;
     erAnsatt: boolean;
-    sluttetFørSøknadsperiode?: boolean;
     arbeidsforhold?: ArbeidsforholdApiData;
 }
 

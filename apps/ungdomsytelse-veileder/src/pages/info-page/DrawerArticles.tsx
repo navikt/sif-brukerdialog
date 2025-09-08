@@ -34,7 +34,7 @@ const DrawerArticles = () => {
                         Sjekk at deltakerne har bestilt skattekort (frikort eller vanlig skattekort). Hvis de har
                         skattekort fra før, kan det hende at de må endre det nå. Dersom de ikke har skattekort når
                         pengene skal utbetales, kan det bli trukket så mye som 50 prosent skatt. Så det er viktig at de
-                        raskt for dette på plass. Husk: første utbetaling er den 10.ende i måneden etter de ble med i
+                        raskt for dette på plass. Husk: første utbetaling er den 12. i måneden etter de ble med i
                         ungdomsprogrammet.
                     </ExpansionCard.Content>
                 </ExpansionCard>
@@ -156,7 +156,7 @@ const DrawerArticles = () => {
                                     Hver måned mottar deltakeren en oppgave om å rapportere inntekt for forrige måned
                                     (gjelder ikke måneden deltakeren starter i programmet). For alle andre måneder skal
                                     deltakerne når måneden er slutt rapportere arbeidsinntekt fra og med den 1. og til
-                                    og med den 5. i påfølgende måned.
+                                    og med den 7. i påfølgende måned.
                                 </BodyLong>
                                 <BodyLong>
                                     Hvis deltakeren ikke rapporterer noe, vil det bli registrert som at hen ikke har

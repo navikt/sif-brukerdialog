@@ -1,5 +1,11 @@
 # config
 
+## 0.11.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
 ## 0.11.21
 
 ### Patch Changes

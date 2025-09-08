@@ -1,7 +1,7 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
+import { ActionLink } from '@navikt/sif-common-ui';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';

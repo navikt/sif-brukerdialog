@@ -104,6 +104,8 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         labels={{
                             addLabel: text('step.fravær.heledager.perioderModal.label'),
                             modalTitle: text('step.fravær.heledager.perioderModal.title'),
+                            listTitle: text('step.fravær.heledager.perioderModal.listTitle'),
+                            hideListTitle: true,
                         }}
                         dateRangesToDisable={[
                             ...fraværPerioder.map(fraværPeriodeToDateRange),
@@ -150,6 +152,8 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             labels={{
                                 addLabel: text('step.fravær.delvisdag.dagModal.label'),
                                 modalTitle: text('step.fravær.delvisdag.dagModal.title'),
+                                listTitle: text('step.fravær.delvisdag.dagModal.title'),
+                                hideListTitle: true,
                             }}
                             dateRangesToDisable={[
                                 ...fraværDager.map(fraværDagToFraværDateRange),

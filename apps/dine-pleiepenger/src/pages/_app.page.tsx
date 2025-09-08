@@ -1,4 +1,5 @@
 import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
+import { Theme } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { configureLogger } from '@navikt/next-logger';
@@ -19,11 +20,11 @@ import { messages } from '../i18n';
 import { Innsynsdata } from '../types/InnsynData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
+import { Feature } from '../utils/features';
 import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import { Feature } from '../utils/features';
 
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 
@@ -71,29 +72,31 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     return (
-        <ErrorBoundary>
-            <AmplitudeProvider
-                applicationKey={InnsynPsbApp.key}
-                apiKey={browserEnv.NEXT_PUBLIC_AMPLITUDE_API_KEY}
-                isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
-                {data.appStatus?.status === Status.unavailable ? (
-                    <UnavailablePage />
-                ) : (
-                    <main>
-                        {data.appStatus?.message && (
-                            <div className="max-w-[1128px] mx-auto p-5 mb-5">
-                                <StatusMessage message={data.appStatus.message} />
-                            </div>
-                        )}
-                        <IntlProvider locale="nb" messages={messages.nb}>
-                            <InnsynsdataContextProvider innsynsdata={data}>
-                                <Component {...pageProps} />
-                            </InnsynsdataContextProvider>
-                        </IntlProvider>
-                    </main>
-                )}
-            </AmplitudeProvider>
-        </ErrorBoundary>
+        <Theme hasBackground={false}>
+            <ErrorBoundary>
+                <AmplitudeProvider
+                    applicationKey={InnsynPsbApp.key}
+                    apiKey={browserEnv.NEXT_PUBLIC_AMPLITUDE_API_KEY}
+                    isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
+                    {data.appStatus?.status === Status.unavailable ? (
+                        <UnavailablePage />
+                    ) : (
+                        <main>
+                            {data.appStatus?.message && (
+                                <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                                    <StatusMessage message={data.appStatus.message} />
+                                </div>
+                            )}
+                            <IntlProvider locale="nb" messages={messages.nb}>
+                                <InnsynsdataContextProvider innsynsdata={data}>
+                                    <Component {...pageProps} />
+                                </InnsynsdataContextProvider>
+                            </IntlProvider>
+                        </main>
+                    )}
+                </AmplitudeProvider>
+            </ErrorBoundary>
+        </Theme>
     );
 }
 

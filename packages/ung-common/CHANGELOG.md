@@ -1,5 +1,20 @@
 # @navikt/ung-common
 
+## 0.0.39
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.14
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.12
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.12
+
+## 0.0.38
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.13
+
 ## 0.0.37
 
 ### Patch Changes

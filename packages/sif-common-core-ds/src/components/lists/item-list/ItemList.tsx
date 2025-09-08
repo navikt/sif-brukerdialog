@@ -1,7 +1,7 @@
+import { Link } from '@navikt/ds-react';
 import React from 'react';
 import { guid } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import ActionLink from '../../../atoms/action-link/ActionLink';
 import DeleteButton from '../../../atoms/delete-button/DeleteButton';
 import bemUtils from '../../../utils/bemUtils';
 import './itemList.scss';
@@ -48,7 +48,15 @@ function ItemList<T>({
                             {labelRenderer ? (
                                 labelRenderer(item)
                             ) : onEdit ? (
-                                <ActionLink onClick={() => onEdit(item)}>{itemTitle}</ActionLink>
+                                <Link
+                                    href="#"
+                                    onClick={(evt) => {
+                                        evt.stopPropagation();
+                                        evt.preventDefault();
+                                        onEdit(item);
+                                    }}>
+                                    {itemTitle}
+                                </Link>
                             ) : (
                                 itemTitle
                             )}
