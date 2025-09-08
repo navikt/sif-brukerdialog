@@ -18,10 +18,14 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                 Hei {deltakerNavn}
             </Heading>
             <Box maxWidth="90%">
+                <BodyLong spacing>Gi oss beskjed hvis du fikk utbetalt lønn i {måned}.</BodyLong>
                 <BodyLong spacing>
-                    Hadde du inntekt i {måned}, må du gi oss beskjed innen {frist}.
+                    Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt før {frist}.
                 </BodyLong>
-                <BodyLong spacing>Hadde du ingen inntekt, trenger du ikke gjøre noe eller du kan svare nei.</BodyLong>
+                <BodyLong spacing>
+                    Fikk du ikke lønn i {måned}? Kryss av på “Nei” eller la være å svare. Det får ingen konsekvenser for
+                    deg å la være å svare når du ikke har hatt lønn.
+                </BodyLong>
             </Box>
         </VStack>
     );

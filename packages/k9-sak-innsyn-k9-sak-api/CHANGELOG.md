@@ -1,5 +1,17 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 0.0.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.0.23
 
 ### Patch Changes

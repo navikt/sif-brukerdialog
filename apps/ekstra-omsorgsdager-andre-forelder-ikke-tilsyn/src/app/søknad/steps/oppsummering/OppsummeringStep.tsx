@@ -1,10 +1,9 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -18,6 +17,7 @@ import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData
 import SøknadStep from '../../SøknadStep';
 import OmAnnenForelderOppsummering from './AnnenForelderOppsummering';
 import AnnenForelderSituasjonOppsummering from './AnnenForelderSituasjonOppsummering';
+import InnsendingFeiletAlert from './InnsendingFeiletAlert';
 import OmBarnaOppsummering from './OmBarnaOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
@@ -60,6 +60,7 @@ const OppsummeringStep = () => {
     }, [previousSøknadError, sendSøknadError]);
 
     const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, locale);
+    const invalidParameters = sendSøknadError ? getInvalidParametersFromAxiosError(sendSøknadError) : undefined;
 
     if (!apiData) {
         return (
@@ -95,7 +96,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <>
+                        <VStack gap="8">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -123,16 +124,17 @@ const OppsummeringStep = () => {
                                         validate={getCheckedValidator()}
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
+                                    {sendSøknadError && invalidParameters && (
+                                        <InnsendingFeiletAlert invalidParameter={invalidParameters} />
+                                    )}
                                 </VStack>
                             </Form>
-                            {sendSøknadError && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
+                            {sendSøknadError && !invalidParameters && (
+                                <ErrorSummary ref={sendSøknadErrorSummary}>
+                                    <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                </ErrorSummary>
                             )}
-                        </>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

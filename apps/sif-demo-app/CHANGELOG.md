@@ -1,5 +1,51 @@
 # @navikt/sif-demo-app
 
+## 0.4.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@25.0.19
+    - @navikt/sif-common-forms-ds@20.0.18
+    - @navikt/sif-common-core-ds@10.2.42
+    - @navikt/sif-common-api@0.4.40
+    - @navikt/sif-common-ui@0.10.18
+
+## 0.4.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@25.0.18
+    - @navikt/sif-common-forms-ds@20.0.17
+    - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-api@0.4.39
+    - @navikt/sif-common-ui@0.10.17
+
+## 0.4.45
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.38
+- @navikt/sif-common-core-ds@10.2.40
+- @navikt/sif-common-forms-ds@20.0.16
+- @navikt/sif-common-soknad-ds@25.0.17
+- @navikt/sif-common-ui@0.10.16
+
+## 0.4.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@25.0.16
+    - @navikt/sif-common-forms-ds@20.0.15
+    - @navikt/sif-common-core-ds@10.2.39
+    - @navikt/sif-common-api@0.4.37
+    - @navikt/sif-common-ui@0.10.15
+
 ## 0.4.43
 
 ### Patch Changes

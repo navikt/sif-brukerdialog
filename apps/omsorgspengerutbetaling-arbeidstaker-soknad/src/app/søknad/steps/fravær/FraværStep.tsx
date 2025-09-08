@@ -233,6 +233,8 @@ const FraværStep: React.FC = () => {
                                                 labels={{
                                                     addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
                                                     modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),
+                                                    listTitle: text('step.fravær.værtIUtlandet.listTitle'),
+                                                    hideListTitle: true,
                                                 }}
                                                 validate={getListValidator({ required: true })}
                                             />

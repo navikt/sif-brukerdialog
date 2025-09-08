@@ -1,5 +1,17 @@
 # @sif/eslint-config
 
+## 1.1.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 1.1.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 1.1.47
 
 ### Patch Changes

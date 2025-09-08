@@ -50,7 +50,7 @@ const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave }: Props) => {
                 </div>
 
                 <Heading level="1" size="large">
-                    Rapporter inntekt {månedOgÅr}
+                    Lønn i {månedOgÅr}
                 </Heading>
 
                 <section aria-labelledby="summaryHeading">
@@ -62,12 +62,12 @@ const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave }: Props) => {
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Hadde du inntekt i {måned}?</FormSummary.Label>
+                                <FormSummary.Label>Fikk du utbetalt lønn i {måned}?</FormSummary.Label>
                                 <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
                             </FormSummary.Answer>
                             {arbeidstakerOgFrilansInntekt && (
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Inntekt</FormSummary.Label>
+                                    <FormSummary.Label>Lønn (før skatt)</FormSummary.Label>
                                     <FormSummary.Value>
                                         <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
                                     </FormSummary.Value>
@@ -87,7 +87,7 @@ const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave }: Props) => {
     return (
         <VStack gap="6">
             <Heading level="1" size="large">
-                Rapporter inntekt
+                Lønn i {månedOgÅr}
             </Heading>
             {visKvittering ? (
                 <>

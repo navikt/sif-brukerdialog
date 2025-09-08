@@ -186,7 +186,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     disabled={backDisabled}
                                     data-testid="typedFormikForm-goBackButton"
                                     icon={showButtonArrows ? <ArrowLeftIcon aria-hidden /> : undefined}>
-                                    {backButtonLabel || locale === 'no-NN' ? 'Føregåande steg' : 'Forrige steg'}
+                                    {backButtonLabel || locale === 'no-NN' ? 'Førre steg' : 'Forrige steg'}
                                 </Button>
                             )}
                             {showSubmitButton && (

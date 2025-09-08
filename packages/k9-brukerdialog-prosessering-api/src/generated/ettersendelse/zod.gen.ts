@@ -32,7 +32,7 @@ export const zEttersendelse = z.object({
         'OMP_UTV_AO',
         'OPPLÆRINGSPENGER',
     ]),
-    ettersendelsesType: z.enum(['LEGEERKLÆRING', 'ANNET']),
+    ettersendelsesType: z.enum(['LEGEERKLÆRING', 'KURSINFORMASJON', 'ANNET']),
     søkerNorskIdent: z.optional(z.string()),
     pleietrengende: z.optional(zPleietrengende),
     harBekreftetOpplysninger: z.boolean(),
