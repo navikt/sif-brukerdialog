@@ -37,7 +37,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     return renderAsExpansionCard ? (
         <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen}>
             <ExpansionCard.Header>{renderHeader()}</ExpansionCard.Header>
-            <ExpansionCard.Content>{children}</ExpansionCard.Content>
+            <ExpansionCard.Content data-color="accent">{children}</ExpansionCard.Content>
         </ExpansionCard>
     ) : (
         <BoxNew borderRadius="large" borderColor="neutral" borderWidth="1" padding="4">
