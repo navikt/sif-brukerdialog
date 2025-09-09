@@ -1,5 +1,11 @@
 # config
 
+## 0.11.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
 ## 0.11.22
 
 ### Patch Changes
