@@ -10,7 +10,7 @@
         "dayjs": "1.11.18",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
-        "uuid": "12.0.0"
+        "uuid": "13.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
