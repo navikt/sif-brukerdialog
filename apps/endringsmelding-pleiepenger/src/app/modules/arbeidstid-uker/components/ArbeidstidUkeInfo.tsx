@@ -6,8 +6,8 @@ import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
-import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
+import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 
 interface Props {
     uke: ArbeidstidUkerItem;

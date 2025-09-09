@@ -1,7 +1,6 @@
-import { Checkbox, Table, Tooltip } from '@navikt/ds-react';
+import { Box, Checkbox, Table, Tooltip } from '@navikt/ds-react';
 import React, { ReactElement } from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -145,13 +144,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     </div>
 
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
-                                        <Block margin="s">
+                                        <Box marginBlock="0 4">
                                             <UkeTags
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 erKortUke={uke.erKortUke}
                                             />
-                                        </Block>
+                                        </Box>
                                     )}
                                 </Table.DataCell>
                             )}
@@ -169,12 +168,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 <span className="arbeidsukeTidsrom__tekst">
                                                     {getDateRangeText(uke.periode, intl.locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
-                                                        <Block margin="s">
+                                                        <Box marginBlock="0 4">
                                                             <UkeTags
                                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                             />
-                                                        </Block>
+                                                        </Box>
                                                     )}
                                                 </span>
                                                 <span className="arbeidsukeTidsrom__info">

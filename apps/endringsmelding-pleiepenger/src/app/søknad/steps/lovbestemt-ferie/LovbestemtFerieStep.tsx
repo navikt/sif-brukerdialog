@@ -1,8 +1,6 @@
-import { Alert, Heading, List } from '@navikt/ds-react';
+import { Alert, Heading, List, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
@@ -121,27 +119,23 @@ const LovbestemtFerieStep = () => {
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
-                                <FormBlock>
+                                <VStack gap="8">
                                     {sak.søknadsperioder.length === 1 ? null : (
-                                        <Block margin="xl">
-                                            <Heading level="3" size="small" spacing={true}>
-                                                <AppText
-                                                    id="lovbestemtFerieStep.heading.perioder"
-                                                    values={{
-                                                        antallPerioder: sak.søknadsperioder.length,
-                                                    }}
-                                                />
-                                            </Heading>
-                                        </Block>
+                                        <Heading level="3" size="small" spacing={true}>
+                                            <AppText
+                                                id="lovbestemtFerieStep.heading.perioder"
+                                                values={{
+                                                    antallPerioder: sak.søknadsperioder.length,
+                                                }}
+                                            />
+                                        </Heading>
                                     )}
                                     <DateRangeAccordion
                                         dateRanges={sak.søknadsperioder}
                                         defaultOpenState="none"
                                         renderContent={(søknadsperiode) => {
                                             return (
-                                                <Block
-                                                    margin={sak.søknadsperioder.length === 1 ? 'l' : 'm'}
-                                                    padBottom="l">
+                                                <div>
                                                     <Heading
                                                         level={sak.søknadsperioder.length === 1 ? '3' : '4'}
                                                         size={sak.søknadsperioder.length === 1 ? 'small' : 'xsmall'}
@@ -158,7 +152,7 @@ const LovbestemtFerieStep = () => {
                                                             setFieldValue(LovbestemtFerieFormFields.feriedager, dager);
                                                         }}
                                                     />
-                                                </Block>
+                                                </div>
                                             );
                                         }}
                                         renderHeader={(periode) => {
@@ -185,14 +179,13 @@ const LovbestemtFerieStep = () => {
                                             );
                                         }}
                                     />
-                                </FormBlock>
-                                {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
-                                    <Block margin="l">
+
+                                    {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
                                         <Alert variant="warning">
                                             <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
                                         </Alert>
-                                    </Block>
-                                )}
+                                    )}
+                                </VStack>
                             </Form>
                         </>
                     );

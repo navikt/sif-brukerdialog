@@ -1,6 +1,5 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Arbeidsgiver, ArbeidstidApiData } from '@types';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
@@ -20,7 +19,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
     const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
     const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
-        <>
+        <VStack gap="8">
             {ukjenteArbeidsforhold &&
                 Object.keys(ukjenteArbeidsforhold).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
@@ -41,34 +40,32 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                 ))}
 
             {frilanserArbeidstidInfo && (
-                <Block margin="xl" padBottom="l">
+                <>
                     <Heading level="3" size="small">
                         <AppText id="oppsummeringStep.arbeidstid.frilanser.tittel" />
                     </Heading>
-                    <>
-                        <ArbeidstidUker
-                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
-                </Block>
+
+                    <ArbeidstidUker
+                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
+                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                    />
+                </>
             )}
             {selvstendigNæringsdrivendeArbeidstidInfo && (
-                <Block margin="xl" padBottom="l">
+                <>
                     <Heading level="3" size="small">
                         <AppText id="oppsummeringStep.arbeidstid.sn.tittel" />
                     </Heading>
-                    <>
-                        <ArbeidstidUker
-                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
-                                selvstendigNæringsdrivendeArbeidstidInfo.perioder,
-                            )}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
-                </Block>
+
+                    <ArbeidstidUker
+                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
+                            selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+                        )}
+                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                    />
+                </>
             )}
-        </>
+        </VStack>
     );
 };
 
