@@ -1,12 +1,11 @@
 import { Alert } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold } from '../../../../types/ArbeidsforholdTypes';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields } from '../SituasjonStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -22,49 +21,44 @@ const ArbeidsforholdSituasjon: React.FC<Props> = ({ arbeidsforhold, parentFieldN
     const arbeidsgivernavn = arbeidsforhold.navn;
     return (
         <>
-            <FormBlock margin="none">
+            <YesOrNoQuestion
+                legend={text('step.situasjon.arbeidsforhold.harHattFravær.spm')}
+                name={getFieldName(ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver)}
+                validate={(value) => {
+                    return getYesOrNoValidator()(value)
+                        ? {
+                              key: AppFieldValidationErrors.harHattFraværHosArbeidsgiver_yesOrNoIsUnanswered,
+                              values: { arbeidsgivernavn },
+                              keepKeyUnaltered: true,
+                          }
+                        : undefined;
+                }}
+                data-testid="arbeidsforhold-harHattFravær"
+            />
+
+            {arbeidsforhold[ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver] === YesOrNo.YES && (
                 <YesOrNoQuestion
-                    legend={text('step.situasjon.arbeidsforhold.harHattFravær.spm')}
-                    name={getFieldName(ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver)}
+                    legend={text('step.situasjon.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm')}
+                    name={getFieldName(ArbeidsforholdFormFields.arbeidsgiverHarUtbetaltLønn)}
                     validate={(value) => {
                         return getYesOrNoValidator()(value)
                             ? {
-                                  key: AppFieldValidationErrors.harHattFraværHosArbeidsgiver_yesOrNoIsUnanswered,
+                                  key: AppFieldValidationErrors.arbeidsgiverHarUtbetaltLønn_yesOrNoIsUnanswered,
                                   values: { arbeidsgivernavn },
                                   keepKeyUnaltered: true,
                               }
                             : undefined;
                     }}
-                    data-testid="arbeidsforhold-harHattFravær"
+                    data-testid="arbeidsforhold-harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene"
                 />
-            </FormBlock>
-            {arbeidsforhold[ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver] === YesOrNo.YES && (
-                <FormBlock>
-                    <YesOrNoQuestion
-                        legend={text(
-                            'step.situasjon.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm',
-                        )}
-                        name={getFieldName(ArbeidsforholdFormFields.arbeidsgiverHarUtbetaltLønn)}
-                        validate={(value) => {
-                            return getYesOrNoValidator()(value)
-                                ? {
-                                      key: AppFieldValidationErrors.arbeidsgiverHarUtbetaltLønn_yesOrNoIsUnanswered,
-                                      values: { arbeidsgivernavn },
-                                      keepKeyUnaltered: true,
-                                  }
-                                : undefined;
-                        }}
-                        data-testid="arbeidsforhold-harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene"
-                    />
-                </FormBlock>
             )}
             {arbeidsforhold[ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver] === YesOrNo.YES &&
                 arbeidsforhold[ArbeidsforholdFormFields.arbeidsgiverHarUtbetaltLønn] === YesOrNo.YES && (
-                    <Block margin="l">
+                    <FormLayout.QuestionRelatedMessage>
                         <Alert variant="info">
                             <AppText id="step.situasjon.arbeidsforhold.harUtbetalingLønn.alertstripe" />
                         </Alert>
-                    </Block>
+                    </FormLayout.QuestionRelatedMessage>
                 )}
         </>
     );

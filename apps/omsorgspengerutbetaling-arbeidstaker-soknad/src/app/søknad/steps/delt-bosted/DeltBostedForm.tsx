@@ -1,7 +1,6 @@
 import { Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
@@ -39,7 +38,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <VStack gap="10">
                 <SifGuidePanel>
                     <p style={{ marginTop: 0 }}>
                         <AppText id="step.deltBosted.info.1" />
@@ -63,8 +62,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         <AppText id="step.deltBosted.info.4" />
                     </p>
                 </SifGuidePanel>
-            </Block>
-            <VStack gap="4">
+
                 <FormikFileUpload
                     label={text('step.deltBosted.vedleggsliste.tittel')}
                     initialFiles={vedlegg}

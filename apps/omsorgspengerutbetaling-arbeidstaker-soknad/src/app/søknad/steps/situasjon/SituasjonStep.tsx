@@ -1,9 +1,7 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
@@ -38,6 +36,7 @@ import {
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
 } from './SituasjonStepUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -150,26 +149,26 @@ const SituasjonStep = () => {
                                 submitDisabled={isSubmitting || !harIkkeMottatLønnHosEnEllerFlere}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
-                                    <p>
-                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
-                                    </p>
-                                    <p>
-                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
-                                    </p>
-                                </SifGuidePanel>
+                                <VStack gap="8">
+                                    <SifGuidePanel>
+                                        <p>
+                                            <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
+                                        </p>
+                                        <p>
+                                            <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
+                                        </p>
+                                    </SifGuidePanel>
 
-                                {arbeidsforhold.length > 0 && (
-                                    <FormBlock margin="xxl">
-                                        <div className="arbeidsforhold-liste">
-                                            {arbeidsforhold.map((forhold, index) => (
-                                                <Block
-                                                    key={forhold.organisasjonsnummer}
-                                                    data-testid={`arbeidsforhold-liste-${index}`}>
-                                                    <FormSection
-                                                        titleTag="h2"
-                                                        title={forhold.navn || forhold.organisasjonsnummer}
-                                                        titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                    <VStack gap="10">
+                                        {arbeidsforhold.map((forhold, index) => (
+                                            <div
+                                                key={forhold.organisasjonsnummer}
+                                                data-testid={`arbeidsforhold-liste-${index}`}>
+                                                <FormSection
+                                                    titleTag="h2"
+                                                    title={forhold.navn || forhold.organisasjonsnummer}
+                                                    titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                                    <FormLayout.Questions>
                                                         <ArbeidsforholdSituasjon
                                                             arbeidsforhold={forhold}
                                                             parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
@@ -182,28 +181,24 @@ const SituasjonStep = () => {
                                                                     parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
                                                                 />
                                                             )}
-                                                    </FormSection>
-                                                </Block>
-                                            ))}
-                                        </div>
-                                    </FormBlock>
-                                )}
+                                                    </FormLayout.Questions>
+                                                </FormSection>
+                                            </div>
+                                        ))}
+                                    </VStack>
 
-                                {arbeidsforhold.length === 0 && (
-                                    <FormBlock>
+                                    {arbeidsforhold.length === 0 && (
                                         <Alert variant="info">
                                             <AppText id="step.situasjon.arbeidsforhold.ingen.info.text" />
                                         </Alert>
-                                    </FormBlock>
-                                )}
+                                    )}
 
-                                {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
-                                    <FormBlock paddingBottom="l">
+                                    {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
                                         <Alert variant="warning">
                                             <AppText id="step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei" />
                                         </Alert>
-                                    </FormBlock>
-                                )}
+                                    )}
+                                </VStack>
                             </Form>
                         </>
                     );

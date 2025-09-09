@@ -43,7 +43,7 @@ body.sif-ds-theme {
 .navds-form-summary__answers--compact .navds-form-summary__answer dd.fullWidth {
     display: block;
 }
-p {
+p:not(.aksel-error-message):not(.aksel-textarea__counter) {
     margin: 1rem 0;
     padding: unset;
 }

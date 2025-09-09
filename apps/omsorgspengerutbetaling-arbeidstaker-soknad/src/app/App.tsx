@@ -14,6 +14,7 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import { relocateToWelcomePage } from './utils/navigationUtils';
 import './app.css';
+import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,
@@ -39,32 +40,34 @@ const handleResetSoknad = async () => {
 };
 
 const App = () => (
-    <SoknadApplication
-        appVersion={APP_VERSION}
-        appKey={OmsorgspengerutbetalingArbeidstakerApp.key}
-        appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
-        appTitle={OmsorgspengerutbetalingArbeidstakerApp.tittel.nb}
-        intlMessages={applicationIntlMessages}
-        useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-        onResetSoknad={handleResetSoknad}
-        appStatus={{
-            sanityConfig: {
-                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
-            },
-        }}
-        publicPath={PUBLIC_PATH}
-        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
-        amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
-        <SoknadApplicationCommonRoutes
-            contentRoutes={[
-                <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
-                <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
-                <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
-            ]}
-        />
-    </SoknadApplication>
+    <Theme>
+        <SoknadApplication
+            appVersion={APP_VERSION}
+            appKey={OmsorgspengerutbetalingArbeidstakerApp.key}
+            appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
+            appTitle={OmsorgspengerutbetalingArbeidstakerApp.tittel.nb}
+            intlMessages={applicationIntlMessages}
+            useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
+            onResetSoknad={handleResetSoknad}
+            appStatus={{
+                sanityConfig: {
+                    projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
+            publicPath={PUBLIC_PATH}
+            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
+            <SoknadApplicationCommonRoutes
+                contentRoutes={[
+                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                    <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                    <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                ]}
+            />
+        </SoknadApplication>
+    </Theme>
 );
 
 export default App;

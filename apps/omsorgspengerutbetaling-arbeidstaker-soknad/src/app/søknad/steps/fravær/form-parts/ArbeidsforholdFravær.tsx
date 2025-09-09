@@ -1,5 +1,4 @@
 import { BodyLong } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     getTypedFormComponents,
@@ -20,6 +19,7 @@ import {
     getFraværPerioderValidator,
 } from '../../../../utils/validations';
 import { FraværStepFormFields, FraværStepFormValues } from '../FraværStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, FraværStepFormValues, ValidationError>();
 
@@ -69,32 +69,30 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
     const { harPerioderMedFravær, harDagerMedDelvisFravær, fraværDager, fraværPerioder } = fravær;
 
     return (
-        <>
-            <FormBlock>
-                <YesOrNoQuestion
-                    name={getFieldName(FraværFormFields.harPerioderMedFravær)}
-                    legend={text('step.fravær.heledager.spm')}
-                    validate={(value) => {
-                        const error = validateAll([
-                            () => getYesOrNoValidator()(value),
-                            () => minimumHarPeriodeEllerDelerAvDagYes(harPerioderMedFravær, harDagerMedDelvisFravær),
-                        ]);
-                        if (error === ValidateYesOrNoError.yesOrNoIsUnanswered) {
-                            return {
-                                key: AppFieldValidationErrors.arbeidsforhold_harPerioderMedFravær_yesOrNoIsUnanswered,
-                                keepKeyUnaltered: true,
-                                values: { arbeidsgivernavn: arbeidsgiverNavn },
-                            };
-                        }
-                        return error;
-                    }}
-                    data-testid="harPerioderMedFravær"
-                />
-            </FormBlock>
+        <FormLayout.Questions>
+            <YesOrNoQuestion
+                name={getFieldName(FraværFormFields.harPerioderMedFravær)}
+                legend={text('step.fravær.heledager.spm')}
+                validate={(value) => {
+                    const error = validateAll([
+                        () => getYesOrNoValidator()(value),
+                        () => minimumHarPeriodeEllerDelerAvDagYes(harPerioderMedFravær, harDagerMedDelvisFravær),
+                    ]);
+                    if (error === ValidateYesOrNoError.yesOrNoIsUnanswered) {
+                        return {
+                            key: AppFieldValidationErrors.arbeidsforhold_harPerioderMedFravær_yesOrNoIsUnanswered,
+                            keepKeyUnaltered: true,
+                            values: { arbeidsgivernavn: arbeidsgiverNavn },
+                        };
+                    }
+                    return error;
+                }}
+                data-testid="harPerioderMedFravær"
+            />
 
             {/* DAGER MED FULLT FRAVÆR*/}
             {harPerioderMedFravær === YesOrNo.YES && (
-                <FormBlock margin="m">
+                <FormLayout.QuestionBleedTop>
                     <FraværPerioderListAndDialog
                         name={getFieldName(FraværFormFields.fraværPerioder)}
                         periodeDescription={getTidsromBegrensningInfo()}
@@ -113,59 +111,56 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         ]}
                         helgedagerIkkeTillat={true}
                     />
-                </FormBlock>
+                </FormLayout.QuestionBleedTop>
             )}
-            <FormBlock>
-                <YesOrNoQuestion
-                    name={getFieldName(FraværFormFields.harDagerMedDelvisFravær)}
-                    legend={text('step.fravær.delvisdag.spm')}
-                    validate={(value) => {
-                        const error = validateAll([
-                            () => {
-                                return getYesOrNoValidator()(value);
-                            },
-                            () => minimumHarPeriodeEllerDelerAvDagYes(harPerioderMedFravær, harDagerMedDelvisFravær),
-                        ]);
-                        if (error === ValidateYesOrNoError.yesOrNoIsUnanswered) {
-                            return {
-                                key: AppFieldValidationErrors.arbeidsforhold_harDagerMedDelvisFravær_yesOrNoIsUnanswered,
-                                keepKeyUnaltered: true,
-                                values: { arbeidsgivernavn: arbeidsgiverNavn },
-                            };
-                        }
-                        return error;
-                    }}
-                    data-testid="harDagerMedDelvisFravær"
-                />
-            </FormBlock>
+
+            <YesOrNoQuestion
+                name={getFieldName(FraværFormFields.harDagerMedDelvisFravær)}
+                legend={text('step.fravær.delvisdag.spm')}
+                validate={(value) => {
+                    const error = validateAll([
+                        () => {
+                            return getYesOrNoValidator()(value);
+                        },
+                        () => minimumHarPeriodeEllerDelerAvDagYes(harPerioderMedFravær, harDagerMedDelvisFravær),
+                    ]);
+                    if (error === ValidateYesOrNoError.yesOrNoIsUnanswered) {
+                        return {
+                            key: AppFieldValidationErrors.arbeidsforhold_harDagerMedDelvisFravær_yesOrNoIsUnanswered,
+                            keepKeyUnaltered: true,
+                            values: { arbeidsgivernavn: arbeidsgiverNavn },
+                        };
+                    }
+                    return error;
+                }}
+                data-testid="harDagerMedDelvisFravær"
+            />
 
             {/* DAGER MED DELVIS FRAVÆR*/}
             {harDagerMedDelvisFravær === YesOrNo.YES && (
-                <>
-                    <FormBlock margin="m">
-                        <FraværDagerListAndDialog
-                            name={getFieldName(FraværFormFields.fraværDager)}
-                            dagDescription={getTidsromBegrensningInfo(true)}
-                            minDate={minDateForFravær}
-                            maxDate={maxDateForFravær}
-                            validate={getFraværDagerValidator({ fraværPerioder, arbeidsgiverNavn, årstall })}
-                            labels={{
-                                addLabel: text('step.fravær.delvisdag.dagModal.label'),
-                                modalTitle: text('step.fravær.delvisdag.dagModal.title'),
-                                listTitle: text('step.fravær.delvisdag.dagModal.title'),
-                                hideListTitle: true,
-                            }}
-                            dateRangesToDisable={[
-                                ...fraværDager.map(fraværDagToFraværDateRange),
-                                ...fraværPerioder.map(fraværPeriodeToDateRange),
-                            ]}
-                            helgedagerIkkeTillatt={true}
-                            maksArbeidstidPerDag={24}
-                        />
-                    </FormBlock>
-                </>
+                <FormLayout.QuestionBleedTop>
+                    <FraværDagerListAndDialog
+                        name={getFieldName(FraværFormFields.fraværDager)}
+                        dagDescription={getTidsromBegrensningInfo(true)}
+                        minDate={minDateForFravær}
+                        maxDate={maxDateForFravær}
+                        validate={getFraværDagerValidator({ fraværPerioder, arbeidsgiverNavn, årstall })}
+                        labels={{
+                            addLabel: text('step.fravær.delvisdag.dagModal.label'),
+                            modalTitle: text('step.fravær.delvisdag.dagModal.title'),
+                            listTitle: text('step.fravær.delvisdag.dagModal.title'),
+                            hideListTitle: true,
+                        }}
+                        dateRangesToDisable={[
+                            ...fraværDager.map(fraværDagToFraværDateRange),
+                            ...fraværPerioder.map(fraværPeriodeToDateRange),
+                        ]}
+                        helgedagerIkkeTillatt={true}
+                        maksArbeidstidPerDag={24}
+                    />
+                </FormLayout.QuestionBleedTop>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

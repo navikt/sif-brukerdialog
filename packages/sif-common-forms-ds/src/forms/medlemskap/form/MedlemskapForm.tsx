@@ -1,4 +1,4 @@
-import { Box, Link, VStack } from '@navikt/ds-react';
+import { Link, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
@@ -9,6 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
+import { PanelBox } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
 import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n';
@@ -107,7 +108,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                     />
 
                     {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                        <Box padding="4" background="bg-subtle" borderRadius="medium">
+                        <PanelBox>
                             <BostedUtlandListAndDialog<MedlemskapFormFields>
                                 name={MedlemskapFormFields.utenlandsoppholdSiste12Mnd}
                                 minDate={siste12Måneder.from}
@@ -119,7 +120,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 }}
                                 validate={validateUtenlandsoppholdSiste12Mnd}
                             />
-                        </Box>
+                        </PanelBox>
                     )}
                 </VStack>
 
@@ -136,7 +137,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                     />
 
                     {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
-                        <Box padding="4" background="bg-subtle" borderRadius="medium">
+                        <PanelBox>
                             <BostedUtlandListAndDialog<MedlemskapFormFields>
                                 name={MedlemskapFormFields.utenlandsoppholdNeste12Mnd}
                                 minDate={neste12Måneder.from}
@@ -148,7 +149,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 }}
                                 validate={validateUtenlandsoppholdNeste12Mnd}
                             />
-                        </Box>
+                        </PanelBox>
                     )}
                 </VStack>
             </VStack>

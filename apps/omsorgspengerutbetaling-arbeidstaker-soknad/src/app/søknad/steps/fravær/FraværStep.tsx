@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     DateRange,
@@ -45,6 +43,8 @@ import {
     getFraværSøknadsdataFromFormValues,
     getOrganisasjonsnummerKey,
 } from './fraværStepUtils';
+import { BodyLong, VStack } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum FraværStepFormFields {
     fravær = 'fravær',
@@ -166,81 +166,92 @@ const FraværStep: React.FC = () => {
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <FormBlock>
+                                <VStack gap="8">
                                     <SifGuidePanel>
-                                        <AppText id="step.fravær.info.1" />
-                                        <Block margin="m">
+                                        <BodyLong>
+                                            <AppText id="step.fravær.info.1" />
+                                        </BodyLong>
+                                        <BodyLong>
                                             <AppText
                                                 id="step.fravær.info.2"
                                                 values={{
                                                     strong: (msg): React.ReactNode => <strong>{msg}</strong>,
                                                 }}
                                             />
-                                        </Block>
+                                        </BodyLong>
                                     </SifGuidePanel>
-                                </FormBlock>
-                                {arbeidsforholdliste && arbeidsforholdliste.length > 0 && (
-                                    <FormBlock margin="xxl">
-                                        {arbeidsforholdliste.map((forhold: ArbeidforholdSøknadsdata) => {
-                                            return (
-                                                <FormBlock
-                                                    margin="l"
-                                                    key={forhold.organisasjonsnummer}
-                                                    data-testid="arbeidsforhold-liste">
-                                                    <FormSection
-                                                        titleTag="h2"
-                                                        title={forhold.navn || forhold.organisasjonsnummer}
-                                                        titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
-                                                        <ArbeidsforholdFravær
-                                                            fravær={
-                                                                fravær[
-                                                                    getOrganisasjonsnummerKey(
+                                    <VStack gap="10">
+                                        {arbeidsforholdliste && arbeidsforholdliste.length > 0 && (
+                                            <VStack gap="12">
+                                                {arbeidsforholdliste.map((forhold: ArbeidforholdSøknadsdata) => {
+                                                    return (
+                                                        <div
+                                                            key={forhold.organisasjonsnummer}
+                                                            data-testid="arbeidsforhold-liste">
+                                                            <FormSection
+                                                                titleTag="h2"
+                                                                title={forhold.navn || forhold.organisasjonsnummer}
+                                                                titleIcon={
+                                                                    <Office1 role="presentation" aria-hidden={true} />
+                                                                }>
+                                                                <ArbeidsforholdFravær
+                                                                    fravær={
+                                                                        fravær[
+                                                                            getOrganisasjonsnummerKey(
+                                                                                forhold.organisasjonsnummer,
+                                                                            )
+                                                                        ]
+                                                                    }
+                                                                    parentFieldName={`${
+                                                                        FraværStepFormFields.fravær
+                                                                    }.${getOrganisasjonsnummerKey(
                                                                         forhold.organisasjonsnummer,
-                                                                    )
-                                                                ]
-                                                            }
-                                                            parentFieldName={`${
-                                                                FraværStepFormFields.fravær
-                                                            }.${getOrganisasjonsnummerKey(
-                                                                forhold.organisasjonsnummer,
-                                                            )}`}
-                                                            minDateForFravær={minDateForFravær}
-                                                            maxDateForFravær={maxDateForFravær}
-                                                            årstall={årstall}
-                                                            arbeidsgiverNavn={forhold.navn}
+                                                                    )}`}
+                                                                    minDateForFravær={minDateForFravær}
+                                                                    maxDateForFravær={maxDateForFravær}
+                                                                    årstall={årstall}
+                                                                    arbeidsgiverNavn={forhold.navn}
+                                                                />
+                                                            </FormSection>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </VStack>
+                                        )}
+
+                                        <FormSection title={text('step.fravær.utenlandsopphold.tittel')}>
+                                            <FormLayout.Questions>
+                                                <YesOrNoQuestion
+                                                    name={FraværStepFormFields.perioderHarVærtIUtlandet}
+                                                    legend={text('step.fravær.værtIUtlandet.spm')}
+                                                    validate={getYesOrNoValidator()}
+                                                    data-testid="utenlandsopphold"
+                                                />
+
+                                                {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
+                                                    <FormLayout.QuestionBleedTop>
+                                                        <BostedUtlandListAndDialog<FraværStepFormFields>
+                                                            name={FraværStepFormFields.perioderUtenlandsopphold}
+                                                            minDate={getDate1YearAgo()}
+                                                            maxDate={getDateToday()}
+                                                            labels={{
+                                                                addLabel: text(
+                                                                    'step.fravær.værtIUtlandet.leggTilLabel',
+                                                                ),
+                                                                modalTitle: text(
+                                                                    'step.fravær.værtIUtlandet.modalTittel',
+                                                                ),
+                                                                listTitle: text('step.fravær.værtIUtlandet.listTitle'),
+                                                                hideListTitle: true,
+                                                            }}
+                                                            validate={getListValidator({ required: true })}
                                                         />
-                                                    </FormSection>
-                                                </FormBlock>
-                                            );
-                                        })}
-                                    </FormBlock>
-                                )}
-
-                                <FormSection title={text('step.fravær.utenlandsopphold.tittel')}>
-                                    <YesOrNoQuestion
-                                        name={FraværStepFormFields.perioderHarVærtIUtlandet}
-                                        legend={text('step.fravær.værtIUtlandet.spm')}
-                                        validate={getYesOrNoValidator()}
-                                        data-testid="utenlandsopphold"
-                                    />
-
-                                    {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
-                                        <FormBlock margin="m">
-                                            <BostedUtlandListAndDialog<FraværStepFormFields>
-                                                name={FraværStepFormFields.perioderUtenlandsopphold}
-                                                minDate={getDate1YearAgo()}
-                                                maxDate={getDateToday()}
-                                                labels={{
-                                                    addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
-                                                    modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),
-                                                    listTitle: text('step.fravær.værtIUtlandet.listTitle'),
-                                                    hideListTitle: true,
-                                                }}
-                                                validate={getListValidator({ required: true })}
-                                            />
-                                        </FormBlock>
-                                    )}
-                                </FormSection>
+                                                    </FormLayout.QuestionBleedTop>
+                                                )}
+                                            </FormLayout.Questions>
+                                        </FormSection>
+                                    </VStack>
+                                </VStack>
                             </Form>
                         </>
                     );
