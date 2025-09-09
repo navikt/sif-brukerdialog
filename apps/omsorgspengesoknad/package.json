@@ -6,7 +6,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.40.23",
+    "version": "1.40.24",
     "private": true,
     "type": "module",
     "dependencies": {
