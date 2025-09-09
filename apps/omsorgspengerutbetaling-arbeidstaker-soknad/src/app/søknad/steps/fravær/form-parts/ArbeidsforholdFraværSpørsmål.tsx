@@ -42,7 +42,7 @@ interface Props {
     årstall?: number;
 }
 
-const ArbeidsforholdFravær: React.FC<Props> = ({
+const ArbeidsforholdFraværSpørsmål: React.FC<Props> = ({
     fravær,
     arbeidsgiverNavn,
     parentFieldName,
@@ -92,7 +92,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
 
             {/* DAGER MED FULLT FRAVÆR*/}
             {harPerioderMedFravær === YesOrNo.YES && (
-                <FormLayout.QuestionBleedTop>
+                <FormLayout.Panel bleedTop={true}>
                     <FraværPerioderListAndDialog
                         name={getFieldName(FraværFormFields.fraværPerioder)}
                         periodeDescription={getTidsromBegrensningInfo()}
@@ -103,7 +103,6 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             addLabel: text('step.fravær.heledager.perioderModal.label'),
                             modalTitle: text('step.fravær.heledager.perioderModal.title'),
                             listTitle: text('step.fravær.heledager.perioderModal.listTitle'),
-                            hideListTitle: true,
                         }}
                         dateRangesToDisable={[
                             ...fraværPerioder.map(fraværPeriodeToDateRange),
@@ -111,7 +110,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         ]}
                         helgedagerIkkeTillat={true}
                     />
-                </FormLayout.QuestionBleedTop>
+                </FormLayout.Panel>
             )}
 
             <YesOrNoQuestion
@@ -138,7 +137,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
 
             {/* DAGER MED DELVIS FRAVÆR*/}
             {harDagerMedDelvisFravær === YesOrNo.YES && (
-                <FormLayout.QuestionBleedTop>
+                <FormLayout.Panel bleedTop={true}>
                     <FraværDagerListAndDialog
                         name={getFieldName(FraværFormFields.fraværDager)}
                         dagDescription={getTidsromBegrensningInfo(true)}
@@ -149,7 +148,6 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             addLabel: text('step.fravær.delvisdag.dagModal.label'),
                             modalTitle: text('step.fravær.delvisdag.dagModal.title'),
                             listTitle: text('step.fravær.delvisdag.dagModal.title'),
-                            hideListTitle: true,
                         }}
                         dateRangesToDisable={[
                             ...fraværDager.map(fraværDagToFraværDateRange),
@@ -158,10 +156,10 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         helgedagerIkkeTillatt={true}
                         maksArbeidstidPerDag={24}
                     />
-                </FormLayout.QuestionBleedTop>
+                </FormLayout.Panel>
             )}
         </FormLayout.Questions>
     );
 };
 
-export default ArbeidsforholdFravær;
+export default ArbeidsforholdFraværSpørsmål;

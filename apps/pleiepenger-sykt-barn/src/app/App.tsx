@@ -17,6 +17,7 @@ import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
 import './app.css';
+import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,
@@ -49,33 +50,35 @@ const App = () => {
     };
 
     return (
-        <SoknadApplication
-            appVersion={APP_VERSION}
-            appKey={PleiepengerSyktBarnApp.key}
-            appName={PleiepengerSyktBarnApp.navn}
-            appTitle={PleiepengerSyktBarnApp.tittel.nb}
-            appStatus={{ sanityConfig: sanityConfig }}
-            intlMessages={applicationIntlMessages}
-            useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
-            publicPath={PUBLIC_PATH}
-            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
-            onResetSoknad={handleResetSoknad}>
-            <SoknadApplicationCommonRoutes
-                onReset={() => {
-                    relocateToSoknad();
-                }}
-                contentRoutes={[
-                    <Route
-                        key="index"
-                        path="/"
-                        element={<Navigate to={RouteConfig.SØKNAD_ROUTE_PREFIX} replace={true} />}
-                    />,
-                    <Route key="søknad" path={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/*`} element={<Søknad />} />,
-                    <Route key="errorpage" path={RouteConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />,
-                ]}
-            />
-        </SoknadApplication>
+        <Theme>
+            <SoknadApplication
+                appVersion={APP_VERSION}
+                appKey={PleiepengerSyktBarnApp.key}
+                appName={PleiepengerSyktBarnApp.navn}
+                appTitle={PleiepengerSyktBarnApp.tittel.nb}
+                appStatus={{ sanityConfig: sanityConfig }}
+                intlMessages={applicationIntlMessages}
+                useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
+                useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+                publicPath={PUBLIC_PATH}
+                amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
+                onResetSoknad={handleResetSoknad}>
+                <SoknadApplicationCommonRoutes
+                    onReset={() => {
+                        relocateToSoknad();
+                    }}
+                    contentRoutes={[
+                        <Route
+                            key="index"
+                            path="/"
+                            element={<Navigate to={RouteConfig.SØKNAD_ROUTE_PREFIX} replace={true} />}
+                        />,
+                        <Route key="søknad" path={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/*`} element={<Søknad />} />,
+                        <Route key="errorpage" path={RouteConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />,
+                    ]}
+                />
+            </SoknadApplication>
+        </Theme>
     );
 };
 

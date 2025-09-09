@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
-import { PanelBox } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
 import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n';
@@ -95,7 +95,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                     />
                 </SifGuidePanel>
 
-                <VStack gap="3">
+                <FormLayout.Questions>
                     <YesOrNoQuestion
                         legend={text('@forms.medlemskapForm.annetLandSiste12.spm')}
                         name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
@@ -108,7 +108,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                     />
 
                     {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                        <PanelBox>
+                        <FormLayout.Panel bleedTop={true}>
                             <BostedUtlandListAndDialog<MedlemskapFormFields>
                                 name={MedlemskapFormFields.utenlandsoppholdSiste12Mnd}
                                 minDate={siste12Måneder.from}
@@ -120,11 +120,8 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 }}
                                 validate={validateUtenlandsoppholdSiste12Mnd}
                             />
-                        </PanelBox>
+                        </FormLayout.Panel>
                     )}
-                </VStack>
-
-                <VStack gap="3">
                     <YesOrNoQuestion
                         legend={text('@forms.medlemskapForm.annetLandNeste12.spm')}
                         name={MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd}
@@ -137,7 +134,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                     />
 
                     {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
-                        <PanelBox>
+                        <FormLayout.Panel bleedTop={true}>
                             <BostedUtlandListAndDialog<MedlemskapFormFields>
                                 name={MedlemskapFormFields.utenlandsoppholdNeste12Mnd}
                                 minDate={neste12Måneder.from}
@@ -149,9 +146,9 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 }}
                                 validate={validateUtenlandsoppholdNeste12Mnd}
                             />
-                        </PanelBox>
+                        </FormLayout.Panel>
                     )}
-                </VStack>
+                </FormLayout.Questions>
             </VStack>
         </Form>
     );

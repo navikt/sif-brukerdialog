@@ -13,7 +13,6 @@ import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bos
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import FormSection from '../../../components/form-section/FormSection';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -37,7 +36,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import ArbeidsforholdFravær from './form-parts/ArbeidsforholdFravær';
+import ArbeidsforholdFraværSpørsmål from './form-parts/ArbeidsforholdFraværSpørsmål';
 import {
     getFraværStepInitialValues,
     getFraværSøknadsdataFromFormValues,
@@ -188,13 +187,12 @@ const FraværStep: React.FC = () => {
                                                         <div
                                                             key={forhold.organisasjonsnummer}
                                                             data-testid="arbeidsforhold-liste">
-                                                            <FormSection
-                                                                titleTag="h2"
+                                                            <FormLayout.Section
                                                                 title={forhold.navn || forhold.organisasjonsnummer}
                                                                 titleIcon={
                                                                     <Office1 role="presentation" aria-hidden={true} />
                                                                 }>
-                                                                <ArbeidsforholdFravær
+                                                                <ArbeidsforholdFraværSpørsmål
                                                                     fravær={
                                                                         fravær[
                                                                             getOrganisasjonsnummerKey(
@@ -212,14 +210,14 @@ const FraværStep: React.FC = () => {
                                                                     årstall={årstall}
                                                                     arbeidsgiverNavn={forhold.navn}
                                                                 />
-                                                            </FormSection>
+                                                            </FormLayout.Section>
                                                         </div>
                                                     );
                                                 })}
                                             </VStack>
                                         )}
 
-                                        <FormSection title={text('step.fravær.utenlandsopphold.tittel')}>
+                                        <FormLayout.Section title={text('step.fravær.utenlandsopphold.tittel')}>
                                             <FormLayout.Questions>
                                                 <YesOrNoQuestion
                                                     name={FraværStepFormFields.perioderHarVærtIUtlandet}
@@ -229,7 +227,7 @@ const FraværStep: React.FC = () => {
                                                 />
 
                                                 {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
-                                                    <FormLayout.QuestionBleedTop>
+                                                    <FormLayout.Panel bleedTop={true}>
                                                         <BostedUtlandListAndDialog<FraværStepFormFields>
                                                             name={FraværStepFormFields.perioderUtenlandsopphold}
                                                             minDate={getDate1YearAgo()}
@@ -242,14 +240,14 @@ const FraværStep: React.FC = () => {
                                                                     'step.fravær.værtIUtlandet.modalTittel',
                                                                 ),
                                                                 listTitle: text('step.fravær.værtIUtlandet.listTitle'),
-                                                                hideListTitle: true,
+                                                                hideListTitle: false,
                                                             }}
                                                             validate={getListValidator({ required: true })}
                                                         />
-                                                    </FormLayout.QuestionBleedTop>
+                                                    </FormLayout.Panel>
                                                 )}
                                             </FormLayout.Questions>
-                                        </FormSection>
+                                        </FormLayout.Section>
                                     </VStack>
                                 </VStack>
                             </Form>

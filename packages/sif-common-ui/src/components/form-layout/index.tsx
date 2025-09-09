@@ -1,18 +1,23 @@
-import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, BoxNew, BoxNewProps, Heading, HeadingProps, HStack, VStack } from '@navikt/ds-react';
 
 /**
  * FormSection
  * ----------------
  * Setter opp default spacing mellom innhold i en skjemaseksjon
- * gap=8
  */
 
-const Section = ({ title, children }: { title?: string; children?: React.ReactNode }) => {
+type SectionProps = { title: React.ReactNode; titleIcon?: React.ReactNode } & React.HTMLAttributes<HTMLElement>;
+
+const Section = ({ title, titleIcon, children, ...rest }: SectionProps) => {
     return (
-        <VStack gap="4">
-            {title ? <SectionHeading>{title}</SectionHeading> : null}
-            <Questions>{children}</Questions>
-        </VStack>
+        <section {...rest}>
+            <VStack gap="4">
+                <SectionHeading level="2" size="medium" icon={titleIcon}>
+                    {title}
+                </SectionHeading>
+                {children}
+            </VStack>
+        </section>
     );
 };
 
@@ -22,9 +27,18 @@ const Section = ({ title, children }: { title?: string; children?: React.ReactNo
  * Header i en FormSection
  */
 
-const SectionHeading = ({ children }: { children?: React.ReactNode }) => (
-    <Heading level="2" size="medium">
-        {children}
+type SectionHeadingProps = { icon?: React.ReactNode } & HeadingProps;
+
+const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest }: SectionHeadingProps) => (
+    <Heading level={level} size={size} {...rest}>
+        {icon ? (
+            <HStack gap="4">
+                {icon}
+                {children}
+            </HStack>
+        ) : (
+            children
+        )}
     </Heading>
 );
 
@@ -60,12 +74,21 @@ export const Questions = ({ children }: { children: React.ReactNode }) => {
  * @param param0
  * @returns
  */
-const Panel = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <Box padding="6" paddingBlock="6" style={{ backgroundColor: 'var(--a-gray-50)' }} borderRadius="medium">
-            {children}
-        </Box>
+
+type PanelProps = { bleedTop?: boolean } & BoxNewProps;
+
+const Panel = ({ bleedTop, ...rest }: PanelProps) => {
+    const content = (
+        <BoxNew
+            borderColor="neutral-subtle"
+            background="neutral-soft"
+            borderRadius="8"
+            borderWidth="1"
+            padding={{ xs: '2', sm: '4', md: '6' }}
+            {...rest}
+        />
     );
+    return bleedTop ? <QuestionBleedTop>{content}</QuestionBleedTop> : content;
 };
 export const FormLayout = {
     Panel,

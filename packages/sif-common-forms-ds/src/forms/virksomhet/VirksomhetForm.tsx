@@ -9,7 +9,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { FormLayout, PanelBox } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDate3YearsAgo,
     getDate4YearsAgo,
@@ -482,7 +482,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
 
                                             {values.hattVarigEndringAvNæringsinntektSiste4Kalenderår ===
                                                 YesOrNo.YES && (
-                                                <PanelBox>
+                                                <FormLayout.Panel>
                                                     <FormLayout.Questions>
                                                         <Form.DatePicker
                                                             name={VirksomhetFormField.varigEndringINæringsinntekt_dato}
@@ -559,7 +559,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                             }}
                                                         />
                                                     </FormLayout.Questions>
-                                                </PanelBox>
+                                                </FormLayout.Panel>
                                             )}
                                         </>
                                     )}
@@ -573,62 +573,60 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 description={text('@forms.virksomhet.regnskapsfører_telefon_info')}
                                             />
                                             {values.harRegnskapsfører === YesOrNo.YES && (
-                                                <FormLayout.QuestionBleedTop>
-                                                    <PanelBox>
-                                                        <FormLayout.Questions>
-                                                            <Form.TextField
-                                                                name={VirksomhetFormField.regnskapsfører_navn}
-                                                                label={text('@forms.virksomhet.regnskapsfører_navn')}
-                                                                validate={(value) => {
-                                                                    const error = getStringValidator({
-                                                                        required: true,
-                                                                        minLength: 2,
-                                                                        maxLength: 50,
-                                                                    })(value);
+                                                <FormLayout.Panel bleedTop={true}>
+                                                    <FormLayout.Questions>
+                                                        <Form.TextField
+                                                            name={VirksomhetFormField.regnskapsfører_navn}
+                                                            label={text('@forms.virksomhet.regnskapsfører_navn')}
+                                                            validate={(value) => {
+                                                                const error = getStringValidator({
+                                                                    required: true,
+                                                                    minLength: 2,
+                                                                    maxLength: 50,
+                                                                })(value);
 
-                                                                    return error
-                                                                        ? {
-                                                                              key: error,
-                                                                              values: {
-                                                                                  navn: navnPåVirksomheten,
-                                                                                  min: 2,
-                                                                                  maks: 1000,
-                                                                                  disallowUnicodeCharacters: true,
-                                                                              },
-                                                                          }
-                                                                        : undefined;
-                                                                }}
-                                                                maxLength={50}
-                                                            />
+                                                                return error
+                                                                    ? {
+                                                                          key: error,
+                                                                          values: {
+                                                                              navn: navnPåVirksomheten,
+                                                                              min: 2,
+                                                                              maks: 1000,
+                                                                              disallowUnicodeCharacters: true,
+                                                                          },
+                                                                      }
+                                                                    : undefined;
+                                                            }}
+                                                            maxLength={50}
+                                                        />
 
-                                                            <Form.TextField
-                                                                name={VirksomhetFormField.regnskapsfører_telefon}
-                                                                label={text('@forms.virksomhet.regnskapsfører_telefon')}
-                                                                validate={(value) => {
-                                                                    const error = getStringValidator({
-                                                                        required: true,
-                                                                        minLength: 5,
-                                                                        maxLength: 15,
-                                                                        formatRegExp: /^[0-9+ ]+$/,
-                                                                        disallowUnicodeCharacters: true,
-                                                                    })(value);
+                                                        <Form.TextField
+                                                            name={VirksomhetFormField.regnskapsfører_telefon}
+                                                            label={text('@forms.virksomhet.regnskapsfører_telefon')}
+                                                            validate={(value) => {
+                                                                const error = getStringValidator({
+                                                                    required: true,
+                                                                    minLength: 5,
+                                                                    maxLength: 15,
+                                                                    formatRegExp: /^[0-9+ ]+$/,
+                                                                    disallowUnicodeCharacters: true,
+                                                                })(value);
 
-                                                                    return error
-                                                                        ? {
-                                                                              key: error,
-                                                                              values: {
-                                                                                  navn: navnPåVirksomheten,
-                                                                                  min: 5,
-                                                                                  maks: 15,
-                                                                              },
-                                                                          }
-                                                                        : undefined;
-                                                                }}
-                                                                maxLength={15}
-                                                            />
-                                                        </FormLayout.Questions>
-                                                    </PanelBox>
-                                                </FormLayout.QuestionBleedTop>
+                                                                return error
+                                                                    ? {
+                                                                          key: error,
+                                                                          values: {
+                                                                              navn: navnPåVirksomheten,
+                                                                              min: 5,
+                                                                              maks: 15,
+                                                                          },
+                                                                      }
+                                                                    : undefined;
+                                                            }}
+                                                            maxLength={15}
+                                                        />
+                                                    </FormLayout.Questions>
+                                                </FormLayout.Panel>
                                             )}
                                         </>
                                     )}

@@ -1,5 +1,4 @@
 export { default as ActionLink } from './atoms/action-link/ActionLink';
-export { default as PanelBox } from './atoms/panel-box/PanelBox';
 export { default as DatoSvar } from './components/summary-answers/DatoSvar';
 export { default as DaySelector } from './inputs/day-selector/DaySelector';
 export { default as DeleteButton } from './atoms/delete-button/DeleteButton';

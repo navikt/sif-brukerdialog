@@ -27,7 +27,7 @@ const OmSøknaden = () => {
                     </List.Item>
                 </List>
             </Box>
-            <Accordion>
+            <Accordion size="small">
                 <Accordion.Item>
                     <Accordion.Header>{text('page.velkommen.omSøknaden.endringer.tittel')}</Accordion.Header>
                     <Accordion.Content>

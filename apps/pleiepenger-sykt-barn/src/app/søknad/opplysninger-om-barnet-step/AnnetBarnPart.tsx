@@ -1,8 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -23,6 +21,7 @@ import { validateNavn, validateRelasjonTilBarnBeskrivelse } from '../../validati
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     formValues: SøknadFormValues;
@@ -51,7 +50,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fø
                     </Heading>
                 ) : undefined
             }>
-            <div>
+            <FormLayout.Questions>
                 <SøknadFormComponents.TextField
                     label={text('steg.omBarnet.fnr.spm')}
                     name={SøknadFormField.barnetsFødselsnummer}
@@ -69,7 +68,8 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fø
                     maxLength={11}
                     disabled={barnetHarIkkeFnr}
                 />
-                <FormBlock margin="l">
+
+                <FormLayout.QuestionBleedTop>
                     <SøknadFormComponents.Checkbox
                         label={text('steg.omBarnet.fnr.barnHarIkkeFnr')}
                         name={SøknadFormField.barnetHarIkkeFnr}
@@ -85,109 +85,100 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fø
                             }
                         }}
                     />
-                </FormBlock>
+                </FormLayout.QuestionBleedTop>
 
                 {barnetHarIkkeFnr && (
-                    <FormBlock>
-                        <SøknadFormComponents.RadioGroup
-                            legend={text('steg.omBarnet.årsakManglerIdentitetsnummer.spm')}
-                            name={SøknadFormField.årsakManglerIdentitetsnummer}
-                            radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak, index) => ({
-                                label: text(`steg.omBarnet.årsakManglerIdentitetsnummer.${årsak}` as any),
-                                value: årsak,
-                                className:
-                                    index === Object.keys(ÅrsakManglerIdentitetsnummer).length - 1
-                                        ? 'siste-element'
-                                        : undefined,
-                            }))}
-                            validate={getRequiredFieldValidator()}
-                            value={formValues.årsakManglerIdentitetsnummer}
-                        />
-                    </FormBlock>
-                )}
-                <FormBlock>
-                    <SøknadFormComponents.TextField
-                        label={text('steg.omBarnet.navn')}
-                        name={SøknadFormField.barnetsNavn}
-                        validate={validateNavn}
-                        width="xl"
-                    />
-                </FormBlock>
-                {barnetHarIkkeFnr && (
-                    <FormBlock>
-                        <SøknadFormComponents.DatePicker
-                            name={SøknadFormField.barnetsFødselsdato}
-                            label={text('steg.omBarnet.fødselsdato')}
-                            validate={(value) => {
-                                const dateError = getDateValidator({
-                                    required: true,
-                                    max: getDateToday(),
-                                })(value);
-                                if (dateError === ValidateDateError.dateIsBeforeMin) {
-                                    return {
-                                        key: dateError,
-                                        values: { dato: prettifyDate(nYearsAgo(18)) },
-                                    };
-                                }
-                                return dateError;
-                            }}
-                            title="abc"
-                            minDate={nYearsAgo(18)}
-                            maxDate={getDateToday()}
-                            dropdownCaption={true}
-                        />
-                    </FormBlock>
-                )}
-
-                <FormBlock>
                     <SøknadFormComponents.RadioGroup
-                        legend={text('steg.omBarnet.relasjon.spm')}
-                        name={SøknadFormField.relasjonTilBarnet}
-                        radios={Object.keys(BarnRelasjon).map((relasjon) => ({
-                            label: text(`barnRelasjon.${relasjon}` as any),
-                            value: relasjon,
+                        legend={text('steg.omBarnet.årsakManglerIdentitetsnummer.spm')}
+                        name={SøknadFormField.årsakManglerIdentitetsnummer}
+                        radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak, index) => ({
+                            label: text(`steg.omBarnet.årsakManglerIdentitetsnummer.${årsak}` as any),
+                            value: årsak,
+                            className:
+                                index === Object.keys(ÅrsakManglerIdentitetsnummer).length - 1
+                                    ? 'siste-element'
+                                    : undefined,
                         }))}
                         validate={getRequiredFieldValidator()}
-                        value={formValues.relasjonTilBarnet}></SøknadFormComponents.RadioGroup>
-                </FormBlock>
+                        value={formValues.årsakManglerIdentitetsnummer}
+                    />
+                )}
+
+                <SøknadFormComponents.TextField
+                    label={text('steg.omBarnet.navn')}
+                    name={SøknadFormField.barnetsNavn}
+                    validate={validateNavn}
+                    width="xl"
+                />
+
+                {barnetHarIkkeFnr && (
+                    <SøknadFormComponents.DatePicker
+                        name={SøknadFormField.barnetsFødselsdato}
+                        label={text('steg.omBarnet.fødselsdato')}
+                        validate={(value) => {
+                            const dateError = getDateValidator({
+                                required: true,
+                                max: getDateToday(),
+                            })(value);
+                            if (dateError === ValidateDateError.dateIsBeforeMin) {
+                                return {
+                                    key: dateError,
+                                    values: { dato: prettifyDate(nYearsAgo(18)) },
+                                };
+                            }
+                            return dateError;
+                        }}
+                        title="abc"
+                        minDate={nYearsAgo(18)}
+                        maxDate={getDateToday()}
+                        dropdownCaption={true}
+                    />
+                )}
+
+                <SøknadFormComponents.RadioGroup
+                    legend={text('steg.omBarnet.relasjon.spm')}
+                    name={SøknadFormField.relasjonTilBarnet}
+                    radios={Object.keys(BarnRelasjon).map((relasjon) => ({
+                        label: text(`barnRelasjon.${relasjon}` as any),
+                        value: relasjon,
+                    }))}
+                    validate={getRequiredFieldValidator()}
+                    value={formValues.relasjonTilBarnet}></SøknadFormComponents.RadioGroup>
+
                 {formValues.relasjonTilBarnet === BarnRelasjon.FAR && (
-                    <Block margin="m">
+                    <FormLayout.QuestionRelatedMessage>
                         <InfoForFarVedNyttBarn />
-                    </Block>
+                    </FormLayout.QuestionRelatedMessage>
                 )}
                 {formValues.relasjonTilBarnet === BarnRelasjon.ANNET && (
-                    <FormBlock>
-                        <SøknadFormComponents.Textarea
-                            label={text('steg.omBarnet.relasjonAnnet.spm')}
-                            description={
-                                <>
-                                    <ExpandableInfo title={text('steg.omBarnet.relasjonAnnet.info.tittel')}>
-                                        <div>
-                                            <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1" />
-                                        </div>
-                                        <p>
-                                            <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2" />
-                                        </p>
-                                        <p>
-                                            <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3" />
-                                        </p>
-                                    </ExpandableInfo>
-                                </>
-                            }
-                            name={SøknadFormField.relasjonTilBarnetBeskrivelse}
-                            validate={validateRelasjonTilBarnBeskrivelse}
-                            value={formValues.relasjonTilBarnet || ''}
-                            data-testid="opplysninger-om-barnet-relasjonAnnetBeskrivelse"
-                        />
-                    </FormBlock>
+                    <SøknadFormComponents.Textarea
+                        label={text('steg.omBarnet.relasjonAnnet.spm')}
+                        description={
+                            <>
+                                <ExpandableInfo title={text('steg.omBarnet.relasjonAnnet.info.tittel')}>
+                                    <div>
+                                        <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1" />
+                                    </div>
+                                    <p>
+                                        <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2" />
+                                    </p>
+                                    <p>
+                                        <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3" />
+                                    </p>
+                                </ExpandableInfo>
+                            </>
+                        }
+                        name={SøknadFormField.relasjonTilBarnetBeskrivelse}
+                        validate={validateRelasjonTilBarnBeskrivelse}
+                        value={formValues.relasjonTilBarnet || ''}
+                        data-testid="opplysninger-om-barnet-relasjonAnnetBeskrivelse"
+                    />
                 )}
                 {barnetHarIkkeFnr &&
                     årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
-                        <FormBlock>
-                            <FødselsattestPart fødselsattester={fødselsattester} />
-                        </FormBlock>
+                        <FødselsattestPart fødselsattester={fødselsattester} />
                     )}
-            </div>
+            </FormLayout.Questions>
         </SkjemagruppeQuestion>
     );
 };
