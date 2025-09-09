@@ -10,7 +10,7 @@ const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgs
 
 const startSøknad = async (page: Page) => {
     await page.goto(startUrl);
-    const intro = page.locator('.aksel-guide-panel__content');
+    const intro = page.locator('.soknad-velkommen-page');
     await expect(intro).toContainText('Velkommen til søknad om omsorgspenger');
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
     await page.getByRole('button').getByText('Start søknad').click();
