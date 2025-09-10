@@ -118,27 +118,25 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                         />
 
                         {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                            <FormLayout.QuestionBleedTop>
-                                <FormLayout.Panel>
-                                    <UtenlandsoppholdListAndDialog<SøknadFormField>
-                                        variant="utvidet"
-                                        name={SøknadFormField.utenlandsoppholdIPerioden}
-                                        minDate={periode.from}
-                                        maxDate={periode.to}
-                                        labels={{
-                                            modalTitle: text('steg.tidsrom.iUtlandetIPerioden.modalTitle'),
-                                            listTitle: text('steg.tidsrom.iUtlandetIPerioden.listTitle'),
-                                            addLabel: text('steg.tidsrom.iUtlandetIPerioden.addLabel'),
-                                        }}
-                                        validate={
-                                            periode
-                                                ? (opphold: UtenlandsoppholdUtvidet[]) =>
-                                                      validateUtenlandsoppholdIPerioden(periode, opphold)
-                                                : undefined
-                                        }
-                                    />
-                                </FormLayout.Panel>
-                            </FormLayout.QuestionBleedTop>
+                            <FormLayout.Panel bleedTop={true}>
+                                <UtenlandsoppholdListAndDialog<SøknadFormField>
+                                    variant="utvidet"
+                                    name={SøknadFormField.utenlandsoppholdIPerioden}
+                                    minDate={periode.from}
+                                    maxDate={periode.to}
+                                    labels={{
+                                        modalTitle: text('steg.tidsrom.iUtlandetIPerioden.modalTitle'),
+                                        listTitle: text('steg.tidsrom.iUtlandetIPerioden.listTitle'),
+                                        addLabel: text('steg.tidsrom.iUtlandetIPerioden.addLabel'),
+                                    }}
+                                    validate={
+                                        periode
+                                            ? (opphold: UtenlandsoppholdUtvidet[]) =>
+                                                  validateUtenlandsoppholdIPerioden(periode, opphold)
+                                            : undefined
+                                    }
+                                />
+                            </FormLayout.Panel>
                         )}
                         {visInfoOmUtenlandsopphold && (
                             <FormLayout.QuestionRelatedMessage>
@@ -155,25 +153,23 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                         />
 
                         {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
-                            <FormLayout.QuestionBleedTop>
-                                <FormLayout.Panel>
-                                    <FerieuttakListAndDialog<SøknadFormField>
-                                        name={SøknadFormField.ferieuttakIPerioden}
-                                        minDate={periode.from}
-                                        maxDate={periode.to}
-                                        labels={{
-                                            modalTitle: text('steg.tidsrom.ferieuttakIPerioden.modalTitle'),
-                                            listTitle: text('steg.tidsrom.ferieuttakIPerioden.listTitle'),
-                                            addLabel: text('steg.tidsrom.ferieuttakIPerioden.addLabel'),
-                                        }}
-                                        validate={
-                                            periode
-                                                ? (ferie: Ferieuttak[]) => validateFerieuttakIPerioden(periode, ferie)
-                                                : undefined
-                                        }
-                                    />
-                                </FormLayout.Panel>
-                            </FormLayout.QuestionBleedTop>
+                            <FormLayout.Panel bleedTop={true}>
+                                <FerieuttakListAndDialog<SøknadFormField>
+                                    name={SøknadFormField.ferieuttakIPerioden}
+                                    minDate={periode.from}
+                                    maxDate={periode.to}
+                                    labels={{
+                                        modalTitle: text('steg.tidsrom.ferieuttakIPerioden.modalTitle'),
+                                        listTitle: text('steg.tidsrom.ferieuttakIPerioden.listTitle'),
+                                        addLabel: text('steg.tidsrom.ferieuttakIPerioden.addLabel'),
+                                    }}
+                                    validate={
+                                        periode
+                                            ? (ferie: Ferieuttak[]) => validateFerieuttakIPerioden(periode, ferie)
+                                            : undefined
+                                    }
+                                />
+                            </FormLayout.Panel>
                         )}
                     </>
                 )}

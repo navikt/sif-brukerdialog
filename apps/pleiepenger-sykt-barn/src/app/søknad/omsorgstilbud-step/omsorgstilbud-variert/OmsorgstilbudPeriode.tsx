@@ -46,7 +46,7 @@ const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => 
     };
 
     return (
-        <>
+        <div>
             <Button type="button" onClick={() => setVisPeriode(true)} size="small">
                 <AppText id="omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel" />
             </Button>
@@ -59,7 +59,7 @@ const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => 
                 }}
                 isOpen={visPeriode}
             />
-        </>
+        </div>
     );
 };
 

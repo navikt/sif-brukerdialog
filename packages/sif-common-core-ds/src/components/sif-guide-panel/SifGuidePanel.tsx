@@ -7,7 +7,7 @@ import { GuideMood } from './SifGuide';
 import VeilederSVG from './VeilederSVG';
 import './sifGuidePanel.scss';
 
-interface Props extends GuidePanelProps {
+export interface SifGuidePanelProps extends GuidePanelProps {
     mood?: GuideMood;
     switchToPosterBreakpoint?: number;
     compact?: boolean;
@@ -15,7 +15,7 @@ interface Props extends GuidePanelProps {
 
 const bem = bemUtils('sif-guidePanel');
 
-const SifGuidePanel: React.FunctionComponent<Props> = ({
+const SifGuidePanel: React.FunctionComponent<SifGuidePanelProps> = ({
     mood = 'happy',
     poster,
     title,

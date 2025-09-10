@@ -25,7 +25,11 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
             {tittel}
         </Heading>
         {children}
-        {mottarOmsorgsstønad && <p>Du skal ikke inkludere tid for fosterhjemsgodtgjørelse og omsorgsstønad.</p>}
+        {mottarOmsorgsstønad && (
+            <p>
+                <AppText id="arbeidIPeriode.redusert.info.tekst.mottarOmsorgsstønad" />
+            </p>
+        )}
         {søkerFremITid && (
             <p>
                 <AppText id="arbeidIPeriode.redusert.info.tekst" />

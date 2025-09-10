@@ -36,7 +36,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
 
                 <div>{children}</div>
 
-                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
+                <SamtykkeForm onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
             </VStack>
         </Page>
     );

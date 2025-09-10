@@ -1,11 +1,9 @@
 import { Alert } from '@navikt/ds-react';
-
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import ConditionalResponsivePanel from '../../../../components/conditional-responsive-panel/ConditionalResponsivePanel';
 import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import {
     FrilansFormField,
@@ -54,93 +52,79 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({
     };
 
     return (
-        <>
+        <FormLayout.Questions>
             <HarHattInntektSomFrilanserSpørsmål
                 søkerHarFrilansoppdrag={søkerHarFrilansoppdrag}
                 søkerMottarOmsorgsstønad={omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES}
             />
 
             {harHattInntektSomFrilanser === YesOrNo.YES && (
-                <FormBlock margin="l">
-                    <ConditionalResponsivePanel
-                        usePanelLayout={harHattInntektSomFrilanser === YesOrNo.YES}
-                        border={true}>
+                <FormLayout.Panel bleedTop={true}>
+                    <FormLayout.Questions>
                         <FrilansertypeSpørsmål />
 
                         {values.frilans.frilanstype === Frilanstype.HONORAR && (
-                            <FormBlock margin="xl">
-                                <MisterHonorarSpørsmål misterHonorar={misterHonorar} />
-                            </FormBlock>
+                            <MisterHonorarSpørsmål misterHonorar={misterHonorar} />
                         )}
 
                         {frilanstype === Frilanstype.FRILANS_HONORAR && (
-                            <FormBlock margin="l">
+                            <FormLayout.QuestionRelatedMessage>
                                 <Alert variant="info">
                                     Videre i søknaden bruker vi begrepet &quot;frilanser&quot; også om honorar. Når du
                                     senere skal svare på hvor mye du jobber, skal du legge sammen tiden du jobber som
                                     frilanser og tiden du bruker på det du mottar honorar for, og oppgi denne tiden
                                     samlet.
                                 </Alert>
-                            </FormBlock>
+                            </FormLayout.QuestionRelatedMessage>
                         )}
                         {frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.YES && (
-                            <FormBlock margin="l">
+                            <FormLayout.QuestionRelatedMessage>
                                 <Alert variant="info">
                                     Når du mottar honorar regnes du som frilanser, og vi kaller deg som frilanser også
                                     videre i søknaden. Ettersom du mister honorar i perioden du søker om, trenger vi å
                                     stille noen flere spørsmål om deg som frilanser.
                                 </Alert>
-                            </FormBlock>
+                            </FormLayout.QuestionRelatedMessage>
                         )}
 
                         {frilanstype && visNormalarbeidstidSpørsmål() && (
                             <>
-                                <FormBlock>
-                                    <FrilansStartetFørSisteTreHeleMånederSpørsmål søknadsperiode={søknadsperiode} />
-                                </FormBlock>
+                                <FrilansStartetFørSisteTreHeleMånederSpørsmål søknadsperiode={søknadsperiode} />
                                 {values.frilans.startetFørSisteTreHeleMåneder === YesOrNo.NO && (
-                                    <FormBlock>
-                                        <FrilansStartdatoSpørsmål
-                                            søknadsperiode={søknadsperiode}
-                                            startdatoValue={values.frilans.startdato}
-                                        />
-                                    </FormBlock>
-                                )}
-                                <FormBlock>
-                                    <ErFortsattFrilanserSpørsmål
-                                        erFortsattFrilanserValue={values.frilans.erFortsattFrilanser}
+                                    <FrilansStartdatoSpørsmål
+                                        søknadsperiode={søknadsperiode}
+                                        startdatoValue={values.frilans.startdato}
                                     />
-                                </FormBlock>
+                                )}
+                                <ErFortsattFrilanserSpørsmål
+                                    erFortsattFrilanserValue={values.frilans.erFortsattFrilanser}
+                                />
                                 {erFortsattFrilanser === YesOrNo.NO && (
-                                    <FormBlock>
-                                        <FrilansSluttdatoSpørsmål
-                                            søknadsdato={søknadsdato}
-                                            søknadsperiode={søknadsperiode}
-                                            startdatoValue={values.frilans.startdato}
-                                            sluttdatoValue={values.frilans.sluttdato}
-                                        />
-                                    </FormBlock>
+                                    <FrilansSluttdatoSpørsmål
+                                        søknadsdato={søknadsdato}
+                                        søknadsperiode={søknadsperiode}
+                                        startdatoValue={values.frilans.startdato}
+                                        sluttdatoValue={values.frilans.sluttdato}
+                                    />
                                 )}
 
-                                <FormBlock>
-                                    <FrilansNormalarbeidstidSpørsmål
-                                        fieldName={
-                                            `${FrilansFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
-                                        }
-                                        frilanstype={frilanstype}
-                                        arbeidsforhold={values.frilans.arbeidsforhold || {}}
-                                        erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
-                                        misterHonorar={misterHonorar}
-                                        mottarOmsorgsstønad={values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES}
-                                        timerOmsorgsstønad={timerOmsorgsstønad}
-                                    />
-                                </FormBlock>
+                                <FrilansNormalarbeidstidSpørsmål
+                                    fieldName={
+                                        `${FrilansFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                    }
+                                    frilanstype={frilanstype}
+                                    arbeidsforhold={values.frilans.arbeidsforhold || {}}
+                                    erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
+                                    misterHonorar={misterHonorar}
+                                    mottarOmsorgsstønad={values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.YES}
+                                    timerOmsorgsstønad={timerOmsorgsstønad}
+                                />
                             </>
                         )}
-                    </ConditionalResponsivePanel>
-                </FormBlock>
+                    </FormLayout.Questions>
+                </FormLayout.Panel>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

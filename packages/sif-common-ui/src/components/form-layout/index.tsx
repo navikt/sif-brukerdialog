@@ -1,29 +1,36 @@
-import { Bleed, BoxNew, BoxNewProps, Heading, HeadingProps, HStack, VStack } from '@navikt/ds-react';
+import { Bleed, Box, BoxNew, BoxNewProps, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
+import SifGuidePanel, {
+    SifGuidePanelProps,
+} from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 /**
- * FormSection
- * ----------------
- * Setter opp default spacing mellom innhold i en skjemaseksjon
+ * Setter opp default spacing mellom sections
  */
 
-type SectionProps = { title: React.ReactNode; titleIcon?: React.ReactNode } & React.HTMLAttributes<HTMLElement>;
+const Sections = ({ ...rest }: VStackProps) => <VStack gap="12" {...rest} />;
 
-const Section = ({ title, titleIcon, children, ...rest }: SectionProps) => {
+/**
+ * Tittel og content i en seksjon
+ */
+
+type SectionProps = React.HTMLAttributes<HTMLElement> & {
+    title: React.ReactNode;
+    titleIcon?: React.ReactNode;
+    titleLevel?: '1' | '2' | '3';
+};
+
+const Section = ({ title, titleIcon, titleLevel = '2', children, ...rest }: SectionProps) => {
     return (
         <section {...rest}>
-            <VStack gap="4">
-                <SectionHeading level="2" size="medium" icon={titleIcon}>
-                    {title}
-                </SectionHeading>
-                {children}
-            </VStack>
+            <SectionHeading level={titleLevel} size="medium" icon={titleIcon} spacing={true}>
+                {title}
+            </SectionHeading>
+            {children}
         </section>
     );
 };
 
 /**
- * FormSectionHeading
- * ----------------
  * Header i en FormSection
  */
 
@@ -65,8 +72,8 @@ export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) =>
  * gap=8
  */
 
-export const Questions = ({ children }: { children: React.ReactNode }) => {
-    return <VStack gap="8">{children}</VStack>;
+export const Questions = ({ ...rest }: VStackProps) => {
+    return <VStack gap="8" {...rest} />;
 };
 
 /**
@@ -90,11 +97,33 @@ const Panel = ({ bleedTop, ...rest }: PanelProps) => {
     );
     return bleedTop ? <QuestionBleedTop>{content}</QuestionBleedTop> : content;
 };
+
+type StepGuideWrapperProps = { children: React.ReactNode } & React.HTMLAttributes<HTMLElement>;
+
+const StepGuideWrapper = ({ children, ...rest }: StepGuideWrapperProps) => {
+    return (
+        <Box marginBlock="0 12" {...rest}>
+            {children}
+        </Box>
+    );
+};
+
+const Guide = (props: SifGuidePanelProps) => {
+    return (
+        <StepGuideWrapper>
+            <SifGuidePanel {...props} />
+        </StepGuideWrapper>
+    );
+};
+
 export const FormLayout = {
+    Guide,
     Panel,
-    QuestionRelatedMessage,
     QuestionBleedTop,
+    QuestionRelatedMessage,
     Questions,
     Section,
     SectionHeading,
+    Sections,
+    StepGuideWrapper,
 };

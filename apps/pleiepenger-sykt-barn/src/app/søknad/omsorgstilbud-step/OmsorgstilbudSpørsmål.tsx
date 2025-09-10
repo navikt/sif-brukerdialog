@@ -1,12 +1,9 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../i18n';
 import { getOmsorgstilbudFastDagValidator } from '../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/omsorgstilbudFormValidation';
 import TidFasteUkedagerInput from '../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
@@ -24,6 +21,7 @@ import {
     skalViseSpørsmålOmProsentEllerLiktHverUke,
     visLiktHverUke,
 } from './omsorgstilbudStepUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     periode: DateRange;
@@ -43,15 +41,13 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
     const inkluderFastPlan = skalViseSpørsmålOmProsentEllerLiktHverUke(periode);
 
     return (
-        <>
+        <FormLayout.Questions>
             {(periodeFortid || periodeFortidFremtid) && (
-                <Block margin="xl">
+                <VStack gap="4">
                     {periodeFortidFremtid && (
-                        <Block padBottom="l">
-                            <Heading level="2" size="medium">
-                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFortid" />
-                            </Heading>
-                        </Block>
+                        <Heading level="2" size="medium">
+                            <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFortid" />
+                        </Heading>
                     )}
 
                     <SøknadFormComponents.YesOrNoQuestion
@@ -76,16 +72,14 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                         }}
                         labels={{ yes: 'Ja, i hele eller deler av perioden' }}
                     />
-                </Block>
+                </VStack>
             )}
             {(periodeFremtid || periodeFortidFremtid) && (
-                <Block margin="xl">
+                <VStack gap="4">
                     {periodeFortidFremtid && (
-                        <Block padBottom="l">
-                            <Heading level="2" size="medium">
-                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid" />
-                            </Heading>
-                        </Block>
+                        <Heading level="2" size="medium">
+                            <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid" />
+                        </Heading>
                     )}
 
                     <SøknadFormComponents.RadioGroup
@@ -125,47 +119,44 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             },
                         ]}
                     />
-                </Block>
+                </VStack>
             )}
 
             {omsorgstilbud &&
                 omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.NO &&
                 omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
-                    <Block margin="l">
+                    <FormLayout.QuestionRelatedMessage>
                         <Alert variant="info">
                             <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
                         </Alert>
-                    </Block>
+                    </FormLayout.QuestionRelatedMessage>
                 )}
             {omsorgstilbud &&
                 periodeFremtid &&
                 omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
-                    <Block margin="l">
+                    <FormLayout.QuestionRelatedMessage>
                         <Alert variant="info">
                             <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
                         </Alert>
-                    </Block>
+                    </FormLayout.QuestionRelatedMessage>
                 )}
 
             {omsorgstilbud && skalViseLiktHverUke && (
                 <>
                     {inkluderFastPlan && (
-                        <FormBlock>
+                        <>
                             {periodeFortidFremtid && (
-                                <>
-                                    <Block padBottom="l">
-                                        <Heading level="2" size="medium">
-                                            <AppText id="steg.omsorgstilbud.erLiktHverUke.spm.tittel" />
-                                        </Heading>
-                                        {omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES &&
-                                            omsorgstilbud.erIOmsorgstilbudFremtid ===
-                                                YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
-                                                <Block margin="l">
-                                                    <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
-                                                </Block>
-                                            )}
-                                    </Block>
-                                </>
+                                <div>
+                                    <Heading level="2" size="medium">
+                                        <AppText id="steg.omsorgstilbud.erLiktHverUke.spm.tittel" />
+                                    </Heading>
+                                    {omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES &&
+                                        omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
+                                            <Box marginBlock="4 0">
+                                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
+                                            </Box>
+                                        )}
+                                </div>
                             )}
                             <SøknadFormComponents.YesOrNoQuestion
                                 legend={text(`steg.omsorgstilbud.erLiktHverUke.spm.${tekstLiktHverUke}`)}
@@ -188,66 +179,62 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                         : undefined;
                                 }}
                             />
-                        </FormBlock>
+                        </>
                     )}
                     {inkluderFastPlan && omsorgstilbud.erLiktHverUke === YesOrNo.YES && (
-                        <FormBlock>
-                            <ResponsivePanel border={true}>
-                                <SøknadFormComponents.InputGroup
-                                    legend={text(
-                                        periodeFremtid
-                                            ? 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.kunFremtid'
-                                            : 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud',
-                                    )}
-                                    description={omsorgstilbudInfo.hvorMye}
-                                    validate={() => validateOmsorgstilbud(omsorgstilbud)}
-                                    name={SøknadFormField.omsorgstilbud_gruppe}>
-                                    <TidFasteUkedagerInput
-                                        name={SøknadFormField.omsorgstilbud__fasteDager}
-                                        validateDag={(dag, value) => {
-                                            const error = getOmsorgstilbudFastDagValidator()(value);
-                                            return error
-                                                ? {
-                                                      key: `validation.omsorgstilbud.fastdag.tid.${error}`,
-                                                      keepKeyUnaltered: true,
-                                                      values: {
-                                                          dag,
-                                                      },
-                                                  }
-                                                : undefined;
-                                        }}
-                                        data-testid="fasteDager"
-                                    />
-                                </SøknadFormComponents.InputGroup>
-                            </ResponsivePanel>
-                        </FormBlock>
+                        <FormLayout.Panel>
+                            <SøknadFormComponents.InputGroup
+                                legend={text(
+                                    periodeFremtid
+                                        ? 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.kunFremtid'
+                                        : 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud',
+                                )}
+                                description={omsorgstilbudInfo.hvorMye}
+                                validate={() => validateOmsorgstilbud(omsorgstilbud)}
+                                name={SøknadFormField.omsorgstilbud_gruppe}>
+                                <TidFasteUkedagerInput
+                                    name={SøknadFormField.omsorgstilbud__fasteDager}
+                                    validateDag={(dag, value) => {
+                                        const error = getOmsorgstilbudFastDagValidator()(value);
+                                        return error
+                                            ? {
+                                                  key: `validation.omsorgstilbud.fastdag.tid.${error}`,
+                                                  keepKeyUnaltered: true,
+                                                  values: {
+                                                      dag,
+                                                  },
+                                              }
+                                            : undefined;
+                                    }}
+                                    data-testid="fasteDager"
+                                />
+                            </SøknadFormComponents.InputGroup>
+                        </FormLayout.Panel>
                     )}
                     {((inkluderFastPlan === false &&
                         (omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES ||
                             omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.YES)) ||
                         omsorgstilbud.erLiktHverUke === YesOrNo.NO) && (
-                        <FormBlock>
-                            <ResponsivePanel border={true}>
-                                <OmsorgstilbudVariert
-                                    omsorgsdager={omsorgstilbud.enkeltdager || {}}
-                                    tittel={text(
-                                        periodeFremtid
-                                            ? 'steg.omsorgstilbud.hvormyetittel.kunFremtid'
-                                            : 'steg.omsorgstilbud.hvormyetittel',
-                                    )}
-                                    formFieldName={SøknadFormField.omsorgstilbud__enkeltdager}
-                                    periode={riktigSøknadsperiode}
-                                    tidIOmsorgstilbud={omsorgstilbud.enkeltdager || {}}
-                                    onOmsorgstilbudChanged={() => {
-                                        onOmsorgstilbudChanged();
-                                    }}
-                                />
-                            </ResponsivePanel>
-                        </FormBlock>
+                        <FormLayout.Panel>
+                            <OmsorgstilbudVariert
+                                omsorgsdager={omsorgstilbud.enkeltdager || {}}
+                                tittel={text(
+                                    periodeFremtid
+                                        ? 'steg.omsorgstilbud.hvormyetittel.kunFremtid'
+                                        : 'steg.omsorgstilbud.hvormyetittel',
+                                )}
+                                formFieldName={SøknadFormField.omsorgstilbud__enkeltdager}
+                                periode={riktigSøknadsperiode}
+                                tidIOmsorgstilbud={omsorgstilbud.enkeltdager || {}}
+                                onOmsorgstilbudChanged={() => {
+                                    onOmsorgstilbudChanged();
+                                }}
+                            />
+                        </FormLayout.Panel>
                     )}
                 </>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

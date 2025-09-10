@@ -1,7 +1,5 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
 import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -38,16 +36,14 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
 
     const renderMåned = (måned: DateRange, index: number) => {
         return (
-            <FormBlock margin="none" paddingBottom="m" key={dayjs(måned.from).format('MM.YYYY')}>
+            <div key={dayjs(måned.from).format('MM.YYYY')}>
                 {årstallHeaderRenderer && visÅrstallHeading(index) && (
-                    <Block margin="l" padBottom="m">
-                        <Heading level={årstallHeadingLevel} size="medium" className="yearHeader">
-                            {årstallHeaderRenderer(måned.from.getFullYear())}:
-                        </Heading>
-                    </Block>
+                    <Heading level={årstallHeadingLevel} size="medium" className="yearHeader" spacing={true}>
+                        {årstallHeaderRenderer(måned.from.getFullYear())}:
+                    </Heading>
                 )}
                 {månedContentRenderer(måned, måneder, index)}
-            </FormBlock>
+            </div>
         );
     };
 
@@ -57,10 +53,10 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
             legend={fieldset.legend}
             description={fieldset.description}
             validate={fieldset.validate}>
-            {måneder.map(renderMåned)}
+            <VStack gap="4">{måneder.map(renderMåned)}</VStack>
         </FormikInputGroup>
     ) : (
-        <>{måneder.map(renderMåned)}</>
+        <VStack gap="4">{måneder.map(renderMåned)}</VStack>
     );
 };
 

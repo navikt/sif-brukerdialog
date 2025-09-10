@@ -1,7 +1,5 @@
 import React, { ReactElement } from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
     DateRange,
@@ -10,7 +8,7 @@ import {
     InputTime,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { DurationText } from '@navikt/sif-common-ui';
+import { DurationText, FormLayout } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
     dateFormatter,
@@ -23,10 +21,9 @@ import {
     getWeekDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
-import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../../i18n';
 import {
     getDagerMedNyTid,
@@ -59,13 +56,10 @@ export interface TidEnkeltdagEndring {
     dagerMedTid: DateDurationMap;
 }
 
-const visStoppGjentagelse = false;
-
 enum FormFields {
     'tid' = 'tid',
     'skalGjentas' = 'skalGjentas',
     'gjentagelse' = 'gjentagelse',
-    'stoppGjentagelse' = 'stoppGjentagelse',
     'stopDato' = 'stopDato',
 }
 
@@ -80,7 +74,6 @@ export interface TidEnkeltdagFormValues {
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
-    [FormFields.stoppGjentagelse]: boolean;
     [FormFields.stopDato]: string;
 }
 
@@ -150,7 +143,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                 tid: tid ? ensureDuration(tid) : undefined,
             }}
             onSubmit={onValidSubmit}
-            renderForm={({ values: { skalGjentas, stoppGjentagelse, gjentagelse } }) => {
+            renderForm={({ values: { skalGjentas } }) => {
                 return (
                     <FormComponents.Form
                         onCancel={onCancel}
@@ -160,31 +153,31 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                         submitButtonLabel="Lagre"
                         showButtonArrows={false}
                         cancelButtonLabel="Avbryt">
-                        <FormComponents.TimeInput
-                            name={FormFields.tid}
-                            label={hvorMyeSpørsmålRenderer(dato)}
-                            validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
-                            timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
-                        />
-                        {tidOpprinnelig && erEndret && (
-                            <p>
-                                <AppText id="tidEnkeltdagForm.endretFra" />{' '}
-                                <DurationText duration={tidOpprinnelig} fullText={true} />
-                            </p>
-                        )}
-                        {skalViseValgetGjelderFlereDager && (
-                            <FormBlock margin="l">
-                                <FormComponents.Checkbox
-                                    label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
-                                    name={FormFields.skalGjentas}
-                                />
-                            </FormBlock>
-                        )}
-                        {skalGjentas === true && (
-                            <Block margin="l">
-                                <ResponsivePanel>
-                                    {/* <div style={{ paddingLeft: '1.5rem' }}> */}
-
+                        <FormLayout.Questions>
+                            <FormComponents.TimeInput
+                                name={FormFields.tid}
+                                label={hvorMyeSpørsmålRenderer(dato)}
+                                validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
+                                timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
+                            />
+                            {tidOpprinnelig && erEndret && (
+                                <FormLayout.QuestionRelatedMessage>
+                                    <p>
+                                        <AppText id="tidEnkeltdagForm.endretFra" />{' '}
+                                        <DurationText duration={tidOpprinnelig} fullText={true} />
+                                    </p>
+                                </FormLayout.QuestionRelatedMessage>
+                            )}
+                            {skalViseValgetGjelderFlereDager && (
+                                <FormLayout.QuestionBleedTop>
+                                    <FormComponents.Checkbox
+                                        label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
+                                        name={FormFields.skalGjentas}
+                                    />
+                                </FormLayout.QuestionBleedTop>
+                            )}
+                            {skalGjentas === true && (
+                                <FormLayout.Panel>
                                     <FormComponents.RadioGroup
                                         legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
                                         className={bem.element('gjentagelseOptions')}
@@ -227,41 +220,9 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                             },
                                         ]}
                                     />
-                                    {visStoppGjentagelse && (
-                                        <>
-                                            {(gjentagelse === GjentagelseType.hverUke ||
-                                                gjentagelse === GjentagelseType.hverAndreUke) && (
-                                                <div style={{ marginLeft: '1.5rem' }}>
-                                                    <FormBlock margin="m">
-                                                        <FormComponents.Checkbox
-                                                            label={text('tidEnkeltdagForm.stoppGjentagelse.label')}
-                                                            name={FormFields.stoppGjentagelse}
-                                                        />
-                                                    </FormBlock>
-                                                    {stoppGjentagelse && (
-                                                        <FormBlock margin="l">
-                                                            <FormComponents.DatePicker
-                                                                label={text('tidEnkeltdagForm.stopDato.label')}
-                                                                minDate={dato}
-                                                                maxDate={periode.to}
-                                                                validate={getDateValidator({
-                                                                    min: dato,
-                                                                    max: periode.to,
-                                                                    required: true,
-                                                                })}
-                                                                disableWeekends={true}
-                                                                defaultMonth={dato}
-                                                                name={FormFields.stopDato}
-                                                            />
-                                                        </FormBlock>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </>
-                                    )}
-                                </ResponsivePanel>
-                            </Block>
-                        )}
+                                </FormLayout.Panel>
+                            )}
+                        </FormLayout.Questions>
                     </FormComponents.Form>
                 );
             }}
