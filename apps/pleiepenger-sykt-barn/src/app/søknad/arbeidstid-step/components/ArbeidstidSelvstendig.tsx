@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
@@ -53,9 +52,8 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
                             <AppText id="arbeidIPeriode.redusert.info.tekst" />
                         </p>
                     )}
-                    <Block margin="m">
-                        <InfoOmEndring arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG} />
-                    </Block>
+
+                    <InfoOmEndring arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG} />
                 </>
             }
         />

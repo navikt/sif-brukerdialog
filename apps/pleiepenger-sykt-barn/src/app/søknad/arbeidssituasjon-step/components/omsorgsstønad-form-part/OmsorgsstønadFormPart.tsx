@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getNumberValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
@@ -89,7 +88,7 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                     value={omsorgsstønad.starterUndeveis}
                                 />
                                 {omsorgsstønad.starterUndeveis === YesOrNo.YES && (
-                                    <FormBlock margin="m">
+                                    <FormLayout.QuestionBleedTop>
                                         <FormComponents.DatePicker
                                             name={OmsorgsstønadFormField.startdato}
                                             label={text(
@@ -102,7 +101,7 @@ const OmsorgsstønadFormPart: React.FunctionComponent<Props> = ({ søknadsperiod
                                             data-testid="omsorgsstønad-startdato"
                                             validate={getOmsorgsstønadStartdatoValidator(omsorgsstønad, søknadsperiode)}
                                         />
-                                    </FormBlock>
+                                    </FormLayout.QuestionBleedTop>
                                 )}
                                 <FormComponents.YesOrNoQuestion
                                     name={OmsorgsstønadFormField.slutterUnderveis}

@@ -1,7 +1,6 @@
 import { BodyLong, Box, List } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
@@ -44,14 +43,12 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
     return (
         <SøknadFormStep stepId={StepID.NATTEVÅK_OG_BEREDSKAP} onValidFormSubmit={onValidSubmit}>
             <FormLayout.Guide compact={true}>
-                <p>
-                    <AppText id="steg.nattevåkOgBeredskap.veileder" />
-                </p>
-                <Block>
+                <AppText id="steg.nattevåkOgBeredskap.veileder" />
+                <Box paddingBlock="4 0">
                     <ExpandableInfo title={text('steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel')}>
                         <AppText id="steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn" />
                     </ExpandableInfo>
-                </Block>
+                </Box>
             </FormLayout.Guide>
 
             <FormLayout.Sections>

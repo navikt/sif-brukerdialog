@@ -2,7 +2,6 @@ import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import { Søker } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import OmSøknaden from './components/OmSøknaden';
@@ -20,11 +19,9 @@ const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }
                 navn: søker.fornavn,
                 content: (
                     <>
-                        <Block margin="l">
-                            <BodyLong size="large">
-                                <AppText id="page.velkommen.guide.ingress" />
-                            </BodyLong>
-                        </Block>
+                        <BodyLong size="large" spacing={true}>
+                            <AppText id="page.velkommen.guide.ingress" />
+                        </BodyLong>
                         <p>
                             <AppText id="page.velkommen.guide.tekst.1" />
                         </p>

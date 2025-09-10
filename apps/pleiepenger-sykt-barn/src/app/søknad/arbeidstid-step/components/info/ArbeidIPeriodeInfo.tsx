@@ -1,6 +1,5 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoOmEndring from '../InfoOmEndring';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 import { AppText } from '../../../../i18n';
@@ -35,9 +34,8 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
                 <AppText id="arbeidIPeriode.redusert.info.tekst" />
             </p>
         )}
-        <Block margin="m">
-            <InfoOmEndring arbeidsforholdType={arbeidsforholdType} />
-        </Block>
+
+        <InfoOmEndring arbeidsforholdType={arbeidsforholdType} />
     </>
 );
 

@@ -3,7 +3,6 @@ import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { ActionLink } from '@navikt/sif-common-ui';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../i18n';
 import { StepID } from '../../../types/StepID';
@@ -21,25 +20,23 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
         return null;
     }
     return (
-        <FormBlock>
-            <ErrorSummary heading={text('apiValidationError.tittel')}>
-                {errors.map((error) => {
-                    const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
-                    return (
-                        <BodyLong as="div" key={error.stepId} className="bodyTextColor">
-                            <p>{error.feilmelding}</p>
-                            <p>
-                                <AppText id="steg.oppsummering.validering.navigasjonTilStegInfo" />
-                            </p>
-                            <ActionLink onClick={() => navigate(søknadStepConfig[error.stepId].route)}>
-                                <AppText id="steg.oppsummering.validering.navigasjonTilStegGåTil" /> &quot;
-                                {stepTexts.stepTitle}&quot;
-                            </ActionLink>
-                        </BodyLong>
-                    );
-                })}
-            </ErrorSummary>
-        </FormBlock>
+        <ErrorSummary heading={text('apiValidationError.tittel')}>
+            {errors.map((error) => {
+                const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
+                return (
+                    <BodyLong as="div" key={error.stepId} className="bodyTextColor">
+                        <p>{error.feilmelding}</p>
+                        <p>
+                            <AppText id="steg.oppsummering.validering.navigasjonTilStegInfo" />
+                        </p>
+                        <ActionLink onClick={() => navigate(søknadStepConfig[error.stepId].route)}>
+                            <AppText id="steg.oppsummering.validering.navigasjonTilStegGåTil" /> &quot;
+                            {stepTexts.stepTitle}&quot;
+                        </ActionLink>
+                    </BodyLong>
+                );
+            })}
+        </ErrorSummary>
     );
 };
 

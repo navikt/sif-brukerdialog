@@ -1,7 +1,6 @@
 import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 const visFlereMeldinger = false;
@@ -123,20 +122,18 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
 
 const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidParameter }) => {
     return (
-        <FormBlock>
-            <Alert variant="error">
-                <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>
-                {visFlereMeldinger ? (
-                    <List>
-                        {invalidParameter.map((ip, index) => (
-                            <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
-                        ))}
-                    </List>
-                ) : (
-                    renderFeilmelding(invalidParameter[0])
-                )}
-            </Alert>
-        </FormBlock>
+        <Alert variant="error">
+            <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>
+            {visFlereMeldinger ? (
+                <List>
+                    {invalidParameter.map((ip, index) => (
+                        <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
+                    ))}
+                </List>
+            ) : (
+                renderFeilmelding(invalidParameter[0])
+            )}
+        </Alert>
     );
 };
 
