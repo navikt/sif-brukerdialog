@@ -1,6 +1,5 @@
 import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
-import { useIntl } from 'react-intl';
 import {
     DateRange,
     dateRangesCollide,
@@ -44,7 +43,6 @@ const DaySelector: React.FunctionComponent<Props> = ({
     reverseOrder,
     mode = 'calendar',
 }) => {
-    const { locale } = useIntl();
     const { text } = useUiIntl();
     const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
     const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
@@ -96,7 +94,6 @@ const DaySelector: React.FunctionComponent<Props> = ({
             <div className="daySelector__calendarWrapper">
                 <div className="daySelector__calendarContent">
                     <DatePicker.Standalone
-                        locale={locale as 'nb' | 'nn'}
                         onMonthChange={(month) => {
                             setCurrentMonth(month);
                         }}

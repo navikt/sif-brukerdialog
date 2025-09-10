@@ -1,6 +1,4 @@
-import { Alert, HStack, Heading, Tag } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, Box, HStack, Heading, Tag } from '@navikt/ds-react';
 import {
     DateRange,
     TypedFormikFormContext,
@@ -10,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getTimeValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
+import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
     durationToDecimalDuration,
@@ -117,9 +115,7 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <HStack gap="4" align="center">
-                <div style={{ minWidth: '10rem' }} className="capitalize">
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
-                </div>
+                <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
                         Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
@@ -141,7 +137,7 @@ const ArbeidIPeriodeSpørsmål = ({
     const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
-        <>
+        <FormLayout.Questions>
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
@@ -152,7 +148,7 @@ const ArbeidIPeriodeSpørsmål = ({
             )}
 
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
-                <FormBlock>
+                <FormLayout.Panel bleedTop={true}>
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
@@ -171,13 +167,11 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            <Block margin="l">
-                                <Alert variant="info" inline={true}>
-                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
-                                </Alert>
-                            </Block>
+                            <Alert variant="info" inline={true} className="mt-4">
+                                Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                            </Alert>
                         }>
-                        <div style={{ marginTop: '1.5rem' }}>
+                        <Box paddingBlock="4 0">
                             <DurationWeekdaysInput
                                 dateRange={periode}
                                 disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
@@ -200,11 +194,11 @@ const ArbeidIPeriodeSpørsmål = ({
                                     return undefined;
                                 }}
                             />
-                        </div>
+                        </Box>
                     </InputGroup>
-                </FormBlock>
+                </FormLayout.Panel>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

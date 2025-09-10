@@ -1,10 +1,6 @@
-import { Heading } from '@navikt/ds-react';
 import { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -16,6 +12,7 @@ import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjeni
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
@@ -172,79 +169,78 @@ const ArbeidssituasjonStep = () => {
                                 submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="steg.arbeidssituasjon.veileder.1" />
                                     </p>
                                     <p>
                                         <AppText id="steg.arbeidssituasjon.veileder.2" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                <FormBlock>
-                                    <ArbeidssituasjonArbeidsgivere
-                                        parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
-                                        ansatt_arbeidsforhold={ansatt_arbeidsforhold}
-                                        søknadsperiode={søknadsperiode}
-                                    />
-                                </FormBlock>
-
-                                <FormBlock>
-                                    <ArbeidssituasjonFrilans
-                                        formValues={frilans}
-                                        frilansoppdrag={frilansoppdrag || []}
-                                        søknadsperiode={søknadsperiode}
-                                        søknadsdato={getDateToday()}
-                                        urlSkatteetaten={getLenker(intl.locale).skatteetaten}
-                                    />
-                                </FormBlock>
-
-                                <FormBlock>
-                                    <ArbeidssituasjonSN
-                                        formValues={selvstendig}
-                                        urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
-                                        søknadsperiode={søknadsperiode}
-                                    />
-                                </FormBlock>
-                                <FormBlock>
-                                    <Heading level="2" size="medium">
-                                        <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
-                                    </Heading>
-                                    <Block margin="l">
-                                        <YesOrNoQuestion
-                                            legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
-                                            name={ArbeidssituasjonFormFields.harOpptjeningUtland}
-                                            validate={getYesOrNoValidator()}
+                                <FormLayout.Sections>
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.tittel')}>
+                                        <ArbeidssituasjonArbeidsgivere
+                                            parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
+                                            ansatt_arbeidsforhold={ansatt_arbeidsforhold}
+                                            søknadsperiode={søknadsperiode}
                                         />
-                                        {harOpptjeningUtland === YesOrNo.YES && (
-                                            <FormBlock>
-                                                <OpptjeningUtlandListAndDialog
-                                                    minDate={getDate1YearAgo()}
-                                                    maxDate={getDate1YearFromNow()}
-                                                    name={ArbeidssituasjonFormFields.opptjeningUtland}
-                                                    validate={getListValidator({ required: true })}
-                                                    labels={{
-                                                        addLabel: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.addLabel',
-                                                        ),
-                                                        listTitle: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.listTitle',
-                                                        ),
-                                                        modalTitle: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
-                                                        ),
-                                                    }}
-                                                />
-                                            </FormBlock>
-                                        )}
-                                        <FormBlock>
+                                    </FormLayout.Section>
+
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.frilanser.tittel')}>
+                                        <ArbeidssituasjonFrilans
+                                            formValues={frilans}
+                                            frilansoppdrag={frilansoppdrag || []}
+                                            søknadsperiode={søknadsperiode}
+                                            søknadsdato={getDateToday()}
+                                            urlSkatteetaten={getLenker(intl.locale).skatteetaten}
+                                        />
+                                    </FormLayout.Section>
+
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.sn.tittel')}>
+                                        <ArbeidssituasjonSN
+                                            formValues={selvstendig}
+                                            urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                                            søknadsperiode={søknadsperiode}
+                                        />
+                                    </FormLayout.Section>
+
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                                        <FormLayout.Questions>
+                                            <YesOrNoQuestion
+                                                legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
+                                                name={ArbeidssituasjonFormFields.harOpptjeningUtland}
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                            {harOpptjeningUtland === YesOrNo.YES && (
+                                                <FormLayout.Panel bleedTop={true}>
+                                                    <OpptjeningUtlandListAndDialog
+                                                        minDate={getDate1YearAgo()}
+                                                        maxDate={getDate1YearFromNow()}
+                                                        name={ArbeidssituasjonFormFields.opptjeningUtland}
+                                                        validate={getListValidator({ required: true })}
+                                                        labels={{
+                                                            addLabel: text(
+                                                                'steg.arbeidssituasjon.opptjeningUtland.addLabel',
+                                                            ),
+                                                            listTitle: text(
+                                                                'steg.arbeidssituasjon.opptjeningUtland.listTitle',
+                                                            ),
+                                                            modalTitle: text(
+                                                                'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
+                                                            ),
+                                                        }}
+                                                    />
+                                                </FormLayout.Panel>
+                                            )}
+
                                             <YesOrNoQuestion
                                                 legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
                                                 name={ArbeidssituasjonFormFields.harUtenlandskNæring}
                                                 validate={getYesOrNoValidator()}
                                             />
                                             {harUtenlandskNæring === YesOrNo.YES && (
-                                                <FormBlock>
+                                                <FormLayout.Panel bleedTop={true}>
                                                     <UtenlandskNæringListAndDialog
                                                         name={ArbeidssituasjonFormFields.utenlandskNæring}
                                                         validate={getListValidator({ required: true })}
@@ -260,23 +256,18 @@ const ArbeidssituasjonStep = () => {
                                                             ),
                                                         }}
                                                     />
-                                                </FormBlock>
+                                                </FormLayout.Panel>
                                             )}
-                                        </FormBlock>
-                                    </Block>
-                                </FormBlock>
-                                {visVernepliktSpørsmål(
-                                    søknadsperiode,
-                                    ansatt_arbeidsforhold,
-                                    frilans,
-                                    selvstendig,
-                                    frilansoppdrag,
-                                ) && (
-                                    <FormBlock>
-                                        <Heading level="2" size="medium">
-                                            <AppText id="steg.arbeidssituasjon.verneplikt.tittel" />
-                                        </Heading>
-                                        <Block margin="l">
+                                        </FormLayout.Questions>
+                                    </FormLayout.Section>
+                                    {visVernepliktSpørsmål(
+                                        søknadsperiode,
+                                        ansatt_arbeidsforhold,
+                                        frilans,
+                                        selvstendig,
+                                        frilansoppdrag,
+                                    ) && (
+                                        <FormLayout.Section title={text('steg.arbeidssituasjon.verneplikt.tittel')}>
                                             <YesOrNoQuestion
                                                 name={ArbeidssituasjonFormFields.harVærtEllerErVernepliktig}
                                                 legend={text('steg.arbeidssituasjon.verneplikt.spm')}
@@ -288,9 +279,9 @@ const ArbeidssituasjonStep = () => {
                                                     </ExpandableInfo>
                                                 }
                                             />
-                                        </Block>
-                                    </FormBlock>
-                                )}
+                                        </FormLayout.Section>
+                                    )}
+                                </FormLayout.Sections>
                             </Form>
                         </>
                     );

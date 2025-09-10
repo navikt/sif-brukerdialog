@@ -66,6 +66,14 @@ export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) =>
 };
 
 /**
+ * Wrapper innhold og knytter det nærmere visuelt til foregående innhold vha Bleed
+ * @children Innholdet
+ */
+export const QuestionBleedBottom = ({ children }: { children: React.ReactNode }) => {
+    return <Bleed marginBlock="0 4">{children}</Bleed>;
+};
+
+/**
  * Questions
  * ----------------
  * Setter opp default spacing mellom innhold
@@ -120,6 +128,7 @@ export const FormLayout = {
     Guide,
     Panel,
     QuestionBleedTop,
+    QuestionBleedBottom,
     QuestionRelatedMessage,
     Questions,
     Section,
