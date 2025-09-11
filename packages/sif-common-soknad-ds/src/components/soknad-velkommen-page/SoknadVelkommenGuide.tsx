@@ -8,7 +8,7 @@ interface Props {
 
 const SoknadVelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => (
     <GuidePanel poster={true}>
-        <Box paddingBlock="4 0">
+        <Box paddingBlock="2 0">
             <Heading level="2" size="medium" spacing={true}>
                 {title}
             </Heading>

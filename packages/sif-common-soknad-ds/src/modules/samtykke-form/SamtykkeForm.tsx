@@ -33,7 +33,7 @@ export const SamtykkeFormPart = () => {
             label={<span data-testid="bekreft-label">{text('@soknad.samtykkeForm.bekreftLabel')}</span>}
             name={SamtykkeFormFields.harForståttRettigheterOgPlikter}
             validate={getCheckedValidator()}>
-            <Heading level="2" size="small">
+            <Heading level="2" size="small" spacing={true}>
                 {text('@soknad.samtykkeForm.ansvar.tittel')}
             </Heading>
             <List>
