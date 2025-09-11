@@ -1,5 +1,5 @@
+import { Box } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
@@ -56,14 +56,14 @@ const IntroPage = () => {
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}
                             submitButtonLabel={text('step.button.gåVidere')}>
-                            <Block margin="xl">
+                            <Box marginBlock="10">
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
                                     legend={text('page.intro.hvilkenTypeSøknad')}
                                     radios={radios}
                                     validate={getRequiredFieldValidator()}
                                 />
-                            </Block>
+                            </Box>
                         </PageForm.Form>
                     );
                 }}

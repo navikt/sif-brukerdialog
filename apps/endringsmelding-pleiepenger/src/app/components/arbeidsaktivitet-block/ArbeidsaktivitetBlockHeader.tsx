@@ -1,7 +1,6 @@
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import { AppText } from '../../i18n';
@@ -28,7 +27,7 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
     erUkjentAktivitet,
 }) => {
     return (
-        <Block margin={type !== ArbeidsaktivitetType.arbeidstaker ? 'm' : 'none'}>
+        <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
                     <Office1 role="presentation" aria-hidden={true} />
@@ -73,7 +72,7 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                     </VStack>
                 </div>
             </div>
-        </Block>
+        </Box>
     );
 };
 

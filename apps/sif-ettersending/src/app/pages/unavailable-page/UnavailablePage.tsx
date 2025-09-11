@@ -1,5 +1,4 @@
 import { Alert, BodyLong } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
@@ -13,7 +12,7 @@ const UnavailablePage = () => {
 
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
-            <Block margin="xxxl">
+            <Box marginBlock="10">
                 <Alert variant="warning">
                     <BodyLong as="div">
                         <AppText id="page.unavailable.info.1" />
@@ -22,7 +21,7 @@ const UnavailablePage = () => {
                         </p>
                     </BodyLong>
                 </Alert>
-            </Block>
+            </Box>
         </Page>
     );
 };

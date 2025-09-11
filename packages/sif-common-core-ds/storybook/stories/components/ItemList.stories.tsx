@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
 import { useState } from 'react';
 import ItemList from '../../../src/components/lists/item-list/ItemList';
 import StoryWrapper from '../../decorators/StoryWrapper';
-import FormBlock from '../../../src/atoms/form-block/FormBlock';
-import { Button } from '@navikt/ds-react';
+import { Box, Button } from '@navikt/ds-react';
 import { guid } from '@navikt/sif-common-utils';
 
 export default {
@@ -62,11 +60,11 @@ const Template: StoryFn<typeof ItemList> = (args) => {
                 items={items.filter((item) => item.id !== undefined)}
                 useTrashcan={args.useTrashcan}
             />
-            <FormBlock>
+            <Box marginBlock="8">
                 <Button variant="tertiary" size="small" onClick={addItem}>
                     Add item
                 </Button>
-            </FormBlock>
+            </Box>
         </>
     );
 };

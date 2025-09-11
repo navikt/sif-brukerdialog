@@ -1,6 +1,5 @@
-import { Button, Heading } from '@navikt/ds-react';
+import { Button, Heading, VStack } from '@navikt/ds-react';
 import { Link } from 'react-router-dom';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 
 const DevPage = () => {
@@ -21,15 +20,14 @@ const DevPage = () => {
                 Tøm mellomlagring
             </Button>
 
-            <Block margin="xxl">
+            <VStack marginBlock="10">
                 <Heading level="3" size="medium" spacing={true}>
                     Aktiv brukerprofil (mockdata)
                 </Heading>
-
-                <Block margin="l">
+                <div>
                     <Link to="../melding/velkommen">Tilbake til endringsdialog</Link>
-                </Block>
-            </Block>
+                </div>
+            </VStack>
         </Page>
     );
 };

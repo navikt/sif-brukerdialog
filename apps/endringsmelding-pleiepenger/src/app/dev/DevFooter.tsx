@@ -1,8 +1,7 @@
-import { Button, Modal, Radio, RadioGroup } from '@navikt/ds-react';
+import { Button, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useSøknadContext } from '@hooks';
 import { Settings } from '@navikt/ds-icons';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
@@ -52,46 +51,48 @@ const DevFooter: React.FunctionComponent = () => {
                 className="scenario-modal"
                 style={{ width: '100%' }}>
                 <Modal.Body>
-                    <div className="scenarioes">
-                        <RadioGroup
-                            value={scenario.value}
-                            legend="Scenario hvor bruker har tilgang"
-                            onChange={(value) => setScenarioFromValue(value)}>
-                            {scenarioer
-                                .filter(({ harTilgang }) => harTilgang === true)
-                                .map(({ name, value }) => (
-                                    <Radio key={value} value={value}>
-                                        {name}
-                                    </Radio>
-                                ))}
-                        </RadioGroup>
-                        <RadioGroup
-                            value={scenario.value}
-                            legend="Scenario hvor bruker stoppes"
-                            onChange={(value) => setScenarioFromValue(value)}>
-                            {scenarioer
-                                .filter(({ harTilgang }) => harTilgang === false)
-                                .map(({ name, value }) => (
-                                    <Radio key={value} value={value}>
-                                        {name}
-                                    </Radio>
-                                ))}
-                        </RadioGroup>
-                    </div>
-                    <FormBlock>
-                        <Button
-                            type="button"
-                            style={{ width: '100%' }}
-                            onClick={() => {
-                                slettMellomlagring().then(() => {
-                                    dispatch(actionsCreator.resetSøknad());
-                                    saveScenarioToLocalStorage(scenario);
-                                    relocateToWelcomePage();
-                                });
-                            }}>
-                            Velg
-                        </Button>
-                    </FormBlock>
+                    <VStack gap="8">
+                        <div className="scenarioes">
+                            <RadioGroup
+                                value={scenario.value}
+                                legend="Scenario hvor bruker har tilgang"
+                                onChange={(value) => setScenarioFromValue(value)}>
+                                {scenarioer
+                                    .filter(({ harTilgang }) => harTilgang === true)
+                                    .map(({ name, value }) => (
+                                        <Radio key={value} value={value}>
+                                            {name}
+                                        </Radio>
+                                    ))}
+                            </RadioGroup>
+                            <RadioGroup
+                                value={scenario.value}
+                                legend="Scenario hvor bruker stoppes"
+                                onChange={(value) => setScenarioFromValue(value)}>
+                                {scenarioer
+                                    .filter(({ harTilgang }) => harTilgang === false)
+                                    .map(({ name, value }) => (
+                                        <Radio key={value} value={value}>
+                                            {name}
+                                        </Radio>
+                                    ))}
+                            </RadioGroup>
+                        </div>
+                        <div>
+                            <Button
+                                type="button"
+                                style={{ width: '100%' }}
+                                onClick={() => {
+                                    slettMellomlagring().then(() => {
+                                        dispatch(actionsCreator.resetSøknad());
+                                        saveScenarioToLocalStorage(scenario);
+                                        relocateToWelcomePage();
+                                    });
+                                }}>
+                                Velg
+                            </Button>
+                        </div>
+                    </VStack>
                 </Modal.Body>
             </Modal>
         </>
