@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
+import { ActionLink } from '@navikt/sif-common-ui';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { prettifyDate } from '@navikt/sif-common-utils';

@@ -9,11 +9,11 @@ Dersom deltakerne har arbeidsinntekt når de deltar i ungdomsprogrammet, skal pe
 
 Deltakerne skal ikke rapportere om arbeidsinntekt den måneden de starter i ungdomsprogrammet. Det er fordi arbeidsinntekten like gjerne kan være fra perioden før de startet i programmet.
 
-For alle andre måneder skal deltakerne når måneden er slutt rapportere arbeidsinntekt fra og med den 1. og til og med den 5. i påfølgende måned. De får varsel om å melde fra om inntekt på Min side. Dersom de ikke har inntekt, trenger de ikke å melde fra.
+For alle andre måneder skal deltakerne når måneden er slutt rapportere arbeidsinntekt fra og med den 1. og til og med den 7. i påfølgende måned. De får varsel om å melde fra om inntekt på Min side. Dersom de ikke har inntekt, trenger de ikke å melde fra.
 
 ## Inntekten de rapporterer om, kontrolleres opp mot a-inntekt
 
-Den 6. hver måned gjøres det en kontroll mot opplysningene om inntekt fra a-registeret. Hvis opplysningene vi har mottatt fra en deltaker ikke stemmer med opplysningene vi mottar fra a-registeret/arbeidsgiver, sendes det et forhåndsvarsel til deltakeren. For å kunne sikre at pengene utbetales innen den 10. i påfølgende måned, er det viktig at de selv rapporterer om så riktig inntekt som mulig.
+Den 6. hver måned gjøres det en kontroll mot opplysningene om inntekt fra a-registeret. Hvis opplysningene vi har mottatt fra en deltaker ikke stemmer med opplysningene vi mottar fra a-registeret/arbeidsgiver, sendes det et forhåndsvarsel til deltakeren. For å kunne sikre at pengene utbetales før den 12. i påfølgende måned, er det viktig at de selv rapporterer om så riktig inntekt som mulig.
 
 ## Hva slags inntekt skal deltakerne rapportere om?
 

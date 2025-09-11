@@ -29,7 +29,7 @@ const PageHeader: React.FunctionComponent<Props> = ({
                     </div>
                     <VStack gap="2">
                         {titleTag ? (
-                            <HStack align="center">
+                            <HStack gap="4" align="center">
                                 <Heading size="large" level="1" className="text-deepblue-800 mr-4">
                                     {title}
                                 </Heading>

@@ -1,5 +1,75 @@
 # @navikt/dine-pleiepenger
 
+## 1.9.49
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.34
+    - @navikt/sif-common-core-ds@10.2.44
+    - @navikt/sif-common-sentry@0.28.29
+    - @navikt/sif-common-utils@3.49.26
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.27
+
+## 1.9.48
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.27
+    - @navikt/sif-common-core-ds@10.2.43
+    - @navikt/sif-common-utils@3.49.25
+    - @navikt/appstatus-react-ds@2.20.33
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.28
+
+## 1.9.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.26
+    - @navikt/appstatus-react-ds@2.20.33
+    - @navikt/sif-common-core-ds@10.2.42
+    - @navikt/sif-common-utils@3.49.24
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.28
+
+## 1.9.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.25
+    - @navikt/appstatus-react-ds@2.20.32
+    - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-sentry@0.28.28
+    - @navikt/sif-common-utils@3.49.23
+
+## 1.9.45
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.2.40
+
+## 1.9.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.31
+    - @navikt/sif-common-core-ds@10.2.39
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.24
+    - @navikt/sif-common-sentry@0.28.27
+    - @navikt/sif-common-utils@3.49.22
+
 ## 1.9.43
 
 ### Patch Changes

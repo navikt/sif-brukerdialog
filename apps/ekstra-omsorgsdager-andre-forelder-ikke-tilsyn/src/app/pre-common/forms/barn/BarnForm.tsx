@@ -1,6 +1,6 @@
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { guid } from '@navikt/sif-common-utils';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
 import { useAppIntl } from '../../../i18n';
@@ -67,8 +67,13 @@ const BarnForm = ({
                 initialValues={barnUtils.mapBarnToFormValues(barn)}
                 onSubmit={onFormikSubmit}
                 renderForm={() => (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getIntlFormErrorHandler(intl, 'annetBarnForm')}>
-                        <FormBlock>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'annetBarnForm')}
+                        showButtonArrows={false}
+                        submitButtonLabel={formLabels.okButton}
+                        cancelButtonLabel={formLabels.cancelButton}>
+                        <FormLayout.Questions>
                             <Form.TextField
                                 name={BarnFormFields.navn}
                                 label={formLabels.navn}
@@ -88,9 +93,6 @@ const BarnForm = ({
                                 }}
                                 placeholder={formLabels.placeholderNavn}
                             />
-                        </FormBlock>
-
-                        <FormBlock>
                             <Form.TextField
                                 name={BarnFormFields.fnr}
                                 label={formLabels.fnr}
@@ -103,7 +105,7 @@ const BarnForm = ({
                                 maxLength={11}
                                 placeholder={formLabels.placeholderFnr}
                             />
-                        </FormBlock>
+                        </FormLayout.Questions>
                     </Form.Form>
                 )}
             />

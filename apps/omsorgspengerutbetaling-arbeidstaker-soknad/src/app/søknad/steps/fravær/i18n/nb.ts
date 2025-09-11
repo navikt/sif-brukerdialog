@@ -8,6 +8,7 @@ export const fraværStepMessages_nb = {
     'step.fravær.heledager.spm': 'Har du hatt hele dager med fravær fra jobb?',
     'step.fravær.heledager.perioderModal.label': 'Legg til ny periode med fullt fravær',
     'step.fravær.heledager.perioderModal.title': 'Fravær hele dager',
+    'step.fravær.heledager.perioderModal.listTitle': 'Hele dager med fravær',
     'step.fravær.perioderDagModal.begrensTilSammeÅrInfo':
         'Du kan søke kun innenfor ett kalenderår om gangen. Hvis du skal søke for flere år, må du sende en søknad for hvert av årene.',
     'step.fravær.delvisdag.spm': 'Har du hatt dager med delvis fravær fra jobb?',
@@ -22,4 +23,5 @@ export const fraværStepMessages_nb = {
     'step.fravær.værtIUtlandet.spm': 'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
     'step.fravær.værtIUtlandet.leggTilLabel': 'Legg til nytt utenlandsopphold',
     'step.fravær.værtIUtlandet.modalTittel': 'Utenlandsopphold',
+    'step.fravær.værtIUtlandet.listTitle': 'Utenlandsopphold',
 };

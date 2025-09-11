@@ -24,7 +24,7 @@ export type Ettersendelse = {
         | 'OMP_UTV_MA'
         | 'OMP_UTV_AO'
         | 'OPPLÆRINGSPENGER';
-    ettersendelsesType: 'LEGEERKLÆRING' | 'ANNET';
+    ettersendelsesType: 'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET';
     søkerNorskIdent?: string;
     pleietrengende?: Pleietrengende;
     harBekreftetOpplysninger: boolean;

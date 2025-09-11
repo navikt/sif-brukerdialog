@@ -33,4 +33,13 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'step.oppsummering.sendSøknad': 'Send søknad',
 
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste opplysningane.',
+    'innsendingFeilet.tittel': 'Oops, noko gjekk gale.',
+    'innsendingFeilet.tekst.situasjonBeskrivelse': 'Skildringa av situasjonen inneheld teikn som ikkje er tillate.',
+    'innsendingFeilet.tekst.generell.1': 'Søknaden din inneheld ugyldig informasjon.',
+    'innsendingFeilet.tekst.generell.2':
+        'Når du sjølv skriv inn tekst i eit felt i søknaden, kan nokre teikn vera ugyldige ut frå informasjonen me ber om. Dette skjer vanlegvis viss du kopierer og limer inn tekst frå andre stader. Du fiksar dette ved å skriva inn teksten på ny, utan å kopiera den frå ein annan stad.',
+    'innsendingFeilet.tekst.generell.3':
+        'Nokre gonger vil dei ugyldige teikna vera synlege som små firkantar inne i teksten. Då kan det vera det held å fjerna desse.',
+    'innsendingFeilet.tekst.generell.4':
+        'Viss du har sjekka dette, og framleis ikkje kjem vidare, ber me deg kontakta oss på <Telefon>55 55 33 33</Telefon> for vidare rettleiing.',
 };

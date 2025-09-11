@@ -34,11 +34,9 @@ export const innsynMessages_nn: typeof innsynMessages_nb = {
         'Forstår og godtek du at inntekta di er endra?',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
-    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld frå om du hadde inntekt {måned}',
+    'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld frå om du hadde inntekt {månedOgÅr}',
     'oppgavetype.RAPPORTER_INNTEKT.info':
-        'Meld frå om du jobba og fekk utbetalt løn i september. Hadde du inga inntekt, treng du ikkje gjere noko.',
-    'oppgavetype.RAPPORTER_INNTEKT.info.rapportert': 'Du meldte at du hadde {inntekt} kr i inntekt i {måned}.',
-    'oppgavetype.RAPPORTER_INNTEKT.info.ikkeRapportert': 'Du meldte at du ikkje hadde inntekt i {måned}.',
+        'Meld frå om du jobba og fekk utbetalt løn i {måned}. Viss du ikkje fekk utbetalt, treng du ikkje gjere noko.',
 
     'oppgavetype.SØK_YTELSE.sidetittel': 'Søknad for ungdomsprogramytelsen',
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',

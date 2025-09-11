@@ -1,6 +1,9 @@
+export { default as ActionLink } from './atoms/action-link/ActionLink';
 export { default as DatoSvar } from './components/summary-answers/DatoSvar';
 export { default as DaySelector } from './inputs/day-selector/DaySelector';
+export { default as DeleteButton } from './atoms/delete-button/DeleteButton';
 export { default as DurationText, getDurationString } from './components/duration-text/DurationText';
+export { default as ItemListDarkside } from './components/item-list-darkside/ItemListDarkside';
 export { default as DurationWeekdaysInput } from './inputs/duration-weekdays-input/DurationWeekdaysInput';
 export { default as FødselsnummerSvar } from './components/summary-answers/FødselsnummerSvar';
 export { default as JaNeiSvar } from './components/summary-answers/JaNeiSvar';

@@ -35,6 +35,7 @@ export const fraværStepMessages_nb = {
     'step.fravaer.utenlandsopphold.tittel': 'Utenlandsopphold i dagene med fravær',
     'step.fravaer.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
     'step.fravaer.utenlandsopphold.modalTitle': 'Utenlandsopphold',
+    'step.fravaer.utenlandsopphold.listTitle': 'Utenlandsopphold',
 
     'fravær.antallTimer': 'Antall timer',
     'fravær.time': 'time',

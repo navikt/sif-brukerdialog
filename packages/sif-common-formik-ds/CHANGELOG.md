@@ -1,5 +1,54 @@
 # @navikt/sif-common-formik-ds
 
+## 2.4.38
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.26
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.37
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.25
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.24
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.23
+
+## 2.4.34
+
+### Patch Changes
+
+- Endre label på forrige steg knapp til Førre steg på nynorsk
+
+## 2.4.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.22
+    - @navikt/sif-validation@1.0.3
+
 ## 2.4.32
 
 ### Patch Changes

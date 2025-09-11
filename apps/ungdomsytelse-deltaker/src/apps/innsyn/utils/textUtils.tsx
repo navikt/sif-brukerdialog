@@ -23,7 +23,8 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
-                måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                månedOgÅr: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
             });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.oppgavetittel');
@@ -53,7 +54,9 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info');
         case Oppgavetype.RAPPORTER_INNTEKT:
-            return text('oppgavetype.RAPPORTER_INNTEKT.info');
+            return text('oppgavetype.RAPPORTER_INNTEKT.info', {
+                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
+            });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.info');
     }

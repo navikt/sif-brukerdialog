@@ -9,7 +9,7 @@ COPY /apps/omsorgsdager-kalkulator/.next/static ./apps/omsorgsdager-kalkulator/.
 COPY /apps/omsorgsdager-kalkulator/public ./public
 
 ENV NODE_ENV=production
-ENV PORT 8080
+ENV PORT=8080
 
 EXPOSE 8080
 

@@ -1,5 +1,96 @@
 # @navikt/sif-demo-app
 
+## 0.7.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.38
+    - @navikt/sif-common-core-ds@10.2.44
+    - @navikt/sif-common-api@0.4.42
+    - @navikt/sif-common-ui@0.10.20
+    - @navikt/ung-common@0.0.41
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
+## 0.7.4
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.37
+    - @navikt/sif-common-core-ds@10.2.43
+    - @navikt/sif-common-api@0.4.41
+    - @navikt/sif-common-ui@0.10.19
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+    - @navikt/ung-common@0.0.40
+
+## 0.7.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.36
+    - @navikt/sif-common-core-ds@10.2.42
+    - @navikt/sif-common-api@0.4.40
+    - @navikt/sif-common-ui@0.10.18
+    - @navikt/ung-common@0.0.39
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
+## 0.7.2
+
+### Patch Changes
+
+- Endre tekst fra 1-5 -> 1-7
+
+## 0.7.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.35
+    - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-api@0.4.39
+    - @navikt/sif-common-ui@0.10.17
+    - @navikt/ung-common@0.0.38
+
+## 0.7.0
+
+### Minor Changes
+
+- Tekstendring på utbetaling; fra 10. til 12.
+
+## 0.6.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.34
+    - @navikt/sif-common-api@0.4.38
+    - @navikt/sif-common-core-ds@10.2.40
+    - @navikt/sif-common-ui@0.10.16
+    - @navikt/ung-common@0.0.37
+
+## 0.6.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.4.33
+    - @navikt/sif-common-core-ds@10.2.39
+    - @navikt/sif-common-api@0.4.37
+    - @navikt/sif-common-ui@0.10.15
+    - @navikt/ung-common@0.0.36
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/sif-validation@1.0.3
+
 ## 0.6.3
 
 ### Patch Changes

@@ -1,5 +1,32 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
 ## 2.20.30
 
 ### Patch Changes

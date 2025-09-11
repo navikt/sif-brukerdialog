@@ -4,16 +4,11 @@ export type ArbeidsgivereSøknadsdata = {
     [organisasjonsnummer: string]: ArbeidAnsattSøknadsdata;
 };
 
-export interface ArbeidAnsattSøknadsdataSluttetFørSøknadsperiode {
-    type: 'sluttetFørSøknadsperiode';
+export interface ArbeidAnsattSøknadsdataAvsluttet {
+    type: 'avsluttet';
     erAnsattISøknadsperiode: false;
-    arbeidsgiver: Arbeidsgiver;
-}
-export interface ArbeidAnsattSøknadsdataSluttetISøknadsperiode {
-    type: 'sluttetISøknadsperiode';
-    erAnsattISøknadsperiode: true;
-    arbeidsgiver: Arbeidsgiver;
     jobberNormaltTimer: number;
+    arbeidsgiver: Arbeidsgiver;
 }
 export interface ArbeidAnsattSøknadsdataPågående {
     type: 'pågående';
@@ -21,7 +16,4 @@ export interface ArbeidAnsattSøknadsdataPågående {
     arbeidsgiver: Arbeidsgiver;
     jobberNormaltTimer: number;
 }
-export type ArbeidAnsattSøknadsdata =
-    | ArbeidAnsattSøknadsdataSluttetFørSøknadsperiode
-    | ArbeidAnsattSøknadsdataSluttetISøknadsperiode
-    | ArbeidAnsattSøknadsdataPågående;
+export type ArbeidAnsattSøknadsdata = ArbeidAnsattSøknadsdataAvsluttet | ArbeidAnsattSøknadsdataPågående;

@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.12.33",
+    "version": "3.12.38",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -13,10 +13,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.29.0",
+        "@navikt/ds-css": "7.30.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.29.0",
-        "@navikt/ds-tailwind": "7.29.0",
+        "@navikt/ds-react": "7.30.0",
+        "@navikt/ds-tailwind": "7.30.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
         "csp-header": "6.1.0",
@@ -25,31 +25,31 @@
         "formik": "2.4.6",
         "html-react-parser": "5.2.6",
         "jsdom": "26.1.0",
-        "next": "15.5.2",
+        "next": "15.5.3",
         "node-fetch": "3.3.2",
         "react": "19.1.1",
         "react-day-picker": "9.9.0",
         "react-dom": "19.1.1",
         "react-intl": "7.1.11",
-        "uuid": "11.1.0"
+        "uuid": "13.0.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
         "@playwright/test": "1.55.0",
-        "@tailwindcss/postcss": "4.1.12",
-        "@tailwindcss/vite": "4.1.12",
-        "@types/node": "24.3.0",
+        "@tailwindcss/postcss": "4.1.13",
+        "@tailwindcss/vite": "4.1.13",
+        "@types/node": "24.3.1",
         "@types/react": "19.1.12",
         "@types/react-dom": "19.1.9",
         "@types/uuid": "10.0.0",
         "config": "workspace:*",
-        "eslint": "9.34.0",
-        "eslint-config-next": "15.5.2",
-        "jest": "30.1.2",
+        "eslint": "9.35.0",
+        "eslint-config-next": "15.5.3",
+        "jest": "30.1.3",
         "jest-environment-jsdom": "30.1.2",
         "playwright-core": "1.55.0",
         "postcss": "8.5.6",
-        "tailwindcss": "4.1.12",
+        "tailwindcss": "4.1.13",
         "typescript": "5.9.2"
     }
 }

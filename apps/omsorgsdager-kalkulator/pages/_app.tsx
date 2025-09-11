@@ -13,7 +13,8 @@ import '../styles/customExpCard.scss';
 import '../components/section-panel/sectionPanel.scss';
 import '../components/section-panel/circle-mask/circleMask.scss';
 
-import '@navikt/ds-css';
+import '@navikt/ds-css/darkside';
+import { Theme } from '@navikt/ds-react';
 
 const getLocaleOrFallback = (locale?: string) => {
     if (locale && ['nb', 'nn'].includes(locale)) {
@@ -27,16 +28,18 @@ export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const locale = getLocaleOrFallback(router.locale);
     return (
-        <IntlProvider locale={locale} messages={messages[locale as DecoratorLocale]}>
-            <>
-                <Head>
-                    {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
-                    <title>Omsorgdager kalkulator - www.nav.no</title>
-                </Head>
-                <Container>
-                    <Component {...pageProps} />
-                </Container>
-            </>
-        </IntlProvider>
+        <Theme>
+            <IntlProvider locale={locale} messages={messages[locale as DecoratorLocale]}>
+                <>
+                    <Head>
+                        {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
+                        <title>Omsorgdager kalkulator - www.nav.no</title>
+                    </Head>
+                    <Container>
+                        <Component {...pageProps} />
+                    </Container>
+                </>
+            </IntlProvider>
+        </Theme>
     );
 }
