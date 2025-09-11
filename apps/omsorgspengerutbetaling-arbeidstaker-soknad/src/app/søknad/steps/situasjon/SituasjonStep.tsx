@@ -3,12 +3,10 @@ import { useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getDateToday } from '@navikt/sif-common-utils';
-import FormSection from '../../../components/form-section/FormSection';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -149,43 +147,40 @@ const SituasjonStep = () => {
                                 submitDisabled={isSubmitting || !harIkkeMottatLønnHosEnEllerFlere}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="8">
-                                    <SifGuidePanel>
-                                        <p>
-                                            <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
-                                        </p>
-                                        <p>
-                                            <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
-                                        </p>
-                                    </SifGuidePanel>
+                                <FormLayout.Guide>
+                                    <p>
+                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
+                                    </p>
+                                    <p>
+                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
+                                    </p>
+                                </FormLayout.Guide>
 
-                                    <VStack gap="10">
+                                <VStack gap="8">
+                                    <FormLayout.Sections>
                                         {arbeidsforhold.map((forhold, index) => (
-                                            <div
+                                            <FormLayout.Section
                                                 key={forhold.organisasjonsnummer}
-                                                data-testid={`arbeidsforhold-liste-${index}`}>
-                                                <FormSection
-                                                    titleTag="h2"
-                                                    title={forhold.navn || forhold.organisasjonsnummer}
-                                                    titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
-                                                    <FormLayout.Questions>
-                                                        <ArbeidsforholdSituasjon
-                                                            arbeidsforhold={forhold}
-                                                            parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                        />
-                                                        {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
-                                                            forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
-                                                                <ArbeidsforholdUtbetalingsårsak
-                                                                    arbeidsforhold={forhold}
-                                                                    andreVedlegg={andreVedlegg}
-                                                                    parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                                />
-                                                            )}
-                                                    </FormLayout.Questions>
-                                                </FormSection>
-                                            </div>
+                                                data-testid={`arbeidsforhold-liste-${index}`}
+                                                title={forhold.navn || forhold.organisasjonsnummer}
+                                                titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                                <FormLayout.Questions>
+                                                    <ArbeidsforholdSituasjon
+                                                        arbeidsforhold={forhold}
+                                                        parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                    />
+                                                    {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
+                                                        forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
+                                                            <ArbeidsforholdUtbetalingsårsak
+                                                                arbeidsforhold={forhold}
+                                                                andreVedlegg={andreVedlegg}
+                                                                parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                            />
+                                                        )}
+                                                </FormLayout.Questions>
+                                            </FormLayout.Section>
                                         ))}
-                                    </VStack>
+                                    </FormLayout.Sections>
 
                                     {arbeidsforhold.length === 0 && (
                                         <Alert variant="info">
