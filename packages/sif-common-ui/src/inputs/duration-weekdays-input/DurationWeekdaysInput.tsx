@@ -68,7 +68,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
 
     if (useAccordion) {
         return (
-            <Accordion size="small">
+            <Accordion data-color="info">
                 {months.map((month) => {
                     const enabledDatesInMonth = getEnabledDatesInMonth(month);
                     if (enabledDatesInMonth.length === 0) return null;
