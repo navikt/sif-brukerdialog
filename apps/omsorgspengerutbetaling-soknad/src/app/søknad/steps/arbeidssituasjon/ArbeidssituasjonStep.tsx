@@ -1,5 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Alert } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     FormikInputGroup,
@@ -8,6 +7,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -15,7 +15,6 @@ import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-// import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -29,7 +28,6 @@ import {
 } from './arbeidssituasjonStepUtils';
 import FrilansFormPart from './form-parts/FrilansFormPart';
 import SelvstendigNæringsdrivendeFormPart from './form-parts/SelvstendigNæringsdrivendeFormPart';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidssituasjonFormFields {
     frilans_erFrilanser = 'frilans_erFrilanser',
@@ -110,13 +108,13 @@ const ArbeidssituasjonStep = () => {
                                 submitDisabled={submitDisabled(values) || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="8">
-                                    <SifGuidePanel>
-                                        <p>
-                                            <AppText id="step.arbeidssituasjon.info.1" />
-                                        </p>
-                                    </SifGuidePanel>
+                                <FormLayout.Guide>
+                                    <p>
+                                        <AppText id="step.arbeidssituasjon.info.1" />
+                                    </p>
+                                </FormLayout.Guide>
 
+                                <FormLayout.Questions>
                                     <FormikInputGroup
                                         name="arbeidssituasjon_tidsrom"
                                         hideLegend={true}
@@ -152,7 +150,7 @@ const ArbeidssituasjonStep = () => {
                                             <AppText id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
                                         </Alert>
                                     )}
-                                </VStack>
+                                </FormLayout.Questions>
                             </Form>
                         </>
                     );

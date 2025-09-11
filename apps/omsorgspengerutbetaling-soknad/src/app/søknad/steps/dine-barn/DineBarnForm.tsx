@@ -7,12 +7,12 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
-import { useAppIntl } from '../../../i18n';
+import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
-import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { VStack } from '@navikt/ds-react';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
@@ -56,13 +56,26 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             submitDisabled={isSubmitting || kanFortsette === false}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <VStack gap="8">
-                <DineBarnStepIntro />
+            <FormLayout.Guide>
+                <p>
+                    <AppText id="step.dineBarn.intro.1" />
+                </p>
+                <ExpandableInfo title={text('step.dineBarn.intro.info.tittel')}>
+                    <p>
+                        <AppText id="step.dineBarn.intro.info.tekst.1" />
+                    </p>
+                    <p>
+                        <AppText id="step.dineBarn.intro.info.tekst.2" />
+                    </p>
+                </ExpandableInfo>
+            </FormLayout.Guide>
 
+            <FormLayout.Questions>
                 <VStack gap="4">
                     <RegistrerteBarnListe.Heading level="2" size="medium">
                         {text('step.dineBarn.seksjonsTittel')}
                     </RegistrerteBarnListe.Heading>
+
                     <FormikInputGroup
                         legend={text('step.dineBarn.seksjonsTittel')}
                         hideLegend={true}
@@ -73,7 +86,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                                 return 'ingenBarn';
                             }
                         }}>
-                        <VStack gap="8">
+                        <FormLayout.Questions>
                             <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
 
                             <AndreBarnPart
@@ -82,14 +95,14 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                                 andreBarn={andreBarn}
                                 onAndreBarnChange={oppdatereAndreBarn}
                             />
-                        </VStack>
+                        </FormLayout.Questions>
                     </FormikInputGroup>
                 </VStack>
 
                 {andreBarn.length + registrerteBarn.length > 0 ? (
                     <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
                 ) : null}
-            </VStack>
+            </FormLayout.Questions>
         </Form>
     );
 };

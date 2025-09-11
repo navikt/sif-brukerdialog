@@ -8,6 +8,7 @@ import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-vali
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -44,39 +45,41 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                 }
                 data-testid="selvstendig_erSelvstendigNæringsdrivende"
             />
-
             {erSelvstendigNæringsdrivende && (
-                <YesOrNoQuestion
-                    name={ArbeidssituasjonFormFields.selvstendig_harFlereVirksomheter}
-                    legend={text('selvstendig.harFlereVirksomheter.spm')}
-                    validate={getYesOrNoValidator()}
-                    data-testid="selvstendig_harFlereVirksomheter"
-                />
-            )}
+                <FormLayout.Panel bleedTop={true}>
+                    <FormLayout.Questions>
+                        <YesOrNoQuestion
+                            name={ArbeidssituasjonFormFields.selvstendig_harFlereVirksomheter}
+                            legend={text('selvstendig.harFlereVirksomheter.spm')}
+                            validate={getYesOrNoValidator()}
+                            data-testid="selvstendig_harFlereVirksomheter"
+                        />
 
-            {harFlereVirksomheter && (
-                <SifGuidePanel>
-                    <p>
-                        <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
-                    </p>
-                </SifGuidePanel>
-            )}
-
-            {erSelvstendigNæringsdrivende && values.selvstendig_harFlereVirksomheter !== YesOrNo.UNANSWERED && (
-                <VirksomhetInfoAndDialog
-                    name={ArbeidssituasjonFormFields.selvstendig_virksomhet}
-                    harFlereVirksomheter={harFlereVirksomheter}
-                    labels={{
-                        infoTitle: selvstendig_virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
-                        editLabel: text('selvstendig.infoDialog.endreKnapp'),
-                        deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
-                        addLabel: text('selvstendig.infoDialog.registrerKnapp'),
-                        modalTitle: harFlereVirksomheter
-                            ? text('selvstendig.infoDialog.tittel.flere')
-                            : text('selvstendig.infoDialog.tittel.en'),
-                    }}
-                    validate={getRequiredFieldValidator()}
-                />
+                        {harFlereVirksomheter && (
+                            <SifGuidePanel>
+                                <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
+                            </SifGuidePanel>
+                        )}
+                        {values.selvstendig_harFlereVirksomheter !== YesOrNo.UNANSWERED && (
+                            <VirksomhetInfoAndDialog
+                                name={ArbeidssituasjonFormFields.selvstendig_virksomhet}
+                                harFlereVirksomheter={harFlereVirksomheter}
+                                labels={{
+                                    infoTitle: selvstendig_virksomhet
+                                        ? text('selvstendig.infoDialog.infoTittel')
+                                        : undefined,
+                                    editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                                    deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                                    addLabel: text('selvstendig.infoDialog.registrerKnapp'),
+                                    modalTitle: harFlereVirksomheter
+                                        ? text('selvstendig.infoDialog.tittel.flere')
+                                        : text('selvstendig.infoDialog.tittel.en'),
+                                }}
+                                validate={getRequiredFieldValidator()}
+                            />
+                        )}
+                    </FormLayout.Questions>
+                </FormLayout.Panel>
             )}
         </>
     );

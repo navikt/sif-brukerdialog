@@ -8,6 +8,7 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -57,42 +58,44 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
                 data-testid="frilans_erFrilanser"
             />
             {erFrilanser && (
-                <>
-                    <DatePicker
-                        name={ArbeidssituasjonFormFields.frilans_startdato}
-                        label={text('frilanser.nårStartet.spm')}
-                        dropdownCaption={true}
-                        minDate={startetDateRange.from}
-                        maxDate={startetDateRange.to}
-                        validate={getDateValidator({
-                            required: true,
-                            min: startetDateRange.from,
-                            max: startetDateRange.to,
-                        })}
-                        data-testid="frilans_startdato"
-                    />
-                    <YesOrNoQuestion
-                        name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
-                        legend={text('frilanser.jobberFortsatt.spm')}
-                        validate={getYesOrNoValidator()}
-                        data-testid="frilans_jobberFortsattSomFrilans"
-                    />
-                    {harSluttetSomFrilanser && (
+                <FormLayout.Panel bleedTop={true}>
+                    <FormLayout.Questions>
                         <DatePicker
-                            name={ArbeidssituasjonFormFields.frilans_sluttdato}
-                            label={text('frilanser.nårSluttet.spm')}
+                            name={ArbeidssituasjonFormFields.frilans_startdato}
+                            label={text('frilanser.nårStartet.spm')}
                             dropdownCaption={true}
-                            minDate={sluttetDateRange.from}
-                            maxDate={sluttetDateRange.to}
+                            minDate={startetDateRange.from}
+                            maxDate={startetDateRange.to}
                             validate={getDateValidator({
                                 required: true,
-                                min: sluttetDateRange.from,
-                                max: sluttetDateRange.to,
+                                min: startetDateRange.from,
+                                max: startetDateRange.to,
                             })}
-                            data-testid="frilans_sluttdato"
+                            data-testid="frilans_startdato"
                         />
-                    )}
-                </>
+                        <YesOrNoQuestion
+                            name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
+                            legend={text('frilanser.jobberFortsatt.spm')}
+                            validate={getYesOrNoValidator()}
+                            data-testid="frilans_jobberFortsattSomFrilans"
+                        />
+                        {harSluttetSomFrilanser && (
+                            <DatePicker
+                                name={ArbeidssituasjonFormFields.frilans_sluttdato}
+                                label={text('frilanser.nårSluttet.spm')}
+                                dropdownCaption={true}
+                                minDate={sluttetDateRange.from}
+                                maxDate={sluttetDateRange.to}
+                                validate={getDateValidator({
+                                    required: true,
+                                    min: sluttetDateRange.from,
+                                    max: sluttetDateRange.to,
+                                })}
+                                data-testid="frilans_sluttdato"
+                            />
+                        )}
+                    </FormLayout.Questions>
+                </FormLayout.Panel>
             )}
         </>
     );

@@ -1,6 +1,5 @@
-import { Alert, Box, Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     FormikValuesObserver,
@@ -146,11 +145,9 @@ const FraværStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}
                                 submitDisabled={isSubmitting || hasInvalidSteps || kanIkkeFortsette}>
-                                <Box marginBlock="0 8">
-                                    <SifGuidePanel>
-                                        <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} />
-                                    </SifGuidePanel>
-                                </Box>
+                                <FormLayout.Guide>
+                                    <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} />
+                                </FormLayout.Guide>
 
                                 <FormLayout.Questions>
                                     <YesOrNoQuestion
@@ -161,26 +158,28 @@ const FraværStep = () => {
                                     />
                                     {/* DAGER MED FULLT FRAVÆR*/}
                                     {harPerioderMedFravær === YesOrNo.YES && (
-                                        <FraværPerioderListAndDialog<FraværFormFields>
-                                            name={FraværFormFields.fraværPerioder}
-                                            periodeDescription={FraværStepInfo.Tidsbegrensning(appIntl)}
-                                            minDate={minDateForFravær}
-                                            maxDate={maxDateForFravær}
-                                            validate={getFraværPerioderValidator({
-                                                fraværDager,
-                                                årstall,
-                                            })}
-                                            labels={{
-                                                listTitle: text('step.fravaer.harPerioderMedFravær.listTitle'),
-                                                addLabel: text('step.fravaer.harPerioderMedFravær.addLabel'),
-                                                modalTitle: text('step.fravaer.harPerioderMedFravær.modalTitle'),
-                                            }}
-                                            dateRangesToDisable={[
-                                                ...fraværPerioder.map(fraværPeriodeToDateRange),
-                                                ...fraværDager.map(fraværDagToFraværDateRange),
-                                            ]}
-                                            helgedagerIkkeTillat={true}
-                                        />
+                                        <FormLayout.Panel bleedTop={true}>
+                                            <FraværPerioderListAndDialog<FraværFormFields>
+                                                name={FraværFormFields.fraværPerioder}
+                                                periodeDescription={FraværStepInfo.Tidsbegrensning(appIntl)}
+                                                minDate={minDateForFravær}
+                                                maxDate={maxDateForFravær}
+                                                validate={getFraværPerioderValidator({
+                                                    fraværDager,
+                                                    årstall,
+                                                })}
+                                                labels={{
+                                                    listTitle: text('step.fravaer.harPerioderMedFravær.listTitle'),
+                                                    addLabel: text('step.fravaer.harPerioderMedFravær.addLabel'),
+                                                    modalTitle: text('step.fravaer.harPerioderMedFravær.modalTitle'),
+                                                }}
+                                                dateRangesToDisable={[
+                                                    ...fraværPerioder.map(fraværPeriodeToDateRange),
+                                                    ...fraværDager.map(fraværDagToFraværDateRange),
+                                                ]}
+                                                helgedagerIkkeTillat={true}
+                                            />
+                                        </FormLayout.Panel>
                                     )}
                                     <YesOrNoQuestion
                                         name={FraværFormFields.harDagerMedDelvisFravær}
@@ -190,27 +189,29 @@ const FraværStep = () => {
                                     />
                                     {/* DAGER MED DELVIS FRAVÆR*/}
                                     {harDagerMedDelvisFravær === YesOrNo.YES && (
-                                        <FraværDagerListAndDialog<FraværFormFields>
-                                            name={FraværFormFields.fraværDager}
-                                            dagDescription={FraværStepInfo.Tidsbegrensning(appIntl, true)}
-                                            minDate={minDateForFravær}
-                                            maxDate={maxDateForFravær}
-                                            validate={getFraværDagerValidator({
-                                                fraværPerioder,
-                                                årstall,
-                                            })}
-                                            labels={{
-                                                listTitle: text('step.fravaer.harDagerMedDelvisFravær.listTitle'),
-                                                addLabel: text('step.fravaer.harDagerMedDelvisFravær.addLabel'),
-                                                modalTitle: text('step.fravaer.harDagerMedDelvisFravær.modalTitle'),
-                                            }}
-                                            dateRangesToDisable={[
-                                                ...fraværDager.map(fraværDagToFraværDateRange),
-                                                ...fraværPerioder.map(fraværPeriodeToDateRange),
-                                            ]}
-                                            helgedagerIkkeTillatt={true}
-                                            maksArbeidstidPerDag={24}
-                                        />
+                                        <FormLayout.Panel bleedTop={true}>
+                                            <FraværDagerListAndDialog<FraværFormFields>
+                                                name={FraværFormFields.fraværDager}
+                                                dagDescription={FraværStepInfo.Tidsbegrensning(appIntl, true)}
+                                                minDate={minDateForFravær}
+                                                maxDate={maxDateForFravær}
+                                                validate={getFraværDagerValidator({
+                                                    fraværPerioder,
+                                                    årstall,
+                                                })}
+                                                labels={{
+                                                    listTitle: text('step.fravaer.harDagerMedDelvisFravær.listTitle'),
+                                                    addLabel: text('step.fravaer.harDagerMedDelvisFravær.addLabel'),
+                                                    modalTitle: text('step.fravaer.harDagerMedDelvisFravær.modalTitle'),
+                                                }}
+                                                dateRangesToDisable={[
+                                                    ...fraværDager.map(fraværDagToFraværDateRange),
+                                                    ...fraværPerioder.map(fraværPeriodeToDateRange),
+                                                ]}
+                                                helgedagerIkkeTillatt={true}
+                                                maksArbeidstidPerDag={24}
+                                            />
+                                        </FormLayout.Panel>
                                     )}
                                     {kanIkkeFortsette && (
                                         <Alert variant="warning">
@@ -233,20 +234,28 @@ const FraværStep = () => {
                                                 />
 
                                                 {perioder_harVærtIUtlandet === YesOrNo.YES && (
-                                                    <BostedUtlandListAndDialog<FraværFormFields>
-                                                        name={FraværFormFields.perioder_utenlandsopphold}
-                                                        minDate={førsteOgSisteDagMedFravær?.from || gyldigTidsrom.from}
-                                                        maxDate={førsteOgSisteDagMedFravær?.to || gyldigTidsrom.to}
-                                                        labels={{
-                                                            addLabel: text('step.fravaer.utenlandsopphold.addLabel'),
-                                                            modalTitle: text(
-                                                                'step.fravaer.utenlandsopphold.modalTitle',
-                                                            ),
-                                                            listTitle: text('step.fravaer.utenlandsopphold.listTitle'),
-                                                            hideListTitle: false,
-                                                        }}
-                                                        validate={getListValidator({ required: true })}
-                                                    />
+                                                    <FormLayout.Panel bleedTop={true}>
+                                                        <BostedUtlandListAndDialog<FraværFormFields>
+                                                            name={FraværFormFields.perioder_utenlandsopphold}
+                                                            minDate={
+                                                                førsteOgSisteDagMedFravær?.from || gyldigTidsrom.from
+                                                            }
+                                                            maxDate={førsteOgSisteDagMedFravær?.to || gyldigTidsrom.to}
+                                                            labels={{
+                                                                addLabel: text(
+                                                                    'step.fravaer.utenlandsopphold.addLabel',
+                                                                ),
+                                                                modalTitle: text(
+                                                                    'step.fravaer.utenlandsopphold.modalTitle',
+                                                                ),
+                                                                listTitle: text(
+                                                                    'step.fravaer.utenlandsopphold.listTitle',
+                                                                ),
+                                                                hideListTitle: false,
+                                                            }}
+                                                            validate={getListValidator({ required: true })}
+                                                        />
+                                                    </FormLayout.Panel>
                                                 )}
                                             </FormLayout.Questions>
                                         </div>
