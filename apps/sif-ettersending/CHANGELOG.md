@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.48.0
+
+### Minor Changes
+
+- Flytte valg av barn til eget steg
+
 ## 3.47.17
 
 ### Patch Changes
