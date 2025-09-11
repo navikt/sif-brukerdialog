@@ -1,4 +1,4 @@
-import { Alert, BodyLong } from '@navikt/ds-react';
+import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
