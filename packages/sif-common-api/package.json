@@ -2,13 +2,13 @@
     "name": "@navikt/sif-common-api",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.4.41",
+    "version": "0.4.42",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.29.1",
+        "@navikt/ds-css": "7.30.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.29.1",
+        "@navikt/ds-react": "7.30.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -17,7 +17,7 @@
         "classnames": "2.5.1",
         "dayjs": "1.11.18",
         "react-day-picker": "9.9.0",
-        "zod": "4.1.5"
+        "zod": "4.1.7"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -28,7 +28,7 @@
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.18",
-        "globals": "16.3.0",
+        "globals": "16.4.0",
         "intl": "1.2.5",
         "less": "4.4.1",
         "postcss": "8.5.6",

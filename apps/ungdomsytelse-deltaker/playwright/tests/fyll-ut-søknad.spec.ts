@@ -42,7 +42,11 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('heading', { name: 'Vi henter opplysninger fra' }).click();
     await page.getByRole('button', { name: 'Neste steg' }).click();
-    await page.locator('header').filter({ hasText: 'Kontonummer for' }).getByRole('link').click();
+    await page
+        .locator('div')
+        .filter({ hasText: /^Kontonummer for utbetalingEndre svar$/ })
+        .getByRole('link')
+        .click();
     await page.getByRole('radio', { name: 'Ja' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
 
@@ -55,7 +59,12 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.getByText('Barn vi har registrert på deg:ALFABETISK TURLØYPE').click();
     await page.getByText('Stemmer opplysningen om barnet?Ja').click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter at' }).check();
-    await page.locator('header').filter({ hasText: 'Kontonummer for' }).getByRole('link').click();
+    await page
+        .locator('div')
+        .filter({ hasText: /^Kontonummer for utbetalingEndre svar$/ })
+        .getByRole('link')
+        .click();
+
     await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
     await page.getByRole('radio', { name: 'Nei' }).check();

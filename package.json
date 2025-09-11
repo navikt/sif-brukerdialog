@@ -9,7 +9,7 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "dependencies": {
-        "@changesets/cli": "2.29.6",
+        "@changesets/cli": "2.29.7",
         "tailwindcss": "4.1.13",
         "turbo": "2.5.6"
     },
