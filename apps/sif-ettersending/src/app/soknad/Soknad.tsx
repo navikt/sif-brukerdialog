@@ -16,6 +16,7 @@ import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { YtelseKey } from '../types/Ytelser';
+import { getFeaturesHashString } from '../utils/featureToggleUtils';
 import {
     navigateToErrorPage,
     navigateToKvitteringPage,
@@ -86,7 +87,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
     });
 
     useEffectOnce(() => {
-        if (tempStorage && isStorageDataValid(tempStorage, { søker })) {
+        if (tempStorage && isStorageDataValid(tempStorage, { søker, features: getFeaturesHashString() })) {
             setInitialFormData(tempStorage.formData);
             setSoknadId(tempStorage.metadata.soknadId);
             const currentRoute = location.pathname;
@@ -155,7 +156,13 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {
         try {
-            await soknadTempStorage.update(sId, values, stepID, { søker }, søknadstype);
+            await soknadTempStorage.update(
+                sId,
+                values,
+                stepID,
+                { søker, features: getFeaturesHashString() },
+                søknadstype,
+            );
             await logHendelse(ApplikasjonHendelse.fortsettSenere);
             relocateToMinSide();
         } catch (error) {
@@ -236,6 +243,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
                                 stepToPersist,
                                 {
                                     søker,
+                                    features: getFeaturesHashString(),
                                 },
                                 søknadstype,
                             );

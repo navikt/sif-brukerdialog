@@ -1,5 +1,7 @@
 import { Page, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright'; // 1
+import { DokumentType } from '../../src/app/types/DokumentType';
+import { YtelseKey } from '../../src/app/types/Ytelser';
 
 export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
@@ -9,25 +11,39 @@ const velgYtelsePleiepenger = async (page: Page) => {
     await page.getByRole('button').getByText('Gå videre').click();
 };
 
+const velgYtelseOpplæringspenger = async (page: Page) => {
+    await page.goto(startUrl);
+    await page.getByLabel('Opplæringspenger').click();
+    await page.getByRole('button').getByText('Gå videre').click();
+};
+
 const startSøknad = async (page: Page) => {
     await page.getByTestId('bekreft-label').click();
     await page.getByRole('button').getByText('Start ettersendelse').click();
 };
 
-const fyllUtdokumentTypeSteg = async (page: Page, legeerklæring: boolean, barnFnr?: string) => {
+const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType) => {
     await expect(page.getByRole('heading', { name: 'Hva skal du ettersende?', level: 1 })).toBeVisible();
 
     await page.getByRole('button').getByText('Neste').click();
     await expect(page.getByRole('heading', { name: 'Feil i skjema' })).toBeVisible();
 
-    if (legeerklæring) {
+    if (dokumentttype === DokumentType.legeerklæring) {
         await page.getByText('Legeerklæring').click();
+    } else if (dokumentttype === DokumentType.kursinformasjon) {
+        await page.getByText('Informasjon om kurs').click();
     } else {
         await page.getByText('Annet').click();
     }
 
     await page.getByRole('button').getByText('Neste').click();
-    await expect(page.getByText('Feil i skjema')).toBeVisible();
+};
+
+const fyllUtBarnSteg = async (page: Page, barnFnr?: string) => {
+    await expect(page.getByRole('heading', { name: 'Hvilket barn gjelder ettersendelsen?', level: 1 })).toBeVisible();
+
+    await page.getByRole('button').getByText('Neste').click();
+    await expect(page.getByRole('heading', { name: 'Feil i skjema' })).toBeVisible();
 
     if (barnFnr) {
         await page.getByText('Ettersendelse gjelder et annet barn').click();
@@ -60,17 +76,26 @@ const fyllUtDokumenterSteg = async (page: Page) => {
     await page.getByRole('button').getByText('Neste').click();
 };
 
-const kontrollerOppsummeringPPSyktBarn = async (page: Page, legeerklæring: boolean, barnFnr?: string) => {
+const kontrollerOppsummeringBarn = async (
+    page: Page,
+    dokumentttype: DokumentType,
+    ytelse: YtelseKey.pleiepengerSyktBarn | YtelseKey.opplaringspenger,
+    barnFnr?: string,
+) => {
     await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
-    await expect(page.getByTestId('oppsummering').getByText('Søknad om pleiepenger for')).toBeVisible();
+    if (ytelse === YtelseKey.pleiepengerSyktBarn) {
+        await expect(page.getByTestId('oppsummering').getByText('Søknad om pleiepenger for')).toBeVisible();
+    } else if (ytelse === YtelseKey.opplaringspenger) {
+        await expect(page.getByTestId('oppsummering').getByText('Søknad om opplæringspenger')).toBeVisible();
+    }
 
-    if (legeerklæring) {
+    if (dokumentttype === DokumentType.legeerklæring) {
         await expect(page.getByTestId('oppsummering').getByText('Hva skal du ettersende?')).toBeVisible();
         await expect(page.getByText('ALFABETISK FAGGOTT (født 08.06.2019)')).toBeVisible();
     }
 
     if (barnFnr) {
-        await expect(page.getByText('Hvilket barn gjelder')).toBeVisible();
+        await expect(page.getByText('Hvilket barn gjelder ettersendelsen?Fødselsnummer:')).toBeVisible();
         await expect(page.getByText(`Fødselsnummer: ${barnFnr}`)).toBeVisible();
     }
 
@@ -95,10 +120,12 @@ const kontrollerKvitteringLegeerklæring = async (page: Page) => {
 
 export const utfyllingUtils = {
     velgYtelsePleiepenger,
+    velgYtelseOpplæringspenger,
     startSøknad,
     fyllUtdokumentTypeSteg,
+    fyllUtBarnSteg,
     fyllUtDokumenterSteg,
-    kontrollerOppsummeringPPSyktBarn,
+    kontrollerOppsummeringBarn,
     sendInnDokumenter,
     kontrollerKvittering,
     kontrollerKvitteringLegeerklæring,

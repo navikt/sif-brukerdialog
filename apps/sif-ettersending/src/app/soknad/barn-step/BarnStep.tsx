@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { useFormikContext } from 'formik';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import DokumentTypeOpplaringspengerPart from './DokumentTypeOpplaringspengerPart';
-import DokumentTypePsbPart from './DokumentTypePsbPart';
+import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
+import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -15,10 +16,12 @@ interface Props {
     registrertBarn: RegistrertBarn[];
 }
 
-const DokumentTypeStep = ({ søknadstype }: Props) => {
+const BarnStep = ({ søknadstype, søkersFødselsnummer, registrertBarn }: Props) => {
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
-    const { dokumentType, registrertBarnAktørId } = values;
+    const { registrertBarnAktørId } = values;
+    const harRegistrerteBarn = registrertBarn.length > 0;
+    const gjelderEtAnnetBarn = registrertBarnAktørId === VelgBarn_AnnetBarnValue;
 
     useEffect(() => {
         if (registrertBarnAktørId !== VelgBarn_AnnetBarnValue) {
@@ -28,13 +31,15 @@ const DokumentTypeStep = ({ søknadstype }: Props) => {
     }, [registrertBarnAktørId]);
 
     return (
-        <SoknadFormStep id={StepID.DOKUMENT_TYPE} søknadstype={søknadstype}>
-            {søknadstype === Søknadstype.pleiepengerSyktBarn && <DokumentTypePsbPart dokumentType={dokumentType} />}
-            {søknadstype === Søknadstype.opplaringspenger && (
-                <DokumentTypeOpplaringspengerPart dokumentType={dokumentType} />
+        <SoknadFormStep id={StepID.BARN} søknadstype={søknadstype}>
+            <FormBlock>
+                <RegistrertBarnPart registrertBarn={registrertBarn} />
+            </FormBlock>
+            {(gjelderEtAnnetBarn || !harRegistrerteBarn) && (
+                <AnnetBarnPart søkersFødselsnummer={søkersFødselsnummer} harRegistrerteBarn={harRegistrerteBarn} />
             )}
         </SoknadFormStep>
     );
 };
 
-export default DokumentTypeStep;
+export default BarnStep;
