@@ -15,7 +15,7 @@ const ForsidePage = () => {
         <ForsidePageLayout documentTitle="Din ungdomsprogramytelse" footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
-
+                <div data-uxsignals-embed="panel-zpvvyjk4ss" style={{ maxWidth: '620px' }} />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
         </ForsidePageLayout>
