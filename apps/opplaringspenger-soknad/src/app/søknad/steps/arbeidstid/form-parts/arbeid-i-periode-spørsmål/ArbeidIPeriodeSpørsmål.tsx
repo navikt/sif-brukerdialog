@@ -1,7 +1,5 @@
-import { Alert, Heading, HStack, Tag } from '@navikt/ds-react';
+import { Alert, BoxNew, Heading, HStack, Tag } from '@navikt/ds-react';
 import { useContext, useEffect, useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import {
     DateRange,
     getErrorForField,
@@ -11,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getTimeValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
+import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
     durationToDecimalDuration,
@@ -146,7 +144,7 @@ const ArbeidIPeriodeSpørsmål = ({
     const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
-        <>
+        <FormLayout.Questions>
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
@@ -157,7 +155,7 @@ const ArbeidIPeriodeSpørsmål = ({
             )}
 
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
-                <FormBlock>
+                <FormLayout.Panel bleedTop={true}>
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
@@ -176,11 +174,11 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            <Block margin="l">
+                            <BoxNew paddingBlock="2 0">
                                 <Alert variant="info" inline={true}>
                                     <AppText id="arbeidIPeriode.enkeltdager_gruppe.description" />
                                 </Alert>
-                            </Block>
+                            </BoxNew>
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
@@ -207,9 +205,9 @@ const ArbeidIPeriodeSpørsmål = ({
                             />
                         </div>
                     </InputGroup>
-                </FormBlock>
+                </FormLayout.Panel>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

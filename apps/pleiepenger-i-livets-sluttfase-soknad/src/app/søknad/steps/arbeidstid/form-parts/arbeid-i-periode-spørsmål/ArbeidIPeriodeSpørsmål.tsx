@@ -148,7 +148,7 @@ const ArbeidIPeriodeSpørsmål = ({
             )}
 
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
-                <FormLayout.Panel bleedTop={true}>
+                <FormLayout.Panel bleedTop={!skjulJobberNormaltValg}>
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}

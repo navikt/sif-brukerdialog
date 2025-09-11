@@ -1,12 +1,12 @@
-import { List, VStack } from '@navikt/ds-react';
+import { List } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper, YesOrNo } from '@navikt/sif-common-core-ds';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -53,27 +53,27 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <VStack gap="8">
-                <SifGuidePanel>
-                    <p>
-                        <AppText id="steg.legeerklæring.counsellorPanel.info.1" />
-                    </p>
-                    <p>
-                        <AppText id="steg.legeerklæring.counsellorPanel.info.2.tittel" />
-                    </p>
-                    <List>
-                        <List.Item>
-                            <AppText id="steg.legeerklæring.counsellorPanel.info.2.1" />
-                        </List.Item>
-                        <List.Item>
-                            <AppText id="steg.legeerklæring.counsellorPanel.info.2.2" />
-                        </List.Item>
-                    </List>
-                    <p>
-                        <AppText id="steg.legeerklæring.counsellorPanel.info.3" />
-                    </p>
-                </SifGuidePanel>
+            <FormLayout.Guide>
+                <p>
+                    <AppText id="steg.legeerklæring.counsellorPanel.info.1" />
+                </p>
+                <p>
+                    <AppText id="steg.legeerklæring.counsellorPanel.info.2.tittel" />
+                </p>
+                <List>
+                    <List.Item>
+                        <AppText id="steg.legeerklæring.counsellorPanel.info.2.1" />
+                    </List.Item>
+                    <List.Item>
+                        <AppText id="steg.legeerklæring.counsellorPanel.info.2.2" />
+                    </List.Item>
+                </List>
+                <p>
+                    <AppText id="steg.legeerklæring.counsellorPanel.info.3" />
+                </p>
+            </FormLayout.Guide>
 
+            <FormLayout.Questions>
                 <FormikFileUpload
                     fieldName={LegeerklæringFormFields.vedlegg}
                     initialFiles={legeerklæringer}
@@ -114,7 +114,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         validate={getListValidator({ required: true })}
                     />
                 )}
-            </VStack>
+            </FormLayout.Questions>
         </Form>
     );
 };

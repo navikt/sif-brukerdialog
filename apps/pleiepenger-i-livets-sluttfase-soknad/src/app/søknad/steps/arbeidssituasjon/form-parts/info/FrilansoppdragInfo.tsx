@@ -1,4 +1,3 @@
-import React from 'react';
 import FrilansoppdragListe from '../frilansoppdrag-liste/FrilansoppdragListe';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 import { Heading, VStack } from '@navikt/ds-react';
@@ -8,7 +7,7 @@ interface Props {
     frilansoppdrag: Arbeidsgiver[];
 }
 
-const FrilansoppdragInfo: React.FunctionComponent<Props> = ({ frilansoppdrag }) => (
+const FrilansoppdragInfo = ({ frilansoppdrag }: Props) => (
     <VStack gap="4">
         <Heading level="2" size="small">
             <AppText id="frilansoppdragInfo.tittel" />

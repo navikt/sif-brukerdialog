@@ -1,10 +1,6 @@
-import { Heading } from '@navikt/ds-react';
 import { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -41,6 +37,7 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -171,57 +168,54 @@ const ArbeidssituasjonStep = () => {
                                 submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="steg.arbeidssituasjon.veileder.1" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                <FormBlock>
-                                    <ArbeidssituasjonArbeidsgivere
-                                        parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
-                                        ansatt_arbeidsforhold={ansatt_arbeidsforhold}
-                                        søknadsperiode={søknadsperiode}
-                                    />
-                                </FormBlock>
+                                <FormLayout.Sections>
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.arbeidsgivere.tittel')}>
+                                        <ArbeidssituasjonArbeidsgivere
+                                            parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
+                                            ansatt_arbeidsforhold={ansatt_arbeidsforhold}
+                                            søknadsperiode={søknadsperiode}
+                                        />
+                                    </FormLayout.Section>
 
-                                <FormBlock>
-                                    <ArbeidssituasjonFrilans
-                                        formValues={frilans}
-                                        frilansoppdrag={frilansoppdrag || []}
-                                        søknadsperiode={søknadsperiode}
-                                        søknadsdato={getDateToday()}
-                                        urlSkatteetaten={getLenker(intl.locale).skatteetaten}
-                                    />
-                                </FormBlock>
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.frilanser.tittel')}>
+                                        <ArbeidssituasjonFrilans
+                                            formValues={frilans}
+                                            frilansoppdrag={frilansoppdrag || []}
+                                            søknadsperiode={søknadsperiode}
+                                            søknadsdato={getDateToday()}
+                                            urlSkatteetaten={getLenker(intl.locale).skatteetaten}
+                                        />
+                                    </FormLayout.Section>
 
-                                <FormBlock>
-                                    <ArbeidssituasjonSN
-                                        formValues={selvstendig}
-                                        urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
-                                        søknadsperiode={søknadsperiode}
-                                    />
-                                </FormBlock>
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.sn.tittel')}>
+                                        <ArbeidssituasjonSN
+                                            formValues={selvstendig}
+                                            urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                                            søknadsperiode={søknadsperiode}
+                                        />
+                                    </FormLayout.Section>
 
-                                <FormBlock>
-                                    <ArbeidssituasjonUtland
-                                        harOpptjeningUtland={harOpptjeningUtland}
-                                        harUtenlandskNæring={harUtenlandskNæring}
-                                    />
-                                </FormBlock>
+                                    <FormLayout.Section title={text('steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                                        <ArbeidssituasjonUtland
+                                            harOpptjeningUtland={harOpptjeningUtland}
+                                            harUtenlandskNæring={harUtenlandskNæring}
+                                        />
+                                    </FormLayout.Section>
 
-                                {visVernepliktSpørsmål(
-                                    søknadsperiode,
-                                    ansatt_arbeidsforhold,
-                                    frilans,
-                                    selvstendig,
-                                    frilansoppdrag,
-                                ) && (
-                                    <FormBlock>
-                                        <Heading level="2" size="medium">
-                                            <AppText id="steg.arbeidssituasjon.verneplikt.tittel" />
-                                        </Heading>
-                                        <Block margin="l">
+                                    {visVernepliktSpørsmål(
+                                        søknadsperiode,
+                                        ansatt_arbeidsforhold,
+                                        frilans,
+                                        selvstendig,
+                                        frilansoppdrag,
+                                    ) && (
+                                        <FormLayout.Section title={text('steg.arbeidssituasjon.verneplikt.tittel')}>
                                             <YesOrNoQuestion
                                                 name={ArbeidssituasjonFormFields.harVærtEllerErVernepliktig}
                                                 legend={text('steg.arbeidssituasjon.verneplikt.spm')}
@@ -233,9 +227,9 @@ const ArbeidssituasjonStep = () => {
                                                     </ExpandableInfo>
                                                 }
                                             />
-                                        </Block>
-                                    </FormBlock>
-                                )}
+                                        </FormLayout.Section>
+                                    )}
+                                </FormLayout.Sections>
                             </Form>
                         </>
                     );

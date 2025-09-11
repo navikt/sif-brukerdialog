@@ -1,5 +1,5 @@
-import { Heading, VStack } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../../../i18n';
+import { VStack } from '@navikt/ds-react';
+import { useAppIntl } from '../../../../i18n';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikYesOrNoQuestion, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ArbeidssituasjonFormFields } from '../ArbeidssituasjonStep';
@@ -17,9 +17,6 @@ export const ArbeidssituasjonUtland = ({ harOpptjeningUtland, harUtenlandskNæri
     const { text } = useAppIntl();
     return (
         <>
-            <Heading level="2" size="medium">
-                <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
-            </Heading>
             <FormLayout.Questions>
                 <VStack gap="3">
                     <FormikYesOrNoQuestion

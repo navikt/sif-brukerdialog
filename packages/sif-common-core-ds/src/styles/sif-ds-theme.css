@@ -43,7 +43,11 @@ body.sif-ds-theme {
 .navds-form-summary__answers--compact .navds-form-summary__answer dd.fullWidth {
     display: block;
 }
-p:not(.aksel-error-message):not(.aksel-textarea__counter) {
+p:not(.aksel-error-message):not(.aksel-textarea__counter):has(.aksel-combobox__list-item) {
     margin: 1rem 0;
     padding: unset;
+}
+
+.capsFirstLetter::first-letter {
+    text-transform: capitalize;
 }

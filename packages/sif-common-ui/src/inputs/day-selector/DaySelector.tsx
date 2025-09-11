@@ -110,7 +110,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                         onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
                     />
                     <div className="daySelector__tags">
-                        <VStack gap="2">
+                        <VStack gap="2" paddingBlock="6 0">
                             <BodyShort as="div" spacing={false} size="small">
                                 {text('@ui.daySelector.antallValgteDager')}
                             </BodyShort>

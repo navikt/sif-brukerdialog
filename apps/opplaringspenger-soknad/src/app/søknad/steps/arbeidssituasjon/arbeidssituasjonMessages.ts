@@ -1,5 +1,5 @@
 const nb = {
-    'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
+    'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivere',
 
     'steg.arbeidssituasjon.veileder.1':
         'Nå trenger vi informasjon om din arbeidssituasjon og hvor mye du normalt jobber. Dette trenger vi for å se hvor mye du taper i lønn på grunn av kurs eller opplæring.',
@@ -106,7 +106,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'steg.arbeidssituasjon.tittel': 'Arbeidsgivarar',
+    'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivarar',
 
     'steg.arbeidssituasjon.veileder.1':
         'No treng vi informasjon om arbeidssituasjonen din og kor mykje du vanlegvis jobbar. Dette treng vi for å sjå kor mykje du taper i løn på grunn av kurs eller opplæring.',
