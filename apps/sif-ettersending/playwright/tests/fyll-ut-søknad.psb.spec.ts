@@ -1,8 +1,10 @@
 import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
+import { DokumentType } from '../../src/app/types/DokumentType';
+import { YtelseKey } from '../../src/app/types/Ytelser';
 
-test.describe('Start og innsending av ettersending', () => {
+test.describe('Start og innsending av ettersending - Pleiepenger sykt barn', () => {
     test.beforeEach(async ({ page }) => {
         await page.route('https://login.nav.no/**', async (route) => {
             await route.fulfill({ status: 200 });
@@ -40,18 +42,25 @@ test.describe('Start og innsending av ettersending', () => {
     test('Fyller ut og sender inn ett vedlegg', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtdokumentTypeSteg(page, false);
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
-        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, false);
+        await utfyllingUtils.kontrollerOppsummeringBarn(page, DokumentType.annet, YtelseKey.pleiepengerSyktBarn);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
+
     test('Fyller ut og sender inn legeerklæring med barn fra liste', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtdokumentTypeSteg(page, true);
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.legeerklæring);
+        await utfyllingUtils.fyllUtBarnSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
-        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, true);
+        await utfyllingUtils.kontrollerOppsummeringBarn(
+            page,
+            DokumentType.legeerklæring,
+            YtelseKey.pleiepengerSyktBarn,
+        );
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvitteringLegeerklæring(page);
     });
@@ -59,9 +68,15 @@ test.describe('Start og innsending av ettersending', () => {
     test('Fyller ut og sender inn annet med annet barn', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtdokumentTypeSteg(page, false, '02869599258');
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, DokumentType.annet);
+        await utfyllingUtils.fyllUtBarnSteg(page, '02869599258');
         await utfyllingUtils.fyllUtDokumenterSteg(page);
-        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, false, '02869599258');
+        await utfyllingUtils.kontrollerOppsummeringBarn(
+            page,
+            DokumentType.annet,
+            YtelseKey.pleiepengerSyktBarn,
+            '02869599258',
+        );
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
