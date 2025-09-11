@@ -4,7 +4,7 @@ import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
-import { AppText, useAppIntl } from '../../../i18n';
+import { useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
@@ -36,7 +36,7 @@ interface Props {
 const { Form } = omBarnetFormComponents;
 
 const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak, søker, onBack }: Props) => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const {
         barnetSøknadenGjelder,
         kroniskEllerFunksjonshemming,
@@ -77,10 +77,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
                 {harInnvilgetVedtakForValgtBarn !== true && (
                     <>
                         {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                            <FormLayout.Section>
-                                <FormLayout.SectionHeading>
-                                    <AppText id="steg.omBarnet.annetBarn.tittel" />
-                                </FormLayout.SectionHeading>
+                            <FormLayout.Section title={text('steg.omBarnet.annetBarn.tittel')}>
                                 <FormLayout.Questions>
                                     <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} allowHnr={isDevMode()} />

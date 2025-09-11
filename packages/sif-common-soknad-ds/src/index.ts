@@ -4,7 +4,7 @@ export { default as Kvittering } from './components/kvittering/Kvittering';
 export { default as LoadingPage } from './pages/loading-page/LoadingPage';
 export { default as SoknadVelkommenPage } from './components/soknad-velkommen-page/SoknadVelkommenPage';
 export { default as SoknadVelkommenGuide } from './components/soknad-velkommen-page/SoknadVelkommenGuide';
-export { default as SamtykkeForm } from './modules/samtykke-form/SamtykkeForm';
+export { default as SamtykkeForm, SamtykkeFormPart } from './modules/samtykke-form/SamtykkeForm';
 export { default as SoknadApplication } from './setup/SoknadApplication';
 export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { default as SoknadErrorMessages } from './components/soknad-error-messages/SoknadErrorMessages';
