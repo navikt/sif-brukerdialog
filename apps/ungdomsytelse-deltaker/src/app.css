@@ -14,12 +14,12 @@
 }
 
 body.innsynAppBody {
-    background-color: var(--a-deepblue-50);
+    background-color: var(--ax-bg-info-soft);
 }
 
 .innsynApp {
-    --a-text-default: #002942;
-    color: var(--a-text-default);
+    /* --a-text-default: var(--ax-text-info); */
+    color: var(--ax-text-neutral);
 }
 
 /*
