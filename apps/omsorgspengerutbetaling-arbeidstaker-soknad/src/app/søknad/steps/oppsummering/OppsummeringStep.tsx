@@ -49,7 +49,7 @@ const OppsummeringStep = () => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
 
-    const { goBack } = useStepNavigation(step);
+    const { goBack, gotoStep } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -120,6 +120,7 @@ const OppsummeringStep = () => {
                                         barn={apiData.dineBarn.barn}
                                         harDeltBosted={søknadsdata.dineBarn?.harDeltBosted}
                                         registrerteBarn={registrerteBarn}
+                                        onEdit={() => gotoStep(StepId.DINE_BARN)}
                                     />
 
                                     {/* Delt bosted */}
@@ -127,6 +128,7 @@ const OppsummeringStep = () => {
                                         <DeltBostedOppsummering
                                             vedlegg={apiData.vedlegg}
                                             deltBostedSøknadsdata={søknadsdata.deltBosted}
+                                            onEdit={() => gotoStep(StepId.DELT_BOSTED)}
                                         />
                                     ) : null}
 
@@ -134,18 +136,26 @@ const OppsummeringStep = () => {
                                     <ArbeidsforholdSummaryView
                                         listeAvArbeidsforhold={apiData.arbeidsgivere}
                                         søknadsdata={søknadsdata}
+                                        onEdit={() => gotoStep(StepId.SITUASJON)}
                                     />
 
                                     {/* Utenlandsopphold */}
-                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
-
-                                    {/* Medlemskap i folketrygden */}
-                                    <MedlemskapOppsummering bosteder={apiData.bosteder} />
+                                    <UtenlandsoppholdISøkeperiodeOppsummering
+                                        utenlandsopphold={apiData.opphold}
+                                        onEdit={() => gotoStep(StepId.FRAVÆR)}
+                                    />
 
                                     {/* Vedlegg */}
                                     <LegeerklæringOppsummering
                                         vedlegg={apiData.vedlegg}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        onEdit={() => gotoStep(StepId.LEGEERKLÆRING)}
+                                    />
+
+                                    {/* Medlemskap i folketrygden */}
+                                    <MedlemskapOppsummering
+                                        bosteder={apiData.bosteder}
+                                        onEdit={() => gotoStep(StepId.MEDLEMSKAP)}
                                     />
 
                                     <ConfirmationCheckbox
