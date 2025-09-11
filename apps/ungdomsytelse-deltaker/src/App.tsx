@@ -19,7 +19,6 @@ import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
 import '@navikt/ds-css/darkside';
 import './app.css';
-import useUxSignals from './apps/innsyn/hooks/useUxSignals';
 
 initSentry();
 initApiClients();
@@ -52,8 +51,6 @@ function App() {
         projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
         dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
     };
-
-    useUxSignals(true);
 
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>

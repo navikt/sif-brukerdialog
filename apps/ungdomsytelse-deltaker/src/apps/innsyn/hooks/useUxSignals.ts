@@ -1,17 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const useUxSignals = (ready: boolean) => {
-    const [mounted, setMounted] = useState(false);
     useEffect(() => {
-        if (mounted) {
-            return;
-        }
         const script = document.createElement('script');
         script.async = true;
         script.src = 'https://widget.uxsignals.com/embed.js';
         if (ready) {
             document.body.appendChild(script);
-            setMounted(true);
         }
 
         return () => {
@@ -21,7 +16,7 @@ const useUxSignals = (ready: boolean) => {
                 // do nothing
             }
         };
-    }, [ready, mounted]);
+    }, [ready]);
 };
 
 export default useUxSignals;

@@ -5,6 +5,7 @@ import DeltakelseContent from '../components/deltakelse-content/DeltakelseConten
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
+import UxSignalsPanel from '../components/uxsignals-panel/UxSignalsPanel';
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();
@@ -15,7 +16,7 @@ const ForsidePage = () => {
         <ForsidePageLayout documentTitle="Din ungdomsprogramytelse" footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
-                <div data-uxsignals-embed="panel-zpvvyjk4ss" style={{ maxWidth: '620px' }} />
+                <UxSignalsPanel />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
         </ForsidePageLayout>
