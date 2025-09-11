@@ -64,8 +64,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
         .filter({ hasText: /^Kontonummer for utbetalingEndre svar$/ })
         .getByRole('link')
         .click();
-    await page.getByRole('heading', { name: 'Du har ikke registrert' }).click();
-    await page.getByRole('heading', { name: 'Du har ikke registrert' }).click();
+
     await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByRole('button', { name: 'Neste steg' }).click();
     await page.getByRole('radio', { name: 'Nei' }).check();
