@@ -1,7 +1,4 @@
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -23,6 +20,8 @@ import {
     mapRegistrertBarnToBarnMedAleneomsorg,
 } from './tidspunktForAleneomsorgStepUtils';
 import TidspunktForBarn from './TidspunktForBarn';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { VStack } from '@navikt/ds-react';
 
 export enum TidspunktForAleneomsorg {
     SISTE_2_ÅRENE = 'SISTE_2_ÅRENE',
@@ -123,24 +122,24 @@ const TidspunktForAleneomsorgStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="step.tidspunktForAleneomsorg.stepIntro" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                <Block margin="xl" padBottom="xl">
+                                <VStack gap="8">
                                     {barnMedAleneomsorg.map((barn) => {
                                         return (
-                                            <FormBlock key={barn.idFnr}>
+                                            <div key={barn.idFnr}>
                                                 <TidspunktForBarn
                                                     barnMedAleneomsorg={barn}
                                                     aleneomsorgTidspunkt={aleneomsorgTidspunkt[barn.idFnr]}
                                                 />
-                                            </FormBlock>
+                                            </div>
                                         );
                                     })}
-                                </Block>
+                                </VStack>
                             </Form>
                         </>
                     );
