@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.21.20",
+    "version": "2.21.21",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -41,7 +41,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.11",
         "react-router-dom": "7.8.2",
-        "uuid": "12.0.0"
+        "uuid": "13.0.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
@@ -68,7 +68,7 @@
         "storybook": "9.1.5",
         "storybook-addon-mock": "6.0.1",
         "typescript": "5.9.2",
-        "vite": "7.1.4",
+        "vite": "7.1.5",
         "vite-plugin-checker": "0.10.3"
     },
     "scripts": {
