@@ -124,6 +124,7 @@ const OppsummeringStep = () => {
                                     />
 
                                     <FraværSummary apiData={apiData} onEdit={() => gotoStep(StepId.FRAVÆR)} />
+
                                     <LegeerklæringOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}

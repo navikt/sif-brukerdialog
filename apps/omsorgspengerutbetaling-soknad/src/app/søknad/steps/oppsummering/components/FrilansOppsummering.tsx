@@ -17,7 +17,6 @@ const FrilansOppsummering: React.FC<Props> = ({ frilans, onEdit }) => {
                 <FormSummary.Heading level="2">
                     <AppText id="frilanser.summary.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -59,6 +58,11 @@ const FrilansOppsummering: React.FC<Props> = ({ frilans, onEdit }) => {
                     </>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

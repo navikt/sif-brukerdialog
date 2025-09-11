@@ -55,3 +55,7 @@ p:has(.aksel-combobox__list-item) {
 .capsFirstLetter::first-letter {
     text-transform: capitalize;
 }
+
+.rdp.aksel-date .rdp-cell {
+    padding: 1px;
+}

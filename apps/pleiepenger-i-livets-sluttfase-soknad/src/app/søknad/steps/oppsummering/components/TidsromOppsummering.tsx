@@ -20,7 +20,6 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummeringtidsrom.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
@@ -84,6 +83,11 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                         </>
                     )}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );
