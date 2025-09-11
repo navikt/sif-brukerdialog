@@ -1,13 +1,13 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { getListValidator } from '@navikt/sif-validation';
 import { EndringType } from '@types';
 import { AppText, useAppIntl } from '../../i18n';
 import OmSøknaden from './OmSøknaden';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -41,49 +41,47 @@ const VelkommenPage = () => {
                         includeButtons={true}
                         submitButtonLabel={text('velkommenForm.submitButtonLabel')}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'velkommenForm')}>
-                        <VStack gap="8">
-                            <SifGuidePanel poster={true}>
-                                <Heading level="1" size="large" data-testid="velkommen-header" spacing={false}>
-                                    <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
-                                </Heading>
-                                <VStack gap="6">
-                                    <BodyLong size="large">
-                                        <AppText
-                                            id="velkommenPage.guide.tekst"
-                                            values={{
-                                                barnetsNavn: <strong>{barnetsNavn}</strong>,
-                                                samletSøknadsperiodeTekst,
-                                            }}
-                                        />
-                                    </BodyLong>
-                                    <CheckboxGroup
-                                        name={VelkommenFormFields.hvaSkalEndres}
-                                        legend={
-                                            <Heading level="2" size="small">
-                                                <AppText id="velkommenPage.endre.spm" />
-                                            </Heading>
-                                        }
-                                        validate={getListValidator({ minItems: 1 })}
-                                        checkboxes={[
-                                            {
-                                                'data-testid': 'endreLovbestemtFerie',
-                                                label: text('velkommenPage.endre.ferie'),
-                                                value: EndringType.lovbestemtFerie,
-                                            },
-                                            {
-                                                'data-testid': 'endreArbeidstid',
-                                                label: text('velkommenPage.endre.jobb'),
-                                                value: EndringType.arbeidstid,
-                                            },
-                                        ]}
+                        <FormLayout.Guide poster={true}>
+                            <Heading level="1" size="large" data-testid="velkommen-header" spacing={false}>
+                                <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
+                            </Heading>
+                            <VStack gap="6">
+                                <BodyLong size="large">
+                                    <AppText
+                                        id="velkommenPage.guide.tekst"
+                                        values={{
+                                            barnetsNavn: <strong>{barnetsNavn}</strong>,
+                                            samletSøknadsperiodeTekst,
+                                        }}
                                     />
+                                </BodyLong>
+                                <CheckboxGroup
+                                    name={VelkommenFormFields.hvaSkalEndres}
+                                    legend={
+                                        <Heading level="2" size="small">
+                                            <AppText id="velkommenPage.endre.spm" />
+                                        </Heading>
+                                    }
+                                    validate={getListValidator({ minItems: 1 })}
+                                    checkboxes={[
+                                        {
+                                            'data-testid': 'endreLovbestemtFerie',
+                                            label: text('velkommenPage.endre.ferie'),
+                                            value: EndringType.lovbestemtFerie,
+                                        },
+                                        {
+                                            'data-testid': 'endreArbeidstid',
+                                            label: text('velkommenPage.endre.jobb'),
+                                            value: EndringType.arbeidstid,
+                                        },
+                                    ]}
+                                />
 
-                                    <OmSøknaden />
-                                </VStack>
-                            </SifGuidePanel>
+                                <OmSøknaden />
+                            </VStack>
+                        </FormLayout.Guide>
 
-                            <SamtykkeFormPart />
-                        </VStack>
+                        <SamtykkeFormPart />
                     </Form>
                 )}
             />

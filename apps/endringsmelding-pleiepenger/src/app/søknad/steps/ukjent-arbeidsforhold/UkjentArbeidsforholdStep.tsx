@@ -1,11 +1,11 @@
 import { useSøknadContext } from '@hooks';
 import { Heading } from '@navikt/ds-react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
 import UkjentArbeidsforholdForm from './UkjentArbeidsforholdForm';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
@@ -18,7 +18,7 @@ const UkjentArbeidsforholdStep = () => {
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     Vi trenger informasjon om et nytt arbeidsforhold
                 </Heading>
@@ -26,7 +26,7 @@ const UkjentArbeidsforholdStep = () => {
                     Vi har funnet et arbeidsforhold på deg i <AAregisteret /> som ikke var der da du sendte inn søknad
                     om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.
                 </p>
-            </SifGuidePanel>
+            </FormLayout.Guide>
 
             <UkjentArbeidsforholdForm
                 stepId={stepId}

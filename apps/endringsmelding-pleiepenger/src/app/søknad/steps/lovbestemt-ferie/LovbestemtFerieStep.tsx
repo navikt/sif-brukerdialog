@@ -1,7 +1,6 @@
 import { Alert, Heading, List, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
@@ -21,6 +20,7 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -82,7 +82,7 @@ const LovbestemtFerieStep = () => {
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="lovbestemtFerieStep.guide.tittel" />
                 </Heading>
@@ -94,7 +94,7 @@ const LovbestemtFerieStep = () => {
                         <AppText id="lovbestemtFerieStep.guide.tekst.2" />
                     </List.Item>
                 </List>
-            </SifGuidePanel>
+            </FormLayout.Guide>
 
             <FormikWrapper
                 initialValues={initialValues}
@@ -113,6 +113,7 @@ const LovbestemtFerieStep = () => {
                                     oppdaterSøknadState({ feriedager });
                                 }}
                             />
+
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'lovbestemtFerieForm')}
                                 includeValidationSummary={true}

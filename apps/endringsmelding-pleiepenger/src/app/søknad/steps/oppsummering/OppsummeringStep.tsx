@@ -3,10 +3,9 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { DurationText, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
+import { DurationText, FormLayout, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { getApiDataFromSøknadsdata } from '@utils';
@@ -79,11 +78,11 @@ const OppsummeringStep = () => {
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <p>
                     <AppText id="oppsummeringStep.guide" />
                 </p>
-            </SifGuidePanel>
+            </FormLayout.Guide>
             <VStack gap="12">
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                     <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
