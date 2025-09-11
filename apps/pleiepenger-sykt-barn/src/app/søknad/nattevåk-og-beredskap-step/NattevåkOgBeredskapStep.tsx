@@ -111,7 +111,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         />
 
                         {harBeredskap === YesOrNo.YES && (
-                            <FormLayout.Panel>
+                            <FormLayout.Panel bleedTop={true}>
                                 <SøknadFormComponents.Textarea
                                     name={SøknadFormField.harBeredskap_ekstrainfo}
                                     label={<AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm" />}

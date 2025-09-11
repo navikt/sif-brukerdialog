@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds';
@@ -43,9 +43,9 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
     return (
         <FormLayout.Questions>
             {(periodeFortid || periodeFortidFremtid) && (
-                <VStack gap="4">
+                <div>
                     {periodeFortidFremtid && (
-                        <Heading level="2" size="medium">
+                        <Heading level="2" size="medium" spacing>
                             <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFortid" />
                         </Heading>
                     )}
@@ -72,12 +72,12 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                         }}
                         labels={{ yes: 'Ja, i hele eller deler av perioden' }}
                     />
-                </VStack>
+                </div>
             )}
             {(periodeFremtid || periodeFortidFremtid) && (
-                <VStack gap="4">
+                <div>
                     {periodeFortidFremtid && (
-                        <Heading level="2" size="medium">
+                        <Heading level="2" size="medium" spacing>
                             <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid" />
                         </Heading>
                     )}
@@ -119,9 +119,8 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             },
                         ]}
                     />
-                </VStack>
+                </div>
             )}
-
             {omsorgstilbud &&
                 omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.NO &&
                 omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
@@ -147,14 +146,12 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                         <>
                             {periodeFortidFremtid && (
                                 <div>
-                                    <Heading level="2" size="medium">
+                                    <Heading level="2" size="medium" spacing>
                                         <AppText id="steg.omsorgstilbud.erLiktHverUke.spm.tittel" />
                                     </Heading>
                                     {omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES &&
                                         omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
-                                            <Box marginBlock="4 0">
-                                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
-                                            </Box>
+                                            <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
                                         )}
                                 </div>
                             )}
