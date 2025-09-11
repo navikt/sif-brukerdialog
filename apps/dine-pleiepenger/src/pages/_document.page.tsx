@@ -76,7 +76,7 @@ class MyDocument extends Document<Props> {
                         crossOrigin="anonymous"
                     />
                 </Head>
-                <body className="bg-(--a-deepblue-50)">
+                <body className="bg-(--ax-bg-info-soft)">
                     <Decorator.Header />
                     <Main />
                     <Decorator.Footer />
