@@ -1,6 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
@@ -8,6 +6,7 @@ import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -23,16 +22,16 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
     } = useFormikContext<SoknadFormData>();
 
     return (
-        <Block margin="xl">
+        <>
             <SkjemagruppeQuestion
                 legend={
                     harRegistrerteBarn ? (
-                        <Heading level="2" size="small" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
+                        <Heading level="2" size="small" spacing={true}>
                             {text('formPart.annetBarn.tittel')}
                         </Heading>
                     ) : undefined
                 }>
-                <div>
+                <FormLayout.Questions>
                     <SoknadFormComponents.TextField
                         label={text('formPart.annetBarn.fnr.spm')}
                         description={!harRegistrerteBarn ? text('formPart.annetBarn.fnr.spm.description') : undefined}
@@ -51,20 +50,20 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                         maxLength={11}
                         disabled={barnetHarIkkeFnr}
                     />
-                </div>
-                <FormBlock margin="l">
-                    <SoknadFormComponents.Checkbox
-                        label={text('formPart.annetBarn.fnr.barnHarIkkeFnr')}
-                        name={SoknadFormField.barnetHarIkkeFnr}
-                        afterOnChange={(newValue) => {
-                            if (newValue) {
-                                resetFieldValue(SoknadFormField.barnetsFødselsnummer, setFieldValue, '');
-                            }
-                        }}
-                    />
-                </FormBlock>
+                    <FormLayout.QuestionBleedTop>
+                        <SoknadFormComponents.Checkbox
+                            label={text('formPart.annetBarn.fnr.barnHarIkkeFnr')}
+                            name={SoknadFormField.barnetHarIkkeFnr}
+                            afterOnChange={(newValue) => {
+                                if (newValue) {
+                                    resetFieldValue(SoknadFormField.barnetsFødselsnummer, setFieldValue, '');
+                                }
+                            }}
+                        />
+                    </FormLayout.QuestionBleedTop>
+                </FormLayout.Questions>
             </SkjemagruppeQuestion>
-        </Block>
+        </>
     );
 };
 export default AnnetBarnPart;

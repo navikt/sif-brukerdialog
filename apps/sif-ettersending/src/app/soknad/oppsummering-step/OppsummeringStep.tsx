@@ -2,14 +2,11 @@ import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { FormLayout, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
@@ -59,10 +56,11 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
             isFinalSubmit={true}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <AppText id="steg.oppsummering.info" />
-            </SifGuidePanel>
-            <Block margin="xl">
+            </FormLayout.Guide>
+
+            <VStack gap="8">
                 <div data-testid="oppsummering">
                     <VStack gap="8">
                         <FormSummary>
@@ -173,30 +171,28 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                         </FormSummary>
                     </VStack>
                 </div>
-            </Block>
 
-            <Block margin="l">
                 <SoknadFormComponents.ConfirmationCheckbox
                     label={<span data-testid="bekreft-label">{text('steg.oppsummering.bekrefterOpplysninger')}</span>}
                     name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />
-            </Block>
 
-            {isFailure(sendSoknadStatus.status) && (
-                <FormBlock>
-                    {sendSoknadStatus.failures === 1 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
-                        </Alert>
-                    )}
-                    {sendSoknadStatus.failures === 2 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
-                        </Alert>
-                    )}
-                </FormBlock>
-            )}
+                {isFailure(sendSoknadStatus.status) && (
+                    <>
+                        {sendSoknadStatus.failures === 1 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
+                            </Alert>
+                        )}
+                        {sendSoknadStatus.failures === 2 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
+                            </Alert>
+                        )}
+                    </>
+                )}
+            </VStack>
         </SoknadFormStep>
     );
 };

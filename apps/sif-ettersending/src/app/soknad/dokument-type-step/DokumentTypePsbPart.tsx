@@ -1,13 +1,12 @@
-import { Alert, Heading, Link, List } from '@navikt/ds-react';
+import { Alert, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     dokumentType?: DokumentType;
@@ -21,40 +20,43 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
     const { text } = useAppIntl();
     return (
         <>
-            <SifGuidePanel>
-                <AppText id="step.dokumentType.info" />
-                <List>
-                    <List.Item>
-                        <AppText id="step.dokumentType.info.1" />
-                    </List.Item>
-                    <List.Item>
-                        <AppText
-                            id="step.dokumentType.info.2"
-                            values={{
-                                Lenke: (children: ReactNode) => (
-                                    <Link href={getLenker().endringsmelding} target="_blank">
-                                        {children}
-                                    </Link>
-                                ),
-                            }}
-                        />
-                    </List.Item>
-                    <List.Item>
-                        <AppText
-                            id="step.dokumentType.info.3"
-                            values={{
-                                Lenke: (children: ReactNode) => (
-                                    <Link href={getLenker().skrivTilOss} target="_blank">
-                                        {children}
-                                    </Link>
-                                ),
-                            }}
-                        />
-                    </List.Item>
-                </List>
-            </SifGuidePanel>
+            <FormLayout.Guide>
+                <VStack gap="2">
+                    <AppText id="step.dokumentType.info" />
 
-            <FormBlock>
+                    <List>
+                        <List.Item>
+                            <AppText id="step.dokumentType.info.1" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="step.dokumentType.info.2"
+                                values={{
+                                    Lenke: (children: ReactNode) => (
+                                        <Link href={getLenker().endringsmelding} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                }}
+                            />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="step.dokumentType.info.3"
+                                values={{
+                                    Lenke: (children: ReactNode) => (
+                                        <Link href={getLenker().skrivTilOss} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                }}
+                            />
+                        </List.Item>
+                    </List>
+                </VStack>
+            </FormLayout.Guide>
+
+            <FormLayout.Questions>
                 <SoknadFormComponents.RadioGroup
                     legend={text('step.dokumentType.dokumentType.spm')}
                     name={SoknadFormField.dokumentType}
@@ -67,22 +69,18 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                     validate={getRequiredFieldValidator()}
                     value={dokumentType}
                 />
-            </FormBlock>
 
-            {dokumentType === DokumentType.annet && (
-                <FormBlock>
-                    <Alert variant="info" className="mb-10">
+                {dokumentType === DokumentType.annet && (
+                    <Alert variant="info">
                         <Heading level="2" size="small" className="mb-4">
                             <AppText id="step.dokumentType.annet.info.1" />
                         </Heading>
                         <AppText id="step.dokumentType.annet.info.2" />
                     </Alert>
-                </FormBlock>
-            )}
+                )}
 
-            {dokumentType === DokumentType.legeerklæring && (
-                <FormBlock>
-                    <Alert variant="info" className="mb-10">
+                {dokumentType === DokumentType.legeerklæring && (
+                    <Alert variant="info">
                         <Heading level="2" size="small" className="mb-4">
                             <AppText id="step.dokumentType.barn.info.tittel" />
                         </Heading>
@@ -100,8 +98,8 @@ const DokumentTypePsbPart = ({ dokumentType }: Props) => {
                             }}
                         />
                     </Alert>
-                </FormBlock>
-            )}
+                )}
+            </FormLayout.Questions>
         </>
     );
 };
