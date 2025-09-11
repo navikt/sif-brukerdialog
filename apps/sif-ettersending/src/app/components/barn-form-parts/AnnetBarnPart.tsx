@@ -1,12 +1,12 @@
 import { Heading } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../i18n';
-import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 
 interface Props {
     søkersFødselsnummer: string;

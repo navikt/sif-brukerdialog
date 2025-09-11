@@ -1,12 +1,12 @@
 import { Alert, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     dokumentType?: DokumentType;

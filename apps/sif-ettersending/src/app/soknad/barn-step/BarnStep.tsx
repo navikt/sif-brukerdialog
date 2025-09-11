@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
+import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
-import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     søknadstype: Søknadstype;
