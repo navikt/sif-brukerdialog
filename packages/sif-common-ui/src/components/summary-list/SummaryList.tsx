@@ -1,4 +1,4 @@
-import { List } from '@navikt/ds-react';
+import { Box, List } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import classNames from 'classnames';
@@ -26,16 +26,18 @@ function SummaryList<ItemType = any>({
     bullets,
 }: Props<ItemType>) {
     return useAkselList || variant !== undefined ? (
-        <List as={as}>
-            {items.map((item, idx) => (
-                <List.Item
-                    key={idx}
-                    title={itemTitleRenderer ? itemTitleRenderer(item) : undefined}
-                    className={variant !== undefined ? `sif_navds-form-summary-listItem--${variant}` : undefined}>
-                    {itemRenderer(item)}
-                </List.Item>
-            ))}
-        </List>
+        <Box paddingBlock="2 0">
+            <List as={as}>
+                {items.map((item, idx) => (
+                    <List.Item
+                        key={idx}
+                        title={itemTitleRenderer ? itemTitleRenderer(item) : undefined}
+                        className={variant !== undefined ? `sif_navds-form-summary-listItem--${variant}` : undefined}>
+                        {itemRenderer(item)}
+                    </List.Item>
+                ))}
+            </List>
+        </Box>
     ) : (
         <ul className={classNames(bem.block, bem.modifierConditional('bullet', bullets))}>
             {items.map((item, idx) => (

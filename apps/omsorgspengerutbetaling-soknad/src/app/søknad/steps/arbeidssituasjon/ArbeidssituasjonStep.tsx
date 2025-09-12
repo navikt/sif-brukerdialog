@@ -63,7 +63,7 @@ const submitDisabled = (values: Partial<ArbeidssituasjonFormValues>): boolean =>
 };
 
 const ArbeidssituasjonStep = () => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -130,7 +130,9 @@ const ArbeidssituasjonStep = () => {
                                                 return {
                                                     key: error,
                                                     values: {
-                                                        situasjon,
+                                                        situasjon: text(
+                                                            `validation.arbeidssituasjon.situasjon.${situasjon}`,
+                                                        ),
                                                     },
                                                 };
                                             }

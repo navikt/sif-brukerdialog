@@ -61,7 +61,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         <VStack gap="5">
             {includeGotoPreviousStepLink && currentStepIndex ? (
                 <Box paddingBlock="0 1">
-                    <BodyShort size="medium">
+                    <BodyShort size="medium" as="div">
                         <Link href="#" onClick={handleBackClick}>
                             <ArrowLeftIcon aria-hidden="true" />
                             {text('@ui.progressStepper.goToPreviousStepLabel')}
