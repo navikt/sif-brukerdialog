@@ -13,18 +13,18 @@ const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1', useS
     if (useStandard) {
         return (
             <VStack gap="0">
-                <Bleed marginInline={{ lg: 'space-128' }}>
+                <Bleed marginInline={{ lg: `${level === '1' ? 'space-128' : 'space-96'}` }}>
                     <Box
-                        width={{ xs: `${level === '1' ? '96px' : '64px'}`, lg: '96px' }}
-                        height={{ xs: `${level === '1' ? '96px' : '64px'}`, lg: '96px' }}
+                        width={{ xs: `${level === '1' ? '96px' : '64px'}`, lg: `${level === '1' ? '96px' : '80px'}` }}
+                        height={{ xs: `${level === '1' ? '96px' : '64px'}`, lg: `${level === '1' ? '96px' : '80px'}` }}
                         position={{ xs: 'relative', lg: 'absolute' }}>
                         <ApplicationPictogram style={{ width: '100%', height: '100%' }} />
                     </Box>
                 </Bleed>
                 <VStack
                     gap="1"
-                    marginBlock={{ xs: `${level === '1' ? '12 0' : '6 0'}`, lg: '0' }}
-                    minHeight={{ lg: '96px' }}
+                    marginBlock={{ xs: `${level === '1' ? '12 0' : '4 0'}`, lg: '0' }}
+                    minHeight={{ lg: '80px' }}
                     justify="center">
                     <Heading level={level} size={level === '1' ? 'xlarge' : 'medium'}>
                         {title}
