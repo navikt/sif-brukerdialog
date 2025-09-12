@@ -66,7 +66,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
         );
     }
     return (
-        <Accordion data-color="info">
+        <Accordion data-color="neutral">
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {
