@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.1.19
+
+### Patch Changes
+
+- Legge til uxSignals komponent
+
 ## 1.1.18
 
 ### Patch Changes
