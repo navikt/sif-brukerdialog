@@ -7,6 +7,7 @@ import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
+import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -33,13 +34,13 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
-        <VStack gap="10">
+        <div>
             {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
             {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
                 <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
             )}
-            <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
+            <VStack gap="4" marginBlock={medMelding ? '12 0' : '6'}>
                 <Heading level="2" size="medium">
                     Dine oppgaver
                 </Heading>
@@ -49,7 +50,10 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     <BodyLong>Du har ingen uløste oppgaver.</BodyLong>
                 )}
             </VStack>
-            <VStack gap="4">
+
+            <UxSignalsPanel panelId="zpvvyjk4ss" mode="demo" />
+
+            <VStack gap="4" marginBlock="12 0">
                 <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
@@ -59,7 +63,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     <BodyLong>Du har ingen tidligere oppgaver.</BodyLong>
                 )}
             </VStack>
-        </VStack>
+        </div>
     );
 };
 
