@@ -27,7 +27,7 @@ const OmSøknaden = () => {
             <Accordion data-color="neutral">
                 <Accordion.Item>
                     <Accordion.Header>
-                        <BodyShort weight="semibold" size="large">
+                        <BodyShort weight="semibold" size="large" as="span">
                             {text('page.velkommen.personopplysninger.tittel')}
                         </BodyShort>
                     </Accordion.Header>
