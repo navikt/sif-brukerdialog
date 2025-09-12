@@ -185,7 +185,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
-                                useAccordion={useAccordion}
+                                useExpansionCards={useAccordion}
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
