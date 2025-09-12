@@ -7,7 +7,6 @@ import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
-import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 
 interface Props {
     deltakelsePeriode: DeltakelsePeriode;
@@ -50,7 +49,6 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     <BodyLong>Du har ingen uløste oppgaver.</BodyLong>
                 )}
             </VStack>
-            <UxSignalsPanel panelId="zpvvyjk4ss" mode="demo" />
             <VStack gap="4">
                 <Heading level="2" size="medium">
                     Tidligere oppgaver
