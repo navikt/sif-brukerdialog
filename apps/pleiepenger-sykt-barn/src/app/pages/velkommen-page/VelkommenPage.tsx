@@ -19,7 +19,7 @@ const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }
                 navn: søker.fornavn,
                 content: (
                     <>
-                        <BodyLong size="large" spacing={true}>
+                        <BodyLong size="large">
                             <AppText id="page.velkommen.guide.ingress" />
                         </BodyLong>
                         <p>

@@ -22,7 +22,7 @@ const OmSøknaden = () => {
                         </List.Item>
                     </List>
                 </Box>
-                <Accordion data-color="accent">
+                <Accordion data-color="info">
                     <Accordion.Item>
                         <Accordion.Header>
                             <AppText id="page.velkommen.omSøknaden.4" />

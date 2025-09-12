@@ -137,9 +137,8 @@ const KursStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <FormLayout.Guide>
-                                    <p>
-                                        <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
-                                    </p>
+                                    <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
+
                                     <p>
                                         <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
                                     </p>

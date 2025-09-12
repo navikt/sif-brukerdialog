@@ -27,10 +27,12 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester, andreVedlegg, e
 
     return (
         <VStack gap="6">
-            <Heading level="2" size="medium" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                {text('omBarnetForm.fødselsattest.tittel')}
-            </Heading>
-            <Text id="omBarnetForm.fødselsattest.info" />
+            <div>
+                <Heading level="2" size="medium" spacing={true}>
+                    {text('omBarnetForm.fødselsattest.tittel')}
+                </Heading>
+                <Text id="omBarnetForm.fødselsattest.info" />
+            </div>
             <FormikFileUpload
                 fieldName={OmBarnetFormFields.fødselsattest}
                 initialFiles={fødselsattester}
