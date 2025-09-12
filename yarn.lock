@@ -6177,7 +6177,7 @@ __metadata:
     msw: "npm:2.11.2"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
-    openid-client: "npm:6.7.1"
+    openid-client: "npm:6.8.0"
     postcss: "npm:8.5.6"
     postcss-nesting: "npm:13.0.2"
     react: "npm:19.1.1"
@@ -24327,10 +24327,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oauth4webapi@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "oauth4webapi@npm:3.8.0"
-  checksum: 10/6f4c3856936adf2b241b6a30f85c152806589af91db65646de22dcfd9ad627735644ee91cc240457606445fde2b2abe4379a29a8f36e6b723649a78b5acea270
+"oauth4webapi@npm:^3.8.1":
+  version: 3.8.1
+  resolution: "oauth4webapi@npm:3.8.1"
+  checksum: 10/e6d35b187736529e3f2479d917f2bf90f66badfad805c9ddb038671e53b6383b7d9793686fe2d5363906fdeeebdff58b55bf111b44bc3c9ae8c431a46dd15b6a
   languageName: node
   linkType: hard
 
@@ -24568,13 +24568,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openid-client@npm:6.7.1":
-  version: 6.7.1
-  resolution: "openid-client@npm:6.7.1"
+"openid-client@npm:6.8.0":
+  version: 6.8.0
+  resolution: "openid-client@npm:6.8.0"
   dependencies:
     jose: "npm:^6.1.0"
-    oauth4webapi: "npm:^3.8.0"
-  checksum: 10/0db9815db870ba9c948773d80a54d4ccd3baabe02e147bffd3d1ccac034b7ee64946a90ab34b592cf4471603748bb12a48755b14282e047fb581ca13e1f5be66
+    oauth4webapi: "npm:^3.8.1"
+  checksum: 10/735248046cddca18083502406e71f647f127846da0d07b64f082b089b888e3aae539746fc20a529704a8ebf92003c5a21ed45a2fe6bc60cd835b9a7119b5abdd
   languageName: node
   linkType: hard
 
