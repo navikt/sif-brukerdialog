@@ -31,7 +31,7 @@ const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1', useS
                 </Bleed>
                 <VStack
                     gap="1"
-                    marginBlock={{ xs: `${level === '1' ? '12 0' : '4 0'}`, lg: '0' }}
+                    marginBlock={{ xs: `${level === '1' ? '8 0' : '4 0'}`, lg: '0' }}
                     minHeight={{ lg: '80px' }}
                     justify="center">
                     <Heading level={level} size={level === '1' ? 'xlarge' : 'medium'}>
