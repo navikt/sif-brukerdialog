@@ -28,7 +28,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
     return (
         <Page title={title} className="soknad-velkommen-page">
             <VStack gap="8">
-                <VelkommenPageHeader title={title} />
+                <VelkommenPageHeader title={title} useStandard={true} />
 
                 <SoknadVelkommenGuide title={text('@soknad.velkommenGuide.tittel', { navn: guide.navn })}>
                     {guide.content}

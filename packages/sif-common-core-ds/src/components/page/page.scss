@@ -1,6 +1,6 @@
 @layer utilities {
     .page {
-        margin: 3.5rem auto 3rem;
+        margin: 3rem auto 3rem;
         .poster {
             max-width: 100%;
         }
@@ -8,10 +8,7 @@
             margin-top: 2.5rem;
         }
         @media (max-width: 25rem) {
-            margin-top: 1.5rem;
-        }
-        &.soknad-velkommen-page {
-            margin-top: 1.5rem;
+            margin-top: 2.5rem;
         }
     }
 }
