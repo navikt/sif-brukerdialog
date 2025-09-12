@@ -1,4 +1,4 @@
-import { Accordion, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
+import { Accordion, BodyShort, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
@@ -27,9 +27,13 @@ const OmSøknaden = () => {
                     </List.Item>
                 </List>
             </Box>
-            <Accordion data-color="info">
+            <Accordion data-color="neutral">
                 <Accordion.Item>
-                    <Accordion.Header>{text('page.velkommen.omSøknaden.endringer.tittel')}</Accordion.Header>
+                    <Accordion.Header>
+                        <BodyShort weight="semibold" size="large">
+                            {text('page.velkommen.omSøknaden.endringer.tittel')}
+                        </BodyShort>
+                    </Accordion.Header>
                     <Accordion.Content>
                         <p>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.a" />{' '}
