@@ -1,15 +1,14 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
-import Block from '../../../atoms/block/Block';
+import { Alert, BodyShort, Box } from '@navikt/ds-react';
 
 const MessagesPreviewExplanation = () => {
     return (
         <Alert variant="info">
             <BodyShort size="large">Tegnforklaring</BodyShort>
-            <Block>
+            <Box marginBlock="6">
                 Tekstene inneholder koder som brukes når applikasjonen setter inn verdier, og for å bestemme hvordan
                 teksten skal se ut.
-            </Block>
-            <Block>
+            </Box>
+            <Box marginBlock="6">
                 <BodyShort size="medium" weight="semibold">
                     Entall/flertall av en verdi
                 </BodyShort>
@@ -17,8 +16,8 @@ const MessagesPreviewExplanation = () => {
                     <code>{`{timer, plural, one {# time} other {# timer}}`}</code>
                 </blockquote>
                 Kun ordene direkte etter # skal oversettes, resten er teknisk kode.
-            </Block>
-            <Block>
+            </Box>
+            <Box marginBlock="6">
                 <BodyShort size="medium" weight="semibold">
                     Sett inn verdi i tekst
                 </BodyShort>
@@ -27,16 +26,16 @@ const MessagesPreviewExplanation = () => {
                 </blockquote>
                 Ord i klammer, f.eks. <code>{`{fom}`}</code>, blir erstattet med en verdi fra applikasjonen, og skal
                 ikke oversettes.
-            </Block>
-            <Block>
+            </Box>
+            <Box marginBlock="6">
                 <BodyShort size="medium" weight="semibold">
                     HTML-formatering
                 </BodyShort>
                 <blockquote style={{ margin: 0, padding: '0.5rem 0' }}>
-                    <code>{`<Block>En tekst som inneholder HTML kode</Block>`}</code>
+                    <code>{`<Box>En tekst som inneholder HTML kode</Box>`}</code>
                 </blockquote>
                 All tekst, untatt tegn/ord i {`< >`} skal oversettes.
-            </Block>
+            </Box>
         </Alert>
     );
 };

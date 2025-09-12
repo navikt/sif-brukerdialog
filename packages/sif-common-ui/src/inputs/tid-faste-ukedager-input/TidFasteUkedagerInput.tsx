@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
@@ -7,6 +6,7 @@ import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
 import './tidFasteUkedagerInput.css';
+import { Box } from '@navikt/ds-react';
 
 interface OwnProps {
     name: string;
@@ -54,7 +54,7 @@ const TidFasteUkedagerInput = ({
     };
     const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
-        <Block margin="l">
+        <Box marginBlock="8 0">
             <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(
                     Weekday.monday,
@@ -82,7 +82,7 @@ const TidFasteUkedagerInput = ({
                     text('@ui.tidFasteUkedaterInput.fredag'),
                 )}
             </div>
-        </Block>
+        </Box>
     );
 };
 
