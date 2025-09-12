@@ -1,4 +1,4 @@
-import { Accordion, Heading } from '@navikt/ds-react';
+import { Accordion, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import {
@@ -21,6 +21,7 @@ export interface DurationWeekdaysInputProps {
     disabledDates?: Date[];
     formikFieldName: string;
     useAccordion?: boolean;
+    useExpansionCards?: boolean;
     accordionOpen?: boolean;
     renderMonthHeader?: (month: Date, enabledDatesInMonth: number) => React.ReactNode;
     validateDate: DurationWeekdaysDateValidator;
@@ -31,6 +32,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
     formikFieldName,
     disabledDates = [],
     useAccordion,
+    useExpansionCards,
     accordionOpen,
     renderMonthHeader,
     validateDate,
@@ -66,6 +68,36 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
         );
     };
 
+    if (useExpansionCards) {
+        return (
+            <VStack gap="2">
+                {months.map((month) => {
+                    const enabledDatesInMonth = getEnabledDatesInMonth(month);
+                    if (enabledDatesInMonth.length === 0) return null;
+
+                    const weeks = getWeeksInDateRange(month);
+                    const monthTitleId = `${formikFieldName}-month-${dateToISODate(month.from)}`;
+                    return (
+                        <ExpansionCard
+                            size="small"
+                            aria-labelledby={monthTitleId}
+                            key={dateToISODate(month.from)}
+                            open={accordionOpen ? true : undefined}
+                            defaultOpen={months.length === 1}>
+                            <ExpansionCard.Header>
+                                <ExpansionCard.Title size="small" id={monthTitleId}>
+                                    {renderMonthHeader
+                                        ? renderMonthHeader(month.from, enabledDatesInMonth.length)
+                                        : dayjs(month.from).format('MMMM YYYY')}
+                                </ExpansionCard.Title>
+                            </ExpansionCard.Header>
+                            <ExpansionCard.Content>{renderWeeks(weeks)}</ExpansionCard.Content>
+                        </ExpansionCard>
+                    );
+                })}
+            </VStack>
+        );
+    }
     if (useAccordion) {
         return (
             <Accordion data-color="neutral">

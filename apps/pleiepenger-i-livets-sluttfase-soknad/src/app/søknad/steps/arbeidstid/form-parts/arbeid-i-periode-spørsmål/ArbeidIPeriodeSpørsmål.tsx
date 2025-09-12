@@ -25,7 +25,7 @@ import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
-import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -115,10 +115,21 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <HStack gap="4" align="center">
-                <div style={{ minWidth: '10rem' }}>Timer med jobb {dayjs(month).format('MMMM YYYY')}</div>
+                <div style={{ minWidth: '10rem' }}>
+                    <AppText
+                        id="arbeidIPeriode.jobberIPerioden.accordionHeader"
+                        values={{ når: dayjs(month).format('MMMM YYYY') }}
+                    />
+                </div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
-                        Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
+                        <AppText
+                            id="arbeidIPeriode.jobberIPerioden.accordionHeader.dagerTag"
+                            values={{
+                                dagerMedArbeid: numDatesInMonthWithDuration,
+                                tilgjengeligeDager: enabledDatesInMonth,
+                            }}
+                        />
                     </Tag>
                 )}
             </HStack>
@@ -126,11 +137,13 @@ const ArbeidIPeriodeSpørsmål = ({
     };
     const renderMonthHeaderNoAccordion = (month: Date) => {
         return (
-            <>
-                <Heading size="small" level="3" spacing={true}>
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
-                </Heading>
-            </>
+            <Heading size="small" level="3" spacing={true}>
+                <AppText
+                    id="arbeidIPeriode.jobberIPerioden.accordionHeader"
+                    values={{ når: dayjs(month).format('MMMM YYYY') }}
+                />
+                :
+            </Heading>
         );
     };
 
@@ -168,7 +181,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         }}
                         description={
                             <Alert variant="info" inline={true} className="mt-4">
-                                Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                                <AppText id="arbeidIPeriode.jobberIPerioden.ingenJobbInfo" />
                             </Alert>
                         }>
                         <Box paddingBlock="4 0">
@@ -176,7 +189,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 dateRange={periode}
                                 disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
                                 formikFieldName={fieldName}
-                                useAccordion={useAccordion}
+                                useExpansionCards={useAccordion}
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
