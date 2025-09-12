@@ -34,13 +34,13 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
 
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (
-        <div>
+        <VStack gap="10">
             {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
             {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
             {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
                 <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
             )}
-            <VStack gap="4" marginBlock={medMelding ? '12 0' : '6'}>
+            <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
                 <Heading level="2" size="medium">
                     Dine oppgaver
                 </Heading>
@@ -50,10 +50,8 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     <BodyLong>Du har ingen uløste oppgaver.</BodyLong>
                 )}
             </VStack>
-
             <UxSignalsPanel panelId="zpvvyjk4ss" mode="demo" />
-
-            <VStack gap="4" marginBlock="12 0">
+            <VStack gap="4">
                 <Heading level="2" size="medium">
                     Tidligere oppgaver
                 </Heading>
@@ -63,7 +61,7 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
                     <BodyLong>Du har ingen tidligere oppgaver.</BodyLong>
                 )}
             </VStack>
-        </div>
+        </VStack>
     );
 };
 
