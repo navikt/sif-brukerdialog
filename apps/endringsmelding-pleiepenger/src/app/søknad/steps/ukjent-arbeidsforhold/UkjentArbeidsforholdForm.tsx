@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import {
@@ -8,6 +9,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@types';
 import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
@@ -24,8 +26,6 @@ import {
     getUkjentArbeidsforholdStepInitialValues,
     getUkjentArbeidsforholdSøknadsdataFromFormValues,
 } from './ukjentArbeidsforholdStepUtils';
-import { VStack } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum UkjentArbeidsgiverFormField {
     erAnsatt = 'erAnsatt',
