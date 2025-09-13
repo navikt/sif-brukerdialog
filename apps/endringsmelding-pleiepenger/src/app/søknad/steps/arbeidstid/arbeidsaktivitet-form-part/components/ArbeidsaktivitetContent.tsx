@@ -18,7 +18,6 @@ import {
     PeriodeMedArbeidstid,
 } from '@types';
 import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@utils';
-import DateRangeAccordion from '../../../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
@@ -36,6 +35,7 @@ import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeids
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
 import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import './arbeidsaktivitetContent.scss';
+import DateRangeExpansionCards from '../../../../../components/date-range-expansion-cards/DateRangeExpansionCards';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -169,7 +169,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                             {perioder.length === 1 ? (
                                                 renderArbeidstidUker(perioder[0])
                                             ) : (
-                                                <DateRangeAccordion
+                                                <DateRangeExpansionCards
                                                     dateRanges={perioder}
                                                     renderContent={(periode) => renderArbeidstidUker(periode)}
                                                     renderHeader={(periode) => renderAccordionHeader(periode)}

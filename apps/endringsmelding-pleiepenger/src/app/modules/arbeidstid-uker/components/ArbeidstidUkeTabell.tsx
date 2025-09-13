@@ -1,4 +1,4 @@
-import { Box, Checkbox, Table, Tooltip } from '@navikt/ds-react';
+import { Box, Checkbox, Table } from '@navikt/ds-react';
 import React, { ReactElement } from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -30,7 +30,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     renderCompactTable,
     renderEditButton,
 }) => {
-    const { text, intl } = useAppIntl();
+    const { intl } = useAppIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -74,23 +74,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 <AppText id="arbeidstidUkeTabell.header.dato" />
                             </Table.HeaderCell>
                             <Table.HeaderCell className="arbeidstidUker__normalt">
-                                <Tooltip content={text('arbeidstidUkeTabell.header.normalt.tooltip')}>
-                                    <span>
-                                        <AppText id="arbeidstidUkeTabell.header.normalt.title" />
-                                    </span>
-                                </Tooltip>
+                                <AppText id="arbeidstidUkeTabell.header.normalt.title" />
                             </Table.HeaderCell>
                         </>
                     )}
 
                     <Table.HeaderCell className="arbeidstidUker__faktisk">
-                        {arbeidstidKolonneTittel || (
-                            <Tooltip content={text('arbeidstidUkeTabell.header.arbeidstid.tooltip')}>
-                                <span>
-                                    <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />
-                                </span>
-                            </Tooltip>
-                        )}
+                        {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
                     </Table.HeaderCell>
 
                     {singleSelectEnabled && (
