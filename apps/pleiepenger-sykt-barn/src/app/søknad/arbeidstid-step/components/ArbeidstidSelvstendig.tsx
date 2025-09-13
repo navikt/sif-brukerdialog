@@ -2,13 +2,13 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
+import { AppText } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import InfoOmEndring from './InfoOmEndring';
-import { AppText } from '../../../i18n';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;

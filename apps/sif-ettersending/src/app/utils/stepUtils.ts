@@ -4,9 +4,9 @@ import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import {
-    dokumentTypeStepIsValid,
     beskrivelseStepIsValid,
     documentsStepIsValid,
+    dokumentTypeStepIsValid,
     welcomingPageIsValid,
 } from '../validation/stepValidations';
 

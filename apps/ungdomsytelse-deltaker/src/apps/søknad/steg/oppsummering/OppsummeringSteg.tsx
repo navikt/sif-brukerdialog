@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { AppText, useAppIntl } from '../../../../i18n';
 import { useAnalyticsInstance } from '../../../../analytics/analytics';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
 import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
@@ -13,7 +14,6 @@ import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
-import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
 
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();

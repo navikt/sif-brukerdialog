@@ -1,3 +1,4 @@
+import { Theme } from '@navikt/ds-react';
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
@@ -13,7 +14,6 @@ import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import { appEnv } from './utils/appEnv';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

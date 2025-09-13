@@ -1,7 +1,7 @@
+import { BoxNew } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withStepWrapper } from '../../storybook/decorators';
 import { appMessages } from './';
-import { BoxNew } from '@navikt/ds-react';
 
 export default {
     title: 'i18n/AppMessages',

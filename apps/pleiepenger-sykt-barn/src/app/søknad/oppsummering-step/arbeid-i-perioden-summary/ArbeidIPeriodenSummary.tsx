@@ -3,9 +3,9 @@ import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
+import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { ArbeidsforholdApiData, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 
 interface Props {
     apiValues: SøknadApiData;

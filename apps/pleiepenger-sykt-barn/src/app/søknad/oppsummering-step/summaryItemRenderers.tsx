@@ -1,3 +1,4 @@
+import { FormSummary } from '@navikt/ds-react/FormSummary';
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
@@ -6,7 +7,6 @@ import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { AppIntlShape, AppText } from '../../i18n';
 import { PeriodeApiData, UtenlandsoppholdIPeriodenApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { FormSummary } from '@navikt/ds-react/FormSummary';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 

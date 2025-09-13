@@ -1,6 +1,6 @@
 import { HStack } from '@navikt/ds-react';
-import DiskresjonskodeTag from './DiskresjonskodeTag';
 import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import DiskresjonskodeTag from './DiskresjonskodeTag';
 
 interface Props {
     koder: Diskresjonskode[];

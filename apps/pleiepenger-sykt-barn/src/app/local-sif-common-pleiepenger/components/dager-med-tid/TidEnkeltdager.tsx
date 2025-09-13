@@ -1,3 +1,4 @@
+import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
 import {
     capsFirstCharacter,
@@ -11,7 +12,6 @@ import groupBy from 'lodash.groupby';
 import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
-import { Heading, VStack } from '@navikt/ds-react';
 
 interface ISODagMedTid {
     dato: ISODate;

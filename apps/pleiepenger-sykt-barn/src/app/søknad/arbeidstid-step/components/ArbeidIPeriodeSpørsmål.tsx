@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { FormikRadioProp, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
@@ -25,7 +26,6 @@ import {
     getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
 import ArbeidstidEnkeltuker from './ArbeidstidEnkeltuker';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;

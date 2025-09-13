@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { MedlemskapFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
+import { MedlemskapFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { extractMedlemskapSøknadsdata } from '../extractMedlemskapSøknadsdata';
 
 const mockUtenlandsopphold: UtenlandsoppholdEnkel = {

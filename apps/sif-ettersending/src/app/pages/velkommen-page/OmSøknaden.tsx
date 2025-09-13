@@ -1,8 +1,8 @@
 import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
+import { ListItem } from '@navikt/ds-react/List';
 import { ReactNode } from 'react';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
-import { ListItem } from '@navikt/ds-react/List';
 
 const OmSøknaden = () => {
     return (

@@ -1,4 +1,5 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
@@ -14,7 +15,6 @@ import { erAnsattISøknadsperiode } from './arbeidUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
 import { isAvailable } from './routeUtils';
 import { erSNISøknadsperiode } from './selvstendigUtils';
-import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 
 export const opplysningerOmBarnetStepAvailable = (formValues: SøknadFormValues) => {
     return welcomingPageIsValid(formValues);

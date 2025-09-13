@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { getAppEnv } from '../../../../../utils/appEnv';
-import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import InntektForm from '../../../forms/inntekt-form/InntektForm';
 import { TallSvar } from '@navikt/sif-common-ui';
-import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
-import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
-import { getOppgaveStatusText } from '../../../utils/textUtils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { RapporterInntektOppgave } from '../../../../../types/Oppgave';
+import { getAppEnv } from '../../../../../utils/appEnv';
+import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
+import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
+import InntektForm from '../../../forms/inntekt-form/InntektForm';
+import { getOppgaveStatusText } from '../../../utils/textUtils';
+import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 
 interface Props {
     deltakerNavn: string;

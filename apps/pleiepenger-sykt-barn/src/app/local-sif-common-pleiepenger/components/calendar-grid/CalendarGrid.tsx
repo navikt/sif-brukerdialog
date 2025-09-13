@@ -13,11 +13,11 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import { AppText } from '../../../i18n';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
-import { AppText } from '../../../i18n';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);

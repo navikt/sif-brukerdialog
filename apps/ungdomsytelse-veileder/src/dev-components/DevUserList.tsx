@@ -1,6 +1,6 @@
 import { Box, Button, CopyButton, HStack, VStack } from '@navikt/ds-react';
-import { appEnv } from '../utils/appEnv';
 import { mockUtils } from '../../mock/msw/mockUtils';
+import { appEnv } from '../utils/appEnv';
 
 const DevUserList = () => {
     if (appEnv.DEV_IS_STORYBOOK) {

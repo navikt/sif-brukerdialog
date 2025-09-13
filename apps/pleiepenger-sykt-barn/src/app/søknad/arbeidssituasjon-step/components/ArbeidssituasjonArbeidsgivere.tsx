@@ -1,10 +1,10 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import ArbeidssituasjonAnsatt from './ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivereIntro from './info/ArbeidssituasjonArbeidsgivereIntro';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     søknadsperiode: DateRange;

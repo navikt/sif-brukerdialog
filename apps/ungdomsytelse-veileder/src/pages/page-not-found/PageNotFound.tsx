@@ -1,4 +1,4 @@
-import { BodyShort, Box, HGrid, Heading, List, Page } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HGrid, List, Page } from '@navikt/ds-react';
 import { NotFoundSVG } from './NotFoundSVG';
 
 const NotFoundPage = () => {

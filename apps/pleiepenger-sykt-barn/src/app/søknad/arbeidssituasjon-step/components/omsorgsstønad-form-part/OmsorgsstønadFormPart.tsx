@@ -1,9 +1,11 @@
+import { ReadMore } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getNumberValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+import { getNumberValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { AppText } from '../../../../i18n';
 import {
@@ -16,8 +18,6 @@ import {
     getOmsorgsstønadSluttdatoValidator,
     getOmsorgsstønadStartdatoValidator,
 } from '../../../../validation/fieldValidations';
-import { ReadMore } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const FormComponents = getTypedFormComponents<OmsorgsstønadFormField, OmsorgsstønadFormValues, ValidationError>();
 

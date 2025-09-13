@@ -1,6 +1,6 @@
 import { Box } from '@navikt/ds-react';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import React from 'react';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
 interface Props {
     children: React.ReactNode;

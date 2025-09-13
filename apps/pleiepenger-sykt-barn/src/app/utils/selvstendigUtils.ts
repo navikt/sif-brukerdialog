@@ -1,8 +1,8 @@
-import { DateRange } from '@navikt/sif-common-utils';
-import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
-import { SelvstendigFormValues } from '../types/søknad-form-values/SelvstendigFormValues';
-import dayjs from 'dayjs';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
+import { DateRange } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
+import { SelvstendigFormValues } from '../types/søknad-form-values/SelvstendigFormValues';
 
 /**
  *

@@ -1,3 +1,4 @@
+import { List } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
@@ -12,7 +13,6 @@ import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import { formatTimerOgMinutter } from '../../../utils/formatTimerOgMinutter';
-import { List } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;

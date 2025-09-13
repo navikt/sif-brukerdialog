@@ -1,9 +1,9 @@
+import { FormSummary, List } from '@navikt/ds-react';
 import React from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
 import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { FormSummary, List } from '@navikt/ds-react';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApiData[];

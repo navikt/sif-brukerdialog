@@ -5,6 +5,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
@@ -21,7 +22,6 @@ import { validateNavn, validateRelasjonTilBarnBeskrivelse } from '../../validati
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     formValues: SøknadFormValues;

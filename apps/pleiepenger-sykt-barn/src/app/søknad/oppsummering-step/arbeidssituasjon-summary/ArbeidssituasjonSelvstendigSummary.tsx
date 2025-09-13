@@ -1,10 +1,10 @@
 import { FormSummary, Heading } from '@navikt/ds-react';
+import { List } from '@navikt/ds-react/List';
 import { useAppIntl } from '@i18n/index';
+import VirksomhetFormSummaryAnswers from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
 import { AppText } from '../../../i18n';
 import { SelvstendigApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { List } from '@navikt/ds-react/List';
-import VirksomhetFormSummaryAnswers from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
 
 interface Props {
     selvstendig: SelvstendigApiData;

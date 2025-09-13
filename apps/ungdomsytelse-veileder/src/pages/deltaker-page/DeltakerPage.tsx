@@ -1,5 +1,6 @@
 import { BoxNew, Page, Skeleton } from '@navikt/ds-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { validate } from 'uuid';
 import AppPage from '../../components/app-page/AppPage';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
@@ -7,7 +8,6 @@ import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
 import ErrorPage from '../error-page/ErrorPage';
 import ErrorPageContent from '../error-page/ErrorPageContent';
 import DeltakelseLoader from './parts/DeltakelseLoader';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
 
 type DeltakerPageParams = {
     deltakerId: string;

@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { isInvalidParameterErrorResponse } from '@navikt/sif-common-soknad-ds/src/utils/innsendingErrorUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { isAxiosError } from 'axios';
@@ -43,8 +45,6 @@ import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import './oppsummeringStep.less';
-import { InvalidParameterViolation } from '@navikt/sif-common-api';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     values: SøknadFormValues;

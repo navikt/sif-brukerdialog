@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { DateRange, ISODate } from '@navikt/sif-common-utils';
-import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
-import { ArbFriFormComponents } from '../FrilanserFormPart';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
-import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
+import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
+import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
     startdatoValue?: ISODate;

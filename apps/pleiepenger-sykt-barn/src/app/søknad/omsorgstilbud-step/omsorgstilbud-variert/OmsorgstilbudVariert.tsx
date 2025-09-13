@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import {
     DateDurationMap,
@@ -14,7 +15,6 @@ import { validateOmsorgstilbudEnkeltdagerIPeriode } from '../../../validation/fi
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { skalViseSpørsmålOmProsentEllerLiktHverUke } from '../omsorgstilbudStepUtils';
 import OmsorgstilbudPeriode from './OmsorgstilbudPeriode';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     tittel: string;

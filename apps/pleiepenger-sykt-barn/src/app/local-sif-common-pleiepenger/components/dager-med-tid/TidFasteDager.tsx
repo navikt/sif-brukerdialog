@@ -1,8 +1,8 @@
+import { List } from '@navikt/ds-react';
 import React from 'react';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { Time } from '../../../types/Time';
 import { AppIntlShape, AppMessageKeys, AppText, useAppIntl } from '../../../i18n';
-import { List } from '@navikt/ds-react';
+import { Time } from '../../../types/Time';
 
 enum Dager {
     'mandag' = 'mandag',

@@ -1,6 +1,6 @@
 import { BodyLong, ExpansionCard, Heading, List, VStack } from '@navikt/ds-react';
-import { articleList } from './InfoInnhold';
 import Article from './components/Article';
+import { articleList } from './InfoInnhold';
 
 const DrawerArticles = () => {
     return (

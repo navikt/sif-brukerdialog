@@ -9,11 +9,10 @@ import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSelvstendigSummary from './ArbeidssituasjonSelvstendigSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
-import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
-
-import VernepliktSummary from './VernepliktSummary';
-import OmsorgsstønadSummary from './OmsorgsstønadSummary';
 import FosterhjemsgodtgjørelseSummary from './FosterhjemsgodtgjørelseSummary';
+import OmsorgsstønadSummary from './OmsorgsstønadSummary';
+import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
+import VernepliktSummary from './VernepliktSummary';
 
 interface Props {
     apiValues: SøknadApiData;

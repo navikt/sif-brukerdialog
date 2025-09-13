@@ -1,4 +1,5 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
+import { Theme } from '@navikt/ds-react';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
@@ -17,7 +18,6 @@ import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
 import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

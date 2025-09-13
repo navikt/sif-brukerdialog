@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { extractBeredskapSøknadsdata } from '../extractBeredskapSøknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
+import { extractBeredskapSøknadsdata } from '../extractBeredskapSøknadsdata';
 
 describe('extractBeredskapSøknadsdata', () => {
     it('returnerer type harBeredskap og harBeredskap === true', () => {
