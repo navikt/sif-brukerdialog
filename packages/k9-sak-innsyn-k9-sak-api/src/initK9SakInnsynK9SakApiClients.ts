@@ -1,7 +1,6 @@
 import { client } from '.';
-import { initApiClient } from './utils/initApiClient';
+import { initApiClient, InitApiClientOptions } from '@navikt/sif-common-api';
 
-export const initK9SakInnsynK9SakApiClients = (config: { frontendPath: string; loginURL: string }) => {
-    const { frontendPath, loginURL } = config;
-    initApiClient(client, frontendPath, loginURL);
+export const initK9SakInnsynK9SakApiClients = (frontendPath: string, options: InitApiClientOptions) => {
+    initApiClient(client, frontendPath, options);
 };

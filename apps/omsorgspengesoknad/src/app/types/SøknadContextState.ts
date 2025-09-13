@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-query';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 

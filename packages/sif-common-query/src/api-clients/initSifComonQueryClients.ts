@@ -1,7 +1,6 @@
 import { client } from '@navikt/k9-brukerdialog-prosessering-api';
-import { initApiClient } from './initApiClient';
+import { initApiClient, InitApiClientOptions } from '@navikt/sif-common-api';
 
-export const initSifComonQueryClients = (config: { frontendPath: string; loginURL: string }) => {
-    const { frontendPath, loginURL } = config;
-    initApiClient(client, frontendPath, loginURL);
+export const initSifComonQueryClients = (frontendPath: string, options: InitApiClientOptions) => {
+    initApiClient(client, frontendPath, options);
 };
