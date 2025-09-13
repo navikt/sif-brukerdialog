@@ -1,3 +1,4 @@
+import { Theme } from '@navikt/ds-react';
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
@@ -11,7 +12,6 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

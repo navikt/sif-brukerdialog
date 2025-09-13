@@ -1,5 +1,7 @@
+import { VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -20,8 +22,6 @@ import {
     mapRegistrertBarnToBarnMedAleneomsorg,
 } from './tidspunktForAleneomsorgStepUtils';
 import TidspunktForBarn from './TidspunktForBarn';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { VStack } from '@navikt/ds-react';
 
 export enum TidspunktForAleneomsorg {
     SISTE_2_ÅRENE = 'SISTE_2_ÅRENE',
