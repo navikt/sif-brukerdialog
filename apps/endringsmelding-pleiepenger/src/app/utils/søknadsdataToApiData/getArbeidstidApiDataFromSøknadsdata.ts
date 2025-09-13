@@ -8,14 +8,14 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
-    ArbeidstidArbeidsaktivitetMap,
     Arbeidsaktiviteter,
     ArbeidsaktivitetType,
-    ArbeiderIPeriodenSvar,
     Arbeidsgiver,
     ArbeidstakerApiData,
     ArbeidstidApiData,
+    ArbeidstidArbeidsaktivitetMap,
     ArbeidstidEndring,
     ArbeidstidEndringMap,
     ArbeidstidPeriodeApiDataMap,

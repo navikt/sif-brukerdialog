@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { RequestStatus } from '@types';
 import { appSentryLogger } from '@utils';
 import { isAxiosError } from 'axios';
@@ -13,7 +14,6 @@ import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const Søknad = () => {
     const location = useLocation();

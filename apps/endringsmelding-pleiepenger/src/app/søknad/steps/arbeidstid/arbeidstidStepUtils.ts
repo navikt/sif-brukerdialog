@@ -1,16 +1,16 @@
 import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
     ArbeidsaktivitetArbeidstaker,
-    ArbeidstidArbeidsaktivitetMap,
     Arbeidsaktiviteter,
-    ArbeiderIPeriodenSvar,
+    ArbeidsaktivitetType,
+    ArbeidstidArbeidsaktivitetMap,
     ArbeidstidEndringMap,
     ArbeidstidSøknadsdata,
     ArbeidsukeMap,
     Søknadsdata,
-    ArbeidsaktivitetType,
 } from '@types';
 import { beregnEndretArbeidstidForUke } from '@utils';
 import { ArbeidstidFormValues } from './ArbeidstidForm';

@@ -1,10 +1,10 @@
+import { HStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { withIntl } from '../../../storybook/decorators/withIntl';
-import { HStack } from '@navikt/ds-react';
 import EndretTag from './EndretTag';
-import NyTag from './NyTag';
 import FerieTag from './FerieTag';
 import KortUkeTag from './KortUkeTag';
+import NyTag from './NyTag';
 
 const meta: Meta = {
     title: 'Components/Tags',

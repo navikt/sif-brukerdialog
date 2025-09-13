@@ -1,6 +1,4 @@
 import { isISODateOrNull, isISODateRange, isISODuration, ISODateRange, isStringOrNull } from '@navikt/sif-common-utils';
-import { isObject, isString } from 'formik';
-import { isArray } from 'lodash';
 import {
     K9Format,
     K9FormatArbeidstaker,
@@ -14,6 +12,8 @@ import {
     K9FormatUtenlandsopphold,
     K9FormatYtelse,
 } from '@types';
+import { isObject, isString } from 'formik';
+import { isArray } from 'lodash';
 
 const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 

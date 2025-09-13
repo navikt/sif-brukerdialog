@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
-import { setNow } from '../../utils/setNow';
-import { routeUtils } from '../../utils/routeUtils';
+import { expect, test } from '@playwright/test';
 import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
+import { routeUtils } from '../../utils/routeUtils';
+import { setNow } from '../../utils/setNow';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);

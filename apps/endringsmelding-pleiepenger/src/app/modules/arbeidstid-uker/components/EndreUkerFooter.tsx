@@ -1,6 +1,6 @@
-import { Edit } from '@navikt/ds-icons';
 import { Alert, Button, VStack } from '@navikt/ds-react';
 import React from 'react';
+import { Edit } from '@navikt/ds-icons';
 import { AppText } from '../../../i18n';
 
 interface Props {
