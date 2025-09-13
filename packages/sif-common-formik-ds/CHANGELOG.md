@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
 ## 2.4.38
 
 ### Patch Changes

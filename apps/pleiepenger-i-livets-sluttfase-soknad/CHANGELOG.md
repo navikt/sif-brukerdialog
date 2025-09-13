@@ -1,5 +1,21 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.22.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.0
+    - @navikt/sif-common-soknad-ds@26.0.0
+    - @navikt/sif-common-forms-ds@21.0.0
+    - @navikt/sif-common-core-ds@10.3.0
+    - @navikt/sif-common-ui@0.11.0
+    - @navikt/sif-common-api@0.4.43
+
 ## 2.21.22
 
 ### Patch Changes
