@@ -2,14 +2,13 @@ import InfoJobberNormaltTimerAnsatt from './info/InfoJobberNormaltTimerAnsatt';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { Alert, Box, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, HStack } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum AnsattFormFields {
     arbeidsgiver = 'arbeidsgiver',
@@ -45,61 +44,58 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
     const getFieldName = (field: AnsattFormFields): AnsattFormFields => `${parentFieldName}.${field}` as any;
 
     return (
-        <>
-            <>
-                <Heading level="3" size="medium">
-                    <HStack gap="3" align="center">
-                        <Buildings3Icon height="1.8rem" width="1.5rem" />
-                        <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
-                    </HStack>
-                </Heading>
+        <FormLayout.Questions>
+            <Heading level="3" size="medium">
+                <HStack gap="3" align="center">
+                    <Buildings3Icon height="1.8rem" width="1.5rem" />
+                    <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
+                </HStack>
+            </Heading>
 
-                <Block>
-                    <YesOrNoQuestion
-                        legend={text('arbeidsforhold.erAnsatt.spm', {
-                            navn: arbeidsforhold.arbeidsgiver.navn,
-                        })}
-                        name={getFieldName(AnsattFormFields.erAnsatt)}
-                        validate={(value) => {
-                            return getYesOrNoValidator()(value)
-                                ? {
-                                      key: 'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered',
-                                      values: { navn: arbeidsforhold.arbeidsgiver.navn },
-                                      keepKeyUnaltered: true,
-                                  }
-                                : undefined;
-                        }}
-                    />
-                </Block>
-            </>
+            <YesOrNoQuestion
+                legend={text('arbeidsforhold.erAnsatt.spm', {
+                    navn: arbeidsforhold.arbeidsgiver.navn,
+                })}
+                name={getFieldName(AnsattFormFields.erAnsatt)}
+                validate={(value) => {
+                    return getYesOrNoValidator()(value)
+                        ? {
+                              key: 'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered',
+                              values: { navn: arbeidsforhold.arbeidsgiver.navn },
+                              keepKeyUnaltered: true,
+                          }
+                        : undefined;
+                }}
+            />
+
             {yesOrNoIsAnswered(arbeidsforhold.erAnsatt) && (
-                <FormBlock margin="l">
-                    <VStack gap="8">
-                        {arbeidsforhold.erAnsatt === YesOrNo.NO && (
+                <>
+                    {arbeidsforhold.erAnsatt === YesOrNo.NO && (
+                        <FormLayout.QuestionRelatedMessage>
                             <Alert variant="info">
                                 <AppText id="arbeidsforhold.ikkeAnsatt.info" />
                             </Alert>
-                        )}
+                        </FormLayout.QuestionRelatedMessage>
+                    )}
 
-                        <NumberInput
-                            label={text(
-                                erAvsluttet
-                                    ? `arbeidsforhold.jobberNormaltTimer.avsluttet.spm`
-                                    : `arbeidsforhold.jobberNormaltTimer.spm`,
-                                {
-                                    navn: arbeidsforhold.arbeidsgiver.navn,
-                                },
-                            )}
-                            name={getFieldName(AnsattFormFields.jobberNormaltTimer)}
-                            description={<InfoJobberNormaltTimerAnsatt />}
-                            validate={getJobberNormaltTimerValidator(intlValues)}
-                            maxLength={5}
-                            value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
-                        />
-                    </VStack>
-                </FormBlock>
+                    <NumberInput
+                        label={text(
+                            erAvsluttet
+                                ? `arbeidsforhold.jobberNormaltTimer.avsluttet.spm`
+                                : `arbeidsforhold.jobberNormaltTimer.spm`,
+                            {
+                                navn: arbeidsforhold.arbeidsgiver.navn,
+                            },
+                        )}
+                        name={getFieldName(AnsattFormFields.jobberNormaltTimer)}
+                        description={<InfoJobberNormaltTimerAnsatt />}
+                        validate={getJobberNormaltTimerValidator(intlValues)}
+                        maxLength={5}
+                        value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
+                    />
+                </>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

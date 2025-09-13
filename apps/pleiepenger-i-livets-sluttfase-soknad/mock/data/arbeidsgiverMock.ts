@@ -1,3 +1,10 @@
+const frilansoppdrag = {
+    type: 'type oppdrag',
+    organisasjonsnummer: '991012133',
+    navn: 'Hurdal frilanssenter',
+    ansattFom: '2022-01-01',
+    ansattTom: '2022-01-15',
+};
 export const arbeidsgiverMock = {
     organisasjoner: [
         {
@@ -7,4 +14,5 @@ export const arbeidsgiverMock = {
             ansattTom: null,
         },
     ],
+    frilansoppdrag: [frilansoppdrag],
 };

@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { Alert, BodyLong, Button, Modal, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Modal, VStack } from '@navikt/ds-react';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuid } from 'uuid';
@@ -156,13 +156,13 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 tabIndex={-1}
                 description={labels.description}
                 className="modalFormAndListFieldset">
-                <VStack gap="6">
+                <VStack gap="4">
                     {items.length > 0 && (
                         <div>{listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}</div>
                     )}
                     {items.length === 0 && labels.emptyListText && <Alert variant="info">{labels.emptyListText}</Alert>}
                     {(maxItems === undefined || maxItems > items.length) && (
-                        <div>
+                        <Box marginBlock={items.length !== 0 ? '0' : '2 0'}>
                             <Button
                                 ref={addButtonRef}
                                 type="button"
@@ -171,7 +171,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                                 variant="secondary">
                                 {labels.addLabel}
                             </Button>
-                        </div>
+                        </Box>
                     )}
                 </VStack>
             </SkjemagruppeQuestion>

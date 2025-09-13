@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.9.49",
+    "version": "1.10.0",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",

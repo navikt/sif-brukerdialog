@@ -1,8 +1,6 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Bleed, Heading, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import {
@@ -134,64 +132,66 @@ const OmOmsorgenForBarnStep = () => {
                                 submitDisabled={kanIkkeFortsette || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <Block margin="xxl">
-                                    <RegistrerteBarnListeHeading level="2" size="medium">
-                                        {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
-                                    </RegistrerteBarnListeHeading>
-
-                                    {registrertBarn.length > 0 && (
-                                        <Block margin="l">
-                                            <ItemList<RegistrertBarn>
-                                                getItemId={(barn): string => barn.aktørId}
-                                                getItemTitle={(barn): string => barn.etternavn}
-                                                labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn)}
-                                                items={registrertBarn}
-                                            />
-                                        </Block>
-                                    )}
-                                    <FormBlock>
-                                        <Heading level="3" size="xsmall" spacing={true}>
-                                            {annetBarn.length === 0
-                                                ? text('steg.omOmsorgenForBarn.info.spm.andreBarn')
-                                                : text('steg.omOmsorgenForBarn.info.spm.flereBarn')}
-                                        </Heading>
-                                        {text('steg.omOmsorgenForBarn.info.spm.text')}
-                                    </FormBlock>
-                                    <Block margin="l">
-                                        <AnnetBarnListAndDialog<OmOmsorgenForBarnFormFields>
-                                            name={OmOmsorgenForBarnFormFields.annetBarn}
-                                            labels={{
-                                                addLabel: text(
-                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
-                                                ),
-                                                listTitle: text(
-                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
-                                                ),
-                                                modalTitle: text(
-                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
-                                                ),
-                                            }}
-                                            maxDate={getDateToday()}
-                                            minDate={nYearsAgo(19)}
-                                            disallowedFødselsnumre={[
-                                                søker.fødselsnummer,
-                                                ...(annetBarn ?? []).map((barn) => barn.fnr),
-                                            ]}
-                                            aldersGrenseText={text(
-                                                'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
+                                <VStack gap="12">
+                                    <div>
+                                        <RegistrerteBarnListeHeading level="2" size="medium" spacing={true}>
+                                            {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
+                                        </RegistrerteBarnListeHeading>
+                                        <VStack gap="8">
+                                            {registrertBarn.length > 0 && (
+                                                <ItemList<RegistrertBarn>
+                                                    getItemId={(barn): string => barn.aktørId}
+                                                    getItemTitle={(barn): string => barn.etternavn}
+                                                    labelRenderer={(barn): React.ReactNode =>
+                                                        barnItemLabelRenderer(barn)
+                                                    }
+                                                    items={registrertBarn}
+                                                />
                                             )}
-                                            visBarnTypeValg={true}
-                                        />
-                                    </Block>
-                                </Block>
-                                {harBarn && (
-                                    <>
-                                        <Block margin="xxl">
-                                            <Heading level="2" size="medium">
-                                                <AppText id="steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
-                                            </Heading>
+                                            <div>
+                                                <Heading level="3" size="xsmall" spacing={true}>
+                                                    {annetBarn.length === 0
+                                                        ? text('steg.omOmsorgenForBarn.info.spm.andreBarn')
+                                                        : text('steg.omOmsorgenForBarn.info.spm.flereBarn')}
+                                                </Heading>
+                                                {text('steg.omOmsorgenForBarn.info.spm.text')}
+                                            </div>
+                                            <Bleed marginBlock={annetBarn.length === 0 ? '4 0' : undefined}>
+                                                <AnnetBarnListAndDialog<OmOmsorgenForBarnFormFields>
+                                                    name={OmOmsorgenForBarnFormFields.annetBarn}
+                                                    labels={{
+                                                        addLabel: text(
+                                                            'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
+                                                        ),
+                                                        listTitle: text(
+                                                            'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
+                                                        ),
+                                                        modalTitle: text(
+                                                            'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
+                                                        ),
+                                                        hideListTitle: annetBarn.length === 0,
+                                                    }}
+                                                    maxDate={getDateToday()}
+                                                    minDate={nYearsAgo(19)}
+                                                    disallowedFødselsnumre={[
+                                                        søker.fødselsnummer,
+                                                        ...(annetBarn ?? []).map((barn) => barn.fnr),
+                                                    ]}
+                                                    aldersGrenseText={text(
+                                                        'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
+                                                    )}
+                                                    visBarnTypeValg={true}
+                                                />
+                                            </Bleed>
+                                        </VStack>
+                                    </div>
 
-                                            <Block margin="l">
+                                    {harBarn && (
+                                        <VStack gap="12">
+                                            <VStack gap="6">
+                                                <Heading level="2" size="medium">
+                                                    <AppText id="steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
+                                                </Heading>
                                                 <CheckboxGroup
                                                     legend={text(
                                                         'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
@@ -200,13 +200,13 @@ const OmOmsorgenForBarnStep = () => {
                                                     checkboxes={getBarnOptions(alleBarn)}
                                                     validate={getListValidator({ required: true })}
                                                 />
-                                            </Block>
-                                        </Block>
-                                        <Block margin="xxl">
-                                            <Heading level="2" size="medium">
-                                                <AppText id="steg.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
-                                            </Heading>
-                                            <Block margin="l">
+                                            </VStack>
+
+                                            <VStack gap="6">
+                                                <Heading level="2" size="medium">
+                                                    <AppText id="steg.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
+                                                </Heading>
+
                                                 <YesOrNoQuestion
                                                     legend={text(
                                                         harAleneomsorgForNøyaktigEttBarn
@@ -225,21 +225,15 @@ const OmOmsorgenForBarnStep = () => {
                                                         </ExpandableInfo>
                                                     }
                                                 />
-                                            </Block>
-                                        </Block>
-                                        {advarsel && (
-                                            <Block margin="l">
-                                                <Alert variant="warning">{advarsel}</Alert>
-                                            </Block>
-                                        )}
-                                    </>
-                                )}
+                                                {advarsel && <Alert variant="warning">{advarsel}</Alert>}
+                                            </VStack>
+                                        </VStack>
+                                    )}
 
-                                {!harBarn && (
-                                    <Block margin="l">
+                                    {!harBarn && (
                                         <Alert variant="warning">{text('steg.omOmsorgenForBarn.ingenbarn')}</Alert>
-                                    </Block>
-                                )}
+                                    )}
+                                </VStack>
                             </Form>
                         </>
                     );

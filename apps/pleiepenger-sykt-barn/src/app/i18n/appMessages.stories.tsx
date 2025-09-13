@@ -1,7 +1,7 @@
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withStepWrapper } from '../../storybook/decorators';
 import { appMessages } from './';
+import { BoxNew } from '@navikt/ds-react';
 
 export default {
     title: 'i18n/AppMessages',
@@ -10,9 +10,9 @@ export default {
 
 const Template = () => (
     <>
-        <Block margin="xxl" padBottom="l">
+        <BoxNew marginBlock="10 6">
             <MessagesPreview messages={appMessages} showExplanation={false} />
-        </Block>
+        </BoxNew>
     </>
 );
 

@@ -1,6 +1,5 @@
 import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { ReactNode } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { ListItem } from '@navikt/ds-react/List';
@@ -8,7 +7,7 @@ import { ListItem } from '@navikt/ds-react/List';
 const OmSøknaden = () => {
     return (
         <div>
-            <Heading level="2" size="medium">
+            <Heading level="2" size="medium" spacing={true}>
                 <AppText id="page.velkommen.omSøknaden.tittel" />
             </Heading>
             <BodyLong as="div">
@@ -23,7 +22,7 @@ const OmSøknaden = () => {
                         <AppText id="page.velkommen.omSøknaden.3" />
                     </ListItem>
                 </List>
-                <Block>
+                <p>
                     <AppText
                         id="page.velkommen.omSøknaden.4"
                         values={{
@@ -34,7 +33,7 @@ const OmSøknaden = () => {
                             ),
                         }}
                     />
-                </Block>
+                </p>
             </BodyLong>
         </div>
     );

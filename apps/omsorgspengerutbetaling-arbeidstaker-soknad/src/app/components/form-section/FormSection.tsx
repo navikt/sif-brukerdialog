@@ -1,6 +1,6 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import './formSection.scss';
-import { Heading } from '@navikt/ds-react';
 
 interface Props {
     title: string;

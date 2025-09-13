@@ -7,6 +7,7 @@ import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
 import './step.scss';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
 const bem = bemHelper('step');
 
@@ -49,10 +50,10 @@ function Step({
             className={bem.block}
             title={pageTitle}
             topContentRenderer={() => (
-                <>
-                    <SoknadHeader title={applicationTitle} level="2" />
+                <PageBoundary>
+                    <SoknadHeader title={applicationTitle} level="2" useStandard={true} />
                     {validationSummary}
-                </>
+                </PageBoundary>
             )}>
             <section aria-label="Skjema" ref={sectionRef}>
                 <VStack gap="10">

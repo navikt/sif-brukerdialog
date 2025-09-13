@@ -1,6 +1,5 @@
 import { Box, Button, Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AppPage from '../app-page/AppPage';
 
@@ -46,7 +45,7 @@ class AppErrorBoundary extends React.Component<Props, State> {
         if (hasError) {
             return (
                 <AppPage>
-                    <Block margin="xxxl">
+                    <Box paddingBlock="10">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
@@ -65,7 +64,7 @@ class AppErrorBoundary extends React.Component<Props, State> {
                                 )}
                             </Box>
                         </SifGuidePanel>
-                    </Block>
+                    </Box>
                 </AppPage>
             );
         }

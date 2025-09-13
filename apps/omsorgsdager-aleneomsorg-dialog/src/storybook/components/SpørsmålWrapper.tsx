@@ -4,7 +4,7 @@ import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/mes
 import ShadowBox from '../components/ShadowBox';
 import { storybookIntlUtils } from '../utils/intlUtils';
 import { StoryFormikWrapper } from './StoryFormikWrapper';
-import '@navikt/ds-css';
+import '@navikt/ds-css/darkside';
 
 export interface SpørsmålWrapperProps {
     formErrorHandlerIntlKey: string;

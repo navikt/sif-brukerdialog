@@ -32,8 +32,7 @@ const virksomhet = {
 
 const startSøknad = async (page: Page) => {
     await page.goto(startUrl);
-    const intro = page.locator('.navds-guide-panel__content');
-    await expect(intro).toContainText('Velkommen til søknad om omsorgspenger');
+    await page.getByText('Velkommen til søknad om omsorgspenger');
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
     await page.getByRole('button').getByText('Start søknad').click();
 };

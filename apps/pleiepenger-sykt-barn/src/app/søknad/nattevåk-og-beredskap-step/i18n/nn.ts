@@ -9,6 +9,7 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'steg.nattevåkOgBeredskap.veileder':
         'No treng me å vite om du på grunn av barnet sin sjukdom må vere vaken om natta, eller vere i beredskap for barnet i pleiepengeperioden. Om nokon av desse situasjonane gjer at du ikkje kan gå på jobb, skal pleiepengane som hovudregel ikkje graderast, sjølv om barnet er i eit omsorgstilbod på dagtid.',
 
+    'steg.nattevåkOgBeredskap.nattevåk.sectionTittel': 'Nattevake',
     'steg.nattevåkOgBeredskap.nattevåk.veileder':
         'I nokre tilfelle gjer barnet sin sjukdom at du må vere vaken om natta for å pleie eller ha tilsyn med barnet. Om pleie- eller tilsynsbehovet om natta er vesentleg større enn det som er vanleg for friske barn, kan det gå ut over moglegheita til å jobbe fordi du må sove på dagtid.',
 

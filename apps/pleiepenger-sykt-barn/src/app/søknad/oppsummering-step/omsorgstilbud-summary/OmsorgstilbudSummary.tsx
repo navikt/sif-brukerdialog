@@ -27,7 +27,6 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                         }}
                     />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 {omsorgstilbud === undefined && (
@@ -115,6 +114,11 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

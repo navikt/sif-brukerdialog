@@ -1,12 +1,11 @@
-import { Accordion, Heading } from '@navikt/ds-react';
+import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
-import { AppText } from '../../i18n';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -36,6 +35,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
     });
 
     const ingenDagerRegistrertMelding = <AppText id="dagerMedTid.ingenDagerRegistrert" />;
+
     if (dager.length === 0) {
         return ingenDagerRegistrertMelding;
     }
@@ -43,32 +43,30 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     if (!renderAsAccordion) {
         return (
-            <div>
-                {Object.keys(months).map((key, index) => {
+            <VStack gap="8">
+                {Object.keys(months).map((key) => {
                     const dagerMedTid = months[key];
                     if (dagerMedTid.length === 0) {
                         return ingenDagerRegistrertMelding;
                     }
                     return (
-                        <div key={key} style={{ paddingTop: index > 0 ? '2rem' : '.5rem' }}>
-                            <Heading level={headingLevel} size="xsmall" className="capitalize">
+                        <div key={key}>
+                            <Heading level={headingLevel} size="xsmall" className="capitalize" spacing>
                                 {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
                             </Heading>
-                            <Block margin="l">
-                                <DagerMedTidListe
-                                    dagerMedTid={dagerMedTid}
-                                    viseUke={visUke}
-                                    ukeHeadingLevel={headingLevel}
-                                />
-                            </Block>
+                            <DagerMedTidListe
+                                dagerMedTid={dagerMedTid}
+                                viseUke={visUke}
+                                ukeHeadingLevel={headingLevel}
+                            />
                         </div>
                     );
                 })}
-            </div>
+            </VStack>
         );
     }
     return (
-        <Accordion>
+        <Accordion data-color="neutral">
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {

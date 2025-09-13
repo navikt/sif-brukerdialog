@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -24,6 +23,7 @@ import {
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;
@@ -115,48 +115,46 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, '@forms.utenlandskNæringForm')}>
-                        <Form.RadioGroup
-                            name={UtenlandskNæringFormField.næringstype}
-                            legend={text('@forms.utenlandskNæringForm.hvilken_type_virksomhet')}
-                            radios={[
-                                {
-                                    value: UtenlandskNæringstype.FISKE,
-                                    label: text(
-                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`,
-                                    ),
-                                },
-                                {
-                                    value: UtenlandskNæringstype.JORDBRUK_SKOGBRUK,
-                                    label: text(
-                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`,
-                                    ),
-                                },
-                                {
-                                    value: UtenlandskNæringstype.DAGMAMMA,
-                                    label: text(
-                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`,
-                                    ),
-                                },
-                                {
-                                    value: UtenlandskNæringstype.ANNEN,
-                                    label: text(
-                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`,
-                                    ),
-                                },
-                            ]}
-                            validate={getRequiredFieldValidator()}
-                        />
+                        <FormLayout.Questions>
+                            <Form.RadioGroup
+                                name={UtenlandskNæringFormField.næringstype}
+                                legend={text('@forms.utenlandskNæringForm.hvilken_type_virksomhet')}
+                                radios={[
+                                    {
+                                        value: UtenlandskNæringstype.FISKE,
+                                        label: text(
+                                            `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`,
+                                        ),
+                                    },
+                                    {
+                                        value: UtenlandskNæringstype.JORDBRUK_SKOGBRUK,
+                                        label: text(
+                                            `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`,
+                                        ),
+                                    },
+                                    {
+                                        value: UtenlandskNæringstype.DAGMAMMA,
+                                        label: text(
+                                            `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`,
+                                        ),
+                                    },
+                                    {
+                                        value: UtenlandskNæringstype.ANNEN,
+                                        label: text(
+                                            `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`,
+                                        ),
+                                    },
+                                ]}
+                                validate={getRequiredFieldValidator()}
+                            />
 
-                        <Block margin="xl">
                             <Form.TextField
                                 name={UtenlandskNæringFormField.navnPåVirksomheten}
                                 label={text('@forms.utenlandskNæringForm.hva_heter_virksomheten')}
                                 validate={getStringValidator({ required: true })}
                                 maxLength={50}
                             />
-                        </Block>
 
-                        <Block margin="xl">
                             <Form.CountrySelect
                                 name={UtenlandskNæringFormField.land}
                                 label={text('@forms.utenlandskNæringForm.registert_i_hvilket_land', {
@@ -165,17 +163,13 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 validate={getRequiredFieldValidator()}
                                 showOnlyEuAndEftaCountries={true}
                             />
-                        </Block>
 
-                        <Block margin="xl">
                             <Form.TextField
                                 name={UtenlandskNæringFormField.identifikasjonsnummer}
                                 label={text('@forms.utenlandskNæringForm.organisasjonsnummer')}
                                 style={{ maxWidth: '10rem' }}
                                 maxLength={30}
                             />
-                        </Block>
-                        <Block margin="xl">
                             <Form.DateRangePicker
                                 legend={text('@forms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
                                 dropdownCaption={true}
@@ -222,16 +216,18 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                               },
                                 }}
                             />
-                            <Form.Checkbox
-                                label={text('@forms.utenlandskNæringForm.kalender_pågående')}
-                                name={UtenlandskNæringFormField.erPågående}
-                                afterOnChange={(checked) => {
-                                    if (checked) {
-                                        setFieldValue(UtenlandskNæringFormField.tilOgMed, undefined);
-                                    }
-                                }}
-                            />
-                        </Block>
+                            <FormLayout.QuestionBleedTop>
+                                <Form.Checkbox
+                                    label={text('@forms.utenlandskNæringForm.kalender_pågående')}
+                                    name={UtenlandskNæringFormField.erPågående}
+                                    afterOnChange={(checked) => {
+                                        if (checked) {
+                                            setFieldValue(UtenlandskNæringFormField.tilOgMed, undefined);
+                                        }
+                                    }}
+                                />
+                            </FormLayout.QuestionBleedTop>
+                        </FormLayout.Questions>
                     </Form.Form>
                 );
             }}

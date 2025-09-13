@@ -30,24 +30,6 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'application.title.opplaringspenger': 'Ettersending av dokumentasjon til søknad om opplæringspengar',
 
     'modal.personopplysninger.dialogtittel': 'Slik handsamar Nav personopplysningane dine',
-    'modal.personopplysninger.1': 'Slik handsamar Nav personopplysningane dine',
-    'modal.personopplysninger.2':
-        'Me  innhentar og mottek opplysningar om deg for å handsame saka di. Det er naudsynt for at du skal få rett teneste. Delar av saka di kan bli handsama automatisk.',
-    'modal.personopplysninger.3': 'Kva opplysningar hentar vi inn?',
-    'modal.personopplysninger.4': 'Opplysningane vi hentar inn kjem anten frå deg eller frå offentlege register:',
-    'modal.personopplysninger.4.1': 'kva barn du er registrert som forelder til',
-    'modal.personopplysninger.4.1.pleiepengerLivetsSluttfase': 'opplysningar om helsa til den du skal pleie',
-    'modal.personopplysninger.4.2': 'opplysninger om barnet si helse',
-    'modal.personopplysninger.4.3': 'arbeidsforholda dine og inntekta di',
-    'modal.personopplysninger.4.4': 'ytingar du mottar frå Nav',
-    'modal.personopplysninger.4.5': 'tilknytinga di til Noreg',
-    'modal.personopplysninger.4.6':
-        'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
-    'modal.personopplysninger.4.7':
-        'Me lagrar opplysningar me får inn om personen du søkjer pleiepengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre søkjer pleiepengar for same person.',
-    'modal.personopplysninger.5.1': 'Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå ',
-    'modal.personopplysninger.5.2': 'nav.no/personvern',
-    'modal.personopplysninger.5.3': '.',
 
     'modal.minePlikter.tittel': 'Mine plikter',
     'modal.minePlikter.part1': 'Eg forstår at det kan få konsekvensar for retten min til {søknadstype} dersom eg',

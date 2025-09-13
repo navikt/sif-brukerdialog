@@ -1,7 +1,6 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../types/StepId';
@@ -34,15 +33,13 @@ const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, s
             </Link>
         );
         return (
-            <FormBlock paddingBottom="xl">
-                <Alert variant="warning">
-                    <Heading level="2" size="small" spacing={true}>
-                        Oops, dette stemmer ikke helt
-                    </Heading>
-                    Vennligst gå tilbake til steget &quot;{getStepLink()}&quot;, og bruk knappene nederst i skjemaet for
-                    å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
-                </Alert>
-            </FormBlock>
+            <Alert variant="warning">
+                <Heading level="2" size="small" spacing={true}>
+                    Oops, dette stemmer ikke helt
+                </Heading>
+                Vennligst gå tilbake til steget &quot;{getStepLink()}&quot;, og bruk knappene nederst i skjemaet for å
+                gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
+            </Alert>
         );
     }
     return null;

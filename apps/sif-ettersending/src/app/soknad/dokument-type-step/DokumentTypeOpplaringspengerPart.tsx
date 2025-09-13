@@ -1,7 +1,6 @@
 import { Link, List } from '@navikt/ds-react';
 import { ReactNode } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
@@ -17,7 +16,7 @@ const DokumentTypeOpplaringspengerPart = ({ dokumentType }: Props) => {
     const { text } = useAppIntl();
     return (
         <>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <AppText id="step.dokumentType.info" />
                 <List>
                     <List.Item>
@@ -36,20 +35,18 @@ const DokumentTypeOpplaringspengerPart = ({ dokumentType }: Props) => {
                         />
                     </List.Item>
                 </List>
-            </SifGuidePanel>
+            </FormLayout.Guide>
 
-            <FormBlock>
-                <SoknadFormComponents.RadioGroup
-                    legend={text('step.dokumentType.dokumentType.spm')}
-                    name={SoknadFormField.dokumentType}
-                    radios={Object.values(DokumentType).map((type) => ({
-                        label: text(`step.dokumentType.dokumentType.${type}`),
-                        value: type,
-                    }))}
-                    validate={getRequiredFieldValidator()}
-                    value={dokumentType}
-                />
-            </FormBlock>
+            <SoknadFormComponents.RadioGroup
+                legend={text('step.dokumentType.dokumentType.spm')}
+                name={SoknadFormField.dokumentType}
+                radios={Object.values(DokumentType).map((type) => ({
+                    label: text(`step.dokumentType.dokumentType.${type}`),
+                    value: type,
+                }))}
+                validate={getRequiredFieldValidator()}
+                value={dokumentType}
+            />
         </>
     );
 };

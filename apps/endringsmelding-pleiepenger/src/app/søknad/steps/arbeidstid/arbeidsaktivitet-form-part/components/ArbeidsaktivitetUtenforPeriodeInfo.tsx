@@ -23,7 +23,7 @@ const ArbeidsaktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
         skrivTilOssLink: <SkrivTilOssLink />,
     };
     return (
-        <BodyShort style={{ paddingBottom: '1rem' }}>
+        <BodyShort>
             {harPerioderFørTillattEndringsperiode && !harPerioderEtterTillattEndringsperiode && (
                 <AppText id="arbeidsaktivitetContent.utenforPeriode.før" values={intlValues} />
             )}

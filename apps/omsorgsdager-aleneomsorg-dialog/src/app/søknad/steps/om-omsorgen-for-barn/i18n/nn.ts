@@ -16,7 +16,7 @@ export const omOmsorgenForBarnMessages_nn: Record<keyof typeof omOmsorgenForBarn
     'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo':
         '(Du kan ikkje leggje til barn som er 19 år i år eller eldre)',
 
-    'steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel': 'åleineomsorg',
+    'steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel': 'Åleineomsorg',
     'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg': 'Kryss av for barn du er åleine om omsorga for:',
 
     'steg.omOmsorgenForBarn.deltBosted.seksjonsTittel': 'Delt fast bustad',

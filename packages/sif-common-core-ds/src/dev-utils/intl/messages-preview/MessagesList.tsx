@@ -1,6 +1,5 @@
-import { Alert, BodyShort, Button, HStack, Pagination, Tabs, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, HStack, Pagination, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import Block from '../../../atoms/block/Block';
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import { useTranslation } from './useTranslation';
 import './messagesList.scss';
@@ -140,33 +139,33 @@ const MessagesList = ({ messages }: Props) => {
                     <Tabs.Tab value="translate" label="Automatisk oversettelse" />
                 </Tabs.List>
                 <Tabs.Panel value="messages">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <MessagesTable messages={messages} nbOnly={false} />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNB">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <PlainMessageList messages={messages} locale="nb" />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNN">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <PlainMessageList messages={messages} locale="nn" />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="json" className="h-24 w-full bg-gray-50 p-4">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(messages, null, 2)}</pre>
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="translate" className="h-24 w-full bg-gray-50 p-4">
                     {numMessages > 120 ? (
-                        <Block margin="xl">
+                        <Box marginBlock="8">
                             <Alert variant="info">Det er for mange tekster til at en kan foreslå oversettelse</Alert>
-                        </Block>
+                        </Box>
                     ) : (
                         <>
-                            <Block margin="xl">
+                            <Box marginBlock="8">
                                 <Button
                                     variant="secondary"
                                     size="small"
@@ -178,11 +177,11 @@ const MessagesList = ({ messages }: Props) => {
                                     }}>
                                     Foreslå oversetting til nynorsk
                                 </Button>
-                            </Block>
+                            </Box>
                             {translation !== undefined ? (
-                                <Block margin="xl">
+                                <Box marginBlock="8">
                                     <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(translation, null, 2)}</pre>
-                                </Block>
+                                </Box>
                             ) : null}
                         </>
                     )}

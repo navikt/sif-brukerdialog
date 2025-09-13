@@ -1,4 +1,4 @@
-import '@navikt/ds-css';
+import '../src/app/app.css';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },

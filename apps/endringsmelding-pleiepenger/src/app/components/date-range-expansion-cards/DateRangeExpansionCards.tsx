@@ -1,7 +1,12 @@
-// DEPRECATED: Denne komponenten er utdatert og er erstattet av DateRanegeExpansionCard i komponentbiblioteket
-import { Accordion } from '@navikt/ds-react';
+import { ExpansionCard, VStack } from '@navikt/ds-react';
 import React from 'react';
-import { DateRange, dateRangeToISODateRange, getDateToday, isDateInDateRange } from '@navikt/sif-common-utils';
+import {
+    dateFormatter,
+    DateRange,
+    dateRangeToISODateRange,
+    getDateToday,
+    isDateInDateRange,
+} from '@navikt/sif-common-utils';
 
 type State = 'all' | 'none' | 'current';
 
@@ -23,7 +28,7 @@ const erÅpen = (periode: DateRange, defaultOpenState: State = 'none') => {
     }
 };
 
-function DateRangeAccordion<Type extends DateRange>({
+function DateRangeExpansionCards<Type extends DateRange>({
     dateRanges,
     defaultOpenState,
     renderContent,
@@ -34,23 +39,28 @@ function DateRangeAccordion<Type extends DateRange>({
             {dateRanges.length === 1 ? (
                 renderContent(dateRanges[0])
             ) : (
-                <Accordion className="w-full" size="medium">
+                <VStack gap="4">
                     {dateRanges.map((dateRange, index) => {
+                        const ariaLabel = `${dateFormatter.full(dateRange.from)} - ${dateFormatter.full(dateRange.to)}`;
                         return (
-                            <Accordion.Item
+                            <ExpansionCard
+                                size="small"
+                                aria-label={ariaLabel}
                                 key={dateRangeToISODateRange(dateRange)}
                                 data-testid={`dateRangeAccordion_${index}`}
                                 defaultOpen={erÅpen(dateRange, defaultOpenState)}>
-                                <Accordion.Header data-testid={`dateRangeAccordion_${index}_header`}>
-                                    {renderHeader(dateRange)}
-                                </Accordion.Header>
-                                <Accordion.Content>{renderContent(dateRange)}</Accordion.Content>
-                            </Accordion.Item>
+                                <ExpansionCard.Header data-testid={`dateRangeAccordion_${index}_header`}>
+                                    <ExpansionCard.Title size="small">{renderHeader(dateRange)}</ExpansionCard.Title>
+                                </ExpansionCard.Header>
+                                <ExpansionCard.Content data-color="accent">
+                                    {renderContent(dateRange)}
+                                </ExpansionCard.Content>
+                            </ExpansionCard>
                         );
                     })}
-                </Accordion>
+                </VStack>
             )}
         </>
     );
 }
-export default DateRangeAccordion;
+export default DateRangeExpansionCards;

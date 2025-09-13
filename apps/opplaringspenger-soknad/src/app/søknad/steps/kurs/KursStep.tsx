@@ -1,5 +1,4 @@
-import { Alert, Box, ReadMore, VStack } from '@navikt/ds-react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Alert, Box, ReadMore } from '@navikt/ds-react';
 import {
     FormikInputGroup,
     getIntlFormErrorHandler,
@@ -137,43 +136,39 @@ const KursStep = () => {
                                 submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="8">
-                                    <SifGuidePanel>
-                                        <p>
-                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
-                                        </p>
-                                        <p>
-                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
-                                        </p>
-                                        <GodkjentHelseinstitusjonInfo />
-                                    </SifGuidePanel>
+                                <FormLayout.Guide>
+                                    <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
 
-                                    <VStack gap="4">
-                                        <Combobox
-                                            name={KursFormFields.opplæringsinstitusjon}
-                                            allowNewValues={true}
-                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
-                                            options={institusjonsnavn}
-                                            shouldAutocomplete={false}
-                                            maxLength={90}
-                                            minLength={2}
-                                            isMultiSelect={false}
-                                            initialValue={values[KursFormFields.opplæringsinstitusjon]}
-                                            validate={getStringValidator({
-                                                required: true,
-                                                minLength: 2,
-                                                maxLength: 100,
-                                            })}
-                                            description={
-                                                <ReadMore
-                                                    header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
-                                                    <Box marginBlock="0 4">
-                                                        <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
-                                                    </Box>
-                                                </ReadMore>
-                                            }
-                                        />
-                                    </VStack>
+                                    <p>
+                                        <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
+                                    </p>
+                                    <GodkjentHelseinstitusjonInfo />
+                                </FormLayout.Guide>
+
+                                <FormLayout.Questions>
+                                    <Combobox
+                                        name={KursFormFields.opplæringsinstitusjon}
+                                        allowNewValues={true}
+                                        label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                        options={institusjonsnavn}
+                                        shouldAutocomplete={false}
+                                        maxLength={90}
+                                        minLength={2}
+                                        isMultiSelect={false}
+                                        initialValue={values[KursFormFields.opplæringsinstitusjon]}
+                                        validate={getStringValidator({
+                                            required: true,
+                                            minLength: 2,
+                                            maxLength: 100,
+                                        })}
+                                        description={
+                                            <ReadMore header={text('steg.kurs.opplæringsinstitusjon.readMore.header')}>
+                                                <Box marginBlock="0 4">
+                                                    <AppText id="steg.kurs.opplæringsinstitusjon.readMore.content" />
+                                                </Box>
+                                            </ReadMore>
+                                        }
+                                    />
 
                                     <FormikInputGroup
                                         id="kursperioder"
@@ -259,21 +254,23 @@ const KursStep = () => {
                                     />
 
                                     {skalOppholdeSegIUtlandetIPerioden && (
-                                        <UtenlandsoppholdListAndDialog<KursFormFields>
-                                            name={KursFormFields.utenlandsoppholdIPerioden}
-                                            minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
-                                            maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
-                                            variant="enkel"
-                                            labels={{
-                                                modalTitle: text('steg.kurs.utenlandsopphold.modalTitle'),
-                                                listTitle: text('steg.kurs.utenlandsopphold.listTitle'),
-                                                addLabel: text('steg.kurs.utenlandsopphold.addLabel'),
-                                            }}
-                                            disabledDateRanges={disabledDateRanges}
-                                            validate={getUtenlandsoppholdValidator(kursperioder)}
-                                        />
+                                        <FormLayout.Panel bleedTop={true}>
+                                            <UtenlandsoppholdListAndDialog<KursFormFields>
+                                                name={KursFormFields.utenlandsoppholdIPerioden}
+                                                minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
+                                                maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
+                                                variant="enkel"
+                                                labels={{
+                                                    modalTitle: text('steg.kurs.utenlandsopphold.modalTitle'),
+                                                    listTitle: text('steg.kurs.utenlandsopphold.listTitle'),
+                                                    addLabel: text('steg.kurs.utenlandsopphold.addLabel'),
+                                                }}
+                                                disabledDateRanges={disabledDateRanges}
+                                                validate={getUtenlandsoppholdValidator(kursperioder)}
+                                            />
+                                        </FormLayout.Panel>
                                     )}
-                                </VStack>
+                                </FormLayout.Questions>
                             </Form>
                         </>
                     );

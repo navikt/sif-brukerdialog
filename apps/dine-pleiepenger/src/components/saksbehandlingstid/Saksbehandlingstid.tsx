@@ -76,10 +76,10 @@ const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker 
 const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     return (
         <Box>
-            <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
+            <Heading size="medium" level="2" spacing={true}>
                 <AppText id="svarfrist.tittel" />
             </Heading>
-            <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded-xs">
+            <Box.New paddingBlock="4 6" paddingInline={'6'} borderRadius="large" background="info-moderateA">
                 <Box className="mb-4">
                     <SaksbehandlingstidMelding
                         frist={frist}
@@ -90,7 +90,7 @@ const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                     <AppText id="svarfrist.lesMerLenke" />
                 </Link>
-            </BodyShort>
+            </Box.New>
         </Box>
     );
 };

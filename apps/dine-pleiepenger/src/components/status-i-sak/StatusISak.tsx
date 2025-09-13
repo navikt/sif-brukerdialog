@@ -71,15 +71,17 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                 current={step.current}
                                 isLastStep={step.isLastStep}
                                 isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <Heading size="small" level="3" id={headingId} aria-hidden={true}>
-                                    {step.title}{' '}
-                                    {step.timestamp ? (
-                                        <BodyShort className="mb-2">
-                                            {formatSakshendelseTidspunkt(step.timestamp)}
-                                        </BodyShort>
-                                    ) : null}
-                                </Heading>
-                                {step.content}
+                                <VStack gap="1">
+                                    <Heading size="small" level="3" id={headingId} aria-hidden={true}>
+                                        {step.title}{' '}
+                                        {step.timestamp ? (
+                                            <BodyShort className="mb-2">
+                                                {formatSakshendelseTidspunkt(step.timestamp)}
+                                            </BodyShort>
+                                        ) : null}
+                                    </Heading>
+                                    <div>{step.content}</div>
+                                </VStack>
                             </ProcessStep>
                         );
                     })}

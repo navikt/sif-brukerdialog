@@ -16,7 +16,7 @@ const PageHeader: React.FunctionComponent<Props> = ({
     documentTitle,
 }) => {
     return (
-        <div className="bg-(--a-deepblue-50)">
+        <div>
             {documentTitle ? (
                 <Head>
                     <title>{documentTitle}</title>
@@ -30,13 +30,13 @@ const PageHeader: React.FunctionComponent<Props> = ({
                     <VStack gap="2">
                         {titleTag ? (
                             <HStack gap="4" align="center">
-                                <Heading size="large" level="1" className="text-deepblue-800 mr-4">
+                                <Heading size="large" level="1" className=" mr-4">
                                     {title}
                                 </Heading>
                                 <BodyShort as="div">{titleTag}</BodyShort>
                             </HStack>
                         ) : (
-                            <Heading size="large" level="1" className="text-deepblue-800">
+                            <Heading size="large" level="1">
                                 {title}
                             </Heading>
                         )}

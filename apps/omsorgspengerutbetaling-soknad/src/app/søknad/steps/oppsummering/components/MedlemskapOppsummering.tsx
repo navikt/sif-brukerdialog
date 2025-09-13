@@ -28,7 +28,6 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.medlemskap.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -84,6 +83,11 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

@@ -2,7 +2,6 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { ActionLink } from '@navikt/sif-common-ui';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
@@ -25,26 +24,24 @@ const InvalidStepPage = ({ stepId }: Props) => {
             topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <div style={{ paddingTop: '1rem' }}>
                 <SifGuidePanel poster={true} compact={true} mood="uncertain">
-                    <Heading level="2" size="medium">
+                    <Heading level="2" size="medium" spacing={true}>
                         <AppText id="page.invalidStepPage.tittel" />
                     </Heading>
-                    <Block margin="m" padBottom="l">
-                        <BodyShort as="div">
-                            <AppText id="page.invalidStepPage.tekst" />
-                            <p>
-                                <ActionLink
-                                    onClick={() => {
-                                        if (backLink) {
-                                            navigate(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${backLink}`);
-                                        } else {
-                                            history.go(-1);
-                                        }
-                                    }}>
-                                    <AppText id="page.invalidStepPage.tilbakeLenke" />
-                                </ActionLink>
-                            </p>
-                        </BodyShort>
-                    </Block>
+                    <BodyShort as="div">
+                        <AppText id="page.invalidStepPage.tekst" />
+                        <p>
+                            <ActionLink
+                                onClick={() => {
+                                    if (backLink) {
+                                        navigate(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${backLink}`);
+                                    } else {
+                                        history.go(-1);
+                                    }
+                                }}>
+                                <AppText id="page.invalidStepPage.tilbakeLenke" />
+                            </ActionLink>
+                        </p>
+                    </BodyShort>
                 </SifGuidePanel>
             </div>
         </Page>

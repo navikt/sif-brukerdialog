@@ -2,7 +2,7 @@
     "name": "@navikt/ungdomsytelse-deltaker",
     "type": "module",
     "private": true,
-    "version": "1.1.19",
+    "version": "1.2.0",
     "scripts": {
         "build": "vite build --base=/ungdomsprogrammet/ytelsen",
         "check:types": "tsc --noemit",
@@ -10,6 +10,7 @@
         "demo:build-app": "vite build --config vite.demo.config.ts",
         "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",
         "demo:start": "vite preview --base /ungdomsprogrammet/ytelsen/ --config vite.demo.config.ts",
+        "pw:run": "yarn playwright-test",
         "pw:build": "run-s pw:build-app demo:copy-app-files",
         "pw:build-app": "vite build --config vite.playwright.config.ts",
         "pw:start": "vite preview --base /ungdomsprogrammet/ytelsen/ --config vite.playwright.config.ts",

@@ -28,24 +28,6 @@ export const appMessagesNB = {
     'application.title.opplaringspenger': 'Ettersending av dokumentasjon til søknad om opplæringspenger',
 
     'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
-    'modal.personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
-    'modal.personopplysninger.2':
-        'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
-    'modal.personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
-    'modal.personopplysninger.4': 'Opplysningene vi innhenter kommer enten fra deg eller fra offentlige registre:',
-    'modal.personopplysninger.4.1': 'hvilke barn du er registrert som forelder til',
-    'modal.personopplysninger.4.1.pleiepengerLivetsSluttfase': 'opplysninger om helsen til den du skal pleie',
-    'modal.personopplysninger.4.2': 'opplysninger om barnets helse',
-    'modal.personopplysninger.4.3': 'arbeidsforholdene dine og inntekten din',
-    'modal.personopplysninger.4.4': 'ytelser du mottar fra Nav',
-    'modal.personopplysninger.4.5': 'tilknytningen din til Norge',
-    'modal.personopplysninger.4.6':
-        'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
-    'modal.personopplysninger.4.7':
-        'Vi lagrer opplysninger vi får inn om personen du søker pleiepenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre søker pleiepenger for samme person.',
-    'modal.personopplysninger.5.1': 'Vil du vite mer om hvordan Nav behandler personopplysninger? Se ',
-    'modal.personopplysninger.5.2': 'nav.no/personvern',
-    'modal.personopplysninger.5.3': '.',
 
     'modal.minePlikter.tittel': 'Mine plikter',
     'modal.minePlikter.part1': 'Jeg forstår at det kan få konsekvenser for retten min til {søknadstype} hvis jeg',

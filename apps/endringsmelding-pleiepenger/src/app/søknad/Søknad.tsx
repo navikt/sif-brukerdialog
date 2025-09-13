@@ -1,7 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { RequestStatus } from '@types';
@@ -14,6 +13,7 @@ import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const Søknad = () => {
     const location = useLocation();
@@ -46,9 +46,9 @@ const Søknad = () => {
             <ErrorPage
                 pageTitle="Det oppstod en feil"
                 contentRenderer={() => (
-                    <SifGuidePanel mood="uncertain">
+                    <FormLayout.Guide mood="uncertain">
                         Det oppstod en feil under henting av informasjon. Vennligst prøv igjen litt senere.
-                    </SifGuidePanel>
+                    </FormLayout.Guide>
                 )}
             />
         );

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
@@ -10,6 +9,8 @@ import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import omsorgstilbudInfo from './info/OmsorgstilbudInfo';
 import OmsorgstilbudSpørsmål from './OmsorgstilbudSpørsmål';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -30,17 +31,18 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps &
 
     return (
         <SøknadFormStep stepId={StepID.OMSORGSTILBUD} onValidFormSubmit={onValidSubmit}>
-            <Block padBottom="xl">{omsorgstilbudInfo.stepIntro}</Block>
+            <FormLayout.Guide>{omsorgstilbudInfo.stepIntro}</FormLayout.Guide>
+            <VStack gap="8">
+                <OmsorgstilbudSpørsmål
+                    periode={søknadsperiode}
+                    omsorgstilbud={omsorgstilbud}
+                    onOmsorgstilbudChanged={() => setOmsorgstilbudChanged(true)}
+                />
 
-            <OmsorgstilbudSpørsmål
-                periode={søknadsperiode}
-                omsorgstilbud={omsorgstilbud}
-                onOmsorgstilbudChanged={() => setOmsorgstilbudChanged(true)}
-            />
-
-            {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
-                <Block margin="xl">{omsorgstilbudInfo.advarselSøkerKunHelgedager}</Block>
-            )}
+                {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
+                    <div>{omsorgstilbudInfo.advarselSøkerKunHelgedager}</div>
+                )}
+            </VStack>
         </SøknadFormStep>
     );
 };

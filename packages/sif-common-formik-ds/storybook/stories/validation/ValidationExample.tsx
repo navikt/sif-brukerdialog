@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
-import { Panel } from '@navikt/ds-react';
-import * as React from 'react';
+import { Box, Panel } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import {
     getCheckedValidator,
@@ -248,9 +246,7 @@ const error = getDateValidator(options)(value);
                                 <Panel>
                                     <Form.DatePicker
                                         name={FormFields.dato}
-                                        label={
-                                            'Når startet du i arbeidslivet? Dersom dette var en lørdag eller søndag, velg påfølgende mandag.'
-                                        }
+                                        label="Når startet du i arbeidslivet? Dersom dette var en lørdag eller søndag, velg påfølgende mandag."
                                         dropdownCaption={true}
                                         validate={getDateValidator({
                                             required: true,
@@ -340,7 +336,7 @@ const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                         },
                                     }}
                                 />
-                                <Block margin="xl">
+                                <Box marginBlock="10 0">
                                     <ValidationErrorList
                                         title="Feilmeldinger - Sluttdato"
                                         errors={{
@@ -372,7 +368,7 @@ const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                             },
                                         }}
                                     />
-                                </Block>
+                                </Box>
                             </ValidationPanel>
                             <ValidationPanel
                                 title="Norsk fødselsnummer/D-nummer"
@@ -403,9 +399,7 @@ const error = getFødselsnummerValidator(options)(value);
                                     <Form.TextField
                                         name={FormFields.fødselsnummer}
                                         width="m"
-                                        description={
-                                            'Eksempelfødselsnummeret "19081988075" er ditt eget, og er ikke tillatt'
-                                        }
+                                        description='Eksempelfødselsnummeret "19081988075" er ditt eget, og er ikke tillatt'
                                         label="Hva er barnets fødselsnummer / D-nummer?"
                                         validate={getFødselsnummerValidator({
                                             required: true,

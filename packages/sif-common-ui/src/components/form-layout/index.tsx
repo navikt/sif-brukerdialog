@@ -1,30 +1,51 @@
-import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, Box, BoxNew, BoxNewProps, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
+import SifGuidePanel, {
+    SifGuidePanelProps,
+} from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 /**
- * FormSection
- * ----------------
- * Setter opp default spacing mellom innhold i en skjemaseksjon
- * gap=8
+ * Setter opp default spacing mellom sections
  */
 
-const Section = ({ title, children }: { title?: string; children?: React.ReactNode }) => {
+const Sections = ({ ...rest }: VStackProps) => <VStack gap="12" {...rest} />;
+
+/**
+ * Tittel og content i en seksjon
+ */
+
+type SectionProps = React.HTMLAttributes<HTMLElement> & {
+    title: React.ReactNode;
+    titleIcon?: React.ReactNode;
+    titleLevel?: '1' | '2' | '3';
+};
+
+const Section = ({ title, titleIcon, titleLevel = '2', children, ...rest }: SectionProps) => {
     return (
-        <VStack gap="4">
-            {title ? <SectionHeading>{title}</SectionHeading> : null}
-            <Questions>{children}</Questions>
-        </VStack>
+        <section {...rest}>
+            <SectionHeading level={titleLevel} size="medium" icon={titleIcon} spacing={true}>
+                {title}
+            </SectionHeading>
+            {children}
+        </section>
     );
 };
 
 /**
- * FormSectionHeading
- * ----------------
  * Header i en FormSection
  */
 
-const SectionHeading = ({ children }: { children?: React.ReactNode }) => (
-    <Heading level="2" size="medium">
-        {children}
+type SectionHeadingProps = { icon?: React.ReactNode } & HeadingProps;
+
+const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest }: SectionHeadingProps) => (
+    <Heading level={level} size={size} {...rest}>
+        {icon ? (
+            <HStack gap="4">
+                {icon}
+                {children}
+            </HStack>
+        ) : (
+            children
+        )}
     </Heading>
 );
 
@@ -45,14 +66,22 @@ export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) =>
 };
 
 /**
+ * Wrapper innhold og knytter det nærmere visuelt til foregående innhold vha Bleed
+ * @children Innholdet
+ */
+export const QuestionBleedBottom = ({ children }: { children: React.ReactNode }) => {
+    return <Bleed marginBlock="0 4">{children}</Bleed>;
+};
+
+/**
  * Questions
  * ----------------
  * Setter opp default spacing mellom innhold
  * gap=8
  */
 
-export const Questions = ({ children }: { children: React.ReactNode }) => {
-    return <VStack gap="8">{children}</VStack>;
+export const Questions = ({ ...rest }: VStackProps) => {
+    return <VStack gap="8" {...rest} />;
 };
 
 /**
@@ -60,18 +89,50 @@ export const Questions = ({ children }: { children: React.ReactNode }) => {
  * @param param0
  * @returns
  */
-const Panel = ({ children }: { children: React.ReactNode }) => {
+
+type PanelProps = { bleedTop?: boolean } & BoxNewProps;
+
+const Panel = ({ bleedTop, ...rest }: PanelProps) => {
+    const content = (
+        <BoxNew
+            borderColor="neutral-subtle"
+            background="neutral-soft"
+            borderRadius="8"
+            borderWidth="1"
+            padding={{ xs: '2', sm: '4', md: '6' }}
+            {...rest}
+        />
+    );
+    return bleedTop ? <QuestionBleedTop>{content}</QuestionBleedTop> : content;
+};
+
+type StepGuideWrapperProps = { children: React.ReactNode } & React.HTMLAttributes<HTMLElement>;
+
+const StepGuideWrapper = ({ children, ...rest }: StepGuideWrapperProps) => {
     return (
-        <Box padding="6" paddingBlock="6" style={{ backgroundColor: 'var(--a-gray-50)' }} borderRadius="medium">
+        <Box marginBlock="0 12" {...rest}>
             {children}
         </Box>
     );
 };
+
+const Guide = (props: SifGuidePanelProps) => {
+    return (
+        <StepGuideWrapper>
+            <SifGuidePanel {...props} />
+        </StepGuideWrapper>
+    );
+};
+
 export const FormLayout = {
+    Guide,
     Panel,
-    QuestionRelatedMessage,
     QuestionBleedTop,
+    QuestionBleedBottom,
+    QuestionRelatedMessage,
     Questions,
     Section,
     SectionHeading,
+    Sections,
+    StepGuideWrapper,
 };

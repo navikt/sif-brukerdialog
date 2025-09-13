@@ -1,7 +1,5 @@
 import { Alert } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     DateRange,
     FormikYesOrNoQuestion,
@@ -33,6 +31,7 @@ import {
     getTidsromSøknadsdataFromFormValues,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
@@ -112,7 +111,7 @@ const TidsromStep = () => {
                                 submitDisabled={pleierDuDenSykeHjemme === YesOrNo.NO || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
@@ -126,14 +125,11 @@ const TidsromStep = () => {
                                     <p>
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.3" />
                                     </p>
-                                </SifGuidePanel>
-
-                                <FormBlock>
+                                </FormLayout.Guide>
+                                <FormLayout.Questions>
                                     <DagerMedPleieFormPart />
-                                </FormBlock>
-                                {periode && (
-                                    <>
-                                        <FormBlock>
+                                    {periode && (
+                                        <>
                                             <FormikYesOrNoQuestion
                                                 legend={text(
                                                     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm',
@@ -154,18 +150,15 @@ const TidsromStep = () => {
                                                     </ExpandableInfo>
                                                 }
                                             />
-                                        </FormBlock>
-                                        {pleierDuDenSykeHjemme === YesOrNo.NO && (
-                                            <FormBlock>
+
+                                            {pleierDuDenSykeHjemme === YesOrNo.NO && (
                                                 <Alert variant="warning">
                                                     <AppText id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
                                                 </Alert>
-                                            </FormBlock>
-                                        )}
+                                            )}
 
-                                        {pleierDuDenSykeHjemme === YesOrNo.YES && (
-                                            <>
-                                                <FormBlock>
+                                            {pleierDuDenSykeHjemme === YesOrNo.YES && (
+                                                <>
                                                     <YesOrNoQuestion
                                                         legend={text('steg.tidsrom.skalJobbeIPerioden.spm')}
                                                         name={TidsromFormFields.skalJobbeOgPleieSammeDag}
@@ -187,48 +180,47 @@ const TidsromStep = () => {
                                                             </ExpandableInfo>
                                                         }
                                                     />
-                                                </FormBlock>
-                                                <FormBlock>
                                                     <YesOrNoQuestion
                                                         legend={text('steg.tidsrom.iUtlandetIPerioden.spm')}
                                                         name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                         validate={getYesOrNoValidator()}
                                                     />
-                                                </FormBlock>
-                                                {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                                                    <FormBlock>
-                                                        <UtenlandsoppholdListAndDialog<TidsromFormFields>
-                                                            name={TidsromFormFields.utenlandsoppholdIPerioden}
-                                                            minDate={periode.from}
-                                                            maxDate={periode.to}
-                                                            variant="enkel"
-                                                            labels={{
-                                                                modalTitle: text(
-                                                                    'steg.tidsrom.iUtlandetIPerioden.modalTitle',
-                                                                ),
-                                                                listTitle: text(
-                                                                    'steg.tidsrom.iUtlandetIPerioden.listTitle',
-                                                                ),
-                                                                addLabel: text(
-                                                                    'steg.tidsrom.iUtlandetIPerioden.addLabel',
-                                                                ),
-                                                            }}
-                                                            validate={
-                                                                periode
-                                                                    ? (opphold: UtenlandsoppholdEnkel[]) =>
-                                                                          validateUtenlandsoppholdIPerioden(
-                                                                              periode,
-                                                                              opphold,
-                                                                          )
-                                                                    : undefined
-                                                            }
-                                                        />
-                                                    </FormBlock>
-                                                )}
-                                            </>
-                                        )}
-                                    </>
-                                )}
+
+                                                    {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
+                                                        <FormLayout.Panel bleedTop={true}>
+                                                            <UtenlandsoppholdListAndDialog<TidsromFormFields>
+                                                                name={TidsromFormFields.utenlandsoppholdIPerioden}
+                                                                minDate={periode.from}
+                                                                maxDate={periode.to}
+                                                                variant="enkel"
+                                                                labels={{
+                                                                    modalTitle: text(
+                                                                        'steg.tidsrom.iUtlandetIPerioden.modalTitle',
+                                                                    ),
+                                                                    listTitle: text(
+                                                                        'steg.tidsrom.iUtlandetIPerioden.listTitle',
+                                                                    ),
+                                                                    addLabel: text(
+                                                                        'steg.tidsrom.iUtlandetIPerioden.addLabel',
+                                                                    ),
+                                                                }}
+                                                                validate={
+                                                                    periode
+                                                                        ? (opphold: UtenlandsoppholdEnkel[]) =>
+                                                                              validateUtenlandsoppholdIPerioden(
+                                                                                  periode,
+                                                                                  opphold,
+                                                                              )
+                                                                        : undefined
+                                                                }
+                                                            />
+                                                        </FormLayout.Panel>
+                                                    )}
+                                                </>
+                                            )}
+                                        </>
+                                    )}
+                                </FormLayout.Questions>
                             </Form>
                         </>
                     );

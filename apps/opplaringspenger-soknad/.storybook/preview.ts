@@ -1,4 +1,4 @@
-import '@navikt/ds-css';
+import '@navikt/ds-css/darkside';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },

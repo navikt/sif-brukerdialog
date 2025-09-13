@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
@@ -11,6 +10,7 @@ import {
 } from '@navikt/sif-validation';
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './i18n';
 import { Fosterbarn, isFosterbarn } from './types';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface FosterbarnFormText {
     form_fødselsnummer_label: string;
@@ -85,13 +85,13 @@ const FosterbarnForm = ({
                         formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fosterbarnForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
-                        <Form.TextField
-                            name={FosterbarnFormField.navn}
-                            label={txt.form_navn_label}
-                            validate={getStringValidator({ required: true })}
-                        />
+                        <FormLayout.Questions>
+                            <Form.TextField
+                                name={FosterbarnFormField.navn}
+                                label={txt.form_navn_label}
+                                validate={getStringValidator({ required: true })}
+                            />
 
-                        <FormBlock>
                             <Form.TextField
                                 name={FosterbarnFormField.fødselsnummer}
                                 label={txt.form_fødselsnummer_label}
@@ -105,7 +105,7 @@ const FosterbarnForm = ({
                                 inputMode="numeric"
                                 maxLength={11}
                             />
-                        </FormBlock>
+                        </FormLayout.Questions>
                     </Form.Form>
                 )}
             />

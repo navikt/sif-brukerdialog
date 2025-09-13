@@ -31,7 +31,6 @@ const AnnenForelderSituasjonOppsummering = ({ annenForelder, onEdit }: Props) =>
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.annenForelderensSituasjon.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -78,6 +77,12 @@ const AnnenForelderSituasjonOppsummering = ({ annenForelder, onEdit }: Props) =>
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

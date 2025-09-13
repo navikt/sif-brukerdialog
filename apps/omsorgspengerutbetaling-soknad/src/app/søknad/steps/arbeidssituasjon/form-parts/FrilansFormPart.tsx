@@ -1,5 +1,4 @@
 import { Link } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { datepickerUtils, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -9,6 +8,7 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -58,50 +58,44 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
                 data-testid="frilans_erFrilanser"
             />
             {erFrilanser && (
-                <FormBlock margin="l">
-                    <>
-                        <FormBlock margin="none">
+                <FormLayout.Panel bleedTop={true}>
+                    <FormLayout.Questions>
+                        <DatePicker
+                            name={ArbeidssituasjonFormFields.frilans_startdato}
+                            label={text('frilanser.nårStartet.spm')}
+                            dropdownCaption={true}
+                            minDate={startetDateRange.from}
+                            maxDate={startetDateRange.to}
+                            validate={getDateValidator({
+                                required: true,
+                                min: startetDateRange.from,
+                                max: startetDateRange.to,
+                            })}
+                            data-testid="frilans_startdato"
+                        />
+                        <YesOrNoQuestion
+                            name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
+                            legend={text('frilanser.jobberFortsatt.spm')}
+                            validate={getYesOrNoValidator()}
+                            data-testid="frilans_jobberFortsattSomFrilans"
+                        />
+                        {harSluttetSomFrilanser && (
                             <DatePicker
-                                name={ArbeidssituasjonFormFields.frilans_startdato}
-                                label={text('frilanser.nårStartet.spm')}
+                                name={ArbeidssituasjonFormFields.frilans_sluttdato}
+                                label={text('frilanser.nårSluttet.spm')}
                                 dropdownCaption={true}
-                                minDate={startetDateRange.from}
-                                maxDate={startetDateRange.to}
+                                minDate={sluttetDateRange.from}
+                                maxDate={sluttetDateRange.to}
                                 validate={getDateValidator({
                                     required: true,
-                                    min: startetDateRange.from,
-                                    max: startetDateRange.to,
+                                    min: sluttetDateRange.from,
+                                    max: sluttetDateRange.to,
                                 })}
-                                data-testid="frilans_startdato"
+                                data-testid="frilans_sluttdato"
                             />
-                        </FormBlock>
-                        <FormBlock>
-                            <YesOrNoQuestion
-                                name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
-                                legend={text('frilanser.jobberFortsatt.spm')}
-                                validate={getYesOrNoValidator()}
-                                data-testid="frilans_jobberFortsattSomFrilans"
-                            />
-                        </FormBlock>
-                        {harSluttetSomFrilanser && (
-                            <FormBlock>
-                                <DatePicker
-                                    name={ArbeidssituasjonFormFields.frilans_sluttdato}
-                                    label={text('frilanser.nårSluttet.spm')}
-                                    dropdownCaption={true}
-                                    minDate={sluttetDateRange.from}
-                                    maxDate={sluttetDateRange.to}
-                                    validate={getDateValidator({
-                                        required: true,
-                                        min: sluttetDateRange.from,
-                                        max: sluttetDateRange.to,
-                                    })}
-                                    data-testid="frilans_sluttdato"
-                                />
-                            </FormBlock>
                         )}
-                    </>
-                </FormBlock>
+                    </FormLayout.Questions>
+                </FormLayout.Panel>
             )}
         </>
     );

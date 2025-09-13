@@ -1,4 +1,3 @@
-import { Box } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -10,12 +9,11 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
+import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
-import DineBarnStepIntro from './parts/DineBarnStepIntro';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -55,13 +53,13 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             submitDisabled={isSubmitting}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <DineBarnStepIntro />
+            <FormLayout.Guide>
+                <AppText id="step.dineBarn.intro.tekst" />
+            </FormLayout.Guide>
 
-            <Box paddingBlock="8 0">
-                <RegistrerteBarnListe.Heading level="2" size="medium">
-                    {text('step.dineBarn.seksjonsTittel')}
-                </RegistrerteBarnListe.Heading>
-            </Box>
+            <RegistrerteBarnListe.Heading level="2" size="medium" spacing>
+                {text('step.dineBarn.seksjonsTittel')}
+            </RegistrerteBarnListe.Heading>
 
             <FormikInputGroup
                 legend={text('step.dineBarn.seksjonsTittel')}
@@ -73,31 +71,29 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                         return 'ingenBarn';
                     }
                 }}>
-                <Box paddingBlock="4 6">
+                <FormLayout.Questions>
                     <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
-                </Box>
 
-                <FormikYesOrNoQuestion
-                    name={DineBarnFormFields.harDeltBosted}
-                    legend={text('step.dineBarn.harDeltBosted.spm')}
-                    validate={getYesOrNoValidator()}
-                    description={
-                        <ExpandableInfo title={text('step.dineBarn.harDeltBosted.info.tittel')}>
-                            <p>
-                                <AppText id="step.dineBarn.harDeltBosted.info.tekst" />
-                            </p>
-                        </ExpandableInfo>
-                    }
-                />
+                    <FormikYesOrNoQuestion
+                        name={DineBarnFormFields.harDeltBosted}
+                        legend={text('step.dineBarn.harDeltBosted.spm')}
+                        validate={getYesOrNoValidator()}
+                        description={
+                            <ExpandableInfo title={text('step.dineBarn.harDeltBosted.info.tittel')}>
+                                <p>
+                                    <AppText id="step.dineBarn.harDeltBosted.info.tekst" />
+                                </p>
+                            </ExpandableInfo>
+                        }
+                    />
 
-                <Box paddingBlock="4">
                     <AndreBarnPart
                         harRegistrerteBarn={registrerteBarn.length > 0}
                         søkerFnr={søker.fødselsnummer}
                         andreBarn={andreBarn}
                         onAndreBarnChange={oppdatereAndreBarn}
                     />
-                </Box>
+                </FormLayout.Questions>
             </FormikInputGroup>
         </Form>
     );

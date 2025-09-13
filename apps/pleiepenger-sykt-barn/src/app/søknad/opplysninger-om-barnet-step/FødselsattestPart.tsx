@@ -2,7 +2,6 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { useFormikContext } from 'formik';
 import { persist } from '../../api/api';
 import { AppText } from '../../i18n';
@@ -29,13 +28,15 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
     useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
     return (
-        <>
+        <div>
             <Heading level="2" size="medium" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
                 {text('steg.omBarnet.fødselsattest.tittel')}
             </Heading>
-            <Block margin="m">
+
+            <p>
                 <AppText id="steg.omBarnet.fødselsattest.info" />
-            </Block>
+            </p>
+
             <FormikFileUpload
                 fieldName={SøknadFormField.fødselsattest}
                 initialFiles={fødselsattester}
@@ -45,7 +46,7 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
             />
-        </>
+        </div>
     );
 };
 

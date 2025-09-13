@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
+import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import AnnetBarnPart from '../../components/barn-form-parts/AnnetBarnPart';
-import RegistrertBarnPart from '../../components/barn-form-parts/RegistrertBarnPart';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -32,12 +32,13 @@ const BarnStep = ({ søknadstype, søkersFødselsnummer, registrertBarn }: Props
 
     return (
         <SoknadFormStep id={StepID.BARN} søknadstype={søknadstype}>
-            <FormBlock>
+            <FormLayout.Questions>
                 <RegistrertBarnPart registrertBarn={registrertBarn} />
-            </FormBlock>
-            {(gjelderEtAnnetBarn || !harRegistrerteBarn) && (
-                <AnnetBarnPart søkersFødselsnummer={søkersFødselsnummer} harRegistrerteBarn={harRegistrerteBarn} />
-            )}
+
+                {(gjelderEtAnnetBarn || !harRegistrerteBarn) && (
+                    <AnnetBarnPart søkersFødselsnummer={søkersFødselsnummer} harRegistrerteBarn={harRegistrerteBarn} />
+                )}
+            </FormLayout.Questions>
         </SoknadFormStep>
     );
 };

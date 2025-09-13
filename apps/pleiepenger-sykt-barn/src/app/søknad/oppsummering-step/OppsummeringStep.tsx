@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
@@ -46,6 +44,7 @@ import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import './oppsummeringStep.less';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     values: SøknadFormValues;
@@ -164,20 +163,17 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
+                        <FormLayout.Guide>
+                            <p>
+                                <AppText id="steg.oppsummering.info" />
+                            </p>
+                        </FormLayout.Guide>
                         <VStack gap="8">
-                            <SifGuidePanel>
-                                <p>
-                                    <AppText id="steg.oppsummering.info" />
-                                </p>
-                            </SifGuidePanel>
-
                             {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
-                                <FormBlock>
-                                    <ApiValidationSummary
-                                        errors={apiValuesValidationErrors}
-                                        søknadStepConfig={søknadStepConfig}
-                                    />
-                                </FormBlock>
+                                <ApiValidationSummary
+                                    errors={apiValuesValidationErrors}
+                                    søknadStepConfig={søknadStepConfig}
+                                />
                             )}
 
                             <SøkerSummary søker={søkerdata.søker} />
@@ -250,11 +246,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 name={SøknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />
-                        </VStack>
 
-                        <div aria-live="polite">
-                            {invalidParameters && <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />}
-                        </div>
+                            <div aria-live="polite">
+                                {invalidParameters && (
+                                    <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
+                                )}
+                            </div>
+                        </VStack>
                     </SøknadFormStep>
                 );
             }}

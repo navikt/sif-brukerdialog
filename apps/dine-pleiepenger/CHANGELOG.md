@@ -1,5 +1,16 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.0
+
 ## 1.9.49
 
 ### Patch Changes

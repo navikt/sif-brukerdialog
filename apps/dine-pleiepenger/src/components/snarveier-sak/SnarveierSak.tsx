@@ -4,7 +4,7 @@ import { browserEnv } from '../../utils/env';
 
 const SnarveierSak = () => (
     <>
-        <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
+        <Heading size="medium" level="2" spacing={true}>
             <AppText id="snarveierSak.tittel" />
         </Heading>
         <HGrid gap="2" columns={{ xs: 1, md: 3 }}>

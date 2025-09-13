@@ -4,7 +4,6 @@ const helmet = require('helmet');
 const server = express();
 const søknader = require('./mockdata/soknader.json');
 const saker = require('./mockdata/saker.json');
-// const saker = require('./mockdata/saker-ettersendelse-case.json');
 
 server.use(express.json());
 

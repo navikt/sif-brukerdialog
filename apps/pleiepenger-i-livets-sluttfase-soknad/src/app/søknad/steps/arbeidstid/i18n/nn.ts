@@ -8,6 +8,10 @@ export const arbeidstidMessages_nn: Record<keyof typeof arbeidstidMessages_nb, s
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagane du søkjer for, kva situasjon gjeld for deg {hvor}?',
+    'arbeidIPeriode.jobberIPerioden.accordionHeader': 'Timar med jobb {når}',
+    'arbeidIPeriode.jobberIPerioden.accordionHeader.dagerTag':
+        'Jobbar {dagerMedArbeid} av {tilgjengeligeDager, plural, one {# dag} other {# dagar}}',
+    'arbeidIPeriode.jobberIPerioden.ingenJobbInfo': 'Du treng ikkje fylle ut noko for dagar du ikkje skal jobbe.',
     'arbeidIPeriode.enkeltdager_gruppe.legend':
         'Oppgje kor mykje du jobbar {hvor} i dei dagane du søkjer pleiepengar for.',
     'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Eg jobbar ikkje noko dei dagane eg pleier',

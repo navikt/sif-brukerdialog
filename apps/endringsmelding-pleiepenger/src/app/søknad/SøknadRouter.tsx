@@ -1,10 +1,8 @@
-import { Button } from '@navikt/ds-react';
+import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { fetchSøkerId } from '@navikt/sif-common-api';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
@@ -26,6 +24,7 @@ import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -141,14 +140,14 @@ const SøknadRouter = () => {
 const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: () => void }) => {
     appSentryLogger.logError('ukjentPath', pathname);
     return (
-        <SifGuidePanel mood="uncertain">
-            Oops, det oppstod en feil.
-            <FormBlock>
+        <FormLayout.Guide mood="uncertain">
+            <VStack gap="6">
+                <BodyShort>Oops, det oppstod en feil.</BodyShort>
                 <Button type="button" onClick={onReset}>
                     Start på nytt
                 </Button>
-            </FormBlock>
-        </SifGuidePanel>
+            </VStack>
+        </FormLayout.Guide>
     );
 };
 

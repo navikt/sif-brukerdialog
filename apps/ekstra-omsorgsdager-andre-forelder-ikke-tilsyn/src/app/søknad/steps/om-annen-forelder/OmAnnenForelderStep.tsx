@@ -1,5 +1,4 @@
 import { List, VStack } from '@navikt/ds-react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
@@ -82,51 +81,49 @@ const OmAnnenForelderStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <VStack gap="8">
-                                    <SifGuidePanel>
-                                        {text('step.omAnnenForelder.sifGuidePanel')}
-                                        <List>
-                                            <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</List.Item>
-                                            <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</List.Item>
-                                        </List>
-                                    </SifGuidePanel>
-                                    <FormLayout.Questions>
-                                        <TextField
-                                            name={OmAnnenForelderFormFields.annenForelderFnr}
-                                            label={text('step.omAnnenForelder.fnr.spm')}
-                                            validate={getFødselsnummerValidator({
+                                <FormLayout.Guide>
+                                    {text('step.omAnnenForelder.sifGuidePanel')}
+                                    <List>
+                                        <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</List.Item>
+                                        <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</List.Item>
+                                    </List>
+                                </FormLayout.Guide>
+                                <FormLayout.Questions>
+                                    <TextField
+                                        name={OmAnnenForelderFormFields.annenForelderFnr}
+                                        label={text('step.omAnnenForelder.fnr.spm')}
+                                        validate={getFødselsnummerValidator({
+                                            required: true,
+                                            allowHnr: isDevMode(),
+                                            disallowedValues: [søker.fødselsnummer],
+                                        })}
+                                        inputMode="numeric"
+                                        maxLength={11}
+                                        minLength={11}
+                                        style={{ maxWidth: '20rem' }}
+                                    />
+                                    <TextField
+                                        name={OmAnnenForelderFormFields.annenForelderNavn}
+                                        label={text('step.omAnnenForelder.navn.spm')}
+                                        validate={(value) => {
+                                            const error = getStringValidator({
                                                 required: true,
-                                                allowHnr: isDevMode(),
-                                                disallowedValues: [søker.fødselsnummer],
-                                            })}
-                                            inputMode="numeric"
-                                            maxLength={11}
-                                            minLength={11}
-                                            style={{ maxWidth: '20rem' }}
-                                        />
-                                        <TextField
-                                            name={OmAnnenForelderFormFields.annenForelderNavn}
-                                            label={text('step.omAnnenForelder.navn.spm')}
-                                            validate={(value) => {
-                                                const error = getStringValidator({
-                                                    required: true,
-                                                    minLength: 2,
-                                                    maxLength: 50,
-                                                })(value);
-                                                return error
-                                                    ? {
-                                                          key: error,
-                                                          values: {
-                                                              min: 2,
-                                                              maks: 50,
-                                                          },
-                                                      }
-                                                    : undefined;
-                                            }}
-                                            style={{ maxWidth: '20rem' }}
-                                        />
-                                    </FormLayout.Questions>
-                                </VStack>
+                                                minLength: 2,
+                                                maxLength: 50,
+                                            })(value);
+                                            return error
+                                                ? {
+                                                      key: error,
+                                                      values: {
+                                                          min: 2,
+                                                          maks: 50,
+                                                      },
+                                                  }
+                                                : undefined;
+                                        }}
+                                        style={{ maxWidth: '20rem' }}
+                                    />
+                                </FormLayout.Questions>
                             </Form>
                         </VStack>
                     );

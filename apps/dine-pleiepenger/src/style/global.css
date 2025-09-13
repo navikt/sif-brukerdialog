@@ -41,9 +41,6 @@
     border: none;
 }
 
-.navds-heading {
-    color: var(--a-deepblue-800);
-}
-.navds-alert .navds-heading {
-    color: var(--a-gray-900);
+.aksel-heading {
+    color: var(--ax-text-info);
 }

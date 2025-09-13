@@ -21,7 +21,6 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSÃ
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.pleietrengende.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -84,6 +83,11 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSÃ
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };
