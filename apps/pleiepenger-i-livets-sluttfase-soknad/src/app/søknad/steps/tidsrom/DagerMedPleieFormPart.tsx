@@ -1,5 +1,4 @@
-import { BodyLong } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box } from '@navikt/ds-react';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import { DaySelector } from '@navikt/sif-common-ui';
 import { getMonthsInDates, sortDates } from '@navikt/sif-common-utils';
@@ -42,22 +41,18 @@ const DagerMedPleieFormPart = () => {
                     return sd.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}
                 description={
-                    <Block margin="m">
-                        <BodyLong>
-                            <AppText id="dagerMedPleie.info.1" />
-                        </BodyLong>
-                    </Block>
+                    <Box paddingBlock="2">
+                        <AppText id="dagerMedPleie.info.1" />
+                    </Box>
                 }>
-                <div>
-                    <Block margin="l">
-                        <DaySelector
-                            dateRange={periode}
-                            selectedDates={selectedDates}
-                            onChange={handleOnChange}
-                            reverseOrder={true}
-                        />
-                    </Block>
-                </div>
+                <Box paddingBlock="2 0">
+                    <DaySelector
+                        dateRange={periode}
+                        selectedDates={selectedDates}
+                        onChange={handleOnChange}
+                        reverseOrder={true}
+                    />
+                </Box>
             </FormikInputGroup>
         </>
     );

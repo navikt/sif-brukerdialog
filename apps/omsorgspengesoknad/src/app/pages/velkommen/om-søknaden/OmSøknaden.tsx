@@ -1,9 +1,8 @@
 import { Accordion, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 
 const OmSøknaden = () => {
-    const { text } = useAppIntl();
     return (
         <VStack gap="4">
             <Box>
@@ -24,9 +23,11 @@ const OmSøknaden = () => {
                 </List>
             </Box>
 
-            <Accordion>
+            <Accordion data-color="accent">
                 <Accordion.Item>
-                    <Accordion.Header>{text('page.velkommen.personopplysninger.tittel')}</Accordion.Header>
+                    <Accordion.Header>
+                        <AppText id="page.velkommen.personopplysninger.tittel" />
+                    </Accordion.Header>
                     <Accordion.Content>
                         <VStack gap="2">
                             <div>

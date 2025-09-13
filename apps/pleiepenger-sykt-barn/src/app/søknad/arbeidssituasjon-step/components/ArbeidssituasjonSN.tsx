@@ -1,14 +1,11 @@
 import { Alert, Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
-import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
@@ -19,6 +16,7 @@ import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormValues, ValidationError>();
 
@@ -41,27 +39,26 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
     });
 
     return (
-        <div data-testid="arbeidssituasjonSelvstendig">
-            <Block margin="l">
-                <ArbSNFormComponents.YesOrNoQuestion
-                    name={SelvstendigFormField.harHattInntektSomSN}
-                    legend={text('selvstendig.harDuHattInntekt.spm')}
-                    validate={getYesOrNoValidator()}
-                    description={
-                        <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
-                            <>
-                                <AppText id="selvstendig.harDuHattInntekt.hjelpetekst" />{' '}
-                                <Link href={urlSkatteetatenSN} target="_blank">
-                                    <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
-                                </Link>
-                            </>
-                        </ExpandableInfo>
-                    }
-                />
-            </Block>
+        <FormLayout.Questions data-testid="arbeidssituasjonSelvstendig">
+            <ArbSNFormComponents.YesOrNoQuestion
+                name={SelvstendigFormField.harHattInntektSomSN}
+                legend={text('selvstendig.harDuHattInntekt.spm')}
+                validate={getYesOrNoValidator()}
+                description={
+                    <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
+                        <>
+                            <AppText id="selvstendig.harDuHattInntekt.hjelpetekst" />{' '}
+                            <Link href={urlSkatteetatenSN} target="_blank">
+                                <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
+                            </Link>
+                        </>
+                    </ExpandableInfo>
+                }
+            />
+
             {harHattInntektSomSN === YesOrNo.YES && (
-                <FormBlock margin="l">
-                    <ResponsivePanel border={true}>
+                <FormLayout.Panel bleedTop={true}>
+                    <FormLayout.Questions>
                         <ArbSNFormComponents.YesOrNoQuestion
                             name={SelvstendigFormField.harFlereVirksomheter}
                             data-testid="har-flere-virksomheter"
@@ -71,65 +68,59 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                         />
 
                         {søkerHarFlereVirksomheter && (
-                            <FormBlock>
+                            <FormLayout.QuestionRelatedMessage>
                                 <Alert variant="info">
                                     <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
                                 </Alert>
-                            </FormBlock>
+                            </FormLayout.QuestionRelatedMessage>
                         )}
 
                         {(harFlereVirksomheter === YesOrNo.YES || harFlereVirksomheter === YesOrNo.NO) && (
-                            <FormBlock>
-                                <div id={SelvstendigFormField.virksomhet} tabIndex={-1}>
-                                    <VirksomhetInfoAndDialog
-                                        name={SelvstendigFormField.virksomhet}
-                                        harFlereVirksomheter={søkerHarFlereVirksomheter}
-                                        labels={{
-                                            infoTitle: virksomhet
-                                                ? text('selvstendig.infoDialog.infoTittel')
-                                                : undefined,
-                                            editLabel: text('selvstendig.infoDialog.endreKnapp'),
-                                            deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
-                                            addLabel: text('selvstendig.infoDialog.registrerKnapp'),
-                                            modalTitle: harFlereVirksomheter
-                                                ? text('selvstendig.infoDialog.tittel.flere')
-                                                : text('selvstendig.infoDialog.tittel.en'),
-                                        }}
-                                        validate={(value) => {
-                                            if (getRequiredFieldValidator()(value) !== undefined) {
-                                                return getRequiredFieldValidator()(value);
-                                            }
-                                            return getSelvstendigIPeriodeValidator(søknadsperiode, virksomhet);
-                                        }}
-                                    />
-                                </div>
-                            </FormBlock>
+                            <div id={SelvstendigFormField.virksomhet} tabIndex={-1}>
+                                <VirksomhetInfoAndDialog
+                                    name={SelvstendigFormField.virksomhet}
+                                    harFlereVirksomheter={søkerHarFlereVirksomheter}
+                                    labels={{
+                                        infoTitle: virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
+                                        editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                                        deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                                        addLabel: text('selvstendig.infoDialog.registrerKnapp'),
+                                        modalTitle: harFlereVirksomheter
+                                            ? text('selvstendig.infoDialog.tittel.flere')
+                                            : text('selvstendig.infoDialog.tittel.en'),
+                                    }}
+                                    validate={(value) => {
+                                        if (getRequiredFieldValidator()(value) !== undefined) {
+                                            return getRequiredFieldValidator()(value);
+                                        }
+                                        return getSelvstendigIPeriodeValidator(søknadsperiode, virksomhet);
+                                    }}
+                                />
+                            </div>
                         )}
                         {virksomhet !== undefined && (
-                            <FormBlock>
-                                <ArbSNFormComponents.NumberInput
-                                    label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
-                                    name={
-                                        `${SelvstendigFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
-                                    }
-                                    description={<InfoArbeiderNormaltTimerSN />}
-                                    width="xs"
-                                    validate={getArbeiderNormaltTimerIUkenValidator({
-                                        ...intlValues,
-                                    })}
-                                    maxLength={5}
-                                    value={
-                                        arbeidsforhold?.normalarbeidstid
-                                            ? arbeidsforhold.normalarbeidstid.timerPerUke || ''
-                                            : ''
-                                    }
-                                />
-                            </FormBlock>
+                            <ArbSNFormComponents.NumberInput
+                                label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
+                                name={
+                                    `${SelvstendigFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                }
+                                description={<InfoArbeiderNormaltTimerSN />}
+                                width="xs"
+                                validate={getArbeiderNormaltTimerIUkenValidator({
+                                    ...intlValues,
+                                })}
+                                maxLength={5}
+                                value={
+                                    arbeidsforhold?.normalarbeidstid
+                                        ? arbeidsforhold.normalarbeidstid.timerPerUke || ''
+                                        : ''
+                                }
+                            />
                         )}
-                    </ResponsivePanel>
-                </FormBlock>
+                    </FormLayout.Questions>
+                </FormLayout.Panel>
             )}
-        </div>
+        </FormLayout.Questions>
     );
 };
 

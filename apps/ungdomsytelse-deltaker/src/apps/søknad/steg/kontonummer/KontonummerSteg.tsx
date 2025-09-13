@@ -1,4 +1,4 @@
-import { Alert, BodyLong, BodyShort, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Heading, Radio, RadioGroup } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -12,6 +12,7 @@ import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
 import { Spørsmål, Steg } from '../../types';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();
@@ -35,17 +36,17 @@ const KontonummerSteg = () => {
 
     return (
         <SøknadSteg tittel={text('kontonummerSteg.tittel')} steg={Steg.KONTONUMMER}>
+            <FormLayout.Guide>
+                <AppText id="kontonummerSteg.beskrivelse" />
+            </FormLayout.Guide>
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
                     handleOnSubmit();
                 }}>
-                <VStack gap="8">
-                    <GuidePanel>
-                        <AppText id="kontonummerSteg.beskrivelse" />
-                    </GuidePanel>
+                <FormLayout.Questions>
                     {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
-                        <VStack gap="4">
+                        <>
                             <RadioGroup
                                 legend={text('kontonummerSteg.kontonummer.spm', {
                                     kontonummer: kontonummerInfo.formatertKontonummer,
@@ -64,25 +65,27 @@ const KontonummerSteg = () => {
                                 </Radio>
                             </RadioGroup>
                             <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
-                                <Alert variant="info">
-                                    <BodyShort spacing>
-                                        <AppText
-                                            id="kontonummerSteg.kontonummer.stemmerIkke.info"
-                                            values={{
-                                                Lenke: (children) => (
-                                                    <ExternalLink href={getLenker().personopplysninger}>
-                                                        {children}
-                                                    </ExternalLink>
-                                                ),
-                                            }}
-                                        />
-                                    </BodyShort>
-                                    <BodyShort>
-                                        <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
-                                    </BodyShort>
-                                </Alert>
+                                <FormLayout.QuestionRelatedMessage>
+                                    <Alert variant="info">
+                                        <BodyShort spacing>
+                                            <AppText
+                                                id="kontonummerSteg.kontonummer.stemmerIkke.info"
+                                                values={{
+                                                    Lenke: (children) => (
+                                                        <ExternalLink href={getLenker().personopplysninger}>
+                                                            {children}
+                                                        </ExternalLink>
+                                                    ),
+                                                }}
+                                            />
+                                        </BodyShort>
+                                        <BodyShort>
+                                            <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
+                                        </BodyShort>
+                                    </Alert>
+                                </FormLayout.QuestionRelatedMessage>
                             </AriaLiveRegion>
-                        </VStack>
+                        </>
                     )}
                     {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                         <Alert variant="warning">
@@ -125,7 +128,7 @@ const KontonummerSteg = () => {
                         </Alert>
                     )}
                     <SkjemaFooter submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }} />
-                </VStack>
+                </FormLayout.Questions>
             </form>
         </SøknadSteg>
     );

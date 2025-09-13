@@ -1,6 +1,4 @@
-import { Alert, HStack, Heading, Tag } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, Box, HStack, Heading, Tag } from '@navikt/ds-react';
 import {
     DateRange,
     TypedFormikFormContext,
@@ -10,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getTimeValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
+import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
     durationToDecimalDuration,
@@ -27,7 +25,7 @@ import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
-import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -117,12 +115,21 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <HStack gap="4" align="center">
-                <div style={{ minWidth: '10rem' }} className="capitalize">
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
+                <div style={{ minWidth: '10rem' }}>
+                    <AppText
+                        id="arbeidIPeriode.jobberIPerioden.accordionHeader"
+                        values={{ når: dayjs(month).format('MMMM YYYY') }}
+                    />
                 </div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
-                        Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
+                        <AppText
+                            id="arbeidIPeriode.jobberIPerioden.accordionHeader.dagerTag"
+                            values={{
+                                dagerMedArbeid: numDatesInMonthWithDuration,
+                                tilgjengeligeDager: enabledDatesInMonth,
+                            }}
+                        />
                     </Tag>
                 )}
             </HStack>
@@ -130,18 +137,20 @@ const ArbeidIPeriodeSpørsmål = ({
     };
     const renderMonthHeaderNoAccordion = (month: Date) => {
         return (
-            <>
-                <Heading size="small" level="3" spacing={true}>
-                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
-                </Heading>
-            </>
+            <Heading size="small" level="3" spacing={true}>
+                <AppText
+                    id="arbeidIPeriode.jobberIPerioden.accordionHeader"
+                    values={{ når: dayjs(month).format('MMMM YYYY') }}
+                />
+                :
+            </Heading>
         );
     };
 
     const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
-        <>
+        <FormLayout.Questions>
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
@@ -152,7 +161,7 @@ const ArbeidIPeriodeSpørsmål = ({
             )}
 
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
-                <FormBlock>
+                <FormLayout.Panel bleedTop={!skjulJobberNormaltValg}>
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
@@ -171,18 +180,16 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            <Block margin="l">
-                                <Alert variant="info" inline={true}>
-                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
-                                </Alert>
-                            </Block>
+                            <Alert variant="info" inline={true} className="mt-4">
+                                <AppText id="arbeidIPeriode.jobberIPerioden.ingenJobbInfo" />
+                            </Alert>
                         }>
-                        <div style={{ marginTop: '1.5rem' }}>
+                        <Box paddingBlock="4 0">
                             <DurationWeekdaysInput
                                 dateRange={periode}
                                 disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
                                 formikFieldName={fieldName}
-                                useAccordion={useAccordion}
+                                useExpansionCards={useAccordion}
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(value: any, date: Date) => {
@@ -200,11 +207,11 @@ const ArbeidIPeriodeSpørsmål = ({
                                     return undefined;
                                 }}
                             />
-                        </div>
+                        </Box>
                     </InputGroup>
-                </FormBlock>
+                </FormLayout.Panel>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

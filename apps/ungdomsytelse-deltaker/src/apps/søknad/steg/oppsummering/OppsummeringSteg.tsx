@@ -56,7 +56,7 @@ const OppsummeringSteg = () => {
 
     return (
         <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
-            <VStack gap="6">
+            <VStack gap="8">
                 <VStack gap="4">
                     <FormSummary>
                         <FormSummary.Header>
@@ -80,14 +80,6 @@ const OppsummeringSteg = () => {
                             <FormSummary.Heading level="2">
                                 <AppText id="oppsummeringSteg.kontonummer.tittel" />
                             </FormSummary.Heading>
-                            <FormSummary.EditLink
-                                href="#"
-                                onClick={(evt) => {
-                                    evt.preventDefault();
-                                    evt.stopPropagation();
-                                    gotoSteg(Steg.KONTONUMMER);
-                                }}
-                            />
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
@@ -126,20 +118,22 @@ const OppsummeringSteg = () => {
                                 </FormSummary.Answer>
                             )}
                         </FormSummary.Answers>
+                        <FormSummary.Footer>
+                            <FormSummary.EditLink
+                                href="#"
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+                                    evt.stopPropagation();
+                                    gotoSteg(Steg.KONTONUMMER);
+                                }}
+                            />
+                        </FormSummary.Footer>
                     </FormSummary>
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2">
                                 <AppText id="oppsummeringSteg.barn.tittel" />
                             </FormSummary.Heading>
-                            <FormSummary.EditLink
-                                href="#"
-                                onClick={(evt) => {
-                                    evt.preventDefault();
-                                    evt.stopPropagation();
-                                    gotoSteg(Steg.BARN);
-                                }}
-                            />
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             <FormSummary.Answer>
@@ -170,6 +164,16 @@ const OppsummeringSteg = () => {
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                         </FormSummary.Answers>
+                        <FormSummary.Footer>
+                            <FormSummary.EditLink
+                                href="#"
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+                                    evt.stopPropagation();
+                                    gotoSteg(Steg.BARN);
+                                }}
+                            />
+                        </FormSummary.Footer>
                     </FormSummary>
                 </VStack>
 

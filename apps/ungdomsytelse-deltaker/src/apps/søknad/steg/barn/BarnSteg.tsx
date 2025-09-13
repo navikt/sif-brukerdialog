@@ -1,7 +1,7 @@
-import { Alert, BodyLong, GuidePanel, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
+import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
 import { AppText, useAppIntl } from '../../../../i18n';
@@ -34,75 +34,70 @@ const BarnSteg = () => {
 
     return (
         <SøknadSteg tittel={text('barnSteg.tittel')} steg={Steg.BARN}>
-            <VStack gap="8">
-                <GuidePanel>
-                    <AppText id="barnSteg.beskrivelse" />
-                </GuidePanel>
+            <FormLayout.Guide>
+                <AppText id="barnSteg.beskrivelse" />
+            </FormLayout.Guide>
 
-                <form
-                    onSubmit={(evt) => {
-                        evt.preventDefault();
-                        handleOnSubmit();
-                    }}>
-                    <VStack gap="8">
-                        <VStack gap="4">
-                            <RegistrerteBarnListeHeading level="2" size="xsmall">
-                                {text('barnSteg.registrerteBarn.tittel')}
-                            </RegistrerteBarnListeHeading>
+            <form
+                onSubmit={(evt) => {
+                    evt.preventDefault();
+                    handleOnSubmit();
+                }}>
+                <FormLayout.Questions>
+                    <VStack gap="4">
+                        <RegistrerteBarnListeHeading level="2" size="xsmall">
+                            {text('barnSteg.registrerteBarn.tittel')}
+                        </RegistrerteBarnListeHeading>
 
-                            <BarnInfo barn={barn} />
-                        </VStack>
-                        <VStack gap="4">
-                            <RadioGroup
-                                legend={text(
-                                    barn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn',
-                                    {
-                                        antallBarn: barn.length,
-                                    },
-                                )}
-                                error={error}
-                                value={infoStemmer}
-                                onChange={(value: YesOrNo) => {
-                                    setError(undefined);
-                                    setSpørsmålSvar(Spørsmål.BARN, value);
-                                }}>
-                                <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
-                                    <AppText id="barnSteg.barnStemmer.ja.label" />
-                                </Radio>
-                                <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
-                                    <AppText id="barnSteg.barnStemmer.nei.label" />
-                                </Radio>
-                            </RadioGroup>
-                            <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
-                                <Alert variant="info">
-                                    <Heading level="3" size="small" spacing>
-                                        <AppText id="barnSteg.opplysninger.info.tittel" />
-                                    </Heading>
-                                    <BodyLong>
-                                        <AppText
-                                            id="barnSteg.opplysninger.info.text"
-                                            values={{
-                                                Lenke: (children) => (
-                                                    <ExternalLink href={getLenker().skatteetaten}>
-                                                        {children}
-                                                    </ExternalLink>
-                                                ),
-                                            }}
-                                        />
-                                    </BodyLong>
-                                </Alert>
-                            </AriaLiveRegion>
-                        </VStack>
-                        <SkjemaFooter
-                            forrige={{
-                                tittel: text('søknadApp.forrigeSteg.label'),
-                                onClick: () => gotoSteg(Steg.KONTONUMMER),
-                            }}
-                            submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }}
-                        />
+                        <BarnInfo barn={barn} />
                     </VStack>
-                </form>
-            </VStack>
+
+                    <RadioGroup
+                        legend={text(barn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn', {
+                            antallBarn: barn.length,
+                        })}
+                        error={error}
+                        value={infoStemmer}
+                        onChange={(value: YesOrNo) => {
+                            setError(undefined);
+                            setSpørsmålSvar(Spørsmål.BARN, value);
+                        }}>
+                        <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
+                            <AppText id="barnSteg.barnStemmer.ja.label" />
+                        </Radio>
+                        <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
+                            <AppText id="barnSteg.barnStemmer.nei.label" />
+                        </Radio>
+                    </RadioGroup>
+                    <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
+                        <FormLayout.QuestionRelatedMessage>
+                            <Alert variant="info">
+                                <Heading level="3" size="small" spacing>
+                                    <AppText id="barnSteg.opplysninger.info.tittel" />
+                                </Heading>
+                                <BodyLong>
+                                    <AppText
+                                        id="barnSteg.opplysninger.info.text"
+                                        values={{
+                                            Lenke: (children) => (
+                                                <ExternalLink href={getLenker().skatteetaten}>{children}</ExternalLink>
+                                            ),
+                                        }}
+                                    />
+                                </BodyLong>
+                            </Alert>
+                        </FormLayout.QuestionRelatedMessage>
+                    </AriaLiveRegion>
+
+                    <SkjemaFooter
+                        forrige={{
+                            tittel: text('søknadApp.forrigeSteg.label'),
+                            onClick: () => gotoSteg(Steg.KONTONUMMER),
+                        }}
+                        submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }}
+                    />
+                </FormLayout.Questions>
+            </form>
         </SøknadSteg>
     );
 };

@@ -3,7 +3,7 @@ import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { Alert, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, Link, VStack } from '@navikt/ds-react';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';
@@ -48,9 +48,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
 
     return (
         <>
-            <Heading level="2" size="medium">
-                <AppText id="steg.arbeidssituasjon.sn.tittel" />
-            </Heading>
             <VStack gap="3">
                 <YesOrNoQuestion
                     name={SelvstendigFormFields.harHattInntektSomSN}

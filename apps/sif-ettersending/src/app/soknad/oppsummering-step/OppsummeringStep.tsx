@@ -2,25 +2,21 @@ import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { FormLayout, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
-import { DokumentType } from '../../types/DokumentType';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
 import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
+import { inkluderDokumentTypeSteg, StepID } from '../soknadStepsConfig';
 import './oppsummeringStep.css';
 
 interface Props {
@@ -48,6 +44,8 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
         resetSendSøknadStatus();
     });
 
+    const brukerHarValgtDokumenttype = inkluderDokumentTypeSteg(søknadstype);
+
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}
@@ -58,10 +56,11 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
             isFinalSubmit={true}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <AppText id="steg.oppsummering.info" />
-            </SifGuidePanel>
-            <Block margin="xl">
+            </FormLayout.Guide>
+
+            <VStack gap="8">
                 <div data-testid="oppsummering">
                     <VStack gap="8">
                         <FormSummary>
@@ -98,13 +97,15 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                                     </FormSummary.Label>
                                     <FormSummary.Value>{apiValues.ytelseTittel}</FormSummary.Value>
                                 </FormSummary.Answer>
-                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                {brukerHarValgtDokumenttype && (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
                                             <AppText id="steg.oppsummering.dokumentType.header" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <AppText id="steg.oppsummering.dokumentType.legeerklæring" />
+                                            <AppText
+                                                id={`steg.oppsummering.dokumentType.${apiValues.ettersendelsesType}`}
+                                            />
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}
@@ -170,30 +171,28 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                         </FormSummary>
                     </VStack>
                 </div>
-            </Block>
 
-            <Block margin="l">
                 <SoknadFormComponents.ConfirmationCheckbox
                     label={<span data-testid="bekreft-label">{text('steg.oppsummering.bekrefterOpplysninger')}</span>}
                     name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />
-            </Block>
 
-            {isFailure(sendSoknadStatus.status) && (
-                <FormBlock>
-                    {sendSoknadStatus.failures === 1 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
-                        </Alert>
-                    )}
-                    {sendSoknadStatus.failures === 2 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
-                        </Alert>
-                    )}
-                </FormBlock>
-            )}
+                {isFailure(sendSoknadStatus.status) && (
+                    <>
+                        {sendSoknadStatus.failures === 1 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
+                            </Alert>
+                        )}
+                        {sendSoknadStatus.failures === 2 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
+                            </Alert>
+                        )}
+                    </>
+                )}
+            </VStack>
         </SoknadFormStep>
     );
 };

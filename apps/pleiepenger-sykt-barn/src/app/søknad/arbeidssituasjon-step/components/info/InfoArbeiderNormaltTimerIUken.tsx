@@ -1,7 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../../i18n';
 import { Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
@@ -75,34 +74,31 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
     return (
         <>
             {mottarOmsorgsstønadFosterhjemsgodtgjørelse && (
-                <BodyShort spacing={false}>
+                <BodyShort spacing={true}>
                     <AppText id="arbeidsforhold.frilanser.normalTimer.frilans.omsorgsstønad" />
                 </BodyShort>
             )}
-            <Block margin="m">
-                <ExpandableInfo title={text('arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
-                    <p>
-                        <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.1`} />
-                    </p>
-                    <p>
-                        <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.2`} />
-                    </p>
-                    {frilanstype === Frilanstype.FRILANS_HONORAR && (
-                        <>
-                            <p>
-                                <strong>
-                                    <AppText
-                                        id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.3`}
-                                    />
-                                </strong>
-                            </p>
-                            <p>
-                                <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.4`} />
-                            </p>
-                        </>
-                    )}
-                </ExpandableInfo>
-            </Block>
+
+            <ExpandableInfo title={text('arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
+                <p>
+                    <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.1`} />
+                </p>
+                <p>
+                    <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.2`} />
+                </p>
+                {frilanstype === Frilanstype.FRILANS_HONORAR && (
+                    <>
+                        <p>
+                            <strong>
+                                <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.3`} />
+                            </strong>
+                        </p>
+                        <p>
+                            <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.4`} />
+                        </p>
+                    </>
+                )}
+            </ExpandableInfo>
         </>
     );
 };

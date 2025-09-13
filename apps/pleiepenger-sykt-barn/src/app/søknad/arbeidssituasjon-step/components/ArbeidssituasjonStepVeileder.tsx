@@ -1,9 +1,8 @@
 import React from 'react';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { AppText } from '../../../i18n';
 
 const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (
-    <SifGuidePanel>
+    <>
         <p>
             <AppText id="steg.arbeidssituasjon.veileder.1" />
         </p>
@@ -16,7 +15,7 @@ const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (
         <p>
             <AppText id="steg.arbeidssituasjon.veileder.3" />
         </p>
-    </SifGuidePanel>
+    </>
 );
 
 export default ArbeidssituasjonStepVeileder;

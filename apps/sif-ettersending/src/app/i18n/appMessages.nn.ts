@@ -20,34 +20,16 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
         'Ettersending av dokumentasjon til søknad om pleiepengar i livets sluttfase',
     'application.title.omsorgspenger': 'Ettersending av dokumentasjon for omsorgspengar',
     'application.title.ekstraomsorgsdager':
-        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
+        'Ettersending av dokumentasjon til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'application.title.utbetaling':
-        'Ettersending av dokumentasjon  - Søknad om utbetaling av omsorgspengar for sjølvstendig næringsdrivande og frilansarar',
+        'Ettersending av dokumentasjon til søknad om utbetaling av omsorgspengar for sjølvstendig næringsdrivande og frilansarar',
     'application.title.utbetalingarbeidstaker':
-        'Ettersending av dokumentasjon - Søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje betaler ut',
+        'Ettersending av dokumentasjon til søknad om utbetaling av omsorgspengar når arbeidsgjevar ikkje betaler ut',
     'application.title.regnetsomalene':
-        'Ettersending av dokumentasjon - Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
-    'application.title.opplaringspenger': 'Søknad om opplæringspengar',
+        'Ettersending av dokumentasjon til søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barnet',
+    'application.title.opplaringspenger': 'Ettersending av dokumentasjon til søknad om opplæringspengar',
 
     'modal.personopplysninger.dialogtittel': 'Slik handsamar Nav personopplysningane dine',
-    'modal.personopplysninger.1': 'Slik handsamar Nav personopplysningane dine',
-    'modal.personopplysninger.2':
-        'Me  innhentar og mottek opplysningar om deg for å handsame saka di. Det er naudsynt for at du skal få rett teneste. Delar av saka di kan bli handsama automatisk.',
-    'modal.personopplysninger.3': 'Kva opplysningar hentar vi inn?',
-    'modal.personopplysninger.4': 'Opplysningane vi hentar inn kjem anten frå deg eller frå offentlege register:',
-    'modal.personopplysninger.4.1': 'kva barn du er registrert som forelder til',
-    'modal.personopplysninger.4.1.pleiepengerLivetsSluttfase': 'opplysningar om helsa til den du skal pleie',
-    'modal.personopplysninger.4.2': 'opplysninger om barnet si helse',
-    'modal.personopplysninger.4.3': 'arbeidsforholda dine og inntekta di',
-    'modal.personopplysninger.4.4': 'ytingar du mottar frå Nav',
-    'modal.personopplysninger.4.5': 'tilknytinga di til Noreg',
-    'modal.personopplysninger.4.6':
-        'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
-    'modal.personopplysninger.4.7':
-        'Me lagrar opplysningar me får inn om personen du søkjer pleiepengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre søkjer pleiepengar for same person.',
-    'modal.personopplysninger.5.1': 'Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå ',
-    'modal.personopplysninger.5.2': 'nav.no/personvern',
-    'modal.personopplysninger.5.3': '.',
 
     'modal.minePlikter.tittel': 'Mine plikter',
     'modal.minePlikter.part1': 'Eg forstår at det kan få konsekvensar for retten min til {søknadstype} dersom eg',
@@ -74,7 +56,7 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
 
     'step.dokumentType.stepTitle': 'Kva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Kva skal du ettersende?',
-    'step.dokumentType.nextButtonLabel': 'Fortset',
+
     'step.dokumentType.info': 'Her skildrar du kva dokumentasjon du skal sende oss.',
     'step.dokumentType.info.1':
         'Dersom ein annan søkjar har sendt inn same dokumentasjon for barnet i perioden du søkjer, treng du ikkje sende inn denne på nytt.',
@@ -83,32 +65,35 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'step.dokumentType.info.3': 'For andre førespurnader, send oss ei melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Kva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
-    'step.dokumentType.registrertBarnPart.spm': 'Vel barnet ettersendinga gjeld',
-    'step.dokumentType.registrertBarnPart.spm.description':
-        'Vi må vite kva barn ettersendinga gjeld, for å kunne knyte dokumentet til rett sak',
-    'step.dokumentType.registrertBarnPart.hvilketBarn.født': 'Fødd {dato}',
-    'step.dokumentType.barn.info.tittel': 'Hugs søknad, også ved forlengingar',
-    'step.dokumentType.barn.info.1.1':
-        'For å handsame saka di om pleiepengar må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjeld òg ved forlengingar.',
-    'step.dokumentType.barn.info.lenke': 'søknad om pleiepengar for sjukt barn',
-    'step.dokumentType.gjelderAnnetBarn': 'Ettersending gjeld eit anna barn',
-    'step.dokumentType.annetBarn.tittel': 'Anna barn',
-    'step.dokumentType.annetBarn.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
-    'step.dokumentType.annetBarn.fnr.spm.description': 'Vi må vite dette for å knyte dokumentet til rett sak',
-    'steg.dokumentType.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
+    'step.dokumentType.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
     'step.dokumentType.dokumentType.ANNET': 'Anna',
     'step.dokumentType.annet.info.1': 'Har vi bede om meir dokumentasjon frå deg?',
     'step.dokumentType.annet.info.2':
         'Ved sida av legeerklæring, er det berre naudsynt å ettersende meir dokumentasjon dersom ein sakshandsamar har bede om noko konkret frå deg.',
 
+    'step.barn.stepTitle': 'Kva barn gjeld ettersendinga?',
+    'step.barn.stepIndicatorLabel': 'Kva barn gjeld ettersendinga?',
+
+    'formPart.registrertBarn.spm': 'Vel barnet ettersendinga gjeld',
+    'formPart.registrertBarn.spm.description':
+        'Vi må vite kva barn ettersendinga gjeld, for å kunne knyte dokumentet til rett sak',
+    'formPart.registrertBarn.hvilketBarn.født': 'Fødd {dato}',
+    'step.dokumentType.barn.info.tittel': 'Hugs søknad, også ved forlengingar',
+    'step.dokumentType.barn.info.1.1':
+        'For å handsame saka di om pleiepengar må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjeld òg ved forlengingar.',
+    'step.dokumentType.barn.info.lenke': 'søknad om pleiepengar for sjukt barn',
+    'formPart.registrertBarn.gjelderAnnetBarn': 'Ettersending gjeld eit anna barn',
+    'formPart.annetBarn.tittel': 'Anna barn',
+    'formPart.annetBarn.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
+    'formPart.annetBarn.fnr.spm.description': 'Vi må vite dette for å knyte dokumentet til rett sak',
+    'formPart.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
+
     'step.omsorgspenger_type.stepTitle': 'Kva skal du ettersende til?',
     'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspengar type',
-    'step.omsorgspenger_type.nextButtonLabel': 'Fortset',
     'step.omsorgspenger_type.søknadstype.spm': 'Kva gjeld denne ettersendinga?',
 
     'step.dokumenter.stepTitle': 'No skal du laste opp dokumenta dine',
     'step.dokumenter.stepIndicatorLabel': 'Last opp dokument',
-    'step.dokumenter.nextButtonLabel': 'Fortset',
     'steg.dokumenter.vedlegg': 'Last opp dokument',
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokument, må du anten ta bilete av dokumenta eller skanne dei.',
@@ -132,7 +117,9 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
     'steg.oppsummering.barn.harIkkefnr': 'Barnet har ikkje fødselsnummer/D-nummer',
     'steg.oppsummering.hvaGjelder.header': 'Kva gjeld ettersendinga?',
     'steg.oppsummering.dokumentType.header': 'Kva skal du ettersende?',
-    'steg.oppsummering.dokumentType.legeerklæring': 'Legeerklæring og andre medisinske opplysningar',
+    'steg.oppsummering.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysningar',
+    'steg.oppsummering.dokumentType.KURSINFORMASJON': 'Informasjon om kurs',
+    'steg.oppsummering.dokumentType.ANNET': 'Annen informasjon',
     'steg.oppsummering.dokumenter.header': 'Dokument',
     'steg.oppsummering.bekrefterOpplysninger':
         'Eg stadfestar at opplysningane eg har gjeve er rette, og at eg ikkje har halde tilbake opplysningar som har noko å seie for saka mi. ',

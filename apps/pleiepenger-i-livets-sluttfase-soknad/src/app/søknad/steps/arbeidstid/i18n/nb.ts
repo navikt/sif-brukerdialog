@@ -9,6 +9,10 @@ export const arbeidstidMessages_nb = {
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
+    'arbeidIPeriode.jobberIPerioden.accordionHeader': 'Timer med jobb {når}',
+    'arbeidIPeriode.jobberIPerioden.accordionHeader.dagerTag':
+        'Jobber {dagerMedArbeid} av {tilgjengeligeDager, plural, one {# dag} other {# dager}}',
+    'arbeidIPeriode.jobberIPerioden.ingenJobbInfo': 'Du trenger ikke fylle ut noe for dager du ikke skal jobbe.',
     'arbeidIPeriode.enkeltdager_gruppe.legend': 'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
     'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg pleier',
     'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',

@@ -30,24 +30,22 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
     }
 
     return (
-        <>
-            <VelgBarnFormPart
-                name={SoknadFormField.registrertBarnAktørId}
-                legend={text('step.dokumentType.registrertBarnPart.spm')}
-                description={
-                    <p>
-                        <AppText id="step.dokumentType.registrertBarnPart.spm.description" />
-                    </p>
-                }
-                registrerteBarn={registrertBarn}
-                validate={validateRegistrertBarnAktørId}
-                inkluderAnnetBarn={true}
-                annetBarnOptions={{
-                    value: VelgBarn_AnnetBarnValue,
-                    label: text('step.dokumentType.gjelderAnnetBarn'),
-                }}
-            />
-        </>
+        <VelgBarnFormPart
+            name={SoknadFormField.registrertBarnAktørId}
+            legend={text('formPart.registrertBarn.spm')}
+            description={
+                <p>
+                    <AppText id="formPart.registrertBarn.spm.description" />
+                </p>
+            }
+            registrerteBarn={registrertBarn}
+            validate={validateRegistrertBarnAktørId}
+            inkluderAnnetBarn={true}
+            annetBarnOptions={{
+                value: VelgBarn_AnnetBarnValue,
+                label: text('formPart.registrertBarn.gjelderAnnetBarn'),
+            }}
+        />
     );
 };
 

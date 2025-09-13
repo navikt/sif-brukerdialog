@@ -1,12 +1,14 @@
-import { Panel, PanelProps } from '@navikt/ds-react';
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import classNames from 'classnames';
-import './responsivePanel.less';
+import { BoxNew, BoxNewProps } from '@navikt/ds-react';
 
-const bem = bemUtils('responsivePanel');
-
-const ResponsivePanel = ({ className, ...rest }: PanelProps) => (
-    <Panel className={classNames(bem.block, className)} {...rest} />
+const ResponsivePanel = ({ ...rest }: BoxNewProps & any) => (
+    <BoxNew
+        borderColor="neutral-subtle"
+        background="neutral-soft"
+        borderRadius="8"
+        borderWidth="1"
+        padding={{ xs: '2', sm: '4', md: '6' }}
+        {...rest}
+    />
 );
 
 export default ResponsivePanel;

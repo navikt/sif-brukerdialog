@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SoknadErrorMessages from '../../components/soknad-error-messages/SoknadErrorMessages';
 import SoknadHeader from '../../components/soknad-header/SoknadHeader';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
+import { Box } from '@navikt/ds-react';
 
 interface Props {
     pageTitle?: string;
@@ -16,9 +16,9 @@ const ErrorPage = ({ contentRenderer, pageTitle, bannerTitle }: Props) => {
         <Page
             title={pageTitle || text('@soknad.errorPage.defaultTitle')}
             topContentRenderer={() => <SoknadHeader title={bannerTitle || text('application.title')} />}>
-            <Block margin="xxxl">
+            <Box marginBlock="12 0">
                 {contentRenderer ? contentRenderer() : <SoknadErrorMessages.GeneralApplicationError />}
-            </Block>
+            </Box>
         </Page>
     );
 };

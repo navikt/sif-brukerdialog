@@ -1,7 +1,6 @@
-import { Checkbox, Heading, Panel, Tabs, VStack } from '@navikt/ds-react';
+import { Checkbox, Heading, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import {
     getIntlFormErrorHandler,
@@ -18,6 +17,7 @@ import { isVirksomhet, Næringstype, Virksomhet } from '../types';
 import VirksomhetForm from '../VirksomhetForm';
 import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
 import VirksomhetSummary from '../VirksomhetSummary';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     'virksomhet' = 'virksomhet',
@@ -96,26 +96,24 @@ const VirksomhetExample = () => {
                                 );
                             }}
                         />
-                        <Block margin="m">
-                            <Checkbox
-                                checked={harFlereVirksomheter}
-                                onChange={(evt) => setHarFlereVirksomheter(evt.currentTarget.checked)}>
-                                Bruker har flere virksomheter
-                            </Checkbox>
-                        </Block>
+
+                        <Checkbox
+                            checked={harFlereVirksomheter}
+                            onChange={(evt) => setHarFlereVirksomheter(evt.currentTarget.checked)}>
+                            Bruker har flere virksomheter
+                        </Checkbox>
+
                         {apiVirksomhet && (
                             <>
-                                <Block margin="xxl" padBottom="l">
-                                    <Heading level="2" size="medium">
-                                        Oppsummering av api data
-                                    </Heading>
-                                </Block>
-                                <Panel border={true}>
+                                <Heading level="2" size="medium" spacing={true}>
+                                    Oppsummering av api data
+                                </Heading>
+                                <FormLayout.Panel>
                                     <VirksomhetSummary
                                         virksomhet={apiVirksomhet}
                                         harFlereVirksomheter={harFlereVirksomheter}
                                     />
-                                </Panel>
+                                </FormLayout.Panel>
                             </>
                         )}
                     </VStack>

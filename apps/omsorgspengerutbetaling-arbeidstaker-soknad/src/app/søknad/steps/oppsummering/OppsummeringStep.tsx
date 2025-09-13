@@ -1,7 +1,6 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
@@ -50,7 +49,7 @@ const OppsummeringStep = () => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
 
-    const { goBack } = useStepNavigation(step);
+    const { goBack, gotoStep } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -102,7 +101,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <div data-testid="oppsummering">
+                        <VStack gap="8" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -121,6 +120,7 @@ const OppsummeringStep = () => {
                                         barn={apiData.dineBarn.barn}
                                         harDeltBosted={søknadsdata.dineBarn?.harDeltBosted}
                                         registrerteBarn={registrerteBarn}
+                                        onEdit={() => gotoStep(StepId.DINE_BARN)}
                                     />
 
                                     {/* Delt bosted */}
@@ -128,6 +128,7 @@ const OppsummeringStep = () => {
                                         <DeltBostedOppsummering
                                             vedlegg={apiData.vedlegg}
                                             deltBostedSøknadsdata={søknadsdata.deltBosted}
+                                            onEdit={() => gotoStep(StepId.DELT_BOSTED)}
                                         />
                                     ) : null}
 
@@ -135,18 +136,26 @@ const OppsummeringStep = () => {
                                     <ArbeidsforholdSummaryView
                                         listeAvArbeidsforhold={apiData.arbeidsgivere}
                                         søknadsdata={søknadsdata}
+                                        onEdit={() => gotoStep(StepId.SITUASJON)}
                                     />
 
                                     {/* Utenlandsopphold */}
-                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
-
-                                    {/* Medlemskap i folketrygden */}
-                                    <MedlemskapOppsummering bosteder={apiData.bosteder} />
+                                    <UtenlandsoppholdISøkeperiodeOppsummering
+                                        utenlandsopphold={apiData.opphold}
+                                        onEdit={() => gotoStep(StepId.FRAVÆR)}
+                                    />
 
                                     {/* Vedlegg */}
                                     <LegeerklæringOppsummering
                                         vedlegg={apiData.vedlegg}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        onEdit={() => gotoStep(StepId.LEGEERKLÆRING)}
+                                    />
+
+                                    {/* Medlemskap i folketrygden */}
+                                    <MedlemskapOppsummering
+                                        bosteder={apiData.bosteder}
+                                        onEdit={() => gotoStep(StepId.MEDLEMSKAP)}
                                     />
 
                                     <ConfirmationCheckbox
@@ -162,13 +171,11 @@ const OppsummeringStep = () => {
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
+                                <ErrorSummary ref={sendSøknadErrorSummary}>
+                                    <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                </ErrorSummary>
                             )}
-                        </div>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

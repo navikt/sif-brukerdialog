@@ -1,6 +1,5 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
@@ -15,6 +14,7 @@ import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørs
 import ArbeidssituasjonPanel from './arbeidssituasjon-panel/ArbeidssituasjonPanel';
 import { AppText } from '../../../i18n';
 import { getFeatureToggles } from '../../../utils/featureToggleUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
@@ -45,18 +45,16 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                         />
                     )
                 }>
-                <FormBlock>
+                <FormLayout.Questions>
                     <ErAnsattIArbeidsforholdSpørsmål
                         fieldName={getFieldName(ArbeidsforholdFormField.erAnsatt)}
                         arbeidsforhold={arbeidsforhold}
                     />
-                </FormBlock>
 
-                {arbeidsforhold.erAnsatt !== undefined && (
-                    <FormBlock margin="l">
-                        <VStack gap="8">
+                    {arbeidsforhold.erAnsatt !== undefined && (
+                        <>
                             {arbeidsforhold.erAnsatt === YesOrNo.NO && (
-                                <>
+                                <FormLayout.QuestionBleedTop>
                                     <Alert variant="info">
                                         <AppText id="arbeidsforhold.ikkeAnsatt.info" />
                                     </Alert>
@@ -67,7 +65,7 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                                             fieldName={getFieldName(ArbeidsforholdFormField.sluttetFørSøknadsperiode)}
                                         />
                                     ) : null}
-                                </>
+                                </FormLayout.QuestionBleedTop>
                             )}
                             {(!spørOmSluttetISøknadsperiode || erFortsattAnsattEllerSluttetISøknadsperioden) && (
                                 <AnsattNormalarbeidstidSpørsmål
@@ -75,9 +73,9 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                                     fieldName={getFieldName(ArbeidsforholdFormField.normalarbeidstid_TimerPerUke)}
                                 />
                             )}
-                        </VStack>
-                    </FormBlock>
-                )}
+                        </>
+                    )}
+                </FormLayout.Questions>
             </ArbeidssituasjonPanel>
         </div>
     );

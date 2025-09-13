@@ -1,6 +1,3 @@
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
@@ -15,6 +12,7 @@ import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 import { AppText } from '../../i18n';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
@@ -43,53 +41,51 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
 
     return (
         <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
-            <Block padBottom="m">
-                <SifGuidePanel>
+            <FormLayout.Guide>
+                <p>
+                    <AppText id="arbeidIPeriode.StepInfo.1" />
+                </p>
+                <p>
+                    <AppText id="arbeidIPeriode.StepInfo.2" />
+                </p>
+
+                {visInntektsmeldingInfo && (
                     <p>
-                        <AppText id="arbeidIPeriode.StepInfo.1" />
+                        <AppText id="arbeidIPeriode.StepInfo.3" />
                     </p>
-                    <p>
-                        <AppText id="arbeidIPeriode.StepInfo.2" />
-                    </p>
+                )}
+            </FormLayout.Guide>
 
-                    {visInntektsmeldingInfo && (
-                        <p>
-                            <AppText id="arbeidIPeriode.StepInfo.3" />
-                        </p>
-                    )}
-                </SifGuidePanel>
-            </Block>
+            <FormLayout.Sections>
+                {arbeidsgivere.length > 0 && (
+                    <>
+                        {arbeidsgivere.map((ansatt) => {
+                            if (
+                                ansatt.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode ||
+                                ansatt.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
+                            ) {
+                                return null;
+                            }
+                            const { arbeidsgiver, normalarbeidstid, index } = ansatt;
+                            return (
+                                <ArbeidstidAnsatt
+                                    key={index}
+                                    index={index}
+                                    søknadsperiode={søknadsperiode}
+                                    arbeidIPeriode={values.ansatt_arbeidsforhold[index].arbeidIPeriode}
+                                    arbeidsgiver={arbeidsgiver}
+                                    normalarbeidstid={normalarbeidstid.timerPerUkeISnitt}
+                                    søkerFremITid={søkerFremITid}
+                                />
+                            );
+                        })}
+                    </>
+                )}
 
-            {arbeidsgivere.length > 0 && (
-                <FormBlock>
-                    {arbeidsgivere.map((ansatt) => {
-                        if (
-                            ansatt.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode ||
-                            ansatt.type === ArbeidssituasjonAnsattType.ikkeAnsattUkjentSluttdato
-                        ) {
-                            return null;
-                        }
-                        const { arbeidsgiver, normalarbeidstid, index } = ansatt;
-                        return (
-                            <ArbeidstidAnsatt
-                                key={index}
-                                index={index}
-                                søknadsperiode={søknadsperiode}
-                                arbeidIPeriode={values.ansatt_arbeidsforhold[index].arbeidIPeriode}
-                                arbeidsgiver={arbeidsgiver}
-                                normalarbeidstid={normalarbeidstid.timerPerUkeISnitt}
-                                søkerFremITid={søkerFremITid}
-                            />
-                        );
-                    })}
-                </FormBlock>
-            )}
-
-            {frilans &&
-                frilans.harInntektSomFrilanser &&
-                frilans.misterInntektSomFrilanser &&
-                frilans.normalarbeidstid && (
-                    <FormBlock>
+                {frilans &&
+                    frilans.harInntektSomFrilanser &&
+                    frilans.misterInntektSomFrilanser &&
+                    frilans.normalarbeidstid && (
                         <ArbeidstidFrilans
                             frilanstype={frilans.type}
                             periode={frilans.periodeSomFrilanserISøknadsperiode}
@@ -98,21 +94,19 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                             søkerFremITid={søkerFremITid}
                             mottarOmsorgsstønad={omsorgsstønad?.mottarOmsorgsstønad === YesOrNo.YES}
                         />
-                    </FormBlock>
-                )}
+                    )}
 
-            {arbeidssituasjon.selvstendig &&
-                arbeidssituasjon.selvstendig.erSN &&
-                arbeidssituasjon.selvstendig.periodeSomSelvstendigISøknadsperiode && (
-                    <FormBlock>
+                {arbeidssituasjon.selvstendig &&
+                    arbeidssituasjon.selvstendig.erSN &&
+                    arbeidssituasjon.selvstendig.periodeSomSelvstendigISøknadsperiode && (
                         <ArbeidstidSelvstendig
                             periode={arbeidssituasjon.selvstendig.periodeSomSelvstendigISøknadsperiode}
                             arbeidIPeriode={values.selvstendig.arbeidsforhold?.arbeidIPeriode}
                             normalarbeidstid={arbeidssituasjon.selvstendig.normalarbeidstid.timerPerUkeISnitt}
                             søkerFremITid={søkerFremITid}
                         />
-                    </FormBlock>
-                )}
+                    )}
+            </FormLayout.Sections>
         </SøknadFormStep>
     );
 };

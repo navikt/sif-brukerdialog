@@ -1,12 +1,12 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
-import { Næringstype, VirksomhetApiData } from './types';
 import { useVirksomhetIntl, VirksomhetIntlShape } from './i18n';
-import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 import SummaryBlock from './SummaryBlock';
+import { Næringstype, VirksomhetApiData } from './types';
+import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -40,13 +40,13 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Vir
           });
 
     return (
-        <>
-            <Block margin="m">
+        <VStack gap="4">
+            <div>
                 {text('@forms.virksomhet.summary.navn')}: {virksomhet.navnPåVirksomheten}.
-            </Block>
-            <Block margin="m">
+            </div>
+            <div>
                 {text('@forms.virksomhet.summary.næringstype')}: {næringstype}.
-            </Block>
+            </div>
             <div>
                 {text('@forms.virksomhet.summary.registrertILand', { land })}
                 {virksomhet.registrertINorge && (
@@ -55,10 +55,10 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Vir
                         values={{ orgnr: virksomhet.organisasjonsnummer }}
                     />
                 )}
-                . <br />
-                {tidsinfo}
+                .
             </div>
-        </>
+            <div>{tidsinfo}</div>
+        </VStack>
     );
 };
 
@@ -68,9 +68,8 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
-        <>
+        <VStack gap="6">
             {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
-
             {virksomhet.næringsinntekt !== undefined && (
                 <SummaryBlock
                     header={
@@ -83,24 +82,17 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                     <TallSvar verdi={virksomhet.næringsinntekt} />
                 </SummaryBlock>
             )}
-
             {erRegnetSomNyoppstartet === true && (
-                <>
-                    <SummaryBlock header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
-                        {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
-                            <JaNeiSvar harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined} />
-                        )}
-                        {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined &&
-                            text('@forms.virksomhet.summary.yrkesaktiv.jaStartetDato', {
-                                dato: prettifyApiDate(
-                                    virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
-                                    true,
-                                ),
-                            })}
-                    </SummaryBlock>
-                </>
+                <SummaryBlock header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
+                    {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
+                        <JaNeiSvar harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined} />
+                    )}
+                    {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined &&
+                        text('@forms.virksomhet.summary.yrkesaktiv.jaStartetDato', {
+                            dato: prettifyApiDate(virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato, true),
+                        })}
+                </SummaryBlock>
             )}
-
             {erRegnetSomNyoppstartet === false && (
                 <>
                     <SummaryBlock header={text('@forms.virksomhet.varig_endring_spm')}>
@@ -123,7 +115,6 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                     )}
                 </>
             )}
-
             {/* Regnskapsfører */}
             {virksomhet.registrertINorge && (
                 <SummaryBlock header={text('@forms.virksomhet.regnskapsfører_spm')}>
@@ -135,7 +126,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                         })}
                 </SummaryBlock>
             )}
-        </>
+        </VStack>
     );
 };
 

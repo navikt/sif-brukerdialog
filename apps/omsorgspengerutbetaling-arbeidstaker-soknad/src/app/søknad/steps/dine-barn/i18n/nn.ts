@@ -5,7 +5,7 @@ export const dineBarnMessages_nn: Record<keyof typeof dineBarnMessages_nb, strin
     'step.dineBarn.intro.tekst':
         'Me må vite kor mange barn du har, for å vurdere kor mange omsorgsdagar du har rett til.',
 
-    'step.dineBarn.seksjonsTittel': 'Dine barn',
+    'step.dineBarn.seksjonsTittel': 'Barn registrert på deg',
 
     'step.dineBarn.registrerteBarn.ingenFunnet': 'Me fann ikkje nokon barn registrert på deg.',
     'step.dineBarn.født': 'Fødd {dato}',

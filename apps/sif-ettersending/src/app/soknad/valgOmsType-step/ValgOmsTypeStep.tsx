@@ -1,4 +1,3 @@
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useAppIntl } from '../../i18n';
@@ -24,19 +23,17 @@ const ValgOmsTypeStep = ({ søknadstype }: Props) => {
     const { text } = useAppIntl();
     return (
         <SoknadFormStep id={StepID.OMS_TYPE} søknadstype={søknadstype}>
-            <FormBlock>
-                <SoknadFormComponents.RadioGroup
-                    name={SoknadFormField.ytelse}
-                    legend={text('step.omsorgspenger_type.søknadstype.spm')}
-                    validate={getRequiredFieldValidator()}
-                    radios={[
-                        getYtelseRadio(YtelseKey.omsorgsdagerKroniskSyk),
-                        getYtelseRadio(YtelseKey.omsorgspengerutbetalingSNFri),
-                        getYtelseRadio(YtelseKey.omsorgspengerutbetalingArbeidstaker),
-                        getYtelseRadio(YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn),
-                    ]}
-                />
-            </FormBlock>
+            <SoknadFormComponents.RadioGroup
+                name={SoknadFormField.ytelse}
+                legend={text('step.omsorgspenger_type.søknadstype.spm')}
+                validate={getRequiredFieldValidator()}
+                radios={[
+                    getYtelseRadio(YtelseKey.omsorgsdagerKroniskSyk),
+                    getYtelseRadio(YtelseKey.omsorgspengerutbetalingSNFri),
+                    getYtelseRadio(YtelseKey.omsorgspengerutbetalingArbeidstaker),
+                    getYtelseRadio(YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn),
+                ]}
+            />
         </SoknadFormStep>
     );
 };

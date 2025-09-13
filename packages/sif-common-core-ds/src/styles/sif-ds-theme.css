@@ -1,6 +1,7 @@
 body.sif-ds-theme {
-    --ac-guide-panel-border: var(--a-deepblue-400);
-    --ac-guide-panel-illustration-bg: var(--a-deepblue-100);
+    .aksel-guide-panel__content .aksel-link {
+        --ax-text-subtle: var(--ax-accent-800);
+    }
 }
 
 @layer utilities {
@@ -43,7 +44,20 @@ body.sif-ds-theme {
 .navds-form-summary__answers--compact .navds-form-summary__answer dd.fullWidth {
     display: block;
 }
-p {
+
+p:not(.aksel-error-message):not(.aksel-textarea__counter) {
     margin: 1rem 0;
     padding: unset;
+}
+.aksel-combobox__list p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.capsFirstLetter::first-letter {
+    text-transform: capitalize;
+}
+
+.rdp.aksel-date .rdp-cell {
+    padding: 1px;
 }

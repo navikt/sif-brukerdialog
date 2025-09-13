@@ -3,7 +3,6 @@ import { IngenTilgangMeta } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { IngenTilgangÅrsak } from '@types';
@@ -12,6 +11,7 @@ import { AppText, useAppIntl } from '../../i18n';
 import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export interface IngenTilgangPageProps {
     søker: Søker;
@@ -109,12 +109,12 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
     return (
         <SøknadContextProvider initialData={{} as any}>
             <Page title={text('ingenTilgangPage.pageTitle')}>
-                <SifGuidePanel poster={true}>
+                <FormLayout.Guide poster={true}>
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                         <AppText id="ingenTilgangPage.tittel" values={{ navn: søker.fornavn }} />
                     </Heading>
                     {getÅrsakMelding(årsak[0])}
-                </SifGuidePanel>
+                </FormLayout.Guide>
                 {getMaybeEnv('MSW') === 'on' && <DevFooter />}
             </Page>
         </SøknadContextProvider>

@@ -3,7 +3,7 @@ export const dineBarnMessages_nb = {
     'step.dineBarn.intro.tekst':
         'Vi må vite hvor mange barn du har, for å vurdere hvor mange omsorgsdager du har rett til.',
 
-    'step.dineBarn.seksjonsTittel': 'Dine barn',
+    'step.dineBarn.seksjonsTittel': 'Barn registrert på deg',
 
     'step.dineBarn.registrerteBarn.ingenFunnet': 'Vi fant ikke noen barn registrert på deg.',
     'step.dineBarn.født': 'Født {dato}',

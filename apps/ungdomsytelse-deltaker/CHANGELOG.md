@@ -1,5 +1,62 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.2.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.0.0
+    - @navikt/sif-common-forms-ds@21.0.0
+    - @navikt/sif-common-core-ds@10.3.0
+    - @navikt/sif-common-ui@0.11.0
+    - @navikt/sif-common-api@0.4.43
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.17
+    - @navikt/ung-common@0.0.42
+
+## 1.1.19
+
+### Patch Changes
+
+- Legge til uxSignals komponent
+
+## 1.1.18
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.16
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.13
+    - @navikt/sif-common-soknad-ds@25.0.21
+    - @navikt/sif-common-forms-ds@20.0.20
+    - @navikt/sif-common-core-ds@10.2.44
+    - @navikt/sif-common-api@0.4.42
+    - @navikt/sif-common-ui@0.10.20
+    - @navikt/ung-common@0.0.41
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-faro@0.2.5
+
+## 1.1.17
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@25.0.20
+    - @navikt/sif-common-forms-ds@20.0.19
+    - @navikt/sif-common-core-ds@10.2.43
+    - @navikt/sif-common-api@0.4.41
+    - @navikt/sif-common-ui@0.10.19
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.12
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-faro@0.2.5
+    - @navikt/ung-common@0.0.40
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.15
+
 ## 1.1.16
 
 ### Patch Changes

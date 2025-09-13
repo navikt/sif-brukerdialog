@@ -46,9 +46,7 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummering.arbeidsforhold.tittel" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
-
                 {listeAvArbeidsforhold.map((arbeidsforhold: ArbeidsgiverDetaljer, index: number) => {
                     const orgInfo = {
                         navn: arbeidsforhold.navn,
@@ -162,7 +160,6 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                         </FormSummary.Answers>
                     );
                 })}
-
                 {arbeidsgivereUtenFravær.length > 0 &&
                     arbeidsgivereUtenFravær.map(
                         (arbeidsforholdsøknadsdata: ArbeidforholdSøknadsdata, index: number) => {
@@ -214,7 +211,12 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                 </FormSummary.Answers>
                             );
                         },
-                    )}
+                    )}{' '}
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

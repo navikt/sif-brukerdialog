@@ -1,5 +1,4 @@
-import { ExpansionCard, Panel } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { BoxNew, ExpansionCard, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
@@ -38,13 +37,15 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     return renderAsExpansionCard ? (
         <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen}>
             <ExpansionCard.Header>{renderHeader()}</ExpansionCard.Header>
-            <ExpansionCard.Content>{children}</ExpansionCard.Content>
+            <ExpansionCard.Content data-color="accent">{children}</ExpansionCard.Content>
         </ExpansionCard>
     ) : (
-        <Panel border={true}>
-            {renderHeader()}
-            <Block margin="xl">{children}</Block>
-        </Panel>
+        <BoxNew borderRadius="large" borderColor="neutral" borderWidth="1" padding="4">
+            <VStack gap="8">
+                {renderHeader()}
+                <div>{children}</div>
+            </VStack>
+        </BoxNew>
     );
 };
 

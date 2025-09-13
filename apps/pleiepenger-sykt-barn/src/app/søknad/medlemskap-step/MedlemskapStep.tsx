@@ -1,14 +1,10 @@
 import { Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
@@ -17,6 +13,7 @@ import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 type Props = {
     søknadsdato: Date;
@@ -29,28 +26,27 @@ const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props
 
     return (
         <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
-            <Block padBottom="xxl">
-                <SifGuidePanel>
-                    {text('step.medlemskap.veileder')}{' '}
-                    <Link href={getLenker().medlemskap} target="_blank">
-                        nav.no
-                    </Link>
-                    .
-                </SifGuidePanel>
-            </Block>
-            <SøknadFormComponents.YesOrNoQuestion
-                legend={text('steg.medlemsskap.annetLandSiste12.spm')}
-                name={SøknadFormField.harBoddUtenforNorgeSiste12Mnd}
-                validate={getYesOrNoValidator()}
-                description={
-                    <ExpandableInfo title={text('HvaBetyrDette')}>
-                        {text('steg.medlemsskap.annetLandSiste12.hjelp')}
-                    </ExpandableInfo>
-                }
-            />
-            {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                <FormBlock margin="l">
-                    <ResponsivePanel border={true}>
+            <FormLayout.Guide>
+                {text('step.medlemskap.veileder')}{' '}
+                <Link href={getLenker().medlemskap} target="_blank">
+                    nav.no
+                </Link>
+                .
+            </FormLayout.Guide>
+
+            <FormLayout.Questions>
+                <SøknadFormComponents.YesOrNoQuestion
+                    legend={text('steg.medlemsskap.annetLandSiste12.spm')}
+                    name={SøknadFormField.harBoddUtenforNorgeSiste12Mnd}
+                    validate={getYesOrNoValidator()}
+                    description={
+                        <ExpandableInfo title={text('HvaBetyrDette')}>
+                            {text('steg.medlemsskap.annetLandSiste12.hjelp')}
+                        </ExpandableInfo>
+                    }
+                />
+                {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
+                    <FormLayout.Panel bleedTop={true}>
                         <div data-testid="bostedUtlandList-annetLandSiste12">
                             <BostedUtlandListAndDialog<SøknadFormField>
                                 name={SøknadFormField.utenlandsoppholdSiste12Mnd}
@@ -64,10 +60,9 @@ const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props
                                 validate={validateUtenlandsoppholdSiste12Mnd}
                             />
                         </div>
-                    </ResponsivePanel>
-                </FormBlock>
-            )}
-            <FormBlock>
+                    </FormLayout.Panel>
+                )}
+
                 <SøknadFormComponents.YesOrNoQuestion
                     legend={text('steg.medlemsskap.annetLandNeste12.spm')}
                     name={SøknadFormField.skalBoUtenforNorgeNeste12Mnd}
@@ -78,10 +73,9 @@ const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props
                         </ExpandableInfo>
                     }
                 />
-            </FormBlock>
-            {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
-                <FormBlock margin="l">
-                    <ResponsivePanel border={true}>
+
+                {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
+                    <FormLayout.Panel bleedTop={true}>
                         <div data-testid="bostedUtlandList-annetLandNeste12">
                             <BostedUtlandListAndDialog<SøknadFormField>
                                 name={SøknadFormField.utenlandsoppholdNeste12Mnd}
@@ -95,9 +89,9 @@ const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props
                                 validate={validateUtenlandsoppholdNeste12Mnd}
                             />
                         </div>
-                    </ResponsivePanel>
-                </FormBlock>
-            )}
+                    </FormLayout.Panel>
+                )}
+            </FormLayout.Questions>
         </SøknadFormStep>
     );
 };

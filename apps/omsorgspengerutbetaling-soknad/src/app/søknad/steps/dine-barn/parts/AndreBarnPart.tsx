@@ -1,5 +1,4 @@
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 
@@ -25,29 +24,27 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
     const harLagtTilAndreBarn = andreBarn.length > 0;
     return (
-        <FormBlock>
-            <AnnetBarnListAndDialog<DineBarnFormFields>
-                name={DineBarnFormFields.andreBarn}
-                labels={{
-                    addLabel: text('step.dineBarn.annetBarnListAndDialog.addLabel'),
-                    listTitle: harRegistrerteBarn
-                        ? text(
-                              harLagtTilAndreBarn
-                                  ? 'step.dineBarn.annetBarnListAndDialog.listTitle.lagtTilBarn'
-                                  : 'step.dineBarn.annetBarnListAndDialog.listTitle',
-                          )
-                        : text('step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn'),
+        <AnnetBarnListAndDialog<DineBarnFormFields>
+            name={DineBarnFormFields.andreBarn}
+            labels={{
+                addLabel: text('step.dineBarn.annetBarnListAndDialog.addLabel'),
+                listTitle: harRegistrerteBarn
+                    ? text(
+                          harLagtTilAndreBarn
+                              ? 'step.dineBarn.annetBarnListAndDialog.listTitle.lagtTilBarn'
+                              : 'step.dineBarn.annetBarnListAndDialog.listTitle',
+                      )
+                    : text('step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn'),
 
-                    modalTitle: text('step.dineBarn.annetBarnListAndDialog.modalTitle'),
-                }}
-                maxDate={getDateToday()}
-                minDate={nYearsAgo(18)}
-                disallowedFødselsnumre={[...[søkerFnr], ...andreBarnFnr]}
-                aldersGrenseText={text('step.dineBarn.formLeggTilBarn.aldersGrenseInfo')}
-                visBarnTypeValg={true}
-                onAfterChange={(values) => onAndreBarnChange(values)}
-            />
-        </FormBlock>
+                modalTitle: text('step.dineBarn.annetBarnListAndDialog.modalTitle'),
+            }}
+            maxDate={getDateToday()}
+            minDate={nYearsAgo(18)}
+            disallowedFødselsnumre={[...[søkerFnr], ...andreBarnFnr]}
+            aldersGrenseText={text('step.dineBarn.formLeggTilBarn.aldersGrenseInfo')}
+            visBarnTypeValg={true}
+            onAfterChange={(values) => onAndreBarnChange(values)}
+        />
     );
 };
 

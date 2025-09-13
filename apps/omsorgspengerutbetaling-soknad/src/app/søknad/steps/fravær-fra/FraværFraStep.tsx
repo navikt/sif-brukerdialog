@@ -1,4 +1,3 @@
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     dateToISOString,
@@ -26,6 +25,7 @@ import {
     getFraværFraSøknadsdataFromFormValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
+import { VStack } from '@navikt/ds-react';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',
@@ -113,21 +113,19 @@ const FraværFraStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <FormBlock>
+                                <VStack gap="8">
                                     <SifGuidePanel>
                                         <p>
                                             <AppText id="step.fravaerFra.info" />
                                         </p>
                                     </SifGuidePanel>
-                                </FormBlock>
 
-                                <FormBlock>
                                     {utbetalingsdatoer.map((date) => {
                                         const fieldName = getFieldName(date, AktivitetFraværField.aktivitet);
                                         const dato = dayjs(date).format('dddd D. MMM YYYY');
 
                                         return (
-                                            <FormBlock key={fieldName}>
+                                            <div key={fieldName}>
                                                 <RadioGroup
                                                     name={fieldName as FraværFraFormFields}
                                                     legend={<AppText id="step.fravaerFra.dag.spm" values={{ dato }} />}
@@ -156,10 +154,10 @@ const FraværFraStep = () => {
                                                             : undefined;
                                                     }}
                                                 />
-                                            </FormBlock>
+                                            </div>
                                         );
                                     })}
-                                </FormBlock>
+                                </VStack>
                             </Form>
                         </>
                     );

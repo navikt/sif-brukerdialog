@@ -44,7 +44,6 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.arbeidssituasjon.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
@@ -67,6 +66,11 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
 
                     <VernepliktSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

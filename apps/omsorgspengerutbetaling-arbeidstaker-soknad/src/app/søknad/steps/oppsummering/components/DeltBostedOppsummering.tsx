@@ -24,7 +24,6 @@ const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsda
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.deltBosted.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -40,6 +39,11 @@ const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsda
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

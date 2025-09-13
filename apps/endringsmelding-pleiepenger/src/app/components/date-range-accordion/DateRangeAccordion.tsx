@@ -1,4 +1,5 @@
-import { Accordion, Ingress } from '@navikt/ds-react';
+// DEPRECATED: Denne komponenten er utdatert og er erstattet av DateRanegeExpansionCard i komponentbiblioteket
+import { Accordion } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange, dateRangeToISODateRange, getDateToday, isDateInDateRange } from '@navikt/sif-common-utils';
 
@@ -33,7 +34,7 @@ function DateRangeAccordion<Type extends DateRange>({
             {dateRanges.length === 1 ? (
                 renderContent(dateRanges[0])
             ) : (
-                <Accordion className="w-full">
+                <Accordion className="w-full" size="medium">
                     {dateRanges.map((dateRange, index) => {
                         return (
                             <Accordion.Item
@@ -41,9 +42,7 @@ function DateRangeAccordion<Type extends DateRange>({
                                 data-testid={`dateRangeAccordion_${index}`}
                                 defaultOpen={erÅpen(dateRange, defaultOpenState)}>
                                 <Accordion.Header data-testid={`dateRangeAccordion_${index}_header`}>
-                                    <Ingress as="div" className="periodeHeader">
-                                        {renderHeader(dateRange)}
-                                    </Ingress>
+                                    {renderHeader(dateRange)}
                                 </Accordion.Header>
                                 <Accordion.Content>{renderContent(dateRange)}</Accordion.Content>
                             </Accordion.Item>

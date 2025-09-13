@@ -17,12 +17,16 @@ const FraværSummary = ({ apiData, onEdit }: Props) => {
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.utbetalinger.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <UtbetalingsperioderOppsummering utbetalingsperioder={apiData.utbetalingsperioder} />
                 <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

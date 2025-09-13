@@ -124,7 +124,6 @@ const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
                 <FormSummary.Heading level="2">
                     <AppText id="steg.oppsummering.barnet.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 {isRegistrertBarnApiData(apiData) && søknadsdata.type === 'registrerteBarn' && (
@@ -140,6 +139,11 @@ const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
                     </>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

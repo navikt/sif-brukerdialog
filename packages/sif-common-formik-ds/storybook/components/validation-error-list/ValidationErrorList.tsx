@@ -1,6 +1,4 @@
-import { Heading } from '@navikt/ds-react';
-import * as React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box, Heading } from '@navikt/ds-react';
 import './validationErrorList.scss';
 
 interface ValidationErrorInfo {
@@ -19,13 +17,13 @@ interface Props {
 
 const ValidationErrorList = ({ errors, title }: Props) => {
     return (
-        <Block margin="xl">
+        <Box marginBlock="10 0">
             {title && (
                 <Heading level="4" size="small">
                     {title}
                 </Heading>
             )}
-            <Block margin="m">
+            <Box marginBlock="6">
                 <table className="validationErrorList">
                     <thead>
                         <tr>
@@ -48,8 +46,8 @@ const ValidationErrorList = ({ errors, title }: Props) => {
                         })}
                     </tbody>
                 </table>
-            </Block>
-        </Block>
+            </Box>
+        </Box>
     );
 };
 

@@ -28,7 +28,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
     return (
         <Page title={title} className="soknad-velkommen-page">
             <VStack gap="8">
-                <VelkommenPageHeader title={title} />
+                <VelkommenPageHeader title={title} useStandard={true} />
 
                 <SoknadVelkommenGuide title={text('@soknad.velkommenGuide.tittel', { navn: guide.navn })}>
                     {guide.content}
@@ -36,7 +36,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
 
                 <div>{children}</div>
 
-                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
+                <SamtykkeForm onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
             </VStack>
         </Page>
     );

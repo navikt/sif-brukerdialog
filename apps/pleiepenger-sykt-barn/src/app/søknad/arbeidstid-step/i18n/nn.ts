@@ -77,8 +77,14 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
     'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timar}}',
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timar`,
-    'arbeidIPeriode.info.frilanser.tekst.1':
-        'No treng me å vite kor mange timar du jobbar som frilansar i søknadsperioden.',
+    'arbeidIPeriode.info.frilanser.tittel': 'Delvis jobb som frilansar i perioden',
+    'arbeidIPeriode.info.frilanser.tekst.FRILANS':
+        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for.',
+    'arbeidIPeriode.info.frilanser.tekst.FRILANS_HONORAR':
+        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Du skal altså leggje saman tida du jobbar som frilansar, med tida du brukar på det du mottek honorar for. Du skal oppgje denne tida samla.',
+    'arbeidIPeriode.info.frilanser.tekst.HONORAR':
+        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Det vil seie kor mange timar du brukar på arbeidet du får honorar for.',
+
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysningar om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
@@ -92,6 +98,8 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
 
     'arbeidIPeriode.redusert.info.tekst':
         'Viss du er usikker på kor mykje du skal jobbe framover i tid, legg du inn slik du trur du skal jobbe. Viss det seinare viser seg at du jobbar meir eller mindre enn du trur no, melder du frå om endring i slutten av den aktuelle månaden.',
+    'arbeidIPeriode.redusert.info.tekst.mottarOmsorgsstønad':
+        'Du skal ikkje ta med tid for fosterheimsgodtgjersle og omsorgsstønad.',
 
     'arbeidIPeriode.redusert.endring.tittel': 'Korleis melder eg frå om endring?',
     'arbeidIPeriode.redusert.endring.arb_frilans.tekst':

@@ -75,8 +75,13 @@ export const arbeidIPeriodeMessages_nb = {
     'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
     'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
-    'arbeidIPeriode.info.frilanser.tekst.1':
-        'Nå trenger vi å vite hvor mange timer du jobber som frilanser i søknadsperioden.',
+    'arbeidIPeriode.info.frilanser.tittel': 'Delvis jobb som frilanser i perioden',
+    'arbeidIPeriode.info.frilanser.tekst.FRILANS':
+        'Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.',
+    'arbeidIPeriode.info.frilanser.tekst.FRILANS_HONORAR':
+        'Nå må vi vite hvor mange timer du jobber som frilanser i perioden du søker for. Du skal altså legge sammen tiden du jobber som frilanser, med tiden du bruker på det du mottar honorar for. Du skal oppgi denne tiden samlet.',
+    'arbeidIPeriode.info.frilanser.tekst.HONORAR':
+        'Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for. Det vil si hvor mange timer du bruker på arbeidet du får honorar for.',
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysninger om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
@@ -90,6 +95,8 @@ export const arbeidIPeriodeMessages_nb = {
 
     'arbeidIPeriode.redusert.info.tekst':
         'Hvis du er usikker på hvor mye du skal jobbe fremover i tid, legger du inn slik du tror du skal jobbe. Hvis det senere viser seg at du jobber mer eller mindre av hva du tror nå, melder du fra om endring i slutten av den aktuelle måneden.',
+    'arbeidIPeriode.redusert.info.tekst.mottarOmsorgsstønad':
+        'Du skal ikke inkludere tid for fosterhjemsgodtgjørelse og omsorgsstønad.',
 
     'arbeidIPeriode.redusert.endring.tittel': 'Hvordan melder jeg fra om endring?',
     'arbeidIPeriode.redusert.endring.arb_frilans.tekst':

@@ -1,6 +1,5 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import { AppText } from '../../../../i18n';
@@ -20,7 +19,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
 
 const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode }) => {
     return (
-        <>
+        <VStack gap="8">
             <>
                 {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                     arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
@@ -36,14 +35,14 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode }) => {
             </>
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <Block margin="xl">
-                    <Heading size="xsmall" level="4" spacing={true}>
+                <VStack gap="8">
+                    <Heading size="small" level="4">
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
                     <TidEnkeltdager dager={arbeidIPeriode.enkeltdager} renderAsAccordion={false} headingLevel="5" />
-                </Block>
+                </VStack>
             )}
-        </>
+        </VStack>
     );
 };
 

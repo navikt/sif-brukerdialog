@@ -90,7 +90,10 @@ test.describe('Frilanser', () => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
         await page.getByTestId('typedFormikForm-submitButton').click();
-        await page.getByLabel('Frilans og oppdrag som regnes').getByText('Jeg jobber ikke').click();
+        await page
+            .getByText('Frilans og oppdrag som regnes som frilansoppdragHvilken situasjon gjelder for')
+            .getByText('Jeg jobber ikke')
+            .click();
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans-summary');
@@ -109,7 +112,10 @@ test.describe('Frilanser', () => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
         await page.getByTestId('typedFormikForm-submitButton').click();
-        await page.getByLabel('Frilans og oppdrag som regnes').getByText('Jeg jobber ikke').click();
+        await page
+            .getByText('Frilans og oppdrag som regnes som frilansoppdragHvilken situasjon gjelder for')
+            .getByText('Jeg jobber ikke')
+            .click();
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans-summary');
@@ -138,7 +144,10 @@ test.describe('Frilanser', () => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
         await page.getByTestId('typedFormikForm-submitButton').click();
-        await page.getByLabel('Frilans og oppdrag som regnes').getByText('Jeg jobber ikke').click();
+        await page
+            .getByText('Frilans og oppdrag som regnes som frilansoppdragHvilken situasjon gjelder for')
+            .getByText('Jeg jobber ikke')
+            .click();
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans-summary');

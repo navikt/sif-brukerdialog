@@ -1,7 +1,6 @@
 import { BodyLong, Heading, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import {
     getIntlFormErrorHandler,
@@ -21,6 +20,7 @@ import FraværDagFormView, { FraværDagFormErrors } from '../FraværDagForm';
 import FraværPeriodeForm, { FraværPeriodeFormErrors } from '../FraværPeriodeForm';
 import FraværPerioderListAndDialog from '../FraværPerioderListAndDialog';
 import { FraværFieldValidationErrors, validateNoCollisions } from '../fraværValidationUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     perioder = 'perioder',
@@ -69,69 +69,71 @@ const FormikExample = () => {
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getIntlFormErrorHandler(intl)}>
-                                    <FormBlock>
-                                        <Heading level="2" size="medium" spacing={true}>
-                                            FraværPerioderListAndDialog
-                                        </Heading>
-                                        <FraværPerioderListAndDialog<FormField>
-                                            name={FormField.perioder}
-                                            minDate={getDate1YearAgo()}
-                                            maxDate={getDateToday()}
-                                            periodeDescription={
-                                                <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
-                                                    Du kan kun søke for ett og samme år i en søknad. Får å søke for
-                                                    flere år, må du sende en søknad for hvert år.
-                                                </BodyLong>
-                                            }
-                                            validate={(value) => {
-                                                const listError = getListValidator({ required: true })(value);
-                                                if (listError) {
-                                                    return listError;
+                                    <FormLayout.Questions>
+                                        <VStack gap="4">
+                                            <Heading level="2" size="medium" spacing={true}>
+                                                FraværPerioderListAndDialog
+                                            </Heading>
+                                            <FraværPerioderListAndDialog<FormField>
+                                                name={FormField.perioder}
+                                                minDate={getDate1YearAgo()}
+                                                maxDate={getDateToday()}
+                                                periodeDescription={
+                                                    <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
+                                                        Du kan kun søke for ett og samme år i en søknad. Får å søke for
+                                                        flere år, må du sende en søknad for hvert år.
+                                                    </BodyLong>
                                                 }
-                                                const collisionError = validateNoCollisions(dager, perioder);
-                                                if (collisionError) {
-                                                    return collisionError;
-                                                }
-                                            }}
-                                            labels={{
-                                                listTitle: 'Perioder med fravær',
-                                                addLabel: 'Legg til periode',
-                                                modalTitle: 'Fravær hele dager',
-                                                emptyListText: 'Ingen perioder er lagt til',
-                                            }}
-                                            dateRangesToDisable={dateRangesToDisable}
-                                            helgedagerIkkeTillat={true}
-                                        />
-                                    </FormBlock>
-                                    <FormBlock>
-                                        <Heading level="2" size="medium" spacing={true}>
-                                            FraværDagerListAndDialog
-                                        </Heading>
-                                        <FraværDagerListAndDialog<FormField>
-                                            name={FormField.dager}
-                                            minDate={getDate1YearAgo()}
-                                            maxDate={getDateToday()}
-                                            validate={(value) => {
-                                                const listError = getListValidator({ required: true })(value);
-                                                if (listError) {
-                                                    return listError;
-                                                }
-                                                const collisionError = validateNoCollisions(dager, perioder);
-                                                if (collisionError) {
-                                                    return collisionError;
-                                                }
-                                            }}
-                                            labels={{
-                                                addLabel: 'Legg til dag med delvis fravær',
-                                                listTitle: 'Dager med delvis fravær',
-                                                modalTitle: 'Fravær deler av dag',
-                                                emptyListText: 'Ingen dager er lagt til',
-                                            }}
-                                            dateRangesToDisable={dateRangesToDisable}
-                                            helgedagerIkkeTillatt={true}
-                                            maksArbeidstidPerDag={24}
-                                        />
-                                    </FormBlock>
+                                                validate={(value) => {
+                                                    const listError = getListValidator({ required: true })(value);
+                                                    if (listError) {
+                                                        return listError;
+                                                    }
+                                                    const collisionError = validateNoCollisions(dager, perioder);
+                                                    if (collisionError) {
+                                                        return collisionError;
+                                                    }
+                                                }}
+                                                labels={{
+                                                    listTitle: 'Perioder med fravær',
+                                                    addLabel: 'Legg til periode',
+                                                    modalTitle: 'Fravær hele dager',
+                                                    emptyListText: 'Ingen perioder er lagt til',
+                                                }}
+                                                dateRangesToDisable={dateRangesToDisable}
+                                                helgedagerIkkeTillat={true}
+                                            />
+                                        </VStack>
+                                        <VStack gap="4">
+                                            <Heading level="2" size="medium" spacing={true}>
+                                                FraværDagerListAndDialog
+                                            </Heading>
+                                            <FraværDagerListAndDialog<FormField>
+                                                name={FormField.dager}
+                                                minDate={getDate1YearAgo()}
+                                                maxDate={getDateToday()}
+                                                validate={(value) => {
+                                                    const listError = getListValidator({ required: true })(value);
+                                                    if (listError) {
+                                                        return listError;
+                                                    }
+                                                    const collisionError = validateNoCollisions(dager, perioder);
+                                                    if (collisionError) {
+                                                        return collisionError;
+                                                    }
+                                                }}
+                                                labels={{
+                                                    addLabel: 'Legg til dag med delvis fravær',
+                                                    listTitle: 'Dager med delvis fravær',
+                                                    modalTitle: 'Fravær deler av dag',
+                                                    emptyListText: 'Ingen dager er lagt til',
+                                                }}
+                                                dateRangesToDisable={dateRangesToDisable}
+                                                helgedagerIkkeTillatt={true}
+                                                maksArbeidstidPerDag={24}
+                                            />
+                                        </VStack>
+                                    </FormLayout.Questions>
                                 </TypedFormikForm>
                             );
                         }}

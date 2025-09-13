@@ -24,7 +24,7 @@ const VelgSakPage: React.FunctionComponent<Props> = ({ saker }) => {
                 </title>
             </Head>
             <Box>
-                <Heading size="medium" level="1" spacing={true} className="text-deepblue-800">
+                <Heading size="medium" level="1" spacing={true}>
                     <AppText id="velgSak.tittel" />
                 </Heading>
 

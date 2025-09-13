@@ -1,2 +1,2 @@
-/** Ta i bruk velg barn input komponent */
-export const MELLOMLAGRING_VERSJON = '2.5.0';
+/** Ta i bruk velg barn input komponent for opplæringspenger */
+export const MELLOMLAGRING_VERSJON = '2.6.1';

@@ -1,9 +1,9 @@
-import { BodyLong, List } from '@navikt/ds-react';
+import { BodyShort, List } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 import { AppText } from '../../../../../i18n';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -25,24 +25,19 @@ const renderKurs = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     return null;
 };
 
-const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
-    kompakt ? (
-        <List style={{ margin: 0, padding: '0 0 0 1rem' }}>
-            {frilansoppdrag.map((oppdrag) => (
-                <List.Item key={oppdrag.id}>{oppdrag.navn}</List.Item>
-            ))}
-        </List>
-    ) : (
-        <List style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
+const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag }) => (
+    <FormLayout.Panel>
+        <List>
             {frilansoppdrag.map((oppdrag) => (
                 <List.Item key={oppdrag.id}>
-                    <BodyLong size="large">{oppdrag.navn}</BodyLong>
-                    <Block padBottom="l">
-                        <AppText id="frilansoppdragListe.oppdrag" values={{ kurs: renderKurs(oppdrag) }} />
-                    </Block>
+                    <BodyShort as="div" weight="semibold">
+                        {oppdrag.navn}
+                    </BodyShort>
+                    <AppText id="frilansoppdragListe.oppdrag" values={{ kurs: renderKurs(oppdrag) }} />
                 </List.Item>
             ))}
         </List>
-    );
+    </FormLayout.Panel>
+);
 
 export default FrilansoppdragListe;
