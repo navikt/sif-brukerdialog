@@ -1,4 +1,4 @@
-import { BodyShort, Box, HStack, Heading, Hide, LinkPanel, LinkPanelProps } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, Hide, HStack, LinkPanel, LinkPanelProps } from '@navikt/ds-react';
 import React from 'react';
 
 interface Props extends LinkPanelProps {

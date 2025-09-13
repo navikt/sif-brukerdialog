@@ -5,10 +5,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { AppText, useAppIntl } from '../../i18n';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
+import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import StatusTag from '../status-tag/StatusTag';
-import { personaliaUtils } from '../../utils/personaliaUtils';
 
 interface Props {
     saker: PleietrengendeMedSak[];

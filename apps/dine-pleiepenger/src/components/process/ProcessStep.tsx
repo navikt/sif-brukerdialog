@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
-import cl from 'clsx';
 import React from 'react';
+import cl from 'clsx';
 import CompleteIcon from './checks/Complete';
 
 export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {

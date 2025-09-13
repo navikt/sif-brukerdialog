@@ -1,9 +1,9 @@
 import { BodyShort, HStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Pleietrengende } from '../../../server/api-models/PleietrengendeSchema';
-import PageHeader from '../page-header/PageHeader';
 import { personaliaUtils } from '../../../utils/personaliaUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import PageHeader from '../page-header/PageHeader';
 
 interface Props {
     saksnr: string;

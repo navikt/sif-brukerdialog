@@ -1,5 +1,5 @@
-import React from 'react';
 import { BodyShort, GuidePanel, Heading } from '@navikt/ds-react';
+import React from 'react';
 import { AxiosError } from 'axios';
 import Head from 'next/head';
 

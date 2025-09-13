@@ -1,5 +1,5 @@
-import { PleiepengerEndringsmelding } from '../../../server/api-models/InnsendelseSchema';
 import { VStack } from '@navikt/ds-react';
+import { PleiepengerEndringsmelding } from '../../../server/api-models/InnsendelseSchema';
 import Dokumenter from './Dokumenter';
 
 interface Props {

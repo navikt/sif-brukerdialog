@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
-import { Venteårsak } from '../../types/Venteårsak';
 import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
-import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
-import { browserEnv } from '../../utils/env';
 import { AppText } from '../../i18n';
+import { Venteårsak } from '../../types/Venteårsak';
+import { browserEnv } from '../../utils/env';
+import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
 
 interface Props {
     venteårsak: Venteårsak;
