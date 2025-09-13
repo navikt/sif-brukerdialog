@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
-import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import { SøknadRoutes } from '../types/SøknadRoutes';
 import { mellomlagringService } from '../api/mellomlagringService';
 import { useAppIntl } from '../i18n';
+import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
+import { SøknadRoutes } from '../types/SøknadRoutes';
 
 export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);

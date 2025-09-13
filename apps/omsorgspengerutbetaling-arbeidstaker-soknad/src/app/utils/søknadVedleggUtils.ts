@@ -1,7 +1,7 @@
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { SituasjonFormFields, SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export const getAlleVedleggFraSøknadsdata = (søknadsdata: Søknadsdata) => {
     const bostedVedlegg = søknadsdata.deltBosted?.vedlegg ?? [];

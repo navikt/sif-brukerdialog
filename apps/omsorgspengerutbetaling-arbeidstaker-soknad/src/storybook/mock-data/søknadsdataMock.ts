@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../app/types/ArbeidsforholdTypes';
+import { Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 
 export const søknadsdataMock: Søknadsdata = {
     id: '918f8ced-f7b3-4404-b708-ba7615f07e2d',

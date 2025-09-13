@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
-import { getNMonthsAgo, getSituasjonStepInitialValues } from '../SituasjonStepUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { SituasjonSøknadsdata, Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
+import dayjs from 'dayjs';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
+import { SituasjonSøknadsdata, Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
+import { getNMonthsAgo, getSituasjonStepInitialValues } from '../SituasjonStepUtils';
 
 describe('getNMonthsAgo', () => {
     it('returns the correct date', () => {

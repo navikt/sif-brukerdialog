@@ -1,8 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { Fravær } from '../../../types/FraværTypes';
 import { FraværSøknadsdata, FraværSøknadsdataMap, FraværTypes } from '../../../types/søknadsdata/FraværSøknadsdata';
-import { FraværStepFormValues } from './FraværStep';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { FraværStepFormValues } from './FraværStep';
 
 const getFraværSøknadsdata = (fraværFormData: Fravær): FraværTypes | undefined => {
     const { harPerioderMedFravær, fraværPerioder, harDagerMedDelvisFravær, fraværDager } = fraværFormData;

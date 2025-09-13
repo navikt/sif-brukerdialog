@@ -1,11 +1,11 @@
-import React from 'react';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
-import { DineBarnFormFields } from '../DineBarnStep';
-import { getDateToday } from '@navikt/sif-common-utils';
-import { nYearsAgo } from '../dineBarnStepUtils';
 import { Heading } from '@navikt/ds-react';
+import React from 'react';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
+import { DineBarnFormFields } from '../DineBarnStep';
+import { nYearsAgo } from '../dineBarnStepUtils';
 
 interface Props {
     søkerFnr: string;

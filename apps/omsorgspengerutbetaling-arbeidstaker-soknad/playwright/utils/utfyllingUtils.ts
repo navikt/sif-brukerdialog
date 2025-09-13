@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import dayjs from 'dayjs';
 import locale from 'dayjs/locale/nb.js';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
