@@ -1,9 +1,9 @@
-import { ValidationError } from '../../sif-formik/validation/types';
-import { KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
-import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
 import { ReadMore } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { intlHelper } from '../../../utils/intlHelper';
+import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
+import { ValidationError } from '../../sif-formik/validation/types';
+import { KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
 
 interface Props {
     setBarn: (value: string) => void;

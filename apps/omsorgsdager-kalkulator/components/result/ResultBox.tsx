@@ -1,10 +1,10 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import * as React from 'react';
-import { PropsWithChildren, useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
+import bemUtils from '../../utils/bemUtils';
 import SvgChild from '../svgs/SvgChild';
 import SvgChildSad from '../svgs/SvgChildSad';
-import bemUtils from '../../utils/bemUtils';
-import { BodyLong, Heading } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
+
 export const bem = bemUtils('OmsCalcResultBox');
 
 const resultWrapperClassName = (type: ResultBoxType): string => {

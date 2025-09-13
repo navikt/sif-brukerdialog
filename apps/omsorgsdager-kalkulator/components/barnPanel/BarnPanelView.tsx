@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
+import * as React from 'react';
 
 interface Props {
     id: string;
