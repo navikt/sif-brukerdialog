@@ -14,7 +14,7 @@ interface Props {
     parentFieldName: string;
 }
 
-const ArbeidsforholdSituasjon: React.FC<Props> = ({ arbeidsforhold, parentFieldName }: Props) => {
+const ArbeidsforholdSituasjon = ({ arbeidsforhold, parentFieldName }: Props) => {
     const { text } = useAppIntl();
 
     const getFieldName = (field: ArbeidsforholdFormFields) => `${parentFieldName}.${field}` as ArbeidsforholdFormFields;

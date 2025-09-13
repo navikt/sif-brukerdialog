@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -18,12 +17,7 @@ interface Props {
     søkerFremITid: boolean;
 }
 
-const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
-    arbeidIPeriode,
-    periode,
-    normalarbeidstid,
-    søkerFremITid,
-}) => {
+const ArbeidstidSelvstendig = ({ arbeidIPeriode, periode, normalarbeidstid, søkerFremITid }: Props) => {
     const appIntl = useAppIntl();
 
     const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {

@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import {
     DateDurationMap,
     DateRange,
@@ -25,14 +24,14 @@ interface Props {
     onOmsorgstilbudChanged?: () => void;
 }
 
-const OmsorgstilbudVariert: React.FunctionComponent<Props> = ({
+const OmsorgstilbudVariert = ({
     tittel,
     periode,
     tidIOmsorgstilbud,
     formFieldName,
     omsorgsdager,
     onOmsorgstilbudChanged,
-}) => {
+}: Props) => {
     const kanLeggeTilPeriode = skalViseSpørsmålOmProsentEllerLiktHverUke(periode);
 
     const { setFieldValue } = useFormikContext<SøknadFormValues>() || {};

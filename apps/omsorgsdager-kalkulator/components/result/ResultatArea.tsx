@@ -13,7 +13,7 @@ interface Props {
     resultView: ResultView<Result>;
 }
 
-const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
+const ResultatArea = ({ resultView }: Props) => {
     const year = getYear();
     const intl = useIntl();
     const bem = bemUtils('OmsCalcResultBox');

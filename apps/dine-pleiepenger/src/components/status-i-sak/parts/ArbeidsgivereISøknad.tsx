@@ -1,5 +1,4 @@
 import { Box, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Organisasjon } from '../../../types/Organisasjon';
@@ -12,7 +11,7 @@ interface Props {
     søknadId: string;
 }
 
-const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbeidsgivere }) => {
+const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
     const intl = useIntl();
     return (
         <Box className="mt-4">

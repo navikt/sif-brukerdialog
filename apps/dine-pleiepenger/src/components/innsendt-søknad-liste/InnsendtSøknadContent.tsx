@@ -1,5 +1,4 @@
 import { Box, Heading, Link, List } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -20,7 +19,7 @@ const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (soknadID: string, org
     return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
 };
 
-const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
+const InnsendtSøknadContent = ({ søknad }: Props) => {
     const intl = useIntl();
 
     const harArbeidsgiver = () => {

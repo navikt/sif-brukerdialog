@@ -1,5 +1,5 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-import * as React from 'react';
+import { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import bemUtils from '../../utils/bemUtils';
 import SvgChild from '../svgs/SvgChild';
@@ -32,7 +32,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const ResultBox: React.FC<Props> = ({ type, children }: PropsWithChildren<Props>) => {
+const ResultBox = ({ type, children }: Props) => {
     const box = React.useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {

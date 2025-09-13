@@ -23,14 +23,14 @@ interface Props {
     onStepSelect?: (step: ProgressStep) => void;
 }
 
-const ProgressStepper: React.FunctionComponent<Props> = ({
+const ProgressStepper = ({
     steps,
     currentStepIndex,
     titleHeadingLevel = '1',
     includeBackLink = true,
     setFocusOnHeadingOnMount = true,
     onStepSelect,
-}) => {
+}: Props) => {
     const { text } = useUiIntl();
 
     const step = steps[currentStepIndex];

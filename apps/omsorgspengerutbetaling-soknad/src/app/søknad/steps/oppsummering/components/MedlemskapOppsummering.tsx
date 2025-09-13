@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
@@ -18,7 +17,7 @@ export interface Props {
     onEdit?: () => void;
 }
 
-const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
+const MedlemskapOppsummering = ({ bosteder, onEdit }) => {
     const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(getDateToday()));
     const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(getDateToday()));
 

@@ -1,5 +1,4 @@
 import { ExpansionCard } from '@navikt/ds-react';
-import * as React from 'react';
 
 interface Props {
     id: string;
@@ -9,13 +8,7 @@ interface Props {
     valideringsFeil?: boolean;
 }
 
-const BarnPanelView: React.FC<Props> = ({
-    id,
-    index,
-    length,
-    children,
-    valideringsFeil,
-}: React.PropsWithChildren<Props>) => {
+const BarnPanelView = ({ id, index, length, children, valideringsFeil }: Props) => {
     const [open, setOpen] = React.useState<boolean>(index === 0);
 
     if (!open && valideringsFeil) {

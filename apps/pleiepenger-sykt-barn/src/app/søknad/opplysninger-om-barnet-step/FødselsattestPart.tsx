@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
@@ -14,7 +13,7 @@ interface Props {
     fødselsattester: Vedlegg[];
 }
 
-const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
+const FødselsattestPart = ({ fødselsattester }: Props) => {
     const { text, intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.legeerklæring] || [];

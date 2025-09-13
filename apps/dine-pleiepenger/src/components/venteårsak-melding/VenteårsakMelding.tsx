@@ -1,5 +1,5 @@
 import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import { AppText } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
@@ -16,7 +16,7 @@ const MeldingHeading = ({ children }: { children: ReactNode }) => (
     </Heading>
 );
 
-const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => {
+const VenteårsakMelding = ({ venteårsak }: Props) => {
     switch (venteårsak) {
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
             return (

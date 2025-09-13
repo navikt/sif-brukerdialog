@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
@@ -12,7 +11,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsdata, onEdit }) => {
+const DeltBostedOppsummering = ({ vedlegg, deltBostedSøknadsdata, onEdit }: Props) => {
     const delteBosteder = getVedleggInLocationArray({
         locations: vedlegg,
         vedlegg: deltBostedSøknadsdata?.vedlegg,

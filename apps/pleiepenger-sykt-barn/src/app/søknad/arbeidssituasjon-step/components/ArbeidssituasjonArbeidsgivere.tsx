@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
@@ -10,7 +9,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonArbeidsgivere: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const ArbeidssituasjonArbeidsgivere = ({ søknadsperiode }: Props) => {
     const {
         values: { ansatt_arbeidsforhold },
     } = useFormikContext<SøknadFormValues>();

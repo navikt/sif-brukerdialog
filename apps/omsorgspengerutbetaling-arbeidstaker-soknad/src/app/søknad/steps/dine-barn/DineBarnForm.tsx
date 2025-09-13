@@ -1,4 +1,3 @@
-import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -26,14 +25,14 @@ export interface DineBarnFormProps {
     onAndreBarnChanged: (values: Partial<DineBarnFormValues>) => void;
 }
 
-const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
+const DineBarnForm = ({
     søker,
     values,
     registrerteBarn,
     isSubmitting,
     goBack,
     onAndreBarnChanged,
-}) => {
+}: DineBarnFormProps) => {
     const { text, intl } = useAppIntl();
 
     const { andreBarn = [], harDeltBosted } = values;

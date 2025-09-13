@@ -1,5 +1,4 @@
 import { BodyLong, ErrorSummary } from '@navikt/ds-react';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
@@ -13,7 +12,7 @@ interface Props {
     søknadStepConfig: SoknadStepsConfig<StepID>;
 }
 
-const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadStepConfig }) => {
+const ApiValidationSummary = ({ errors, søknadStepConfig }: Props) => {
     const { text, intl } = useAppIntl();
     const navigate = useNavigate();
     if (errors.length === 0) {

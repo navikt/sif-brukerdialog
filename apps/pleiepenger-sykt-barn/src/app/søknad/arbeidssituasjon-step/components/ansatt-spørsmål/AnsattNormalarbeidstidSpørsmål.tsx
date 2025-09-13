@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
@@ -21,7 +20,7 @@ interface Props {
     fieldName: ArbeidsforholdFormField;
 }
 
-const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
+const AnsattNormalarbeidstidSpørsmål = ({ arbeidsforhold, fieldName }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 

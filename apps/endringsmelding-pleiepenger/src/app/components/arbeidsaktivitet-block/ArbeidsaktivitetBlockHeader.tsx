@@ -1,5 +1,4 @@
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
@@ -19,13 +18,7 @@ interface Props {
     };
 }
 
-const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
-    type,
-    arbeidsgiver,
-    navn,
-    endret,
-    erUkjentAktivitet,
-}) => {
+const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
         <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
             <div className="arbeidsaktivitetBlockHeader">

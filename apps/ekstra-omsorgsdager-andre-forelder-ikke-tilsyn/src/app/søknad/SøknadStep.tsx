@@ -11,7 +11,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
+const SøknadStep = ({ stepId, children }: Props) => {
     const { intl, text } = useAppIntl();
 
     const stepConfig = getSøknadStepConfig();

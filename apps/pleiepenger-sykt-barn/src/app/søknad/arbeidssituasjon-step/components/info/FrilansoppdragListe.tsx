@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import ArbeidsperiodeTekst from '../../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import FrilansIconSvg from '../../../../components/frilans-icon/FrilansIconSvg';
 import { useAppIntl } from '../../../../i18n';
@@ -10,7 +9,7 @@ interface Props {
     frilansoppdrag: Arbeidsgiver[];
 }
 
-const FrilansoppdragListe: React.FunctionComponent<Props> = ({ frilansoppdrag }) => {
+const FrilansoppdragListe = ({ frilansoppdrag }: Props) => {
     const { text } = useAppIntl();
     return (
         <ArbeidssituasjonPanel

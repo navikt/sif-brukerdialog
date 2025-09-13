@@ -1,5 +1,4 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
@@ -10,7 +9,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
+const ArbeidsgivereSummary = ({ arbeidsgivere, søknadsperiode }: Props) => {
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
             <FormSummary.Answer>

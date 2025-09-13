@@ -1,5 +1,4 @@
 import { BodyShort, Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -14,7 +13,7 @@ interface Props {
     saker: PleietrengendeMedSak[];
 }
 
-const VelgSakPage: React.FunctionComponent<Props> = ({ saker }) => {
+const VelgSakPage = ({ saker }: Props) => {
     const { text } = useAppIntl();
     return (
         <DefaultPageLayout>

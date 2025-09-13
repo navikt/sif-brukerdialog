@@ -25,7 +25,7 @@ const { YesOrNoQuestion, Select } = getTypedFormComponents<
     ValidationError
 >();
 
-const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
+const BarnFormPart = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
     const intl = useIntl();
 
     const getFieldName = (index: number, field: BarnFormFiels): string => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -9,7 +8,7 @@ interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps
     formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer' | 'maksTid'>;
 }
 
-const OmsorgstilbudEnkeltdagDialog: React.FunctionComponent<Props> = ({ open: isOpen, formProps }: Props) => {
+const OmsorgstilbudEnkeltdagDialog = ({ open: isOpen, formProps }: Props) => {
     const { text } = useAppIntl();
 
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {

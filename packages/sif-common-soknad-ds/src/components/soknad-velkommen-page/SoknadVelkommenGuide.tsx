@@ -6,7 +6,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SoknadVelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => (
+const SoknadVelkommenGuide = ({ title, children }: Props) => (
     <GuidePanel poster={true}>
         <Box paddingBlock="2 0">
             <Heading level="2" size="medium" spacing={true}>

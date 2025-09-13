@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     decimalDurationToDuration,
@@ -24,7 +23,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     gjelderHonorar?: boolean;
 }
 
-const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriodeSummaryItem }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 

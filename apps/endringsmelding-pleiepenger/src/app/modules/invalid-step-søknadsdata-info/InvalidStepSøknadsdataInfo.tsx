@@ -9,7 +9,7 @@ interface Props {
     stepConfig: SoknadStepsConfig<StepId>;
 }
 
-const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+const InvalidStepSøknadsdataInfo = ({ stepId, stepConfig }: Props) => {
     const { text } = useAppIntl();
     const {
         state: { arbeidsgivere },

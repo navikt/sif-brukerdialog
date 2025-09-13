@@ -1,5 +1,5 @@
 import { Button } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
@@ -35,7 +35,7 @@ const oppdaterDagerMedOmsorgstilbudIPeriode = ({
     return dagerSomSkalEndres;
 };
 
-const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => {
+const OmsorgstilbudPeriode = ({ periode, onPeriodeChange }: Props) => {
     const [visPeriode, setVisPeriode] = useState(false);
 
     const handleFormSubmit = (data: OmsorgstilbudPeriodeData) => {

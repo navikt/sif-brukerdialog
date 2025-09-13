@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
@@ -7,7 +6,7 @@ interface Props {
     arbeidsforholdType: ArbeidsforholdType;
 }
 
-const InfoOmEndring: React.FunctionComponent<Props> = ({ arbeidsforholdType }) => {
+const InfoOmEndring = ({ arbeidsforholdType }: Props) => {
     const { text } = useAppIntl();
     switch (arbeidsforholdType) {
         case ArbeidsforholdType.ANSATT:

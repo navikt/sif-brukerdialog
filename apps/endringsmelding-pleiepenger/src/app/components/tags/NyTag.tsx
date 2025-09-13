@@ -8,7 +8,7 @@ interface Props extends Omit<TagProps, 'variant' | 'children'> {
     children?: React.ReactNode;
     visIkon?: boolean;
 }
-const NyTag: React.FunctionComponent<Props> = (props) => {
+const NyTag = (props: Props) => {
     const { children, visIkon, ...rest } = props;
     const { text } = useAppIntl();
     return (

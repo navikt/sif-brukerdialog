@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
@@ -14,12 +13,7 @@ interface Props {
     søknadsdato: Date;
 }
 
-const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
-    startdatoValue,
-    sluttdatoValue,
-    søknadsperiode,
-    søknadsdato,
-}) => {
+const FrilansSluttdatoSpørsmål = ({ startdatoValue, sluttdatoValue, søknadsperiode, søknadsdato }: Props) => {
     const { text } = useAppIntl();
     return (
         <ArbFriFormComponents.DatePicker

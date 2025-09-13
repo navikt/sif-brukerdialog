@@ -12,7 +12,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FC<Props> = ({ stepId, children }) => {
+const SøknadStep = ({ stepId, children }: Props) => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();

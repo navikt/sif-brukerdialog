@@ -39,14 +39,7 @@ export interface ProcessStepData {
     isLastStep?: boolean;
 }
 
-export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
-    completed,
-    current,
-    icon,
-    children,
-    isLastStep,
-    index,
-}) => {
+export const ProcessStep = ({ completed, current, icon, children, isLastStep, index }: ProcessStepProps) => {
     const getCircleContent = () => {
         if (icon) {
             return icon;

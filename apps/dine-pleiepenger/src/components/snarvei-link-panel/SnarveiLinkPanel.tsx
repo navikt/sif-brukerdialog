@@ -7,7 +7,7 @@ interface Props extends LinkPanelProps {
     description?: React.ReactNode;
 }
 
-const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, description, ...rest }) => {
+const SnarveiLinkPanel = ({ icon, title, description, ...rest }: Props) => {
     return (
         <LinkPanel border={false} {...rest} className={`rounded-lg shadow-xs ${rest.className}`}>
             <HStack gap="4" align="center" wrap={false}>

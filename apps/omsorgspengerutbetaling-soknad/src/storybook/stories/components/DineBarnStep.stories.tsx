@@ -28,7 +28,7 @@ const defaultProps: DineBarnFormProps = {
     isSubmitting: false,
 };
 
-const Template: StoryFn<typeof DineBarnForm> = (props) => {
+const Template: StoryFn<typeof DineBarnForm> = (props: DineBarnFormProps) => {
     const formik = useFormikContext<DineBarnFormValues>();
     return (
         <DineBarnForm

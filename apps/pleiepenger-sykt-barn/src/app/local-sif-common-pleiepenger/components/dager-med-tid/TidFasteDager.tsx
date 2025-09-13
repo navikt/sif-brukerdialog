@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { AppIntlShape, AppMessageKeys, AppText, useAppIntl } from '../../../i18n';
 import { Time } from '../../../types/Time';
@@ -45,7 +44,7 @@ const getDagCapsIntlKey = (dag: Dager): AppMessageKeys => {
     }
 };
 
-const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
+const TidFasteDager = ({ fasteDager }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 

@@ -1,5 +1,5 @@
 import { Button, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import FerieuttakForm from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -21,7 +21,7 @@ interface Props {
     onChange: (feriedager: FeriedagMap) => void;
 }
 
-const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeriedager, søknadsperiode, onChange }) => {
+const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange }: Props) => {
     const { text } = useAppIntl();
     const [visFerieModal, setVisFerieModal] = useState<{ periode: DateRange | undefined } | undefined>();
 

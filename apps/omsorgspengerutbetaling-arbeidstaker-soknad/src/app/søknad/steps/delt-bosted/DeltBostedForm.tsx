@@ -1,5 +1,4 @@
 import { Link } from '@navikt/ds-react';
-import React from 'react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
@@ -25,7 +24,7 @@ export interface DeltBostedFormValues {
 
 const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
-const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const DeltBostedForm = ({ values, goBack, andreVedlegg = [], isSubmitting }: Props) => {
     const { text, intl } = useAppIntl();
     const vedlegg = values.vedlegg ? values.vedlegg : [];
     const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);

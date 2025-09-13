@@ -1,4 +1,3 @@
-import React from 'react';
 import { InformationColored } from '@navikt/ds-icons';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -7,7 +6,7 @@ interface Props {
     uke: ArbeidstidUkerItem;
 }
 
-const UkeInfoIkon: React.FunctionComponent<Props> = ({ uke }) => {
+const UkeInfoIkon = ({ uke }: Props) => {
     return (
         <span style={{ fontSize: '1.4rem' }}>
             <InformationColored aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />

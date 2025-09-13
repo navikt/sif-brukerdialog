@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper, YesOrNo } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -38,7 +37,7 @@ const { Form, YesOrNoQuestion, CheckboxGroup } = getTypedFormComponents<
     LegeerklæringFormValues
 >();
 
-const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const LegeerklæringForm = ({ values, goBack, andreVedlegg = [], isSubmitting }: Props) => {
     const { text, intl } = useAppIntl();
     const legeerklæringer = values.vedlegg ? values.vedlegg : [];
     const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);

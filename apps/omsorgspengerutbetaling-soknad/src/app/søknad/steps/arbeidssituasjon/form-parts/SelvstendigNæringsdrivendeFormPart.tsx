@@ -20,7 +20,7 @@ interface Props {
     values: Partial<ArbeidssituasjonFormValues>;
 }
 
-const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
+const SelvstendigNæringsdrivendeFormPart = ({ values }: Props) => {
     const { intl, text } = useAppIntl();
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;

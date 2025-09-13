@@ -84,7 +84,7 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
     );
 };
 
-const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): ReactElement => {
+const UtbetalingsperioderSummaryView = ({ utbetalingsperioder = [] }: Props): ReactElement => {
     const perioder = utbetalingsperioder.filter((p) => p.antallTimerBorte === null);
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
 

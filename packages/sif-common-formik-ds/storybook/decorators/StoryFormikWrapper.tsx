@@ -22,7 +22,7 @@ export const withFormikWrapper = (Story, args) => (
     </IntlProvider>
 );
 
-export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
+export const StoryFormikWrapper = (props: Props) => {
     const { children, parameters } = props;
     const { formik, maxWidth = '800px', includeButtons = true } = parameters || {};
     const initialValues = formik?.initialValues || {};

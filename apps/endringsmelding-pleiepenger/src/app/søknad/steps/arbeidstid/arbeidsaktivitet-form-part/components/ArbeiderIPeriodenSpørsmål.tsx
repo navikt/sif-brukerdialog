@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetArbeidstaker } from '@types';
@@ -15,7 +14,7 @@ export const ArbeiderIPeriodenSvarIntlKey: Record<string, AppMessageKeys> = {
     [ArbeiderIPeriodenSvar.somVanlig]: 'arbeidstidStep.arbeiderIPeriodenSpm.somVanlig',
 };
 
-const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ parentFieldName, arbeidsaktivitet }) => {
+const ArbeiderIPeriodenSpørsmål = ({ parentFieldName, arbeidsaktivitet }: Props) => {
     const { text } = useAppIntl();
     const fieldName = `${parentFieldName}.arbeiderIPerioden`;
 

@@ -42,7 +42,7 @@ interface Props {
     årstall?: number;
 }
 
-const ArbeidsforholdFraværSpørsmål: React.FC<Props> = ({
+const ArbeidsforholdFraværSpørsmål = ({
     fravær,
     arbeidsgiverNavn,
     parentFieldName,

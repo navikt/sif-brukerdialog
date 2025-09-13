@@ -7,7 +7,7 @@ interface Props extends PanelProps {
     children: React.ReactNode;
 }
 
-const ConditionalResponsivePanel: React.FunctionComponent<Props> = ({ usePanelLayout, children, ...rest }) => {
+const ConditionalResponsivePanel = ({ usePanelLayout, children, ...rest }: Props) => {
     return usePanelLayout ? <ResponsivePanel {...rest}>{children}</ResponsivePanel> : <>{children}</>;
 };
 

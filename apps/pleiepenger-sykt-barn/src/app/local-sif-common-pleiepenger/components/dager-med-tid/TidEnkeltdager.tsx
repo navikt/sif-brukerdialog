@@ -1,5 +1,4 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import {
     capsFirstCharacter,
     ISODate,
@@ -22,7 +21,7 @@ interface Props {
     dager: ISODagMedTid[];
 }
 
-const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
+const TidEnkeltdager = ({ dager }: Props) => {
     const days: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);

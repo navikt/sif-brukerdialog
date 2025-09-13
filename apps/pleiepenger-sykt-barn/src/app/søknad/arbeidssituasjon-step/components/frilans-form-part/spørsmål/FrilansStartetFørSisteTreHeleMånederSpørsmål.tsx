@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -10,7 +9,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const FrilansStartetFørSisteTreHeleMånederSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const FrilansStartetFørSisteTreHeleMånederSpørsmål = ({ søknadsperiode }: Props) => {
     const { text } = useAppIntl();
     const dato = dateFormatter.dateShortMonthYear(getStartdatoForNySomFrilanser(søknadsperiode));
 

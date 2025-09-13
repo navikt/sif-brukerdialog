@@ -21,7 +21,7 @@ interface Props {
     values: Partial<ArbeidssituasjonFormValues>;
 }
 
-const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
+const FrilansFormPart = ({ values, fraværPeriode }: Props) => {
     const { text, intl } = useAppIntl();
 
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato } = values;

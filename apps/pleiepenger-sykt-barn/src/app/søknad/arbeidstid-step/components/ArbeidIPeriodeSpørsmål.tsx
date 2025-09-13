@@ -39,7 +39,7 @@ interface Props {
     arbeiderIPeriodenDescription?: React.ReactNode;
 }
 
-const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
+const ArbeidIPeriodeSpørsmål = ({
     periode,
     parentFieldName,
     formValues,
@@ -49,7 +49,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     normalarbeidstid,
     arbeidsforholdType,
     arbeiderIPeriodenDescription,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;

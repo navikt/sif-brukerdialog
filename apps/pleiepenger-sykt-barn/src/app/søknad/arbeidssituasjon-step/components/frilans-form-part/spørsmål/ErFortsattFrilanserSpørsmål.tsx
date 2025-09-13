@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -9,7 +8,7 @@ interface Props {
     erFortsattFrilanserValue?: YesOrNo;
 }
 
-const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erFortsattFrilanserValue }) => {
+const ErFortsattFrilanserSpørsmål = ({ erFortsattFrilanserValue }: Props) => {
     const { text } = useAppIntl();
     return (
         <ArbFriFormComponents.YesOrNoQuestion

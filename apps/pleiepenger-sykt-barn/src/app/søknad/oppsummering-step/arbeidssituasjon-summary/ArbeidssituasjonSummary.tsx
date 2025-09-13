@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { AppText } from '@i18n/index';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -21,7 +20,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
+const ArbeidssituasjonSummary = ({
     apiValues: {
         arbeidsgivere,
         frilans,
@@ -35,7 +34,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
     søknadsperiode,
     frilansoppdrag,
     onEdit,
-}) => {
+}: Props) => {
     return (
         <>
             <FormSummary>

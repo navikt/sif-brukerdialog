@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import {
     FormikNumberInput,
@@ -65,13 +64,13 @@ interface Props {
     goBack?: () => void;
 }
 
-const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
+const UkjentArbeidsforholdForm = ({
     stepId,
     goBack,
     arbeidsgivere,
     arbeidsgivereIkkeISak,
     ukjentArbeidsforholdSøknadsdata,
-}) => {
+}: Props) => {
     const intl = useIntl();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 

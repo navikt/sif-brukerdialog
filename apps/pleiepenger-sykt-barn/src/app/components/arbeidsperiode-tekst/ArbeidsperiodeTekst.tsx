@@ -1,4 +1,3 @@
-import React from 'react';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText } from '../../i18n';
 
@@ -7,7 +6,7 @@ interface Props {
     to?: Date;
 }
 
-const ArbeidsperiodeTekst: React.FunctionComponent<Props> = ({ from, to }) => {
+const ArbeidsperiodeTekst = ({ from, to }: Props) => {
     if (from && to) {
         return (
             <AppText

@@ -25,7 +25,7 @@ type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
         onChange: (date: ISODateString | string) => void;
     };
 
-const DateInputAndPicker: React.FunctionComponent<Props> = ({
+const DateInputAndPicker = ({
     label,
     name,
     value,
@@ -38,7 +38,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
     onChange,
     locale,
     ...restProps
-}) => {
+}: Props) => {
     const [inputHasFocus, setInputHasFocus] = React.useState(false);
     const [listenForInputValueChange, setListenForInputValueChange] = React.useState(false);
 

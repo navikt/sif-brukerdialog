@@ -19,7 +19,7 @@ interface Props {
     arbeiderIPeriodenAlternativer?: FormikRadioProp[];
 }
 
-const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
+const ArbeidstidArbeidsaktivitet = ({
     tittel,
     arbeidsforholdType,
     arbeidIPeriode,
@@ -30,7 +30,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
     info,
     arbeiderIPeriodenDescription,
     arbeiderIPeriodenAlternativer,
-}) => {
+}: Props) => {
     return (
         <FormLayout.Section title={tittel}>
             <ArbeidIPeriodeSpørsmål

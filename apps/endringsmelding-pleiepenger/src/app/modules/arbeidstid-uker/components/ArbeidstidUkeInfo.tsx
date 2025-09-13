@@ -1,5 +1,4 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
@@ -15,7 +14,7 @@ interface Props {
     medLabels?: boolean;
 }
 
-const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false, visEndringSomOpprinnelig }) => {
+const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }: Props) => {
     const intl = useIntl();
     if (uke.endret === undefined) {
         return (

@@ -1,5 +1,4 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -22,7 +21,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldName, søknadsperiode }) => {
+const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperiode }: Props) => {
     const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
 
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField =>

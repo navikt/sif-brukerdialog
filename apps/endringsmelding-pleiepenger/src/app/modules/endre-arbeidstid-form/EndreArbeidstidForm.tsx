@@ -1,5 +1,4 @@
 import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { useSøknadContext } from '@hooks';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -59,13 +58,13 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = ({
+const EndreArbeidstidForm = ({
     arbeidsuker,
     lovbestemtFerie,
     endring,
     onCancel,
     onSubmit,
-}) => {
+}: EndreArbeidstidFormProps) => {
     const appIntl = useAppIntl();
     const { text, intl } = appIntl;
     const {

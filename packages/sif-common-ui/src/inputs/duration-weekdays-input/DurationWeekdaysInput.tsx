@@ -27,7 +27,7 @@ export interface DurationWeekdaysInputProps {
     validateDate: DurationWeekdaysDateValidator;
 }
 
-const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps> = ({
+const DurationWeekdaysInput = ({
     dateRange,
     formikFieldName,
     disabledDates = [],
@@ -36,7 +36,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
     accordionOpen,
     renderMonthHeader,
     validateDate,
-}) => {
+}: DurationWeekdaysInputProps) => {
     const months = getMonthsInDateRange(dateRange);
 
     const getEnabledDatesInMonth = (month: DateRange) => {

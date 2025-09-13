@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
@@ -11,7 +10,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const SelvstendigOppsummering: React.FC<Props> = ({ virksomhet, onEdit }) => {
+const SelvstendigOppsummering = ({ virksomhet, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

@@ -1,5 +1,4 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AppText } from '../../../../i18n';
@@ -11,7 +10,7 @@ interface Props {
     harUtvidetRett: boolean;
 }
 
-const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidetRett }) => {
+const KunBarnOver13 = ({ harSyktBarn, harUtvidetRett }: Props) => {
     return (
         <>
             <HarSyktBarnSpørsmål />

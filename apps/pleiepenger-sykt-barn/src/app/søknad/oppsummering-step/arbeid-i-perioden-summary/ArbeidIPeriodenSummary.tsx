@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -18,11 +17,11 @@ export interface ArbeidIPeriodenFrilansSummaryItemType extends ArbeidsforholdApi
     tittel: string;
 }
 
-const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
+const ArbeidIPeriodenSummary = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     søknadsperiode,
     onEdit,
-}) => {
+}: Props) => {
     const { text } = useAppIntl();
     const summaryItem: ArbeidIPeriodenSummaryItemType[] = [];
 

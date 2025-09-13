@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
@@ -20,11 +19,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionComponent<Props> = ({
-    fieldName,
-    arbeidsforhold,
-    søknadsperiode,
-}) => {
+const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål = ({ fieldName, arbeidsforhold, søknadsperiode }: Props) => {
     const { text } = useAppIntl();
     return (
         <AnsattFormComponents.YesOrNoQuestion

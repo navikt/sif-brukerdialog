@@ -13,7 +13,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetBlock = ({
     navn,
     type,
     arbeidsgiver,
@@ -22,7 +22,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     endret,
     erUkjent,
     children,
-}) => {
+}: Props) => {
     const renderHeader = () => {
         return (
             <ArbeidsaktivitetBlockHeader

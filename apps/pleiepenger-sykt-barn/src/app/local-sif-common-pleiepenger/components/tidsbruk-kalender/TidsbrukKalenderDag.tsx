@@ -1,5 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
@@ -22,7 +22,7 @@ interface Props {
 
 const bem = bemUtils('tidsbrukKalenderDag');
 
-const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
+const TidsbrukKalenderDag = ({
     dato,
     prosent,
     tid,
@@ -31,7 +31,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
     tidRenderer,
     opprinneligTidRenderer,
     footerRenderer,
-}) => {
+}: Props) => {
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
 
     const renderTid = (duration: Duration) =>

@@ -1,5 +1,4 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppText } from '../../i18n';
 
@@ -8,7 +7,7 @@ interface Props {
     stepRoute: string;
 }
 
-const InvalidStepMessage: React.FunctionComponent<Props> = ({ stepRoute, stepTitle }) => {
+const InvalidStepMessage = ({ stepRoute, stepTitle }: Props) => {
     const navigate = useNavigate();
     return (
         <Alert variant="warning">

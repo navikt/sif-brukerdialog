@@ -21,7 +21,7 @@ const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): React.Reac
     />
 );
 
-const MedlemskapSummary: React.FC<Props> = ({ medlemskap, onEdit }) => {
+const MedlemskapSummary = ({ medlemskap, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

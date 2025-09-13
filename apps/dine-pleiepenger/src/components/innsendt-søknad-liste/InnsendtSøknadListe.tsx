@@ -11,7 +11,7 @@ interface Props {
     søknader: InnsendtSøknad[];
 }
 
-const InnsendtSøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
+const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
     const [antall, setAntall] = useState(3);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
 

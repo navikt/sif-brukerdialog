@@ -12,7 +12,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
+export const StoryFormikWrapper = (props: Props) => {
     const { children, parameters } = props;
     const { formik, maxWidth = '800px', includeButtons = false } = parameters || {};
     const initialValues = formik?.initialValues || {};

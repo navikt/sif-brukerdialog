@@ -17,13 +17,13 @@ interface Props {
     månedContentRenderer: (måned: DateRange, søknadsperioderIMåned: DateRange[], index: number) => React.ReactNode;
 }
 
-const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
+const SøknadsperioderMånedListe = ({
     periode,
     fieldset,
     årstallHeadingLevel = '2',
     årstallHeaderRenderer,
     månedContentRenderer,
-}) => {
+}: Props) => {
     const måneder = getMonthsInDateRange(periode);
     const gårOverFlereÅr = periode.from.getFullYear() !== periode.to.getFullYear();
 

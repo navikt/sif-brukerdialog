@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -29,7 +28,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const FosterhjemsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const FosterhjemsgodtgjørelseFormPart = ({ søknadsperiode }: Props) => {
     const { text } = useAppIntl();
     const {
         values: { fosterhjemsgodtgjørelse },

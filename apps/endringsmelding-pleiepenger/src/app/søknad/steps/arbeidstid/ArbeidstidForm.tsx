@@ -1,5 +1,4 @@
 import { Alert, Link, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import {
@@ -48,7 +47,7 @@ interface Props {
     goBack?: () => void;
 }
 
-const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
+const ArbeidstidForm = ({ goBack }: Props) => {
     const stepId = StepId.ARBEIDSTID;
     const intl = useIntl();
     const {

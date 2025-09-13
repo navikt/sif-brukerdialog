@@ -32,7 +32,7 @@ interface Props {
     footerRenderer?: TidsbrukKalenderDagFooterRenderer;
 }
 
-const TidsbrukKalender: React.FunctionComponent<Props> = ({
+const TidsbrukKalender = ({
     periode,
     dager,
     dagerOpprinnelig = {},
@@ -45,7 +45,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
     opprinneligTidRenderer,
     tomUkeContentRenderer,
     footerRenderer,
-}) => {
+}: Props) => {
     const kalenderdager: Kalenderdager = {};
     Object.keys(dager).forEach((key) => {
         const dag = dager[key];

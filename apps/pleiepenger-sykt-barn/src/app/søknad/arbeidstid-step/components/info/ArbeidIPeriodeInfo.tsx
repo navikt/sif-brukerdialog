@@ -12,13 +12,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
-    arbeidsforholdType,
-    søkerFremITid,
-    mottarOmsorgsstønad,
-    tittel,
-    children,
-}) => (
+const ArbeidIPeriodeInfo = ({ arbeidsforholdType, søkerFremITid, mottarOmsorgsstønad, tittel, children }: Props) => (
     <>
         <Heading level="3" size="small">
             {tittel}

@@ -13,7 +13,7 @@ interface Props {
     ettersendelseURL: string;
 }
 
-const FødselsattestPart: React.FC<Props> = ({ fødselsattester, andreVedlegg, ettersendelseURL }) => {
+const FødselsattestPart = ({ fødselsattester, andreVedlegg, ettersendelseURL }: Props) => {
     const { text } = useOmBarnetFormIntl();
     const { setFieldValue } = useFormikContext<OmBarnetFormValues>();
     const { dispatch } = useSøknadContext();

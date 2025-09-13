@@ -1,5 +1,4 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { AppText } from '../../i18n';
 
@@ -9,7 +8,7 @@ interface Props {
     onCancel: () => void;
 }
 
-const StartPåNyttDialog: React.FunctionComponent<Props> = ({ open, onCancel, onConfirm }) => (
+const StartPåNyttDialog = ({ open, onCancel, onConfirm }: Props) => (
     <ConfirmationDialog
         open={open}
         title="Oops"

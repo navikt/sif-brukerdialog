@@ -9,12 +9,7 @@ interface Props {
     documentTitle?: string;
 }
 
-const PageHeader: React.FunctionComponent<Props> = ({
-    title = 'Dine pleiepenger for sykt barn',
-    titleTag,
-    byline,
-    documentTitle,
-}) => {
+const PageHeader = ({ title = 'Dine pleiepenger for sykt barn', titleTag, byline, documentTitle }: Props) => {
     return (
         <div>
             {documentTitle ? (

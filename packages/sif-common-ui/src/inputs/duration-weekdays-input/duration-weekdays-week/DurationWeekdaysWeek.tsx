@@ -1,5 +1,4 @@
 import { Fieldset, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
@@ -32,13 +31,13 @@ interface Props {
 
 const bem = bemUtils('durationWeekdaysWeek');
 
-const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
+const DurationWeekdaysWeek = ({
     week,
     disabledDates = [],
     formikFieldName,
     headingLevel = '3',
     validateDate,
-}) => {
+}: Props) => {
     const { locale } = useIntl();
     const { text } = useUiIntl();
     const fullWeek = getWeekDateRange(week.from, true);

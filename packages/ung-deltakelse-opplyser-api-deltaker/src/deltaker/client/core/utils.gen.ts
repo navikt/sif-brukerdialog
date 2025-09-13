@@ -6,7 +6,6 @@ import {
     serializeArrayParam,
     serializeObjectParam,
     serializePrimitiveParam,
-    type,
 } from './pathSerializer.gen';
 
 export interface PathSerializer {

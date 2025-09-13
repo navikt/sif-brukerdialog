@@ -1,5 +1,4 @@
 import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
-import React from 'react';
 import './confirmationDialog.scss';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
@@ -10,7 +9,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
     cancelLabel?: string;
 }
 
-const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
+const ConfirmationDialog = (props: Props) => {
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
     return props.open ? (
         <Modal

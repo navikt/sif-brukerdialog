@@ -1,5 +1,4 @@
 import { BodyShort, HStack, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { Task } from '@navikt/ds-icons';
 import { AppText } from '../../i18n';
 import { InnsendtSøknad } from '../../types/InnsendtSøknad';
@@ -9,7 +8,7 @@ interface Props {
     søknad: InnsendtSøknad;
 }
 
-const InnsendtSøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
+const InnsendtSøknadTitle = ({ søknad }: Props) => {
     return (
         <VStack gap="2">
             <HStack gap="2" align="start" wrap={false}>

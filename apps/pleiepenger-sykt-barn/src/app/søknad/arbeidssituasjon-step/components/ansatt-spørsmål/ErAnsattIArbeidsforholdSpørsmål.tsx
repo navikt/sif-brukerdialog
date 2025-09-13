@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -18,7 +17,7 @@ interface Props {
     fieldName: ArbeidsforholdFormField;
 }
 
-const ErAnsattIArbeidsforholdSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
+const ErAnsattIArbeidsforholdSpørsmål = ({ arbeidsforhold, fieldName }: Props) => {
     const { text } = useAppIntl();
     return (
         <AnsattFormComponents.YesOrNoQuestion

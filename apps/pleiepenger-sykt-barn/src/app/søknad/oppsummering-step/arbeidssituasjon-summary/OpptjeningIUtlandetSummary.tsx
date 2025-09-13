@@ -1,5 +1,4 @@
 import { FormSummary, List } from '@navikt/ds-react';
-import React from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
@@ -13,7 +12,7 @@ const getPeriodeString = (opptjening: OpptjeningIUtlandetApiData): string => {
     return `${prettifyDateExtended(ISODateToDate(opptjening.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opptjening.tilOgMed))}`;
 };
 
-const OpptjeningIUtlandetSummary: React.FC<Props> = (props) => {
+const OpptjeningIUtlandetSummary = (props: Props) => {
     const { opptjeningUtland } = props;
     const { text } = useAppIntl();
     return (

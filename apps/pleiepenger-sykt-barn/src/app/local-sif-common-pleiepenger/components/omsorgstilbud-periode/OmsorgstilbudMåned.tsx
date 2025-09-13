@@ -1,6 +1,6 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import { ExpansionCardContent, ExpansionCardHeader } from '@navikt/ds-react/ExpansionCard';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -21,7 +21,7 @@ interface Props {
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
 }
 
-const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
+const OmsorgstilbudMåned = ({
     måned,
     tidOmsorgstilbud,
     utilgjengeligeDatoer,
@@ -29,7 +29,7 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
     periode,
     defaultOpen,
     onEnkeltdagChange,
-}) => {
+}: Props) => {
     const { text } = useAppIntl();
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 

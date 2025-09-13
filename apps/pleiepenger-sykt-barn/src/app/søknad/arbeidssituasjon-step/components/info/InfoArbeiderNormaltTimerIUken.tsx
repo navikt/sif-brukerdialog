@@ -1,5 +1,4 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../../i18n';
@@ -66,10 +65,10 @@ interface PropsFrilans {
     mottarOmsorgsstønadFosterhjemsgodtgjørelse?: boolean;
 }
 
-export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({
+export const InfoArbeiderNormaltTimerFrilanser = ({
     frilanstype,
     mottarOmsorgsstønadFosterhjemsgodtgjørelse,
-}) => {
+}: PropsFrilans) => {
     const { text } = useAppIntl();
     return (
         <>

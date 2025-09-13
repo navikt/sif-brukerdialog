@@ -1,5 +1,4 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
@@ -29,7 +28,7 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
     });
 };
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPleie }) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, dagerMedPleie }: Props) => {
     return (
         <VStack gap="8">
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||

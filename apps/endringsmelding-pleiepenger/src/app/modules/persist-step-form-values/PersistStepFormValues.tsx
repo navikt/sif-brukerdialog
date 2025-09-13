@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { StepId } from '../../søknad/config/StepId';
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
@@ -14,7 +13,7 @@ interface Props {
  * browser back/forward i stedet for submit, og for å mellomlagre skjemadata for et steg
  * når bruker velger "Tilbake"-knappen.
  */
-const PersistStepFormValues: React.FunctionComponent<Props> = ({ stepId, onChange }) => {
+const PersistStepFormValues = ({ stepId, onChange }: Props) => {
     const { setStepFormValues } = useStepFormValuesContext();
     return (
         <FormikValuesObserver

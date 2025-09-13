@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
@@ -13,7 +12,7 @@ interface Props {
     visEndringSomOpprinnelig?: boolean;
 }
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndringSomOpprinnelig }) => {
+const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig }: Props) => {
     const intl = useIntl();
 
     if (uke.endret === undefined || visEndringSomOpprinnelig) {

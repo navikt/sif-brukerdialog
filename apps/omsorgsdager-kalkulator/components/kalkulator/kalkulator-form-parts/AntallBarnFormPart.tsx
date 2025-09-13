@@ -11,7 +11,7 @@ interface Props {
 
 const { Select } = getTypedFormComponents<KlakulatorFormFields, KlakulatorFormValues, ValidationError>();
 
-const AntallBarnFormPart: React.FC<Props> = ({ setBarn }: Props) => {
+const AntallBarnFormPart = ({ setBarn }: Props) => {
     const intl = useIntl();
     const nBarnMaks = 20;
 

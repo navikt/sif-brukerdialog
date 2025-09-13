@@ -1,5 +1,4 @@
 import { BodyLong } from '@navikt/ds-react';
-import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
@@ -18,14 +17,14 @@ interface Props {
     mottarOmsorgsstønad: boolean;
 }
 
-const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
+const ArbeidstidFrilans = ({
     frilanstype,
     arbeidIPeriode,
     periode,
     normalarbeidstid,
     søkerFremITid,
     mottarOmsorgsstønad,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
         periode: periode,

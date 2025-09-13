@@ -1,5 +1,4 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -51,14 +50,14 @@ const Aldersvarsel = () => (
     </FormLayout.QuestionBleedTop>
 );
 
-const AnnetBarnPart: React.FC<Props> = ({
+const AnnetBarnPart = ({
     formValues,
     ettersendelseURL,
     søkersFødselsnummer,
     harRegistrerteBarn,
     andreVedlegg,
     initialValues,
-}) => {
+}: Props) => {
     const { text } = useOmBarnetFormIntl();
     const { values, setFieldValue } = useFormikContext<OmBarnetFormValues>();
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
@@ -26,12 +25,7 @@ export interface LegeerklæringFormValues {
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
-const LegeerklæringForm: React.FunctionComponent<Props> = ({
-    legeerklæringer = [],
-    andreVedlegg = [],
-    isSubmitting,
-    goBack,
-}) => {
+const LegeerklæringForm = ({ legeerklæringer = [], andreVedlegg = [], isSubmitting, goBack }: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
     const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);

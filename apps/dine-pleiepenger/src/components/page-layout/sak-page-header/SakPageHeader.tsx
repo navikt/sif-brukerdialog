@@ -12,7 +12,7 @@ interface Props {
     titleTag?: React.ReactNode;
 }
 
-const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksnr, pleietrengende }) => {
+const SakPageHeader = ({ tittel, titleTag, saksnr, pleietrengende }: Props) => {
     const { text } = useAppIntl();
     return (
         <PageHeader

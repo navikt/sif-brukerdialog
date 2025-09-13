@@ -1,5 +1,5 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
@@ -16,12 +16,7 @@ interface Props {
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
 }
 
-const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
-    uker,
-    visEndringSomOpprinnelig,
-    selectableList,
-    renderEditButton,
-}) => {
+const ArbeidstidUkeListe = ({ uker, visEndringSomOpprinnelig, selectableList, renderEditButton }: Props) => {
     const {
         isItemSelected,
         setItemSelected,
