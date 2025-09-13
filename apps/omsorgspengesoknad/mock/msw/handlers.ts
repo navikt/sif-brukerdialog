@@ -12,7 +12,7 @@ export const getHandlers = () => [
             headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
         });
     }),
-    http.get('**/har-gyldig-vedtak', async () => {
+    http.post('**/har-gyldig-vedtak', async () => {
         return HttpResponse.json({
             harInnvilgedeBehandlinger: false,
         });
