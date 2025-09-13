@@ -1,7 +1,7 @@
+import { Box } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { commonMessages } from '../../src/i18n/common.messages';
 import StoryWrapper from '../decorators/StoryWrapper';
-import { Box } from '@navikt/ds-react';
 
 export default {
     title: 'i18n/CommonMessages',

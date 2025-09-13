@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { hentSøker } from '../api/søkerApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Søker } from '../types/Søker';
-import { hentSøker } from '../api/søkerApi';
 
 /**
  * Hook for å hente informasjon om innlogget bruker fra k9-brukerdialog-prosessering-api

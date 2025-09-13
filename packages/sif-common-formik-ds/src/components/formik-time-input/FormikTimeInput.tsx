@@ -5,11 +5,11 @@ import { FastField, Field, FieldProps } from 'formik';
 import { InputTime, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
 import { focusFirstElement } from '../../utils/focusUtils';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import SkjemagruppeQuestion from '../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import TimeInput, { TimeInputLabels, TimeInputLayoutProps, TimeInputRefProps } from './TimeInput';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'onChange'> {
     name: FieldName;

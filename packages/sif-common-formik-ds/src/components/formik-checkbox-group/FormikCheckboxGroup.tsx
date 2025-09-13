@@ -2,9 +2,9 @@ import { Checkbox, CheckboxGroup, CheckboxGroupProps, CheckboxProps } from '@nav
 import React from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 export type FormikCheckboxGroupCheckboxProp = Omit<CheckboxProps, 'children' | 'name' | 'checked'> & {
     label: React.ReactNode;

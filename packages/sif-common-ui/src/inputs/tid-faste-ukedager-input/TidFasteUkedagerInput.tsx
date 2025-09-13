@@ -1,3 +1,4 @@
+import { Box } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -6,7 +7,6 @@ import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
 import './tidFasteUkedagerInput.css';
-import { Box } from '@navikt/ds-react';
 
 interface OwnProps {
     name: string;

@@ -1,4 +1,4 @@
-import { VirksomhetMessageKeys } from '.';
+import { VirksomhetMessageKeys } from './';
 
 export const virksomhetFormMessages_nn: Record<VirksomhetMessageKeys, string> = {
     '@forms.virksomhet.næringstype_FISKE': 'Fiskar',

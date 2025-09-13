@@ -1,4 +1,4 @@
-import { TidsperiodeMessageKeys } from '.';
+import { TidsperiodeMessageKeys } from './';
 
 export const tidsperiodeMessages_nn: Record<TidsperiodeMessageKeys, string> = {
     '@forms.tidsperiode.form.title': 'Tidsperiode',

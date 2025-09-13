@@ -1,9 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
 import TidFasteUkedagerInput from './TidFasteUkedagerInput';
-
-import { withStoryWrapper, withFormikWrapper, withIntlWrapper } from '../../../storybook/decorators';
 
 export default {
     title: 'Inputs/TidFasteUkedagerInput',

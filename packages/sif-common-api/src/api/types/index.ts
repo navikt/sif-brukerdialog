@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import {
     arbeidsgivereResponseSchema,
-    barnSchema,
     arbeidsgiverFrilansoppdragSchema,
     arbeidsgiverOrganisasjonSchema,
     arbeidsgiverPrivatSchema,
+    barnSchema,
     søkerResponseSchema,
 } from '../schemas';
 

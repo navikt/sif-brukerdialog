@@ -8,6 +8,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getListValidator,
@@ -28,7 +29,6 @@ import {
     mapFormValuesToUtenlandsopphold,
     mapUtenlandsoppholdToFormValues,
 } from './utenlandsoppholdUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     variant: UtenlandsoppholdVariant;

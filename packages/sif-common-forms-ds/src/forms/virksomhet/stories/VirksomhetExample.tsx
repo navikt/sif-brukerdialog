@@ -9,6 +9,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import { useVirksomhetIntl, virksomhetMessages } from '../i18n';
@@ -17,7 +18,6 @@ import { isVirksomhet, Næringstype, Virksomhet } from '../types';
 import VirksomhetForm from '../VirksomhetForm';
 import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
 import VirksomhetSummary from '../VirksomhetSummary';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     'virksomhet' = 'virksomhet',

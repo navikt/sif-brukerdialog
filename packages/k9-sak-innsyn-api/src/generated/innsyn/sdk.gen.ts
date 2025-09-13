@@ -18,19 +18,19 @@ import type {
     HentDokumentResponses,
     HentDokumentErrors,
 } from './types.gen';
+import { client as _heyApiClient } from './client.gen';
 import {
-    zHentSøknaderData,
-    zHentSøknaderResponse,
-    zLastNedArbeidsgivermeldingData,
-    zLastNedArbeidsgivermeldingResponse,
+    zHentDokumentData,
+    zHentDokumentResponse,
     zHentMineSakerData,
     zHentMineSakerResponse,
     zHentSaksbehandlingstidData,
     zHentSaksbehandlingstidResponse,
-    zHentDokumentData,
-    zHentDokumentResponse,
+    zHentSøknaderData,
+    zHentSøknaderResponse,
+    zLastNedArbeidsgivermeldingData,
+    zLastNedArbeidsgivermeldingResponse,
 } from './zod.gen';
-import { client as _heyApiClient } from './client.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<
     TData,

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Arbeidsgivere } from '../types/Arbeidsgivere';
-import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 
 /**
  * Hook for å hente informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api

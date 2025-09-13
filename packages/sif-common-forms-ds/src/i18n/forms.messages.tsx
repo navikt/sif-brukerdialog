@@ -1,4 +1,7 @@
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { velgBarnFormPart_nb } from '../form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '../form-parts/velg-barn-form-part/i18n/nn';
 import { annetBarnMessages } from '../forms/annet-barn/i18n';
 import { bostedUtlandMessages } from '../forms/bosted-utland/i18n';
 import { enkeltdatoMessages } from '../forms/enkeltdatoer';
@@ -11,9 +14,6 @@ import { tidsperiodeMessages } from '../forms/tidsperiode/i18n';
 import { utenlandskNæringMessages } from '../forms/utenlandsk-næring/i18n';
 import { utenlandsoppholdMessages } from '../forms/utenlandsopphold/i18n';
 import { virksomhetMessages } from '../forms/virksomhet/i18n';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { velgBarnFormPart_nb } from '../form-parts/velg-barn-form-part/i18n/nb';
-import { velgBarnFormPart_nn } from '../form-parts/velg-barn-form-part/i18n/nn';
 
 const nb = {
     ...annetBarnMessages.nb,

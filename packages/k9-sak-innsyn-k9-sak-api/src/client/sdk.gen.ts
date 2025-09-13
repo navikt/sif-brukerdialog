@@ -9,13 +9,13 @@ import type {
     HentOpplæringsinstitusjonerResponses,
     HentOpplæringsinstitusjonerErrors,
 } from './types.gen';
+import { client as _heyApiClient } from './client.gen';
 import {
-    zHentSisteGyldigeVedtakForAktorIdData,
-    zHentSisteGyldigeVedtakForAktorIdResponse2,
     zHentOpplæringsinstitusjonerData,
     zHentOpplæringsinstitusjonerResponse,
+    zHentSisteGyldigeVedtakForAktorIdData,
+    zHentSisteGyldigeVedtakForAktorIdResponse2,
 } from './zod.gen';
-import { client as _heyApiClient } from './client.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<
     TData,

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Status, ApplicationStatus, ApplicationInheritTeamStatus, SanityError, SanityConfig } from '../types';
+import { ApplicationInheritTeamStatus, ApplicationStatus, SanityConfig, SanityError, Status } from '../types';
 import { SanityStatusMessage } from '../types/sanityObjects';
+import { sanityConfigIsValid } from '../utils';
 import useGetApplicationStatus from './useGetApplicationStatus';
 import useGetTeamStatus from './useGetTeamStatus';
-import { sanityConfigIsValid } from '../utils';
 
 interface State {
     status: Status;

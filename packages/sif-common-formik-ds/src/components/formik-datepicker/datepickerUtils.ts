@@ -1,11 +1,12 @@
 import { Matcher } from 'react-day-picker';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
 import { isArray } from 'lodash';
 import { ISODateString } from './dateFormatUtils';
 import { DatepickerLimitations } from './FormikDatepicker';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { ISODateToDate } from '@navikt/sif-common-utils';
+
 dayjs.extend(customParseFormat);
 
 dayjs.extend(utc);

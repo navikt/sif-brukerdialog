@@ -1,7 +1,6 @@
 import {
-    omsorgspenger,
-    ungdomsytelse,
     ettersendelse,
+    omsorgspenger,
     omsorgspengerAleneomsorg,
     omsorgspengerMidlertidigAlene,
     omsorgspengerutbetalingArbeidstaker,
@@ -10,7 +9,8 @@ import {
     pleiepengerLivetsSluttfase,
     pleiepengerSyktBarnEndringsmelding,
     pleiepengerSyktBarnSoknad,
-} from '.';
+    ungdomsytelse,
+} from './';
 import { initApiClient } from './utils/initApiClient';
 
 export const initK9BrukerdialogProsesseringApiClients = (config: { frontendPath: string; loginURL: string }) => {

@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikRadioGroup, { FormikRadioGroupProps } from '../../../src/components/formik-radio-group/FormikRadioGroup';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { mockAnimalOptions } from '../../mock-data';
 
 const meta: Meta<typeof FormikRadioGroup> = {

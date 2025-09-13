@@ -1,5 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import JSONView from 'react-json-view';
+
 interface Props {
     values?: any;
 }

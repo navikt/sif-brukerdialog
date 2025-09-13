@@ -1,5 +1,5 @@
-import { ActionLink } from '@navikt/sif-common-ui';
 import React from 'react';
+import { ActionLink } from '@navikt/sif-common-ui';
 
 interface Props {
     title: string;

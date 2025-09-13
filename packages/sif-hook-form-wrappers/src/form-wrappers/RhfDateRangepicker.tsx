@@ -1,13 +1,10 @@
-import dayjs, { Dayjs } from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { DatePicker, HStack, useRangeDatepicker, VStack } from '@navikt/ds-react';
 import { JSX, ReactNode, useMemo, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-
-import { DatePicker, HStack, VStack, useRangeDatepicker } from '@navikt/ds-react';
-
+import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT, TIDENES_ENDE, TIDENES_MORGEN } from '../fp/dates';
-
-import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 dayjs.extend(customParseFormat);
 

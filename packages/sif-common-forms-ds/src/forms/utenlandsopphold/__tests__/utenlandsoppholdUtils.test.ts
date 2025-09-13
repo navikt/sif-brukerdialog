@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdUtvidet, UtenlandsoppholdÅrsak } from '../types';
 import { mapFormValuesToUtenlandsopphold } from '../utenlandsoppholdUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 
 const landkoder = {
     belgia: 'BEL',
