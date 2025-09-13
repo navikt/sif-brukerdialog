@@ -5,8 +5,8 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
-import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
+import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
