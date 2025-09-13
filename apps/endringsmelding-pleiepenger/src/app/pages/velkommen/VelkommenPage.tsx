@@ -56,6 +56,7 @@ const VelkommenPage = () => {
                                     />
                                 </BodyLong>
                                 <CheckboxGroup
+                                    data-color="accent"
                                     name={VelkommenFormFields.hvaSkalEndres}
                                     legend={
                                         <Heading level="2" size="small">

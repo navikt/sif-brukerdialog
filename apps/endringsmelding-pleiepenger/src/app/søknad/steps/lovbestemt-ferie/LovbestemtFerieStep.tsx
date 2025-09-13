@@ -1,11 +1,12 @@
-import { Alert, Heading, List, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
 import { erFeriedagerEndretIPeriode } from '@utils';
-import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
+import DateRangeExpansionCards from '../../../components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { AppText } from '../../../i18n';
@@ -20,7 +21,6 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -120,9 +120,9 @@ const LovbestemtFerieStep = () => {
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="6">
                                     {sak.søknadsperioder.length === 1 ? null : (
-                                        <Heading level="3" size="small" spacing={true}>
+                                        <Heading level="3" size="small">
                                             <AppText
                                                 id="lovbestemtFerieStep.heading.perioder"
                                                 values={{
@@ -131,12 +131,12 @@ const LovbestemtFerieStep = () => {
                                             />
                                         </Heading>
                                     )}
-                                    <DateRangeAccordion
+                                    <DateRangeExpansionCards
                                         dateRanges={sak.søknadsperioder}
                                         defaultOpenState="none"
                                         renderContent={(søknadsperiode) => {
                                             return (
-                                                <div>
+                                                <Box paddingBlock="4">
                                                     <Heading
                                                         level={sak.søknadsperioder.length === 1 ? '3' : '4'}
                                                         size={sak.søknadsperioder.length === 1 ? 'small' : 'xsmall'}
@@ -153,7 +153,7 @@ const LovbestemtFerieStep = () => {
                                                             setFieldValue(LovbestemtFerieFormFields.feriedager, dager);
                                                         }}
                                                     />
-                                                </div>
+                                                </Box>
                                             );
                                         }}
                                         renderHeader={(periode) => {
