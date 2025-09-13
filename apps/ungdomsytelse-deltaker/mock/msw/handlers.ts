@@ -9,7 +9,7 @@ store.init(ScenarioType.harSøkt);
 export const getHandlers = () => [
     // App api mocking
     http.get('**/deltaker/hent-kontonummer', () => {
-        return HttpResponse.json({ harKontonummer: false, kontonummer: '12345678901' });
+        return HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' });
         // return HttpResponse.json({ error: { message: '503' } }, { status: 503 });
     }),
 
