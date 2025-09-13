@@ -17,6 +17,12 @@
     - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.17
     - @navikt/ung-common@0.0.42
 
+## 1.1.19
+
+### Patch Changes
+
+- Legge til uxSignals komponent
+
 ## 1.1.18
 
 ### Patch Changes
