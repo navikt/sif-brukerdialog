@@ -7,6 +7,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
@@ -17,7 +18,6 @@ import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltT
 import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import InfoJobberNormaltTimerFrilanser from './info/InfoJobberNormaltTimerFrilanser';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum FrilansFormFields {
     harHattInntektSomFrilanser = 'frilans.harHattInntektSomFrilanser',

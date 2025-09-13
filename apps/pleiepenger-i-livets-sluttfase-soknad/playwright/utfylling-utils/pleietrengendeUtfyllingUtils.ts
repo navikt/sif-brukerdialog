@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export const fyllUtPleietrengendeMedFnr = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Om personen du pleier' })).toBeVisible();

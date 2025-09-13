@@ -1,12 +1,12 @@
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { KvitteringInfo } from '../../../types/KvitteringInfo';
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import {
-    LegeerklæringSøknadsdata,
-    KursSøknadsdata,
     ArbeidssituasjonSøknadsdata,
+    KursSøknadsdata,
+    LegeerklæringSøknadsdata,
     MedlemskapSøknadsdata,
     OmBarnetFormSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';

@@ -2,8 +2,8 @@ import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 import { AppText } from '../../../../i18n';
+import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 
 interface Props {
     antallBarn: number;

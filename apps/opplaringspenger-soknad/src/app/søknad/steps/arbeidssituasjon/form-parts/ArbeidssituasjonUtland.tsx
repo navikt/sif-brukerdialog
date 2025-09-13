@@ -1,12 +1,12 @@
 import { VStack } from '@navikt/ds-react';
-import { useAppIntl } from '../../../../i18n';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikYesOrNoQuestion, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ArbeidssituasjonFormFields } from '../ArbeidssituasjonStep';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
-import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useAppIntl } from '../../../../i18n';
+import { ArbeidssituasjonFormFields } from '../ArbeidssituasjonStep';
 
 interface Props {
     harOpptjeningUtland?: YesOrNo;

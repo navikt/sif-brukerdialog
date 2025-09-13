@@ -10,6 +10,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -31,7 +32,6 @@ import {
     getTidsromSøknadsdataFromFormValues,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',

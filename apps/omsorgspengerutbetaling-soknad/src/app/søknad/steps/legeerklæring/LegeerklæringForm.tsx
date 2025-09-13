@@ -4,9 +4,9 @@ import { FormikFileUpload } from '@navikt/sif-common-core-ds/src';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;

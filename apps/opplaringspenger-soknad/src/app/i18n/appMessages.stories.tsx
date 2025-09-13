@@ -1,8 +1,8 @@
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { Box } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react-vite';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withIntl } from '../../storybook/decorators/withIntl';
 import { appMessages } from './appMessages';
-import { Box } from '@navikt/ds-react';
 
 const meta: Meta = {
     title: 'i18n/AppMessages',

@@ -3,13 +3,13 @@ import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
+import { AppText } from '../../../../i18n';
 import {
     ArbeidIPeriodeApiData,
     ArbeidsforholdApiData,
     TidEnkeltdagApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
-import { AppText } from '../../../../i18n';
 
 interface Props {
     periode: DateRange;

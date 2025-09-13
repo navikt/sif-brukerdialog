@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     dateToISOString,
@@ -25,7 +26,6 @@ import {
     getFraværFraSøknadsdataFromFormValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
-import { VStack } from '@navikt/ds-react';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',

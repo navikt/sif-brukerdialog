@@ -1,8 +1,8 @@
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { DineBarnSøknadsdataType, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
-import { Næringstype } from '@navikt/sif-common-forms-ds';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { Næringstype } from '@navikt/sif-common-forms-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Aktivitet } from '../../app/types/AktivitetFravær';
+import { DineBarnSøknadsdataType, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 
 export const søknadsdataMock: Søknadsdata = {
     id: '4d57d2c9-acba-4c4d-b107-fe832cdd8a5e',

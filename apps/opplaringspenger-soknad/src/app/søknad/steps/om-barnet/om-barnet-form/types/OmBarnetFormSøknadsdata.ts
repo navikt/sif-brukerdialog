@@ -1,6 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 
 export interface RelasjonTilBarnetSøknadsdataBase {
     relasjonTilBarnet: RelasjonTilBarnet;

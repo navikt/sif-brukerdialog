@@ -1,5 +1,5 @@
-import { vi } from 'vitest';
 import { dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../arbeidstidStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {

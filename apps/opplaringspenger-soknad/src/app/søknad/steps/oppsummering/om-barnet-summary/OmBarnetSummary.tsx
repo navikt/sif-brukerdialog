@@ -1,5 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
@@ -13,8 +15,6 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../../om-barnet/om-barnet-form/types';
 import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 
 interface Props {
     søknadsdata: OmBarnetFormSøknadsdata;

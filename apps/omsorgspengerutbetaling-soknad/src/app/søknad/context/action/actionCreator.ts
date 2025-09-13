@@ -1,11 +1,11 @@
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
+    ArbeidSøknadsdata,
     DineBarnSøknadsdata,
+    FraværFraSøknadsdata,
     FraværSøknadsdata,
     LegeerklæringSøknadsdata,
-    ArbeidSøknadsdata,
-    FraværFraSøknadsdata,
     MedlemskapSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';

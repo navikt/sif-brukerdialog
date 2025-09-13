@@ -4,11 +4,11 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion } = getTypedFormComponents<
     ArbeidssituasjonFormFields,

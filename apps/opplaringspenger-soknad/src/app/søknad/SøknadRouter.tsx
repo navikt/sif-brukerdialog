@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { fetchSøkerId } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import { mellomlagringService } from '../api/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
+import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
@@ -12,15 +15,12 @@ import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
+import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
+import KursStep from './steps/kurs/KursStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
-import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KursStep from './steps/kurs/KursStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
-import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
-import { fetchSøkerId } from '@navikt/sif-common-api';
-import { mellomlagringService } from '../api/mellomlagringService';
-import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
+import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

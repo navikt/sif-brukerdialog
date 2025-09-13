@@ -1,5 +1,7 @@
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     FormikInputGroup,
     getIntlFormErrorHandler,
@@ -12,8 +14,6 @@ import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { VStack } from '@navikt/ds-react';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 

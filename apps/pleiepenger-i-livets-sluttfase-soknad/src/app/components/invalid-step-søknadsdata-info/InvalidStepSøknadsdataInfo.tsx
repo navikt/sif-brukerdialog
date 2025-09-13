@@ -3,9 +3,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
+import { useAppIntl } from '../../i18n';
 import { StepId } from '../../types/StepId';
 import { getSøknadStepRoute } from '../../utils/søknadRoutesUtils';
-import { useAppIntl } from '../../i18n';
 
 interface Props {
     stepId: StepId;

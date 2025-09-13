@@ -1,9 +1,9 @@
 import { IntlShape } from 'react-intl';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 import { DateRange, prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { ArbeidIPeriodeIntlValues } from '../../../types/ArbeidIPeriodeIntlValues';
 import { getArbeidstidPeriodeIntl } from './arbeidstidPeriodeMessages';
 import { ArbeidsforholdType } from './form-parts/types';
-import { ArbeidIPeriodeIntlValues } from '../../../types/ArbeidIPeriodeIntlValues';
 
 export const getArbeidstidIPeriodeIntlValues = (
     intl: IntlShape,

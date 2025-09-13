@@ -2,10 +2,10 @@ import React from 'react';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
-import { StepId } from '../types/StepId';
-import { getSøknadStepConfig } from './søknadStepConfig';
 import { useAppIntl } from '../i18n';
+import { StepId } from '../types/StepId';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
+import { getSøknadStepConfig } from './søknadStepConfig';
 
 interface Props {
     stepId: StepId;

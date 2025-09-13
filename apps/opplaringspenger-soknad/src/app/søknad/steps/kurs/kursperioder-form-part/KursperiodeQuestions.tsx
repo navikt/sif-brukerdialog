@@ -1,13 +1,13 @@
 import { Box, Button, VStack } from '@navikt/ds-react';
+import { Delete } from '@navikt/ds-icons';
 import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
+import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../../i18n';
 import { getDateRangeValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
-import { KursFormFields } from '../KursStep';
-import { Delete } from '@navikt/ds-icons';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
-import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
+import { KursFormFields } from '../KursStep';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
