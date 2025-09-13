@@ -1,8 +1,8 @@
-import { test, expect, Page } from '@playwright/test';
-import { setNow } from '../../utils/setNow';
+import { expect, Page, test } from '@playwright/test';
+import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { StepID } from '../../../src/app/types/StepID';
+import { setNow } from '../../utils/setNow';
 
 const getSpørOmSluttetISøknadsperiodeFraEnv = async (page: Page): Promise<boolean> => {
     const appSettings = await page.evaluate(() => {

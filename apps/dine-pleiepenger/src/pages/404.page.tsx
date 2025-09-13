@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { BodyShort, Box, HGrid, Heading, Link, List } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HGrid, Link, List } from '@navikt/ds-react';
 import { browserEnv } from '../utils/env';
 
 const NotFoundPage: NextPage = () => {

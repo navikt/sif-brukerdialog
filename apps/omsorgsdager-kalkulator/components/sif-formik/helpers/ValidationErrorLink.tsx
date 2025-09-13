@@ -12,7 +12,7 @@ const stopClickEvent = (evt: React.MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
 };
 
-const ValidationErrorLink: React.FunctionComponent<Props> = ({ onClick, children, className }) => {
+const ValidationErrorLink = ({ onClick, children, className }: Props) => {
     return (
         <Link
             className={className}

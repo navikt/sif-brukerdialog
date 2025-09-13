@@ -1,6 +1,6 @@
-import { getTillattSøknadsperiode } from '../søknadsperiodeUtils';
-import { vi, expect } from 'vitest';
 import { dateRangeToISODateRange, ISODateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { expect, vi } from 'vitest';
+import { getTillattSøknadsperiode } from '../søknadsperiodeUtils';
 
 vi.mock(import('@navikt/sif-common-utils'), async (importOriginal) => {
     const actual = await importOriginal();

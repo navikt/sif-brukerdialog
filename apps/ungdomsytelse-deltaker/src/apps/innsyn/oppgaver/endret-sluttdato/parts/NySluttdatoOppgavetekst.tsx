@@ -1,5 +1,5 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { BodyLong } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     endretDato: Date;

@@ -1,14 +1,14 @@
+import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import {
+    DeltBostedSøknadsdata,
+    FraværSøknadsdata,
     LegeerklæringSøknadsdata,
     MedlemskapSøknadsdata,
     SituasjonSøknadsdata,
-    FraværSøknadsdata,
-    DeltBostedSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
-import { TempFormValues } from '../../../types/SøknadContextState';
-import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',

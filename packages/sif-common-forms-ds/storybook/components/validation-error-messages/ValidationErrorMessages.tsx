@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { getValidationErrorMessages, MessageFileFormat } from '../devIntlUtils';
 
@@ -13,12 +12,7 @@ interface Props {
     intlMessages: MessageFileFormat;
 }
 
-const FormValidationErrorMessages: React.FunctionComponent<Props> = ({
-    validationErrors,
-    formName,
-    intlMessages,
-    validationErrorIntlKeys,
-}) => {
+const FormValidationErrorMessages = ({ validationErrors, formName, intlMessages, validationErrorIntlKeys }: Props) => {
     return (
         <MessagesPreview
             // title="Feilmeldinger"

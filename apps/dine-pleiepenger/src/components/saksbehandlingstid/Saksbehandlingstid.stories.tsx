@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
+import { withIntl } from '../../storybook/hooks/withIntl';
+import { Venteårsak } from '../../types/Venteårsak';
 import Saksbehandlingstid from './Saksbehandlingstid';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { withIntl } from '../../storybook/hooks/withIntl';
-import { Venteårsak } from '../../types/Venteårsak';
 const meta: Meta<typeof Saksbehandlingstid> = {
     component: Saksbehandlingstid,
     title: 'Content/Saksbehandlingstid',

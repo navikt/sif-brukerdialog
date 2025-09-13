@@ -1,5 +1,4 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -29,12 +28,7 @@ interface Props {
     timerOmsorgsstønad?: number;
 }
 
-const FrilanserFormPart: React.FunctionComponent<Props> = ({
-    søknadsperiode,
-    søkerHarFrilansoppdrag,
-    søknadsdato,
-    timerOmsorgsstønad,
-}) => {
+const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsdato, timerOmsorgsstønad }: Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { harHattInntektSomFrilanser, misterHonorar, erFortsattFrilanser, frilanstype } = values.frilans;
     const { omsorgsstønad } = values;

@@ -1,5 +1,4 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import { AppText } from '../../../../i18n';
@@ -17,7 +16,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode }) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode }: Props) => {
     return (
         <VStack gap="8">
             <>

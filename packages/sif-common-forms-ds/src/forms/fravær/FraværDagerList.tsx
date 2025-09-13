@@ -1,9 +1,9 @@
 import React from 'react';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import { useFraværIntl } from './';
 import FraværListItem from './FraværListItem';
 import { FraværDag } from './types';
-import { useFraværIntl } from '.';
 
 interface Props {
     fraværDager: FraværDag[];

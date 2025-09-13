@@ -1,7 +1,7 @@
 import { søkerResponseSchema } from '@navikt/sif-common-api';
 import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
-import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
 import { ScenarioType } from '../../mock/scenarios/types';
+import { DeltakerContextProvider } from '../../src/context/DeltakerContext';
 import { deltakelsePeriodeSchema } from '../../src/types/DeltakelsePeriode';
 
 export const withDeltakerContext = (Story) => {

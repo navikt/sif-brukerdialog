@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import { withIntl } from '../../decorators/withIntl';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
+import { withIntl } from '../../decorators/withIntl';
 import ExampleForm from './ExampleForm';
 
 const meta: Meta<typeof ExampleForm> = {

@@ -7,7 +7,7 @@ interface Props {
     size?: string;
 }
 
-const CircleIllustration: React.FC<Props> = ({ illustration, backgroundColor = '#99dead', size = '3.5rem' }: Props) => (
+const CircleIllustration = ({ illustration, backgroundColor = '#99dead', size = '3.5rem' }: Props) => (
     <CircleMask size={size} color={backgroundColor} scaleSvg={false}>
         {illustration}
     </CircleMask>

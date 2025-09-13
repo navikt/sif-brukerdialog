@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { MESSAGE_TYPE } from '../../types';
-import { toPlainText, shortenText } from '../../utils/previewUtils';
 import { getLocaleContent } from '../../utils/getLocaleContent';
+import { shortenText, toPlainText } from '../../utils/previewUtils';
 
 const Message = {
     title: 'Status message',

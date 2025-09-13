@@ -1,5 +1,4 @@
 import { DecoratorLocale } from '@navikt/nav-dekoratoren-moduler';
-
 import messagesNb from '../translations/nb.json';
 
 export type Messages = {

@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
+import { ApiEndpoint } from '../../src/app/types/ApiEndpoint';
 import { mockData } from '../data';
 import { getMellomlagringHandlers } from './mellomlagringHandlers';
-import { ApiEndpoint } from '../../src/app/types/ApiEndpoint';
 
 export const getHandlers = () => [
     http.get('**/oppslag/soker', () => {

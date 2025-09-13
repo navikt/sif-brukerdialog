@@ -11,11 +11,11 @@ interface Props {
 
 const bem = bemUtils('calendarGrid');
 
-const CalendarGridDate: React.FunctionComponent<Props> = ({
+const CalendarGridDate = ({
     date,
     dateRendererShort = dateFormatter.compact,
     dateRendererFull = dateFormatter.dayDateMonth,
-}) => {
+}: Props) => {
     const id = `${dateToISODate(date)}_date`;
 
     const content = (

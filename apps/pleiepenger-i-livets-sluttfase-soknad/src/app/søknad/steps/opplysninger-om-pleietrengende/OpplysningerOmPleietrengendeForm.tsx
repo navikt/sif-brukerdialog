@@ -11,6 +11,7 @@ import {
     resetFieldValues,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
@@ -24,7 +25,6 @@ import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import IdPart from './form-parts/IdPart';
 import { opplysningerOmPleietrengendeDefaultValues } from './opplysningerOmPleietrengendeStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',

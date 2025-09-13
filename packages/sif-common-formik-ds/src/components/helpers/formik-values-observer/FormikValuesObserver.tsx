@@ -1,7 +1,7 @@
 import { debounce } from '@navikt/ds-react';
-import { useFormikContext } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
+import { useFormikContext } from 'formik';
 
 interface Props<FormValues> {
     onChange: (values: FormValues) => void;

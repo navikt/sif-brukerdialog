@@ -1,5 +1,5 @@
 import { ErrorSummary, ErrorSummaryProps } from '@navikt/ds-react';
-import React, { RefObject } from 'react';
+import { RefObject } from 'react';
 
 export interface Props extends Pick<ErrorSummaryProps, 'heading' | 'headingTag'> {
     errors: ValidationSummaryError[];
@@ -11,7 +11,7 @@ export interface ValidationSummaryError {
     fieldName: string;
 }
 
-const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, headingTag, summaryRef }) => {
+const ValidationSummary = ({ errors, heading, headingTag, summaryRef }: Props) => {
     return (
         <ErrorSummary ref={summaryRef} heading={heading || 'Feil i skjema'} headingTag={headingTag}>
             {errors.map((error, idx) => (

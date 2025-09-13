@@ -22,7 +22,7 @@ interface Props {
     values?: any;
 }
 
-export const AppText: React.FunctionComponent<Props> = ({ id, values }) => <FormattedMessage id={id} values={values} />;
+export const AppText = ({ id, values }: Props) => <FormattedMessage id={id} values={values} />;
 
 export type AppIntlShape = ReturnType<typeof useAppIntl>;
 

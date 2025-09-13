@@ -7,9 +7,9 @@ import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
-import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Endret sluttdato',

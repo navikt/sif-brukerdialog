@@ -2,8 +2,8 @@ import {
     ALENEOMSORG_KRONISK_SYKT_BARN_DAGER,
     ALENEOMSORGDAGER_1_2_BARN,
     ALENEOMSORGDAGER_3_ELLER_FLERE_BARN,
-    GRUNNRETTSDAGER_3_ELLER_FLER_BARN,
     beregnOmsorgsdager,
+    GRUNNRETTSDAGER_3_ELLER_FLER_BARN,
 } from './beregningsmodul';
 import Barn, { AlderType } from './types/Barn';
 

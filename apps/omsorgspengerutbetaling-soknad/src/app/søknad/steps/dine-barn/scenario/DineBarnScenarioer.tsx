@@ -11,7 +11,7 @@ interface Props {
     formValues: Partial<DineBarnFormValues>;
 }
 
-const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, formValues }) => {
+const DineBarnScenarioer = ({ registrerteBarn, formValues }: Props) => {
     const { andreBarn = [], harAleneomsorg, harSyktBarn } = formValues;
     const barn = [...registrerteBarn, ...andreBarn];
     const barnAlderInfo = getBarnAlderInfo(barn);

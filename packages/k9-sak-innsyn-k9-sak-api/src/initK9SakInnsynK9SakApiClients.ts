@@ -1,4 +1,4 @@
-import { client } from '.';
+import { client } from './';
 import { initApiClient } from './utils/initApiClient';
 
 export const initK9SakInnsynK9SakApiClients = (config: { frontendPath: string; loginURL: string }) => {

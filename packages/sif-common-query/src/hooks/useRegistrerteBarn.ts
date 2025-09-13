@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { hentRegistrerteBarn } from '../api/registrerteBarnApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { RegistrertBarn } from '../types/Barn';
-import { hentRegistrerteBarn } from '../api/registrerteBarnApi';
 
 /**
  * Hook for å hente informasjon om registrerte barn fra k9-brukerdialog-prosessering-api

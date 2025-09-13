@@ -1,4 +1,4 @@
-import { k9Sak, innsyn } from '.';
+import { innsyn, k9Sak } from './';
 import { initApiClient } from './utils/initApiClient';
 
 export const initK9SakInnsynApiClients = (config: { frontendPath: string; loginURL: string }) => {

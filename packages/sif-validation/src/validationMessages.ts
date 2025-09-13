@@ -1,7 +1,7 @@
 import {
     ValidateCheckedError,
-    ValidateDateRangeError,
     ValidateDateError,
+    ValidateDateRangeError,
     ValidateFødselsnummerError,
     ValidateListError,
     ValidateNumberError,

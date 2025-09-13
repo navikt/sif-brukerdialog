@@ -1,8 +1,8 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
-import ShadowBox from './ShadowBox';
 import { storybookIntlUtils } from '../utils/intlUtils';
+import ShadowBox from './ShadowBox';
 
 const AlertStoryWrapper = ({
     title,

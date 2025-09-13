@@ -2,6 +2,7 @@ import { Søker } from '@navikt/sif-common-api';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -10,7 +11,6 @@ import { getFeaturesHashString } from '../../utils/featureToggleUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     søknadstype: Søknadstype;

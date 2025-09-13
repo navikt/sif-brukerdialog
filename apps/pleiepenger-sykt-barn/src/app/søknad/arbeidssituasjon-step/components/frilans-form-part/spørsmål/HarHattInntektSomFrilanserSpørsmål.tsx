@@ -1,5 +1,4 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -12,10 +11,7 @@ interface Props {
     søkerMottarOmsorgsstønad: boolean;
 }
 
-const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({
-    søkerHarFrilansoppdrag,
-    søkerMottarOmsorgsstønad,
-}) => {
+const HarHattInntektSomFrilanserSpørsmål = ({ søkerHarFrilansoppdrag, søkerMottarOmsorgsstønad }: Props) => {
     const { text } = useAppIntl();
     return (
         <ArbFriFormComponents.YesOrNoQuestion

@@ -1,5 +1,5 @@
-import { ArbeidstidArbeidsgivereSøknadsdata } from './ArbeidstidArbeidsgivereSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
+import { ArbeidstidArbeidsgivereSøknadsdata } from './ArbeidstidArbeidsgivereSøknadsdata';
 
 export interface ArbeidstidSøknadsdata {
     arbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata;

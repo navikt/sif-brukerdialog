@@ -57,11 +57,11 @@ const handleTimeChange = (time: Partial<InputTime>, onChange: TimeInputChangeFun
     onChange(time, isValidTime(time));
 };
 
-const TimeInput: React.FunctionComponent<TimeInputProps> = ({
+const TimeInput = ({
     time = { hours: undefined, minutes: undefined },
     maxHours = MAX_HOURS,
     maxMinutes = MAX_MINUTES,
-    direction: layout = 'normal',
+    direction: layout = 'horizontal',
     compact = true,
     justifyContent = 'center',
     placeholders,
@@ -75,7 +75,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
         minutes: 'Minutter',
     },
     ...restProps
-}) => {
+}: TimeInputProps) => {
     const [stateTime, setStateTime] = useState<Partial<InputTime> | undefined>(time);
     const testKey = restProps['data-testid'];
 

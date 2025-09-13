@@ -1,9 +1,9 @@
 import React from 'react';
-import { ActionLink } from '@navikt/sif-common-ui';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { ActionLink } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { AnnetBarnMessageKeys, useAnnetBarnIntl } from '.';
+import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
 import { AnnetBarn, BarnType } from './types';
 import './annetBarnList.scss';
 

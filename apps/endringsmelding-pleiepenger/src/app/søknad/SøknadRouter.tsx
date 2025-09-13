@@ -8,6 +8,7 @@ import {
     useEnsureCorrectSøknadRoute,
     useVerifyUserOnWindowFocus,
 } from '@navikt/sif-common-soknad-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { appSentryLogger } from '@utils';
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
@@ -24,7 +25,6 @@ import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

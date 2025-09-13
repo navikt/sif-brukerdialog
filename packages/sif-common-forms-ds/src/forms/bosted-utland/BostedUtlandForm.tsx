@@ -5,6 +5,7 @@ import {
     ISOStringToDate,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
@@ -16,7 +17,6 @@ import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../util
 import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export interface BostedUtlandFormLabels {
     tittel: string;

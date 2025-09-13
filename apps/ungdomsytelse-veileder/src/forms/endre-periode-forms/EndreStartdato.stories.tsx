@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
 import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
-import EndreStartdatoForm from './EndreStartdatoForm';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
-import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
+import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
 import { deltakelseSchema } from '../../types/Deltakelse';
 import { registrertDeltakerSchema } from '../../types/Deltaker';
+import EndreStartdatoForm from './EndreStartdatoForm';
 
 const meta: Meta<typeof EndreStartdatoForm> = {
     component: EndreStartdatoForm,

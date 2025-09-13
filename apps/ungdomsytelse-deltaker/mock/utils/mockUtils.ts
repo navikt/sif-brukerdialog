@@ -1,5 +1,6 @@
 // import { OppgaveStatus } from '@navikt/ung-common';
 import { store } from '../state/store';
+
 // import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 // import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
 

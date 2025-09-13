@@ -1,14 +1,14 @@
+import { useState } from 'react';
+import { IntlProvider } from 'react-intl';
+import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import {
     getBokmålLocale,
     getLocaleFromSessionStorage,
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { useState } from 'react';
-import { applicationIntlMessages } from '.';
 import useDecoratorLanguageSelector from '@navikt/sif-common-soknad-ds/src/hooks/useDecoratorLanguageSelector';
-import { Locale } from '@navikt/sif-common-core-ds/src/types';
-import { IntlProvider } from 'react-intl';
+import { applicationIntlMessages } from './';
 
 export const AppIntlMessageProvider = ({ children }) => {
     const [locale, setLocale] = useState<Locale>(getLocaleFromSessionStorage());

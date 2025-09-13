@@ -1,5 +1,4 @@
 import { BodyLong, GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import classNames from 'classnames';
 import bemUtils from '../../utils/bemUtils';
@@ -15,7 +14,7 @@ export interface SifGuidePanelProps extends GuidePanelProps {
 
 const bem = bemUtils('sif-guidePanel');
 
-const SifGuidePanel: React.FunctionComponent<SifGuidePanelProps> = ({
+const SifGuidePanel = ({
     mood = 'happy',
     poster,
     title,
@@ -23,7 +22,7 @@ const SifGuidePanel: React.FunctionComponent<SifGuidePanelProps> = ({
     switchToPosterBreakpoint = 576,
     children,
     ...restProps
-}) => {
+}: SifGuidePanelProps) => {
     const isNarrow = useMediaQuery({
         query: `(max-width: ${switchToPosterBreakpoint}px)`,
     });

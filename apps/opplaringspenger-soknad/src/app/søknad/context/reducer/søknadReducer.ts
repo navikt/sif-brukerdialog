@@ -1,8 +1,8 @@
 import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
-import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 import { syncArbeidstidMedKursperioder } from '../../steps/arbeidstid/arbeidstidStepUtils';
+import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {

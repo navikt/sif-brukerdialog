@@ -1,4 +1,4 @@
-import { LocaleRichTextObject, SanityMessageType } from '.';
+import { LocaleRichTextObject, SanityMessageType } from './';
 
 export interface SanityStatusMessage {
     _type: 'statusMessage';

@@ -11,8 +11,8 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { useAppIntl } from '../../../../i18n';
-import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
 import { useMarkerOppgaveSomLukket } from '../../hooks/api/useMarkerOppgaveSomLukket';
+import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
 
 export enum InntektFormFields {
     harArbeidstakerOgFrilansInntekt = 'harArbeidstakerOgFrilansInntekt',

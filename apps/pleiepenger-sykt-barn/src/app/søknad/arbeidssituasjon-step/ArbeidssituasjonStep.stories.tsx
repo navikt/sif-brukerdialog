@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+import { søknadsdata } from '../../../storybook/data/søknadsdata';
 import { withStepWrapper } from '../../../storybook/decorators';
 import ArbeidssituasjonStep from './ArbeidssituasjonStep';
-
-import { søknadsdata } from '../../../storybook/data/søknadsdata';
 
 const meta: Meta<typeof ArbeidssituasjonStep> = {
     title: 'Step/ArbeidssituasjonStep',

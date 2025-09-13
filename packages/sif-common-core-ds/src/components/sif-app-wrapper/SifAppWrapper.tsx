@@ -1,11 +1,11 @@
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import React from 'react';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 interface Props {
     children: React.ReactNode;
 }
 
-const SifAppWrapper: React.FunctionComponent<Props> = ({ children }) => {
+const SifAppWrapper = ({ children }: Props) => {
     useEffectOnce(() => {
         window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });

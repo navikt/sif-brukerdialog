@@ -1,9 +1,9 @@
 import { expect, Page } from '@playwright/test';
+import { kontrollerRegistrertBarnOppsummering } from './1.barnStep';
 import { kontrollerOpplæringEnPeriodeOppsummering } from './2.opplæringStep';
 import { kontrollerArbeidssituasjonOppsummering } from './3.arbeidssituasjonStep';
 import { kontrollerArbeidstidOppsummering } from './4.arbeidstidStep';
 import { kontrollerMedlemskap } from './5.medlemskapStep';
-import { kontrollerRegistrertBarnOppsummering } from './1.barnStep';
 
 export const kontrollerOppsummering = async (page: Page) => {
     await kontrollerSøkerOppsummering(page);

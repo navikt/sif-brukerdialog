@@ -1,9 +1,9 @@
 /* eslint-disable vitest/expect-expect */
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
-import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
+import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
+import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {

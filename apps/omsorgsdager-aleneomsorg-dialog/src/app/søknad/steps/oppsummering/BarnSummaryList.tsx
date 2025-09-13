@@ -1,8 +1,8 @@
 import { SummaryList } from '@navikt/sif-common-ui';
-import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
-import { TidspunktForAleneomsorg } from '../tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppIntlShape, useAppIntl } from '../../../i18n';
+import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
+import { TidspunktForAleneomsorg } from '../tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 
 interface Props {
     barn: ApiBarn[];

@@ -5,13 +5,13 @@ import { useSøknadContext } from '@hooks';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',

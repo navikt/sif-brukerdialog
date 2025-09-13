@@ -1,5 +1,5 @@
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormattedMessage } from 'react-intl';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 interface Props {
     navnPåVirksomheten: string;

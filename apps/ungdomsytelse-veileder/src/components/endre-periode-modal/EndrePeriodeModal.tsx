@@ -1,9 +1,9 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
+import EndreSluttdatoForm from '../../forms/endre-periode-forms/EndreSluttdatoForm';
 import EndreStartdatoForm from '../../forms/endre-periode-forms/EndreStartdatoForm';
-import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
-import EndreSluttdatoForm from '../../forms/endre-periode-forms/EndreSluttdatoForm';
+import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 
 const getModalHeader = (formVariant: EndrePeriodeVariant) => {
     switch (formVariant) {

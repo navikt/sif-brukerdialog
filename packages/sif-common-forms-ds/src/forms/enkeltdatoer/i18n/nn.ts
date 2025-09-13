@@ -1,4 +1,4 @@
-import { EnkeltdatoMessageKeys } from '.';
+import { EnkeltdatoMessageKeys } from './';
 
 export const enkeltdatoMessages_nn: Record<EnkeltdatoMessageKeys, string> = {
     '@forms.enkeltdato.form.title': 'Dato',

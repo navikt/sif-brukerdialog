@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikInputGroup from '../../../src/components/formik-input-group/FormikInputGroup';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikInputGroup> = {
     title: 'Component/FormikInputGroup',

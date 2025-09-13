@@ -7,7 +7,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const UnansweredQuestionsInfo: React.FunctionComponent<Props> = ({ children }) => {
+const UnansweredQuestionsInfo = ({ children }: Props) => {
     const intl = useIntl();
 
     const getDefaultMessage = () => {

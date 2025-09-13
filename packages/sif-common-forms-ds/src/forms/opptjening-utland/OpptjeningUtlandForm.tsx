@@ -5,6 +5,7 @@ import {
     ISOStringToDate,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
@@ -17,7 +18,6 @@ import { handleDateRangeValidationError } from '../../utils';
 import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './i18n';
 import utils from './opptjeningUtlandUtils';
 import { OpptjeningAktivitet, OpptjeningUtland, OpptjeningUtlandFormValues } from './types';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     minDate: Date;

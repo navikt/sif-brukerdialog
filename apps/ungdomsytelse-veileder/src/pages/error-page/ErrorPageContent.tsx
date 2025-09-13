@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Box, Heading, HGrid, Link, List, VStack } from '@navikt/ds-react';
-import { ApiError } from '@navikt/ung-common';
 import { useNavigate } from 'react-router-dom';
+import { ApiError } from '@navikt/ung-common';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 interface Props {

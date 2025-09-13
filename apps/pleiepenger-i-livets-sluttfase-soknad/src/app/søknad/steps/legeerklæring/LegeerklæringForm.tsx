@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
@@ -24,12 +23,7 @@ export interface LegeerklæringFormValues {
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
-const LegeerklæringForm: React.FunctionComponent<Props> = ({
-    legeerklæringer = [],
-    andreVedlegg = [],
-    goBack,
-    isSubmitting,
-}) => {
+const LegeerklæringForm = ({ legeerklæringer = [], andreVedlegg = [], goBack, isSubmitting }: Props) => {
     const { text, intl } = useAppIntl();
     const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);
     return (

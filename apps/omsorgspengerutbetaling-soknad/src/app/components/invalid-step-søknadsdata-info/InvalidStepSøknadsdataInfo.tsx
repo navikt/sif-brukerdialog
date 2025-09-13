@@ -1,5 +1,4 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -13,7 +12,7 @@ interface Props {
     stepConfig: SoknadStepsConfig<StepId>;
 }
 
-const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+const InvalidStepSøknadsdataInfo = ({ stepId, stepConfig }: Props) => {
     const intl = useIntl();
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);

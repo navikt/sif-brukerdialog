@@ -17,7 +17,7 @@ const allMessages = {
     },
 };
 
-const AppIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
+const AppIntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
     const messages = locale === 'nb' ? allMessages.nb : allMessages.nn;
     return (
         <IntlProvider locale={locale} messages={messages} onError={onError}>

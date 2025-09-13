@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppMessageKeys, AppText } from '../../../i18n';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
@@ -19,7 +18,7 @@ const getIntlMessageKey = (type?: DineBarnSøknadsdataType): AppMessageKeys | un
     }
 };
 
-const OmsorgsdagerInfo: React.FunctionComponent<Props> = ({ dineBarn }) => {
+const OmsorgsdagerInfo = ({ dineBarn }: Props) => {
     const key = getIntlMessageKey(dineBarn?.type);
     return key ? <AppText id={key} /> : null;
 };

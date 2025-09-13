@@ -6,6 +6,7 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -34,7 +35,6 @@ import {
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
 } from './SituasjonStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',

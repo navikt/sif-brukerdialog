@@ -3,11 +3,11 @@ import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { FastField, Field, FieldProps } from 'formik';
 import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import DateInputAndPicker from './date-input-and-picker/DateInputAndPicker';
 import { ISODateString } from './dateFormatUtils';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 export type DatepickerLimitations = {
     minDate?: Date;

@@ -13,11 +13,11 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import { AppText } from '../../../i18n';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
-import { AppText } from '../../../i18n';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);
@@ -76,7 +76,7 @@ const getMinWidthForGridView = () => {
 
 const bem = bemUtils('calendarGrid');
 
-const CalendarGrid: React.FunctionComponent<Props> = ({
+const CalendarGrid = ({
     month,
     disabledDates,
     disabledDateInfo,
@@ -88,7 +88,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     dateRendererShort = dateFormatter.compact,
     dateRendererFull = dateFormatter.dayDateMonth,
     allDaysInWeekDisabledContentRenderer,
-}) => {
+}: Props) => {
     const weekdatesInMonth = getDatesInMonth(month.from, true);
     const weeks = getWeeks(weekdatesInMonth, month.from);
     const calendarGridRef = useRef(null);

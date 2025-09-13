@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { ApiError } from '@navikt/ung-common';
 import { getDeltakelserForDeltaker } from '../api/deltakelse/getDeltakelserForDeltaker';
 import { queryKeys } from '../queries/queryKeys';
-import { ApiError } from '@navikt/ung-common';
 import { Deltakelse } from '../types/Deltakelse';
 
 /**

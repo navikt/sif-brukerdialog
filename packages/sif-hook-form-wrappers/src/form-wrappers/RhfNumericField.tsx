@@ -1,9 +1,7 @@
-import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
-import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
-
 import { TextField } from '@navikt/ds-react';
-
-import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
+import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
+import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 type Props<T extends FieldValues> = {
     label: string | ReactNode;

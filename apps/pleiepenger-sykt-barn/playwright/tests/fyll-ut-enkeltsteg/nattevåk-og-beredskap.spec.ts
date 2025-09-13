@@ -1,10 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { setNow } from '../../utils/setNow';
-import { mellomlagringMock } from '../../mock-data/mellomlagring';
-import { routeUtils } from '../../utils/routeUtils';
+import { expect, test } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
 import { SøknadFormValues } from '../../../src/app/types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../../../src/app/types/YesOrNoOrDoNotKnow';
+import { mellomlagringMock } from '../../mock-data/mellomlagring';
+import { routeUtils } from '../../utils/routeUtils';
+import { setNow } from '../../utils/setNow';
 
 const formValues: SøknadFormValues = {
     ...mellomlagringMock.formValues,

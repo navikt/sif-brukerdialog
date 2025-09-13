@@ -24,23 +24,23 @@ import type {
     HentAlleMineDeltakelserResponses,
     HentAlleMineDeltakelserErrors,
 } from './types.gen';
+import { client as _heyApiClient } from './client.gen';
 import {
-    zMarkerDeltakelseSomSøktData,
-    zMarkerDeltakelseSomSøktResponse,
-    zHentKontonummerData,
-    zHentKontonummerResponse,
-    zHentDeltakersOppgaveData,
-    zHentDeltakersOppgaveResponse,
-    zMarkerOppgaveSomLøstData,
-    zMarkerOppgaveSomLøstResponse,
-    zMarkerOppgaveSomLukketData,
-    zMarkerOppgaveSomLukketResponse,
-    zMarkerOppgaveSomÅpnetData,
-    zMarkerOppgaveSomÅpnetResponse,
     zHentAlleMineDeltakelserData,
     zHentAlleMineDeltakelserResponse,
+    zHentDeltakersOppgaveData,
+    zHentDeltakersOppgaveResponse,
+    zHentKontonummerData,
+    zHentKontonummerResponse,
+    zMarkerDeltakelseSomSøktData,
+    zMarkerDeltakelseSomSøktResponse,
+    zMarkerOppgaveSomLukketData,
+    zMarkerOppgaveSomLukketResponse,
+    zMarkerOppgaveSomLøstData,
+    zMarkerOppgaveSomLøstResponse,
+    zMarkerOppgaveSomÅpnetData,
+    zMarkerOppgaveSomÅpnetResponse,
 } from './zod.gen';
-import { client as _heyApiClient } from './client.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<
     TData,

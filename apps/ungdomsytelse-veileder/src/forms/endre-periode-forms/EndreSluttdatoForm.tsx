@@ -8,6 +8,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
@@ -15,11 +16,10 @@ import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
+import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
-import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
-import { dateToISODate } from '@navikt/sif-common-utils';
 
 enum FieldNames {
     sluttdato = 'sluttdato',

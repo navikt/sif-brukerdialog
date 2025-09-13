@@ -1,12 +1,11 @@
 import { Heading, Ingress, Link } from '@navikt/ds-react';
 import { PortableText } from '@portabletext/react';
-import React from 'react';
 
 interface Props {
     content: any;
 }
 
-const SanityBlock: React.FunctionComponent<Props> = ({ content }) => {
+const SanityBlock = ({ content }: Props) => {
     return (
         <PortableText
             value={content}

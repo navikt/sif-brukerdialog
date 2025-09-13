@@ -10,7 +10,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialValues, children }) => {
+const SøknadsdataWrapper = ({ initialValues, children }: Props) => {
     const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>({ isInitialized: false });
 
     useEffectOnce(() => {

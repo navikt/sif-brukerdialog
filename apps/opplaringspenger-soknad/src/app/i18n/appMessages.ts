@@ -4,14 +4,14 @@ import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedT
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
-import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { kursMessages } from '../søknad/steps/kurs/kursMessages';
-import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
-import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
+import { kursMessages } from '../søknad/steps/kurs/kursMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
+import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
+import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...velkommenPageMessages.nb,

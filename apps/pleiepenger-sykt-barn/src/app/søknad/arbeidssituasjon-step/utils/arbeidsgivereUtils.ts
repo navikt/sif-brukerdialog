@@ -1,7 +1,7 @@
 import { FormikProps } from 'formik';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
-import { SøknadFormValues, SøknadFormField } from '../../../types/søknad-form-values/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import appSentryLogger from '../../../utils/appSentryLogger';
 
 const erOrganisasjonElerPrivatArbeidsgiver = (a: Arbeidsgiver) =>

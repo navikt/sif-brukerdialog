@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VStack } from '@navikt/ds-react';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { withDarkBg } from '../../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../../storybook/decorators/withVeilederContext';
-import DeltakerInfo from './DeltakerInfo';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { Deltaker } from '../../../types/Deltaker';
+import DeltakerInfo from './DeltakerInfo';
 
 const meta: Meta<typeof DeltakerInfo> = {
     component: DeltakerInfo,

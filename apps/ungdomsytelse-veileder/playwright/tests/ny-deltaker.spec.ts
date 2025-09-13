@@ -1,5 +1,5 @@
+import { expect, test } from '@playwright/test';
 import { setNow } from '../utils/setNow';
-import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);

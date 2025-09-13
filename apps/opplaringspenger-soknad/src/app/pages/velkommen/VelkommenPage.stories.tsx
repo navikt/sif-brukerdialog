@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import VelkommenPage from './VelkommenPage';
+import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
+import VelkommenPage from './VelkommenPage';
 
 export default {
     title: 'Pages/VelkommenPage',

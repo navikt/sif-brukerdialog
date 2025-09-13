@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
 import FormikCountrySelect from '../../../src/components/formik-country-select/FormikCountrySelect';
+import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
 
 const meta: Meta<typeof FormikCountrySelect> = {
     title: 'Component/FormikCountrySelect',

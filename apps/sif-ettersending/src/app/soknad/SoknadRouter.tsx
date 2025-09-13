@@ -10,6 +10,7 @@ import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
+import BarnStep from './barn-step/BarnStep';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumentTypeStep from './dokument-type-step/DokumentTypeStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
@@ -17,7 +18,6 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
-import BarnStep from './barn-step/BarnStep';
 
 interface Props {
     søker: Søker;

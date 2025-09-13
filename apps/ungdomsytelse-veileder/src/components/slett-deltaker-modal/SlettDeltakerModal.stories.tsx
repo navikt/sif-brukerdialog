@@ -4,8 +4,8 @@ import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withRouter } from '../../../storybook/decorators/withRouter';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
-import SlettDeltakerModal from './SlettDeltakerModal';
 import { registrertDeltakerSchema } from '../../types/Deltaker';
+import SlettDeltakerModal from './SlettDeltakerModal';
 
 const meta: Meta<typeof SlettDeltakerModal> = {
     component: SlettDeltakerModal,

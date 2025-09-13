@@ -1,7 +1,6 @@
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-
-import { applicationIntlMessages } from './';
 import { Box } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { applicationIntlMessages } from './';
 
 export default {
     title: 'i18n/AppMessages',

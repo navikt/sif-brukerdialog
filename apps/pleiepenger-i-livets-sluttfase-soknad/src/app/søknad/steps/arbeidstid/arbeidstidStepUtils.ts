@@ -1,6 +1,7 @@
 import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { ArbeidstidArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
@@ -9,7 +10,6 @@ import {
     ArbeidstidSøknadsdata,
     Søknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
-import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { AnsattArbeidstid, ArbeidsaktivitetType, ArbeidstidFormValues, FrilansSNArbeidstid } from './ArbeidstidStep';
 import { ArbeidIPeriode, JobberIPeriodeSvar } from './ArbeidstidTypes';
 

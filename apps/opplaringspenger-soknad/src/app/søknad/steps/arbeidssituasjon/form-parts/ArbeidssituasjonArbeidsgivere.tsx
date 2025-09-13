@@ -1,8 +1,8 @@
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
-import { AppText } from '../../../../i18n';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { AppText } from '../../../../i18n';
+import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
 
 interface Props {
     ansatt_arbeidsforhold: AnsattFormData[];

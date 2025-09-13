@@ -6,8 +6,8 @@ import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
-import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
 import { arbeidsgivereStorybookMock } from '../../mock-data';
+import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
 
 export default {
     title: 'Steps/SituasjonStep',

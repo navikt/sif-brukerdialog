@@ -1,3 +1,4 @@
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import { Arbeidsforhold, Utbetalingsårsak } from '../../../types/ArbeidsforholdTypes';
@@ -5,7 +6,6 @@ import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import appSentryLogger from '../../../utils/appSentryLogger';
 import { SituasjonFormValues } from './SituasjonStep';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 export const getNMonthsAgo = (numberOfMonths: number) => {
     return dayjs().subtract(numberOfMonths, 'month').startOf('month').toDate();

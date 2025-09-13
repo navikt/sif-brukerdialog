@@ -1,5 +1,4 @@
 import { Checkbox } from '@navikt/ds-react';
-import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import dayjs from 'dayjs';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -10,7 +9,7 @@ interface Props {
     onChange: () => void;
 }
 
-const VelgArbeidsukeItem: React.FunctionComponent<Props> = ({ uke, onChange, selected }) => {
+const VelgArbeidsukeItem = ({ uke, onChange, selected }: Props) => {
     const ukenummer = dayjs(uke.periode.from).isoWeek();
     return uke.kanEndres && uke.kanVelges ? (
         <Checkbox hideLabel checked={selected} onChange={onChange}>

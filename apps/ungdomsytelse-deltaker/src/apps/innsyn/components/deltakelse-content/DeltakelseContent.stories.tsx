@@ -5,10 +5,10 @@ import { withDeltakerContext } from '../../../../../storybook/decorators/withDel
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../../../types/DeltakelsePeriode';
 import DeltakelseContent from './DeltakelseContent';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../../../types/DeltakelsePeriode';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'Innsyn/Sider/Forside',

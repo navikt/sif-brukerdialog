@@ -10,6 +10,7 @@ import {
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/types';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
@@ -37,7 +38,6 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',

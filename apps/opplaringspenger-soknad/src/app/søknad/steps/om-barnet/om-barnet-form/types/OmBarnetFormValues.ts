@@ -1,5 +1,5 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { OmBarnetFormFields, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '.';
+import { OmBarnetFormFields, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 
 export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetSøknadenGjelder]?: string;

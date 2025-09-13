@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
@@ -13,7 +12,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
+const LegeerklæringOppsummering = ({ apiData, legeerklæringSøknadsdata, onEdit }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.vedlegg,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,

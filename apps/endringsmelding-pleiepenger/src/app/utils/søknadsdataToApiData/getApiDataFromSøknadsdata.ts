@@ -1,9 +1,9 @@
+import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
-import { Locale } from '@navikt/sif-common-core-ds/src/types';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,

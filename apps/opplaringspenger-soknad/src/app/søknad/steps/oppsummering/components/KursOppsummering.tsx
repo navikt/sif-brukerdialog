@@ -1,11 +1,6 @@
 import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { AppText, useAppIntl } from '../../../../i18n';
-import {
-    FerieuttakIPeriodenApiData,
-    KursApiData,
-    UtenlandsoppholdIPeriodenApiData,
-} from '../../../../types/søknadApiData/SøknadApiData';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
     dateFormatter,
@@ -13,7 +8,12 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../../../../i18n';
+import {
+    FerieuttakIPeriodenApiData,
+    KursApiData,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     kurs: KursApiData;

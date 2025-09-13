@@ -30,27 +30,27 @@ import type {
     FjernFraProgramResponses,
     FjernFraProgramErrors,
 } from './types.gen';
+import { client as _heyApiClient } from './client.gen';
 import {
-    zEndreStartdatoData,
-    zEndreStartdatoResponse,
-    zEndreSluttdatoData,
-    zEndreSluttdatoResponse,
-    zMeldUtDeltakerData,
-    zMeldUtDeltakerResponse,
-    zMeldInnDeltakerData,
-    zMeldInnDeltakerResponse,
-    zHentDeltakerInfoGittDeltakerData,
-    zHentDeltakerInfoGittDeltakerResponse,
-    zHentAlleDeltakelserGittDeltakerIdData,
-    zHentAlleDeltakelserGittDeltakerIdResponse,
     zDeltakelseHistorikkData,
     zDeltakelseHistorikkResponse,
-    zHentDeltakerInfoGittDeltakerIdData,
-    zHentDeltakerInfoGittDeltakerIdResponse,
+    zEndreSluttdatoData,
+    zEndreSluttdatoResponse,
+    zEndreStartdatoData,
+    zEndreStartdatoResponse,
     zFjernFraProgramData,
     zFjernFraProgramResponse,
+    zHentAlleDeltakelserGittDeltakerIdData,
+    zHentAlleDeltakelserGittDeltakerIdResponse,
+    zHentDeltakerInfoGittDeltakerData,
+    zHentDeltakerInfoGittDeltakerIdData,
+    zHentDeltakerInfoGittDeltakerIdResponse,
+    zHentDeltakerInfoGittDeltakerResponse,
+    zMeldInnDeltakerData,
+    zMeldInnDeltakerResponse,
+    zMeldUtDeltakerData,
+    zMeldUtDeltakerResponse,
 } from './zod.gen';
-import { client as _heyApiClient } from './client.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = ClientOptions<
     TData,

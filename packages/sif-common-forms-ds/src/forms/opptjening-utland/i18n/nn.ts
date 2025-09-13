@@ -1,4 +1,4 @@
-import { OpptjeningUtlandMessageKeys } from '.';
+import { OpptjeningUtlandMessageKeys } from './';
 
 export const opptjeningUtlandMessages_nn: Record<OpptjeningUtlandMessageKeys, string> = {
     '@forms.opptjeningUtland.list.add': 'Legg til jobb',

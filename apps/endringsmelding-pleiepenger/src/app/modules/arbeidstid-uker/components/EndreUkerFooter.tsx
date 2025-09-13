@@ -1,6 +1,5 @@
-import { Edit } from '@navikt/ds-icons';
 import { Alert, Button, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { Edit } from '@navikt/ds-icons';
 import { AppText } from '../../../i18n';
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
     onEndreUker: () => void;
 }
 
-const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, onEndreUker }) => {
+const EndreUkerFooter = ({ visVelgUkerMelding, onEndreUker }: Props) => {
     return (
         <VStack gap="5" className="arbeidstidUkeFooter" as="span">
             <div aria-relevant="additions removals" aria-live="polite">

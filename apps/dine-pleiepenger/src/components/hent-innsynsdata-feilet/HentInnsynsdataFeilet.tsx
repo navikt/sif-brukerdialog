@@ -1,4 +1,3 @@
-import React from 'react';
 import { BodyShort, GuidePanel, Heading } from '@navikt/ds-react';
 import { AxiosError } from 'axios';
 import Head from 'next/head';
@@ -7,7 +6,7 @@ interface Props {
     error?: AxiosError<unknown, any>;
 }
 
-const HentInnsynsdataFeilet: React.FunctionComponent<Props> = ({ error }) => {
+const HentInnsynsdataFeilet = ({ error }: Props) => {
     const status = error?.response?.status;
     return (
         <GuidePanel poster={true} className="sm:max-w-lg m-auto">

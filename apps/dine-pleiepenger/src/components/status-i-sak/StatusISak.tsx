@@ -1,5 +1,5 @@
 import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { AppText, useAppIntl } from '../../i18n';
@@ -17,7 +17,7 @@ interface Props {
     visAlleHendelser?: boolean;
 }
 
-const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
+const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
     const hendelser = getAlleHendelserISak(sak);

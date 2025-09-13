@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { setupMockApi } from '../utils/setupMockApi';
 import { setNow } from '../utils/setNow';
+import { setupMockApi } from '../utils/setupMockApi';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/velkommen';
 

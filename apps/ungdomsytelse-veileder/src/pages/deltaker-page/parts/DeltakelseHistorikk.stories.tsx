@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VStack } from '@navikt/ds-react';
+import { http, HttpResponse } from 'msw';
+import { registrertDeltakerMock } from '../../../../mock/data/registrertDeltakerMock';
+import { mockUtils } from '../../../../mock/msw/mockUtils';
 import { withDarkBg } from '../../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';
 import { withQueryClientProvider } from '../../../../storybook/decorators/withQueryClientProvider';
 import { withVeilederContext } from '../../../../storybook/decorators/withVeilederContext';
 import DeltakelseHistorikk from './DeltakelseHistorikk';
-import { http, HttpResponse } from 'msw';
-import { mockUtils } from '../../../../mock/msw/mockUtils';
-import { registrertDeltakerMock } from '../../../../mock/data/registrertDeltakerMock';
 
 const meta: Meta<typeof DeltakelseHistorikk> = {
     component: DeltakelseHistorikk,

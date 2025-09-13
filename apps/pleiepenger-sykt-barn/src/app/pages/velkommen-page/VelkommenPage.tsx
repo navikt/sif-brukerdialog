@@ -1,5 +1,4 @@
 import { BodyLong } from '@navikt/ds-react';
-import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
 import { Søker } from '@navikt/sif-common-api';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
@@ -8,7 +7,7 @@ import OmSøknaden from './components/OmSøknaden';
 
 type Props = StepCommonProps & { søker: Søker };
 
-const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }) => {
+const VelkommenPage = ({ onValidSubmit, søker }: Props) => {
     const { text } = useAppIntl();
 
     return (

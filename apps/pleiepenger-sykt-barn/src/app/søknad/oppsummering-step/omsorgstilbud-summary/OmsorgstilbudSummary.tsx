@@ -1,5 +1,4 @@
 import { Box, FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -14,7 +13,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, søknadsperiode, onEdit }) => {
+const OmsorgstilbudSummary = ({ apiValues: { omsorgstilbud }, søknadsperiode, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

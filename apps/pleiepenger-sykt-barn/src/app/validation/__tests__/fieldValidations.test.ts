@@ -1,5 +1,3 @@
-import { vi } from 'vitest';
-import { getPeriodeMaksDato, getPeriodeMinDato } from '../fieldValidations';
 import {
     dateToISODate,
     dateUtils,
@@ -8,6 +6,8 @@ import {
     getDateToday,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { vi } from 'vitest';
+import { getPeriodeMaksDato, getPeriodeMinDato } from '../fieldValidations';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {

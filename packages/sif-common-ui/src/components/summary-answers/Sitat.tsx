@@ -1,9 +1,10 @@
 import React from 'react';
+
 interface Props {
     children: React.ReactNode;
 }
 
-const Sitat: React.FunctionComponent<Props> = ({ children }) => (
+const Sitat = ({ children }: Props) => (
     <span
         style={{
             display: 'block',

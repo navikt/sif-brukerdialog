@@ -16,15 +16,15 @@ import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDa
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
 import { getBeredskapApiDataFromSøknadsdata } from './getBeredskapApiDataFromSøknadsdata';
 import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
+import { getFosterhjemsgodtgjørelseApiDataFromSøknadsdata } from './getFosterhjemsgodtgjørelseApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getNattevåkApiDataFromSøknadsdata } from './getNattevåkApiDataFromSøknadsdata';
+import { getOmsorgsstønadApiDataFromSøknadsdata } from './getOmsorgsstønadApiDataFromSøknadsdata';
 import { getOmsorgstilbudApiDataFromSøknadsdata } from './getOmsorgstibudApiDataFromSøknadsdata';
 import { getOpptjeningIUtlandetSøknadsdata } from './getOpptjeningIUtlandetSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
-import { getOmsorgsstønadApiDataFromSøknadsdata } from './getOmsorgsstønadApiDataFromSøknadsdata';
-import { getFosterhjemsgodtgjørelseApiDataFromSøknadsdata } from './getFosterhjemsgodtgjørelseApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,

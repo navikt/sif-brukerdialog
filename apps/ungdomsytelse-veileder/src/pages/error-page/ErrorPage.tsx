@@ -1,7 +1,7 @@
-import { ApiError } from '@navikt/ung-common';
 import { HStack } from '@navikt/ds-react';
-import ErrorPageContent from './ErrorPageContent';
+import { ApiError } from '@navikt/ung-common';
 import AppPage from '../../components/app-page/AppPage';
+import ErrorPageContent from './ErrorPageContent';
 
 interface Props {
     error: ApiError | string;

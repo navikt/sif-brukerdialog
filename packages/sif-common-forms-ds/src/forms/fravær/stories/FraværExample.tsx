@@ -8,6 +8,7 @@ import {
     TypedFormikWrapper,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
@@ -20,7 +21,6 @@ import FraværDagFormView, { FraværDagFormErrors } from '../FraværDagForm';
 import FraværPeriodeForm, { FraværPeriodeFormErrors } from '../FraværPeriodeForm';
 import FraværPerioderListAndDialog from '../FraværPerioderListAndDialog';
 import { FraværFieldValidationErrors, validateNoCollisions } from '../fraværValidationUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     perioder = 'perioder',

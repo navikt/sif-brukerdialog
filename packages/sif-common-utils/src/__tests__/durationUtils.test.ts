@@ -1,8 +1,7 @@
 import {
-    durationAsNumberDuration,
     decimalDurationToDuration,
     decimalDurationToNumberDuration,
-    numberDurationAsDuration,
+    durationAsNumberDuration,
     durationIsZero,
     durationsAreEqual,
     durationToDecimalDuration,
@@ -13,6 +12,7 @@ import {
     ISODurationToMaybeDuration,
     ISODurationToNumberDuration,
     isValidDuration,
+    numberDurationAsDuration,
 } from '../';
 import { dateToISODate, ISODateToDate } from '../dateUtils';
 import {

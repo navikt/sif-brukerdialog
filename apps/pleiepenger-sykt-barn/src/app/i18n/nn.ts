@@ -1,6 +1,6 @@
 import { sifCommonPleiepengerMessages_nn } from '../local-sif-common-pleiepenger/i18n/nn';
-import { velkommenPageMessages_nn } from '../pages/velkommen-page/i18n/nn';
 import { confirmationPageMessages_nn } from '../pages/confirmation-page/i18n/nn';
+import { velkommenPageMessages_nn } from '../pages/velkommen-page/i18n/nn';
 import { arbeidssituasjonMessages_nn } from '../søknad/arbeidssituasjon-step/i18n/nn';
 import { arbeidIPeriodeMessages_nn } from '../søknad/arbeidstid-step/i18n/nn';
 import { legeerklæringMessages_nn } from '../søknad/legeerklæring-step/i18n/nn';

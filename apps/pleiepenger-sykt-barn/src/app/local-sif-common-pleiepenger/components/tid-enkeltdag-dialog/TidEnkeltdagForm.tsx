@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { useAppIntl } from '@i18n/index';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
@@ -81,7 +81,7 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 
 const bem = bemUtils('tidEnkeltdagForm');
 
-const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
+const TidEnkeltdagForm = ({
     dato,
     tid,
     tidOpprinnelig,
@@ -91,7 +91,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     hvorMyeSpørsmålRenderer,
     onSubmit,
     onCancel,
-}) => {
+}: TidEnkeltdagFormProps) => {
     const { text, intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {

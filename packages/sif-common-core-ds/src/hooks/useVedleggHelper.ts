@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { Vedlegg } from '../types/Vedlegg';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from '../components/formik-file-upload/getVedleggValidator';
+import { Vedlegg } from '../types/Vedlegg';
 
 const vedleggIsUploaded = (vedlegg: Vedlegg): boolean => vedlegg.uploaded === true;
 

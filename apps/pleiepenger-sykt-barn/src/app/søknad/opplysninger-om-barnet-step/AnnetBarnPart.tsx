@@ -1,10 +1,10 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
@@ -21,7 +21,6 @@ import { validateNavn, validateRelasjonTilBarnBeskrivelse } from '../../validati
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     formValues: SøknadFormValues;
@@ -34,7 +33,7 @@ const nYearsAgo = (years: number): Date => {
     return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
 };
 
-const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fødselsattester, harRegistrerteBarn }) => {
+const AnnetBarnPart = ({ formValues, søkersFødselsnummer, fødselsattester, harRegistrerteBarn }: Props) => {
     const { text } = useAppIntl();
     const {
         values: { barnetHarIkkeFnr, årsakManglerIdentitetsnummer },

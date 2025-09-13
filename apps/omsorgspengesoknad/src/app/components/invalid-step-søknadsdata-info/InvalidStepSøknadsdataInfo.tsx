@@ -1,5 +1,4 @@
 import { Alert, Box, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
@@ -12,7 +11,7 @@ interface Props {
     stepConfig: SoknadStepsConfig<StepId>;
 }
 
-const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+const InvalidStepSøknadsdataInfo = ({ stepId, stepConfig }: Props) => {
     const { text } = useAppIntl();
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);

@@ -1,10 +1,10 @@
-import { Express } from 'express';
-import path from 'node:path';
-import fs from 'fs';
 import { getToken, parseAzureUserToken } from '@navikt/oasis';
+import { Express } from 'express';
+import fs from 'fs';
+import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
-import serverConfig from './serverConfig.js';
 import logger from './log.js';
+import serverConfig from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.

@@ -1,6 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
-
 import dayjs from 'dayjs';
 import { z } from 'zod';
 

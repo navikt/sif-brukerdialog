@@ -1,4 +1,4 @@
-import { FerieuttakMessageKeys } from '.';
+import { FerieuttakMessageKeys } from './';
 
 export const ferieuttakMessages_nn: Record<FerieuttakMessageKeys, string> = {
     '@forms.ferieuttak.list.title': 'Registrer uttak av ferie',

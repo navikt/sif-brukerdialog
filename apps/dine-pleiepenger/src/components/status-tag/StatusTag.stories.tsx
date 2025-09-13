@@ -1,11 +1,11 @@
-import StatusTag from './StatusTag';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
+import { HStack, VStack } from '@navikt/ds-react';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
+import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { Venteårsak } from '../../types/Venteårsak';
-import { HStack, VStack } from '@navikt/ds-react';
+import StatusTag from './StatusTag';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof StatusTag> = {
     component: StatusTag,
     title: 'Components/StatusTag',

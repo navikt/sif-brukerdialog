@@ -1,8 +1,8 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
+import { dateFormatter, ISODateToDate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { OmsorgsstønadApiData } from '../../../types/søknad-api-data/OmsorgsstønadApiData';
 import { OmsorgsstønadType } from '../../../types/søknadsdata/OmsorgsstønadSøknadsdata';
-import { dateFormatter, ISODateToDate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 
 interface Props {
     omsorgsstønad: OmsorgsstønadApiData;

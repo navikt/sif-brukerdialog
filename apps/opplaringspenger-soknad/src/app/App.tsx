@@ -1,3 +1,4 @@
+import { Theme } from '@navikt/ds-react';
 import { Navigate, Route } from 'react-router-dom';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
@@ -13,7 +14,6 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import { relocateToWelcomePage } from './utils/navigationUtils';
 import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

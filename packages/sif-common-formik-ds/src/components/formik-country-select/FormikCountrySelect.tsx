@@ -1,11 +1,11 @@
-import React from 'react';
 import { SelectProps } from '@navikt/ds-react';
+import React from 'react';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import CountrySelect from './CountrySelect';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<SelectProps, 'name' | 'children'> {
     name: FieldName;

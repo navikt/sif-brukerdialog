@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -11,7 +10,7 @@ interface Props {
     misterHonorar?: YesOrNo;
 }
 
-const MisterHonorarSpørsmål: React.FunctionComponent<Props> = ({ misterHonorar }) => {
+const MisterHonorarSpørsmål = ({ misterHonorar }: Props) => {
     const { text } = useAppIntl();
     return (
         <>

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import KontonummerSteg from './KontonummerSteg';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
+import KontonummerSteg from './KontonummerSteg';
 
 const meta: Meta = {
     title: 'Søknad/Steg/Kontonummer',

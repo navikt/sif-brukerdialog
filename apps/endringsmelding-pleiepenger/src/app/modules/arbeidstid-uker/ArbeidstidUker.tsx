@@ -1,5 +1,5 @@
 import { Button, HStack, VStack } from '@navikt/ds-react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -26,7 +26,7 @@ interface Props {
     onEndreUker?: (uke: ArbeidstidUkerItem[]) => void;
 }
 
-const ArbeidstidUker: React.FunctionComponent<Props> = ({
+const ArbeidstidUker = ({
     listItems,
     paginering = {
         antall: 10,
@@ -36,7 +36,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     visEndringSomOpprinnelig,
 
     onEndreUker,
-}) => {
+}: Props) => {
     const { text, intl } = useAppIntl();
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
         listItems,

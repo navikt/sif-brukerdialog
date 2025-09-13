@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -9,7 +8,7 @@ export interface Props {
     utenlandsopphold: UtenlandsoppholdApiData[];
 }
 
-const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandsopphold }) => {
+const UtenlandsoppholdISøkeperiodeOppsummering = ({ utenlandsopphold }) => {
     return utenlandsopphold && utenlandsopphold.length > 0 ? (
         <FormSummary.Answer>
             <FormSummary.Label>

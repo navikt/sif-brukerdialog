@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react';
 import StatusIcon from '../../components/status-icon/StatusIcon';
+import { APPLICATION_STATUS } from '../../types';
 import {
     getStatusIconStatusFromApplicationStatus,
     getStatusSubTitleFromApplicationStatus,
 } from '../../utils/previewUtils';
-import { APPLICATION_STATUS } from '../../types';
 
 const Application = {
     title: 'Application',

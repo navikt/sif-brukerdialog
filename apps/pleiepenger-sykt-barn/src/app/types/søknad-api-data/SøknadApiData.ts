@@ -7,10 +7,10 @@ import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/ut
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
 import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
-import { FrilansApiData } from './FrilansApiData';
-import { SelvstendigApiData } from './SelvstendigApiData';
-import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
 import { FosterhjemsgodtgjørelseApiData } from './FosterhjemsgodtgjørelseApiData';
+import { FrilansApiData } from './FrilansApiData';
+import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
+import { SelvstendigApiData } from './SelvstendigApiData';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';

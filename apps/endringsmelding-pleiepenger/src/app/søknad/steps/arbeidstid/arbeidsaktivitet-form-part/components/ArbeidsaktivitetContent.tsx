@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
@@ -47,7 +47,7 @@ interface Props {
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
-const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetContent = ({
     perioder,
     endringer,
     lovbestemtFerie,
@@ -55,7 +55,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     formValues,
     parentFieldName,
     onArbeidstidAktivitetChange,
-}) => {
+}: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 

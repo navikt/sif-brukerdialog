@@ -1,7 +1,7 @@
-import { ISODate } from '@navikt/sif-common-utils/src';
-import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { BarnType } from '@navikt/sif-common-forms-ds';
+import { ISODate } from '@navikt/sif-common-utils/src';
+import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
 
 export type ISO8601Duration = string;
 

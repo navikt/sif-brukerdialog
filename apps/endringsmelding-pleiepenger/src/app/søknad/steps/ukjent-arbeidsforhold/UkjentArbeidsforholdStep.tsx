@@ -1,11 +1,11 @@
-import { useSøknadContext } from '@hooks';
 import { Heading } from '@navikt/ds-react';
+import { useSøknadContext } from '@hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
+import SøknadStep from '../../SøknadStep';
 import UkjentArbeidsforholdForm from './UkjentArbeidsforholdForm';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;

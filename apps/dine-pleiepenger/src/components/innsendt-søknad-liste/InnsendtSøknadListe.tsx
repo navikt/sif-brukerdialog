@@ -1,17 +1,17 @@
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
-import InnsendtSøknadTitle from './InnsendtSøknadTitle';
-import InnsendtSøknadContent from './InnsendtSøknadContent';
-import Skeleton from 'react-loading-skeleton';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Add } from '@navikt/ds-icons';
 import { AppText } from '../../i18n';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import InnsendtSøknadContent from './InnsendtSøknadContent';
+import InnsendtSøknadTitle from './InnsendtSøknadTitle';
 
 interface Props {
     søknader: InnsendtSøknad[];
 }
 
-const InnsendtSøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
+const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
     const [antall, setAntall] = useState(3);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
 

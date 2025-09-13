@@ -1,7 +1,7 @@
-import { vi } from 'vitest';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
 import { OmBarnetFormSøknadsdata } from '../../../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import {

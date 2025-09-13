@@ -1,5 +1,4 @@
 import { Heading, List, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
@@ -10,7 +9,7 @@ interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
-const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
+const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
     const { locale } = useIntl();
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (

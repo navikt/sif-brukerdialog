@@ -5,7 +5,7 @@ interface Props extends HTMLProps<HTMLDivElement> {
     children: React.ReactNode;
 }
 
-const TagsContainer: React.FunctionComponent<Props> = ({ children }) => {
+const TagsContainer = ({ children }: Props) => {
     return <HStack gap="2">{children}</HStack>;
 };
 

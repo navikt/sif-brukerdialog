@@ -7,6 +7,7 @@ import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferie
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
@@ -29,7 +30,6 @@ import {
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning from './harUtenlandsoppholdUtenInnleggelseEllerInnleggelseForEgenRegning';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 dayjs.extend(minMax);
 

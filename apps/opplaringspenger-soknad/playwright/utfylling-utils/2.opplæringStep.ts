@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();

@@ -1,5 +1,6 @@
-import { Locale } from '../types/Locale';
 import cookies from 'js-cookie';
+import { Locale } from '../types/Locale';
+
 const LocaleSessionKey = 'selectedLocale';
 
 export const getLocaleFromDecoratorCookie = (): Locale | undefined => {

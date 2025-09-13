@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
 import { ArbeidsgiverType, TimerEllerProsent } from '../../../../types';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { cleanupAnsattArbeidsforhold } from '../cleanupArbeidssituasjonStep';
-import { vi } from 'vitest';
 
 const ansattArbeidsforhold: ArbeidsforholdFormValues = {
     arbeidsgiver: {

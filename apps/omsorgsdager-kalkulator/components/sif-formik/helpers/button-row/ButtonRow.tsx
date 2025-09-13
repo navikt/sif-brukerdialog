@@ -6,7 +6,7 @@ export interface Props {
     children: React.ReactNode;
 }
 
-const ButtonRow: React.FunctionComponent<Props> = ({ children, align = 'left', layout = 'normal' }) => {
+const ButtonRow = ({ children, align = 'left', layout = 'normal' }: Props) => {
     const cls = `buttonRow buttonRow--${align} buttonRow--${layout}`;
     return (
         <div className={cls}>

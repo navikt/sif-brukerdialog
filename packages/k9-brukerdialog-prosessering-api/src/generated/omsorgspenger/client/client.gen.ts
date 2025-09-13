@@ -2,12 +2,11 @@
 
 import type { AxiosError, AxiosInstance, RawAxiosRequestHeaders } from 'axios';
 import axios from 'axios';
-
 import { createSseClient } from '../core/serverSentEvents.gen';
-import type { HttpMethod } from '../core/types.gen';
-import type { Client, Config, RequestOptions } from './types.gen';
 import { buildUrl, createConfig, mergeConfigs, mergeHeaders, setAuthParams } from './utils.gen';
 
+import type { HttpMethod } from '../core/types.gen';
+import type { Client, Config, RequestOptions } from './types.gen';
 export const createClient = (config: Config = {}): Client => {
     let _config = mergeConfigs(createConfig(), config);
 

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
@@ -8,7 +9,6 @@ import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt/Korri
 import OppgaveIkkeFunnetPage from '../oppgaver/oppgave-ikke-funnet/OppgaveIkkeFunnetPage';
 import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse/SøkYtelseOppgavePage';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 /** Url params */
 type OppgavePageParams = {

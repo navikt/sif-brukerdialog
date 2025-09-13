@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
+import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 
 export const K9FormatEttersendelseSchema = z.object({
     søknadId: z.string(),

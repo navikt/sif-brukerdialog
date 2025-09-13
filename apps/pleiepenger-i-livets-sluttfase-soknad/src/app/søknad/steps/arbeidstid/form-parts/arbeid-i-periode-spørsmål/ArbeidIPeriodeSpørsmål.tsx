@@ -1,12 +1,12 @@
-import { Alert, Box, HStack, Heading, Tag } from '@navikt/ds-react';
+import { Alert, Box, Heading, HStack, Tag } from '@navikt/ds-react';
+import { useContext, useEffect, useState } from 'react';
 import {
     DateRange,
-    TypedFormikFormContext,
-    ValidationError,
     getErrorForField,
     getTypedFormComponents,
+    TypedFormikFormContext,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { getTimeValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
@@ -17,15 +17,15 @@ import {
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
+import { getTimeValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import { useContext, useEffect, useState } from 'react';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
-import { AppIntlShape, AppText, useAppIntl } from '../../../../../i18n';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,

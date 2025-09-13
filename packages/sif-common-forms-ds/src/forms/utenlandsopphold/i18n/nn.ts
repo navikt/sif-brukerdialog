@@ -1,4 +1,4 @@
-import { UtenlandsoppholdMessageKeys } from '.';
+import { UtenlandsoppholdMessageKeys } from './';
 
 export const utenlandsoppholdMessages_nn: Record<UtenlandsoppholdMessageKeys, string> = {
     '@forms.utenlandsopphold.list.add': 'Legg til opphald',

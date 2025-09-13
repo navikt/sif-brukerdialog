@@ -1,13 +1,13 @@
 import { useAppIntl } from '@i18n/index';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../../SøknadFormComponents';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const ArbeidssituasjonOpptjeningUtland = () => {
     const { text } = useAppIntl();

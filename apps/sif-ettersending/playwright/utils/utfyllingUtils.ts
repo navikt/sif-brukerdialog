@@ -1,5 +1,5 @@
-import { Page, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright'; // 1
+import { expect, Page } from '@playwright/test';
 import { DokumentType } from '../../src/app/types/DokumentType';
 import { YtelseKey } from '../../src/app/types/Ytelser';
 

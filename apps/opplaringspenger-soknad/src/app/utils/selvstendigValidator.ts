@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
 import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds';
+import dayjs from 'dayjs';
 
 export const getSelvstendigIPeriodeValidator = (
     søknadsperiode: DateRange,

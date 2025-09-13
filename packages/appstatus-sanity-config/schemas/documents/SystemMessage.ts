@@ -1,9 +1,9 @@
+import { MESSAGE_TYPE } from '../../types';
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { localeContentValidation } from '../../utils/contentValidation';
-import { toPlainText, shortenText } from '../../utils/previewUtils';
 import { getLocaleContent } from '../../utils/getLocaleContent';
+import { shortenText, toPlainText } from '../../utils/previewUtils';
 import { defaultLocale } from '../locales';
-import { MESSAGE_TYPE } from '../../types';
 
 const Message = {
     title: 'System message',

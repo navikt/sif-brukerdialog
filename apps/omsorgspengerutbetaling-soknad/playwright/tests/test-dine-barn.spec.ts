@@ -1,7 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
+import { expect, Page, test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
-import { utfyllingUtils } from '../utils/utfyllingUtils';
 import { setNow } from '../utils/setNow';
+import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);

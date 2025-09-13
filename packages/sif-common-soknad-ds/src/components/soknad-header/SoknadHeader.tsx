@@ -1,5 +1,4 @@
 import { Bleed, Box, Heading, HStack, Show, VStack } from '@navikt/ds-react';
-import React from 'react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 
@@ -9,7 +8,7 @@ interface Props {
     useStandard?: boolean;
 }
 
-const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1', useStandard }) => {
+const SoknadHeader = ({ title, level = '1', useStandard }: Props) => {
     if (useStandard) {
         return (
             <VStack gap="0">

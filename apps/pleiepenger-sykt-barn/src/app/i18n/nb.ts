@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { sifCommonPleiepengerMessages_nb } from '../local-sif-common-pleiepenger/i18n/nb';
-import { velkommenPageMessages_nb } from '../pages/velkommen-page/i18n/nb';
 import { confirmationPageMessages_nb } from '../pages/confirmation-page/i18n/nb';
+import { velkommenPageMessages_nb } from '../pages/velkommen-page/i18n/nb';
 import { arbeidssituasjonMessages_nb } from '../søknad/arbeidssituasjon-step/i18n/nb';
 import { arbeidIPeriodeMessages_nb } from '../søknad/arbeidstid-step/i18n/nb';
 import { legeerklæringMessages_nb } from '../søknad/legeerklæring-step/i18n/nb';

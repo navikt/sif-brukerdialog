@@ -1,14 +1,13 @@
-import React from 'react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText } from '../../../../i18n';
-import { BodyLong, VStack } from '@navikt/ds-react';
 
 interface Props {
     antallArbeidsforhold: number;
 }
 
-const ArbeidssituasjonArbeidsgivereIntro: React.FunctionComponent<Props> = ({ antallArbeidsforhold }) => {
+const ArbeidssituasjonArbeidsgivereIntro = ({ antallArbeidsforhold }: Props) => {
     const { text } = useAppIntl();
     return (
         <VStack gap="2">

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getVedleggIdFromResponseHeaderLocation, lagreVedlegg, slettVedlegg } from '../api/vedleggApi';
 import { sifCommonQueryKeys } from '../queryKeys';
-import { lagreVedlegg, slettVedlegg, getVedleggIdFromResponseHeaderLocation } from '../api/vedleggApi';
 
 // Re-export utility function
 export { getVedleggIdFromResponseHeaderLocation };

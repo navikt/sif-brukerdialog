@@ -1,7 +1,7 @@
 import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils';
+import { Institusjoner } from '../../api/institusjonService';
 import { KursApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
-import { Institusjoner } from '../../api/institusjonService';
 
 export const getKursApiDataFromSøknadsdata = (
     { kursholder, kursperioder, reisedager }: KursSøknadsdata,

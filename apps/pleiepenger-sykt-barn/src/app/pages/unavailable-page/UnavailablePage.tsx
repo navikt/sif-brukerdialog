@@ -3,8 +3,8 @@ import { useAppIntl } from '@i18n/index';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
-import './unavailablePage.less';
 import { AppText } from '../../i18n';
+import './unavailablePage.less';
 
 const bem = bemUtils('introPage');
 

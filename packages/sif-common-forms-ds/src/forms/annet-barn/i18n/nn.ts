@@ -1,4 +1,4 @@
-import { AnnetBarnMessageKeys } from '.';
+import { AnnetBarnMessageKeys } from './';
 
 export const annetBarnMessages_nn: Record<AnnetBarnMessageKeys, string> = {
     '@forms.annetBarn.list.leggTil': 'Legg til barn',

@@ -1,8 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikYesOrNoQuestion from '../../../src/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import { YesOrNo } from '../../../src/types';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikYesOrNoQuestion> = {
     title: 'Component/FormikYesOrNoQuestion',

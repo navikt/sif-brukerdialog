@@ -1,4 +1,4 @@
-import React from 'react';
+import { List } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     decimalDurationToDuration,
@@ -12,7 +12,6 @@ import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import { formatTimerOgMinutter } from '../../../utils/formatTimerOgMinutter';
-import { List } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -24,7 +23,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     gjelderHonorar?: boolean;
 }
 
-const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriodeSummaryItem }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 
