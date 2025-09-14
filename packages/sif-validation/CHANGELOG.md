@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.5
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 1.0.4
 
 ### Patch Changes

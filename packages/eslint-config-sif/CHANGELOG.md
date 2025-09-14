@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.52
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 1.1.51
 
 ### Patch Changes

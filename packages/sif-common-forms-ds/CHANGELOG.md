@@ -1,5 +1,18 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-formik-ds@2.5.2
+    - @navikt/sif-common-ui@0.11.2
+    - @navikt/sif-common-utils@3.49.28
+    - @navikt/sif-validation@1.0.5
+
 ## 21.0.1
 
 ### Patch Changes

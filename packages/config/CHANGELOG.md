@@ -1,5 +1,11 @@
 # config
 
+## 0.11.24
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 0.11.23
 
 ### Patch Changes

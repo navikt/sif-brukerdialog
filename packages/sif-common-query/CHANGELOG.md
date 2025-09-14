@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.15
+    - @navikt/k9-sak-innsyn-api@0.0.26
+    - @navikt/sif-common-utils@3.49.28
+
 ## 0.1.30
 
 ### Patch Changes

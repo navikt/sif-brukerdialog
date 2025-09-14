@@ -4,6 +4,19 @@
 
 ### Patch Changes
 
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.15
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-api@0.4.45
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-faro@0.2.6
+    - @navikt/sif-common-forms-ds@21.0.2
+    - @navikt/sif-common-soknad-ds@26.0.2
+    - @navikt/sif-common-ui@0.11.2
+    - @navikt/ung-common@0.0.44
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.19
 - Skru av ux-signals midlertidig + bruke workspace eslint
 
 ## 1.2.1

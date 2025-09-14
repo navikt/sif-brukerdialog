@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.28
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 3.49.27
 
 ### Patch Changes

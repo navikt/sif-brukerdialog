@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.1.15
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 0.1.14
 
 ### Patch Changes

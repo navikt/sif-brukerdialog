@@ -1,5 +1,13 @@
 # @navikt/sif-server
 
+## 0.0.30
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.6
+
 ## 0.0.29
 
 ### Patch Changes

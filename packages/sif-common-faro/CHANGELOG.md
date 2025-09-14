@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.2.6
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 0.2.5
 
 ### Patch Changes

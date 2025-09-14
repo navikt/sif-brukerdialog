@@ -1,5 +1,15 @@
 # @navikt/ung-common
 
+## 0.0.44
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.15
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.19
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.15
+
 ## 0.0.43
 
 ### Patch Changes
