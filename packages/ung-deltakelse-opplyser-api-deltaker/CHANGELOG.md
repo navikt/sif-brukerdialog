@@ -1,5 +1,15 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.18
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-api@0.4.44
+
 ## 0.1.17
 
 ### Patch Changes

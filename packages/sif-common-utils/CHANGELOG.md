@@ -1,5 +1,12 @@
 # @navikt/sif-common-utils
 
+## 3.49.27
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 3.49.26
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.4
+
+### Patch Changes
+
+- Lint og import sorting
+
 ## 1.0.3
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @navikt/sif-demo-app
 
+## 0.4.51
+
+### Patch Changes
+
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-soknad-ds@26.0.1
+    - @navikt/sif-common-forms-ds@21.0.1
+    - @navikt/sif-common-core-ds@10.3.1
+    - @navikt/sif-common-api@0.4.44
+    - @navikt/sif-common-ui@0.11.1
+
 ## 0.4.50
 
 ### Patch Changes
