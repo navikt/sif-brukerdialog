@@ -1,6 +1,4 @@
 import { Checkbox, Heading, Tabs, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import {
     getIntlFormErrorHandler,
@@ -9,7 +7,11 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import { useVirksomhetIntl, virksomhetMessages } from '../i18n';
 import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
@@ -17,7 +19,6 @@ import { isVirksomhet, Næringstype, Virksomhet } from '../types';
 import VirksomhetForm from '../VirksomhetForm';
 import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
 import VirksomhetSummary from '../VirksomhetSummary';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     'virksomhet' = 'virksomhet',

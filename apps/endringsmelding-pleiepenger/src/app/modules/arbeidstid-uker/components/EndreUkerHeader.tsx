@@ -1,5 +1,5 @@
 import { Alert, Checkbox, VStack } from '@navikt/ds-react';
-import React from 'react';
+
 import { AppText } from '../../../i18n';
 
 interface Props {
@@ -8,11 +8,11 @@ interface Props {
     onUkerKanVelgesChange: (checked: boolean) => void;
 }
 
-const EndreUkerHeader: React.FunctionComponent<Props> = ({
+const EndreUkerHeader = ({
     ukerKanVelges,
     onUkerKanVelgesChange: onUkerKanVelgesChange,
     visKorteUkerMelding,
-}) => {
+}: Props) => {
     return (
         <VStack gap="2">
             <Checkbox

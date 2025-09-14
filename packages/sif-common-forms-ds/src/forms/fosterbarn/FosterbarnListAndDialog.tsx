@@ -1,4 +1,5 @@
 import { FormikModalFormAndList, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
+
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';
 import { useFosterbarnIntl } from './i18n';

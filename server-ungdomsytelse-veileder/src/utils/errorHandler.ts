@@ -1,7 +1,7 @@
 import axios from 'axios';
-import type { NextFunction, Request, Response } from 'express';
 import logger from './log.js';
 
+import type { NextFunction, Request, Response } from 'express';
 export function errorHandling(
     error: Error,
     request: Request,

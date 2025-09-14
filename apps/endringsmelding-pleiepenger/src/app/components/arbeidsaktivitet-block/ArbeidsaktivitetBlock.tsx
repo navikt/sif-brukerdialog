@@ -1,5 +1,6 @@
 import { BoxNew, ExpansionCard, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetBlock = ({
     navn,
     type,
     arbeidsgiver,
@@ -22,7 +23,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     endret,
     erUkjent,
     children,
-}) => {
+}: Props) => {
     const renderHeader = () => {
         return (
             <ArbeidsaktivitetBlockHeader

@@ -1,4 +1,5 @@
 import { getUploadedVedlegg, vedleggIsUploadedAndValid } from '@navikt/sif-common-core-ds/src';
+
 import { DeltBostedSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 

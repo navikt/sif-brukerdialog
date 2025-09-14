@@ -1,5 +1,5 @@
 import { Theme } from '@navikt/ds-react';
-import { useContext, useState, createContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const StorageKey = 'veilederTheme';
 

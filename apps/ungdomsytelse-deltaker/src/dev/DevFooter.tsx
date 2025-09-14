@@ -2,9 +2,9 @@ import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
 import { Scenario, scenarioer } from './scenarioer';
-import { store } from '../../mock/state/store';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);

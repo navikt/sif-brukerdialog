@@ -1,7 +1,8 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { ReactElement } from 'react';
+
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -16,12 +17,7 @@ interface Props {
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
 }
 
-const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
-    uker,
-    visEndringSomOpprinnelig,
-    selectableList,
-    renderEditButton,
-}) => {
+const ArbeidstidUkeListe = ({ uker, visEndringSomOpprinnelig, selectableList, renderEditButton }: Props) => {
     const {
         isItemSelected,
         setItemSelected,

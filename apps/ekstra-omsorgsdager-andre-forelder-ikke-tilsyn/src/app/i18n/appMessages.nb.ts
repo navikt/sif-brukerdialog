@@ -1,6 +1,6 @@
-import { barnMessages_nb } from '../pre-common/forms/barn/i18n/nb';
 import { kvitteringMessages_nb } from '../pages/kvittering/i18n/nb';
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
+import { barnMessages_nb } from '../pre-common/forms/barn/i18n/nb';
 import { annenForelderenSituasjonMessages_nb } from '../søknad/steps/annen-forelderens-situasjon/i18n/nb';
 import { omAnnenForelderMessages_nb } from '../søknad/steps/om-annen-forelder/i18n/nb';
 import { omBarnaMessages_nb } from '../søknad/steps/om-barna/i18n/nb';

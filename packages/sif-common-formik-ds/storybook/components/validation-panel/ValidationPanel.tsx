@@ -11,7 +11,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const ValidationPanel: React.FunctionComponent<Props> = ({ title, children, code }) => {
+const ValidationPanel = ({ title, children, code }) => {
     const [activePanel, setActivePanel] = React.useState<string>('example');
     return (
         <div style={{ marginBottom: '4rem' }}>

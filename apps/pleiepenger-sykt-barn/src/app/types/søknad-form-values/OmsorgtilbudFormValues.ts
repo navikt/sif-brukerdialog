@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, DurationWeekdays } from '@navikt/sif-common-utils';
+
 import { YesOrNoOrDoNotKnow } from '../YesOrNoOrDoNotKnow';
 
 export interface OmsorgstilbudFormValues {

@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -6,6 +5,8 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { TidsperiodeMessageKeys, useTidsperiodeIntl } from './i18n';
 import tidsperiodeUtils from './tidsperiodeUtils';

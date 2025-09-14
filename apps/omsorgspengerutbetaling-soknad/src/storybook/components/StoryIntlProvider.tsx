@@ -1,5 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 import { IntlProvider } from 'react-intl';
+
 import { applicationIntlMessages } from '../../app/i18n';
 
 export interface IntlProviderProps {
@@ -8,7 +9,7 @@ export interface IntlProviderProps {
     onError?: (error: any) => void;
 }
 
-const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ onError, children }) => {
+const StoryIntlProvider = ({ onError, children }: IntlProviderProps) => {
     return (
         <Theme>
             <IntlProvider locale="no-NB" messages={applicationIntlMessages.nb} onError={onError}>

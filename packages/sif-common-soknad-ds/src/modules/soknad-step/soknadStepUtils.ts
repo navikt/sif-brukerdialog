@@ -1,6 +1,7 @@
-import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ProgressStep } from '@navikt/sif-common-ui';
+import { IntlShape } from 'react-intl';
+
 import { getSoknadIntl } from '../../i18n/soknad.messages';
 import { SoknadApplicationType, SoknadStepsConfig, StepConfig } from './soknadStepTypes';
 

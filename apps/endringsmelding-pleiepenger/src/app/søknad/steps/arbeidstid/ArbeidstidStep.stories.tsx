@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { withIntl } from '../../../../storybook/decorators/withIntl';
-import ArbeidstidStep from './ArbeidstidStep';
-import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+
 import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+import ArbeidstidStep from './ArbeidstidStep';
 
 const meta: Meta<typeof ArbeidstidStep> = {
     title: 'Step/Arbeidstid',

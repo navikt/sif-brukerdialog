@@ -1,13 +1,14 @@
+import './unansweredQuestionsInfo.scss';
+
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import './unansweredQuestionsInfo.scss';
 
 interface Props {
     children?: React.ReactNode;
 }
 
-const UnansweredQuestionsInfo: React.FunctionComponent<Props> = ({ children }) => {
+const UnansweredQuestionsInfo = ({ children }: Props) => {
     const intl = useIntl();
 
     const getDefaultMessage = () => {

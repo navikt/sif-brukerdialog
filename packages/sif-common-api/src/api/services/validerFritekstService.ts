@@ -1,5 +1,5 @@
 import { k9BrukerdialogApiClient } from '../apiClient';
-import { invalidParameterErrorResponse, InvalidParameterErrorResponse } from '../types/invalidParameter';
+import { InvalidParameterErrorResponse, invalidParameterErrorResponse } from '../types/invalidParameter';
 
 export const validerFritekst = async (value: string): Promise<InvalidParameterErrorResponse | undefined> => {
     try {

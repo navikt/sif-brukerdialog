@@ -1,4 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
+
 import { typedIntlHelper } from '../utils/intlUtils';
 import { commonMessages_nb } from './nb';
 import { commonMessages_nn } from './nn';

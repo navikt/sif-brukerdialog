@@ -1,5 +1,16 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-utils@3.49.27
+    - @navikt/sif-validation@1.0.4
+
 ## 2.5.0
 
 ### Minor Changes

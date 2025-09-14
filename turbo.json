@@ -28,6 +28,7 @@
         },
         "lint:eslint": {},
         "lint:tsc": {},
+        "lint:fix": {},
         "codegen": {
             "outputs": [],
             "cache": false

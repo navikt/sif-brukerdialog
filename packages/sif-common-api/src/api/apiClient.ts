@@ -1,6 +1,6 @@
+import { getCommonEnv } from '@navikt/sif-common-env';
 import axios, { AxiosError, AxiosRequestConfig, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
-import { getCommonEnv } from '@navikt/sif-common-env';
 
 export const isUnauthorized = (error: AxiosError): boolean =>
     error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;

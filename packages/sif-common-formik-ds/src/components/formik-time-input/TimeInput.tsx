@@ -1,11 +1,13 @@
+import './timeInput.scss';
+
 import { TextField } from '@navikt/ds-react';
-import React, { RefObject, useState } from 'react';
 import { hasValue } from '@navikt/sif-validation';
 import classNames from 'classnames';
+import React, { RefObject, useState } from 'react';
+
 import { InputTime, TestProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
 import { getNumberFromNumberInputValue } from '../../utils/numberInputUtils';
-import './timeInput.scss';
 
 const MAX_HOURS = 23;
 const MAX_MINUTES = 59;
@@ -57,11 +59,11 @@ const handleTimeChange = (time: Partial<InputTime>, onChange: TimeInputChangeFun
     onChange(time, isValidTime(time));
 };
 
-const TimeInput: React.FunctionComponent<TimeInputProps> = ({
+const TimeInput = ({
     time = { hours: undefined, minutes: undefined },
     maxHours = MAX_HOURS,
     maxMinutes = MAX_MINUTES,
-    direction: layout = 'normal',
+    direction: layout = 'horizontal',
     compact = true,
     justifyContent = 'center',
     placeholders,
@@ -75,7 +77,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
         minutes: 'Minutter',
     },
     ...restProps
-}) => {
+}: TimeInputProps) => {
     const [stateTime, setStateTime] = useState<Partial<InputTime> | undefined>(time);
     const testKey = restProps['data-testid'];
 

@@ -1,9 +1,10 @@
-import { ReactElement } from 'react';
+import { Box } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { ReactElement } from 'react';
+
 import SoknadErrorMessages from '../../components/soknad-error-messages/SoknadErrorMessages';
 import SoknadHeader from '../../components/soknad-header/SoknadHeader';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
-import { Box } from '@navikt/ds-react';
 
 interface Props {
     pageTitle?: string;

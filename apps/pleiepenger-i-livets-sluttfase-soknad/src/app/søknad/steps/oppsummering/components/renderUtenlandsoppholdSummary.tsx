@@ -1,7 +1,8 @@
-import React from 'react';
+import './utenlandsoppholdSummaryItem.css';
+
 import { BostedUtlandApiData } from '@navikt/sif-common-forms-ds/src';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
-import './utenlandsoppholdSummaryItem.css';
+import React from 'react';
 
 export const renderUtenlandsoppholdIPeriodenSummary = (opphold: BostedUtlandApiData): React.ReactNode => {
     return (

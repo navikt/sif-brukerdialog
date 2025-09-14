@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import OmsorgstilbudStep from './OmsorgstilbudStep';
-import { withStepWrapper } from '../../../storybook/decorators';
+
 import { søknadsdata } from '../../../storybook/data/søknadsdata';
+import { withStepWrapper } from '../../../storybook/decorators';
+import OmsorgstilbudStep from './OmsorgstilbudStep';
 
 const meta: Meta<typeof OmsorgstilbudStep> = {
     title: 'Step/OmsorgstilbudStep',

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
+import { AksjonspunktSchema } from './AksjonspunktSchema';
 import { BehandlingSchema } from './BehandlingSchema';
 import { Behandlingsstatus } from './Behandlingsstatus';
-import { AksjonspunktSchema } from './AksjonspunktSchema';
 
 export type Sak = z.infer<typeof SakSchema>;
 

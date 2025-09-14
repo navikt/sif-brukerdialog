@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Button } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
@@ -8,10 +8,11 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
-import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
-import { Button } from '@navikt/ds-react';
+import { useState } from 'react';
+
 import { AppText } from '../../../i18n';
+import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
+import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 
 interface Props {
     periode: DateRange;
@@ -35,7 +36,7 @@ const oppdaterDagerMedOmsorgstilbudIPeriode = ({
     return dagerSomSkalEndres;
 };
 
-const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => {
+const OmsorgstilbudPeriode = ({ periode, onPeriodeChange }: Props) => {
     const [visPeriode, setVisPeriode] = useState(false);
 
     const handleFormSubmit = (data: OmsorgstilbudPeriodeData) => {

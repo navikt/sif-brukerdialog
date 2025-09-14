@@ -1,9 +1,9 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
+import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { SummaryList } from '@navikt/sif-common-ui';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
@@ -13,7 +13,7 @@ const getPeriode = (opptjening: OpptjeningIUtlandetApi): string => {
     return `${prettifyDateExtended(ISODateToDate(opptjening.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opptjening.tilOgMed))}`;
 };
 
-const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
+const OpptjeningIUtlandetSummaryView = (props: Props) => {
     const { opptjeningUtland } = props;
     const { text } = useAppIntl();
     return (

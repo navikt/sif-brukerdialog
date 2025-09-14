@@ -1,11 +1,14 @@
-import { useIntl } from 'react-intl';
+import { VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { useIntl } from 'react-intl';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -14,14 +17,12 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     BarnMedAleneomsorg,
-    getTidspunktForAleneomsorgStepInitialValues,
     getTidspunktForAleneomsorgSøknadsdataFromFormValues,
+    getTidspunktForAleneomsorgStepInitialValues,
     mapAnnetBarnToBarnMedAleneomsorg,
     mapRegistrertBarnToBarnMedAleneomsorg,
 } from './tidspunktForAleneomsorgStepUtils';
 import TidspunktForBarn from './TidspunktForBarn';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { VStack } from '@navikt/ds-react';
 
 export enum TidspunktForAleneomsorg {
     SISTE_2_ÅRENE = 'SISTE_2_ÅRENE',

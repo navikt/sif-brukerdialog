@@ -1,11 +1,12 @@
 import { FileObject } from '@navikt/ds-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     deleteVedlegg,
     getVedleggFrontendUrl,
     getVedleggIdFromResponseHeaderLocation,
     uploadVedlegg,
 } from '@navikt/sif-common-api';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { Vedlegg } from '../../types/Vedlegg';
 import { canRetryFileUpload, getFileUploadErrorReason, mapFileToPersistedFile } from './fileUploadUtils';
 

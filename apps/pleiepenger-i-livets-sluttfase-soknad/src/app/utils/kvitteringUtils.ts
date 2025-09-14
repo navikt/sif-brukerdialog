@@ -1,6 +1,7 @@
 import { Søker } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 

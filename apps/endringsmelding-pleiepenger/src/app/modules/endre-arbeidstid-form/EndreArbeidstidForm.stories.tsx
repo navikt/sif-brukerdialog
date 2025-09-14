@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { arbeidsukerMockData } from '../../../../mock/data/app/arbeidsukerMockData';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';

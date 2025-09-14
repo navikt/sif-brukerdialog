@@ -1,9 +1,10 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
-import { StepId } from './StepId';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
+import { StepId } from './StepId';
 
 export type SituasjonStepTempFormValues = {
     stepId: StepId.SITUASJON;

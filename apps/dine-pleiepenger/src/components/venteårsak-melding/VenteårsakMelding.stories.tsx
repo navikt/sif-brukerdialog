@@ -1,9 +1,9 @@
-import VenteårsakMelding from './VenteårsakMelding';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import { Venteårsak } from '../../types/Venteårsak';
+import VenteårsakMelding from './VenteårsakMelding';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof VenteårsakMelding> = {
     component: VenteårsakMelding,
     title: 'Content/VenteårsakMelding',

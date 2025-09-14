@@ -1,5 +1,5 @@
-import { NattevåkSøknadsdata } from '../../types/søknadsdata/NattevåkSøknadsdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { NattevåkSøknadsdata } from '../../types/søknadsdata/NattevåkSøknadsdata';
 
 type NattevåkApiData = Pick<SøknadApiData, 'nattevåk'>;
 

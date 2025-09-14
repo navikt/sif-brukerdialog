@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
-import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
+
 import FormikCheckbox, { FormikCheckboxProps } from './formik-checkbox/FormikCheckbox';
+import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
+import FormikCombobox, { FormikComboboxProps } from './formik-combobox/FormikCombobox';
 import FormikConfirmationCheckbox, {
     FormikConfirmationCheckboxProps,
 } from './formik-confirmation-checkbox/FormikConfirmationCheckbox';
@@ -17,7 +19,6 @@ import FormikTimeInput, { FormikTimeInputProps } from './formik-time-input/Formi
 import FormikYesOrNoQuestion, { FormikYesOrNoQuestionProps } from './formik-yes-or-no-question/FormikYesOrNoQuestion';
 import TypedFormikForm, { TypedFormikFormProps } from './typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper, { TypedFormikWrapperProps } from './typed-formik-wrapper/TypedFormikWrapper';
-import FormikCombobox, { FormikComboboxProps } from './formik-combobox/FormikCombobox';
 
 export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     Checkbox: (props: FormikCheckboxProps<FieldName, ErrorType>) => ReactElement;

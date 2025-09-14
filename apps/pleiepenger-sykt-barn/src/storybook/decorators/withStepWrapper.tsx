@@ -1,5 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { BrowserRouter } from 'react-router-dom';
+
 import { SøkerdataContextProvider } from '../../app/context/SøkerdataContext';
 import { SøknadsdataContextProvider } from '../../app/søknad/SøknadsdataContext';
 import { StoryFormikWrapper } from '../components/StoryFormikWrapper';

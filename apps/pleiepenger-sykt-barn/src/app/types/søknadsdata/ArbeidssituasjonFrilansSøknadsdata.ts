@@ -1,6 +1,7 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
+
 import { Frilanstype } from '../søknad-form-values/FrilansFormValues';
+import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 type HarIkkeInntektSomFrilanser = {
     harInntektSomFrilanser: false;

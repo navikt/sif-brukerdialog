@@ -1,10 +1,11 @@
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
+import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/src';
+
+import { getOrganisasjonsnummerFromKey } from '../../søknad/steps/fravær/fraværStepUtils';
+import { Utbetalingsårsak } from '../../types/ArbeidsforholdTypes';
 import { ApiAktivitet, ArbeidsgiverDetaljer, Utbetalingsperiode } from '../../types/søknadApiData/SøknadApiData';
 import { FraværSøknadsdata } from '../../types/søknadsdata/FraværSøknadsdata';
 import { SituasjonSøknadsdata } from '../../types/søknadsdata/SituasjonSøknadsdata';
-import { Utbetalingsårsak } from '../../types/ArbeidsforholdTypes';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
-import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/src';
-import { getOrganisasjonsnummerFromKey } from '../../søknad/steps/fravær/fraværStepUtils';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     situasjon: SituasjonSøknadsdata,

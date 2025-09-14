@@ -10,6 +10,7 @@ import {
 import { getDateRangeValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { TidsromSøknadsdata } from '../../../types/søknadsdata/TidsromSøknadsdata';
 import { AppFieldValidationErrors } from '../../../utils/fieldValidation';

@@ -1,6 +1,7 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { BarnRelasjon } from '../BarnRelasjon';
+
 import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
+import { BarnRelasjon } from '../BarnRelasjon';
 
 export interface OmBarnetRegistrerteSøknadsdata {
     type: 'registrerteBarn';

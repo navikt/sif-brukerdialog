@@ -7,7 +7,7 @@ interface Props extends LinkPanelProps {
     description: React.ReactNode;
 }
 
-const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, description, ...rest }) => {
+const MellomlagringLinkPanel = ({ title, description, ...rest }: Props) => {
     const icon = <EditFilled role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />;
     return (
         <LinkPanel

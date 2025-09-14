@@ -1,9 +1,11 @@
-import { Modal } from '@navikt/ds-react';
+import './omsorgstilbudPeriodeDialog.less';
+
 import { useAppIntl } from '@i18n/index';
+import { Modal } from '@navikt/ds-react';
+
 import OmsorgstilbudPeriodeForm, {
     OmsorgstilbudPeriodeFormProps,
 } from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
-import './omsorgstilbudPeriodeDialog.less';
 
 interface Props {
     isOpen: boolean;

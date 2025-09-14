@@ -1,4 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 

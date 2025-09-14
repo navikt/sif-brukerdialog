@@ -1,6 +1,7 @@
 import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
 import React from 'react';
+
 import { AppText } from '../../i18n';
 import { appEnv } from '../../utils/appEnv';
 

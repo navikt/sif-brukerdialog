@@ -1,7 +1,7 @@
-import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import React from 'react';
 
 interface Props {
     date: Date;
@@ -11,11 +11,11 @@ interface Props {
 
 const bem = bemUtils('calendarGrid');
 
-const CalendarGridDate: React.FunctionComponent<Props> = ({
+const CalendarGridDate = ({
     date,
     dateRendererShort = dateFormatter.compact,
     dateRendererFull = dateFormatter.dayDateMonth,
-}) => {
+}: Props) => {
     const content = (
         <>
             <span className={classNames(bem.element('date__full'))}>

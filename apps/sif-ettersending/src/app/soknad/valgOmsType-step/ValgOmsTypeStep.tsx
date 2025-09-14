@@ -1,12 +1,13 @@
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
+import { YtelseKey, Ytelser } from '../../types/Ytelser';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import { YtelseKey, Ytelser } from '../../types/Ytelser';
 
 interface Props {
     søknadstype: Søknadstype;

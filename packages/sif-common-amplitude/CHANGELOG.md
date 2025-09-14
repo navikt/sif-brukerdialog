@@ -1,5 +1,12 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.28
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 2.28.27
 
 ### Patch Changes

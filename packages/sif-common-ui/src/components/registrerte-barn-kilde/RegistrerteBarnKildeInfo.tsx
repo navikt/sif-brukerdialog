@@ -1,4 +1,5 @@
 import { HelpText } from '@navikt/ds-react';
+
 import { UiText, useUiIntl } from '../../i18n/ui.messages';
 
 const RegistrerteBarnKildeInfo = () => {

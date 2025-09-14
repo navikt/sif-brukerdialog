@@ -8,10 +8,10 @@ import {
     uploadVedlegg,
 } from './services';
 
+export * from './apiClient';
 export * from './schemas';
 export * from './services';
 export * from './types';
-export * from './apiClient';
 
 export const commonApiService = {
     deleteVedlegg,

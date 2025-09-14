@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { mellomlagringService } from '../api/mellomlagringService';
 import { useAppIntl } from '../i18n';
 import actionsCreator from '../søknad/context/action/actionCreator';

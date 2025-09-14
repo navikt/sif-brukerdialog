@@ -1,18 +1,17 @@
-import React from 'react';
-import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Box, Heading, List } from '@navikt/ds-react';
-import PdfLenke from '../../pdf-lenke/PdfLenke';
+import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Organisasjon } from '../../../types/Organisasjon';
+import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../../utils/sakUtils';
+import PdfLenke from '../../pdf-lenke/PdfLenke';
 
 interface Props {
     arbeidsgivere: Organisasjon[];
     søknadId: string;
 }
 
-const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbeidsgivere }) => {
+const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
     const intl = useIntl();
     return (
         <Box className="mt-4">

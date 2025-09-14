@@ -4,6 +4,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
 import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadApiData';

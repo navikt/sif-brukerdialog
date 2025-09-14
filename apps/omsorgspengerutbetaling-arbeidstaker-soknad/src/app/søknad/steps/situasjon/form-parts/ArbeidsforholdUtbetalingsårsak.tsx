@@ -1,15 +1,16 @@
+import { VStack } from '@navikt/ds-react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator, getStringValidator, ValidateStringError } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { useAppIntl } from '../../../../i18n';
-import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
+import getLenker from '../../../../lenker';
+import { Arbeidsforhold, ÅrsakNyoppstartet, Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
-import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
-import getLenker from '../../../../lenker';
-import { VStack } from '@navikt/ds-react';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 

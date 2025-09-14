@@ -1,17 +1,19 @@
+import '@navikt/ds-css/darkside';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
+
 import { Theme } from '@navikt/ds-react';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './utils/appEnv';
-import '@navikt/ds-css/darkside';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 

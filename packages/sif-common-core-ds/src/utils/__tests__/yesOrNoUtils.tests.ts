@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { getYesOrNoFromBoolean, yesOrNoIsAnswered } from '../yesOrNoUtils';
 
 describe('yesOrNoUtils', () => {

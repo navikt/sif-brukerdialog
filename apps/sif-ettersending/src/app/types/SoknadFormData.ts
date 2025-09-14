@@ -1,4 +1,5 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+
 import { DokumentType } from './DokumentType';
 import { YtelseKey } from './Ytelser';
 

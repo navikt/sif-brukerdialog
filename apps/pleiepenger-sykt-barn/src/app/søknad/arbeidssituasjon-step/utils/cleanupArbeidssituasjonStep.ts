@@ -1,13 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
-import { cleanupOmsorgsstønad } from './cleanupOmsorgsstønad';
 import { cleanupFosterhjemsgodtgjørelse } from './cleanupFosterhjemsgodtgjørelse';
+import { cleanupOmsorgsstønad } from './cleanupOmsorgsstønad';
+import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
     const cleanedArbeidsforhold = { ...arbeidsforhold };

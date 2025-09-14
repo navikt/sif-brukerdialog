@@ -1,10 +1,10 @@
-import { StepId } from '../StepId';
-import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
-import { KursSøknadsdata } from './KursSøknadsdata';
-import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
-import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 import { OmBarnetFormSøknadsdata } from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
+import { StepId } from '../StepId';
+import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
+import { KursSøknadsdata } from './KursSøknadsdata';
+import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
+import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 
 export * from './LegeerklæringSøknadsdata';
 export * from './KursSøknadsdata';

@@ -1,6 +1,6 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
@@ -24,7 +24,7 @@ interface Props {
 
 const FormComponents = getTypedFormComponents<FrilansFormField, ArbeidsforholdFrilanserFormValues, ValidationError>();
 
-const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
+const FrilansNormalarbeidstidSpørsmål = ({
     fieldName,
     erAktivtArbeidsforhold,
     frilanstype,
@@ -32,7 +32,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     mottarOmsorgsstønad,
     inputTestId,
     timerOmsorgsstønad,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
     const intlValues = getArbeidsforholdIntlValues(appIntl, {

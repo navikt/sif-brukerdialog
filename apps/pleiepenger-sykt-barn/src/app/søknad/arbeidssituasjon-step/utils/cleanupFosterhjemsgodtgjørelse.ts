@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { FosterhjemsgodtgjørelseFormValues } from '../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 
 export const cleanupFosterhjemsgodtgjørelse = (

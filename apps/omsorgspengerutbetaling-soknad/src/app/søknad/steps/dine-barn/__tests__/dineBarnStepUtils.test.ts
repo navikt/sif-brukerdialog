@@ -1,6 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { barnMockData } from '../../../../../storybook/mock-data/barn';
+import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 import {
     getAlderILøpetAvÅr,
     getBarnAlderInfo,
@@ -10,7 +12,6 @@ import {
     kanFortsetteFraDineBarnStep,
     nYearsAgo,
 } from '../dineBarnStepUtils';
-import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 
 const {
     ettBarnOver13,

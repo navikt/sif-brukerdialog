@@ -1,12 +1,14 @@
-import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
+import './pictureScanningGuide.scss';
+
 import { ExternalLink } from '@navikt/ds-icons';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
+
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import bemUtils from '../../utils/bemUtils';
 import { getChildHeadingLevel, HeadingLevel } from '../../utils/headingLevelUtils';
 import ScanningIcon from './scanning-icon/ScanningIcon';
 import PictureScanningExample from './storybook/PictureScanningExample';
-import './pictureScanningGuide.scss';
 
 const bem = bemUtils('pictureScanningGuide');
 interface Props {

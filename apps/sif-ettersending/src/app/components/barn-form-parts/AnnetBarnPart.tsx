@@ -4,6 +4,7 @@ import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getFødselsnummerValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { useAppIntl } from '../../i18n';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';

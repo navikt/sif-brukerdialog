@@ -1,20 +1,22 @@
-import { Alert, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
+import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import {
     checkHarKlikketJaJaPåAlle,
     checkHarKlikketNeiElleJajaBlanding,
@@ -31,10 +33,9 @@ import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
 import {
     getNMonthsAgo,
-    getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
+    getSituasjonStepInitialValues,
 } from './SituasjonStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',

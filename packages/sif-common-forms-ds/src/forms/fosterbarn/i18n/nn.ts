@@ -1,4 +1,4 @@
-import { FosterbarnMessageKeys } from '.';
+import { FosterbarnMessageKeys } from './';
 
 export const forsterbarnMessages_nn: Record<FosterbarnMessageKeys, string> = {
     '@forms.fosterbarn.form.navn_label': 'Namn',

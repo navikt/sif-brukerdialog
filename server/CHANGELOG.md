@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.30
+
+### Patch Changes
+
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 0.4.29
 
 ### Patch Changes

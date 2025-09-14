@@ -1,11 +1,12 @@
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
+
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;

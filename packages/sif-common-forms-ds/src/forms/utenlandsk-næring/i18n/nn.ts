@@ -1,4 +1,4 @@
-import { UtenlandskNæringMessageKeys } from '.';
+import { UtenlandskNæringMessageKeys } from './';
 
 export const utenlandskNæringMessages_nn: Record<UtenlandskNæringMessageKeys, string> = {
     '@forms.utenlandskNæringForm.næringstype_FISKE': 'Fiskar',

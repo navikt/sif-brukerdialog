@@ -1,11 +1,11 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import HarAleneomsorgSpørsmål from '../spørsmål/HarAleneomsorgSpørsmål';
-import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
-import HarDekketTiFørsteDagerSelvSpørsmål from '../spørsmål/HarDekketTiFørsteDagerSelvSpørsmål';
+
 import { AppText } from '../../../../i18n';
+import HarAleneomsorgSpørsmål from '../spørsmål/HarAleneomsorgSpørsmål';
+import HarDekketTiFørsteDagerSelvSpørsmål from '../spørsmål/HarDekketTiFørsteDagerSelvSpørsmål';
+import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 
 interface Props {
     harSyktBarn?: YesOrNo;
@@ -13,7 +13,7 @@ interface Props {
     harUtvidetRett: boolean;
 }
 
-const EttEllerToBarnUnder13: React.FunctionComponent<Props> = ({ harSyktBarn, harAleneomsorg, harUtvidetRett }) => {
+const EttEllerToBarnUnder13 = ({ harSyktBarn, harAleneomsorg, harUtvidetRett }: Props) => {
     const harBesvartAlleSpørsmål =
         harSyktBarn === YesOrNo.YES || (yesOrNoIsAnswered(harSyktBarn) && yesOrNoIsAnswered(harAleneomsorg));
 

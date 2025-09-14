@@ -10,14 +10,16 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { appEnv } from '../../../utils/appEnv';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
@@ -27,11 +29,10 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DagerMedPleieFormPart from './DagerMedPleieFormPart';
 import {
-    getTidsromStepInitialValues,
     getTidsromSøknadsdataFromFormValues,
+    getTidsromStepInitialValues,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',

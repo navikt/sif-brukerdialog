@@ -1,5 +1,4 @@
 import { Box, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -28,7 +27,7 @@ interface Props {
     antallSaker: number;
 }
 
-const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }) => {
+const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: Props) => {
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
 

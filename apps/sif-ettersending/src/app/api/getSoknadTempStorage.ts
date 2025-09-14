@@ -1,6 +1,6 @@
 import soknadTempStorage from '../soknad/soknadTempStorage';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
+import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 
 const getSoknadTempStorage = async (søknadstype: Søknadstype): Promise<SoknadTempStorageData> => {
     try {

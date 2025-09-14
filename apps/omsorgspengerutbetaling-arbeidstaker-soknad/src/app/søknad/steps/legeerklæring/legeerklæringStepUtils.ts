@@ -1,4 +1,5 @@
 import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
+
 import { LegeerklæringSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 

@@ -1,8 +1,9 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@types';
 import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@utils';
-import { StepId } from './StepId';
+
 import { getSøknadStepRoute } from './SøknadRoutes';
+import { StepId } from './StepId';
 
 const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
     return arbeidsforhold.some((a) => a.erAnsatt === true);

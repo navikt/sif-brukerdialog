@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -15,6 +14,8 @@ import {
 } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
 import ferieuttakUtils from './ferieuttakUtils';
 import { FerieuttakMessageKeys, useFerieuttakIntl } from './i18n';

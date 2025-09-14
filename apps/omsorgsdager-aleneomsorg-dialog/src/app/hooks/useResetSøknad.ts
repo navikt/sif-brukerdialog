@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 
 /**
  * Nullstiller søknad etter at søker har sendt inn melding

@@ -1,4 +1,4 @@
-import { BostedUtlandMessageKeys } from '.';
+import { BostedUtlandMessageKeys } from './';
 
 export const bostedUtlandMessages_nn: Record<BostedUtlandMessageKeys, string> = {
     '@forms.bostedUtland.list.add': 'Legg til opphald',

@@ -1,5 +1,12 @@
 # @navikt/sif-server
 
+## 0.0.29
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 0.0.28
 
 ### Patch Changes

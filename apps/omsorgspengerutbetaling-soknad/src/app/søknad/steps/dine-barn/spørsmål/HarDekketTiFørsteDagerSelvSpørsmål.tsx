@@ -1,9 +1,10 @@
-import React from 'react';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { DineBarnFormFields } from '../DineBarnStep';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import React from 'react';
+
 import { AppText, useAppIntl } from '../../../../i18n';
+import { DineBarnFormFields } from '../DineBarnStep';
 
 const HarDekketTiFørsteDagerSelvSpørsmål: React.FunctionComponent = () => {
     const { text } = useAppIntl();

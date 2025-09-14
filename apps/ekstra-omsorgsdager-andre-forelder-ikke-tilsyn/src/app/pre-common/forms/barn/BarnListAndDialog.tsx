@@ -4,6 +4,7 @@ import {
     TypedFormInputValidationProps,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+
 import BarnForm from './BarnForm';
 import BarnList from './BarnList';
 import { AndreBarn } from './types';

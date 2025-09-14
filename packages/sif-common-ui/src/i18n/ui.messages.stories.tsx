@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { uiMessages } from './ui.messages';
 
 const meta: Meta<typeof MessagesPreview> = {

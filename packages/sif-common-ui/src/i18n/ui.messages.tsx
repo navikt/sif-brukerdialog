@@ -1,5 +1,6 @@
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+
 import { durationTextMessages_nb } from '../components/duration-text/i18n/nb';
 import { durationTextMessages_nn } from '../components/duration-text/i18n/nn';
 import { progressStepperMessages_nb } from '../components/progress-stepper/i18n/nb';

@@ -1,6 +1,7 @@
 import { getCommonEnv, getK9SakInnsynEnv } from '@navikt/sif-common-env';
 import axios from 'axios';
 import { v4 } from 'uuid';
+
 import { axiosConfig, isUnauthorized } from './apiClient';
 
 export const k9SakApiClient = axios.create({

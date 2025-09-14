@@ -1,6 +1,7 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { YesOrNoDontKnow } from '../YesOrNoDontKnow';
+
 import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
+import { YesOrNoDontKnow } from '../YesOrNoDontKnow';
 
 interface PleietrengendeMedFnr {
     type: 'pleietrengendeMedFnr';

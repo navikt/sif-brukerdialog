@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
+import * as React from 'react';
+
 import { StoryFormikWrapper } from '../../../storybook/decorators/StoryFormikWrapper';
 import * as stories from '../../../storybook/stories/components/FormikCheckbox.stories';
 

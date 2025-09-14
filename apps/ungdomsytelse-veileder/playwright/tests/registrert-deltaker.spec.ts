@@ -1,5 +1,5 @@
+import { expect, test } from '@playwright/test';
 import { setNow } from '../utils/setNow';
-import { test, expect } from '@playwright/test';
 
 const gåTilDeltakerSide = async (page: any) => {
     await page.goto(`./deltaker/699b9f97-b0d7-4b78-9b8e-8758feb9e0fd`);

@@ -1,5 +1,6 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import { medlemskapFormMessages_nb } from './nb';
 import { medlemskapFormMessages_nn } from './nn';
 

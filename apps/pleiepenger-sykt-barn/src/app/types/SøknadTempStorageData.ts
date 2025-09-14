@@ -1,6 +1,6 @@
 import { FeatureToggles } from '../utils/featureToggleUtils';
-import { StepID } from './StepID';
 import { SøknadFormValues } from './søknad-form-values/SøknadFormValues';
+import { StepID } from './StepID';
 
 export interface MellomlagringMetadata {
     version: string;

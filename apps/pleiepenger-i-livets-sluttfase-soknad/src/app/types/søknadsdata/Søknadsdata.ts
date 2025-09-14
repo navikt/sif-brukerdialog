@@ -1,17 +1,17 @@
 import { StepId } from '../StepId';
-import { OpplysningerOmPleietrengendeSøknadsdata } from './OpplysningerOmPleietrengendeSøknadsdata';
-import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
-import { TidsromSøknadsdata } from './TidsromSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
+import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
+import { OpplysningerOmPleietrengendeSøknadsdata } from './OpplysningerOmPleietrengendeSøknadsdata';
+import { TidsromSøknadsdata } from './TidsromSøknadsdata';
 
-export * from './OpplysningerOmPleietrengendeSøknadsdata';
-export * from './LegeerklæringSøknadsdata';
-export * from './TidsromSøknadsdata';
 export * from './ArbeidssituasjonSøknadsdata';
 export * from './ArbeidstidSøknadsdata';
+export * from './LegeerklæringSøknadsdata';
 export * from './MedlemskapSøknadsdata';
+export * from './OpplysningerOmPleietrengendeSøknadsdata';
+export * from './TidsromSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;

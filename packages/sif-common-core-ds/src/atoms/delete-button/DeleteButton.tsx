@@ -1,5 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import React from 'react';
+
 import Trashcan from './TrashcanSvg';
 
 interface Props {

@@ -1,6 +1,6 @@
 import {
-    UtenlandsoppholdUtvidet,
     UtenlandsoppholdÅrsak,
+    UtenlandsoppholdUtvidet,
 } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 
 const erOppholdMedInnlagtBarnForEgenRegning = (opphold: UtenlandsoppholdUtvidet): boolean =>

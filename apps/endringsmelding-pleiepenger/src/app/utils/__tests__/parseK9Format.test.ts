@@ -1,5 +1,6 @@
 import { Duration, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { K9SakArbeidstidInfo } from '@types';
+
 import {
     fjernK9SakArbeidstidMedIngenNormalarbeidstid,
     harNormalarbeidstidIK9SakArbeidstidInfo,

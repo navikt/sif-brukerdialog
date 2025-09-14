@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { relocateToWelcomePage } from '../utils';
 import { useSøknadContext } from './useSøknadContext';

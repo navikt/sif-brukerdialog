@@ -1,5 +1,4 @@
 import { ExpansionCard, VStack } from '@navikt/ds-react';
-import React from 'react';
 import {
     dateFormatter,
     DateRange,
@@ -7,6 +6,7 @@ import {
     getDateToday,
     isDateInDateRange,
 } from '@navikt/sif-common-utils';
+import React from 'react';
 
 type State = 'all' | 'none' | 'current';
 

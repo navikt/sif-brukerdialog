@@ -1,15 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
-import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../types/StepID';
 import { relocateToMinSide, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';

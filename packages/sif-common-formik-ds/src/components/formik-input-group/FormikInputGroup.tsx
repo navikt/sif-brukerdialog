@@ -1,10 +1,11 @@
 import { Fieldset, FieldsetProps } from '@navikt/ds-react';
-import React from 'react';
 import { FastField, Field, FieldProps } from 'formik';
+import React from 'react';
+
 import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<FieldsetProps, 'name'> {
     name: FieldName;

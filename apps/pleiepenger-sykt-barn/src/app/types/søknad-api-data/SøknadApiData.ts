@@ -5,19 +5,20 @@ import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/src/forms/opptj
 import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../';
 import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
-import { FrilansApiData } from './FrilansApiData';
-import { SelvstendigApiData } from './SelvstendigApiData';
-import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
 import { FosterhjemsgodtgjørelseApiData } from './FosterhjemsgodtgjørelseApiData';
+import { FrilansApiData } from './FrilansApiData';
+import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
+import { SelvstendigApiData } from './SelvstendigApiData';
 
 export * from './ArbeidIPeriodeApiData';
-export * from './ArbeidsgiverAnsattApiData';
-export * from './NormalarbeidstidApiData';
 export * from './ArbeidsforholdApiData';
-export * from './SelvstendigApiData';
+export * from './ArbeidsgiverAnsattApiData';
 export * from './FrilansApiData';
+export * from './NormalarbeidstidApiData';
+export * from './SelvstendigApiData';
 
 export const SøknadApiDataVersjon = 'Søknad-1.2.1';
 

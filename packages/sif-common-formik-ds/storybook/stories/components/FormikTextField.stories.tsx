@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
-import * as React from 'react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikTextField from '../../../src/components/formik-text-field/FormikTextField';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikTextField> = {
     title: 'Component/FormikTextField',

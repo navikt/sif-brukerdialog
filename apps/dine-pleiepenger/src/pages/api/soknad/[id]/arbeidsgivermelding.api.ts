@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
-import { getContextForApiHandler } from '../../../../utils/apiUtils';
 import { ApiService } from '../../../../server/apiService';
 import { fetchDocument } from '../../../../server/fetchDocument';
+import { getContextForApiHandler } from '../../../../utils/apiUtils';
 
 export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const { query } = req;

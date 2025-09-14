@@ -1,8 +1,8 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
 import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
@@ -19,12 +19,7 @@ interface Props {
     headingLevel?: '2' | '3' | '4' | '5';
 }
 
-const TidEnkeltdager: React.FunctionComponent<Props> = ({
-    dager,
-    renderAsAccordion = false,
-    visUke = false,
-    headingLevel = '5',
-}) => {
+const TidEnkeltdager = ({ dager, renderAsAccordion = false, visUke = false, headingLevel = '5' }: Props) => {
     const days: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);

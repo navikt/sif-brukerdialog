@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import Kvittering from './Kvittering';
+
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
+import Kvittering from './Kvittering';
 
 const meta: Meta<typeof Kvittering> = {
     component: Kvittering,

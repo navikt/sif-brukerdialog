@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-utils@3.49.27
+    - @navikt/sif-common-api@0.4.44
+
 ## 10.3.0
 
 ### Minor Changes

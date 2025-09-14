@@ -1,17 +1,17 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { ArbeidsgiverAnsattApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 import { getFeatureToggles } from '../../../utils/featureToggleUtils';
+import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
 interface Props {
     arbeidsgivere?: ArbeidsgiverAnsattApiData[];
     søknadsperiode: DateRange;
 }
 
-const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
+const ArbeidsgivereSummary = ({ arbeidsgivere, søknadsperiode }: Props) => {
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
             <FormSummary.Answer>

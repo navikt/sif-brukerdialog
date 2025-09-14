@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { SelvstendigFormValues } from '../../types/søknad-form-values/SelvstendigFormValues';
 import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../selvstendigUtils';

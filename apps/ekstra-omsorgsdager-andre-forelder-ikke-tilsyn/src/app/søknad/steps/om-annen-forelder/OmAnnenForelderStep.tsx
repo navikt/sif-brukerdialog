@@ -1,7 +1,9 @@
 import { List, VStack } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -9,16 +11,15 @@ import { useAppIntl } from '../../../i18n';
 import actionsCreator from '../../../søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import {
-    getOmAnnenForelderStepInitialValues,
     getOmAnnenForelderSøknadsdataFromFormValues,
+    getOmAnnenForelderStepInitialValues,
 } from './omAnnenForelderStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum OmAnnenForelderFormFields {
     annenForelderNavn = 'annenForelderNavn',

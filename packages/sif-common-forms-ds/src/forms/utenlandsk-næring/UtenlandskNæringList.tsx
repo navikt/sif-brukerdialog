@@ -1,12 +1,14 @@
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { ActionLink } from '@navikt/sif-common-ui';
+import './utenlandskNæringList.scss';
+
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
+import { ActionLink } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import React from 'react';
+import { useIntl } from 'react-intl';
+
 import { UtenlandskNæring } from './types';
-import './utenlandskNæringList.scss';
 
 interface Props {
     utenlandskNæringer: UtenlandskNæring[];

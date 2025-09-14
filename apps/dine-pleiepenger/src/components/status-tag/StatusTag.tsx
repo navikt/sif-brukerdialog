@@ -40,7 +40,7 @@ const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
     }
 };
 
-const StatusTag: React.FunctionComponent<Props> = ({ status, venteårsak }) => {
+const StatusTag = ({ status, venteårsak }: Props) => {
     switch (status) {
         case Behandlingsstatus.OPPRETTET:
         case Behandlingsstatus.UNDER_BEHANDLING:

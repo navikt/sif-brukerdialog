@@ -1,20 +1,18 @@
 import type { AppProps } from 'next/app';
+import { Theme } from '@navikt/ds-react';
 import { IntlProvider } from 'react-intl';
 import { DecoratorLocale } from '@navikt/nav-dekoratoren-moduler';
-import Container from '../components/container/Container';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Container from '../components/container/Container';
 import { messages } from '../utils/message';
-import '../styles/globals.css';
-import '../styles/buttonRow.scss';
-import '../styles/ResultBox.scss';
-import '../styles/customExpCard.scss';
-
-import '../components/section-panel/sectionPanel.scss';
-import '../components/section-panel/circle-mask/circleMask.scss';
-
 import '@navikt/ds-css/darkside';
-import { Theme } from '@navikt/ds-react';
+import '../components/section-panel/circle-mask/circleMask.scss';
+import '../components/section-panel/sectionPanel.scss';
+import '../styles/buttonRow.scss';
+import '../styles/customExpCard.scss';
+import '../styles/globals.css';
+import '../styles/ResultBox.scss';
 
 const getLocaleOrFallback = (locale?: string) => {
     if (locale && ['nb', 'nn'].includes(locale)) {

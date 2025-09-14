@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
-import { markerDeltakelseSomSøkt } from '../../api/deltakelse/markerDeltakelseSomSøkt';
 import { commonQueries } from '../../../../api/queries/commonQueries';
+import { markerDeltakelseSomSøkt } from '../../api/deltakelse/markerDeltakelseSomSøkt';
 
 /**
  * Setter en deltakelse som søkt. Brukes for å oppdatere direkte, uten å måtte

@@ -1,8 +1,9 @@
-import React from 'react';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { FraværPeriode } from './types';
+import React from 'react';
+
 import FraværListItem from './FraværListItem';
+import { FraværPeriode } from './types';
 
 interface Props {
     fraværPerioder: FraværPeriode[];

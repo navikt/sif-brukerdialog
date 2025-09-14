@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+
 import { typedIntlHelper } from '../../../utils/intlUtils';
 import { psgMessages_nb } from './nb';
 import { psgMessages_nn } from './nn';

@@ -1,6 +1,6 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { dateFormatter, DateRange, ISODate } from '@navikt/sif-common-utils';
+
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
 import { getFrilansStartdatoValidator } from '../../../validation/frilansStartdatoValidator';
@@ -11,7 +11,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoValue, søknadsperiode }) => {
+const FrilansStartdatoSpørsmål = ({ startdatoValue, søknadsperiode }: Props) => {
     const { text } = useAppIntl();
     const minDato = getStartdatoForNySomFrilanser(søknadsperiode);
 

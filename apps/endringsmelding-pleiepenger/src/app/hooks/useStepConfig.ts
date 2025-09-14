@@ -1,7 +1,7 @@
-import { StepId } from '../søknad/config/StepId';
 import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
-import { useStepNavigation } from './useStepNavigation';
+import { StepId } from '../søknad/config/StepId';
 import { useSøknadContext } from './useSøknadContext';
+import { useStepNavigation } from './useStepNavigation';
 
 export const useStepConfig = (stepId: StepId) => {
     const {

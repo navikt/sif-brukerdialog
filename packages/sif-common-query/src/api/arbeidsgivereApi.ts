@@ -1,5 +1,6 @@
 import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
-import { arbeidsgivereSchema, Arbeidsgivere } from '../types/Arbeidsgivere';
+
+import { Arbeidsgivere, arbeidsgivereSchema } from '../types/Arbeidsgivere';
 
 /**
  * Henter informasjon om arbeidsgivere fra k9-brukerdialog-prosessering-api

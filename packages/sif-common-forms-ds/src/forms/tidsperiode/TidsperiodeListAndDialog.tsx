@@ -5,6 +5,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { sortMaybeDateRange } from '@navikt/sif-common-utils';
+
 import TidsperiodeForm from './TidsperiodeForm';
 import TidsperiodeList from './TidsperiodeList';
 import { DateTidsperiode } from './types';

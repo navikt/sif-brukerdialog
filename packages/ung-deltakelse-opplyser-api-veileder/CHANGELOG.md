@@ -1,5 +1,12 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.14
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 0.1.13
 
 ### Patch Changes

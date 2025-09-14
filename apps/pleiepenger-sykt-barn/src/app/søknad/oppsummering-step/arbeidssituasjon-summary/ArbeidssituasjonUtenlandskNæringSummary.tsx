@@ -1,8 +1,9 @@
-import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import { AppIntlShape, useAppIntl } from '@i18n/index';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
+import React from 'react';
+
 import { AppText } from '../../../i18n';
 import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';
 

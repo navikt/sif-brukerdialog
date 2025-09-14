@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { sakMock } from '../../../storybook/data/sakMock';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from './ArbeidsaktiviteterMedUkjentArbeidsgiver';

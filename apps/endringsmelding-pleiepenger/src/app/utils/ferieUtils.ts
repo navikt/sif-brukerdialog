@@ -13,6 +13,7 @@ import {
 } from '@navikt/sif-common-utils';
 import { LovbestemtFerieSøknadsdata } from '@types';
 import dayjs from 'dayjs';
+
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerMeta } from './lovbestemtFerieUtils';
 

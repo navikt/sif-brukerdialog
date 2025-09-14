@@ -1,7 +1,9 @@
-import React from 'react';
-import classNames from 'classnames';
-import bemUtils from '../../utils/bemUtils';
 import './buttonRow.scss';
+
+import classNames from 'classnames';
+import React from 'react';
+
+import bemUtils from '../../utils/bemUtils';
 
 export interface Props {
     children: React.ReactNode;

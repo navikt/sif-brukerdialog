@@ -1,9 +1,9 @@
+import { getRequiredEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
-import { getRequiredEnv } from '@navikt/sif-common-env';
 
 export const getFørsteMuligeInnmeldingsdato = (
     førsteMuligeInnmeldingsdato: Date,

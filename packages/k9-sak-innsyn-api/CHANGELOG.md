@@ -1,5 +1,12 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.0.25
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 0.0.24
 
 ### Patch Changes

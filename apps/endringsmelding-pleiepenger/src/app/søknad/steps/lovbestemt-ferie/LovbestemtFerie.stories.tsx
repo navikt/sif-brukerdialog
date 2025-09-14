@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { withIntl } from '../../../../storybook/decorators/withIntl';
-import LovbestemtFerieStep from './LovbestemtFerieStep';
-import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+
 import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
+import LovbestemtFerieStep from './LovbestemtFerieStep';
 
 const meta: Meta<typeof LovbestemtFerieStep> = {
     title: 'Step/LovbestemtFerie',

@@ -1,9 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
-
 import { RadioGroup } from '@navikt/ds-react';
+import React, { ReactElement, ReactNode } from 'react';
+import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
 
-import { ValidationReturnType, getError, getValidationRules } from './formUtils';
+import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 type Props<T extends FieldValues> = {
     description?: string | ReactNode;

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
+
 import { FormError } from '../../../types';
 import {
     dateToISODateString,
@@ -9,9 +10,9 @@ import {
     ISODateString,
     ISODateStringToUTCDate,
 } from '../dateFormatUtils';
+import { datepickerUtils, isISODateString } from '../datepickerUtils';
 import { DatepickerLimitations } from '../FormikDatepicker';
 import { usePrevious } from './usePrevious';
-import { datepickerUtils, isISODateString } from '../datepickerUtils';
 
 type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
     DatepickerLimitations & {
@@ -25,7 +26,7 @@ type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
         onChange: (date: ISODateString | string) => void;
     };
 
-const DateInputAndPicker: React.FunctionComponent<Props> = ({
+const DateInputAndPicker = ({
     label,
     name,
     value,
@@ -38,7 +39,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
     onChange,
     locale,
     ...restProps
-}) => {
+}: Props) => {
     const [inputHasFocus, setInputHasFocus] = React.useState(false);
     const [listenForInputValueChange, setListenForInputValueChange] = React.useState(false);
 

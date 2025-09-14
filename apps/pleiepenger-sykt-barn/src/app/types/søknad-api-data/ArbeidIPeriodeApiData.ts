@@ -1,4 +1,5 @@
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
+
 import { ArbeidIPeriodeType } from '../ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../RedusertArbeidstidType';
 

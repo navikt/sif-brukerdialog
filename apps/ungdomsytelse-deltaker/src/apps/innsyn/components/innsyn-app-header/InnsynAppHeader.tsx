@@ -1,7 +1,7 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { YtelseNavn } from '../../atoms/ytelse-navn/YtelseNavn';
 import { UngdomsprogramPictogram } from '../../atoms/svg/UngdomsprogramPictogram';
+import { YtelseNavn } from '../../atoms/ytelse-navn/YtelseNavn';
 
 interface Props {
     startdato: Date;

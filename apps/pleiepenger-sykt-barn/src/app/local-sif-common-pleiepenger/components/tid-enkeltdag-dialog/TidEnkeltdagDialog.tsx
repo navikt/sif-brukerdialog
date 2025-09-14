@@ -1,6 +1,8 @@
-import { Modal } from '@navikt/ds-react';
-import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import './styles/tidEnkeltdagDialog.less';
+
+import { Modal } from '@navikt/ds-react';
+
+import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 
 export interface TidEnkeltdagDialogProps {
     open?: boolean;

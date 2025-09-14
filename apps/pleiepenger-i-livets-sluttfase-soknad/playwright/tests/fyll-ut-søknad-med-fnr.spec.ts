@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
-import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';

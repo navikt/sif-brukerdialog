@@ -1,9 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
-import { ArbeidsgiverType, TimerEllerProsent } from '../../app/types';
-import { SøknadFormValues } from '../../app/types/søknad-form-values/SøknadFormValues';
+
 import { ArbeiderIPeriodenSvar } from '../../app/local-sif-common-pleiepenger';
-import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
+import { ArbeidsgiverType, TimerEllerProsent } from '../../app/types';
 import { Frilanstype } from '../../app/types/søknad-form-values/FrilansFormValues';
+import { SøknadFormValues } from '../../app/types/søknad-form-values/SøknadFormValues';
+import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
 
 export const formikValues: SøknadFormValues = {
     periodeFra: '2024-05-01',

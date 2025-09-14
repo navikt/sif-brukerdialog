@@ -1,11 +1,12 @@
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../utils/frilanserUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { FormSummary, Heading, List } from '@navikt/ds-react';
 
 interface Props {
     frilans: FrilansApiData;

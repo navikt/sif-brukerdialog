@@ -1,11 +1,12 @@
 import { Tabs, VStack } from '@navikt/ds-react';
-/* eslint-disable no-console */
-import { useState } from 'react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikForm, TypedFormikWrapper, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
+/* eslint-disable no-console */
+import { useState } from 'react';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';

@@ -1,11 +1,11 @@
-import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
+import { StepId } from '../../app/søknad/config/StepId';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
+import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { TimerEllerProsent } from '../../app/types/TimerEllerProsent';
 import { arbeidsgivereMock } from '../data/arbeidsgivereMock';
-import { søkerMock } from '../data/søkerMock';
 import { sakMock } from '../data/sakMock';
-import { StepId } from '../../app/søknad/config/StepId';
+import { søkerMock } from '../data/søkerMock';
 
 export const initialStateStorybook: SøknadContextState = {
     versjon: '1.0.0',

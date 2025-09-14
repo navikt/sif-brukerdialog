@@ -1,4 +1,4 @@
-import { DateRange, ISODateRangeToDateRange } from '..';
+import { DateRange, ISODateRangeToDateRange } from '../';
 import { dateRangeFormatter } from '../dateRangeFormatter';
 
 describe('dateRangeFormatter', () => {

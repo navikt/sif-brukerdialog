@@ -1,5 +1,5 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Link, LinkProps } from '@navikt/ds-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const ExternalLink = ({ children, ...rest }: LinkProps) => {
     return (

@@ -1,12 +1,13 @@
+import { Box } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+
 import { appMessages } from '../../../app/i18n';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
-import { Box } from '@navikt/ds-react';
+import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 
 export default {
     title: 'i18n/Appmessages',

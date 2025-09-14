@@ -1,5 +1,4 @@
 import { Box, FileUpload, Heading, VStack } from '@navikt/ds-react';
-import { useCallback, useContext } from 'react';
 import {
     getErrorPropForFormikInput,
     TypedFormikFormContext,
@@ -7,15 +6,17 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
+import { useCallback, useContext } from 'react';
+
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
 import { getTotalSizeOfVedlegg } from '../../utils/vedleggUtils';
+import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 import FileUploadSizeProgress from './FileUploadSizeProgress';
 import { getRejectedFileError } from './fileUploadUtils';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
-import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;

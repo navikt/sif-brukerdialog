@@ -1,8 +1,9 @@
 import { Alert, BodyShort, Checkbox as DsCheckbox, Heading, HStack, Label, Radio, VStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react-vite';
+import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { IntlProvider } from 'react-intl';
-import dayjs from 'dayjs';
+
 import { RhfCheckbox } from './RhfCheckbox';
 import { RhfCheckboxGroup } from './RhfCheckboxGroup';
 import { RhfCombobox } from './RhfCombobox';

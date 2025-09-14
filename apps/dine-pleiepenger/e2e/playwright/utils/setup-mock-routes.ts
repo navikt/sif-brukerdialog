@@ -1,8 +1,7 @@
 import { Innsynsdata } from '../../../src/types/InnsynData';
+import { sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
 import { søknaderMockData } from '../mockdata/søknader.mock';
-
-import { sakerMock } from '../mockdata/saker.mock';
 
 export const setupMockRoutes = async (page: any) => {
     await page.route('https://login.nav.no/**', async (route) => {

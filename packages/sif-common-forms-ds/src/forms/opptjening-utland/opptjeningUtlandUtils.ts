@@ -1,5 +1,6 @@
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
+
 import { OpptjeningUtland, OpptjeningUtlandFormValues } from './types';
 
 const isValidOpptjeningUtland = (opptjeningUtland: Partial<OpptjeningUtland>): opptjeningUtland is OpptjeningUtland => {

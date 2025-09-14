@@ -1,7 +1,8 @@
-import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../../../i18n';
 import VirksomhetFormSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
+
+import { AppText, useAppIntl } from '../../../../i18n';
+import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;

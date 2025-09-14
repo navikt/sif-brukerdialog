@@ -1,7 +1,9 @@
+import './stateInfo.scss';
+
 import { Heading, Panel } from '@navikt/ds-react';
+
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
-import './stateInfo.scss';
 
 const StateInfo = () => {
     const {

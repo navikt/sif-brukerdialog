@@ -1,8 +1,10 @@
+import './barnList.scss';
+
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+
 import { useAppIntl } from '../../../i18n';
 import { AndreBarn } from './types';
-import './barnList.scss';
 
 interface Props {
     barna: AndreBarn[];

@@ -1,5 +1,7 @@
+import './app.css';
+
 import { SanityConfig } from '@navikt/appstatus-react-ds';
-import { Navigate, Route } from 'react-router-dom';
+import { Theme } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
@@ -8,6 +10,8 @@ import {
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import MockDate from 'mockdate';
+import { Navigate, Route } from 'react-router-dom';
+
 import { purge } from './api/api';
 import RouteConfig from './config/routeConfig';
 import { appEnv } from './env/appEnv';
@@ -16,8 +20,6 @@ import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
-import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

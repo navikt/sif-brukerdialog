@@ -1,7 +1,8 @@
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useIntl } from 'react-intl';
+
 import { annetBarnMessages_nb } from './nb';
 import { annetBarnMessages_nn } from './nn';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export type AnnetBarnMessageKeys = keyof typeof annetBarnMessages_nb;
 

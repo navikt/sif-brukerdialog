@@ -1,4 +1,5 @@
 import { ISODateRange } from '@navikt/sif-common-utils';
+
 import { TimerEllerProsent } from './TimerEllerProsent';
 
 interface ArbeidstidEndringProsent {

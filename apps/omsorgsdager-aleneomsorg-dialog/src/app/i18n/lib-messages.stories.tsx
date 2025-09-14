@@ -1,7 +1,8 @@
-import { StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { libMessages } from './index';
+import { StoryFn } from '@storybook/react-vite';
+
 import { withIntl } from '../../storybook/decorators/withIntl';
+import { libMessages } from './index';
 
 export default {
     title: 'i18N/Bibliotek tekster',

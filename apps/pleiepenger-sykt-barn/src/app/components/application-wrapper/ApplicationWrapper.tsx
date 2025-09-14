@@ -1,6 +1,7 @@
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+
 import IntlProvider from '../intl-provider/IntlProvider';
 
 interface ApplicationWrapperProps {

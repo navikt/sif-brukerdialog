@@ -1,4 +1,5 @@
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../i18n';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 

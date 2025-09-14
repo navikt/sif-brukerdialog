@@ -1,6 +1,7 @@
 import { Box } from '@navikt/ds-react';
-import * as React from 'react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import * as React from 'react';
+
 import StoryIntlProvider from './StoryIntlProvider';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
+export const StoryFormikWrapper = (props: Props) => {
     const { children, parameters } = props;
     const { formik, maxWidth = '800px', includeButtons = false } = parameters || {};
     const initialValues = formik?.initialValues || {};

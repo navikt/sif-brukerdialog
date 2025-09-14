@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+
 import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/SøknadApiData';
 import { isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
 

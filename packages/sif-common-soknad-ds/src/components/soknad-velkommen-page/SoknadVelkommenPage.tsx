@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
 import SoknadVelkommenGuide from './SoknadVelkommenGuide';

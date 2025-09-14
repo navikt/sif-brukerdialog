@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -25,12 +24,7 @@ export interface DeltBostedFormValues {
 
 const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
-const DeltBostedForm: React.FunctionComponent<Props> = ({
-    samværsavtaler = [],
-    goBack,
-    andreVedlegg = [],
-    isSubmitting,
-}) => {
+const DeltBostedForm = ({ samværsavtaler = [], goBack, andreVedlegg = [], isSubmitting }: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
 

@@ -1,5 +1,5 @@
-import { AppHendelse, useAnalyticsInstance } from './analytics';
 import { Utmeldingsårsak } from '../types/Utmeldingsårsaker';
+import { AppHendelse, useAnalyticsInstance } from './analytics';
 
 // Map event to payload shape for type safety.
 export type AppEventPayloads = {

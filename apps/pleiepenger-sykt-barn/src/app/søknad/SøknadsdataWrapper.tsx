@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import React, { useState } from 'react';
+
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
@@ -10,7 +11,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialValues, children }) => {
+const SøknadsdataWrapper = ({ initialValues, children }: Props) => {
     const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>({ isInitialized: false });
 
     useEffectOnce(() => {

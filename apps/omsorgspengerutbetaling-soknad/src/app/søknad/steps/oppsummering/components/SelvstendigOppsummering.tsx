@@ -1,17 +1,17 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
-import { JaNeiSvar } from '@navikt/sif-common-ui';
-import { AppText } from '../../../../i18n';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+import { JaNeiSvar } from '@navikt/sif-common-ui';
+
+import { AppText } from '../../../../i18n';
 
 interface Props {
     virksomhet?: VirksomhetApiData;
     onEdit?: () => void;
 }
 
-const SelvstendigOppsummering: React.FC<Props> = ({ virksomhet, onEdit }) => {
+const SelvstendigOppsummering = ({ virksomhet, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

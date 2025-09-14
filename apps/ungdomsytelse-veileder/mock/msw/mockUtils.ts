@@ -1,14 +1,14 @@
 // /* eslint-disable no-console */
 
-import { v4 } from 'uuid';
-import { deltaker2Mock } from '../data/deltaker2';
-import { nyDeltakerMock } from '../data/nyDeltakerMock';
-import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
     DeltakerPersonalia,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { v4 } from 'uuid';
+import { deltaker2Mock } from '../data/deltaker2';
+import { nyDeltakerMock } from '../data/nyDeltakerMock';
+import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;

@@ -1,5 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+
 import { AndreBarn } from '../../pre-common/forms/barn/types';
 import { ApiBarn, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnaSøknadsdata } from '../../types/søknadsdata/Søknadsdata';

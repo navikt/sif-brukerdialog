@@ -5,13 +5,13 @@ import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';
 import DevUserList from '../../dev-components/DevUserList';
 import { useFinnDeltaker } from '../../hooks/useFinnDeltaker';
 import { useTextFieldFormatter } from '../../hooks/useTextFieldFormatter';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';
 import MeldInnDeltakerForm from '../meld-inn-deltaker-form/MeldInnDeltakerForm';
 import FinnDeltakerApiError from './FinnDeltakerApiError';
-import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
-import { Deltakelse } from '../../types/Deltakelse';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;

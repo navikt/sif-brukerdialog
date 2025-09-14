@@ -1,5 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../../storybook/decorators';
 import DurationWeekdaysWeek from './DurationWeekdaysWeek';
 

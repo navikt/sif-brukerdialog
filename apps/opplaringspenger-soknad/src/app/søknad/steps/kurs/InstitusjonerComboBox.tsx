@@ -1,5 +1,5 @@
-import { Institusjoner } from '../../../api/institusjonService';
 import FormikCombobox from '@navikt/sif-common-formik-ds/src/components/formik-combobox/FormikCombobox';
+import { Institusjoner } from '../../../api/institusjonService';
 
 interface Props {
     institusjoner: Institusjoner;

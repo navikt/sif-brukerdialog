@@ -1,14 +1,14 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
+
+import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { Arbeidsgiver } from '../../../types';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { SøknadFormField } from '../../../types/søknad-form-values/SøknadFormValues';
 import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/arbeidUtils';
-import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
-import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
+import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -19,14 +19,14 @@ interface Props {
     søkerFremITid: boolean;
 }
 
-const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
+const ArbeidstidAnsatt = ({
     arbeidIPeriode,
     arbeidsgiver,
     søknadsperiode,
     normalarbeidstid,
     søkerFremITid,
     index,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const periode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsgiver);
     const ansattParentFieldName = `${SøknadFormField.ansatt_arbeidsforhold}.${index}` as SøknadFormField;

@@ -1,13 +1,15 @@
+import './step.scss';
+
 import { VStack } from '@navikt/ds-react';
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
-import './step.scss';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 
 const bem = bemHelper('step');
 

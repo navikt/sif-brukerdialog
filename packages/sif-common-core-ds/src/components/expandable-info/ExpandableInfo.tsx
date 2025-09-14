@@ -1,5 +1,6 @@
 import { ReadMore } from '@navikt/ds-react';
 import React from 'react';
+
 interface Props {
     children: React.ReactNode;
     title?: string;

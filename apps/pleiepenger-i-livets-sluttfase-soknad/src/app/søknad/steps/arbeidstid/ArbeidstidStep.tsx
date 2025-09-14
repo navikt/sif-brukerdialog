@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import { useState } from 'react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import {
     DateRange,
@@ -7,6 +6,9 @@ import {
     getTypedFormComponents,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -14,8 +16,8 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -26,14 +28,13 @@ import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
 import {
     getAntallArbeidsforhold,
-    getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    getArbeidstidStepInitialValues,
 } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',

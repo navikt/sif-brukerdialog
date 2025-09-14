@@ -1,6 +1,7 @@
-import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/mapVirksomhetToApiData';
-import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
+import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/mapVirksomhetToApiData';
+
+import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 
 export const getSelvstendigApiDataFromSøknadsdata = (
     selvstendig: ArbeidSelvstendigSøknadsdata,

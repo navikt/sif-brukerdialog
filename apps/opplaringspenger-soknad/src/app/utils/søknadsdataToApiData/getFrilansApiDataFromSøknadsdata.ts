@@ -1,8 +1,8 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FrilansApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;

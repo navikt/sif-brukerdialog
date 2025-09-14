@@ -6,8 +6,9 @@ import {
     SøknadContextInputPreferanse,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
-import { StepId } from '../../config/StepId';
+
 import { SøknadRoutes } from '../../config/SøknadRoutes';
+import { StepId } from '../../config/StepId';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {

@@ -1,15 +1,17 @@
-import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
+import BarnStep from './barn-step/BarnStep';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumentTypeStep from './dokument-type-step/DokumentTypeStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
@@ -17,7 +19,6 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
-import BarnStep from './barn-step/BarnStep';
 
 interface Props {
     søker: Søker;

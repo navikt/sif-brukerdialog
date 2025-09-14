@@ -1,4 +1,5 @@
 import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
+
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9SakBarn } from './K9Sak';

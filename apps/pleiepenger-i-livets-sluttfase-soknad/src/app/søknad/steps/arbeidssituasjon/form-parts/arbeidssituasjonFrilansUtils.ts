@@ -2,6 +2,7 @@ import { datepickerUtils, DateRange, YesOrNo } from '@navikt/sif-common-formik-d
 /* eslint-disable no-console */
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
+
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { FrilansFormData } from './ArbeidssituasjonFrilans';

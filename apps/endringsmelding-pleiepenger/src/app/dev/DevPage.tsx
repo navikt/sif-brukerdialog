@@ -1,6 +1,6 @@
 import { Button, Heading, VStack } from '@navikt/ds-react';
-import { Link } from 'react-router-dom';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { Link } from 'react-router-dom';
 
 const DevPage = () => {
     return (

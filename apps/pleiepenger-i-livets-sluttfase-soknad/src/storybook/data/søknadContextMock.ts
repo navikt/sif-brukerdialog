@@ -1,10 +1,11 @@
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
+
+import { ArbeidIPeriodeType } from '../../app/types/arbeidIPeriodeType';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { YesOrNoDontKnow } from '../../app/types/YesOrNoDontKnow';
-import { ArbeidIPeriodeType } from '../../app/types/arbeidIPeriodeType';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
+import { YesOrNoDontKnow } from '../../app/types/YesOrNoDontKnow';
 
 export const søknadContextMock: SøknadContextState = {
     versjon: '2.0.0',

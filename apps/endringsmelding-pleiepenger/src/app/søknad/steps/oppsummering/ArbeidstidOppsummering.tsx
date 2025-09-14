@@ -1,17 +1,17 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { Arbeidsgiver, ArbeidstidApiData } from '@types';
+
+import { AppText, useAppIntl } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
-import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
     arbeidsgivere: Arbeidsgiver[];
 }
 
-const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, arbeidsgivere }) => {
+const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
     const { text } = useAppIntl();
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
     const arbeidstidKolonneTittel = text('oppsummeringStep.arbeidstid.kolonne.endretArbeidstid');

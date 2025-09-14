@@ -1,7 +1,8 @@
-import React from 'react';
+import './knapperad.less';
+
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import classNames from 'classnames';
-import './knapperad.less';
+import React from 'react';
 
 export interface Props {
     children: React.ReactNode;

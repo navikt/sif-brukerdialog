@@ -1,4 +1,5 @@
 import { parse } from 'iso8601-duration';
+
 import { Time } from './types';
 
 export const timeToIso8601Duration = ({ hours, minutes }: Partial<Time>): string => {

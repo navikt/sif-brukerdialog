@@ -1,5 +1,6 @@
-import React from 'react';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
+import React from 'react';
+
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { useAppIntl } from '../i18n';
@@ -11,7 +12,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
+const SøknadStep = ({ stepId, children }: Props) => {
     const { intl, text } = useAppIntl();
 
     const stepConfig = getSøknadStepConfig();

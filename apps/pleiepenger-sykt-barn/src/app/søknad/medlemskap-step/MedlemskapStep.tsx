@@ -1,19 +1,20 @@
-import { Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { Link } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import getLenker from '../../lenker';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 type Props = {
     søknadsdato: Date;

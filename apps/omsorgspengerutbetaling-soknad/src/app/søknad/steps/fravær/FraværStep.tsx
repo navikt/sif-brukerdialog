@@ -1,5 +1,4 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     FormikValuesObserver,
@@ -13,17 +12,20 @@ import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fra
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useEffect } from 'react';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -31,10 +33,9 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
 import FraværStepInfo from './FraværStepInfo';
-import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
+import fraværStepUtils, { getFraværSøknadsdataFromFormValues, getFraværStepInitialValues } from './FraværStepUtils';
 import OmsorgsdagerInfo from './OmsorgsdagerInfo';
 import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',

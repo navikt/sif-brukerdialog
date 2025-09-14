@@ -1,7 +1,7 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
@@ -29,12 +29,7 @@ interface Props {
     arbeidIPeriode: ArbeidIPeriodeFormValues;
 }
 
-const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
-    periode,
-    parentFieldName,
-    label: spørsmål,
-    timerPerUkeValidator,
-}) => {
+const ArbeidstidEnkeltuker = ({ periode, parentFieldName, label: spørsmål, timerPerUkeValidator }: Props) => {
     const arbeidsuker = getArbeidsukerIPerioden(periode);
 
     const getFieldName = (arbeidsuke: ArbeidsukeInfo): any =>

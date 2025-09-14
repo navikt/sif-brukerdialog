@@ -1,8 +1,8 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
-import React from 'react';
-import { useIntl } from 'react-intl';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 const RettOgPliktURL = 'https://www.nav.no/endringer#du-har-plikt-til-a-gi-nav-riktige-opplysninger';
@@ -52,7 +52,7 @@ export const SamtykkeFormPart = () => {
     );
 };
 
-const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitButtonLabel }) => {
+const SamtykkeForm = ({ onValidSubmit, submitButtonLabel }: Props) => {
     const { text } = useSoknadIntl();
     const intl = useIntl();
     return (

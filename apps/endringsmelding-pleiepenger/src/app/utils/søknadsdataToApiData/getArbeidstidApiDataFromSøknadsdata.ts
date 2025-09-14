@@ -8,14 +8,14 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
-    ArbeidstidArbeidsaktivitetMap,
     Arbeidsaktiviteter,
     ArbeidsaktivitetType,
-    ArbeiderIPeriodenSvar,
     Arbeidsgiver,
     ArbeidstakerApiData,
     ArbeidstidApiData,
+    ArbeidstidArbeidsaktivitetMap,
     ArbeidstidEndring,
     ArbeidstidEndringMap,
     ArbeidstidPeriodeApiDataMap,
@@ -25,6 +25,7 @@ import {
     TimerEllerProsent,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
+
 import { getArbeidsukerIArbeidsaktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';

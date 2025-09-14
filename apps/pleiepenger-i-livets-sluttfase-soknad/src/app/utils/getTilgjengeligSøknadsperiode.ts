@@ -1,5 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { appEnv } from './appEnv';
 
 export const getTilgjengeligSøknadsperiode = (): DateRange => {

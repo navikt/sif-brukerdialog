@@ -1,6 +1,7 @@
 import { Textarea } from '@navikt/ds-react';
 import { ChangeEvent, ReactNode, useCallback, useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
+
 import { replaceInvisibleCharsWithSpace } from '../fp/utils';
 // import { replaceInvisibleCharsWithSpace } from '@navikt/fp-utils';
 import { getError, getValidationRules, ValidationReturnType } from './formUtils';

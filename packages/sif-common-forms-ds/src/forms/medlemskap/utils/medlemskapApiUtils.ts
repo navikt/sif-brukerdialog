@@ -1,6 +1,7 @@
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { BostedUtland } from '@navikt/sif-common-forms-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { BostedUtlandApiData, MedlemskapApiData } from '../types';
 import { MedlemskapSøknadsdata } from '../types/MedlemskapSøknadsdata';
 

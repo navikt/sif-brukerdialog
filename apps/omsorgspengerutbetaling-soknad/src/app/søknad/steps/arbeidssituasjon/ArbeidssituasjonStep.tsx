@@ -8,21 +8,22 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 import { FormLayout } from '@navikt/sif-common-ui';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    getArbeidssituasjonStepInitialValues,
     getFrilanserSnSituasjon,
     validateArbeidssituasjonTidsrom,
 } from './arbeidssituasjonStepUtils';

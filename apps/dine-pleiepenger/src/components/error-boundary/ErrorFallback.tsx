@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
 import { GuidePanel } from '@navikt/ds-react';
+import { ReactElement } from 'react';
 
 const ErrorFallback = (): ReactElement => {
     return (

@@ -1,5 +1,6 @@
-import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
+
 import { fosterbarnMessages_nb } from './nb';
 import { forsterbarnMessages_nn } from './nn';
 

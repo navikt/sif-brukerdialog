@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
-import { utfyllingUtils } from '../utils/utfyllingUtils';
 import { DokumentType } from '../../src/app/types/DokumentType';
 import { YtelseKey } from '../../src/app/types/Ytelser';
+import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.describe('Start og innsending av ettersending - Pleiepenger sykt barn', () => {
     test.beforeEach(async ({ page }) => {

@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 

@@ -8,6 +8,7 @@ import {
     Søknadsdata,
     ValgteEndringer,
 } from '@types';
+
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 
 interface UkjentArbeidsforholdMetadata {

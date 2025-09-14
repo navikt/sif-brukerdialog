@@ -1,13 +1,13 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { Søker } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+
 import { AppText } from '../../../i18n';
 
 interface Props {
     søker: Søker;
 }
-const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
+const OmSøkerOppsummering = ({ søker }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

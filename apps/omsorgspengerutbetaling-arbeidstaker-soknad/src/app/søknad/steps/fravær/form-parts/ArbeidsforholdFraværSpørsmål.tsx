@@ -10,7 +10,9 @@ import {
 import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
 import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';
 import {
@@ -19,7 +21,6 @@ import {
     getFraværPerioderValidator,
 } from '../../../../utils/validations';
 import { FraværStepFormFields, FraværStepFormValues } from '../FraværStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, FraværStepFormValues, ValidationError>();
 
@@ -42,7 +43,7 @@ interface Props {
     årstall?: number;
 }
 
-const ArbeidsforholdFraværSpørsmål: React.FC<Props> = ({
+const ArbeidsforholdFraværSpørsmål = ({
     fravær,
     arbeidsgiverNavn,
     parentFieldName,

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     YtelseRegisterInntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
+import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;

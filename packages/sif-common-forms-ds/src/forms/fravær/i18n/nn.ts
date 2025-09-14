@@ -1,4 +1,4 @@
-import { FraværMessageKeys } from '.';
+import { FraværMessageKeys } from './';
 
 export const fraværMessages_nn: Record<FraværMessageKeys, string> = {
     '@forms.fravær.form.validation.dateOutsideRange': 'Fyrste gyldige dato er {fom}, og siste gyldige dato er {tom}',
