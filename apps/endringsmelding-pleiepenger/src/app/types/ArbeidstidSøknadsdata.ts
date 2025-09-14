@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { ArbeidstidEndringMap } from './ArbeidstidEndring';
 

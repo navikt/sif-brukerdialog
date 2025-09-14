@@ -1,5 +1,4 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     getIntlFormErrorHandler,
@@ -34,6 +33,8 @@ import {
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
 import { FormikProps } from 'formik';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
 import { useVirksomhetIntl } from './i18n';
 import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';

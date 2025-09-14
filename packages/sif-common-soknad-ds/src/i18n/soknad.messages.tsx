@@ -1,5 +1,6 @@
-import { FormattedMessage, IntlShape } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, IntlShape } from 'react-intl';
+
 import { soknadMessages_nb } from './nb';
 import { soknadMessages_nn } from './nn';
 

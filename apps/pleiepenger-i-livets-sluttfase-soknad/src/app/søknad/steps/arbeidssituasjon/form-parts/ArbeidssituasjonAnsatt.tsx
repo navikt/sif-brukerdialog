@@ -3,6 +3,7 @@ import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@na
 import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';

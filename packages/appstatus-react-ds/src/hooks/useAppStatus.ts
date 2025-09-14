@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { ApplicationInheritTeamStatus, ApplicationStatus, SanityConfig, SanityError, Status } from '../types';
 import { SanityStatusMessage } from '../types/sanityObjects';
 import { sanityConfigIsValid } from '../utils';

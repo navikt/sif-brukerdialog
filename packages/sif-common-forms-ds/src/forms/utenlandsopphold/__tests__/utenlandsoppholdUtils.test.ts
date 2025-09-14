@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdUtvidet, UtenlandsoppholdÅrsak } from '../types';
+
+import { Utenlandsopphold, UtenlandsoppholdÅrsak, UtenlandsoppholdFormValues, UtenlandsoppholdUtvidet } from '../types';
 import { mapFormValuesToUtenlandsopphold } from '../utenlandsoppholdUtils';
 
 const landkoder = {

@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -13,6 +12,8 @@ import {
     ValidateDateRangeError,
     ValidateRequiredFieldError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';

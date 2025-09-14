@@ -6,6 +6,7 @@ import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-form
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';

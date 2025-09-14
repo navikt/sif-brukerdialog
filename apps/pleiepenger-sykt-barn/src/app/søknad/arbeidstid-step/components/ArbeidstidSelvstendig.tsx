@@ -1,6 +1,7 @@
-import { Heading } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { Heading } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';

@@ -1,5 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+
 import SoknadHeader from '../../components/soknad-header/SoknadHeader';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 

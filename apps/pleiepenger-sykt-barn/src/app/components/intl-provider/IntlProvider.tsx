@@ -1,6 +1,7 @@
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
-import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+
 import { applicationIntlMessages } from '../../i18n';
 
 export interface IntlProviderProps {

@@ -1,6 +1,7 @@
 import { Box } from '@navikt/ds-react';
-import { ReactElement } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { ReactElement } from 'react';
+
 import SoknadErrorMessages from '../../components/soknad-error-messages/SoknadErrorMessages';
 import SoknadHeader from '../../components/soknad-header/SoknadHeader';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';

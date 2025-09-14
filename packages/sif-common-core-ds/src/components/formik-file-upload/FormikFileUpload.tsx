@@ -1,5 +1,4 @@
 import { Box, FileUpload, Heading, VStack } from '@navikt/ds-react';
-import { useCallback, useContext } from 'react';
 import {
     getErrorPropForFormikInput,
     TypedFormikFormContext,
@@ -7,6 +6,8 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
+import { useCallback, useContext } from 'react';
+
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
 import { getTotalSizeOfVedlegg } from '../../utils/vedleggUtils';

@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 import * as stepValidations from '../../validation/stepValidations';

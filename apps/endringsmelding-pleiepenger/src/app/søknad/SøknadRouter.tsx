@@ -1,5 +1,4 @@
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { fetchSøkerId } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -10,6 +9,8 @@ import {
 } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { appSentryLogger } from '@utils';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
@@ -19,8 +20,8 @@ import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { StepId } from './config/StepId';
 import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
+import { StepId } from './config/StepId';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';

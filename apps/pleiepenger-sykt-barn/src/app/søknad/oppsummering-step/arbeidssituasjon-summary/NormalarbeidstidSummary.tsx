@@ -1,4 +1,5 @@
 import { ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { NormalarbeidstidApiData } from '../../../types/søknad-api-data/SøknadApiData';
 

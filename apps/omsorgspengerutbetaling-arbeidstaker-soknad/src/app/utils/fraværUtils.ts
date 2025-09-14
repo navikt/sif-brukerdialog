@@ -3,6 +3,7 @@ import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/form
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import MinMax from 'dayjs/plugin/minMax';
+
 import { FraværMap } from '../types/FraværTypes';
 import { FraværSøknadsdataMap } from '../types/søknadsdata/FraværSøknadsdata';
 

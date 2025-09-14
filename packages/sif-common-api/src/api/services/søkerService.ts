@@ -1,4 +1,5 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+
 import { k9BrukerdialogApiClient } from '../apiClient';
 import { søkerResponseSchema } from '../schemas/søkerSchema';
 import { Søker } from '../types';

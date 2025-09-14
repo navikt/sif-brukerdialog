@@ -1,6 +1,7 @@
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
+
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';

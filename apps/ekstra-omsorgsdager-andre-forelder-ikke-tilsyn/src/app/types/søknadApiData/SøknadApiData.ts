@@ -1,5 +1,6 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { ISODate } from '@navikt/sif-common-utils';
+
 import { AnnenForeldrenSituasjon } from '../AnnenForeldrenSituasjon';
 
 export interface AnnenForelderApiData {

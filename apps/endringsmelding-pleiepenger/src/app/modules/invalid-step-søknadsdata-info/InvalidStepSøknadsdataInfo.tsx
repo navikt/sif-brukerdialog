@@ -1,5 +1,6 @@
 import { useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+
 import { useAppIntl } from '../../i18n';
 import { StepId } from '../../søknad/config/StepId';
 import InvalidStepMessage from './InvalidStepMessage';

@@ -6,11 +6,11 @@ import { FraværSøknadsdata } from './FraværSøknadsdata';
 import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 
+export * from './ArbeidSøknadsdata';
 export * from './DineBarnSøknadsdata';
+export * from './FraværFraSøknadsdata';
 export * from './FraværSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
-export * from './ArbeidSøknadsdata';
-export * from './FraværFraSøknadsdata';
 export * from './MedlemskapSøknadsdata';
 
 export interface Søknadsdata {

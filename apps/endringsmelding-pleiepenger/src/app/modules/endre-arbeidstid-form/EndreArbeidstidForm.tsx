@@ -1,5 +1,7 @@
-import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
+import './endreArbeidstidForm.scss';
+
 import { useSøknadContext } from '@hooks';
+import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     getIntlFormErrorHandler,
@@ -20,12 +22,12 @@ import {
     getFeriedagerIUkeTekst,
 } from '@utils';
 import dayjs from 'dayjs';
+
 import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-import './endreArbeidstidForm.scss';
 
 type EndreArbeidstidData = {
     perioder: DateRange[];

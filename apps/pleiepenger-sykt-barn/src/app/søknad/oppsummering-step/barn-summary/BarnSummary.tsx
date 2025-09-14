@@ -7,9 +7,10 @@ import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+
 import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 

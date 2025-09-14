@@ -1,13 +1,14 @@
-import { Heading } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { Heading } from '@navikt/ds-react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
+
 import { persist } from '../../api/api';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
-import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../../types/StepID';
 
 interface Props {
     fødselsattester: Vedlegg[];

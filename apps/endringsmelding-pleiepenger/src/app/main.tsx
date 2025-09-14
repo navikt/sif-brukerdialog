@@ -1,7 +1,8 @@
-import { createRoot } from 'react-dom/client';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import MockDate from 'mockdate';
+import { createRoot } from 'react-dom/client';
+
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 

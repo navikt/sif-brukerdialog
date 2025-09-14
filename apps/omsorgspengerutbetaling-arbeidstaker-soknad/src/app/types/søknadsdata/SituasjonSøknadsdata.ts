@@ -1,6 +1,7 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
+
+import { ÅrsakNyoppstartet, Utbetalingsårsak } from '../ArbeidsforholdTypes';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 
 interface FraværUtenLønn {

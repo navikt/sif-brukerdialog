@@ -8,6 +8,7 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
+
 import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';

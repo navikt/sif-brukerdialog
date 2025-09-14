@@ -1,5 +1,6 @@
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
+
 import { Enkeltdato, EnkeltdatoFormValues } from './types';
 
 const isValidEnkeltdato = (enkeltdato: Partial<Enkeltdato>): enkeltdato is Enkeltdato => {

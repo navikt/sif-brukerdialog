@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -9,6 +8,8 @@ import {
     ValidateFødselsnummerError,
     ValidateStringError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './i18n';
 import { Fosterbarn, isFosterbarn } from './types';
 

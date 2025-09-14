@@ -1,12 +1,14 @@
-import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
+import './arbeidsaktivitetBlockHeader.scss';
+
 import { Office1 } from '@navikt/ds-icons';
+import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
-import './arbeidsaktivitetBlockHeader.scss';
 
 interface Props {
     navn: string;

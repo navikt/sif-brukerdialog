@@ -3,13 +3,14 @@ import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+
 import { persist } from '../../api/api';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {

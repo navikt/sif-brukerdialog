@@ -1,4 +1,5 @@
 import { FileUpload, VStack } from '@navikt/ds-react';
+
 import { Vedlegg } from '../../types/Vedlegg';
 
 interface Props {

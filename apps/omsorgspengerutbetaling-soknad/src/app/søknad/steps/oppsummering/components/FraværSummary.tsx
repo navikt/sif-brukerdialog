@@ -1,5 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import UtbetalingsperioderOppsummering from './UtbetalingsperioderOppsummering';

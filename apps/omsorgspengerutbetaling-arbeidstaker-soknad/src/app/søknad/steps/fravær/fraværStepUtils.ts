@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+
 import { Fravær } from '../../../types/FraværTypes';
 import { FraværSøknadsdata, FraværSøknadsdataMap, FraværTypes } from '../../../types/søknadsdata/FraværSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

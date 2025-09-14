@@ -3,6 +3,7 @@ import { dateErHelg } from '@navikt/sif-common-forms-ds/src/forms/fravær/fravæ
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import dayjs from 'dayjs';
 import { flatten, uniqBy } from 'lodash';
+
 import { FraværFraSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { FraværFraFormValues } from './FraværFraStep';
 

@@ -1,6 +1,7 @@
-import { BodyLong } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '@i18n/index';
+import { BodyLong } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';

@@ -1,5 +1,6 @@
 import { InformationColored } from '@navikt/ds-icons';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 
 interface Props {

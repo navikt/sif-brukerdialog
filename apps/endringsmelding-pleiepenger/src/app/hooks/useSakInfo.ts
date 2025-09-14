@@ -1,7 +1,7 @@
-import { useIntl } from 'react-intl';
 import { useSøknadContext } from '@hooks';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { useIntl } from 'react-intl';
 
 export const useSakUtledet = () => {
     const { locale } = useIntl();

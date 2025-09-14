@@ -1,9 +1,10 @@
-import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';

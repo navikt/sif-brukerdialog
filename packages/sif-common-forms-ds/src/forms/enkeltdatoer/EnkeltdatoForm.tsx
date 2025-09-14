@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -7,6 +6,8 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import enkeltdatoUtils from './enkeltdatoUtils';
 import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './i18n';

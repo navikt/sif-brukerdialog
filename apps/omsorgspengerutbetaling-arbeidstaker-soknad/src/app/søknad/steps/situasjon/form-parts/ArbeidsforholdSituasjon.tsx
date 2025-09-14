@@ -2,6 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold } from '../../../../types/ArbeidsforholdTypes';
 import { AppFieldValidationErrors } from '../../../../utils/validations';

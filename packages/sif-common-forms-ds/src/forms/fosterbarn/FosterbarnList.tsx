@@ -1,9 +1,11 @@
-import React from 'react';
+import './fosterbarnList.scss';
+
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { ActionLink } from '@navikt/sif-common-ui';
+import React from 'react';
+
 import { Fosterbarn } from './types';
-import './fosterbarnList.scss';
 
 interface Props {
     fosterbarn: Fosterbarn[];

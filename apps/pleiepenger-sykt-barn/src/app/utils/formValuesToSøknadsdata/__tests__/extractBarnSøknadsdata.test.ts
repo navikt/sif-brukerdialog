@@ -1,6 +1,7 @@
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { vi } from 'vitest';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../../../types';
 import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
 

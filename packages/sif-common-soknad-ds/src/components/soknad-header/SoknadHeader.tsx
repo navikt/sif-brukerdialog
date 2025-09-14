@@ -1,5 +1,6 @@
 import { Bleed, Box, Heading, HStack, Show, VStack } from '@navikt/ds-react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
+
 import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 
 interface Props {

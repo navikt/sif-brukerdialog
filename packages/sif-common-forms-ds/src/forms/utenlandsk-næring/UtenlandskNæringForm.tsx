@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -16,6 +15,8 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
 import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './i18n';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';

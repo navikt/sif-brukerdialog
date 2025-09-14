@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
 import { Næringstype, Virksomhet, VirksomhetApiData } from '../types';
 import { erVirksomhetRegnetSomNyoppstartet } from '../virksomhetUtils';

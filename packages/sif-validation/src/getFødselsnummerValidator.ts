@@ -1,4 +1,5 @@
 import { fnr } from '@navikt/fnrvalidator';
+
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
 

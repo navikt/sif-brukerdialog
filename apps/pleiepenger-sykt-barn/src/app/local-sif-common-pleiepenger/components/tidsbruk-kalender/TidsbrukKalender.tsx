@@ -1,8 +1,9 @@
-import React from 'react';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import { DateRange, InputTime } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate, Duration, ensureDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import React from 'react';
+
 import CalendarGrid from '../calendar-grid/CalendarGrid';
 import TidsbrukKalenderDag, { TidsbrukKalenderDagFooterRenderer } from './TidsbrukKalenderDag';
 

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { hentSøker } from '../api/søkerApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Søker } from '../types/Søker';

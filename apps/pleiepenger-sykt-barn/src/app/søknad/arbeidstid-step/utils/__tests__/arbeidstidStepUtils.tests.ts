@@ -1,5 +1,6 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,

@@ -22,8 +22,8 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
-        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:eslint": "eslint './src/*/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
         "codegen": "yarn openapi-ts"

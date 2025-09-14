@@ -1,11 +1,13 @@
-import { Box, Button } from '@navikt/ds-react';
-import React from 'react';
+import './stepFooter.scss';
+
 import { FloppydiskIcon, TrashIcon } from '@navikt/aksel-icons';
+import { Box, Button } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import React from 'react';
+
 import AvbrytSoknadDialog from '../../../components/avbrytSøknadDialog/AvbrytSøknadDialog';
 import FortsettSøknadSenereDialog from '../../../components/fortsettSøknadSenereDialog/FortsettSøknadSenereDialog';
 import { useSoknadIntl } from '../../../hooks/useSoknadIntl';
-import './stepFooter.scss';
 
 interface Props {
     onAvbrytOgFortsettSenere?: () => void;

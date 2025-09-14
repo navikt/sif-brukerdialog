@@ -2,6 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';

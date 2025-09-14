@@ -1,6 +1,7 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
+
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import { AppText } from '../../../../i18n';
 import {

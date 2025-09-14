@@ -1,5 +1,6 @@
-import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
+
 import { opptjeningUtlandMessages_nb } from './nb';
 import { opptjeningUtlandMessages_nn } from './nn';
 

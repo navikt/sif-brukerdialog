@@ -1,9 +1,11 @@
+import './progressStepper.css';
+
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, FormProgress, Heading, Link, VStack } from '@navikt/ds-react';
 import { StepperStepProps } from '@navikt/ds-react/Stepper';
 import React, { useEffect, useRef } from 'react';
-import { ArrowLeftIcon } from '@navikt/aksel-icons';
+
 import { useUiIntl } from '../../i18n/ui.messages';
-import './progressStepper.css';
 
 export interface ProgressStep extends Pick<StepperStepProps, 'completed'> {
     id: string;

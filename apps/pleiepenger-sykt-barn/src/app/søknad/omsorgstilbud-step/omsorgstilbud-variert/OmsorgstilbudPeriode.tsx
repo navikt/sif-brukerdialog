@@ -1,5 +1,4 @@
 import { Button } from '@navikt/ds-react';
-import { useState } from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
@@ -9,6 +8,8 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { useState } from 'react';
+
 import { AppText } from '../../../i18n';
 import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
 import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';

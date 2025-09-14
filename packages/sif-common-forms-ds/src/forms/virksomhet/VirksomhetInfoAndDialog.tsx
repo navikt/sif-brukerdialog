@@ -1,10 +1,11 @@
-import { useIntl } from 'react-intl';
 import {
     FormikModalFormAndInfo,
     ModalFormAndInfoLabels,
     TypedFormInputValidationProps,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { useIntl } from 'react-intl';
+
 import { mapVirksomhetToVirksomhetApiData } from './mapVirksomhetToApiData';
 import { Virksomhet } from './types';
 import VirksomhetForm from './VirksomhetForm';

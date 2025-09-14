@@ -1,6 +1,6 @@
 import { StepId } from '../../app/søknad/config/StepId';
-import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
+import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { TimerEllerProsent } from '../../app/types/TimerEllerProsent';
 import { arbeidsgivereMock } from '../data/arbeidsgivereMock';

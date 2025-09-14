@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
-import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
+
 import FormikCheckbox, { FormikCheckboxProps } from './formik-checkbox/FormikCheckbox';
+import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
 import FormikCombobox, { FormikComboboxProps } from './formik-combobox/FormikCombobox';
 import FormikConfirmationCheckbox, {
     FormikConfirmationCheckboxProps,

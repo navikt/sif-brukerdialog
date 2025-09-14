@@ -20,9 +20,10 @@ import {
     getStringValidator,
 } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { AppText, useAppIntl } from '../../../i18n';
-import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
+import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import IdPart from './form-parts/IdPart';
 import { opplysningerOmPleietrengendeDefaultValues } from './opplysningerOmPleietrengendeStepUtils';
 

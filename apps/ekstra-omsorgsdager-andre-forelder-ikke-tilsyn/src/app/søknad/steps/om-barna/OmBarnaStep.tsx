@@ -1,21 +1,22 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
-import { AndreBarn } from '../../../pre-common/forms/barn';
-import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
+import { AndreBarn } from '../../../pre-common/forms/barn';
+import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';
+import { getOmBarnaSøknadsdataFromFormValues, getOmBarnaStepInitialValues } from './OmBarnaStepUtils';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',

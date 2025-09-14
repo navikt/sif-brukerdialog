@@ -1,5 +1,6 @@
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 
 export const appArbeidsgivereService = {

@@ -1,4 +1,5 @@
 import { FormikProps } from 'formik';
+
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';

@@ -1,11 +1,13 @@
+import './timeInput.scss';
+
 import { TextField } from '@navikt/ds-react';
-import React, { RefObject, useState } from 'react';
 import { hasValue } from '@navikt/sif-validation';
 import classNames from 'classnames';
+import React, { RefObject, useState } from 'react';
+
 import { InputTime, TestProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
 import { getNumberFromNumberInputValue } from '../../utils/numberInputUtils';
-import './timeInput.scss';
 
 const MAX_HOURS = 23;
 const MAX_MINUTES = 59;

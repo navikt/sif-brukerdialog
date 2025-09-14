@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DatoSvar, JaNeiSvar } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import { FrilansApiData } from '../../../../types/søknadApiData/FrilansApiData';
 

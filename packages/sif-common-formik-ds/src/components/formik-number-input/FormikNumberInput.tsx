@@ -1,7 +1,8 @@
 import { TextFieldProps } from '@navikt/ds-react';
+import { Field, FieldProps } from 'formik';
 import { useContext } from 'react';
 import { useIntl } from 'react-intl';
-import { Field, FieldProps } from 'formik';
+
 import { TestProps, TypedFormInputValidationProps } from '../../types';
 import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getNumberInputFormatter } from '../../utils/numberInputUtils';

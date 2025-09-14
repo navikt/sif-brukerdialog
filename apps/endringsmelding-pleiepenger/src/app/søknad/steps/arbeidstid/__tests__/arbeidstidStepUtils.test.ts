@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+
 import { ArbeiderIPeriodenSvar, TimerEllerProsent } from '../../../../types';
 import { getArbeidstidSøknadsdataFromFormValues } from '../arbeidstidStepUtils';
 

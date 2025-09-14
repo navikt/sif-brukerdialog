@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { getScenarioMockData } from '../../../../mock/data/scenario';
 import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';

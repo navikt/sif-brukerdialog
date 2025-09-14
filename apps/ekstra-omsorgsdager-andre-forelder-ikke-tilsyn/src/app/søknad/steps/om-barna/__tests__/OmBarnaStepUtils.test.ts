@@ -1,5 +1,5 @@
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
-import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from '../OmBarnaStepUtils';
+import { getOmBarnaSøknadsdataFromFormValues, getOmBarnaStepInitialValues } from '../OmBarnaStepUtils';
 
 describe('getOmBarnaStepInitialValues function', () => {
     it('should return default values from  søknadsdata if no formValues are provided', () => {

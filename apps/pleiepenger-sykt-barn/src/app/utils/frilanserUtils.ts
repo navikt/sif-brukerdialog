@@ -3,6 +3,7 @@ import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { DateRange, isISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
+
 import { Arbeidsgiver } from '../types';
 import { FrilansFormValues, Frilanstype } from '../types/søknad-form-values/FrilansFormValues';
 

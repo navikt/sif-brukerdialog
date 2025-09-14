@@ -2,6 +2,7 @@ import { getNumberFromNumberInputValue, IntlErrorObject, YesOrNo } from '@navikt
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '@types';
+
 import {
     UkjentArbeidsforholdArbeidsgiverFormValues,
     UkjentArbeidsforholdArbeidsgiverMap,

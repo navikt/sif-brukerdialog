@@ -1,5 +1,6 @@
 import { LovbestemtFerieSøknadsdata, Søknadsdata } from '@types';
 import { getFeriedagerMeta, sortFeriedagerMap as sortFeriedagMap } from '@utils';
+
 import { LovbestemtFerieFormValues } from './LovbestemtFerieStep';
 
 export const getLovbestemtFerieStepInitialValues = (

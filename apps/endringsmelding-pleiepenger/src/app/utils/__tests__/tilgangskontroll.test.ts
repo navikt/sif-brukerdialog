@@ -1,6 +1,7 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { vi } from 'vitest';
+
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
 vi.mock('@navikt/sif-common-env', () => ({

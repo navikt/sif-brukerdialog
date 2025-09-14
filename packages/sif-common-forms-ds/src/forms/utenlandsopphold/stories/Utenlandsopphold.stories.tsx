@@ -1,7 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { userEvent, within } from '@storybook/testing-library';
 import dayjs from 'dayjs';
+
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import UtenlandsoppholdExample from './UtenlandsoppholdExample';
 

@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import isEqual from 'react-fast-compare';
 import { getMedlemskapSøknadsdataFromFormValues, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useState } from 'react';
+import isEqual from 'react-fast-compare';
+
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
@@ -15,10 +16,10 @@ import { OpplysningerOmPleietrengendeFormValues } from '../søknad/steps/opplysn
 import { getOpplysningerOmPleietrengendeSøknadsdataFromFormValues } from '../søknad/steps/opplysninger-om-pleietrengende/opplysningerOmPleietrengendeStepUtils';
 import { TidsromFormValues } from '../søknad/steps/tidsrom/TidsromStep';
 import { getTidsromSøknadsdataFromFormValues } from '../søknad/steps/tidsrom/tidsromStepUtils';
-import { StepFormValues } from '../types/StepFormValues';
-import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { StepFormValues } from '../types/StepFormValues';
+import { StepId } from '../types/StepId';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];

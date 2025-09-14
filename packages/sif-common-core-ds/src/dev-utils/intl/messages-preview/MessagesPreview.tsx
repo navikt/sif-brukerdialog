@@ -1,9 +1,11 @@
+import './messagesPreview.scss';
+
 import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+
 import bemUtils from '../../../utils/bemUtils';
 import { createMultiLocaleObject, getMissingMessageKeys, MessageFileFormat } from '../devIntlUtils';
 import MessagesPreviewExplanation from './MessagePreviewExplanation';
 import MessagesList from './MessagesList';
-import './messagesPreview.scss';
 
 export interface MessagesPreviewProps {
     title?: string;

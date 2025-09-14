@@ -1,6 +1,7 @@
-import { Alert, FormSummary, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import './oppsummeringStep.css';
+
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
+import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
@@ -9,6 +10,8 @@ import { FormLayout, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
@@ -17,7 +20,6 @@ import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { inkluderDokumentTypeSteg, StepID } from '../soknadStepsConfig';
-import './oppsummeringStep.css';
 
 interface Props {
     soknadId: string;

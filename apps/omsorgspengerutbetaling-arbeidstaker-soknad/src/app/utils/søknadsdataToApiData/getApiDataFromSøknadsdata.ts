@@ -1,5 +1,6 @@
 import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';

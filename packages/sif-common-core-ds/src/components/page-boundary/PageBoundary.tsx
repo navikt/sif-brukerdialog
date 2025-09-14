@@ -1,5 +1,6 @@
-import React from 'react';
 import './pageBoundary.scss';
+
+import React from 'react';
 
 interface Props {
     children: React.ReactNode;

@@ -1,5 +1,4 @@
 import { Button, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import FerieuttakForm from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -10,6 +9,8 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import { getFeriedagerIPeriode, getFeriedagerMeta } from '@utils';
+import { useState } from 'react';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import LovbestemtFerieListe from '../../../modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import LovbestemtFerieModal from '../../../modules/lovbestemt-ferie-modal/LovbestemtFerieModal';

@@ -1,15 +1,16 @@
-import { useContext, useState } from 'react';
 import { useAppIntl } from '@i18n/index';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import { useContext, useState } from 'react';
+
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 
 export const arbeidsgiverOrganisasjonSchema = z.object({

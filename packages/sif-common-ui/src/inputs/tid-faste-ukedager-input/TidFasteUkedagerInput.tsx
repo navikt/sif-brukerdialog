@@ -1,12 +1,14 @@
+import './tidFasteUkedagerInput.css';
+
 import { Box } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
+
 import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
-import './tidFasteUkedagerInput.css';
 
 interface OwnProps {
     name: string;

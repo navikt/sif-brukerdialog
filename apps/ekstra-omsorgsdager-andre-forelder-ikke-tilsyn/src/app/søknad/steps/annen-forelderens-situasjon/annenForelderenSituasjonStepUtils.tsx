@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
+
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

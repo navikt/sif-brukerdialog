@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
+
 import StoryWrapper from '../../../../storybook/decorators/StoryWrapper';
 import PictureScanningGuide from '../PictureScanningGuide';
 

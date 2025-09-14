@@ -1,5 +1,6 @@
 import { BoxNew, ExpansionCard, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
 interface Props {

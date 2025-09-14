@@ -1,5 +1,6 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';

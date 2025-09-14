@@ -1,6 +1,7 @@
+import '@navikt/ds-css';
+
 import { Panel } from '@navikt/ds-react';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import '@navikt/ds-css';
 
 interface Props {
     parameters?: {

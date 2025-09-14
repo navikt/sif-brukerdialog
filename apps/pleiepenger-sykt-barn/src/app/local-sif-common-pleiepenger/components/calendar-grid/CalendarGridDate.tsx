@@ -1,7 +1,7 @@
-import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import React from 'react';
 
 interface Props {
     date: Date;

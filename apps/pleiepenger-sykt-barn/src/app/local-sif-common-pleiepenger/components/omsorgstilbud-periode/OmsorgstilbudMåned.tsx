@@ -1,11 +1,12 @@
+import { useAppIntl } from '@i18n/index';
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import { ExpansionCardContent, ExpansionCardHeader } from '@navikt/ds-react/ExpansionCard';
-import { useState } from 'react';
-import { useAppIntl } from '@i18n/index';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds';
 import { DurationText } from '@navikt/sif-common-ui';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { useState } from 'react';
+
 import { AppText } from '../../../i18n';
 import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';

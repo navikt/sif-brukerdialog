@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { vi } from 'vitest';
+
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { visVernepliktSpørsmål } from '../visVernepliktSpørsmål';

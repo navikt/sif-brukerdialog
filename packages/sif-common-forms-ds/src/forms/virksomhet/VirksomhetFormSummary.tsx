@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
+
 import { useVirksomhetIntl, VirksomhetIntlShape } from './i18n';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';

@@ -4,6 +4,7 @@ import { BarnType } from '@navikt/sif-common-forms-ds';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { ApiBarn } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';

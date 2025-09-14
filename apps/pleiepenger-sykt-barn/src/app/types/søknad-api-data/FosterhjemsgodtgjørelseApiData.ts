@@ -1,4 +1,5 @@
 import { ISODate } from '@navikt/sif-common-utils';
+
 import { FosterhjemsgodtgjørelseType } from '../søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';
 
 type FosterhjemsgodtgjørelseMottarIkke = {

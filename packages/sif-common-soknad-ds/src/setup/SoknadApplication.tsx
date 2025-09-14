@@ -1,10 +1,10 @@
-import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
-import React from 'react';
-import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
+import 'dayjs/locale/nb';
+import 'dayjs/locale/nn';
+
+import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
@@ -18,8 +18,10 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
-import 'dayjs/locale/nb';
-import 'dayjs/locale/nn';
+import React from 'react';
+import { IntlProvider } from 'react-intl';
+import { BrowserRouter } from 'react-router-dom';
+
 import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 import ErrorBoundary from '../components/errorBoundary/ErrorBoundary';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';

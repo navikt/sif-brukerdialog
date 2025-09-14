@@ -1,6 +1,7 @@
+import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
+
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { useAppIntl } from '../i18n';

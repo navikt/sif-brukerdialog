@@ -1,4 +1,5 @@
 import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+
 import { OmOmsorgenForBarnFormValues } from '../søknad/steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 import { TidspunktForAleneomsorgFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';

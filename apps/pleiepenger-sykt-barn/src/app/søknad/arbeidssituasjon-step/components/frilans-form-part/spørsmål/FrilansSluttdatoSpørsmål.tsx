@@ -2,6 +2,7 @@ import { useAppIntl } from '@i18n/index';
 import { datepickerUtils } from '@navikt/sif-common-formik-ds';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
 import { ArbFriFormComponents } from '../FrilanserFormPart';

@@ -1,7 +1,9 @@
-import React, { HTMLAttributes } from 'react';
-import classNames from 'classnames';
-import bemUtils from '../../utils/bemUtils';
 import './block.scss';
+
+import classNames from 'classnames';
+import React, { HTMLAttributes } from 'react';
+
+import bemUtils from '../../utils/bemUtils';
 
 export type BlockMargin = 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'none';
 

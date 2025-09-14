@@ -3,6 +3,7 @@ import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { ÅrsakManglerIdentitetsnummer } from '../../types';
 import {
     DataBruktTilUtledningAnnetData,

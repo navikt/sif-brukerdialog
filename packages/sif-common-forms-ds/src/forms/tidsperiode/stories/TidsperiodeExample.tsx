@@ -1,6 +1,4 @@
 import { Tabs, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import {
     getIntlFormErrorHandler,
@@ -11,6 +9,9 @@ import {
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';

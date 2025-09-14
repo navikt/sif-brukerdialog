@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withAmplitudeProvider, withIntl, withRouterProvider } from '../../../storybook/decorators';
 import InvalidStepPage from './InvalidStepPage';
 

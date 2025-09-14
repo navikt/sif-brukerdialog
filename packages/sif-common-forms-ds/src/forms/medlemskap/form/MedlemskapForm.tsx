@@ -11,6 +11,7 @@ import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bos
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
+
 import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n';
 import { getMedlemskapDateRanges } from '../utils';
 import {

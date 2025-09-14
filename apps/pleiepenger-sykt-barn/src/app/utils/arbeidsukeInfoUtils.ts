@@ -1,6 +1,7 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateRangeUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { ArbeidsukeInfo } from '../types/ArbeidsukeInfo';
 import { getArbeidsdagerPeriode } from './arbeidUtils';
 

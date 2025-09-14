@@ -1,8 +1,9 @@
-import { BodyLong, ErrorSummary } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
+import { BodyLong, ErrorSummary } from '@navikt/ds-react';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { ActionLink } from '@navikt/sif-common-ui';
+import { useNavigate } from 'react-router-dom';
+
 import { AppText } from '../../../i18n';
 import { StepID } from '../../../types/StepID';
 import { ApiValidationError } from '../../../validation/apiValuesValidation';

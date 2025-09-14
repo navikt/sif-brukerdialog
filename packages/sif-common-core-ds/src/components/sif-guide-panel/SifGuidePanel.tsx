@@ -1,10 +1,12 @@
+import './sifGuidePanel.scss';
+
 import { BodyLong, GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
-import { useMediaQuery } from 'react-responsive';
 import classNames from 'classnames';
+import { useMediaQuery } from 'react-responsive';
+
 import bemUtils from '../../utils/bemUtils';
 import { GuideMood } from './SifGuide';
 import VeilederSVG from './VeilederSVG';
-import './sifGuidePanel.scss';
 
 export interface SifGuidePanelProps extends GuidePanelProps {
     mood?: GuideMood;

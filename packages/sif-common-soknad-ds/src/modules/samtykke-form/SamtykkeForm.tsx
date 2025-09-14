@@ -1,7 +1,8 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 const RettOgPliktURL = 'https://www.nav.no/endringer#du-har-plikt-til-a-gi-nav-riktige-opplysninger';

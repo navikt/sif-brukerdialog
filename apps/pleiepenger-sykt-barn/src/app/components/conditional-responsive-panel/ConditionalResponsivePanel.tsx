@@ -1,5 +1,6 @@
 import { PanelProps } from '@navikt/ds-react';
 import React from 'react';
+
 import ResponsivePanel from '../responsive-panel/ResponsivePanel';
 
 interface Props extends PanelProps {

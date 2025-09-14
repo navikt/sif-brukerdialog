@@ -1,5 +1,6 @@
-import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
 import './confirmationDialog.scss';
+
+import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
     title: string;

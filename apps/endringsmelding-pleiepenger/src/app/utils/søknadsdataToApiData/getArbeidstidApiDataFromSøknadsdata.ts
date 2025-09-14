@@ -25,6 +25,7 @@ import {
     TimerEllerProsent,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
+
 import { getArbeidsukerIArbeidsaktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';

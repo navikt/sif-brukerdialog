@@ -1,7 +1,8 @@
-import { ReactElement } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
+import { ReactElement } from 'react';
+import { IntlShape, useIntl } from 'react-intl';
+
 import { durationTextMessages_nb } from './i18n/nb';
 
 interface DurationTextProps {

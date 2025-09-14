@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
 import {

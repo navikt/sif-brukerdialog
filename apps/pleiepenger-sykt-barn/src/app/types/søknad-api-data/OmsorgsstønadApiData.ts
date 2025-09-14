@@ -1,4 +1,5 @@
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
+
 import { OmsorgsstønadType } from '../søknadsdata/OmsorgsstønadSøknadsdata';
 
 type OmsorgsstønadMottarIkkeApiData = {

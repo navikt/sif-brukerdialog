@@ -1,2 +1,2 @@
-export * from './useVedleggHelper';
 export * from './useUxSignals';
+export * from './useVedleggHelper';

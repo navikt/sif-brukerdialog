@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
+
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../../types';
 import {

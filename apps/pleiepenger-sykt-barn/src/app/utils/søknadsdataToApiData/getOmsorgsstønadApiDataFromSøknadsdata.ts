@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 

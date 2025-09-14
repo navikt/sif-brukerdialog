@@ -1,8 +1,10 @@
-import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
-import React from 'react';
-import ButtonRow from '../../../atoms/button-row/ButtonRow';
 import '../dialogs.scss';
 import './infoDialog.scss';
+
+import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
+import React from 'react';
+
+import ButtonRow from '../../../atoms/button-row/ButtonRow';
 
 interface OwnProps {
     children: React.ReactNode;

@@ -1,5 +1,6 @@
+import './daySelector.css';
+
 import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
-import { useMemo, useState } from 'react';
 import {
     DateRange,
     dateRangesCollide,
@@ -15,8 +16,9 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
+import { useMemo, useState } from 'react';
+
 import { useUiIntl } from '../../i18n/ui.messages';
-import './daySelector.css';
 
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(isoWeek);

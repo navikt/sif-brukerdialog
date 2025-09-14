@@ -1,8 +1,9 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../types/StepId';
 import { getSøknadStepRoute } from '../../utils/søknadRoutesUtils';

@@ -1,6 +1,7 @@
 import { RadioGroup } from '@navikt/ds-react';
 import React, { ReactElement, ReactNode } from 'react';
 import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
+
 import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 type Props<T extends FieldValues> = {

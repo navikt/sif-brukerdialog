@@ -1,4 +1,5 @@
 import { BarnController } from '@navikt/k9-brukerdialog-prosessering-api';
+
 import { RegistrertBarn, registrerteBarnListeSchema } from '../types/Barn';
 
 /**

@@ -1,5 +1,6 @@
 import { HStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import EndretTag from './EndretTag';
 import FerieTag from './FerieTag';

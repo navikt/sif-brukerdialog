@@ -1,11 +1,13 @@
+import './dagerMedTidListe.less';
+
 import { Heading, VStack } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
 import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
-import './dagerMedTidListe.less';
 
 interface Props {
     dagerMedTid: DagMedTid[];

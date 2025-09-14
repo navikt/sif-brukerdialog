@@ -1,6 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
 import { Søker } from '@navikt/sif-common-api';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { useFormikContext } from 'formik';
+
 import DineBarnForm, { DineBarnFormProps } from '../../../app/søknad/steps/dine-barn/DineBarnForm';
 import { DineBarnFormValues } from '../../../app/søknad/steps/dine-barn/DineBarnStep';
 import { kanFortsetteFraDineBarnStep } from '../../../app/søknad/steps/dine-barn/dineBarnStepUtils';

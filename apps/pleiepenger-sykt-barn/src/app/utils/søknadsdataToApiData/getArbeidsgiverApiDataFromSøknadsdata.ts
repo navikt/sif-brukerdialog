@@ -1,4 +1,5 @@
 import { dateToISODate, ISODate } from '@navikt/sif-common-utils';
+
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
 import {

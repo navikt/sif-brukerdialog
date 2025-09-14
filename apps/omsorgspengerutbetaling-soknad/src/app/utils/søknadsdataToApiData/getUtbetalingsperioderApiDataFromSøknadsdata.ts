@@ -4,6 +4,7 @@ import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { flatten, uniqBy } from 'lodash';
+
 import { Aktivitet, AktivitetFravær, ApiAktivitet } from '../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

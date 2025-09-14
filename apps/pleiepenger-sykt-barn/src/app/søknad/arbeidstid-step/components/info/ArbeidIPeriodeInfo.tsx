@@ -1,5 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
+
 import { AppText } from '../../../../i18n';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 import InfoOmEndring from '../InfoOmEndring';

@@ -2,6 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import { Mock, vi } from 'vitest';
+
 import { BarnRelasjon } from '../../types';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import * as fieldValidations from '../fieldValidations';

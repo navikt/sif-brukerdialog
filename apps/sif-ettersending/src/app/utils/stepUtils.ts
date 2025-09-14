@@ -1,5 +1,6 @@
-import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { IntlShape } from 'react-intl';
+
 import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';

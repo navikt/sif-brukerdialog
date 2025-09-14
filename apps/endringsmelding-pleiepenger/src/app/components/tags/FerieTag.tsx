@@ -1,5 +1,6 @@
-import { TagProps } from '@navikt/ds-react';
 import { Vacation, Warning } from '@navikt/ds-icons';
+import { TagProps } from '@navikt/ds-react';
+
 import IconTag from './icon-tag/IconTag';
 
 interface Props extends Omit<TagProps, 'variant'> {

@@ -1,4 +1,5 @@
 import { NavigateFunction } from 'react-router-dom';
+
 import { getAbsoluteUrlForRoute, getRouteConfig } from '../config/routeConfig';
 import { Søknadstype } from '../types/Søknadstype';
 import { appEnv } from './appEnv';

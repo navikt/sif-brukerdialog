@@ -1,5 +1,6 @@
+import './durationWeekdaysWeek.scss';
+
 import { Fieldset, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput } from '@navikt/sif-common-formik-ds';
@@ -12,9 +13,10 @@ import {
     getWeekDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+
 import { useUiIntl } from '../../../i18n/ui.messages';
 import { DurationWeekdaysDateValidator } from '../DurationWeekdaysInput';
-import './durationWeekdaysWeek.scss';
 
 interface Props {
     /** Week DateRange */

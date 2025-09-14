@@ -13,6 +13,7 @@ import {
     Søknadsdata,
 } from '@types';
 import { beregnEndretArbeidstidForUke } from '@utils';
+
 import { ArbeidstidFormValues } from './ArbeidstidForm';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {

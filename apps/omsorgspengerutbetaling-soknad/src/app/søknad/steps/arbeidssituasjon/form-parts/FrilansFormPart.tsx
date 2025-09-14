@@ -5,6 +5,7 @@ import { datepickerUtils, getTypedFormComponents, ValidationError } from '@navik
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';

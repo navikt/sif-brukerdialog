@@ -1,5 +1,6 @@
 import { jsonSort } from '@navikt/sif-common-utils';
 import objectHash from 'object-hash';
+
 import {
     hentYtelseMellomlagring,
     oppdaterYtelseMellomlagring,

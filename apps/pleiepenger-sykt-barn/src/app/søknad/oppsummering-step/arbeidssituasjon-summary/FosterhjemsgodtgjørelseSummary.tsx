@@ -1,6 +1,7 @@
 import { BodyShort, FormSummary, Heading, List } from '@navikt/ds-react';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { FosterhjemsgodtgjørelseApiData } from '../../../types/søknad-api-data/FosterhjemsgodtgjørelseApiData';
 import { FosterhjemsgodtgjørelseType } from '../../../types/søknadsdata/FosterhjemsgodtgjørelseSøknadsdata';

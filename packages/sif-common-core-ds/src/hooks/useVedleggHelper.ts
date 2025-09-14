@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
+
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from '../components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '../types/Vedlegg';
 

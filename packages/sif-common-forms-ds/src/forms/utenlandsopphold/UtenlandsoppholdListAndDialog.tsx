@@ -5,6 +5,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
+
 import { Utenlandsopphold, UtenlandsoppholdVariant } from './types';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';
 import UtenlandsoppholdListe from './UtenlandsoppholdList';

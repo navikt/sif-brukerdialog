@@ -1,4 +1,5 @@
 import { Heading, HeadingProps, HStack } from '@navikt/ds-react';
+
 import RegistrerteBarnKildeInfo from '../registrerte-barn-kilde/RegistrerteBarnKildeInfo';
 
 export interface RegistrerteBarnListeHeadingProps extends HeadingProps {

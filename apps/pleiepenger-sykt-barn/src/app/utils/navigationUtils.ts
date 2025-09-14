@@ -1,4 +1,5 @@
 import { NavigateFunction } from 'react-router';
+
 import RouteConfig, { getRouteUrl } from '../config/routeConfig';
 import { appEnv } from '../env/appEnv';
 

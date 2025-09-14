@@ -2,6 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 import { BarnRelasjon } from '../types';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { validateFødselsnummer, validateNavn, validateRelasjonTilBarnBeskrivelse } from './fieldValidations';

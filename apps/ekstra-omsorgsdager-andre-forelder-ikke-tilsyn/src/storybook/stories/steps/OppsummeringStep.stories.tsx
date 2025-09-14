@@ -1,11 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
+
 import Oppsummering from '../../../app/søknad/steps/oppsummering/OppsummeringStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
+import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { søknadsdataSykdom } from '../../mock-data/søknadsdata-sykdom';
 
 export default {

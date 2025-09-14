@@ -1,5 +1,6 @@
 import { AppText, useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface Props {

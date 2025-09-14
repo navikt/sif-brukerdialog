@@ -1,4 +1,5 @@
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import {

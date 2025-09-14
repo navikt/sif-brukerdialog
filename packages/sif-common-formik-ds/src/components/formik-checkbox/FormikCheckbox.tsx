@@ -1,6 +1,7 @@
 import { Checkbox, CheckboxProps } from '@navikt/ds-react';
-import React from 'react';
 import { FastField, Field, FieldProps } from 'formik';
+import React from 'react';
+
 import { FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';

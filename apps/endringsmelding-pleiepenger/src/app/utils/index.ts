@@ -1,4 +1,3 @@
-export * from './lagreSøknadState';
 export * from './apiDataUtils';
 export * from './appSentryLogger';
 export * from './arbeidsukeUtils';
@@ -9,6 +8,7 @@ export * from './ferieUtils';
 export * from './getSakFromK9Sak';
 export * from './getSakOgArbeidsgivereDebugInfo';
 export * from './k9SakUtils';
+export * from './lagreSøknadState';
 export * from './lovbestemtFerieUtils';
 export * from './maskString';
 export * from './navigationUtils';

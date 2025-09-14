@@ -1,5 +1,6 @@
 import { MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { FraværStepFormValues } from '../søknad/steps/fravær/FraværStep';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';

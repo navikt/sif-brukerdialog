@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
+
 import VelkommenPage from '../../../app/pages/velkommen/VelkommenPage';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';

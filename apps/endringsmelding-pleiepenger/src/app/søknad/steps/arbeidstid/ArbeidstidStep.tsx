@@ -1,9 +1,10 @@
 import { Alert, Heading, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../components/arbeidsaktiviteter-med-ukjent-arbeidsgiver/ArbeidsaktiviteterMedUkjentArbeidsgiver';
 import { useSøknadContext } from '../../../hooks';
-import { useStepConfig } from '../../../hooks/useStepConfig';
 import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
+import { useStepConfig } from '../../../hooks/useStepConfig';
 import { AppText } from '../../../i18n';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';

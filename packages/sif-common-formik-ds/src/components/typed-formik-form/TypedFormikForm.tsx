@@ -1,8 +1,9 @@
+import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
+import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
-import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
+
 import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldErrorHandler, FormError } from '../../types';
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';

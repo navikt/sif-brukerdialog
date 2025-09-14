@@ -1,5 +1,6 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { ArbeidsgiverAnsattApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getFeatureToggles } from '../../../utils/featureToggleUtils';

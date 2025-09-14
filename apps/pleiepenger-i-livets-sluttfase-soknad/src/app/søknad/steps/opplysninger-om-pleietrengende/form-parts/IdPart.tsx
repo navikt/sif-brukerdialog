@@ -1,5 +1,6 @@
 import { FormikFileUpload, getVedleggValidator } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+
 import { useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { OpplysningerOmPleietrengendeFormFields } from '../OpplysningerOmPleietrengendeForm';

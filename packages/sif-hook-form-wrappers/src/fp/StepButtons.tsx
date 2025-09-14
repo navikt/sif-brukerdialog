@@ -1,6 +1,6 @@
+import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { Button, HStack } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import { PaperplaneIcon } from '@navikt/aksel-icons';
 
 interface Props {
     goToPreviousStep: () => void;

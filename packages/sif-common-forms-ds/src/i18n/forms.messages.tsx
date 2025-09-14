@@ -1,5 +1,6 @@
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+
 import { velgBarnFormPart_nb } from '../form-parts/velg-barn-form-part/i18n/nb';
 import { velgBarnFormPart_nn } from '../form-parts/velg-barn-form-part/i18n/nn';
 import { annetBarnMessages } from '../forms/annet-barn/i18n';

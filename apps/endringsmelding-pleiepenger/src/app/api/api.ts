@@ -3,6 +3,7 @@ import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/
 import { getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
 import { RequestStatus } from '@types';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+
 import { appEnv } from '../utils/appEnv';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';

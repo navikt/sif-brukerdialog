@@ -1,7 +1,8 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
-import { ReactElement } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { ReactElement } from 'react';
+
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';

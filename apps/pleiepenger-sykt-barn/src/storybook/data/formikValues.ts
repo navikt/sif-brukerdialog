@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
+
 import { ArbeiderIPeriodenSvar } from '../../app/local-sif-common-pleiepenger';
 import { ArbeidsgiverType, TimerEllerProsent } from '../../app/types';
 import { Frilanstype } from '../../app/types/søknad-form-values/FrilansFormValues';

@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
 import {
     datepickerUtils,
     FormikDatepickerProps,
@@ -16,6 +14,9 @@ import {
     ValidateNumberError,
 } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
+
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {

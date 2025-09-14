@@ -1,7 +1,7 @@
 // DEPRECATED: Denne komponenten er utdatert og er erstattet av DateRanegeExpansionCard i komponentbiblioteket
 import { Accordion } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange, dateRangeToISODateRange, getDateToday, isDateInDateRange } from '@navikt/sif-common-utils';
+import React from 'react';
 
 type State = 'all' | 'none' | 'current';
 

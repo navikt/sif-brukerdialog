@@ -3,6 +3,7 @@ import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-co
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+
 import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import {
     FrilansFormField,

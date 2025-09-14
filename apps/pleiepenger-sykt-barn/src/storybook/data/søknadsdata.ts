@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidIPeriodeType } from '../../app/types/ArbeidIPeriodeType';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { RedusertArbeidstidType } from '../../app/types/RedusertArbeidstidType';

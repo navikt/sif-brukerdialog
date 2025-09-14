@@ -1,11 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
+
 import DineBarnStep from '../../../app/søknad/steps/dine-barn/DineBarnStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
+import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 
 export default {
     title: 'Steps/DineBarnStep',

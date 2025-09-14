@@ -1,4 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { Frilanstype } from '../søknad-form-values/FrilansFormValues';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 

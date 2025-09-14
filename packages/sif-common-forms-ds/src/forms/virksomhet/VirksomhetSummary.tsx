@@ -1,7 +1,8 @@
 import { VStack } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
 import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
+import { FormattedMessage } from 'react-intl';
+
 import { useVirksomhetIntl, VirksomhetIntlShape } from './i18n';
 import SummaryBlock from './SummaryBlock';
 import { Næringstype, VirksomhetApiData } from './types';

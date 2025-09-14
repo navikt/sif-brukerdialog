@@ -1,5 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+
 import { formikValues } from '../data/formikValues';
 
 interface Props {

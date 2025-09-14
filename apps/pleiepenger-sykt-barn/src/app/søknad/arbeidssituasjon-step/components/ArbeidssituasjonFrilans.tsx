@@ -5,6 +5,7 @@ import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import { Arbeidsgiver } from '../../../types';
 import { FosterhjemsgodtgjørelseFormValues } from '../../../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';

@@ -1,5 +1,6 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';
@@ -12,18 +13,18 @@ import { OmsorgsstønadSøknadsdata } from './OmsorgsstønadSøknadsdata';
 import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriodenSøknadsdata';
 
-export * from './OmBarnetSøknadsdata';
 export * from './ArbeidIPeriodeSøknadsdata';
+export * from './BeredskapSøknadsdata';
+export * from './FerieuttakIPeriodenSøknadsdata';
+export * from './MedlemsskapSøknadsdata';
+export * from './NattevåkSøknadsdata';
+export * from './NormalarbeidstidSøknadsdata';
+export * from './OmBarnetSøknadsdata';
+export * from './OmsorgsstønadSøknadsdata';
+export * from './OmsorgstilbudSøknadsdata';
 export * from './OpptjeningUtlandSøknadsdata';
 export * from './UtenlandskNæringSøknadsdata';
-export * from './NormalarbeidstidSøknadsdata';
-export * from './MedlemsskapSøknadsdata';
 export * from './UtenlandsoppholdIPeriodenSøknadsdata';
-export * from './FerieuttakIPeriodenSøknadsdata';
-export * from './NattevåkSøknadsdata';
-export * from './BeredskapSøknadsdata';
-export * from './OmsorgstilbudSøknadsdata';
-export * from './OmsorgsstønadSøknadsdata';
 
 export interface Søknadsdata {
     isInitialized: boolean;

@@ -2,6 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import OfficeIconSvg from '../../../components/office-icon/OfficeIconSvg';
 import { AppText } from '../../../i18n';

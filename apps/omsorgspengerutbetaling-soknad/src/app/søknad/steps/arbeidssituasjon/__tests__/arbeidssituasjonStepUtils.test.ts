@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { ArbeidssituasjonTidsromValidationKeys, validateArbeidssituasjonTidsrom } from '../arbeidssituasjonStepUtils';
 
 describe('arbeidssituasjonStepUtils', () => {

@@ -1,6 +1,7 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../i18n';
 import { ArbeidsgiverApiData } from '../../../../types/søknadApiData/SøknadApiData';
 

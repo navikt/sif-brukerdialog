@@ -1,11 +1,12 @@
-import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
 import { erFeriedagerEndretIPeriode } from '@utils';
+import { useIntl } from 'react-intl';
+
 import DateRangeExpansionCards from '../../../components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
@@ -18,8 +19,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
-    getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
+    getLovbestemtFerieStepInitialValues,
 } from './lovbestemtFerieStepUtils';
 
 export enum LovbestemtFerieFormFields {

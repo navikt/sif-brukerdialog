@@ -1,5 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { Arbeidsgiver, ArbeidstidApiData } from '@types';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';

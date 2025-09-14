@@ -1,5 +1,5 @@
-import React from 'react';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import React from 'react';
 
 interface Props {
     header: string;

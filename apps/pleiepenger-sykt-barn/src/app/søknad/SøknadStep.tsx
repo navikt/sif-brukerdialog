@@ -1,6 +1,7 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
+import React from 'react';
+
 import { StepID } from '../types/StepID';
 
 interface Props {

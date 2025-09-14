@@ -10,6 +10,7 @@ import {
 } from '@navikt/sif-common-utils';
 import { ArbeidstidEnkeltdagMap, Arbeidsuke, ArbeidsukeTimer } from '@types';
 import dayjs from 'dayjs';
+
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {

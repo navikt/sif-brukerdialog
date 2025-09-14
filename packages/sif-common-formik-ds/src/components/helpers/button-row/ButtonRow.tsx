@@ -1,5 +1,6 @@
-import React from 'react';
 import './buttonRow.scss';
+
+import React from 'react';
 
 export interface Props {
     align?: 'left' | 'right' | 'center';

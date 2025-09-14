@@ -1,6 +1,7 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../app/types/ArbeidsforholdTypes';
+
+import { ÅrsakNyoppstartet, Utbetalingsårsak } from '../../app/types/ArbeidsforholdTypes';
 import { ArbeidsgiverResponse } from '../../app/types/Arbeidsgiver';
 import { ApiAktivitet, ArbeidsgiverDetaljer } from '../../app/types/søknadApiData/SøknadApiData';
 

@@ -13,6 +13,7 @@ import {
     UgyldigK9SakFormat,
 } from '@types';
 import { appSentryLogger } from '@utils';
+
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag } from '../utils/initialDataUtils';

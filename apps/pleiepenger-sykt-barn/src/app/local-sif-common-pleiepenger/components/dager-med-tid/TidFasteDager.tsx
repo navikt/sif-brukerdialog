@@ -1,5 +1,6 @@
 import { List } from '@navikt/ds-react';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
+
 import { AppIntlShape, AppMessageKeys, AppText, useAppIntl } from '../../../i18n';
 import { Time } from '../../../types/Time';
 

@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+
 import { MedlemskapFormValues } from '../types';
 import { MedlemskapSøknadsdata } from '../types/MedlemskapSøknadsdata';
 

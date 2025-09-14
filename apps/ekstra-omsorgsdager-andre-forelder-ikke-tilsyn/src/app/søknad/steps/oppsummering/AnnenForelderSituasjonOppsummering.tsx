@@ -3,6 +3,7 @@ import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 

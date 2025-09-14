@@ -10,6 +10,7 @@ import {
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidstidEnkeltdagMap, FaktiskOgNormalArbeidstid, K9SakArbeidstidPeriodeMap } from '@types';
+
 import { _getSakFromK9Sak } from '../getSakFromK9Sak';
 
 const {

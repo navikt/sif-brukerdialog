@@ -4,6 +4,7 @@ import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/f
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';

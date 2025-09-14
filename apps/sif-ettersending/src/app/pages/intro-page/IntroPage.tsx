@@ -1,9 +1,10 @@
 import { Box } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';

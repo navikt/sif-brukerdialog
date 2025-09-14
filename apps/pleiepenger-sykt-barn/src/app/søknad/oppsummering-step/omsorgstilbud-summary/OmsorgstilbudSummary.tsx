@@ -1,6 +1,7 @@
 import { Box, FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';

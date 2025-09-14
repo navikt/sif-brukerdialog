@@ -1,5 +1,6 @@
 import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import { jsonSort } from '@navikt/sif-common-utils';
+
 import utils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
 

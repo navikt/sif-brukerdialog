@@ -1,7 +1,7 @@
-import { VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import './oppsummeringStep.less';
+
 import { useAppIntl } from '@i18n/index';
+import { VStack } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
@@ -15,15 +15,18 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { isAxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { purge, sendApplication } from '../../api/api';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import { AppText } from '../../i18n';
-import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../../types/StepID';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
@@ -44,7 +47,6 @@ import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/Nattev
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
-import './oppsummeringStep.less';
 
 interface Props {
     values: SøknadFormValues;

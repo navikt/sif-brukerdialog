@@ -1,5 +1,6 @@
 import { Søker } from '@navikt/sif-common-api';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { useSoknadContext } from '../../soknad/SoknadContext';
 import { Søknadstype } from '../../types/Søknadstype';

@@ -1,4 +1,5 @@
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
 import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
 import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
 import { Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';

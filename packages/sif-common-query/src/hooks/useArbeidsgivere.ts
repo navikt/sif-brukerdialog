@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { hentArbeidsgivere } from '../api/arbeidsgivereApi';
 import { sifCommonQueryKeys } from '../queryKeys';
 import { Arbeidsgivere } from '../types/Arbeidsgivere';

@@ -1,6 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import ArbeidssituasjonAnsatt from './ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivereIntro from './info/ArbeidssituasjonArbeidsgivereIntro';

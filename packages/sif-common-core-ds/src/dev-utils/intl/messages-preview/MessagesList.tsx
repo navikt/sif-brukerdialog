@@ -1,8 +1,10 @@
+import './messagesList.scss';
+
 import { Alert, BodyShort, Box, Button, HStack, Pagination, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import { useTranslation } from './useTranslation';
-import './messagesList.scss';
 
 interface Props {
     messages: MessageFileFormat;

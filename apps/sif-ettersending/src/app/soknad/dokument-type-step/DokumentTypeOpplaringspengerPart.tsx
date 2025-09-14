@@ -1,7 +1,8 @@
 import { Link, List } from '@navikt/ds-react';
-import { ReactNode } from 'react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { ReactNode } from 'react';
+
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';

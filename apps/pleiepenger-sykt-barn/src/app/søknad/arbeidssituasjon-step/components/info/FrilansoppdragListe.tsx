@@ -1,4 +1,5 @@
 import { List } from '@navikt/ds-react';
+
 import ArbeidsperiodeTekst from '../../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import FrilansIconSvg from '../../../../components/frilans-icon/FrilansIconSvg';
 import { useAppIntl } from '../../../../i18n';

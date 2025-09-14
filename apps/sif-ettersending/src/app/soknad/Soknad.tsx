@@ -1,20 +1,21 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { fetchSøkerId, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { LoadingPage, useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
 import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
 import { useAppIntl } from '../i18n';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
+import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { YtelseKey } from '../types/Ytelser';
 import { getFeaturesHashString } from '../utils/featureToggleUtils';
 import {

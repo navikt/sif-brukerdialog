@@ -1,5 +1,6 @@
+import './arbeidsaktivitetContent.scss';
+
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
@@ -18,6 +19,8 @@ import {
     PeriodeMedArbeidstid,
 } from '@types';
 import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@utils';
+import { useState } from 'react';
+
 import DateRangeExpansionCards from '../../../../../components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
@@ -35,7 +38,6 @@ import {
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
 import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
-import './arbeidsaktivitetContent.scss';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];

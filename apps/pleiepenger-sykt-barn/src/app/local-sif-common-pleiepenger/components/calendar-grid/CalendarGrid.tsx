@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import './calendarGrid.less';
+
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
@@ -13,11 +14,12 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import React, { useRef } from 'react';
+
 import { AppText } from '../../../i18n';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
-import './calendarGrid.less';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);

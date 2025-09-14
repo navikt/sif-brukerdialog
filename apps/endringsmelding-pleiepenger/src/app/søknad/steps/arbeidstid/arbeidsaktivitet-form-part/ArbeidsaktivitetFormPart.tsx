@@ -7,6 +7,7 @@ import {
     ArbeidstidEndringMap,
     LovbestemtFerieSøknadsdata,
 } from '@types';
+
 import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import { useAppIntl } from '../../../../i18n';
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';

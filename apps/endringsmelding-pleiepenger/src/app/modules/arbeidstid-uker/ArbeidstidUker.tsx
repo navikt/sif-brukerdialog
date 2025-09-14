@@ -1,9 +1,12 @@
-import { Button, HStack, VStack } from '@navikt/ds-react';
-import { useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import './arbeidstidUker.scss';
+
 import { AddCircle } from '@navikt/ds-icons';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
@@ -13,7 +16,6 @@ import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
 import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
-import './arbeidstidUker.scss';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];

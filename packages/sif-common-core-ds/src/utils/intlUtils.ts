@@ -1,5 +1,6 @@
-import { FormatNumberOptions, IntlShape } from 'react-intl';
 import { IntlDateFormat, intlDateFormats } from '@navikt/sif-common-utils/src/intlDateFormats';
+import { FormatNumberOptions, IntlShape } from 'react-intl';
+
 import { Locale } from '../types';
 
 const intlHelper = (

@@ -1,6 +1,5 @@
-import { Box } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
+import { Box } from '@navikt/ds-react';
 import {
     datepickerUtils,
     DateRange,
@@ -11,6 +10,8 @@ import {
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import React from 'react';
+
 import TidFasteUkedagerInput from '../../../tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';
 

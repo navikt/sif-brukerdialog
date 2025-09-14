@@ -1,7 +1,8 @@
-import { FormSummary } from '@navikt/ds-react';
 import { AppText } from '@i18n/index';
+import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { Arbeidsgiver } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';

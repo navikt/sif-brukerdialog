@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { søkerMock } from '../../../storybook/data/søkerMock';
 import { withAmplitudeProvider, withFormikWrapper, withIntl } from '../../../storybook/decorators';
 import VelkommenPage from './VelkommenPage';

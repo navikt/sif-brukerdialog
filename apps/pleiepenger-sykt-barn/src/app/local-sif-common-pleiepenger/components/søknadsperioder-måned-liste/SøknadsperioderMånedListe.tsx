@@ -1,8 +1,8 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
 import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import React from 'react';
 
 interface Props {
     periode: DateRange;

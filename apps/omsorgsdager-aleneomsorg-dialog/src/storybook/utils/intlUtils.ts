@@ -1,4 +1,5 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types';
+
 import { applicationIntlMessages } from '../../app/i18n';
 
 const getIntlMessagesFromKeys = (keys: string[]): MessageFileFormat => {

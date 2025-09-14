@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { vi } from 'vitest';
+
 import { OmsorgsstønadFormValues } from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { cleanupOmsorgsstønad } from '../cleanupOmsorgsstønad';
 

@@ -3,6 +3,7 @@ import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 
 interface Props {

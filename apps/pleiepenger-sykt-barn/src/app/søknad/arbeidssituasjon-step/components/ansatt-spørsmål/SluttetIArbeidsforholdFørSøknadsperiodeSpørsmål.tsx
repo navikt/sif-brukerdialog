@@ -2,6 +2,7 @@ import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import {
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,

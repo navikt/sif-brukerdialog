@@ -1,4 +1,5 @@
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../i18n';
 
 interface Props {

@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
+
 import { ArbeidIPeriodeType } from '../../app/types/arbeidIPeriodeType';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { SøknadContextState } from '../../app/types/SøknadContextState';

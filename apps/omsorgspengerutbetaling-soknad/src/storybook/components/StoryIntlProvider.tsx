@@ -1,5 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 import { IntlProvider } from 'react-intl';
+
 import { applicationIntlMessages } from '../../app/i18n';
 
 export interface IntlProviderProps {

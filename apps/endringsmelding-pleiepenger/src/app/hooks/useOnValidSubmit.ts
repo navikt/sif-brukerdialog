@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
 import { SøknadContextState } from '@types';
 import { relocateToLoginPage } from '@utils';
-import { StepId } from '../søknad/config/StepId';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
+import { StepId } from '../søknad/config/StepId';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 
 export const useOnValidSubmit = <T>(

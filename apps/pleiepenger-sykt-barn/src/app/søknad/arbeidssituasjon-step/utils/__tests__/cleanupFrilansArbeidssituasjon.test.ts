@@ -2,6 +2,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
+
 import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 

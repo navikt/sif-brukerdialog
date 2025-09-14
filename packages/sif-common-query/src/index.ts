@@ -5,16 +5,16 @@ export { sifCommonQueryKeys } from './queryKeys';
 export * from './types/Arbeidsgivere';
 export * from './types/Barn';
 export * from './types/invalidParameterProblemDetail';
-export * from './types/Søker';
 export * from './types/MellomlagringYtelse';
+export * from './types/Søker';
 
 // Alle hooks
 export * from './hooks/useArbeidsgivere';
 export * from './hooks/useRegistrerteBarn';
-export * from './hooks/useYtelseMellomlagring';
 export * from './hooks/useSøker';
 export * from './hooks/useValiderFritekst';
 export * from './hooks/useVedlegg';
+export * from './hooks/useYtelseMellomlagring';
 
 // Alle API kall (for non-React usage)
 export * from './api';

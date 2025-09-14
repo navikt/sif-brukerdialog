@@ -1,5 +1,6 @@
 import { Duration, ISODateRange } from '@navikt/sif-common-utils';
 import { Arbeidsuke } from '@types';
+
 import { arbeidsukerMockData } from '../../../../mock/data/app/arbeidsukerMockData';
 import { arbeidsukerHarLikNormaltidPerDag, sorterArbeidsuker } from '../arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from '../beregnUtils';

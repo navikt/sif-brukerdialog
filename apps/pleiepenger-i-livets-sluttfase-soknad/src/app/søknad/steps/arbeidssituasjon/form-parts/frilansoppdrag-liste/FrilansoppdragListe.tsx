@@ -1,6 +1,7 @@
 import { BodyShort, List } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../../i18n';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 

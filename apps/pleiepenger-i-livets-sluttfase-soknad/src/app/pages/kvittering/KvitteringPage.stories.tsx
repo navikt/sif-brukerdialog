@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
+
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
 import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
 import { withIntl } from '../../../storybook/decorators/withIntl';

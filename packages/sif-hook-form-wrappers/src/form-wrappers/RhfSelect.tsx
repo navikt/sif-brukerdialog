@@ -1,6 +1,7 @@
 import { Select } from '@navikt/ds-react';
 import { CSSProperties, ReactNode, useCallback, useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
+
 import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 type Props<T extends FieldValues> = {

@@ -1,5 +1,6 @@
 import { ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
+
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues } from './types';
 

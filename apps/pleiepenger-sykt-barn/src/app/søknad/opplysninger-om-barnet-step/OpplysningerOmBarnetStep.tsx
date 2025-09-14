@@ -1,13 +1,14 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { useFormikContext } from 'formik';
+import React from 'react';
+
 import { SøkerdataContext } from '../../context/SøkerdataContext';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';

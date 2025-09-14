@@ -3,6 +3,7 @@ import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-form
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../i18n';
 import {
     AleneomsorgTidspunktField,

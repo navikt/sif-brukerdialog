@@ -5,6 +5,7 @@ import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';

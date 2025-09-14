@@ -1,9 +1,10 @@
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -15,8 +16,8 @@ import OpplysningerOmPleietrengendeForm, {
     OpplysningerOmPleietrengendeFormValues,
 } from './OpplysningerOmPleietrengendeForm';
 import {
-    getOpplysningerOmPleietrengendeStepInitialValues,
     getOpplysningerOmPleietrengendeSøknadsdataFromFormValues,
+    getOpplysningerOmPleietrengendeStepInitialValues,
 } from './opplysningerOmPleietrengendeStepUtils';
 
 const { FormikWrapper } = getTypedFormComponents<

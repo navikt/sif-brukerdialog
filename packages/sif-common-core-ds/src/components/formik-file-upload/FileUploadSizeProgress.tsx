@@ -1,6 +1,6 @@
 import { BodyShort, ProgressBar, VStack } from '@navikt/ds-react';
-import { useMemo } from 'react';
 import { guid } from '@navikt/sif-common-utils';
+import { useMemo } from 'react';
 
 interface Props {
     maxSize: number;

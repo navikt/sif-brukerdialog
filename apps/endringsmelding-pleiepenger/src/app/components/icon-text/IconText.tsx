@@ -1,5 +1,6 @@
-import React from 'react';
 import './iconText.css';
+
+import React from 'react';
 
 interface Props {
     icon: React.ReactNode;

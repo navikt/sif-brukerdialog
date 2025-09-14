@@ -1,5 +1,6 @@
 import { parse } from 'iso8601-duration';
 import { isString } from 'lodash';
+
 import { ISODate, ISODateRange, ISODuration } from './types';
 
 export type StringOrNull = string | null;

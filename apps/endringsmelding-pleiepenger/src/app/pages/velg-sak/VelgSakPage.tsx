@@ -1,7 +1,5 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -9,8 +7,11 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';
-import { StepId } from '../../søknad/config/StepId';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { StepId } from '../../søknad/config/StepId';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 
 enum FormFields {

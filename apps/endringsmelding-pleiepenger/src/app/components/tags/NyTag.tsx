@@ -1,6 +1,7 @@
+import { Star } from '@navikt/ds-icons';
 import { TagProps } from '@navikt/ds-react';
 import React from 'react';
-import { Star } from '@navikt/ds-icons';
+
 import { useAppIntl } from '../../i18n';
 import IconTag from './icon-tag/IconTag';
 

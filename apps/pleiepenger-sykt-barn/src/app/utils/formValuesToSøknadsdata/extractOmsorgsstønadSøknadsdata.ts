@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
+
 import { OmsorgsstønadFormValues } from '../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 

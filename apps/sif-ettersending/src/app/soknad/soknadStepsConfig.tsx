@@ -1,4 +1,5 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
+
 import { Søknadstype } from '../types/Søknadstype';
 import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
 import { getApplicationPageRoute } from '../utils/routeUtils';

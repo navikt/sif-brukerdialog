@@ -1,6 +1,7 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { AppText } from '../../../../i18n';
 import HarAleneomsorgSpørsmål from '../spørsmål/HarAleneomsorgSpørsmål';
 import HarDekketTiFørsteDagerSelvSpørsmål from '../spørsmål/HarDekketTiFørsteDagerSelvSpørsmål';

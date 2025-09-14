@@ -1,5 +1,6 @@
 import { Tag, TagProps } from '@navikt/ds-react';
 import React from 'react';
+
 import { useAppIntl } from '../../i18n';
 
 interface Props extends Omit<TagProps, 'variant' | 'size' | 'children'> {

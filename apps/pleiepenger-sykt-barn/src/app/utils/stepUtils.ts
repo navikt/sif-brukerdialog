@@ -1,7 +1,8 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
+
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
-import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../types/StepID';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
 import {
     arbeidssituasjonStepIsValid,

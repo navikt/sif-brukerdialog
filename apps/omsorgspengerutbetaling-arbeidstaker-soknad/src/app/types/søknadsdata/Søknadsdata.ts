@@ -6,12 +6,12 @@ import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 import { SituasjonSøknadsdata } from './SituasjonSøknadsdata';
 
-export * from './SituasjonSøknadsdata';
+export * from './DeltBostedSøknadsdata';
+export * from './DineBarnSøknadsdata';
 export * from './FraværSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
 export * from './MedlemskapSøknadsdata';
-export * from './DineBarnSøknadsdata';
-export * from './DeltBostedSøknadsdata';
+export * from './SituasjonSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;

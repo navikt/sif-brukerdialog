@@ -1,6 +1,7 @@
 import { useAppIntl } from '@i18n/index';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
 import { ArbFriFormComponents } from '../FrilanserFormPart';

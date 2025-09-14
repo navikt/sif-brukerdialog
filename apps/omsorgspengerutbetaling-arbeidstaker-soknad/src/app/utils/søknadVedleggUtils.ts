@@ -1,4 +1,5 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+
 import { SituasjonFormFields, SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';

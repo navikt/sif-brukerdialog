@@ -1,6 +1,7 @@
 import { UNSAFE_Combobox } from '@navikt/ds-react';
 import { ReactNode, useCallback, useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps, useFormContext } from 'react-hook-form';
+
 import { getError, getValidationRules, ValidationReturnType } from './formUtils';
 
 type Props<T extends FieldValues> = {

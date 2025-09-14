@@ -1,7 +1,8 @@
 import { TextFieldProps } from '@navikt/ds-react';
-import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { FastField, Field, FieldProps } from 'formik';
+import React, { useRef } from 'react';
+
 import { InputTime, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
 import { focusFirstElement } from '../../utils/focusUtils';

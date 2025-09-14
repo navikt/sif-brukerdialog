@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
-import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
+
+import { ÅrsakNyoppstartet, Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { getNMonthsAgo, getSituasjonStepInitialValues } from '../SituasjonStepUtils';
 

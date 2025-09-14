@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { formikValues } from '../../../storybook/data/formikValues';
 import { withStepWrapper } from '../../../storybook/decorators';
 import OppsummeringStep from './OppsummeringStep';

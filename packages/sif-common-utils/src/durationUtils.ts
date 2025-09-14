@@ -1,5 +1,6 @@
 import { parse } from 'iso8601-duration';
 import { trim } from 'lodash';
+
 import {
     DateDurationMap,
     DateRange,

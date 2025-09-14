@@ -1,5 +1,6 @@
 import { MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';

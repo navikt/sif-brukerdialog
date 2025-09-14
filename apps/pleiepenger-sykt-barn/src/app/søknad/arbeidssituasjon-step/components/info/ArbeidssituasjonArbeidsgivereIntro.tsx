@@ -1,6 +1,7 @@
-import { BodyLong, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+
 import { AppText } from '../../../../i18n';
 
 interface Props {

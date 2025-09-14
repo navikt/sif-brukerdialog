@@ -1,4 +1,3 @@
-import { ReactElement } from 'react';
 import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
@@ -6,6 +5,8 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
+import { ReactElement } from 'react';
+
 import FraværDagerList from './FraværDagerList';
 import FraværDagFormView from './FraværDagForm';
 import { FraværDag } from './types';

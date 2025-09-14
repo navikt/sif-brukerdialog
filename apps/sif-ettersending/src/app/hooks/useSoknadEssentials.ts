@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isObjectLike } from 'lodash';
+import { useState } from 'react';
+
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
 import { RequestStatus } from '../types/RequestStatus';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
+import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { navigateToLoginPage } from '../utils/navigationUtils';
 

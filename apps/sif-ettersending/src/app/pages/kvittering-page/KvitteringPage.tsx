@@ -2,6 +2,7 @@ import { Link } from '@navikt/ds-react';
 import { Infolist } from '@navikt/sif-common-core-ds/src';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';

@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import {
     DateRange,
     getCountryName,
@@ -20,10 +19,12 @@ import {
     ValidateRequiredFieldError,
     ValidateYesOrNoError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { useUtenlandsoppholdIntl, UtenlandsoppholdMessageKeys } from './i18n';
-import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from './types';
+import { Utenlandsopphold, UtenlandsoppholdÅrsak, UtenlandsoppholdFormValues, UtenlandsoppholdVariant } from './types';
 import {
     getUtenlandsoppholdQuestionVisibility,
     mapFormValuesToUtenlandsopphold,

@@ -1,6 +1,7 @@
+import './iconTag.scss';
+
 import { Tag, TagProps } from '@navikt/ds-react';
 import { ReactElement } from 'react';
-import './iconTag.scss';
 
 interface Props extends TagProps {
     icon?: ReactElement;

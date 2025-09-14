@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { vi } from 'vitest';
+
 import { multipartConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
