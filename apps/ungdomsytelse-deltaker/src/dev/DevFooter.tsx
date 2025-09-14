@@ -1,7 +1,8 @@
-import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { Settings } from '@navikt/ds-icons';
+import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useState } from 'react';
+
 import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
 import { Scenario, scenarioer } from './scenarioer';

@@ -1,5 +1,6 @@
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import LøstOppgavebekreftelse from './parts/LøstOppgavebekreftelse';
 import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';

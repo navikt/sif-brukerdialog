@@ -1,5 +1,6 @@
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+
 import Feilside from './Feilside';
 
 const FlereDeltakelserPage = () => (

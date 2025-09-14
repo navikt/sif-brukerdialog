@@ -1,4 +1,5 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../../../i18n';
 import DefaultPageLayout from '../../../innsyn/pages/layout/DefaultPageLayout';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';

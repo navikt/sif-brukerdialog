@@ -1,6 +1,7 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
 import { HarKontonummerEnum } from '../../søknad/steg/oppsummering/oppsummeringUtils';

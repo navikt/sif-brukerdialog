@@ -1,6 +1,7 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakelseUtils';
 import OppgaverList from '../oppgaver-list/OppgaverList';

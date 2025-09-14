@@ -1,6 +1,7 @@
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { usePrevious } from '@navikt/sif-common-hooks';
+
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { useSøknadContext } from './hooks/context/useSøknadContext';

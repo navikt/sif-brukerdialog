@@ -1,4 +1,5 @@
 import { Bleed, Box, Heading, Hide, Show } from '@navikt/ds-react';
+
 import MannSvg from '../../atoms/svg/Mann';
 
 const UngdomsprogrammetHeader = () => {

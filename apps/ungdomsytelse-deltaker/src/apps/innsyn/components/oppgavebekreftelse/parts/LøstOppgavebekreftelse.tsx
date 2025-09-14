@@ -1,5 +1,6 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { OppgaveBase } from '../../../../../types/Oppgave';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { getOppgaveStatusText } from '../../../utils/textUtils';

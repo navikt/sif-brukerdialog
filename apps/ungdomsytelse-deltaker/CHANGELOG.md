@@ -17,6 +17,7 @@
     - @navikt/sif-common-ui@0.11.2
     - @navikt/ung-common@0.0.44
     - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.19
+- Skru av ux-signals midlertidig + bruke workspace eslint
 
 ## 1.2.1
 

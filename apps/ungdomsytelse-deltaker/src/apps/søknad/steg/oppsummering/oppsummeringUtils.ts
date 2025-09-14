@@ -1,7 +1,8 @@
 import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Spørsmål, SøknadSvar } from '../../types';
+
+import { SøknadSvar, Spørsmål } from '../../types';
 
 const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;

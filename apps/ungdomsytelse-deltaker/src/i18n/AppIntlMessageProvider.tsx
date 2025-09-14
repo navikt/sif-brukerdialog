@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { IntlProvider } from 'react-intl';
 import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import {
     getBokmålLocale,
@@ -8,6 +6,9 @@ import {
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import useDecoratorLanguageSelector from '@navikt/sif-common-soknad-ds/src/hooks/useDecoratorLanguageSelector';
+import { useState } from 'react';
+import { IntlProvider } from 'react-intl';
+
 import { applicationIntlMessages } from './';
 
 export const AppIntlMessageProvider = ({ children }) => {

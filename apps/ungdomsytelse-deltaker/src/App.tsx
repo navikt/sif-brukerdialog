@@ -1,6 +1,8 @@
+import '@navikt/ds-css/darkside';
+import './app.css';
+
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort } from '@navikt/ds-react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
@@ -8,6 +10,8 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { EnvKey, getMaybeEnv } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import { AnalyticsProvider } from './analytics/analytics';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
@@ -17,8 +21,6 @@ import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 import { initSentry } from './utils/sentryUtils';
-import '@navikt/ds-css/darkside';
-import './app.css';
 
 initSentry();
 initApiClients();

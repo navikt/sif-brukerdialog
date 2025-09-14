@@ -1,4 +1,5 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 
 interface Props {

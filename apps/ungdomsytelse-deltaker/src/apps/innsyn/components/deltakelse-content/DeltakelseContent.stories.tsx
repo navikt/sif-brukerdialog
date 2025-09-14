@@ -1,5 +1,7 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
@@ -7,8 +9,6 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../../../types/DeltakelsePeriode';
 import DeltakelseContent from './DeltakelseContent';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'Innsyn/Sider/Forside',

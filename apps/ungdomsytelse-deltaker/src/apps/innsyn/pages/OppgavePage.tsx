@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { useParams } from 'react-router-dom';
+
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
