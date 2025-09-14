@@ -11,6 +11,7 @@ import {
     SøkYtelseOppgavetypeDataDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,

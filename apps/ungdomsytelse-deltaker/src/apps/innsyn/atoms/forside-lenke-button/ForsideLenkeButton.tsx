@@ -1,6 +1,7 @@
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeftIcon } from '@navikt/aksel-icons';
+
 import { AppRoutes } from '../../../../utils/AppRoutes';
 
 const ForsideLenkeButton = () => {

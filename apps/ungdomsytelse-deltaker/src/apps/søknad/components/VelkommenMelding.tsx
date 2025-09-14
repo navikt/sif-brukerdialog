@@ -1,5 +1,6 @@
 import { BodyLong, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../utils/lenker';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';

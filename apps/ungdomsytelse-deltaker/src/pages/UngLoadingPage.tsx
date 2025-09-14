@@ -1,4 +1,5 @@
 import { Loader, VStack } from '@navikt/ds-react';
+
 import DefaultPageLayout from '../apps/innsyn/pages/layout/DefaultPageLayout';
 
 const UngLoadingPage = () => {

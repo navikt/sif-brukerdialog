@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.2.2
+
+### Patch Changes
+
+- Skru av ux-signals midlertidig + bruke workspace eslint
+
 ## 1.2.1
 
 ### Patch Changes

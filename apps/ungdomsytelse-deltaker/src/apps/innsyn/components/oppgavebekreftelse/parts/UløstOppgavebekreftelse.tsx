@@ -1,8 +1,9 @@
 import { Alert, Box, GuidePanel, Heading, VStack } from '@navikt/ds-react';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { UngdomsytelseOppgaveUttalelseDto } from '@navikt/k9-brukerdialog-prosessering-api';
 import { usePrevious } from '@navikt/sif-common-hooks';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useAnalyticsInstance } from '../../../../../analytics/analytics';
 import { DeltakerSkjemaId } from '../../../../../types/DeltakerSkjemaId';
 import { BekreftelseOppgave } from '../../../../../types/Oppgave';

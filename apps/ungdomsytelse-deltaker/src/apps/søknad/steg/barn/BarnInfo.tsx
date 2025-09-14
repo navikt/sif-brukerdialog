@@ -1,5 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+
 import { AppText } from '../../../../i18n';
 import BarnList from './BarnList';
 

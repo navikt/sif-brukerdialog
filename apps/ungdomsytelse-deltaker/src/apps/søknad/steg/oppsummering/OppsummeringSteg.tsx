@@ -1,13 +1,14 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
+import { useState } from 'react';
+
 import { useAnalyticsInstance } from '../../../../analytics/analytics';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { DeltakerSkjemaId } from '../../../../types/DeltakerSkjemaId';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
+import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
 import { useSendSøknad } from '../../hooks/api/useSendSøknad';
 import { useSøknadContext } from '../../hooks/context/useSøknadContext';
 import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';

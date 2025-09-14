@@ -1,12 +1,13 @@
 import { Alert, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TallSvar } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { RapporterInntektOppgave } from '../../../../../types/Oppgave';
 import { getAppEnv } from '../../../../../utils/appEnv';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';

@@ -1,6 +1,7 @@
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { SøkYtelseOppgave } from '../../../../../types/Oppgave';
 import getLenker from '../../../../../utils/lenker';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';

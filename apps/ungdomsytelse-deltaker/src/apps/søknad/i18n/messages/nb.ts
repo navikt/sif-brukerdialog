@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const ungSoknadMessages_nb = {
     'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
     'søknad.tittel.shy': 'Søknad om ungdoms\u00ADprogram\u00ADytelsen',

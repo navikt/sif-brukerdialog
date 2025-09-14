@@ -1,5 +1,6 @@
-import { createContext, useMemo } from 'react';
 import { Søker } from '@navikt/sif-common-api';
+import { createContext, useMemo } from 'react';
+
 import { DeltakelsePeriode } from '../types/DeltakelsePeriode';
 
 export interface DeltakerContextType {
