@@ -1,5 +1,4 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
@@ -11,7 +10,7 @@ export interface Props {
     onEdit?: () => void;
 }
 
-const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
+const MedlemskapOppsummering = ({ medlemskap, onEdit }) => {
     const {
         harBoddIUtlandetSiste12Mnd,
         utenlandsoppholdSiste12Mnd,

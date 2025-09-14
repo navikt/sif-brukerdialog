@@ -39,6 +39,7 @@
         "lint": "turbo lint",
         "lint:eslint": "turbo lint:eslint",
         "lint:tsc": "turbo lint:tsc",
+        "lint:fix": "turbo lint:fix",
         "prepare": "husky install",
         "test": "turbo test",
         "codegen": "turbo run codegen",

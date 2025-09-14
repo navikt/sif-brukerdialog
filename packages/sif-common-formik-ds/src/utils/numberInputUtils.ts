@@ -1,4 +1,5 @@
 import { IntlShape } from 'react-intl';
+
 import { TextFieldFormatter } from '../components/formik-text-field/FormikTextField';
 
 /* Returns a number from a string value, if the string value is a valid number */

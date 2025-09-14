@@ -2,13 +2,14 @@ import { Link } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { datepickerUtils, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -21,7 +22,7 @@ interface Props {
     values: Partial<ArbeidssituasjonFormValues>;
 }
 
-const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
+const FrilansFormPart = ({ values, fraværPeriode }: Props) => {
     const { text, intl } = useAppIntl();
 
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato } = values;

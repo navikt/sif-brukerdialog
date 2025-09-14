@@ -1,7 +1,7 @@
+import { getUploadedVedlegg, YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { LegeerklæringSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
-import { getUploadedVedlegg, YesOrNo } from '@navikt/sif-common-core-ds/src';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,

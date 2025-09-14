@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     dateToISOString,
@@ -7,25 +8,25 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getFraværFraStepInitialValues,
     getFraværFraSøknadsdataFromFormValues,
+    getFraværFraStepInitialValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
-import { VStack } from '@navikt/ds-react';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',

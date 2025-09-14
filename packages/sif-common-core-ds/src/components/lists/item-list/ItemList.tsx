@@ -1,10 +1,12 @@
+import './itemList.scss';
+
 import { Link } from '@navikt/ds-react';
-import React from 'react';
 import { guid } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import React from 'react';
+
 import DeleteButton from '../../../atoms/delete-button/DeleteButton';
 import bemUtils from '../../../utils/bemUtils';
-import './itemList.scss';
 
 interface Props<T> {
     items: T[];

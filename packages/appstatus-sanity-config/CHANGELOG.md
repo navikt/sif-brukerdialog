@@ -1,5 +1,18 @@
 # appstatus-sanity-config
 
+## 1.2.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 1.2.30
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 1.2.29
 
 ### Patch Changes

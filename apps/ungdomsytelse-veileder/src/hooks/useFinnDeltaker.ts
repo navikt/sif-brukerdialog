@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { ApiError } from '@navikt/ung-common';
+import { isAxiosError } from 'axios';
 import { findDeltakerByIdent } from '../api/deltaker/findDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltaker, UregistrertDeltaker } from '../types/Deltaker';
-import { isAxiosError } from 'axios';
 import { AppHendelse } from '../utils/analytics';
 import { useAppEventLogger } from '../utils/analyticsHelper';
-import { useEffect } from 'react';
 
 export const useFinnDeltaker = (deltakerIdent: string, enabled = true) => {
     const { log } = useAppEventLogger();

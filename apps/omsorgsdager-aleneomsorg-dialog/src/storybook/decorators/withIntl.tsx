@@ -1,7 +1,9 @@
-import { IntlProvider } from 'react-intl';
-import { applicationIntlMessages } from '../../app/i18n';
-import { uiMessages } from '@navikt/sif-common-ui';
 import './print.css';
+
+import { uiMessages } from '@navikt/sif-common-ui';
+import { IntlProvider } from 'react-intl';
+
+import { applicationIntlMessages } from '../../app/i18n';
 
 export const withIntl = (Story, context) => {
     const locale = context?.parameters?.locale || context?.globals.locale || 'nb';

@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../i18n';
 import { BeredskapApiData, NattevåkApiData } from '../../../types/søknad-api-data/SøknadApiData';
 

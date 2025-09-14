@@ -1,5 +1,6 @@
-import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
 import { Attachment } from '@navikt/ds-icons';
+import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
+
 import { useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
 import { formatFileSize } from '../../utils/formatFileSize';

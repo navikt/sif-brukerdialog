@@ -1,6 +1,5 @@
-import MockDate from 'mockdate';
-
 import { Page } from '@playwright/test';
+import MockDate from 'mockdate';
 
 const testDate = new Date('2023-01-01');
 

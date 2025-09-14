@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
+
 import { Arbeidsgiver } from '../Arbeidsgiver';
+import { ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 
 export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',

@@ -1,4 +1,6 @@
 import { dateToISODate, ISODate } from '@navikt/sif-common-utils';
+
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
@@ -7,7 +9,6 @@ import {
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
-import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 
 export const dateToISODateOrUndefined = (date?: Date): ISODate | undefined => (date ? dateToISODate(date) : undefined);
 

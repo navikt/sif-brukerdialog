@@ -1,5 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
+
 import { ArbeidsforholdFrilanserFormValues } from './ArbeidsforholdFormValues';
 
 export enum FrilansFormField {

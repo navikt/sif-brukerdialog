@@ -1,5 +1,5 @@
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import React from 'react';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { BostedUtlandApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import './utenlandsoppholdSummaryItem.css';
 

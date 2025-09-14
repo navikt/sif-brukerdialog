@@ -1,8 +1,9 @@
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
 import LovbestemtFerieListe from './LovbestemtFerieListe';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 
 const meta: Meta<typeof LovbestemtFerieListe> = {
     title: 'Components/LovbestemtFerieListe',

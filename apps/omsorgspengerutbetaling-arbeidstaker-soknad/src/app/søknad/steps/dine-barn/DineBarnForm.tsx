@@ -1,4 +1,3 @@
-import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -11,6 +10,7 @@ import {
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
@@ -26,14 +26,14 @@ export interface DineBarnFormProps {
     onAndreBarnChanged: (values: Partial<DineBarnFormValues>) => void;
 }
 
-const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
+const DineBarnForm = ({
     søker,
     values,
     registrerteBarn,
     isSubmitting,
     goBack,
     onAndreBarnChanged,
-}) => {
+}: DineBarnFormProps) => {
     const { text, intl } = useAppIntl();
 
     const { andreBarn = [], harDeltBosted } = values;

@@ -1,16 +1,17 @@
 import { useAppIntl } from '@i18n/index';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+
 import { persist } from '../../api/api';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();

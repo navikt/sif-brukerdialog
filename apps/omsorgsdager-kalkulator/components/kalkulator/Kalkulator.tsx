@@ -1,19 +1,19 @@
+import { Heading } from '@navikt/ds-react';
+import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
-import { YesOrNo } from '../sif-formik/types';
-import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
-import { ValidationError } from '../sif-formik/validation/types';
-import getIntlFormErrorHandler from '../sif-formik/validation/intlFormErrorHandler';
 import { mapBarnKalkulatorToBarn, summerAntallOmsorgsdager } from '../../utils/utils';
 import { beregnOmsorgsdager } from '../beregningsmodul/beregningsmodul';
-import ResultatArea from '../result/ResultatArea';
-import { useState } from 'react';
-import { ResultView, empty, noValidChildrenOrange } from '../result/ResultView';
 import Omsorgsprinsipper from '../beregningsmodul/types/Omsorgsprinsipper';
+import ResultatArea from '../result/ResultatArea';
+import { empty, noValidChildrenOrange, ResultView } from '../result/ResultView';
+import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
 import FormikValuesObserver from '../sif-formik/helpers/formik-values-observer/FormikValuesObserver';
-import BarnFormPart from './kalkulator-form-parts/BarnFormPart';
+import { YesOrNo } from '../sif-formik/types';
+import getIntlFormErrorHandler from '../sif-formik/validation/intlFormErrorHandler';
+import { ValidationError } from '../sif-formik/validation/types';
 import AntallBarnFormPart from './kalkulator-form-parts/AntallBarnFormPart';
-import { Heading } from '@navikt/ds-react';
+import BarnFormPart from './kalkulator-form-parts/BarnFormPart';
 
 export type Result = {
     sumDager: number;

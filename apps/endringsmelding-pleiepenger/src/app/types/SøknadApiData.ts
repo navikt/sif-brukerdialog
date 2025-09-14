@@ -1,4 +1,5 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
+
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
 import { ValgteEndringer } from './ValgteEndringer';

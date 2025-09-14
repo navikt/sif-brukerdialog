@@ -1,6 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
 import { getDatesInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
 import DurationWeekdaysInput from './DurationWeekdaysInput';
 

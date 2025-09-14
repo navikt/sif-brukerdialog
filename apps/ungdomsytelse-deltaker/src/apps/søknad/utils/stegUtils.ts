@@ -1,6 +1,7 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
-import { Spørsmål, Steg, SøknadSvar } from '../types';
+import { SøknadSvar, Spørsmål, Steg } from '../types';
 
 export const søknadSteg = [Steg.KONTONUMMER, Steg.BARN, Steg.OPPSUMMERING];
 

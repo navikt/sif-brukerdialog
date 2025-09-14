@@ -1,5 +1,44 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.11.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.36
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-amplitude@2.28.29
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-formik-ds@2.5.2
+    - @navikt/sif-common-forms-ds@21.0.2
+    - @navikt/sif-common-hooks@0.3.5
+    - @navikt/sif-common-sentry@0.28.31
+    - @navikt/sif-common-soknad-ds@26.0.2
+    - @navikt/sif-common-ui@0.11.2
+    - @navikt/sif-common-utils@3.49.28
+    - @navikt/sif-validation@1.0.5
+
+## 4.11.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-amplitude@2.28.28
+    - @navikt/sif-common-formik-ds@2.5.1
+    - @navikt/sif-common-soknad-ds@26.0.1
+    - @navikt/sif-common-forms-ds@21.0.1
+    - @navikt/appstatus-react-ds@2.20.35
+    - @navikt/sif-common-core-ds@10.3.1
+    - @navikt/sif-common-sentry@0.28.30
+    - @navikt/sif-common-utils@3.49.27
+    - @navikt/sif-validation@1.0.4
+    - @navikt/sif-common-ui@0.11.1
+
 ## 4.11.0
 
 ### Minor Changes

@@ -1,13 +1,14 @@
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withInnsynApp } from '../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../storybook/decorators/withRouter';
+import { EndretSluttdatoOppgave, RapporterInntektOppgave } from '../../../types/Oppgave';
 import { EndretSluttdatoOppgavePage } from './endret-sluttdato/EndretSluttdatoOppgavePage';
 import RapporterInntektOppgavePage from './rapporter-inntekt/RapporterInntektOppgavePage';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { EndretSluttdatoOppgave, RapporterInntektOppgave } from '../../../types/Oppgave';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Avbrutt og utløpt',

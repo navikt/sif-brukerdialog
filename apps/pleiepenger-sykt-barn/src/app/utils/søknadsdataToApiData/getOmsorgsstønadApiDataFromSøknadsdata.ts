@@ -1,8 +1,8 @@
-import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 import { decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
+import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { OmsorgsstønadSøknadsdata, OmsorgsstønadType } from '../../types/søknadsdata/OmsorgsstønadSøknadsdata';
 
 type OmsorgsstønadApiData = Pick<SøknadApiData, 'omsorgsstønad'>;
 

@@ -1,8 +1,9 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
-import { syncAnsattArbeidsforhold } from '../arbeidsgivereUtils';
 import { vi } from 'vitest';
+
+import { Arbeidsgiver, ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
+import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { syncAnsattArbeidsforhold } from '../arbeidsgivereUtils';
 
 const organisasjoner: Arbeidsgiver[] = [
     { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1' },

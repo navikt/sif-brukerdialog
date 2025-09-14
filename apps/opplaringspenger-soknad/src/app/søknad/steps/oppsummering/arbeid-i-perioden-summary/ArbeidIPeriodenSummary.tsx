@@ -1,5 +1,4 @@
 import { FormSummary, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
@@ -62,12 +61,12 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
     }
 };
 
-const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
+const ArbeidIPeriodenSummary = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     valgteDatoer,
     søknadsperiode,
     onEdit,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
     const alleArbeidsforhold: ArbeidIPeriodenSummaryItemType[] = [];

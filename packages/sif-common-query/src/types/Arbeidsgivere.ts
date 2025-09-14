@@ -1,10 +1,11 @@
 import {
     zArbeidsgivereDto,
+    zFrilansoppdragDto,
     zOrganisasjonDto,
     zPrivatArbeidsgiverDto,
-    zFrilansoppdragDto,
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
+
 import { jsonParseUtils } from '../utils/jsonParseUtils';
 
 // Schema som konverterer string-dato til Date

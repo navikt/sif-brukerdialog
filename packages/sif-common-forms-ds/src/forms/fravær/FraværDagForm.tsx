@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
 import {
     datepickerUtils,
     FormikDatepickerProps,
@@ -7,6 +5,7 @@ import {
     getTypedFormComponents,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
@@ -15,7 +14,9 @@ import {
     ValidateNumberError,
 } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
-import { useFraværIntl } from './i18n';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
+
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
@@ -24,8 +25,8 @@ import {
     validateLessOrEqualTo,
     validateNotHelgedag,
 } from './fraværValidationUtils';
+import { useFraværIntl } from './i18n';
 import { FraværDag, FraværDagFormValues } from './types';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export interface FraværDagFormLabels {
     tittel: string;

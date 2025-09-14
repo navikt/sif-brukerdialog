@@ -1,4 +1,3 @@
-import React, { ReactElement } from 'react';
 import { useAppIntl } from '@i18n/index';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import {
@@ -24,6 +23,8 @@ import {
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
+import { ReactElement } from 'react';
+
 import { AppText } from '../../../i18n';
 import {
     getDagerMedNyTid,
@@ -81,7 +82,7 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 
 const bem = bemUtils('tidEnkeltdagForm');
 
-const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
+const TidEnkeltdagForm = ({
     dato,
     tid,
     tidOpprinnelig,
@@ -91,7 +92,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     hvorMyeSpørsmålRenderer,
     onSubmit,
     onCancel,
-}) => {
+}: TidEnkeltdagFormProps) => {
     const { text, intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {

@@ -1,7 +1,5 @@
-import { Alert, Link, VStack } from '@navikt/ds-react';
-import React from 'react';
-import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import { Alert, Link, VStack } from '@navikt/ds-react';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -10,6 +8,8 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../../i18n';
 import { getLenker } from '../../../lenker';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
@@ -20,8 +20,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,
-    getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    getArbeidstidStepInitialValues,
 } from './arbeidstidStepUtils';
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
@@ -48,7 +48,7 @@ interface Props {
     goBack?: () => void;
 }
 
-const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
+const ArbeidstidForm = ({ goBack }: Props) => {
     const stepId = StepId.ARBEIDSTID;
     const intl = useIntl();
     const {

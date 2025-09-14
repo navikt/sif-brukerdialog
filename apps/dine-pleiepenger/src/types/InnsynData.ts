@@ -2,8 +2,8 @@ import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApp
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Brukerprofil } from './Brukerprofil';
-import { Mellomlagringer } from './Mellomlagring';
 import { InnsendtSøknad } from './InnsendtSøknad';
+import { Mellomlagringer } from './Mellomlagring';
 import { SakerParseError } from './SakerParseError';
 
 export interface Innsynsdata {

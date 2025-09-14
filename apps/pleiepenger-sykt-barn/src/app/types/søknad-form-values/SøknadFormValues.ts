@@ -7,14 +7,15 @@ import {
     UtenlandsoppholdEnkel,
     UtenlandsoppholdUtvidet,
 } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
+import { FosterhjemsgodtgjørelseFormValues } from './FosterhjemsgodtgjørelseFormValues';
 import { FrilansFormValues } from './FrilansFormValues';
+import { OmsorgsstønadFormValues } from './OmsorgsstønadFormValues';
 import { OmsorgstilbudFormValues } from './OmsorgtilbudFormValues';
 import { SelvstendigFormValues } from './SelvstendigFormValues';
-import { FosterhjemsgodtgjørelseFormValues } from './FosterhjemsgodtgjørelseFormValues';
-import { OmsorgsstønadFormValues } from './OmsorgsstønadFormValues';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

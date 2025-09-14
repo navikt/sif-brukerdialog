@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
+import { BodyLong } from '@navikt/ds-react';
 import {
     DateRange,
     FormikValuesObserver,
@@ -10,24 +10,27 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useCallback, useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { FraværMap } from '../../../types/FraværTypes';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { ArbeidforholdSøknadsdata } from '../../../types/søknadsdata/SituasjonSøknadsdata';
+import { StepId } from '../../../types/StepId';
 import {
     getAlleFraværDager,
     getAlleFraværDagerFromSøknadsdata,
     getAlleFraværPerioder,
     getAlleFraværPerioderFromSøknadsdata,
-    getTidsromFromÅrstall,
     getÅrstallFromFravær,
+    getTidsromFromÅrstall,
 } from '../../../utils/fraværUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
@@ -37,12 +40,10 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import ArbeidsforholdFraværSpørsmål from './form-parts/ArbeidsforholdFraværSpørsmål';
 import {
-    getFraværStepInitialValues,
     getFraværSøknadsdataFromFormValues,
+    getFraværStepInitialValues,
     getOrganisasjonsnummerKey,
 } from './fraværStepUtils';
-import { BodyLong } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum FraværStepFormFields {
     fravær = 'fravær',

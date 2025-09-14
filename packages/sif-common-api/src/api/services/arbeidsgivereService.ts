@@ -1,5 +1,6 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { arbeidsgivereResponseSchema } from '../schemas/arbeidsgivereSchema';
 import { Arbeidsgivere } from '../types';

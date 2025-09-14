@@ -1,6 +1,9 @@
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { usePrevious } from '@navikt/sif-common-hooks';
+
+import { useDeltakerContext } from '../../hooks/useDeltakerContext';
+import { AppRoutes } from '../../utils/AppRoutes';
 import { useSøknadContext } from './hooks/context/useSøknadContext';
 import KvitteringPage from './pages/KvitteringPage';
 import VelkommenPage from './pages/VelkommenPage';
@@ -9,8 +12,6 @@ import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { Steg } from './types';
 import { getSøknadStegRoute, SøknadRoutes } from './utils/søknadRouteUtils';
-import { useDeltakerContext } from '../../hooks/useDeltakerContext';
-import { AppRoutes } from '../../utils/AppRoutes';
 
 const SøknadRouter = () => {
     const { søknadSendt, søknadStartet } = useSøknadContext();

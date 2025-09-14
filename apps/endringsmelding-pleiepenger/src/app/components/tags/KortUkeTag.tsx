@@ -1,12 +1,13 @@
 import { Tag, TagProps } from '@navikt/ds-react';
 import React from 'react';
+
 import { useAppIntl } from '../../i18n';
 
 interface Props extends Omit<TagProps, 'variant' | 'size' | 'children'> {
     children?: React.ReactNode;
 }
 
-const KortUkeTag: React.FunctionComponent<Props> = ({ children, ...rest }) => {
+const KortUkeTag = ({ children, ...rest }: Props) => {
     const { text } = useAppIntl();
     return (
         <Tag variant="info" size="small" {...rest}>

@@ -1,5 +1,4 @@
 import { Accordion, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
@@ -9,6 +8,8 @@ import {
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import React from 'react';
+
 import DurationWeekdaysWeek from './duration-weekdays-week/DurationWeekdaysWeek';
 
 export type DurationWeekdaysDateValidator = (
@@ -27,7 +28,7 @@ export interface DurationWeekdaysInputProps {
     validateDate: DurationWeekdaysDateValidator;
 }
 
-const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps> = ({
+const DurationWeekdaysInput = ({
     dateRange,
     formikFieldName,
     disabledDates = [],
@@ -36,7 +37,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
     accordionOpen,
     renderMonthHeader,
     validateDate,
-}) => {
+}: DurationWeekdaysInputProps) => {
     const months = getMonthsInDateRange(dateRange);
 
     const getEnabledDatesInMonth = (month: DateRange) => {

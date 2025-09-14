@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { InformationSquareIcon, MenuGridIcon, MoonFillIcon, PersonIcon, SunFillIcon } from '@navikt/aksel-icons';
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
-import { useDrawer } from '../drawer/DrawerContext';
 import DrawerArticles from '../../pages/info-page/DrawerArticles';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
+import { useDrawer } from '../drawer/DrawerContext';
 
 interface Props {
     visActionsMenu?: boolean;

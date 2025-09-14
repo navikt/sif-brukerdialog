@@ -9,6 +9,7 @@ import {
     isDateWeekDay,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { TidEnkeltdagApiData, TimerFasteDagerApiData } from '../../types/søknad-api-data/SøknadApiData';
 
 export const getFasteDagerApiData = ({

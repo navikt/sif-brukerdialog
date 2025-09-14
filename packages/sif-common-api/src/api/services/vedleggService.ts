@@ -1,6 +1,7 @@
-import { AxiosResponse } from 'axios';
-import { axiosMultipartConfig, getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { getCommonEnv } from '@navikt/sif-common-env';
+import { AxiosResponse } from 'axios';
+
+import { axiosMultipartConfig, getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 
 const servicePath = '/vedlegg';
 

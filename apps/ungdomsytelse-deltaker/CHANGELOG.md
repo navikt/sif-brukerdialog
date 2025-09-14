@@ -1,5 +1,41 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.2.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.15
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-api@0.4.45
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-faro@0.2.6
+    - @navikt/sif-common-forms-ds@21.0.2
+    - @navikt/sif-common-soknad-ds@26.0.2
+    - @navikt/sif-common-ui@0.11.2
+    - @navikt/ung-common@0.0.44
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.19
+- Skru av ux-signals midlertidig + bruke workspace eslint
+
+## 1.2.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.18
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.14
+    - @navikt/sif-common-soknad-ds@26.0.1
+    - @navikt/sif-common-forms-ds@21.0.1
+    - @navikt/sif-common-core-ds@10.3.1
+    - @navikt/sif-common-api@0.4.44
+    - @navikt/sif-common-ui@0.11.1
+    - @navikt/ung-common@0.0.43
+
 ## 1.2.0
 
 ### Minor Changes

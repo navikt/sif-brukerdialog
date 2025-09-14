@@ -1,4 +1,6 @@
-import { Navigate, Route } from 'react-router-dom';
+import './app.css';
+
+import { Theme } from '@navikt/ds-react';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
@@ -6,12 +8,12 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { Navigate, Route } from 'react-router-dom';
+
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
-import './app.css';
-import { Theme } from '@navikt/ds-react';
 
 const {
     PUBLIC_PATH,

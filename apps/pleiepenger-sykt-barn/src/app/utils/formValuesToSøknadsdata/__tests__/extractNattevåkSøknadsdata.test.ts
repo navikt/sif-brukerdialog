@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { extractNattevåkSøknadsdata } from '../extractNattevåkSøknadsdata';
+
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
+import { extractNattevåkSøknadsdata } from '../extractNattevåkSøknadsdata';
 
 describe('extractNattevåkSøknadsdata', () => {
     it('returnerer type harNattevåk og harNattevåk === true', () => {

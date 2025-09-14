@@ -1,6 +1,5 @@
 /* eslint-disable no-case-declarations */
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import {
     EndretSluttdatoDataDto,
     EndretStartdatoDataDto,
@@ -11,6 +10,8 @@ import {
     Oppgavetype,
     SøkYtelseOppgavetypeDataDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import dayjs from 'dayjs';
+
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,

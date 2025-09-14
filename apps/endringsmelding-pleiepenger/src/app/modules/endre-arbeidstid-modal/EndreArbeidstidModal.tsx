@@ -1,6 +1,7 @@
+import './endreArbeidstidModal.css';
+
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
-import './endreArbeidstidModal.css';
 
 interface Props {
     title: string;

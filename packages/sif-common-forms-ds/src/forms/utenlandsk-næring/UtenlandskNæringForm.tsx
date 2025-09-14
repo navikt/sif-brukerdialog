@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ISOStringToDate,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateRangeValidator,
@@ -15,6 +15,8 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
 import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './i18n';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
@@ -23,7 +25,6 @@ import {
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;

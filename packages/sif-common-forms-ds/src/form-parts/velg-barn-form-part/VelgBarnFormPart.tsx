@@ -1,11 +1,12 @@
 import { Box } from '@navikt/ds-react';
-import { useMemo } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { FormikRadioGroup, FormikRadioProp } from '@navikt/sif-common-formik-ds';
 import { FormikRadioGroupProps } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useMemo } from 'react';
+
 import { FormsText, useFormsIntl } from '../../i18n/forms.messages';
 
 export const VelgBarn_AnnetBarnValue = 'annetBarn';

@@ -1,4 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
+
 import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 import { DineBarnFormValues } from '../DineBarnStep';
 import { getBarnAlderInfo, getDineBarnScenario, getHarUtvidetRett } from '../dineBarnStepUtils';
@@ -11,7 +12,7 @@ interface Props {
     formValues: Partial<DineBarnFormValues>;
 }
 
-const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, formValues }) => {
+const DineBarnScenarioer = ({ registrerteBarn, formValues }: Props) => {
     const { andreBarn = [], harAleneomsorg, harSyktBarn } = formValues;
     const barn = [...registrerteBarn, ...andreBarn];
     const barnAlderInfo = getBarnAlderInfo(barn);

@@ -3,6 +3,7 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import { dateFormatter } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';

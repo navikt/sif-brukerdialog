@@ -1,8 +1,9 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { uiMessages } from '@navikt/sif-common-ui';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import { innsynMessages } from '../apps/innsyn/i18n';
 import { ungSoknadMessages } from '../apps/søknad/i18n';
-import { uiMessages } from '@navikt/sif-common-ui';
 
 const nb = {
     ...ungSoknadMessages.nb,

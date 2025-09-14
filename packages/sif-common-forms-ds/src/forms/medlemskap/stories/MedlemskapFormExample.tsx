@@ -1,12 +1,13 @@
 import { Box, Tabs, VStack } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import JSONView from 'react-json-view';
+
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import MedlemskapForm, { MedlemskapFormErrors, MedlemskapFormValues } from '../form/MedlemskapForm';
 import { medlemskapFormMessages } from '../i18n';
 import MedlemskapSummary from '../summary/MedlemskapSummary';
-import JSONView from 'react-json-view';
 import { MedlemskapApiData } from '../types';
 
 const initialValues: MedlemskapFormValues = {

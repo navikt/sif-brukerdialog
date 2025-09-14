@@ -1,8 +1,9 @@
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { vi } from 'vitest';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../../../types';
 import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
-import { vi } from 'vitest';
 
 const formValues: OmBarnetFormValues = {
     barnetsNavn: '',

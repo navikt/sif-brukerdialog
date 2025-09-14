@@ -1,21 +1,22 @@
 import dayjs from 'dayjs';
+
 import {
-    isDateWeekDay,
     dateToISODate,
     getDatesInMonth,
-    getFirstWeekDayInMonth,
-    getISOWeekdayFromISODate,
-    getLastWeekDayInMonth,
-    isDateInDates,
-    ISODateToDate,
-    getYearMonthKey,
     getFirstOfTwoDates,
-    getWeekFromDate,
-    getLastOfTwoDates,
-    getWeeksInMonth,
-    getLastWeekdayOnOrBeforeDate,
+    getFirstWeekDayInMonth,
     getFirstWeekdayOnOrAfterDate,
-} from '..';
+    getISOWeekdayFromISODate,
+    getLastOfTwoDates,
+    getLastWeekDayInMonth,
+    getLastWeekdayOnOrBeforeDate,
+    getWeekFromDate,
+    getWeeksInMonth,
+    getYearMonthKey,
+    isDateInDates,
+    isDateWeekDay,
+    ISODateToDate,
+} from '../';
 import { sortDateArray } from '../dateUtils';
 
 describe('dateUtils', () => {

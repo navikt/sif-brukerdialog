@@ -1,4 +1,5 @@
-import { ISODateToDate, DateRange } from '@navikt/sif-common-utils';
+import { DateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { getEnkeltdagerIPeriodeApiData, getFasteDagerApiData } from '../tidsbrukApiUtils';
 
 describe('tidsbrukApiUtils', () => {

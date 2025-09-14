@@ -1,4 +1,4 @@
-import { SanityConfig } from '..';
+import { SanityConfig } from '../';
 import { getStateForApplication } from '../hooks/useAppStatus';
 import { ApplicationState, getApplicationDocumentStatusQuery } from '../hooks/useGetApplicationStatus';
 import { getTeamStatusQuery } from '../hooks/useGetTeamStatus';

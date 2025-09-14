@@ -1,5 +1,6 @@
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import React from 'react';
+
 import { HeadingLevel } from '../../../utils/headingLevelUtils';
 import StatusIkon, { StatusIconStatusKey } from '../status-icon/StatusIcon';
 

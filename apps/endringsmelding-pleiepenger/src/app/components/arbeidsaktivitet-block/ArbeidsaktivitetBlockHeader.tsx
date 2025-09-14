@@ -1,13 +1,14 @@
-import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
+import './arbeidsaktivitetBlockHeader.scss';
+
 import { Office1 } from '@navikt/ds-icons';
+import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
-import './arbeidsaktivitetBlockHeader.scss';
 
 interface Props {
     navn: string;
@@ -19,13 +20,7 @@ interface Props {
     };
 }
 
-const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
-    type,
-    arbeidsgiver,
-    navn,
-    endret,
-    erUkjentAktivitet,
-}) => {
+const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
         <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
             <div className="arbeidsaktivitetBlockHeader">

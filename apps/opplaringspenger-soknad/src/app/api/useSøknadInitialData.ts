@@ -6,8 +6,8 @@ import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 import { fetchInstitusjoner, Institusjon } from './institusjonService';
+import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;
 

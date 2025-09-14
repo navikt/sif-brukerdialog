@@ -1,7 +1,8 @@
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { countryIsMemberOfEøsOrEfta, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { hasValue } from '@navikt/sif-validation';
 import { guid } from '@navikt/sif-common-utils';
+import { hasValue } from '@navikt/sif-validation';
+
 import { Utenlandsopphold, UtenlandsoppholdEnkel, UtenlandsoppholdFormValues, UtenlandsoppholdVariant } from './types';
 
 export const mapFormValuesToUtenlandsopphold = (

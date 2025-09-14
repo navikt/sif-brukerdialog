@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ISOStringToDate,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
@@ -12,11 +12,12 @@ import {
     ValidateDateRangeError,
     ValidateRequiredFieldError,
 } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export interface BostedUtlandFormLabels {
     tittel: string;

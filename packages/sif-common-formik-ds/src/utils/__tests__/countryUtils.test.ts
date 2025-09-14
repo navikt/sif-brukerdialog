@@ -1,11 +1,11 @@
 import {
     countryIsMemberOfEøsOrEfta,
-    getCountryName,
-    ensureValidAlpha3CodeForIsoCountries,
     ensureValid3AlphaCodeForNAV,
+    ensureValidAlpha3CodeForIsoCountries,
+    getCountryName,
+    INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
     ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
     NAV_KOSOVO_ALPHA3_CODE,
-    INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
 } from '../countryUtils';
 
 describe('countryUtils', () => {

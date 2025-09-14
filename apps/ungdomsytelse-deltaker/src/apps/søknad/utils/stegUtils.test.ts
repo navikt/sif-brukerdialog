@@ -1,9 +1,10 @@
+import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { describe, expect, it } from 'vitest';
+
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo, Spørsmål, Steg, SøknadSvar } from '../types';
+import { KontonummerOppslagInfo, SøknadSvar, Spørsmål, Steg } from '../types';
 import { erStegTilgjengelig, getTilgjengeligeSteg } from './stegUtils';
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 
 describe('stegUtils', () => {
     const kontonummerInfoMedKontonummer: KontonummerOppslagInfo = {

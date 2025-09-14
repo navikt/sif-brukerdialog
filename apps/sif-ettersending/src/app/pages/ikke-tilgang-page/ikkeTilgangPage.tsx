@@ -1,9 +1,10 @@
+import { Box } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
-import { Box } from '@navikt/ds-react';
 
 interface Props {
     søknadstype: Søknadstype;

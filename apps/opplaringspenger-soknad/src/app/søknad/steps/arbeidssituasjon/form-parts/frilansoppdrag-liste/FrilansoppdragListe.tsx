@@ -1,9 +1,8 @@
 import { BodyShort, List } from '@navikt/ds-react';
-import React from 'react';
-import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
-import { AppText } from '../../../../../i18n';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import { AppText } from '../../../../../i18n';
+import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -25,7 +24,7 @@ const renderKurs = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     return null;
 };
 
-const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag }) => (
+const FrilansoppdragListe = ({ frilansoppdrag }: Props) => (
     <FormLayout.Panel>
         <List>
             {frilansoppdrag.map((oppdrag) => (

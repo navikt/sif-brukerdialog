@@ -1,6 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { AppIntlShape } from '../../../i18n';
 import {
     EndretSluttdatoOppgave,

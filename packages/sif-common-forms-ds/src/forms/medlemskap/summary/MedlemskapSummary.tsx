@@ -1,9 +1,10 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
-import { BostedUtlandApiData, MedlemskapApiData } from '../types';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { MedlemskapFormText } from '../i18n';
+import { BostedUtlandApiData, MedlemskapApiData } from '../types';
 
 export interface Props {
     medlemskap: MedlemskapApiData;
@@ -21,7 +22,7 @@ const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): React.Reac
     />
 );
 
-const MedlemskapSummary: React.FC<Props> = ({ medlemskap, onEdit }) => {
+const MedlemskapSummary = ({ medlemskap, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>

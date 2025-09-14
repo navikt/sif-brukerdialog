@@ -1,14 +1,15 @@
-import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
-import { Virksomhet } from '@navikt/sif-common-forms-ds';
-import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert, Link } from '@navikt/ds-react';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
+import { AppText, useAppIntl } from '../../../../i18n';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { FormLayout } from '@navikt/sif-common-ui';
+import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 
 export enum SelvstendigFormFields {
     harHattInntektSomSN = 'selvstendig.harHattInntektSomSN',

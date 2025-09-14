@@ -1,19 +1,18 @@
-import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { AppText } from '@i18n/index';
+import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import { Arbeidsgiver } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSelvstendigSummary from './ArbeidssituasjonSelvstendigSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
-import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
-
-import VernepliktSummary from './VernepliktSummary';
-import OmsorgsstønadSummary from './OmsorgsstønadSummary';
 import FosterhjemsgodtgjørelseSummary from './FosterhjemsgodtgjørelseSummary';
+import OmsorgsstønadSummary from './OmsorgsstønadSummary';
+import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
+import VernepliktSummary from './VernepliktSummary';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -22,7 +21,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
+const ArbeidssituasjonSummary = ({
     apiValues: {
         arbeidsgivere,
         frilans,
@@ -36,7 +35,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
     søknadsperiode,
     frilansoppdrag,
     onEdit,
-}) => {
+}: Props) => {
     return (
         <>
             <FormSummary>

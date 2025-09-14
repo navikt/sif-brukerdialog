@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import isEqual from 'react-fast-compare';
+import { getMedlemskapSøknadsdataFromFormValues, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { getMedlemskapSøknadsdataFromFormValues, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
+import { useState } from 'react';
+import isEqual from 'react-fast-compare';
+
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
+import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
+import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
+import { getDineBarnSøknadsdataFromFormValues } from '../søknad/steps/dine-barn/dineBarnStepUtils';
+import { FraværFormValues } from '../søknad/steps/fravær/FraværStep';
+import { getFraværSøknadsdataFromFormValues } from '../søknad/steps/fravær/FraværStepUtils';
+import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
+import { getFraværFraSøknadsdataFromFormValues } from '../søknad/steps/fravær-fra/FraværFraUtils';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
-import { StepFormValues } from '../types/StepFormValues';
-import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { getDineBarnSøknadsdataFromFormValues } from '../søknad/steps/dine-barn/dineBarnStepUtils';
-import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
-import { getFraværSøknadsdataFromFormValues } from '../søknad/steps/fravær/FraværStepUtils';
-import { FraværFormValues } from '../søknad/steps/fravær/FraværStep';
-import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
-import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
-import { getFraværFraSøknadsdataFromFormValues } from '../søknad/steps/fravær-fra/FraværFraUtils';
-import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
+import { StepFormValues } from '../types/StepFormValues';
+import { StepId } from '../types/StepId';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];

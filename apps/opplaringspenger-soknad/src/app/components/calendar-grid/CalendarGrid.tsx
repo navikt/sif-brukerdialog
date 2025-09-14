@@ -76,7 +76,7 @@ const getMinWidthForGridView = () => {
 
 const bem = bemUtils('calendarGrid');
 
-const CalendarGrid: React.FunctionComponent<Props> = ({
+const CalendarGrid = ({
     month,
     disabledDates,
     disabledDateInfo,
@@ -88,7 +88,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     dateRendererShort = dateFormatter.compact,
     dateRendererFull = dateFormatter.dayDateMonth,
     allDaysInWeekDisabledContentRenderer,
-}) => {
+}: Props) => {
     const weekdatesInMonth = getDatesInMonth(month.from, true);
     const weeks = getWeeks(weekdatesInMonth, month.from);
     const calendarGridRef = useRef(null);

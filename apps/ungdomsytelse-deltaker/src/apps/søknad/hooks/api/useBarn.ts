@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { fetchBarn, RegistrertBarn } from '@navikt/sif-common-api';
 import { ApiError } from '@navikt/ung-common';
+import { useQuery } from '@tanstack/react-query';
+
 import { søknadQueryKeys } from '../../queries/søknadQueries';
 
 /**

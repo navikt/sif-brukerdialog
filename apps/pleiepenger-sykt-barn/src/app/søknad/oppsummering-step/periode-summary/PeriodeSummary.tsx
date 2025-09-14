@@ -3,6 +3,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import {
     PeriodeApiData,

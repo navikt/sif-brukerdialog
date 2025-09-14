@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
-import { setNow } from '../../utils/setNow';
+import { expect, test } from '@playwright/test';
+import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { StepID } from '../../../src/app/types/StepID';
+import { setNow } from '../../utils/setNow';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -22,7 +22,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Nei').click();
         await page
@@ -31,7 +31,7 @@ test.describe('Arbeidssituasjon', () => {
             .getByRole('button')
             .click();
         await page.getByTestId('er-frilanser-sluttdato').getByLabel('søndag 1', { exact: true }).click();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).locator('span').nth(3).click();
+        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
         await page
             .locator('div')
             .filter({ hasText: /^Når startet du å jobbe som frilanser\?Åpne datovelger$/ })

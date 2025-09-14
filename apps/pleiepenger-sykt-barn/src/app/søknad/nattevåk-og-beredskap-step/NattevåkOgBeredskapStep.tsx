@@ -1,19 +1,20 @@
-import { BodyLong, Box, List } from '@navikt/ds-react';
-import { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
+import { BodyLong, Box, List } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
+
 import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { AppText } from '../../i18n';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { registrerteBarnMock } from '../../../storybook/data/registrerteBarn.mock';
 import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
 import { withIntl } from '../../../storybook/decorators/withIntl';

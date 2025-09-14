@@ -1,7 +1,7 @@
 import {
-    InvalidParameterViolation,
     InvalidParameterErrorResponse,
     invalidParameterErrorResponseSchema,
+    InvalidParameterViolation,
 } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
 

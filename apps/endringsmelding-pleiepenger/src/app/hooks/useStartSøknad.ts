@@ -1,7 +1,8 @@
 import { useSøknadContext } from '@hooks';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { EndringType } from '@types';
+
 import actionsCreator from '../søknad/context/action/actionCreator';
 
 export const useStartSøknad = () => {

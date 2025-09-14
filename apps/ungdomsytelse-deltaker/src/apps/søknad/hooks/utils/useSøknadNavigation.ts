@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { Steg } from '../../types';
-import { getStegFraPath } from '../../utils/stegUtils';
 import { getSøknadStegRoute, SøknadRoutes } from '../../utils/søknadRouteUtils';
+import { getStegFraPath } from '../../utils/stegUtils';
 
 export const useSøknadNavigation = () => {
     const navigate = useNavigate();

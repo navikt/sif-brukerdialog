@@ -1,5 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
+
 import { getRouteConfig } from '../../config/routeConfig';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';

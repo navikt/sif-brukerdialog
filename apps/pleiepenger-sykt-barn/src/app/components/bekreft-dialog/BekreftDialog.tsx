@@ -1,8 +1,10 @@
+import './bekreftDialog.less';
+
 import { Button, Modal, ModalProps } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import classnames from 'classnames';
+
 import Knapperad from '../knapperad/Knapperad';
-import './bekreftDialog.less';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
     tittel: string;

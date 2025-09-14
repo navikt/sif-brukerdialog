@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { OmsorgsstønadFormValues } from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { vi } from 'vitest';
+
+import { OmsorgsstønadFormValues } from '../../../../types/søknad-form-values/OmsorgsstønadFormValues';
 import { cleanupOmsorgsstønad } from '../cleanupOmsorgsstønad';
 
 const ISOStartdato = '2021-01-01';

@@ -7,12 +7,7 @@ export interface IntlProviderProps {
     onError?: (error: any) => void;
 }
 
-const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({
-    locale,
-    messages = {},
-    onError,
-    children,
-}) => {
+const StoryIntlProvider = ({ locale, messages = {}, onError, children }: IntlProviderProps) => {
     return (
         <IntlProvider locale={locale} messages={messages} onError={onError}>
             {children}

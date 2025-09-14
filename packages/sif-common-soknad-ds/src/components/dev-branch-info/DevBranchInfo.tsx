@@ -1,6 +1,6 @@
 import { Tag } from '@navikt/ds-react';
-import { useRef } from 'react';
 import { getMaybeEnv, isDevMode } from '@navikt/sif-common-env';
+import { useRef } from 'react';
 
 const DevBranchInfo = () => {
     const tagRef = useRef<HTMLDivElement>(null);

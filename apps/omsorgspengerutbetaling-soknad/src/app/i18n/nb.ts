@@ -2,8 +2,8 @@ import { kvitteringMessages_nb } from '../pages/kvittering/i18n/nb';
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
 import { arbeidssituasjonMessages_nb } from '../søknad/steps/arbeidssituasjon/i18n/nb';
 import { dineBarnMessages_nb } from '../søknad/steps/dine-barn/i18n/nb';
-import { fraværFraMessages_nb } from '../søknad/steps/fravær-fra/i18n/nb';
 import { fraværStepMessages_nb } from '../søknad/steps/fravær/i18n/nb';
+import { fraværFraMessages_nb } from '../søknad/steps/fravær-fra/i18n/nb';
 import { legeerklæringMessages_nb } from '../søknad/steps/legeerklæring/i18n/nb';
 import { oppsummeringMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
 

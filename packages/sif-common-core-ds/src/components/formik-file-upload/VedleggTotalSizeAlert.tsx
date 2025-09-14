@@ -1,4 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
+
 import { CoreText } from '../../i18n/common.messages';
 
 const VedleggTotalSizeAlert = ({ uploadLaterURL }: { uploadLaterURL?: string }) => {

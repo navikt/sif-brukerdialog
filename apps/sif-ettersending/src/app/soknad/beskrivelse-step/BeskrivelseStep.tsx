@@ -1,5 +1,6 @@
 import { BodyLong, Link, List } from '@navikt/ds-react';
 import { getStringValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';

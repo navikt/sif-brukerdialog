@@ -1,4 +1,5 @@
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+
 import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

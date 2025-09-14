@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+import { useEffect, useState } from 'react';
+
 import usePersistSoknad from '../../hooks/usePersistSoknad';
-import { StepID } from '../../types/StepID';
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
 import { søkerKunHelgedager } from '../../utils/formValuesUtils';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
 import omsorgstilbudInfo from './info/OmsorgstilbudInfo';
 import OmsorgstilbudSpørsmål from './OmsorgstilbudSpørsmål';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     søknadsperiode: DateRange;

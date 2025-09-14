@@ -1,11 +1,13 @@
-import { Alert, Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { Alert, Link } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
@@ -16,7 +18,6 @@ import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormValues, ValidationError>();
 

@@ -15,7 +15,7 @@ export interface SpørsmålWrapperProps {
 
 const { getIntlMessagesFromKeys } = storybookIntlUtils;
 
-export const SpørsmålWrapper: React.FunctionComponent<SpørsmålWrapperProps> = (props) => {
+export const SpørsmålWrapper = (props: SpørsmålWrapperProps) => {
     const { spørsmål, messageIntlKeys = [], validationErrorIntlKeys = [], formErrorHandlerIntlKey } = props;
     const infoMessages = getIntlMessagesFromKeys(messageIntlKeys);
     const validationMessages = getIntlMessagesFromKeys(validationErrorIntlKeys);

@@ -1,20 +1,20 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import OfficeIconSvg from '../../../components/office-icon/OfficeIconSvg';
+import { AppText } from '../../../i18n';
 import {
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,
 } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { getFeatureToggles } from '../../../utils/featureToggleUtils';
 import AnsattNormalarbeidstidSpørsmål from './ansatt-spørsmål/AnsattNormalarbeidstidSpørsmål';
 import ErAnsattIArbeidsforholdSpørsmål from './ansatt-spørsmål/ErAnsattIArbeidsforholdSpørsmål';
 import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørsmål/SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål';
 import ArbeidssituasjonPanel from './arbeidssituasjon-panel/ArbeidssituasjonPanel';
-import { AppText } from '../../../i18n';
-import { getFeatureToggles } from '../../../utils/featureToggleUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
@@ -22,7 +22,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldName, søknadsperiode }) => {
+const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperiode }: Props) => {
     const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
 
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField =>

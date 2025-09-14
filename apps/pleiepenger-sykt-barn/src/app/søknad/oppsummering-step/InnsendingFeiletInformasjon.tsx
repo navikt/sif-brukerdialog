@@ -1,5 +1,4 @@
 import { Alert, List } from '@navikt/ds-react';
-import React from 'react';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
@@ -120,7 +119,7 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
     );
 };
 
-const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidParameter }) => {
+const InnsendingFeiletInformasjon = ({ invalidParameter }: Props) => {
     return (
         <Alert variant="error">
             <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>

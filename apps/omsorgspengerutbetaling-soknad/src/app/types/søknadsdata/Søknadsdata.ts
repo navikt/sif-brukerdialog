@@ -1,16 +1,16 @@
 import { StepId } from '../StepId';
+import { ArbeidSøknadsdata } from './ArbeidSøknadsdata';
 import { DineBarnSøknadsdata } from './DineBarnSøknadsdata';
+import { FraværFraSøknadsdata } from './FraværFraSøknadsdata';
 import { FraværSøknadsdata } from './FraværSøknadsdata';
 import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
-import { ArbeidSøknadsdata } from './ArbeidSøknadsdata';
-import { FraværFraSøknadsdata } from './FraværFraSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 
+export * from './ArbeidSøknadsdata';
 export * from './DineBarnSøknadsdata';
+export * from './FraværFraSøknadsdata';
 export * from './FraværSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
-export * from './ArbeidSøknadsdata';
-export * from './FraværFraSøknadsdata';
 export * from './MedlemskapSøknadsdata';
 
 export interface Søknadsdata {

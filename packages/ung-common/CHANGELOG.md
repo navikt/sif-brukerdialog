@@ -1,5 +1,27 @@
 # @navikt/ung-common
 
+## 0.0.44
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.15
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.19
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.15
+
+## 0.0.43
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.18
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.14
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.14
+
 ## 0.0.42
 
 ### Patch Changes

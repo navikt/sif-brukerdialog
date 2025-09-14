@@ -1,13 +1,13 @@
-import { TagProps } from '@navikt/ds-react';
-import React from 'react';
 import { Vacation, Warning } from '@navikt/ds-icons';
+import { TagProps } from '@navikt/ds-react';
+
 import IconTag from './icon-tag/IconTag';
 
 interface Props extends Omit<TagProps, 'variant'> {
     type?: 'fjernet' | 'registrert';
 }
 
-const FerieTag: React.FunctionComponent<Props> = (props) => {
+const FerieTag = (props: Props) => {
     const { type = 'registrert', children, ...rest } = props;
     return (
         <IconTag

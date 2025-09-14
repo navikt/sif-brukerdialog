@@ -11,12 +11,12 @@ export { hentArbeidsgivere } from './arbeidsgivereApi';
 export { validerFritekst } from './validerFritekstApi';
 
 // Vedlegg API
-export { lagreVedlegg, slettVedlegg, hentVedlegg, getVedleggIdFromResponseHeaderLocation } from './vedleggApi';
+export { getVedleggIdFromResponseHeaderLocation, hentVedlegg, lagreVedlegg, slettVedlegg } from './vedleggApi';
 
 // Mellomlagring API
 export {
     hentYtelseMellomlagring,
-    opprettYtelseMellomlagring,
     oppdaterYtelseMellomlagring,
+    opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from './ytelseMellomlagringApi';

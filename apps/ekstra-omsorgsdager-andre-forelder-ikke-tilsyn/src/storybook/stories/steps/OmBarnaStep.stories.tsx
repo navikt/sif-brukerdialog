@@ -1,10 +1,11 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
+
 import OmBarnaStep from '../../../app/søknad/steps/om-barna/OmBarnaStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
-import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 
 export default {

@@ -1,9 +1,9 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
-import { Næringstype, VirksomhetApiData } from './types';
+
 import { useVirksomhetIntl, VirksomhetIntlShape } from './i18n';
+import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
@@ -65,7 +65,7 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Virksomhet
     );
 };
 
-const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomhet, harFlereVirksomheter }) => {
+const VirksomhetFormSummaryAnswers = ({ virksomhet, harFlereVirksomheter }: Props) => {
     const virksomhetIntl = useVirksomhetIntl();
     const { text } = virksomhetIntl;
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));

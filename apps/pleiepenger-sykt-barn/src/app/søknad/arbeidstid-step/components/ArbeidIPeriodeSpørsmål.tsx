@@ -1,7 +1,9 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { FormikRadioProp, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+import React from 'react';
+
 import {
     ArbeiderIPeriodenSvar,
     ArbeidIPeriodeIntlValues,
@@ -25,7 +27,6 @@ import {
     getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
 import ArbeidstidEnkeltuker from './ArbeidstidEnkeltuker';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;
@@ -39,7 +40,7 @@ interface Props {
     arbeiderIPeriodenDescription?: React.ReactNode;
 }
 
-const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
+const ArbeidIPeriodeSpørsmål = ({
     periode,
     parentFieldName,
     formValues,
@@ -49,7 +50,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     normalarbeidstid,
     arbeidsforholdType,
     arbeiderIPeriodenDescription,
-}) => {
+}: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;

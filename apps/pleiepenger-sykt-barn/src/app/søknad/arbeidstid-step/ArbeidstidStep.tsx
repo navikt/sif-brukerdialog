@@ -1,18 +1,19 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+
+import { AppText } from '../../i18n';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import { StepID } from '../../types/StepID';
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonAnsattType } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
 import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
-import { AppText } from '../../i18n';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();

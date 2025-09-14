@@ -1,5 +1,6 @@
 import { getCountryName, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { Virksomhet, VirksomhetApiData } from './types';
 import { erFiskerNæringstype, erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 

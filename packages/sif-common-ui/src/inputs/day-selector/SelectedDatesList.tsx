@@ -1,14 +1,13 @@
-import React from 'react';
+import { List } from '@navikt/ds-react';
 import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { List } from '@navikt/ds-react';
 
 interface Props {
     dates: Date[];
     groupDates?: boolean;
 }
 
-const SelectedDatesList: React.FunctionComponent<Props> = ({ dates, groupDates }) => {
+const SelectedDatesList = ({ dates, groupDates }: Props) => {
     const dateRanges = groupDates ? getDateRangesFromDates(dates) : dates.map((d) => ({ from: d, to: d }));
     return (
         <List>

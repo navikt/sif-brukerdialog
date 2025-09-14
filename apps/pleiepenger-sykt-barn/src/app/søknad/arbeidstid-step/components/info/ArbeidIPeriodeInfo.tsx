@@ -1,8 +1,9 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import InfoOmEndring from '../InfoOmEndring';
-import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
+
 import { AppText } from '../../../../i18n';
+import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
+import InfoOmEndring from '../InfoOmEndring';
 
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;
@@ -12,13 +13,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
-    arbeidsforholdType,
-    søkerFremITid,
-    mottarOmsorgsstønad,
-    tittel,
-    children,
-}) => (
+const ArbeidIPeriodeInfo = ({ arbeidsforholdType, søkerFremITid, mottarOmsorgsstønad, tittel, children }: Props) => (
     <>
         <Heading level="3" size="small">
             {tittel}

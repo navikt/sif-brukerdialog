@@ -1,6 +1,7 @@
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
-import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import { DateRange } from '@navikt/sif-common-utils';
+
+import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 
 export const appArbeidsgivereService = {
     fetch: async (periode: DateRange): Promise<Arbeidsgiver[]> => {

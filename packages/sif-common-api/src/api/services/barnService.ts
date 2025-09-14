@@ -1,4 +1,5 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+
 import { getK9BrukerdialogApiClient } from '../k9BrukerdialogApiClient';
 import { barnResponseSchema } from '../schemas/barnSchema';
 import { RegistrertBarn } from '../types';

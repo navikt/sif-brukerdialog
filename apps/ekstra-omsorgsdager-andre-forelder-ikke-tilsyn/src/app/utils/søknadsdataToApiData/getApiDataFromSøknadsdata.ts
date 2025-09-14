@@ -1,9 +1,10 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { Locale } from '@navikt/sif-common-core-ds/src';
+
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getApiDataAnnenForelderFromSøknadsdata } from './getApiDataAnnenForelderFromSøknadsdata';
 import { getOmBarnaApiDataFromSøknadsdata } from './getOmBarnaApiDataFromSøknadsdata';
-import { Locale } from '@navikt/sif-common-core-ds/src';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,

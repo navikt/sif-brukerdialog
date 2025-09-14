@@ -1,6 +1,7 @@
-import { isAxiosError } from 'axios';
-import { CoreIntlShape } from '../../i18n/common.messages';
 import { FileRejectionReason } from '@navikt/ds-react';
+import { isAxiosError } from 'axios';
+
+import { CoreIntlShape } from '../../i18n/common.messages';
 import { PersistedFile } from '../../types';
 
 export enum FileUploadErrorReason {

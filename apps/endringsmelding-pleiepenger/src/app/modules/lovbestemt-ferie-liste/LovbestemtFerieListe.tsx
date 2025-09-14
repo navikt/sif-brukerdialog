@@ -1,11 +1,12 @@
+import './lovbestemtFerieListe.scss';
+
 import { Alert, Button } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { LovbestemtFeriePeriode } from '@types';
+
 import DeleteButton from '../../components/buttons/DeleteButton';
 import EditButton from '../../components/buttons/EditButton';
 import FerieTag from '../../components/tags/FerieTag';
-import './lovbestemtFerieListe.scss';
 import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
     onUndoDelete?: (periode: LovbestemtFeriePeriode) => void;
 }
 
-const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit, onDelete, onUndoDelete }) => {
+const LovbestemtFerieListe = ({ perioder, onEdit, onDelete, onUndoDelete }: Props) => {
     const { text } = useAppIntl();
     return (
         <ul className="lovbestemtFerieListe">

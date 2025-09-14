@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Heading, VStack } from '@navikt/ds-react';
-import OppgaveStatusInfo from './OppgaveStatusInfo';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
+import { withIntl } from '../../../../../storybook/decorators/withIntl';
+import OppgaveStatusInfo from './OppgaveStatusInfo';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/OppgaveStatusInfo',

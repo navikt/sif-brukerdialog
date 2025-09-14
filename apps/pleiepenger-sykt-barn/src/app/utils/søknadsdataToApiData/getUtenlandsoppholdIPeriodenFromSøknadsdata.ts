@@ -3,6 +3,7 @@ import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { DateTidsperiode } from '@navikt/sif-common-forms-ds/src/forms/tidsperiode';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { sortItemsByFomTom } from '../../local-sif-common-pleiepenger/utils';
 import {
     PeriodeApiData,

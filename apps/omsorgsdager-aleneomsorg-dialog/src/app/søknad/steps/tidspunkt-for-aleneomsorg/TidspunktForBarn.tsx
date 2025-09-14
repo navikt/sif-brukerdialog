@@ -1,6 +1,9 @@
+import { Heading } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../i18n';
 import {
     AleneomsorgTidspunktField,
@@ -9,8 +12,6 @@ import {
     TidspunktForAleneomsorgFormValues,
 } from './TidspunktForAleneomsorgStep';
 import { BarnMedAleneomsorg, getMinDateYearAgo, getYear } from './tidspunktForAleneomsorgStepUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { Heading } from '@navikt/ds-react';
 
 interface Props {
     barnMedAleneomsorg: BarnMedAleneomsorg;

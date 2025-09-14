@@ -1,7 +1,7 @@
-import { Page } from '@playwright/test';
-import { mockData } from '../mock-data';
-import { StepID } from '../../src/app/types/StepID';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { Page } from '@playwright/test';
+import { StepID } from '../../src/app/types/StepID';
+import { mockData } from '../mock-data';
 
 export const setupMockRoutes = async (
     page: Page,

@@ -1,8 +1,9 @@
+import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { describe, expect, it } from 'vitest';
-import { KontonummerOppslagInfo, Spørsmål, SøknadSvar } from '../../types';
+
+import { KontonummerOppslagInfo, SøknadSvar, Spørsmål } from '../../types';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 
 const deltakelseId = '12345';
 const oppgaveReferanse = '12345';

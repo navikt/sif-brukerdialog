@@ -1,6 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
-import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
 import { dateFormatter } from '@navikt/sif-common-utils';
+
+import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
 
 interface Props {
     fraOgMed: Date;

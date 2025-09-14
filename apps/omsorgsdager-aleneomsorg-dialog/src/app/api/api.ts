@@ -1,8 +1,9 @@
 import { addCorrelationIdToAxionsConfig } from '@navikt/sif-common-core-ds';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
-import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+
 import { appEnv } from '../utils/appEnv';
+import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
     'soker' = 'oppslag/soker',

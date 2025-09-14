@@ -1,5 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../../i18n';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import BarnSummaryList from './BarnSummaryList';

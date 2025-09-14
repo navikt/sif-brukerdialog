@@ -1,7 +1,8 @@
-import React from 'react';
-import { getCountries } from '../../utils/countryUtils';
-import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
+import React from 'react';
+
+import { TestProps } from '../../types';
+import { getCountries } from '../../utils/countryUtils';
 import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface Props extends TestProps, Omit<SelectProps, 'onChange' | 'children'> {

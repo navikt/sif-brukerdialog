@@ -1,4 +1,5 @@
 import { IntlProvider } from 'react-intl';
+
 import { applicationIntlMessages } from '../../app/i18n';
 
 export interface IntlProviderProps {
@@ -6,7 +7,7 @@ export interface IntlProviderProps {
     children: React.ReactNode;
     onError?: (error: any) => void;
 }
-const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ onError, children }) => {
+const StoryIntlProvider = ({ onError, children }: IntlProviderProps) => {
     return (
         <IntlProvider locale="no-NB" messages={applicationIntlMessages.nb} onError={onError}>
             {children}

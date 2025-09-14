@@ -1,5 +1,4 @@
 import { List } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
@@ -7,7 +6,7 @@ interface Props {
     dagerMedPleie: Date[];
 }
 
-const ValgteDagerMedPleie: React.FunctionComponent<Props> = ({ dagerMedPleie }) => {
+const ValgteDagerMedPleie = ({ dagerMedPleie }: Props) => {
     const dateRanges = getDateRangesFromDates(dagerMedPleie);
     return (
         <List>

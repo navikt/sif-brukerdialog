@@ -1,7 +1,8 @@
 import { Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
-import { StepId } from '../søknad/config/StepId';
+
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
+import { StepId } from '../søknad/config/StepId';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9Sak } from './K9Sak';
 import { Sak } from './Sak';

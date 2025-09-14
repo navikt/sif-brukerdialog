@@ -1,7 +1,8 @@
 import { Theme } from '@navikt/ds-react';
+import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
 import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
@@ -12,8 +13,8 @@ import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
 import { useBarn } from './hooks/api/useBarn';
 import { useKontonummer } from './hooks/api/useKontonummer';
-import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import SøknadRouter from './SøknadRouter';
+import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
 import { KontonummerOppslagInfo } from './types';
 import { formaterKontonummer } from './utils/formaterKontonummer';
 

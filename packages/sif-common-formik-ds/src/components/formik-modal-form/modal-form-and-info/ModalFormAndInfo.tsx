@@ -1,6 +1,7 @@
 import { BoxNew, Button, HStack, Modal, VStack } from '@navikt/ds-react';
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';

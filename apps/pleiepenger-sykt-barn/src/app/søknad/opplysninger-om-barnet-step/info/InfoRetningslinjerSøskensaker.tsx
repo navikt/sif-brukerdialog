@@ -1,4 +1,5 @@
 import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
 
 const InfoRetningslinjerSøskensaker = () => (

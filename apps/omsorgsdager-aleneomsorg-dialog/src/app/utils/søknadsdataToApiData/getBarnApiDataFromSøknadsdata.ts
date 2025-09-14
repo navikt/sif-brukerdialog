@@ -2,6 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import {
     AleneomsorgTidspunkt,
     TidspunktForAleneomsorg,

@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { ApiError } from '@navikt/ung-common';
+import { useQuery } from '@tanstack/react-query';
+
 import { commonQueryKeys } from '../queries/commonQueries';
 
 /**

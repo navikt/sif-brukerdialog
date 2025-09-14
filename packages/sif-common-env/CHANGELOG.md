@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.1.6
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 0.1.5
 
 ### Patch Changes

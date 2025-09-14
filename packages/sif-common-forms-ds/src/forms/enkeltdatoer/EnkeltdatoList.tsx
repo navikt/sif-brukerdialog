@@ -1,7 +1,8 @@
-import React from 'react';
-import { ActionLink } from '@navikt/sif-common-ui';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import { ActionLink } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import React from 'react';
+
 import { Enkeltdato } from './types';
 
 interface Props {

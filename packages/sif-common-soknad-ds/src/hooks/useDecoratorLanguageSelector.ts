@@ -1,5 +1,5 @@
+import { DecoratorLocale, onLanguageSelect, setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setAvailableLanguages, onLanguageSelect, DecoratorLocale } from '@navikt/nav-dekoratoren-moduler';
 
 function useDecoratorLanguageSelector(languages: DecoratorLocale[], onChangeLocale: (locale: DecoratorLocale) => void) {
     useEffectOnce(() => {

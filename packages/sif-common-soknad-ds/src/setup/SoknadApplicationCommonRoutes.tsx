@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 import ErrorPage from '../pages/error-page/ErrorPage';
 

@@ -1,5 +1,6 @@
+import './omOmsorgenForBarn.css';
+
 import { Alert, Bleed, Heading, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
@@ -14,12 +15,14 @@ import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-
 import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { nYearsAgo } from '../../../utils/aldersUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
@@ -30,10 +33,9 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     barnItemLabelRenderer,
     getBarnOptions,
-    getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
+    getOmOmsorgenForBarnStepInitialValues,
 } from './omOmsorgenForBarnStepUtils';
-import './omOmsorgenForBarn.css';
 
 export enum OmOmsorgenForBarnFormFields {
     annetBarn = 'annetBarn',

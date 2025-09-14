@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { DeltakerContext, DeltakerContextType } from '../context/DeltakerContext';
 
 export const useDeltakerContext = (): DeltakerContextType => {

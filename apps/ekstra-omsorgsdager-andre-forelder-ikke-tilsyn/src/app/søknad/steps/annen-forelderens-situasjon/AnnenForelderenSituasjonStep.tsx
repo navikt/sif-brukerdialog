@@ -8,6 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -15,16 +16,16 @@ import { AppText, useAppIntl } from '../../../i18n';
 import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { AnnenForeldrenSituasjon, AnnenForeldrenSituasjonType } from '../../../types/AnnenForeldrenSituasjon';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { validateFraDato, validateTextArea, validateTildato } from '../../../validation/fieldValidations';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import {
-    getAnnenForelderenSituasjonStepInitialValues,
     getAnnenForelderenSituasjonSøknadsdataFromFormValues,
+    getAnnenForelderenSituasjonStepInitialValues,
     isPeriodeLess6month,
 } from './annenForelderenSituasjonStepUtils';
 

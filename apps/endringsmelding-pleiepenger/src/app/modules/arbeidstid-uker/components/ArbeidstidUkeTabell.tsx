@@ -1,9 +1,10 @@
 import { Box, Checkbox, Table } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { ReactElement } from 'react';
+
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -22,14 +23,14 @@ interface Props {
     renderUkerFooter: () => ReactElement;
 }
 
-const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
+const ArbeidstidUkeTabell = ({
     uker,
     visEndringSomOpprinnelig,
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
     renderEditButton,
-}) => {
+}: Props) => {
     const { intl } = useAppIntl();
     const {
         isItemSelected,

@@ -4,14 +4,14 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.1.13",
+    "version": "0.1.15",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.83.1",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",
         "vitest": "3.2.4",
-        "zod": "4.1.7"
+        "zod": "4.1.8"
     },
     "peerDependencies": {
         "dayjs": "*",
@@ -38,8 +38,8 @@
         "gen-types:pleiepenger-sykt-barn-soknad": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-soknad.ts",
         "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
         "codegen": "yarn gen-types:all:fixed",
-        "lint:eslint": "eslint './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
-        "lint:fix": "eslint --quiet --fix './src/**/*.gen.ts' --ignore-pattern './src/generated/**/client/**' --ignore-pattern './src/generated/**/core/**'",
+        "lint:eslint": "eslint './src/*/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {

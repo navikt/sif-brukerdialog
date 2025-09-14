@@ -1,6 +1,7 @@
-import { createContext, useContext } from 'react';
 import { initial } from '@devexperts/remote-data-ts';
 import { SendSoknadStatusInterface, SoknadContextInterface } from '@navikt/sif-common-soknad-ds';
+import { createContext, useContext } from 'react';
+
 import { SoknadApiData } from '../types/SoknadApiData';
 import { StepID } from './soknadStepsConfig';
 

@@ -1,4 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+
 import { DokumentType } from './DokumentType';
 
 export type ISO8601Duration = string;

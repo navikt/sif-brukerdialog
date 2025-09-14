@@ -1,10 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { iso8601DurationToTime, ISODateToDate, prettifyDate, Time, timeToDecimalTime } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
+import { ReactElement } from 'react';
+
 import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { ApiAktivitet } from '../../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiData';
@@ -127,7 +128,7 @@ const harFlereFraværAktiviteter = (perioder: UtbetalingsperiodeApi[]) => {
     return uniq(flatten(perioder.map((p) => p.aktivitetFravær))).length > 1;
 };
 
-const UtbetalingsperioderOppsummering: React.FunctionComponent<Props> = ({ utbetalingsperioder = [] }) => {
+const UtbetalingsperioderOppsummering = ({ utbetalingsperioder = [] }: Props) => {
     const perioder: UtbetalingsperiodeApi[] = utbetalingsperioder.filter(
         (p) => p.tilOgMed !== undefined && p.antallTimerBorte === null,
     );

@@ -1,4 +1,5 @@
 import { IntlErrorObject, ValidationFunction } from '@navikt/sif-common-formik-ds';
+
 import { Vedlegg } from '../../types/Vedlegg';
 import { getTotalSizeOfVedlegg, removeDuplicateVedlegg, vedleggIsUploadedAndValid } from '../../utils/vedleggUtils';
 

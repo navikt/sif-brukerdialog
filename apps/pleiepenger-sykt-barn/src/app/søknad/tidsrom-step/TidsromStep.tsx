@@ -1,22 +1,24 @@
-import { Alert, Box } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
+import { Alert, Box } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { datepickerUtils, YesOrNo } from '@navikt/sif-common-formik-ds';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
+import React from 'react';
+
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { AppText } from '../../i18n';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formValuesUtils';
 import {
     getPeriodeMaksDato,
@@ -29,7 +31,6 @@ import {
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning from './harUtenlandsoppholdUtenInnleggelseEllerInnleggelseForEgenRegning';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 dayjs.extend(minMax);
 

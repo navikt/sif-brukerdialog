@@ -1,4 +1,4 @@
-import React from 'react';
+import { Heading, VStack } from '@navikt/ds-react';
 import {
     capsFirstCharacter,
     ISODate,
@@ -8,10 +8,10 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
+
 import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
-import { Heading, VStack } from '@navikt/ds-react';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -22,7 +22,7 @@ interface Props {
     dager: ISODagMedTid[];
 }
 
-const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
+const TidEnkeltdager = ({ dager }: Props) => {
     const days: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);

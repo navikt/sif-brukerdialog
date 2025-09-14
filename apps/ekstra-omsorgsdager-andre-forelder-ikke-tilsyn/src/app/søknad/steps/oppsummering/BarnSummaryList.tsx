@@ -1,4 +1,5 @@
 import { List } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../../i18n';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 

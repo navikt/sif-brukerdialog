@@ -24,6 +24,7 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
+
 import { FosterhjemsgodtgjørelseFormValues } from '../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
 import { OmsorgsstønadFormValues } from '../types/søknad-form-values/OmsorgsstønadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';

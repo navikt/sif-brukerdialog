@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import utc from 'dayjs/plugin/utc';
-import { DateRange, getWeeksInDateRange, ISODate } from '.';
+
+import { DateRange, getWeeksInDateRange, ISODate } from './';
 import { getDatesInDateRange, getMonthDateRange } from './dateRangeUtils';
 
 dayjs.extend(utc);

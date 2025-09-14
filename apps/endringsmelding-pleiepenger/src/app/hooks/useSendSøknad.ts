@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SøknadApiData } from '@types';
 import { appSentryLogger } from '@utils';
 import { AxiosError, isAxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { useAppIntl } from '../i18n';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';

@@ -1,6 +1,7 @@
 import { alpha2ToAlpha3, getName, getNames, registerLocale } from 'i18n-iso-countries';
 import * as langNB from 'i18n-iso-countries/langs/nb.json';
 import * as langNN from 'i18n-iso-countries/langs/nn.json';
+
 import { eøsCountries } from './eøsCountries';
 
 registerLocale(langNB);

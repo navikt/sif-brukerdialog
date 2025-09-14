@@ -3,8 +3,8 @@ import { AnnenForelderenSituasjonSøknadsdata } from './AnnenForelderenSituasjon
 import { OmAnnenForelderSøknadsdata } from './OmAnnenForelderSøknadsdata';
 import { OmBarnaSøknadsdata } from './OmBarnaSøknadsdata';
 
-export * from './OmAnnenForelderSøknadsdata';
 export * from './AnnenForelderenSituasjonSøknadsdata';
+export * from './OmAnnenForelderSøknadsdata';
 export * from './OmBarnaSøknadsdata';
 
 export interface Søknadsdata {

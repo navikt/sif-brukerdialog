@@ -1,8 +1,8 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
 import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import React from 'react';
 
 interface Props {
     periode: DateRange;
@@ -17,13 +17,13 @@ interface Props {
     månedContentRenderer: (måned: DateRange, søknadsperioderIMåned: DateRange[], index: number) => React.ReactNode;
 }
 
-const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
+const SøknadsperioderMånedListe = ({
     periode,
     fieldset,
     årstallHeadingLevel = '2',
     årstallHeaderRenderer,
     månedContentRenderer,
-}) => {
+}: Props) => {
     const måneder = getMonthsInDateRange(periode);
     const gårOverFlereÅr = periode.from.getFullYear() !== periode.to.getFullYear();
 

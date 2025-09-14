@@ -5,6 +5,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
+
 import EnkeltdatoForm from './EnkeltdatoForm';
 import EnkeltdatoList from './EnkeltdatoList';
 import { Enkeltdato } from './types';

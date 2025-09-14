@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import IngenDeltakelsePage from './IngenDeltakelsePage';
+
 import { withIntl } from '../../storybook/decorators/withIntl';
-import UngLoadingPage from './UngLoadingPage';
 import FlereDeltakelserPage from './FlereDeltakelserPage';
 import HentDeltakerErrorPage from './HentDeltakerErrorPage';
+import IngenDeltakelsePage from './IngenDeltakelsePage';
+import UngLoadingPage from './UngLoadingPage';
+
 const meta: Meta = {
     title: 'Innsyn/Sider/Støttesider og feilsider',
     parameters: {},

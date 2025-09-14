@@ -1,10 +1,10 @@
+import { Box, Button } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import { Meta, StoryFn } from '@storybook/react-vite';
 import { useState } from 'react';
+import { guid } from '@navikt/sif-common-utils';
 import ItemList from '../../../src/components/lists/item-list/ItemList';
 import StoryWrapper from '../../decorators/StoryWrapper';
-import { Box, Button } from '@navikt/ds-react';
-import { guid } from '@navikt/sif-common-utils';
 
 export default {
     title: 'Component/ItemList',

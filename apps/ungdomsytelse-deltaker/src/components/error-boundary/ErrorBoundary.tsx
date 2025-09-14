@@ -1,5 +1,6 @@
-import React from 'react';
 import * as Sentry from '@sentry/react';
+import React from 'react';
+
 import { logFaroError } from '../../utils/faroUtils';
 
 interface ErrorBoundaryProps {

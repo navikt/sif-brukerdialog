@@ -1,4 +1,5 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
+
 import { RapporterInntektOppgave } from '../../../../types/Oppgave';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';

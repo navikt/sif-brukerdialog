@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { BeredskapSøknadsdata } from '../../types/søknadsdata/BeredskapSøknadsdata';
+
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { BeredskapSøknadsdata } from '../../types/søknadsdata/BeredskapSøknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 
 export const extractBeredskapSøknadsdata = ({

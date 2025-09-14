@@ -1,5 +1,18 @@
 # @navikt/sif-common-sentry
 
+## 0.28.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 0.28.30
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 0.28.29
 
 ### Patch Changes

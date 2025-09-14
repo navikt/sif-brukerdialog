@@ -1,3 +1,4 @@
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
@@ -12,6 +13,7 @@ import {
     UgyldigK9SakFormat,
 } from '@types';
 import { appSentryLogger } from '@utils';
+
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag } from '../utils/initialDataUtils';
@@ -23,7 +25,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
 
 export const fetchInitialData = async (
     tillattEndringsperiode: DateRange,

@@ -3,6 +3,7 @@ import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from
 import { FormLayout } from '@navikt/sif-common-ui';
 import { guid } from '@navikt/sif-common-utils';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../i18n';
 import barnUtils from './barnUtils';
 import { AndreBarn } from './types';

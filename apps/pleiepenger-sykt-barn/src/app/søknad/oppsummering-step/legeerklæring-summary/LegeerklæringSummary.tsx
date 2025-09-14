@@ -2,6 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+
 import { AppText } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 

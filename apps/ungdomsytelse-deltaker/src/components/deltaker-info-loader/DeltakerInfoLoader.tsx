@@ -1,5 +1,7 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { ApiError } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
@@ -13,7 +15,6 @@ import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { logFaroError } from '../../utils/faroUtils';
-import { ApiError } from '@navikt/ung-common';
 
 const getErrorInfoToLog = (error: ApiError | null) => {
     if (!error || error === null) {

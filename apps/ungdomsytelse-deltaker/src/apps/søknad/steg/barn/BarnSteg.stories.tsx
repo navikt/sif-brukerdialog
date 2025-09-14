@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BarnSteg from './BarnSteg';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
+import BarnSteg from './BarnSteg';
 
 const meta: Meta = {
     title: 'Søknad/Steg/Barn',

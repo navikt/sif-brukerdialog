@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { fetchSøkerId, Søker } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
 import { purge } from '../api/api';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
 import RouteConfig from '../config/routeConfig';
@@ -15,11 +16,11 @@ import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { ConfirmationDialog } from '../types/ConfirmationDialog';
 import { KvitteringInfo } from '../types/KvitteringInfo';
-import { StepID } from '../types/StepID';
 import { Søkerdata } from '../types/Søkerdata';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
 import { initialValues, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata } from '../types/SøknadTempStorageData';
+import { StepID } from '../types/StepID';
 import { harFraværFraJobb } from '../utils/arbeidUtils';
 import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';

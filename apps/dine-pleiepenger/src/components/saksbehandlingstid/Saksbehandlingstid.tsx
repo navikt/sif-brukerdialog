@@ -1,6 +1,5 @@
 'use client';
 import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
@@ -73,7 +72,7 @@ const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker 
     }
 };
 
-const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
+const Saksbehandlingstid = ({ frist, venteårsak, saksbehandlingstidUker = 7 }: Props) => {
     return (
         <Box>
             <Heading size="medium" level="2" spacing={true}>

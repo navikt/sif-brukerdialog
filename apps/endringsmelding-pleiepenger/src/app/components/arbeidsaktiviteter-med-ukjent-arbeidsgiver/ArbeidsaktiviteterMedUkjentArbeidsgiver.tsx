@@ -1,6 +1,6 @@
 import { Alert, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { getAktiviteterSomSkalEndres } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { Arbeidsaktiviteter, ArbeidsaktivitetUkjentArbeidsgiver } from '../../types';
@@ -11,10 +11,10 @@ interface Props {
     arbeidsaktiviteter: Arbeidsaktiviteter;
 }
 
-const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = ({
+const ArbeidsaktiviteterMedUkjentArbeidsgiver = ({
     arbeidsaktivitetMedUkjentArbeidsgiver,
     arbeidsaktiviteter,
-}) => {
+}: Props) => {
     const { text } = useAppIntl();
     const antallUkjente = arbeidsaktivitetMedUkjentArbeidsgiver.length;
 

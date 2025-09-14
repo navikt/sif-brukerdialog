@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Faro, initializeFaro } from '@grafana/faro-web-sdk';
 import constate from 'constate';
+import { useEffect, useState } from 'react';
 
 interface Props {
     applicationKey: string;

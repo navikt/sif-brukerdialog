@@ -1,4 +1,4 @@
-import { MedlemskapFormMessageKeys } from '.';
+import { MedlemskapFormMessageKeys } from './';
 
 export const medlemskapFormMessages_nn: Record<MedlemskapFormMessageKeys, string> = {
     '@forms.medlemskapForm.annetLandSiste12.spm':

@@ -1,5 +1,5 @@
-import constate from 'constate';
 import { getAmplitudeInstance } from '@navikt/nav-dekoratoren-moduler';
+import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
 

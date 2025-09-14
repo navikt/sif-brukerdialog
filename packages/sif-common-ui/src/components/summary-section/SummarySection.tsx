@@ -1,7 +1,8 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
-import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './summarySection.scss';
+
+import { BodyLong, Heading } from '@navikt/ds-react';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import React from 'react';
 
 interface Props {
     header: string;

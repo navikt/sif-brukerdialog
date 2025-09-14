@@ -1,10 +1,11 @@
-import React from 'react';
+import { ComboboxProps, UNSAFE_Combobox } from '@navikt/ds-react';
 import { FastField, Field, FieldProps } from 'formik';
+import React from 'react';
+
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import { ComboboxProps, UNSAFE_Combobox } from '@navikt/ds-react';
-import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<ComboboxProps, 'name'> {
     name: FieldName;

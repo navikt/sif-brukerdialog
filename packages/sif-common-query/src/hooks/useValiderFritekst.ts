@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import {
     handleApiError,
     InvalidParameterViolation,
@@ -7,6 +5,9 @@ import {
     sifCommonQueryKeys,
     validerFritekst,
 } from '@navikt/sif-common-query';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+
 import { getInvalidParameterViolations } from '../utils/getInvalidParameterViolations';
 
 export const useValiderFritekst = (fritekst?: string) => {

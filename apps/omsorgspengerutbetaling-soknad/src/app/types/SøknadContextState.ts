@@ -1,8 +1,9 @@
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
-import { StepId } from './StepId';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
+import { StepId } from './StepId';
 
 export type BarnStepTempFormValues = {
     stepId: StepId.DINE_BARN;

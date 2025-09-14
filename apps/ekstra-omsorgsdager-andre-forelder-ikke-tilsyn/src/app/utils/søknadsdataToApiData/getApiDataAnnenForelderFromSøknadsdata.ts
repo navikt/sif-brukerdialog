@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { AnnenForelderenSituasjonSøknadsdata, OmAnnenForelderSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 

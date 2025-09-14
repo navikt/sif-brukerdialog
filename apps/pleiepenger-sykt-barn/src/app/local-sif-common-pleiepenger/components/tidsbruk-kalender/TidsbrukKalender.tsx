@@ -1,10 +1,11 @@
-import React from 'react';
+import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import { DateRange, InputTime } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate, Duration, ensureDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import React from 'react';
+
 import CalendarGrid from '../calendar-grid/CalendarGrid';
 import TidsbrukKalenderDag, { TidsbrukKalenderDagFooterRenderer } from './TidsbrukKalenderDag';
-import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 
 export type TidRenderer = (tid: { tid: InputTime; dato: Date; prosent?: number }) => React.ReactNode;
 
@@ -32,7 +33,7 @@ interface Props {
     footerRenderer?: TidsbrukKalenderDagFooterRenderer;
 }
 
-const TidsbrukKalender: React.FunctionComponent<Props> = ({
+const TidsbrukKalender = ({
     periode,
     dager,
     dagerOpprinnelig = {},
@@ -45,7 +46,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
     opprinneligTidRenderer,
     tomUkeContentRenderer,
     footerRenderer,
-}) => {
+}: Props) => {
     const kalenderdager: Kalenderdager = {};
     Object.keys(dager).forEach((key) => {
         const dag = dager[key];

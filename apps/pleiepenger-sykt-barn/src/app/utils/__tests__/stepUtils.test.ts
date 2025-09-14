@@ -1,8 +1,9 @@
+import { vi } from 'vitest';
+
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
-import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
-import { vi } from 'vitest';
 
 vi.mock('./../../validation/stepValidations', () => {
     return {

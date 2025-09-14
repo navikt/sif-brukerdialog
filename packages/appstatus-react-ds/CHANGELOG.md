@@ -1,5 +1,20 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.36
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.35
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 2.20.34
 
 ### Patch Changes

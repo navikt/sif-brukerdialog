@@ -1,5 +1,6 @@
-import React from 'react';
+import { VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     FormikInputGroup,
     getIntlFormErrorHandler,
@@ -8,12 +9,11 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { VStack } from '@navikt/ds-react';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -27,7 +27,7 @@ export interface DineBarnFormProps {
     onAndreBarnChanged: (values: Partial<DineBarnFormValues>) => void;
 }
 
-const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
+const DineBarnForm = ({
     søker,
     values,
     registrerteBarn,
@@ -35,7 +35,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
     kanFortsette,
     goBack,
     onAndreBarnChanged,
-}) => {
+}: DineBarnFormProps) => {
     const { intl, text } = useAppIntl();
 
     const { andreBarn = [], harSyktBarn, harDekketTiFørsteDagerSelv } = values;

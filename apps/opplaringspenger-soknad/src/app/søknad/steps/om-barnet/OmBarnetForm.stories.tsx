@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitude';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
 import OmBarnetForm from './om-barnet-form/OmBarnetForm';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { OmBarnetFormValues } from './om-barnet-form/types';
 
 const initialValues: OmBarnetFormValues = {

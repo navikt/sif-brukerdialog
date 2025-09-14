@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { AppText } from '../../../i18n';
 
 const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (

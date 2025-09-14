@@ -1,13 +1,14 @@
 import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../types';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import {
     ArbeidIPeriodeFormValues,
     ArbeidsukerFormValues,
 } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
-import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({

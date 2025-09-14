@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react';
 import { DateRange } from '@navikt/sif-common-utils';
+import { useCallback, useState } from 'react';
+
 import { FraværSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import fraværStepUtils from './FraværStepUtils';
 

@@ -1,7 +1,7 @@
 import { Alert, Box } from '@navikt/ds-react';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import { getRequiredEnv } from '@navikt/sif-common-env';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 /** __IS_GITHUB_PAGES__ settes til true i vite-demo-config */
 const getIsGithubPages = () => __IS_GITHUB_PAGES__;

@@ -1,10 +1,11 @@
-import React from 'react';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+import React from 'react';
+
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     tittel: string;
@@ -19,7 +20,7 @@ interface Props {
     arbeiderIPeriodenAlternativer?: FormikRadioProp[];
 }
 
-const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
+const ArbeidstidArbeidsaktivitet = ({
     tittel,
     arbeidsforholdType,
     arbeidIPeriode,
@@ -30,7 +31,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
     info,
     arbeiderIPeriodenDescription,
     arbeiderIPeriodenAlternativer,
-}) => {
+}: Props) => {
     return (
         <FormLayout.Section title={tittel}>
             <ArbeidIPeriodeSpørsmål

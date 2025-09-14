@@ -13,12 +13,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const VedleggOppsummering: React.FunctionComponent<Props> = ({
-    apiData,
-    legeerklæringSøknadsdata,
-    samværsavtaleSøknadsdata,
-    onEdit,
-}) => {
+const VedleggOppsummering = ({ apiData, legeerklæringSøknadsdata, samværsavtaleSøknadsdata, onEdit }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.legeerklæring,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,

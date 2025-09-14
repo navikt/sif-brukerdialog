@@ -20,6 +20,7 @@ import {
     PeriodeMedArbeidstid,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
+
 import { ArbeidsaktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidForm';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';

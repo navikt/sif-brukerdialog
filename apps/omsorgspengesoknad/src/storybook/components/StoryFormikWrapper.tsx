@@ -15,7 +15,7 @@ interface Props {
     useBorder?: boolean;
 }
 
-export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
+export const StoryFormikWrapper = (props: Props) => {
     const { intl } = useAppIntl();
     const { children, parameters, useBorder } = props;
     const {

@@ -1,5 +1,18 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.40
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 3.12.39
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
 ## 3.12.38
 
 ### Patch Changes

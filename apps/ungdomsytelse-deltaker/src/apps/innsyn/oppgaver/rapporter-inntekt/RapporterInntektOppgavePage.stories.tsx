@@ -1,14 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
+import { RapporterInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
-import { RapporterInntektOppgave } from '../../../../types/Oppgave';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Rapporter inntekt',

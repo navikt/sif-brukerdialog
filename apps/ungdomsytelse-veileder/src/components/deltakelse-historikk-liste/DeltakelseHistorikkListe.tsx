@@ -1,9 +1,9 @@
-import { Add } from '@navikt/ds-icons';
 import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { DeltakelseHistorikkInnslag } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Add } from '@navikt/ds-icons';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseHistorikkInnslag } from '../../types';
 
 interface Props {
     historikkInnslag?: DeltakelseHistorikkInnslag[];

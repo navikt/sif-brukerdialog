@@ -1,12 +1,14 @@
+import './dineBarn.css';
+
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { StepId } from '../../../types/StepId';
+
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { StepId } from '../../../types/StepId';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
-import './dineBarn.css';
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();

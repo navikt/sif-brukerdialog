@@ -1,6 +1,4 @@
 import { BodyLong, Heading, Tabs, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import {
     getIntlFormErrorHandler,
@@ -8,19 +6,22 @@ import {
     TypedFormikWrapper,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
-import { FraværDag, fraværDagToFraværDateRange, fraværMessages, FraværPeriode, fraværPeriodeToDateRange } from '../';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import { FraværDag, fraværDagToFraværDateRange, fraværMessages, FraværPeriode, fraværPeriodeToDateRange } from '../';
 import FraværDagerListAndDialog from '../FraværDagerListAndDialog';
 import FraværDagFormView, { FraværDagFormErrors } from '../FraværDagForm';
 import FraværPeriodeForm, { FraværPeriodeFormErrors } from '../FraværPeriodeForm';
 import FraværPerioderListAndDialog from '../FraværPerioderListAndDialog';
 import { FraværFieldValidationErrors, validateNoCollisions } from '../fraværValidationUtils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 enum FormField {
     perioder = 'perioder',

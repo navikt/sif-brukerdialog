@@ -1,9 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import dayjs from 'dayjs';
+
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { AnnenForelderenSituasjonFormValues } from './AnnenForelderenSituasjonStep';
-import dayjs from 'dayjs';
 
 export const getAnnenForelderenSituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,

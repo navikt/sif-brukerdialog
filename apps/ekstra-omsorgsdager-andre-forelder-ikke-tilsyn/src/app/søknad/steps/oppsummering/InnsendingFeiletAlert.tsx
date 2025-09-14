@@ -1,5 +1,6 @@
 import { Alert, List } from '@navikt/ds-react';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
+
 import { AppText } from '../../../i18n';
 
 const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {

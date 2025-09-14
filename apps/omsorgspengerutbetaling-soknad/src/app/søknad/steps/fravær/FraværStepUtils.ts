@@ -1,12 +1,13 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
-import dayjs, { Dayjs } from 'dayjs';
-import minMax from 'dayjs/plugin/minMax';
-import { FraværSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { FraværFormValues } from './FraværStep';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
+import dayjs, { Dayjs } from 'dayjs';
+import minMax from 'dayjs/plugin/minMax';
+
+import { FraværSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { FraværFormValues } from './FraværStep';
 
 dayjs.extend(minMax);
 
