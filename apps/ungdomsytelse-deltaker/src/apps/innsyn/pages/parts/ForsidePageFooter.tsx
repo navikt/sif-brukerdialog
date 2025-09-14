@@ -1,4 +1,5 @@
 import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
+
 import getLenker from '../../../../utils/lenker';
 import UngdomsprogrammetHeader from '../../atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 

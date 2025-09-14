@@ -1,4 +1,5 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
+
 import { AppEnvKey } from '../../env.schema';
 
 interface Lenker {

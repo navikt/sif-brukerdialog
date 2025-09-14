@@ -1,5 +1,6 @@
 import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 
 /**

@@ -1,5 +1,6 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+
 import { UngdomsprogramPictogram } from '../../atoms/svg/UngdomsprogramPictogram';
 import { YtelseNavn } from '../../atoms/ytelse-navn/YtelseNavn';
 

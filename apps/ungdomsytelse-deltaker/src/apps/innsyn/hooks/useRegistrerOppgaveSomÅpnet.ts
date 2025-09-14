@@ -1,4 +1,5 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+
 import { Oppgave } from '../../../types/Oppgave';
 import { useMarkerOppgaveSomÅpnet } from '../hooks/api/useMarkerOppgaveSomÅpnet';
 

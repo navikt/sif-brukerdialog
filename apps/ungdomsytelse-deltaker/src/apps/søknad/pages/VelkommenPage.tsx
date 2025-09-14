@@ -1,6 +1,7 @@
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../utils/lenker';
 import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';

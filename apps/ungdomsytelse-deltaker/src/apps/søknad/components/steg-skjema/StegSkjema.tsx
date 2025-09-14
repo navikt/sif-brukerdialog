@@ -1,5 +1,5 @@
-import { Box, Button, HGrid } from '@navikt/ds-react';
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
+import { Box, Button, HGrid } from '@navikt/ds-react';
 
 interface Props {
     children: React.ReactNode;

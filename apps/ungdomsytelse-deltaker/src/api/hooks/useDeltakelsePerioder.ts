@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@navikt/ung-common';
+import { useQuery } from '@tanstack/react-query';
+
 import { DeltakelsePeriode } from '../../types/DeltakelsePeriode';
 import { getDeltakelsePerioder } from '../deltakelse-perioder/getDeltakelsePerioder';
 import { commonQueryKeys } from '../queries/commonQueries';

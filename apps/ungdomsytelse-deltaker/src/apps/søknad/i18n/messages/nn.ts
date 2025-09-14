@@ -1,6 +1,5 @@
 import { ungSoknadMessages_nb } from './nb';
 
-/* eslint-disable max-len */
 export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
     'søknad.tittel.shy': 'Søknad om ungdoms\u00ADprogram\u00ADytelsen',

@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
+
 import { useAppIntl } from '../../../../i18n';
 import { Oppgave } from '../../../../types/Oppgave';
 import { getOppgaveInfo, getOppgaveStatusText, getOppgaveTittel } from '../../utils/textUtils';

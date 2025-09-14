@@ -1,5 +1,5 @@
-import { Button, HGrid } from '@navikt/ds-react';
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
+import { Button, HGrid } from '@navikt/ds-react';
 
 interface Props {
     pending?: boolean;

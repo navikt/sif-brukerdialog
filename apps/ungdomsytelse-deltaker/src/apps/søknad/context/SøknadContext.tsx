@@ -1,14 +1,15 @@
-import React, { createContext, useMemo, useState } from 'react';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import React, { createContext, useMemo, useState } from 'react';
+
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
 import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
 import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
 import { SøkYtelseOppgave } from '../../../types/Oppgave';
 import { logUtils } from '../../innsyn/utils/logUtils';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
-import { KontonummerOppslagInfo, Spørsmål, Steg, SøknadContextType, SøknadSvar } from '../types';
+import { KontonummerOppslagInfo, SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
 
 export const SøknadContext = createContext<SøknadContextType | undefined>(undefined);
 

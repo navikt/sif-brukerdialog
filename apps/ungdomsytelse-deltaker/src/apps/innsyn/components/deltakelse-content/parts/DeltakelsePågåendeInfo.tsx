@@ -1,4 +1,5 @@
 import { BodyLong } from '@navikt/ds-react';
+
 import InnsynBlueBox from '../../../atoms/innsyn-blue-box/InnsynBlueBox';
 
 const DeltakelsePågåendeInfo = () => {

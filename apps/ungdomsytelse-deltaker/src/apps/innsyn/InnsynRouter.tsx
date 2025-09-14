@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import ForsidePage from './pages/ForsidePage';
 import OppgavePage from './pages/OppgavePage';
 

@@ -1,6 +1,7 @@
 import { Box, VStack } from '@navikt/ds-react';
-import React, { useEffect } from 'react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import React, { useEffect } from 'react';
+
 import PageContentWrapper from './PageContentWrapper';
 
 interface Props {

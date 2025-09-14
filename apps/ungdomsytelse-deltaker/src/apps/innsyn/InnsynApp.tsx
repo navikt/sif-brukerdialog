@@ -1,8 +1,9 @@
 import { Theme } from '@navikt/ds-react';
+import useUxSignals from '@navikt/sif-common-core-ds/src/hooks/useUxSignals';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import useUxSignals from '@navikt/sif-common-core-ds/src/hooks/useUxSignals';
+
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { applicationIntlMessages } from '../../i18n';
 import { AppRoutes } from '../../utils/AppRoutes';
