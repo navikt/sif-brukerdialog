@@ -32,6 +32,7 @@
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",
-        "@hey-api/client-fetch": "0.13.1"
+        "@hey-api/client-fetch": "0.13.1",
+        "@navikt/sif-common-api": "workspace:*"
     }
 }
