@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 0.28.30
 
 ### Patch Changes

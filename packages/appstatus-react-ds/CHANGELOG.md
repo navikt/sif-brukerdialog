@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.36
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.5
+
 ## 2.20.35
 
 ### Patch Changes

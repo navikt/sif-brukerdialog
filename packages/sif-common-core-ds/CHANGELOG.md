@@ -1,5 +1,15 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.45
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-utils@3.49.28
+
 ## 10.3.1
 
 ### Patch Changes

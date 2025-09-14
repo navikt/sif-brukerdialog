@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.29
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
 ## 2.28.28
 
 ### Patch Changes
