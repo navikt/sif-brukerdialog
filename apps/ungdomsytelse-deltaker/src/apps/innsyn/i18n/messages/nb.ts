@@ -13,24 +13,28 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
         'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på startdatoen?',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel': 'Ny sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
         'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet. ',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.BEKREFT_NY_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på ny sluttdato',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Korrigert inntekt',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tibakemelding på ulik inntekt for {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Lønn fra arbeidsgiver utbetalt {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tibakemelding på ulik lønn for {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Det er forskjell mellom det du har oppgitt i lønn, og det arbeidsgiveren din har rapportert til oss.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på inntekten som er rapportert?',
+        'Har du en tilbakemelding på lønnen fra arbeidsgiver?',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
     'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld fra om du fikk utbetalt lønn i {månedOgÅr}',

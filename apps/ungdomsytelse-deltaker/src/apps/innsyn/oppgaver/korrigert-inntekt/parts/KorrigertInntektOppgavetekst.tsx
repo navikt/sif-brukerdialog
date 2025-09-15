@@ -4,6 +4,7 @@ import {
     ArbeidOgFrilansRegisterInntektDto,
     YtelseRegisterInntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import dayjs from 'dayjs';
 
 import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
@@ -14,28 +15,43 @@ interface Props {
 
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
+    const utbetalingsmåned = dayjs(oppgave.oppgavetypeData.fraOgMed).add(1, 'month').toDate();
+
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
     } = oppgave.oppgavetypeData;
     return (
         <VStack gap="6" width="100%">
             <BodyLong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quasi quia pariatur
-                doloremque quibusdam vel, odit odio dolores corrupti suscipit voluptates modi, quod molestias iusto
-                repellat alias sit? Ab.
+                Vi har sjekket hva du fikk utbetalt som lønn i {dateFormatter.month(oppgave.oppgavetypeData.fraOgMed)}:
             </BodyLong>
 
             <InntektTabell
                 inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
                 header="Arbeidsgiver/frilans"
             />
-
             <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
 
-            <BodyLong weight="semibold">Fristen for å svare er {formatertFrist}.</BodyLong>
-            <BodyLong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. veniam, nam repudiandae similique quasi unde
-                dolorem sit repellendus!
+            <BodyLong as="div">
+                <p>
+                    Vi bruker lønnen fra arbeidsgiver/frilans når vi vurderer hvor mye penger du får utbetalt i{' '}
+                    {dateFormatter.monthFullYear(utbetalingsmåned)}.
+                </p>
+                <p>
+                    Hvis du mener at lønnen fra arbeidsgiveren din ikke stemmer, kan du sende oss en tilbakemeding om
+                    det. Skriv et svar til oss i feltet under.{' '}
+                </p>
+                <p>
+                    Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer,
+                    jo fortere får vi behandlet saken din.
+                </p>
+                <p>
+                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som arbeidsgiver har
+                    oppgitt, når vi går videre med søknaden din.
+                </p>
+                <BodyLong weight="semibold" spacing>
+                    Fristen for å svare er {formatertFrist}.
+                </BodyLong>
             </BodyLong>
         </VStack>
     );

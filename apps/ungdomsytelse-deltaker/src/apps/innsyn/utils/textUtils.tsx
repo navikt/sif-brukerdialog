@@ -71,14 +71,22 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
                 oppgavetittel: getOppgaveTittel(oppgave, intl),
                 harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
+                tilbakemeldingFritekstLabel: intl.text(
+                    `oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`,
+                ),
             };
 
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return {
-                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
+                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`, {
+                    måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                }),
                 oppgavetittel: getOppgaveTittel(oppgave, intl),
                 harTilbakemeldingSpørsmål: intl.text(
                     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
+                ),
+                tilbakemeldingFritekstLabel: intl.text(
+                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
                 ),
             };
         default:
