@@ -34,7 +34,7 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Det er forskjell mellom det du har oppgitt i lønn, og det {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgivere}} din har rapportert til oss.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på lønnen fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgiverene}}?',
+        'Har du en tilbakemelding på lønnen fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgiverne}}?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
