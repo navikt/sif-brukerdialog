@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.53
+
+### Patch Changes
+
+- Utvide lint:fix scope til flere filer
+
 ## 1.1.52
 
 ### Patch Changes
