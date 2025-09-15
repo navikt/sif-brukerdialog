@@ -1,3 +1,4 @@
+import dsTailwind from '@navikt/ds-tailwind';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -6,7 +7,7 @@ const config: Config = {
         extend: {},
     },
     plugins: [],
-    presets: [require('@navikt/ds-tailwind')],
+    presets: [dsTailwind],
 };
 
 export default config;
