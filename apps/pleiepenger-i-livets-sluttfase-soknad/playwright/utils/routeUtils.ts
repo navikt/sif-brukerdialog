@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Page } from '@playwright/test';
+
 import { SøknadRoutes } from '../../src/app/types/SøknadRoutes';
 import { mellomlagring } from '../mock-data/mellomlagring';
 import { setupMockRoutes } from './setupMockRoutes';

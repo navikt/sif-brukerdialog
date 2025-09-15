@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { StepID } from '../../../src/app/types/StepID';
+
 import { SøknadFormValues } from '../../../src/app/types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../../../src/app/types/StepID';
 import { YesOrNoOrDoNotKnow } from '../../../src/app/types/YesOrNoOrDoNotKnow';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';

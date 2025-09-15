@@ -1,4 +1,5 @@
 import { test } from '@playwright/test';
+
 import { DokumentType } from '../../src/app/types/DokumentType';
 import { YtelseKey } from '../../src/app/types/Ytelser';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';

@@ -1,4 +1,3 @@
-/* eslint-disable vitest/expect-expect */
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
@@ -121,6 +120,7 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             ...frilanserFullFormValues,
             frilanstype: Frilanstype.FRILANS,
         });
+        expect(result).toBeDefined();
         checkValuesFortsattFrilanser(result, Frilanstype.FRILANS);
     });
     it('frilanser og honorar, fortsatt frilanser', () => {
@@ -128,6 +128,7 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             ...frilanserFullFormValues,
             frilanstype: Frilanstype.FRILANS_HONORAR,
         });
+        expect(result).toBeDefined();
         checkValuesFortsattFrilanser(result, Frilanstype.FRILANS_HONORAR);
     });
     it('kun frilanser, er ikke lenger frilanser', () => {
@@ -136,6 +137,7 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             frilanstype: Frilanstype.FRILANS,
             erFortsattFrilanser: YesOrNo.NO,
         });
+        expect(result).toBeDefined();
         checkValuesAvsluttetFrilanser(result, Frilanstype.FRILANS);
     });
     it('frilanser og honorar, er ikke lenger frilanser', () => {
@@ -144,6 +146,7 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             frilanstype: Frilanstype.FRILANS_HONORAR,
             erFortsattFrilanser: YesOrNo.NO,
         });
+        expect(result).toBeDefined();
         checkValuesAvsluttetFrilanser(result, Frilanstype.FRILANS_HONORAR);
     });
 });

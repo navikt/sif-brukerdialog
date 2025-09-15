@@ -1,4 +1,5 @@
 import { expect, Page, test } from '@playwright/test';
+
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';

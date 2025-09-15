@@ -29,10 +29,7 @@ export async function createSifConfig(options = {}) {
                     version: 'detect',
                 },
             },
-            plugins: {
-                vitest: vitest.default,
-                'react-hooks': reactHooks.default,
-            },
+            plugins: {},
             languageOptions: { globals: globals.default.browser },
         },
         pluginJs.default.configs.recommended,
@@ -41,8 +38,14 @@ export async function createSifConfig(options = {}) {
         jsxA11y.default.flatConfigs.recommended,
         eslintConfigPrettier.default,
         {
+            plugins: {
+                vitest: vitest.default,
+                'react-hooks': reactHooks.default,
+            },
             rules: {
                 ...vitest.default.configs.recommended.rules,
+                ...reactHooks.default.configs.recommended.rules,
+                'vitest/expect-expect': 'off',
                 'max-len': [ERROR, 300],
                 'no-console': WARNING,
                 'no-debugger': WARNING,
@@ -65,8 +68,6 @@ export async function createSifConfig(options = {}) {
                     '@typescript-eslint/no-explicit-any': OFF,
                     '@typescript-eslint/ban-ts-comment': OFF,
                 }),
-
-                'react-hooks/rules-of-hooks': 'error',
 
                 'react/function-component-definition': [
                     OFF,

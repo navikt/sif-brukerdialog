@@ -66,6 +66,7 @@
         "cross-env": "10.0.0",
         "eslint": "9.35.0",
         "eslint-plugin-storybook": "9.1.5",
+        "eslint-plugin-vitest": "0.5.4",
         "helmet": "8.1.0",
         "msw": "2.11.2",
         "postcss": "8.5.6",
