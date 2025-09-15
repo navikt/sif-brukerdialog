@@ -11,7 +11,7 @@ import { EndretSluttdatoOppgave, EndretStartdatoOppgave, RapporterInntektOppgave
 import OppgaverList from './OppgaverList';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Oppgaveliste',
+    title: 'Innsyn/Oppgaver/Komponenter/Oppgaveliste',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };

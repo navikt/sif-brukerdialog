@@ -12,7 +12,7 @@ import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import { EndretStartdatoOppgavePage } from './EndretStartdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Endret startdato',
+    title: 'Innsyn/Oppgaver/2. Endret startdato',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
