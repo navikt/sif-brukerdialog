@@ -33,12 +33,15 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                 lønnHeader="Lønn (før skatt)"
                 summert={oppgave.oppgavetypeData.registerinntekt.totalInntektArbeidOgFrilans}
             />
-            <InntektTabell
-                inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)}
-                header="Ytelse"
-                lønnHeader="Sum"
-                summert={oppgave.oppgavetypeData.registerinntekt.totalInntektYtelse}
-            />
+
+            {ytelseInntekter.length > 0 && (
+                <InntektTabell
+                    inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)}
+                    header="Ytelse"
+                    lønnHeader="Sum"
+                    summert={oppgave.oppgavetypeData.registerinntekt.totalInntektYtelse}
+                />
+            )}
 
             <BodyLong as="div">
                 <p>
