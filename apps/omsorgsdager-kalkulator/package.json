@@ -28,7 +28,7 @@
         "next": "15.5.3",
         "node-fetch": "3.3.2",
         "react": "19.1.1",
-        "react-day-picker": "9.9.0",
+        "react-day-picker": "9.10.0",
         "react-dom": "19.1.1",
         "react-intl": "7.1.11",
         "uuid": "13.0.0"
@@ -38,7 +38,7 @@
         "@playwright/test": "1.55.0",
         "@tailwindcss/postcss": "4.1.13",
         "@tailwindcss/vite": "4.1.13",
-        "@types/node": "24.3.3",
+        "@types/node": "24.4.0",
         "@types/react": "19.1.13",
         "@types/react-dom": "19.1.9",
         "@types/uuid": "10.0.0",
