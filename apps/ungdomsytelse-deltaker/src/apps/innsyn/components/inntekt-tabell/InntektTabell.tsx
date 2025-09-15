@@ -1,4 +1,4 @@
-import { BodyShort, Table } from '@navikt/ds-react';
+import { BodyShort, Box, Table } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
 
 export interface InntektTabellRad {
@@ -8,17 +8,19 @@ export interface InntektTabellRad {
 
 interface Props {
     header: string;
+    lønnHeader: string;
     inntekt: InntektTabellRad[];
+    summert: number;
 }
 
-const InntektTabell = ({ header, inntekt }: Props) => {
+const InntektTabell = ({ header, inntekt, summert, lønnHeader }: Props) => {
     return (
         <Table zebraStripes>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">{header}</Table.HeaderCell>
-                    <Table.HeaderCell scope="col" className="w-16 text-right text-nowrap">
-                        Inntekt
+                    <Table.HeaderCell scope="col" className="w-16">
+                        <Box className="text-right text-nowrap">{lønnHeader}</Box>
                     </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
@@ -29,12 +31,25 @@ const InntektTabell = ({ header, inntekt }: Props) => {
                             <Table.HeaderCell scope="row">
                                 <BodyShort weight="regular">{navn}</BodyShort>
                             </Table.HeaderCell>
-                            <Table.DataCell className="w-16 text-right text-nowrap">
-                                <FormattedNumber value={beløp} />
+                            <Table.DataCell className="w-16">
+                                <BodyShort className="text-right text-nowrap">
+                                    <FormattedNumber value={beløp} />
+                                </BodyShort>
                             </Table.DataCell>
                         </Table.Row>
                     );
                 })}
+
+                <Table.Row>
+                    <Table.HeaderCell scope="row">
+                        <BodyShort weight="semibold">Totalt</BodyShort>
+                    </Table.HeaderCell>
+                    <Table.DataCell className="w-16">
+                        <BodyShort weight="semibold" className="text-right text-nowrap">
+                            <FormattedNumber value={summert} />
+                        </BodyShort>
+                    </Table.DataCell>
+                </Table.Row>
             </Table.Body>
         </Table>
     );

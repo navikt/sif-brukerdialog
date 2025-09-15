@@ -28,12 +28,13 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Lønn fra arbeidsgiver utbetalt {måned}',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tibakemelding på ulik lønn for {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel':
+        'Lønn fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgivere}} utbetalt {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tilbakemelding på ulik lønn for {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Det er forskjell mellom det du har oppgitt i lønn, og det arbeidsgiveren din har rapportert til oss.',
+        'Det er forskjell mellom det du har oppgitt i lønn, og det {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgivere}} din har rapportert til oss.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på lønnen fra arbeidsgiver?',
+        'Har du en tilbakemelding på lønnen fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgiverene}}?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',

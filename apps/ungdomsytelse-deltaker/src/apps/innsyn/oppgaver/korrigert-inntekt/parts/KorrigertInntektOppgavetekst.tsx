@@ -16,6 +16,7 @@ interface Props {
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
     const utbetalingsmåned = dayjs(oppgave.oppgavetypeData.fraOgMed).add(1, 'month').toDate();
+    const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
 
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
@@ -23,14 +24,21 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     return (
         <VStack gap="6" width="100%">
             <BodyLong>
-                Vi har sjekket hva du fikk utbetalt som lønn i {dateFormatter.month(oppgave.oppgavetypeData.fraOgMed)}:
+                Vi har sjekket hva lønnen din var i {dateFormatter.month(oppgave.oppgavetypeData.fraOgMed)}:
             </BodyLong>
 
             <InntektTabell
                 inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
                 header="Arbeidsgiver/frilans"
+                lønnHeader="Lønn (før skatt)"
+                summert={oppgave.oppgavetypeData.registerinntekt.totalInntektArbeidOgFrilans}
             />
-            <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
+            <InntektTabell
+                inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)}
+                header="Ytelse"
+                lønnHeader="Sum"
+                summert={oppgave.oppgavetypeData.registerinntekt.totalInntektYtelse}
+            />
 
             <BodyLong as="div">
                 <p>
@@ -38,16 +46,17 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                     {dateFormatter.monthFullYear(utbetalingsmåned)}.
                 </p>
                 <p>
-                    Hvis du mener at lønnen fra arbeidsgiveren din ikke stemmer, kan du sende oss en tilbakemeding om
-                    det. Skriv et svar til oss i feltet under.{' '}
+                    Hvis du mener at lønnen fra {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} din
+                    ikke stemmer, kan du sende oss en tilbakemeding om det. Skriv et svar til oss i feltet under.
                 </p>
                 <p>
                     Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer,
                     jo fortere får vi behandlet saken din.
                 </p>
                 <p>
-                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som arbeidsgiver har
-                    oppgitt, når vi går videre med søknaden din.
+                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som{' '}
+                    {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} har oppgitt, når vi går videre med
+                    søknaden din.
                 </p>
                 <BodyLong weight="semibold" spacing>
                     Fristen for å svare er {formatertFrist}.

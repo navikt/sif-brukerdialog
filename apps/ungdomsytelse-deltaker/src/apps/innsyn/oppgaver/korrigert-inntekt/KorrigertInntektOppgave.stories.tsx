@@ -29,9 +29,14 @@ const oppgave: KorrigertInntektOppgave = {
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
-                    inntekt: 20000,
+                    inntekt: 1500,
                     arbeidsgiver: '947064649',
                     arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                },
+                {
+                    inntekt: 500,
+                    arbeidsgiver: '247064649',
+                    arbeidsgiverNavn: 'SMIDIG MALER',
                 },
             ],
             ytelseInntekter: [],

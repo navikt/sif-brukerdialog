@@ -29,18 +29,19 @@ export const innsynMessages_nn: typeof innsynMessages_nb = {
     'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du ei tilbakemelding på sluttdatoen?',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Løn frå arbeidsgjevar {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel':
+        'Løn frå {antallArbeidsgivere, plural, one {arbeidsgjevar} other {arbeidsgjevarar}} utbetalt {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Sjå og gi tilbakemelding på ulik løn for {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Det er skilnad mellom det du har oppgjeve i løn, og det arbeidsgjevaren din har rapportert til oss.',
+        'Det er skilnad mellom det du har oppgjeve i løn, og det {antallArbeidsgivere, plural, one {arbeidsgjevar} other {arbeidsgjevarar}} din har rapportert til oss.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Har du tilbakemelding på løna frå arbeidsgjevar?',
+        'Har du ei tilbakemelding på løna frå {antallArbeidsgivere, plural, one {arbeidsgjevar} other {arbeidsgjevarane}}?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
     'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld frå om du fekk utbetalt løn i {månedOgÅr}',
     'oppgavetype.RAPPORTER_INNTEKT.info':
-        'Meld frå om du fekk utbetalt løn i {måned}. Viss du ikkje fekk utbetalt, treng du ikkje gjere noko.',
+        'Meld frå om du fekk utbetalt løn i {måned}. Viss du ikkje fekk utbetalt løn, treng du ikkje gjere noko.',
 
     'oppgavetype.SØK_YTELSE.sidetittel': 'Søknad for ungdomsprogramytelsen',
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',

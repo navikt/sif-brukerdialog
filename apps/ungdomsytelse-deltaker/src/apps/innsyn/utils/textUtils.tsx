@@ -12,7 +12,11 @@ import {
 } from '../../../types/Oppgave';
 import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
 
-export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
+export const getOppgaveTittel = (
+    oppgave: Oppgave,
+    { text }: AppIntlShape,
+    values?: Record<string, string | number>,
+) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
@@ -21,6 +25,7 @@ export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel', {
                 måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                ...values,
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
@@ -76,19 +81,23 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 ),
             };
 
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT: {
+            const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
             return {
                 sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`, {
                     måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                    antallArbeidsgivere,
                 }),
-                oppgavetittel: getOppgaveTittel(oppgave, intl),
+                oppgavetittel: getOppgaveTittel(oppgave, intl, { antallArbeidsgivere }),
                 harTilbakemeldingSpørsmål: intl.text(
                     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
+                    { antallArbeidsgivere },
                 ),
                 tilbakemeldingFritekstLabel: intl.text(
                     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
                 ),
             };
+        }
         default:
             throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }
