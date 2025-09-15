@@ -16,7 +16,7 @@
         "axios": "1.12.1",
         "classnames": "2.5.1",
         "dayjs": "1.11.18",
-        "react-day-picker": "9.9.0",
+        "react-day-picker": "9.10.0",
         "zod": "4.1.8"
     },
     "devDependencies": {

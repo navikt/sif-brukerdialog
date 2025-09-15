@@ -4480,7 +4480,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-loading-skeleton: "npm:3.5.0"
@@ -4665,7 +4665,7 @@ __metadata:
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-responsive: "npm:10.0.1"
@@ -4879,7 +4879,7 @@ __metadata:
     playwright-core: "npm:1.55.0"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     tailwindcss: "npm:4.1.13"
@@ -5319,7 +5319,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     playwright-core: "npm:1.55.0"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-router-dom: "npm:7.9.1"
@@ -5427,7 +5427,7 @@ __metadata:
     less: "npm:4.4.1"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     storybook: "npm:9.1.5"
@@ -5478,7 +5478,7 @@ __metadata:
     postcss: "npm:8.5.6"
     prop-types: "npm:15.8.1"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-responsive: "npm:10.0.1"
@@ -5553,7 +5553,7 @@ __metadata:
     lodash: "npm:4.17.21"
     prop-types: "npm:15.8.1"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-dropzone: "npm:14.3.8"
     react-fast-compare: "npm:3.2.2"
@@ -5610,7 +5610,7 @@ __metadata:
     intl: "npm:1.2.5"
     jsdom: "npm:27.0.0"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-json-view: "npm:1.21.3"
@@ -5735,7 +5735,7 @@ __metadata:
     newtype-ts: "npm:0.3.5"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-router-dom: "npm:7.9.1"
@@ -5787,7 +5787,7 @@ __metadata:
     less: "npm:4.4.1"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     storybook: "npm:9.1.5"
@@ -5929,7 +5929,7 @@ __metadata:
     playwright-core: "npm:1.55.0"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-router-dom: "npm:7.9.1"
@@ -24177,6 +24177,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-day-picker@npm:9.10.0":
+  version: 9.10.0
+  resolution: "react-day-picker@npm:9.10.0"
+  dependencies:
+    "@date-fns/tz": "npm:^1.4.1"
+    date-fns: "npm:^4.1.0"
+    date-fns-jalali: "npm:^4.1.0-0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10/b8661bb829a3f15b1896d5fd5b1b69f6829909f1a6641b4aca04fe8dd75322bb0b32fc82bc9db708db9cb4eb4b8dadab653769e08fc5348bc0f1ff44c7986e61
+  languageName: node
+  linkType: hard
+
 "react-day-picker@npm:9.7.0":
   version: 9.7.0
   resolution: "react-day-picker@npm:9.7.0"
@@ -24187,19 +24200,6 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0"
   checksum: 10/8755db4a978e10f1b35cfa23d544523682f3f18c97357e3774f43a6e223cdfaa9218537a683cf45fe72cd1e2e0a1fab3d55957815b8b23ef118220509f57a359
-  languageName: node
-  linkType: hard
-
-"react-day-picker@npm:9.9.0":
-  version: 9.9.0
-  resolution: "react-day-picker@npm:9.9.0"
-  dependencies:
-    "@date-fns/tz": "npm:^1.4.1"
-    date-fns: "npm:^4.1.0"
-    date-fns-jalali: "npm:^4.1.0-0"
-  peerDependencies:
-    react: ">=16.8.0"
-  checksum: 10/b4c804639228e6e0517213d156ff44feed81f14100dbb55a6abcca0acdb02444deadf7d3e1c8c95405aee9ca01f862ff8eafa1ddc9f90175fdffd3a9d98b4664
   languageName: node
   linkType: hard
 
@@ -26098,7 +26098,7 @@ __metadata:
     less: "npm:4.4.1"
     postcss: "npm:8.5.6"
     react: "npm:19.1.1"
-    react-day-picker: "npm:9.9.0"
+    react-day-picker: "npm:9.10.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     storybook: "npm:9.1.5"
