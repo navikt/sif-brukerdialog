@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
-import tailwindcss from '@tailwindcss/vite';
+
 import { getDevAppSettings } from './mock/devAppSettings';
 
 // Felles plugins som brukes i alle konfigurasjoner
