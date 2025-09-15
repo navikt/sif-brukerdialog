@@ -58,7 +58,9 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return text(`oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info');
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
+                antallArbeidsgivere: oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length,
+            });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.info', {
                 måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
