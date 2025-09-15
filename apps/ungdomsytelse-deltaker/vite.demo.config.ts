@@ -8,5 +8,5 @@ export default defineConfig({
     plugins: mockPlugins,
     define: commonDefines.demo,
     ...mockBaseConfig,
-    base: '/sif-brukerdialog/ungdomsprogrammet/ytelsen/',
+    base: '/sif-brukerdialog/ungdomsytelse-deltaker/',
 });
