@@ -9,7 +9,7 @@ import useDecoratorLanguageSelector from '@navikt/sif-common-soknad-ds/src/hooks
 import { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import { applicationIntlMessages } from './';
+import { applicationIntlMessages } from '.';
 
 export const AppIntlMessageProvider = ({ children }) => {
     const [locale, setLocale] = useState<Locale>(getLocaleFromSessionStorage());

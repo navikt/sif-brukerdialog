@@ -50,7 +50,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                {tekster.oppgavetittel}
+                {tekster.sidetittel}
             </Heading>
             {visKvittering ? (
                 <>
@@ -78,6 +78,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: 
                     </GuidePanel>
                     <UtalelseForm
                         harTilbakemeldingSpørsmål={tekster.harTilbakemeldingSpørsmål}
+                        tilbakemeldingLabel={tekster.tilbakemeldingFritekstLabel}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={handleOnSuccess}
                         onCancel={() => navigate(AppRoutes.innsyn)}

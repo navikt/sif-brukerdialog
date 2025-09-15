@@ -7,12 +7,12 @@ import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { EndretStartdatoOppgave } from '../../../../types/Oppgave';
+import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { EndretStartdatoOppgavePage } from './EndretStartdatoOppgavePage';
+import { KorrigertInntektOppgavePage } from './KorrigertInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Endret startdato',
+    title: 'Innsyn/Oppgaver/Korrigert inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
@@ -20,19 +20,37 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretStartdatoOppgave = {
+const oppgave: KorrigertInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        nyStartdato: dayjs('2025-05-01').toDate(),
-        forrigeStartdato: dayjs('2025-05-05').toDate(),
+        fraOgMed: dayjs('2025-05-01').toDate(),
+        tilOgMed: dayjs('2025-05-01').toDate(),
+        registerinntekt: {
+            arbeidOgFrilansInntekter: [
+                {
+                    inntekt: 1500,
+                    arbeidsgiver: '947064649',
+                    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                },
+                {
+                    inntekt: 500,
+                    arbeidsgiver: '247064649',
+                    arbeidsgiverNavn: 'SMIDIG MALER',
+                },
+            ],
+            ytelseInntekter: [],
+            totalInntektArbeidOgFrilans: 20000,
+            totalInntektYtelse: 0,
+            totalInntekt: 20000,
+        },
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretStartdatoOppgave = {
+const besvartOppgave: KorrigertInntektOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,
@@ -40,6 +58,7 @@ const besvartOppgave: EndretStartdatoOppgave = {
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
+
 export const OppgavePanel: Story = {
     name: 'Oppgavepaneler',
     render: () => (
@@ -70,18 +89,18 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -98,7 +117,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -108,7 +127,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

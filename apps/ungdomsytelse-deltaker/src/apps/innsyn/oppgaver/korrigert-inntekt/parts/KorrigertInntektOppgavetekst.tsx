@@ -4,6 +4,7 @@ import {
     ArbeidOgFrilansRegisterInntektDto,
     YtelseRegisterInntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import dayjs from 'dayjs';
 
 import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
@@ -14,28 +15,55 @@ interface Props {
 
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
+    const utbetalingsmåned = dayjs(oppgave.oppgavetypeData.fraOgMed).add(1, 'month').toDate();
+    const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
+
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
     } = oppgave.oppgavetypeData;
     return (
         <VStack gap="6" width="100%">
             <BodyLong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quasi quia pariatur
-                doloremque quibusdam vel, odit odio dolores corrupti suscipit voluptates modi, quod molestias iusto
-                repellat alias sit? Ab.
+                Vi har sjekket hva lønnen din var i {dateFormatter.month(oppgave.oppgavetypeData.fraOgMed)}:
             </BodyLong>
 
             <InntektTabell
                 inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
                 header="Arbeidsgiver/frilans"
+                lønnHeader="Lønn (før skatt)"
+                summert={oppgave.oppgavetypeData.registerinntekt.totalInntektArbeidOgFrilans}
             />
 
-            <InntektTabell inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)} header="Ytelse" />
+            {ytelseInntekter.length > 0 && (
+                <InntektTabell
+                    inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)}
+                    header="Ytelse"
+                    lønnHeader="Sum"
+                    summert={oppgave.oppgavetypeData.registerinntekt.totalInntektYtelse}
+                />
+            )}
 
-            <BodyLong weight="semibold">Fristen for å svare er {formatertFrist}.</BodyLong>
-            <BodyLong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. veniam, nam repudiandae similique quasi unde
-                dolorem sit repellendus!
+            <BodyLong as="div">
+                <p>
+                    Vi bruker lønnen fra arbeidsgiver/frilans når vi vurderer hvor mye penger du får utbetalt i{' '}
+                    {dateFormatter.monthFullYear(utbetalingsmåned)}.
+                </p>
+                <p>
+                    Hvis du mener at lønnen fra {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} din
+                    ikke stemmer, kan du sende oss en tilbakemeding om det. Skriv et svar til oss i feltet under.
+                </p>
+                <p>
+                    Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer,
+                    jo fortere får vi behandlet saken din.
+                </p>
+                <p>
+                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som{' '}
+                    {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} har oppgitt, når vi går videre med
+                    søknaden din.
+                </p>
+                <BodyLong weight="semibold" spacing>
+                    Fristen for å svare er {formatertFrist}.
+                </BodyLong>
             </BodyLong>
         </VStack>
     );
