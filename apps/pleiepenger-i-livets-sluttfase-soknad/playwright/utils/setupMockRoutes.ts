@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 
 export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {

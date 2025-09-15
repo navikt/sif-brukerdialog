@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';

@@ -1,5 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { Page } from '@playwright/test';
+
 import { StepID } from '../../src/app/types/StepID';
 import { mockData } from '../mock-data';
 
