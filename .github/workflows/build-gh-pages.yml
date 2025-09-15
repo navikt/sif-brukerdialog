@@ -25,9 +25,20 @@ jobs:
                   node-version: 22
                   cache: 'yarn'
 
+            # Sett opp .yarnrc.yml for GitHub Packages
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             # Installer avhengigheter
             - name: Install dependencies
               run: yarn install
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             # Bygg Storybook (eget prosjekt)
             - name: Build Storybook
