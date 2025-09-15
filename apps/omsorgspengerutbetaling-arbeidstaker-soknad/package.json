@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.16.2",
+    "version": "1.16.3",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -87,7 +87,7 @@
         "clean": "rm -rf node_modules .dist",
         "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
-        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}' './*.{ts,tsx}' './playwright/**/*.{js,ts,tsx}' './mock/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:run": "yarn playwright-test",

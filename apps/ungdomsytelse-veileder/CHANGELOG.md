@@ -1,5 +1,18 @@
 # @navikt/sif-demo-app
 
+## 0.8.3
+
+### Patch Changes
+
+- Utvide lint:fix scope til flere filer
+    - @navikt/sif-common-api@0.4.45
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-faro@0.2.6
+    - @navikt/sif-common-formik-ds@2.5.2
+    - @navikt/sif-common-ui@0.11.2
+    - @navikt/sif-validation@1.0.5
+    - @navikt/ung-common@0.0.44
+
 ## 0.8.2
 
 ### Patch Changes
