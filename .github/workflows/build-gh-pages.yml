@@ -2,7 +2,9 @@ name: Build and deploy gh-pages
 
 on:
     workflow_dispatch:
-
+    push:
+        branches:
+            - '**'
 permissions:
     contents: read
     pages: write
@@ -11,8 +13,8 @@ permissions:
 jobs:
     build-and-deploy-gh-pages-content:
         name: Build and Deploy Storybook
+        if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
         runs-on: ubuntu-latest
-
         steps:
             # Sjekk ut koden
             - name: Checkout repository
