@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { annenForelderMock } from '../mock-data/annenForelderMock';
 import { søkerMock } from '../mock-data/søkerMock';
 import { setupMockApi } from '../utils/setupMockApi';
