@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.44",
+    "version": "0.0.45",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
