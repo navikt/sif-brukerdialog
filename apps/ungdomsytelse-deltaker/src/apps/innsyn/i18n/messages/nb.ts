@@ -8,8 +8,8 @@ export const innsynMessages_nb = {
     'oppgavestatus.UTLØPT': 'Utløpt',
     'oppgavestatus.LUKKET': 'Lukket',
 
-    'oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel': 'Ny startdato i ungdomsprogrammet',
-    'oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel': 'Se og gi tilbakemelding på ny startdato',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel': 'Startdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel': 'Se og gi tilbakemelding på endret startdato',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
         'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på startdatoen?',
@@ -17,12 +17,12 @@ export const innsynMessages_nb = {
 
     'oppgavetype.BEKREFT_NY_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet. ',
+    'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
 
-    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel': 'Endret sluttdato i ungdomsprogrammet',
-    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på endret sluttdato',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
         'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
