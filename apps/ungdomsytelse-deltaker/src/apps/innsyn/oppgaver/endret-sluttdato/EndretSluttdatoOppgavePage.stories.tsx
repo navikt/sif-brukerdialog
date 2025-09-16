@@ -74,6 +74,11 @@ export const UbesvartOppgave: Story = {
     render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
+export const OppgaveKvittering: Story = {
+    name: 'Kvittering ved svar på oppgave',
+    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" _devKvittering={true} />,
+};
+
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
     render: () => <EndretSluttdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
