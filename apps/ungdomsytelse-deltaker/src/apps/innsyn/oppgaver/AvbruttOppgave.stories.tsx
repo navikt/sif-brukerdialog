@@ -11,7 +11,7 @@ import { EndretSluttdatoOppgavePage } from './endret-sluttdato/EndretSluttdatoOp
 import RapporterInntektOppgavePage from './rapporter-inntekt/RapporterInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Avbrutt og utløpt',
+    title: 'Innsyn/Oppgaver/Komponenter/Avbrutt og utløpt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };

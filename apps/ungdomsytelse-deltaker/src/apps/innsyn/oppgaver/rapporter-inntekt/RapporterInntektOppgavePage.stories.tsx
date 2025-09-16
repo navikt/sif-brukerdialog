@@ -12,7 +12,7 @@ import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import RapporterInntektOppgavePage from './RapporterInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Rapporter inntekt',
+    title: 'Innsyn/Oppgaver/5. Rapporter inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };

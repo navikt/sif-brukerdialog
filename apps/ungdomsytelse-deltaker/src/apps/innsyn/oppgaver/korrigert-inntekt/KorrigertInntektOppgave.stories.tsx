@@ -7,12 +7,12 @@ import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
+import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import { KorrigertInntektOppgavePage } from './KorrigertInntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/4. Endret sluttdato',
+    title: 'Innsyn/Oppgaver/6. Korrigert inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
@@ -20,19 +20,37 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretSluttdatoOppgave = {
+const oppgave: KorrigertInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        nySluttdato: dayjs('2025-05-01').toDate(),
-        forrigeSluttdato: dayjs('2025-04-01').toDate(),
+        fraOgMed: dayjs('2025-05-01').toDate(),
+        tilOgMed: dayjs('2025-05-01').toDate(),
+        registerinntekt: {
+            arbeidOgFrilansInntekter: [
+                {
+                    inntekt: 1500,
+                    arbeidsgiver: '947064649',
+                    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                },
+                {
+                    inntekt: 500,
+                    arbeidsgiver: '247064649',
+                    arbeidsgiverNavn: 'SMIDIG MALER',
+                },
+            ],
+            ytelseInntekter: [],
+            totalInntektArbeidOgFrilans: 20000,
+            totalInntektYtelse: 0,
+            totalInntekt: 20000,
+        },
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dayjs().add(14, 'days').toDate(),
 };
 
-const besvartOppgave: EndretSluttdatoOppgave = {
+const besvartOppgave: KorrigertInntektOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,
@@ -71,18 +89,18 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -99,7 +117,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -109,7 +127,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

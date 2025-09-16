@@ -15,7 +15,7 @@ export async function enableMocking() {
         if (__IS_GITHUB_PAGES__) {
             return worker.start({
                 serviceWorker: {
-                    url: getRequiredEnv('PUBLIC_PATH') + '/mockServiceWorker.js',
+                    url: import.meta.env.BASE_URL + 'mockServiceWorker.js',
                 },
             });
         } else {

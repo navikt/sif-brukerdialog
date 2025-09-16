@@ -13,7 +13,7 @@ import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import SøkYtelseOppgavePage from './SøkYtelseOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Søk ytelsen',
+    title: 'Innsyn/Oppgaver/1. Søk ytelsen',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };

@@ -1,6 +1,7 @@
 import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
+
 import { client } from './deltaker/client/client.gen';
 
 interface InitOptions {

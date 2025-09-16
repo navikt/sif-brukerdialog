@@ -12,7 +12,7 @@ import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/4. Endret sluttdato',
+    title: 'Innsyn/Oppgaver/3. Meldt ut',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
@@ -25,7 +25,7 @@ const oppgave: EndretSluttdatoOppgave = {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
     oppgavetypeData: {
         nySluttdato: dayjs('2025-05-01').toDate(),
-        forrigeSluttdato: dayjs('2025-04-01').toDate(),
+        forrigeSluttdato: undefined,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),

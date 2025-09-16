@@ -7,7 +7,7 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import OppgaveStatusInfo from './OppgaveStatusInfo';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/OppgaveStatusInfo',
+    title: 'Innsyn/Oppgaver/Komponenter/OppgaveStatusInfo',
     parameters: {},
     decorators: [withIntl, (Story) => withInnsynApp(Story, { withHeader: false })],
 };
