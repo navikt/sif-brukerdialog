@@ -35,7 +35,7 @@ export const mellomlagringMock = {
         omsorgstilbud: { erIOmsorgstilbudFremtid: 'no' },
         harNattevåk: 'unanswered',
         harBeredskap: 'unanswered',
-        frilans: { harHattInntektSomFrilanser: 'no' },
+        frilans: { harHattInntektSomFrilanser: 'no', arbeidsforhold: { normalarbeidstid: { timerPerUke: '30' } } },
         omsorgsstønad: { mottarOmsorgsstønad: 'no' },
         fosterhjemsgodtgjørelse: { mottarFosterhjemsgodtgjørelse: 'no' },
         selvstendig: { harHattInntektSomSN: 'no' },

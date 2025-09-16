@@ -1,5 +1,5 @@
 import { useAppIntl } from '@i18n/index';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong, BodyShort, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 import { AppText } from '../../../../i18n';
@@ -100,6 +100,21 @@ export const InfoArbeiderNormaltTimerFrilanser = ({
                 )}
             </ExpandableInfo>
         </>
+    );
+};
+
+export const InfoArbeidetNormaltTimerFrilanserAvsluttet = () => {
+    const { text } = useAppIntl();
+    return (
+        <VStack gap="2">
+            <BodyLong>Hvis du ikke A B eller C, kan du svare 0 her.</BodyLong>
+            <div>
+                <ExpandableInfo title="Hvorfor må jeg svare på dette spørsmålet?">TODO</ExpandableInfo>
+                <ExpandableInfo title={text('arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
+                    TODO
+                </ExpandableInfo>
+            </div>
+        </VStack>
     );
 };
 
