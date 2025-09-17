@@ -16,7 +16,7 @@ export const commonMessages_nn: Record<CoreMessageKeys, string> = {
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga.',
     '@core.formikFileUpload.file-upload.error.bad-request':
-        'Uleselig fil. Kontroller at fila lar seg åpne og vert vist korrekt.',
+        'Me klarete ikkje lese fila. Kontroller at den lar seg åpne og vert vist korrekt.',
 
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod ein feil under opplastinga ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
