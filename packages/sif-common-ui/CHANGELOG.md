@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.11.5
+
+### Patch Changes
+
+- 4f6593b: Ta i bruk DOMPurify for å renske mer i fritekstfelter.
+
 ## 0.11.4
 
 ### Patch Changes
