@@ -13,7 +13,10 @@ export const commonMessages_nb = {
     '@core.formikFileUpload.file-upload.error.fileType':
         'Filformatet støttes ikke. Tillatte filformater er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Filen er større enn {MAX_SIZE_MB} MB.',
-    '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod en feil under opplastingen.',
+    '@core.formikFileUpload.file-upload.error.retry':
+        'Det oppstod en feil under opplastingen. Kontroller at fila lar seg åpne og vises riktig, og prøv igjen.',
+    '@core.formikFileUpload.file-upload.error.bad-request':
+        'Vi klarte ikke lese filen. Kontroller at den lar seg åpne og vises riktig.',
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokumenter er lastet opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokumenter er lastet opp',
