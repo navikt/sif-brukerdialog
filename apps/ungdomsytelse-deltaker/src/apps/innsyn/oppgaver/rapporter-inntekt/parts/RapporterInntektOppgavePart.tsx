@@ -12,17 +12,18 @@ import { RapporterInntektOppgave } from '../../../../../types/Oppgave';
 import { getAppEnv } from '../../../../../utils/appEnv';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
+import { OppgavebekreftelseDevProps } from '../../../components/oppgavebekreftelse/types';
 import InntektForm from '../../../forms/inntekt-form/InntektForm';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 
-interface Props {
+interface Props extends OppgavebekreftelseDevProps {
     deltakerNavn: string;
     oppgave: RapporterInntektOppgave;
 }
 
-const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave }: Props) => {
-    const [visKvittering, setVisKvittering] = useState<boolean>(false);
+const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave, _devKvittering }: Props) => {
+    const [visKvittering, setVisKvittering] = useState<boolean>(_devKvittering || false);
     const navigate = useNavigate();
 
     const alertRef = useRef<HTMLDivElement>(null);
