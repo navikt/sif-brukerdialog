@@ -7954,7 +7954,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/ui@npm:^3.0.0, @sanity/ui@npm:^3.0.14":
+"@sanity/ui@npm:^3.0.0, @sanity/ui@npm:^3.0.14, @sanity/ui@npm:^3.1.0":
   version: 3.1.0
   resolution: "@sanity/ui@npm:3.1.0"
   dependencies:
@@ -8001,9 +8001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:4.8.1":
-  version: 4.8.1
-  resolution: "@sanity/vision@npm:4.8.1"
+"@sanity/vision@npm:4.9.0":
+  version: 4.9.0
+  resolution: "@sanity/vision@npm:4.9.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.18.7"
     "@codemirror/commands": "npm:^6.8.1"
@@ -8018,7 +8018,7 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.6"
     "@sanity/icons": "npm:^3.7.4"
-    "@sanity/ui": "npm:^3.0.14"
+    "@sanity/ui": "npm:^3.1.0"
     "@sanity/uuid": "npm:^3.0.2"
     "@uiw/react-codemirror": "npm:^4.25.1"
     is-hotkey-esm: "npm:^1.0.0"
@@ -8034,7 +8034,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1.15
-  checksum: 10/b19c96e320e304442bcd7c239059efeb6431b1f131efefb13c04df98ef1a8cc95ca0ac970dc89a973893d97edc5e4af819650a6ebbdb78ce16f2308a13dc9deb
+  checksum: 10/0e558fb031de60dfd276e9529855771c74453b9eded5c66f8be9d7bf4f6a149e4061d6ec555b60ca689099ae19112acb8a995a30444f9af16034d4fc8e72aa8b
   languageName: node
   linkType: hard
 
@@ -11345,7 +11345,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.2"
-    "@sanity/vision": "npm:4.8.1"
+    "@sanity/vision": "npm:4.9.0"
     "@types/react": "npm:19.1.13"
     dayjs: "npm:1.11.18"
     eslint: "npm:9.35.0"
