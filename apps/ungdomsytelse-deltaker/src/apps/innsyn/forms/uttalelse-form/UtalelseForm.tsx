@@ -99,7 +99,7 @@ const UtalelseForm = ({
                                             </BodyLong>
                                         }
                                         maxLength={500}
-                                        validate={getStringValidator({ required: true, maxLength: 500 })}
+                                        validate={getStringValidator({ required: true, minLength: 5, maxLength: 500 })}
                                     />
                                 ) : null}
                                 {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
