@@ -8,9 +8,10 @@ import KorrigertInntektOppgavetekst from './parts/KorrigertInntektOppgavetekst';
 interface Props {
     deltakerNavn: string;
     oppgave: KorrigertInntektOppgave;
+    _devKvittering?: boolean;
 }
 
-export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave }: Props) => {
+export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, _devKvittering }: Props) => {
     const intl = useAppIntl();
     const tekster = getOppgaveBekreftelseTekster(oppgave, intl);
     const oppsummering = getOppgaveOppsummering(oppgave);
@@ -21,7 +22,8 @@ export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave }: Props) =>
                 tekster={tekster}
                 oppsummering={oppsummering}
                 oppgave={oppgave}
-                deltakerNavn={deltakerNavn}>
+                deltakerNavn={deltakerNavn}
+                _devKvittering={_devKvittering}>
                 <KorrigertInntektOppgavetekst oppgave={oppgave} />
             </Oppgavebekreftelse>
         </DefaultPageLayout>

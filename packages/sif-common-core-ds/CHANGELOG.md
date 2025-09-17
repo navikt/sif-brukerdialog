@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.4
+
+### Patch Changes
+
+- 7f7d02d: Legge til egen feilmelding ved opplasting av filer som resulterer i 400-feil
+
 ## 10.3.3
 
 ### Patch Changes
