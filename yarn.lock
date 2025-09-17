@@ -5784,6 +5784,7 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.18"
+    dompurify: "npm:3.0.4"
     globals: "npm:16.4.0"
     intl: "npm:1.2.5"
     less: "npm:4.4.1"
@@ -14479,6 +14480,13 @@ __metadata:
   dependencies:
     domelementtype: "npm:^2.2.0"
   checksum: 10/e0d2af7403997a3ca040a9ace4a233b75ebe321e0ef628b417e46d619d65d47781b2f2038b6c2ef6e56e73e66aec99caf6a12c7e687ecff18ef74af6dfbde5de
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:3.0.4":
+  version: 3.0.4
+  resolution: "dompurify@npm:3.0.4"
+  checksum: 10/05de9369ef3f6db94a84ddd4e056f44a39b36b1de9282454bd1654680783266035d05f2b1a324a07989fde19e4e6c9bdaa9d15a570265605dec2196cf3bd463e
   languageName: node
   linkType: hard
 

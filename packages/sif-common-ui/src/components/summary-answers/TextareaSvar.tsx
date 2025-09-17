@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 interface Props {
     text?: string;
     spacing?: boolean;
@@ -5,13 +7,11 @@ interface Props {
 
 const TextareaSvar = ({ text, spacing = true }: Props) => {
     if (text && text.trim().length > 0) {
+        const cleanedText = DOMPurify.sanitize(text);
         return (
-            <div
-                style={spacing ? { marginTop: '0.5rem', marginBottom: '1rem' } : undefined}
-                dangerouslySetInnerHTML={{
-                    __html: text.replace(/\n/g, '<br/>').replace(/'/g, "''"),
-                }}
-            />
+            <div style={spacing ? { marginTop: '0.5rem', marginBottom: '1rem', whiteSpace: 'pre-wrap' } : undefined}>
+                {cleanedText}
+            </div>
         );
     }
     return null;
