@@ -20,10 +20,11 @@ interface Props {
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;
+    _devKvittering?: boolean;
 }
 
-const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, children }: Props) => {
-    const [visKvittering, setVisKvittering] = useState<boolean>(false);
+const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, _devKvittering = false, children }: Props) => {
+    const [visKvittering, setVisKvittering] = useState<boolean>(_devKvittering);
     const navigate = useNavigate();
     const { logSkjemaFullført } = useAnalyticsInstance();
 

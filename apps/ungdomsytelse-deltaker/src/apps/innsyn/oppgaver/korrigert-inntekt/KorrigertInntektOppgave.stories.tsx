@@ -92,6 +92,11 @@ export const UbesvartOppgave: Story = {
     render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
+export const OppgaveKvittering: Story = {
+    name: 'Kvittering ved svar på oppgave',
+    render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" _devKvittering={true} />,
+};
+
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
     render: () => <KorrigertInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,

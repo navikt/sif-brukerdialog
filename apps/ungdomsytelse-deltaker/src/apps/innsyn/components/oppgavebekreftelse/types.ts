@@ -4,3 +4,7 @@ export interface OppgavebekreftelseTekster {
     harTilbakemeldingSpørsmål: string;
     tilbakemeldingFritekstLabel: string;
 }
+
+export interface OppgavebekreftelseDevProps {
+    _devKvittering?: boolean;
+}

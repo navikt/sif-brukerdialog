@@ -4,9 +4,9 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import LøstOppgavebekreftelse from './parts/LøstOppgavebekreftelse';
 import UløstOppgavebekreftelse from './parts/UløstOppgavebekreftelse';
-import { OppgavebekreftelseTekster } from './types';
+import { OppgavebekreftelseDevProps, OppgavebekreftelseTekster } from './types';
 
-interface Props {
+interface Props extends OppgavebekreftelseDevProps {
     tekster: OppgavebekreftelseTekster;
     oppsummering: React.ReactNode;
     deltakerNavn: string;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Oppgavebekreftelse = (props: Props) => {
-    const { oppgave, oppsummering, children, ...rest } = props;
+    const { oppgave, oppsummering, children, _devKvittering, ...rest } = props;
 
     /** Brukes for å sjekke om en skal vise kvittering etter innsending */
     const erOpprinneligUløst = usePrevious(oppgave.status) === OppgaveStatus.ULØST;
@@ -31,7 +31,7 @@ const Oppgavebekreftelse = (props: Props) => {
         );
     }
     return (
-        <UløstOppgavebekreftelse oppgave={oppgave} {...rest}>
+        <UløstOppgavebekreftelse oppgave={oppgave} _devKvittering={_devKvittering} {...rest}>
             {children}
         </UløstOppgavebekreftelse>
     );
