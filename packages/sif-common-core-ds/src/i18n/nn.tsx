@@ -15,6 +15,9 @@ export const commonMessages_nn: Record<CoreMessageKeys, string> = {
         'Filformatet er ikkje støtta. Filformat du kan laste opp er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga.',
+    '@core.formikFileUpload.file-upload.error.bad-request':
+        'Uleselig fil. Kontroller at fila lar seg åpne og vert vist korrekt.',
+
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod ein feil under opplastinga ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokument er lasta opp',
