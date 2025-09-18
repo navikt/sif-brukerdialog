@@ -73,6 +73,11 @@ export const UbesvartOppgave: Story = {
     render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
+export const Kvittering: Story = {
+    name: 'Kvittering',
+    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" _devKvittering={true} />,
+};
+
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
     render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,

@@ -168,7 +168,7 @@ export const UbesvartOppgaveKombinasjon: Story = {
 };
 
 export const OppgaveKvittering: Story = {
-    name: 'Kvittering ved svar på oppgave',
+    name: 'Kvittering',
     render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" _devKvittering={true} />,
 };
 
