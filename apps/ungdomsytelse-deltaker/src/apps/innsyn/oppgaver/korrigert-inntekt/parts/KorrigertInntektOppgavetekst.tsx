@@ -56,7 +56,7 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                 inntekt={inntekt}
                 header={getInntektskildeHeader(oppgave)}
                 lønnHeader="Lønn (før skatt)"
-                summert={oppgave.oppgavetypeData.registerinntekt.totalInntektArbeidOgFrilans}
+                summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
             />
 
             <div>

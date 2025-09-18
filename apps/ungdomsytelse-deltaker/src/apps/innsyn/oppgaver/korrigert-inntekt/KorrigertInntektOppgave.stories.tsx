@@ -73,22 +73,25 @@ const oppgave: KorrigertInntektOppgave = {
 const getOppgaveMedInntekt = (
     arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
     ytelseInntekter: YtelseRegisterInntektDto[] = [],
-): KorrigertInntektOppgave => ({
-    ...oppgave,
-    oppgavetypeData: {
-        ...(oppgave.oppgavetypeData as any),
-        registerinntekt: {
-            arbeidOgFrilansInntekter,
-            ytelseInntekter,
-            totalInntektArbeidOgFrilans: arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
-            totalInntektYtelse: ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
-            totalInntekt:
-                arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0) +
-                ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
-        },
-    },
-});
+): KorrigertInntektOppgave => {
+    const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
+    const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
+    const totalInntekt = totalInntektArbeidOgFrilans + totalInntektYtelse;
 
+    return {
+        ...oppgave,
+        oppgavetypeData: {
+            ...(oppgave.oppgavetypeData as any),
+            registerinntekt: {
+                arbeidOgFrilansInntekter,
+                ytelseInntekter,
+                totalInntektArbeidOgFrilans,
+                totalInntektYtelse,
+                totalInntekt,
+            },
+        },
+    };
+};
 const besvartOppgave: KorrigertInntektOppgave = {
     ...oppgave,
     bekreftelse: {
