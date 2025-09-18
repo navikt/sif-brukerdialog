@@ -13,7 +13,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "dompurify": "3.2.6",
+        "dompurify": "3.2.7",
         "react-day-picker": "9.10.0"
     },
     "devDependencies": {
