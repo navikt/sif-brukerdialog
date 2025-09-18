@@ -57,22 +57,6 @@ const registerInntektEnArbeidsgiver: RegisterinntektDto = {
     totalInntekt: inntektArbeidsgiver1.inntekt,
 };
 
-const registerInntektNavYtelse: RegisterinntektDto = {
-    arbeidOgFrilansInntekter: [],
-    ytelseInntekter: [inntektYtelse1],
-    totalInntektArbeidOgFrilans: 0,
-    totalInntektYtelse: inntektYtelse1.inntekt,
-    totalInntekt: inntektYtelse1.inntekt,
-};
-
-const registerInntektToArbeidsgivere: RegisterinntektDto = {
-    arbeidOgFrilansInntekter: [inntektArbeidsgiver1, inntektArbeidsgiver2],
-    ytelseInntekter: [],
-    totalInntektArbeidOgFrilans: inntektArbeidsgiver1.inntekt + inntektArbeidsgiver2.inntekt,
-    totalInntektYtelse: 0,
-    totalInntekt: inntektArbeidsgiver1.inntekt + inntektArbeidsgiver2.inntekt,
-};
-
 const oppgave: KorrigertInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
