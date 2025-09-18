@@ -22,9 +22,9 @@ const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave) => {
     const harArbeidgiverInntekt = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length > 0;
 
     if (harYtelser && harArbeidgiverInntekt) {
-        return 'Arbeidsgiver/Nav-ytelser';
+        return 'Arbeidsgiver/Nav-ytelse';
     } else if (harYtelser && !harArbeidgiverInntekt) {
-        return 'Nav-ytelser';
+        return 'Nav-ytelse';
     }
     return 'Arbeidsgiver';
 };
