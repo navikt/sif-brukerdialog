@@ -46,7 +46,7 @@ const besvartOppgave: RapporterInntektOppgave = {
 };
 
 export const OppgavePanel: Story = {
-    name: 'Oppgavepaneler',
+    name: 'Oppgavevisning på forside',
     render: () => (
         <VStack gap="10">
             <VStack gap="4">

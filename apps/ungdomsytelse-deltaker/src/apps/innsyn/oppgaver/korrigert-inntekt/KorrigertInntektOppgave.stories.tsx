@@ -102,7 +102,7 @@ const besvartOppgave: KorrigertInntektOppgave = {
 };
 
 export const OppgavePanel: Story = {
-    name: 'Oppgavepaneler',
+    name: 'Oppgavevisning på forside',
     render: () => (
         <VStack gap="10">
             <VStack gap="4">
@@ -165,6 +165,10 @@ export const UbesvartOppgaveKombinasjon: Story = {
             deltakerNavn="SNODIG VAFFEL"
         />
     ),
+};
+export const IngenInntekt: Story = {
+    name: 'Ingen inntekt',
+    render: () => <KorrigertInntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {

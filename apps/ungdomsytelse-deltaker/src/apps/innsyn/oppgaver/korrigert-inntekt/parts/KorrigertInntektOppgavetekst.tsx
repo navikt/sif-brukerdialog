@@ -48,16 +48,27 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
         ...mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
     ];
 
+    const harInntekt = inntekt.length > 0;
+
     return (
         <VStack gap="6" width="100%" paddingBlock="0 6">
-            <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
+            {harInntekt ? (
+                <>
+                    <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
 
-            <InntektTabell
-                inntekt={inntekt}
-                header={getInntektskildeHeader(oppgave)}
-                lønnHeader="Lønn (før skatt)"
-                summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
-            />
+                    <InntektTabell
+                        inntekt={inntekt}
+                        header={getInntektskildeHeader(oppgave)}
+                        lønnHeader="Lønn (før skatt)"
+                        summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
+                    />
+                </>
+            ) : (
+                <BodyLong>
+                    Du har gitt oss beskjed om at du hadde lønn i {rapporteringsmåned}, men vi har ikke fått inn
+                    opplysninger fra arbeidsgiver om at du hadde lønn i {rapporteringsmåned}.
+                </BodyLong>
+            )}
 
             <div>
                 <BodyLong spacing>
@@ -65,10 +76,17 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                     tilbakemelding på lønnen for {rapporteringsmåned}.
                 </BodyLong>
                 <BodyLong spacing>Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.</BodyLong>
-                <BodyLong spacing>
-                    Hvis du ser at lønnen er feil, sjekker du den med arbeidsgiveren din først. Hvis du fortsatt mener
-                    at den er feil, krysser du av på “Ja” og sender en tilbakemelding til oss om det.
-                </BodyLong>
+                {harInntekt ? (
+                    <BodyLong spacing>
+                        Hvis du ser at lønnen er feil, sjekker du den med arbeidsgiveren din først. Hvis du fortsatt
+                        mener at den er feil, krysser du av på “Ja” og sender en tilbakemelding til oss om det.
+                    </BodyLong>
+                ) : (
+                    <BodyLong spacing>
+                        Hvis du likevel mener at du hadde lønn i {rapporteringsmåned}, krysser du av på “Ja” og sender
+                        en tilbakemelding til oss om det.
+                    </BodyLong>
+                )}
                 <BodyLong weight="semibold" spacing>
                     Jo fortere du svarer, jo fortere får du pengene utbetalt.
                     <BodyShort as="div">Fristen for å svare er {formatertFrist}.</BodyShort>
