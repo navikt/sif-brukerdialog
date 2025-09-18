@@ -11,6 +11,7 @@ import {
     RapporterInntektOppgave,
 } from '../../../types/Oppgave';
 import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
+import { getUtbetalingsmånedForKorrigertInntektOppgave } from '../oppgaver/korrigert-inntekt/parts/KorrigertInntektOppgavetekst';
 
 const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
 
@@ -65,7 +66,7 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
             return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.info`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
-                antallArbeidsgivere: oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length,
+                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.info', {
@@ -86,6 +87,7 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 tilbakemeldingFritekstLabel: intl.text(
                     `oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel`,
                 ),
+                kvitteringTekst: intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst'),
             };
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO: {
             return {
@@ -97,11 +99,13 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 tilbakemeldingFritekstLabel: intl.text(
                     `oppgavetype.${getSluttdatoTextKey(oppgave)}.tilbakemeldingFritekstLabel`,
                 ),
+                kvitteringTekst: intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst'),
             };
         }
 
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT: {
             const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
+            const utbetalingsmåned = getUtbetalingsmånedForKorrigertInntektOppgave(oppgave.oppgavetypeData.fraOgMed);
             return {
                 sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`, {
                     måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
@@ -115,6 +119,9 @@ export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShap
                 tilbakemeldingFritekstLabel: intl.text(
                     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
                 ),
+                kvitteringTekst: intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst', {
+                    utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
+                }),
             };
         }
         default:

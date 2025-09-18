@@ -20,6 +20,7 @@ interface Props {
     deltakerNavn: string;
     oppgave: BekreftelseOppgave;
     children: React.ReactNode;
+    kvitteringTekst?: React.ReactNode;
     _devKvittering?: boolean;
 }
 
@@ -60,7 +61,7 @@ const UløstOppgavebekreftelse = ({ tekster, deltakerNavn, oppgave, _devKvitteri
                             <Heading level="2" size="small" spacing>
                                 Svaret ditt er sendt inn
                             </Heading>
-                            Du vil om kort tid motta et oppdatert vedtak.
+                            {tekster.kvitteringTekst}
                         </Alert>
                     </VStack>
                     <div>

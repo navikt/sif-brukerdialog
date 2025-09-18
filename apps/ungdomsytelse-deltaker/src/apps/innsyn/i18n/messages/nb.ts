@@ -14,12 +14,14 @@ export const innsynMessages_nb = {
         'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på startdatoen?',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_NY_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
     'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_NY_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på endret sluttdato',
@@ -27,15 +29,17 @@ export const innsynMessages_nb = {
         'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel':
         'Lønn fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgivere}} utbetalt {måned}',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tilbakemelding på ulik lønn for {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tilbakemelding på lønn for i {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Det er forskjell mellom det du har oppgitt i lønn, og det {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgivere}} din har rapportert til oss.',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på lønnen fra {antallArbeidsgivere, plural, one {arbeidsgiver} other {arbeidsgiverne}}?',
+        'Sjekk at opplysningene våre om lønnen du fikk i {måned} er riktige. Send oss en tilbakemelding når du har sjekket.',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
+        'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',
 
     'oppgavetype.RAPPORTER_INNTEKT.sidetittel': 'Rapporter inntekt',
     'oppgavetype.RAPPORTER_INNTEKT.oppgavetittel': 'Meld fra om du fikk utbetalt lønn i {månedOgÅr}',

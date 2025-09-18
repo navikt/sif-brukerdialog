@@ -1,4 +1,4 @@
-import { BodyLong, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import {
     ArbeidOgFrilansRegisterInntektDto,
@@ -13,57 +13,85 @@ interface Props {
     oppgave: KorrigertInntektOppgave;
 }
 
+export const getUtbetalingsmånedForKorrigertInntektOppgave = (oppgaveFraOgMed: Date): Date => {
+    return dayjs(oppgaveFraOgMed).add(1, 'month').toDate();
+};
+
+const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave) => {
+    const harYtelser = oppgave.oppgavetypeData.registerinntekt.ytelseInntekter.length > 0;
+    const harArbeidgiverInntekt = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length > 0;
+
+    if (harYtelser && harArbeidgiverInntekt) {
+        return 'Arbeidsgiver/Nav-ytelser';
+    } else if (harYtelser && !harArbeidgiverInntekt) {
+        return 'Nav-ytelser';
+    }
+    return 'Arbeidsgiver';
+};
+
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
-    const utbetalingsmåned = dayjs(oppgave.oppgavetypeData.fraOgMed).add(1, 'month').toDate();
-    const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
+
+    const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
+    const utbetalingsmåned = dateFormatter.month(
+        getUtbetalingsmånedForKorrigertInntektOppgave(oppgave.oppgavetypeData.fraOgMed),
+    );
 
     const {
         registerinntekt: { ytelseInntekter, arbeidOgFrilansInntekter },
     } = oppgave.oppgavetypeData;
+
+    const inntekt = [
+        ...mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
+        ...mapYtelseInntektToInntektTabellRad(ytelseInntekter),
+    ];
+
     return (
-        <VStack gap="6" width="100%">
-            <BodyLong>
-                Vi har sjekket hva lønnen din var i {dateFormatter.month(oppgave.oppgavetypeData.fraOgMed)}:
-            </BodyLong>
+        <VStack gap="6" width="100%" paddingBlock="0 6">
+            <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
 
             <InntektTabell
-                inntekt={mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter)}
-                header="Arbeidsgiver/frilans"
+                inntekt={inntekt}
+                header={getInntektskildeHeader(oppgave)}
                 lønnHeader="Lønn (før skatt)"
                 summert={oppgave.oppgavetypeData.registerinntekt.totalInntektArbeidOgFrilans}
             />
 
-            {ytelseInntekter.length > 0 && (
-                <InntektTabell
-                    inntekt={mapYtelseInntektToInntektTabellRad(ytelseInntekter)}
-                    header="Ytelse"
-                    lønnHeader="Sum"
-                    summert={oppgave.oppgavetypeData.registerinntekt.totalInntektYtelse}
-                />
-            )}
-
             <div>
                 <BodyLong spacing>
-                    Vi bruker lønnen fra arbeidsgiver/frilans når vi vurderer hvor mye penger du får utbetalt i{' '}
-                    {dateFormatter.monthFullYear(utbetalingsmåned)}.
+                    Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en
+                    tilbakemelding på lønnen for {rapporteringsmåned}.
                 </BodyLong>
+                <BodyLong spacing>Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.</BodyLong>
                 <BodyLong spacing>
-                    Hvis du mener at lønnen fra {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} din
-                    ikke stemmer, kan du sende oss en tilbakemeding om det. Skriv et svar til oss i feltet under.
-                </BodyLong>
-                <BodyLong spacing>
-                    Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer,
-                    jo fortere får vi behandlet saken din.
+                    Hvis du ser at lønnen er feil, sjekker du den med arbeidsgiveren din først. Hvis du fortsatt mener
+                    at den er feil, krysser du av på “Ja” og sender en tilbakemelding til oss om det.
                 </BodyLong>
                 <BodyLong weight="semibold" spacing>
-                    Fristen for å svare er {formatertFrist}.
+                    Jo fortere du svarer, jo fortere får du pengene utbetalt.
+                    <BodyShort as="div">Fristen for å svare er {formatertFrist}.</BodyShort>
                 </BodyLong>
                 <BodyLong spacing>
-                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som{' '}
-                    {antallArbeidsgivere === 1 ? 'arbeidsgiveren' : 'arbeidsgiverne'} har oppgitt, når vi går videre med
-                    søknaden din.
+                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som arbeidsgiver har
+                    oppgitt.
                 </BodyLong>
+                <ReadMore header="Regelverk og innsyn">
+                    <BodyLong spacing>Se regelverket for ungdomsprogramytelsen:</BodyLong>
+                    <List>
+                        <List.Item>
+                            <Link href="#">§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)</Link>
+                        </List.Item>
+                        <List.Item>
+                            <Link href="#">
+                                § 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1.
+                                august 2025) (lovdata.no)
+                            </Link>
+                        </List.Item>
+                    </List>
+                    <BodyLong spacing>
+                        Du har rett til å se dokumentene i saken sin. <Link href="#">Les mer om innsyn på nav.no</Link>.
+                    </BodyLong>
+                </ReadMore>
             </div>
         </VStack>
     );
@@ -73,12 +101,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],
 ): InntektTabellRad[] => {
     if (inntekt.length === 0) {
-        return [
-            {
-                beløp: 0,
-                navn: 'Ingen arbeidsgiver eller frilans',
-            },
-        ];
+        return [];
     }
     return inntekt.map((i) => ({
         beløp: i.inntekt,
@@ -88,12 +111,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
 
 const mapYtelseInntektToInntektTabellRad = (inntekt: YtelseRegisterInntektDto[]): InntektTabellRad[] => {
     if (inntekt.length === 0) {
-        return [
-            {
-                beløp: 0,
-                navn: 'Ytelser',
-            },
-        ];
+        return [];
     }
     return inntekt.map((i) => ({
         beløp: i.inntekt,
