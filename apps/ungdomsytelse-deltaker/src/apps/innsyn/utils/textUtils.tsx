@@ -2,15 +2,18 @@ import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
-import { AppIntlShape } from '../../../i18n';
+import { AppIntlShape, useAppIntl } from '../../../i18n';
 import {
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
+    KorrigertInntektOppgave,
     Oppgave,
     OppgaveBase,
     RapporterInntektOppgave,
 } from '../../../types/Oppgave';
+import InntektTabell from '../components/inntekt-tabell/InntektTabell';
 import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
+import { korrigertInntektOppgaveUtils } from '../oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
 import { getUtbetalingsmånedForKorrigertInntektOppgave } from '../oppgaver/korrigert-inntekt/parts/KorrigertInntektOppgavetekst';
 
 const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
@@ -174,6 +177,35 @@ const getEndretSluttdatoOppsummering = (oppgave: EndretSluttdatoOppgave): React.
     );
 };
 
+interface AvvikRegisterinntektOppsummeringProps {
+    oppgave: KorrigertInntektOppgave;
+}
+const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
+    const intl = useAppIntl();
+    const {
+        registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
+        fraOgMed,
+    } = oppgave.oppgavetypeData;
+
+    const rapporteringsmåned = dateFormatter.month(fraOgMed);
+    const inntekt = [
+        ...korrigertInntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
+        ...korrigertInntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
+    ];
+
+    return (
+        <>
+            Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:
+            <InntektTabell
+                inntekt={inntekt}
+                header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
+                lønnHeader="Lønn (før skatt)"
+                summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
+            />
+        </>
+    );
+};
+
 export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | undefined => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
@@ -181,7 +213,7 @@ export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | unde
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return getEndretSluttdatoOppsummering(oppgave);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return 'Oppsummering ikke laget';
+            return <AvvikRegisterinntektOppsummering oppgave={oppgave} />;
         case Oppgavetype.RAPPORTER_INNTEKT:
             return getRapporterInntektOppsummering(oppgave);
         default:

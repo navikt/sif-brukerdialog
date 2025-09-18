@@ -1,14 +1,11 @@
 import { BodyLong, BodyShort, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import {
-    ArbeidOgFrilansRegisterInntektDto,
-    YtelseRegisterInntektDto,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
-import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { useAppIntl } from '../../../../../i18n';
 import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
-import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
+import InntektTabell from '../../../components/inntekt-tabell/InntektTabell';
+import { korrigertInntektOppgaveUtils } from '../korrigertInntektOppgaveUtils';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;
@@ -16,18 +13,6 @@ interface Props {
 
 export const getUtbetalingsmånedForKorrigertInntektOppgave = (oppgaveFraOgMed: Date): Date => {
     return dayjs(oppgaveFraOgMed).add(1, 'month').toDate();
-};
-
-const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave) => {
-    const harYtelser = oppgave.oppgavetypeData.registerinntekt.ytelseInntekter.length > 0;
-    const harArbeidgiverInntekt = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length > 0;
-
-    if (harYtelser && harArbeidgiverInntekt) {
-        return 'Arbeidsgiver/Nav-ytelse';
-    } else if (harYtelser && !harArbeidgiverInntekt) {
-        return 'Nav-ytelse';
-    }
-    return 'Arbeidsgiver';
 };
 
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
@@ -44,8 +29,8 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     } = oppgave.oppgavetypeData;
 
     const inntekt = [
-        ...mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
-        ...mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
+        ...korrigertInntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
+        ...korrigertInntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
     ];
 
     const harInntekt = inntekt.length > 0;
@@ -64,7 +49,7 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
 
                     <InntektTabell
                         inntekt={inntekt}
-                        header={getInntektskildeHeader(oppgave)}
+                        header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
                         lønnHeader="Lønn (før skatt)"
                         summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                     />
@@ -135,31 +120,6 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
             </div>
         </VStack>
     );
-};
-
-const mapArbeidOgFrilansInntektToInntektTabellRad = (
-    inntekt: ArbeidOgFrilansRegisterInntektDto[],
-): InntektTabellRad[] => {
-    if (inntekt.length === 0) {
-        return [];
-    }
-    return inntekt.map((i) => ({
-        beløp: i.inntekt,
-        navn: i.arbeidsgiverNavn || i.arbeidsgiver,
-    }));
-};
-
-const mapYtelseInntektToInntektTabellRad = (
-    inntekt: YtelseRegisterInntektDto[],
-    intl: AppIntlShape,
-): InntektTabellRad[] => {
-    if (inntekt.length === 0) {
-        return [];
-    }
-    return inntekt.map((i) => ({
-        beløp: i.inntekt,
-        navn: intl.text(`ytelse.${i.ytelsetype}`),
-    }));
 };
 
 export default KorrigertInntektOppgavetekst;
