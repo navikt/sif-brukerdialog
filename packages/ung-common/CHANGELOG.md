@@ -1,5 +1,11 @@
 # @navikt/ung-common
 
+## 0.0.46
+
+### Patch Changes
+
+- 4f6593b: Ta i bruk DOMPurify for å renske mer i fritekstfelter.
+
 ## 0.0.45
 
 ### Patch Changes

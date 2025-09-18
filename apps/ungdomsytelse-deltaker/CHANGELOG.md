@@ -1,5 +1,16 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.2.6
+
+### Patch Changes
+
+- d3c98ea: Spesifisere tekster ved endring av sluttdato
+- Updated dependencies [4f6593b]
+    - @navikt/sif-common-ui@0.11.5
+    - @navikt/ung-common@0.0.46
+    - @navikt/sif-common-forms-ds@21.0.5
+    - @navikt/sif-common-soknad-ds@26.0.5
+
 ## 1.2.5
 
 ### Patch Changes
