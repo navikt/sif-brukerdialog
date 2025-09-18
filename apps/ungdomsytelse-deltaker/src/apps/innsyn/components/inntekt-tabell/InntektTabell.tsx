@@ -39,7 +39,6 @@ const InntektTabell = ({ header, inntekt, summert, lønnHeader }: Props) => {
                         </Table.Row>
                     );
                 })}
-
                 <Table.Row>
                     <Table.HeaderCell scope="row">
                         <BodyShort weight="semibold">Totalt</BodyShort>

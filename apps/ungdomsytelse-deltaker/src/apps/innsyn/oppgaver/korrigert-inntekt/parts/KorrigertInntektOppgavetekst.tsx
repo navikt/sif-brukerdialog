@@ -49,12 +49,18 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     ];
 
     const harInntekt = inntekt.length > 0;
+    const harKunYtelseInntekt = ytelseInntekter.length > 0 && arbeidOgFrilansInntekter.length === 0;
+    const harFlereYtelseInntekter = ytelseInntekter.length > 1;
 
     return (
         <VStack gap="6" width="100%" paddingBlock="0 6">
             {harInntekt ? (
                 <>
-                    <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
+                    {harKunYtelseInntekt ? (
+                        <BodyLong>Vi har fått disse opplysningene om ytelse fra Nav i {rapporteringsmåned}:</BodyLong>
+                    ) : (
+                        <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
+                    )}
 
                     <InntektTabell
                         inntekt={inntekt}
@@ -71,10 +77,19 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
             )}
 
             <div>
-                <BodyLong spacing>
-                    Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en
-                    tilbakemelding på lønnen for {rapporteringsmåned}.
-                </BodyLong>
+                {harKunYtelseInntekt ? (
+                    <BodyLong spacing>
+                        Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en
+                        tilbakemelding på summen du fikk i {harFlereYtelseInntekter ? 'ytelser' : 'ytelse'} for{' '}
+                        {rapporteringsmåned}.
+                    </BodyLong>
+                ) : (
+                    <BodyLong spacing>
+                        Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en
+                        tilbakemelding på lønnen for {rapporteringsmåned}.
+                    </BodyLong>
+                )}
+
                 <BodyLong spacing>Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.</BodyLong>
                 {harInntekt ? (
                     <BodyLong spacing>
