@@ -15,7 +15,7 @@ interface Props {
 
 const InntektTabell = ({ header, inntekt, summert, lønnHeader }: Props) => {
     return (
-        <Table zebraStripes>
+        <Table>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">{header}</Table.HeaderCell>
