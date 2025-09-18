@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 2.20.37
 
 ### Patch Changes

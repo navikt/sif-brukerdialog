@@ -4,14 +4,14 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.1.20",
+    "version": "0.1.21",
     "devDependencies": {
         "@hey-api/openapi-ts": "0.83.1",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "typescript": "5.9.2",
         "vitest": "3.2.4",
-        "zod": "4.1.8"
+        "zod": "4.1.9"
     },
     "peerDependencies": {
         "dayjs": "*",
