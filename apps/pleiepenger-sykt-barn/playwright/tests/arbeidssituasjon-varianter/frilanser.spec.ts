@@ -76,8 +76,18 @@ test.describe('Omsorgsstønad', () => {
 });
 
 test.describe('Frilanser', () => {
-    test('Er ikke frilanser', async ({ page }) => {
+    test('Er ikke frilanser og mottar ikke omsorgsstønad', async ({ page }) => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei', { exact: true }).nth(1).click();
+        await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobbet du').fill('33');
+        await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
+        await expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
+    });
+
+    test('Er ikke frilanser og mottar omsorgsstønad', async ({ page }) => {
+        await page.getByRole('group', { name: 'Mottar du omsorgss' }).getByLabel('Ja').check();
+        await page.getByRole('group', { name: 'Mottar du denne omsorgsstønaden gjennom' }).getByLabel('Ja').check();
+        await page.getByRole('textbox', { name: 'Hvor mange timer i uken har' }).fill('5');
+        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Nei').click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         await expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
     });
@@ -87,7 +97,6 @@ test.describe('Frilanser', () => {
         await page.getByLabel('Jeg jobber som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
-        await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
         await page.getByTestId('typedFormikForm-submitButton').click();
