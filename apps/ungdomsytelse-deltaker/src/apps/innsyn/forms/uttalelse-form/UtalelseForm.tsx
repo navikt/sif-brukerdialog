@@ -38,6 +38,8 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
+const TILBAKEMELDING_MAX_LENGTH = 2000;
+
 const UtalelseForm = ({
     harTilbakemeldingSpørsmål,
     tilbakemeldingLabel,
@@ -98,8 +100,12 @@ const UtalelseForm = ({
                                                 helseopplysninger.
                                             </BodyLong>
                                         }
-                                        maxLength={500}
-                                        validate={getStringValidator({ required: true, minLength: 5, maxLength: 500 })}
+                                        maxLength={TILBAKEMELDING_MAX_LENGTH}
+                                        validate={getStringValidator({
+                                            required: true,
+                                            minLength: 5,
+                                            maxLength: TILBAKEMELDING_MAX_LENGTH,
+                                        })}
                                     />
                                 ) : null}
                                 {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
