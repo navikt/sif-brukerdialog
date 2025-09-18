@@ -1,5 +1,12 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import {
+    ArbeidOgFrilansRegisterInntektDto,
+    OppgaveStatus,
+    Oppgavetype,
+    RegisterinntektDto,
+    YtelseRegisterInntektDto,
+    YtelseType,
+} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -20,35 +27,83 @@ export default meta;
 
 type Story = StoryObj;
 
+const inntektArbeidsgiver1: ArbeidOgFrilansRegisterInntektDto = {
+    inntekt: 1500,
+    arbeidsgiver: '947064649',
+    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+};
+
+const inntektArbeidsgiver2: ArbeidOgFrilansRegisterInntektDto = {
+    inntekt: 500,
+    arbeidsgiver: '247064649',
+    arbeidsgiverNavn: 'SMIDIG MALER',
+};
+
+const inntektYtelse1: YtelseRegisterInntektDto = {
+    inntekt: 3400,
+    ytelsetype: YtelseType.SYKEPENGER,
+};
+
+// const inntektYtelse2: YtelseRegisterInntektDto = {
+//     inntekt: 1200,
+//     ytelsetype: YtelseType.OMSORGSPENGER,
+// };
+
+const registerInntektEnArbeidsgiver: RegisterinntektDto = {
+    arbeidOgFrilansInntekter: [inntektArbeidsgiver1],
+    ytelseInntekter: [],
+    totalInntektArbeidOgFrilans: inntektArbeidsgiver1.inntekt,
+    totalInntektYtelse: 0,
+    totalInntekt: inntektArbeidsgiver1.inntekt,
+};
+
+const registerInntektNavYtelse: RegisterinntektDto = {
+    arbeidOgFrilansInntekter: [],
+    ytelseInntekter: [inntektYtelse1],
+    totalInntektArbeidOgFrilans: 0,
+    totalInntektYtelse: inntektYtelse1.inntekt,
+    totalInntekt: inntektYtelse1.inntekt,
+};
+
+const registerInntektToArbeidsgivere: RegisterinntektDto = {
+    arbeidOgFrilansInntekter: [inntektArbeidsgiver1, inntektArbeidsgiver2],
+    ytelseInntekter: [],
+    totalInntektArbeidOgFrilans: inntektArbeidsgiver1.inntekt + inntektArbeidsgiver2.inntekt,
+    totalInntektYtelse: 0,
+    totalInntekt: inntektArbeidsgiver1.inntekt + inntektArbeidsgiver2.inntekt,
+};
+
 const oppgave: KorrigertInntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-01').toDate(),
-        registerinntekt: {
-            arbeidOgFrilansInntekter: [
-                {
-                    inntekt: 1500,
-                    arbeidsgiver: '947064649',
-                    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
-                },
-                {
-                    inntekt: 500,
-                    arbeidsgiver: '247064649',
-                    arbeidsgiverNavn: 'SMIDIG MALER',
-                },
-            ],
-            ytelseInntekter: [],
-            totalInntektArbeidOgFrilans: 20000,
-            totalInntektYtelse: 0,
-            totalInntekt: 20000,
-        },
+        registerinntekt: registerInntektEnArbeidsgiver,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dayjs().add(14, 'days').toDate(),
 };
+
+const getOppgaveMedInntekt = (
+    arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
+    ytelseInntekter: YtelseRegisterInntektDto[] = [],
+): KorrigertInntektOppgave => ({
+    ...oppgave,
+    oppgavetypeData: {
+        ...(oppgave.oppgavetypeData as any),
+        registerinntekt: {
+            arbeidOgFrilansInntekter,
+            ytelseInntekter,
+            totalInntektArbeidOgFrilans: arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
+            totalInntektYtelse: ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
+            totalInntekt:
+                arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0) +
+                ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0),
+        },
+    },
+});
 
 const besvartOppgave: KorrigertInntektOppgave = {
     ...oppgave,
@@ -87,9 +142,42 @@ export const OppgavePanel: Story = {
     ),
 };
 
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+export const UbesvartOppgaveEnArbeidsgiver: Story = {
+    name: 'Èn arbeidsgiver',
+    render: () => (
+        <KorrigertInntektOppgavePage
+            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+export const UbesvartOppgaveToArbeidsgivere: Story = {
+    name: 'To arbeidsgivere',
+    render: () => (
+        <KorrigertInntektOppgavePage
+            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const UbesvartOppgaveNavYtelse: Story = {
+    name: 'Nav ytelse',
+    render: () => (
+        <KorrigertInntektOppgavePage
+            oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
+};
+export const UbesvartOppgaveKombinasjon: Story = {
+    name: 'Arbeidsgiver og Nav ytelse',
+    render: () => (
+        <KorrigertInntektOppgavePage
+            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])}
+            deltakerNavn="SNODIG VAFFEL"
+        />
+    ),
 };
 
 export const OppgaveKvittering: Story = {
