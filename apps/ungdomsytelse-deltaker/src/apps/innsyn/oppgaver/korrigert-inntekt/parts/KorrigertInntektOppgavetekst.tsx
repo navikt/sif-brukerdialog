@@ -6,6 +6,7 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
+import { AppIntlShape, useAppIntl } from '../../../../../i18n';
 import { KorrigertInntektOppgave } from '../../../../../types/Oppgave';
 import InntektTabell, { InntektTabellRad } from '../../../components/inntekt-tabell/InntektTabell';
 
@@ -30,6 +31,7 @@ const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave) => {
 };
 
 const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
+    const intl = useAppIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
@@ -43,7 +45,7 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
 
     const inntekt = [
         ...mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
-        ...mapYtelseInntektToInntektTabellRad(ytelseInntekter),
+        ...mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
     ];
 
     return (
@@ -109,13 +111,16 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
     }));
 };
 
-const mapYtelseInntektToInntektTabellRad = (inntekt: YtelseRegisterInntektDto[]): InntektTabellRad[] => {
+const mapYtelseInntektToInntektTabellRad = (
+    inntekt: YtelseRegisterInntektDto[],
+    intl: AppIntlShape,
+): InntektTabellRad[] => {
     if (inntekt.length === 0) {
         return [];
     }
     return inntekt.map((i) => ({
         beløp: i.inntekt,
-        navn: i.ytelsetype,
+        navn: intl.text(`ytelse.${i.ytelsetype}`),
     }));
 };
 

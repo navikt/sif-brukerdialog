@@ -3,6 +3,12 @@ import { innsynMessages_nb } from './nb';
 export const innsynMessages_nn: typeof innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
 
+    'ytelse.SYKEPENGER': 'Sjukepengar',
+    'ytelse.OMSORGSPENGER': 'Omsorgspengar',
+    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepengar for sjukt barn',
+    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepengar i livets sluttfase',
+    'ytelse.OPPLAERINGSPENGER': 'Opplæringspengar',
+
     'oppgavestatus.LØST': 'Løyst',
     'oppgavestatus.ULØST': 'Uløyst',
     'oppgavestatus.AVBRUTT': 'Avbroten',

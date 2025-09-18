@@ -1,6 +1,12 @@
 export const innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
 
+    'ytelse.SYKEPENGER': 'Sykepenger',
+    'ytelse.OMSORGSPENGER': 'Omsorgspenger',
+    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger for sykt barn',
+    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger i livets sluttfase',
+    'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
+
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
     'oppgavestatus.ULØST': 'Uløst',
