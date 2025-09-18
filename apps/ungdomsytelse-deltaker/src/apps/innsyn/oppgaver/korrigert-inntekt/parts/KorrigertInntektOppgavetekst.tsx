@@ -78,21 +78,24 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                     oppgitt.
                 </BodyLong>
                 <ReadMore header="Regelverk og innsyn">
-                    <BodyLong spacing>Se regelverket for ungdomsprogramytelsen:</BodyLong>
-                    <List>
-                        <List.Item>
-                            <Link href="#">§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)</Link>
-                        </List.Item>
-                        <List.Item>
-                            <Link href="#">
-                                § 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1.
-                                august 2025) (lovdata.no)
-                            </Link>
-                        </List.Item>
-                    </List>
-                    <BodyLong spacing>
-                        Du har rett til å se dokumentene i saken sin. <Link href="#">Les mer om innsyn på nav.no</Link>.
-                    </BodyLong>
+                    <BodyLong>Se regelverket for ungdomsprogramytelsen:</BodyLong>
+                    <VStack gap="6">
+                        <List>
+                            <List.Item>
+                                <Link href="#">§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)</Link>
+                            </List.Item>
+                            <List.Item>
+                                <Link href="#">
+                                    § 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra
+                                    1. august 2025) (lovdata.no)
+                                </Link>
+                            </List.Item>
+                        </List>
+                        <BodyLong>
+                            Du har rett til å se dokumentene i saken sin.{' '}
+                            <Link href="#">Les mer om innsyn på nav.no</Link>.
+                        </BodyLong>
+                    </VStack>
                 </ReadMore>
             </div>
         </VStack>
