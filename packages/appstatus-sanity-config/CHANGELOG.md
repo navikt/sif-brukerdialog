@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 1.2.31
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 0.28.32
 
 ### Patch Changes

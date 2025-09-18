@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 2.28.30
 
 ### Patch Changes
