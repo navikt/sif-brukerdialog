@@ -40,7 +40,7 @@ const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave, _devKvittering }: 
     const månedOgÅr = dateFormatter.monthFullYear(periode.from);
     const måned = dateFormatter.month(periode.from);
 
-    if (oppgave.status !== OppgaveStatus.ULØST) {
+    if (oppgave.status !== OppgaveStatus.ULØST && visKvittering === false) {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
         return (
             <VStack gap="6">
