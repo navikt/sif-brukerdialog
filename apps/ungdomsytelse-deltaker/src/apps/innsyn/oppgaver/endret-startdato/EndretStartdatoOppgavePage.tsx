@@ -14,7 +14,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
     const formatertDato = (
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
@@ -69,3 +69,5 @@ export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKv
         </DefaultPageLayout>
     );
 };
+
+export default EndretStartdatoOppgavePage;

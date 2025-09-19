@@ -16,7 +16,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
     // Lag tekster direkte i komponenten
@@ -67,3 +67,5 @@ export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisK
         </DefaultPageLayout>
     );
 };
+
+export default KorrigertInntektOppgavePage;

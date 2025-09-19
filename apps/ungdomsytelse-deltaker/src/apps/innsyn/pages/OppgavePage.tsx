@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
-import { EndretSluttdatoOppgavePage } from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
-import { EndretStartdatoOppgavePage } from '../oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
-import OppgaveIkkeFunnetPage from '../oppgaver/oppgave-ikke-funnet/OppgaveIkkeFunnetPage';
+import EndretSluttdatoOppgavePage from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
+import EndretStartdatoOppgavePage from '../oppgaver/endret-startdato/EndretStartdatoOppgavePage';
+import KorrigertInntektOppgavePage from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
 import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse/SøkYtelseOppgavePage';
+import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
 /** Url params */
 type OppgavePageParams = {

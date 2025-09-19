@@ -9,7 +9,7 @@ import { withQueryClient } from '../../../../../storybook/decorators/withQueryCl
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { EndretSluttdatoOppgavePage } from './EndretSluttdatoOppgavePage';
+import EndretSluttdatoOppgavePage from './EndretSluttdatoOppgavePage';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/4. Endret sluttdato',

@@ -1,6 +1,6 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
-import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
+import DefaultPageLayout from './layout/DefaultPageLayout';
 
 interface Props {
     oppgaveReferanse?: string;

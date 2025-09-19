@@ -13,7 +13,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
     return (
@@ -52,3 +52,5 @@ export const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKv
         </DefaultPageLayout>
     );
 };
+
+export default EndretSluttdatoOppgavePage;

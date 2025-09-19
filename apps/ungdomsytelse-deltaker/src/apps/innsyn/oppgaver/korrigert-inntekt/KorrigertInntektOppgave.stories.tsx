@@ -16,7 +16,7 @@ import { withQueryClient } from '../../../../../storybook/decorators/withQueryCl
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { KorrigertInntektOppgavePage } from './KorrigertInntektOppgavePage';
+import KorrigertInntektOppgavePage from './KorrigertInntektOppgavePage';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/6. Korrigert inntekt',
