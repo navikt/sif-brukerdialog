@@ -1,10 +1,10 @@
+import InnsynAppHeader from '@innsyn/components/innsyn-app-header/InnsynAppHeader';
+import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
+import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
 import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
+import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 
-import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import InnsynAppHeader from '../components/innsyn-app-header/InnsynAppHeader';
-import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
-import DeltakelseContent from '../modules/deltakelse-content/DeltakelseContent';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 

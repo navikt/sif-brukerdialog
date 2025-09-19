@@ -1,6 +1,5 @@
+import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { createContext, useContext } from 'react';
-
-import { BekreftelseOppgave } from '../../../../../types/Oppgave';
 
 interface OppgavebekreftelseContextType {
     oppgave: BekreftelseOppgave;

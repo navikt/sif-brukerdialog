@@ -1,12 +1,12 @@
+import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
+import OppgaveStatusInfo from '@innsyn/components/oppgave-status-info/OppgaveStatusInfo';
+import UtalelseForm from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
 import { Alert, Box, BoxNew, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
-import { AppRoutes } from '../../../../utils/AppRoutes';
-import ForsideLenkeButton from '../../atoms/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusInfo from '../../components/oppgave-status-info/OppgaveStatusInfo';
-import UtalelseForm from '../../forms/uttalelse-form/UtalelseForm';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {

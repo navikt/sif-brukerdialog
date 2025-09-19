@@ -1,10 +1,10 @@
+import OppgaverList from '@innsyn/components/oppgaver-list/OppgaverList';
+import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltakelseUtils';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 
-import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
-import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakelseUtils';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';

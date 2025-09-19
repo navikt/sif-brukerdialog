@@ -1,7 +1,6 @@
+import UngdomsprogrammetHeader from '@innsyn/atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
-
-import getLenker from '../../../../utils/lenker';
-import UngdomsprogrammetHeader from '../../atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
+import getLenker from '@shared/utils/lenker';
 
 const ForsidePageFooter = () => {
     return (

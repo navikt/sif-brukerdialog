@@ -1,12 +1,12 @@
 import { Theme } from '@navikt/ds-react';
 import useUxSignals from '@navikt/sif-common-core-ds/src/hooks/useUxSignals';
+import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
-import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { applicationIntlMessages } from '../../i18n';
-import { AppRoutes } from '../../utils/AppRoutes';
 import InnsynRouter from './InnsynRouter';
 
 const InnsynApp = () => {

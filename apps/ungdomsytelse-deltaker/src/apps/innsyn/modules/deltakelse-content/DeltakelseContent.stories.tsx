@@ -1,13 +1,13 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { harSøktMock } from '@shared/mock/scenarios/data/harSøkt';
+import { withDeltakerContext } from '@shared/storybook/decorators/withDeltakerContext';
+import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { withIntl } from '@shared/storybook/decorators/withIntl';
+import { withRouter } from '@shared/storybook/decorators/withRouter';
+import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@shared/types/DeltakelsePeriode';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import { harSøktMock } from '../../../../../mock/scenarios/data/harSøkt';
-import { withDeltakerContext } from '../../../../../storybook/decorators/withDeltakerContext';
-import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { DeltakelsePeriode, deltakelsePeriodeSchema } from '../../../../types/DeltakelsePeriode';
 import DeltakelseContent from './DeltakelseContent';
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,

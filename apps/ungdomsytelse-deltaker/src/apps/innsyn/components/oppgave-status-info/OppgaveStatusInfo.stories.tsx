@@ -1,9 +1,9 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { withIntl } from '@shared/storybook/decorators/withIntl';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import OppgaveStatusInfo from './OppgaveStatusInfo';
 
 const meta: Meta = {

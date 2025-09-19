@@ -1,8 +1,8 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
 
 import { AppIntlShape } from '../../../i18n';
-import { EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '../../../types/Oppgave';
 
 const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
 
