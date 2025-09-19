@@ -2,44 +2,13 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { useAppIntl } from '../../../../i18n';
 import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
-import InntektTabell from '../../components/inntekt-tabell/InntektTabell';
 import OppgavebekreftelseV2 from '../../components/oppgavebekreftelse/OppgavebekreftelseV2';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
-import { korrigertInntektOppgaveUtils } from './korrigertInntektOppgaveUtils';
+import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
 import KorrigertInntektOppgavetekst, {
     getUtbetalingsmånedForKorrigertInntektOppgave,
 } from './parts/KorrigertInntektOppgavetekst';
-
-interface AvvikRegisterinntektOppsummeringProps {
-    oppgave: KorrigertInntektOppgave;
-}
-
-const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
-    const intl = useAppIntl();
-    const {
-        registerinntekt: { arbeidOgFrilansInntekter, ytelseInntekter },
-        fraOgMed,
-    } = oppgave.oppgavetypeData;
-
-    const rapporteringsmåned = dateFormatter.month(fraOgMed);
-    const inntekt = [
-        ...korrigertInntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
-        ...korrigertInntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
-    ];
-
-    return (
-        <>
-            Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:
-            <InntektTabell
-                inntekt={inntekt}
-                header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
-                lønnHeader="Lønn (før skatt)"
-                summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
-            />
-        </>
-    );
-};
 
 interface Props {
     deltakerNavn: string;
