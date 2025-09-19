@@ -38,9 +38,9 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Tilbakemelding på lønn i {måned}',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Se og gi tilbakemelding på lønn i {måned}',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Sjekk lønn i {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Sjekk at opplysningene våre om lønnen du fikk i {måned} er riktige. Send oss en tilbakemelding når du har sjekket.',
+        'Sjekk at opplysningene våre om lønnen du fikk i {måned} er riktige. Send oss et svar når du har sjekket.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
