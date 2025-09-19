@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import { getOppgaveStatusText } from '../../utils/textUtils';
@@ -24,8 +24,13 @@ const Oppgavebekreftelse = ({
 }: Props) => {
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
+    const contextValue = useMemo(
+        () => ({ oppgave, deltakerNavn, visKvittering, setVisKvittering }),
+        [oppgave, deltakerNavn, visKvittering, setVisKvittering],
+    );
+
     return (
-        <OppgavebekreftelseContext.Provider value={{ oppgave, deltakerNavn, visKvittering, setVisKvittering }}>
+        <OppgavebekreftelseContext.Provider value={contextValue}>
             <VStack gap="6">
                 {/* Status tag - alltid til stede */}
                 <div>
