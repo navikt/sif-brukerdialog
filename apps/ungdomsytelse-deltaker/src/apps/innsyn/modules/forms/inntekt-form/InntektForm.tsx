@@ -31,7 +31,7 @@ const inntektFormComponents = getTypedFormComponents<InntektFormFields, InntektF
 interface Props {
     oppgaveReferanse: string;
     måned: string;
-    onSuccess: (data: UngdomsytelseInntektsrapportering | void) => void;
+    onSuccess: (harRapportertInntekt: boolean) => void;
     onCancel: () => void;
 }
 
@@ -60,9 +60,9 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                 oppgaveReferanse,
                 harBekreftetInntekt: true,
             };
-            rapporterMutateAsync(data).then(() => onSuccess(data));
+            rapporterMutateAsync(data).then(() => onSuccess(true));
         } else {
-            lukkMutateAsync(oppgaveReferanse).then(() => onSuccess());
+            lukkMutateAsync(oppgaveReferanse).then(() => onSuccess(false));
         }
     };
 

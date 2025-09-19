@@ -1,4 +1,3 @@
-import { OppgavebekreftelseDevProps } from '@innsyn/modules/oppgavebekreftelse/types';
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
@@ -6,22 +5,23 @@ import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
-interface Props extends OppgavebekreftelseDevProps {
+export interface RapporterInntektOppgaveProps {
     deltakerNavn: string;
     oppgave: RapporterInntektOppgave;
+    initialKvitteringData?: RapporterInntektKvitteringData;
 }
 
-const RapporterInntektOppgavePage = ({ oppgave, deltakerNavn, _devKvittering }: Props) => {
+export interface RapporterInntektKvitteringData {
+    harHattInntekt: boolean;
+}
+
+const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
     return (
         <DefaultPageLayout
             documentTitle={getDokumentTittel(
-                `Inntekt ${dateFormatter.MonthFullYear(oppgave.oppgavetypeData.fraOgMed)}`,
+                `Inntekt ${dateFormatter.MonthFullYear(props.oppgave.oppgavetypeData.fraOgMed)}`,
             )}>
-            <RapporterInntektOppgavePart
-                oppgave={oppgave}
-                deltakerNavn={deltakerNavn}
-                _devKvittering={_devKvittering}
-            />
+            <RapporterInntektOppgavePart {...props} />
         </DefaultPageLayout>
     );
 };

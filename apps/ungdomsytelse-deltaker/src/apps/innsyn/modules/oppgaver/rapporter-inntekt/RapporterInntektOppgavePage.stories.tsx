@@ -77,9 +77,26 @@ export const UbesvartOppgave: Story = {
     render: () => <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
-export const Kvittering: Story = {
-    name: 'Kvittering',
-    render: () => <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" _devKvittering={true} />,
+export const KvitteringHarInntekt: Story = {
+    name: 'Kvittering - med inntekt',
+    render: () => (
+        <RapporterInntektOppgavePage
+            oppgave={oppgave}
+            deltakerNavn="SNODIG VAFFEL"
+            initialKvitteringData={{ harHattInntekt: true }}
+        />
+    ),
+};
+
+export const KvitteringUtenInntekt: Story = {
+    name: 'Kvittering - uten inntekt',
+    render: () => (
+        <RapporterInntektOppgavePage
+            oppgave={oppgave}
+            deltakerNavn="SNODIG VAFFEL"
+            initialKvitteringData={{ harHattInntekt: false }}
+        />
+    ),
 };
 
 export const BesvartOppgave: Story = {
