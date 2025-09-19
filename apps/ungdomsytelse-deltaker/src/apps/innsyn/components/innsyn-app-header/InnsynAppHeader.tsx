@@ -3,6 +3,8 @@ import { YtelseNavn } from '@innsyn/atoms/ytelse-navn/YtelseNavn';
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
+import { AppText } from '../../../../i18n';
+
 interface Props {
     startdato: Date;
 }
@@ -22,7 +24,9 @@ const InnsynAppHeader = ({ startdato }: Props) => {
                 <Heading level="1" size="xlarge">
                     <YtelseNavn />
                 </Heading>
-                <div className="uppercase">Startdato {dateFormatter.full(startdato)}</div>
+                <div className="uppercase">
+                    <AppText id="innsynAppHeader.startdato" values={{ dato: dateFormatter.full(startdato) }} />
+                </div>
             </VStack>
         </Stack>
     );

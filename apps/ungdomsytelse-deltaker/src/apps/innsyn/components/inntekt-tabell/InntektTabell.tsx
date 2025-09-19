@@ -9,11 +9,12 @@ export interface InntektTabellRad {
 interface Props {
     header: string;
     lønnHeader: string;
+    totalLabel: string;
     inntekt: InntektTabellRad[];
     summert: number;
 }
 
-const InntektTabell = ({ header, inntekt, summert, lønnHeader }: Props) => {
+const InntektTabell = ({ header, inntekt, summert, lønnHeader, totalLabel }: Props) => {
     return (
         <Table>
             <Table.Header>
@@ -41,7 +42,7 @@ const InntektTabell = ({ header, inntekt, summert, lønnHeader }: Props) => {
                 })}
                 <Table.Row>
                     <Table.HeaderCell scope="row">
-                        <BodyShort weight="semibold">Totalt</BodyShort>
+                        <BodyShort weight="semibold">{totalLabel}</BodyShort>
                     </Table.HeaderCell>
                     <Table.DataCell className="w-16">
                         <BodyShort weight="semibold" className="text-right text-nowrap">

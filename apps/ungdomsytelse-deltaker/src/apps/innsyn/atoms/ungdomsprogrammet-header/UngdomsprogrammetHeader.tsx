@@ -1,17 +1,19 @@
 import { Bleed, Box, Heading, Hide, Show } from '@navikt/ds-react';
 
+import { AppText, useAppIntl } from '../../../../i18n';
 import MannSvg from '../svg/Mann';
 
 const UngdomsprogrammetHeader = () => {
+    const { text } = useAppIntl();
     return (
         <>
             <Hide above="sm">
                 <Heading level="2" size="large">
-                    Ungdoms&shy;programmet
+                    <AppText id="ungdomsprogrammetHeader.heading" />
                 </Heading>
             </Hide>
             <Show above="sm">
-                <h2 aria-label="Ungdomsprogrammet">
+                <h2 aria-label={text('ungdomsprogrammetHeader.ariaLabel')}>
                     <div
                         aria-hidden="true"
                         style={{
@@ -25,7 +27,8 @@ const UngdomsprogrammetHeader = () => {
                             <span
                                 className="inline-block rounded-xl p-3 pt-6 pb-6 relative z-1 "
                                 style={{ backgroundColor: '#D7E6F0', fontWeight: '900' }}>
-                                Ungdoms-{/* */}
+                                <AppText id="ungdomsprogrammetHeader.poster.ungdoms" />
+                                {/* */}
                                 <span style={{ position: 'absolute', left: '100%', top: '-1rem' }} aria-hidden="true">
                                     <MannSvg />
                                 </span>
@@ -35,7 +38,7 @@ const UngdomsprogrammetHeader = () => {
                             <span
                                 className="inline-block rounded-xl p-3 pb-6 pt-6"
                                 style={{ backgroundColor: '#D7E6F0', paddingRight: '1.5rem' }}>
-                                programmet
+                                <AppText id="ungdomsprogrammetHeader.poster.programmet" />
                             </span>
                         </Bleed>
                     </div>

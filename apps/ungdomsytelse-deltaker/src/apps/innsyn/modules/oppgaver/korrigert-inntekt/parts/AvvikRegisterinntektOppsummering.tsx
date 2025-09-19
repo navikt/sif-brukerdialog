@@ -27,6 +27,7 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
             <InntektTabell
                 inntekt={inntekt}
                 header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
+                totalLabel="Totalt"
                 lønnHeader="Lønn (før skatt)"
                 summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
             />

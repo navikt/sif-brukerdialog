@@ -7,6 +7,16 @@ export const innsynMessages_nb = {
     'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger i livets sluttfase',
     'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
 
+    'forsideLenkeButton.tekst': 'Tilbake til oversikten',
+    'ungdomsprogrammetHeader.heading': 'Ungdoms&shy;programmet',
+    'ungdomsprogrammetHeader.ariaLabel': 'Ungdomsprogrammet',
+    'ungdomsprogrammetHeader.poster.ungdoms': 'Ungdoms-',
+    'ungdomsprogrammetHeader.poster.programmet': 'programmet',
+
+    'innsynAppHeader.startdato': 'Startdato {dato}',
+
+    'oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.',
+
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
     'oppgavestatus.ULØST': 'Uløst',

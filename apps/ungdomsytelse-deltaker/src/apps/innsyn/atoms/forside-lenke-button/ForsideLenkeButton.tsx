@@ -3,6 +3,8 @@ import { Button } from '@navikt/ds-react';
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
+import { AppText } from '../../../../i18n';
+
 const ForsideLenkeButton = () => {
     const navigate = useNavigate();
     return (
@@ -17,7 +19,7 @@ const ForsideLenkeButton = () => {
             variant="primary"
             icon={<ArrowLeftIcon aria-hidden="true" />}
             iconPosition="left">
-            Tilbake til oversikten
+            <AppText id="forsideLenkeButton.tekst" />
         </Button>
     );
 };

@@ -49,6 +49,7 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                         inntekt={inntekt}
                         header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
                         lønnHeader="Lønn (før skatt)"
+                        totalLabel="Totalt"
                         summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                     />
                 </>
