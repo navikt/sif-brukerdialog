@@ -16,7 +16,7 @@ const EndretStartdatoOppgavetekst = ({ endretDato, svarfrist }: Props) => {
             </BodyLong>
             <BodyLong spacing>Du får denne meldingen slik at du kan komme med en tilbakemelding på datoen.</BodyLong>
             <BodyLong spacing>
-                Ingen tilbakemelding? Kryss av på “Nei” med én gang og send inn svaret ditt. Jo fortere du svarer, jo
+                Ingen tilbakemelding? Kryss av på “Nei” med en gang og send inn svaret ditt. Jo fortere du svarer, jo
                 fortere får vi behandlet saken din.
             </BodyLong>
             <BodyLong spacing>

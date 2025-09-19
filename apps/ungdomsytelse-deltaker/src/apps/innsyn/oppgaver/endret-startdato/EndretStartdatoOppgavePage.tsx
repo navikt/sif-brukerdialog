@@ -42,7 +42,7 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                         Du får denne meldingen slik at du kan komme med en tilbakemelding på datoen.
                     </BodyLong>
                     <BodyLong spacing>
-                        Ingen tilbakemelding? Kryss av på &quot;Nei&quot; med én gang og send inn svaret ditt. Jo
+                        Ingen tilbakemelding? Kryss av på &quot;Nei&quot; med en gang og send inn svaret ditt. Jo
                         fortere du svarer, jo fortere får vi behandlet saken din.
                     </BodyLong>
                     <BodyLong spacing>
