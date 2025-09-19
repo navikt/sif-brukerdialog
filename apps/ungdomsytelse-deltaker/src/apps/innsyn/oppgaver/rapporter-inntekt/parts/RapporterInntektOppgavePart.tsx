@@ -98,7 +98,8 @@ const RapporterInntektOppgavePart = ({ deltakerNavn, oppgave, _devKvittering }: 
                             <Heading level="2" size="small" spacing>
                                 Svaret ditt er sendt inn
                             </Heading>
-                            Du vil om kort tid motta et oppdatert vedtak.
+                            Vi får også opplysninger om lønnen din fra arbeidsgiver. Hvis det er forskjell på lønnen du
+                            har sendt inn, og lønnen vi får fra arbeidsgiveren din, får du beskjed om det.
                         </Alert>
                     </VStack>
                     <div>
