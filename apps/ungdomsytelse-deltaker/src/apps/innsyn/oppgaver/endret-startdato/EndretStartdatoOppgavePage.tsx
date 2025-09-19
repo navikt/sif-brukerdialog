@@ -21,22 +21,19 @@ export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKv
     );
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
-    const sidetittel = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel');
-    const oppgavetittel = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel');
     const harTilbakemeldingSpørsmål = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål');
-    const tilbakemeldingFritekstLabel = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel');
-    const kvitteringTekst = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst');
 
     return (
-        <DefaultPageLayout documentTitle={getDokumentTittel(sidetittel)}>
+        <DefaultPageLayout
+            documentTitle={getDokumentTittel(intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel'))}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={oppgavetittel}
+                oppgavetittel={intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel')}
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart
                     spørsmål={harTilbakemeldingSpørsmål}
-                    tilbakemeldingLabel={tilbakemeldingFritekstLabel}>
+                    tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel')}>
                     <BodyLong spacing>
                         Veilederen din har endret startdatoen din i ungdomsprogrammet til{' '}
                         <strong>{formatertDato}</strong>.
@@ -65,7 +62,9 @@ export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKv
                     <EndretStartdatoOppsummering oppgave={oppgave} />
                 </Oppgavebekreftelse.Besvart>
 
-                <Oppgavebekreftelse.Kvittering>{kvitteringTekst}</Oppgavebekreftelse.Kvittering>
+                <Oppgavebekreftelse.Kvittering>
+                    {intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst')}
+                </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
     );

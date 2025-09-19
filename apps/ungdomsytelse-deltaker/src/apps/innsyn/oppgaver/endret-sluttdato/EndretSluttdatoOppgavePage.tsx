@@ -16,26 +16,17 @@ interface Props {
 export const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
-    const sidetittel = intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel');
-
-    const oppgavetittel = intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel');
-
-    const harTilbakemeldingSpørsmål = intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål');
-
-    const tilbakemeldingFritekstLabel = intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel');
-
-    const kvitteringTekst = intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst');
-
     return (
-        <DefaultPageLayout documentTitle={getDokumentTittel(sidetittel)}>
+        <DefaultPageLayout
+            documentTitle={getDokumentTittel(intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel'))}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={oppgavetittel}
+                oppgavetittel={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel')}
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart
-                    spørsmål={harTilbakemeldingSpørsmål}
-                    tilbakemeldingLabel={tilbakemeldingFritekstLabel}>
+                    spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}
+                    tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel')}>
                     {oppgave.oppgavetypeData.forrigeSluttdato ? (
                         <EndretSluttdatoOppgavetekst
                             endretDato={oppgave.oppgavetypeData.nySluttdato}
@@ -49,11 +40,14 @@ export const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKv
                     )}
                 </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart spørsmål={harTilbakemeldingSpørsmål}>
+                <Oppgavebekreftelse.Besvart
+                    spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}>
                     <EndretSluttdatoOppsummering oppgave={oppgave} />
                 </Oppgavebekreftelse.Besvart>
 
-                <Oppgavebekreftelse.Kvittering>{kvitteringTekst}</Oppgavebekreftelse.Kvittering>
+                <Oppgavebekreftelse.Kvittering>
+                    {intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst')}
+                </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
     );
