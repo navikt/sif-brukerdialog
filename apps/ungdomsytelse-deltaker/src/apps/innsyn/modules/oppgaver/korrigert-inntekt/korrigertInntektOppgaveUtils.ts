@@ -3,9 +3,8 @@ import {
     ArbeidOgFrilansRegisterInntektDto,
     YtelseRegisterInntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppIntlShape } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
-
-import { AppIntlShape } from '../../../../../i18n';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],

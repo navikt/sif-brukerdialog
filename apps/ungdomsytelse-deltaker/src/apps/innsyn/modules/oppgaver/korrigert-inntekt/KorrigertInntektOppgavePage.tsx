@@ -2,9 +2,9 @@ import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekref
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useAppIntl } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
 
-import { useAppIntl } from '../../../../../i18n';
 import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
 import KorrigertInntektOppgavetekst, {
     getUtbetalingsmånedForKorrigertInntektOppgave,

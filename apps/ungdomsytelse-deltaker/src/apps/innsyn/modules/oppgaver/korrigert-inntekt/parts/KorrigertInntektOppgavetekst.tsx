@@ -2,10 +2,9 @@ import InntektTabell from '@innsyn/components/inntekt-tabell/InntektTabell';
 import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
 import { BodyLong, BodyShort, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useAppIntl } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
-
-import { useAppIntl } from '../../../../../../i18n';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;

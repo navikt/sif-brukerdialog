@@ -2,10 +2,9 @@ import { OppgaveStatusTagVariant } from '@innsyn/atoms/oppgave-status-tag/Oppgav
 import OppgaveLinkPanel from '@innsyn/components/oppgave-link-panel/OppgaveLinkPanel';
 import { getOppgaveInfo, getOppgaveStatusText, getOppgaveTittel } from '@innsyn/utils/textUtils';
 import { VStack } from '@navikt/ds-react';
+import { useAppIntl } from '@shared/i18n';
 import { Oppgave } from '@shared/types/Oppgave';
 import { useNavigate } from 'react-router-dom';
-
-import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     oppgaver: Oppgave[];

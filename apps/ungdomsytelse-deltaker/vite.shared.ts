@@ -4,7 +4,7 @@ export const createAliasConfig = (baseDir: string = __dirname) => ({
     // Felles/root-nivå alias med @shared prefix
     '@shared/types': resolve(baseDir, './src/types'),
     '@shared/utils': resolve(baseDir, './src/utils'),
-    '@shared/i18n': resolve(baseDir, './src/i18n'),
+    '@shared/i18n': resolve(baseDir, './src/i18n/index'),
     '@shared/api': resolve(baseDir, './src/api'),
     '@shared/context': resolve(baseDir, './src/context'),
     '@shared/components': resolve(baseDir, './src/components'),

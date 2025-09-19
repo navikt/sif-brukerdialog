@@ -1,9 +1,9 @@
 import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
+import { useAppIntl } from '@shared/i18n';
 import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
 
-import { useAppIntl } from '../../../../../i18n';
 import EndretSluttdatoOppgavetekst from './parts/EndretSluttdatoOppgavetekst';
 import EndretSluttdatoOppsummering from './parts/EndretSluttdatoOppsummering';
 import NySluttdatoOppgavetekst from './parts/NySluttdatoOppgavetekst';

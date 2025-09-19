@@ -11,8 +11,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-
-import { useAppIntl } from '../../../../../i18n';
+import { useAppIntl } from '@shared/i18n';
 
 interface Props {
     harTilbakemeldingSpørsmål: string;

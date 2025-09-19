@@ -3,9 +3,9 @@ import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useAppIntl } from '@shared/i18n';
 import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
 
-import { useAppIntl } from '../../../../../i18n';
 import { EndretStartdatoOppsummering } from './parts/EndretStartdatoOppsummering';
 
 interface Props {

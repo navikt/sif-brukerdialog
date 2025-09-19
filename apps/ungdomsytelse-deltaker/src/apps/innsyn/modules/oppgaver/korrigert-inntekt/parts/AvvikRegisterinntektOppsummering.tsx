@@ -1,9 +1,8 @@
 import InntektTabell from '@innsyn/components/inntekt-tabell/InntektTabell';
 import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useAppIntl } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
-
-import { useAppIntl } from '../../../../../../i18n';
 
 interface AvvikRegisterinntektOppsummeringProps {
     oppgave: KorrigertInntektOppgave;
