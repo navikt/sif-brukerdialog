@@ -1,9 +1,9 @@
+import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
+import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { Heading, VStack } from '@navikt/ds-react';
+import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { useMemo, useState } from 'react';
 
-import { BekreftelseOppgave } from '../../../../types/Oppgave';
-import OppgaveStatusTag from '../../atoms/oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '../../utils/textUtils';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 

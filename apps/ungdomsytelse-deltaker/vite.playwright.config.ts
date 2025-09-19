@@ -1,9 +1,11 @@
 /// <reference types="vitest" />
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+
 import { getDevAppSettings } from './mock/devAppSettings';
-import tailwindcss from '@tailwindcss/vite';
+import { createAliasConfig } from './vite.shared';
 
 export default defineConfig({
     mode: 'playwright',
@@ -26,6 +28,9 @@ export default defineConfig({
             },
         },
     ],
+    resolve: {
+        alias: createAliasConfig(),
+    },
     define: {
         __IS_GITHUB_PAGES__: true,
     },
