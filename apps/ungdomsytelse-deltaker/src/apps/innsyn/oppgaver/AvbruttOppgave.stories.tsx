@@ -7,7 +7,7 @@ import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../storybook/decorators/withQueryClient';
 import { withRouter } from '../../../../storybook/decorators/withRouter';
 import { EndretSluttdatoOppgave, RapporterInntektOppgave } from '../../../types/Oppgave';
-import { EndretSluttdatoOppgavePageV2 } from './endret-sluttdato/EndretSluttdatoOppgavePageV2';
+import { EndretSluttdatoOppgavePage } from './endret-sluttdato/EndretSluttdatoOppgavePage';
 import RapporterInntektOppgavePage from './rapporter-inntekt/RapporterInntektOppgavePage';
 
 const meta: Meta = {
@@ -45,7 +45,7 @@ const rapporterInntektOppgave: RapporterInntektOppgave = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePageV2
+        <EndretSluttdatoOppgavePage
             oppgave={{ ...endretSluttdatoOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -55,7 +55,7 @@ export const AvbruttOppgave: Story = {
 export const KansellertOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePageV2
+        <EndretSluttdatoOppgavePage
             oppgave={{ ...endretSluttdatoOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

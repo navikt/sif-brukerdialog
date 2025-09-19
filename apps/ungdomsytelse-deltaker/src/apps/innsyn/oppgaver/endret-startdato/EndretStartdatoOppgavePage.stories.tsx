@@ -9,7 +9,7 @@ import { withQueryClient } from '../../../../../storybook/decorators/withQueryCl
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretStartdatoOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { EndretStartdatoOppgavePageV2 } from './EndretStartdatoOppgavePageV2';
+import { EndretStartdatoOppgavePage } from './EndretStartdatoOppgavePage';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/2. Endret startdato',
@@ -70,25 +70,25 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePageV2 oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
     render: () => (
-        <EndretStartdatoOppgavePageV2 oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
+        <EndretStartdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
     ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePageV2 oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <EndretStartdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretStartdatoOppgavePageV2
+        <EndretStartdatoOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -105,7 +105,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePageV2
+        <EndretStartdatoOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -115,7 +115,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretStartdatoOppgavePageV2
+        <EndretStartdatoOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

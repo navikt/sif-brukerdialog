@@ -6,7 +6,7 @@ import { AppRoutes } from '../../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
 import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
-import { useOppgavebekreftelseV2 } from '../OppgavebekreftelseV2';
+import { useOppgavebekreftelse } from '../Oppgavebekreftelse';
 import OppgaveUttalelse from './OppgaveUttalelse';
 
 interface UbesvartProps {
@@ -16,7 +16,7 @@ interface UbesvartProps {
 }
 
 const Ubesvart = ({ children, spørsmål, tilbakemeldingLabel }: UbesvartProps) => {
-    const { oppgave, visKvittering, setVisKvittering, deltakerNavn } = useOppgavebekreftelseV2();
+    const { oppgave, visKvittering, setVisKvittering, deltakerNavn } = useOppgavebekreftelse();
     const navigate = useNavigate();
 
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
@@ -47,7 +47,7 @@ interface KvitteringProps {
 }
 
 const Kvittering = ({ children }: KvitteringProps) => {
-    const { visKvittering } = useOppgavebekreftelseV2();
+    const { visKvittering } = useOppgavebekreftelse();
 
     if (!visKvittering) return null;
 
@@ -73,8 +73,8 @@ interface BesvartProps {
     children: React.ReactNode;
 }
 
-const Besvart = ({ spørsmål, children }: BesvartProps) => {
-    const { oppgave, visKvittering } = useOppgavebekreftelseV2();
+const Besvart = ({ children, spørsmål }: BesvartProps) => {
+    const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 
     const oppgaveInnhold = (() => {

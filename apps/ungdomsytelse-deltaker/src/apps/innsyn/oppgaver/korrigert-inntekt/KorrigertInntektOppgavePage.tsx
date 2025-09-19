@@ -2,7 +2,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { useAppIntl } from '../../../../i18n';
 import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
-import OppgavebekreftelseV2 from '../../components/oppgavebekreftelse/OppgavebekreftelseV2';
+import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
@@ -16,7 +16,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const KorrigertInntektOppgavePageV2 = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+export const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
     // Lag tekster direkte i komponenten
@@ -47,23 +47,23 @@ export const KorrigertInntektOppgavePageV2 = ({ deltakerNavn, oppgave, initialVi
 
     return (
         <DefaultPageLayout documentTitle={getDokumentTittel(sidetittel)}>
-            <OppgavebekreftelseV2
+            <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
                 oppgavetittel={oppgavetittel}
                 initialVisKvittering={initialVisKvittering}>
-                <OppgavebekreftelseV2.Ubesvart
+                <Oppgavebekreftelse.Ubesvart
                     spørsmål={harTilbakemeldingSpørsmål}
                     tilbakemeldingLabel={tilbakemeldingFritekstLabel}>
                     <KorrigertInntektOppgavetekst oppgave={oppgave} />
-                </OppgavebekreftelseV2.Ubesvart>
+                </Oppgavebekreftelse.Ubesvart>
 
-                <OppgavebekreftelseV2.Besvart spørsmål={harTilbakemeldingSpørsmål}>
+                <Oppgavebekreftelse.Besvart spørsmål={harTilbakemeldingSpørsmål}>
                     <AvvikRegisterinntektOppsummering oppgave={oppgave} />
-                </OppgavebekreftelseV2.Besvart>
+                </Oppgavebekreftelse.Besvart>
 
-                <OppgavebekreftelseV2.Kvittering>{kvitteringTekst}</OppgavebekreftelseV2.Kvittering>
-            </OppgavebekreftelseV2>
+                <Oppgavebekreftelse.Kvittering>{kvitteringTekst}</Oppgavebekreftelse.Kvittering>
+            </Oppgavebekreftelse>
         </DefaultPageLayout>
     );
 };

@@ -3,7 +3,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { useAppIntl } from '../../../../i18n';
 import { EndretStartdatoOppgave } from '../../../../types/Oppgave';
-import OppgavebekreftelseV2 from '../../components/oppgavebekreftelse/OppgavebekreftelseV2';
+import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import { EndretStartdatoOppsummering } from './parts/EndretStartdatoOppsummering';
@@ -14,7 +14,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-export const EndretStartdatoOppgavePageV2 = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+export const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
     const formatertDato = (
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
@@ -29,12 +29,12 @@ export const EndretStartdatoOppgavePageV2 = ({ deltakerNavn, oppgave, initialVis
 
     return (
         <DefaultPageLayout documentTitle={getDokumentTittel(sidetittel)}>
-            <OppgavebekreftelseV2
+            <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
                 oppgavetittel={oppgavetittel}
                 initialVisKvittering={initialVisKvittering}>
-                <OppgavebekreftelseV2.Ubesvart
+                <Oppgavebekreftelse.Ubesvart
                     spørsmål={harTilbakemeldingSpørsmål}
                     tilbakemeldingLabel={tilbakemeldingFritekstLabel}>
                     <BodyLong spacing>
@@ -59,14 +59,14 @@ export const EndretStartdatoOppgavePageV2 = ({ deltakerNavn, oppgave, initialVis
                         Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som
                         startdato når vi behandler saken din.
                     </BodyLong>
-                </OppgavebekreftelseV2.Ubesvart>
+                </Oppgavebekreftelse.Ubesvart>
 
-                <OppgavebekreftelseV2.Besvart spørsmål={harTilbakemeldingSpørsmål}>
+                <Oppgavebekreftelse.Besvart spørsmål={harTilbakemeldingSpørsmål}>
                     <EndretStartdatoOppsummering oppgave={oppgave} />
-                </OppgavebekreftelseV2.Besvart>
+                </Oppgavebekreftelse.Besvart>
 
-                <OppgavebekreftelseV2.Kvittering>{kvitteringTekst}</OppgavebekreftelseV2.Kvittering>
-            </OppgavebekreftelseV2>
+                <Oppgavebekreftelse.Kvittering>{kvitteringTekst}</Oppgavebekreftelse.Kvittering>
+            </Oppgavebekreftelse>
         </DefaultPageLayout>
     );
 };

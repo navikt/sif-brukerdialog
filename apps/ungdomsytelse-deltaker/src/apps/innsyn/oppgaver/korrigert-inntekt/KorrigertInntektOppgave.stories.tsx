@@ -16,7 +16,7 @@ import { withQueryClient } from '../../../../../storybook/decorators/withQueryCl
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { KorrigertInntektOppgavePageV2 } from './KorrigertInntektOppgavePageV2';
+import { KorrigertInntektOppgavePage } from './KorrigertInntektOppgavePage';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/6. Korrigert inntekt',
@@ -132,7 +132,7 @@ export const OppgavePanel: Story = {
 export const UbesvartOppgaveEnArbeidsgiver: Story = {
     name: 'Èn arbeidsgiver',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -141,7 +141,7 @@ export const UbesvartOppgaveEnArbeidsgiver: Story = {
 export const UbesvartOppgaveToArbeidsgivere: Story = {
     name: 'To arbeidsgivere',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -151,7 +151,7 @@ export const UbesvartOppgaveToArbeidsgivere: Story = {
 export const UbesvartOppgaveNavYtelse: Story = {
     name: 'Nav ytelse',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -160,7 +160,7 @@ export const UbesvartOppgaveNavYtelse: Story = {
 export const UbesvartOppgaveKombinasjon: Story = {
     name: 'Arbeidsgiver og Nav ytelse',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -168,25 +168,25 @@ export const UbesvartOppgaveKombinasjon: Story = {
 };
 export const IngenInntekt: Story = {
     name: 'Ingen inntekt',
-    render: () => <KorrigertInntektOppgavePageV2 oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
     render: () => (
-        <KorrigertInntektOppgavePageV2 oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
+        <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
     ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <KorrigertInntektOppgavePageV2 oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <KorrigertInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -203,7 +203,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -213,7 +213,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <KorrigertInntektOppgavePageV2
+        <KorrigertInntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

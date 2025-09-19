@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
-import { EndretSluttdatoOppgavePageV2 } from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePageV2';
-import { EndretStartdatoOppgavePageV2 } from '../oppgaver/endret-startdato/EndretStartdatoOppgavePageV2';
-import { KorrigertInntektOppgavePageV2 } from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePageV2';
+import { EndretSluttdatoOppgavePage } from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
+import { EndretStartdatoOppgavePage } from '../oppgaver/endret-startdato/EndretStartdatoOppgavePage';
+import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
 import OppgaveIkkeFunnetPage from '../oppgaver/oppgave-ikke-funnet/OppgaveIkkeFunnetPage';
 import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
 import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse/SøkYtelseOppgavePage';
@@ -33,13 +33,13 @@ const OppgavePage = () => {
 
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return <KorrigertInntektOppgavePageV2 oppgave={oppgave} deltakerNavn={deltakerNavn} />;
+            return <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;
 
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <EndretStartdatoOppgavePageV2 deltakerNavn={deltakerNavn} oppgave={oppgave} />;
+            return <EndretStartdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePageV2 deltakerNavn={deltakerNavn} oppgave={oppgave} />;
+            return <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;

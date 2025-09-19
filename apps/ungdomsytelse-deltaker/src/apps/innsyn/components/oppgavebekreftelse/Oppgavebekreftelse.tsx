@@ -4,16 +4,16 @@ import { createContext, useContext, useState } from 'react';
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import { getOppgaveStatusText } from '../../utils/textUtils';
 import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
-import { Besvart, Kvittering, Ubesvart } from './parts/OppgavebekreftelseV2Parts';
+import { Besvart, Kvittering, Ubesvart } from './parts/OppgavebekreftelseParts';
 
-interface OppgavebekreftelseV2ContextType {
+interface OppgavebekreftelseContextType {
     oppgave: BekreftelseOppgave;
     deltakerNavn: string;
     visKvittering: boolean;
     setVisKvittering: (vis: boolean) => void;
 }
 
-const OppgavebekreftelseV2Context = createContext<OppgavebekreftelseV2ContextType | null>(null);
+const OppgavebekreftelseContext = createContext<OppgavebekreftelseContextType | null>(null);
 
 interface Props {
     oppgave: BekreftelseOppgave;
@@ -23,7 +23,7 @@ interface Props {
     initialVisKvittering?: boolean;
 }
 
-const OppgavebekreftelseV2 = ({
+const Oppgavebekreftelse = ({
     oppgave,
     deltakerNavn,
     oppgavetittel,
@@ -33,7 +33,7 @@ const OppgavebekreftelseV2 = ({
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     return (
-        <OppgavebekreftelseV2Context.Provider value={{ oppgave, deltakerNavn, visKvittering, setVisKvittering }}>
+        <OppgavebekreftelseContext.Provider value={{ oppgave, deltakerNavn, visKvittering, setVisKvittering }}>
             <VStack gap="6">
                 {/* Status tag - alltid til stede */}
                 <div>
@@ -51,23 +51,23 @@ const OppgavebekreftelseV2 = ({
                 {/* Resten av innholdet */}
                 {children}
             </VStack>
-        </OppgavebekreftelseV2Context.Provider>
+        </OppgavebekreftelseContext.Provider>
     );
 };
 
 // Hook for å bruke context
-const useOppgavebekreftelseV2 = () => {
-    const context = useContext(OppgavebekreftelseV2Context);
+const useOppgavebekreftelse = () => {
+    const context = useContext(OppgavebekreftelseContext);
     if (!context) {
-        throw new Error('useOppgavebekreftelseV2 must be used within OppgavebekreftelseV2');
+        throw new Error('useOppgavebekreftelse must be used within Oppgavebekreftelse');
     }
     return context;
 };
 
 // Attach compound components
-OppgavebekreftelseV2.Ubesvart = Ubesvart;
-OppgavebekreftelseV2.Besvart = Besvart;
-OppgavebekreftelseV2.Kvittering = Kvittering;
+Oppgavebekreftelse.Ubesvart = Ubesvart;
+Oppgavebekreftelse.Besvart = Besvart;
+Oppgavebekreftelse.Kvittering = Kvittering;
 
-export { OppgavebekreftelseV2, useOppgavebekreftelseV2 };
-export default OppgavebekreftelseV2;
+export { Oppgavebekreftelse, useOppgavebekreftelse };
+export default Oppgavebekreftelse;
