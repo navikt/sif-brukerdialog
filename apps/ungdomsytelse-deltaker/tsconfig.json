@@ -41,7 +41,16 @@
             "@søknad/types/*": ["src/apps/søknad/types/*"]
         }
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist", "dist-demo", "demo"],
+    "exclude": [
+        "node_modules",
+        "src/build",
+        "**.js",
+        "dist",
+        "dist-demo",
+        "demo",
+        "**/node_modules/@types/react-router/**",
+        "**/node_modules/@types/react-router-dom/**"
+    ],
     "include": [
         "./src/**/*",
         "./mock/**/*",
