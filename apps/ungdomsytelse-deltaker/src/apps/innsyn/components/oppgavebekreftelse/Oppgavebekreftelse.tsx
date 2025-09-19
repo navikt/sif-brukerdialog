@@ -5,7 +5,7 @@ import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import { getOppgaveStatusText } from '../../utils/textUtils';
 import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
-import { Besvart, Kvittering, Ubesvart } from './parts/OppgavebekreftelseParts';
+import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 
 interface Props {
     oppgave: BekreftelseOppgave;
@@ -32,27 +32,21 @@ const Oppgavebekreftelse = ({
     return (
         <OppgavebekreftelseContext.Provider value={contextValue}>
             <VStack gap="6">
-                {/* Status tag - alltid til stede */}
                 <div>
                     <OppgaveStatusTag
                         oppgaveStatus={oppgave.status}
                         oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     />
                 </div>
-
-                {/* Tittel - alltid til stede */}
                 <Heading level="1" size="large">
                     {oppgavetittel}
                 </Heading>
-
-                {/* Resten av innholdet */}
                 {children}
             </VStack>
         </OppgavebekreftelseContext.Provider>
     );
 };
 
-// Attach compound components
 Oppgavebekreftelse.Ubesvart = Ubesvart;
 Oppgavebekreftelse.Besvart = Besvart;
 Oppgavebekreftelse.Kvittering = Kvittering;
