@@ -1,19 +1,11 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { createContext, useContext, useState } from 'react';
+import { useState } from 'react';
 
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
 import { getOppgaveStatusText } from '../../utils/textUtils';
 import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
+import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './parts/OppgavebekreftelseParts';
-
-interface OppgavebekreftelseContextType {
-    oppgave: BekreftelseOppgave;
-    deltakerNavn: string;
-    visKvittering: boolean;
-    setVisKvittering: (vis: boolean) => void;
-}
-
-const OppgavebekreftelseContext = createContext<OppgavebekreftelseContextType | null>(null);
 
 interface Props {
     oppgave: BekreftelseOppgave;
@@ -53,15 +45,6 @@ const Oppgavebekreftelse = ({
             </VStack>
         </OppgavebekreftelseContext.Provider>
     );
-};
-
-// Hook for å bruke context
-const useOppgavebekreftelse = () => {
-    const context = useContext(OppgavebekreftelseContext);
-    if (!context) {
-        throw new Error('useOppgavebekreftelse must be used within Oppgavebekreftelse');
-    }
-    return context;
 };
 
 // Attach compound components

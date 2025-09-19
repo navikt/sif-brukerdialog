@@ -6,7 +6,7 @@ import { AppRoutes } from '../../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import UtalelseForm from '../../../forms/uttalelse-form/UtalelseForm';
 import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
-import { useOppgavebekreftelse } from '../Oppgavebekreftelse';
+import { useOppgavebekreftelse } from '../hooks/useOppgavebekreftelse';
 import OppgaveUttalelse from './OppgaveUttalelse';
 
 interface UbesvartProps {
