@@ -9,7 +9,6 @@ import OppgaveStatusInfo from '../../oppgave-status-info/OppgaveStatusInfo';
 import { useOppgavebekreftelseV2 } from '../OppgavebekreftelseV2';
 import OppgaveUttalelse from './OppgaveUttalelse';
 
-// Wrapper-komponenter for tilstander
 interface UbesvartProps {
     children: React.ReactNode;
     spørsmål: string;
@@ -43,9 +42,6 @@ const Ubesvart = ({ children, spørsmål, tilbakemeldingLabel }: UbesvartProps) 
     );
 };
 
-// Oppgavebeskrivelse komponent
-
-// Kvittering komponent
 interface KvitteringProps {
     children: React.ReactNode;
 }
@@ -72,7 +68,6 @@ const Kvittering = ({ children }: KvitteringProps) => {
     );
 };
 
-// Løst visning - slått sammen med oppsummering
 interface BesvartProps {
     spørsmål: string;
     children: React.ReactNode;

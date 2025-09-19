@@ -16,14 +16,14 @@ import { useMarkerOppgaveSomLukket } from '../../hooks/api/useMarkerOppgaveSomLu
 import { useRapporterInntekt } from '../../hooks/api/useRapporterInntekt';
 
 export enum InntektFormFields {
-    harArbeidstakerOgFrilansInntekt = 'harArbeidstakerOgFrilansInntekt',
-    ansattInntekt = 'ansattInntekt',
+    harLønn = 'harLønn',
+    lønn = 'lønn',
     bekrefterInntekt = 'bekrefterInntekt',
 }
 
 export interface InntektFormValues {
-    [InntektFormFields.harArbeidstakerOgFrilansInntekt]?: YesOrNo;
-    [InntektFormFields.ansattInntekt]?: string;
+    [InntektFormFields.harLønn]?: YesOrNo;
+    [InntektFormFields.lønn]?: string;
     [InntektFormFields.bekrefterInntekt]?: boolean;
 }
 
@@ -47,12 +47,11 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
     const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
 
     const handleSubmit = (values: InntektFormValues) => {
-        const harArbeidstakerOgFrilansInntekt =
-            values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
+        const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harLønn] === YesOrNo.YES;
 
         if (harArbeidstakerOgFrilansInntekt) {
             const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
-                ? getNumberFromNumberInputValue(values[InntektFormFields.ansattInntekt]) || 0
+                ? getNumberFromNumberInputValue(values[InntektFormFields.lønn]) || 0
                 : 0;
 
             const data: UngdomsytelseInntektsrapportering = {
@@ -76,8 +75,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
             initialValues={{}}
             onSubmit={handleSubmit}
             renderForm={({ values }) => {
-                const harArbeidstakerOgFrilansInntekt =
-                    values[InntektFormFields.harArbeidstakerOgFrilansInntekt] === YesOrNo.YES;
+                const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harLønn] === YesOrNo.YES;
 
                 return (
                     <Form
@@ -91,7 +89,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                         <VStack gap="4">
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
-                                    name={InntektFormFields.harArbeidstakerOgFrilansInntekt}
+                                    name={InntektFormFields.harLønn}
                                     legend={`Fikk du utbetalt lønn i ${måned}?`}
                                     validate={(v) => {
                                         const vError = getYesOrNoValidator()(v);
@@ -102,7 +100,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                 {harArbeidstakerOgFrilansInntekt ? (
                                     <VStack gap="4">
                                         <NumberInput
-                                            name={InntektFormFields.ansattInntekt}
+                                            name={InntektFormFields.lønn}
                                             label="Hvor mye fikk du i lønn før skatt?"
                                             integerValue={true}
                                             description="Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den."

@@ -17,6 +17,7 @@ import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreft
 interface Props {
     harTilbakemeldingSpørsmål: string;
     tilbakemeldingLabel: string;
+    tilbakemeldingDescription?: React.ReactNode;
     oppgaveReferanse: string;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
     onCancel?: () => void;
@@ -39,10 +40,12 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
 >();
 
 const TILBAKEMELDING_MAX_LENGTH = 2000;
+const TILBAKEMELDING_MIN_LENGTH = 5;
 
 const UtalelseForm = ({
     harTilbakemeldingSpørsmål,
     tilbakemeldingLabel,
+    tilbakemeldingDescription,
     oppgaveReferanse,
     onSuccess,
     onCancel,
@@ -81,7 +84,7 @@ const UtalelseForm = ({
                             isFinalSubmit={true}
                             submitPending={isPending}
                             includeValidationSummary={true}
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
                             <VStack gap="6" marginBlock="2 0">
                                 <YesOrNoQuestion
                                     reverse={true}
@@ -94,18 +97,31 @@ const UtalelseForm = ({
                                         name={FormFields.begrunnelse}
                                         label={tilbakemeldingLabel}
                                         description={
-                                            <BodyLong>
-                                                Du må ikke oppgi sensitive informasjon (særlige kategorier av
-                                                personopplysninger) om deg selv eller andre, for eksempel
-                                                helseopplysninger.
-                                            </BodyLong>
+                                            tilbakemeldingDescription || (
+                                                <BodyLong>
+                                                    Du må ikke oppgi sensitive informasjon (særlige kategorier av
+                                                    personopplysninger) om deg selv eller andre, for eksempel
+                                                    helseopplysninger.
+                                                </BodyLong>
+                                            )
                                         }
                                         maxLength={TILBAKEMELDING_MAX_LENGTH}
-                                        validate={getStringValidator({
-                                            required: true,
-                                            minLength: 5,
-                                            maxLength: TILBAKEMELDING_MAX_LENGTH,
-                                        })}
+                                        validate={(value) => {
+                                            const errorKey = getStringValidator({
+                                                required: true,
+                                                minLength: TILBAKEMELDING_MIN_LENGTH,
+                                                maxLength: TILBAKEMELDING_MAX_LENGTH,
+                                            })(value);
+                                            return errorKey
+                                                ? {
+                                                      key: errorKey,
+                                                      values: {
+                                                          min: TILBAKEMELDING_MIN_LENGTH,
+                                                          maks: TILBAKEMELDING_MAX_LENGTH,
+                                                      },
+                                                  }
+                                                : undefined;
+                                        }}
                                     />
                                 ) : null}
                                 {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}

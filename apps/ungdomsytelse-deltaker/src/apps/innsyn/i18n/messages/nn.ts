@@ -56,4 +56,19 @@ export const innsynMessages_nn: typeof innsynMessages_nb = {
     'oppgavetype.SØK_YTELSE.sidetittel': 'Søknad for ungdomsprogramytelsen',
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
     'oppgavetype.SØK_YTELSE.info': 'Du er meldt inn i ungdomsprogrammet. No kan du søkje om ungdomsprogramytelsen.',
+
+    'inntektForm.validation.harLønn.yesOrNoIsUnanswered': 'Du må svare på om du fekk utbetalt løn.',
+
+    'inntektForm.validation.lønn.numberHasNoValue': 'Du må oppgje kor mykje løn du fekk før skatt',
+    'inntektForm.validation.lønn.numberHasInvalidFormat':
+        'Oppgjeve løn har ikkje gyldig format. Eit gyldig tal inneheld kun siffer.',
+    'inntektForm.validation.lønn.numberIsTooSmall': 'Oppgjeve løn kan ikkje vere mindre enn 0.',
+    'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgje løna i uten desimalar',
+
+    'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
+    'uttalelseForm.validation.begrunnelse.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
+    'uttalelseForm.validation.begrunnelse.stringIsTooShort':
+        'Du har brukt for få tegn i tilbakemeldingen din. Teksten må minst inneholde {min} tegn.',
+    'uttalelseForm.validation.begrunnelse.stringIsTooLong':
+        'Du har brukt for mange tegn i tilbakemeldingen din. Teksten kan ikke inneholde flere enn {maks} tegn.',
 };
