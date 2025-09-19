@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 
 import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import DeltakelseContent from '../components/deltakelse-content/DeltakelseContent';
+import DeltakelseContent from '../modules/deltakelse-content/DeltakelseContent';
 import InnsynAppHeader from '../components/innsyn-app-header/InnsynAppHeader';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import ForsidePageLayout from './layout/ForsidePageLayout';

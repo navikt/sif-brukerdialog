@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { AppRoutes } from '../../../../utils/AppRoutes';
 import ForsideLenkeButton from '../../atoms/forside-lenke-button/ForsideLenkeButton';
+import OppgaveStatusInfo from '../../components/oppgave-status-info/OppgaveStatusInfo';
 import UtalelseForm from '../../forms/uttalelse-form/UtalelseForm';
-import OppgaveStatusInfo from '../oppgave-status-info/OppgaveStatusInfo';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {

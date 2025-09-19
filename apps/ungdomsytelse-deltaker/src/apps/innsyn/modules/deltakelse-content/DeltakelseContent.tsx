@@ -4,7 +4,7 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '../../utils/deltakelseUtils';
-import OppgaverList from '../oppgaver-list/OppgaverList';
+import OppgaverList from '../../components/oppgaver-list/OppgaverList';
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';
 import DeltakelsePågåendeInfo from './parts/DeltakelsePågåendeInfo';

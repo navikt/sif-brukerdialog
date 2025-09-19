@@ -2,7 +2,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { useAppIntl } from '../../../../i18n';
 import { KorrigertInntektOppgave } from '../../../../types/Oppgave';
-import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
+import Oppgavebekreftelse from '../../modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';

@@ -1,6 +1,6 @@
 import { useAppIntl } from '../../../../i18n';
 import { EndretSluttdatoOppgave } from '../../../../types/Oppgave';
-import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
+import Oppgavebekreftelse from '../../modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import EndretSluttdatoOppgavetekst from './parts/EndretSluttdatoOppgavetekst';

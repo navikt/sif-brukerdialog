@@ -3,7 +3,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { useAppIntl } from '../../../../i18n';
 import { EndretStartdatoOppgave } from '../../../../types/Oppgave';
-import Oppgavebekreftelse from '../../components/oppgavebekreftelse/Oppgavebekreftelse';
+import Oppgavebekreftelse from '../../modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import { EndretStartdatoOppsummering } from './parts/EndretStartdatoOppsummering';

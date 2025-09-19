@@ -12,8 +12,8 @@ import { RapporterInntektOppgave } from '../../../../../types/Oppgave';
 import { getAppEnv } from '../../../../../utils/appEnv';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '../../../atoms/oppgave-status-tag/OppgaveStatusTag';
-import { OppgavebekreftelseDevProps } from '../../../components/oppgavebekreftelse/types';
 import InntektForm from '../../../forms/inntekt-form/InntektForm';
+import { OppgavebekreftelseDevProps } from '../../../modules/oppgavebekreftelse/types';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 

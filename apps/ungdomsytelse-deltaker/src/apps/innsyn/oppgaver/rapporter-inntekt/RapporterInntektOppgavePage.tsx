@@ -1,7 +1,7 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 import { RapporterInntektOppgave } from '../../../../types/Oppgave';
-import { OppgavebekreftelseDevProps } from '../../components/oppgavebekreftelse/types';
+import { OppgavebekreftelseDevProps } from '../../modules/oppgavebekreftelse/types';
 import DefaultPageLayout from '../../pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '../../utils/textUtils';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
