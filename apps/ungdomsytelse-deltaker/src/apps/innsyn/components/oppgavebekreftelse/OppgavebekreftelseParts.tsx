@@ -144,7 +144,6 @@ const Besvart = ({ children, spørsmål }: BesvartProps) => {
         <VStack gap="4">
             {oppgaveInnhold}
 
-            {/* Felles elementer */}
             <OppgaveStatusInfo oppgaveStatus={oppgave.status} />
 
             <div>
