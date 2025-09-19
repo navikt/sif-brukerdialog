@@ -2,8 +2,8 @@ import { Heading, VStack } from '@navikt/ds-react';
 import { useMemo, useState } from 'react';
 
 import { BekreftelseOppgave } from '../../../../types/Oppgave';
+import OppgaveStatusTag from '../../atoms/oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../utils/textUtils';
-import OppgaveStatusTag from '../oppgave-status-tag/OppgaveStatusTag';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 

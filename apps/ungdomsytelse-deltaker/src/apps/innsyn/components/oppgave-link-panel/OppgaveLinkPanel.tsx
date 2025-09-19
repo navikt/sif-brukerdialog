@@ -3,8 +3,8 @@ import './oppgaveLinkPanel.css';
 import { Box, Heading, HGrid, LinkPanel, Show, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
-import OppgaveStatusIkon from '../oppgave-status-ikon/OppgaveStatusIkon';
-import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
+import OppgaveStatusIkon from '../../atoms/oppgave-status-ikon/OppgaveStatusIkon';
+import OppgaveStatusTag, { OppgaveStatusTagVariant } from '../../atoms/oppgave-status-tag/OppgaveStatusTag';
 
 export interface OppgaveLinkPanelProps {
     tittel: React.ReactNode;

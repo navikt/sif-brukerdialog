@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../../../i18n';
 import { Oppgave } from '../../../../types/Oppgave';
+import { OppgaveStatusTagVariant } from '../../atoms/oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveInfo, getOppgaveStatusText, getOppgaveTittel } from '../../utils/textUtils';
 import OppgaveLinkPanel from '../oppgave-link-panel/OppgaveLinkPanel';
-import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
 
 interface Props {
     oppgaver: Oppgave[];

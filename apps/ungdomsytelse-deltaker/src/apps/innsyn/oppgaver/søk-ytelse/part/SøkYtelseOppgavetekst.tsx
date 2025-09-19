@@ -5,7 +5,7 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { SøkYtelseOppgave } from '../../../../../types/Oppgave';
 import getLenker from '../../../../../utils/lenker';
 import ForsideLenkeButton from '../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import OppgaveStatusTag from '../../../components/oppgave-status-tag/OppgaveStatusTag';
+import OppgaveStatusTag from '../../../atoms/oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText } from '../../../utils/textUtils';
 
 interface Props {
