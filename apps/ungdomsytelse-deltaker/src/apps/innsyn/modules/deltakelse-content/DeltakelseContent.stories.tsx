@@ -1,14 +1,16 @@
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { harSøktMock } from '@shared/mock/scenarios/data/harSøkt';
 import { withDeltakerContext } from '@shared/storybook/decorators/withDeltakerContext';
-import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
 import { DeltakelsePeriode, deltakelsePeriodeSchema } from '@shared/types/DeltakelsePeriode';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
+import OppgaveIkkeFunnetPage from '../../pages/OppgaveIkkeFunnetPage';
 import DeltakelseContent from './DeltakelseContent';
+
 const meta: Meta<typeof DeltakelseContent> = {
     component: DeltakelseContent,
     title: 'Innsyn/Sider/Forside',
@@ -17,7 +19,7 @@ const meta: Meta<typeof DeltakelseContent> = {
         withIntl,
         withRouter,
         withDeltakerContext,
-        (Story) => withInnsynApp(Story, { startdato: new Date(), frontpageFooter: true, withHeader: true }),
+        (Story) => useWithInnsynApp(Story, { startdato: new Date(), frontpageFooter: true, withHeader: true }),
     ],
 };
 export default meta;
@@ -63,4 +65,9 @@ export const DeltakelseAvsluttet: Story = {
             oppgaver: deltakelsePeriode.oppgaver.filter((o) => o.status !== OppgaveStatus.ULØST),
         },
     },
+};
+
+export const OppgaveIkkeFunnet: Story = {
+    name: 'Oppgave ikke funnet',
+    render: () => <OppgaveIkkeFunnetPage />,
 };

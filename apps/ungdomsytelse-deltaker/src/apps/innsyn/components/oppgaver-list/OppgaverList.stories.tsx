@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
@@ -13,7 +13,7 @@ import OppgaverList from './OppgaverList';
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Komponenter/Oppgaveliste',
     parameters: {},
-    decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
+    decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
 export default meta;
 

@@ -1,7 +1,6 @@
 import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-
-import { AppText } from '../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;

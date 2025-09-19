@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -9,7 +9,7 @@ import OppgaveStatusInfo from './OppgaveStatusInfo';
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Komponenter/OppgaveStatusInfo',
     parameters: {},
-    decorators: [withIntl, (Story) => withInnsynApp(Story, { withHeader: false })],
+    decorators: [withIntl, (Story) => useWithInnsynApp(Story, { withHeader: false })],
 };
 export default meta;
 

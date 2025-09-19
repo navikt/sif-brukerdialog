@@ -1,5 +1,6 @@
 import UngdomsprogrammetHeader from '@innsyn/atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
 import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
+import { AppText } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 
 const ForsidePageFooter = () => {
@@ -9,8 +10,7 @@ const ForsidePageFooter = () => {
                 <UngdomsprogrammetHeader />
 
                 <BodyLong>
-                    Et fulltidsprogram for deg mellom 18 og 29 år som trenger ekstra oppfølging for å komme i jobb. Når
-                    du deltar i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen.
+                    <AppText id="forsidePageFooter.info" />
                 </BodyLong>
 
                 <HGrid columns={{ sm: '1fr 1fr' }} gap="4">
@@ -18,10 +18,10 @@ const ForsidePageFooter = () => {
                         border={false}
                         style={{ borderRadius: '0.5rem' }}
                         href={getLenker().omUngdomsprogramytelsen}>
-                        Om ungdoms&shy;programmet
+                        <AppText id="forsidePageFooter.omUngdomsprogrammetLenke" />
                     </LinkPanel>
                     <LinkPanel border={false} style={{ borderRadius: '0.5rem' }} href={getLenker().skrivtilOss}>
-                        Still spørsmål om ytelsen
+                        <AppText id="forsidePageFooter.kontaktOssLenke" />
                     </LinkPanel>
                 </HGrid>
             </VStack>

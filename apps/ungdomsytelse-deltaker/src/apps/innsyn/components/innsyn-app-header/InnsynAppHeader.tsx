@@ -2,8 +2,7 @@ import { UngdomsprogramPictogram } from '@innsyn/atoms/svg/UngdomsprogramPictogr
 import { YtelseNavn } from '@innsyn/atoms/ytelse-navn/YtelseNavn';
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-
-import { AppText } from '../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     startdato: Date;

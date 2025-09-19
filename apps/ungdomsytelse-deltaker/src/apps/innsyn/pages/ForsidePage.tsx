@@ -4,6 +4,7 @@ import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseCont
 import { VStack } from '@navikt/ds-react';
 import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { useAppIntl } from '@shared/i18n';
 
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
@@ -11,12 +12,13 @@ import ForsidePageFooter from './parts/ForsidePageFooter';
 const USE_SIGNALS_PANEL = true;
 
 const ForsidePage = () => {
+    const { text } = useAppIntl();
     const { deltakelsePeriode } = useDeltakerContext();
 
     useInnsynBreadcrumbs();
 
     return (
-        <ForsidePageLayout documentTitle="Din ungdomsprogramytelse" footer={<ForsidePageFooter />}>
+        <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
                 {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="zpvvyjk4ss" />}

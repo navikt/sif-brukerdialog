@@ -59,6 +59,7 @@
         "./playwright/**/*.ts",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
-        "./postcss.config.ts"
+        "./postcss.config.ts",
+        "./storybook/**/*"
     ]
 }

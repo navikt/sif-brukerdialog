@@ -3,6 +3,7 @@ import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltak
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
@@ -42,22 +43,26 @@ const DeltakelseContent = ({ deltakelsePeriode }: Props) => {
             )}
             <VStack gap="4" marginBlock={medMelding ? '0' : '6'}>
                 <Heading level="2" size="medium">
-                    Dine oppgaver
+                    <AppText id="deltakelseContent.header" />
                 </Heading>
                 {uløsteOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={uløsteOppgaver} />
                 ) : (
-                    <BodyLong>Du har ingen uløste oppgaver.</BodyLong>
+                    <BodyLong>
+                        <AppText id="deltakelseContent.ingenUløsteOppgaver" />
+                    </BodyLong>
                 )}
             </VStack>
             <VStack gap="4">
                 <Heading level="2" size="medium">
-                    Tidligere oppgaver
+                    <AppText id="deltakelseContent.tidligereOppgaver" />
                 </Heading>
                 {tidligereOppgaver.length > 0 ? (
                     <OppgaverList oppgaver={tidligereOppgaver} oppgaveStatusTagVariant="text" visBeskrivelse={false} />
                 ) : (
-                    <BodyLong>Du har ingen tidligere oppgaver.</BodyLong>
+                    <BodyLong>
+                        <AppText id="deltakelseContent.ingenTidligereOppgaver" />
+                    </BodyLong>
                 )}
             </VStack>
         </VStack>

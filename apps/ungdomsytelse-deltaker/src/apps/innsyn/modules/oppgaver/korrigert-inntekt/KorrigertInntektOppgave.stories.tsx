@@ -8,7 +8,7 @@ import {
     YtelseRegisterInntektDto,
     YtelseType,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { withInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
@@ -21,7 +21,7 @@ import KorrigertInntektOppgavePage from './KorrigertInntektOppgavePage';
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/6. Korrigert inntekt',
     parameters: {},
-    decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
+    decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
 export default meta;
 

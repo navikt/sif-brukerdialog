@@ -8,7 +8,8 @@ export const innsynMessages_nb = {
     'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
 
     'forsideLenkeButton.tekst': 'Tilbake til oversikten',
-    'ungdomsprogrammetHeader.heading': 'Ungdoms&shy;programmet',
+
+    'ungdomsprogrammetHeader.heading': 'Ungdoms\u00ADprogrammet',
     'ungdomsprogrammetHeader.ariaLabel': 'Ungdomsprogrammet',
     'ungdomsprogrammetHeader.poster.ungdoms': 'Ungdoms-',
     'ungdomsprogrammetHeader.poster.programmet': 'programmet',
@@ -16,6 +17,37 @@ export const innsynMessages_nb = {
     'innsynAppHeader.startdato': 'Startdato {dato}',
 
     'oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.',
+
+    'pageLayout.main.ariaLabel': 'Hovedinnhold',
+
+    'oppgaveIkkeFunnetPage.dokumentTittel': 'Oppgave ikke funnet',
+    'oppgaveIkkeFunnetPage.tittel': 'Oppgave ikke funnet',
+    'oppgaveIkkeFunnetPage.utenId': 'Vi kunne ikke finne oppgaven - referansen mangler.',
+    'oppgaveIkkeFunnetPage.medId': 'Vi kunne ikke finne oppgaven med referanse {oppgaveReferanse}.',
+
+    /** ForsidePage */
+
+    'forsidePage.dokumentTittel': 'Din ungdomsprogramytelse',
+    'forsidePageFooter.info':
+        'Et fulltidsprogram for deg mellom 18 og 29 år som trenger ekstra oppfølging for å komme i jobb. Når du deltar i ungdomsprogrammet, kan du søke om å få penger gjennom ungdomsprogramytelsen.',
+    'forsidePageFooter.omUngdomsprogrammetLenke': 'Om ungdoms\u00ADprogrammet',
+    'forsidePageFooter.kontaktOssLenke': 'Still spørsmål om ytelsen',
+
+    'breadcrumbs.minSide': 'Min side',
+    'breadcrumbs.innsyn': 'Din ungdomsprogramytelse',
+
+    'deltakelseContent.header': 'Dine oppgaver',
+    'deltakelseContent.ingenUløsteOppgaver': 'Du har ingen uløste oppgaver.',
+    'deltakelseContent.tidligereOppgaver': 'Tidligere oppgaver',
+    'deltakelseContent.ingenTidligereOppgaver': 'Du har ingen tidligere oppgaver.',
+
+    'deltakelseAvsluttetInfo.tekst': 'Du var i ungdomsprogrammet fra {fraOgMed} - {tilOgMed}.',
+    'deltakelseIkkeStartetInfo.tekst1':
+        'Du ble meldt inn i ungdomsprogrammet {fraOgMed}. Fra denne datoen mottar du penger gjennom ungdomsprogramytelsen.',
+    'deltakelseIkkeStartetInfo.tekst2':
+        'På denne siden får du oppgaver mens du er i ungdomsprogrammet. Du trenger ikke gjøre noe med oppgavene før du får et varsel på SMS om det.',
+    'deltakelsePågåendeInfo.tekst':
+        'Husk å melde fra innen 6. hver måned hvis du jobbet og fikk lønn måneden før. Du får et varsel på SMS når du skal melde fra.',
 
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
