@@ -23,8 +23,7 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                     Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt før {frist}.
                 </BodyLong>
                 <BodyLong spacing>
-                    Fikk du ikke lønn i {måned}? Kryss av på “Nei” eller la være å svare. Det får ingen konsekvenser for
-                    deg å la være å svare når du ikke har hatt lønn.
+                    Du kan la være å svare eller krysse av på ”Nei” hvis du ikke hadde lønn i {måned}.
                 </BodyLong>
             </Box>
         </VStack>
