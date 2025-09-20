@@ -1,8 +1,8 @@
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
+import { AppText } from '@shared/i18n';
+import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
-
-import { AppRoutes } from '../../../../utils/AppRoutes';
 
 const ForsideLenkeButton = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ForsideLenkeButton = () => {
             variant="primary"
             icon={<ArrowLeftIcon aria-hidden="true" />}
             iconPosition="left">
-            Tilbake til oversikten
+            <AppText id="forsideLenkeButton.tekst" />
         </Button>
     );
 };

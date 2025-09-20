@@ -1,5 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 import { barnResponseSchema } from '@navikt/sif-common-api';
+
 import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { SøknadProvider } from '../../src/apps/søknad/context/SøknadContext';

@@ -79,12 +79,12 @@ export const ungSoknadMessages_nb = {
     'kontonummerSteg.harIkkeKontonummer.info.2':
         'Registrer bankkontonummeret ditt hos Nav slik at du får pengene utbetalt til rett konto. Gå til <Lenke>personopplysninger på Min side</Lenke> for å legge inn kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.3':
-        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret med én gang slik at pengene ikke blir forsinket.',
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du legger inn kontonummeret med en gang slik at pengene ikke blir forsinket.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikke se om du har kontonummer registrert hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
         'For at du skal få utbetalt pengene til rett konto, er det viktig at du har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysninger på Min side</Lenke> for å sjekke dette.',
     'kontonummerSteg.kontonummerInfoMangler.info.3':
-        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du sjekker med én gang slik at pengene ikke blir forsinket.',
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du sjekker med en gang slik at pengene ikke blir forsinket.',
 
     /** BarnSteg */
     'barnSteg.tittel': 'Barn',

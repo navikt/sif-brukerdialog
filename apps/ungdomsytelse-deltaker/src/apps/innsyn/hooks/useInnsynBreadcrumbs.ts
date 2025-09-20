@@ -1,5 +1,6 @@
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useAppIntl } from '@shared/i18n';
 import { useNavigate } from 'react-router-dom';
 
 type DecoratorBreadcrumb = {
@@ -9,12 +10,13 @@ type DecoratorBreadcrumb = {
 };
 
 export const useInnsynBreadcrumbs = (crumbs: DecoratorBreadcrumb[] = []) => {
+    const { text } = useAppIntl();
     const navigate = useNavigate();
 
     useEffectOnce(() => {
         setBreadcrumbs([
-            { title: 'Min side', url: '/min-side' },
-            { title: 'Din ungdomsprogramytelse', url: '/', handleInApp: true },
+            { title: text('breadcrumbs.minSide'), url: '/min-side' },
+            { title: text('breadcrumbs.innsyn'), url: '/', handleInApp: true },
             ...crumbs,
         ]);
     });

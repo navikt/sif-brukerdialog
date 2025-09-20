@@ -1,11 +1,10 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { BekreftelseOppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
+import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
-
-import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
-import { BekreftelseOppgave, SøkYtelseOppgave } from '../../../types/Oppgave';
-import { HarKontonummerEnum } from '../../søknad/steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from '../../søknad/types';
 
 type DeltakelsePeriodeMeta = {
     harSøkt: boolean;

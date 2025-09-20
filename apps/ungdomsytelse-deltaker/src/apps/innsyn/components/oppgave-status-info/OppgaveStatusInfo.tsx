@@ -1,5 +1,6 @@
 import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;
@@ -12,7 +13,9 @@ const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
             return (
                 <Alert variant="info">
                     <Box>
-                        <BodyLong>Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.</BodyLong>
+                        <BodyLong>
+                            <AppText id="oppgaveStatusInfo.utløptEllerAvbrutt" />
+                        </BodyLong>
                     </Box>
                 </Alert>
             );

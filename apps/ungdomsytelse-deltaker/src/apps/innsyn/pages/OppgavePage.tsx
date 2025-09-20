@@ -1,15 +1,16 @@
+import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
+import { useRegistrerOppgaveSomÅpnet } from '@innsyn/hooks/useRegistrerOppgaveSomÅpnet';
+import EndretSluttdatoOppgavePage from '@innsyn/modules/oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
+import EndretStartdatoOppgavePage from '@innsyn/modules/oppgaver/endret-startdato/EndretStartdatoOppgavePage';
+import KorrigertInntektOppgavePage from '@innsyn/modules/oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
+import RapporterInntektOppgavePage from '@innsyn/modules/oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
+import SøkYtelseOppgavePage from '@innsyn/modules/oppgaver/søk-ytelse/SøkYtelseOppgavePage';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useParams } from 'react-router-dom';
 
-import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
-import { useRegistrerOppgaveSomÅpnet } from '../hooks/useRegistrerOppgaveSomÅpnet';
-import { EndretSluttdatoOppgavePage } from '../oppgaver/endret-sluttdato/EndretSluttdatoOppgavePage';
-import { EndretStartdatoOppgavePage } from '../oppgaver/endret-startdato/EndretStartdatoOppgavePage';
-import { KorrigertInntektOppgavePage } from '../oppgaver/korrigert-inntekt/KorrigertInntektOppgavePage';
-import OppgaveIkkeFunnetPage from '../oppgaver/oppgave-ikke-funnet/OppgaveIkkeFunnetPage';
-import RapporterInntektOppgavePage from '../oppgaver/rapporter-inntekt/RapporterInntektOppgavePage';
-import SøkYtelseOppgavePage from '../oppgaver/søk-ytelse/SøkYtelseOppgavePage';
+import MeldtUtOppgavePage from '../modules/oppgaver/endret-sluttdato/MeldtUtOppgavePage';
+import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
 /** Url params */
 type OppgavePageParams = {
@@ -39,7 +40,11 @@ const OppgavePage = () => {
             return <EndretStartdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
+            return oppgave.oppgavetypeData.forrigeSluttdato ? (
+                <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
+            ) : (
+                <MeldtUtOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
+            );
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;

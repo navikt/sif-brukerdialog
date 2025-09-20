@@ -1,9 +1,8 @@
+import { rapporterInntekt } from '@innsyn/api/inntekt/rapporterInntekt';
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { ApiError } from '@navikt/ung-common';
+import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-import { commonQueries } from '../../../../api/queries/commonQueries';
-import { rapporterInntekt } from '../../api/inntekt/rapporterInntekt';
 
 export const useRapporterInntekt = () => {
     const queryClient = useQueryClient();

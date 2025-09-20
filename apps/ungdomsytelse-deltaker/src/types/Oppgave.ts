@@ -19,10 +19,7 @@ export interface OppgaveBase
     lukketDato?: Date;
 }
 
-export interface BekreftelseOppgave extends OppgaveBase {
-    bekreftelse?: BekreftelseDto;
-}
-export interface KorrigertInntektOppgave extends BekreftelseOppgave {
+export interface KorrigertInntektOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
@@ -31,20 +28,28 @@ export interface KorrigertInntektOppgave extends BekreftelseOppgave {
     };
 }
 
-export interface EndretStartdatoOppgave extends BekreftelseOppgave {
+export interface EndretStartdatoOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_STARTDATO;
     oppgavetypeData: {
         forrigeStartdato: Date;
         nyStartdato: Date;
     };
 }
-export interface EndretSluttdatoOppgave extends BekreftelseOppgave {
+export interface EndretSluttdatoOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
         forrigeSluttdato?: Date;
         nySluttdato: Date;
     };
 }
+
+export type BekreftelseOppgave =
+    | EndretSluttdatoOppgave
+    | EndretStartdatoOppgave
+    | (KorrigertInntektOppgave & {
+          bekreftelse?: BekreftelseDto;
+      });
+
 export interface RapporterInntektOppgave extends OppgaveBase {
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {

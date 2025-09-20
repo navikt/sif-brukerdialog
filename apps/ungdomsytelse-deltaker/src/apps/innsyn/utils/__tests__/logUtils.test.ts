@@ -1,11 +1,10 @@
+import { logUtils } from '@innsyn/utils/logUtils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
+import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
-
-import { DeltakelsePeriode } from '../../../../types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '../../../../types/Oppgave';
-import { HarKontonummerEnum } from '../../../søknad/steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from '../../../søknad/types';
-import { logUtils } from '../logUtils';
 
 describe('logUtils.getSøknadInnsendingMeta', () => {
     const mockDeltakelse: DeltakelsePeriode = {
