@@ -19,26 +19,21 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
         <span className="text-nowrap">{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}</span>
     );
 
-    const harTilbakemeldingSpørsmål = intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål');
-
     return (
         <DefaultPageLayout
             documentTitle={getDokumentTittel(intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel'))}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.oppgavetittel')}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart
-                    spørsmål={harTilbakemeldingSpørsmål}
-                    tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel')}>
+                <Oppgavebekreftelse.Ubesvart>
                     <EndretStartdatoOppgavetekst
                         frist={oppgave.frist}
                         startdato={oppgave.oppgavetypeData.nyStartdato}
                     />
                 </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart spørsmål={harTilbakemeldingSpørsmål}>
+                <Oppgavebekreftelse.Besvart>
                     <AppText
                         id="endretStartdato.oppsummering"
                         values={{ formatertDato, strong: (content) => <strong>{content}</strong> }}

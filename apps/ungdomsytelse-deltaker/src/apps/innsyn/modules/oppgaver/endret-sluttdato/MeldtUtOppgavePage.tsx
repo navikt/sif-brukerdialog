@@ -21,16 +21,12 @@ const MeldtUtOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Pro
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={intl.text('oppgavetype.BEKREFT_MELDT_UT.oppgavetittel')}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart
-                    spørsmål={intl.text('oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål')}
-                    tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel')}>
+                <Oppgavebekreftelse.Ubesvart>
                     <MeldUtOppgavetekst endretDato={oppgave.oppgavetypeData.nySluttdato} svarfrist={oppgave.frist} />
                 </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart
-                    spørsmål={intl.text('oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål')}>
+                <Oppgavebekreftelse.Besvart>
                     <MeldtUtOppsummering sluttdato={oppgave.oppgavetypeData.nySluttdato} />
                 </Oppgavebekreftelse.Besvart>
 

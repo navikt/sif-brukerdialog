@@ -26,18 +26,14 @@ const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel')}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart
-                    spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}
-                    tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel')}>
+                <Oppgavebekreftelse.Ubesvart>
                     <EndretSluttdatoOppgavetekst
                         endretDato={oppgave.oppgavetypeData.nySluttdato}
                         svarfrist={oppgave.frist}
                     />
                 </Oppgavebekreftelse.Ubesvart>
-                <Oppgavebekreftelse.Besvart
-                    spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}>
+                <Oppgavebekreftelse.Besvart>
                     <EndretSluttdatoOppsummering
                         forrigeSluttdato={oppgave.oppgavetypeData.forrigeSluttdato}
                         nySluttdato={oppgave.oppgavetypeData.nySluttdato}

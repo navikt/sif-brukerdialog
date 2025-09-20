@@ -1,27 +1,22 @@
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
-import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
+import { getOppgaveStatusText, getOppgaveTittel } from '@innsyn/utils/textUtils';
 import { Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { useMemo, useState } from 'react';
 
+import { useAppIntl } from '../../../../i18n';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 
 interface Props {
     oppgave: BekreftelseOppgave;
     deltakerNavn: string;
-    oppgavetittel: string;
     children: React.ReactNode;
     initialVisKvittering?: boolean;
 }
 
-const Oppgavebekreftelse = ({
-    oppgave,
-    deltakerNavn,
-    oppgavetittel,
-    children,
-    initialVisKvittering = false,
-}: Props) => {
+const Oppgavebekreftelse = ({ oppgave, deltakerNavn, children, initialVisKvittering = false }: Props) => {
+    const appIntl = useAppIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     const contextValue = useMemo(
@@ -39,7 +34,7 @@ const Oppgavebekreftelse = ({
                     />
                 </div>
                 <Heading level="1" size="large">
-                    {oppgavetittel}
+                    {getOppgaveTittel(oppgave, appIntl)}
                 </Heading>
                 {children}
             </VStack>

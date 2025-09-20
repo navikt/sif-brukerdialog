@@ -2,7 +2,7 @@ import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekref
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { useAppIntl } from '@shared/i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
 
 import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
@@ -19,50 +19,35 @@ interface Props {
 const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
-    // Lag tekster direkte i komponenten
-    const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
     const utbetalingsmåned = getUtbetalingsmånedForKorrigertInntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
-    const sidetittel = intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel', {
-        måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-        antallArbeidsgivere,
-    });
-
-    const oppgavetittel = intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel', {
-        måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-        antallArbeidsgivere,
-    });
-
-    const harTilbakemeldingSpørsmål = intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål', {
-        antallArbeidsgivere,
-    });
-
-    const tilbakemeldingFritekstLabel = intl.text(
-        'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
-    );
-
-    const kvitteringTekst = intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst', {
-        utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
-    });
-
     return (
-        <DefaultPageLayout documentTitle={getDokumentTittel(sidetittel)}>
+        <DefaultPageLayout
+            documentTitle={getDokumentTittel(
+                intl.text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel', {
+                    måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                }),
+            )}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
-                oppgavetittel={oppgavetittel}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart
-                    spørsmål={harTilbakemeldingSpørsmål}
-                    tilbakemeldingLabel={tilbakemeldingFritekstLabel}>
+                <Oppgavebekreftelse.Ubesvart>
                     <KorrigertInntektOppgavetekst oppgave={oppgave} />
                 </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart spørsmål={harTilbakemeldingSpørsmål}>
+                <Oppgavebekreftelse.Besvart>
                     <AvvikRegisterinntektOppsummering oppgave={oppgave} />
                 </Oppgavebekreftelse.Besvart>
 
-                <Oppgavebekreftelse.Kvittering>{kvitteringTekst}</Oppgavebekreftelse.Kvittering>
+                <Oppgavebekreftelse.Kvittering>
+                    <AppText
+                        id="oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
+                        values={{
+                            utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),
+                        }}
+                    />
+                </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
     );

@@ -1,7 +1,7 @@
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { AppIntlShape } from '@shared/i18n';
-import { EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
+import { BekreftelseOppgave, EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
 
 const BEKREFT_MELDT_UT = 'BEKREFT_MELDT_UT';
 
@@ -9,11 +9,7 @@ const getSluttdatoTextKey = (oppgave: EndretSluttdatoOppgave) => {
     return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_MELDT_UT;
 };
 
-export const getOppgaveTittel = (
-    oppgave: Oppgave,
-    { text }: AppIntlShape,
-    values?: Record<string, string | number>,
-) => {
+export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
@@ -21,13 +17,12 @@ export const getOppgaveTittel = (
             return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.oppgavetittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel', {
-                måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-                ...values,
+                måned: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
-                månedOgÅr: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
+                månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
+                måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.oppgavetittel');
@@ -70,6 +65,14 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
         case OppgaveStatus.UTLØPT:
             return `Oppgave er utløpt`;
     }
+};
+
+export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
+    return text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`);
+};
+
+export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
+    return text(`oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`);
 };
 
 export const getDokumentTittel = (sidetittel: string) => {

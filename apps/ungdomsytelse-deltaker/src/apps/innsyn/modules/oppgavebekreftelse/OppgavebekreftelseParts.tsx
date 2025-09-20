@@ -8,6 +8,7 @@ import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
 import { AppText, useAppIntl } from '../../../../i18n';
+import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
@@ -63,11 +64,10 @@ const OppgaveOgTilbakemelding = ({ beskjedFraNav, spørsmål, bekreftelse }: Opp
 
 interface UbesvartProps {
     children: React.ReactNode;
-    spørsmål: string;
-    tilbakemeldingLabel: string;
 }
 
-const Ubesvart = ({ children, spørsmål, tilbakemeldingLabel }: UbesvartProps) => {
+const Ubesvart = ({ children }: UbesvartProps) => {
+    const appIntl = useAppIntl();
     const { oppgave, visKvittering, setVisKvittering, deltakerNavn } = useOppgavebekreftelse();
     const navigate = useNavigate();
 
@@ -84,8 +84,8 @@ const Ubesvart = ({ children, spørsmål, tilbakemeldingLabel }: UbesvartProps) 
                 </VStack>
             </GuidePanel>
             <UtalelseForm
-                harTilbakemeldingSpørsmål={spørsmål}
-                tilbakemeldingLabel={tilbakemeldingLabel}
+                harTilbakemeldingSpørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
+                tilbakemeldingLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
                 oppgaveReferanse={oppgave.oppgaveReferanse}
                 onSuccess={() => setVisKvittering(true)}
                 onCancel={() => navigate(AppRoutes.innsyn)}
@@ -121,11 +121,11 @@ const Kvittering = ({ children }: KvitteringProps) => {
 };
 
 interface BesvartProps {
-    spørsmål: string;
     children: React.ReactNode;
 }
 
-const Besvart = ({ children, spørsmål }: BesvartProps) => {
+const Besvart = ({ children }: BesvartProps) => {
+    const appIntl = useAppIntl();
     const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 
@@ -134,7 +134,7 @@ const Besvart = ({ children, spørsmål }: BesvartProps) => {
             return (
                 <OppgaveOgTilbakemelding
                     beskjedFraNav={children}
-                    spørsmål={spørsmål}
+                    spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
                     bekreftelse={oppgave.bekreftelse}
                 />
             );
