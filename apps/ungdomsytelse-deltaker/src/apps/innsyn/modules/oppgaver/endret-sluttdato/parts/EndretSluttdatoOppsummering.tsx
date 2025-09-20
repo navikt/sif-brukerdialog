@@ -8,14 +8,12 @@ interface EndretSluttdatoOppsummeringProps {
 }
 
 const EndretSluttdatoOppsummering = ({ forrigeSluttdato, nySluttdato }: EndretSluttdatoOppsummeringProps) => {
-    const nySluttdatoFormatted = dateFormatter.compact(nySluttdato);
-
     return (
         <AppText
             id="endretSluttdato.oppsummering.endret"
             values={{
-                forrige: dateFormatter.compact(forrigeSluttdato),
-                ny: nySluttdatoFormatted,
+                forrige: dateFormatter.full(forrigeSluttdato),
+                ny: dateFormatter.full(nySluttdato),
                 strong: (content: ReactNode) => <strong>{content}</strong>,
             }}
         />

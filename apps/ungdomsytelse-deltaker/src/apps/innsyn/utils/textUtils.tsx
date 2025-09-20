@@ -3,10 +3,10 @@ import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-
 import { AppIntlShape } from '@shared/i18n';
 import { EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
 
-const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
+const BEKREFT_MELDT_UT = 'BEKREFT_MELDT_UT';
 
 const getSluttdatoTextKey = (oppgave: EndretSluttdatoOppgave) => {
-    return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_NY_SLUTTDATO;
+    return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_MELDT_UT;
 };
 
 export const getOppgaveTittel = (

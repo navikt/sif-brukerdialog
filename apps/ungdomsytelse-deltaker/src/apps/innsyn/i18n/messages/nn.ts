@@ -32,12 +32,12 @@ export const innsynMessages_nn: typeof innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid få eit oppdatert vedtak.',
 
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.oppgavetittel': 'Sjå og gi tilbakemelding på ny sluttdato',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Rettleiaren din har endra datoen for når du sluttar i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du ei tilbakemelding på sluttdatoen?',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid få eit oppdatert vedtak.',
+    'oppgavetype.BEKREFT_MELDT_UT.sidetittel': 'Sluttdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_MELDT_UT.oppgavetittel': 'Sjå og gi tilbakemelding på ny sluttdato',
+    'oppgavetype.BEKREFT_MELDT_UT.info': 'Rettleiaren din har endra datoen for når du sluttar i ungdomsprogrammet.',
+    'oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål': 'Har du ei tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst': 'Du vil om kort tid få eit oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel': 'Tilbakemelding på løn i {måned}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Sjekk løn i {måned}',

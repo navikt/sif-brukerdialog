@@ -7,6 +7,8 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import getLenker from '@shared/utils/lenker';
 
+import { AppText } from '../../../../../../i18n';
+
 interface Props {
     oppgave: SøkYtelseOppgave;
 }
@@ -16,7 +18,7 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
         return (
             <VStack gap="6">
                 <Heading level="1" size="large">
-                    Søknad for ungdoms&shy;program&shy;ytelsen
+                    <AppText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
                 </Heading>
                 <Alert variant="info">
                     Søknaden er mottatt, men vi kan ikke vise mer informasjon enda. Du kan vente litt og så laste siden
@@ -34,26 +36,38 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                Søknad for ungdoms&shy;program&shy;ytelsen
+                <AppText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
             </Heading>
 
             <section aria-labelledby="summaryHeading">
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2" id="summaryHeading">
-                            Oppsummering
+                            <AppText id="søkYtelseOppgave.oppsummering.tittel" />
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
                         <FormSummary.Answer>
-                            <FormSummary.Label>Startdato</FormSummary.Label>
+                            <FormSummary.Label>
+                                <AppText id="søkYtelseOppgave.oppsummering.startdato" />
+                            </FormSummary.Label>
                             <FormSummary.Value>{dateFormatter.full(oppgave.oppgavetypeData.fomDato)}</FormSummary.Value>
                         </FormSummary.Answer>
                         <FormSummary.Answer>
-                            <FormSummary.Label>Dine svar</FormSummary.Label>
+                            <FormSummary.Label>
+                                <AppText id="søkYtelseOppgave.oppsummering.dineSvar" />
+                            </FormSummary.Label>
                             <FormSummary.Value>
-                                Du kan se alle dine svar i søknaden som ligger i{' '}
-                                <Link href={getLenker().dokumentarkiv}>dokumentarkivet</Link> på Min side.
+                                <AppText
+                                    id="søkYtelseOppgave.oppsummering.dineSvar.tekst"
+                                    values={{
+                                        link: (chunks: React.ReactNode) => (
+                                            <Link href={getLenker().dokumentarkiv} target="_blank" rel="noreferrer">
+                                                {chunks}
+                                            </Link>
+                                        ),
+                                    }}
+                                />
                             </FormSummary.Value>
                         </FormSummary.Answer>
                     </FormSummary.Answers>

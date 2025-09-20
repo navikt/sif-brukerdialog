@@ -9,6 +9,7 @@ import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useParams } from 'react-router-dom';
 
+import MeldtUtOppgavePage from '../modules/oppgaver/endret-sluttdato/MeldtUtOppgavePage';
 import OppgaveIkkeFunnetPage from './OppgaveIkkeFunnetPage';
 
 /** Url params */
@@ -39,7 +40,11 @@ const OppgavePage = () => {
             return <EndretStartdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
 
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />;
+            return oppgave.oppgavetypeData.forrigeSluttdato ? (
+                <EndretSluttdatoOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
+            ) : (
+                <MeldtUtOppgavePage deltakerNavn={deltakerNavn} oppgave={oppgave} />
+            );
 
         case Oppgavetype.RAPPORTER_INNTEKT:
             return <RapporterInntektOppgavePage oppgave={oppgave} deltakerNavn={deltakerNavn} />;

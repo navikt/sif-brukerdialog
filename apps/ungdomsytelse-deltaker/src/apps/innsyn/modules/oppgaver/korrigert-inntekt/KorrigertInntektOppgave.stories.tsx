@@ -44,11 +44,6 @@ const inntektYtelse1: YtelseRegisterInntektDto = {
     ytelsetype: YtelseType.SYKEPENGER,
 };
 
-// const inntektYtelse2: YtelseRegisterInntektDto = {
-//     inntekt: 1200,
-//     ytelsetype: YtelseType.OMSORGSPENGER,
-// };
-
 const registerInntektEnArbeidsgiver: RegisterinntektDto = {
     arbeidOgFrilansInntekter: [inntektArbeidsgiver1],
     ytelseInntekter: [],

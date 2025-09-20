@@ -9,7 +9,7 @@ import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import EndretSluttdatoOppgavePage from './EndretSluttdatoOppgavePage';
+import MeldtUtOppgavePage from './MeldtUtOppgavePage';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/3. Meldt ut',
@@ -71,25 +71,23 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <MeldtUtOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => (
-        <EndretSluttdatoOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
-    ),
+    render: () => <MeldtUtOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <EndretSluttdatoOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <MeldtUtOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <MeldtUtOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -106,7 +104,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <MeldtUtOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -116,7 +114,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <EndretSluttdatoOppgavePage
+        <MeldtUtOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

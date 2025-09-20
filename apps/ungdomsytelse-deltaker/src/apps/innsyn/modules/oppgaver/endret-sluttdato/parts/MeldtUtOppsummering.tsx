@@ -3,17 +3,15 @@ import { AppText } from '@shared/i18n';
 import { ReactNode } from 'react';
 
 interface EndretSluttdatoOppsummeringProps {
-    dato: Date;
+    sluttdato: Date;
 }
 
-const MeldtUtOppsummering = ({ dato }: EndretSluttdatoOppsummeringProps) => {
-    const nySluttdatoFormatted = dateFormatter.compact(dato);
-
+const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
         <AppText
             id="endretSluttdato.oppsummering.meldtUt"
             values={{
-                ny: nySluttdatoFormatted,
+                ny: dateFormatter.full(sluttdato),
                 strong: (content: ReactNode) => <strong>{content}</strong>,
             }}
         />

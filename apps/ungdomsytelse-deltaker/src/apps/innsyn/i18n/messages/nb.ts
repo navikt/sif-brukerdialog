@@ -3,6 +3,7 @@ export const innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
     Ja: 'Ja',
     Nei: 'Nei',
+    Oppsummering: 'Oppsummering',
 
     'ytelse.SYKEPENGER': 'Sykepenger',
     'ytelse.OMSORGSPENGER': 'Omsorgspenger',
@@ -71,12 +72,12 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    'oppgavetype.BEKREFT_NY_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+    'oppgavetype.BEKREFT_MELDT_UT.sidetittel': 'Sluttdato i ungdomsprogrammet',
+    'oppgavetype.BEKREFT_MELDT_UT.oppgavetittel': 'Se og gi tilbakemelding på sluttdato',
+    'oppgavetype.BEKREFT_MELDT_UT.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
+    'oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
+    'oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel': 'Sluttdato i ungdomsprogrammet',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.oppgavetittel': 'Se og gi tilbakemelding på endret sluttdato',

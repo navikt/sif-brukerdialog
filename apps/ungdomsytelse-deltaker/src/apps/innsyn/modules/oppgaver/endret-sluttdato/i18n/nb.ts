@@ -11,7 +11,7 @@ export const endretSluttdatoMessages_nb = {
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som sluttdato når vi behandler saken din.',
     'endretSluttdato.oppsummering.endret':
         'Din sluttdato i ungdomsprogrammet er endret fra <strong>{forrige}</strong> til <strong>{ny}</strong>.',
-    'endretSluttdato.oppsummering.meldtUt': 'Du er meldt ut av ungdomsprogrammet fra og med <strong>{ny}</strong>.',
+    'endretSluttdato.oppsummering.meldtUt': 'Din sluttdato i ungdomsprogrammet er satt til <strong>{ny}</strong>.',
 
     'endretSluttdato.meldUtOppgavetekst.1':
         'Veilederen din har meldt deg ut av ungdomsprogrammet med sluttdato <strong>{formatertDato}</strong>.',

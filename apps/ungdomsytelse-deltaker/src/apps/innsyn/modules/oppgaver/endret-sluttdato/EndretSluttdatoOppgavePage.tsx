@@ -1,13 +1,11 @@
 import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getDokumentTittel } from '@innsyn/utils/textUtils';
-import { useAppIntl } from '@shared/i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
 
 import EndretSluttdatoOppgavetekst from './parts/EndretSluttdatoOppgavetekst';
 import EndretSluttdatoOppsummering from './parts/EndretSluttdatoOppsummering';
-import MeldtUtOppsummering from './parts/MeldtUtOppsummering';
-import MeldUtOppgavetekst from './parts/MeldUtOppgavetekst';
 
 interface Props {
     deltakerNavn: string;
@@ -17,6 +15,10 @@ interface Props {
 
 const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
+
+    if (!oppgave.oppgavetypeData.forrigeSluttdato) {
+        throw new Error('Forrige sluttdato mangler for oppgave av typen EndretSluttdatoOppgave');
+    }
 
     return (
         <DefaultPageLayout
@@ -29,32 +31,21 @@ const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                 <Oppgavebekreftelse.Ubesvart
                     spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}
                     tilbakemeldingLabel={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel')}>
-                    {oppgave.oppgavetypeData.forrigeSluttdato ? (
-                        <EndretSluttdatoOppgavetekst
-                            endretDato={oppgave.oppgavetypeData.nySluttdato}
-                            svarfrist={oppgave.frist}
-                        />
-                    ) : (
-                        <MeldUtOppgavetekst
-                            endretDato={oppgave.oppgavetypeData.nySluttdato}
-                            svarfrist={oppgave.frist}
-                        />
-                    )}
+                    <EndretSluttdatoOppgavetekst
+                        endretDato={oppgave.oppgavetypeData.nySluttdato}
+                        svarfrist={oppgave.frist}
+                    />
                 </Oppgavebekreftelse.Ubesvart>
                 <Oppgavebekreftelse.Besvart
                     spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}>
-                    {oppgave.oppgavetypeData.forrigeSluttdato ? (
-                        <EndretSluttdatoOppsummering
-                            forrigeSluttdato={oppgave.oppgavetypeData.forrigeSluttdato}
-                            nySluttdato={oppgave.oppgavetypeData.nySluttdato}
-                        />
-                    ) : (
-                        <MeldtUtOppsummering dato={oppgave.oppgavetypeData.nySluttdato} />
-                    )}
+                    <EndretSluttdatoOppsummering
+                        forrigeSluttdato={oppgave.oppgavetypeData.forrigeSluttdato}
+                        nySluttdato={oppgave.oppgavetypeData.nySluttdato}
+                    />
                 </Oppgavebekreftelse.Besvart>
 
                 <Oppgavebekreftelse.Kvittering>
-                    {intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst')}
+                    <AppText id="oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
                 </Oppgavebekreftelse.Kvittering>
             </Oppgavebekreftelse>
         </DefaultPageLayout>
