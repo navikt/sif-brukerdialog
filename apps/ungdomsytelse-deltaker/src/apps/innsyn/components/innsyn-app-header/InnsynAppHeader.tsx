@@ -1,5 +1,4 @@
 import { UngdomsprogramPictogram } from '@innsyn/atoms/svg/UngdomsprogramPictogram';
-import { YtelseNavn } from '@innsyn/atoms/ytelse-navn/YtelseNavn';
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '@shared/i18n';
@@ -21,7 +20,7 @@ const InnsynAppHeader = ({ startdato }: Props) => {
             </Show>
             <VStack gap="1">
                 <Heading level="1" size="xlarge">
-                    <YtelseNavn />
+                    <AppText id="innsynAppHeader.ytelseNavn" />
                 </Heading>
                 <div className="uppercase">
                     <AppText id="innsynAppHeader.startdato" values={{ dato: dateFormatter.full(startdato) }} />

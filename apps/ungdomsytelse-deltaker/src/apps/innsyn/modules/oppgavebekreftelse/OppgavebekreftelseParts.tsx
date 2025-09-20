@@ -78,7 +78,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
             <GuidePanel>
                 <VStack gap="4">
                     <Heading level="2" size="medium">
-                        Hei {deltakerNavn}
+                        <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
                     </Heading>
                     <Box maxWidth="90%">{children}</Box>
                 </VStack>
@@ -108,7 +108,7 @@ const Kvittering = ({ children }: KvitteringProps) => {
             <VStack gap="4">
                 <Alert variant="success" tabIndex={-1}>
                     <Heading level="2" size="small" spacing>
-                        Svaret ditt er sendt inn
+                        <AppText id="oppgavebekreftelse.kvittering.tittel" />
                     </Heading>
                     {children}
                 </Alert>
@@ -142,7 +142,11 @@ const Besvart = ({ children }: BesvartProps) => {
 
         // Hvis ingen bekreftelse er tilgjengelig
         if (oppgave.status === OppgaveStatus.LØST && !oppgave.bekreftelse) {
-            return <Alert variant="info">Informasjon om hva du svarte er ikke tilgjengelig enda.</Alert>;
+            return (
+                <Alert variant="info">
+                    <AppText id="oppgavebekreftelse.besvart.svarMangler" />
+                </Alert>
+            );
         }
 
         return null;

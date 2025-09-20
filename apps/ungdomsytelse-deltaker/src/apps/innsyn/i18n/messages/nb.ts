@@ -18,6 +18,7 @@ export const innsynMessages_nb = {
     'ungdomsprogrammetHeader.poster.ungdoms': 'Ungdoms-',
     'ungdomsprogrammetHeader.poster.programmet': 'programmet',
 
+    'innsynAppHeader.ytelseNavn': 'Din ungdoms\u00ADprogram\u00ADytelse',
     'innsynAppHeader.startdato': 'Startdato {dato}',
 
     'oppgaveStatusInfo.utløptEllerAvbrutt': 'Denne oppgaven gjelder ikke lenger, du trenger ikke gjør noe.',
@@ -56,6 +57,10 @@ export const innsynMessages_nb = {
     'oppgaveOgTilbakemelding.header': 'Beskjed og ditt svar',
     'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
     'oppgaveOgTilbakemelding.tilbakemeldingLabel': 'Tilbakemelding',
+
+    'oppgavebekreftelse.ubesvart.tittel': 'Hei {deltakerNavn}',
+    'oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
+    'oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
 
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',

@@ -21,8 +21,7 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
                     <AppText id="oppgavetype.SØK_YTELSE.oppgavetittel" />
                 </Heading>
                 <Alert variant="info">
-                    Søknaden er mottatt, men vi kan ikke vise mer informasjon enda. Du kan vente litt og så laste siden
-                    på nytt.
+                    <AppText id="søkYtelseOppgave.uløst.info" />
                 </Alert>
                 <div>
                     <ForsideLenkeButton />
