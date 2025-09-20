@@ -1,8 +1,8 @@
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
-import { getDokumentTittel } from '@innsyn/utils/textUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 
+import { useAppIntl } from '../../../../../i18n';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
@@ -16,11 +16,9 @@ export interface RapporterInntektKvitteringData {
 }
 
 const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
+    const appIntl = useAppIntl();
     return (
-        <DefaultPageLayout
-            documentTitle={getDokumentTittel(
-                `Inntekt ${dateFormatter.MonthFullYear(props.oppgave.oppgavetypeData.fraOgMed)}`,
-            )}>
+        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
             <RapporterInntektOppgavePart {...props} />
         </DefaultPageLayout>
     );

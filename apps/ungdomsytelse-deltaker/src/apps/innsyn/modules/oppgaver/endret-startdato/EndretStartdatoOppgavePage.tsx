@@ -1,6 +1,6 @@
 import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
-import { getDokumentTittel } from '@innsyn/utils/textUtils';
+import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
@@ -20,8 +20,7 @@ const EndretStartdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
     );
 
     return (
-        <DefaultPageLayout
-            documentTitle={getDokumentTittel(intl.text('oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel'))}>
+        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}

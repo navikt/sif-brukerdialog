@@ -1,6 +1,6 @@
 import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekreftelse';
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
-import { getDokumentTittel } from '@innsyn/utils/textUtils';
+import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
 
@@ -21,8 +21,7 @@ const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
     }
 
     return (
-        <DefaultPageLayout
-            documentTitle={getDokumentTittel(intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.sidetittel'))}>
+        <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
             <Oppgavebekreftelse
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
