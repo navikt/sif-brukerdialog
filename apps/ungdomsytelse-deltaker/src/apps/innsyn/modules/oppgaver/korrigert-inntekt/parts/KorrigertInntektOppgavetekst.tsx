@@ -1,10 +1,12 @@
 import InntektTabell from '@innsyn/components/inntekt-tabell/InntektTabell';
 import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
-import { BodyLong, BodyShort, Link, List, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { useAppIntl } from '@shared/i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
+
+import RegelverkOgInnsynReadMore from './RegelverkOgInnsynReadMore';
 
 interface Props {
     oppgave: KorrigertInntektOppgave;
@@ -39,75 +41,54 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
         <VStack gap="6" width="100%" paddingBlock="0 6">
             {harInntekt ? (
                 <>
-                    {harKunYtelseInntekt ? (
-                        <BodyLong>Vi har fått disse opplysningene om ytelse fra Nav i {rapporteringsmåned}:</BodyLong>
-                    ) : (
-                        <BodyLong>Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:</BodyLong>
-                    )}
+                    <BodyLong>
+                        {harKunYtelseInntekt ? (
+                            <AppText id="korrigertInntektOppgavetekst.navYtelse" values={{ rapporteringsmåned }} />
+                        ) : (
+                            <AppText id="korrigertInntektOppgavetekst.generell" values={{ rapporteringsmåned }} />
+                        )}
+                    </BodyLong>
 
                     <InntektTabell
                         inntekt={inntekt}
-                        header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave)}
-                        lønnHeader="Lønn (før skatt)"
-                        totalLabel="Totalt"
+                        header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                        lønnHeader={intl.text('inntektTabell.lønn')}
+                        totalLabel={intl.text('inntektTabell.totalt')}
                         summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                     />
                 </>
             ) : (
                 <BodyLong>
-                    Du har gitt oss beskjed om at du hadde lønn i {rapporteringsmåned}, men vi har ikke fått inn
-                    opplysninger fra arbeidsgiver om at du hadde lønn i {rapporteringsmåned}.
+                    <AppText id="korrigertInntektOppgavetekst.ingenOpplysninger" values={{ rapporteringsmåned }} />
                 </BodyLong>
             )}
 
             <div>
                 <BodyLong spacing>
-                    Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en
-                    tilbakemelding på lønnen for {rapporteringsmåned}.
+                    <AppText id="korrigertInntektOppgavetekst.1" values={{ utbetalingsmåned, rapporteringsmåned }} />
                 </BodyLong>
-
-                <BodyLong spacing>Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.</BodyLong>
+                <BodyLong spacing>
+                    <AppText id="korrigertInntektOppgavetekst.2" />
+                </BodyLong>
                 {harInntekt ? (
                     <BodyLong spacing>
-                        Hvis du ser at lønnen er feil, sjekker du den med arbeidsgiveren din først. Hvis du fortsatt
-                        mener at den er feil, krysser du av på “Ja” og sender en tilbakemelding til oss om det.
+                        <AppText id="korrigertInntektOppgavetekst.3.harInntekt" />
                     </BodyLong>
                 ) : (
                     <BodyLong spacing>
-                        Hvis du likevel mener at du hadde lønn i {rapporteringsmåned}, krysser du av på “Ja” og sender
-                        en tilbakemelding til oss om det.
+                        <AppText id="korrigertInntektOppgavetekst.3.harIkkeInntekt" />
                     </BodyLong>
                 )}
                 <BodyLong weight="semibold" spacing>
-                    Jo fortere du svarer, jo fortere får du pengene utbetalt.
-                    <BodyShort as="div">Fristen for å svare er {formatertFrist}.</BodyShort>
+                    <AppText id="korrigertInntektOppgavetekst.4" />
+                    <BodyShort as="div">
+                        <AppText id="korrigertInntektOppgavetekst.5" values={{ formatertFrist }} />
+                    </BodyShort>
                 </BodyLong>
                 <BodyLong spacing>
-                    Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som arbeidsgiver har
-                    oppgitt.
+                    <AppText id="korrigertInntektOppgavetekst.6" values={{ rapporteringsmåned }} />
                 </BodyLong>
-                <ReadMore header="Regelverk og innsyn">
-                    <BodyLong>Se regelverket for ungdomsprogramytelsen:</BodyLong>
-                    <VStack gap="6">
-                        <List>
-                            <List.Item>
-                                <Link href="https://lovdata.no/dokument/NL/lov/2004-12-10-76">
-                                    § 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)
-                                </Link>
-                            </List.Item>
-                            <List.Item>
-                                <Link href="https://lovdata.no/dokument/LTI/forskrift/2025-06-20-1182">
-                                    § 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra
-                                    1. august 2025) (lovdata.no)
-                                </Link>
-                            </List.Item>
-                        </List>
-                        <BodyLong>
-                            Du har rett til å se dokumentene i saken sin.{' '}
-                            <Link href="https://www.nav.no/innsynskrav">Les mer om innsyn på nav.no</Link>.
-                        </BodyLong>
-                    </VStack>
-                </ReadMore>
+                <RegelverkOgInnsynReadMore />
             </div>
         </VStack>
     );

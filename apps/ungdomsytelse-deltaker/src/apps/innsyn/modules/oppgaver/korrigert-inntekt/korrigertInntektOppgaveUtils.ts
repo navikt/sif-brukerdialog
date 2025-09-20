@@ -31,16 +31,16 @@ const mapYtelseInntektToInntektTabellRad = (
     }));
 };
 
-const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave) => {
+const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave, intl: AppIntlShape) => {
     const harYtelser = oppgave.oppgavetypeData.registerinntekt.ytelseInntekter.length > 0;
     const harArbeidgiverInntekt = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length > 0;
 
     if (harYtelser && harArbeidgiverInntekt) {
-        return 'Arbeidsgiver/Nav-ytelse';
+        return intl.text('korrigertInntekt.inntekskilde.arbeidsgiverYtelse');
     } else if (harYtelser && !harArbeidgiverInntekt) {
-        return 'Nav-ytelse';
+        return intl.text('korrigertInntekt.inntekskilde.navytelse');
     }
-    return 'Arbeidsgiver';
+    return intl.text('korrigertInntekt.inntekskilde.arbeidsgiver');
 };
 
 export const korrigertInntektOppgaveUtils = {
