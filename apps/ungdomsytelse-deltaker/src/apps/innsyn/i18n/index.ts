@@ -1,6 +1,7 @@
 import { endretSluttdatoMessages_nb } from '../modules/oppgaver/endret-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgaver/endret-startdato/i18n/nb';
 import { korrigertInntektMessages_nb } from '../modules/oppgaver/korrigert-inntekt/i18n/nb';
+import { rapporterInntektMessages_nb } from '../modules/oppgaver/rapporter-inntekt/i18n/nb';
 import { søkYtelseOppgaveMessages_nb } from '../modules/oppgaver/søk-ytelse/i18n/nb';
 import { innsynMessages_nb } from './messages/nb';
 import { innsynMessages_nn } from './messages/nn';
@@ -11,6 +12,7 @@ const nb = {
     ...endretStartdatoMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
     ...korrigertInntektMessages_nb,
+    ...rapporterInntektMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {

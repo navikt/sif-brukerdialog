@@ -2,7 +2,7 @@ import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeB
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
 import InntektForm from '@innsyn/modules/forms/inntekt-form/InntektForm';
 import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
-import { Alert, BodyLong, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -13,7 +13,9 @@ import { getAppEnv } from '@shared/utils/appEnv';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { AppText } from '../../../../../../i18n';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
+import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
 
 const RapporterInntektOppgavePart = ({
@@ -52,24 +54,30 @@ const RapporterInntektOppgavePart = ({
                 </div>
 
                 <Heading level="1" size="large">
-                    Lønn i {månedOgÅr}
+                    <AppText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
                 </Heading>
 
                 <section aria-labelledby="summaryHeading">
                     <FormSummary>
                         <FormSummary.Header>
                             <FormSummary.Heading level="2" id="summaryHeading">
-                                Oppsummering
+                                <AppText id="rapporterInntektOppgavePart.oppsummering" />
                             </FormSummary.Heading>
                         </FormSummary.Header>
                         <FormSummary.Answers>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Fikk du utbetalt lønn i {måned}?</FormSummary.Label>
-                                <FormSummary.Value>{arbeidstakerOgFrilansInntekt ? 'Ja' : 'Nei'}</FormSummary.Value>
+                                <FormSummary.Label>
+                                    <AppText id="rapporterInntektOppgavePart.fikkUtbetaltLønn" values={{ måned }} />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    {arbeidstakerOgFrilansInntekt ? <AppText id="Ja" /> : <AppText id="Nei" />}
+                                </FormSummary.Value>
                             </FormSummary.Answer>
                             {arbeidstakerOgFrilansInntekt && (
                                 <FormSummary.Answer>
-                                    <FormSummary.Label>Lønn (før skatt)</FormSummary.Label>
+                                    <FormSummary.Label>
+                                        <AppText id="rapporterInntektOppgavePart.lønnFørSkatt" />
+                                    </FormSummary.Label>
                                     <FormSummary.Value>
                                         <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
                                     </FormSummary.Value>
@@ -89,30 +97,10 @@ const RapporterInntektOppgavePart = ({
     return (
         <VStack gap="6">
             <Heading level="1" size="large">
-                Lønn i {månedOgÅr}
+                <AppText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
             {kvitteringData ? (
-                <>
-                    <VStack gap="4">
-                        <Alert variant="success" ref={alertRef} tabIndex={-1}>
-                            <Heading level="2" size="small" spacing>
-                                Svaret ditt er sendt inn
-                            </Heading>
-                            {kvitteringData.harHattInntekt ? (
-                                <BodyLong>
-                                    Vi får også opplysninger om lønnen din fra arbeidsgiver. Hvis det er forskjell på
-                                    lønnen du har sendt inn, og lønnen vi får fra arbeidsgiveren din, får du beskjed om
-                                    det.
-                                </BodyLong>
-                            ) : (
-                                <BodyLong>Takk for at du ga oss beskjed.</BodyLong>
-                            )}
-                        </Alert>
-                    </VStack>
-                    <div>
-                        <ForsideLenkeButton />
-                    </div>
-                </>
+                <RapporterInntektKvittering ref={alertRef} kvitteringData={kvitteringData} />
             ) : (
                 <VStack gap="10">
                     <GuidePanel>

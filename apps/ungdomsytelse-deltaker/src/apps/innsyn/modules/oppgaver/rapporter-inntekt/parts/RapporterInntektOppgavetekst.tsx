@@ -2,6 +2,8 @@ import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
+import { AppText } from '../../../../../../i18n';
+
 interface Props {
     deltakerNavn: string;
     periode: DateRange;
@@ -15,15 +17,17 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
     return (
         <VStack gap="4">
             <Heading level="2" size="medium">
-                Hei {deltakerNavn}
+                <AppText id="rapporterInntektOppgavetekst.tittel" values={{ deltakerNavn }} />
             </Heading>
             <Box maxWidth="90%">
-                <BodyLong spacing>Gi oss beskjed hvis du fikk utbetalt lønn i {måned}.</BodyLong>
                 <BodyLong spacing>
-                    Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt før {frist}.
+                    <AppText id="rapporterInntektOppgavetekst.intro" values={{ måned }} />
                 </BodyLong>
                 <BodyLong spacing>
-                    Du kan la være å svare eller krysse av på ”Nei” hvis du ikke hadde lønn i {måned}.
+                    <AppText id="rapporterInntektOppgavetekst.instruks" values={{ frist }} />
+                </BodyLong>
+                <BodyLong spacing>
+                    <AppText id="rapporterInntektOppgavetekst.ingenLønn" values={{ måned }} />
                 </BodyLong>
             </Box>
         </VStack>
