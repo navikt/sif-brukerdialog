@@ -1,5 +1,8 @@
+/* eslint-disable max-len */
 export const innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
+    Ja: 'Ja',
+    Nei: 'Nei',
 
     'ytelse.SYKEPENGER': 'Sykepenger',
     'ytelse.OMSORGSPENGER': 'Omsorgspenger',
@@ -49,6 +52,10 @@ export const innsynMessages_nb = {
     'deltakelsePågåendeInfo.tekst':
         'Husk å melde fra innen 6. hver måned hvis du jobbet og fikk lønn måneden før. Du får et varsel på SMS når du skal melde fra.',
 
+    'oppgaveOgTilbakemelding.header': 'Beskjed og ditt svar',
+    'oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
+    'oppgaveOgTilbakemelding.tilbakemeldingLabel': 'Tilbakemelding',
+
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
     'oppgavestatus.ULØST': 'Uløst',
@@ -97,13 +104,29 @@ export const innsynMessages_nb = {
     'oppgavetype.SØK_YTELSE.oppgavetittel': 'Søknad for ungdoms\u00ADprogram\u00ADytelsen',
     'oppgavetype.SØK_YTELSE.info': 'Du er meldt inn i ungdomsprogrammet. Nå kan du søke om ungdomsprogramytelsen.',
 
+    /** InntektForm */
     'inntektForm.validation.harLønn.yesOrNoIsUnanswered': 'Du må svare på om du fikk utbetalt lønn.',
+    'inntektForm.submitLabel': 'Send inn svaret ditt',
+    'inntektForm.cancelLabel': 'Avbryt',
+    'inntektForm.utbetaltLønnLegend': 'Fikk du utbetalt lønn i {måned}?',
+    'inntektForm.lønnLabel': 'Hvor mye fikk du i lønn før skatt?',
+    'inntektForm.lønnDescription': 'Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den.',
+    'inntektForm.hvordanFinnerDuUtLønn': 'Hvordan finner du ut hva lønnen din var før skatt?',
+    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse':
+        'Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er før det blir trukket skatt av den, og det er det tallet du skal skrive inn her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
 
     'inntektForm.validation.lønn.numberHasNoValue': 'Du må oppgi hvor mye lønn du fikk før skatt',
     'inntektForm.validation.lønn.numberHasInvalidFormat':
         'Oppgitt lønn har ikke gyldig format. Et gyldig tall inneholder kun siffer.',
     'inntektForm.validation.lønn.numberIsTooSmall': 'Oppgitt lønn kan ikke være mindre enn 0.',
     'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgi lønna uten desimaler.',
+
+    /** UtalelseForm */
+    'uttalelseForm.ariaLabel': 'Skjema for tilbakemelding',
+    'uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',
+    'uttalelseForm.cancelButtonLabel': 'Avbryt',
+    'uttalelseForm.defaultDescription':
+        'Du må ikke oppgi sensitive informasjon (særlige kategorier av personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
     'uttalelseForm.validation.begrunnelse.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',

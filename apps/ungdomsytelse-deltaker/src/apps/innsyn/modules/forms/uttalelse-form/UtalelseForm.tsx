@@ -11,7 +11,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { useAppIntl } from '@shared/i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 
 interface Props {
     harTilbakemeldingSpørsmål: string;
@@ -24,11 +24,11 @@ interface Props {
 
 enum FormFields {
     harTilbakemelding = 'harTilbakemelding',
-    begrunnelse = 'begrunnelse',
+    tilbakemelding = 'tilbakemelding',
 }
 
 type FormValues = Partial<{
-    [FormFields.begrunnelse]: string;
+    [FormFields.tilbakemelding]: string;
     [FormFields.harTilbakemelding]: YesOrNo;
 }>;
 
@@ -51,7 +51,7 @@ const UtalelseForm = ({
 }: Props) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
 
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
 
     const handleSubmit = async (values: FormValues) => {
         const harUttalelse = values[FormFields.harTilbakemelding] === YesOrNo.YES;
@@ -61,7 +61,7 @@ const UtalelseForm = ({
                 oppgaveReferanse: oppgaveReferanse,
                 uttalelse: {
                     harUttalelse,
-                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.begrunnelse] : undefined,
+                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.tilbakemelding] : undefined,
                 },
             },
         };
@@ -70,15 +70,15 @@ const UtalelseForm = ({
     };
 
     return (
-        <section aria-label="Skjema for tilbakemelding">
+        <section aria-label={text('uttalelseForm.ariaLabel')}>
             <FormikWrapper
                 initialValues={{}}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     return (
                         <Form
-                            submitButtonLabel="Send inn svaret ditt"
-                            cancelButtonLabel="Avbryt"
+                            submitButtonLabel={text('uttalelseForm.submitButtonLabel')}
+                            cancelButtonLabel={text('uttalelseForm.cancelButtonLabel')}
                             onCancel={onCancel}
                             isFinalSubmit={true}
                             submitPending={isPending}
@@ -93,14 +93,12 @@ const UtalelseForm = ({
                                 />
                                 {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
                                     <Textarea
-                                        name={FormFields.begrunnelse}
+                                        name={FormFields.tilbakemelding}
                                         label={tilbakemeldingLabel}
                                         description={
                                             tilbakemeldingDescription || (
                                                 <BodyLong>
-                                                    Du må ikke oppgi sensitive informasjon (særlige kategorier av
-                                                    personopplysninger) om deg selv eller andre, for eksempel
-                                                    helseopplysninger.
+                                                    <AppText id="uttalelseForm.defaultDescription" />
                                                 </BodyLong>
                                             )
                                         }

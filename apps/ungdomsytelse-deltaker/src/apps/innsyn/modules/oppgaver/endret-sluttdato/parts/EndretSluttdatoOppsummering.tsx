@@ -1,28 +1,24 @@
-import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { AppText } from '@shared/i18n';
+import { ReactNode } from 'react';
 
 interface EndretSluttdatoOppsummeringProps {
-    oppgave: EndretSluttdatoOppgave;
+    forrigeSluttdato: Date;
+    nySluttdato: Date;
 }
 
-const EndretSluttdatoOppsummering = ({ oppgave }: EndretSluttdatoOppsummeringProps) => {
-    const forrigeSluttdato = oppgave.oppgavetypeData.forrigeSluttdato;
-    const nySluttdato = oppgave.oppgavetypeData.nySluttdato;
+const EndretSluttdatoOppsummering = ({ forrigeSluttdato, nySluttdato }: EndretSluttdatoOppsummeringProps) => {
+    const nySluttdatoFormatted = dateFormatter.compact(nySluttdato);
 
     return (
-        <>
-            {forrigeSluttdato ? (
-                <p>
-                    Din sluttdato i ungdomsprogrammet er endret fra{' '}
-                    <strong>{new Date(forrigeSluttdato).toLocaleDateString('nb-NO')}</strong> til{' '}
-                    <strong>{new Date(nySluttdato).toLocaleDateString('nb-NO')}</strong>.
-                </p>
-            ) : (
-                <p>
-                    Du er meldt ut av ungdomsprogrammet fra og med{' '}
-                    <strong>{new Date(nySluttdato).toLocaleDateString('nb-NO')}</strong>.
-                </p>
-            )}
-        </>
+        <AppText
+            id="endretSluttdato.oppsummering.endret"
+            values={{
+                forrige: dateFormatter.compact(forrigeSluttdato),
+                ny: nySluttdatoFormatted,
+                strong: (content: ReactNode) => <strong>{content}</strong>,
+            }}
+        />
     );
 };
 

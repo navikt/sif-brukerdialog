@@ -8,7 +8,7 @@ interface Props {
     svarfrist: Date;
 }
 
-const EndretSluttdatoOppgavetekst = ({ endretDato, svarfrist }: Props) => {
+const MeldUtOppgavetekst = ({ endretDato, svarfrist }: Props) => {
     const formatertDato = <span className="text-nowrap">{dateFormatter.full(endretDato)}</span>;
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(svarfrist)}</span>;
 
@@ -16,27 +16,27 @@ const EndretSluttdatoOppgavetekst = ({ endretDato, svarfrist }: Props) => {
         <>
             <BodyLong spacing>
                 <AppText
-                    id="endretSluttdato.oppgavetekst.1"
+                    id="endretSluttdato.meldUtOppgavetekst.1"
                     values={{ formatertDato, strong: (content) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.oppgavetekst.2" />
+                <AppText id="endretSluttdato.meldUtOppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.oppgavetekst.3" />
+                <AppText id="endretSluttdato.meldUtOppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.oppgavetekst.4" />
+                <AppText id="endretSluttdato.meldUtOppgavetekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <AppText id="endretSluttdato.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <AppText id="endretSluttdato.meldUtOppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong spacing>
-                <AppText id="endretSluttdato.oppgavetekst.5" values={{ formatertDato }} />
+                <AppText id="endretSluttdato.meldUtOppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );
 };
 
-export default EndretSluttdatoOppgavetekst;
+export default MeldUtOppgavetekst;

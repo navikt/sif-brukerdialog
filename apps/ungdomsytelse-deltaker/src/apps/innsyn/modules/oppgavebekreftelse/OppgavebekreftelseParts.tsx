@@ -7,6 +7,7 @@ import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-a
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
+import { AppText, useAppIntl } from '../../../../i18n';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
@@ -16,32 +17,39 @@ interface OppgaveOgTilbakemeldingProps {
 }
 
 const OppgaveOgTilbakemelding = ({ beskjedFraNav, spørsmål, bekreftelse }: OppgaveOgTilbakemeldingProps) => {
+    const { text } = useAppIntl();
     return (
         <section aria-labelledby="summaryHeading">
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2" id="summaryHeading">
-                        Beskjed og ditt svar
+                        <AppText id="oppgaveOgTilbakemelding.header" />
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
-                        <FormSummary.Label>Beskjed fra Nav</FormSummary.Label>
+                        <FormSummary.Label>
+                            <AppText id="oppgaveOgTilbakemelding.beskjedFraNav" />
+                        </FormSummary.Label>
                         <FormSummary.Value>
-                            <BoxNew background="accent-moderate" borderRadius="large" padding="4">
-                                {beskjedFraNav}
-                            </BoxNew>
+                            <Box marginBlock="2 0">
+                                <BoxNew background="accent-moderate" borderRadius="large" padding="4">
+                                    {beskjedFraNav}
+                                </BoxNew>
+                            </Box>
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>{spørsmål}</FormSummary.Label>
-                        <FormSummary.Value>{bekreftelse.harUttalelse ? 'Ja' : 'Nei'}</FormSummary.Value>
+                        <FormSummary.Value>{bekreftelse.harUttalelse ? text('Ja') : text('Nei')}</FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
                 {bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
                     <FormSummary.Answers>
                         <FormSummary.Answer>
-                            <FormSummary.Label>Tilbakemelding</FormSummary.Label>
+                            <FormSummary.Label>
+                                <AppText id="oppgaveOgTilbakemelding.tilbakemeldingLabel" />
+                            </FormSummary.Label>
                             <FormSummary.Value>
                                 <TextareaSvar text={bekreftelse.uttalelseFraBruker} />
                             </FormSummary.Value>

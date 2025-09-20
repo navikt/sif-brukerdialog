@@ -12,7 +12,7 @@ import {
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
-import { useAppIntl } from '@shared/i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 
 export enum InntektFormFields {
     harLønn = 'harLønn',
@@ -36,7 +36,7 @@ interface Props {
 }
 
 const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const {
         error: rapporterError,
         isPending: rapporterPending,
@@ -78,10 +78,10 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
 
                 return (
                     <Form
-                        submitButtonLabel="Send inn svaret ditt"
+                        submitButtonLabel={text('inntektForm.submitLabel')}
                         showButtonArrows={true}
                         onCancel={onCancel}
-                        cancelButtonLabel="Avbryt"
+                        cancelButtonLabel={text('inntektForm.cancelLabel')}
                         includeValidationSummary={true}
                         submitPending={isPending}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'inntektForm.validation')}>
@@ -89,7 +89,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                             <FormLayout.Questions>
                                 <YesOrNoQuestion
                                     name={InntektFormFields.harLønn}
-                                    legend={`Fikk du utbetalt lønn i ${måned}?`}
+                                    legend={text('inntektForm.utbetaltLønnLegend', { måned })}
                                     validate={(v) => {
                                         const vError = getYesOrNoValidator()(v);
                                         return vError ? { key: vError, values: { måned } } : undefined;
@@ -100,9 +100,9 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                     <VStack gap="4">
                                         <NumberInput
                                             name={InntektFormFields.lønn}
-                                            label="Hvor mye fikk du i lønn før skatt?"
+                                            label={text('inntektForm.lønnLabel')}
                                             integerValue={true}
-                                            description="Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den."
+                                            description={text('inntektForm.lønnDescription')}
                                             validate={getNumberValidator({
                                                 min: 1,
                                                 max: 999999,
@@ -110,12 +110,8 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                                 allowDecimals: false,
                                             })}
                                         />
-                                        <ReadMore header="Hvordan finner du ut hva lønnen din var før skatt?">
-                                            Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra
-                                            arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er
-                                            før det blir trukket skatt av den, og det er det tallet du skal skrive inn
-                                            her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner
-                                            lønnsslippen.
+                                        <ReadMore header={text('inntektForm.hvordanFinnerDuUtLønn')}>
+                                            <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse" />
                                         </ReadMore>
                                     </VStack>
                                 ) : null}

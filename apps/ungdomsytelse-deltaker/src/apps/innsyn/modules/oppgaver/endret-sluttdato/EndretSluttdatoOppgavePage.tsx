@@ -6,7 +6,8 @@ import { EndretSluttdatoOppgave } from '@shared/types/Oppgave';
 
 import EndretSluttdatoOppgavetekst from './parts/EndretSluttdatoOppgavetekst';
 import EndretSluttdatoOppsummering from './parts/EndretSluttdatoOppsummering';
-import NySluttdatoOppgavetekst from './parts/NySluttdatoOppgavetekst';
+import MeldtUtOppsummering from './parts/MeldtUtOppsummering';
+import MeldUtOppgavetekst from './parts/MeldUtOppgavetekst';
 
 interface Props {
     deltakerNavn: string;
@@ -34,16 +35,22 @@ const EndretSluttdatoOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitterin
                             svarfrist={oppgave.frist}
                         />
                     ) : (
-                        <NySluttdatoOppgavetekst
+                        <MeldUtOppgavetekst
                             endretDato={oppgave.oppgavetypeData.nySluttdato}
                             svarfrist={oppgave.frist}
                         />
                     )}
                 </Oppgavebekreftelse.Ubesvart>
-
                 <Oppgavebekreftelse.Besvart
                     spørsmål={intl.text('oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål')}>
-                    <EndretSluttdatoOppsummering oppgave={oppgave} />
+                    {oppgave.oppgavetypeData.forrigeSluttdato ? (
+                        <EndretSluttdatoOppsummering
+                            forrigeSluttdato={oppgave.oppgavetypeData.forrigeSluttdato}
+                            nySluttdato={oppgave.oppgavetypeData.nySluttdato}
+                        />
+                    ) : (
+                        <MeldtUtOppsummering dato={oppgave.oppgavetypeData.nySluttdato} />
+                    )}
                 </Oppgavebekreftelse.Besvart>
 
                 <Oppgavebekreftelse.Kvittering>
