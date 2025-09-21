@@ -7,7 +7,7 @@ import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import getLenker from '@shared/utils/lenker';
 
-import { AppText } from '../../../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     oppgave: SøkYtelseOppgave;

@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { forwardRef } from 'react';
 
-import { AppText } from '../../../../../../i18n';
+import { AppText } from '@shared/i18n';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 

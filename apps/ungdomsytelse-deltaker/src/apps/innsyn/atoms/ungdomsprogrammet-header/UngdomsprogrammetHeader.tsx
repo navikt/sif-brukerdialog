@@ -1,6 +1,6 @@
 import { Bleed, Box, Heading, Hide, Show } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '@shared/i18n';
 
-import { AppText, useAppIntl } from '../../../../i18n';
 import MannSvg from '../svg/Mann';
 
 const UngdomsprogrammetHeader = () => {

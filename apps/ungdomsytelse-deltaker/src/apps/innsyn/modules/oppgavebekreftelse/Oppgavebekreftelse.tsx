@@ -4,7 +4,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { useMemo, useState } from 'react';
 
-import { useAppIntl } from '../../../../i18n';
+import { useAppIntl } from '@shared/i18n';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 

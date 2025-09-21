@@ -1,8 +1,8 @@
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
+import { useAppIntl } from '@shared/i18n';
 import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 
-import { useAppIntl } from '../../../../../i18n';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {

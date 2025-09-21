@@ -1,7 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
-import { AppText } from '../../../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 interface Props {
     frist: Date;

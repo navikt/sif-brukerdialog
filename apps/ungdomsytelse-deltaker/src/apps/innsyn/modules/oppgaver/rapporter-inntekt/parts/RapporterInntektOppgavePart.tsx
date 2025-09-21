@@ -13,7 +13,7 @@ import { getAppEnv } from '@shared/utils/appEnv';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AppText } from '../../../../../../i18n';
+import { AppText } from '@shared/i18n';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
 import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';

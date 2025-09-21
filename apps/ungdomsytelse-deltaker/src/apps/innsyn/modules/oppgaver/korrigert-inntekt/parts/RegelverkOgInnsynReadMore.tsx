@@ -1,6 +1,6 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
-import { AppText, useAppIntl } from '../../../../../../i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 
 const RegelverkOgInnsynReadMore = () => {
     const { text } = useAppIntl();

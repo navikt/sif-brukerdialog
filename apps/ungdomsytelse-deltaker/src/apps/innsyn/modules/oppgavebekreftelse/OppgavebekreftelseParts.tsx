@@ -7,7 +7,7 @@ import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-a
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText, useAppIntl } from '@shared/i18n';
 import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
