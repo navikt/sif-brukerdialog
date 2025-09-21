@@ -13,13 +13,14 @@ test.beforeEach(async ({ page, context }) => {
 
 const testAccessibility = async (page) => {
     const accessibilityScanResults = await new AxeBuilder({ page }).disableRules('color-contrast').analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
+    await expect(accessibilityScanResults.violations).toEqual([]);
 };
 
 test('Innsyn - har søkt', async ({ page }) => {
     memoryStore.setScenario(ScenarioType.harSøkt);
 
     await page.goto(`./`);
+    await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();
 
     // 1. Accessibility test before starting the application
     await testAccessibility(page);
