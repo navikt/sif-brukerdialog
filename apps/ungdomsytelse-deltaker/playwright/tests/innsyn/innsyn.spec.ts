@@ -1,9 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { ScenarioType } from '../../mock/scenarios/types';
-import { memoryStore } from '../../mock/state/memoryStore';
-import { registerMockRoutes } from '../utils/registerMockRoutes';
-import { setNow } from '../utils/setNow';
+
+import { ScenarioType } from '../../../mock/scenarios/types';
+import { memoryStore } from '../../../mock/state/memoryStore';
+import { registerMockRoutes } from '../../utils/registerMockRoutes';
+import { setNow } from '../../utils/setNow';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);

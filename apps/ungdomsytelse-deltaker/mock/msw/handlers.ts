@@ -1,5 +1,6 @@
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { http, HttpResponse } from 'msw';
+
 import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
