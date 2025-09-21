@@ -7,11 +7,6 @@ import {
 
 import { ScenarioData } from '../types';
 
-// const oppgavetypeData: InntektsrapporteringOppgavetypeDataDto = {
-//     fraOgMed: '2025-06-01',
-//     tilOgMed: '2025-06-30',
-// };
-
 const rapporterInntektOppgave: OppgaveDto = {
     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
@@ -46,7 +41,7 @@ const deltakelse: DeltakelseKomposittDto = {
             bekreftelse: {
                 harUttalelse: false,
             },
-            status: 'LØST',
+            status: 'ULØST',
             opprettetDato: '2025-06-04T10:32:47.664066Z',
             frist: '2025-06-04T12:47:47.492347Z',
         },

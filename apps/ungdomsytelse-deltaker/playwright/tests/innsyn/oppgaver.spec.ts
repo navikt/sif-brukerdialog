@@ -1,0 +1,96 @@
+import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/test';
+
+import { ScenarioType } from '../../../mock/scenarios/types';
+import { memoryStore } from '../../../mock/state/memoryStore';
+import { registerMockRoutes } from '../../utils/registerMockRoutes';
+import { setNow } from '../../utils/setNow';
+
+test.beforeEach(async ({ page, context }) => {
+    await setNow(page);
+    await registerMockRoutes(page, context);
+    memoryStore.setScenario(ScenarioType.harSøkt);
+    await page.goto(`./`);
+});
+
+const testAccessibility = async (page) => {
+    const accessibilityScanResults = await new AxeBuilder({ page }).disableRules('color-contrast').analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+};
+
+test.describe('Innsyn - oppgaver', () => {
+    test('Søk ytelse oppgave', async ({ page }) => {
+        await page.getByRole('link', { name: 'Søknad for' }).click();
+        await testAccessibility(page);
+        await expect(page.getByRole('heading', { name: 'Søknad for ungdoms' })).toBeVisible();
+        await expect(page.getByText('Startdato1. mai')).toBeVisible();
+        await expect(page.getByText('Du kan se alle dine svar i sø')).toBeVisible();
+        await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+        await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();
+    });
+
+    test.describe('Endret startdato', () => {
+        test('Ingen tilbakemelding', async ({ page }) => {
+            await testAccessibility(page);
+            await page.getByRole('link', { name: 'Se og gi tilbakemelding på' }).click();
+
+            // Detaljer
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await testAccessibility(page);
+            await expect(page.getByRole('strong').getByText('1. mai')).toBeVisible();
+            await expect(page.getByText('Fristen for å svare er 4. juni')).toBeVisible();
+            await page.getByRole('radio', { name: 'Nei' }).check();
+            await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+
+            // Kvittering
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await testAccessibility(page);
+            await expect(page.getByText('Svaret ditt er sendt innDu')).toBeVisible();
+            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+            // Forside
+            await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();
+            const tidligereOppgaver = await page.locator('div:has-text("Tidligere oppgaver")');
+            await expect(
+                tidligereOppgaver.getByRole('link', { name: 'Se og gi tilbakemelding på endret startdato' }),
+            ).toBeVisible();
+
+            // Kontroller at svar vises riktig
+            await tidligereOppgaver.getByRole('link', { name: 'Se og gi tilbakemelding på endret startdato' }).click();
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await expect(page.getByText('Har du en tilbakemelding på startdatoen?Nei')).toBeVisible();
+        });
+        test('Med tilbakemelding', async ({ page }) => {
+            await testAccessibility(page);
+            await page.getByRole('link', { name: 'Se og gi tilbakemelding på' }).click();
+
+            // Detaljer
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await testAccessibility(page);
+            await expect(page.getByRole('strong').getByText('1. mai')).toBeVisible();
+            await expect(page.getByText('Fristen for å svare er 4. juni')).toBeVisible();
+            await page.getByRole('radio', { name: 'Ja' }).check();
+            await page.getByRole('textbox', { name: 'Tilbakemelding' }).click();
+            await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Startdatoen er ikke riktig');
+            await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+
+            // Kvittering
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await testAccessibility(page);
+            await expect(page.getByText('Svaret ditt er sendt innDu')).toBeVisible();
+            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+            // Forside
+            await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();
+
+            const tidligereOppgaver = await page.locator('div:has-text("Tidligere oppgaver")');
+            await expect(
+                tidligereOppgaver.getByRole('link', { name: 'Se og gi tilbakemelding på endret startdato' }),
+            ).toBeVisible();
+            await tidligereOppgaver.getByRole('link', { name: 'Se og gi tilbakemelding på endret startdato' }).click();
+            await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
+            await expect(page.getByText('Har du en tilbakemelding på startdatoen?Ja')).toBeVisible();
+            await expect(page.getByText('TilbakemeldingStartdatoen er')).toBeVisible();
+        });
+    });
+});
