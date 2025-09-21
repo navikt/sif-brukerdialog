@@ -92,27 +92,33 @@ test.describe('Innsyn - oppgaver', () => {
     });
     test.describe('Meld fra om inntekt', async () => {
         test('Ingen inntekt', async ({ page }) => {
-            await page.getByRole('link', { name: 'Meld fra om du fikk utbetalt' }).click();
+            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
             await expect(page.getByRole('heading', { name: 'Lønn i august' })).toBeVisible();
             await page.getByText('Nei', { exact: true }).click();
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
             await expect(page.getByText('Svaret ditt er sendt innTakk')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-            await page.getByRole('link', { name: 'Meld fra om du fikk utbetalt' }).click();
+
+            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
             await expect(page.getByText('Fikk du utbetalt lønn i august?Nei')).toBeVisible();
         });
         test('Med inntekt', async ({ page }) => {
-            await page.getByRole('link', { name: 'Meld fra om du fikk utbetalt' }).click();
+            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
             await expect(page.getByRole('heading', { name: 'Lønn i august' })).toBeVisible();
             await page.getByText('Ja', { exact: true }).click();
             await page.getByRole('textbox', { name: 'Hvor mye fikk du i lønn før' }).fill('2350');
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
-            await expect(
-                page.getByText('Svaret ditt er sendt innVi får også opplysninger om lønnen din'),
-            ).toBeVisible();
+            await expect(page.getByText('Svaret ditt er sendt innVi får')).toBeVisible();
             await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-            await page.getByRole('link', { name: 'Meld fra om du fikk utbetalt' }).click();
+
+            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
             await expect(page.getByText('Fikk du utbetalt lønn i august?Ja')).toBeVisible();
+            await expect(page.getByText('Lønn (før skatt)2 350')).toBeVisible();
+            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
         });
     });
 });
