@@ -9,11 +9,11 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { TallSvar } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppText } from '@shared/i18n';
 import { getAppEnv } from '@shared/utils/appEnv';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AppText } from '@shared/i18n';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
 import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';

@@ -58,7 +58,7 @@ const deltakelse: DeltakelseKomposittDto = {
             bekreftelse: {
                 harUttalelse: false,
             },
-            status: 'LØST',
+            status: 'ULØST',
             opprettetDato: '2025-06-04T10:32:47.664066Z',
             frist: '2025-06-04T12:47:47.492347Z',
         },

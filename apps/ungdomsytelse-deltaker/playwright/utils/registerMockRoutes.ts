@@ -67,22 +67,23 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         });
     });
 
-    await page.route('**/deltakelse/register/:id/marker-har-sokt', async (route) => {
+    await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
         await route.fulfill({ status: 500 });
     });
 
-    await page.route('**/deltakelse/register/oppgave/:oppgaveReferanse/åpnet', async (route) => {
-        const ref = extractOppgaveReferanse(route.request().url());
-        if (!ref) return route.fulfill({ status: 400 });
-        const oppgave = mockUtils.setOppgaveSomÅpnet(ref);
-        await route.fulfill({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(oppgave),
-        });
-    });
+    await page.route(
+        '**/ung-deltakelse-opplyser/deltakelse/register/oppgave/:oppgaveReferanse/åpnet',
+        async (route) => {
+            const ref = extractOppgaveReferanse(route.request().url());
+            if (!ref) return route.fulfill({ status: 400 });
+            mockUtils.setOppgaveSomÅpnet(ref);
+            await route.fulfill({
+                status: 200,
+            });
+        },
+    );
 
-    await page.route('**/deltakelse/register/oppgave/:oppgaveReferanse/lukk', async (route) => {
+    await page.route('**/*lukk', async (route) => {
         const ref = extractOppgaveReferanse(route.request().url());
         if (!ref) return route.fulfill({ status: 400 });
         const oppgave = mockUtils.setOppgaveSomLukket(ref);
@@ -113,6 +114,8 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         const text = await route.request().postData();
         const parsed = JSON.parse(text || '{}');
         mockUtils.setRapportertInntekt(parsed.oppgaveReferanse, parsed);
-        await route.fulfill({ status: 200 });
+        await route.fulfill({
+            status: 200,
+        });
     });
 }

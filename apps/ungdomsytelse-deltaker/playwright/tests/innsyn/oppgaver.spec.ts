@@ -108,7 +108,7 @@ test.describe('Innsyn - oppgaver', () => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
             await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
             await expect(page.getByRole('heading', { name: 'Lønn i august' })).toBeVisible();
-            await page.getByText('Ja', { exact: true }).click();
+            await page.getByRole('radio', { name: 'Ja' }).click();
             await page.getByRole('textbox', { name: 'Hvor mye fikk du i lønn før' }).fill('2350');
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
             await expect(page.getByText('Svaret ditt er sendt innVi får')).toBeVisible();
