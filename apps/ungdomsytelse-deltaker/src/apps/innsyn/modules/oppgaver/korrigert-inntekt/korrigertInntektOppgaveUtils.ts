@@ -1,4 +1,4 @@
-import { InntektTabellRad } from '@innsyn/components/inntekt-tabell/InntektTabell';
+import { InntektTableRow } from '@innsyn/components/inntekt-table/InntektTabell';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     YtelseRegisterInntektDto,
@@ -8,7 +8,7 @@ import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],
-): InntektTabellRad[] => {
+): InntektTableRow[] => {
     if (inntekt.length === 0) {
         return [];
     }
@@ -21,7 +21,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
 const mapYtelseInntektToInntektTabellRad = (
     inntekt: YtelseRegisterInntektDto[],
     intl: AppIntlShape,
-): InntektTabellRad[] => {
+): InntektTableRow[] => {
     if (inntekt.length === 0) {
         return [];
     }

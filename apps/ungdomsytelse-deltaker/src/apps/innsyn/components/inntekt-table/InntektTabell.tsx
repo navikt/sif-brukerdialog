@@ -1,27 +1,27 @@
 import { BodyShort, Box, Table } from '@navikt/ds-react';
 import { FormattedNumber } from 'react-intl';
 
-export interface InntektTabellRad {
+export interface InntektTableRow {
     navn: string;
     beløp: number;
 }
 
 interface Props {
-    header: string;
-    lønnHeader: string;
-    totalLabel: string;
-    inntekt: InntektTabellRad[];
-    summert: number;
+    navnRowHeader: string;
+    beløpRowHeader: string;
+    totalColHeader: string;
+    inntekt: InntektTableRow[];
+    total: number;
 }
 
-const InntektTabell = ({ header, inntekt, summert, lønnHeader, totalLabel }: Props) => {
+const InntektTable = ({ navnRowHeader, inntekt, total, beløpRowHeader, totalColHeader }: Props) => {
     return (
         <Table>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell scope="col">{header}</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">{navnRowHeader}</Table.HeaderCell>
                     <Table.HeaderCell scope="col" className="w-16">
-                        <Box className="text-right text-nowrap">{lønnHeader}</Box>
+                        <Box className="text-right text-nowrap">{beløpRowHeader}</Box>
                     </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
@@ -42,11 +42,11 @@ const InntektTabell = ({ header, inntekt, summert, lønnHeader, totalLabel }: Pr
                 })}
                 <Table.Row>
                     <Table.HeaderCell scope="row">
-                        <BodyShort weight="semibold">{totalLabel}</BodyShort>
+                        <BodyShort weight="semibold">{totalColHeader}</BodyShort>
                     </Table.HeaderCell>
                     <Table.DataCell className="w-16">
                         <BodyShort weight="semibold" className="text-right text-nowrap">
-                            <FormattedNumber value={summert} />
+                            <FormattedNumber value={total} />
                         </BodyShort>
                     </Table.DataCell>
                 </Table.Row>
@@ -55,4 +55,4 @@ const InntektTabell = ({ header, inntekt, summert, lønnHeader, totalLabel }: Pr
     );
 };
 
-export default InntektTabell;
+export default InntektTable;

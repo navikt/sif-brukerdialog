@@ -1,4 +1,4 @@
-import UngdomsprogrammetHeader from '@innsyn/atoms/ungdomsprogrammet-header/UngdomsprogrammetHeader';
+import UngdomsprogrammetBanner from '@innsyn/atoms/ungdomsprogrammet-banner/UngdomsprogrammetBanner';
 import { BodyLong, HGrid, LinkPanel, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
@@ -7,7 +7,7 @@ const ForsidePageFooter = () => {
     return (
         <HGrid columns="1fr auto">
             <VStack gap="6">
-                <UngdomsprogrammetHeader />
+                <UngdomsprogrammetBanner />
 
                 <BodyLong>
                     <AppText id="forsidePageFooter.info" />

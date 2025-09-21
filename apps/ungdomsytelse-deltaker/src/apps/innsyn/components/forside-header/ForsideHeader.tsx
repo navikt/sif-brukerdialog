@@ -7,7 +7,7 @@ interface Props {
     startdato: Date;
 }
 
-const InnsynAppHeader = ({ startdato }: Props) => {
+const ForsideHeader = ({ startdato }: Props) => {
     return (
         <Stack
             gap="6"
@@ -30,4 +30,4 @@ const InnsynAppHeader = ({ startdato }: Props) => {
     );
 };
 
-export default InnsynAppHeader;
+export default ForsideHeader;

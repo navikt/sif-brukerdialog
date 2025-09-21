@@ -8,7 +8,7 @@ interface Props {
     bannerTitle?: string;
     children?: React.ReactNode;
 }
-const Feilside = ({ children, pageTitle, bannerTitle }: Props) => {
+const ErrorPage = ({ children, pageTitle, bannerTitle }: Props) => {
     const { text } = useSoknadIntl();
     return (
         <Page
@@ -19,4 +19,4 @@ const Feilside = ({ children, pageTitle, bannerTitle }: Props) => {
     );
 };
 
-export default Feilside;
+export default ErrorPage;

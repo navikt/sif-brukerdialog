@@ -1,10 +1,10 @@
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
 import { getOppgaveStatusText, getOppgaveTittel } from '@innsyn/utils/textUtils';
 import { Heading, VStack } from '@navikt/ds-react';
+import { useAppIntl } from '@shared/i18n';
 import { BekreftelseOppgave } from '@shared/types/Oppgave';
 import { useMemo, useState } from 'react';
 
-import { useAppIntl } from '@shared/i18n';
 import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 

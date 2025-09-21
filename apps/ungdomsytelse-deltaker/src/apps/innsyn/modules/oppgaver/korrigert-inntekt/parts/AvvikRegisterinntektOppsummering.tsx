@@ -1,4 +1,4 @@
-import InntektTabell from '@innsyn/components/inntekt-tabell/InntektTabell';
+import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
 import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
@@ -24,12 +24,12 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
     return (
         <>
             <AppText id="avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
-            <InntektTabell
+            <InntektTable
                 inntekt={inntekt}
-                header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                totalLabel={intl.text('inntektTabell.totalt')}
-                lønnHeader={intl.text('inntektTabell.lønn')}
-                summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
+                navnRowHeader={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                totalColHeader={intl.text('inntektTabell.totalt')}
+                beløpRowHeader={intl.text('inntektTabell.lønn')}
+                total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
             />
         </>
     );

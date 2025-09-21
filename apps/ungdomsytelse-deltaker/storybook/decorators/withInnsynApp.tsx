@@ -3,7 +3,7 @@ import '../../src/app.css';
 import { Theme, VStack } from '@navikt/ds-react';
 import { useEffect } from 'react';
 
-import InnsynAppHeader from '../../src/apps/innsyn/components/innsyn-app-header/InnsynAppHeader';
+import ForsideHeader from '../../src/apps/innsyn/components/forside-header/ForsideHeader';
 import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 import ForsidePageFooter from '../../src/apps/innsyn/pages/parts/ForsidePageFooter';
 import StoryIntlProvider from '../components/StoryIntlProvider';
@@ -27,7 +27,7 @@ export const useWithInnsynApp = (
                     documentTitle="Forside"
                     footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
                     <VStack gap="8">
-                        {options.withHeader && <InnsynAppHeader startdato={options.startdato || new Date()} />}
+                        {options.withHeader && <ForsideHeader startdato={options.startdato || new Date()} />}
                         <Story />
                     </VStack>
                 </ForsidePageLayout>

@@ -3,7 +3,7 @@ import { AppText, useAppIntl } from '@shared/i18n';
 
 import MannSvg from '../svg/Mann';
 
-const UngdomsprogrammetHeader = () => {
+const UngdomsprogrammetBanner = () => {
     const { text } = useAppIntl();
     return (
         <>
@@ -48,4 +48,4 @@ const UngdomsprogrammetHeader = () => {
     );
 };
 
-export default UngdomsprogrammetHeader;
+export default UngdomsprogrammetBanner;

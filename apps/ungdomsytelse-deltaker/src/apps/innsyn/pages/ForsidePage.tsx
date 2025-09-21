@@ -1,4 +1,4 @@
-import InnsynAppHeader from '@innsyn/components/innsyn-app-header/InnsynAppHeader';
+import ForsideHeader from '@innsyn/components/forside-header/ForsideHeader';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
@@ -20,7 +20,7 @@ const ForsidePage = () => {
     return (
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
-                <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
+                <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
                 {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="zpvvyjk4ss" />}
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>

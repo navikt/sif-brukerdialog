@@ -1,10 +1,10 @@
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
-import Feilside from './Feilside';
+import ErrorPage from './ErrorPage';
 
 const IngenDeltakelsePage = () => (
-    <Feilside pageTitle="Deltakelse ikke funnet" bannerTitle="Ungdomsprogramytelsen">
+    <ErrorPage pageTitle="Deltakelse ikke funnet" bannerTitle="Ungdomsprogramytelsen">
         <Box paddingBlock="0 24">
             <SifGuidePanel mood="uncertain">
                 <Heading level="2" size="medium" spacing>
@@ -17,7 +17,7 @@ const IngenDeltakelsePage = () => (
                 </BodyLong>
             </SifGuidePanel>
         </Box>
-    </Feilside>
+    </ErrorPage>
 );
 
 export default IngenDeltakelsePage;

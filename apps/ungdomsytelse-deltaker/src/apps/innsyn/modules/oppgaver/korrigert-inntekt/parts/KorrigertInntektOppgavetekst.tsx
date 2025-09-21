@@ -1,4 +1,4 @@
-import InntektTabell from '@innsyn/components/inntekt-tabell/InntektTabell';
+import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
 import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
 import { BodyLong, BodyShort, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
@@ -49,12 +49,12 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                         )}
                     </BodyLong>
 
-                    <InntektTabell
+                    <InntektTable
                         inntekt={inntekt}
-                        header={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                        lønnHeader={intl.text('inntektTabell.lønn')}
-                        totalLabel={intl.text('inntektTabell.totalt')}
-                        summert={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
+                        navnRowHeader={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                        beløpRowHeader={intl.text('inntektTabell.lønn')}
+                        totalColHeader={intl.text('inntektTabell.totalt')}
+                        total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
                     />
                 </>
             ) : (

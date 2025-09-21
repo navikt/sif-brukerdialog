@@ -4,10 +4,10 @@ import UtalelseForm from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
 import { Alert, Box, BoxNew, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppText, useAppIntl } from '@shared/i18n';
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
-import { AppText, useAppIntl } from '@shared/i18n';
 import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
