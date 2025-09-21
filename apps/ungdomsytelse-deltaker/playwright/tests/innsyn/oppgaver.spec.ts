@@ -1,10 +1,10 @@
-import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../../mock/scenarios/types';
 import { memoryStore } from '../../../mock/state/memoryStore';
 import { registerMockRoutes } from '../../utils/registerMockRoutes';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
@@ -12,11 +12,6 @@ test.beforeEach(async ({ page, context }) => {
     memoryStore.setScenario(ScenarioType.harSøkt);
     await page.goto(`./`);
 });
-
-const testAccessibility = async (page) => {
-    const accessibilityScanResults = await new AxeBuilder({ page }).disableRules('color-contrast').analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-};
 
 test.describe('Innsyn - oppgaver', () => {
     test('Søk ytelse oppgave', async ({ page }) => {

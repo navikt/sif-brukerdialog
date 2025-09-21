@@ -1,20 +1,15 @@
-import AxeBuilder from '@axe-core/playwright'; // 1
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../../mock/scenarios/types';
 import { memoryStore } from '../../../mock/state/memoryStore';
 import { registerMockRoutes } from '../../utils/registerMockRoutes';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await registerMockRoutes(page, context);
 });
-
-const testAccessibility = async (page) => {
-    const accessibilityScanResults = await new AxeBuilder({ page }).disableRules('color-contrast').analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-};
 
 test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     memoryStore.setScenario(ScenarioType.harIkkeSøkt);
