@@ -8,15 +8,31 @@ import {
 import { ScenarioData } from '../types';
 
 const rapporterInntektOppgave: OppgaveDto = {
-    oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
+    oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
     oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
     status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-06-04T10:32:47.664066Z',
+    opprettetDato: '2025-09-01T10:32:47.664066Z',
     frist: '2025-09-07T12:47:47.492347Z',
-
     oppgavetypeData: {
         fraOgMed: '2025-08-01',
         tilOgMed: '2025-08-30',
+    },
+};
+const rapporterInntektOppgaveLøst: OppgaveDto = {
+    oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
+    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
+    status: OppgaveStatus.LØST,
+    opprettetDato: '2025-08-01T10:32:47.664066Z',
+    frist: '2025-08-07T12:47:47.492347Z',
+    løstDato: '2025-08-06T12:47:47.492347Z',
+    oppgavetypeData: {
+        fraOgMed: '2025-07-01',
+        tilOgMed: '2025-07-30',
+        rapportertInntekt: {
+            fraOgMed: '2025-07-01',
+            tilOgMed: '2025-07-30',
+            arbeidstakerOgFrilansInntekt: 23000,
+        },
     },
 };
 
@@ -31,6 +47,7 @@ const deltakelse: DeltakelseKomposittDto = {
     },
     oppgaver: [
         rapporterInntektOppgave,
+        rapporterInntektOppgaveLøst,
         {
             oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
             oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
@@ -41,7 +58,7 @@ const deltakelse: DeltakelseKomposittDto = {
             bekreftelse: {
                 harUttalelse: false,
             },
-            status: 'ULØST',
+            status: 'LØST',
             opprettetDato: '2025-06-04T10:32:47.664066Z',
             frist: '2025-06-04T12:47:47.492347Z',
         },
