@@ -4475,7 +4475,7 @@ __metadata:
     next: "npm:15.5.3"
     next-logger: "npm:5.0.1"
     node-fetch: "npm:3.3.2"
-    pino: "npm:9.10.0"
+    pino: "npm:9.11.0"
     playwright-core: "npm:1.55.0"
     postcss: "npm:8.5.6"
     postcss-import: "npm:16.1.1"
@@ -23579,9 +23579,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:9.10.0":
-  version: 9.10.0
-  resolution: "pino@npm:9.10.0"
+"pino@npm:9.11.0":
+  version: 9.11.0
+  resolution: "pino@npm:9.11.0"
   dependencies:
     atomic-sleep: "npm:^1.0.0"
     fast-redact: "npm:^3.1.1"
@@ -23596,7 +23596,7 @@ __metadata:
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10/02962e12ae7692c763da6f64c2037f113a03f5f7e6e6be96f0878c4aa4095ca8cf8ffbac561eda1ac367c7ea1f7ee50d44d211674f314b2560ddd3db1e4efb5f
+  checksum: 10/359bc3624110a0261a5dc5fc3f990028920a8165d173bd5304b328da3ed9eb1281d233c2acfb1a263282fed0aa1a1e1d5f2f66e856fcb56926836458610e78bc
   languageName: node
   linkType: hard
 
