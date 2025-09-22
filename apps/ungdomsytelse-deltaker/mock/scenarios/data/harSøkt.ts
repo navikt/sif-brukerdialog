@@ -77,8 +77,8 @@ const deltakelse: DeltakelseKomposittDto = {
             oppgavetype: 'BEKREFT_AVVIK_REGISTERINNTEKT',
             oppgavetypeData: {
                 type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
-                fraOgMed: '2025-07-01',
-                tilOgMed: '2025-07-31',
+                fraOgMed: '2025-09-01',
+                tilOgMed: '2025-09-30',
                 registerinntekt: {
                     arbeidOgFrilansInntekter: [
                         {
@@ -93,9 +93,9 @@ const deltakelse: DeltakelseKomposittDto = {
                     totalInntekt: 20000,
                 },
             },
-            frist: '2025-10-01T12:47:47.492347Z',
+            frist: '2025-10-30T12:47:47.492347Z',
             status: 'ULØST',
-            opprettetDato: '2025-07-07T05:00:46.869460Z',
+            opprettetDato: '2025-10-15T05:00:46.869460Z',
         },
     ],
 } as any;
