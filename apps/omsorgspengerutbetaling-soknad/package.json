@@ -61,7 +61,7 @@
         "chromatic": "13.1.5",
         "compression": "1.8.1",
         "cross-env": "10.0.0",
-        "eslint": "9.35.0",
+        "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.6",
         "express": "5.1.0",
         "helmet": "8.1.0",
