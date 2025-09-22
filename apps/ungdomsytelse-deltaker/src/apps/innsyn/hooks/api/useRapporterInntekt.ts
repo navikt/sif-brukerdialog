@@ -4,6 +4,8 @@ import { ApiError } from '@navikt/ung-common';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { logApiErrorFaro } from '../../utils/apiErrorLogger';
+
 export const useRapporterInntekt = () => {
     const queryClient = useQueryClient();
     return useMutation<void, ApiError, ungdomsytelse.UngdomsytelseInntektsrapportering>({
@@ -11,5 +13,6 @@ export const useRapporterInntekt = () => {
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
         },
+        onError: (error) => logApiErrorFaro('useRapporterInntekt', error),
     });
 };

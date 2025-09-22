@@ -4,12 +4,16 @@ import { ApiError } from '@navikt/ung-common';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { logApiErrorFaro } from '../../utils/apiErrorLogger';
+
 export const useSendOppgavebekreftelse = () => {
     const queryClient = useQueryClient();
+
     return useMutation<void, ApiError, UngdomsytelseOppgavebekreftelse>({
         mutationFn: (data) => sendOppgavebekreftelse(data),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
         },
+        onError: (error) => logApiErrorFaro('useSendOppgavebekreftelse', error),
     });
 };
