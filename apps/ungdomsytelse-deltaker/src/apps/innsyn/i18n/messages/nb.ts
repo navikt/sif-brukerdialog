@@ -135,9 +135,9 @@ export const innsynMessages_nb = {
         'Du må ikke oppgi sensitive informasjon (særlige kategorier av personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
-    'uttalelseForm.validation.begrunnelse.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
-    'uttalelseForm.validation.begrunnelse.stringIsTooShort':
+    'uttalelseForm.validation.tilbakemelding.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
+    'uttalelseForm.validation.tilbakemelding.stringIsTooShort':
         'Du har brukt for få tegn i tilbakemeldingen din. Teksten må minst inneholde {min} tegn.',
-    'uttalelseForm.validation.begrunnelse.stringIsTooLong':
+    'uttalelseForm.validation.tilbakemelding.stringIsTooLong':
         'Du har brukt for mange tegn i tilbakemeldingen din. Teksten kan ikke inneholde flere enn {maks} tegn.',
 };

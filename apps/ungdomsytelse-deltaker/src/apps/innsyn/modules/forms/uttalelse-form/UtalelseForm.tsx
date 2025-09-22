@@ -1,5 +1,5 @@
 import { useSendOppgavebekreftelse } from '@innsyn/hooks/api/useSendOppgavebekreftelse';
-import { Alert, BodyLong, VStack } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import {
     UngdomsytelseOppgavebekreftelse,
     UngdomsytelseOppgaveUttalelseDto,
@@ -11,6 +11,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { AppText, useAppIntl } from '@shared/i18n';
 
 interface Props {
@@ -121,7 +122,7 @@ const UtalelseForm = ({
                                         }}
                                     />
                                 ) : null}
-                                {error ? <Alert variant="error">{JSON.stringify(error)}</Alert> : null}
+                                {error ? <ApiErrorAlert error={error} /> : null}
                             </VStack>
                         </Form>
                     );
