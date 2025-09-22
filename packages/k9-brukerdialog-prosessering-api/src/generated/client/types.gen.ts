@@ -821,7 +821,6 @@ export type ArbeidsgiverOlpWritable = {
     organisasjonsnummer?: string;
     navn?: string;
     erAnsatt?: boolean;
-    sluttetFørSøknadsperiode?: boolean;
     arbeidsforhold?: ArbeidsforholdOlp;
 };
 
