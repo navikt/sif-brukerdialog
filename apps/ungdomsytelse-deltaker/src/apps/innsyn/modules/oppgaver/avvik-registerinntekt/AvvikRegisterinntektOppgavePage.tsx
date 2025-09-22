@@ -3,23 +3,23 @@ import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
-import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 
+import AvvikRegisterinntektOppgavetekst, {
+    getUtbetalingsmånedForAvvikRegisterinntektOppgave,
+} from './parts/AvvikRegisterinntektOppgavetekst';
 import AvvikRegisterinntektOppsummering from './parts/AvvikRegisterinntektOppsummering';
-import KorrigertInntektOppgavetekst, {
-    getUtbetalingsmånedForKorrigertInntektOppgave,
-} from './parts/KorrigertInntektOppgavetekst';
 
 interface Props {
     deltakerNavn: string;
-    oppgave: KorrigertInntektOppgave;
+    oppgave: AvvikRegisterinntektOppgave;
     initialVisKvittering?: boolean;
 }
 
-const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
+const AvvikRegisterinntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvittering }: Props) => {
     const intl = useAppIntl();
 
-    const utbetalingsmåned = getUtbetalingsmånedForKorrigertInntektOppgave(oppgave.oppgavetypeData.fraOgMed);
+    const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
 
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
@@ -28,7 +28,7 @@ const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitteri
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
                 <Oppgavebekreftelse.Ubesvart>
-                    <KorrigertInntektOppgavetekst oppgave={oppgave} />
+                    <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
                 </Oppgavebekreftelse.Ubesvart>
 
                 <Oppgavebekreftelse.Besvart>
@@ -48,4 +48,4 @@ const KorrigertInntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvitteri
     );
 };
 
-export default KorrigertInntektOppgavePage;
+export default AvvikRegisterinntektOppgavePage;

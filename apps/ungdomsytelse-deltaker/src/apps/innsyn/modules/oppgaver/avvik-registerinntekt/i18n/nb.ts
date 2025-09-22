@@ -1,27 +1,28 @@
-export const korrigertInntektMessages_nb = {
-    'korrigertInntekt.inntekskilde.arbeidsgiverYtelse': 'Arbeidsgiver/Nav-ytelse',
-    'korrigertInntekt.inntekskilde.arbeidsgiver': 'Arbeidsgiver',
-    'korrigertInntekt.inntekskilde.navytelse': 'Nav-ytelse',
+export const avvikRegisterinntektMessages_nb = {
+    'avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse': 'Arbeidsgiver/Nav-ytelse',
+    'avvikRegisterinntekt.inntekskilde.arbeidsgiver': 'Arbeidsgiver',
+    'avvikRegisterinntekt.inntekskilde.navytelse': 'Nav-ytelse',
     'avvikRegisterinntektOppsummering.intro': 'Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:',
 
     'inntektTabell.totalt': 'Totalt',
     'inntektTabell.lønn': 'Lønn (før skatt)',
 
-    'korrigertInntektOppgavetekst.navYtelse':
+    'avvikRegisterinntektOppgavetekst.navYtelse':
         'Vi har fått disse opplysningene om ytelse fra Nav i {rapporteringsmåned}:',
-    'korrigertInntektOppgavetekst.generell': 'Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:',
-    'korrigertInntektOppgavetekst.ingenOpplysninger':
+    'avvikRegisterinntektOppgavetekst.generell':
+        'Vi har fått disse opplysningene om lønnen din i {rapporteringsmåned}:',
+    'avvikRegisterinntektOppgavetekst.ingenOpplysninger':
         'Du har gitt oss beskjed om at du hadde lønn i {rapporteringsmåned}, men vi har ikke fått inn opplysninger fra arbeidsgiver om at du hadde lønn i {rapporteringsmåned}.',
-    'korrigertInntektOppgavetekst.1':
+    'avvikRegisterinntektOppgavetekst.1':
         'Før vi vurderer hvor mye penger du får utbetalt i {utbetalingsmåned}, kan du komme med en tilbakemelding på lønnen for {rapporteringsmåned}.',
-    'korrigertInntektOppgavetekst.2': 'Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.',
-    'korrigertInntektOppgavetekst.3.harInntekt':
+    'avvikRegisterinntektOppgavetekst.2': 'Hvis du ikke har en tilbakemelding, krysser du av på “Nei”.',
+    'avvikRegisterinntektOppgavetekst.3.harInntekt':
         'Hvis du ser at lønnen er feil, sjekker du den med arbeidsgiveren din først. Hvis du fortsatt mener at den er feil, krysser du av på “Ja” og sender en tilbakemelding til oss om det.',
-    'korrigertInntektOppgavetekst.3.harIkkeInntekt':
+    'avvikRegisterinntektOppgavetekst.3.harIkkeInntekt':
         'Hvis du likevel mener at du hadde lønn i {rapporteringsmåned}, krysser du av på “Ja” og sender en tilbakemelding til oss om det.',
-    'korrigertInntektOppgavetekst.4': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
-    'korrigertInntektOppgavetekst.5': 'Fristen for å svare er {formatertFrist}.',
-    'korrigertInntektOppgavetekst.6':
+    'avvikRegisterinntektOppgavetekst.4': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
+    'avvikRegisterinntektOppgavetekst.5': 'Fristen for å svare er {formatertFrist}.',
+    'avvikRegisterinntektOppgavetekst.6':
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi lønnen som arbeidsgiver har oppgitt.',
 
     'regelverkOgInnsyn.readMore.tittel': 'Regelverk og innsyn',

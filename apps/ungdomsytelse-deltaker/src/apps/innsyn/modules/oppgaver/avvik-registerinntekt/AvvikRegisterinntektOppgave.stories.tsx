@@ -12,14 +12,14 @@ import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
 import { withIntl } from '@shared/storybook/decorators/withIntl';
 import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
 import { withRouter } from '@shared/storybook/decorators/withRouter';
-import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import KorrigertInntektOppgavePage from './KorrigertInntektOppgavePage';
+import AvvikRegisterinntektOppgavePage from './AvvikRegisterinntektOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/6. Korrigert inntekt',
+    title: 'Innsyn/Oppgaver/6. Avvik registerinntekt inntekt',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
@@ -52,7 +52,7 @@ const registerInntektEnArbeidsgiver: RegisterinntektDto = {
     totalInntekt: inntektArbeidsgiver1.inntekt,
 };
 
-const oppgave: KorrigertInntektOppgave = {
+const oppgave: AvvikRegisterinntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
@@ -68,7 +68,7 @@ const oppgave: KorrigertInntektOppgave = {
 const getOppgaveMedInntekt = (
     arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
     ytelseInntekter: YtelseRegisterInntektDto[] = [],
-): KorrigertInntektOppgave => {
+): AvvikRegisterinntektOppgave => {
     const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
     const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
     const totalInntekt = totalInntektArbeidOgFrilans + totalInntektYtelse;
@@ -87,7 +87,7 @@ const getOppgaveMedInntekt = (
         },
     };
 };
-const besvartOppgave: KorrigertInntektOppgave = {
+const besvartOppgave: AvvikRegisterinntektOppgave = {
     ...oppgave,
     bekreftelse: {
         harUttalelse: false,
@@ -127,7 +127,7 @@ export const OppgavePanel: Story = {
 export const UbesvartOppgaveEnArbeidsgiver: Story = {
     name: 'Èn arbeidsgiver',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -136,7 +136,7 @@ export const UbesvartOppgaveEnArbeidsgiver: Story = {
 export const UbesvartOppgaveToArbeidsgivere: Story = {
     name: 'To arbeidsgivere',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -146,7 +146,7 @@ export const UbesvartOppgaveToArbeidsgivere: Story = {
 export const UbesvartOppgaveNavYtelse: Story = {
     name: 'Nav ytelse',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -155,7 +155,7 @@ export const UbesvartOppgaveNavYtelse: Story = {
 export const UbesvartOppgaveKombinasjon: Story = {
     name: 'Arbeidsgiver og Nav ytelse',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -163,25 +163,27 @@ export const UbesvartOppgaveKombinasjon: Story = {
 };
 export const IngenInntekt: Story = {
     name: 'Ingen inntekt',
-    render: () => <KorrigertInntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => (
+        <AvvikRegisterinntektOppgavePage oppgave={getOppgaveMedInntekt([], [])} deltakerNavn="SNODIG VAFFEL" />
+    ),
 };
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
     render: () => (
-        <KorrigertInntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
+        <AvvikRegisterinntektOppgavePage oppgave={oppgave} deltakerNavn="SNODIG VAFFEL" initialVisKvittering={true} />
     ),
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <KorrigertInntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
+    render: () => <AvvikRegisterinntektOppgavePage oppgave={besvartOppgave} deltakerNavn="SNODIG VAFFEL" />,
 };
 
 export const BesvartOppgaveMedTilbakemelding: Story = {
     name: 'Besvart oppgave med tilbakemelding',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={{
                 ...besvartOppgave,
                 bekreftelse: {
@@ -198,7 +200,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.AVBRUTT }}
             deltakerNavn="SNODIG VAFFEL"
         />
@@ -208,7 +210,7 @@ export const AvbruttOppgave: Story = {
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
     render: () => (
-        <KorrigertInntektOppgavePage
+        <AvvikRegisterinntektOppgavePage
             oppgave={{ ...besvartOppgave, bekreftelse: undefined, status: OppgaveStatus.UTLØPT }}
             deltakerNavn="SNODIG VAFFEL"
         />

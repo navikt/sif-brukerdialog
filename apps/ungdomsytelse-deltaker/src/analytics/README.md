@@ -103,7 +103,7 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
   harSluttdato: boolean,
   antallEndretStartdatoOppgaver: number,
   antallEndretSluttdatoOppgaver: number,
-  antallAvvikInntektOppgaver: number,
+  antallAvvikRegisterinntektOppgaver: number,
   antallRapporterInntektOppgaver: number,
   antallSøkYtelseOppgaver: number,
   antallDagerSidenStartdato: number,

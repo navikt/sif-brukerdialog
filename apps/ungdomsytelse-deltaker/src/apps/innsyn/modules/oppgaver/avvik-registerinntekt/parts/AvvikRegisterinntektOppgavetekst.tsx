@@ -1,28 +1,28 @@
 import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
-import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
+import { avvikRegisterinntektOppgaveUtils } from '@innsyn/modules/oppgaver/avvik-registerinntekt/avvikRegisterinntektOppgaveUtils';
 import { BodyLong, BodyShort, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
-import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
 
 import RegelverkOgInnsynReadMore from './RegelverkOgInnsynReadMore';
 
 interface Props {
-    oppgave: KorrigertInntektOppgave;
+    oppgave: AvvikRegisterinntektOppgave;
 }
 
-export const getUtbetalingsmånedForKorrigertInntektOppgave = (oppgaveFraOgMed: Date): Date => {
+export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgMed: Date): Date => {
     return dayjs(oppgaveFraOgMed).add(1, 'month').toDate();
 };
 
-const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
+const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const intl = useAppIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const utbetalingsmåned = dateFormatter.month(
-        getUtbetalingsmånedForKorrigertInntektOppgave(oppgave.oppgavetypeData.fraOgMed),
+        getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed),
     );
 
     const {
@@ -30,8 +30,8 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     } = oppgave.oppgavetypeData;
 
     const inntekt = [
-        ...korrigertInntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
-        ...korrigertInntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
+        ...avvikRegisterinntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
+        ...avvikRegisterinntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
     ];
 
     const harInntekt = inntekt.length > 0;
@@ -43,15 +43,15 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                 <>
                     <BodyLong>
                         {harKunYtelseInntekt ? (
-                            <AppText id="korrigertInntektOppgavetekst.navYtelse" values={{ rapporteringsmåned }} />
+                            <AppText id="avvikRegisterinntektOppgavetekst.navYtelse" values={{ rapporteringsmåned }} />
                         ) : (
-                            <AppText id="korrigertInntektOppgavetekst.generell" values={{ rapporteringsmåned }} />
+                            <AppText id="avvikRegisterinntektOppgavetekst.generell" values={{ rapporteringsmåned }} />
                         )}
                     </BodyLong>
 
                     <InntektTable
                         inntekt={inntekt}
-                        navnRowHeader={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                        navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
                         beløpRowHeader={intl.text('inntektTabell.lønn')}
                         totalColHeader={intl.text('inntektTabell.totalt')}
                         total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
@@ -59,34 +59,37 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
                 </>
             ) : (
                 <BodyLong>
-                    <AppText id="korrigertInntektOppgavetekst.ingenOpplysninger" values={{ rapporteringsmåned }} />
+                    <AppText id="avvikRegisterinntektOppgavetekst.ingenOpplysninger" values={{ rapporteringsmåned }} />
                 </BodyLong>
             )}
 
             <div>
                 <BodyLong spacing>
-                    <AppText id="korrigertInntektOppgavetekst.1" values={{ utbetalingsmåned, rapporteringsmåned }} />
+                    <AppText
+                        id="avvikRegisterinntektOppgavetekst.1"
+                        values={{ utbetalingsmåned, rapporteringsmåned }}
+                    />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="korrigertInntektOppgavetekst.2" />
+                    <AppText id="avvikRegisterinntektOppgavetekst.2" />
                 </BodyLong>
                 {harInntekt ? (
                     <BodyLong spacing>
-                        <AppText id="korrigertInntektOppgavetekst.3.harInntekt" />
+                        <AppText id="avvikRegisterinntektOppgavetekst.3.harInntekt" />
                     </BodyLong>
                 ) : (
                     <BodyLong spacing>
-                        <AppText id="korrigertInntektOppgavetekst.3.harIkkeInntekt" />
+                        <AppText id="avvikRegisterinntektOppgavetekst.3.harIkkeInntekt" />
                     </BodyLong>
                 )}
                 <BodyLong weight="semibold" spacing>
-                    <AppText id="korrigertInntektOppgavetekst.4" />
+                    <AppText id="avvikRegisterinntektOppgavetekst.4" />
                     <BodyShort as="div">
-                        <AppText id="korrigertInntektOppgavetekst.5" values={{ formatertFrist }} />
+                        <AppText id="avvikRegisterinntektOppgavetekst.5" values={{ formatertFrist }} />
                     </BodyShort>
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="korrigertInntektOppgavetekst.6" values={{ rapporteringsmåned }} />
+                    <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ rapporteringsmåned }} />
                 </BodyLong>
                 <RegelverkOgInnsynReadMore />
             </div>
@@ -94,4 +97,4 @@ const KorrigertInntektOppgavetekst = ({ oppgave }: Props) => {
     );
 };
 
-export default KorrigertInntektOppgavetekst;
+export default AvvikRegisterinntektOppgavetekst;

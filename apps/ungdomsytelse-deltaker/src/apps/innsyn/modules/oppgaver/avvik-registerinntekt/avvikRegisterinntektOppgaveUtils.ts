@@ -4,7 +4,7 @@ import {
     YtelseRegisterInntektDto,
 } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { AppIntlShape } from '@shared/i18n';
-import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],
@@ -31,19 +31,19 @@ const mapYtelseInntektToInntektTabellRad = (
     }));
 };
 
-const getInntektskildeHeader = (oppgave: KorrigertInntektOppgave, intl: AppIntlShape) => {
+const getInntektskildeHeader = (oppgave: AvvikRegisterinntektOppgave, intl: AppIntlShape) => {
     const harYtelser = oppgave.oppgavetypeData.registerinntekt.ytelseInntekter.length > 0;
     const harArbeidgiverInntekt = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length > 0;
 
     if (harYtelser && harArbeidgiverInntekt) {
-        return intl.text('korrigertInntekt.inntekskilde.arbeidsgiverYtelse');
+        return intl.text('avvikRegisterinntekt.inntekskilde.arbeidsgiverYtelse');
     } else if (harYtelser && !harArbeidgiverInntekt) {
-        return intl.text('korrigertInntekt.inntekskilde.navytelse');
+        return intl.text('avvikRegisterinntekt.inntekskilde.navytelse');
     }
-    return intl.text('korrigertInntekt.inntekskilde.arbeidsgiver');
+    return intl.text('avvikRegisterinntekt.inntekskilde.arbeidsgiver');
 };
 
-export const korrigertInntektOppgaveUtils = {
+export const avvikRegisterinntektOppgaveUtils = {
     mapArbeidOgFrilansInntektToInntektTabellRad,
     mapYtelseInntektToInntektTabellRad,
     getInntektskildeHeader,

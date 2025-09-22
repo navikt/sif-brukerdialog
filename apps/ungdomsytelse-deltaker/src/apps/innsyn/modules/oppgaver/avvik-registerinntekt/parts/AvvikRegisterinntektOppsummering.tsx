@@ -1,11 +1,11 @@
 import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
-import { korrigertInntektOppgaveUtils } from '@innsyn/modules/oppgaver/korrigert-inntekt/korrigertInntektOppgaveUtils';
+import { avvikRegisterinntektOppgaveUtils } from '@innsyn/modules/oppgaver/avvik-registerinntekt/avvikRegisterinntektOppgaveUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
-import { KorrigertInntektOppgave } from '@shared/types/Oppgave';
+import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 
 interface AvvikRegisterinntektOppsummeringProps {
-    oppgave: KorrigertInntektOppgave;
+    oppgave: AvvikRegisterinntektOppgave;
 }
 
 const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
@@ -17,8 +17,8 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
 
     const rapporteringsmåned = dateFormatter.month(fraOgMed);
     const inntekt = [
-        ...korrigertInntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
-        ...korrigertInntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
+        ...avvikRegisterinntektOppgaveUtils.mapArbeidOgFrilansInntektToInntektTabellRad(arbeidOgFrilansInntekter),
+        ...avvikRegisterinntektOppgaveUtils.mapYtelseInntektToInntektTabellRad(ytelseInntekter, intl),
     ];
 
     return (
@@ -26,7 +26,7 @@ const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsu
             <AppText id="avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
             <InntektTable
                 inntekt={inntekt}
-                navnRowHeader={korrigertInntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
                 totalColHeader={intl.text('inntektTabell.totalt')}
                 beløpRowHeader={intl.text('inntektTabell.lønn')}
                 total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
