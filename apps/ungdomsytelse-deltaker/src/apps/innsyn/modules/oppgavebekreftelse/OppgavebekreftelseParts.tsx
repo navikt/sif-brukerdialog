@@ -2,10 +2,12 @@ import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeB
 import OppgaveStatusInfo from '@innsyn/components/oppgave-status-info/OppgaveStatusInfo';
 import UtalelseForm from '@innsyn/modules/forms/uttalelse-form/UtalelseForm';
 import { Alert, Box, BoxNew, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { BekreftelseDto, OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AppRoutes } from '@shared/utils/AppRoutes';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
@@ -100,13 +102,21 @@ interface KvitteringProps {
 
 const Kvittering = ({ children }: KvitteringProps) => {
     const { visKvittering } = useOppgavebekreftelse();
+    const alertRef = useRef<HTMLDivElement>(null);
+    const prevVisKvittering = usePrevious(visKvittering);
+
+    useEffect(() => {
+        if (visKvittering && !prevVisKvittering && alertRef.current) {
+            alertRef.current.focus();
+        }
+    }, [visKvittering, prevVisKvittering]);
 
     if (!visKvittering) return null;
 
     return (
         <>
             <VStack gap="4">
-                <Alert variant="success" tabIndex={-1}>
+                <Alert variant="success" tabIndex={-1} ref={alertRef}>
                     <Heading level="2" size="small" spacing>
                         <AppText id="oppgavebekreftelse.kvittering.tittel" />
                     </Heading>
