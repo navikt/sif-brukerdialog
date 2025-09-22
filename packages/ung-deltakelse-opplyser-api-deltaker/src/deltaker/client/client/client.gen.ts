@@ -2,11 +2,13 @@
 
 import type { AxiosError, AxiosInstance, RawAxiosRequestHeaders } from 'axios';
 import axios from 'axios';
+
 import { createSseClient } from '../core/serverSentEvents.gen';
+import type { HttpMethod } from '../core/types.gen';
+import { getValidRequestBody } from '../core/utils.gen';
+import type { Client, Config, RequestOptions } from './types.gen';
 import { buildUrl, createConfig, mergeConfigs, mergeHeaders, setAuthParams } from './utils.gen';
 
-import type { HttpMethod } from '../core/types.gen';
-import type { Client, Config, RequestOptions } from './types.gen';
 export const createClient = (config: Config = {}): Client => {
     let _config = mergeConfigs(createConfig(), config);
 
@@ -52,7 +54,7 @@ export const createClient = (config: Config = {}): Client => {
             await opts.requestValidator(opts);
         }
 
-        if (opts.body && opts.bodySerializer) {
+        if (opts.body !== undefined && opts.bodySerializer) {
             opts.body = opts.bodySerializer(opts.body);
         }
 
@@ -63,6 +65,7 @@ export const createClient = (config: Config = {}): Client => {
 
     // @ts-expect-error
     const request: Client['request'] = async (options) => {
+        // @ts-expect-error
         const { opts, url } = await beforeRequest(options);
         try {
             // assign Axios here for consistency with fetch
@@ -72,7 +75,7 @@ export const createClient = (config: Config = {}): Client => {
             const response = await _axios({
                 ...optsWithoutAuth,
                 baseURL: opts.baseURL as string,
-                data: opts.body,
+                data: getValidRequestBody(opts),
                 headers: opts.headers as RawAxiosRequestHeaders,
                 // let `paramsSerializer()` handle query params if it exists
                 params: opts.paramsSerializer ? opts.query : undefined,
