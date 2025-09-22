@@ -4574,7 +4574,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.9"
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.12.2"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     compression: "npm:1.8.1"
     cross-env: "npm:10.0.0"
     csp-header: "npm:6.1.0"
@@ -4815,7 +4815,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:5.0.3"
     axios: "npm:1.12.2"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     compression: "npm:1.8.1"
     cors: "npm:2.8.5"
     cross-env: "npm:10.0.0"
@@ -4925,7 +4925,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.3"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     compression: "npm:1.8.1"
     cross-env: "npm:10.0.0"
     csp-header: "npm:6.1.0"
@@ -4995,7 +4995,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.3"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     compression: "npm:1.8.1"
     cross-env: "npm:10.0.0"
     csp-header: "npm:6.1.0"
@@ -5137,7 +5137,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.3"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     compression: "npm:1.8.1"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:10.0.0"
@@ -12786,9 +12786,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:13.1.5":
-  version: 13.1.5
-  resolution: "chromatic@npm:13.1.5"
+"chromatic@npm:13.2.0":
+  version: 13.2.0
+  resolution: "chromatic@npm:13.2.0"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -12801,7 +12801,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10/c516c96aedb9cb45190a93514c55c1b55b85f09b8fe14a0a53cba6eea335474d090b90a624d69f1f700005c343d2bb231997760c33da6564b7a4d41f3ccd955b
+  checksum: 10/187d8dcfe26f1ef18487806214ccdd366d7f911a76c6319a0bcdf1184ad41ea49fdf18248da5819d67c158ae8975d06858f95bc3178d565db52a5df647d07e9e
   languageName: node
   linkType: hard
 
@@ -26324,7 +26324,7 @@ __metadata:
     "@navikt/sif-validation": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@types/react": "npm:19.1.13"
-    chromatic: "npm:13.1.5"
+    chromatic: "npm:13.2.0"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
