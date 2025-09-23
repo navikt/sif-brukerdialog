@@ -1,6 +1,6 @@
 import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
 import { avvikRegisterinntektOppgaveUtils } from '@innsyn/modules/oppgaver/avvik-registerinntekt/avvikRegisterinntektOppgaveUtils';
-import { BodyLong, BodyShort, VStack } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
@@ -84,9 +84,9 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 )}
                 <BodyLong weight="semibold" spacing>
                     <AppText id="avvikRegisterinntektOppgavetekst.4" />
-                    <BodyShort as="div">
-                        <AppText id="avvikRegisterinntektOppgavetekst.5" values={{ formatertFrist }} />
-                    </BodyShort>
+                    <br />
+
+                    <AppText id="avvikRegisterinntektOppgavetekst.5" values={{ formatertFrist }} />
                 </BodyLong>
                 <BodyLong spacing>
                     <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ rapporteringsmåned }} />

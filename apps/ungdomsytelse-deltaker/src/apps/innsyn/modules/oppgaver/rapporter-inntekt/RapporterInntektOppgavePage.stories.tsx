@@ -83,7 +83,7 @@ export const KvitteringHarInntekt: Story = {
         <RapporterInntektOppgavePage
             oppgave={oppgave}
             deltakerNavn="SNODIG VAFFEL"
-            initialKvitteringData={{ harHattInntekt: true }}
+            initialKvitteringData={{ harHattInntektOver0: true }}
         />
     ),
 };
@@ -94,7 +94,7 @@ export const KvitteringUtenInntekt: Story = {
         <RapporterInntektOppgavePage
             oppgave={oppgave}
             deltakerNavn="SNODIG VAFFEL"
-            initialKvitteringData={{ harHattInntekt: false }}
+            initialKvitteringData={{ harHattInntektOver0: false }}
         />
     ),
 };

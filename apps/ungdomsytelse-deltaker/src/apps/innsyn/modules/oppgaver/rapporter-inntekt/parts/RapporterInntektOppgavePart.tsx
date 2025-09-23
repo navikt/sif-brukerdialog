@@ -115,7 +115,7 @@ const RapporterInntektOppgavePart = ({
                         måned={måned}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={(harRapportertInntekt) =>
-                            setKvitteringData({ harHattInntekt: harRapportertInntekt })
+                            setKvitteringData({ harHattInntektOver0: harRapportertInntekt })
                         }
                         onCancel={() => navigate(getAppEnv()[EnvKey.PUBLIC_PATH])}
                     />

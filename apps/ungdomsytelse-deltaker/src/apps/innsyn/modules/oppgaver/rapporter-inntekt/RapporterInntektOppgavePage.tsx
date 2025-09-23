@@ -12,7 +12,7 @@ export interface RapporterInntektOppgaveProps {
 }
 
 export interface RapporterInntektKvitteringData {
-    harHattInntekt: boolean;
+    harHattInntektOver0: boolean;
 }
 
 const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {

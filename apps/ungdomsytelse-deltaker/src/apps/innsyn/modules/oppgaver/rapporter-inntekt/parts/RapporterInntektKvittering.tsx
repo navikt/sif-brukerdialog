@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
-import { AppText } from '@shared/i18n';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
@@ -17,7 +17,7 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
                     <Heading level="2" size="small" spacing>
                         <AppText id="rapporterInntektKvittering.tittel" />
                     </Heading>
-                    {kvitteringData.harHattInntekt ? (
+                    {kvitteringData.harHattInntektOver0 ? (
                         <BodyLong>
                             <AppText id="rapporterInntektKvittering.harHattInntekt" />
                         </BodyLong>
