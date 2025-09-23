@@ -107,6 +107,7 @@ const Kvittering = ({ children }: KvitteringProps) => {
 
     useEffect(() => {
         if (visKvittering && !prevVisKvittering && alertRef.current) {
+            window.scrollTo(0, 0);
             alertRef.current.focus();
         }
     }, [visKvittering, prevVisKvittering]);

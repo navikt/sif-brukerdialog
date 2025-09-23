@@ -17,6 +17,7 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.goto(`./`);
 
     /** Velkommen */
+    await expect(page.getByRole('heading', { name: 'Hei Test!' })).toBeVisible();
     await testAccessibility(page);
     await page.getByRole('heading', { name: 'Hei Test!' }).click();
     await page.getByRole('checkbox', { name: 'Jeg vil svare så godt jeg kan' }).check();

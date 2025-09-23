@@ -28,13 +28,14 @@ const RapporterInntektOppgavePart = ({
     );
     const navigate = useNavigate();
 
-    const alertRef = useRef<HTMLDivElement>(null);
+    const kvitteringAlertRef = useRef<HTMLDivElement>(null);
 
     const prevKvitteringData = usePrevious(kvitteringData);
 
     useEffect(() => {
-        if (kvitteringData && prevKvitteringData === undefined && alertRef.current) {
-            alertRef.current.focus();
+        if (kvitteringData && prevKvitteringData === undefined && kvitteringAlertRef.current) {
+            window.scrollTo(0, 0);
+            kvitteringAlertRef.current.focus();
         }
     });
 
@@ -44,10 +45,6 @@ const RapporterInntektOppgavePart = ({
 
     if (oppgave.status !== OppgaveStatus.ULØST && kvitteringData === undefined) {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
-
-        // const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
-        // const erOppgavenOppdatertMedSvar = arbeidstakerOgFrilansInntekt !== undefined;
-        // const harHattInntektMerEnn0 = erOppgavenOppdatertMedSvar ? arbeidstakerOgFrilansInntekt > 0;
         return (
             <VStack gap="6">
                 <div>
@@ -110,7 +107,7 @@ const RapporterInntektOppgavePart = ({
                 <AppText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
             {kvitteringData ? (
-                <RapporterInntektKvittering ref={alertRef} kvitteringData={kvitteringData} />
+                <RapporterInntektKvittering ref={kvitteringAlertRef} kvitteringData={kvitteringData} />
             ) : (
                 <VStack gap="10">
                     <GuidePanel>

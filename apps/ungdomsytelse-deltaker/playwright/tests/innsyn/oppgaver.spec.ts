@@ -17,6 +17,7 @@ test.beforeEach(async ({ page, context }) => {
 
 test.describe('Innsyn - oppgaver', () => {
     test('Forside er tilgjengelig', async ({ page }) => {
+        await expect(page.getByRole('heading', { name: 'Din ungdoms­program­ytelse' })).toBeVisible();
         await testAccessibility(page);
     });
 

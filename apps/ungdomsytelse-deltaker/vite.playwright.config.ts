@@ -33,6 +33,7 @@ export default defineConfig({
     },
     define: {
         __IS_GITHUB_PAGES__: true,
+        __INJECT_DECORATOR_CLIENT_SIDE__: false,
     },
     server: {
         port: 8080,
