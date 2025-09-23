@@ -4,16 +4,15 @@ import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppText } from '@shared/i18n';
 import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import getLenker from '@shared/utils/lenker';
-
-import { AppText } from '@shared/i18n';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
 }
 
-const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
+const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
             <VStack gap="6">
@@ -79,4 +78,4 @@ const SøkYtelseOppavetekst = ({ oppgave }: Props) => {
     );
 };
 
-export default SøkYtelseOppavetekst;
+export default SøkYtelseOppgavetekst;

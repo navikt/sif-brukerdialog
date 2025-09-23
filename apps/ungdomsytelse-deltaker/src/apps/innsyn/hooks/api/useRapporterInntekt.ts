@@ -12,6 +12,10 @@ export const useRapporterInntekt = () => {
         mutationFn: (data) => rapporterInntekt(data),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            /** Backend oppdateres ikke med en gang, så vi henter deltakelsesperiodene på nytt etter noen sekunder */
+            setTimeout(() => {
+                queryClient.refetchQueries(commonQueries.deltakelseperioder);
+            }, 3000);
         },
         onError: (error) => logApiErrorFaro('useRapporterInntekt', error),
     });

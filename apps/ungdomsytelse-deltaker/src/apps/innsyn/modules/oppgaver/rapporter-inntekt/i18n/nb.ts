@@ -10,6 +10,8 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavePart.oppsummering': 'Oppsummering',
     'rapporterInntektOppgavePart.fikkUtbetaltLønn': 'Fikk du utbetalt lønn i {måned}?',
     'rapporterInntektOppgavePart.lønnFørSkatt': 'Lønn (før skatt)',
+    'rapporterInntektOppgavePart.løst.utenInfo':
+        'Vi har fått svaret ditt, men informasjonen i denne siden er ikke oppdatert enda.',
 
     'rapporterInntektKvittering.tittel': 'Svaret ditt er sendt inn',
     'rapporterInntektKvittering.harHattInntekt':

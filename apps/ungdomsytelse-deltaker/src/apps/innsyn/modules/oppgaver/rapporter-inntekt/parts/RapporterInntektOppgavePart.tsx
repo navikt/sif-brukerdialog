@@ -2,7 +2,7 @@ import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeB
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
 import RapporterInntektForm from '@innsyn/modules/forms/rapporter-inntekt-form/RapporterInntektForm';
 import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
-import { FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -44,7 +44,10 @@ const RapporterInntektOppgavePart = ({
 
     if (oppgave.status !== OppgaveStatus.ULØST && kvitteringData === undefined) {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
-        const harHattInntektMerEnn0 = arbeidstakerOgFrilansInntekt !== undefined && arbeidstakerOgFrilansInntekt > 0;
+
+        // const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
+        // const erOppgavenOppdatertMedSvar = arbeidstakerOgFrilansInntekt !== undefined;
+        // const harHattInntektMerEnn0 = erOppgavenOppdatertMedSvar ? arbeidstakerOgFrilansInntekt > 0;
         return (
             <VStack gap="6">
                 <div>
@@ -58,35 +61,41 @@ const RapporterInntektOppgavePart = ({
                     <AppText id="rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
                 </Heading>
 
-                <section aria-labelledby="summaryHeading">
-                    <FormSummary>
-                        <FormSummary.Header>
-                            <FormSummary.Heading level="2" id="summaryHeading">
-                                <AppText id="rapporterInntektOppgavePart.oppsummering" />
-                            </FormSummary.Heading>
-                        </FormSummary.Header>
-                        <FormSummary.Answers>
-                            <FormSummary.Answer>
-                                <FormSummary.Label>
-                                    <AppText id="rapporterInntektOppgavePart.fikkUtbetaltLønn" values={{ måned }} />
-                                </FormSummary.Label>
-                                <FormSummary.Value>
-                                    {arbeidstakerOgFrilansInntekt ? <AppText id="Ja" /> : <AppText id="Nei" />}
-                                </FormSummary.Value>
-                            </FormSummary.Answer>
-                            {harHattInntektMerEnn0 && (
+                {arbeidstakerOgFrilansInntekt === undefined ? (
+                    <Alert variant="info">
+                        <AppText id="rapporterInntektOppgavePart.løst.utenInfo" />
+                    </Alert>
+                ) : (
+                    <section aria-labelledby="summaryHeading">
+                        <FormSummary>
+                            <FormSummary.Header>
+                                <FormSummary.Heading level="2" id="summaryHeading">
+                                    <AppText id="rapporterInntektOppgavePart.oppsummering" />
+                                </FormSummary.Heading>
+                            </FormSummary.Header>
+                            <FormSummary.Answers>
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
-                                        <AppText id="rapporterInntektOppgavePart.lønnFørSkatt" />
+                                        <AppText id="rapporterInntektOppgavePart.fikkUtbetaltLønn" values={{ måned }} />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
-                                        <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
+                                        {arbeidstakerOgFrilansInntekt > 0 ? <AppText id="Ja" /> : <AppText id="Nei" />}
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
-                            )}
-                        </FormSummary.Answers>
-                    </FormSummary>
-                </section>
+                                {arbeidstakerOgFrilansInntekt > 0 && (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>
+                                            <AppText id="rapporterInntektOppgavePart.lønnFørSkatt" />
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <TallSvar verdi={arbeidstakerOgFrilansInntekt} />
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
+                                )}
+                            </FormSummary.Answers>
+                        </FormSummary>
+                    </section>
+                )}
 
                 <div>
                     <ForsideLenkeButton />

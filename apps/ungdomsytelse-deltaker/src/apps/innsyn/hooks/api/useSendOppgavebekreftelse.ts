@@ -12,7 +12,13 @@ export const useSendOppgavebekreftelse = () => {
     return useMutation<void, ApiError, UngdomsytelseOppgavebekreftelse>({
         mutationFn: (data) => sendOppgavebekreftelse(data),
         onSuccess: () => {
+            // Umiddelbar invalidering for UI responsivitet
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+
+            // Backup refetch etter delay for å sikre oppdaterte data fra backend
+            setTimeout(() => {
+                queryClient.refetchQueries(commonQueries.deltakelseperioder);
+            }, 3000);
         },
         onError: (error) => logApiErrorFaro('useSendOppgavebekreftelse', error),
     });
