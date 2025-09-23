@@ -1,6 +1,6 @@
 import ForsideLenkeButton from '@innsyn/atoms/forside-lenke-button/ForsideLenkeButton';
 import OppgaveStatusTag from '@innsyn/atoms/oppgave-status-tag/OppgaveStatusTag';
-import InntektForm from '@innsyn/modules/forms/inntekt-form/InntektForm';
+import RapporterInntektForm from '@innsyn/modules/forms/rapporter-inntekt-form/RapporterInntektForm';
 import { getOppgaveStatusText } from '@innsyn/utils/textUtils';
 import { FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { EnvKey } from '@navikt/sif-common-env';
@@ -44,6 +44,7 @@ const RapporterInntektOppgavePart = ({
 
     if (oppgave.status !== OppgaveStatus.ULØST && kvitteringData === undefined) {
         const arbeidstakerOgFrilansInntekt = oppgave.oppgavetypeData.rapportertInntekt?.arbeidstakerOgFrilansInntekt;
+        const harHattInntektMerEnn0 = arbeidstakerOgFrilansInntekt !== undefined && arbeidstakerOgFrilansInntekt > 0;
         return (
             <VStack gap="6">
                 <div>
@@ -73,7 +74,7 @@ const RapporterInntektOppgavePart = ({
                                     {arbeidstakerOgFrilansInntekt ? <AppText id="Ja" /> : <AppText id="Nei" />}
                                 </FormSummary.Value>
                             </FormSummary.Answer>
-                            {arbeidstakerOgFrilansInntekt && (
+                            {harHattInntektMerEnn0 && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="rapporterInntektOppgavePart.lønnFørSkatt" />
@@ -110,7 +111,7 @@ const RapporterInntektOppgavePart = ({
                             svarfrist={oppgave.frist}
                         />
                     </GuidePanel>
-                    <InntektForm
+                    <RapporterInntektForm
                         måned={måned}
                         oppgaveReferanse={oppgave.oppgaveReferanse}
                         onSuccess={(harRapportertInntekt) =>

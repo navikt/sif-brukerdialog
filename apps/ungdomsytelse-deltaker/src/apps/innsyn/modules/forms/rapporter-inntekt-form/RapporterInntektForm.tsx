@@ -1,6 +1,5 @@
-import { useMarkerOppgaveSomLukket } from '@innsyn/hooks/api/useMarkerOppgaveSomLukket';
 import { useRapporterInntekt } from '@innsyn/hooks/api/useRapporterInntekt';
-import { ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
@@ -13,6 +12,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { AppText, useAppIntl } from '@shared/i18n';
+import { useState } from 'react';
 
 export enum InntektFormFields {
     harLønn = 'harLønn',
@@ -35,39 +35,33 @@ interface Props {
     onCancel: () => void;
 }
 
-const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
+const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) => {
     const { intl, text } = useAppIntl();
-    const {
-        error: rapporterError,
-        isPending: rapporterPending,
-        mutateAsync: rapporterMutateAsync,
-    } = useRapporterInntekt();
-    const { error: lukkError, isPending: lukkPending, mutateAsync: lukkMutateAsync } = useMarkerOppgaveSomLukket();
+    const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { FormikWrapper, Form, YesOrNoQuestion, NumberInput } = inntektFormComponents;
+    const [dtoError, setDtoError] = useState<string | undefined>(undefined);
 
     const handleSubmit = (values: InntektFormValues) => {
         const harArbeidstakerOgFrilansInntekt = values[InntektFormFields.harLønn] === YesOrNo.YES;
 
-        if (harArbeidstakerOgFrilansInntekt) {
-            const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
-                ? getNumberFromNumberInputValue(values[InntektFormFields.lønn]) || 0
-                : 0;
+        const arbeidstakerOgFrilansInntekt = harArbeidstakerOgFrilansInntekt
+            ? getNumberFromNumberInputValue(values[InntektFormFields.lønn])
+            : 0;
 
-            const data: UngdomsytelseInntektsrapportering = {
-                oppgittInntekt: {
-                    arbeidstakerOgFrilansInntekt,
-                },
-                oppgaveReferanse,
-                harBekreftetInntekt: true,
-            };
-            rapporterMutateAsync(data).then(() => onSuccess(true));
-        } else {
-            lukkMutateAsync(oppgaveReferanse).then(() => onSuccess(false));
+        if (harArbeidstakerOgFrilansInntekt && arbeidstakerOgFrilansInntekt === undefined) {
+            setDtoError(text('inntektForm.hentUtBeløpFeil'));
+            return;
         }
-    };
 
-    const isPending = rapporterPending || lukkPending;
-    const error = rapporterError || lukkError;
+        const data: UngdomsytelseInntektsrapportering = {
+            oppgittInntekt: {
+                arbeidstakerOgFrilansInntekt,
+            },
+            oppgaveReferanse,
+            harBekreftetInntekt: true,
+        };
+        mutateAsync(data).then(() => onSuccess(true));
+    };
 
     return (
         <FormikWrapper
@@ -103,6 +97,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                             label={text('inntektForm.lønnLabel')}
                                             integerValue={true}
                                             description={text('inntektForm.lønnDescription')}
+                                            onFocus={dtoError ? () => setDtoError(undefined) : undefined}
                                             validate={getNumberValidator({
                                                 min: 1,
                                                 max: 999999,
@@ -117,6 +112,7 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                                 ) : null}
                             </FormLayout.Questions>
                             {error ? <ApiErrorAlert error={error} /> : null}
+                            {dtoError ? <Alert variant="error">{dtoError}</Alert> : null}
                         </VStack>
                     </Form>
                 );
@@ -125,4 +121,4 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
     );
 };
 
-export default InntektForm;
+export default RapporterInntektForm;

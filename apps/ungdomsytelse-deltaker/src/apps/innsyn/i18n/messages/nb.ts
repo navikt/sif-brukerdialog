@@ -120,11 +120,14 @@ export const innsynMessages_nb = {
     'inntektForm.hvordanFinnerDuUtLønn': 'Hvordan finner du ut hva lønnen din var før skatt?',
     'inntektForm.hvordanFinnerDuUtLønnBeskrivelse':
         'Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er før det blir trukket skatt av den, og det er det tallet du skal skrive inn her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
+    'inntektForm.hentUtBeløpFeil':
+        'Du har oppgitt at du fikk utbetalt løn, men vi klarer ikke hente ut beløpet. Vennligst kontroller feltet for lønn og prøv på nytt.',
 
     'inntektForm.validation.lønn.numberHasNoValue': 'Du må oppgi hvor mye lønn du fikk før skatt',
     'inntektForm.validation.lønn.numberHasInvalidFormat':
         'Oppgitt lønn har ikke gyldig format. Et gyldig tall inneholder kun siffer.',
-    'inntektForm.validation.lønn.numberIsTooSmall': 'Oppgitt lønn kan ikke være mindre enn 0.',
+    'inntektForm.validation.lønn.numberIsTooSmall':
+        'Oppgitt lønn må være mer enn 0. Hvis du ikke fikk utbetalt lønn, velger du "Nei" på spørsmålet over.',
     'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgi lønna uten desimaler.',
 
     /** UtalelseForm */
