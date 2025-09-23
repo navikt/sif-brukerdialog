@@ -1,8 +1,11 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     basePath: '/omsorgspenger/kalkulator-antall-omsorgsdager',
     reactStrictMode: true,
     output: 'standalone',
+    outputFileTracingRoot: path.join(__dirname, '../..'),
     i18n: {
         locales: ['nb'],
         defaultLocale: 'nb',
