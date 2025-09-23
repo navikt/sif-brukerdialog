@@ -50,7 +50,6 @@ export type OppgittInntekt = {
 export type UngdomsytelseInntektsrapportering = {
     oppgaveReferanse: string;
     oppgittInntekt: OppgittInntekt;
-    harBekreftetInntekt: boolean;
 };
 
 export type Søker = {

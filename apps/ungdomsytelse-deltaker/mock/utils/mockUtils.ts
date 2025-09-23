@@ -68,9 +68,7 @@ export const mockUtils = {
                     rapportertInntekt: {
                         fraOgMed: oppgave.oppgavetypeData.fraOgMed,
                         tilOgMed: oppgave.oppgavetypeData.fraOgMed,
-                        arbeidstakerOgFrilansInntekt: data.harBekreftetInntekt
-                            ? data.oppgittInntekt.arbeidstakerOgFrilansInntekt
-                            : 0,
+                        arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
                     },
                 },
                 løstDato: new Date().toISOString(),
@@ -83,9 +81,3 @@ export const mockUtils = {
         }));
     },
 };
-
-// const x = {
-//     oppgittInntekt: { arbeidstakerOgFrilansInntekt: 2300 },
-//     oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
-//     harBekreftetInntekt: true,
-// };
