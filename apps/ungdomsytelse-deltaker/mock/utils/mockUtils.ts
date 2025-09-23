@@ -75,9 +75,19 @@ export const mockUtils = {
                 status: 'LØST',
             }) as any;
 
-        return updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            ...getOppdatertData(oppgave),
-        }));
+        setTimeout(() => {
+            updateOppgave(ref, (oppgave) => ({
+                ...oppgave,
+                ...getOppdatertData(oppgave),
+            }));
+        }, 2500);
+
+        return updateOppgave(ref, (oppgave): OppgaveDto => {
+            return {
+                ...oppgave,
+                løstDato: new Date().toISOString(),
+                status: 'LØST',
+            };
+        });
     },
 };
