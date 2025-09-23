@@ -63,7 +63,6 @@ test('Test kalkulator 1 barn', async ({ page }) => {
     await page.getByRole('button').getByText('Beregn').click();
     await page.getByRole('button').getByText('Beregn').click();
 
-    await page.getByRole('heading', { name: 'Nyheter og presse' }).click();
     await page.getByRole('heading', { name: '40 omsorgsdager' }).isVisible();
 
     await page.getByRole('button', { name: 'Vis mer' }).click();
@@ -89,7 +88,6 @@ test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
     await page.getByRole('button').getByText('Beregn').click();
     await page.getByRole('button').getByText('Beregn').click();
 
-    await page.getByRole('heading', { name: 'Nyheter og presse' }).click();
     await page.getByRole('heading', { name: '0 omsorgsdager' }).isVisible();
 });
 
