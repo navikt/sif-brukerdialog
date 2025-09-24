@@ -1,11 +1,11 @@
 import { AppEnv } from '../env.schema';
 
-export const getPlaywrightAppSettings = (): AppEnv & { VITE: true } => ({
+export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'development',
     APP_VERSION: 'dev',
     PUBLIC_PATH: '/ungdomsprogrammet/ytelsen',
     GITHUB_REF_NAME: 'dev',
-    VITE: true,
+
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_USE_AMPLITUDE: 'true',

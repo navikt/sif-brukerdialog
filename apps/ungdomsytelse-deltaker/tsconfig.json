@@ -3,9 +3,54 @@
     "compilerOptions": {
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/types"],
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "paths": {
+            // Felles/root-nivå alias med @shared prefix
+            "@shared/types/*": ["src/types/*"],
+            "@shared/utils/*": ["src/utils/*"],
+            "@shared/i18n": ["src/i18n/index"],
+            "@shared/i18n/*": ["src/i18n/*"],
+            "@shared/api/*": ["src/api/*"],
+            "@shared/context/*": ["src/context/*"],
+            "@shared/components/*": ["src/components/*"],
+            "@shared/hooks/*": ["src/hooks/*"],
+            "@shared/mock/*": ["mock/*"],
+            "@shared/storybook/*": ["storybook/*"],
+
+            // Innsyn-app alias
+            "@innsyn/*": ["src/apps/innsyn/*"],
+            "@innsyn/atoms/*": ["src/apps/innsyn/atoms/*"],
+            "@innsyn/components/*": ["src/apps/innsyn/components/*"],
+            "@innsyn/modules/*": ["src/apps/innsyn/modules/*"],
+            "@innsyn/pages/*": ["src/apps/innsyn/pages/*"],
+            "@innsyn/hooks/*": ["src/apps/innsyn/hooks/*"],
+            "@innsyn/utils/*": ["src/apps/innsyn/utils/*"],
+            "@innsyn/api/*": ["src/apps/innsyn/api/*"],
+            "@innsyn/forms/*": ["src/apps/innsyn/forms/*"],
+            "@innsyn/oppgaver/*": ["src/apps/innsyn/oppgaver/*"],
+
+            // Søknad-app alias
+            "@søknad/*": ["src/apps/søknad/*"],
+            "@søknad/components/*": ["src/apps/søknad/components/*"],
+            "@søknad/pages/*": ["src/apps/søknad/pages/*"],
+            "@søknad/hooks/*": ["src/apps/søknad/hooks/*"],
+            "@søknad/utils/*": ["src/apps/søknad/utils/*"],
+            "@søknad/api/*": ["src/apps/søknad/api/*"],
+            "@søknad/steg/*": ["src/apps/søknad/steg/*"],
+            "@søknad/context/*": ["src/apps/søknad/context/*"],
+            "@søknad/types/*": ["src/apps/søknad/types/*"]
+        }
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist", "dist-demo", "demo"],
+    "exclude": [
+        "node_modules",
+        "src/build",
+        "**.js",
+        "dist",
+        "dist-demo",
+        "demo",
+        "**/node_modules/@types/react-router/**",
+        "**/node_modules/@types/react-router-dom/**"
+    ],
     "include": [
         "./src/**/*",
         "./mock/**/*",
@@ -14,6 +59,7 @@
         "./playwright/**/*.ts",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
-        "./postcss.config.ts"
+        "./postcss.config.ts",
+        "./storybook/**/*"
     ]
 }

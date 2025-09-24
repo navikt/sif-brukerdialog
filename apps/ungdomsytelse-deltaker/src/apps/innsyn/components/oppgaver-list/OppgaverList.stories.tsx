@@ -1,19 +1,19 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { useWithInnsynApp } from '@shared/storybook/decorators/withInnsynApp';
+import { withIntl } from '@shared/storybook/decorators/withIntl';
+import { withQueryClient } from '@shared/storybook/decorators/withQueryClient';
+import { withRouter } from '@shared/storybook/decorators/withRouter';
+import { EndretSluttdatoOppgave, EndretStartdatoOppgave, RapporterInntektOppgave } from '@shared/types/Oppgave';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
-import { withInnsynApp } from '../../../../../storybook/decorators/withInnsynApp';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
-import { withRouter } from '../../../../../storybook/decorators/withRouter';
-import { EndretSluttdatoOppgave, EndretStartdatoOppgave, RapporterInntektOppgave } from '../../../../types/Oppgave';
 import OppgaverList from './OppgaverList';
 
 const meta: Meta = {
     title: 'Innsyn/Oppgaver/Komponenter/Oppgaveliste',
     parameters: {},
-    decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
+    decorators: [withIntl, withRouter, withQueryClient, (Story) => useWithInnsynApp(Story)],
 };
 export default meta;
 

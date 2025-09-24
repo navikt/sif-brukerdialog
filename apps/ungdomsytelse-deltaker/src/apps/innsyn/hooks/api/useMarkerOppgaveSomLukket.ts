@@ -1,8 +1,9 @@
+import { markerOppgaveSomLukket } from '@innsyn/api/oppgave/markerOppgaveSomLukket';
 import { ApiError } from '@navikt/ung-common';
+import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { commonQueries } from '../../../../api/queries/commonQueries';
-import { markerOppgaveSomLukket } from '../../api/oppgave/markerOppgaveSomLukket';
+import { logApiErrorFaro } from '../../utils/apiErrorLogger';
 
 export const useMarkerOppgaveSomLukket = () => {
     const queryClient = useQueryClient();
@@ -11,5 +12,6 @@ export const useMarkerOppgaveSomLukket = () => {
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
         },
+        onError: (error) => logApiErrorFaro('useMarkerOppgaveSomLukket', error),
     });
 };
