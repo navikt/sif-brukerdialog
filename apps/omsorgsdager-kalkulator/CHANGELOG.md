@@ -1,5 +1,29 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 3.12.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.12.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 3.12.41
 
 ### Patch Changes

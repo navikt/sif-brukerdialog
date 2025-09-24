@@ -1,5 +1,36 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.50
+
+## 0.1.23
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.49
+
+## 0.1.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.48
+
+## 0.1.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.47
+
 ## 0.1.20
 
 ### Patch Changes

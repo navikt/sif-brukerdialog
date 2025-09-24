@@ -50,7 +50,6 @@ export const zOppgittInntekt = z.object({
 export const zUngdomsytelseInntektsrapportering = z.object({
     oppgaveReferanse: z.string(),
     oppgittInntekt: zOppgittInntekt,
-    harBekreftetInntekt: z.boolean(),
 });
 
 export const zSøker = z.object({

@@ -1,5 +1,23 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 2.28.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 2.28.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 2.28.30
 
 ### Patch Changes

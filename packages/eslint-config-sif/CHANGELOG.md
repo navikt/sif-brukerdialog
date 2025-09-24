@@ -1,5 +1,23 @@
 # @sif/eslint-config
 
+## 1.1.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 1.1.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
 ## 1.1.54
 
 ### Patch Changes

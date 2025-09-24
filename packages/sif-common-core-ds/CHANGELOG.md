@@ -1,5 +1,41 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.50
+    - @navikt/sif-common-utils@3.49.31
+
+## 10.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.49
+    - @navikt/sif-common-utils@3.49.31
+
+## 10.3.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-common-api@0.4.48
+
+## 10.3.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.30
+    - @navikt/sif-common-api@0.4.47
+
 ## 10.3.4
 
 ### Patch Changes

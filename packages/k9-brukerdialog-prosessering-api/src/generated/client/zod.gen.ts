@@ -54,7 +54,6 @@ export const zOppgittInntekt = z.object({
 export const zUngdomsytelseInntektsrapportering = z.object({
     oppgaveReferanse: z.string(),
     oppgittInntekt: zOppgittInntekt,
-    harBekreftetInntekt: z.boolean(),
 });
 
 export const zPeriode = z.object({
@@ -834,7 +833,6 @@ export const zArbeidsgiverOlpWritable = z.object({
     organisasjonsnummer: z.optional(z.string()),
     navn: z.optional(z.string()),
     erAnsatt: z.optional(z.boolean()),
-    sluttetFørSøknadsperiode: z.optional(z.boolean()),
     arbeidsforhold: z.optional(zArbeidsforholdOlp),
 });
 
