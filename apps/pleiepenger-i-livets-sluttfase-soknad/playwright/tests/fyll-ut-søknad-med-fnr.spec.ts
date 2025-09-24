@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';

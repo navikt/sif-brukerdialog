@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
-import react from '@vitejs/plugin-react';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
+// @ts-expect-error: vite-plugin has no types
+import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';

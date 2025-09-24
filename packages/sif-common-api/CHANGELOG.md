@@ -1,5 +1,59 @@
 # @navikt/sif-common-ui
 
+## 0.4.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.7
+    - @navikt/sif-common-sentry@0.28.35
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
+## 0.4.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.6
+    - @navikt/sif-common-sentry@0.28.34
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
+## 0.4.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.5
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-common-sentry@0.28.33
+    - @navikt/sif-validation@1.0.5
+
+## 0.4.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.4
+    - @navikt/sif-common-sentry@0.28.33
+    - @navikt/sif-common-utils@3.49.30
+
+## 0.4.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.3
+    - @navikt/sif-common-sentry@0.28.32
+    - @navikt/sif-common-utils@3.49.29
+    - @navikt/sif-validation@1.0.5
+
 ## 0.4.45
 
 ### Patch Changes

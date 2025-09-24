@@ -16,6 +16,7 @@ import { useSendOppgavebekreftelse } from '../../hooks/api/useSendOppgavebekreft
 
 interface Props {
     harTilbakemeldingSpørsmål: string;
+    tilbakemeldingLabel: string;
     oppgaveReferanse: string;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
     onCancel?: () => void;
@@ -37,7 +38,13 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess, onCancel }: Props) => {
+const UtalelseForm = ({
+    harTilbakemeldingSpørsmål,
+    tilbakemeldingLabel,
+    oppgaveReferanse,
+    onSuccess,
+    onCancel,
+}: Props) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
 
     const { intl } = useAppIntl();
@@ -83,7 +90,7 @@ const UtalelseForm = ({ harTilbakemeldingSpørsmål, oppgaveReferanse, onSuccess
                                 {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
                                     <Textarea
                                         name={FormFields.begrunnelse}
-                                        label="Tilbakemelding på startdato"
+                                        label={tilbakemeldingLabel}
                                         description={
                                             <BodyLong>
                                                 Du må ikke oppgi sensitive informasjon (særlige kategorier av

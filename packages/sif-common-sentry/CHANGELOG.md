@@ -1,5 +1,29 @@
 # @navikt/sif-common-sentry
 
+## 0.28.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 0.28.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 0.28.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.28.31
 
 ### Patch Changes

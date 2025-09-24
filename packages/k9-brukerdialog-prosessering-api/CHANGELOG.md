@@ -1,5 +1,23 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.1.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 0.1.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 0.1.15
 
 ### Patch Changes

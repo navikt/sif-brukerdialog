@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.30",
+    "version": "0.0.33",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -14,14 +14,14 @@
         "@navikt/sif-common-env": "workspace:*",
         "express": "5.1.0",
         "http-proxy-middleware": "3.0.5",
-        "zod": "4.1.8"
+        "zod": "4.1.11"
     },
     "devDependencies": {
         "@types/express": "5.0.3",
         "@types/morgan": "1.9.10",
-        "@types/node": "24.3.3",
-        "@vercel/ncc": "0.38.3",
-        "axios": "1.12.1",
+        "@types/node": "24.5.2",
+        "@vercel/ncc": "0.38.4",
+        "axios": "1.12.2",
         "morgan": "1.10.1",
         "prettier": "3.6.2",
         "typescript": "5.9.2",

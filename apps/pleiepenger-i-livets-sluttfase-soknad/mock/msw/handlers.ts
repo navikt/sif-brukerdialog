@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+
 import { mockData } from '../data';
 import { getMellomlagringHandlers } from './mellomlagringHandlers';
 

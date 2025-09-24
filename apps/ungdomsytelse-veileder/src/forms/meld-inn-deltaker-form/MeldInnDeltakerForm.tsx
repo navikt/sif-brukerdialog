@@ -58,7 +58,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert }: Pro
     if (startdatoMinMax === 'fomFørTom') {
         return (
             <Alert variant="error">
-                Deltaker kan ikke meldes inn fordi perioden deltakeren kan meldes inn ikke er gyldig.
+                Deltaker kan ikke meldes inn fordi perioden deltakeren kan meldes inn i, ikke er gyldig.
             </Alert>
         );
     }

@@ -4,7 +4,7 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.0.44",
+    "version": "0.0.50",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
@@ -17,7 +17,7 @@
         "config": "workspace:*",
         "typescript": "5.9.2",
         "vitest": "3.2.4",
-        "zod": "4.1.8"
+        "zod": "4.1.11"
     },
     "peerDependencies": {
         "axios": "*",

@@ -12,15 +12,26 @@ import {
 } from '../../../types/Oppgave';
 import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
 
-export const getOppgaveTittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
+const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
+
+const getSluttdatoTextKey = (oppgave: EndretSluttdatoOppgave) => {
+    return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_NY_SLUTTDATO;
+};
+
+export const getOppgaveTittel = (
+    oppgave: Oppgave,
+    { text }: AppIntlShape,
+    values?: Record<string, string | number>,
+) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
+            return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.oppgavetittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel', {
                 måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                ...values,
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
@@ -36,7 +47,7 @@ export const getOppgaveSidetittel = (oppgave: Oppgave, { text }: AppIntlShape) =
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`);
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`);
+            return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.sidetittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel');
         case Oppgavetype.RAPPORTER_INNTEKT:
@@ -51,9 +62,11 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.info`);
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return text(`oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info`);
+            return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.info`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info');
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
+                antallArbeidsgivere: oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length,
+            });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.info', {
                 måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
@@ -66,21 +79,44 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
 export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShape): OppgavebekreftelseTekster => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
             return {
-                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
+                sidetittel: intl.text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel`),
                 oppgavetittel: getOppgaveTittel(oppgave, intl),
-                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`),
-            };
-
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return {
-                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`),
-                oppgavetittel: getOppgaveTittel(oppgave, intl),
-                harTilbakemeldingSpørsmål: intl.text(
-                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
+                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål`),
+                tilbakemeldingFritekstLabel: intl.text(
+                    `oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel`,
                 ),
             };
+        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO: {
+            return {
+                sidetittel: intl.text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.sidetittel`),
+                oppgavetittel: getOppgaveTittel(oppgave, intl),
+                harTilbakemeldingSpørsmål: intl.text(
+                    `oppgavetype.${getSluttdatoTextKey(oppgave)}.harTilbakemeldingSpørsmål`,
+                ),
+                tilbakemeldingFritekstLabel: intl.text(
+                    `oppgavetype.${getSluttdatoTextKey(oppgave)}.tilbakemeldingFritekstLabel`,
+                ),
+            };
+        }
+
+        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT: {
+            const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
+            return {
+                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`, {
+                    måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
+                    antallArbeidsgivere,
+                }),
+                oppgavetittel: getOppgaveTittel(oppgave, intl, { antallArbeidsgivere }),
+                harTilbakemeldingSpørsmål: intl.text(
+                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
+                    { antallArbeidsgivere },
+                ),
+                tilbakemeldingFritekstLabel: intl.text(
+                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
+                ),
+            };
+        }
         default:
             throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }

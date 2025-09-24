@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+// @ts-expect-error: vite-plugin has no types
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';

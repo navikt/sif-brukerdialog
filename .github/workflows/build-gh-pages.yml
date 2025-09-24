@@ -2,7 +2,9 @@ name: Build and deploy gh-pages
 
 on:
     workflow_dispatch:
-
+    push:
+        branches:
+            - '**'
 permissions:
     contents: read
     pages: write
@@ -11,8 +13,8 @@ permissions:
 jobs:
     build-and-deploy-gh-pages-content:
         name: Build and Deploy Storybook
+        if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
         runs-on: ubuntu-latest
-
         steps:
             # Sjekk ut koden
             - name: Checkout repository
@@ -25,9 +27,20 @@ jobs:
                   node-version: 22
                   cache: 'yarn'
 
+            # Sett opp .yarnrc.yml for GitHub Packages
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             # Installer avhengigheter
             - name: Install dependencies
               run: yarn install
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             # Bygg Storybook (eget prosjekt)
             - name: Build Storybook

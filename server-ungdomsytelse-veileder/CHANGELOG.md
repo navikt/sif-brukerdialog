@@ -1,5 +1,23 @@
 # @navikt/sif-server
 
+## 0.0.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.0.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 0.0.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.0.30
 
 ### Patch Changes

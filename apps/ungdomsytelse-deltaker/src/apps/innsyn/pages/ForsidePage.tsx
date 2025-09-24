@@ -8,7 +8,7 @@ import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
-const USE_SIGNALS_PANEL = false;
+const USE_SIGNALS_PANEL = true;
 
 const ForsidePage = () => {
     const { deltakelsePeriode } = useDeltakerContext();

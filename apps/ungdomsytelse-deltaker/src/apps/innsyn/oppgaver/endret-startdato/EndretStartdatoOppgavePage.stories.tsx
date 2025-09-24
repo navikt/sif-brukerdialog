@@ -9,10 +9,10 @@ import { withQueryClient } from '../../../../../storybook/decorators/withQueryCl
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { EndretStartdatoOppgave } from '../../../../types/Oppgave';
 import OppgaverList from '../../components/oppgaver-list/OppgaverList';
-import { EndretStartdatoOppgavePage } from '../endret-startdato/EndretStartdatoOppgavePage';
+import { EndretStartdatoOppgavePage } from './EndretStartdatoOppgavePage';
 
 const meta: Meta = {
-    title: 'Innsyn/Oppgaver/Endret startdato',
+    title: 'Innsyn/Oppgaver/2. Endret startdato',
     parameters: {},
     decorators: [withIntl, withRouter, withQueryClient, (Story) => withInnsynApp(Story)],
 };
