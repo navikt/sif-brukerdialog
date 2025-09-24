@@ -138,7 +138,7 @@ const MessagesList = ({ messages }: Props) => {
                     <Tabs.Tab value="kompaktNB" label="Kun bokmål" />
                     <Tabs.Tab value="kompaktNN" label="Kun nynorsk" />
                     <Tabs.Tab value="json" label="JSON" />
-                    <Tabs.Tab value="translate" label="Automatisk oversettelse" />
+                    {/* <Tabs.Tab value="translate" label="Automatisk oversettelse" /> */}
                 </Tabs.List>
                 <Tabs.Panel value="messages">
                     <Box marginBlock="8">
