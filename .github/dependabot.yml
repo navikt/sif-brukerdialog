@@ -59,3 +59,7 @@ updates:
       - "/apps/ungdomsytelse-veileder"
     schedule:
       interval: daily
+    groups:
+      docker:
+        patterns:
+          - "*"
