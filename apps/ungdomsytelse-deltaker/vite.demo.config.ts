@@ -32,15 +32,15 @@ export default defineConfig({
         alias: createAliasConfig(),
     },
     define: {
-        __IS_GITHUB_PAGES__: false,
+        __IS_GITHUB_PAGES__: true,
         __INJECT_DECORATOR_CLIENT_SIDE__: true,
     },
     server: {
         port: 8080,
         proxy: {
             '/mockServiceWorker.js': {
-                target: 'http://localhost:8080', // Adjust target URL if needed
-                rewrite: () => '/ungdomsprogrammet/ytelsen/mockServiceWorker.js',
+                target: 'http://localhost:8080',
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
             },
         },
     },
@@ -48,12 +48,12 @@ export default defineConfig({
         port: 8080,
         proxy: {
             '/mockServiceWorker.js': {
-                target: 'http://localhost:8080', // Adjust target URL if needed
-                rewrite: () => '/ungdomsprogrammet/ytelsen/mockServiceWorker.js',
+                target: 'http://localhost:8080',
+                rewrite: () => '/sif-brukerdialog/ungdomsytelse-deltaker/mockServiceWorker.js',
             },
         },
     },
-    base: '/ungdomsprogrammet/ytelsen/',
+    base: '/sif-brukerdialog/ungdomsytelse-deltaker/',
     build: {
         sourcemap: true,
         rollupOptions: {
