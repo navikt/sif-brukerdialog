@@ -1,4 +1,4 @@
-FROM node:22-alpine AS base
+FROM node:24-alpine AS base
 
 ENV APP="ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
 ENV SERVER="server"
