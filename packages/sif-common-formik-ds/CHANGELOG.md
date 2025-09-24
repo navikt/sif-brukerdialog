@@ -1,5 +1,13 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
 ## 2.5.6
 
 ### Patch Changes

@@ -60,7 +60,6 @@ const InntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }: Props) =
                     arbeidstakerOgFrilansInntekt,
                 },
                 oppgaveReferanse,
-                harBekreftetInntekt: true,
             };
             rapporterMutateAsync(data).then(() => onSuccess(data));
         } else {
