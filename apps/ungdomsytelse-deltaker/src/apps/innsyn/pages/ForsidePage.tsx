@@ -1,24 +1,26 @@
+import ForsideHeader from '@innsyn/components/forside-header/ForsideHeader';
+import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
+import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
 import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
+import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
+import { useAppIntl } from '@shared/i18n';
 
-import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
-import DeltakelseContent from '../components/deltakelse-content/DeltakelseContent';
-import InnsynAppHeader from '../components/innsyn-app-header/InnsynAppHeader';
-import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
 const USE_SIGNALS_PANEL = true;
 
 const ForsidePage = () => {
+    const { text } = useAppIntl();
     const { deltakelsePeriode } = useDeltakerContext();
 
     useInnsynBreadcrumbs();
 
     return (
-        <ForsidePageLayout documentTitle="Din ungdomsprogramytelse" footer={<ForsidePageFooter />}>
+        <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
-                <InnsynAppHeader startdato={deltakelsePeriode.programPeriode.from} />
+                <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
                 {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="zpvvyjk4ss" />}
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>

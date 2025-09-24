@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.49.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.49.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 3.49.29
 
 ### Patch Changes

@@ -1,5 +1,88 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.0
+
+### Minor Changes
+
+- ef30ae3: Større refactoring av Oppgaver + generell struktur på innsyn-app. Utvidelse av avvik i inntekt og rapporter inntekt oppgaver.
+
+## 1.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.24
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.18
+    - @navikt/sif-common-soknad-ds@26.0.9
+    - @navikt/sif-common-forms-ds@21.0.9
+    - @navikt/sif-common-core-ds@10.3.8
+    - @navikt/sif-common-api@0.4.50
+    - @navikt/sif-common-ui@0.11.9
+    - @navikt/ung-common@0.0.50
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-faro@0.2.6
+
+## 1.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@26.0.8
+    - @navikt/sif-common-forms-ds@21.0.8
+    - @navikt/sif-common-core-ds@10.3.7
+    - @navikt/sif-common-api@0.4.49
+    - @navikt/sif-common-ui@0.11.8
+    - @navikt/ung-common@0.0.49
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.17
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-faro@0.2.6
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.23
+
+## 1.2.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.22
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.17
+    - @navikt/sif-common-soknad-ds@26.0.7
+    - @navikt/sif-common-forms-ds@21.0.7
+    - @navikt/sif-common-core-ds@10.3.6
+    - @navikt/sif-common-api@0.4.48
+    - @navikt/sif-common-ui@0.11.7
+    - @navikt/ung-common@0.0.48
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-faro@0.2.6
+
+## 1.2.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.21
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.16
+    - @navikt/sif-common-soknad-ds@26.0.6
+    - @navikt/sif-common-forms-ds@21.0.6
+    - @navikt/sif-common-core-ds@10.3.5
+    - @navikt/sif-common-api@0.4.47
+    - @navikt/sif-common-ui@0.11.6
+    - @navikt/ung-common@0.0.47
+
+## 1.2.6
+
+### Patch Changes
+
+- d3c98ea: Spesifisere tekster ved endring av sluttdato
+- Updated dependencies [4f6593b]
+    - @navikt/sif-common-ui@0.11.5
+    - @navikt/ung-common@0.0.46
+    - @navikt/sif-common-forms-ds@21.0.5
+    - @navikt/sif-common-soknad-ds@26.0.5
+
 ## 1.2.5
 
 ### Patch Changes

@@ -13,9 +13,9 @@ import {
 import dayjs from 'dayjs';
 
 import {
+    AvvikRegisterinntektOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
-    KorrigertInntektOppgave,
     Oppgave,
     OppgaveBase,
     RapporterInntektOppgave,
@@ -58,18 +58,18 @@ export const parseOppgaverElement = (oppgaver: OppgaveDto[]): Oppgave[] => {
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
             case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-                const korrigertInntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
-                const korrigertInntektOppgave: KorrigertInntektOppgave = {
+                const avvikRegisterinntektData = oppgave.oppgavetypeData as KontrollerRegisterinntektOppgavetypeDataDto;
+                const avvikRegisterinntektOppgave: AvvikRegisterinntektOppgave = {
                     ...getOppgaveBaseProps(oppgave),
                     oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
-                        ...korrigertInntektData,
-                        fraOgMed: ISODateToDate(korrigertInntektData.fraOgMed),
-                        tilOgMed: ISODateToDate(korrigertInntektData.tilOgMed),
+                        ...avvikRegisterinntektData,
+                        fraOgMed: ISODateToDate(avvikRegisterinntektData.fraOgMed),
+                        tilOgMed: ISODateToDate(avvikRegisterinntektData.tilOgMed),
                     },
                     bekreftelse: oppgave.bekreftelse,
                 };
-                parsedOppgaver.push(korrigertInntektOppgave);
+                parsedOppgaver.push(avvikRegisterinntektOppgave);
                 return;
             case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;

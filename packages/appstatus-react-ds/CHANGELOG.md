@@ -1,5 +1,32 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
 ## 2.20.37
 
 ### Patch Changes

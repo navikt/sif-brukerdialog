@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
 import { getDevAppSettings } from './mock/devAppSettings';
+import { createAliasConfig } from './vite.shared';
 
 export default defineConfig({
     mode: 'msw',
@@ -27,8 +28,12 @@ export default defineConfig({
             },
         },
     ],
+    resolve: {
+        alias: createAliasConfig(),
+    },
     define: {
         __IS_GITHUB_PAGES__: true,
+        __INJECT_DECORATOR_CLIENT_SIDE__: true,
     },
     server: {
         port: 8080,

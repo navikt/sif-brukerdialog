@@ -1,6 +1,7 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //     enabled: process.env.ANALYZE === 'true',
 // });
+import * as path from 'path';
 
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 
@@ -28,6 +29,8 @@ const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
+    outputFileTracingRoot: path.join(__dirname, '../..'),
+
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
     },

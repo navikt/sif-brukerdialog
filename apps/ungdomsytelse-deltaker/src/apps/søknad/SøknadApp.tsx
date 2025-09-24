@@ -44,12 +44,6 @@ const SøknadApp = () => {
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 
-    // if (kontonummer.isError && isApiAxiosError(kontonummer.error) && kontonummer.error.originalError.status !== 503) {
-    //     const { context, message, type } = kontonummer.error;
-    //     logApiError(ApiErrorKey.kontonummer, { error: { context, message, type } });
-    //     return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
-    // }
-
     const getKontonummerInfo = (): KontonummerOppslagInfo => {
         if (kontonummer.error) {
             return {

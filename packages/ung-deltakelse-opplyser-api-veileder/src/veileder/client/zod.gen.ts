@@ -51,8 +51,8 @@ export const zDeltakerPersonalia = z.object({
     navn: zNavn,
     fødselsdato: z.iso.date(),
     diskresjonskoder: z.array(zDiskresjonskode),
-    sisteMuligeInnmeldingsdato: z.iso.date(),
     førsteMuligeInnmeldingsdato: z.iso.date(),
+    sisteMuligeInnmeldingsdato: z.iso.date(),
 });
 
 export const zEndringstype = z.enum([

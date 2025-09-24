@@ -1,5 +1,56 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.33
+    - @navikt/appstatus-react-ds@2.20.41
+    - @navikt/sif-common-core-ds@10.3.8
+    - @navikt/sif-common-sentry@0.28.35
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-utils@3.49.31
+
+## 1.10.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.40
+    - @navikt/sif-common-core-ds@10.3.7
+    - @navikt/sif-common-sentry@0.28.34
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-amplitude@2.28.32
+    - @navikt/sif-common-utils@3.49.31
+
+## 1.10.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.32
+    - @navikt/appstatus-react-ds@2.20.39
+    - @navikt/sif-common-core-ds@10.3.6
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-sentry@0.28.33
+
+## 1.10.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.31
+    - @navikt/appstatus-react-ds@2.20.38
+    - @navikt/sif-common-core-ds@10.3.5
+    - @navikt/sif-common-sentry@0.28.33
+    - @navikt/sif-common-utils@3.49.30
+
 ## 1.10.5
 
 ### Patch Changes
