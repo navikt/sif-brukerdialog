@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.0
+
+### Minor Changes
+
+- ef30ae3: Større refactoring av Oppgaver + generell struktur på innsyn-app. Utvidelse av avvik i inntekt og rapporter inntekt oppgaver.
+
 ## 1.2.10
 
 ### Patch Changes
