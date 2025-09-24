@@ -7,7 +7,7 @@ import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { EnvKey, getMaybeEnv } from '@navikt/sif-common-env';
+import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -25,7 +25,7 @@ import { initSentry } from './utils/sentryUtils';
 initSentry();
 initApiClients();
 
-if (getMaybeEnv('VITE') && getMaybeEnv('ENV') !== 'prod') {
+if (__INJECT_DECORATOR_CLIENT_SIDE__) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {

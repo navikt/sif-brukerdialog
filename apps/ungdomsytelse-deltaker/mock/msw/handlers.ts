@@ -1,10 +1,66 @@
+/* eslint-disable max-len */
 import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { http, HttpResponse } from 'msw';
+
 import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
 store.init(ScenarioType.harSøkt);
+
+// const errorResponse = {
+//     type: 'NetworkError',
+//     context: 'sendOppgavebekreftelse',
+//     message: 'Request failed with status code 500',
+//     originalError: {
+//         message: 'Request failed with status code 500',
+//         name: 'AxiosError',
+//         stack: 'AxiosError: Request failed with status code 500\n at rB (https://ungdomsytelse-deltaker.intern.dev.nav.no/ungdomsprogrammet/ytelsen/assets/index-B3Q5CI-H.js:200:1089)\n at XMLHttpRequest.A (https://ungdomsytelse-deltaker.intern.dev.nav.no/ungdomsprogrammet/ytelsen/assets/index-B3Q5CI-H.js:200:5746)\n at Gh.request (https://ungdomsytelse-deltaker.intern.dev.nav.no/ungdomsprogrammet/ytelsen/assets/index-B3Q5CI-H.js:202:2073)\n at async _Le (https://ungdomsytelse-deltaker.intern.dev.nav.no/ungdomsprogrammet/ytelsen/assets/index-B3Q5CI-H.js:242:5126)\n at async _Le (https://ungdomsytelse-deltaker.intern.dev.nav.no/ungdomsprogrammet/ytelsen/assets/index-B3Q5CI-H.js:286:12485)',
+//     },
+//     config: {
+//         transitional: { silentJSONParsing: true, forcedJSONParsing: true, clarifyTimeoutError: false },
+//         adapter: ['xhr', 'http', 'fetch'],
+//         transformRequest: [null],
+//         transformResponse: [null],
+//         timeout: 0,
+//         xsrfCookieName: 'XSRF-TOKEN',
+//         xsrfHeaderName: 'X-XSRF-TOKEN',
+//         maxContentLength: -1,
+//         maxBodyLength: -1,
+//         env: {},
+//         headers: {
+//             Accept: 'application/json, text/plain, */*',
+//             'Content-Type': 'application/json',
+//             'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
+//             'X-Correlation-ID': 'fea3b98e-9042-4c60-aee9-f3817151b539',
+//         },
+//         throwOnError: true,
+//         withCredentials: false,
+//         baseURL: 'https://ungdomsytelse-deltaker.intern.dev.nav.no/api/brukerdialog',
+//         security: [{ scheme: 'bearer', type: 'http' }],
+//         url: 'https://ungdomsytelse-deltaker.intern.dev.nav.no/api/brukerdialog/ungdomsytelse/oppgavebekreftelse/innsending',
+//         body: {
+//             oppgave: {
+//                 oppgaveReferanse: '9f31904b-2313-4705-a91e-c55aa0825a7f',
+//                 uttalelse: {
+//                     harUttalelse: true,
+//                     uttalelseFraDeltaker: 'jeg mener 3333 er rett - arbeidsgiver tar feil',
+//                 },
+//             },
+//         },
+//         method: 'post',
+//         data: {
+//             oppgave: { oppgaveReferanse: '9f31904b-2313-4705-a91e-c55aa0825a7f' },
+//             uttalelse: {
+//                 harUttalelse: true,
+//                 uttalelseFraDeltaker: 'jeg mener 3333 er rett - arbeidsgiver tar feil',
+//             },
+//         },
+//         allowAbsoluteUrls: true,
+//     },
+//     code: 'ERR_BAD_RESPONSE',
+//     status: 500,
+// };
 
 export const getHandlers = () => [
     // App api mocking
@@ -43,6 +99,7 @@ export const getHandlers = () => [
     }),
 
     http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
+        // return HttpResponse.json(error, { status: 500 });
         const text = await request.text();
         try {
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);

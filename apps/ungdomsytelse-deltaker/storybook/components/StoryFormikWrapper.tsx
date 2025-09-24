@@ -1,8 +1,10 @@
-import { Box } from '@navikt/ds-react';
-import * as React from 'react';
-import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { useAppIntl } from '../../src/i18n';
 import '@navikt/ds-css';
+
+import { Box } from '@navikt/ds-react';
+import { getIntlFormErrorHandler, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import * as React from 'react';
+
+import { useAppIntl } from '../../src/i18n';
 
 interface Props {
     parameters?: {

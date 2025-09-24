@@ -1,4 +1,5 @@
 import { søkerResponseSchema } from '@navikt/sif-common-api';
+
 import { getScenarioMockData } from '../../mock/scenarios/scenarioMap';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { DeltakerContextProvider } from '../../src/context/DeltakerContext';

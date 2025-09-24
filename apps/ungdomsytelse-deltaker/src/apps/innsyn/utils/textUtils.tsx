@@ -1,28 +1,15 @@
-import { BodyShort } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { AppIntlShape } from '@shared/i18n';
+import { BekreftelseOppgave, EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
 
-import { AppIntlShape } from '../../../i18n';
-import {
-    EndretSluttdatoOppgave,
-    EndretStartdatoOppgave,
-    Oppgave,
-    OppgaveBase,
-    RapporterInntektOppgave,
-} from '../../../types/Oppgave';
-import { OppgavebekreftelseTekster } from '../components/oppgavebekreftelse/types';
-
-const BEKREFT_NY_SLUTTDATO = 'BEKREFT_NY_SLUTTDATO';
+const BEKREFT_MELDT_UT = 'BEKREFT_MELDT_UT';
 
 const getSluttdatoTextKey = (oppgave: EndretSluttdatoOppgave) => {
-    return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_NY_SLUTTDATO;
+    return oppgave.oppgavetypeData.forrigeSluttdato ? Oppgavetype.BEKREFT_ENDRET_SLUTTDATO : BEKREFT_MELDT_UT;
 };
 
-export const getOppgaveTittel = (
-    oppgave: Oppgave,
-    { text }: AppIntlShape,
-    values?: Record<string, string | number>,
-) => {
+export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
             return text(`oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
@@ -30,30 +17,34 @@ export const getOppgaveTittel = (
             return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.oppgavetittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel', {
-                måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-                ...values,
+                månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.oppgavetittel', {
-                månedOgÅr: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
+                månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
+                måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.oppgavetittel');
     }
 };
-export const getOppgaveSidetittel = (oppgave: Oppgave, { text }: AppIntlShape) => {
+export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: AppIntlShape) => {
     switch (oppgave.oppgavetype) {
         case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`);
+            return text(`oppgavetype.${oppgave.oppgavetype}.paneltittel`);
         case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.sidetittel`);
+            return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.paneltittel`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.sidetittel');
+            return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel', {
+                månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
+            });
         case Oppgavetype.RAPPORTER_INNTEKT:
-            return text('oppgavetype.RAPPORTER_INNTEKT.sidetittel');
+            return text('oppgavetype.RAPPORTER_INNTEKT.paneltittel', {
+                månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
+                måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
+            });
         case Oppgavetype.SØK_YTELSE:
-            return text('oppgavetype.SØK_YTELSE.sidetittel');
+            return text('oppgavetype.SØK_YTELSE.paneltittel');
     }
 };
 
@@ -65,7 +56,7 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
             return text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.info`);
         case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
-                antallArbeidsgivere: oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length,
+                måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
             });
         case Oppgavetype.RAPPORTER_INNTEKT:
             return text('oppgavetype.RAPPORTER_INNTEKT.info', {
@@ -73,52 +64,6 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: AppIntlShape) => {
             });
         case Oppgavetype.SØK_YTELSE:
             return text('oppgavetype.SØK_YTELSE.info');
-    }
-};
-
-export const getOppgaveBekreftelseTekster = (oppgave: Oppgave, intl: AppIntlShape): OppgavebekreftelseTekster => {
-    switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return {
-                sidetittel: intl.text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.sidetittel`),
-                oppgavetittel: getOppgaveTittel(oppgave, intl),
-                harTilbakemeldingSpørsmål: intl.text(`oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål`),
-                tilbakemeldingFritekstLabel: intl.text(
-                    `oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel`,
-                ),
-            };
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO: {
-            return {
-                sidetittel: intl.text(`oppgavetype.${getSluttdatoTextKey(oppgave)}.sidetittel`),
-                oppgavetittel: getOppgaveTittel(oppgave, intl),
-                harTilbakemeldingSpørsmål: intl.text(
-                    `oppgavetype.${getSluttdatoTextKey(oppgave)}.harTilbakemeldingSpørsmål`,
-                ),
-                tilbakemeldingFritekstLabel: intl.text(
-                    `oppgavetype.${getSluttdatoTextKey(oppgave)}.tilbakemeldingFritekstLabel`,
-                ),
-            };
-        }
-
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT: {
-            const antallArbeidsgivere = oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter.length;
-            return {
-                sidetittel: intl.text(`oppgavetype.${oppgave.oppgavetype}.sidetittel`, {
-                    måned: dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed),
-                    antallArbeidsgivere,
-                }),
-                oppgavetittel: getOppgaveTittel(oppgave, intl, { antallArbeidsgivere }),
-                harTilbakemeldingSpørsmål: intl.text(
-                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål',
-                    { antallArbeidsgivere },
-                ),
-                tilbakemeldingFritekstLabel: intl.text(
-                    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel',
-                ),
-            };
-        }
-        default:
-            throw new Error('getOppgaveBekreftelseTekster - oppgavetype er ikke bekreftelseoppgave');
     }
 };
 
@@ -141,68 +86,16 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
     }
 };
 
-const getRapporterInntektOppsummering = (oppgave: RapporterInntektOppgave): React.ReactNode => {
-    const { fraOgMed, tilOgMed } = oppgave.oppgavetypeData;
-    return `Inntekt kan rapporteres for perioden ${dateFormatter.full(fraOgMed)} til ${dateFormatter.full(tilOgMed)}`;
+export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
+    return text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`);
 };
 
-const getEndretStartdatoOppsummering = (oppgave: EndretStartdatoOppgave): React.ReactNode => {
-    return (
-        <>
-            Startdato i ungdomsprogrammet er endret til{' '}
-            <strong>{dateFormatter.full(oppgave.oppgavetypeData.nyStartdato)}.</strong>
-        </>
-    );
-};
-const getEndretSluttdatoOppsummering = (oppgave: EndretSluttdatoOppgave): React.ReactNode => {
-    const { forrigeSluttdato, nySluttdato } = oppgave.oppgavetypeData;
-    return forrigeSluttdato ? (
-        <>
-            Sluttdato i ungdomsprogrammet er endret til <strong>{dateFormatter.full(nySluttdato)}.</strong>
-        </>
-    ) : (
-        <>
-            Sluttdato i ungdomsprogrammet er satt til <strong>{dateFormatter.full(nySluttdato)}.</strong>
-        </>
-    );
+export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
+    return text(`oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`);
 };
 
-export const getOppgaveOppsummering = (oppgave: Oppgave): React.ReactNode | undefined => {
-    switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return getEndretStartdatoOppsummering(oppgave);
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return getEndretSluttdatoOppsummering(oppgave);
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return 'Oppsummering ikke laget';
-        case Oppgavetype.RAPPORTER_INNTEKT:
-            return getRapporterInntektOppsummering(oppgave);
-        default:
-            return null;
-    }
-};
-
-export const getOppgaveBeskrivelse = (oppgave: Oppgave) => {
-    if (oppgave.status !== 'ULØST') {
-        return null;
-    }
-
-    switch (oppgave.oppgavetype) {
-        case Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return (
-                <BodyShort>
-                    Det er forskjell mellom det du har oppgitt i lønn og det arbeidsgiveren din har rapportert til oss.
-                    Utbetalingen settes på vent til vi har fått svar av deg.
-                </BodyShort>
-            );
-        case Oppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-        case Oppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return <BodyShort>{getOppgaveOppsummering(oppgave)}</BodyShort>;
-        case Oppgavetype.RAPPORTER_INNTEKT:
-            return <BodyShort>Du kan nå rapportere inntekt for forrige måned.</BodyShort>;
-        default:
-            return null;
-    }
+export const getOppgaveDokumentTittel = (oppgave: Oppgave, intl: AppIntlShape) => {
+    return getDokumentTittel(getOppgaveTittel(oppgave, intl));
 };
 
 export const getDokumentTittel = (sidetittel: string) => {
