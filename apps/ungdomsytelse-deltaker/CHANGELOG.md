@@ -1,5 +1,22 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.24
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.18
+    - @navikt/sif-common-soknad-ds@26.0.9
+    - @navikt/sif-common-forms-ds@21.0.9
+    - @navikt/sif-common-core-ds@10.3.8
+    - @navikt/sif-common-api@0.4.50
+    - @navikt/sif-common-ui@0.11.9
+    - @navikt/ung-common@0.0.50
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-faro@0.2.6
+
 ## 1.2.9
 
 ### Patch Changes
