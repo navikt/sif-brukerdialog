@@ -1,5 +1,19 @@
 # @navikt/sif-demo-app
 
+## 0.8.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.7
+    - @navikt/sif-common-core-ds@10.3.8
+    - @navikt/sif-common-api@0.4.50
+    - @navikt/sif-common-ui@0.11.9
+    - @navikt/ung-common@0.0.50
+    - @navikt/sif-common-faro@0.2.6
+    - @navikt/sif-validation@1.0.5
+
 ## 0.8.9
 
 ### Patch Changes

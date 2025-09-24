@@ -1,5 +1,11 @@
 # config
 
+## 0.11.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
 ## 0.11.27
 
 ### Patch Changes

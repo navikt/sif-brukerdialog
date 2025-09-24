@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
 ## 1.2.33
 
 ### Patch Changes
