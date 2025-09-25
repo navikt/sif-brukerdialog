@@ -1,17 +1,20 @@
 // import { OppgaveStatus } from '@navikt/ung-common';
-import { store } from '../state/store';
 
-// import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
+import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+
+import { RapporterInntektOppgave } from '../../src/types/Oppgave';
+import { store } from '../state/store';
 // import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
 
-function updateOppgave(ref: string, updater: (oppgave: any) => any) {
+function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
     const deltakelser = state.deltakelser.map((deltakelse, idx) => {
         if (idx !== 0) return deltakelse;
         return {
             ...deltakelse,
             oppgaver: deltakelse.oppgaver.map((oppgave: any) =>
-                oppgave.oppgaveReferanse === ref ? updater(oppgave) : oppgave,
+                oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
             ),
         };
     });
@@ -56,7 +59,35 @@ export const mockUtils = {
         }));
     },
 
-    setRapportertInntekt: (ref: string, data: any) => {
-        console.log(`Inntekt rapportert for ${ref}`, data);
+    setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
+        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
+            ({
+                oppgavetypeData: {
+                    fraOgMed: oppgave.oppgavetypeData.fraOgMed,
+                    tilOgMed: oppgave.oppgavetypeData.fraOgMed,
+                    rapportertInntekt: {
+                        fraOgMed: oppgave.oppgavetypeData.fraOgMed,
+                        tilOgMed: oppgave.oppgavetypeData.fraOgMed,
+                        arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
+                    },
+                },
+                løstDato: new Date().toISOString(),
+                status: 'LØST',
+            }) as any;
+
+        setTimeout(() => {
+            updateOppgave(ref, (oppgave) => ({
+                ...oppgave,
+                ...getOppdatertData(oppgave),
+            }));
+        }, 2500);
+
+        return updateOppgave(ref, (oppgave): OppgaveDto => {
+            return {
+                ...oppgave,
+                løstDato: new Date().toISOString(),
+                status: 'LØST',
+            };
+        });
     },
 };

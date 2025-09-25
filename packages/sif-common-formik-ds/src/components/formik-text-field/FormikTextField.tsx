@@ -69,13 +69,16 @@ function FormikTextField<FieldName, ErrorType>({
                         }
                         onFocus={
                             formatter
-                                ? () => {
+                                ? (evt) => {
                                       setHasFocus(true);
                                       if (formatter) {
                                           form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
                                       }
+                                      if (restProps.onFocus) {
+                                          restProps.onFocus(evt);
+                                      }
                                   }
-                                : undefined
+                                : restProps.onFocus
                         }
                     />
                 );

@@ -1,13 +1,12 @@
 import { AppEnv } from '../env.schema';
 
-export const getDevAppSettings = (): AppEnv & { VITE?: string; DEV_IS_STORYBOOK?: string } => ({
+export const getDevAppSettings = (): AppEnv => ({
     ENV: 'development',
     APP_VERSION: 'dev',
     GITHUB_REF_NAME: 'dev',
     PUBLIC_PATH: '/ungdomsprogrammet/ytelsen',
 
     VELG_SCENARIO: 'on',
-    DEV_IS_STORYBOOK: 'true',
 
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',

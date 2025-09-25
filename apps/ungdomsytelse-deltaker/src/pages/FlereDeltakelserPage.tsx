@@ -1,10 +1,10 @@
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
-import Feilside from './Feilside';
+import ErrorPage from './ErrorPage';
 
 const FlereDeltakelserPage = () => (
-    <Feilside pageTitle="Flere deltakelser" bannerTitle="Ungdomsprogramytelsen">
+    <ErrorPage pageTitle="Flere deltakelser" bannerTitle="Ungdomsprogramytelsen">
         <Box paddingBlock="0 24">
             <SifGuidePanel mood="uncertain">
                 <Heading level="2" size="medium" spacing>
@@ -16,7 +16,7 @@ const FlereDeltakelserPage = () => (
                 </BodyLong>
             </SifGuidePanel>
         </Box>
-    </Feilside>
+    </ErrorPage>
 );
 
 export default FlereDeltakelserPage;

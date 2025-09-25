@@ -1,6 +1,6 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { Oppgave } from '@shared/types/Oppgave';
 
-import { Oppgave } from '../../../types/Oppgave';
 import { useMarkerOppgaveSomÅpnet } from './api/useMarkerOppgaveSomÅpnet';
 
 export const useRegistrerOppgaveSomÅpnet = (oppgave?: Oppgave) => {
