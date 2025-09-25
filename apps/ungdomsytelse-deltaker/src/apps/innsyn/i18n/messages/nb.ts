@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const innsynMessages_nb = {
     'innsyn.sidetittel': 'Din ungdomsprogramytelse',
     Ja: 'Ja',
@@ -117,9 +116,17 @@ export const innsynMessages_nb = {
     'inntektForm.utbetaltLønnLegend': 'Fikk du utbetalt lønn i {måned}?',
     'inntektForm.lønnLabel': 'Hvor mye fikk du i lønn før skatt?',
     'inntektForm.lønnDescription': 'Se på lønnsslippen din hva lønnen din var før det ble trukket skatt av den.',
-    'inntektForm.hvordanFinnerDuUtLønn': 'Hvordan finner du ut hva lønnen din var før skatt?',
-    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse':
-        'Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er før det blir trukket skatt av den, og det er det tallet du skal skrive inn her. Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
+    'inntektForm.hvordanFinnerDuUtLønn.tittel': 'Hvordan finner du ut hva lønnen din var før skatt?',
+    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.1':
+        'Når du har en jobb der du får utbetalt lønn, får du alltid en lønnsslipp fra arbeidsgiveren din. På lønnsslippen står det blant annet hva lønnen din er før det blir trukket skatt av den, og det er det tallet du skal skrive inn her.',
+    'inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.2':
+        'Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
+    'inntektForm.feilLønn.tittel': 'Hva skjer hvis jeg melder inn feil lønn?',
+    'inntektForm.feilLønn.tekst.1':
+        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i lønn. Arbeidsgivere registrerer lønn i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
+    'inntektForm.feilLønn.tekst.2':
+        'Hvis det er forskjell på lønnen din i A-ordningen, og lønnen du har sendt inn til oss, får du beskjed om det.',
+
     'inntektForm.hentUtBeløpFeil':
         'Du har oppgitt at du fikk utbetalt lønn, men vi klarer ikke hente ut beløpet. Vennligst kontroller feltet for lønn og prøv på nytt.',
 
