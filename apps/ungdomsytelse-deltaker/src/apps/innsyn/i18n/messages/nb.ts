@@ -125,7 +125,7 @@ export const innsynMessages_nb = {
     'inntektForm.feilLønn.tekst.1':
         'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i lønn. Arbeidsgivere registrerer lønn i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
     'inntektForm.feilLønn.tekst.2':
-        'Hvis det er forskjell på lønnen din i A-ordningen, og lønnen du har sendt inn til oss, får du beskjed om det.',
+        'Hvis det er forskjell på lønnen din i A-ordningen og lønnen du har sendt inn til oss, får du beskjed om det.',
 
     'inntektForm.hentUtBeløpFeil':
         'Du har oppgitt at du fikk utbetalt lønn, men vi klarer ikke hente ut beløpet. Vennligst kontroller feltet for lønn og prøv på nytt.',
