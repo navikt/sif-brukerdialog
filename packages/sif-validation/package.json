@@ -6,8 +6,10 @@
     "version": "1.0.5",
     "private": true,
     "devDependencies": {
+        "@navikt/fnrvalidator": "2.1.5",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
+        "dayjs": "1.11.18",
         "typescript": "5.9.2",
         "vitest": "3.2.4"
     },

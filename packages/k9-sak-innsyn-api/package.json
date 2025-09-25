@@ -9,7 +9,9 @@
         "@hey-api/openapi-ts": "0.84.2",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
+        "dayjs": "1.11.18",
         "typescript": "5.9.2",
+        "uuid": "13.0.0",
         "vitest": "3.2.4",
         "zod": "4.1.11"
     },
