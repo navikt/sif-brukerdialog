@@ -5,7 +5,6 @@ import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
-// import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
