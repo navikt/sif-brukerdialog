@@ -7,14 +7,18 @@
     "version": "0.0.50",
     "dependencies": {
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/sif-common-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
     },
     "devDependencies": {
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
+        "axios": "1.12.2",
         "config": "workspace:*",
+        "dayjs": "1.11.18",
         "typescript": "5.9.2",
+        "uuid": "13.0.0",
         "vitest": "3.2.4",
         "zod": "4.1.11"
     },

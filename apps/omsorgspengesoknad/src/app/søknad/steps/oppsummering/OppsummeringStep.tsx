@@ -1,27 +1,31 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
-import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
+import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useValiderFritekst } from '../../../hooks/useValiderFritekst';
 import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
+import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
-import InnsendingFeiletAlert from './alerts/InnsendingFeiletAlert';
+import ApiDataValideringsfeilAlert from './alerts/ApiDataValideringsfeilAlert';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import ApiDataErrorPage from './parts/ApiDataErrorPage';
 import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
 import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
 import VedleggOppsummering from './parts/VedleggOppsummering';
+import { isAxiosError } from 'axios';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -51,12 +55,17 @@ const OppsummeringStep = () => {
     const hasInvalidSteps = invalidSteps.length > 0;
 
     const { goBack } = useStepNavigation(step);
+    const navigate = useNavigate();
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
-    const invalidParameters = sendSøknadError ? getInvalidParametersFromAxiosError(sendSøknadError) : undefined;
+    // Sjekk om det er feil på parametre som er sendt til API-et i feilmeldingen fra backend
+    const invalidParameters =
+        sendSøknadError && isAxiosError(sendSøknadError)
+            ? getInvalidParametersFromAxiosError(sendSøknadError)
+            : undefined;
 
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
@@ -73,79 +82,92 @@ const OppsummeringStep = () => {
 
     const apiData = getApiDataFromSøknadsdata(søknadsdata, locale);
 
+    const { isPending: validerFritekstIsPending, invalidParameters: fritekstInvalidParameters } = useValiderFritekst(
+        apiData?.høyereRisikoForFraværBeskrivelse,
+    );
+
     if (!apiData) {
-        return (
-            <ErrorPage
-                contentRenderer={() => {
-                    return (
-                        <>
-                            <p>
-                                <AppText id="apiDataValidation.undefined" />
-                            </p>
-                            <p>
-                                <AppText id="resetMellomlagring.text.1" />
-                            </p>
-                            <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
-                        </>
-                    );
-                }}
-            />
-        );
+        return <ApiDataErrorPage />;
     }
 
     return (
         <SøknadStep stepId={StepId.OPPSUMMERING}>
-            <FormikWrapper
-                initialValues={getOppsummeringStepInitialValues(søknadsdata)}
-                onSubmit={(values) => {
-                    if (apiData) {
-                        sendSøknad({
-                            ...apiData,
-                            harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                        });
-                    }
-                }}
-                renderForm={() => {
-                    return (
-                        <>
-                            <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                                submitDisabled={isSubmitting || hasInvalidSteps}
-                                includeValidationSummary={true}
-                                submitButtonLabel={text('step.oppsummering.sendSøknad')}
-                                isFinalSubmit={true}
-                                submitPending={isSubmitting}
-                                backButtonDisabled={isSubmitting}
-                                onBack={goBack}>
+            {validerFritekstIsPending ? (
+                <LoadingSpinner size="3xlarge" style="block" />
+            ) : (
+                <VStack gap="8">
+                    <FormikWrapper
+                        initialValues={getOppsummeringStepInitialValues(søknadsdata)}
+                        onSubmit={(values) => {
+                            if (apiData) {
+                                sendSøknad({
+                                    ...apiData,
+                                    harBekreftetOpplysninger:
+                                        values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                                });
+                            }
+                        }}
+                        renderForm={() => {
+                            return (
                                 <VStack gap="8">
-                                    <OmSøkerOppsummering søker={søker} />
-                                    <OmBarnetOppsummering apiData={apiData} />
-                                    <VedleggOppsummering
-                                        apiData={apiData}
-                                        legeerklæringSøknadsdata={søknadsdata.legeerklaering}
-                                        samværsavtaleSøknadsdata={søknadsdata.deltBosted}
-                                    />
-                                    <ConfirmationCheckbox
-                                        disabled={isSubmitting}
-                                        label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
-                                        validate={getCheckedValidator()}
-                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                    />
+                                    <Form
+                                        formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                        submitDisabled={
+                                            isSubmitting ||
+                                            hasInvalidSteps ||
+                                            validerFritekstIsPending ||
+                                            fritekstInvalidParameters !== undefined
+                                        }
+                                        includeButtons={fritekstInvalidParameters === undefined}
+                                        includeValidationSummary={true}
+                                        submitButtonLabel={text('step.oppsummering.sendSøknad')}
+                                        isFinalSubmit={true}
+                                        submitPending={isSubmitting}
+                                        backButtonDisabled={isSubmitting}
+                                        onBack={goBack}>
+                                        <VStack gap="8">
+                                            <OmSøkerOppsummering søker={søker} />
+                                            <OmBarnetOppsummering
+                                                apiData={apiData}
+                                                onEdit={() => {
+                                                    navigate(getSøknadStepRoute(StepId.OM_BARNET));
+                                                }}
+                                            />
+                                            <VedleggOppsummering
+                                                apiData={apiData}
+                                                legeerklæringSøknadsdata={søknadsdata.legeerklaering}
+                                                samværsavtaleSøknadsdata={søknadsdata.deltBosted}
+                                            />
+                                            {fritekstInvalidParameters ? (
+                                                <ApiDataValideringsfeilAlert
+                                                    invalidParameter={fritekstInvalidParameters}
+                                                    gjelderBeskrivelseFritekst={true}
+                                                />
+                                            ) : (
+                                                <ConfirmationCheckbox
+                                                    disabled={isSubmitting}
+                                                    label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
+                                                    validate={getCheckedValidator()}
+                                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                                />
+                                            )}
+                                            {sendSøknadError && invalidParameters && (
+                                                <ApiDataValideringsfeilAlert invalidParameter={invalidParameters} />
+                                            )}
+                                        </VStack>
+                                    </Form>
+
+                                    {sendSøknadError && !invalidParameters && (
+                                        <ErrorSummary ref={sendSøknadErrorSummary}>
+                                            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                        </ErrorSummary>
+                                    )}
                                 </VStack>
-                                {sendSøknadError && invalidParameters && (
-                                    <InnsendingFeiletAlert invalidParameter={invalidParameters} />
-                                )}
-                            </Form>
-                            {sendSøknadError && !invalidParameters && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
-                            )}
-                        </>
-                    );
-                }}></FormikWrapper>
+                            );
+                        }}
+                    />
+                </VStack>
+            )}
         </SøknadStep>
     );
 };
