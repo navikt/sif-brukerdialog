@@ -94,7 +94,7 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel': 'Sjekk lønn i {månedOgÅr}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på lønn i {månedOgÅr}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
-        'Sjekk at opplysningene våre om lønnen du fikk i {måned} er riktige. Send oss et svar når du har sjekket.',
+        'Sjekk at opplysningene våre om lønnen du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
@@ -123,7 +123,7 @@ export const innsynMessages_nb = {
         'Spør arbeidsgiveren din hvis du er usikker på hvor du finner lønnsslippen.',
     'inntektForm.feilLønn.tittel': 'Hva skjer hvis jeg melder inn feil lønn?',
     'inntektForm.feilLønn.tekst.1':
-        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i lønn. Arbeidsgivere registrerer lønn i et system som heter A-ordningen, og som blant annet Nav og Skatteetaten har tilgang til.',
+        'Vi sjekker alltid hva arbeidsgiveren din har registrert at du fikk i lønn. Arbeidsgivere registrerer lønn i et system som heter A-ordningen og som blant annet Nav og Skatteetaten har tilgang til.',
     'inntektForm.feilLønn.tekst.2':
         'Hvis det er forskjell på lønnen din i A-ordningen og lønnen du har sendt inn til oss, får du beskjed om det.',
 
