@@ -10,6 +10,8 @@ import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 export const extractArbeidssituasjonFrilansSøknadsdata = (
     søknadsperiode: DateRange,
     formValues: FrilansFormValues,
+    harRegistrerteFrilansoppdrag: boolean,
+    mottarOmsorgsstønad: YesOrNo,
 ): ArbeidssituasjonFrilansSøknadsdata | undefined => {
     if (formValues === undefined || !isYesOrNoAnswered(formValues.harHattInntektSomFrilanser)) {
         return undefined;
@@ -17,6 +19,10 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
     if (formValues.harHattInntektSomFrilanser === YesOrNo.NO) {
         return {
             harInntektSomFrilanser: false,
+            normalarbeidstid:
+                harRegistrerteFrilansoppdrag && mottarOmsorgsstønad === YesOrNo.NO
+                    ? extractNormalarbeidstid(formValues.arbeidsforhold?.normalarbeidstid)
+                    : undefined,
         };
     }
     const { erFortsattFrilanser, frilanstype, arbeidsforhold, misterHonorar } = formValues;
