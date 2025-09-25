@@ -111,6 +111,10 @@ export const InfoArbeidetNormaltTimerFrilanserAvsluttet = () => {
                 <ExpandableInfo title={text('arbeidsforhold.frilanser.avsluttet.info.tittel')}>
                     <AppText id="arbeidsforhold.frilanser.avsluttet.info.tekst" />
                 </ExpandableInfo>
+                <InfoArbeiderNormaltTimerFrilanser
+                    frilanstype={Frilanstype.FRILANS}
+                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={false}
+                />
             </div>
         </VStack>
     );
