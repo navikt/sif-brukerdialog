@@ -1,9 +1,10 @@
-import { Alert, GuidePanel, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 
+import { AppText } from '../../../../i18n';
 import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import {
     FrilansFormField,
@@ -123,11 +124,9 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
             )}
             {skalSpørreOmNormalarbeidstidForIkkeFrilanser(values) && (
                 <VStack gap="6">
-                    <GuidePanel>
-                        Fordi vi har funnet et registrert frilansoppdrag på deg, trenger vi å vite hvor mye du jobbet
-                        normalt som frilanser. Trenger vi en egen informasjonsboks som introduserer spørsmålet om
-                        normalarbeidstid her?
-                    </GuidePanel>
+                    <Alert variant="info">
+                        <AppText id="arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro" />
+                    </Alert>
                     <FrilansAvsluttetNormalarbeidstidSpørsmål
                         fieldName={
                             `${FrilansFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
