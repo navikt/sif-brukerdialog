@@ -10,6 +10,7 @@ import {
     getDatesInDateRange,
     getDatesInDateRanges,
     isDateInDateRanges,
+    isDateWeekDay,
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
@@ -330,4 +331,14 @@ export const getUtenlandsoppholdValidator = (kursperioder: DateRange[]) => {
         }
         return undefined;
     };
+};
+
+export const startOgSluttErSammeHelg = (start?: Date, slutt?: Date): boolean => {
+    if (!start || !slutt) return false;
+
+    const startErHelgedag = !isDateWeekDay(start);
+    const sluttErHelgedag = !isDateWeekDay(slutt);
+    const dagerMellom = Math.abs(dayjs(slutt).diff(dayjs(start), 'day'));
+
+    return startErHelgedag && sluttErHelgedag && (dagerMellom === 0 || dagerMellom === 1);
 };

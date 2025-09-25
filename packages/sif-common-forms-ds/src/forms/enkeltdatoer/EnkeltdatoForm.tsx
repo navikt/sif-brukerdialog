@@ -26,6 +26,7 @@ interface Props {
     alleEnkeltdatoer?: Enkeltdato[];
     disabledDateRanges?: DateRange[];
     formLabels?: Partial<EnkeltdatoerFormLabels>;
+    disableWeekends?: boolean;
     onSubmit: (values: Enkeltdato) => void;
     onCancel: () => void;
 }
@@ -52,6 +53,7 @@ const EnkeltdatoForm = ({
     maxDate,
     alleEnkeltdatoer = [],
     disabledDateRanges = [],
+    disableWeekends,
     onSubmit,
     onCancel,
 }: Props) => {
@@ -98,6 +100,7 @@ const EnkeltdatoForm = ({
                                 label={inlineLabels.enkeltdato}
                                 minDate={minDate}
                                 maxDate={maxDate}
+                                disableWeekends={disableWeekends}
                                 disabledDateRanges={[...disabledDates, ...disabledDateRanges]}
                                 name={EnkeltdatoFormFields.dato}
                                 validate={(value) => {

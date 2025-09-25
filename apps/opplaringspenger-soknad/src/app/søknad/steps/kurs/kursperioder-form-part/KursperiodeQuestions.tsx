@@ -8,6 +8,7 @@ import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
 import { KursFormFields } from '../KursStep';
+import { startOgSluttErSammeHelg } from '../kursStepUtils';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -62,6 +63,18 @@ const KursperiodeQuestions = ({
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
                 hideLegend={harFlerePerioder === false}
                 minDate={minDate}
+                validate={() => {
+                    const error = startOgSluttErSammeHelg(startdato, sluttdato);
+                    if (error) {
+                        return {
+                            key: 'kursperiode.form.validation.startOgSluttErSammeHelg',
+                            values: { periodeNr },
+                            keepKeyUnaltered: true,
+                        };
+                    }
+
+                    return undefined;
+                }}
                 maxDate={maxDate}
                 fieldFromDate={startdato}
                 fieldToDate={sluttdato}
