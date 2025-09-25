@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -123,7 +123,7 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
                 </FormLayout.Panel>
             )}
             {skalSpørreOmNormalarbeidstidForIkkeFrilanser(values) && (
-                <VStack gap="6">
+                <FormLayout.Questions>
                     <Alert variant="info">
                         <AppText id="arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro" />
                     </Alert>
@@ -133,7 +133,7 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
                         }
                         arbeidsforhold={values.frilans.arbeidsforhold || {}}
                     />
-                </VStack>
+                </FormLayout.Questions>
             )}
         </FormLayout.Questions>
     );
