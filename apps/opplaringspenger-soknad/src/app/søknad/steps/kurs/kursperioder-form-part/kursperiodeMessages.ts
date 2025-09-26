@@ -40,8 +40,10 @@ const nb = {
     'kursperiode.form.tom.validation.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikke være før startdatoen. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',
 
-    'kursperiode.form.validation.startOgSluttErSammeHelg':
-        'Kursperiode {periodeNr} er bare helgedager. Kursperioden må inneholde minst én ukedag.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.enPeriode': 'Kursperioden er bare helgedager.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.flerePerioder': 'Kursperiode {periodeNr} er bare helgedager.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.info':
+        'Du kan kun få utbetalt opplæringspenger for hverdager. Det utbetales ikke opplæringspenger for lørdag eller søndag selv om du har hatt fravær fra jobb. Du kan derfor ikke søke opplæringspenger kun for lørdag og/eller søndag.',
 
     'kursperiode.form.avreise.validation.dateHasNoValue':
         'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',
@@ -114,8 +116,10 @@ const nn: Record<keyof typeof nb, string> = {
         'Du må oppgi dato for når perioden slutta i eit gyldig format. Gyldig format er dd.mm.åååå{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',
     'kursperiode.form.tom.validation.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikkje vere før startdatoen. Skriv inn eller vel dato frå datoveljaren{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',
-    'kursperiode.form.validation.startOgSluttErSammeHelg':
-        'Kursperiode {periodeNr} er berre helgedagar. Kursperioden må ha minst ein vekedag.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.enPeriode': 'Kursperioden er berre helgedagar.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.flerePerioder': 'Kursperiode {periodeNr} er berre helgedagar.',
+    'kursperiode.form.validation.startOgSluttErSammeHelg.info':
+        'Du kan berre få utbetalt opplæringspengar for vekedagar. Det blir ikkje utbetalt opplæringspengar for laurdag eller sundag sjølv om du har hatt fråvær frå jobb. Du kan difor ikkje søkje opplæringspengar berre for laurdag og/eller sundag.',
 
     'kursperiode.form.avreise.validation.dateHasNoValue':
         'Du må oppgi når avreise til kurset er. Skriv inn eller vel dato frå datoveljaren{harFlerePerioder, select, true { (periode {periodeNr})} other{}}.',

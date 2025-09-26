@@ -67,7 +67,7 @@ const KursperiodeQuestions = ({
                     const error = startOgSluttErSammeHelg(startdato, sluttdato);
                     if (error) {
                         return {
-                            key: 'kursperiode.form.validation.startOgSluttErSammeHelg',
+                            key: `kursperiode.form.validation.startOgSluttErSammeHelg.${harFlerePerioder ? 'flerePerioder' : 'enPeriode'}`,
                             values: { periodeNr },
                             keepKeyUnaltered: true,
                         };
