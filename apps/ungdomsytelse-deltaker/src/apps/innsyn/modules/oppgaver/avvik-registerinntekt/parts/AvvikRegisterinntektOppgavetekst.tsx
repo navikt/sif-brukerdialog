@@ -1,6 +1,6 @@
 import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
 import { avvikRegisterinntektOppgaveUtils } from '@innsyn/modules/oppgaver/avvik-registerinntekt/avvikRegisterinntektOppgaveUtils';
-import { BodyLong, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
@@ -21,6 +21,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
+    const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);
     const utbetalingsmåned = dateFormatter.month(
         getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed),
     );
@@ -38,64 +39,92 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const harKunYtelseInntekt = ytelseInntekter.length > 0 && arbeidOgFrilansInntekter.length === 0;
 
     return (
-        <VStack gap="6" width="100%" paddingBlock="0 6">
+        <VStack gap="4" width="100%" paddingBlock="0 4">
             {harInntekt ? (
                 <>
                     <BodyLong>
                         {harKunYtelseInntekt ? (
-                            <AppText id="avvikRegisterinntektOppgavetekst.navYtelse" values={{ rapporteringsmåned }} />
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.navYtelse"
+                                values={{ rapporteringsmåned: rapporteringsmånedOgÅr }}
+                            />
                         ) : (
-                            <AppText id="avvikRegisterinntektOppgavetekst.generell" values={{ rapporteringsmåned }} />
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.generell"
+                                values={{ rapporteringsmåned: rapporteringsmånedOgÅr }}
+                            />
                         )}
                     </BodyLong>
 
-                    <InntektTable
-                        inntekt={inntekt}
-                        navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
-                        beløpRowHeader={intl.text('inntektTabell.lønn')}
-                        totalColHeader={intl.text('inntektTabell.totalt')}
-                        total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
-                    />
+                    <Box marginBlock="0 2">
+                        <InntektTable
+                            inntekt={inntekt}
+                            navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}
+                            beløpRowHeader={intl.text('inntektTabell.lønn')}
+                            totalColHeader={intl.text('inntektTabell.totalt')}
+                            total={oppgave.oppgavetypeData.registerinntekt.totalInntekt}
+                        />
+                    </Box>
+                    <BodyLong>
+                        {harKunYtelseInntekt ? (
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse"
+                                values={{ utbetalingsmåned }}
+                            />
+                        ) : (
+                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" values={{ utbetalingsmåned }} />
+                        )}
+                    </BodyLong>
                 </>
             ) : (
-                <BodyLong>
-                    <AppText id="avvikRegisterinntektOppgavetekst.ingenOpplysninger" values={{ rapporteringsmåned }} />
-                </BodyLong>
-            )}
-
-            <div>
-                <BodyLong spacing>
-                    <AppText
-                        id="avvikRegisterinntektOppgavetekst.1"
-                        values={{ utbetalingsmåned, rapporteringsmåned }}
-                    />
-                </BodyLong>
-                <BodyLong spacing>
-                    <AppText id="avvikRegisterinntektOppgavetekst.2" />
-                </BodyLong>
-                {harInntekt ? (
-                    <BodyLong spacing>
-                        <AppText id="avvikRegisterinntektOppgavetekst.3.harInntekt" />
-                    </BodyLong>
-                ) : (
+                <>
                     <BodyLong spacing>
                         <AppText
-                            id="avvikRegisterinntektOppgavetekst.3.harIkkeInntekt"
+                            id="avvikRegisterinntektOppgavetekst.ingenOpplysninger"
                             values={{ rapporteringsmåned }}
                         />
                     </BodyLong>
-                )}
+                    <BodyLong spacing>
+                        <AppText id="avvikRegisterinntektOppgavetekst.1.harIkkeInntekt" />
+                    </BodyLong>
+                </>
+            )}
+
+            <Box marginBlock="2 0">
                 <BodyLong weight="semibold">
-                    <AppText id="avvikRegisterinntektOppgavetekst.4" />
+                    <AppText id="avvikRegisterinntektOppgavetekst.2" />
+                </BodyLong>
+                <Box marginBlock="3 6">
+                    <List>
+                        <List.Item>
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.3"
+                                values={{ strong: (content) => <strong>{content}</strong> }}
+                            />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.4"
+                                values={{ strong: (content) => <strong>{content}</strong> }}
+                            />
+                        </List.Item>
+                    </List>
+                </Box>
+                <BodyLong weight="semibold">
+                    <AppText id="avvikRegisterinntektOppgavetekst.5" />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="avvikRegisterinntektOppgavetekst.5" values={{ formatertFrist }} />
+                    <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="avvikRegisterinntektOppgavetekst.6" values={{ rapporteringsmåned }} />
+                    {harKunYtelseInntekt ? (
+                        <AppText id="avvikRegisterinntektOppgavetekst.7.kunYtelse" />
+                    ) : (
+                        <AppText id="avvikRegisterinntektOppgavetekst.7" />
+                    )}
                 </BodyLong>
                 <RegelverkOgInnsynReadMore />
-            </div>
+            </Box>
         </VStack>
     );
 };
