@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.0
+
+### Minor Changes
+
+- Åpne for å sette sluttdato på deltakelse
+
 ## 0.8.10
 
 ### Patch Changes
