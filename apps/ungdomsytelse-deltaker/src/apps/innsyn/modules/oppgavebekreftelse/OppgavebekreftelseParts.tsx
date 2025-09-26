@@ -76,7 +76,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     if (oppgave.status !== OppgaveStatus.ULØST || visKvittering) return null;
 
     return (
-        <VStack gap="4">
+        <VStack gap="8">
             <GuidePanel>
                 <VStack gap="4">
                     <Heading level="2" size="medium">

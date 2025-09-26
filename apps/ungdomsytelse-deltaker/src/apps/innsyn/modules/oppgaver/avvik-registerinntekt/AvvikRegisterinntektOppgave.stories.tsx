@@ -144,7 +144,7 @@ export const UbesvartOppgaveToArbeidsgivere: Story = {
 };
 
 export const UbesvartOppgaveNavYtelse: Story = {
-    name: 'Nav ytelse',
+    name: 'Kun Nav-ytelse',
     render: () => (
         <AvvikRegisterinntektOppgavePage
             oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
