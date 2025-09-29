@@ -15,7 +15,10 @@ coverage
 index-decorated.html
 .idea
 .sanity
-
+.scannerwork
+*dist-playwright
+dist-demo
+*.code-workspace
 
 server/dist
 public/dist
