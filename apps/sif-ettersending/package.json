@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.49.10",
+    "version": "3.49.11",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -36,7 +36,7 @@
         "react": "19.1.1",
         "react-day-picker": "9.11.0",
         "react-intl": "7.1.11",
-        "react-router-dom": "7.9.1"
+        "react-router-dom": "7.9.3"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
@@ -46,10 +46,10 @@
         "@tailwindcss/vite": "4.1.13",
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.0",
-        "@types/react": "19.1.13",
+        "@types/react": "19.1.15",
         "@types/react-dom": "19.1.9",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "5.0.3",
+        "@vitejs/plugin-react": "5.0.4",
         "axe-core": "4.10.3",
         "busboy": "1.6.0",
         "compression": "1.8.1",

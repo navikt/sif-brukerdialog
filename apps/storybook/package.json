@@ -2,7 +2,7 @@
     "name": "sif-storybook",
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "main": "src/index.ts",
-    "version": "0.0.53",
+    "version": "0.0.54",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -18,8 +18,8 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.1.13",
-        "chromatic": "13.2.0",
+        "@types/react": "19.1.15",
+        "chromatic": "13.2.1",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.18",

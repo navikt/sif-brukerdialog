@@ -1,6 +1,6 @@
 {
     "name": "appstatus-sanity-config",
-    "version": "1.2.34",
+    "version": "1.2.35",
     "description": "",
     "main": "package.json",
     "author": "frodehansen2 <frode.hansen@bekk.no>",
@@ -16,15 +16,15 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "4.10.0",
+        "@sanity/vision": "4.10.1",
         "react": "19.1.1",
         "react-dom": "19.1.1",
-        "sanity": "4.10.0",
+        "sanity": "4.10.1",
         "styled-components": "6.1.19"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "5.0.2",
-        "@types/react": "19.1.13",
+        "@types/react": "19.1.15",
         "dayjs": "1.11.18",
         "eslint": "9.36.0",
         "prettier": "3.6.2",

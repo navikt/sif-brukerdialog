@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.10
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.34
+    - @navikt/appstatus-react-ds@2.20.42
+    - @navikt/sif-common-core-ds@10.3.9
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+
 ## 1.10.9
 
 ### Patch Changes
