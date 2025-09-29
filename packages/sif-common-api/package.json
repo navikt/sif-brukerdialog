@@ -24,7 +24,7 @@
         "@storybook/addon-a11y": "9.1.8",
         "@storybook/addon-actions": "9.0.8",
         "@storybook/testing-library": "0.2.2",
-        "@types/react": "19.1.13",
+        "@types/react": "19.1.15",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.18",
