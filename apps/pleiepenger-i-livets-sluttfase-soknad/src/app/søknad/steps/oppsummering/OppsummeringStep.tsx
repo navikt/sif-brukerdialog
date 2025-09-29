@@ -1,19 +1,18 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
@@ -42,7 +41,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const { text, intl } = useAppIntl();
+    const { text, intl, locale } = useAppIntl();
     const {
         state: { søknadsdata, søker, frilansoppdrag },
     } = useSøknadContext();
@@ -67,7 +66,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, locale);
 
     if (!apiData) {
         return (
@@ -112,7 +111,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <div data-testid="oppsummering">
+                        <VStack gap="8" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -186,13 +185,11 @@ const OppsummeringStep = () => {
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
+                                <ErrorSummary ref={sendSøknadErrorSummary}>
+                                    <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                </ErrorSummary>
                             )}
-                        </div>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

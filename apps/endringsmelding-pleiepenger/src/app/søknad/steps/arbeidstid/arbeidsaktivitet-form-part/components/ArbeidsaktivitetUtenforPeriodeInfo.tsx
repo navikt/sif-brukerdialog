@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsaktivitet } from '@types';
+
 import { AppText } from '../../../../../i18n';
 import { SkrivTilOssLink } from '../../../../../lenker';
 
@@ -10,10 +10,10 @@ interface Props {
     tillattEndringsperiode: DateRange;
 }
 
-const ArbeidsaktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetUtenforPeriodeInfo = ({
     arbeidsaktivitet: { harPerioderEtterTillattEndringsperiode, harPerioderFørTillattEndringsperiode },
     tillattEndringsperiode,
-}) => {
+}: Props) => {
     if (!harPerioderFørTillattEndringsperiode && !harPerioderEtterTillattEndringsperiode) {
         return null;
     }
@@ -23,7 +23,7 @@ const ArbeidsaktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
         skrivTilOssLink: <SkrivTilOssLink key="lenke" />,
     };
     return (
-        <BodyShort style={{ paddingBottom: '1rem' }}>
+        <BodyShort>
             {harPerioderFørTillattEndringsperiode && !harPerioderEtterTillattEndringsperiode && (
                 <AppText id="arbeidsaktivitetContent.utenforPeriode.før" values={intlValues} />
             )}

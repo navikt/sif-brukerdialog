@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import * as React from 'react';
 import ExpandableInfo from '../../../src/components/expandable-info/ExpandableInfo';
 import StoryWrapper from '../../decorators/StoryWrapper';

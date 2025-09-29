@@ -3,6 +3,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
@@ -32,7 +33,6 @@ const DineBarnOppsummering = ({
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.dineBarn" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -87,6 +87,11 @@ const DineBarnOppsummering = ({
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

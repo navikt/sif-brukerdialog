@@ -1,18 +1,17 @@
-import { Tabs } from '@navikt/ds-react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Box, Tabs } from '@navikt/ds-react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { SøknadContextProvider } from './../../context/SøknadContext';
+import { SøknadContextProvider } from '../../context/SøknadContext';
 import OmBarnetStep from './OmBarnetStep';
 import { omBarnetMessages } from './omBarnetMessages';
-import { SøknadContextState } from './../../../types/SøknadContextState';
-import { Søknadsdata } from './../../../types/søknadsdata/Søknadsdata';
-import { withAmplitudeProvider } from './../../../../storybook/decorators/withAmplitudeProvider';
-import { withEnvSettings } from './../../../../storybook/decorators/withEnvSettings';
-import { withIntl } from './../../../../storybook/decorators/withIntl';
-import { withRouterProvider } from './../../../../storybook/decorators/withRouter';
-import { withStepFormValuesContext } from './../../../../storybook/decorators/withStepFormValuesContext';
-import { mockInitialSøknadContextState } from './../../../../storybook/decorators/withSøknadContext';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
+import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
 
 export default {
     title: 'Steps/OmBarnet/Step',
@@ -32,19 +31,19 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
             <Tabs.Panel value="steg">
-                <Block margin="xl">
+                <Box paddingBlock="10">
                     <OmBarnetStep />
-                </Block>
+                </Box>
             </Tabs.Panel>
             <Tabs.Panel value="tekster">
-                <Block margin="xl">
+                <Box paddingBlock="10">
                     <MessagesPreview
                         messages={omBarnetMessages}
                         showMissingTextSummary={true}
                         showExplanation={false}
                         title="Om barnet"
                     />
-                </Block>
+                </Box>
             </Tabs.Panel>
         </Tabs>
     </SøknadContextProvider>

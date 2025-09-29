@@ -1,5 +1,6 @@
 import { Tag, TagProps, Tooltip } from '@navikt/ds-react';
 import React from 'react';
+
 import { useAppIntl } from '../../i18n';
 
 interface Props extends Omit<TagProps, 'variant' | 'size' | 'children'> {
@@ -7,7 +8,7 @@ interface Props extends Omit<TagProps, 'variant' | 'size' | 'children'> {
     tooltip?: string;
 }
 
-const KortUkeTag: React.FunctionComponent<Props> = ({ children, tooltip, ...rest }) => {
+const KortUkeTag = ({ children, tooltip, ...rest }: Props) => {
     const { text } = useAppIntl();
 
     const tag = (

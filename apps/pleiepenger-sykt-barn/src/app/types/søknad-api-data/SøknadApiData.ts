@@ -1,24 +1,26 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { ISODateString } from '@navikt/sif-common-formik-ds';
+import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
 import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
 import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '..';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../';
 import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
+import { FosterhjemsgodtgjørelseApiData } from './FosterhjemsgodtgjørelseApiData';
 import { FrilansApiData } from './FrilansApiData';
+import { OmsorgsstønadApiData } from './OmsorgsstønadApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
-import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
-import { ISODateString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/dateFormatUtils';
-import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
 
 export * from './ArbeidIPeriodeApiData';
-export * from './ArbeidsgiverAnsattApiData';
-export * from './NormalarbeidstidApiData';
 export * from './ArbeidsforholdApiData';
-export * from './SelvstendigApiData';
+export * from './ArbeidsgiverAnsattApiData';
 export * from './FrilansApiData';
+export * from './NormalarbeidstidApiData';
+export * from './SelvstendigApiData';
 
-export const SøknadApiDataVersjon = 'Søknad-1.1.0';
+export const SøknadApiDataVersjon = 'Søknad-1.2.1';
 
 export interface PeriodeApiData {
     fraOgMed: ISODate;
@@ -162,7 +164,8 @@ export interface SøknadApiData {
     beredskap?: BeredskapApiData;
     arbeidsgivere: ArbeidsgiverAnsattApiData[];
     frilans: FrilansApiData;
-    stønadGodtgjørelse: StønadGodtgjørelseApiData;
+    omsorgsstønad: OmsorgsstønadApiData;
+    fosterhjemsgodtgjørelse: FosterhjemsgodtgjørelseApiData;
     selvstendigNæringsdrivende: SelvstendigApiData;
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApiData[];

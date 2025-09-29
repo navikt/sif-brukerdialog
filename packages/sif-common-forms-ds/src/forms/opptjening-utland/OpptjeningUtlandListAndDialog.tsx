@@ -2,9 +2,10 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import dayjs from 'dayjs';
+
 import OpptjeningUtlandForm from './OpptjeningUtlandForm';
 import OpptjeningUtlandList from './OpptjeningUtlandList';
 import { OpptjeningUtland } from './types';

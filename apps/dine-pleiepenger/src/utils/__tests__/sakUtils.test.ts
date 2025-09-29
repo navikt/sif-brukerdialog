@@ -1,14 +1,14 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Behandling } from '../../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
-import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
-import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
-import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 import {
     PleiepengerEndringsmelding,
     PleiepengerEttersendelse,
     Pleiepengesøknad,
 } from '../../server/api-models/InnsendelseSchema';
+import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
+import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
+import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
 
 const behandling1: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,

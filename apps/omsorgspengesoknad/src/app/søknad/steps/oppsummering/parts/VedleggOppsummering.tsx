@@ -11,11 +11,7 @@ interface Props {
     samværsavtaleSøknadsdata?: DeltBostedSøknadsdata;
 }
 
-const VedleggOppsummering: React.FunctionComponent<Props> = ({
-    apiData,
-    legeerklæringSøknadsdata,
-    samværsavtaleSøknadsdata,
-}) => {
+const VedleggOppsummering = ({ apiData, legeerklæringSøknadsdata, samværsavtaleSøknadsdata }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.legeerklæring,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,
@@ -57,7 +53,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                             {samværsavtaler.length > 0 ? (
                                 <VedleggSummaryList vedlegg={samværsavtaler} />
                             ) : (
-                                <Alert inline={true} variant="warning">
+                                <Alert inline={true} variant="info">
                                     <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
                                 </Alert>
                             )}

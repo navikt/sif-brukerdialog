@@ -1,0 +1,86 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+    name: {{app}}
+    namespace: {{namespace}}
+    labels:
+        team: {{team}}
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "100M"
+spec:
+    image: {{ image }}
+    port: 8080
+    liveness:
+        path: {{livenessPath}}
+        initialDelay: 20
+        timeout: 1
+        periodSeconds: 5
+        failureThreshold: 10
+    readiness:
+        path: {{readinessPath}}
+        initialDelay: 20
+        timeout: 1
+    resources:
+        limits:
+            cpu: 2000m
+            memory: 512Mi
+        requests:
+            cpu: 50m
+            memory: 128Mi
+    accessPolicy:
+        outbound:
+            rules:
+            {{#each accessPolicyOutApps as |rule|}}
+             - application: {{rule.application}}
+               namespace: {{rule.namespace}}
+            {{/each}}
+            external:
+            {{#each externalHosts as |host|}}
+            - host: {{host}}
+            {{/each}}
+    ingresses:
+      {{#each ingresses as |url|}}
+       - {{url}}
+          {{/each}}
+    replicas:
+        min: {{ minReplicas }}
+        max: {{ maxReplicas }}
+        cpuThresholdPercentage: 90
+    frontend:
+        generatedConfig:
+            mountPath: /apps/{{app}}/dist/assets/nais.js
+    prometheus:
+        enabled: true
+        path: /metrics
+    vault:
+        enabled: false
+    observability:
+      autoInstrumentation:
+        enabled: {{observabilityEnabled}}
+        runtime: nodejs
+    env:
+  {{#each env}}
+     - name: {{@key}}
+       value: "{{this}}"
+    {{/each}}
+     - name: IMAGE
+       value: {{image}}
+     - name: GITHUB_REF_NAME
+       value: {{GITHUB_REF_NAME}}
+
+    azure:
+        sidecar:
+            enabled: true
+            autoLogin: true
+        application:
+            enabled: true
+            allowAllUsers: false
+            singlePageApplication: true
+            claims:
+                extra:
+                    - "NAVident"
+                    - "azp_name"
+                groups:
+                    {{#each azure.groups as |group|}}
+                    - id: {{group.objectId }}
+                    {{/each}}

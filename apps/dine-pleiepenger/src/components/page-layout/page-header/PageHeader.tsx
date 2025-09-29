@@ -1,6 +1,6 @@
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
-import PleiepengerSVG from '../../../svg/pleiepenger';
+import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
 import Head from 'next/head';
+import PleiepengerSVG from '../../../svg/pleiepenger';
 
 interface Props {
     title?: string;
@@ -9,14 +9,9 @@ interface Props {
     documentTitle?: string;
 }
 
-const PageHeader: React.FunctionComponent<Props> = ({
-    title = 'Dine pleiepenger for sykt barn',
-    titleTag,
-    byline,
-    documentTitle,
-}) => {
+const PageHeader = ({ title = 'Dine pleiepenger for sykt barn', titleTag, byline, documentTitle }: Props) => {
     return (
-        <div className="bg-[--a-deepblue-50]">
+        <div>
             {documentTitle ? (
                 <Head>
                     <title>{documentTitle}</title>
@@ -29,14 +24,14 @@ const PageHeader: React.FunctionComponent<Props> = ({
                     </div>
                     <VStack gap="2">
                         {titleTag ? (
-                            <HStack align="center">
-                                <Heading size="large" level="1" className="text-deepblue-800 mr-4">
+                            <HStack gap="4" align="center">
+                                <Heading size="large" level="1" className=" mr-4">
                                     {title}
                                 </Heading>
                                 <BodyShort as="div">{titleTag}</BodyShort>
                             </HStack>
                         ) : (
-                            <Heading size="large" level="1" className="text-deepblue-800">
+                            <Heading size="large" level="1">
                                 {title}
                             </Heading>
                         )}

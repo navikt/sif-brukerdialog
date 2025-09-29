@@ -2,7 +2,7 @@
     --process-circle-size: 1.75rem;
     --process-border-width: 2px;
     --process-line-length: 1rem;
-    --process-line-color: var(--a-deepblue-800);
+    --process-line-color: var(--ax-border-info-strong);
     font-weight: 600;
     line-height: 1;
     list-style: none;
@@ -28,10 +28,10 @@
     border-radius: 0.25rem;
 }
 .process__item__variant--CURRENT .process__circle {
-    border-color: var(--a-deepblue-800);
+    border-color: var(--ax-border-info-strong);
 }
 .process__item__variant--CURRENT {
-    background-color: var(--a-deepblue-50);
+    background-color: var(--ax-bg-info-moderate);
     z-index: 2;
     position: relative;
     opacity: 1;
@@ -39,7 +39,7 @@
     margin-top: 0.75rem;
 }
 .process__item__variant--WARNING {
-    background-color: var(--a-orange-100);
+    background-color: var(--ax-bg-warning-soft);
     z-index: 2;
     position: relative;
 }
@@ -48,7 +48,7 @@
     border-radius: 50%;
     width: 0.9rem;
     height: 0.9rem;
-    background-color: var(--a-deepblue-800);
+    background-color: var(--ax-border-info-strong);
 }
 
 .process__line {
@@ -96,7 +96,7 @@ process__line--1--continuation {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: [circle] var(--process-circle-size) [content] auto;
-    gap: var(--a-spacing-2);
+    gap: var(--ax-space-16);
     justify-content: flex-start;
     text-decoration: none;
     padding: var(--process-border-width);
@@ -110,9 +110,9 @@ process__line--1--continuation {
     flex-shrink: 0;
     width: var(--process-circle-size);
     height: var(--process-circle-size);
-    border-radius: var(--a-border-radius-full);
+    border-radius: var(--ax-radius-full);
     line-height: 1;
-    border: 2px solid var(--a-gray-500);
+    border: 2px solid var(--ax-border-info-strong);
 }
 
 .process__circle--noCircle {
@@ -120,8 +120,8 @@ process__line--1--continuation {
 }
 
 .process__step--completed .process__circle {
-    background-color: var(--a-deepblue-800);
-    border-color: var(--a-deepblue-800);
+    background-color: var(--ax-border-info-strong);
+    border-color: var(--ax-border-info-strong);
     color: white;
 }
 

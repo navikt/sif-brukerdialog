@@ -1,9 +1,9 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { dateToISOString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds';
 import { dateErHelg } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværUtilities';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import dayjs from 'dayjs';
 import { flatten, uniqBy } from 'lodash';
+
 import { FraværFraSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { FraværFraFormValues } from './FraværFraStep';
 

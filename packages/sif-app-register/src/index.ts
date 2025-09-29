@@ -191,3 +191,31 @@ export const OpplæringspengerApp: AppInfo = {
         prod: 'https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger',
     },
 };
+
+export const UngdomsytelseDeltakerApp: AppInfo = {
+    key: 'ungdomsytelse-deltaker',
+    navn: 'Søknad om deltakelse i ungdomprogrammer',
+    tittel: {
+        nb: 'Søknad om deltakelse i ungdomprogrammer',
+    },
+    lenker: {
+        q: 'https://ungdomsytelse-deltaker.intern.dev.nav.no',
+        prod: 'https://www.nav.no/familie/sykdom-i-familien/ungdomsytelse-deltaker',
+    },
+};
+
+export const UngdomsytelseVeilederApp: AppInfo = {
+    key: 'ungdomsytelse-veileder',
+    navn: 'Veilederapplikasjon for ungdomsprogramytelse',
+    tittel: {
+        nb: 'Veilederapplikasjon for ungdomsprogramytelse',
+    },
+    lenker: {
+        q: 'https://ungdomsytelse-veileder.intern.dev.nav.no',
+        prod: '',
+    },
+};
+
+export const sifAppRegister = {
+    OmsorgsdagerAleneomsorgApp,
+};

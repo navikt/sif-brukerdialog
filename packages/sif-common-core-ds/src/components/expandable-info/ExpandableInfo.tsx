@@ -1,6 +1,5 @@
 import { ReadMore } from '@navikt/ds-react';
 import React from 'react';
-import './expandableInfo.css';
 
 interface Props {
     children: React.ReactNode;
@@ -10,7 +9,7 @@ interface Props {
 
 const ExpandableInfo = ({ children, initialOpen, title }: Props) => {
     return (
-        <ReadMore header={title} defaultOpen={initialOpen} className={'sif-read-more'}>
+        <ReadMore header={title} defaultOpen={initialOpen} className="sif-read-more" data-color="accent">
             {children}
         </ReadMore>
     );

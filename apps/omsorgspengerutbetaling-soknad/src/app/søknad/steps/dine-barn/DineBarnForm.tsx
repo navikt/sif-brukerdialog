@@ -1,14 +1,18 @@
-import { Box } from '@navikt/ds-react';
-import React from 'react';
+import { VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import {
+    FormikInputGroup,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
-import { useAppIntl } from '../../../i18n';
+import { FormLayout, RegistrerteBarnListe } from '@navikt/sif-common-ui';
+
+import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
-import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
@@ -23,7 +27,7 @@ export interface DineBarnFormProps {
     onAndreBarnChanged: (values: Partial<DineBarnFormValues>) => void;
 }
 
-const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
+const DineBarnForm = ({
     søker,
     values,
     registrerteBarn,
@@ -31,7 +35,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
     kanFortsette,
     goBack,
     onAndreBarnChanged,
-}) => {
+}: DineBarnFormProps) => {
     const { intl, text } = useAppIntl();
 
     const { andreBarn = [], harSyktBarn, harDekketTiFørsteDagerSelv } = values;
@@ -52,39 +56,53 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             submitDisabled={isSubmitting || kanFortsette === false}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <DineBarnStepIntro />
+            <FormLayout.Guide>
+                <p>
+                    <AppText id="step.dineBarn.intro.1" />
+                </p>
+                <ExpandableInfo title={text('step.dineBarn.intro.info.tittel')}>
+                    <p>
+                        <AppText id="step.dineBarn.intro.info.tekst.1" />
+                    </p>
+                    <p>
+                        <AppText id="step.dineBarn.intro.info.tekst.2" />
+                    </p>
+                </ExpandableInfo>
+            </FormLayout.Guide>
 
-            <Box paddingBlock={'8 0'}>
-                <RegistrerteBarnListe.Heading level="2" size="medium">
-                    {text('step.dineBarn.seksjonsTittel')}
-                </RegistrerteBarnListe.Heading>
-            </Box>
+            <FormLayout.Questions>
+                <VStack gap="4">
+                    <RegistrerteBarnListe.Heading level="2" size="medium">
+                        {text('step.dineBarn.seksjonsTittel')}
+                    </RegistrerteBarnListe.Heading>
 
-            <FormikInputGroup
-                legend={text('step.dineBarn.seksjonsTittel')}
-                hideLegend={true}
-                name="barn"
-                validate={() => {
-                    const antallBarn = andreBarn.length + registrerteBarn.length;
-                    if (antallBarn === 0) {
-                        return 'ingenBarn';
-                    }
-                }}>
-                <Box paddingBlock={'4 6'}>
-                    <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
-                </Box>
+                    <FormikInputGroup
+                        legend={text('step.dineBarn.seksjonsTittel')}
+                        hideLegend={true}
+                        name="barn"
+                        validate={() => {
+                            const antallBarn = andreBarn.length + registrerteBarn.length;
+                            if (antallBarn === 0) {
+                                return 'ingenBarn';
+                            }
+                        }}>
+                        <FormLayout.Questions>
+                            <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
 
-                <AndreBarnPart
-                    harRegistrerteBarn={registrerteBarn.length > 0}
-                    søkerFnr={søker.fødselsnummer}
-                    andreBarn={andreBarn}
-                    onAndreBarnChange={oppdatereAndreBarn}
-                />
-            </FormikInputGroup>
+                            <AndreBarnPart
+                                harRegistrerteBarn={registrerteBarn.length > 0}
+                                søkerFnr={søker.fødselsnummer}
+                                andreBarn={andreBarn}
+                                onAndreBarnChange={oppdatereAndreBarn}
+                            />
+                        </FormLayout.Questions>
+                    </FormikInputGroup>
+                </VStack>
 
-            {andreBarn.length + registrerteBarn.length > 0 ? (
-                <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
-            ) : null}
+                {andreBarn.length + registrerteBarn.length > 0 ? (
+                    <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
+                ) : null}
+            </FormLayout.Questions>
         </Form>
     );
 };

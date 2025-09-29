@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { søkerMock } from '../../../storybook/data/søkerMock';
-import { withAmplitudeProvider, withIntl, withFormikWrapper } from '../../../storybook/decorators';
+import { withAmplitudeProvider, withFormikWrapper, withIntl } from '../../../storybook/decorators';
 import VelkommenPage from './VelkommenPage';
 
 const meta: Meta<typeof VelkommenPage> = {

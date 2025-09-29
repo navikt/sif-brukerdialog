@@ -15,13 +15,15 @@ on:
 env:
     APP_NAME: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
 
+permissions:
+    contents: read
+
 jobs:
     run-script-tests:
-        if: "!contains(github.event.head_commit.message, '[ci skip]')"
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Setup .yarnrc.yml
               run: |
@@ -32,9 +34,9 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v5
               with:
-                  node-version: 18
+                  node-version: 22
                   cache: 'yarn'
             - run: yarn set version 4.x
 
@@ -45,12 +47,11 @@ jobs:
               run: yarn test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
     run-playwright-test:
-        if: "!contains(github.event.head_commit.message, '[ci skip]')"
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Setup .yarnrc.yml
               run: |
@@ -61,9 +62,9 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v5
               with:
-                  node-version: 18
+                  node-version: 22
                   cache: 'yarn'
             - run: yarn set version 4.x
 
@@ -73,8 +74,5 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install chromium
 
-            - name: Build application
-              run: yarn build --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-
-            - name: Run tests
+            - name: Build and run tests
               run: yarn turbo playwright-test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

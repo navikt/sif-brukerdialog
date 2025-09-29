@@ -1,12 +1,15 @@
-import { Alert, Box, Link } from '@navikt/ds-react';
-import React from 'react';
-import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { Alert, Link, VStack } from '@navikt/ds-react';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold, getEndringsdato, getTillattEndringsperiode } from '@utils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../../i18n';
 import { getLenker } from '../../../lenker';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
@@ -17,8 +20,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,
-    getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    getArbeidstidStepInitialValues,
 } from './arbeidstidStepUtils';
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
@@ -33,6 +36,8 @@ export interface ArbeidstidFormValues {
 export interface ArbeidsaktivitetFormValues {
     endringer: ArbeidstidEndringMap;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
+    /** Gjelder for frilans, og er kun for å veileder bruker etter praksisendring mai 2025 */
+    mottarOmsorgsstønad?: YesOrNo;
 }
 
 export enum ArbeidstidFormFields {
@@ -43,7 +48,7 @@ interface Props {
     goBack?: () => void;
 }
 
-const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
+const ArbeidstidForm = ({ goBack }: Props) => {
     const stepId = StepId.ARBEIDSTID;
     const intl = useIntl();
     const {
@@ -76,12 +81,14 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
         setValues: (values: ArbeidstidFormValues) => void,
     ) => {
         const currentAktivitetValues = (values.arbeidsaktivitet || {})[arbeidsaktivitetKey];
+
         const newValues: ArbeidstidFormValues = {
             arbeidsaktivitet: {
                 ...values.arbeidsaktivitet,
                 [arbeidsaktivitetKey]: {
                     arbeiderIPerioden: currentAktivitetValues?.arbeiderIPerioden,
                     endringer: arbeidstidEndringMap,
+                    mottarOmsorgsstønad: currentAktivitetValues?.mottarOmsorgsstønad,
                 },
             },
         };
@@ -114,20 +121,16 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
 
                 if (arbeidsaktiviteter.length === 0) {
                     return (
-                        <Box marginBlock={'10 0'}>
-                            <Alert variant="warning">
-                                <AppText
-                                    id="arbeidstidStep.ingenArbeidsaktiviteter"
-                                    values={{
-                                        Lenke: (txt: string) => (
-                                            <Link key="lenke" href={getLenker(intl.locale).beskjedOmFamilie}>
-                                                {txt}
-                                            </Link>
-                                        ),
-                                    }}
-                                />
-                            </Alert>
-                        </Box>
+                        <Alert variant="warning">
+                            <AppText
+                                id="arbeidstidStep.ingenArbeidsaktiviteter"
+                                values={{
+                                    Lenke: (txt: string) => (
+                                        <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                    ),
+                                }}
+                            />
+                        </Alert>
                     );
                 }
 
@@ -140,9 +143,10 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {arbeidsaktiviteter.map((arbeidsaktivitet) => (
-                                <Block margin="l" key={arbeidsaktivitet.key}>
+                            <VStack gap="4">
+                                {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart
+                                        key={arbeidsaktivitet.key}
                                         arbeidsaktivitet={arbeidsaktivitet}
                                         lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                         aktivitetFormValues={(values.arbeidsaktivitet || {})[arbeidsaktivitet.key]}
@@ -164,8 +168,8 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                                 arbeidsaktivitet.erUkjentArbeidsforhold === true)
                                         }
                                     />
-                                </Block>
-                            ))}
+                                ))}
+                            </VStack>
                         </Form>
                     </>
                 );

@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
-import { Heading, Panel } from '@navikt/ds-react';
+import { Box, Heading, Panel } from '@navikt/ds-react';
 import * as React from 'react';
+import { Accept } from 'react-dropzone';
 import { useIntl } from 'react-intl';
+import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getIntlFormErrorHandler } from '../../../src';
+import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
 import { YesOrNo } from '../../../src/types';
-import { getCheckedValidator, getRequiredFieldValidator } from '../../../src/validation';
-import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
 import { ValidationError } from '../../../src/validation/types';
-import FormBlock from '../../components/form-block/FormBlock';
 import { mockAnimalOptions, MockAnimals } from '../../mock-data';
 import ExampleListAndDialog from './ExampleListAndDialog';
-import { Accept } from 'react-dropzone';
-import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 
 enum Fields {
     checked = 'checked',
@@ -53,6 +52,7 @@ const Form = getTypedFormComponents<Fields, FieldValues, ValidationError>();
 
 const ExampleForm: React.FunctionComponent = () => {
     const intl = useIntl();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const accept: Accept = {
         'image/png': ['.png'],
         'text/html': ['.html', '.htm'],
@@ -70,29 +70,24 @@ const ExampleForm: React.FunctionComponent = () => {
                             onValidSubmit={() => console.log('submit')}
                             onCancel={() => console.log('cancel')}
                             formErrorHandler={getIntlFormErrorHandler(intl)}>
-                            <FormBlock>
-                                <Form.DatePicker
-                                    name={Fields.date}
-                                    label="Choose a date"
-                                    fromDate={undefined}
-                                    toDate={undefined}
-                                />
-                            </FormBlock>
-                            <FormBlock>
+                            <Box marginBlock="8">
+                                <Form.DatePicker name={Fields.date} label="Choose a date" />
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.Checkbox
                                     name={Fields.checked}
-                                    label={'Check this'}
-                                    description={'What'}
+                                    label="Check this"
+                                    description="What"
                                     validate={getCheckedValidator()}
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <ExampleListAndDialog
                                     name={Fields.list}
                                     labels={{ addLabel: 'Legg til', modalTitle: 'Some title', listTitle: 'Some items' }}
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.CheckboxGroup
                                     name={Fields.checkboxes}
                                     legend="Favourite animals"
@@ -104,45 +99,45 @@ const ExampleForm: React.FunctionComponent = () => {
                                     ]}
                                     validate={getCheckedValidator()}
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.CountrySelect name={Fields.country} label="Which country is the best for cats?" />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.TextField
                                     name={Fields.name}
                                     label="What is the name of the beast?"
                                     description="Yes, I do refer to the cat ..."
                                     width="l"
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.YesOrNoQuestion
                                     name={Fields.yesOrNo}
-                                    legend={'Do you want more questions?'}
+                                    legend="Do you want more questions?"
                                     labels={{ no: 'No', yes: 'Yes' }}
                                 />
-                            </FormBlock>
+                            </Box>
                             {values.yesOrNo === YesOrNo.YES && (
-                                <FormBlock margin="l">
+                                <Box marginBlock="8">
                                     <Panel border={true}>
                                         <Form.InputGroup name={Fields.group} legend="Some more questions then">
                                             Some content in this group
-                                            <FormBlock>
+                                            <Box marginBlock="8">
                                                 <Form.Textarea
                                                     name={Fields.description}
                                                     label="Please type some words"
                                                     maxLength={200}
                                                 />
-                                            </FormBlock>
-                                            <FormBlock>
+                                            </Box>
+                                            <Box marginBlock="8">
                                                 <Form.TimeInput label="What's the time?" name={Fields.time} />
-                                            </FormBlock>
+                                            </Box>
                                         </Form.InputGroup>
                                     </Panel>
-                                </FormBlock>
+                                </Box>
                             )}
-                            <FormBlock>
+                            <Box marginBlock="8">
                                 <Form.Select
                                     label="Choose ONE animal"
                                     name={Fields.select}
@@ -154,31 +149,31 @@ const ExampleForm: React.FunctionComponent = () => {
                                         </option>
                                     ))}
                                 </Form.Select>
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.DateRangePicker
                                     legend="Choose some daterange"
                                     fromInputProps={{ label: 'Daterange from', name: Fields.dateRange_from }}
                                     toInputProps={{ label: 'Daterange to', name: Fields.dateRange_to }}
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.RadioGroup
                                     legend="Choose ONE animal"
                                     name={Fields.radio}
                                     radios={mockAnimalOptions}
                                     validate={getCheckedValidator()}
                                 />
-                            </FormBlock>
-                            <FormBlock>
+                            </Box>
+                            <Box marginBlock="8">
                                 <Form.ConfirmationCheckbox
                                     name={Fields.confirmation}
                                     label="I confirm"
                                     validate={getCheckedValidator()}>
                                     Please confirm that you do not like cats
                                 </Form.ConfirmationCheckbox>
-                            </FormBlock>
-                            <FormikValidationErrorSummary wrapper={(summary) => <FormBlock>{summary}</FormBlock>} />
+                            </Box>
+                            <FormikValidationErrorSummary wrapper={(summary) => <Box marginBlock="8">{summary}</Box>} />
                         </Form.Form>
                     );
                 }}

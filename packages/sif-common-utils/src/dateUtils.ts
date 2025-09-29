@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import utc from 'dayjs/plugin/utc';
-import { DateRange, getWeeksInDateRange, ISODate } from '.';
+
+import { DateRange, getWeeksInDateRange, ISODate } from './';
 import { getDatesInDateRange, getMonthDateRange } from './dateRangeUtils';
 
 dayjs.extend(utc);
@@ -110,12 +111,69 @@ export const sortDates = (d1: Date, d2: Date) => {
     return d1.getTime() - d2.getTime();
 };
 
+/**
+ * Obs! Denne kan feile hvis fødselsnummeret er syntetisk. Det er også tilfeller hvor dato ikke
+ * er helt korrekt - men dette er sjelden.
+ * @param idnr fnr/dnr
+ * @returns fødselsdatoen eller null hvis fødselsnummeret er ugyldig eller ikke støttet
+ */
+export const getFødselsdatoFromIdNr = (idnr?: string): Date | undefined => {
+    if (idnr === undefined || !/^\d{11}$/.test(idnr)) {
+        return undefined;
+    }
+    let day = parseInt(idnr.substring(0, 2), 10);
+    let month = parseInt(idnr.substring(2, 4), 10);
+    const yearPart = parseInt(idnr.substring(4, 6), 10);
+    const individnummer = parseInt(idnr.substring(6, 9), 10);
+
+    // D-nummer: dag 41–71 → trekk 40
+    if (day >= 41 && day <= 71) {
+        day -= 40;
+    }
+
+    // NAV-syntetisk: måned 41–52 → trekk 40
+    if (month >= 41 && month <= 52) {
+        month -= 40;
+    }
+
+    // Skatt-syntetisk: måned 81–92 → trekk 80
+    if (month >= 81 && month <= 92) {
+        month -= 80;
+    }
+
+    // Valider dag/måned etter justering
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+        return undefined;
+    }
+
+    let year: number;
+
+    if (individnummer >= 0 && individnummer <= 499) {
+        year = 1900 + yearPart;
+    } else if (individnummer >= 500 && individnummer <= 749 && yearPart >= 54 && yearPart <= 99) {
+        year = 1800 + yearPart;
+    } else if (individnummer >= 900 && individnummer <= 999 && yearPart >= 40 && yearPart <= 99) {
+        year = 1900 + yearPart;
+    } else if (individnummer >= 500 && individnummer <= 999 && yearPart >= 0 && yearPart <= 39) {
+        year = 2000 + yearPart;
+    } else {
+        return undefined;
+    }
+
+    try {
+        return new Date(year, month - 1, day);
+    } catch {
+        return undefined;
+    }
+};
+
 export const dateUtils = {
     getDateToday: getDateToday(),
     dateToISODate,
     getDatesInMonth,
     getFirstOfTwoDates,
     getFirstWeekDayInMonth,
+    getFødselsdatoFromIdNr,
     getLastOfTwoDates,
     getISOWeekdayFromISODate,
     getLastWeekDayInMonth,

@@ -1,32 +1,30 @@
+import { ErrorSummary, VStack } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { useNavigate } from 'react-router-dom';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import OmSøkerOppsummering from './components/OmSøkerOppsummering';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import SøknadStep from '../../../søknad/SøknadStep';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ErrorSummary, VStack } from '@navikt/ds-react';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
+import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
+import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
-import KursOppsummering from './components/KursOppsummering';
-import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { AppText, useAppIntl } from '../../../i18n';
-import { useNavigate } from 'react-router-dom';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
+import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import OmBarnetSummary from './om-barnet-summary/OmBarnetSummary';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -42,14 +40,14 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const { text, intl } = useAppIntl();
+    const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn },
+        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const stepConfig = getSøknadStepConfig();
-    const step = getSøknadStepConfigForStep(stepId);
+    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
     const hasInvalidSteps = invalidSteps.length > 0;
@@ -67,7 +65,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, institusjoner, locale);
 
     if (!apiData) {
         return (
@@ -108,7 +106,7 @@ const OppsummeringStep = () => {
                 renderForm={() => {
                     const valgteDatoer = søknadsdata.kurs?.søknadsdatoer || [];
                     return (
-                        <div data-testid="oppsummering">
+                        <VStack gap="8" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -130,6 +128,7 @@ const OppsummeringStep = () => {
                                     <KursOppsummering
                                         kurs={apiData.kurs}
                                         ferieuttakIPerioden={apiData.ferieuttakIPerioden}
+                                        utenlandsoppholdIPerioden={apiData.utenlandsoppholdIPerioden}
                                         onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 
@@ -181,13 +180,11 @@ const OppsummeringStep = () => {
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>
-                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                                    </ErrorSummary>
-                                </FormBlock>
+                                <ErrorSummary ref={sendSøknadErrorSummary}>
+                                    <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                </ErrorSummary>
                             )}
-                        </div>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

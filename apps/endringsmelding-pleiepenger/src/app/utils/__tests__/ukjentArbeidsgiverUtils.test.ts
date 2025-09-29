@@ -1,4 +1,6 @@
-import { DateRange, dateToISODate, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { dateToISODate, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { getSøknadsperioderForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
 
 describe('ukjentArbeidsforholdUtils', () => {

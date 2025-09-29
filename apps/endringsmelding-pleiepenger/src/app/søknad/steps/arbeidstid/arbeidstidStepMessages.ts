@@ -20,7 +20,7 @@ const nb = {
     'arbeidstid.faktisk.mangler':
         'Du har ikke oppgitt hvor mye du jobber hos {navn} for alle uker i perioden med pleiepenger',
 
-    'arbeidsaktivitetFormPart.aktivitet.erEndret': 'Endret arbeidstid',
+    'arbeidsaktivitetFormPart.aktivitet.erEndret': 'Arbeidstid endret',
 
     'arbeidsaktivitetContent.tags.endretArbeid': 'Arbeidstid endret',
     'arbeidsaktivitetContent.tags.ferieFjernet': 'Ferie fjernet',
@@ -33,6 +33,11 @@ const nb = {
         'Hvis du ønsker å gjøre endringer etter {etterDato}, må du sende oss en melding via {skrivTilOssLink}.',
     'arbeidsaktivitetContent.utenforPeriode.førOgEtter':
         'Hvis du ønsker å gjøre endringer før {førDato} eller etter {etterDato}, må du sende oss en melding via {skrivTilOssLink}.',
+
+    'arbeidsaktivitetContent.omsorgsstønad.1':
+        'Når du får omsorgsstønad, regnes dette som arbeid som frilanser. Du må derfor registrere de timene du får omsorgsstønad for.',
+    'arbeidsaktivitetContent.omsorgsstønad.2':
+        'Hvis du jobber som frilanser i tillegg til å få omsorgsstønad, skal du oppgi samlet arbeidstid som frilanser og for omsorgsstønad.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

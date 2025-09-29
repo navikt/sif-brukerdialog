@@ -1,9 +1,9 @@
-import { BodyLong } from '@navikt/ds-react';
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { BodyShort, List } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
+
 import { AppText } from '../../../../../i18n';
+import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -25,24 +25,19 @@ const renderTidsrom = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     return null;
 };
 
-const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
-    kompakt ? (
-        <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
+const FrilansoppdragListe = ({ frilansoppdrag }: Props) => (
+    <FormLayout.Panel>
+        <List>
             {frilansoppdrag.map((oppdrag) => (
-                <li key={oppdrag.id}>{oppdrag.navn}</li>
+                <List.Item key={oppdrag.id}>
+                    <BodyShort as="div" weight="semibold">
+                        {oppdrag.navn}
+                    </BodyShort>
+                    <AppText id="frilansoppdragListe.oppdrag" values={{ tidsrom: renderTidsrom(oppdrag) }} />
+                </List.Item>
             ))}
-        </ul>
-    ) : (
-        <ul style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
-            {frilansoppdrag.map((oppdrag) => (
-                <li key={oppdrag.id}>
-                    <BodyLong size="large">{oppdrag.navn}</BodyLong>
-                    <Block padBottom="l">
-                        <AppText id="frilansoppdragListe.oppdrag" values={{ tidsrom: renderTidsrom(oppdrag) }} />
-                    </Block>
-                </li>
-            ))}
-        </ul>
-    );
+        </List>
+    </FormLayout.Panel>
+);
 
 export default FrilansoppdragListe;

@@ -1,5 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
+
 import bemUtils from '../../utils/bemUtils';
 
 interface Props {

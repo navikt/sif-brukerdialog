@@ -1,9 +1,10 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { arbeidsukerMockData } from '../../../mocks/data/app/arbeidsukerMockData';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
+import { arbeidsukerMockData } from '../../../../mock/data/app/arbeidsukerMockData';
 import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
-import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import EndreArbeidstidForm from './EndreArbeidstidForm';
 
 const meta: Meta<typeof EndreArbeidstidForm> = {

@@ -1,15 +1,13 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
-import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import { AppText, useAppIntl } from '../../i18n';
+import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 
 const OmSøknaden = () => {
     const { text } = useAppIntl();
     return (
-        <Block margin="xl">
+        <div>
             <Heading level="2" size="small" spacing={true}>
                 <AppText id="velkommenPage.merInformasjon.tittel" />
             </Heading>
@@ -29,7 +27,7 @@ const OmSøknaden = () => {
             <ExpandableInfo title={text('velkommenPage.personopplysninger.tittel')}>
                 <BehandlingAvPersonopplysningerContent />
             </ExpandableInfo>
-        </Block>
+        </div>
     );
 };
 

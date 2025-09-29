@@ -22,7 +22,7 @@ export const trimAxiosError = (error: any) => {
     try {
         const { config, ...rest } = error;
         return rest;
-    } catch (e) {
+    } catch {
         return 'invalid error object';
     }
 };

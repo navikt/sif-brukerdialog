@@ -9,6 +9,7 @@ import {
 } from '@types';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 

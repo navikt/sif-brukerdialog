@@ -1,4 +1,5 @@
 import React, { createContext, FunctionComponent, useContext, useState } from 'react';
+
 import { StepFormValues } from '../config/StepFormValues';
 import { StepId } from '../config/StepId';
 
@@ -9,7 +10,6 @@ interface StepFormValuesContextInterface {
     setStepFormValues: (stepId: StepId, formValues: StepFormValues) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const StepFormValuesContext = createContext<StepFormValuesContextInterface>(null!);
 
 export const useStepFormValuesContext = () => useContext(StepFormValuesContext);
@@ -18,7 +18,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }) => {
+export const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }: Props) => {
     const [values, setValues] = useState<StepFormValues>({});
     return (
         <StepFormValuesContext.Provider

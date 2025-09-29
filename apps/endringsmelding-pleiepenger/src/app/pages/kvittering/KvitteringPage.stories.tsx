@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import KvitteringPage from './KvitteringPage';
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
 
 const meta: Meta<typeof KvitteringPage> = {
     title: 'Pages/KvitteringPage',

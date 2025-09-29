@@ -1,8 +1,8 @@
+import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { BostedUtland } from '@navikt/sif-common-forms-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { getCountryName } from '@navikt/sif-common-formik-ds/src/utils/countryUtils';
-import { MedlemskapSøknadsdata } from '../../types/søknadsdata/MedlemskapSøknadsdata';
 import { BostedUtlandApiData, MedlemskapApiData } from '../../types/søknadApiData/SøknadApiData';
+import { MedlemskapSøknadsdata } from '../../types/søknadsdata/MedlemskapSøknadsdata';
 
 export const mapBostedUtlandToApiData = (opphold: BostedUtland, locale: string): BostedUtlandApiData => ({
     landnavn: getCountryName(opphold.landkode, locale),

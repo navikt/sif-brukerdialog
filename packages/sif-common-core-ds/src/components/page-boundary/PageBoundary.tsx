@@ -1,10 +1,11 @@
-import React from 'react';
 import './pageBoundary.scss';
+
+import React from 'react';
 
 interface Props {
     children: React.ReactNode;
 }
 
-const PageBoundary: React.FunctionComponent<Props> = ({ children }) => <div className="pageBoundary">{children}</div>;
+const PageBoundary = ({ children }: Props) => <div className="pageBoundary">{children}</div>;
 
 export default PageBoundary;

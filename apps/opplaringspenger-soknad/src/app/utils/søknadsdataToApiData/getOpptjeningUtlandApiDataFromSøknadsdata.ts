@@ -1,7 +1,7 @@
+import { getCountryName } from '@navikt/sif-common-formik-ds';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { OpptjeningIUtlandetApi } from '../../types/søknadApiData/SøknadApiData';
 import { OpptjeningUtlandSøknadsdata } from '../../types/søknadsdata/OpptjeningUtlandSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils';
-import { getCountryName } from '@navikt/sif-common-formik-ds';
 
 export const getOpptjeningUtlandApiDataFromSøknadsdata = (
     locale: string,

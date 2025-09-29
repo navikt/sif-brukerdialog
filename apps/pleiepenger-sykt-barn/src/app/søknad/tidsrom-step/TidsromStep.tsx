@@ -1,25 +1,24 @@
-import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Alert, Box } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { datepickerUtils, YesOrNo } from '@navikt/sif-common-formik-ds';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { getDate1YearAgo, getDate1YearFromNow, DateRange } from '@navikt/sif-common-utils';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { DateRange, getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
+import React from 'react';
+
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { AppText } from '../../i18n';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formValuesUtils';
 import {
     getPeriodeMaksDato,
@@ -70,56 +69,57 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
             stepId={StepID.TIDSROM}
             onValidFormSubmit={onValidSubmit}
             showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>
-            <SøknadFormComponents.DateRangePicker
-                legend={text('steg.tidsrom.hvilketTidsrom.spm')}
-                description={
-                    <ExpandableInfo title={text('steg.tidsrom.hvilketTidsrom.info.tittel')}>
-                        <p>
-                            <AppText id="steg.tidsrom.hvilketTidsrom.info.1" />
-                        </p>
-                        <p>
-                            <strong>
-                                <AppText id="steg.tidsrom.hvilketTidsrom.info.2" />
-                            </strong>
-                            <br />
-                            <AppText id="steg.tidsrom.hvilketTidsrom.info.3" />
-                        </p>
-                    </ExpandableInfo>
-                }
-                minDate={getPeriodeMinDato(barnetSøknadenGjelder?.fødselsdato)}
-                maxDate={getPeriodeMaksDato(values.periodeFra)}
-                fromInputProps={{
-                    label: text('steg.tidsrom.hvilketTidsrom.fom'),
-                    validate: validateFraDatoField,
-                    name: SøknadFormField.periodeFra,
-                }}
-                toInputProps={{
-                    label: text('steg.tidsrom.hvilketTidsrom.tom'),
-                    validate: validateTilDatoField,
-                    name: SøknadFormField.periodeTil,
-                    defaultMonth: periodeFra,
-                }}
-            />
-            {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
-                <Block padBottom="xl">
-                    <Alert variant="warning">
-                        <AppText id="step.tidsrom.søkerKunHelgedager.alert" />
-                    </Alert>
-                </Block>
-            )}
+            <FormLayout.Questions>
+                <SøknadFormComponents.DateRangePicker
+                    legend={text('steg.tidsrom.hvilketTidsrom.spm')}
+                    description={
+                        <Box marginBlock="0 4">
+                            <ExpandableInfo title={text('steg.tidsrom.hvilketTidsrom.info.tittel')}>
+                                <p>
+                                    <AppText id="steg.tidsrom.hvilketTidsrom.info.1" />
+                                </p>
+                                <p>
+                                    <strong>
+                                        <AppText id="steg.tidsrom.hvilketTidsrom.info.2" />
+                                    </strong>
+                                    <br />
+                                    <AppText id="steg.tidsrom.hvilketTidsrom.info.3" />
+                                </p>
+                            </ExpandableInfo>
+                        </Box>
+                    }
+                    minDate={getPeriodeMinDato(barnetSøknadenGjelder?.fødselsdato)}
+                    maxDate={getPeriodeMaksDato(values.periodeFra)}
+                    fromInputProps={{
+                        label: text('steg.tidsrom.hvilketTidsrom.fom'),
+                        validate: validateFraDatoField,
+                        name: SøknadFormField.periodeFra,
+                    }}
+                    toInputProps={{
+                        label: text('steg.tidsrom.hvilketTidsrom.tom'),
+                        validate: validateTilDatoField,
+                        name: SøknadFormField.periodeTil,
+                        defaultMonth: periodeFra,
+                    }}
+                />
+                {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
+                    <FormLayout.QuestionRelatedMessage>
+                        <Alert variant="warning">
+                            <AppText id="step.tidsrom.søkerKunHelgedager.alert" />
+                        </Alert>
+                    </FormLayout.QuestionRelatedMessage>
+                )}
 
-            {!søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
-                <>
-                    <Block margin="xl">
+                {!søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
+                    <>
                         <SøknadFormComponents.YesOrNoQuestion
                             legend={text('steg.tidsrom.iUtlandetIPerioden.spm')}
                             name={SøknadFormField.skalOppholdeSegIUtlandetIPerioden}
                             validate={getYesOrNoValidator()}
                         />
-                    </Block>
-                    {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                        <Block margin="m">
-                            <ResponsivePanel border={true}>
+
+                        {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
+                            <FormLayout.Panel bleedTop={true}>
                                 <UtenlandsoppholdListAndDialog<SøknadFormField>
                                     variant="utvidet"
                                     name={SøknadFormField.utenlandsoppholdIPerioden}
@@ -137,27 +137,24 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                                             : undefined
                                     }
                                 />
-                            </ResponsivePanel>
-                        </Block>
-                    )}
-                    {visInfoOmUtenlandsopphold && (
-                        <Block margin="l" padBottom="l">
-                            <Alert variant="info">
-                                <AppText id="steg.tidsrom.veileder.utenlandsopphold" />
-                            </Alert>
-                        </Block>
-                    )}
+                            </FormLayout.Panel>
+                        )}
+                        {visInfoOmUtenlandsopphold && (
+                            <FormLayout.QuestionRelatedMessage>
+                                <Alert variant="info">
+                                    <AppText id="steg.tidsrom.veileder.utenlandsopphold" />
+                                </Alert>
+                            </FormLayout.QuestionRelatedMessage>
+                        )}
 
-                    <Block margin="xl">
                         <SøknadFormComponents.YesOrNoQuestion
                             legend={text('steg.tidsrom.ferieuttakIPerioden.spm')}
                             name={SøknadFormField.skalTaUtFerieIPerioden}
                             validate={getYesOrNoValidator()}
                         />
-                    </Block>
-                    {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
-                        <Block margin="m" padBottom="l">
-                            <ResponsivePanel border={true}>
+
+                        {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
+                            <FormLayout.Panel bleedTop={true}>
                                 <FerieuttakListAndDialog<SøknadFormField>
                                     name={SøknadFormField.ferieuttakIPerioden}
                                     minDate={periode.from}
@@ -173,11 +170,11 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                                             : undefined
                                     }
                                 />
-                            </ResponsivePanel>
-                        </Block>
-                    )}
-                </>
-            )}
+                            </FormLayout.Panel>
+                        )}
+                    </>
+                )}
+            </FormLayout.Questions>
         </SøknadFormStep>
     );
 };

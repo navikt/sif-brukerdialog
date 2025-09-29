@@ -1,5 +1,391 @@
 # @navikt/sif-common-formik-ds
 
+## 2.5.8
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.32
+
+## 2.5.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
+## 2.5.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
+## 2.5.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-validation@1.0.5
+
+## 2.5.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.30
+
+## 2.5.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.29
+    - @navikt/sif-validation@1.0.5
+
+## 2.5.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.28
+    - @navikt/sif-validation@1.0.5
+
+## 2.5.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-utils@3.49.27
+    - @navikt/sif-validation@1.0.4
+
+## 2.5.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+## 2.4.38
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.26
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.37
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.25
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.24
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.23
+
+## 2.4.34
+
+### Patch Changes
+
+- Endre label på forrige steg knapp til Førre steg på nynorsk
+
+## 2.4.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.22
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.22
+
+## 2.4.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.21
+
+## 2.4.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.20
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.29
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.19
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.28
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+    - @navikt/sif-common-utils@3.49.18
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.18
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.18
+
+## 2.4.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.17
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.16
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.15
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.14
+    - @navikt/sif-validation@1.0.3
+
+## 2.4.21
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.13
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.12
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.11
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.18
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.10
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.17
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 2.4.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.9
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+    - @navikt/sif-common-utils@3.49.8
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.8
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.7
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.6
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.10
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.4.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-validation@1.0.2
+
+## 2.4.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.4
+    - @navikt/sif-validation@1.0.1
+
+## 2.4.6
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-utils@3.49.3
+    - @navikt/sif-validation@1.0.0
+
+## 2.4.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.3
+    - @navikt/sif-validation@1.0.0
+
+## 2.4.4
+
+### Patch Changes
+
+- Fjerne crossorigin for å fikse vergic cors issue
+
+## 2.4.3
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+- Updated dependencies [3e4c469]
+    - @navikt/sif-common-utils@3.49.2
+    - @navikt/sif-validation@1.0.0
+
+## 2.4.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+- Updated dependencies [346e74d]
+    - @navikt/sif-common-utils@3.49.1
+
 ## 2.4.1
 
 ### Patch Changes
@@ -52,7 +438,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN
@@ -329,7 +714,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss
@@ -930,7 +1314,6 @@
 - 41d0a03c: Oppdatere til versjon 5 av designsystemet aksel. Breaking change på grunn av props som er endret på komponenter som bruker modal dialog.
 
     # Props som er fjernet
-
     - shouldCloseOnOverlayClick. Denne finnes ikke lenger i Aksel Modal. Dette gjelder:
       -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndInfo.tsx
       -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndList.tsx

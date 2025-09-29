@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { Alert, BodyLong, Button, Modal, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, Modal, VStack } from '@navikt/ds-react';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuid } from 'uuid';
@@ -147,35 +147,33 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </Modal.Body>
                 </Modal>
             ) : null}
+
             <SkjemagruppeQuestion
                 ref={fieldsetRef}
                 legend={labels.listTitle}
+                hideLegend={labels.hideListTitle}
                 error={error}
                 tabIndex={-1}
                 description={labels.description}
                 className="modalFormAndListFieldset">
-                {items.length > 0 && (
-                    <div className="modalFormAndList__listWrapper">
-                        {listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}
-                    </div>
-                )}
-                {items.length === 0 && labels.emptyListText && (
-                    <div style={{ marginTop: labels.listTitle ? '1rem' : 'none', paddingBottom: '.5rem' }}>
-                        <Alert variant="info">{labels.emptyListText}</Alert>
-                    </div>
-                )}
-                {(maxItems === undefined || maxItems > items.length) && (
-                    <div style={{ marginTop: '1rem' }} className={'modalFormAndList__addButton'}>
-                        <Button
-                            ref={addButtonRef}
-                            type="button"
-                            onClick={() => setModalState({ ...modalState, isVisible: true })}
-                            size="small"
-                            variant="secondary">
-                            {labels.addLabel}
-                        </Button>
-                    </div>
-                )}
+                <VStack gap="4">
+                    {items.length > 0 && (
+                        <div>{listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}</div>
+                    )}
+                    {items.length === 0 && labels.emptyListText && <Alert variant="info">{labels.emptyListText}</Alert>}
+                    {(maxItems === undefined || maxItems > items.length) && (
+                        <Box marginBlock={items.length !== 0 ? '0' : '2 0'}>
+                            <Button
+                                ref={addButtonRef}
+                                type="button"
+                                onClick={() => setModalState({ ...modalState, isVisible: true })}
+                                size="small"
+                                variant="secondary">
+                                {labels.addLabel}
+                            </Button>
+                        </Box>
+                    )}
+                </VStack>
             </SkjemagruppeQuestion>
 
             {confirmDelete && itemToDelete && (

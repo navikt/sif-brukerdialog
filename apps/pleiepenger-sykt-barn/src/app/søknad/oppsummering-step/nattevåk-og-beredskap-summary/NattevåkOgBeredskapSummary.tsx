@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../i18n';
 import { BeredskapApiData, NattevåkApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
@@ -17,7 +18,6 @@ const NattevågOgBeredskapSummary = ({ nattevåk, beredskap, onEdit }: Props) =>
                 <FormSummary.Heading level="2">
                     <AppText id="steg.oppsummering.nattevåkBeredskap.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -66,6 +66,11 @@ const NattevågOgBeredskapSummary = ({ nattevåk, beredskap, onEdit }: Props) =>
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

@@ -1,21 +1,22 @@
-import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { FormikDatepickerProps } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/FormikDatepicker';
+import {
+    datepickerUtils,
+    FormikDatepickerProps,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateNumberError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DateRange, getDateToday } from '@navikt/sif-common-utils';
+} from '@navikt/sif-validation';
 import dayjs from 'dayjs';
-import { useFraværIntl } from './fraværMessages';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
+
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
@@ -24,6 +25,7 @@ import {
     validateLessOrEqualTo,
     validateNotHelgedag,
 } from './fraværValidationUtils';
+import { useFraværIntl } from './i18n';
 import { FraværDag, FraværDagFormValues } from './types';
 
 export interface FraværDagFormLabels {
@@ -164,20 +166,18 @@ const FraværDagFormView = ({
                             submitButtonLabel="Ok"
                             showButtonArrows={false}
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, '@forms.fraværDagForm')}>
-                            {headerContent && <Block>{headerContent}</Block>}
+                            formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fraværDagForm')}>
+                            <FormLayout.Questions>
+                                {headerContent && <>{headerContent}</>}
 
-                            <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
+                                <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
 
-                            <FormBlock>
                                 <FraværTimerSelect
                                     name={FraværDagFormFields.timerArbeidsdag}
                                     validate={getRequiredFieldValidator()}
                                     label={formLabels.antallArbeidstimer}
                                     maksTid={maksArbeidstidPerDag}
                                 />
-                            </FormBlock>
-                            <FormBlock>
                                 <FraværTimerSelect
                                     name={FraværDagFormFields.timerFravær}
                                     validate={(value) => {
@@ -192,7 +192,7 @@ const FraværDagFormView = ({
                                     label={formLabels.timerFravær}
                                     maksTid={maksArbeidstidPerDag}
                                 />
-                            </FormBlock>
+                            </FormLayout.Questions>
                         </FraværDagForm.Form>
                     );
                 }}

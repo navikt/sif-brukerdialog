@@ -1,8 +1,9 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, dateRangeUtils, getWeeksInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 import { OpenDateRange } from '../../../types';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';

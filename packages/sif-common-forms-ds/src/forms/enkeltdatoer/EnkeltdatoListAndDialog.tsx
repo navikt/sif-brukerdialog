@@ -2,9 +2,10 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
+
 import EnkeltdatoForm from './EnkeltdatoForm';
 import EnkeltdatoList from './EnkeltdatoList';
 import { Enkeltdato } from './types';
@@ -14,7 +15,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     labels: ModalFormAndListLabels;
     minDate: Date;
     maxDate: Date;
-    labelRenderer?: (dato: Enkeltdato) => string;
+    labelRenderer?: (dato: Enkeltdato) => React.ReactNode;
     disabledDateRanges?: DateRange[];
 }
 

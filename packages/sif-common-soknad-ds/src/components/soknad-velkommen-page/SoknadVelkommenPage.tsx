@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
 import SoknadVelkommenGuide from './SoknadVelkommenGuide';
@@ -26,9 +27,9 @@ interface Props {
 const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, children }: Props) => {
     const { text } = useSoknadIntl();
     return (
-        <Page title={title}>
+        <Page title={title} className="soknad-velkommen-page">
             <VStack gap="8">
-                <VelkommenPageHeader title={title} />
+                <VelkommenPageHeader title={title} useStandard={true} />
 
                 <SoknadVelkommenGuide title={text('@soknad.velkommenGuide.tittel', { navn: guide.navn })}>
                     {guide.content}
@@ -36,7 +37,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
 
                 <div>{children}</div>
 
-                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
+                <SamtykkeForm onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
             </VStack>
         </Page>
     );

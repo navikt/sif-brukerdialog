@@ -2,6 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../../../i18n';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 
@@ -23,7 +24,6 @@ const LegeerklæringOppsummering = ({ vedlegg, legeerklæringSøknadsdata, onEdi
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.legeerklæring.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -39,6 +39,11 @@ const LegeerklæringOppsummering = ({ vedlegg, legeerklæringSøknadsdata, onEdi
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

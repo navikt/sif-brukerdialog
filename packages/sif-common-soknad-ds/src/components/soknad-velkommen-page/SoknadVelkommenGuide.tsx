@@ -1,4 +1,4 @@
-import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
+import { BodyLong, Box, GuidePanel, Heading } from '@navikt/ds-react';
 import React from 'react';
 
 interface Props {
@@ -6,12 +6,14 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SoknadVelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => (
+const SoknadVelkommenGuide = ({ title, children }: Props) => (
     <GuidePanel poster={true}>
-        <Heading level="2" size="medium" spacing={true}>
-            {title}
-        </Heading>
-        <BodyLong as="div">{children}</BodyLong>
+        <Box paddingBlock="2 0">
+            <Heading level="2" size="medium" spacing={true}>
+                {title}
+            </Heading>
+            <BodyLong as="div">{children}</BodyLong>
+        </Box>
     </GuidePanel>
 );
 

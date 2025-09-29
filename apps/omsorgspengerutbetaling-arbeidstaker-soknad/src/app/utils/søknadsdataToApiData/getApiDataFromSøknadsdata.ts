@@ -1,5 +1,6 @@
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
@@ -21,17 +22,18 @@ const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Vedlegg[
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, dineBarn, deltBosted, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
     if (!id || !dineBarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
         return undefined;
     }
-    const språk = 'nb';
+    const språk = locale;
 
     return {
         søkerNorskIdent,
         id,
-        språk,
+        språk: locale,
         bekreftelser: {
             harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
             harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,

@@ -1,4 +1,5 @@
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 export interface Props {

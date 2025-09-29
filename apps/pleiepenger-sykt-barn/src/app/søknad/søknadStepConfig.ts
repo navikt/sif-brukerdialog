@@ -1,8 +1,9 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { StepID } from '../types/StepID';
-import { skalBrukerSvareArbeidstid, skalBrukerSvarePåBeredskapOgNattevåk } from '../utils/stepUtils';
 import { getSøknadsperiodeFromFormValues } from '../utils/formValuesUtils';
+import { skalBrukerSvareArbeidstid, skalBrukerSvarePåBeredskapOgNattevåk } from '../utils/stepUtils';
 
 export const getSøknadSteps = (formValues?: SøknadFormValues): StepID[] => {
     const includeNattevåkAndBeredskap = skalBrukerSvarePåBeredskapOgNattevåk(formValues);

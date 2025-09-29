@@ -9,13 +9,15 @@
             "@sb/*": ["./src/storybook/*"]
         }
     },
-    "sourceMap": true,
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": [
-        "./src/app/**/*",
-        "./src/mocks/**/*",
-        "./e2e/playwright/**/*",
+        "./src/**/*",
+        "./mock/**/*",
         "./playwright-config.ts",
-        "./env.schema.ts"
+        "./env.schema.ts",
+        "./playwright/**/*.ts",
+        "./vite-env.d.ts",
+        "./tailwind.config.ts",
+        "./postcss.config.ts"
     ]
 }

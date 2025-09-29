@@ -1,15 +1,14 @@
-import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-utils';
+
+import { AppText } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import InfoOmEndring from './InfoOmEndring';
-import { AppText } from '../../../i18n';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -19,12 +18,7 @@ interface Props {
     søkerFremITid: boolean;
 }
 
-const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
-    arbeidIPeriode,
-    periode,
-    normalarbeidstid,
-    søkerFremITid,
-}) => {
+const ArbeidstidSelvstendig = ({ arbeidIPeriode, periode, normalarbeidstid, søkerFremITid }: Props) => {
     const appIntl = useAppIntl();
 
     const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
@@ -53,9 +47,8 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
                             <AppText id="arbeidIPeriode.redusert.info.tekst" />
                         </p>
                     )}
-                    <Block margin="m">
-                        <InfoOmEndring arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG} />
-                    </Block>
+
+                    <InfoOmEndring arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG} />
                 </>
             }
         />

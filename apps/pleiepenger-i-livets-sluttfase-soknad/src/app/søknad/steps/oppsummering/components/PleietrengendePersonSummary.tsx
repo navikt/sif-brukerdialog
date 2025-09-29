@@ -4,6 +4,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { F√∏dselsnummerSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../i18n';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/s√∏knadApiData/S√∏knadApiData';
 
@@ -21,7 +22,6 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS√
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.pleietrengende.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -84,6 +84,11 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS√
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

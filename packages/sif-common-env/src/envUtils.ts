@@ -1,4 +1,5 @@
 import {
+    BaseEnv,
     CommonEnv,
     EnvKey,
     K9SakInnsynBrowserEnv,
@@ -35,8 +36,22 @@ export const getMaybeEnv = (key: EnvKey | string): string | undefined => {
     return env;
 };
 
+export const getMaybeBoolEnv = (key: EnvKey | string): boolean => {
+    const env = getMaybeEnv(key) as any;
+    return env === 'true' || env === true;
+};
+
 export const isDevMode = () => getMaybeEnv('APP_VERSION') === 'dev';
 export const isProd = () => getMaybeEnv('APP_VERSION') === 'prod';
+
+export const getBaseEnv = (): BaseEnv => {
+    return {
+        [EnvKey.ENV]: getRequiredEnv(EnvKey.ENV),
+        [EnvKey.APP_VERSION]: getRequiredEnv(EnvKey.APP_VERSION),
+        [EnvKey.PUBLIC_PATH]: getRequiredEnv(EnvKey.PUBLIC_PATH),
+        [EnvKey.GITHUB_REF_NAME]: getRequiredEnv(EnvKey.GITHUB_REF_NAME),
+    };
+};
 
 export const getCommonEnv = (): CommonEnv => {
     return {
@@ -51,6 +66,7 @@ export const getCommonEnv = (): CommonEnv => {
         [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: getRequiredEnv(EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY),
         [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID),
         [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_DATASET),
+        [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: getMaybeEnv(EnvKey.SIF_PUBLIC_FEATURE_NYNORSK) === 'on' ? 'on' : 'off',
         [EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: getRequiredEnv(
             EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
         ),

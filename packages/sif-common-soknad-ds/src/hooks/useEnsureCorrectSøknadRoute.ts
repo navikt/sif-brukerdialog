@@ -1,6 +1,6 @@
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { usePrevious } from '@navikt/sif-common-hooks';
 
 const isRouteAvailable = (route: string, availableRoutes: string[], welcomeRoute: string): boolean => {
     return route === welcomeRoute || availableRoutes.some((r) => r === route);

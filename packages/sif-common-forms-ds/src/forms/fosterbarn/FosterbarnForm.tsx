@@ -1,17 +1,16 @@
-import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { guid } from '@navikt/sif-common-utils';
 import {
     getFødselsnummerValidator,
     getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { guid } from '@navikt/sif-common-utils';
-import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';
+} from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
+import { FosterbarnMessageKeys, useFosterbarnIntl } from './i18n';
 import { Fosterbarn, isFosterbarn } from './types';
 
 interface FosterbarnFormText {
@@ -84,16 +83,16 @@ const FosterbarnForm = ({
                 renderForm={() => (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.fosterbarnForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fosterbarnForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
-                        <Form.TextField
-                            name={FosterbarnFormField.navn}
-                            label={txt.form_navn_label}
-                            validate={getStringValidator({ required: true })}
-                        />
+                        <FormLayout.Questions>
+                            <Form.TextField
+                                name={FosterbarnFormField.navn}
+                                label={txt.form_navn_label}
+                                validate={getStringValidator({ required: true })}
+                            />
 
-                        <FormBlock>
                             <Form.TextField
                                 name={FosterbarnFormField.fødselsnummer}
                                 label={txt.form_fødselsnummer_label}
@@ -107,7 +106,7 @@ const FosterbarnForm = ({
                                 inputMode="numeric"
                                 maxLength={11}
                             />
-                        </FormBlock>
+                        </FormLayout.Questions>
                     </Form.Form>
                 )}
             />

@@ -1,14 +1,15 @@
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import './dineBarn.css';
+
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -16,11 +17,10 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DineBarnForm from './DineBarnForm';
 import {
-    getDineBarnStepInitialValues,
     getDineBarnSøknadsdataFromFormValues,
+    getDineBarnStepInitialValues,
     kanFortsetteFraDineBarnStep,
 } from './dineBarnStepUtils';
-import './dineBarn.css';
 
 export enum DineBarnFormFields {
     andreBarn = 'andreBarn',

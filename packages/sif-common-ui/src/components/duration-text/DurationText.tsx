@@ -1,8 +1,9 @@
-import { ReactElement } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
-import { durationTextMessages } from './durationText.messages';
+import { ReactElement } from 'react';
+import { IntlShape, useIntl } from 'react-intl';
+
+import { durationTextMessages_nb } from './i18n/nb';
 
 interface DurationTextProps {
     duration: Partial<Duration>;
@@ -11,7 +12,7 @@ interface DurationTextProps {
     type?: 'digital' | 'decimal' | 'standard';
 }
 
-type durationTextKeys = keyof typeof durationTextMessages.nb;
+type durationTextKeys = keyof typeof durationTextMessages_nb;
 
 const getHoursString = (intl: IntlShape, hours: string, fullText?: boolean): string => {
     const key: durationTextKeys = fullText ? '@ui.durationText.full.hours' : '@ui.durationText.hours';

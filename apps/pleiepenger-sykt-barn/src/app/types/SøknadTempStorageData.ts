@@ -1,12 +1,12 @@
-import { StepID } from './StepID';
+import { FeatureToggles } from '../utils/featureToggleUtils';
 import { SøknadFormValues } from './søknad-form-values/SøknadFormValues';
-
-export const MELLOMLAGRING_VERSION = '14.0.1';
+import { StepID } from './StepID';
 
 export interface MellomlagringMetadata {
     version: string;
     lastStepID?: StepID;
     updatedTimestemp: string;
+    featureToggles: FeatureToggles;
 }
 
 export interface SøknadTempStorageData {

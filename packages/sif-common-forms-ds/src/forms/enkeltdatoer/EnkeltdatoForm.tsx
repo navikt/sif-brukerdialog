@@ -1,13 +1,17 @@
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { DateRange } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, ValidateDateError } from '@navikt/sif-validation';
 import { useIntl } from 'react-intl';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { getDateRangeValidator, ValidateDateError } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import enkeltdatoUtils from './enkeltdatoUtils';
+import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './i18n';
 import { Enkeltdato, EnkeltdatoFormValues } from './types';
-import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './enkeltdatoMessages';
-import { DateRange } from '@navikt/sif-common-utils';
 
 export interface EnkeltdatoerFormLabels {
     enkeltdato: string;
@@ -87,7 +91,7 @@ const EnkeltdatoForm = ({
                     return (
                         <Form.Form
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, '@forms.enkeltdato.form')}
+                            formErrorHandler={getIntlFormErrorHandler(intl, '@forms.enkeltdato.form')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
                             <Form.DatePicker

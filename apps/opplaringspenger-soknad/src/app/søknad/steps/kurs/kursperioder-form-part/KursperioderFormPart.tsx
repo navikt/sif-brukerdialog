@@ -1,11 +1,11 @@
-import KursperiodeQuestions from './KursperiodeQuestions';
-import { BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
-import { FieldArray, useFormikContext } from 'formik';
-import { KursFormValues } from '../KursStep';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { FieldArray, useFormikContext } from 'formik';
 import { AppText } from '../../../../i18n';
+import { KursFormValues } from '../KursStep';
+import KursperiodeQuestions from './KursperiodeQuestions';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -22,9 +22,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                 <Heading level="2" size="xsmall">
                     <AppText id="steg.kurs.kursperioder.tittel" />
                 </Heading>
-                <BodyShort className="navds-form-field__description">
-                    <AppText id="steg.kurs.kursperioder.tekst" />
-                </BodyShort>
+                <AppText id="steg.kurs.kursperioder.tekst" />
             </VStack>
             <FieldArray
                 name="kursperioder"

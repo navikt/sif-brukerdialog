@@ -13,6 +13,7 @@ export enum EnvKey {
     'SIF_PUBLIC_APPSTATUS_PROJECT_ID' = 'SIF_PUBLIC_APPSTATUS_PROJECT_ID',
     'SIF_PUBLIC_APPSTATUS_DATASET' = 'SIF_PUBLIC_APPSTATUS_DATASET',
     'SIF_PUBLIC_USE_AMPLITUDE' = 'SIF_PUBLIC_USE_AMPLITUDE',
+    'SIF_PUBLIC_FEATURE_NYNORSK' = 'SIF_PUBLIC_FEATURE_NYNORSK',
     'K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH' = 'K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH',
     'K9_BRUKERDIALOG_PROSESSERING_API_SCOPE' = 'K9_BRUKERDIALOG_PROSESSERING_API_SCOPE',
     'K9_BRUKERDIALOG_PROSESSERING_API_URL' = 'K9_BRUKERDIALOG_PROSESSERING_API_URL',
@@ -30,23 +31,28 @@ export enum EnvKey {
  * ZOD schemas
  */
 
-export const commonEnvSchema = z.object({
+export const baseEnvSchema = z.object({
     [EnvKey.ENV]: z.string(), //.min(1),
     [EnvKey.APP_VERSION]: z.string().min(1),
     [EnvKey.PUBLIC_PATH]: z.string().min(1),
     [EnvKey.GITHUB_REF_NAME]: z.string().min(1),
+});
+
+export const commonEnvSchema = baseEnvSchema.extend({
     [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_DEKORATOR_URL]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_LOGIN_URL]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_MINSIDE_URL]: z.string().min(1),
+    [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: z.enum(['on', 'off']).optional(),
     [EnvKey.SIF_PUBLIC_USE_AMPLITUDE]: z.string().optional(),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string().min(1),
 });
 
+export type BaseEnv = z.infer<typeof baseEnvSchema>;
 export type CommonEnv = z.infer<typeof commonEnvSchema>;
 
 /**

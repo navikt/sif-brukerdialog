@@ -1,19 +1,23 @@
 import { Tabs, VStack } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-validation';
+import { flatten } from 'flat';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { flatten } from 'flat';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import { utenlandskNæringMessages } from '../i18n';
 import { UtenlandskNæring } from '../types';
 import UtenlandskNæringForm, { UtenlandskNæringFormErrors } from '../UtenlandskNæringForm';
 import UtenlandskNæringListAndDialog from '../UtenlandskNæringListAndDialog';
-import { utenlandskNæringMessages } from '../utenlandskNæringMessages';
 
 enum FormField {
     'utenlandskNæring' = 'utenlandskNæring',
@@ -48,7 +52,7 @@ const UtenlandskNæringExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <UtenlandskNæringListAndDialog
                                         name={FormField.utenlandskNæring}
                                         validate={getListValidator({ required: true })}
@@ -82,7 +86,7 @@ const UtenlandskNæringExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(UtenlandskNæringFormErrors)}
-                        formName={'UtenlandskNæring'}
+                        formName="UtenlandskNæring"
                         intlMessages={utenlandskNæringMessages}
                     />
                 </Tabs.Panel>

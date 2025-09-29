@@ -1,37 +1,36 @@
-import { useCallback, useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { BodyLong } from '@navikt/ds-react';
 import {
     DateRange,
     FormikValuesObserver,
+    getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
-import FormSection from '../../../components/form-section/FormSection';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useCallback, useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { FraværMap } from '../../../types/FraværTypes';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { ArbeidforholdSøknadsdata } from '../../../types/søknadsdata/SituasjonSøknadsdata';
+import { StepId } from '../../../types/StepId';
 import {
     getAlleFraværDager,
     getAlleFraværDagerFromSøknadsdata,
     getAlleFraværPerioder,
     getAlleFraværPerioderFromSøknadsdata,
-    getTidsromFromÅrstall,
     getÅrstallFromFravær,
+    getTidsromFromÅrstall,
 } from '../../../utils/fraværUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
@@ -39,10 +38,10 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import ArbeidsforholdFravær from './form-parts/ArbeidsforholdFravær';
+import ArbeidsforholdFraværSpørsmål from './form-parts/ArbeidsforholdFraværSpørsmål';
 import {
-    getFraværStepInitialValues,
     getFraværSøknadsdataFromFormValues,
+    getFraværStepInitialValues,
     getOrganisasjonsnummerKey,
 } from './fraværStepUtils';
 
@@ -166,79 +165,85 @@ const FraværStep: React.FC = () => {
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <FormBlock>
-                                    <SifGuidePanel>
-                                        <AppText id={'step.fravær.info.1'} />
-                                        <Block margin={'m'}>
-                                            <AppText
-                                                id={'step.fravær.info.2'}
-                                                values={{
-                                                    strong: (msg): React.ReactNode => <strong>{msg}</strong>,
-                                                }}
-                                            />
-                                        </Block>
-                                    </SifGuidePanel>
-                                </FormBlock>
-                                {arbeidsforholdliste && arbeidsforholdliste.length > 0 && (
-                                    <FormBlock margin="xxl">
-                                        {arbeidsforholdliste.map((forhold: ArbeidforholdSøknadsdata) => {
-                                            return (
-                                                <FormBlock
-                                                    margin="l"
-                                                    key={forhold.organisasjonsnummer}
-                                                    data-testid="arbeidsforhold-liste">
-                                                    <FormSection
-                                                        titleTag="h2"
-                                                        title={forhold.navn || forhold.organisasjonsnummer}
-                                                        titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
-                                                        <ArbeidsforholdFravær
-                                                            fravær={
-                                                                fravær[
-                                                                    getOrganisasjonsnummerKey(
-                                                                        forhold.organisasjonsnummer,
-                                                                    )
-                                                                ]
-                                                            }
-                                                            parentFieldName={`${
-                                                                FraværStepFormFields.fravær
-                                                            }.${getOrganisasjonsnummerKey(
-                                                                forhold.organisasjonsnummer,
-                                                            )}`}
-                                                            minDateForFravær={minDateForFravær}
-                                                            maxDateForFravær={maxDateForFravær}
-                                                            årstall={årstall}
-                                                            arbeidsgiverNavn={forhold.navn}
-                                                        />
-                                                    </FormSection>
-                                                </FormBlock>
-                                            );
-                                        })}
-                                    </FormBlock>
-                                )}
-
-                                <FormSection title={text('step.fravær.utenlandsopphold.tittel')}>
-                                    <YesOrNoQuestion
-                                        name={FraværStepFormFields.perioderHarVærtIUtlandet}
-                                        legend={text('step.fravær.værtIUtlandet.spm')}
-                                        validate={getYesOrNoValidator()}
-                                        data-testid="utenlandsopphold"
-                                    />
-
-                                    {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
-                                        <FormBlock margin="m">
-                                            <BostedUtlandListAndDialog<FraværStepFormFields>
-                                                name={FraværStepFormFields.perioderUtenlandsopphold}
-                                                minDate={getDate1YearAgo()}
-                                                maxDate={getDateToday()}
-                                                labels={{
-                                                    addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
-                                                    modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),
-                                                }}
-                                                validate={getListValidator({ required: true })}
-                                            />
-                                        </FormBlock>
+                                <FormLayout.Guide>
+                                    <BodyLong>
+                                        <AppText id="step.fravær.info.1" />
+                                    </BodyLong>
+                                    <BodyLong>
+                                        <AppText
+                                            id="step.fravær.info.2"
+                                            values={{
+                                                strong: (msg): React.ReactNode => <strong>{msg}</strong>,
+                                            }}
+                                        />
+                                    </BodyLong>
+                                </FormLayout.Guide>
+                                <FormLayout.Sections>
+                                    {arbeidsforholdliste && arbeidsforholdliste.length > 0 && (
+                                        <>
+                                            {arbeidsforholdliste.map((forhold: ArbeidforholdSøknadsdata) => {
+                                                return (
+                                                    <div
+                                                        key={forhold.organisasjonsnummer}
+                                                        data-testid="arbeidsforhold-liste">
+                                                        <FormLayout.Section
+                                                            title={forhold.navn || forhold.organisasjonsnummer}
+                                                            titleIcon={
+                                                                <Office1 role="presentation" aria-hidden={true} />
+                                                            }>
+                                                            <ArbeidsforholdFraværSpørsmål
+                                                                fravær={
+                                                                    fravær[
+                                                                        getOrganisasjonsnummerKey(
+                                                                            forhold.organisasjonsnummer,
+                                                                        )
+                                                                    ]
+                                                                }
+                                                                parentFieldName={`${
+                                                                    FraværStepFormFields.fravær
+                                                                }.${getOrganisasjonsnummerKey(
+                                                                    forhold.organisasjonsnummer,
+                                                                )}`}
+                                                                minDateForFravær={minDateForFravær}
+                                                                maxDateForFravær={maxDateForFravær}
+                                                                årstall={årstall}
+                                                                arbeidsgiverNavn={forhold.navn}
+                                                            />
+                                                        </FormLayout.Section>
+                                                    </div>
+                                                );
+                                            })}
+                                        </>
                                     )}
-                                </FormSection>
+
+                                    <FormLayout.Section title={text('step.fravær.utenlandsopphold.tittel')}>
+                                        <FormLayout.Questions>
+                                            <YesOrNoQuestion
+                                                name={FraværStepFormFields.perioderHarVærtIUtlandet}
+                                                legend={text('step.fravær.værtIUtlandet.spm')}
+                                                validate={getYesOrNoValidator()}
+                                                data-testid="utenlandsopphold"
+                                            />
+
+                                            {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
+                                                <FormLayout.Panel bleedTop={true}>
+                                                    <BostedUtlandListAndDialog<FraværStepFormFields>
+                                                        name={FraværStepFormFields.perioderUtenlandsopphold}
+                                                        minDate={getDate1YearAgo()}
+                                                        maxDate={getDateToday()}
+                                                        labels={{
+                                                            addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
+                                                            modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),
+                                                            listTitle: text('step.fravær.værtIUtlandet.listTitle'),
+                                                            hideListTitle: false,
+                                                        }}
+                                                        validate={getListValidator({ required: true })}
+                                                    />
+                                                </FormLayout.Panel>
+                                            )}
+                                        </FormLayout.Questions>
+                                    </FormLayout.Section>
+                                </FormLayout.Sections>
                             </Form>
                         </>
                     );

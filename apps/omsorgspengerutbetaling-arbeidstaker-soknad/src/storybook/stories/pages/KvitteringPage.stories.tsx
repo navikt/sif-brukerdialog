@@ -1,10 +1,9 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
+import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
-import { kvitteringInfoStorybookMock, søkerStorybookMock } from '../../mock-data';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 
 export default {
@@ -13,9 +12,7 @@ export default {
     decorators: [withIntl, withRouterProvider, withAmplitudeProvider, withSøknadContextProvider],
 } as Meta<typeof KvitteringPage>;
 
-const Template: StoryFn<typeof KvitteringPage> = () => (
-    <KvitteringPage søker={søkerStorybookMock} kvitteringInfo={kvitteringInfoStorybookMock} />
-);
+const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage />;
 
 export const Default = Template.bind({});
 

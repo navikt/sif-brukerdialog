@@ -1,8 +1,8 @@
-import Process from './Process';
-import type { Meta, StoryObj } from '@storybook/react';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
+import Process from './Process';
 import ProcessStep from './ProcessStep';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof Process> = {
     component: Process,
     title: 'Components/Process',

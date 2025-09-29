@@ -1,9 +1,9 @@
-import { Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box, Link } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 
@@ -14,7 +14,7 @@ const IkkeTilgangPage = () => {
             className="ikkeTilgangPage"
             title={text('application.title')}
             topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
-            <Block margin="xxl">
+            <Box marginBlock="10">
                 <SifGuidePanel poster={true}>
                     <p>
                         <AppText id="page.ikkeTilgang.tekst" />
@@ -23,7 +23,7 @@ const IkkeTilgangPage = () => {
                         <AppText id="page.ikkeTilgang.lastNed" />
                     </Link>
                 </SifGuidePanel>
-            </Block>
+            </Box>
         </Page>
     );
 };

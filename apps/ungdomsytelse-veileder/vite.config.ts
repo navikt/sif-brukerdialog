@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
@@ -9,20 +8,24 @@ export default defineConfig({
         react({
             include: '**/*.{tsx}',
         }),
-        checker({ typescript: true }),
+        // TypeScript checking disabled in Vite to avoid errors from external generated files
+        // Use 'yarn check:types' for TypeScript validation
+        checker({ typescript: false }),
+        {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
     ],
     server: {
-        port: 8080,
+        hmr: {
+            port: 3005,
+        },
+        port: 8088,
     },
     resolve: {},
     build: {
         sourcemap: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
     },
 });

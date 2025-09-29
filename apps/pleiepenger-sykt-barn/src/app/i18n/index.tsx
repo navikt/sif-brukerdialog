@@ -1,4 +1,3 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
@@ -11,40 +10,49 @@ import {
     utenlandsoppholdMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 const libMessages = {
     nb: {
+        ...bostedUtlandMessages.nb,
+        ...bostedUtlandMessages.nb,
         ...commonMessages.nb,
-        ...uiMessages.nb,
-        ...soknadMessages.nb,
-        ...bostedUtlandMessages.nb,
-        ...utenlandsoppholdMessages.nb,
-        ...bostedUtlandMessages.nb,
-        ...virksomhetMessages.nb,
-        ...tidsperiodeMessages.nb,
         ...ferieuttakMessages.nb,
-        ...opptjeningUtlandMessages.nb,
-        ...utenlandskNæringMessages.nb,
         ...medlemskapFormMessages.nb,
+        ...opptjeningUtlandMessages.nb,
+        ...soknadMessages.nb,
+        ...tidsperiodeMessages.nb,
+        ...uiMessages.nb,
+        ...utenlandskNæringMessages.nb,
+        ...utenlandsoppholdMessages.nb,
+        ...virksomhetMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
+        ...bostedUtlandMessages.nn,
+        ...bostedUtlandMessages.nn,
         ...commonMessages.nn,
-        ...uiMessages.nn,
-        ...soknadMessages.nn,
-        ...bostedUtlandMessages.nn,
-        ...utenlandsoppholdMessages.nn,
-        ...bostedUtlandMessages.nn,
-        ...virksomhetMessages.nn,
-        ...tidsperiodeMessages.nn,
         ...ferieuttakMessages.nn,
+        ...medlemskapFormMessages.nn,
         ...opptjeningUtlandMessages.nn,
+        ...soknadMessages.nn,
+        ...tidsperiodeMessages.nn,
+        ...uiMessages.nn,
         ...utenlandskNæringMessages.nn,
+        ...utenlandsoppholdMessages.nn,
+        ...virksomhetMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
+
+export const appMessages = { nb: appMessages_nb, nn: appMessages_nn };
 
 const nb = {
     ...libMessages.nb,
@@ -52,7 +60,8 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    ...libMessages.nn,
+    ...appMessages.nn,
 };
 
 export type AppMessageKeys = keyof typeof nb;
@@ -66,9 +75,6 @@ export type AppIntlShape = ReturnType<typeof useAppIntl>;
 
 export const AppText = (props: { id: AppMessageKeys; values?: any }) => {
     return <FormattedMessage {...props} />;
-};
-export const AppHtml = (props: { id: AppMessageKeys; values?: any }) => {
-    return <FormattedHtmlMessage {...props} />;
 };
 
 export const applicationIntlMessages = {

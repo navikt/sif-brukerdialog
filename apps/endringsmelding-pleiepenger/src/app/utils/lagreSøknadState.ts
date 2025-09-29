@@ -1,4 +1,5 @@
 import { SøknadContextState } from '@types';
+
 import søknadStateEndpoint from '../api/endpoints/søknadStateEndpoint';
 
 export const lagreSøknadState = (state: SøknadContextState) => {

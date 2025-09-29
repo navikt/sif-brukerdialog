@@ -1,5 +1,6 @@
 import { PanelProps } from '@navikt/ds-react';
 import React from 'react';
+
 import ResponsivePanel from '../responsive-panel/ResponsivePanel';
 
 interface Props extends PanelProps {
@@ -7,7 +8,7 @@ interface Props extends PanelProps {
     children: React.ReactNode;
 }
 
-const ConditionalResponsivePanel: React.FunctionComponent<Props> = ({ usePanelLayout, children, ...rest }) => {
+const ConditionalResponsivePanel = ({ usePanelLayout, children, ...rest }: Props) => {
     return usePanelLayout ? <ResponsivePanel {...rest}>{children}</ResponsivePanel> : <>{children}</>;
 };
 

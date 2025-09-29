@@ -4,6 +4,7 @@ import { BarnType } from '@navikt/sif-common-forms-ds';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { ApiBarn } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
@@ -24,7 +25,6 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.dineBarn.tittel" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -94,6 +94,11 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

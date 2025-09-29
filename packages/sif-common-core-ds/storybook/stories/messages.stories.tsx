@@ -1,4 +1,4 @@
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { commonMessages } from '../../src/i18n/common.messages';
 import StoryWrapper from '../decorators/StoryWrapper';
@@ -15,11 +15,9 @@ export default {
 };
 
 const Template = () => (
-    <>
-        <Block margin="xxl" padBottom="l">
-            <MessagesPreview messages={commonMessages} showExplanation={false} />
-        </Block>
-    </>
+    <Box paddingBlock="8">
+        <MessagesPreview messages={commonMessages} showExplanation={false} />
+    </Box>
 );
 
 export const Default = Template.bind({});

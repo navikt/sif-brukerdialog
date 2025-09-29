@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Søker } from '@navikt/sif-common-api';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -8,15 +8,16 @@ import {
     K9Sak,
     RequestStatus,
     Sak,
-    Søker,
     SøknadContextState,
     SøknadInitialDataState,
     TimerEllerProsent,
 } from '@types';
 import { appSentryLogger } from '@utils';
+import { useState } from 'react';
+
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
-import { APP_VERSJON } from '../constants/APP_VERSJON';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
@@ -80,7 +81,7 @@ const prepInitialData = (
     const sak = getInitialSak();
 
     return {
-        versjon: APP_VERSJON,
+        versjon: MELLOMLAGRING_VERSJON,
         tillattEndringsperiode,
         søker,
         k9saker,

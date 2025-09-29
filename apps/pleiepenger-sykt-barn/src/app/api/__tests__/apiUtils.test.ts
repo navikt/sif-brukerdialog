@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import axios from 'axios';
-import { multipartConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 import { vi } from 'vitest';
+
+import { multipartConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {

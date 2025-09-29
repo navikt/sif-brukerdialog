@@ -1,16 +1,15 @@
-import { Heading } from '@navikt/ds-react';
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
+
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
+import { AppText } from '../../../../i18n';
 import {
     ArbeidIPeriodeApiData,
     ArbeidsforholdApiData,
     TidEnkeltdagApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
-import { AppText } from '../../../../i18n';
 
 interface Props {
     periode: DateRange;
@@ -30,9 +29,9 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
     });
 };
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPleie }) => {
+const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriode, dagerMedPleie }: Props) => {
     return (
-        <>
+        <VStack gap="8">
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                 arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
                 <p style={{ marginTop: 0 }}>
@@ -47,7 +46,7 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <Block margin="xl">
+                <VStack gap="8">
                     <Heading size="xsmall" level="4" spacing={true}>
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
@@ -56,9 +55,9 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
                         renderAsAccordion={false}
                         headingLevel="5"
                     />
-                </Block>
+                </VStack>
             )}
-        </>
+        </VStack>
     );
 };
 

@@ -1,6 +1,6 @@
+import './daySelector.css';
+
 import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
-import React, { useMemo, useState } from 'react';
-import { useIntl } from 'react-intl';
 import {
     DateRange,
     dateRangesCollide,
@@ -16,8 +16,9 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
+import { useMemo, useState } from 'react';
+
 import { useUiIntl } from '../../i18n/ui.messages';
-import './daySelector.css';
 
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(isoWeek);
@@ -37,14 +38,7 @@ const getMonthKey = (date: Date): string => {
 
 type SelectedDaysInMonths = { [monthAndYear: string]: Date[] };
 
-const DaySelector: React.FunctionComponent<Props> = ({
-    dateRange,
-    selectedDates = [],
-    onChange,
-    reverseOrder,
-    mode = 'calendar',
-}) => {
-    const { locale } = useIntl();
+const DaySelector = ({ dateRange, selectedDates = [], onChange, reverseOrder, mode = 'calendar' }: Props) => {
     const { text } = useUiIntl();
     const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
     const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
@@ -96,7 +90,6 @@ const DaySelector: React.FunctionComponent<Props> = ({
             <div className="daySelector__calendarWrapper">
                 <div className="daySelector__calendarContent">
                     <DatePicker.Standalone
-                        locale={locale as 'nb' | 'nn'}
                         onMonthChange={(month) => {
                             setCurrentMonth(month);
                         }}
@@ -113,12 +106,12 @@ const DaySelector: React.FunctionComponent<Props> = ({
                         onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
                     />
                     <div className="daySelector__tags">
-                        <VStack gap="2">
+                        <VStack gap="2" paddingBlock="6 0">
                             <BodyShort as="div" spacing={false} size="small">
                                 {text('@ui.daySelector.antallValgteDager')}
                             </BodyShort>
 
-                            <HStack gap={'2'} align={'center'} wrap={true}>
+                            <HStack gap="2" align="center" wrap={true}>
                                 {monthsWithSelectedDates.map((m, index) => {
                                     const antallValgteDager = selectedDaysInMonths[getMonthKey(m.from)].length;
                                     return (

@@ -1,7 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
-import StoryWrapper from '../../decorators/StoryWrapper';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import SifGuidePanel from '../../../src/components/sif-guide-panel/SifGuidePanel';
+import StoryWrapper from '../../decorators/StoryWrapper';
 
 export default {
     title: 'Component/SifGuidePanel',

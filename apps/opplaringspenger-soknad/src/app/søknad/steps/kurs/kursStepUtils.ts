@@ -1,26 +1,29 @@
-import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator, getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { datepickerUtils, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Enkeltdato, Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 import {
+    dateFormatter,
+    DateRange,
+    dateRangeUtils,
     getDate1YearFromNow,
     getDate3YearsAgo,
-    dateRangeUtils,
-    DateRange,
-    isDateInDateRanges,
     getDatesInDateRange,
+    getDatesInDateRanges,
+    isDateInDateRanges,
+    sortDateRange,
 } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { KursFormFields, KursFormValues } from './KursStep';
-import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
-import kursperiodeUtils from './kursperiodeUtils';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
+import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
 import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
-import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import kursperiodeUtils from './kursperiodeUtils';
+import { KursFormFields, KursFormValues } from './KursStep';
 
 dayjs.extend(isoWeek);
 
@@ -58,7 +61,7 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
 };
 
 export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
-    const { opplæringsinstitusjon, kursperioder: kursperioderValues, ferieuttak, skalTaUtFerieIPerioden } = values;
+    const { opplæringsinstitusjon, kursperioder: kursperioderValues } = values;
     if (!opplæringsinstitusjon || !kursperioderValues) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
@@ -72,7 +75,8 @@ export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursS
         reisedager: extractReisedagerSøknadsdata(values),
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
-        ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
+        ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
+        utenlandsopphold: extractUtenlandsoppholdIPeriodenSøknadsdata(values),
     };
 };
 
@@ -106,6 +110,13 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
             ferieuttak:
                 kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
                     ? kurs.ferieuttakIPerioden.ferieuttak
+                    : undefined,
+            skalOppholdeSegIUtlandetIPerioden: getYesOrNoFromBoolean(
+                kurs.utenlandsopphold?.skalOppholdeSegIUtlandetIPerioden,
+            ),
+            utenlandsoppholdIPerioden:
+                kurs.utenlandsopphold?.type === 'harUtenlandsopphold'
+                    ? kurs.utenlandsopphold.utenlandsopphold
                     : undefined,
         };
     }
@@ -154,6 +165,31 @@ export const extractFerieuttakIPeriodenSøknadsdata = ({
 
     return undefined;
 };
+export const extractUtenlandsoppholdIPeriodenSøknadsdata = ({
+    skalOppholdeSegIUtlandetIPerioden,
+    utenlandsoppholdIPerioden,
+}: Partial<KursFormValues>): UtenlandsoppholdIPeriodenSøknadsdata | undefined => {
+    if (
+        skalOppholdeSegIUtlandetIPerioden &&
+        skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES &&
+        utenlandsoppholdIPerioden
+    ) {
+        return {
+            type: 'harUtenlandsopphold',
+            skalOppholdeSegIUtlandetIPerioden: true,
+            utenlandsopphold: utenlandsoppholdIPerioden,
+        };
+    }
+
+    if (skalOppholdeSegIUtlandetIPerioden && skalOppholdeSegIUtlandetIPerioden === YesOrNo.NO) {
+        return {
+            type: 'harIkkeUtenlandsopphold',
+            skalOppholdeSegIUtlandetIPerioden: false,
+        };
+    }
+
+    return undefined;
+};
 
 export const extractReisedagerSøknadsdata = (values: KursFormValues): ReisedagerSøknadsdata => {
     if (values.reiserUtenforKursdager === YesOrNo.YES) {
@@ -177,12 +213,12 @@ export const extractReisedagerSøknadsdata = (values: KursFormValues): Reisedage
 };
 
 export const getDateRangesFromKursperiodeFormValues = (
-    kursperioderValues?: Partial<KursperiodeFormValues>[],
+    kursperioderValues?: Array<Partial<KursperiodeFormValues>>,
 ): DateRange[] => {
     if (!kursperioderValues) {
         return [];
     }
-    return kursperioderValues
+    const perioder = kursperioderValues
         .map((periode, index) => {
             try {
                 const kursperiode = kursperiodeUtils.mapFormValuesToKursperiode(
@@ -195,10 +231,11 @@ export const getDateRangesFromKursperiodeFormValues = (
             }
         })
         .filter((p) => p && p.from && p.to) as DateRange[];
+    return perioder.sort(sortDateRange);
 };
 
 export const getSøknadsperiodeFromKursperioderFormValues = (
-    kursperioderValues?: Partial<KursperiodeFormValues>[],
+    kursperioderValues?: Array<Partial<KursperiodeFormValues>>,
 ): DateRange | undefined => {
     const ranges = getDateRangesFromKursperiodeFormValues(kursperioderValues);
     if (ranges.length === 0) {
@@ -208,6 +245,10 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
         return ranges[0];
     }
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
+};
+
+export const getDatoerUtenforSøknadsperioder = (datoer: Date[], søknadsperioder: DateRange[]): Date[] => {
+    return datoer.filter((reisedag) => !isDateInDateRanges(reisedag, søknadsperioder));
 };
 
 export const erAlleReisedagerInnenforSøknadsperioder = (
@@ -224,8 +265,18 @@ export const getReisedagerValidator = (kursperioder: DateRange[]) => {
             return error;
         }
         /** Kontroller om datoer er innenfor søknadsperioder */
-        if (erAlleReisedagerInnenforSøknadsperioder(reisedager, kursperioder) === false) {
-            return 'reisedagUtenforKursperiode';
+        const reisedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(
+            reisedager.map((d) => d.dato),
+            kursperioder,
+        );
+        if (reisedagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'reisedagUtenforKursperiode',
+                values: {
+                    antallDager: reisedagerUtenforSøknadsperioder.length,
+                    dager: reisedagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
         }
         return undefined;
     };
@@ -245,8 +296,37 @@ export const getFerieperioderValidator = (kursperioder: DateRange[]) => {
             return listError;
         }
         /** Kontroller om ferieperioder er innenfor søknadsperioder */
-        if (erFerieInnenforSøknadsperioder(ferieperioder, kursperioder) === false) {
-            return 'ferieperiodeUtenforKursperiode';
+        const feriedager = getDatesInDateRanges(ferieperioder);
+        const feriedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(feriedager, kursperioder);
+        if (feriedagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'ferieperiodeUtenforKursperiode',
+                values: {
+                    antallDager: feriedagerUtenforSøknadsperioder.length,
+                    dager: feriedagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
+        }
+        return undefined;
+    };
+};
+export const getUtenlandsoppholdValidator = (kursperioder: DateRange[]) => {
+    return (utenlandsopphold: Utenlandsopphold[]) => {
+        const listError = getListValidator({ required: true })(utenlandsopphold);
+        if (listError) {
+            return listError;
+        }
+        /** Kontroller om utenlandsopphold er innenfor søknadsperioder */
+        const dager = getDatesInDateRanges(utenlandsopphold.map((u): DateRange => ({ from: u.fom, to: u.tom })));
+        const dagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(dager, kursperioder);
+        if (dagerUtenforSøknadsperioder.length > 0) {
+            return {
+                key: 'utenlandsoppholdUtenforKursperiode',
+                values: {
+                    antallDager: dagerUtenforSøknadsperioder.length,
+                    dager: dagerUtenforSøknadsperioder.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
         }
         return undefined;
     };

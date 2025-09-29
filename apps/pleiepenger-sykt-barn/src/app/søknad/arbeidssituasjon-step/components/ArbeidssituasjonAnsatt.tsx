@@ -1,20 +1,20 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import OfficeIconSvg from '../../../components/office-icon/OfficeIconSvg';
+import { AppText } from '../../../i18n';
 import {
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,
 } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { getFeatureToggles } from '../../../utils/featureToggleUtils';
 import AnsattNormalarbeidstidSpørsmål from './ansatt-spørsmål/AnsattNormalarbeidstidSpørsmål';
 import ErAnsattIArbeidsforholdSpørsmål from './ansatt-spørsmål/ErAnsattIArbeidsforholdSpørsmål';
 import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørsmål/SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål';
 import ArbeidssituasjonPanel from './arbeidssituasjon-panel/ArbeidssituasjonPanel';
-import { AppText } from '../../../i18n';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
@@ -22,7 +22,9 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldName, søknadsperiode }) => {
+const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperiode }: Props) => {
+    const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
+
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField =>
         `${parentFieldName}.${field}` as any;
 
@@ -43,37 +45,37 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                         />
                     )
                 }>
-                <FormBlock>
+                <FormLayout.Questions>
                     <ErAnsattIArbeidsforholdSpørsmål
                         fieldName={getFieldName(ArbeidsforholdFormField.erAnsatt)}
                         arbeidsforhold={arbeidsforhold}
                     />
-                </FormBlock>
 
-                {arbeidsforhold.erAnsatt !== undefined && (
-                    <FormBlock margin="l">
-                        {arbeidsforhold.erAnsatt === YesOrNo.NO && (
-                            <Block padBottom={arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO ? 'xl' : 'none'}>
-                                <Alert variant="info">
-                                    <AppText id="arbeidsforhold.ikkeAnsatt.info" />
-                                </Alert>
-                                <FormBlock>
-                                    <SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål
-                                        søknadsperiode={søknadsperiode}
-                                        arbeidsforhold={arbeidsforhold}
-                                        fieldName={getFieldName(ArbeidsforholdFormField.sluttetFørSøknadsperiode)}
-                                    />
-                                </FormBlock>
-                            </Block>
-                        )}
-                        {erFortsattAnsattEllerSluttetISøknadsperioden && (
-                            <AnsattNormalarbeidstidSpørsmål
-                                arbeidsforhold={arbeidsforhold}
-                                fieldName={getFieldName(ArbeidsforholdFormField.normalarbeidstid_TimerPerUke)}
-                            />
-                        )}
-                    </FormBlock>
-                )}
+                    {arbeidsforhold.erAnsatt !== undefined && (
+                        <>
+                            {arbeidsforhold.erAnsatt === YesOrNo.NO && (
+                                <FormLayout.QuestionBleedTop>
+                                    <Alert variant="info">
+                                        <AppText id="arbeidsforhold.ikkeAnsatt.info" />
+                                    </Alert>
+                                    {spørOmSluttetISøknadsperiode ? (
+                                        <SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål
+                                            søknadsperiode={søknadsperiode}
+                                            arbeidsforhold={arbeidsforhold}
+                                            fieldName={getFieldName(ArbeidsforholdFormField.sluttetFørSøknadsperiode)}
+                                        />
+                                    ) : null}
+                                </FormLayout.QuestionBleedTop>
+                            )}
+                            {(!spørOmSluttetISøknadsperiode || erFortsattAnsattEllerSluttetISøknadsperioden) && (
+                                <AnsattNormalarbeidstidSpørsmål
+                                    arbeidsforhold={arbeidsforhold}
+                                    fieldName={getFieldName(ArbeidsforholdFormField.normalarbeidstid_TimerPerUke)}
+                                />
+                            )}
+                        </>
+                    )}
+                </FormLayout.Questions>
             </ArbeidssituasjonPanel>
         </div>
     );

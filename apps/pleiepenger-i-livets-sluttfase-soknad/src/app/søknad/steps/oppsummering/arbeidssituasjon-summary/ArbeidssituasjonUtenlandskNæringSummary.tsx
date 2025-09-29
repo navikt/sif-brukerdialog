@@ -1,10 +1,11 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
-import { prettifyApiDate } from '@navikt/sif-common-utils';
-import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
-import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { ListItem } from '@navikt/ds-react/List';
 import { SummaryList } from '@navikt/sif-common-ui';
+import { prettifyApiDate } from '@navikt/sif-common-utils';
+import React from 'react';
+
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
+import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -56,9 +57,9 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                     <List>
                         <List.Item>
                             {utenlandskNæring.length === 0 ? (
-                                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+                                <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.nei" />
                             ) : (
-                                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.ja'} />
+                                <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.ja" />
                             )}
                         </List.Item>
                         {utenlandskNæring.length > 0 && (

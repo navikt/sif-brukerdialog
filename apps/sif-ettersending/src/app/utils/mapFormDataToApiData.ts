@@ -1,9 +1,13 @@
-import { IntlShape } from 'react-intl';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { dateToISODate } from '@navikt/sif-common-utils';
+import { IntlShape } from 'react-intl';
+
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
-import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { YtelseKey, Ytelser } from '../types/Ytelser';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
@@ -20,24 +24,33 @@ const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
             return YtelseTypeApi.OMP_UT_ARBEIDSTAKER;
         case YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn:
             return YtelseTypeApi.OMP_UTV_MA;
+        case YtelseKey.opplaringspenger:
+            return YtelseTypeApi.OPPLÆRINGSPENGER;
     }
 };
 
 const mapBarnFormDataToApiData = (
-    gjelderEtAnnetBarn?: boolean,
+    registrerteBarn: RegistrertBarn[],
     barnetsFødselsnummer?: string,
-    valgteRegistrertBarn?: RegistrertBarnFormData,
+    registrertBarnAktørId?: string,
 ): BarnetLegeerklæringGjelderApiData | undefined => {
-    if (gjelderEtAnnetBarn !== false && barnetsFødselsnummer) {
+    const valgtRegistrertBarn = registrertBarnAktørId
+        ? registrerteBarn.find((b) => b.aktørId === registrertBarnAktørId)
+        : undefined;
+    if (valgtRegistrertBarn) {
         return {
-            norskIdentitetsnummer: barnetsFødselsnummer,
+            aktørId: valgtRegistrertBarn.aktørId,
+            navn: formatName(
+                valgtRegistrertBarn.fornavn,
+                valgtRegistrertBarn.etternavn,
+                valgtRegistrertBarn.mellomnavn,
+            ),
+            fødselsdato: dateToISODate(valgtRegistrertBarn.fødselsdato),
         };
     }
-    if (valgteRegistrertBarn) {
+    if (barnetsFødselsnummer) {
         return {
-            aktørId: valgteRegistrertBarn.aktørId,
-            navn: valgteRegistrertBarn.barnetsNavn,
-            fødselsdato: valgteRegistrertBarn.barnetsFødselsdato,
+            norskIdentitetsnummer: barnetsFødselsnummer,
         };
     }
 
@@ -54,18 +67,20 @@ export const mapFormDataToApiData = (
         dokumenter,
         ytelse,
         dokumentType,
-        gjelderEtAnnetBarn,
         barnetsFødselsnummer,
-        valgteRegistrertBarn,
+        registrertBarnAktørId,
     }: SoknadFormData,
+    registrerteBarn: RegistrertBarn[],
     intl: IntlShape,
 ): SoknadApiData => {
     if (!ytelse) {
         throw new Error('ytelse mangler');
     }
 
-    const ettersendelsesType =
-        ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType ? dokumentType : DokumentType.annet;
+    const gjelderPsbEllerOpplæringspenger = [YtelseKey.pleiepengerSyktBarn, YtelseKey.opplaringspenger].includes(
+        ytelse,
+    );
+    const ettersendelsesType = gjelderPsbEllerOpplæringspenger && dokumentType ? dokumentType : DokumentType.annet;
 
     const apiData: SoknadApiData = {
         søkerNorskIdent,
@@ -75,10 +90,9 @@ export const mapFormDataToApiData = (
         harForståttRettigheterOgPlikter,
         søknadstype: getYtelseTypeApiKey(ytelse),
         ettersendelsesType,
-        pleietrengende:
-            ytelse === YtelseKey.pleiepengerSyktBarn
-                ? mapBarnFormDataToApiData(gjelderEtAnnetBarn, barnetsFødselsnummer, valgteRegistrertBarn)
-                : undefined,
+        pleietrengende: gjelderPsbEllerOpplæringspenger
+            ? mapBarnFormDataToApiData(registrerteBarn, barnetsFødselsnummer, registrertBarnAktørId)
+            : undefined,
         beskrivelse,
         vedlegg: getVedleggApiData(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,

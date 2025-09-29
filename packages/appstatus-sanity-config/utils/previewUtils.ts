@@ -1,5 +1,5 @@
-import { APPLICATION_STATUS } from '../types';
 import { StatusIconStatusKey } from '../components/status-icon/StatusIcon';
+import { APPLICATION_STATUS } from '../types';
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export const shortenText = (text: string): string => {

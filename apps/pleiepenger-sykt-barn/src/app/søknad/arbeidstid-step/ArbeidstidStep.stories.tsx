@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
-import ArbeidstidStep from './ArbeidstidStep';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withStepWrapper } from '../../../storybook/decorators';
+import ArbeidstidStep from './ArbeidstidStep';
 
 const meta: Meta<typeof ArbeidstidStep> = {
     title: 'Step/ArbeidstidStep',

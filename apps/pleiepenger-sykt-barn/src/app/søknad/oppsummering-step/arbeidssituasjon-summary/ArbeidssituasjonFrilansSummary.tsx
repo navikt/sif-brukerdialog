@@ -1,11 +1,12 @@
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../utils/frilanserUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { FormSummary, Heading, List } from '@navikt/ds-react';
 
 interface Props {
     frilans: FrilansApiData;
@@ -25,7 +26,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser" />
                         </List.Item>
                     </List>
                 </FormSummary.Value>
@@ -44,10 +45,10 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 <FormSummary.Value>
                     <List>
                         <List.Item>
-                            <AppText id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR" />
                         </List.Item>
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar" />
                         </List.Item>
                     </List>
                 </FormSummary.Value>
@@ -69,12 +70,12 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                     </List.Item>
                     {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === false && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar" />
                         </List.Item>
                     )}
                     {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === true && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar" />
                         </List.Item>
                     )}
                     <List.Item>

@@ -1,15 +1,17 @@
+import { fetchSøkerId } from '@navikt/sif-common-api';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { fetchSøkerId } from '@navikt/sif-common-api';
-import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+
 import { mellomlagringService } from '../api/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { StepId } from '../types/StepId';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
@@ -20,7 +22,6 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OpplysningerOmPleietrengendeStep from './steps/opplysninger-om-pleietrengende/OpplysningerOmPleietrengendeStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import TidsromStep from './steps/tidsrom/TidsromStep';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -45,10 +46,6 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
-    if (isReloadingApp) {
-        return <LoadingSpinner size="3xlarge" style="block" />;
-    }
-
     const restartSøknad = useCallback(async () => {
         await mellomlagringService.purge();
         relocateToWelcomePage();
@@ -60,6 +57,10 @@ const SøknadRouter = () => {
             setTimeout(restartSøknad);
         }
     }, [shouldResetSøknad, dispatch, restartSøknad]);
+
+    if (isReloadingApp) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
+    }
 
     if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
         setShouldResetSøknad(true);

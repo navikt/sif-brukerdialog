@@ -1,13 +1,13 @@
-import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
-import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
+import { BodyShort } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
+import { useIntl } from 'react-intl';
+
 import IconText from '../../../components/icon-text/IconText';
-import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
+import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 
 interface Props {
     uke: ArbeidstidUkerItem;
@@ -15,7 +15,7 @@ interface Props {
     medLabels?: boolean;
 }
 
-const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false, visEndringSomOpprinnelig }) => {
+const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }: Props) => {
     const intl = useIntl();
     if (uke.endret === undefined) {
         return (
@@ -51,7 +51,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
-        <div className={'endretArbeidstid'}>
+        <div className="endretArbeidstid">
             <div className="endretArbeidstid_faktisk">
                 {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
                 <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">

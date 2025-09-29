@@ -1,5 +1,5 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 
 export enum Utbetalingsårsak {
     nyoppstartetHosArbeidsgiver = 'NYOPPSTARTET_HOS_ARBEIDSGIVER',

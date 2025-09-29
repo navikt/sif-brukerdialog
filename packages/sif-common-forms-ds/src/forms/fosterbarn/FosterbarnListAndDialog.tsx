@@ -1,13 +1,13 @@
-import { FormikModalFormAndList, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
+import { FormikModalFormAndList, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
+
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';
+import { useFosterbarnIntl } from './i18n';
 import { Fosterbarn } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { useFosterbarnIntl } from './fosterbarnMessages';
 
 export interface FosterbarnListAndDialogText {
     liste_legg_til_knapp: string;
-    liste_tittel?: string;
+    liste_tittel: string;
     liste_tom_liste_tekst?: string;
     modal_tittel: string;
 }

@@ -1,28 +1,30 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
+import { FosterhjemsgodtgjørelseSøknadsdata } from './FosterhjemsgodtgjørelseSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemsskapSøknadsdata';
 import { NattevåkSøknadsdata } from './NattevåkSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
+import { OmsorgsstønadSøknadsdata } from './OmsorgsstønadSøknadsdata';
 import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
-import { StønadGodtgjørelseSøknadsdata } from './StønadGodtgjørelseSøknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriodenSøknadsdata';
 
-export * from './OmBarnetSøknadsdata';
 export * from './ArbeidIPeriodeSøknadsdata';
+export * from './BeredskapSøknadsdata';
+export * from './FerieuttakIPeriodenSøknadsdata';
+export * from './MedlemsskapSøknadsdata';
+export * from './NattevåkSøknadsdata';
+export * from './NormalarbeidstidSøknadsdata';
+export * from './OmBarnetSøknadsdata';
+export * from './OmsorgsstønadSøknadsdata';
+export * from './OmsorgstilbudSøknadsdata';
 export * from './OpptjeningUtlandSøknadsdata';
 export * from './UtenlandskNæringSøknadsdata';
-export * from './NormalarbeidstidSøknadsdata';
-export * from './MedlemsskapSøknadsdata';
 export * from './UtenlandsoppholdIPeriodenSøknadsdata';
-export * from './FerieuttakIPeriodenSøknadsdata';
-export * from './NattevåkSøknadsdata';
-export * from './BeredskapSøknadsdata';
-export * from './OmsorgstilbudSøknadsdata';
-export * from './StønadGodtgjørelseSøknadsdata';
 
 export interface Søknadsdata {
     isInitialized: boolean;
@@ -39,5 +41,6 @@ export interface Søknadsdata {
     beredskap?: BeredskapSøknadsdata;
     medlemskap?: MedlemskapSøknadsdata;
     legeerklæring?: Vedlegg[];
-    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata;
+    omsorgsstønad?: OmsorgsstønadSøknadsdata;
+    fosterhjemsgodtgjørelse?: FosterhjemsgodtgjørelseSøknadsdata;
 }

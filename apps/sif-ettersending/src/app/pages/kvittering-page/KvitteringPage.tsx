@@ -1,11 +1,12 @@
 import { Link } from '@navikt/ds-react';
+import { Infolist } from '@navikt/sif-common-core-ds/src';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';
 import { Søknadstype } from '../../types/Søknadstype';
-import { Infolist } from '@navikt/sif-common-core-ds/src';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -41,7 +42,7 @@ const KvitteringPage = ({ søknadstype, dokumenttype }: Props) => {
                             }
                             values={{
                                 Lenke: (children) => (
-                                    <Link href={getLenker().INNSYN_PP} target="_blank">
+                                    <Link href={getLenker().INNSYN_PP} key="lenke" target="_blank">
                                         {children}
                                     </Link>
                                 ),

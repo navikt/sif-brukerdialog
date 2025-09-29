@@ -1,5 +1,276 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.12.46
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
+## 3.12.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 3.12.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.12.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 3.12.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.40
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 3.12.39
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 3.12.38
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.37
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 3.12.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.31
+
+### Patch Changes
+
+- Fjerne all bruk av dotenv for utvikling, og heller bruke config for vite
+
+## 3.12.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.29
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+
+## 3.12.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.20
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 3.12.18
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.17
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.12.16
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 3.12.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+
+## 3.12.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.10
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
+## 3.12.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.6
+
+### Patch Changes
+
+- Oppdatere til node22 image
+
+## 3.12.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.4
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
+## 3.12.3
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
+## 3.12.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 3.12.1
 
 ### Patch Changes
@@ -48,7 +319,6 @@
 ### Minor Changes
 
 - Endre i NumberInput
-
     - Formatere verdi i NumberInput ved blur/fokus
     - Kun tillate komma som desimalskille
     - Ta i bruk integerValue=true på inntekt i SN
@@ -292,7 +562,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss

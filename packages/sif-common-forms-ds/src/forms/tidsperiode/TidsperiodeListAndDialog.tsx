@@ -2,9 +2,10 @@ import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { sortMaybeDateRange } from '@navikt/sif-common-utils';
+
 import TidsperiodeForm from './TidsperiodeForm';
 import TidsperiodeList from './TidsperiodeList';
 import { DateTidsperiode } from './types';

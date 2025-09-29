@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
-import { CalculatorSquareIcon } from '../icons/CalculatorSquareIcon';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { intlHelper } from '@/utils/intlHelper';
+import { CalculatorSquareIcon } from '../icons/CalculatorSquareIcon';
 
 const Banner = () => {
     const intl = useIntl();

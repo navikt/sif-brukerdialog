@@ -1,19 +1,20 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { Institusjoner } from '../../api/institusjonService';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
+import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
+import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
+import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
-import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
-import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
-import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
-import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenApiData';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -26,14 +27,12 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
-export const getDataBruktTilUtledningApiData = (_kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    return {};
-};
-
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[],
+    institusjoner: Institusjoner,
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -50,7 +49,7 @@ export const getApiDataFromSøknadsdata = (
         return undefined;
     }
 
-    const språk = 'nb';
+    const språk = locale;
 
     return {
         søkerNorskIdent,
@@ -59,10 +58,17 @@ export const getApiDataFromSøknadsdata = (
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
         vedlegg: getVedleggApiData(legeerklæring.vedlegg),
+        ettersendingAvVedlegg: {
+            skalEttersendeVedlegg: legeerklæring.skalEttersendeVedlegg,
+            vedleggSomSkalEttersendes: legeerklæring.skalEttersendeVedlegg
+                ? legeerklæring.vedleggSomSkalEttersendes?.sort().reverse() // Hack for å ANNET sist :)
+                : undefined,
+        },
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
-        kurs: getKursApiDataFromSøknadsdata(kurs),
+        kurs: getKursApiDataFromSøknadsdata(kurs, institusjoner),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
+        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, kurs.utenlandsopphold),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
@@ -88,8 +94,6 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledningAnnetData: søknadsdata.kurs
-            ? JSON.stringify(getDataBruktTilUtledningApiData(søknadsdata.kurs))
-            : '',
+        dataBruktTilUtledningAnnetData: '',
     };
 };

@@ -1,24 +1,26 @@
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { fetchSøkerId, Søker } from '@navikt/sif-common-api';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import { getDateToday } from '@navikt/sif-common-utils';
+import { useFormikContext } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 
-import { useFormikContext } from 'formik';
-import { getSøkerId, purge } from '../api/api';
+import { purge } from '../api/api';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
 import RouteConfig from '../config/routeConfig';
 import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
-import { Søker } from '../types';
 import { ConfirmationDialog } from '../types/ConfirmationDialog';
 import { KvitteringInfo } from '../types/KvitteringInfo';
-import { StepID } from '../types/StepID';
 import { Søkerdata } from '../types/Søkerdata';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
 import { initialValues, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata } from '../types/SøknadTempStorageData';
+import { StepID } from '../types/StepID';
 import { harFraværFraJobb } from '../utils/arbeidUtils';
 import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
@@ -37,10 +39,8 @@ import OmsorgstilbudStep from './omsorgstilbud-step/OmsorgstilbudStep';
 import OpplysningerOmBarnetStep from './opplysninger-om-barnet-step/OpplysningerOmBarnetStep';
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSøknadsdataContext } from './SøknadsdataContext';
-import TidsromStep from './tidsrom-step/TidsromStep';
 import { getSøknadStepConfig } from './søknadStepConfig';
-import { getDateToday } from '@navikt/sif-common-utils';
-import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import TidsromStep from './tidsrom-step/TidsromStep';
 
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
@@ -62,7 +62,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     const { søknadsdata } = useSøknadsdataContext();
 
     const navigate = useNavigate();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, getSøkerId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
 
     const sendUserToStep = useCallback(
         async (step: StepID) => {
@@ -144,8 +144,8 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                 </BekreftDialog>
             )}
             <Routes>
-                <Route path={'/'} element={<Navigate to={RouteConfig.WELCOMING_PAGE_ROUTE} />} />
-                <Route path={'velkommen'} element={<VelkommenPage onValidSubmit={startSoknad} søker={søker} />} />
+                <Route path="/" element={<Navigate to={RouteConfig.WELCOMING_PAGE_ROUTE} />} />
+                <Route path="velkommen" element={<VelkommenPage onValidSubmit={startSoknad} søker={søker} />} />
 
                 {isAvailable(StepID.OPPLYSNINGER_OM_BARNET, values) && (
                     <Route
@@ -341,12 +341,12 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
 
                 {isAvailable(RouteConfig.SØKNAD_SENDT_ROUTE, values, søknadHasBeenSent) && (
                     <Route
-                        path={'soknad-sendt'}
+                        path="soknad-sendt"
                         element={<ConfirmationPage kvitteringInfo={kvitteringInfo} onUnmount={onKvitteringUnmount} />}
                     />
                 )}
 
-                <Route path="*" element={<Navigate to={'/soknad/velkommen'} replace={true} />} />
+                <Route path="*" element={<Navigate to="/soknad/velkommen" replace={true} />} />
             </Routes>
         </>
     );

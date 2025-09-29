@@ -1,0 +1,45 @@
+import { useAppIntl } from '@i18n/index';
+import { datepickerUtils } from '@navikt/sif-common-formik-ds';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
+
+import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
+import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
+import { ArbFriFormComponents } from '../FrilanserFormPart';
+
+interface Props {
+    startdatoValue?: ISODate;
+    sluttdatoValue?: ISODate;
+    søknadsperiode: DateRange;
+    søknadsdato: Date;
+}
+
+const FrilansSluttdatoSpørsmål = ({ startdatoValue, sluttdatoValue, søknadsperiode, søknadsdato }: Props) => {
+    const { text } = useAppIntl();
+    return (
+        <ArbFriFormComponents.DatePicker
+            name={FrilansFormField.sluttdato}
+            label={text(`frilanser.sluttdato.spm`)}
+            dropdownCaption={true}
+            minDate={datepickerUtils.getDateFromDateString(startdatoValue) || dayjs().subtract(80, 'years').toDate()}
+            maxDate={søknadsdato}
+            validate={(value) => {
+                const error = getFrilanserSluttdatoValidator(
+                    søknadsperiode,
+                    søknadsdato,
+                    startdatoValue,
+                    sluttdatoValue,
+                )(value);
+
+                return error
+                    ? {
+                          key: `${error}`,
+                      }
+                    : undefined;
+            }}
+            data-testid="er-frilanser-sluttdato"
+        />
+    );
+};
+
+export default FrilansSluttdatoSpørsmål;

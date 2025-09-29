@@ -1,7 +1,7 @@
-import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../../../i18n';
 import VirksomhetFormSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
@@ -21,7 +21,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                 <List>
                     {selvstendigNæringsdrivende === undefined && (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
+                            <AppText id="oppsummering.arbeidssituasjon.selvstendig.erIkkeSN" />
                         </List.Item>
                     )}
                     {virksomhet && arbeidsforhold && (
@@ -39,7 +39,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                             {arbeidsforhold.jobberNormaltTimer && (
                                 <List.Item>
                                     <AppText
-                                        id={`oppsummering.arbeidssituasjon.tid`}
+                                        id="oppsummering.arbeidssituasjon.tid"
                                         values={{ timer: arbeidsforhold.jobberNormaltTimer }}
                                     />
                                 </List.Item>

@@ -1,9 +1,19 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "module": "ESNext",
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/**/*"]
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./playwright/**/*",
+        "./vite-env.d.ts",
+        "./storybook/**/*",
+        "./vite.config.ts",
+        "vite.playwright.config.ts",
+        "vite.storybook.config.ts"
+    ]
 }

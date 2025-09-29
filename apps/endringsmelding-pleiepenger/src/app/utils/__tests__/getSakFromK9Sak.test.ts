@@ -15,6 +15,7 @@ import {
     FaktiskOgNormalArbeidstid,
     K9SakArbeidstidPeriodeMap,
 } from '@types';
+
 import { _getSakFromK9Sak } from '../getSakFromK9Sak';
 
 const {
@@ -183,10 +184,10 @@ describe('getSakFromK9Sak', () => {
             expect(keys.length).toEqual(4);
             const dag1 = result[keys[0]];
             const dag4 = result[keys[3]];
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             expect(durationToISODuration(dag1.faktisk!)).toEqual(faktiskISODuration);
             expect(durationToISODuration(dag1.normalt)).toEqual(normaltISODuration);
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             expect(durationToISODuration(dag4.faktisk!)).toEqual(periode2ISODuration);
             expect(durationToISODuration(dag4.normalt)).toEqual(normaltISODuration);
         });

@@ -1,8 +1,9 @@
+import './formSection.less';
+
 import { Heading } from '@navikt/ds-react';
-import React, { useState } from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { guid } from '@navikt/sif-common-utils';
-import './formSection.less';
+import React, { useState } from 'react';
 
 interface Props {
     title: string;

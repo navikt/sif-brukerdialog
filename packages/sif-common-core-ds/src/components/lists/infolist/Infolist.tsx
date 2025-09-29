@@ -1,5 +1,6 @@
-import { Heading, VStack } from '@navikt/ds-react';
 import './infolist.scss';
+
+import { Heading, VStack } from '@navikt/ds-react';
 
 interface Props extends React.HTMLAttributes<HTMLUListElement> {
     heading?: string;

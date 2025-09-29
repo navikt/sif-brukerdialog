@@ -1,12 +1,13 @@
-import { BodyLong, Box, Heading } from '@navikt/ds-react';
-import React from 'react';
+import './arbeidsaktivitetBlockHeader.scss';
+
 import { Office1 } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@types';
+
 import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
-import './arbeidsaktivitetBlockHeader.scss';
+import TagsContainer from '../tags/tags-container/TagsContainer';
 import AnsettelsesperioderInfo from './AnsettelsesperioderInfo';
 
 interface Props {
@@ -19,15 +20,9 @@ interface Props {
     };
 }
 
-const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
-    type,
-    arbeidsgiver,
-    navn,
-    endret,
-    erUkjentAktivitet,
-}) => {
+const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
-        <Block margin={type !== ArbeidsaktivitetType.arbeidstaker ? 'm' : 'none'}>
+        <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
                     <Office1 role="presentation" aria-hidden={true} />
@@ -36,30 +31,32 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                     <Heading level="2" size="medium">
                         {navn}
                     </Heading>
-                    {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
-                        <BodyLong as="div">
-                            <Box>
-                                <AppText
-                                    id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
-                                    values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
-                                />
-                            </Box>
-                            <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
-                        </BodyLong>
-                    ) : undefined}
-                    {(endret || erUkjentAktivitet) && (
-                        <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
-                            {endret && <EndretTag>{endret.tekst}</EndretTag>}
-                            {erUkjentAktivitet && (
-                                <NyTag>
-                                    <AppText id="arbeidsaktivitetBlockHeader.nyttArbeidsforhold" />
-                                </NyTag>
-                            )}
-                        </Block>
-                    )}
+                    <VStack gap="2">
+                        {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
+                            <BodyLong as="div">
+                                <Box>
+                                    <AppText
+                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
+                                        values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
+                                    />
+                                </Box>
+                                <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
+                            </BodyLong>
+                        ) : undefined}
+                        {(endret || erUkjentAktivitet) && (
+                            <TagsContainer>
+                                {endret && <EndretTag>{endret.tekst}</EndretTag>}
+                                {erUkjentAktivitet && (
+                                    <NyTag>
+                                        <AppText id="arbeidsaktivitetBlockHeader.nyttArbeidsforhold" />
+                                    </NyTag>
+                                )}
+                            </TagsContainer>
+                        )}
+                    </VStack>
                 </div>
             </div>
-        </Block>
+        </Box>
     );
 };
 

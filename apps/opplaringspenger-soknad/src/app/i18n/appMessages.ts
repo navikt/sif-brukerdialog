@@ -1,16 +1,17 @@
+/* eslint-disable max-len */
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
-import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { kursMessages } from '../søknad/steps/kurs/kursMessages';
-import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
-import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
+import { kursMessages } from '../søknad/steps/kurs/kursMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
+import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
+import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -235,7 +236,7 @@ const nn: Record<keyof typeof nb, string> = {
     'resetMellomlagring.text.1': 'Dersom feilen held fram, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
-    hvaBetyrDette: 'Kva betyr dette?',
+    hvaBetyrDette: 'Kva tyder dette?',
     fødselsnummer: 'Fødselsnummer:',
 
     'dagerMedTid.uke': 'Veke {uke}',
@@ -250,7 +251,7 @@ const nn: Record<keyof typeof nb, string> = {
     'frilanser.jobberNormaltTimer.avsluttet.spm':
         'Kor mange timar jobba du normalt per veke som frilanser då du ikkje hadde fråvær?',
 
-    'frilanser.hjelpetekst.spm': 'Kva betyr det å vere frilanser?',
+    'frilanser.hjelpetekst.spm': 'Kva tyder det å vere frilanser?',
     'frilanser.hjelpetekst':
         'Du er frilanser når du får løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Dersom du er usikker på om du er frilanser, kan du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
     'frilanser.hjelpetekst.skatteetatenLenke': 'skatteetaten sine nettsider.',
@@ -259,7 +260,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du treng ikkje å oppgi omsorgsstønad eller fosterheimsgodtgjersle dersom du held fram med å få det under opplæringa.',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søkjer for?',
-    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva betyr det å vere sjølvstendig næringsdrivande?',
+    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva tyder det å vere sjølvstendig næringsdrivande?',
     'selvstendig.harDuHattInntekt.hjelpetekst':
         'Du er sjølvstendig næringsdrivande dersom du har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
     'selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke':

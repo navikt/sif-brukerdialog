@@ -1,7 +1,8 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { ArbeidsgiverMedAnsettelseperioder, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
-import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 import { vi } from 'vitest';
+
+import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
 const ansettelsesperioder: DateRange[] = [ISODateRangeToDateRange('2022-01-01/2023-03-01')];
 

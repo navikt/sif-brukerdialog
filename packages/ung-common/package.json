@@ -1,0 +1,35 @@
+{
+    "name": "@navikt/ung-common",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "private": true,
+    "type": "module",
+    "version": "0.0.51",
+    "dependencies": {
+        "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
+        "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
+    },
+    "devDependencies": {
+        "@navikt/sif-common-utils": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
+        "typescript": "5.9.2",
+        "vitest": "3.2.4",
+        "zod": "4.1.11"
+    },
+    "peerDependencies": {
+        "axios": "*",
+        "dayjs": "*",
+        "uuid": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    }
+}

@@ -1,5 +1,5 @@
 const nb = {
-    'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
+    'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivere',
 
     'steg.arbeidssituasjon.veileder.1':
         'Nå trenger vi informasjon om din arbeidssituasjon og hvor mye du normalt jobber. Dette trenger vi for å se hvor mye du taper i lønn på grunn av kurs eller opplæring.',
@@ -53,7 +53,6 @@ const nb = {
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos  {navn} i perioden du søker for?',
     'arbeidsforhold.harFrilansoppdrag.spm':
         'Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?',
-    'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
     'arbeidsforhold.avsluttet.info':
         'Sluttdato var innenfor perioden du søker om opplæringspenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}',
 
@@ -107,7 +106,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'steg.arbeidssituasjon.tittel': 'Arbeidsgivarar',
+    'steg.arbeidssituasjon.arbeidsgivere.tittel': 'Arbeidsgivarar',
 
     'steg.arbeidssituasjon.veileder.1':
         'No treng vi informasjon om arbeidssituasjonen din og kor mykje du vanlegvis jobbar. Dette treng vi for å sjå kor mykje du taper i løn på grunn av kurs eller opplæring.',
@@ -128,7 +127,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.arbeidssituasjon.sn.tittel': 'Sjølvstendig næringsdrivande',
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
     'steg.arbeidssituasjon.verneplikt.spm': 'Utførte du verneplikt på tidspunktet du søkjer opplæringspengar frå?',
-    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva betyr dette?',
+    'steg.arbeidssituasjon.verneplikt.info.tittel': 'Kva tyder dette?',
     'steg.arbeidssituasjon.verneplikt.info.tekst':
         'Du skal svare ja på dette spørsmålet om du har utført verneplikt i minst 28 dagar på starttidspunktet for perioden du søkjer for, eller om perioden med verneplikt var meint å vare i minst 28 dagar.',
 
@@ -159,7 +158,6 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er tilsett hos {navn} i perioden du søkjer for?',
     'arbeidsforhold.harFrilansoppdrag.spm':
         'Stemmer det at du har eit frilansoppdrag hos {navn} i perioden du søkjer for?',
-    'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Slutta du hos {navn} før {fraDato}?',
     'arbeidsforhold.avsluttet.info':
         'Sluttdato var innanfor perioden du søkjer opplæringspengar for. Vi treng difor å vite korleis normalarbeidstida di var hos {navn}.',
 
@@ -169,7 +167,7 @@ const nn: Record<keyof typeof nb, string> = {
     'arbeidsforhold.utledet': 'timar i veka',
     'arbeidsforhold.timer.suffix': 'timar per veke',
 
-    'arbeidsforhold.normalTimer.info.tittel': 'Kva betyr dette?',
+    'arbeidsforhold.normalTimer.info.tittel': 'Kva tyder dette?',
     'arbeidsforhold.ansatt.normalTimer.info':
         'Om du er usikker på kor mange timar du jobbar per veke, finn du som regel svaret i arbeidskontrakten din. Du kan også høyre med arbeidsgivaren din.',
     'arbeidsforhold.frilanser.normalTimer.info':

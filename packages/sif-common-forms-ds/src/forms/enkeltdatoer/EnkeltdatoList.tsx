@@ -1,12 +1,13 @@
-import React from 'react';
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import { ActionLink } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import React from 'react';
+
 import { Enkeltdato } from './types';
 
 interface Props {
     enkeltdatoer: Enkeltdato[];
-    labelRenderer?: (dato: Enkeltdato) => string;
+    labelRenderer?: (dato: Enkeltdato) => React.ReactNode;
     onEdit?: (dato: Enkeltdato) => void;
     onDelete?: (Enkeltdato: Enkeltdato) => void;
 }

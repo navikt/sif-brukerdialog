@@ -1,14 +1,14 @@
 import { Box, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
+import OppdatereSakLenker from '../../components/oppdatere-sak-lenker/OppdatereSakLenker';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
+import SkrivTilOssLenker from '../../components/skriv-til-oss-lenker/SkrivTilOssLenker';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
-import Snarveier from '../../components/snarveier/Snarveier';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
@@ -27,7 +27,7 @@ interface Props {
     antallSaker: number;
 }
 
-const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }) => {
+const SakPage = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }: Props) => {
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
 
@@ -61,7 +61,9 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                     <VenteårsakMelding venteårsak={statusISak.venteårsak} />
                 ) : null}
                 <Box className="md:flex md:gap-6">
-                    <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} tittel="Dette skjer i saken" />}</div>
+                    <div className="md:grow mb-10 md:mb-0">
+                        <StatusISak sak={sak} tittel="Dette skjer i saken" />
+                    </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         {statusISak?.status === Behandlingsstatus.AVSLUTTET ? null : (
                             <VStack gap="5">
@@ -75,7 +77,10 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                     </div>
                 </Box>
                 <Box>
-                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                    <OppdatereSakLenker />
+                </Box>
+                <Box>
+                    <SkrivTilOssLenker />
                 </Box>
                 <Box className="mb-10">
                     <SnarveierSak />

@@ -1,6 +1,9 @@
-import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { vi } from 'vitest';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../../../types';
 import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
 
 const formValues: OmBarnetFormValues = {
     barnetsNavn: '',
@@ -9,6 +12,15 @@ const formValues: OmBarnetFormValues = {
     barnetHarIkkeFnr: false,
     fødselsattest: [],
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 describe('extractBarnetSøknadsdata', () => {
     describe('Barn fra Api', () => {
@@ -23,7 +35,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer annetBarn dersom bruker la til barn med fnr', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetsFødselsnummer: '12345678911',
                 relasjonTilBarnet: BarnRelasjon.FAR,
@@ -37,7 +49,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer annetBarnUtenFnr dersom bruker la til barn uten fnr', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,
                 barnetsFødselsnummer: '',
@@ -55,7 +67,7 @@ describe('extractBarnetSøknadsdata', () => {
         it('returnerer undefined med tomt barnet', () => {
             const result = extractBarnSøknadsdata({
                 ...formValues,
-                barnetSøknadenGjelder: '',
+                barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,
                 barnetsFødselsnummer: '',

@@ -1,21 +1,22 @@
+import { fetchSøkerId } from '@navikt/sif-common-api';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { StepId } from '../types/StepId';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import OmOmsorgenForBarnStep from './steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import TidspunktForAleneomsorgStep from './steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
-import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
-import { useResetSøknad } from '../hooks/useResetSøknad';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -28,7 +29,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
     usePersistSøknadState();
 
     useEffect(() => {

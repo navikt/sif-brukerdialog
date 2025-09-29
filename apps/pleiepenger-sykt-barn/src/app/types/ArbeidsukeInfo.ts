@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ISODateRange } from '@navikt/sif-common-utils';
 
 export interface ArbeidsukeInfoÅrMap<T> {

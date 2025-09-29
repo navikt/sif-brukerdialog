@@ -2,6 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+
 import { AppText } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
@@ -19,7 +20,6 @@ const LegeerklæringSummary = ({ onEdit }: Props) => {
                 <FormSummary.Heading level="2">
                     <AppText id="steg.oppsummering.vedlegg.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -31,6 +31,11 @@ const LegeerklæringSummary = ({ onEdit }: Props) => {
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

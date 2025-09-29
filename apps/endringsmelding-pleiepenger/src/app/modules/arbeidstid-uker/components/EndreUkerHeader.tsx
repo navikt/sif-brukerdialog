@@ -1,6 +1,5 @@
-import { Alert, Checkbox } from '@navikt/ds-react';
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Alert, Checkbox, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
 
 interface Props {
@@ -9,13 +8,13 @@ interface Props {
     onUkerKanVelgesChange: (checked: boolean) => void;
 }
 
-const EndreUkerHeader: React.FunctionComponent<Props> = ({
+const EndreUkerHeader = ({
     ukerKanVelges,
     onUkerKanVelgesChange: onUkerKanVelgesChange,
     visKorteUkerMelding,
-}) => {
+}: Props) => {
     return (
-        <>
+        <VStack gap="2">
             <Checkbox
                 checked={ukerKanVelges}
                 onChange={(evt) => {
@@ -24,13 +23,11 @@ const EndreUkerHeader: React.FunctionComponent<Props> = ({
                 <AppText id="endreUkerHeader.cb.endreFlereSamtidig.label" />
             </Checkbox>
             {visKorteUkerMelding && (
-                <Block margin="m" padBottom="l">
-                    <Alert variant="info">
-                        <AppText id="endreUkerHeader.korteUker.melding" />
-                    </Alert>
-                </Block>
+                <Alert variant="info">
+                    <AppText id="endreUkerHeader.korteUker.melding" />
+                </Alert>
             )}
-        </>
+        </VStack>
     );
 };
 

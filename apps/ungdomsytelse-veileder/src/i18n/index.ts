@@ -1,11 +1,12 @@
-import { avsluttDeltakelseMessages } from '../forms/avslutt-deltakelse-form/avsluttDeltakelseMessages';
+import { endrePeriodeFormMessages } from '../forms/endre-periode-forms/endrePeriodeFormMessages';
 import { meldInnDeltakerFormMessages } from '../forms/meld-inn-deltaker-form/meldInnDeltakerMessages';
 
 const nb = {
     ...meldInnDeltakerFormMessages.nb,
-    ...avsluttDeltakelseMessages.nb,
+    ...endrePeriodeFormMessages.nb,
 };
 
 export const appMessages = {
     nb,
+    nn: nb,
 };

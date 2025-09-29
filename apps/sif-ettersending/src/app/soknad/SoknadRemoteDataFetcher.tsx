@@ -1,6 +1,7 @@
+import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
-import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import { useAppIntl } from '../i18n';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
@@ -26,6 +27,8 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
         case 'pleiepenger-livets-sluttfase':
         case 'pleiepengerLivetsSluttfase':
             return Søknadstype.pleiepengerLivetsSluttfase;
+        case 'opplaringspenger':
+            return Søknadstype.opplaringspenger;
     }
     return undefined;
 };

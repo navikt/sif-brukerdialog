@@ -1,5 +1,23 @@
 # @navikt/sif-app-register
 
+## 0.1.9
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 0.1.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.1.6
 
 ### Patch Changes

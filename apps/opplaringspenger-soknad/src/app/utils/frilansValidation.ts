@@ -1,8 +1,7 @@
+import { datepickerUtils, DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { getDateValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
-import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { FrilansFormData } from '../søknad/steps/arbeidssituasjon/form-parts/ArbeidssituasjonFrilans';
-import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 
 export const getFrilanserSluttdatoValidator =
     (formData: FrilansFormData, søknadsperiode: DateRange, søknadsdato: Date, harFrilansoppdrag: boolean) =>

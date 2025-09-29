@@ -1,24 +1,23 @@
-import { Heading, List } from '@navikt/ds-react';
-import React from 'react';
-import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '@utils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../../i18n';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
-const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
+const LovbestemtFerieOppsummering = ({ lovbestemtFerie }: Props) => {
     const { locale } = useIntl();
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (
-        <>
+        <VStack gap="8">
             {perioderLagtTil.length > 0 && (
-                <Block padBottom="m">
-                    <Heading level="3" size="small">
+                <div>
+                    <Heading level="3" size="small" spacing={true}>
                         <AppText id="oppsummeringStep.ferie.lagtTil" />
                     </Heading>
                     <List>
@@ -33,11 +32,11 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                             </List.Item>
                         ))}
                     </List>
-                </Block>
+                </div>
             )}
             {perioderFjernet.length > 0 && (
-                <Block padBottom="m">
-                    <Heading level="3" size="small">
+                <div>
+                    <Heading level="3" size="small" spacing={true}>
                         <AppText id="oppsummeringStep.ferie.fjernet" />
                     </Heading>
                     <List>
@@ -52,9 +51,9 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                             </List.Item>
                         ))}
                     </List>
-                </Block>
+                </div>
             )}
-        </>
+        </VStack>
     );
 };
 

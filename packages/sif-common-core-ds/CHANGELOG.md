@@ -1,5 +1,466 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.9
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.32
+    - @navikt/sif-common-api@0.4.51
+
+## 10.3.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.50
+    - @navikt/sif-common-utils@3.49.31
+
+## 10.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.49
+    - @navikt/sif-common-utils@3.49.31
+
+## 10.3.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-common-api@0.4.48
+
+## 10.3.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.30
+    - @navikt/sif-common-api@0.4.47
+
+## 10.3.4
+
+### Patch Changes
+
+- 7f7d02d: Legge til egen feilmelding ved opplasting av filer som resulterer i 400-feil
+
+## 10.3.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.29
+    - @navikt/sif-common-api@0.4.46
+
+## 10.3.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.45
+    - @navikt/sif-common-env@0.1.6
+    - @navikt/sif-common-utils@3.49.28
+
+## 10.3.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-utils@3.49.27
+    - @navikt/sif-common-api@0.4.44
+
+## 10.3.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.43
+
+## 10.2.44
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.26
+    - @navikt/sif-common-api@0.4.42
+
+## 10.2.43
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.25
+    - @navikt/sif-common-api@0.4.41
+
+## 10.2.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.24
+    - @navikt/sif-common-api@0.4.40
+
+## 10.2.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.23
+    - @navikt/sif-common-api@0.4.39
+
+## 10.2.40
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.38
+
+## 10.2.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.37
+    - @navikt/sif-common-utils@3.49.22
+
+## 10.2.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.22
+    - @navikt/sif-common-api@0.4.36
+
+## 10.2.37
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.35
+
+## 10.2.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.21
+    - @navikt/sif-common-api@0.4.34
+
+## 10.2.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.20
+    - @navikt/sif-common-api@0.4.33
+
+## 10.2.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.19
+    - @navikt/sif-common-api@0.4.32
+
+## 10.2.33
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+- Updated dependencies [dfeb776]
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.31
+    - @navikt/sif-common-utils@3.49.18
+
+## 10.2.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.30
+    - @navikt/sif-common-utils@3.49.18
+
+## 10.2.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.18
+    - @navikt/sif-common-api@0.4.29
+
+## 10.2.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.17
+    - @navikt/sif-common-api@0.4.28
+
+## 10.2.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.16
+    - @navikt/sif-common-api@0.4.27
+
+## 10.2.28
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.26
+    - @navikt/sif-common-utils@3.49.15
+
+## 10.2.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.15
+    - @navikt/sif-common-api@0.4.25
+
+## 10.2.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+    - @navikt/sif-common-api@0.4.24
+
+## 10.2.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.14
+    - @navikt/sif-common-api@0.4.23
+    - @navikt/sif-common-env@0.1.5
+
+## 10.2.24
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.13
+    - @navikt/sif-common-api@0.4.22
+
+## 10.2.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- Updated dependencies
+- Updated dependencies [f48e4b2]
+    - @navikt/sif-common-utils@3.49.12
+    - @navikt/sif-common-api@0.4.21
+
+## 10.2.22
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.11
+    - @navikt/sif-common-api@0.4.20
+
+## 10.2.21
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.10
+    - @navikt/sif-common-api@0.4.19
+
+## 10.2.20
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.18
+
+## 10.2.19
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.17
+- @navikt/sif-common-utils@3.49.9
+
+## 10.2.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.9
+    - @navikt/sif-common-api@0.4.16
+
+## 10.2.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.15
+    - @navikt/sif-common-utils@3.49.8
+
+## 10.2.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.8
+    - @navikt/sif-common-api@0.4.14
+
+## 10.2.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.7
+    - @navikt/sif-common-api@0.4.13
+
+## 10.2.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.6
+    - @navikt/sif-common-api@0.4.12
+
+## 10.2.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.11
+    - @navikt/sif-common-utils@3.49.5
+
+## 10.2.12
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/sif-common-api@0.4.10
+    - @navikt/sif-common-utils@3.49.5
+
+## 10.2.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-api@0.4.9
+
+## 10.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-common-api@0.4.8
+
+## 10.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.7
+    - @navikt/sif-common-env@0.1.4
+    - @navikt/sif-common-utils@3.49.4
+
+## 10.2.8
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.6
+    - @navikt/sif-common-utils@3.49.3
+
+## 10.2.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.3
+    - @navikt/sif-common-api@0.4.5
+
+## 10.2.6
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.4
+
+## 10.2.5
+
+### Patch Changes
+
+- Nynorsktekster
+
+## 10.2.4
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+- Updated dependencies [3e4c469]
+    - @navikt/sif-common-utils@3.49.2
+    - @navikt/sif-common-api@0.4.3
+
+## 10.2.3
+
+### Patch Changes
+
+- 58582b9: Legge til css for å fikse bug i sentrering av logg-ut-varsel dialog
+
+## 10.2.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+- Updated dependencies [346e74d]
+    - @navikt/sif-common-utils@3.49.1
+    - @navikt/sif-common-api@0.4.2
+
 ## 10.2.1
 
 ### Patch Changes
@@ -150,7 +611,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -158,7 +618,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 
@@ -446,7 +905,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss

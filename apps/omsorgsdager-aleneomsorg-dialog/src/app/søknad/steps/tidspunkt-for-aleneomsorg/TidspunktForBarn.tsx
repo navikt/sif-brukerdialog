@@ -1,8 +1,10 @@
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { AppIntlShape, useAppIntl } from '../../../i18n';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+
+import { useAppIntl } from '../../../i18n';
 import {
     AleneomsorgTidspunktField,
     TidspunktForAleneomsorg,
@@ -22,20 +24,6 @@ const { RadioGroup, DatePicker } = getTypedFormComponents<
     ValidationError
 >();
 
-const tidspunktItemLabelRenderer = (navn: string, { text }: AppIntlShape): React.ReactNode => {
-    return (
-        <>
-            <div>
-                <span>{navn}</span>
-            </div>
-
-            <div>
-                <span>{text('step.tidspunktForAleneomsorg.spm', { navn })}</span>
-            </div>
-        </>
-    );
-};
-
 const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
@@ -44,40 +32,45 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
     };
 
     return (
-        <>
-            <RadioGroup
-                name={
-                    getFieldName(AleneomsorgTidspunktField.tidspunktForAleneomsorg) as TidspunktForAleneomsorgFormFields
-                }
-                legend={tidspunktItemLabelRenderer(barnMedAleneomsorg.navn, appIntl)}
-                radios={[
-                    {
-                        label: text('step.tidspunktForAleneomsorg.radioPanelGroupLabel.siste2årene', {
-                            yearAgo: getYear(1),
-                            yearNow: getYear(0),
-                        }),
-                        value: TidspunktForAleneomsorg.SISTE_2_ÅRENE,
-                    },
-                    {
-                        label: text('step.tidspunktForAleneomsorg.radioPanelGroupLabel.tidligere', {
-                            twoYearsAgo: getYear(2),
-                        }),
-                        value: TidspunktForAleneomsorg.TIDLIGERE,
-                    },
-                ]}
-                validate={(value) => {
-                    const error = getRequiredFieldValidator()(value);
-                    return error
-                        ? {
-                              key: 'validation.tidspunktForAleneomsorg.noValue',
-                              keepKeyUnaltered: true,
-                          }
-                        : undefined;
-                }}
-            />
+        <div>
+            <Heading level="2" size="small" spacing>
+                {barnMedAleneomsorg.navn}
+            </Heading>
+            <FormLayout.Questions>
+                <RadioGroup
+                    name={
+                        getFieldName(
+                            AleneomsorgTidspunktField.tidspunktForAleneomsorg,
+                        ) as TidspunktForAleneomsorgFormFields
+                    }
+                    legend={text('step.tidspunktForAleneomsorg.spm', { navn: barnMedAleneomsorg.navn })}
+                    radios={[
+                        {
+                            label: text('step.tidspunktForAleneomsorg.radioPanelGroupLabel.siste2årene', {
+                                yearAgo: getYear(1),
+                                yearNow: getYear(0),
+                            }),
+                            value: TidspunktForAleneomsorg.SISTE_2_ÅRENE,
+                        },
+                        {
+                            label: text('step.tidspunktForAleneomsorg.radioPanelGroupLabel.tidligere', {
+                                twoYearsAgo: getYear(2),
+                            }),
+                            value: TidspunktForAleneomsorg.TIDLIGERE,
+                        },
+                    ]}
+                    validate={(value) => {
+                        const error = getRequiredFieldValidator()(value);
+                        return error
+                            ? {
+                                  key: 'validation.tidspunktForAleneomsorg.noValue',
+                                  keepKeyUnaltered: true,
+                              }
+                            : undefined;
+                    }}
+                />
 
-            {aleneomsorgTidspunkt?.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE && (
-                <Block margin="xl">
+                {aleneomsorgTidspunkt?.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE && (
                     <DatePicker
                         name={getFieldName(AleneomsorgTidspunktField.dato) as TidspunktForAleneomsorgFormFields}
                         label={text('step.tidspunktForAleneomsorg.siste2årene.dato.spm', {
@@ -100,9 +93,9 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                                 : undefined;
                         }}
                     />
-                </Block>
-            )}
-        </>
+                )}
+            </FormLayout.Questions>
+        </div>
     );
 };
 

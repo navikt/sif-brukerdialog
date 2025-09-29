@@ -1,6 +1,4 @@
-import { Button } from '@navikt/ds-react';
-import React, { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Button, VStack } from '@navikt/ds-react';
 import FerieuttakForm from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -11,6 +9,8 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import { getFeriedagerIPeriode, getFeriedagerMeta } from '@utils';
+import { useState } from 'react';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import LovbestemtFerieListe from '../../../modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import LovbestemtFerieModal from '../../../modules/lovbestemt-ferie-modal/LovbestemtFerieModal';
@@ -22,7 +22,7 @@ interface Props {
     onChange: (feriedager: FeriedagMap) => void;
 }
 
-const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeriedager, søknadsperiode, onChange }) => {
+const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange }: Props) => {
     const { text } = useAppIntl();
     const [visFerieModal, setVisFerieModal] = useState<{ periode: DateRange | undefined } | undefined>();
 
@@ -38,7 +38,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
     };
 
     return (
-        <>
+        <VStack gap="4">
             <LovbestemtFerieListe
                 perioder={perioder}
                 onUndoDelete={(periode) => {
@@ -54,7 +54,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                 }}
             />
 
-            <Block>
+            <div>
                 <Button
                     data-testid="leggTilFerieKnapp"
                     onClick={() => {
@@ -67,7 +67,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                     size="small">
                     <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
-            </Block>
+            </div>
 
             {visFerieModal && (
                 <LovbestemtFerieModal
@@ -91,7 +91,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                     />
                 </LovbestemtFerieModal>
             )}
-        </>
+        </VStack>
     );
 };
 

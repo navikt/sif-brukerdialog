@@ -1,16 +1,17 @@
 import { parse } from 'iso8601-duration';
 import { trim } from 'lodash';
+
 import {
-    NumberDuration,
-    ISODuration,
     DateDurationMap,
-    Duration,
-    isDateInDateRange,
-    ISODateToDate,
     DateRange,
-    ISODate,
+    Duration,
     InputDateDurationMap,
-} from '.';
+    isDateInDateRange,
+    ISODate,
+    ISODateToDate,
+    ISODuration,
+    NumberDuration,
+} from './';
 import { isDateInDates, sortDateArray } from './dateUtils';
 
 export const getPositiveNumberValue = (value: any): number | 'invalidNumberValue' | undefined => {

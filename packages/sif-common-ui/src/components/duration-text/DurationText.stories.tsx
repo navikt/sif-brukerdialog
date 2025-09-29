@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
-import DurationText from './DurationText';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntlWrapper } from '../../../storybook/decorators/withIntlWrapper';
+import DurationText from './DurationText';
 
 const meta: Meta<typeof DurationText> = {
     component: DurationText,

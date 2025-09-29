@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { SummaryList } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
@@ -20,7 +21,6 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummeringtidsrom.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
@@ -84,6 +84,11 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                         </>
                     )}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

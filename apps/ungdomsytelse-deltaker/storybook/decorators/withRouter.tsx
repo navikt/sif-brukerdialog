@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 
-export const withRouterProvider = (Story: any) => (
+export const withRouter = (Story) => (
     <BrowserRouter>
         <Story />
     </BrowserRouter>

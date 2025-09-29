@@ -1,15 +1,16 @@
 import { z } from 'zod';
+
 import {
     arbeidsgivereResponseSchema,
-    barnSchema,
     arbeidsgiverFrilansoppdragSchema,
     arbeidsgiverOrganisasjonSchema,
     arbeidsgiverPrivatSchema,
+    barnSchema,
     søkerResponseSchema,
 } from '../schemas';
 
-export * from './mellomlagringYtelse';
 export * from './innsendingType';
+export * from './mellomlagringYtelse';
 
 export type Søker = z.infer<typeof søkerResponseSchema>;
 

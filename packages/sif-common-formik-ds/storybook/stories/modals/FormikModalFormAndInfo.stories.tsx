@@ -1,7 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import FormikModalFormAndInfo from '../../../src/components/formik-modal-form/FormikModalFormAndInfo';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikModalFormAndInfo> = {
     title: 'Modals/FormikModalFormAndInfo',

@@ -1,8 +1,10 @@
-import { Heading } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import './arbeidssituasjonPanel.less';
+
+import { Heading } from '@navikt/ds-react';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import React, { ReactElement } from 'react';
+
+import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 
 interface Props {
     title: string;
@@ -14,7 +16,7 @@ interface Props {
 const bem = bemUtils('arbeidssituasjonPanel');
 const bemItem = bem.child('title');
 const ArbeidssituasjonPanel = ({ title, description, titleIcon, children }: Props) => (
-    <ResponsivePanel className={bem.block} style={{ padding: '1rem', paddingBottom: '1.7rem' }} border={true}>
+    <ResponsivePanel className={bem.block} style={{ padding: '1rem', paddingBottom: '1.7rem' }}>
         <div className={bemItem.block}>
             {titleIcon && <div className={bemItem.element('icon')}>{titleIcon}</div>}
             <div className={bemItem.element('text')}>

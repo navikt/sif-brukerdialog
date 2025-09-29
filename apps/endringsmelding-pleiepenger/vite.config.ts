@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
-import react from '@vitejs/plugin-react';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
-import path from 'path';
+// @ts-expect-error: vite-plugin has no types
+import react from '@vitejs/plugin-react';
+import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
@@ -11,6 +12,12 @@ export default defineConfig({
             include: '**/*.{jsx,tsx}',
         }),
         checker({ typescript: true }),
+        {
+            name: 'crossorigin',
+            transformIndexHtml(html) {
+                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+            },
+        },
         ...[
             process.env.SENTRY_AUTH_TOKEN
                 ? [

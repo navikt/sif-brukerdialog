@@ -1,0 +1,11 @@
+
+# Playwright
+node_modules/
+dist/
+dist-demo/
+dist-playwright/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.scannerwork

@@ -1,9 +1,8 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
+import { Meta, StoryFn } from '@storybook/react-vite';
+import { getNumberValidator } from '@navikt/sif-validation';
 import FormikNumberInput from '../../../src/components/formik-number-input/FormikNumberInput';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
-import getNumberValidator from '@navikt/sif-common-formik-ds/src/validation/getNumberValidator';
 
 const meta: Meta<typeof FormikNumberInput> = {
     title: 'Component/FormikNumberInput',

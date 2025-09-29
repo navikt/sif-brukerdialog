@@ -1,10 +1,10 @@
-import { Button, Modal, Panel } from '@navikt/ds-react';
-import React from 'react';
+import { BoxNew, Button, HStack, Modal, VStack } from '@navikt/ds-react';
 import classNames from 'classnames';
+import React from 'react';
+
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
-import './modalFormAndInfo.scss';
 
 type ModalFormRenderer<DataType> = (props: {
     data?: DataType;
@@ -86,18 +86,22 @@ function ModalFormAndInfo<DataType>({
                 {labels.addLabel}
             </Button>
         ) : (
-            <>
-                <div className="modalFormAndInfo__infoWrapper">
-                    {wrapInfoInPanel ? (
-                        <Panel border={true} className={'modalFormAndInfo__infoWrapper__panel'}>
-                            {infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })}
-                        </Panel>
-                    ) : (
-                        infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })
-                    )}
-                </div>
+            <VStack gap="6">
+                {wrapInfoInPanel ? (
+                    <BoxNew
+                        background="default"
+                        borderColor="neutral-subtle"
+                        borderWidth="1"
+                        borderRadius="large"
+                        padding="4">
+                        {infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })}
+                    </BoxNew>
+                ) : (
+                    infoRenderer({ data, onEdit: handleEdit, onDelete: handleDelete })
+                )}
+
                 {renderEditButtons && (
-                    <div className={'modalFormAndInfo__buttons'}>
+                    <HStack gap="4">
                         <Button
                             type="button"
                             onClick={() => setModalState({ isVisible: true, data })}
@@ -110,9 +114,9 @@ function ModalFormAndInfo<DataType>({
                                 {labels.deleteLabel}
                             </Button>
                         )}
-                    </div>
+                    </HStack>
                 )}
-            </>
+            </VStack>
         );
 
     return (

@@ -13,6 +13,7 @@ export const getArbeidsforholdIntlValues = (
             | {
                   type: ArbeidsforholdType.ANSATT;
                   arbeidsgiverNavn?: string;
+                  erAnsatt?: boolean;
               }
             | {
                   type: ArbeidsforholdType.FRILANSER | ArbeidsforholdType.SELVSTENDIG;
@@ -33,7 +34,10 @@ export const getArbeidsforholdIntlValues = (
     };
 
     return {
-        jobber: text('arbeidsforhold.arbeidsforholdIntlValues.jobber'),
+        jobber:
+            info.arbeidsforhold.type === ArbeidsforholdType.ANSATT && info.arbeidsforhold.erAnsatt === false
+                ? text('arbeidsforhold.arbeidsforholdIntlValues.jobbet')
+                : text('arbeidsforhold.arbeidsforholdIntlValues.jobber'),
         hvor: getHvorTekst(),
     };
 };

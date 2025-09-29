@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { SummaryList } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
@@ -11,14 +11,13 @@ export interface Props {
     onEdit?: () => void;
 }
 
-const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandsopphold, onEdit }) => {
+const UtenlandsoppholdISøkeperiodeOppsummering = ({ utenlandsopphold, onEdit }) => {
     return utenlandsopphold && utenlandsopphold.length > 0 ? (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.utenlandsopphold.titel" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -34,6 +33,11 @@ const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandso
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     ) : null;
 };

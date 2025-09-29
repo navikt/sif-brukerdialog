@@ -1,13 +1,19 @@
 import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
+import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
+interface KursholderApiData {
+    uuid?: string;
+    navn: string;
+}
+
 export interface KursApiData {
-    kursholder: string;
+    kursholder: KursholderApiData;
     reise:
         | {
               reiserUtenforKursdager: true;
@@ -48,7 +54,6 @@ export interface ArbeidsgiverApiData {
     ansattFom?: ISODate;
     ansattTom?: ISODate;
     erAnsatt: boolean;
-    sluttetFørSøknadsperiode?: boolean;
     arbeidsforhold?: ArbeidsforholdApiData;
 }
 
@@ -83,7 +88,7 @@ export interface PeriodeApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;
 }
-export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
+export interface UtenlandsoppholdApiData extends PeriodeApiData {
     landkode: string;
     landnavn: string;
 }
@@ -101,9 +106,9 @@ export interface OpptjeningIUtlandetApi {
     tilOgMed: ISODate;
 }
 
-export interface UtenlandsoppholdIPeriodenApi {
+export interface UtenlandsoppholdIPeriodenApiData {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: UtenlandsoppholdIPeriodenApiData[];
+    opphold: UtenlandsoppholdApiData[];
 }
 
 export interface FerieuttakIPeriodenApiData {
@@ -146,7 +151,11 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
-    // utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    ettersendingAvVedlegg: {
+        skalEttersendeVedlegg: boolean;
+        vedleggSomSkalEttersendes?: VedleggType[];
+    };
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

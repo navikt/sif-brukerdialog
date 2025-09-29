@@ -1,5 +1,210 @@
 # config
 
+## 0.11.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 0.11.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.24
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 0.11.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 0.11.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.18
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
+## 0.11.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.11
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 0.11.9
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.8
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.11.7
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.11.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+
+## 0.11.1
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
+## 0.11.0
+
+### Minor Changes
+
+- Oppdatere target i tsconfig til es2020
+
+## 0.10.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.32
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.10.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.10.30
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
 ## 0.10.29
 
 ### Patch Changes

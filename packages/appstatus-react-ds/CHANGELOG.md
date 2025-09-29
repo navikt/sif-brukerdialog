@@ -1,5 +1,281 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.42
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
+## 2.20.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 2.20.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.36
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.5
+
+## 2.20.35
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 2.20.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.29
+
+### Patch Changes
+
+- Oppdaterte pakker - minor/patch + codegen
+
+## 2.20.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.26
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.25
+
+### Patch Changes
+
+- Oppdatert portabletext/react
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.18
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.4
+
+## 2.20.17
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.3
+
+## 2.20.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.15
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.14
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.8
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
+## 2.20.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-hooks@0.3.2
+
+## 2.20.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.20.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.20.3
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-hooks@0.3.1
+
+## 2.20.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
 ## 2.20.1
 
 ### Patch Changes
@@ -246,7 +522,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss

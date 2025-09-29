@@ -1,4 +1,5 @@
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import {
@@ -39,6 +40,10 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (arbeid: ArbeidIPeriodeS
             return {
                 type: ArbeidIPeriodeType.arbeiderRedusert,
                 redusertArbeid: getRedusertArbeidApiData(arbeid.redusertArbeid),
+            };
+        case ArbeidIPeriodeType.ikkeBesvart:
+            return {
+                type: ArbeidIPeriodeType.ikkeBesvart,
             };
     }
 };

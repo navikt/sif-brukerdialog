@@ -1,11 +1,11 @@
 import { Tabs, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     getDate1YearAgo,
@@ -14,13 +14,17 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
 import { flatten } from 'flat';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import EnkeltdatoForm, { EnkeltdatoFormErrors } from '../EnkeltdatoForm';
 import EnkeltdatoListAndDialog from '../EnkeltdatoListAndDialog';
-import { enkeltdatoMessages } from '../enkeltdatoMessages';
+import { enkeltdatoMessages } from '../i18n';
 import { Enkeltdato } from '../types';
 
 enum FormField {
@@ -63,7 +67,7 @@ const EnkeltdatoExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <EnkeltdatoListAndDialog<FormField>
                                         name={FormField.enkeltdato}
                                         minDate={minDate}
@@ -100,7 +104,7 @@ const EnkeltdatoExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(EnkeltdatoFormErrors)}
-                        formName={'Enkeltdato'}
+                        formName="Enkeltdato"
                         intlMessages={enkeltdatoMessages}
                     />
                 </Tabs.Panel>

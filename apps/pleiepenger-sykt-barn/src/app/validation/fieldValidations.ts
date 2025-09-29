@@ -1,13 +1,5 @@
 import { isDevMode } from '@navikt/sif-common-env';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import {
-    getDateRangeValidator,
-    getDateValidator,
-    getFødselsnummerValidator,
-    getStringValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { datepickerUtils, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
@@ -23,10 +15,18 @@ import {
     getValidDurations,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
+import {
+    getDateRangeValidator,
+    getDateValidator,
+    getFødselsnummerValidator,
+    getStringValidator,
+} from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
-import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
+
+import { FosterhjemsgodtgjørelseFormValues } from '../types/søknad-form-values/FosterhjemsgodtgjørelseFormValues';
+import { OmsorgsstønadFormValues } from '../types/søknad-form-values/OmsorgsstønadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
 
 dayjs.extend(minMax);
@@ -66,6 +66,16 @@ export const validateNavn = (value: string): ValidationResult<ValidationError> =
         ? {
               key: error,
               values: { maks: 50 },
+          }
+        : undefined;
+};
+
+export const validateRelasjonTilBarnBeskrivelse = (value?: string): ValidationResult<ValidationError> => {
+    const error = getStringValidator({ required: true, maxLength: 2000 })(value);
+    return error
+        ? {
+              key: error,
+              values: { min: 5, maks: 2000 },
           }
         : undefined;
 };
@@ -174,8 +184,8 @@ export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: Date
     return undefined;
 };
 
-export const getstønadGodtgjørelseStartdatoValidator =
-    (formValues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadStartdatoValidator =
+    (formValues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
@@ -189,8 +199,38 @@ export const getstønadGodtgjørelseStartdatoValidator =
         return undefined;
     };
 
-export const getstønadGodtgjørelseSluttdatoValidator =
-    (formVaues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
+export const getOmsorgsstønadSluttdatoValidator =
+    (formVaues: OmsorgsstønadFormValues, søknadsperiode: DateRange) =>
+    (value: string): ValidationResult<ValidationError> => {
+        const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
+        if (dateError) {
+            return dateError;
+        }
+        const sluttdato = datepickerUtils.getDateFromDateString(formVaues.sluttdato);
+
+        if (sluttdato && formVaues.startdato && dayjs(sluttdato).isBefore(formVaues.startdato, 'day')) {
+            return 'sluttetFørStartDato';
+        }
+        return undefined;
+    };
+
+export const getFosterhjemsgodtgjørelseStartdatoValidator =
+    (formValues: FosterhjemsgodtgjørelseFormValues, søknadsperiode: DateRange) =>
+    (value: string): ValidationResult<ValidationError> => {
+        const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
+        if (dateError) {
+            return dateError;
+        }
+        const startdato = datepickerUtils.getDateFromDateString(formValues.startdato);
+
+        if (startdato && formValues.sluttdato && dayjs(startdato).isAfter(formValues.sluttdato, 'day')) {
+            return 'startetEtterSluttDato';
+        }
+        return undefined;
+    };
+
+export const getFosterhjemsgodtgjørelseSluttdatoValidator =
+    (formVaues: FosterhjemsgodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {

@@ -1,8 +1,9 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateRangeToISODateRange, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
+
 import { GjentagelseType } from '../TidEnkeltdagForm';
 import { getDagerMedNyTid, getDateRangeWithinDateRange, trimDateRangeToWeekdays } from '../utils/tidEnkeltdagUtils';
-import { vi } from 'vitest';
 
 vi.mock('@navikt/sif-common-env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };

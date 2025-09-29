@@ -1,14 +1,17 @@
-import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
-import React from 'react';
+import './endreArbeidstidForm.scss';
+
 import { useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { getNumberFromNumberInputValue, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { getDurationString } from '@navikt/sif-common-ui';
+import {
+    getIntlFormErrorHandler,
+    getNumberFromNumberInputValue,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout, getDurationString } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
+import { getNumberValidator } from '@navikt/sif-validation';
 import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
 import {
     arbeidsukerHarLikNormaltidPerDag,
@@ -19,13 +22,12 @@ import {
     getFeriedagerIUkeTekst,
 } from '@utils';
 import dayjs from 'dayjs';
+
 import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
-import KortUkeInfo from '../arbeidstid-uker/components/KortUkeInfo';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-import './endreArbeidstidForm.scss';
 
 type EndreArbeidstidData = {
     perioder: DateRange[];
@@ -58,13 +60,13 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = ({
+const EndreArbeidstidForm = ({
     arbeidsuker,
     lovbestemtFerie,
     endring,
     onCancel,
     onSubmit,
-}) => {
+}: EndreArbeidstidFormProps) => {
     const appIntl = useAppIntl();
     const { text, intl } = appIntl;
     const {
@@ -141,30 +143,27 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                 });
 
                 return (
-                    <div className="endreArbeidstidForm">
-                        <Block margin="l" padBottom="l">
-                            <Heading size="large" level="2">
+                    <VStack gap="8" className="endreArbeidstidForm">
+                        <div>
+                            <Heading size="large" level="2" spacing={true}>
                                 {arbeidsuker.length === 1
                                     ? text('endreArbeidstidForm.heading.endreForEnUke', {
                                           ukenummer: getArbeidsukeUkenummer(arbeidsuker[0], true),
                                       })
                                     : text('endreArbeidstidForm.heading.endreForFlereUker')}
                             </Heading>
-                            <Block margin="m">
-                                <Ingress as="div">
-                                    {getUkerOgÅrBeskrivelse(arbeidsuker, appIntl, lovbestemtFerie)}
-                                </Ingress>
-                            </Block>
-                        </Block>
+                            <BodyShort size="large" as="div">
+                                {getUkerOgÅrBeskrivelse(arbeidsuker, appIntl, lovbestemtFerie)}
+                            </BodyShort>
+                        </div>
+
                         {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
-                            <Block margin="s" padBottom="l">
-                                <Alert variant="warning">
-                                    <AppText
-                                        id="endreArbeidstidForm.dagerMedFerieFjernet.melding"
-                                        values={{ feriedagerTekst: getFeriedagerIUkeTekst(dagerMedFjernetFerie) }}
-                                    />
-                                </Alert>
-                            </Block>
+                            <Alert variant="warning">
+                                <AppText
+                                    id="endreArbeidstidForm.dagerMedFerieFjernet.melding"
+                                    values={{ feriedagerTekst: getFeriedagerIUkeTekst(dagerMedFjernetFerie) }}
+                                />
+                            </Alert>
                         )}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
@@ -173,38 +172,38 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                             cancelButtonLabel="Avbryt"
                             onCancel={onCancel}
                             showButtonArrows={false}>
-                            <Block padBottom="m">
-                                <strong>
-                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.spm" />
-                                </strong>
-                            </Block>
-                            <ToggleGroup
-                                className="endreArbeidstidForm__timerProsentToggler"
-                                value={timerEllerProsent}
-                                size="small"
-                                onChange={(value) => {
-                                    dispatch(
-                                        actionsCreator.setInputPreferanser({
-                                            timerEllerProsent: value as TimerEllerProsent,
-                                        }),
-                                    );
-                                    setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
-                                }}>
-                                <ToggleGroup.Item value={TimerEllerProsent.PROSENT} data-testid="toggle-prosent">
-                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iProsent" />
-                                </ToggleGroup.Item>
-                                <ToggleGroup.Item value={TimerEllerProsent.TIMER} data-testid="toggle-timer">
-                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iTimer" />
-                                </ToggleGroup.Item>
-                            </ToggleGroup>
+                            <FormLayout.Questions>
+                                <ToggleGroup
+                                    className="endreArbeidstidForm__timerProsentToggler"
+                                    value={timerEllerProsent}
+                                    label={text('endreArbeidstidForm.hvordanOppgiArbeid.spm')}
+                                    onChange={(value) => {
+                                        dispatch(
+                                            actionsCreator.setInputPreferanser({
+                                                timerEllerProsent: value as TimerEllerProsent,
+                                            }),
+                                        );
+                                        setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
+                                    }}>
+                                    <ToggleGroup.Item value={TimerEllerProsent.PROSENT} data-testid="toggle-prosent">
+                                        <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iProsent" />
+                                    </ToggleGroup.Item>
+                                    <ToggleGroup.Item value={TimerEllerProsent.TIMER} data-testid="toggle-timer">
+                                        <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iTimer" />
+                                    </ToggleGroup.Item>
+                                </ToggleGroup>
 
-                            {gjelderKortUke ? (
-                                <Block margin="xl">
-                                    <KortUkeInfo arbeidsuke={arbeidsuker[0]} />
-                                </Block>
-                            ) : null}
+                                {gjelderKortUke && (
+                                    <FormLayout.QuestionBleedTop>
+                                        <Alert variant="info" inline={false}>
+                                            <AppText
+                                                id="endreArbeidstidForm.kortUke.info"
+                                                values={{ dager: getDagerTekst(arbeidsuker[0].periode) }}
+                                            />
+                                        </Alert>
+                                    </FormLayout.QuestionBleedTop>
+                                )}
 
-                            <FormBlock paddingBottom="l">
                                 {timerEllerProsent === TimerEllerProsent.PROSENT && (
                                     <NumberInput
                                         className="arbeidstidUkeInput"
@@ -250,9 +249,9 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                         />
                                     </>
                                 )}
-                            </FormBlock>
+                            </FormLayout.Questions>
                         </Form>
-                    </div>
+                    </VStack>
                 );
             }}
         />
@@ -271,14 +270,12 @@ const getUkerOgÅrBeskrivelse = (
             ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
-            <BodyShort as="div" className="capsFirstChar">
-                {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
-                {dagerMedFerie.length > 0 && (
-                    <Block margin="m">
-                        <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
-                    </Block>
-                )}
-            </BodyShort>
+            <VStack gap="2">
+                <BodyShort as="div" className="capsFirstChar">
+                    {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
+                </BodyShort>
+                {dagerMedFerie.length > 0 && <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />}
+            </VStack>
         );
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
@@ -291,25 +288,21 @@ const getUkerOgÅrBeskrivelse = (
 
     const årKeys = Object.keys(ukerPerÅr);
     return (
-        <>
-            <Block margin="m">
-                <ExpandableInfo
-                    title={text('endreArbeidstidForm.ukerOgÅr.visValgteUker.tittel', {
-                        antallUker: arbeidsuker.length,
-                    })}>
-                    {årKeys.map((år) => {
-                        return (
-                            <div key={år}>
-                                <AppText
-                                    id="endreArbeidstidForm.ukerOgÅr.årOgUke"
-                                    values={{ år, uker: getUker(ukerPerÅr[år]) }}
-                                />
-                            </div>
-                        );
-                    })}
-                </ExpandableInfo>
-            </Block>
-        </>
+        <ExpandableInfo
+            title={text('endreArbeidstidForm.ukerOgÅr.visValgteUker.tittel', {
+                antallUker: arbeidsuker.length,
+            })}>
+            {årKeys.map((år) => {
+                return (
+                    <div key={år}>
+                        <AppText
+                            id="endreArbeidstidForm.ukerOgÅr.årOgUke"
+                            values={{ år, uker: getUker(ukerPerÅr[år]) }}
+                        />
+                    </div>
+                );
+            })}
+        </ExpandableInfo>
     );
 };
 

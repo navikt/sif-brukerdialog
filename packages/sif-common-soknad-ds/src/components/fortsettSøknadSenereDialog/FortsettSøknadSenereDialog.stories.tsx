@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
-import FortsettSøknadSenereDialog from './FortsettSøknadSenereDialog';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntl } from '../../../storybook/decorators/withIntl';
+import FortsettSøknadSenereDialog from './FortsettSøknadSenereDialog';
 
 const meta: Meta<typeof FortsettSøknadSenereDialog> = {
     component: FortsettSøknadSenereDialog,

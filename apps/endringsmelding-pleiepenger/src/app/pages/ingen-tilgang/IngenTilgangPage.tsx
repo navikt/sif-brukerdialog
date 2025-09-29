@@ -1,14 +1,16 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
 import { IngenTilgangMeta } from '@hooks';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { IngenTilgangÅrsak, Søker } from '@types';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { IngenTilgangÅrsak } from '@types';
+
 import DevFooter from '../../dev/DevFooter';
 import { AppText, useAppIntl } from '../../i18n';
-import { SkrivTilOssLink } from '../../lenker';
+import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
@@ -19,11 +21,11 @@ export interface IngenTilgangPageProps {
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
-    const skrivTilOssGenerell = (
+    const beskjedTilOssGenerell = (
         <AppText
-            id="ingenTilgangPage.skrivTilOssGenerell"
+            id="ingenTilgangPage.beskjedTilOssGenerell"
             values={{
-                SkrivTilOssLink: <SkrivTilOssLink key="lenke" />,
+                SendBeskjedLink: <SendBeskjedLink />,
             }}
         />
     );
@@ -34,7 +36,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harUgyldigK9FormatSak.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
 
@@ -48,7 +50,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.harIngenSak.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
+                            values={{ SendBeskjedLink: <SendBeskjedLink /> }}
                         />
                     </p>
                     <p>
@@ -76,7 +78,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
@@ -85,7 +87,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.harMerEnnEnSak.1" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold:
@@ -94,7 +96,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText id="ingenTilgangPage.slutterOgStarterInneforSammeUke" />
                     </p>
-                    <p>{skrivTilOssGenerell}</p>
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
@@ -105,7 +107,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                             id="ingenTilgangPage.utenforEndringsperiode.1"
                             values={{
                                 ANTALL_MÅNEDER_TILLATT_FOR_ENDRING,
-                                SkrivTilOssLink: <SkrivTilOssLink key="lenke" />,
+                                SendBeskjedLink: <SendBeskjedLink />,
                             }}
                         />
                     </p>
@@ -131,12 +133,12 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
     return (
         <SøknadContextProvider initialData={{} as any}>
             <Page title={text('ingenTilgangPage.pageTitle')}>
-                <SifGuidePanel poster={true}>
+                <FormLayout.Guide poster={true}>
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                         <AppText id="ingenTilgangPage.tittel" values={{ navn: søker.fornavn }} />
                     </Heading>
                     {getÅrsakMelding(årsak[0])}
-                </SifGuidePanel>
+                </FormLayout.Guide>
                 {getMaybeEnv('MSW') === 'on' && <DevFooter />}
             </Page>
         </SøknadContextProvider>

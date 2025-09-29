@@ -1,7 +1,7 @@
-FROM node:22-alpine AS base
+FROM node:24-alpine AS base
 
 ARG APP="ungdomsytelse-veileder"
-ARG SERVER="server"
+ARG SERVER="server-ungdomsytelse-veileder"
 
 ENV SCOPE=@navikt/ungdomsytelse-veileder
 

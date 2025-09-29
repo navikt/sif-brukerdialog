@@ -1,6 +1,5 @@
-import { Tabs } from '@navikt/ds-react';
-import { Meta, StoryFn } from '@storybook/react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box, Tabs } from '@navikt/ds-react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { SøknadContextProvider } from '../../context/SøknadContext';
 import { deltBostedMessages } from './deltBostedMessages';
@@ -33,19 +32,19 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
             <Tabs.Panel value="steg">
-                <Block margin="xl">
+                <Box paddingBlock="10">
                     <DeltBostedStep />
-                </Block>
+                </Box>
             </Tabs.Panel>
             <Tabs.Panel value="tekster">
-                <Block margin="xl">
+                <Box paddingBlock="10">
                     <MessagesPreview
                         messages={deltBostedMessages}
                         showMissingTextSummary={true}
                         showExplanation={false}
                         title="Om barnet"
                     />
-                </Block>
+                </Box>
             </Tabs.Panel>
         </Tabs>
     </SøknadContextProvider>

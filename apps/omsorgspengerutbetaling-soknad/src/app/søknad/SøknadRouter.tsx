@@ -1,23 +1,24 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { fetchSøkerId } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import { useCallback, useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
 import { mellomlagringService } from '../api/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { StepId } from '../types/StepId';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
 import DineBarnStep from './steps/dine-barn/DineBarnStep';
-import FraværFraStep from './steps/fravær-fra/FraværFraStep';
 import FraværStep from './steps/fravær/FraværStep';
+import FraværFraStep from './steps/fravær-fra/FraværFraStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';

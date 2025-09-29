@@ -1,12 +1,13 @@
-import { Alert, Box, Heading } from '@navikt/ds-react';
-import Block from '../../../atoms/block/Block';
+import './messagesPreview.scss';
+
+import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+
 import bemUtils from '../../../utils/bemUtils';
 import { createMultiLocaleObject, getMissingMessageKeys, MessageFileFormat } from '../devIntlUtils';
 import MessagesPreviewExplanation from './MessagePreviewExplanation';
 import MessagesList from './MessagesList';
-import './messagesPreview.scss';
 
-interface Props {
+export interface MessagesPreviewProps {
     title?: string;
     showMissingTextSummary?: boolean;
     showExplanation?: boolean;
@@ -35,7 +36,12 @@ const validateMessageKeys = (nb: Record<string, string>, nn: Record<string, stri
     };
 };
 
-const MessagesPreview = ({ messages, title, showMissingTextSummary = true, showExplanation = true }: Props) => {
+const MessagesPreview = ({
+    messages,
+    title,
+    showMissingTextSummary = true,
+    showExplanation = true,
+}: MessagesPreviewProps) => {
     const allMessages = createMultiLocaleObject(messages);
     const missingMessages = getMissingMessageKeys(allMessages);
     const { placeholdersMismatch } = validateMessageKeys(messages['nb'], messages['nn']);
@@ -48,43 +54,41 @@ const MessagesPreview = ({ messages, title, showMissingTextSummary = true, showE
             )}
 
             {placeholdersMismatch.length > 0 && (
-                <Box marginBlock="8">
+                <VStack gap="4" marginBlock="8">
                     <Heading size="small" level="3">
                         Tekstnøkler med ulikhet i placeholdere
                     </Heading>
-                    <Block margin="m">
-                        <Alert variant="error">
-                            <pre className={bem.element('missingList')}>
-                                {placeholdersMismatch.map((key) => (
-                                    <div key={key}>{key}</div>
-                                ))}
-                            </pre>
-                        </Alert>
-                    </Block>
-                </Box>
+
+                    <Alert variant="error">
+                        <pre className={bem.element('missingList')}>
+                            {placeholdersMismatch.map((key) => (
+                                <div key={key}>{key}</div>
+                            ))}
+                        </pre>
+                    </Alert>
+                </VStack>
             )}
             {missingMessages && showMissingTextSummary && (
-                <Block margin="xl">
+                <VStack gap="4" marginBlock="8">
                     <Heading size="small" level="3">
                         Tekstnøkler som ikke er oversatt
                     </Heading>
-                    <Block margin="m">
-                        <Alert variant="error">
-                            <pre className={bem.element('missingList')}>
-                                {Object.keys(missingMessages).map((key) => (
-                                    <div key={key}>
-                                        {missingMessages[key]}: {key}
-                                    </div>
-                                ))}
-                            </pre>
-                        </Alert>
-                    </Block>
-                </Block>
+
+                    <Alert variant="error">
+                        <pre className={bem.element('missingList')}>
+                            {Object.keys(missingMessages).map((key) => (
+                                <div key={key}>
+                                    {missingMessages[key]}: {key}
+                                </div>
+                            ))}
+                        </pre>
+                    </Alert>
+                </VStack>
             )}
             {showExplanation && (
-                <Block padBottom="l">
+                <Box paddingBlock="0 6">
                     <MessagesPreviewExplanation />
-                </Block>
+                </Box>
             )}
             <MessagesList messages={messages} />
         </div>

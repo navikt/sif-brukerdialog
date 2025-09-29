@@ -1,9 +1,9 @@
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../i18n';
+
+import { AppText } from '../../i18n';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 
 const OmSøknaden = () => {
-    const { text } = useAppIntl();
     return (
         <>
             <VStack gap="4">
@@ -23,9 +23,11 @@ const OmSøknaden = () => {
                         </List.Item>
                     </List>
                 </Box>
-                <Accordion>
+                <Accordion data-color="accent">
                     <Accordion.Item>
-                        <Accordion.Header>{text('page.velkommen.omSøknaden.4')}</Accordion.Header>
+                        <Accordion.Header>
+                            <AppText id="page.velkommen.omSøknaden.4" />
+                        </Accordion.Header>
                         <Accordion.Content>
                             <BehandlingAvPersonopplysningerContent />
                         </Accordion.Content>

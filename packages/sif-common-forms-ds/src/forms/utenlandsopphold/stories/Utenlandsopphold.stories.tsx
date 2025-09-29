@@ -1,9 +1,10 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent } from '@storybook/testing-library';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within } from '@storybook/testing-library';
+import dayjs from 'dayjs';
+
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import UtenlandsoppholdExample from './UtenlandsoppholdExample';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 
 const meta: Meta<typeof UtenlandsoppholdExample> = {
     component: UtenlandsoppholdExample,

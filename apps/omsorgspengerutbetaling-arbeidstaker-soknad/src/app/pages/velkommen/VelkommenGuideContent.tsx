@@ -1,4 +1,5 @@
 import { BodyLong } from '@navikt/ds-react';
+
 import { AppText } from '../../i18n';
 
 const VelkommenGuideContent = () => (

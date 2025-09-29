@@ -1,15 +1,19 @@
-import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+} from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { BostedUtlandMessageKeys, useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';
@@ -97,58 +101,58 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.bostedUtlandForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.bostedUtlandForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
-                        <Form.DateRangePicker
-                            legend={text('@forms.bostedUtland.form.tidsperiode.spm')}
-                            minDate={minDate}
-                            maxDate={maxDate}
-                            allowRangesToStartAndStopOnSameDate={false}
-                            disabledDateRanges={andreBosteder}
-                            fromInputProps={{
-                                name: BostedUtlandFormFields.fom,
-                                label: text('@forms.bostedUtland.form.tidsperiode.fraDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: fomDateLimits.minDate,
-                                        max: fomDateLimits.maxDate,
-                                        toDate: ISOStringToDate(values.tom),
-                                    }).validateFromDate(value);
-                                    return handleDateRangeValidationError(
-                                        error,
-                                        fomDateLimits.minDate,
-                                        fomDateLimits.maxDate,
-                                    );
-                                },
-                            }}
-                            toInputProps={{
-                                name: BostedUtlandFormFields.tom,
-                                label: text('@forms.bostedUtland.form.tidsperiode.tilDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: tomDateLimits.minDate,
-                                        max: tomDateLimits.maxDate,
-                                        fromDate: ISOStringToDate(values.fom),
-                                    }).validateToDate(value);
-                                    return handleDateRangeValidationError(
-                                        error,
-                                        tomDateLimits.minDate,
-                                        tomDateLimits.maxDate,
-                                    );
-                                },
-                            }}
-                        />
-
-                        <FormBlock>
+                        <FormLayout.Questions>
+                            <Form.DateRangePicker
+                                legend={text('@forms.bostedUtland.form.tidsperiode.spm')}
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                allowRangesToStartAndStopOnSameDate={false}
+                                disabledDateRanges={andreBosteder}
+                                dropdownCaption={true}
+                                fromInputProps={{
+                                    name: BostedUtlandFormFields.fom,
+                                    label: text('@forms.bostedUtland.form.tidsperiode.fraDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: fomDateLimits.minDate,
+                                            max: fomDateLimits.maxDate,
+                                            toDate: ISOStringToDate(values.tom),
+                                        }).validateFromDate(value);
+                                        return handleDateRangeValidationError(
+                                            error,
+                                            fomDateLimits.minDate,
+                                            fomDateLimits.maxDate,
+                                        );
+                                    },
+                                }}
+                                toInputProps={{
+                                    name: BostedUtlandFormFields.tom,
+                                    label: text('@forms.bostedUtland.form.tidsperiode.tilDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: tomDateLimits.minDate,
+                                            max: tomDateLimits.maxDate,
+                                            fromDate: ISOStringToDate(values.fom),
+                                        }).validateToDate(value);
+                                        return handleDateRangeValidationError(
+                                            error,
+                                            tomDateLimits.minDate,
+                                            tomDateLimits.maxDate,
+                                        );
+                                    },
+                                }}
+                            />
                             <Form.CountrySelect
                                 name={BostedUtlandFormFields.landkode}
                                 label={text('@forms.bostedUtland.form.land.spm')}
                                 validate={getRequiredFieldValidator()}
                             />
-                        </FormBlock>
+                        </FormLayout.Questions>
                     </Form.Form>
                 );
             }}

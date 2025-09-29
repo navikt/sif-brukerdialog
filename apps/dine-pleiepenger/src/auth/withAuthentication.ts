@@ -1,5 +1,5 @@
-import { getToken, validateToken } from '@navikt/oasis';
 import { logger } from '@navikt/next-logger';
+import { getToken, validateToken } from '@navikt/oasis';
 import { IncomingHttpHeaders } from 'http';
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
 import { RequestContext } from '../types/RequestContext';

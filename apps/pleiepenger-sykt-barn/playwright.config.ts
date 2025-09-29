@@ -1,9 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
-import { playwrightEnv } from './e2e/playwright/playwright.env';
 
 export default defineConfig({
-    testDir: './e2e/playwright/tests',
-    maxFailures: 2,
+    testDir: './playwright/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
@@ -12,7 +10,7 @@ export default defineConfig({
     use: {
         trace: 'on-first-retry',
         launchOptions: {
-            slowMo: 20,
+            slowMo: 100,
         },
     },
     projects: [
@@ -22,10 +20,8 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn start-e2e-server',
+        command: 'yarn pw:build && yarn pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
-        timeout: 60000,
-        env: playwrightEnv,
     },
 });

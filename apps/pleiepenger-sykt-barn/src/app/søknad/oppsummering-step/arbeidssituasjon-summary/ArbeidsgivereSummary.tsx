@@ -1,8 +1,9 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import { ArbeidsgiverAnsattApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import { getFeatureToggles } from '../../../utils/featureToggleUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
+const ArbeidsgivereSummary = ({ arbeidsgivere, søknadsperiode }: Props) => {
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
             <FormSummary.Answer>
@@ -29,6 +30,8 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
             </FormSummary.Answer>
         );
     }
+
+    const { spørOmSluttetISøknadsperiode } = getFeatureToggles();
 
     return (
         <>
@@ -61,7 +64,7 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                         />
                                     </List.Item>
                                 )}
-                                {erAnsatt === false && (
+                                {spørOmSluttetISøknadsperiode && erAnsatt === false && (
                                     <List.Item>
                                         <AppText
                                             id={

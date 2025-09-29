@@ -1,10 +1,11 @@
+import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
+
+import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
 import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
+import { Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
-import { Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
-import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
-import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = ({

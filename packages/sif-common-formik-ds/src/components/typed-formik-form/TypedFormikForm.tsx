@@ -1,8 +1,9 @@
+import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
+import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
-import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
+
 import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldErrorHandler, FormError } from '../../types';
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
@@ -177,7 +178,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                 )}
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
-                        <ButtonRow layout={'normal'}>
+                        <ButtonRow layout="normal">
                             {onBack && (
                                 <Button
                                     variant="secondary"
@@ -186,7 +187,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     disabled={backDisabled}
                                     data-testid="typedFormikForm-goBackButton"
                                     icon={showButtonArrows ? <ArrowLeftIcon aria-hidden /> : undefined}>
-                                    {backButtonLabel || locale === 'no-NN' ? 'Føregåande steg' : 'Forrige steg'}
+                                    {backButtonLabel || locale === 'no-NN' ? 'Førre steg' : 'Forrige steg'}
                                 </Button>
                             )}
                             {showSubmitButton && (

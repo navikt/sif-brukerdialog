@@ -1,9 +1,11 @@
+import './statusMessage.css';
+
 import { Alert } from '@navikt/ds-react';
+
 import { SanityLocale, SanityMessageType } from '../../types';
 import { SanityStatusMessage } from '../../types/sanityObjects';
 import { getLocaleBlockContent } from '../../utils';
 import SanityBlock from '../sanity-block/SanityBlock';
-import './statusMessage.css';
 
 interface Props {
     message: SanityStatusMessage;

@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+
 import { appEnv } from '../env/appEnv';
 
 const axiosConfigCommon: AxiosRequestConfig = {

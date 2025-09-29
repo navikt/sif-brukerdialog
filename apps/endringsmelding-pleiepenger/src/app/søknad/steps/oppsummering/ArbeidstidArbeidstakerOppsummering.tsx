@@ -1,6 +1,6 @@
-import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading, VStack } from '@navikt/ds-react';
 import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@types';
+
 import { AppText } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { ArbeiderIPeriodenSvarIntlKey } from '../arbeidstid/arbeidsaktivitet-form-part/components/ArbeiderIPeriodenSpørsmål';
@@ -21,30 +21,30 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
     }
 
     return (
-        <Block margin="xl" padBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
+        <VStack gap="4" data-testid={`oppsummering-${organisasjonsnummer}`}>
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
             </Heading>
             {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
-                <>
+                <VStack gap="2">
                     <Heading level="3" size="xsmall">
                         <AppText id="arbeidstidStep.arbeiderIPeriodenSpm.legend" values={{ navn: arbeidsgiver.navn }} />
                     </Heading>
+
                     <AppText id={ArbeiderIPeriodenSvarIntlKey[arbeidstaker._arbeiderIPerioden]} />
-                </>
+                </VStack>
             )}
+
             {(arbeidstaker._erUkjentArbeidsforhold === false ||
                 (arbeidstaker._erUkjentArbeidsforhold === true &&
                     arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (
-                <Block margin={arbeidstaker._erUkjentArbeidsforhold === true ? 'l' : 'none'}>
-                    <ArbeidstidUker
-                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(arbeidstidInfo.perioder)}
-                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}
-                    />
-                </Block>
+                <ArbeidstidUker
+                    listItems={oppsummeringStepUtils.getArbeidstidUkerItems(arbeidstidInfo.perioder)}
+                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                    visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}
+                />
             )}
-        </Block>
+        </VStack>
     );
 };
 

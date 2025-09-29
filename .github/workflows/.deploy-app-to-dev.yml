@@ -21,7 +21,7 @@ jobs:
             id-token: write # required: nais/docker-build-push
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Setup .yarnrc.yml
               run: |
@@ -32,9 +32,9 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v5
               with:
-                  node-version: 18
+                  node-version: 22
                   cache: 'yarn'
             - run: yarn set version 4.x
 

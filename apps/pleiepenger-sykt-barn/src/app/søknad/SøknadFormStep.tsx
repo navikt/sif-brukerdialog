@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
-import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../types/StepID';
 import { relocateToMinSide, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
@@ -25,7 +25,6 @@ interface Props {
     buttonDisabled?: boolean;
     skipValidation?: boolean;
     onValidFormSubmit?: () => void;
-    customErrorSummary?: () => React.ReactNode;
 }
 
 const SøknadFormStep = (props: Props) => {
@@ -38,7 +37,7 @@ const SøknadFormStep = (props: Props) => {
         showButtonSpinner,
         buttonDisabled,
         stepId,
-        customErrorSummary,
+
         isFinalSubmit,
         showSubmitButton = true,
     } = props;
@@ -86,8 +85,7 @@ const SøknadFormStep = (props: Props) => {
                 onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                 submitPending={showButtonSpinner}
                 submitDisabled={buttonDisabled}
-                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                formFooter={<>{customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}</>}>
+                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                 {children}
             </SøknadFormComponents.Form>
         </SøknadStep>

@@ -1,12 +1,14 @@
-.page {
-    margin: 3.5rem auto 3rem;
-    .poster {
-        max-width: 100%;
-    }
-    @media (max-width: 40rem) {
-        margin-top: 2.5rem;
-    }
-    @media (max-width: 25rem) {
-        margin-top: 1.5rem;
+@layer utilities {
+    .page {
+        margin: 2.5rem auto 3rem;
+        .poster {
+            max-width: 100%;
+        }
+        @media (max-width: 40rem) {
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 25rem) {
+            margin-top: 2.5rem;
+        }
     }
 }

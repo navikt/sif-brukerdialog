@@ -1,6 +1,6 @@
 import { TextField, TextFieldProps } from '@navikt/ds-react';
 
-import { TextFieldWidths } from '@navikt/sif-common-formik-ds/src/components/formik-text-field/FormikTextFieldUtils';
+import { TextFieldWidths } from '@navikt/sif-common-formik-ds';
 import { useController, useFormContext } from 'react-hook-form';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {

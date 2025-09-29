@@ -1,9 +1,8 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
-import TidFasteUkedagerInput from './TidFasteUkedagerInput';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
-import { withStoryWrapper, withFormikWrapper, withIntlWrapper } from '../../../storybook/decorators';
+import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
+import TidFasteUkedagerInput from './TidFasteUkedagerInput';
 
 export default {
     title: 'Inputs/TidFasteUkedagerInput',
@@ -12,7 +11,7 @@ export default {
 } as Meta<typeof TidFasteUkedagerInput>;
 
 const Template: StoryFn<typeof TidFasteUkedagerInput> = () => {
-    return <TidFasteUkedagerInput name={'abc'} />;
+    return <TidFasteUkedagerInput name="abc" />;
 };
 
 export const Default = Template.bind({});

@@ -1,6 +1,8 @@
-import React from 'react';
-import bemHelper from '../../../utils/bemUtils';
 import './unstyledList.scss';
+
+import React from 'react';
+
+import bemHelper from '../../../utils/bemUtils';
 
 const bem = bemHelper('unstyledList');
 

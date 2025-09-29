@@ -64,6 +64,9 @@ class MyDocument extends Document<Props> {
         return (
             <Html lang={language || 'no'}>
                 <Head>
+                    {/* <style>@layer base, dekorator-utilities, dekorator-base, components, utilities;</style> */}
+                    <style>@layer base, dekorator-base, dekorator-utilities, theme, components, utilities;</style>
+
                     <Decorator.HeadAssets />
                     <link
                         rel="preload"
@@ -73,7 +76,7 @@ class MyDocument extends Document<Props> {
                         crossOrigin="anonymous"
                     />
                 </Head>
-                <body className="bg-[--a-deepblue-50]">
+                <body className="bg-(--ax-bg-info-soft)">
                     <Decorator.Header />
                     <Main />
                     <Decorator.Footer />

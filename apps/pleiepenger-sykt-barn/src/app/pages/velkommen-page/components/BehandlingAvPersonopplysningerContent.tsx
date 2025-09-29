@@ -1,5 +1,6 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
+
 import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 
@@ -52,7 +53,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     id="personopplysninger.5"
                     values={{
                         Lenke: (children) => (
-                            <Link href={getLenker().personvern} target="_blank">
+                            <Link href={getLenker().personvern} target="_blank" key="lenke">
                                 {children}
                             </Link>
                         ),

@@ -16,13 +16,14 @@ index-decorated.html
 .idea
 .sanity
 .scannerwork
-*dist-playwright
-dist-demo
 *.code-workspace
+*.zip
 
 server/dist
 public/dist
 out
+dist-e2e
+dist-playwright
 
 # next.js
 /.next/

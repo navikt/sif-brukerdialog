@@ -1,4 +1,5 @@
 import { getCommonEnv } from '@navikt/sif-common-env';
+
 import { Vedlegg } from '../types/Vedlegg';
 
 const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';

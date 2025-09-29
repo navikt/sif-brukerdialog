@@ -1,16 +1,18 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     annetBarnMessages,
     bostedUtlandMessages,
+    fraværMessages,
     medlemskapFormMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 export const libMessages = {
     nb: {
@@ -36,6 +38,8 @@ export const libMessages = {
         ...uiMessages.nn,
     },
 };
+
+export const appMessages = { nb: appMessages_nb, nn: appMessages_nn };
 
 const nb = {
     ...libMessages.nb,

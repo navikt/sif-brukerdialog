@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
 
 export const barnSchema = z.object({
@@ -7,9 +8,9 @@ export const barnSchema = z.object({
     etternavn: z.string(),
     mellomnavn: z
         .string()
-        .optional()
         .nullable()
-        .transform((v) => (v === null ? undefined : v)),
+        .transform((v) => (v === null ? undefined : v))
+        .optional(),
     fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
 });
 

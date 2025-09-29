@@ -1,19 +1,19 @@
 import { Tabs, VStack } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { TypedFormikForm, TypedFormikWrapper, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
+import { flatten } from 'flat';
 /* eslint-disable no-console */
 import { useState } from 'react';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
+
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
+import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import AnnetBarnForm, { AnnetBarnFormErrors } from '../AnnetBarnForm';
 import AnnetBarnListAndDialog from '../AnnetBarnListAndDialog';
-import { annetBarnMessages, useAnnetBarnIntl } from '../annetBarnMessages';
+import { annetBarnMessages, useAnnetBarnIntl } from '../i18n';
 import { AnnetBarn } from '../types';
-import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { flatten } from 'flat';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'annetBarn' = 'annetBarn',
@@ -92,7 +92,7 @@ const AnnetBarnExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
-                        formName={'annetBarn'}
+                        formName="annetBarn"
                         intlMessages={annetBarnMessages}
                     />
                 </Tabs.Panel>

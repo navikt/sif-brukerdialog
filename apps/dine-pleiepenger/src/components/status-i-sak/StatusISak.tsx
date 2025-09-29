@@ -1,5 +1,5 @@
 import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { AppText, useAppIntl } from '../../i18n';
@@ -17,7 +17,7 @@ interface Props {
     visAlleHendelser?: boolean;
 }
 
-const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
+const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
     const hendelser = getAlleHendelserISak(sak);
@@ -71,15 +71,17 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                 current={step.current}
                                 isLastStep={step.isLastStep}
                                 isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <Heading size="small" level="3" id={headingId} aria-hidden={true}>
-                                    {step.title}{' '}
-                                    {step.timestamp ? (
-                                        <BodyShort className="mb-2">
-                                            {formatSakshendelseTidspunkt(step.timestamp)}
-                                        </BodyShort>
-                                    ) : null}
-                                </Heading>
-                                {step.content}
+                                <VStack gap="1">
+                                    <Heading size="small" level="3" id={headingId} aria-hidden={true}>
+                                        {step.title}{' '}
+                                        {step.timestamp ? (
+                                            <BodyShort className="mb-2">
+                                                {formatSakshendelseTidspunkt(step.timestamp)}
+                                            </BodyShort>
+                                        ) : null}
+                                    </Heading>
+                                    <div>{step.content}</div>
+                                </VStack>
                             </ProcessStep>
                         );
                     })}

@@ -1,11 +1,10 @@
-import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
@@ -36,31 +35,36 @@ const IntroPage = () => {
                     }
                 }}
                 renderForm={() => {
+                    const radios = [
+                        {
+                            value: Søknadstype.pleiepengerSyktBarn,
+                            label: text('page.intro.type.pleiepenger'),
+                        },
+                        {
+                            value: Søknadstype.pleiepengerLivetsSluttfase,
+                            label: text('page.intro.type.pleiepenger_livets_sluttfase'),
+                        },
+                        {
+                            value: Søknadstype.omsorgspenger,
+                            label: text('page.intro.type.omsorgspenger'),
+                        },
+                        {
+                            value: Søknadstype.opplaringspenger,
+                            label: text('page.intro.type.opplaringspenger'),
+                        },
+                    ];
                     return (
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}
                             submitButtonLabel={text('step.button.gåVidere')}>
-                            <Block margin="xl">
+                            <Box marginBlock="10">
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
                                     legend={text('page.intro.hvilkenTypeSøknad')}
-                                    radios={[
-                                        {
-                                            value: Søknadstype.pleiepengerSyktBarn,
-                                            label: text('page.intro.type.pleiepenger'),
-                                        },
-                                        {
-                                            value: Søknadstype.pleiepengerLivetsSluttfase,
-                                            label: text('page.intro.type.pleiepenger_livets_sluttfase'),
-                                        },
-                                        {
-                                            value: Søknadstype.omsorgspenger,
-                                            label: text('page.intro.type.omsorgspenger'),
-                                        },
-                                    ]}
+                                    radios={radios}
                                     validate={getRequiredFieldValidator()}
                                 />
-                            </Block>
+                            </Box>
                         </PageForm.Form>
                     );
                 }}

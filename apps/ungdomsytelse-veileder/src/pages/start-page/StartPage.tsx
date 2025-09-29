@@ -1,12 +1,29 @@
-import { HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker } from '../../api/types';
-import HentDeltakerForm from '../../forms/HentDeltakerForm';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import BorderBox from '../../atoms/BorderBox';
+import AppPage from '../../components/app-page/AppPage';
+import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';
+import { queryKeys } from '../../queries/queryKeys';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
+import { erÅpnetForRegistrering } from '../../utils/deltakelseUtils';
 
 const StartPage = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
+    useDocumentTitle('Finn deltaker - Deltakerregistrering - ungdomsprogrammet');
+
+    useEffect(() => {
+        queryClient.resetQueries();
+    }, []);
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
+        queryClient.setQueryData(queryKeys.deltakerById(deltaker.id), deltaker); // Lagre deltaker i cache
         navigate(`/deltaker/${deltaker.id}`);
     };
 
@@ -15,18 +32,56 @@ const StartPage = () => {
     };
 
     return (
-        <>
-            <HStack align={'center'} justify={'center'} paddingBlock="20">
-                <VStack
-                    className="rounded-md bg-gray-50 p-8 pt-8 pb-8 items-center w-full drop-shadow-2xl"
-                    maxWidth={'30rem'}>
-                    <HentDeltakerForm
-                        onDeltakerFetched={handleDeltakerFetched}
-                        onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                    />
-                </VStack>
-            </HStack>
-        </>
+        <BoxNew background="default" paddingBlock="0">
+            <AppPage>
+                <Page.Block gutters={true}>
+                    <HStack align="center" justify="center" paddingBlock="14 0">
+                        <VStack gap="10" maxWidth="44rem">
+                            <VStack gap="4">
+                                <Heading level="1" size="large">
+                                    Deltakerregistrering - ungdomsprogrammet
+                                </Heading>
+                                <BodyLong size="large">
+                                    Her registrerer du at deltakere er med i ungdoms&shy;programmet, slik at de får
+                                    ungdoms&shy;program&shy;ytelsen til riktig tid.
+                                </BodyLong>
+                            </VStack>
+                            <VStack className="items-center">
+                                {erÅpnetForRegistrering() ? (
+                                    <BorderBox className="p-8 pt-8 pb-14 items-center w-full">
+                                        <FinnDeltakerForm
+                                            onDeltakerFetched={handleDeltakerFetched}
+                                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                                        />
+                                    </BorderBox>
+                                ) : (
+                                    <Alert variant="info" className="w-full">
+                                        Funksjonaliteten for å registrere deltakere blir tilgjengelig 11. august.
+                                    </Alert>
+                                )}
+                            </VStack>
+                            <VStack gap="4" marginBlock="4 0">
+                                <Alert variant="info" size="small" className="w-full" inline>
+                                    <BodyLong>
+                                        Du finner mer informasjon om denne løsningen, ungdomsprogrammet og
+                                        ungdomsprogramytelsen ved å klikke på{' '}
+                                        <span>
+                                            <InformationSquareIcon
+                                                fontSize="1.6rem"
+                                                display="inline"
+                                                className="inline"
+                                                aria-label="Informasjonikon"
+                                            />
+                                        </span>{' '}
+                                        ikonet i menyen oppe til høyre.
+                                    </BodyLong>
+                                </Alert>
+                            </VStack>
+                        </VStack>
+                    </HStack>
+                </Page.Block>
+            </AppPage>
+        </BoxNew>
     );
 };
 

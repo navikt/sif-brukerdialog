@@ -1,11 +1,18 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
 
+import SoknadHeader from '../soknad-header/SoknadHeader';
+
 interface Props {
     title: string;
+    useStandard?: boolean;
 }
 
-const VelkommenPageHeader = ({ title }: Props) => {
+const VelkommenPageHeader = ({ title, useStandard }: Props) => {
+    if (useStandard) {
+        return <SoknadHeader title={title} useStandard={true} level="1" />;
+    }
+
     return (
         <Stack
             gap="6"

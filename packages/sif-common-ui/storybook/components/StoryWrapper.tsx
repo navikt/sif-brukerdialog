@@ -1,6 +1,5 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 export interface IntlProviderProps {
@@ -8,7 +7,7 @@ export interface IntlProviderProps {
 }
 
 const StoryWrapper = ({ children }: IntlProviderProps) => {
-    React.useEffect(() => {
+    useEffect(() => {
         window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });
 

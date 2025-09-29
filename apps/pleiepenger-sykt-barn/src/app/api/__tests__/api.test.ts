@@ -1,18 +1,10 @@
 import axios from 'axios';
 import { vi } from 'vitest';
+
 import { axiosConfigPsb } from '../../config/axiosConfig';
 import { ResourceType } from '../../types/ResourceType';
 import { StepID } from '../../types/StepID';
-import {
-    deleteFile,
-    getArbeidsgiver,
-    getBarn,
-    getPersistUrl,
-    getSøker,
-    persist,
-    sendApplication,
-    uploadFile,
-} from '../api';
+import { deleteFile, getArbeidsgiver, getPersistUrl, persist, sendApplication, uploadFile } from '../api';
 import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
@@ -34,30 +26,9 @@ vi.mock('../utils/apiUtils', () => {
     };
 });
 
-vi.mock('../../utils/featureToggleUtils', () => {
-    return {
-        isFeatureEnabled: vi.fn(() => false),
-        Feature: {},
-    };
-});
-
 vi.mock('axios');
 
 describe('api', () => {
-    describe('getBarn', () => {
-        it('should call axios.get with correct URL and axios config', () => {
-            getBarn();
-            expect(axios.get).toHaveBeenCalledWith(ResourceType.BARN, axiosJsonConfig);
-        });
-    });
-
-    describe('getSøker', () => {
-        it('should call axios.get with correct URL and axios config', () => {
-            getSøker();
-            expect(axios.get).toHaveBeenCalledWith(ResourceType.SØKER, axiosJsonConfig);
-        });
-    });
-
     describe('getArbeidsgiver', () => {
         it('should call axios.get with correct URL and axios config', () => {
             const date1 = 'some date';

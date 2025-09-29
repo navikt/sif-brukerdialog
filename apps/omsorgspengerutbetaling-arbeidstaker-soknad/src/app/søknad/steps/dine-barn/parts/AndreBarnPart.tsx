@@ -1,11 +1,11 @@
-import React from 'react';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
-import { DineBarnFormFields } from '../DineBarnStep';
-import { getDateToday } from '@navikt/sif-common-utils';
-import { nYearsAgo } from '../dineBarnStepUtils';
 import { Heading } from '@navikt/ds-react';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { getDateToday } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
+import { DineBarnFormFields } from '../DineBarnStep';
+import { nYearsAgo } from '../dineBarnStepUtils';
 
 interface Props {
     søkerFnr: string;
@@ -14,12 +14,7 @@ interface Props {
     onAndreBarnChange: (values: AnnetBarn[]) => void;
 }
 
-const AndreBarnPart: React.FunctionComponent<Props> = ({
-    andreBarn,
-    søkerFnr,
-    harRegistrerteBarn,
-    onAndreBarnChange,
-}) => {
+const AndreBarnPart = ({ andreBarn, søkerFnr, harRegistrerteBarn, onAndreBarnChange }: Props) => {
     const { text } = useAppIntl();
     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
     return (

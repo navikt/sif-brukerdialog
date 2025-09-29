@@ -28,7 +28,7 @@ export interface TestProps {
 }
 
 export interface TypedFormInputValidationProps<FieldName, ErrorType> {
-    validate?: (value: any, fieldName: FieldName) => ErrorType | undefined;
+    validate?: (value: any, fieldName: FieldName) => ErrorType | undefined | Promise<ErrorType | undefined>;
 }
 
 export interface UseFastFieldProps {

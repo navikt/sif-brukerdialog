@@ -1,26 +1,30 @@
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validation/getRequiredFieldValidator';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import {
+    dateToISOString,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getFraværFraStepInitialValues,
     getFraværFraSøknadsdataFromFormValues,
+    getFraværFraStepInitialValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
 
@@ -110,21 +114,19 @@ const FraværFraStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <FormBlock>
+                                <VStack gap="8">
                                     <SifGuidePanel>
                                         <p>
                                             <AppText id="step.fravaerFra.info" />
                                         </p>
                                     </SifGuidePanel>
-                                </FormBlock>
 
-                                <FormBlock>
                                     {utbetalingsdatoer.map((date) => {
                                         const fieldName = getFieldName(date, AktivitetFraværField.aktivitet);
                                         const dato = dayjs(date).format('dddd D. MMM YYYY');
 
                                         return (
-                                            <FormBlock key={fieldName}>
+                                            <div key={fieldName}>
                                                 <RadioGroup
                                                     name={fieldName as FraværFraFormFields}
                                                     legend={<AppText id="step.fravaerFra.dag.spm" values={{ dato }} />}
@@ -153,10 +155,10 @@ const FraværFraStep = () => {
                                                             : undefined;
                                                     }}
                                                 />
-                                            </FormBlock>
+                                            </div>
                                         );
                                     })}
-                                </FormBlock>
+                                </VStack>
                             </Form>
                         </>
                     );

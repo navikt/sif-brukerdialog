@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+@import '@navikt/ds-css' layer(components);
+@import '@navikt/ds-css/darkside';
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(components);
+@import 'react-loading-skeleton/dist/skeleton.css' layer(utilities);
+
+@config '../tailwind.config.ts';
+
+/** Fikse plasserig av logout-warning dialog */
+@layer utilities {
+    logout-warning dialog {
+        margin: auto;
+    }
+}
+
+body.innsynAppBody {
+    background-color: var(--ax-bg-info-soft);
+}
+
+.innsynApp {
+    /* --a-text-default: var(--ax-text-info); */
+    color: var(--ax-text-neutral);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+.navds-guide-panel__content > .navds-body-long p:first-child {
+    margin-top: 0;
+}
+.navds-guide-panel__content > .navds-body-long p:last-child {
+    margin-bottom: 0;
+}
+
+/** Theme noen farger */
+
+:root {
+    --ax-bg-warning-moderateA: #ffebc7;
+    --ax-bg-neutral-moderateA: #e3e5e7 !important;
+}

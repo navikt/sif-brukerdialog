@@ -1,19 +1,23 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { fetchSøkerId, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { LoadingPage, useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
-import { Person } from '../types/Person';
-import { RegistrertBarn } from '../types/RegistrertBarn';
+import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
+import { useAppIntl } from '../i18n';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
+import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
+import { YtelseKey } from '../types/Ytelser';
+import { getFeaturesHashString } from '../utils/featureToggleUtils';
 import {
     navigateToErrorPage,
     navigateToKvitteringPage,
@@ -27,13 +31,9 @@ import SoknadFormComponents from './SoknadFormComponents';
 import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
-import { getSokerId } from '../api/getSoker';
-import { YtelseKey } from '../types/Ytelser';
-import { useAppIntl } from '../i18n';
-import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
 
 interface Props {
-    søker: Person;
+    søker: Søker;
     barn?: RegistrertBarn[];
     søknadstype: Søknadstype;
     soknadTempStorage?: SoknadTempStorageData;
@@ -61,13 +61,15 @@ const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => 
             return YtelseKey.omsorgspengerutbetalingSNFri;
         case Søknadstype.utbetalingarbeidstaker:
             return YtelseKey.omsorgspengerutbetalingArbeidstaker;
+        case Søknadstype.opplaringspenger:
+            return YtelseKey.opplaringspenger;
     }
 };
 
 const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: Props) => {
     const navigate = useNavigate();
     const location = useLocation();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, getSokerId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
 
     const [initializing, setInitializing] = useState(true);
     const [initialFormData, setInitialFormData] = useState<Partial<SoknadFormData>>({
@@ -86,7 +88,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
     });
 
     useEffectOnce(() => {
-        if (tempStorage && isStorageDataValid(tempStorage, { søker })) {
+        if (tempStorage && isStorageDataValid(tempStorage, { søker, features: getFeaturesHashString() })) {
             setInitialFormData(tempStorage.formData);
             setSoknadId(tempStorage.metadata.soknadId);
             const currentRoute = location.pathname;
@@ -155,7 +157,13 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {
         try {
-            await soknadTempStorage.update(sId, values, stepID, { søker }, søknadstype);
+            await soknadTempStorage.update(
+                sId,
+                values,
+                stepID,
+                { søker, features: getFeaturesHashString() },
+                søknadstype,
+            );
             await logHendelse(ApplikasjonHendelse.fortsettSenere);
             relocateToMinSide();
         } catch (error) {
@@ -236,6 +244,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
                                 stepToPersist,
                                 {
                                     søker,
+                                    features: getFeaturesHashString(),
                                 },
                                 søknadstype,
                             );

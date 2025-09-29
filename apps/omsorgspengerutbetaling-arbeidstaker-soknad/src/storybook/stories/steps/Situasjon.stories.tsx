@@ -1,14 +1,14 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import SituasjonStep from '../../../app/søknad/steps/situasjon/SituasjonStep';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
-import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
+import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { arbeidsgivereStorybookMock } from '../../mock-data';
+import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
 
 export default {
     title: 'Steps/SituasjonStep',

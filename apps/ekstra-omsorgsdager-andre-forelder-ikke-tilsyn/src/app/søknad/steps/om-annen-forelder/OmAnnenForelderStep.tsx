@@ -1,10 +1,9 @@
-import { List } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { List, VStack } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -12,14 +11,14 @@ import { useAppIntl } from '../../../i18n';
 import actionsCreator from '../../../søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import {
-    getOmAnnenForelderStepInitialValues,
     getOmAnnenForelderSøknadsdataFromFormValues,
+    getOmAnnenForelderStepInitialValues,
 } from './omAnnenForelderStepUtils';
 
 export enum OmAnnenForelderFormFields {
@@ -75,7 +74,7 @@ const OmAnnenForelderStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={() => {
                     return (
-                        <>
+                        <VStack gap="8">
                             <PersistStepFormValues stepId={stepId} />
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
@@ -83,15 +82,14 @@ const OmAnnenForelderStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     {text('step.omAnnenForelder.sifGuidePanel')}
                                     <List>
                                         <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</List.Item>
                                         <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</List.Item>
                                     </List>
-                                </SifGuidePanel>
-
-                                <FormBlock>
+                                </FormLayout.Guide>
+                                <FormLayout.Questions>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderFnr}
                                         label={text('step.omAnnenForelder.fnr.spm')}
@@ -105,8 +103,6 @@ const OmAnnenForelderStep = () => {
                                         minLength={11}
                                         style={{ maxWidth: '20rem' }}
                                     />
-                                </FormBlock>
-                                <FormBlock>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderNavn}
                                         label={text('step.omAnnenForelder.navn.spm')}
@@ -128,9 +124,9 @@ const OmAnnenForelderStep = () => {
                                         }}
                                         style={{ maxWidth: '20rem' }}
                                     />
-                                </FormBlock>
+                                </FormLayout.Questions>
                             </Form>
-                        </>
+                        </VStack>
                     );
                 }}
             />

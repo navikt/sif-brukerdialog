@@ -1,22 +1,23 @@
+import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
+
 import { axiosJsonConfig } from '../api/api';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { ApiEndpoint } from '../types/ApiEndpoint';
-import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
+import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { StepID } from './soknadStepsConfig';
 
-export const STORAGE_VERSION = '2.4';
-
-interface UserHashInfo {
-    søker: Person;
+interface StateHashInfo {
+    søker: Søker;
+    features: string;
 }
 
-const createHashString = (info: UserHashInfo) => {
+const createHashString = (info: StateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
@@ -26,7 +27,7 @@ interface SoknadTemporaryStorage
         soknadId: string,
         formData: Partial<SoknadFormData>,
         lastStepID: StepID,
-        søkerInfo: UserHashInfo,
+        stateHashInfo: StateHashInfo,
         søknadstype: Søknadstype,
     ) => Promise<AxiosResponse>;
     create: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
@@ -34,13 +35,19 @@ interface SoknadTemporaryStorage
     rehydrate: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
 }
 
-const getMellomlagringApiEndpoint = (søknadstype: Søknadstype) => {
+const getMellomlagringApiEndpoint = (søknadstype: Søknadstype): string => {
     switch (søknadstype) {
         case Søknadstype.pleiepengerSyktBarn:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_SYKT_BARN;
         case Søknadstype.pleiepengerLivetsSluttfase:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE;
-        default:
+        case Søknadstype.opplaringspenger:
+            return ApiEndpoint.MELLOMLAGRING_OPPLARINGSPENGER;
+        case Søknadstype.ekstraomsorgsdager:
+        case Søknadstype.omsorgspenger:
+        case Søknadstype.regnetsomalene:
+        case Søknadstype.utbetaling:
+        case Søknadstype.utbetalingarbeidstaker:
             return ApiEndpoint.MELLOMLAGRING_OMP;
     }
 };
@@ -53,10 +60,10 @@ const persistSetup = (søknadstype: Søknadstype) =>
 
 export const isStorageDataValid = (
     data: SoknadTempStorageData,
-    userHashInfo: UserHashInfo,
+    userHashInfo: StateHashInfo,
 ): SoknadTempStorageData | undefined => {
     if (
-        data?.metadata?.version === STORAGE_VERSION &&
+        data?.metadata?.version === MELLOMLAGRING_VERSJON &&
         data?.metadata.lastStepID !== undefined &&
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
@@ -73,7 +80,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
         soknadId: string,
         formData: SoknadFormData,
         lastStepID: StepID,
-        userHashInfo: UserHashInfo,
+        userHashInfo: StateHashInfo,
         søknadstype: Søknadstype,
     ) => {
         return persistSetup(søknadstype).update({
@@ -81,7 +88,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
             metadata: {
                 soknadId,
                 lastStepID,
-                version: STORAGE_VERSION,
+                version: MELLOMLAGRING_VERSJON,
                 userHash: createHashString(userHashInfo),
             },
         });

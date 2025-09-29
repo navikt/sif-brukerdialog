@@ -1,5 +1,6 @@
 import { DateRange, dateToISODate, ISODate } from '@navikt/sif-common-utils';
 import { ArbeidsgiverMedAnsettelseperioder } from '@types';
+
 import { getArbeidsgivereFromArbeidsgiverOrganisasjoner } from '../../utils/initialDataUtils';
 import api from '../api';
 import { ApiEndpointPsb } from './';

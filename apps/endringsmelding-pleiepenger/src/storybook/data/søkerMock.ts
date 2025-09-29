@@ -1,8 +1,9 @@
-import { Søker } from '../../app/types/Søker';
+import { Søker } from '@navikt/sif-common-api';
 
 export const søkerMock: Søker = {
     fødselsnummer: '30086421581',
     fornavn: 'GODSLIG',
-    kjønn: 'M',
     etternavn: 'KRONJUVEL',
+    aktørId: '123',
+    fødselsdato: new Date('1964-08-30'),
 };

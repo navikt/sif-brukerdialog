@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { axiosConfigPsb } from '../../config/axiosConfig';
 
 export const multipartConfig = { ...axiosConfigPsb, headers: { 'Content-Type': 'multipart/form-data' } };

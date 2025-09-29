@@ -1,15 +1,14 @@
+import { useAppIntl } from '@i18n/index';
 import { Alert, List } from '@navikt/ds-react';
-import React from 'react';
-import { AppHtml, useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import React from 'react';
+
 import { AppText } from '../../../i18n';
 
 const OmsorgstilbudStepInfo = () => {
     const { text } = useAppIntl();
     return (
-        <SifGuidePanel>
+        <>
             <p>
                 <AppText id="steg.omsorgstilbud.veileder.1" />
             </p>
@@ -38,55 +37,50 @@ const OmsorgstilbudStepInfo = () => {
                     <AppText id="steg.omsorgstilbud.veileder.2" />
                 </strong>
             </p>
-            <Block>
-                <ExpandableInfo title={text('steg.omsorgstilbud.eksempel.tittel')}>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.eksempel.1" />
-                    </p>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.eksempel.2" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
-            <Block>
-                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.3')}>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.3.1" />{' '}
-                        <strong>
-                            <AppText id="steg.omsorgstilbud.veileder.3.2" />
-                        </strong>{' '}
-                        <AppText id="steg.omsorgstilbud.veileder.3.3" />
-                    </p>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.3.4" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
 
-            <Block>
-                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.4')}>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.4.1" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
-            <Block>
-                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.5')}>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.5.1" />
-                    </p>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.5.2" />
-                    </p>
-                    <p>
-                        <AppHtml id="steg.omsorgstilbud.veileder.5.3" />
-                    </p>
-                    <p>
-                        <AppText id="steg.omsorgstilbud.veileder.5.4" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
-        </SifGuidePanel>
+            <ExpandableInfo title={text('steg.omsorgstilbud.eksempel.tittel')}>
+                <p>
+                    <AppText id="steg.omsorgstilbud.eksempel.1" />
+                </p>
+                <p>
+                    <AppText id="steg.omsorgstilbud.eksempel.2" />
+                </p>
+            </ExpandableInfo>
+            <ExpandableInfo title={text('steg.omsorgstilbud.veileder.3')}>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.3.1" />{' '}
+                    <strong>
+                        <AppText id="steg.omsorgstilbud.veileder.3.2" />
+                    </strong>{' '}
+                    <AppText id="steg.omsorgstilbud.veileder.3.3" />
+                </p>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.3.4" />
+                </p>
+            </ExpandableInfo>
+            <ExpandableInfo title={text('steg.omsorgstilbud.veileder.4')}>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.4.1" />
+                </p>
+            </ExpandableInfo>
+            <ExpandableInfo title={text('steg.omsorgstilbud.veileder.5')}>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.5.1" />
+                </p>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.5.2" />
+                </p>
+                <p>
+                    <AppText
+                        id="steg.omsorgstilbud.veileder.5.3"
+                        values={{ strong: (children) => <strong key="strong">{children}</strong> }}
+                    />
+                </p>
+                <p>
+                    <AppText id="steg.omsorgstilbud.veileder.5.4" />
+                </p>
+            </ExpandableInfo>
+        </>
     );
 };
 
@@ -108,9 +102,9 @@ const ErLiktHverUke: React.FunctionComponent = () => {
     const { text } = useAppIntl();
     return (
         <ExpandableInfo title={text('steg.omsorgstilbud.erLiktHverUke.info.tittel')}>
-            <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.1'} />
+            <AppText id="steg.omsorgstilbud.erLiktHverUke.info.1" />
             <br />
-            <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.2'} />
+            <AppText id="steg.omsorgstilbud.erLiktHverUke.info.2" />
         </ExpandableInfo>
     );
 };
@@ -120,7 +114,7 @@ const ErIOmsorgstilbud: React.FunctionComponent = () => {
     return (
         <ExpandableInfo title={text('steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.tittel')}>
             <p>
-                <AppText id={'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.1'} />
+                <AppText id="steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.1" />
             </p>
         </ExpandableInfo>
     );
@@ -129,7 +123,7 @@ const ErIOmsorgstilbud: React.FunctionComponent = () => {
 const HvorMye: React.FunctionComponent = () => {
     return (
         <p>
-            <AppText id={'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.2'} />
+            <AppText id="steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.2" />
         </p>
     );
 };

@@ -1,4 +1,4 @@
-import { SentryEnvironment, setSentryEnvironment, setupIgnoreErrorsAndAllowUrls } from '..';
+import { SentryEnvironment, setSentryEnvironment, setupIgnoreErrorsAndAllowUrls } from '../';
 
 describe('routeUtils', () => {
     it('sentry environment is set correctly', () => {

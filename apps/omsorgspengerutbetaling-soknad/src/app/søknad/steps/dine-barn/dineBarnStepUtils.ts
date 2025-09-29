@@ -3,12 +3,13 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { BarnAlderInfo } from '../../../types/BarnAlderInfo';
 import { DineBarnScenario } from '../../../types/DineBarnScenario';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { StepId } from '../../../types/StepId';
 import { DineBarnFormValues } from './DineBarnStep';
 
 export const nYearsAgo = (years: number): Date => {

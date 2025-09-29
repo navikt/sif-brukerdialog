@@ -1,7 +1,6 @@
-import { Søker } from '.';
-import { RegistrerteBarn } from './RegistrerteBarn';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 
 export interface Søkerdata {
     søker: Søker;
-    barn: RegistrerteBarn[];
+    barn: RegistrertBarn[];
 }

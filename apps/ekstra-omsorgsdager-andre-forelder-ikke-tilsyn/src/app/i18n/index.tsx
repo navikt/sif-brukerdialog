@@ -1,9 +1,11 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+import { appMessages_nb } from './appMessages.nb';
+import { appMessages_nn } from './appMessages.nn';
 
 export const libMessages = {
     nb: {
@@ -16,6 +18,11 @@ export const libMessages = {
         ...uiMessages.nn,
         ...soknadMessages.nn,
     },
+};
+
+export const appMessages = {
+    nb: appMessages_nb,
+    nn: appMessages_nn,
 };
 
 const nb = {

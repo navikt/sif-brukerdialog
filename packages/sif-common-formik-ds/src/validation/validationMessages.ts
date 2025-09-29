@@ -1,7 +1,7 @@
 import {
     ValidateCheckedError,
-    ValidateDateRangeError,
     ValidateDateError,
+    ValidateDateRangeError,
     ValidateFødselsnummerError,
     ValidateListError,
     ValidateNumberError,
@@ -9,7 +9,7 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '.';
+} from '@navikt/sif-validation';
 
 export const validationMessages = {
     [ValidateRequiredFieldError.noValue]: ({ hva }: { hva: string }) => `Du må svare på ${hva}.`,

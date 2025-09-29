@@ -1,4 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+
 import { DokumentType } from './DokumentType';
 
 export type ISO8601Duration = string;
@@ -10,13 +11,13 @@ export enum YtelseTypeApi {
     'OMP_UT_SNF' = 'OMP_UT_SNF',
     'OMP_UT_ARBEIDSTAKER' = 'OMP_UT_ARBEIDSTAKER',
     'OMP_UTV_MA' = 'OMP_UTV_MA',
-    // 'OMP_ALENEOMSORG' = 'OMP_ALENEOMSORG', ikke i bruk frem til backend støtter denne
+    'OPPLÆRINGSPENGER' = 'OPPLÆRINGSPENGER',
 }
 
 export interface BarnetLegeerklæringGjelderApiData {
     norskIdentitetsnummer?: string;
     aktørId?: string;
-    fødselsdato?: Date;
+    fødselsdato?: string;
     navn?: string;
 }
 

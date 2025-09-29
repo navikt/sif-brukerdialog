@@ -1,5 +1,211 @@
 # @navikt/sif-common-amplitude
 
+## 2.28.34
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
+## 2.28.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 2.28.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 2.28.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 2.28.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.29
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 2.28.28
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 2.28.27
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 2.28.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.24
+
+### Patch Changes
+
+- Oppdaterte pakker - minor/patch + codegen
+
+## 2.28.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.21
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.20
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
+## 2.28.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.16
+
+### Patch Changes
+
+- Fjerne logToConsole funksjonalitet for analytics.
+
+## 2.28.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.12
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 2.28.10
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.9
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 2.28.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 2.28.2
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
+## 2.28.1
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
 ## 2.28.0
 
 ### Minor Changes

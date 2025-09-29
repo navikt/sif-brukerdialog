@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
+
 import { StoryFormikWrapper } from '../../../storybook/decorators/StoryFormikWrapper';
 import { mockAnimalOptions } from '../../../storybook/mock-data';
 import * as stories from '../../../storybook/stories/components/FormikCheckboxGroup.stories';
@@ -17,7 +18,7 @@ describe('<FormikCheckboxGroup>', () => {
     };
 
     it('rendrer gruppe riktig', async () => {
-        const screen = renderComponent(<Default name={'animals'} legend={'Choose'} checkboxes={mockAnimalOptions} />);
+        const screen = renderComponent(<Default name="animals" legend="Choose" checkboxes={mockAnimalOptions} />);
         const checkbox = screen.getByText('Choose');
         expect(checkbox).toBeDefined();
     });
@@ -26,7 +27,7 @@ describe('<FormikCheckboxGroup>', () => {
         const screen = renderComponent(
             <FormikCheckboxGroup
                 name="animals"
-                legend={'Choose animal'}
+                legend="Choose animal"
                 checkboxes={[
                     ...mockAnimalOptions,
                     { label: 'Dragon', value: 'dragon', 'data-testid': 'dragon-option' },

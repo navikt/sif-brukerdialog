@@ -1,12 +1,14 @@
+import './formikTextField.css';
+
 import { TextField, TextFieldProps } from '@navikt/ds-react';
-import React, { useState } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
+import React, { useState } from 'react';
+
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import { getTextFieldWidthClassName, TextFieldWidths } from './FormikTextFieldUtils';
-import './formikTextField.css';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
@@ -67,13 +69,16 @@ function FormikTextField<FieldName, ErrorType>({
                         }
                         onFocus={
                             formatter
-                                ? () => {
+                                ? (evt) => {
                                       setHasFocus(true);
                                       if (formatter) {
                                           form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
                                       }
+                                      if (restProps.onFocus) {
+                                          restProps.onFocus(evt);
+                                      }
                                   }
-                                : undefined
+                                : restProps.onFocus
                         }
                     />
                 );

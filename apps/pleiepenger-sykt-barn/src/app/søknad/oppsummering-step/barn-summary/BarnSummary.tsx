@@ -1,24 +1,27 @@
 import { FormSummary } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+
 import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
-import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
 interface Props {
-    barn: RegistrerteBarn[];
+    barn: RegistrertBarn[];
     formValues: SøknadFormValues;
     apiValues: SøknadApiData;
     onEdit?: () => void;
 }
 
-const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
+const apiBarnSummary = (apiBarn: RegistrertBarn) => (
     <>
         <FormSummary.Answer>
             <FormSummary.Label>
@@ -80,7 +83,7 @@ const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[]
                         <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
+                        <div data-testid="oppsummering-omBarn-fødselsattest">
                             <VedleggSummaryList vedlegg={fødselsattester} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
@@ -115,7 +118,8 @@ const relasjonTilBarnetSummary = (apiValues: SøknadApiData) => (
 
 const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
     const apiBarn = barn.find(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
-    const useApiBarn = !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0;
+    const useApiBarn =
+        formValues[SøknadFormField.barnetSøknadenGjelder] !== VelgBarn_AnnetBarnValue && barn && barn.length > 0;
 
     return (
         <>
@@ -124,13 +128,17 @@ const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.barnet.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     {useApiBarn && apiBarn && apiBarnSummary(apiBarn)}
                     {!useApiBarn && annetBarnSummary(apiValues, formValues.fødselsattest)}
                     {!useApiBarn && relasjonTilBarnetSummary(apiValues)}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

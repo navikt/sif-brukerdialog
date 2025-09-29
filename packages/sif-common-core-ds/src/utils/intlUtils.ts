@@ -1,5 +1,6 @@
-import { FormatNumberOptions, IntlShape } from 'react-intl';
 import { IntlDateFormat, intlDateFormats } from '@navikt/sif-common-utils/src/intlDateFormats';
+import { FormatNumberOptions, IntlShape } from 'react-intl';
+
 import { Locale } from '../types';
 
 const intlHelper = (
@@ -12,6 +13,9 @@ export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
     return {
         intl,
         text: (id: Keys, values?: any): string => {
+            return intl.formatMessage({ id }, values);
+        },
+        html: (id: Keys, values?: any): string => {
             return intl.formatMessage({ id }, values);
         },
         number: (value: number, options?: FormatNumberOptions) => intl.formatNumber(value, options),

@@ -1,5 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
@@ -13,8 +15,6 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../../om-barnet/om-barnet-form/types';
 import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 
 interface Props {
     søknadsdata: OmBarnetFormSøknadsdata;
@@ -41,14 +41,13 @@ const RegistrertBarn = ({ barn }: { barn: RegistrertBarn }) => (
 
 const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApiData; fødselsattester: Vedlegg[] }) => (
     <>
-        {!apiData._harFødselsnummer ? (
-            <FormSummary.Answer>
-                <FormSummary.Label>
-                    <AppText id="steg.oppsummering.barnet.fødselsdato" />
-                </FormSummary.Label>
-                <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
-            </FormSummary.Answer>
-        ) : null}
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <AppText id="steg.oppsummering.barnet.fødselsdato" />
+            </FormSummary.Label>
+            <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
+        </FormSummary.Answer>
+
         {apiData._harFødselsnummer ? (
             <FormSummary.Answer>
                 <FormSummary.Label>
@@ -84,10 +83,13 @@ const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApi
                         <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <VedleggSummaryList vedlegg={fødselsattester} />
-                        </div>
-                        {fødselsattester.length === 0 && <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />}
+                        {fødselsattester.length === 0 ? (
+                            <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
+                        ) : (
+                            <div data-testid="oppsummering-omBarn-fødselsattest">
+                                <VedleggSummaryList vedlegg={fødselsattester} />
+                            </div>
+                        )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
             )}
@@ -122,7 +124,6 @@ const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
                 <FormSummary.Heading level="2">
                     <AppText id="steg.oppsummering.barnet.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 {isRegistrertBarnApiData(apiData) && søknadsdata.type === 'registrerteBarn' && (
@@ -138,6 +139,11 @@ const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
                     </>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

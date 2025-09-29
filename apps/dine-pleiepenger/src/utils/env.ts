@@ -34,6 +34,7 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_PLEIEPENGER_INFO_URL: z.string(),
     NEXT_PUBLIC_REGELVERK_INFO_URL: z.string(),
     NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL: z.string(),
+    NEXT_PUBLIC_BESKJED_URL: z.string(),
     NEXT_PUBLIC_SKRIV_TIL_OSS_URL: z.string(),
     NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL: z.string(),
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: z.string(),
@@ -93,6 +94,7 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_PLEIEPENGER_INFO_URL: process.env.NEXT_PUBLIC_PLEIEPENGER_INFO_URL,
     NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL: process.env.NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL,
     NEXT_PUBLIC_DINE_UTBETALINGER_URL: process.env.NEXT_PUBLIC_DINE_UTBETALINGER_URL,
+    NEXT_PUBLIC_BESKJED_URL: process.env.NEXT_PUBLIC_BESKJED_URL,
     NEXT_PUBLIC_SKRIV_TIL_OSS_URL: process.env.NEXT_PUBLIC_SKRIV_TIL_OSS_URL,
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: process.env.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL,
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: process.env.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL,
@@ -131,7 +133,7 @@ export function getServerEnv(): ServerEnv & PublicEnv {
         if (e instanceof ZodError) {
             throw new Error(
                 `The following envs are missing: ${
-                    e.errors
+                    e.issues
                         .filter((it) => it.message === 'Required')
                         .map((it) => it.path.join('.'))
                         .join(', ') || 'None are missing, but zod is not happy. Look at cause'

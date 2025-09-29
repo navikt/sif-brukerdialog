@@ -1,10 +1,13 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
+
 import { Søknadstype } from '../types/Søknadstype';
+import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
 import { getApplicationPageRoute } from '../utils/routeUtils';
 
 export enum StepID {
     'BESKRIVELSE' = 'beskrivelse',
     'DOKUMENT_TYPE' = 'dokumentType',
+    'BARN' = 'barn',
     'DOKUMENTER' = 'dokumenter',
     'OPPSUMMERING' = 'oppsummering',
     'OMS_TYPE' = 'omsorgspenger_type',
@@ -19,6 +22,13 @@ export const getFirstStep = (applicationType: Søknadstype): StepID => {
     switch (applicationType) {
         case Søknadstype.pleiepengerSyktBarn:
             return StepID.DOKUMENT_TYPE;
+        case Søknadstype.opplaringspenger:
+            if (isFeatureEnabled(Feature.OPPLARINGSPENGER_VELG_DOKUMENTTYPE)) {
+                return StepID.DOKUMENT_TYPE;
+            } else if (isFeatureEnabled(Feature.OPPLARINGSPENGER_VELG_BARN)) {
+                return StepID.BARN;
+            }
+            return StepID.DOKUMENTER;
         case Søknadstype.pleiepengerLivetsSluttfase:
             return StepID.BESKRIVELSE;
         case Søknadstype.omsorgspenger:
@@ -28,14 +38,38 @@ export const getFirstStep = (applicationType: Søknadstype): StepID => {
     }
 };
 
+export const inkluderDokumentTypeSteg = (søknadstype: Søknadstype): boolean => {
+    switch (søknadstype) {
+        case Søknadstype.pleiepengerSyktBarn:
+            return true;
+        case Søknadstype.opplaringspenger:
+            return isFeatureEnabled(Feature.OPPLARINGSPENGER_VELG_DOKUMENTTYPE);
+        default:
+            return false;
+    }
+};
+
+export const inkluderBarnSteg = (søknadstype: Søknadstype): boolean => {
+    switch (søknadstype) {
+        case Søknadstype.pleiepengerSyktBarn:
+            return true;
+        case Søknadstype.opplaringspenger:
+            return isFeatureEnabled(Feature.OPPLARINGSPENGER_VELG_BARN);
+        default:
+            return false;
+    }
+};
+
 const getSoknadSteps = (søknadstype: Søknadstype): StepID[] => {
     const visBeskrivelseStep = søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
-    const visDokumentTypeStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
+    const visDokumentTypeStep = inkluderDokumentTypeSteg(søknadstype);
+    const visBarnStep = inkluderBarnSteg(søknadstype);
     const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
     const allSteps: ConfigStepHelperType[] = [
-        { stepID: StepID.BESKRIVELSE, included: visBeskrivelseStep },
         { stepID: StepID.DOKUMENT_TYPE, included: visDokumentTypeStep },
+        { stepID: StepID.BARN, included: visBarnStep },
+        { stepID: StepID.BESKRIVELSE, included: visBeskrivelseStep },
         { stepID: StepID.OMS_TYPE, included: visOmsTypeStep },
         { stepID: StepID.DOKUMENTER, included: true },
         { stepID: StepID.OPPSUMMERING, included: true },

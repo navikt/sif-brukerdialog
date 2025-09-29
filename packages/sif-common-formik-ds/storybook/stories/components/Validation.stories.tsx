@@ -1,7 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
-import ValidationExample from '../validation/ValidationExample';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { withIntl } from '../../decorators/withIntl';
+import ValidationExample from '../validation/ValidationExample';
 
 const meta: Meta<typeof ValidationExample> = {
     title: 'Validation/Examples',

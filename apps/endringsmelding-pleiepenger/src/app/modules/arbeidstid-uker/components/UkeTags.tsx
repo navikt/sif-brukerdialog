@@ -1,5 +1,6 @@
-import React from 'react';
 import { getFeriedagerIUkeTekst } from '@utils';
+import React from 'react';
+
 import FerieTag from '../../../components/tags/FerieTag';
 import KortUkeTag from '../../../components/tags/KortUkeTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';

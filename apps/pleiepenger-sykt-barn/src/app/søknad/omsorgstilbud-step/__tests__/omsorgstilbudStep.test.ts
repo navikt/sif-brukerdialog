@@ -1,10 +1,11 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils';
-import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
-import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 import { vi } from 'vitest';
+
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
+import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
+import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };

@@ -1,19 +1,18 @@
 import { Alert } from '@navikt/ds-react';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DateRange, getDateToday } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
+
 import { handleDateRangeValidationError } from '../../utils';
-import { useFraværIntl } from './fraværMessages';
 import { isFraværPeriode, mapFormValuesToFraværPeriode, mapFraværPeriodeToFormValues } from './fraværUtilities';
 import {
     FraværFieldValidationErrors,
@@ -23,6 +22,7 @@ import {
     validateNotHelgedag,
     validateTilOgMedForCollision,
 } from './fraværValidationUtils';
+import { useFraværIntl } from './i18n';
 import { FraværPeriode, FraværPeriodeFormValues } from './types';
 
 export interface FraværPeriodeFormLabels {
@@ -146,78 +146,81 @@ const FraværPeriodeForm = ({
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.fraværPeriodeForm')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.fraværPeriodeForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
-                        {headerContent && <Block margin="l">{headerContent}</Block>}
-                        <Form.DateRangePicker
-                            legend={formLabels.tidsrom}
-                            description={periodeDescription}
-                            validate={() => {
-                                const err = validateFraværPeriodeCollision(fromDate, toDate, disabledDateRanges);
-                                if (err) {
-                                    return {
-                                        key: FraværPeriodeFormErrors.fraOgMed_tilOgMed.dager_overlapper_med_andre_dager,
-                                        keepKeyUnaltered: true,
-                                    };
-                                }
-                            }}
-                            minDate={minDate}
-                            maxDate={maxDate}
-                            disableWeekends={helgedagerIkkeTillat || false}
-                            disabledDateRanges={disabledDateRanges}
-                            fromInputProps={{
-                                label: formLabels.fom,
-                                name: FraværPeriodeFormFields.fraOgMed,
-                                defaultMonth:
-                                    fromDate || toDate || dayjs(getDateToday()).isAfter(maxDate)
-                                        ? maxDate
-                                        : getDateToday(),
-                                validate: getFromDateValidator({
-                                    begrensTilSammeÅr,
-                                    minDate,
-                                    maxDate,
-                                    helgedagerIkkeTillat,
-                                    disabledDateRanges,
-                                    toDate,
-                                    tilOgMed,
-                                }),
-                                onChange: () => {
-                                    setTimeout(() => {
-                                        formik.validateField(FraværPeriodeFormFields.fraOgMed);
-                                        formik.validateField(FraværPeriodeFormFields.tilOgMed);
-                                    });
-                                },
-                            }}
-                            toInputProps={{
-                                label: formLabels.tom,
-                                name: FraværPeriodeFormFields.tilOgMed,
-                                defaultMonth:
-                                    toDate || fromDate || dayjs(getDateToday()).isAfter(maxDate)
-                                        ? maxDate
-                                        : getDateToday(),
-                                validate: getToDateValidator({
-                                    begrensTilSammeÅr,
-                                    disabledDateRanges,
-                                    fraOgMed,
-                                    fromDate,
-                                    helgedagerIkkeTillat,
-                                    maxDate,
-                                    minDate,
-                                }),
-                                onChange: () => {
-                                    setTimeout(() => {
-                                        formik.validateField(FraværPeriodeFormFields.fraOgMed);
-                                        formik.validateField(FraværPeriodeFormFields.tilOgMed);
-                                    });
-                                },
-                            }}
-                        />
-                        {begrensTilSammeÅr &&
-                            begrensTilSammeÅrAlertStripeTekst &&
-                            validateErSammeÅr(fraOgMed, tilOgMed) && (
-                                <Alert variant="warning">{begrensTilSammeÅrAlertStripeTekst}</Alert>
-                            )}
+                        <FormLayout.Questions>
+                            {headerContent && <>{headerContent}</>}
+                            <Form.DateRangePicker
+                                legend={formLabels.tidsrom}
+                                description={periodeDescription}
+                                validate={() => {
+                                    const err = validateFraværPeriodeCollision(fromDate, toDate, disabledDateRanges);
+                                    if (err) {
+                                        return {
+                                            key: FraværPeriodeFormErrors.fraOgMed_tilOgMed
+                                                .dager_overlapper_med_andre_dager,
+                                            keepKeyUnaltered: true,
+                                        };
+                                    }
+                                }}
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                disableWeekends={helgedagerIkkeTillat || false}
+                                disabledDateRanges={disabledDateRanges}
+                                fromInputProps={{
+                                    label: formLabels.fom,
+                                    name: FraværPeriodeFormFields.fraOgMed,
+                                    defaultMonth:
+                                        fromDate || toDate || dayjs(getDateToday()).isAfter(maxDate)
+                                            ? maxDate
+                                            : getDateToday(),
+                                    validate: getFromDateValidator({
+                                        begrensTilSammeÅr,
+                                        minDate,
+                                        maxDate,
+                                        helgedagerIkkeTillat,
+                                        disabledDateRanges,
+                                        toDate,
+                                        tilOgMed,
+                                    }),
+                                    onChange: () => {
+                                        setTimeout(() => {
+                                            formik.validateField(FraværPeriodeFormFields.fraOgMed);
+                                            formik.validateField(FraværPeriodeFormFields.tilOgMed);
+                                        });
+                                    },
+                                }}
+                                toInputProps={{
+                                    label: formLabels.tom,
+                                    name: FraværPeriodeFormFields.tilOgMed,
+                                    defaultMonth:
+                                        toDate || fromDate || dayjs(getDateToday()).isAfter(maxDate)
+                                            ? maxDate
+                                            : getDateToday(),
+                                    validate: getToDateValidator({
+                                        begrensTilSammeÅr,
+                                        disabledDateRanges,
+                                        fraOgMed,
+                                        fromDate,
+                                        helgedagerIkkeTillat,
+                                        maxDate,
+                                        minDate,
+                                    }),
+                                    onChange: () => {
+                                        setTimeout(() => {
+                                            formik.validateField(FraværPeriodeFormFields.fraOgMed);
+                                            formik.validateField(FraværPeriodeFormFields.tilOgMed);
+                                        });
+                                    },
+                                }}
+                            />
+                            {begrensTilSammeÅr &&
+                                begrensTilSammeÅrAlertStripeTekst &&
+                                validateErSammeÅr(fraOgMed, tilOgMed) && (
+                                    <Alert variant="warning">{begrensTilSammeÅrAlertStripeTekst}</Alert>
+                                )}
+                        </FormLayout.Questions>
                     </Form.Form>
                 );
             }}

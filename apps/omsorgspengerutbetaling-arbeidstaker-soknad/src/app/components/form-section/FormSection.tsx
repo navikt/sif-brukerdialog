@@ -1,6 +1,7 @@
-import React from 'react';
 import './formSection.scss';
+
 import { Heading } from '@navikt/ds-react';
+import React from 'react';
 
 interface Props {
     title: string;
@@ -10,12 +11,12 @@ interface Props {
 }
 
 const FormSection = ({ title, titleIcon, children }: Props) => (
-    <section className={'formSection'}>
-        <Heading level="2" size="medium" className={'formSection__title'}>
-            {titleIcon && <span className={'formSection__titleIcon'}>{titleIcon}</span>}
+    <section className="formSection">
+        <Heading level="2" size="medium" className="formSection__title">
+            {titleIcon && <span className="formSection__titleIcon">{titleIcon}</span>}
             {title}
         </Heading>
-        <div className={'formSection__content'}>{children}</div>
+        <div className="formSection__content">{children}</div>
     </section>
 );
 

@@ -1,20 +1,24 @@
 import { Tabs, VStack } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import {
+    getIntlFormErrorHandler,
+    TypedFormikForm,
+    TypedFormikWrapper,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import { getListValidator } from '@navikt/sif-validation';
+import { flatten } from 'flat';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
+import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import BostedUtlandForm, { BostedUtlandFormErrors } from '../BostedUtlandForm';
 import BostedUtlandListAndDialog from '../BostedUtlandListAndDialog';
-import { bostedUtlandMessages } from '../bostedUtlandMessages';
+import { bostedUtlandMessages } from '../i18n';
 import { BostedUtland } from '../types';
-import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { flatten } from 'flat';
-import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'bosted' = 'bosted',
@@ -47,7 +51,7 @@ const FormikExample = () => {
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
-                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    formErrorHandler={getIntlFormErrorHandler(intl)}>
                                     <BostedUtlandListAndDialog<FormField>
                                         name={FormField.bosted}
                                         minDate={getDate1YearAgo()}
@@ -82,7 +86,7 @@ const FormikExample = () => {
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
                         validationErrorIntlKeys={flatten(BostedUtlandFormErrors)}
-                        formName={'bostedUtland'}
+                        formName="bostedUtland"
                         intlMessages={bostedUtlandMessages}
                     />
                 </Tabs.Panel>

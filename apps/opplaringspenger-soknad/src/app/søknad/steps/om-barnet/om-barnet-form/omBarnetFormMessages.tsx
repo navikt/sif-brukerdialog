@@ -51,7 +51,6 @@ const nb = {
         'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
-    'omBarnetForm.validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
     'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
@@ -75,6 +74,9 @@ const nb = {
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
     'omBarnetForm.infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',
+
+    'omBarnetForm.varsel20år':
+        'For å få opplæringspenger for barn over 18 år, må barnet fortsatt være under omsorgen til den som får opplæring. Det gis vanligvis ikke opplæringspenger for pårørende til voksne, for eksempel ektefeller som er blitt syke.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -95,7 +97,7 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.relasjon.spm': 'Kva relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva betyr dette?',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva tyder dette?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
         'For å få opplæringspengar må det vere naudsynt med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan vere andre omsorgspersonar enn barnets foreldre, så lenge du i periodar tek deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
@@ -127,7 +129,6 @@ const nn: Record<keyof typeof nb, string> = {
         'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikkje vere etter dagens dato. Skriv inn eller vel dato frå datoveljar.',
-    'omBarnetForm.validation.barnetsFødselsdato.barnOver18år': 'Det blir ikkje gitt omsorgsdagar til barn over 18 år.',
     'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets namn.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong':
         'Namnet på barnet kan ikkje innehalde meir enn {maks} teikn.',
@@ -152,6 +153,9 @@ const nn: Record<keyof typeof nb, string> = {
         'Dersom du og mora til barnet er gift, blir du automatisk registrert som far til barnet. Dersom de ikkje er gift, må du erklære farskap for å bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
     'omBarnetForm.infoForFarVedNyttBarn.info.2':
         'Uavhengig av kva situasjon du er i, kan du halde fram med å fylle ut søknaden og sende den inn.',
+
+    'omBarnetForm.varsel20år':
+        'For å få opplæringspengar for barn over 18 år, må barnet framleis vere under omsorga til den som får opplæring. Det blir vanlegvis ikkje gitt opplæringspengar til pårørande av vaksne, til dømes ektefellar som har blitt sjuke.',
 };
 
 export type OmBarnetFormMessageKeys = keyof typeof nb;

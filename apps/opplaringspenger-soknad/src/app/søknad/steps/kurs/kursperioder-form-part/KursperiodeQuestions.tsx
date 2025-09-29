@@ -1,13 +1,13 @@
 import { Box, Button, VStack } from '@navikt/ds-react';
-import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
-import { DateRange, ISODate } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { useFormikContext } from 'formik';
-import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
-import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
+import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
+import { getDateRangeValidator } from '@navikt/sif-validation';
+import { useFormikContext } from 'formik';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { getPeriodeFromKursperiodeFormValue } from '../kursperiodeUtils';
+import { KursFormFields } from '../KursStep';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -24,7 +24,7 @@ interface Props {
     values: Partial<KursperiodeFormValues>;
     index: number;
     harFlerePerioder?: boolean;
-    allePerioder: Partial<KursperiodeFormValues>[];
+    allePerioder: Array<Partial<KursperiodeFormValues>>;
     gyldigSøknadsperiode: DateRange;
     onRemove?: () => void;
 }
@@ -100,6 +100,7 @@ const KursperiodeQuestions = ({
                 toInputProps={{
                     label: text('kursperiode.form.tom.label'),
                     name: getFieldName(KursperiodeFormFields.tom),
+                    defaultMonth: startdato,
                     validate: (value) => {
                         const error = getDateRangeValidator({
                             required: true,

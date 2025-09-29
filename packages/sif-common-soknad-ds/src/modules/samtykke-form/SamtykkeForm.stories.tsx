@@ -1,7 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
-import SamtykkeForm from './SamtykkeForm';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
+import SamtykkeForm from './SamtykkeForm';
 
 const meta: Meta<typeof SamtykkeForm> = {
     component: SamtykkeForm,

@@ -1,15 +1,17 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetFormSøknadsdata, OmBarnetFormSøknadsdata_RegistrertBarn } from '../../types/søknadsdata/Søknadsdata';
-import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 
 const getRegistrertBarnApiData = (
     omBarnetSøknadsdata: OmBarnetFormSøknadsdata_RegistrertBarn,
     registrerteBarn: RegistrertBarn[],
 ): OmBarnetApiData => {
-    const valgtBarn = registrerteBarn.find((currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId);
+    const valgtBarn = registrerteBarn.find(
+        (currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.registrertBarn.aktørId,
+    );
     if (valgtBarn === undefined) {
         throw Error('barnChosenFromList undefined');
     }
@@ -37,6 +39,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (
                 _type: 'annetBarn',
                 _harFødselsnummer: true,
                 navn: omBarnetSøknadsdata.barnetsNavn,
+                fødselsdato: dateToISODate(omBarnetSøknadsdata.barnetsFødselsdato),
                 norskIdentifikator: omBarnetSøknadsdata.barnetsFødselsnummer,
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
                 relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,

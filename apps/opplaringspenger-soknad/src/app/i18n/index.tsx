@@ -3,17 +3,18 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     bostedUtlandMessages,
+    enkeltdatoMessages,
     ferieuttakMessages,
+    medlemskapFormMessages,
     opptjeningUtlandMessages,
     utenlandskNæringMessages,
     utenlandsoppholdMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
-import { enkeltdatoMessages } from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/enkeltdatoMessages';
+import { velgBarnFormPart_nb } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nb';
+import { velgBarnFormPart_nn } from '@navikt/sif-common-forms-ds/src/form-parts/velg-barn-form-part/i18n/nn';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 import { appMessages } from './appMessages';
 
 export const libMessages = {
@@ -22,7 +23,6 @@ export const libMessages = {
         ...commonMessages.nb,
         ...enkeltdatoMessages.nb,
         ...ferieuttakMessages.nb,
-        ...kursperiodeMessages.nb,
         ...medlemskapFormMessages.nb,
         ...opptjeningUtlandMessages.nb,
         ...soknadMessages.nb,
@@ -30,13 +30,13 @@ export const libMessages = {
         ...utenlandskNæringMessages.nb,
         ...utenlandsoppholdMessages.nb,
         ...virksomhetMessages.nb,
+        ...velgBarnFormPart_nb,
     },
     nn: {
         ...bostedUtlandMessages.nn,
         ...commonMessages.nn,
         ...enkeltdatoMessages.nn,
         ...ferieuttakMessages.nn,
-        ...kursperiodeMessages.nn,
         ...medlemskapFormMessages.nn,
         ...opptjeningUtlandMessages.nn,
         ...soknadMessages.nn,
@@ -44,6 +44,7 @@ export const libMessages = {
         ...utenlandskNæringMessages.nn,
         ...utenlandsoppholdMessages.nn,
         ...virksomhetMessages.nn,
+        ...velgBarnFormPart_nn,
     },
 };
 

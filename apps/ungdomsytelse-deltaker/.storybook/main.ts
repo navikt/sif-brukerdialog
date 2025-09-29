@@ -6,14 +6,14 @@ function getAbsolutePath(value) {
 
 const config = {
     stories: ['../src/**/*.stories.tsx'],
-    addons: [getAbsolutePath('@storybook/addon-essentials'), getAbsolutePath('@storybook/addon-a11y')],
+
+    addons: [getAbsolutePath('@storybook/addon-docs')],
+
     framework: {
-        name: '@storybook/react-vite',
+        name: getAbsolutePath('@storybook/react-vite'),
         options: {},
     },
-    docs: {
-        autodocs: false,
-    },
+
     typescript: {
         reactDocgen: 'react-docgen-typescript-plugin',
     },

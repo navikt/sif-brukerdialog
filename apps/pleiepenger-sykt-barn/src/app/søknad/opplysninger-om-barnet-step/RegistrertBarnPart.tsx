@@ -1,98 +1,53 @@
-import { BodyShort, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { prettifyDate } from '@navikt/sif-common-utils';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
+import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
-import { AppText } from '../../i18n';
-import { RegistrerteBarn } from '../../types';
+import { useEffect } from 'react';
+
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import SøknadFormComponents from '../SøknadFormComponents';
-import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 interface Props {
-    søkersBarn: RegistrerteBarn[];
+    søkersBarn: RegistrertBarn[];
 }
 
 const RegistrertBarnPart = ({ søkersBarn }: Props) => {
     const { text } = useAppIntl();
     const {
-        values: { søknadenGjelderEtAnnetBarn },
+        values: { barnetSøknadenGjelder },
+
         setFieldValue,
     } = useFormikContext<SøknadFormValues>();
 
+    const søknadenGjelderEtAnnetBarn = barnetSøknadenGjelder === VelgBarn_AnnetBarnValue;
+
+    useEffect(() => {
+        if (barnetSøknadenGjelder !== VelgBarn_AnnetBarnValue) {
+            resetFieldValues(
+                [
+                    SøknadFormField.barnetsFødselsnummer,
+                    SøknadFormField.barnetsFødselsdato,
+                    SøknadFormField.barnetsNavn,
+                    SøknadFormField.årsakManglerIdentitetsnummer,
+                    SøknadFormField.barnetHarIkkeFnr,
+                    SøknadFormField.relasjonTilBarnet,
+                ],
+                setFieldValue,
+                initialValues,
+            );
+        }
+    }, [søknadenGjelderEtAnnetBarn, barnetSøknadenGjelder]);
+
     return (
         <SkjemagruppeQuestion legend="Barn" hideLegend={true}>
-            <SøknadFormComponents.RadioGroup
+            <VelgBarnFormPart
                 name={SøknadFormField.barnetSøknadenGjelder}
-                legend={
-                    <RegistrerteBarnListeHeading level="2" size="xsmall">
-                        {text('steg.omBarnet.hvilketBarn.spm')}
-                    </RegistrerteBarnListeHeading>
-                }
-                description={
-                    <VStack gap="0">
-                        <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
-                            </p>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.2'} />
-                            </p>
-                            <p>
-                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.3'} />
-                            </p>
-                        </ExpandableInfo>
-                    </VStack>
-                }
-                radios={søkersBarn.map((barn) => {
-                    const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
-                    const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
-                    return {
-                        value: aktørId,
-                        label: (
-                            <BodyShort as="div">
-                                <div>{barnetsNavn}</div>
-                                <div>
-                                    <AppText
-                                        id="steg.omBarnet.hvilketBarn.født"
-                                        values={{ dato: prettifyDate(fødselsdato) }}
-                                    />
-                                </div>
-                            </BodyShort>
-                        ),
-                        disabled: søknadenGjelderEtAnnetBarn,
-                    };
-                })}
-                validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
+                legend={text('steg.omBarnet.hvilketBarn.spm')}
+                registrerteBarn={søkersBarn}
+                validate={getRequiredFieldValidator()}
+                inkluderAnnetBarn={true}
             />
-            <FormBlock margin="l">
-                <SøknadFormComponents.Checkbox
-                    label={text('steg.omBarnet.gjelderAnnetBarn')}
-                    name={SøknadFormField.søknadenGjelderEtAnnetBarn}
-                    afterOnChange={(newValue) => {
-                        if (newValue) {
-                            resetFieldValue(SøknadFormField.barnetSøknadenGjelder, setFieldValue, initialValues);
-                        } else {
-                            resetFieldValues(
-                                [
-                                    SøknadFormField.barnetsFødselsnummer,
-                                    SøknadFormField.barnetsFødselsdato,
-                                    SøknadFormField.barnetsNavn,
-                                    SøknadFormField.årsakManglerIdentitetsnummer,
-                                    SøknadFormField.barnetHarIkkeFnr,
-                                    SøknadFormField.relasjonTilBarnet,
-                                ],
-                                setFieldValue,
-                                initialValues,
-                            );
-                        }
-                    }}
-                />
-            </FormBlock>
         </SkjemagruppeQuestion>
     );
 };

@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 import { AppText } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
@@ -18,7 +18,7 @@ export interface Props {
     onEdit?: () => void;
 }
 
-const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
+const MedlemskapOppsummering = ({ bosteder, onEdit }) => {
     const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(getDateToday()));
     const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(getDateToday()));
 
@@ -28,7 +28,6 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.medlemskap.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -84,6 +83,11 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder, onEdit }) => {
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

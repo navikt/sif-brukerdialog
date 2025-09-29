@@ -1,16 +1,17 @@
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
+import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+import { useFormikContext } from 'formik';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { useFormikContext } from 'formik';
+
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
-import { Person } from '../types/Person';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
+import BarnStep from './barn-step/BarnStep';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumentTypeStep from './dokument-type-step/DokumentTypeStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
@@ -20,7 +21,7 @@ import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
 
 interface Props {
-    søker: Person;
+    søker: Søker;
     barn?: RegistrertBarn[];
     søknadstype: Søknadstype;
     soknadId?: string;
@@ -51,6 +52,16 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
                             />
                         }
                     />
+                    <Route
+                        path={StepID.BARN}
+                        element={
+                            <BarnStep
+                                søknadstype={søknadstype}
+                                søkersFødselsnummer={søker.fødselsnummer}
+                                registrertBarn={registrertBarn}
+                            />
+                        }
+                    />
                     <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep søknadstype={søknadstype} />} />
                     <Route
                         path={StepID.DOKUMENTER}
@@ -58,7 +69,14 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
                     />
                     <Route
                         path={StepID.OPPSUMMERING}
-                        element={<OppsummeringStep soknadId={soknadId} søknadstype={søknadstype} søker={søker} />}
+                        element={
+                            <OppsummeringStep
+                                soknadId={soknadId}
+                                søknadstype={søknadstype}
+                                søker={søker}
+                                registrerteBarn={registrertBarn}
+                            />
+                        }
                     />
                     <Route
                         path="*"

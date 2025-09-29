@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { extractUtenlandsoppholdIPeriodenSøknadsdata } from '../extractUtenlandsoppholdIPeriodenSøknadsdata';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds';
+
+import { extractUtenlandsoppholdIPeriodenSøknadsdata } from '../extractUtenlandsoppholdIPeriodenSøknadsdata';
 
 const utenlandsopphold: UtenlandsoppholdUtvidet = {
     type: 'innenfor_eøs',

@@ -5,7 +5,7 @@ import { withIntl } from '../../../storybook/hooks/withIntl';
 import StatusTag from '../../status-tag/StatusTag';
 import SakPageHeader from './SakPageHeader';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof SakPageHeader> = {
     component: SakPageHeader,
     title: 'Components/SakPageHeader',
@@ -25,6 +25,7 @@ export const Default: Story = {
             aktørId: '123123123',
             anonymisert: false,
             etternavn: 'Hansen',
+            mellomnavn: 'Von',
             fornavn: 'Ola',
             identitetsnummer: '12345678910',
             fødselsdato: ISODateToDate('2022-01-01'),

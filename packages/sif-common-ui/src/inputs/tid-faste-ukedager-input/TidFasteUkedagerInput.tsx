@@ -1,13 +1,14 @@
-import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import './tidFasteUkedagerInput.css';
+
+import { Box } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import { tidFasteUkedagerInputMessages } from './tidFasteUkerdagerInput.messages';
-import './tidFasteUkedagerInput.css';
+import { useIntl } from 'react-intl';
+
+import { tidFasteUkedagerInputMessages_nb } from './i18n/nb';
 
 interface OwnProps {
     name: string;
@@ -31,7 +32,7 @@ const TidFasteUkedagerInput = ({
     'data-testid': testId,
 }: TidFasteUkedagerInputProps) => {
     const intl = useIntl();
-    const { text } = typedIntlHelper<keyof typeof tidFasteUkedagerInputMessages.nb>(intl);
+    const { text } = typedIntlHelper<keyof typeof tidFasteUkedagerInputMessages_nb>(intl);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
         const disabled = isWeekdayDisabled(disabledDays, weekday);
@@ -55,7 +56,7 @@ const TidFasteUkedagerInput = ({
     };
     const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
-        <Block margin="l">
+        <Box marginBlock="8 0">
             <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(
                     Weekday.monday,
@@ -83,7 +84,7 @@ const TidFasteUkedagerInput = ({
                     text('@ui.tidFasteUkedaterInput.fredag'),
                 )}
             </div>
-        </Block>
+        </Box>
     );
 };
 

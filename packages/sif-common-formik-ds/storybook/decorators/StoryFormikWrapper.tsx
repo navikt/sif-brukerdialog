@@ -1,5 +1,6 @@
 import { Panel } from '@navikt/ds-react';
 import * as React from 'react';
+import { IntlProvider } from 'react-intl';
 import TypedFormikForm from '../../src/components/typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper from '../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import '@navikt/ds-css';
@@ -14,12 +15,14 @@ interface Props {
 }
 
 export const withFormikWrapper = (Story, args) => (
-    <StoryFormikWrapper {...args}>
-        <Story />
-    </StoryFormikWrapper>
+    <IntlProvider locale="nb" messages={{}}>
+        <StoryFormikWrapper {...args}>
+            <Story />
+        </StoryFormikWrapper>
+    </IntlProvider>
 );
 
-export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
+export const StoryFormikWrapper = (props: Props) => {
     const { children, parameters } = props;
     const { formik, maxWidth = '800px', includeButtons = true } = parameters || {};
     const initialValues = formik?.initialValues || {};
@@ -32,6 +35,7 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
                 console.log('StoryFormikProvider', values);
             }}
             renderForm={() => {
+                console.log('renderForm');
                 return (
                     <TypedFormikForm includeButtons={includeButtons}>
                         <Panel style={{ maxWidth: maxWidth }} border={true}>

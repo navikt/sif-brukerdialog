@@ -1,4 +1,4 @@
-import { getStringValidator, ValidateStringError } from '@navikt/sif-common-formik-ds/src/validation';
+import { getStringValidator, ValidateStringError } from '@navikt/sif-validation';
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
 import { OmBarnetFormFields } from '../OmBarnetStep';

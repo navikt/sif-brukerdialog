@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import './calendarGrid.less';
+
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     dateToISODate,
@@ -13,11 +14,12 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import React, { useRef } from 'react';
+
+import { AppText } from '../../../i18n';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
-import './calendarGrid.less';
-import { AppText } from '../../../i18n';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);
@@ -76,7 +78,7 @@ const getMinWidthForGridView = () => {
 
 const bem = bemUtils('calendarGrid');
 
-const CalendarGrid: React.FunctionComponent<Props> = ({
+const CalendarGrid = ({
     month,
     disabledDates,
     disabledDateInfo,
@@ -88,7 +90,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     dateRendererShort = dateFormatter.compact,
     dateRendererFull = dateFormatter.dayDateMonth,
     allDaysInWeekDisabledContentRenderer,
-}) => {
+}: Props) => {
     const weekdatesInMonth = getDatesInMonth(month.from, true);
     const weeks = getWeeks(weekdatesInMonth, month.from);
     const calendarGridRef = useRef(null);

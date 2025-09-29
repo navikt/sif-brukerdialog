@@ -1,6 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 
 export interface RelasjonTilBarnetSøknadsdataBase {
     relasjonTilBarnet: RelasjonTilBarnet;
@@ -10,6 +10,7 @@ export interface RelasjonTilBarnetSøknadsdataBase {
 interface OmBarnetFormSøknadsdata_AnnetBarn extends RelasjonTilBarnetSøknadsdataBase {
     type: 'annetBarn';
     barnetsNavn: string;
+    barnetsFødselsdato: Date;
     barnetsFødselsnummer: string;
 }
 
@@ -23,7 +24,6 @@ interface OmBarnetFormSøknadsdata_BarnUtenFnr extends RelasjonTilBarnetSøknads
 
 export interface OmBarnetFormSøknadsdata_RegistrertBarn {
     type: 'registrerteBarn';
-    aktørId: string;
     registrertBarn: RegistrertBarn;
 }
 

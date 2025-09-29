@@ -1,11 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import actionsCreator from '../søknad/context/action/actionCreator';
-import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { relocateToMinSide } from '../utils/navigationUtils';
+import { useNavigate } from 'react-router-dom';
+
 import { mellomlagringService } from '../api/mellomlagringService';
+import actionsCreator from '../søknad/context/action/actionCreator';
+import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { SøknadRoutes } from '../types/SøknadRoutes';
+import { relocateToMinSide } from '../utils/navigationUtils';
 
 const useAvbrytEllerFortsettSenere = () => {
     const navigate = useNavigate();

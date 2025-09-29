@@ -1,15 +1,14 @@
+import { VStack } from '@navikt/ds-react';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -18,8 +17,8 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     BarnMedAleneomsorg,
-    getTidspunktForAleneomsorgStepInitialValues,
     getTidspunktForAleneomsorgSøknadsdataFromFormValues,
+    getTidspunktForAleneomsorgStepInitialValues,
     mapAnnetBarnToBarnMedAleneomsorg,
     mapRegistrertBarnToBarnMedAleneomsorg,
 } from './tidspunktForAleneomsorgStepUtils';
@@ -124,24 +123,24 @@ const TidspunktForAleneomsorgStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="step.tidspunktForAleneomsorg.stepIntro" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                <Block margin="xl" padBottom="xl">
+                                <VStack gap="8">
                                     {barnMedAleneomsorg.map((barn) => {
                                         return (
-                                            <FormBlock key={barn.idFnr}>
+                                            <div key={barn.idFnr}>
                                                 <TidspunktForBarn
                                                     barnMedAleneomsorg={barn}
                                                     aleneomsorgTidspunkt={aleneomsorgTidspunkt[barn.idFnr]}
                                                 />
-                                            </FormBlock>
+                                            </div>
                                         );
                                     })}
-                                </Block>
+                                </VStack>
                             </Form>
                         </>
                     );

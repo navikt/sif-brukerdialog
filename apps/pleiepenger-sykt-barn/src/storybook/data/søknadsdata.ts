@@ -1,15 +1,16 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ArbeidIPeriodeSøknadsdata, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
-import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
+
 import { ArbeidIPeriodeType } from '../../app/types/ArbeidIPeriodeType';
+import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { RedusertArbeidstidType } from '../../app/types/RedusertArbeidstidType';
 import { Frilanstype } from '../../app/types/søknad-form-values/FrilansFormValues';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,
 } from '../../app/types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
-import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { ArbeidssituasjonArbeidsgivereSøknadsdata } from '../../app/types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata, OmsorgsstønadType, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
+import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
 
 const arbeidssituasjonAnsatt: ArbeidssituasjonAnsattSøknadsdata = {
     type: ArbeidssituasjonAnsattType.pågående,
@@ -95,9 +96,9 @@ export const søknadsdata: Søknadsdata = {
             },
         },
     },
-    stønadGodtgjørelse: {
-        type: 'mottarIkke',
-        mottarStønadGodtgjørelse: YesOrNo.NO,
+    omsorgsstønad: {
+        type: OmsorgsstønadType.mottarIkke,
+        mottarOmsorgsstønad: YesOrNo.NO,
     },
     omsorgstibud: {
         type: 'erIOmsorgstilbudFasteDager',

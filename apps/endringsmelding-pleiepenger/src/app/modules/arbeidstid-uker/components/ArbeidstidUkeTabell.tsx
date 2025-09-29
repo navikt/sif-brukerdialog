@@ -1,10 +1,10 @@
-import { Checkbox, Table, Tooltip } from '@navikt/ds-react';
-import React, { ReactElement } from 'react';
+import { Box, Checkbox, Table } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { ReactElement } from 'react';
+
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -23,15 +23,15 @@ interface Props {
     renderUkerFooter: () => ReactElement;
 }
 
-const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
+const ArbeidstidUkeTabell = ({
     uker,
     visEndringSomOpprinnelig,
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
     renderEditButton,
-}) => {
-    const { text, intl } = useAppIntl();
+}: Props) => {
+    const { intl } = useAppIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -75,23 +75,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 <AppText id="arbeidstidUkeTabell.header.dato" />
                             </Table.HeaderCell>
                             <Table.HeaderCell className="arbeidstidUker__normalt">
-                                <Tooltip content={text('arbeidstidUkeTabell.header.normalt.tooltip')}>
-                                    <span>
-                                        <AppText id="arbeidstidUkeTabell.header.normalt.title" />
-                                    </span>
-                                </Tooltip>
+                                <AppText id="arbeidstidUkeTabell.header.normalt.title" />
                             </Table.HeaderCell>
                         </>
                     )}
 
                     <Table.HeaderCell className="arbeidstidUker__faktisk">
-                        {arbeidstidKolonneTittel || (
-                            <Tooltip content={text('arbeidstidUkeTabell.header.arbeidstid.tooltip')}>
-                                <span>
-                                    <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />
-                                </span>
-                            </Tooltip>
-                        )}
+                        {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
                     </Table.HeaderCell>
 
                     {singleSelectEnabled && (
@@ -142,14 +132,14 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     </div>
 
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
-                                        <Block margin="s">
+                                        <Box marginBlock="0 4">
                                             <UkeTags
                                                 kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 erKortUke={uke.erKortUke}
                                             />
-                                        </Block>
+                                        </Box>
                                     )}
                                 </Table.DataCell>
                             )}
@@ -167,12 +157,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 <span className="arbeidsukeTidsrom__tekst">
                                                     {getDateRangeText(uke.periode, intl.locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
-                                                        <Block margin="s">
+                                                        <Box marginBlock="0 4">
                                                             <UkeTags
                                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                             />
-                                                        </Block>
+                                                        </Box>
                                                     )}
                                                 </span>
                                                 <span className="arbeidsukeTidsrom__info">

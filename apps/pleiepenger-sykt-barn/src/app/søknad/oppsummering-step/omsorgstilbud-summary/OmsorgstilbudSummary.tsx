@@ -1,7 +1,7 @@
 import { Box, FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../i18n';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';
@@ -14,7 +14,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, søknadsperiode, onEdit }) => {
+const OmsorgstilbudSummary = ({ apiValues: { omsorgstilbud }, søknadsperiode, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -27,7 +27,6 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                         }}
                     />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 {omsorgstilbud === undefined && (
@@ -38,7 +37,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                                     <AppText id="steg.oppsummering.omsorgstilbud.fortid.spm" />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
+                                    <AppText id="steg.oppsummering.omsorgstilbud.fortid.svar.NEI" />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                         )}
@@ -54,7 +53,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                                     />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <AppText id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
+                                    <AppText id="steg.oppsummering.omsorgstilbud.fremtid.svar.NEI" />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                         )}
@@ -115,6 +114,11 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                     </FormSummary.Answer>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

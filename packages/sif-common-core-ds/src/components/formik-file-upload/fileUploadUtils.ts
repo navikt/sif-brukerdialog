@@ -1,10 +1,12 @@
-import { isAxiosError } from 'axios';
-import { CoreIntlShape } from '../../i18n/common.messages';
 import { FileRejectionReason } from '@navikt/ds-react';
+import { isAxiosError } from 'axios';
+
+import { CoreIntlShape } from '../../i18n/common.messages';
 import { PersistedFile } from '../../types';
 
 export enum FileUploadErrorReason {
     'ECONNABORTED' = 'ECONNABORTED',
+    'BAD_REQUEST' = 'BAD_REQUEST',
     'UNKNOWN' = 'UNKNOWN',
 }
 
@@ -23,6 +25,8 @@ export const getRejectedFileError = (
             return text('@core.formikFileUpload.file-upload.error.fileSize', limits);
         case FileUploadErrorReason.ECONNABORTED:
             return text('@core.formikFileUpload.file-upload.error.retry');
+        case FileUploadErrorReason.BAD_REQUEST:
+            return text('@core.formikFileUpload.file-upload.error.bad-request');
         default:
             return text('@core.formikFileUpload.file-upload.error.unknown', { reason });
     }
@@ -33,6 +37,9 @@ export const getFileUploadErrorReason = (e: unknown): string => {
         switch (e.code) {
             case 'ECONNABORTED':
                 return FileUploadErrorReason.ECONNABORTED;
+        }
+        if (e.status === 400) {
+            return FileUploadErrorReason.BAD_REQUEST;
         }
         return e.code ? e.code : e.message;
     }

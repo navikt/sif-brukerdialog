@@ -1,12 +1,15 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import './step.scss';
+
+import { VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
-import './step.scss';
 
 const bem = bemHelper('step');
 
@@ -49,14 +52,20 @@ function Step({
             className={bem.block}
             title={pageTitle}
             topContentRenderer={() => (
-                <>
-                    <SoknadHeader title={applicationTitle} level="2" />
+                <PageBoundary>
+                    <SoknadHeader title={applicationTitle} level="2" useStandard={true} />
                     {validationSummary}
-                </>
+                </PageBoundary>
             )}>
             <section aria-label="Skjema" ref={sectionRef}>
-                <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
-                <Block margin="xxl">{children}</Block>
+                <VStack gap="10">
+                    <ProgressStepper
+                        steps={steps}
+                        currentStepIndex={currentStepIndex}
+                        onStepSelect={handleOnStepSelect}
+                    />
+                    <div>{children}</div>
+                </VStack>
             </section>
             {(onCancel || onContinueLater) && (
                 <div

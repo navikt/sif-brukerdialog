@@ -1,12 +1,23 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { ÅrsakBarnetManglerIdentitetsnummer, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
+import { OmBarnetFormSøknadsdata } from '../../../../../types/søknadsdata/Søknadsdata';
+import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import {
     getOmBarnetFormInitialValues,
     getOmBarnetSøknadsdataFromFormValues,
     omBarnetFormDefaultValues,
 } from './omBarnetFormUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { OmBarnetFormSøknadsdata } from '../../../../../types/søknadsdata/Søknadsdata';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
+    };
+});
 
 const barn1: RegistrertBarn = {
     fornavn: 'ALFABETISK',
@@ -34,21 +45,24 @@ enum Variant {
     annetBarnUtenFnrAnnenRelasjon = 'annetBarnUtenFnrAnnenRelasjon',
 }
 
+const annetBarnFormValues: OmBarnetFormValues = {
+    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
+};
+
 const formValuesMedFnr: OmBarnetFormValues = {
-    søknadenGjelderEtAnnetBarn: true,
+    ...annetBarnFormValues,
     barnetsFødselsnummer: '2811762539343',
     barnetsNavn: 'Navn',
     relasjonTilBarnet: RelasjonTilBarnet.MOR,
 };
 
 const formValuesBarnUtenFnr: OmBarnetFormValues = {
+    ...annetBarnFormValues,
     barnetHarIkkeFnr: true,
-    søknadenGjelderEtAnnetBarn: true,
     barnetsFødselsdato: '2020-01-01',
     barnetsNavn: 'Navn',
     fødselsattest: [],
     relasjonTilBarnet: RelasjonTilBarnet.MEDMOR,
-
     årsakManglerIdentitetsnummer: ÅrsakBarnetManglerIdentitetsnummer.NYFØDT,
 };
 
@@ -56,7 +70,6 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     registrertBarn: {
         søknadsdata: {
             type: 'registrerteBarn',
-            aktørId: '2811762539343',
             registrertBarn: barn1,
         },
         formValues: {
@@ -66,10 +79,12 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     annetBarnMor: {
         formValues: {
             ...formValuesMedFnr,
+            barnetsFødselsdato: '2020-01-01',
             relasjonTilBarnet: RelasjonTilBarnet.MOR,
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.MOR,
             barnetsNavn: 'Navn',
@@ -78,10 +93,12 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     annetBarnFar: {
         formValues: {
             ...formValuesMedFnr,
+            barnetsFødselsdato: '2020-01-01',
             relasjonTilBarnet: RelasjonTilBarnet.FAR,
         },
         søknadsdata: {
             type: 'annetBarn',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsFødselsnummer: '2811762539343',
             relasjonTilBarnet: RelasjonTilBarnet.FAR,
             barnetsNavn: 'Navn',
@@ -136,6 +153,11 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
     },
 };
 
+const annetBarnDefaultValues: OmBarnetFormValues = {
+    ...omBarnetFormDefaultValues,
+    barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
+};
+
 describe('getOmBarnetSøknadsdataFromFormValues', () => {
     it('søknaden gjelder et registrert barn', () => {
         const { formValues, søknadsdata } = testdata.registrertBarn;
@@ -188,23 +210,26 @@ describe('getOmBarnetFormInitialValues', () => {
         });
         it(`returnerer riktig formValues for ${Variant.annetBarnMor}`, () => {
             const { formValues, søknadsdata } = testdata.annetBarnMor;
-            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...omBarnetFormDefaultValues, ...formValues });
+            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({
+                ...annetBarnDefaultValues,
+                ...formValues,
+            });
         });
         it(`returnerer riktig formValues for ${Variant.annetBarnFar}`, () => {
             const { formValues, søknadsdata } = testdata.annetBarnFar;
-            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...omBarnetFormDefaultValues, ...formValues });
+            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...annetBarnDefaultValues, ...formValues });
         });
         it(`returnerer riktig formValues for ${Variant.annetBarnUtenFnr}`, () => {
             const { formValues, søknadsdata } = testdata.annetBarnUtenFnr;
-            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...omBarnetFormDefaultValues, ...formValues });
+            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...annetBarnDefaultValues, ...formValues });
         });
         it(`returnerer riktig formValues for ${Variant.annetBarnUtenFnrAnnenRelasjon}`, () => {
             const { formValues, søknadsdata } = testdata.annetBarnUtenFnrAnnenRelasjon;
-            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...omBarnetFormDefaultValues, ...formValues });
+            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...annetBarnDefaultValues, ...formValues });
         });
         it(`returnerer riktig formValues for ${Variant.annetBarnUtenFnrUtland}`, () => {
             const { formValues, søknadsdata } = testdata.annetBarnUtenFnrUtland;
-            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...omBarnetFormDefaultValues, ...formValues });
+            expect(getOmBarnetFormInitialValues(søknadsdata)).toEqual({ ...annetBarnDefaultValues, ...formValues });
         });
     });
 });

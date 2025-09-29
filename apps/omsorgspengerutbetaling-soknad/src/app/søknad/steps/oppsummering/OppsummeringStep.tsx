@@ -1,15 +1,14 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
-import { useEffect, useRef } from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import { useEffect, useRef } from 'react';
+
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
@@ -17,13 +16,13 @@ import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søk
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import DineBarnOppsummering from './components/DineBarnOppsummering';
+import FraværSummary from './components/FraværSummary';
 import FrilansOppsummering from './components/FrilansOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import FraværSummary from './components/FraværSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -103,7 +102,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <div data-testid="oppsummering">
+                        <VStack gap="8" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -126,6 +125,7 @@ const OppsummeringStep = () => {
                                     />
 
                                     <FraværSummary apiData={apiData} onEdit={() => gotoStep(StepId.FRAVÆR)} />
+
                                     <LegeerklæringOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
@@ -160,11 +160,9 @@ const OppsummeringStep = () => {
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
-                                <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
-                                </FormBlock>
+                                <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
                             )}
-                        </div>
+                        </VStack>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

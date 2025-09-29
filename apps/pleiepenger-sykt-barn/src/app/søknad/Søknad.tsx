@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { useNavigate } from 'react-router-dom';
+
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { navigateToErrorPage } from '../utils/navigationUtils';
 import SøknadContent from './SøknadContent';

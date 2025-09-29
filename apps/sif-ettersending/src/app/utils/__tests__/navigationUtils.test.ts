@@ -1,5 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
+
 import { getRouteConfig } from '../../config/routeConfig';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
@@ -7,7 +8,11 @@ import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUt
 const navigate: NavigateFunction = vi.fn().mockImplementation(() => {});
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => ({ PUBLIC_PATH: '', SIF_PUBLIC_LOGIN_URL: '' }) };
+    return {
+        getRequiredEnv: () => '',
+        getMaybeEnv: () => '',
+        getCommonEnv: () => ({ PUBLIC_PATH: '', SIF_PUBLIC_LOGIN_URL: '' }),
+    };
 });
 
 const søknadstype = Søknadstype.omsorgspenger;

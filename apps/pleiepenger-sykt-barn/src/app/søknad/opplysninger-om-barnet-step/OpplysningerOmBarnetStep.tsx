@@ -1,13 +1,17 @@
-import React from 'react';
+import { VStack } from '@navikt/ds-react';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { useFormikContext } from 'formik';
+import React from 'react';
+
 import { SøkerdataContext } from '../../context/SøkerdataContext';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
+import InfoRetningslinjerSøskensaker from './info/InfoRetningslinjerSøskensaker';
 import RegistrertBarnPart from './RegistrertBarnPart';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
@@ -17,7 +21,7 @@ const harRegistrerteBarn = ({ barn }: Søkerdata) => {
 const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 
-    const { søknadenGjelderEtAnnetBarn } = values;
+    const søknadenGjelderEtAnnetBarn = values[SøknadFormField.barnetSøknadenGjelder] === VelgBarn_AnnetBarnValue;
     const søkerdata = React.useContext(SøkerdataContext);
 
     const fødselsattester: Vedlegg[] = React.useMemo(() => {
@@ -32,15 +36,21 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
-                    {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                    {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
-                        <AnnetBarnPart
-                            formValues={values}
-                            søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                            fødselsattester={fødselsattester}
-                            harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
-                        />
-                    )}
+                    <VStack gap="6">
+                        <InfoRetningslinjerSøskensaker />
+
+                        <VStack gap="8" marginBlock="2 0">
+                            {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
+                            {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                                <AnnetBarnPart
+                                    formValues={values}
+                                    søkersFødselsnummer={søkerdata.søker.fødselsnummer}
+                                    fødselsattester={fødselsattester}
+                                    harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
+                                />
+                            )}
+                        </VStack>
+                    </VStack>
                 </div>
             )}
         </SøknadFormStep>

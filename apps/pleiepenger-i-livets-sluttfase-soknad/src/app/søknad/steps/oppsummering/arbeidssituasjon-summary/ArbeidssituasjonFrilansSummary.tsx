@@ -1,5 +1,6 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -21,13 +22,13 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                 <List>
                     {frilans === undefined ? (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                            <AppText id="oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser" />
                         </List.Item>
                     ) : (
                         <>
                             {frilans.harHattInntektSomFrilanser === false && (
                                 <List.Item>
-                                    <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                                    <AppText id="oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser" />
                                 </List.Item>
                             )}
 
@@ -54,7 +55,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                                 <>
                                     <List.Item>
                                         <AppText
-                                            id={`oppsummering.arbeidssituasjon.tid`}
+                                            id="oppsummering.arbeidssituasjon.tid"
                                             values={{ timer: frilans.arbeidsforhold.jobberNormaltTimer }}
                                         />
                                     </List.Item>

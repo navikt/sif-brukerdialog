@@ -1,8 +1,6 @@
 import { Edit } from '@navikt/ds-icons';
-import { Alert, Button } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import React from 'react';
+import { Alert, Button, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../../i18n';
 
 interface Props {
@@ -11,19 +9,17 @@ interface Props {
     onEndreUker: () => void;
 }
 
-const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, onEndreUker }) => {
+const EndreUkerFooter = ({ visVelgUkerMelding, onEndreUker }: Props) => {
     return (
-        <div className="arbeidstidUkeFooter">
-            <FormBlock margin="m" paddingBottom="m">
-                <div aria-relevant="additions removals" aria-live="polite">
-                    {visVelgUkerMelding && (
-                        <Block padBottom="l">
-                            <Alert variant="info">
-                                <AppText id="endreUkerFooter.velgUkerFørst.melding" />
-                            </Alert>
-                        </Block>
-                    )}
-                </div>
+        <VStack gap="5" className="arbeidstidUkeFooter" as="span">
+            <div aria-relevant="additions removals" aria-live="polite">
+                {visVelgUkerMelding && (
+                    <Alert variant="info">
+                        <AppText id="endreUkerFooter.velgUkerFørst.melding" />
+                    </Alert>
+                )}
+            </div>
+            <div>
                 <Button
                     icon={<Edit role="presentation" aria-hidden={true} />}
                     variant="primary"
@@ -32,8 +28,8 @@ const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, o
                     onClick={onEndreUker}>
                     <AppText id="endreUkerFooter.endreButton.label" />
                 </Button>
-            </FormBlock>
-        </div>
+            </div>
+        </VStack>
     );
 };
 

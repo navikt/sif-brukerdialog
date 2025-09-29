@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
-import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
+
 import FormikCheckbox, { FormikCheckboxProps } from './formik-checkbox/FormikCheckbox';
+import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
+import FormikCombobox, { FormikComboboxProps } from './formik-combobox/FormikCombobox';
 import FormikConfirmationCheckbox, {
     FormikConfirmationCheckboxProps,
 } from './formik-confirmation-checkbox/FormikConfirmationCheckbox';
@@ -21,6 +23,7 @@ import TypedFormikWrapper, { TypedFormikWrapperProps } from './typed-formik-wrap
 export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     Checkbox: (props: FormikCheckboxProps<FieldName, ErrorType>) => ReactElement;
     CheckboxGroup: (props: FormikCheckboxGroupProps<FieldName, ErrorType>) => ReactElement;
+    Combobox: (props: FormikComboboxProps<FieldName, ErrorType>) => ReactElement;
     ConfirmationCheckbox: (props: FormikConfirmationCheckboxProps<FieldName, ErrorType>) => ReactElement;
     CountrySelect: (props: FormikCountrySelectProps<FieldName, ErrorType>) => ReactElement;
     DatePicker: (props: FormikDatepickerProps<FieldName, ErrorType>) => ReactElement;
@@ -51,6 +54,9 @@ export function getTypedFormComponents<FieldName, FormValues, ErrorType = string
         ),
         ConfirmationCheckbox: (props: FormikConfirmationCheckboxProps<FieldName, ErrorType>) => (
             <FormikConfirmationCheckbox<FieldName, ErrorType> {...props} />
+        ),
+        Combobox: (props: FormikComboboxProps<FieldName, ErrorType>) => (
+            <FormikCombobox<FieldName, ErrorType> {...props} />
         ),
         CountrySelect: (props: FormikCountrySelectProps<FieldName, ErrorType>) => (
             <FormikCountrySelect<FieldName, ErrorType> {...props} />

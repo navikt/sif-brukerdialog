@@ -1,15 +1,14 @@
+import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import {
+    DeltBostedSøknadsdata,
+    FraværSøknadsdata,
     LegeerklæringSøknadsdata,
     MedlemskapSøknadsdata,
     SituasjonSøknadsdata,
-    FraværSøknadsdata,
-    DeltBostedSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
-import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
-import { TempFormValues } from '../../../types/SøknadContextState';
-import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -29,7 +28,6 @@ export enum SøknadContextActionKeys {
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
-    SET_SØKNAD_KVITTERING_INFO = 'setSøknadKvitteringInfo',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
 }
 
@@ -103,11 +101,6 @@ interface SetSøknadTempFormValues {
     payload: TempFormValues;
 }
 
-interface SetSøknadKvitteringInfo {
-    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
-    payload: ArbeidsgiverDetaljer[];
-}
-
 const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
@@ -177,11 +170,6 @@ const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): Se
     payload,
 });
 
-const setSøknadKvitteringInfo = (payload: ArbeidsgiverDetaljer[]): SetSøknadKvitteringInfo => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO,
-    payload,
-});
-
 const setSøknadTempFormValues = (payload: TempFormValues): SetSøknadTempFormValues => ({
     type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_VALUES,
     payload,
@@ -209,7 +197,6 @@ export type SøknadContextAction =
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadTempFormValues
-    | SetSøknadKvitteringInfo
     | SetSøknadRoute;
 
 const actionsCreator = {
@@ -227,7 +214,6 @@ const actionsCreator = {
     setSøknadLegeerklæring,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
-    setSøknadKvitteringInfo,
     setSøknadTempFormValues,
     setSøknadLagret,
     setSøknadSendt,

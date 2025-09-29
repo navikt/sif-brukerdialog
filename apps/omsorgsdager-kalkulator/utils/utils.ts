@@ -1,8 +1,8 @@
+import dayjs from 'dayjs';
 import Barn, { AlderType } from '../components/beregningsmodul/types/Barn';
 import Omsorgsprinsipper from '../components/beregningsmodul/types/Omsorgsprinsipper';
-import { YesOrNo } from '../components/sif-formik/types';
 import { BarnKalkulator } from '../components/kalkulator/Kalkulator';
-import dayjs from 'dayjs';
+import { YesOrNo } from '../components/sif-formik/types';
 
 export const getYear = (): number => dayjs().year();
 

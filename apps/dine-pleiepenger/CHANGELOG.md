@@ -1,5 +1,683 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.10
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.34
+    - @navikt/appstatus-react-ds@2.20.42
+    - @navikt/sif-common-core-ds@10.3.9
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+
+## 1.10.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.33
+    - @navikt/appstatus-react-ds@2.20.41
+    - @navikt/sif-common-core-ds@10.3.8
+    - @navikt/sif-common-sentry@0.28.35
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-utils@3.49.31
+
+## 1.10.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.40
+    - @navikt/sif-common-core-ds@10.3.7
+    - @navikt/sif-common-sentry@0.28.34
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-amplitude@2.28.32
+    - @navikt/sif-common-utils@3.49.31
+
+## 1.10.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.32
+    - @navikt/appstatus-react-ds@2.20.39
+    - @navikt/sif-common-core-ds@10.3.6
+    - @navikt/sif-common-utils@3.49.31
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-sentry@0.28.33
+
+## 1.10.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.31
+    - @navikt/appstatus-react-ds@2.20.38
+    - @navikt/sif-common-core-ds@10.3.5
+    - @navikt/sif-common-sentry@0.28.33
+    - @navikt/sif-common-utils@3.49.30
+
+## 1.10.5
+
+### Patch Changes
+
+- Updated dependencies [7f7d02d]
+    - @navikt/sif-common-core-ds@10.3.4
+
+## 1.10.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.30
+    - @navikt/appstatus-react-ds@2.20.37
+    - @navikt/sif-common-core-ds@10.3.3
+    - @navikt/sif-common-sentry@0.28.32
+    - @navikt/sif-common-utils@3.49.29
+    - @navikt/sif-app-register@0.1.9
+
+## 1.10.3
+
+### Patch Changes
+
+- Utvide lint:fix scope til flere filer
+    - @navikt/appstatus-react-ds@2.20.36
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-amplitude@2.28.29
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-sentry@0.28.31
+    - @navikt/sif-common-utils@3.49.28
+
+## 1.10.2
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.36
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-amplitude@2.28.29
+    - @navikt/sif-common-core-ds@10.3.2
+    - @navikt/sif-common-sentry@0.28.31
+    - @navikt/sif-common-utils@3.49.28
+
+## 1.10.1
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+- Updated dependencies
+- Updated dependencies [21e8832]
+    - @navikt/sif-common-amplitude@2.28.28
+    - @navikt/appstatus-react-ds@2.20.35
+    - @navikt/sif-common-core-ds@10.3.1
+    - @navikt/sif-common-sentry@0.28.30
+    - @navikt/sif-common-utils@3.49.27
+
+## 1.10.0
+
+### Minor Changes
+
+- Oppdatere alle applikasjoner med darkside theme. Erstatte FormBlock og Block med komponenter fra Aksel. Bruke FormLayout komponenter for gjenerelt form oppsett. Diverse refactoringer av layout - ikke funksjonelle endringer.
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.0
+
+## 1.9.49
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.34
+    - @navikt/sif-common-core-ds@10.2.44
+    - @navikt/sif-common-sentry@0.28.29
+    - @navikt/sif-common-utils@3.49.26
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.27
+
+## 1.9.48
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.27
+    - @navikt/sif-common-core-ds@10.2.43
+    - @navikt/sif-common-utils@3.49.25
+    - @navikt/appstatus-react-ds@2.20.33
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.28
+
+## 1.9.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.26
+    - @navikt/appstatus-react-ds@2.20.33
+    - @navikt/sif-common-core-ds@10.2.42
+    - @navikt/sif-common-utils@3.49.24
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.28
+
+## 1.9.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.25
+    - @navikt/appstatus-react-ds@2.20.32
+    - @navikt/sif-common-core-ds@10.2.41
+    - @navikt/sif-common-sentry@0.28.28
+    - @navikt/sif-common-utils@3.49.23
+
+## 1.9.45
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.2.40
+
+## 1.9.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.31
+    - @navikt/sif-common-core-ds@10.2.39
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.24
+    - @navikt/sif-common-sentry@0.28.27
+    - @navikt/sif-common-utils@3.49.22
+
+## 1.9.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.30
+    - @navikt/sif-common-core-ds@10.2.38
+    - @navikt/sif-common-sentry@0.28.27
+    - @navikt/sif-common-utils@3.49.22
+
+## 1.9.42
+
+### Patch Changes
+
+- Oppdaterte pakker - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.24
+    - @navikt/appstatus-react-ds@2.20.29
+    - @navikt/sif-common-core-ds@10.2.37
+
+## 1.9.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.23
+    - @navikt/appstatus-react-ds@2.20.28
+    - @navikt/sif-common-core-ds@10.2.36
+    - @navikt/sif-common-sentry@0.28.26
+    - @navikt/sif-common-utils@3.49.21
+
+## 1.9.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.22
+    - @navikt/appstatus-react-ds@2.20.27
+    - @navikt/sif-common-core-ds@10.2.35
+    - @navikt/sif-common-utils@3.49.20
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.25
+
+## 1.9.39
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.21
+    - @navikt/appstatus-react-ds@2.20.26
+    - @navikt/sif-common-core-ds@10.2.34
+    - @navikt/sif-common-utils@3.49.19
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.25
+
+## 1.9.38
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+- Updated dependencies [dfeb776]
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.20
+    - @navikt/sif-common-core-ds@10.2.33
+    - @navikt/appstatus-react-ds@2.20.25
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-common-utils@3.49.18
+
+## 1.9.37
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.24
+    - @navikt/sif-common-core-ds@10.2.32
+
+## 1.9.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.32
+    - @navikt/appstatus-react-ds@2.20.23
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.19
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-common-utils@3.49.18
+
+## 1.9.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.19
+    - @navikt/appstatus-react-ds@2.20.23
+    - @navikt/sif-common-core-ds@10.2.31
+    - @navikt/sif-common-sentry@0.28.25
+    - @navikt/sif-common-utils@3.49.18
+
+## 1.9.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.18
+    - @navikt/appstatus-react-ds@2.20.22
+    - @navikt/sif-common-core-ds@10.2.30
+    - @navikt/sif-common-sentry@0.28.24
+    - @navikt/sif-common-utils@3.49.17
+    - @navikt/sif-app-register@0.1.8
+
+## 1.9.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.17
+    - @navikt/appstatus-react-ds@2.20.21
+    - @navikt/sif-common-core-ds@10.2.29
+    - @navikt/sif-common-sentry@0.28.23
+    - @navikt/sif-common-utils@3.49.16
+    - @navikt/sif-app-register@0.1.8
+
+## 1.9.32
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.16
+
+## 1.9.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.15
+    - @navikt/appstatus-react-ds@2.20.20
+    - @navikt/sif-common-sentry@0.28.22
+    - @navikt/sif-common-core-ds@10.2.28
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-utils@3.49.15
+
+## 1.9.30
+
+### Patch Changes
+
+- f385662: eslint fix
+    - @navikt/appstatus-react-ds@2.20.19
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-amplitude@2.28.14
+    - @navikt/sif-common-core-ds@10.2.27
+    - @navikt/sif-common-sentry@0.28.21
+    - @navikt/sif-common-utils@3.49.15
+
+## 1.9.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.14
+    - @navikt/appstatus-react-ds@2.20.19
+    - @navikt/sif-common-core-ds@10.2.27
+    - @navikt/sif-common-sentry@0.28.21
+    - @navikt/sif-common-utils@3.49.15
+    - @navikt/sif-app-register@0.1.8
+
+## 1.9.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.26
+    - @navikt/sif-common-sentry@0.28.20
+
+## 1.9.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.13
+    - @navikt/sif-common-core-ds@10.2.25
+    - @navikt/sif-common-sentry@0.28.19
+    - @navikt/sif-app-register@0.1.8
+    - @navikt/sif-common-utils@3.49.14
+    - @navikt/appstatus-react-ds@2.20.18
+
+## 1.9.26
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.12
+    - @navikt/appstatus-react-ds@2.20.17
+    - @navikt/sif-common-core-ds@10.2.24
+    - @navikt/sif-common-sentry@0.28.18
+    - @navikt/sif-common-utils@3.49.13
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.11
+    - @navikt/appstatus-react-ds@2.20.16
+    - @navikt/sif-common-core-ds@10.2.23
+    - @navikt/sif-common-sentry@0.28.17
+    - @navikt/sif-common-utils@3.49.12
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.24
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.10
+    - @navikt/appstatus-react-ds@2.20.15
+    - @navikt/sif-common-core-ds@10.2.22
+    - @navikt/sif-common-sentry@0.28.16
+    - @navikt/sif-common-utils@3.49.11
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.9
+    - @navikt/appstatus-react-ds@2.20.14
+    - @navikt/sif-common-core-ds@10.2.21
+    - @navikt/sif-common-sentry@0.28.15
+    - @navikt/sif-common-utils@3.49.10
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.22
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.20
+
+## 1.9.21
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-sentry@0.28.14
+    - @navikt/appstatus-react-ds@2.20.13
+    - @navikt/sif-common-amplitude@2.28.8
+    - @navikt/sif-common-core-ds@10.2.19
+    - @navikt/sif-common-utils@3.49.9
+
+## 1.9.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.8
+    - @navikt/appstatus-react-ds@2.20.13
+    - @navikt/sif-common-core-ds@10.2.18
+    - @navikt/sif-common-sentry@0.28.13
+    - @navikt/sif-common-utils@3.49.9
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.12
+    - @navikt/sif-common-core-ds@10.2.17
+    - @navikt/sif-common-sentry@0.28.12
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-amplitude@2.28.7
+    - @navikt/sif-common-utils@3.49.8
+
+## 1.9.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.7
+    - @navikt/appstatus-react-ds@2.20.11
+    - @navikt/sif-common-core-ds@10.2.16
+    - @navikt/sif-common-sentry@0.28.11
+    - @navikt/sif-common-utils@3.49.8
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.6
+    - @navikt/appstatus-react-ds@2.20.10
+    - @navikt/sif-common-core-ds@10.2.15
+    - @navikt/sif-common-sentry@0.28.10
+    - @navikt/sif-common-utils@3.49.7
+    - @navikt/sif-app-register@0.1.7
+
+## 1.9.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.5
+    - @navikt/appstatus-react-ds@2.20.9
+    - @navikt/sif-common-core-ds@10.2.14
+    - @navikt/sif-common-sentry@0.28.9
+    - @navikt/sif-common-utils@3.49.6
+
+## 1.9.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.13
+    - @navikt/sif-common-sentry@0.28.8
+    - @navikt/appstatus-react-ds@2.20.8
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-amplitude@2.28.4
+    - @navikt/sif-common-utils@3.49.5
+
+## 1.9.14
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+- Updated dependencies [28418e5]
+    - @navikt/appstatus-react-ds@2.20.8
+    - @navikt/sif-common-core-ds@10.2.12
+    - @navikt/sif-common-amplitude@2.28.4
+    - @navikt/sif-common-sentry@0.28.7
+    - @navikt/sif-common-utils@3.49.5
+
+## 1.9.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.11
+
+## 1.9.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.7
+    - @navikt/sif-common-core-ds@10.2.10
+    - @navikt/sif-common-sentry@0.28.7
+    - @navikt/sif-common-utils@3.49.5
+    - @navikt/sif-common-amplitude@2.28.4
+
+## 1.9.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.6
+    - @navikt/sif-app-register@0.1.7
+    - @navikt/sif-common-amplitude@2.28.4
+    - @navikt/sif-common-core-ds@10.2.9
+    - @navikt/sif-common-sentry@0.28.6
+    - @navikt/sif-common-utils@3.49.4
+
+## 1.9.10
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.5
+    - @navikt/sif-common-core-ds@10.2.8
+    - @navikt/sif-common-sentry@0.28.5
+    - @navikt/sif-common-amplitude@2.28.3
+    - @navikt/sif-common-utils@3.49.3
+
+## 1.9.9
+
+### Patch Changes
+
+- Oppdatere til node22 image
+
+## 1.9.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.3
+    - @navikt/appstatus-react-ds@2.20.4
+    - @navikt/sif-common-core-ds@10.2.7
+    - @navikt/sif-common-sentry@0.28.4
+    - @navikt/sif-common-utils@3.49.3
+
+## 1.9.7
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.2.6
+
+## 1.9.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.2.5
+
+## 1.9.5
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+- Updated dependencies [3e4c469]
+    - @navikt/sif-common-amplitude@2.28.2
+    - @navikt/appstatus-react-ds@2.20.3
+    - @navikt/sif-common-core-ds@10.2.4
+    - @navikt/sif-common-sentry@0.28.3
+    - @navikt/sif-common-utils@3.49.2
+    - @navikt/sif-app-register@0.1.6
+
+## 1.9.4
+
+### Patch Changes
+
+- Updated dependencies [58582b9]
+    - @navikt/sif-common-core-ds@10.2.3
+
+## 1.9.3
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+- Updated dependencies [346e74d]
+    - @navikt/sif-common-amplitude@2.28.1
+    - @navikt/appstatus-react-ds@2.20.2
+    - @navikt/sif-common-core-ds@10.2.2
+    - @navikt/sif-common-sentry@0.28.2
+    - @navikt/sif-common-utils@3.49.1
+
+## 1.9.2
+
+### Patch Changes
+
+- 19e7908: Versjonsoppdatering
+
 ## 1.9.1
 
 ### Patch Changes
@@ -551,7 +1229,6 @@
 ### Patch Changes
 
 - 90ba6ff: Pakkeoppdateringer - minor/patch.
-
     - ds-pakker
     - storybook
     - tailwindcss
@@ -840,7 +1517,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Patch Changes
 
 - 33f4b9c: To interne bugfix
-
     - Legge "ryujtq87.api.sanity.io" til i externalHosts
     - Endre path fra internal til health for isAlive og isHealthy
 
@@ -886,7 +1562,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Patch Changes
 
 - 8f80c29: Bugfix + tekstendring.
-
     - Korrigere sortering på behandlinger som brukte feil verdi.
     - Endre tekst som står i tidslinje på at saken vil bli ferdig behandlet
 
@@ -967,7 +1642,6 @@ Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vise
 ### Major Changes
 
 - 12a209a: Skru på feature for å hente saker fra k9. Dette gjør at bruker får
-
     - velge mellom barn/sak en ønsker å se
     - se status i sak, og tidslinje med innsendte søknader
     - se historikk på hendelser

@@ -1,5 +1,198 @@
 # @navikt/sif-common-utils
 
+## 3.49.32
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
+## 3.49.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.49.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 3.49.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.28
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 3.49.27
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 3.49.26
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.25
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 3.49.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.19
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.13
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 3.49.11
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.10
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.2
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
+## 3.49.1
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
 ## 3.49.0
 
 ### Minor Changes

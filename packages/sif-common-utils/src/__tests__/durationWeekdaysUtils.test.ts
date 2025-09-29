@@ -1,4 +1,4 @@
-import { DurationWeekdays, getDurationForISOWeekdayNumber } from '..';
+import { DurationWeekdays, getDurationForISOWeekdayNumber } from '../';
 import { ISODateToDate } from '../dateUtils';
 import { durationToISODuration, ISODurationToDuration } from '../durationUtils';
 import {

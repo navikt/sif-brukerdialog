@@ -1,5 +1,216 @@
 # @navikt/sif-common-sentry
 
+## 0.28.36
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
+## 0.28.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 0.28.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 0.28.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 0.28.30
+
+### Patch Changes
+
+- Lint og import sorting
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 0.28.29
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + sentry 10
+
+## 0.28.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.18
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 0.28.16
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.15
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.14
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.28.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+
+## 0.28.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+
+## 0.28.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.28.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.28.3
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
+## 0.28.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
 ## 0.28.1
 
 ### Patch Changes

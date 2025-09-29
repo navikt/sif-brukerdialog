@@ -1,7 +1,7 @@
-import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-env';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { prettifyDate } from '@navikt/sif-common-utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -11,10 +11,9 @@ import {
     ValidateFødselsnummerError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { prettifyDate } from '@navikt/sif-common-utils';
+} from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './types';
@@ -113,16 +112,17 @@ const AnnetBarnForm = ({
             renderForm={() => (
                 <Form.Form
                     onCancel={onCancel}
-                    formErrorHandler={getFormErrorHandler(intl, '@forms.annetBarnForm')}
+                    formErrorHandler={getIntlFormErrorHandler(intl, '@forms.annetBarnForm')}
                     submitButtonLabel="Ok"
                     showButtonArrows={false}>
-                    <Form.TextField
-                        name={AnnetBarnFormFields.navn}
-                        label={formLabels.navn}
-                        validate={getStringValidator({ required: true })}
-                        placeholder={formLabels.placeholderNavn}
-                    />
-                    <FormBlock>
+                    <FormLayout.Questions>
+                        <Form.TextField
+                            name={AnnetBarnFormFields.navn}
+                            label={formLabels.navn}
+                            validate={getStringValidator({ required: true })}
+                            placeholder={formLabels.placeholderNavn}
+                        />
+
                         <Form.DatePicker
                             name={AnnetBarnFormFields.fødselsdato}
                             label={
@@ -146,9 +146,6 @@ const AnnetBarnForm = ({
                             minDate={minDate}
                             dropdownCaption={true}
                         />
-                    </FormBlock>
-
-                    <FormBlock>
                         <Form.TextField
                             name={AnnetBarnFormFields.fnr}
                             label={formLabels.fnr}
@@ -161,9 +158,8 @@ const AnnetBarnForm = ({
                             maxLength={11}
                             placeholder={formLabels.placeholderFnr}
                         />
-                    </FormBlock>
-                    {visBarnTypeValg && (
-                        <FormBlock>
+
+                        {visBarnTypeValg && (
                             <Form.RadioGroup
                                 name={AnnetBarnFormFields.type}
                                 legend={text('@forms.annetBarn.form.årsak.spm')}
@@ -179,8 +175,8 @@ const AnnetBarnForm = ({
                                 ]}
                                 validate={getRequiredFieldValidator()}
                             />
-                        </FormBlock>
-                    )}
+                        )}
+                    </FormLayout.Questions>
                 </Form.Form>
             )}
         />

@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import isEqual from 'react-fast-compare';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useState } from 'react';
+import isEqual from 'react-fast-compare';
+
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { OmOmsorgenForBarnFormValues } from '../søknad/steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
+import { getOmOmsorgenForBarnSøknadsdataFromFormValues } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnStepUtils';
+import { TidspunktForAleneomsorgFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
+import { getTidspunktForAleneomsorgSøknadsdataFromFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { getOmOmsorgenForBarnSøknadsdataFromFormValues } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnStepUtils';
-import { getTidspunktForAleneomsorgSøknadsdataFromFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
-import { RegistrertBarn } from '../types/RegistrertBarn';
-import { OmOmsorgenForBarnFormValues } from '../søknad/steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
-import { TidspunktForAleneomsorgFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];

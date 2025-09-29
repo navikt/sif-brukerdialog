@@ -1,19 +1,18 @@
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isDevMode } from '@navikt/sif-common-env';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
-import { AppText, useAppIntl } from '../../../i18n';
+import { useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { Søker } from '../../../types/Søker';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './alert/IkkeKroniskEllerFuksjonshemningAlert';
 import IkkeSammeAdresseAlert from './alert/IkkeSammeAdresseAlert';
 import TrengerIkkeSøkeForBarnAlert from './alert/TrengerIkkeSøkeForBarnAlert';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
-import { OmBarnetFormValues } from './OmBarnetStep';
+import { OmBarnetFormFields, OmBarnetFormValues } from './OmBarnetStep';
 import AnnetBarnFnrSpørsmål from './spørsmål/AnnetBarnFnrSpørsmål';
 import AnnetBarnFødselsdatoSpørsmål from './spørsmål/AnnetBarnFødselsdatoSpørsmål';
 import AnnetBarnNavnSpørsmål from './spørsmål/AnnetBarnNavnSpørsmål';
@@ -36,19 +35,10 @@ interface Props {
 
 const { Form } = omBarnetFormComponents;
 
-const OmBarnetForm = ({
-    isSubmitting,
-    registrerteBarn,
-    values,
-    innvilgedeVedtak,
-    søker,
-    onBack,
-    onVelgAnnetBarn,
-}: Props) => {
-    const { intl } = useAppIntl();
+const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak, søker, onBack }: Props) => {
+    const { intl, text } = useAppIntl();
     const {
         barnetSøknadenGjelder,
-        søknadenGjelderEtAnnetBarn,
         kroniskEllerFunksjonshemming,
         sammeAdresse,
         søkersRelasjonTilBarnet,
@@ -63,6 +53,7 @@ const OmBarnetForm = ({
         sammeAdresse === BarnSammeAdresse.NEI && søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
 
     const harIkkeBarn = registrerteBarn.length === 0;
+    const søknadenGjelderEtAnnetBarn = values[OmBarnetFormFields.barnetSøknadenGjelder] === VelgBarn_AnnetBarnValue;
 
     return (
         <Form
@@ -75,11 +66,7 @@ const OmBarnetForm = ({
             <FormLayout.Questions>
                 {harIkkeBarn === false && (
                     <>
-                        <RegistrertBarnSpørsmål
-                            registrerteBarn={registrerteBarn}
-                            søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                            onAnnetBarnSelected={onVelgAnnetBarn}
-                        />
+                        <RegistrertBarnSpørsmål registrerteBarn={registrerteBarn} />
                         {harInnvilgetVedtakForValgtBarn && (
                             <FormLayout.QuestionRelatedMessage>
                                 <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
@@ -90,14 +77,11 @@ const OmBarnetForm = ({
                 {harInnvilgetVedtakForValgtBarn !== true && (
                     <>
                         {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                            <FormLayout.Section>
-                                <FormLayout.SectionHeading>
-                                    <AppText id="steg.omBarnet.annetBarn.tittel" />
-                                </FormLayout.SectionHeading>
+                            <FormLayout.Section title={text('steg.omBarnet.annetBarn.tittel')}>
                                 <FormLayout.Questions>
+                                    <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} allowHnr={isDevMode()} />
                                     <AnnetBarnNavnSpørsmål />
-                                    <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnRelasjonSpørsmål />
                                 </FormLayout.Questions>
                             </FormLayout.Section>

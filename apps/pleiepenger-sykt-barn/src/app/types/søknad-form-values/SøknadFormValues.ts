@@ -7,13 +7,15 @@ import {
     UtenlandsoppholdEnkel,
     UtenlandsoppholdUtvidet,
 } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
+
+import { ÅrsakManglerIdentitetsnummer, BarnRelasjon } from '../';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
+import { FosterhjemsgodtgjørelseFormValues } from './FosterhjemsgodtgjørelseFormValues';
 import { FrilansFormValues } from './FrilansFormValues';
+import { OmsorgsstønadFormValues } from './OmsorgsstønadFormValues';
 import { OmsorgstilbudFormValues } from './OmsorgtilbudFormValues';
 import { SelvstendigFormValues } from './SelvstendigFormValues';
-import { StønadGodtgjørelseFormValues } from './StønadGodtgjørelseFormValues';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -24,7 +26,6 @@ export enum SøknadFormField {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     relasjonTilBarnet = 'relasjonTilBarnet',
     relasjonTilBarnetBeskrivelse = 'relasjonTilBarnetBeskrivelse',
-    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetHarIkkeFnr = 'barnetHarIkkeFnr',
     årsakManglerIdentitetsnummer = 'årsakManglerIdentitetsnummer',
     fødselsattest = 'fødselsattest',
@@ -55,7 +56,8 @@ export enum SøknadFormField {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
     harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
     frilans = 'frilans',
-    stønadGodtgjørelse = 'stønadGodtgjørelse',
+    omsorgsstønad = 'omsorgsstønad',
+    fosterhjemsgodtgjørelse = 'fosterhjemsgodtgjørelse',
     selvstendig = 'selvstendig',
     frilansoppdrag = 'frilansoppdrag',
     harOpptjeningUtland = 'harOpptjeningUtland',
@@ -72,7 +74,6 @@ export interface SøknadFormValues {
     [SøknadFormField.barnetsFødselsdato]?: string;
     [SøknadFormField.årsakManglerIdentitetsnummer]?: ÅrsakManglerIdentitetsnummer;
     [SøknadFormField.fødselsattest]: Vedlegg[];
-    [SøknadFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [SøknadFormField.barnetHarIkkeFnr]: boolean;
     [SøknadFormField.barnetSøknadenGjelder]: string;
     [SøknadFormField.relasjonTilBarnet]?: BarnRelasjon;
@@ -99,7 +100,8 @@ export interface SøknadFormValues {
     [SøknadFormField.frilans]: FrilansFormValues;
     [SøknadFormField.selvstendig]: SelvstendigFormValues;
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
-    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormValues;
+    [SøknadFormField.omsorgsstønad]: OmsorgsstønadFormValues;
+    [SøknadFormField.fosterhjemsgodtgjørelse]: FosterhjemsgodtgjørelseFormValues;
     [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;
     [SøknadFormField.opptjeningUtland]: OpptjeningUtland[];
@@ -115,7 +117,6 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.barnetSøknadenGjelder]: '',
     [SøknadFormField.harForståttRettigheterOgPlikter]: false,
     [SøknadFormField.harBekreftetOpplysninger]: false,
-    [SøknadFormField.søknadenGjelderEtAnnetBarn]: false,
     [SøknadFormField.barnetHarIkkeFnr]: false,
     [SøknadFormField.årsakManglerIdentitetsnummer]: undefined,
     [SøknadFormField.fødselsattest]: [],
@@ -136,8 +137,11 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.frilans]: {
         harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
     },
-    [SøknadFormField.stønadGodtgjørelse]: {
-        mottarStønadGodtgjørelse: YesOrNo.UNANSWERED,
+    [SøknadFormField.omsorgsstønad]: {
+        mottarOmsorgsstønad: YesOrNo.UNANSWERED,
+    },
+    [SøknadFormField.fosterhjemsgodtgjørelse]: {
+        mottarFosterhjemsgodtgjørelse: YesOrNo.UNANSWERED,
     },
     [SøknadFormField.selvstendig]: {
         harHattInntektSomSN: YesOrNo.UNANSWERED,

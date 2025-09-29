@@ -1,21 +1,15 @@
-import { Heading, HStack, VStack } from '@navikt/ds-react';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
+import { Heading, VStack } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
-import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
-import { omBarnetFormComponents } from '../omBarnetFormComponents';
-import RegistrerteBarnHelpText from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnHelpText';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
-    søknadenGjelderEtAnnetBarn?: boolean;
-    onAnnetBarnSelected: () => void;
 }
 
-const { RadioGroup, Checkbox } = omBarnetFormComponents;
-
-const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn, onAnnetBarnSelected }: Props) => {
+const RegistrertBarnSpørsmål = ({ registrerteBarn }: Props) => {
     const { text } = useAppIntl();
 
     return (
@@ -24,28 +18,11 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.label')}
             </Heading>
             <VStack gap="2">
-                <RadioGroup
-                    legend={
-                        <>
-                            <HStack gap="2" marginBlock={'2 2'}>
-                                {text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
-                                <RegistrerteBarnHelpText />
-                            </HStack>
-                        </>
-                    }
-                    description={<AppText id="steg.omBarnet.spm.barnetSøknadenGjelder.info" />}
+                <VelgBarnFormPart
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
-                    radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
-                    validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
-                />
-                <Checkbox
-                    label={text('steg.omBarnet.spm.gjelderAnnetBarn.label')}
-                    name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
-                    afterOnChange={(isChecked) => {
-                        if (isChecked) {
-                            onAnnetBarnSelected();
-                        }
-                    }}
+                    registrerteBarn={registrerteBarn}
+                    inkluderAnnetBarn={true}
+                    validate={getRequiredFieldValidator()}
                 />
             </VStack>
         </VStack>

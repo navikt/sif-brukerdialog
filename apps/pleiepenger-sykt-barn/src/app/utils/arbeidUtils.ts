@@ -3,6 +3,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+
 import { Arbeidsgiver } from '../types';
 import { ArbeidIPeriodeType } from '../types/ArbeidIPeriodeType';
 import { ArbeidsforholdFormValues } from '../types/søknad-form-values/ArbeidsforholdFormValues';

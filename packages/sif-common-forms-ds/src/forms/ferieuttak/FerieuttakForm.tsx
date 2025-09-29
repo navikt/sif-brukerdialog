@@ -1,12 +1,9 @@
-import { useIntl } from 'react-intl';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
-    getDateRangeValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     dateRangeToISODateRange,
@@ -15,10 +12,13 @@ import {
     isDateRange,
     prettifyDate,
 } from '@navikt/sif-common-utils';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
-import { FerieuttakMessageKeys, useFerieuttakIntl } from './';
 import ferieuttakUtils from './ferieuttakUtils';
+import { FerieuttakMessageKeys, useFerieuttakIntl } from './i18n';
 import { Ferieuttak, FerieuttakFormValues } from './types';
 
 export interface FerieuttakFormLabels {
@@ -126,7 +126,7 @@ const FerieuttakForm = ({
             renderForm={(formik) => (
                 <Form.Form
                     onCancel={onCancel}
-                    formErrorHandler={getFormErrorHandler(intl, '@forms.ferieuttakForm')}
+                    formErrorHandler={getIntlFormErrorHandler(intl, '@forms.ferieuttakForm')}
                     showButtonArrows={false}
                     submitButtonLabel={formLabels.okButton}
                     cancelButtonLabel={formLabels.cancelButton}>

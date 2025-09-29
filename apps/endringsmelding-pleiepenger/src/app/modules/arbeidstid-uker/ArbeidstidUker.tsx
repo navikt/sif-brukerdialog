@@ -1,20 +1,21 @@
-import { Button } from '@navikt/ds-react';
-import React, { useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import './arbeidstidUker.scss';
+
 import { AddCircle } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
+import { AppText, useAppIntl } from '../../i18n';
 import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
 import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
-import './arbeidstidUker.scss';
-import { AppText, useAppIntl } from '../../i18n';
+import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];
@@ -27,7 +28,7 @@ interface Props {
     onEndreUker?: (uke: ArbeidstidUkerItem[]) => void;
 }
 
-const ArbeidstidUker: React.FunctionComponent<Props> = ({
+const ArbeidstidUker = ({
     listItems,
     paginering = {
         antall: 10,
@@ -36,7 +37,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
     onEndreUker,
-}) => {
+}: Props) => {
     const { text, intl } = useAppIntl();
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
         listItems,
@@ -109,7 +110,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const renderLastInnFlereUker = () => {
         if (paginering && hasMoreItems) {
             return (
-                <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
+                <HStack gap="2">
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
@@ -124,7 +125,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                         onClick={showAllItems}>
                         <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
                     </Button>
-                </Block>
+                </HStack>
             );
         }
         return null;
@@ -147,7 +148,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
     if (renderAsList) {
         return (
-            <div className="arbeidstidUkeListeWrapper">
+            <VStack gap="4" className="arbeidstidUkeListeWrapper">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
                     uker={visibleItems}
@@ -156,12 +157,12 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                     renderEditButton={renderEditButton}
                 />
                 {renderUkerFooter()}
-            </div>
+            </VStack>
         );
     }
 
     return (
-        <>
+        <VStack gap="4">
             {renderEndreUkerHeader()}
 
             <ArbeidstidUkeTabell
@@ -174,7 +175,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                 renderCompactTable={renderCompactTable}
             />
             {renderUkerFooter()}
-        </>
+        </VStack>
     );
 };
 

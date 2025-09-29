@@ -1,4 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
+
 import { CoreText } from '../../i18n/common.messages';
 
 const VedleggTotalSizeAlert = ({ uploadLaterURL }: { uploadLaterURL?: string }) => {
@@ -9,7 +10,7 @@ const VedleggTotalSizeAlert = ({ uploadLaterURL }: { uploadLaterURL?: string }) 
                     id="@core.formik-vedlegg-form.alert.totalSize"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link target={'_blank'} rel={'noopener noreferrer'} href={uploadLaterURL}>
+                            <Link target="_blank" rel="noopener noreferrer" href={uploadLaterURL}>
                                 {children}
                             </Link>
                         ),

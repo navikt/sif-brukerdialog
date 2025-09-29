@@ -3,6 +3,7 @@ import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/I
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -28,7 +29,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                     {kvitteringInfo?.arbeidsgivere && (
                         <li>
                             <AppText
-                                id={'page.kvittering.list.item.1'}
+                                id="page.kvittering.list.item.1"
                                 values={{ antall: kvitteringInfo.arbeidsgivere.length }}
                             />
                         </li>

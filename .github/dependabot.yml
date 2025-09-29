@@ -17,9 +17,6 @@ updates:
           - "react"
           - "react-dom"
           - "@types/react"
-      babel:
-        patterns:
-          - "@babel*"
       sentry:
         patterns:
           - "@sentry*"
@@ -40,5 +37,29 @@ updates:
       interval: daily
     groups:
       github:
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directories:
+      - "/apps/dine-pleiepenger"
+      - "/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+      - "/apps/endringsmelding-pleiepenger"
+      - "/apps/omsorgsdager-aleneomsorg-dialog"
+      - "/apps/omsorgsdager-kalkulator"
+      - "/apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+      - "/apps/omsorgspengerutbetaling-soknad"
+      - "/apps/omsorgspengesoknad"
+      - "/apps/opplaringspenger-soknad"
+      - "/apps/pleiepenger-i-livets-sluttfase-soknad"
+      - "/apps/pleiepenger-sykt-barn"
+      - "/apps/sif-demo-app"
+      - "/apps/sif-ettersending"
+      - "/apps/ungdomsytelse-deltaker"
+      - "/apps/ungdomsytelse-veileder"
+    schedule:
+      interval: daily
+    groups:
+      docker:
         patterns:
           - "*"

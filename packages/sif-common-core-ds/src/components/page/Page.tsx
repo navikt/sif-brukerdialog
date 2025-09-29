@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import PageBoundary from '../page-boundary/PageBoundary';
 import './page.scss';
+
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import React, { useEffect } from 'react';
+
+import PageBoundary from '../page-boundary/PageBoundary';
 
 interface PageProps {
     className?: string;

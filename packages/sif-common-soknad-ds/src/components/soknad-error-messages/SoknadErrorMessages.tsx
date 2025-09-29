@@ -1,9 +1,10 @@
 import { Button, Link as DSLink } from '@navikt/ds-react';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
-import { soknadErrorMessages } from './soknadError.messages';
+import { soknadErrorMessages_nb } from './i18n/nb';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;
@@ -14,7 +15,7 @@ export interface LastAvailableStepInfo {
     title: string;
 }
 
-type SoknadErrorMessageKeys = keyof typeof soknadErrorMessages.nb;
+type SoknadErrorMessageKeys = keyof typeof soknadErrorMessages_nb;
 
 const SoknadErrorMessage = ({
     titleKey,

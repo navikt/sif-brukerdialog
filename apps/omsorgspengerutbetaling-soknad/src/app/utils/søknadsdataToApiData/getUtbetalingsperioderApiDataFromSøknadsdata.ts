@@ -1,12 +1,13 @@
-import { FraværDag, FraværPeriode, dateErHelg } from '@navikt/sif-common-forms-ds';
+import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds';
+import { dateErHelg, FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
+import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { flatten, uniqBy } from 'lodash';
+
 import { Aktivitet, AktivitetFravær, ApiAktivitet } from '../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import { flatten, uniqBy } from 'lodash';
-import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 dayjs.extend(isSameOrBefore);
 

@@ -1,9 +1,10 @@
-import { Alert, BodyShort, Button, Tabs } from '@navikt/ds-react';
+import './messagesList.scss';
+
+import { Alert, BodyShort, Box, Button, HStack, Pagination, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import Block from '../../../atoms/block/Block';
+
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import { useTranslation } from './useTranslation';
-import './messagesList.scss';
 
 interface Props {
     messages: MessageFileFormat;
@@ -51,34 +52,62 @@ export const MessagesTable = ({
     nbOnly?: boolean;
     keyStrip?: string;
 }) => {
+    const [currentPage, setCurrentPage] = useState(1);
     const allMessages = createMultiLocaleObject(messages);
+
+    const messagesPerPage = 400;
+    const totalMessages = Object.keys(allMessages).length;
+    const totalPages = Math.ceil(totalMessages / messagesPerPage);
+
+    const startIndex = (currentPage - 1) * messagesPerPage;
+    const endIndex = startIndex + messagesPerPage;
+    const currentMessageKeys = Object.keys(allMessages).slice(startIndex, endIndex);
+
     return (
-        <table className="messageList">
-            <thead>
-                <tr>
-                    <th>Kode</th>
-                    <th>Bokmål</th>
-                    <th>Nynorsk (evt. bokmål som fallback)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Object.keys(allMessages).map((key) => {
-                    return (
-                        <tr key={key}>
-                            <th>
-                                <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
-                            </th>
-                            <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
-                                {allMessages[key]['nb']}
-                            </td>
-                            <td key="nn" className={allMessages[key]['nn'] ? '' : 'missingText'}>
-                                {nbOnly ? <>&nbsp;</> : allMessages[key]['nn']}
-                            </td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <VStack gap="4">
+            {messagesPerPage < totalMessages && (
+                <HStack gap="1" align="center">
+                    <BodyShort size="large" weight="semibold">
+                        Sider:
+                    </BodyShort>
+                    <Pagination
+                        page={currentPage}
+                        onPageChange={setCurrentPage}
+                        count={totalPages}
+                        boundaryCount={1}
+                        siblingCount={1}
+                        size="small"
+                    />
+                </HStack>
+            )}
+
+            <table className="messageList">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Bokmål</th>
+                        <th>Nynorsk (evt. bokmål som fallback)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentMessageKeys.map((key) => {
+                        return (
+                            <tr key={key}>
+                                <th>
+                                    <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
+                                </th>
+                                <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
+                                    {allMessages[key]['nb']}
+                                </td>
+                                <td key="nn" className={allMessages[key]['nn'] ? '' : 'missingText'}>
+                                    {nbOnly ? <>&nbsp;</> : allMessages[key]['nn']}
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </VStack>
     );
 };
 
@@ -89,6 +118,7 @@ const MessagesList = ({ messages }: Props) => {
     const numMessages = Object.keys(allMessages).length;
 
     const { translate } = useTranslation();
+
     const oversettAlle = async () => {
         const keys = Object.keys(allMessages);
         const text = keys.map((key) => allMessages[key]['nb']).join(' || ');
@@ -108,36 +138,36 @@ const MessagesList = ({ messages }: Props) => {
                     <Tabs.Tab value="kompaktNB" label="Kun bokmål" />
                     <Tabs.Tab value="kompaktNN" label="Kun nynorsk" />
                     <Tabs.Tab value="json" label="JSON" />
-                    <Tabs.Tab value="translate" label="Automatisk oversettelse" />
+                    {/* <Tabs.Tab value="translate" label="Automatisk oversettelse" /> */}
                 </Tabs.List>
                 <Tabs.Panel value="messages">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <MessagesTable messages={messages} nbOnly={false} />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNB">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <PlainMessageList messages={messages} locale="nb" />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="kompaktNN">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <PlainMessageList messages={messages} locale="nn" />
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="json" className="h-24 w-full bg-gray-50 p-4">
-                    <Block margin="xl">
+                    <Box marginBlock="8">
                         <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(messages, null, 2)}</pre>
-                    </Block>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="translate" className="h-24 w-full bg-gray-50 p-4">
                     {numMessages > 120 ? (
-                        <Block margin="xl">
+                        <Box marginBlock="8">
                             <Alert variant="info">Det er for mange tekster til at en kan foreslå oversettelse</Alert>
-                        </Block>
+                        </Box>
                     ) : (
                         <>
-                            <Block margin="xl">
+                            <Box marginBlock="8">
                                 <Button
                                     variant="secondary"
                                     size="small"
@@ -149,11 +179,11 @@ const MessagesList = ({ messages }: Props) => {
                                     }}>
                                     Foreslå oversetting til nynorsk
                                 </Button>
-                            </Block>
+                            </Box>
                             {translation !== undefined ? (
-                                <Block margin="xl">
+                                <Box marginBlock="8">
                                     <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(translation, null, 2)}</pre>
-                                </Block>
+                                </Box>
                             ) : null}
                         </>
                     )}

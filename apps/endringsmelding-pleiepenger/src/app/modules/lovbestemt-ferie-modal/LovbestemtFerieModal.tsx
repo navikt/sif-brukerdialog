@@ -1,6 +1,7 @@
+import './lovbestemtFerieModal.css';
+
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
-import './lovbestemtFerieModal.css';
 
 interface Props {
     title: string;
@@ -21,9 +22,7 @@ const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open 
                 heading: title,
                 closeButton: true,
             }}>
-            <Modal.Body>
-                <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>{children}</div>
-            </Modal.Body>
+            <Modal.Body>{children}</Modal.Body>
         </Modal>
     ) : null;
 };

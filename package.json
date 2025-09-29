@@ -9,16 +9,18 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "dependencies": {
-        "@changesets/cli": "2.27.12",
-        "turbo": "2.4.0"
+        "@changesets/cli": "2.29.7",
+        "tailwindcss": "4.1.13",
+        "turbo": "2.5.8"
     },
     "devDependencies": {
-        "@sif/eslint-config": "*",
-        "config": "*",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
+        "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "15.4.3",
-        "prettier": "3.4.2",
-        "typescript": "5.7.3"
+        "lint-staged": "16.2.3",
+        "prettier": "3.6.2",
+        "typescript": "5.9.2"
     },
     "lint-staged": {
         "apps/**/*.{ts,tsx,js,jsx, css}": [
@@ -37,13 +39,17 @@
         "lint": "turbo lint",
         "lint:eslint": "turbo lint:eslint",
         "lint:tsc": "turbo lint:tsc",
+        "lint:fix": "turbo lint:fix",
         "prepare": "husky install",
-        "test": "turbo test"
+        "test": "turbo test",
+        "codegen": "turbo run codegen",
+        "deploy-gh-pages": "gh-pages -d gh-pages"
     },
     "workspaces": [
         "apps/*",
         "packages/*",
-        "server"
+        "server",
+        "server-ungdomsytelse-veileder"
     ],
     "overrides": {
         "glob-parent": ">=5.1.2"
@@ -51,6 +57,9 @@
     "private": true,
     "packageManager": "yarn@4.5.3",
     "resolutions": {
-        "@swc/core": "1.5.7"
+        "@swc/core": "1.5.7",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "@types/react": "19.1.7"
     }
 }

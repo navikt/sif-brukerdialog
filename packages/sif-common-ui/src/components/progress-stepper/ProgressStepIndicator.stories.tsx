@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import { withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
 import ProgressStepper, { ProgressStep } from './ProgressStepper';
 

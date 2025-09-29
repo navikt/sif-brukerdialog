@@ -1,9 +1,11 @@
-import React from 'react';
+import './formikModalForm.scss';
+
 import { FastField, Field, FieldProps } from 'formik';
+import React from 'react';
+
 import { FormError, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import ModalFormAndList, { ModalFormAndListProps } from './modal-form-and-list/ModalFormAndList';
-import './formikModalForm.scss';
 
 export interface FormikModalFormAndListProps<FieldName, ItemType extends object, ErrorType>
     extends ModalFormAndListProps<ItemType>,

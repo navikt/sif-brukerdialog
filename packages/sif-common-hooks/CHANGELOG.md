@@ -1,5 +1,29 @@
 # @navikt/sif-common-hooks
 
+## 0.3.5
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.3.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.3.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.3.1
 
 ### Patch Changes

@@ -5,27 +5,28 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.28.1",
+    "version": "0.28.36",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "8.53.0",
-        "@sentry/react": "8.53.0",
-        "@sentry/types": "8.53.0"
+        "@sentry/browser": "10.15.0",
+        "@sentry/react": "10.15.0",
+        "@sentry/types": "10.15.0"
     },
     "devDependencies": {
-        "@sif/eslint-config": "*",
-        "@types/node": "22.13.0",
-        "axios": "1.7.9",
-        "config": "*",
+        "@sif/eslint-config": "workspace:*",
+        "@types/node": "24.5.2",
+        "axios": "1.12.2",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
         "gh-pages": "6.3.0",
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
+        "react": "19.1.1",
+        "react-dom": "19.1.1",
         "rimraf": "6.0.1",
-        "typescript": "5.7.3"
+        "typescript": "5.9.2",
+        "vitest": "3.2.4"
     },
     "directories": {
         "lib": "lib"
@@ -45,6 +46,7 @@
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit"
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest"
     }
 }

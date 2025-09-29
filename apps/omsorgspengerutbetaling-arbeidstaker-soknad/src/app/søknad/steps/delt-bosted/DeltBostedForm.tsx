@@ -1,14 +1,12 @@
-import { Link, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { Link } from '@navikt/ds-react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -27,7 +25,7 @@ export interface DeltBostedFormValues {
 
 const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
-const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const DeltBostedForm = ({ values, goBack, andreVedlegg = [], isSubmitting }: Props) => {
     const { text, intl } = useAppIntl();
     const vedlegg = values.vedlegg ? values.vedlegg : [];
     const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
@@ -40,41 +38,38 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
-                <SifGuidePanel>
-                    <p style={{ marginTop: 0 }}>
-                        <AppText id={'step.deltBosted.info.1'} />
-                    </p>
-                    <p>
-                        <AppText
-                            id={'step.deltBosted.info.2'}
-                            values={{
-                                Lenke: (children) => (
-                                    <Link target={'_blank'} href={getLenker(intl.locale).deltFastBosted}>
-                                        {children}
-                                    </Link>
-                                ),
-                            }}
-                        />
-                    </p>
-                    <p>
-                        <AppText id={'step.deltBosted.info.3'} />
-                    </p>
-                    <p>
-                        <AppText id={'step.deltBosted.info.4'} />
-                    </p>
-                </SifGuidePanel>
-            </Block>
-            <VStack gap="4">
-                <FormikFileUpload
-                    label={text('step.deltBosted.vedleggsliste.tittel')}
-                    initialFiles={vedlegg}
-                    fieldName={DeltBostedFormFields.vedlegg}
-                    validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
-                    uploadLaterURL={getLenker(intl.locale).ettersending}
-                    showPictureScanningGuide={true}
-                />
-            </VStack>
+            <FormLayout.Guide>
+                <p style={{ marginTop: 0 }}>
+                    <AppText id="step.deltBosted.info.1" />
+                </p>
+                <p>
+                    <AppText
+                        id="step.deltBosted.info.2"
+                        values={{
+                            Lenke: (children) => (
+                                <Link target="_blank" href={getLenker(intl.locale).deltFastBosted}>
+                                    {children}
+                                </Link>
+                            ),
+                        }}
+                    />
+                </p>
+                <p>
+                    <AppText id="step.deltBosted.info.3" />
+                </p>
+                <p>
+                    <AppText id="step.deltBosted.info.4" />
+                </p>
+            </FormLayout.Guide>
+
+            <FormikFileUpload
+                label={text('step.deltBosted.vedleggsliste.tittel')}
+                initialFiles={vedlegg}
+                fieldName={DeltBostedFormFields.vedlegg}
+                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
+                uploadLaterURL={getLenker(intl.locale).ettersending}
+                showPictureScanningGuide={true}
+            />
         </Form>
     );
 };

@@ -1,16 +1,16 @@
-import { BarnFormFiels, BarnKalkulator, KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
-import BarnPanelView from '../../barnPanel/BarnPanelView';
-import { ValidationError } from '../../sif-formik/validation/types';
-import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
 import { Alert, BodyLong, Link, ReadMore } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import dayjs from 'dayjs';
-import getYesOrNoValidator from '../../sif-formik/validation/getYesOrNoValidator';
-import { YesOrNo } from '../../sif-formik/types';
-import getRequiredFieldValidator from '../../sif-formik/validation/getRequiredFieldValidator';
-import { barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt, erForbiDetAttendeKalenderår } from '../../../utils/utils';
 import { intlHelper } from '@/utils/intlHelper';
 import { lenker } from '@/utils/lenker';
+import dayjs from 'dayjs';
+import { barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt, erForbiDetAttendeKalenderår } from '../../../utils/utils';
+import BarnPanelView from '../../barnPanel/BarnPanelView';
+import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
+import { YesOrNo } from '../../sif-formik/types';
+import getRequiredFieldValidator from '../../sif-formik/validation/getRequiredFieldValidator';
+import getYesOrNoValidator from '../../sif-formik/validation/getYesOrNoValidator';
+import { ValidationError } from '../../sif-formik/validation/types';
+import { BarnFormFiels, BarnKalkulator, KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
 
 interface Props {
     barn: BarnKalkulator;
@@ -25,7 +25,7 @@ const { YesOrNoQuestion, Select } = getTypedFormComponents<
     ValidationError
 >();
 
-const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
+const BarnFormPart = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
     const intl = useIntl();
 
     const getFieldName = (index: number, field: BarnFormFiels): string => {

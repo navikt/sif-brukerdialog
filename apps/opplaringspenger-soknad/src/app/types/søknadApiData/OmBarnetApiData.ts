@@ -14,6 +14,7 @@ type RegistrertBarnApiData = {
 type AnnetBarnMedFnrApiData = {
     navn: string;
     norskIdentifikator: string;
+    fødselsdato: ISODate;
     relasjonTilBarnet: RelasjonTilBarnet;
     relasjonTilBarnetBeskrivelse?: string;
     _harFødselsnummer: true;

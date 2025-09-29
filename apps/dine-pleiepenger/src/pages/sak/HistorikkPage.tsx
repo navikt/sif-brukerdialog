@@ -1,5 +1,4 @@
 import { Box, Heading, Link, VStack } from '@navikt/ds-react';
-import React from 'react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
@@ -19,7 +18,7 @@ interface Props {
     harFlereSaker: boolean;
 }
 
-const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, pleietrengende }) => {
+const HistorikkPage = ({ sak, harFlereSaker, pleietrengende }: Props) => {
     const router = useRouter();
     setBreadcrumbs(
         getAllBreadcrumbs(

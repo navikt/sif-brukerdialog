@@ -19,6 +19,9 @@ const nb = {
     ...sifCommonSoknadOverrideMessages.nb,
     ...arbeidstidUkerMessages.nb,
 
+    'lenke.skrivTilOss': 'Skriv til oss',
+    'lenke.sendBeskjed': 'Send beskjed',
+
     'application.title': 'Endringsmelding for pleiepenger sykt barn',
     'step.ukjentArbeidsforhold.pageTitle': 'Nytt arbeidsforhold',
     'step.ukjentArbeidsforhold.stepTitle': 'Nytt arbeidsforhold',
@@ -79,14 +82,14 @@ const nb = {
 
     'ingenTilgangPage.pageTitle': 'Ingen tilgang - Endringsmelding for pleiepenger sykt barn',
     'ingenTilgangPage.tittel': 'Hei {navn}',
-    'ingenTilgangPage.skrivTilOssGenerell':
-        'I mellomtiden bruker du tjenesten {SkrivTilOssLink}, for å melde fra om endringer.',
+    'ingenTilgangPage.beskjedTilOssGenerell':
+        'I mellomtiden bruker du tjenesten {SendBeskjedLink} for å melde fra om endringer.',
     'ingenTilgangPage.harUgyldigK9FormatSak.1':
         'Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten. Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.',
     'ingenTilgangPage.harIngenSak.1':
         'Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer opp her.',
     'ingenTilgangPage.harIngenSak.2':
-        'Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig melde endringer i pleiepengesaken din via {SkrivTilOssLink}.',
+        'Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig melde endringer i pleiepengesaken din via {SendBeskjedLink}.',
     'ingenTilgangPage.harIngenSak.3':
         'Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.',
     'ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1':
@@ -99,7 +102,7 @@ const nb = {
     'ingenTilgangPage.harMerEnnEnSak.1':
         'Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot endringer når du har pleiepenger for flere barn. Vi jobber for å få det til, og du blir også tilbudt denne tjenesten på et senere tidspunkt',
     'ingenTilgangPage.utenforEndringsperiode.1':
-        'Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten {SkrivTilOssLink}, eller sende oss en ny søknad.',
+        'Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten {SendBeskjedLink}, eller sende oss en ny søknad.',
     'ingenTilgangPage.utenforEndringsperiode.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
     'ingenTilgangPage.slutterOgStarterInneforSammeUke':

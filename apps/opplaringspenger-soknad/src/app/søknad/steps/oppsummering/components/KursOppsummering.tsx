@@ -1,7 +1,6 @@
-import { FormSummary, List, VStack } from '@navikt/ds-react';
+import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { AppText, useAppIntl } from '../../../../i18n';
-import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
     dateFormatter,
@@ -9,15 +8,21 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../../../../i18n';
+import {
+    FerieuttakIPeriodenApiData,
+    KursApiData,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     kurs: KursApiData;
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
+const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdIPerioden }: Props) => {
     const { kursholder, kursperioder } = kurs;
     const { locale } = useAppIntl();
     return (
@@ -27,14 +32,15 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummeringkurs.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
                             <AppText id="oppsummering.kurs.institusjon" />
                         </FormSummary.Label>
-                        <FormSummary.Value>{kursholder}</FormSummary.Value>
+                        <FormSummary.Value>
+                            {typeof kursholder === 'string' ? kursholder : kursholder.navn}
+                        </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>
@@ -120,7 +126,49 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                             )}
                         </>
                     )}
+                    {utenlandsoppholdIPerioden && (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.utenlandsoppholdIPerioden.header" />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    <AppText
+                                        id={utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden ? 'Ja' : 'Nei'}
+                                    />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+
+                            {utenlandsoppholdIPerioden.opphold.length > 0 && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="oppsummering.kurs.utenlandsoppholdIPerioden.listTitle" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            {utenlandsoppholdIPerioden.opphold.map((opphold) => (
+                                                <List.Item key={opphold.fraOgMed}>
+                                                    <HStack gap="2">
+                                                        <div>
+                                                            {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
+                                                            {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
+                                                        </div>
+                                                        <div>{opphold.landnavn}</div>
+                                                    </HStack>
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </>
+                    )}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

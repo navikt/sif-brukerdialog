@@ -5,6 +5,7 @@ import { getDateToday, ISODateToDate } from '@navikt/sif-common-utils/src';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 import { AppText } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
@@ -28,7 +29,6 @@ const MedlemskapOppsummering = ({ bosteder, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummering.medlemskap.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
@@ -76,6 +76,11 @@ const MedlemskapOppsummering = ({ bosteder, onEdit }: Props) => {
                         </FormSummary.Answer>
                     )}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

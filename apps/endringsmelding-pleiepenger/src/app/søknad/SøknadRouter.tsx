@@ -1,16 +1,16 @@
-import { Button } from '@navikt/ds-react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { fetchSøkerId } from '@navikt/sif-common-api';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
     useVerifyUserOnWindowFocus,
 } from '@navikt/sif-common-soknad-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { appSentryLogger } from '@utils';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
@@ -20,8 +20,8 @@ import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { StepId } from './config/StepId';
 import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
+import { StepId } from './config/StepId';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
@@ -44,7 +44,7 @@ const SøknadRouter = () => {
         søknadSteps.map((step) => getSøknadStepRoute(step)),
     );
 
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
     usePersistSøknadState();
 
     const startPåNytt = async () => {
@@ -141,14 +141,14 @@ const SøknadRouter = () => {
 const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: () => void }) => {
     appSentryLogger.logError('ukjentPath', pathname);
     return (
-        <SifGuidePanel mood="uncertain">
-            Oops, det oppstod en feil.
-            <FormBlock>
+        <FormLayout.Guide mood="uncertain">
+            <VStack gap="6">
+                <BodyShort>Oops, det oppstod en feil.</BodyShort>
                 <Button type="button" onClick={onReset}>
                     Start på nytt
                 </Button>
-            </FormBlock>
-        </SifGuidePanel>
+            </VStack>
+        </FormLayout.Guide>
     );
 };
 

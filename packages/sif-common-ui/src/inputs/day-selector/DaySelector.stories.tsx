@@ -1,9 +1,8 @@
-import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
-import DaySelector from './DaySelector';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
+import DaySelector from './DaySelector';
 
 export default {
     title: 'Inputs/DaySelector',

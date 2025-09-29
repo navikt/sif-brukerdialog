@@ -1,13 +1,13 @@
-import { vi } from 'vitest';
 import { dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../arbeidstidStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',
-
         getCommonEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
     };
 });
 
@@ -24,7 +24,7 @@ describe('arbeidstidStepUtils', () => {
             const resultat = begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(ISODateRangeToDateRange(periodeFomFredag));
             expect(dateRangeToISODateRange(resultat)).toEqual(periodeFomFredag);
         });
-        it('beholder hele periode hvis den starter på en fredag', () => {
+        it('justerer periode til å starte på påfølgende mandag hvis den starter på en lørdag inne i måneden', () => {
             const resultat = begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(
                 ISODateRangeToDateRange(periodeFomLørdagInneIMåned),
             );

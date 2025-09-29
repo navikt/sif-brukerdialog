@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
+import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
+import { mellomlagringService } from '../api/mellomlagringService';
+import { useAppIntl } from '../i18n';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { KvitteringInfo } from '../types/KvitteringInfo';
-import { Søker } from '../types/Søker';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { mellomlagringService } from '../api/mellomlagringService';
-import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -21,7 +20,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent } = useAmplitudeInstance();
+    const { logSoknadSent, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
@@ -29,7 +28,8 @@ export const useSendSøknad = () => {
             .send(apiData)
             .then(() => {
                 const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);
-                onSøknadSendSuccess(kvitteringInfo);
+                const søknadMeta = getSendtSøknadMetadata(apiData);
+                onSøknadSendSuccess(søknadMeta, kvitteringInfo);
             })
             .catch((error) => {
                 setSendSøknadError(error);
@@ -37,8 +37,9 @@ export const useSendSøknad = () => {
             });
     };
 
-    const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
+    const onSøknadSendSuccess = async (metadata: SendtSøknadMetadata, kvitteringInfo?: KvitteringInfo) => {
         await logSoknadSent(OpplæringspengerApp.key, locale);
+        await logInfo(metadata);
         await mellomlagringService.purge();
         setIsSubmitting(false);
         if (kvitteringInfo) {
@@ -53,5 +54,21 @@ export const useSendSøknad = () => {
         sendSøknad,
         isSubmitting,
         sendSøknadError,
+    };
+};
+
+interface SendtSøknadMetadata {
+    antallPerioder: number;
+    antallReisedager: number;
+    antallFerieperioder: number;
+}
+
+const getSendtSøknadMetadata = (apiData: SøknadApiData): SendtSøknadMetadata => {
+    return {
+        antallPerioder: apiData.kurs.kursperioder.length,
+        antallReisedager: apiData.kurs.reise.reiserUtenforKursdager ? apiData.kurs.reise.reisedager.length : 0,
+        antallFerieperioder: apiData.ferieuttakIPerioden?.skalTaUtFerieIPerioden
+            ? apiData.ferieuttakIPerioden.ferieuttak.length
+            : 0,
     };
 };

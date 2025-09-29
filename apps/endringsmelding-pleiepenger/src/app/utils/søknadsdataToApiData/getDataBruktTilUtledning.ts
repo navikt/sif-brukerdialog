@@ -10,6 +10,7 @@ import {
     UkjentArbeidsforholdSøknadsdata,
     ValgteEndringer,
 } from '@types';
+
 import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 
 export const getDataBruktTilUtledningApiData = (

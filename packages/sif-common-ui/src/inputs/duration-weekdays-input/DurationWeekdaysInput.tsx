@@ -1,4 +1,4 @@
-import { Accordion, Heading } from '@navikt/ds-react';
+import { Accordion, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
@@ -9,8 +9,8 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React from 'react';
+
 import DurationWeekdaysWeek from './duration-weekdays-week/DurationWeekdaysWeek';
-import './durationWeekdaysInput.scss';
 
 export type DurationWeekdaysDateValidator = (
     value: string | undefined,
@@ -22,20 +22,22 @@ export interface DurationWeekdaysInputProps {
     disabledDates?: Date[];
     formikFieldName: string;
     useAccordion?: boolean;
+    useExpansionCards?: boolean;
     accordionOpen?: boolean;
     renderMonthHeader?: (month: Date, enabledDatesInMonth: number) => React.ReactNode;
     validateDate: DurationWeekdaysDateValidator;
 }
 
-const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps> = ({
+const DurationWeekdaysInput = ({
     dateRange,
     formikFieldName,
     disabledDates = [],
     useAccordion,
+    useExpansionCards,
     accordionOpen,
     renderMonthHeader,
     validateDate,
-}) => {
+}: DurationWeekdaysInputProps) => {
     const months = getMonthsInDateRange(dateRange);
 
     const getEnabledDatesInMonth = (month: DateRange) => {
@@ -67,9 +69,39 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
         );
     };
 
+    if (useExpansionCards) {
+        return (
+            <VStack gap="2">
+                {months.map((month) => {
+                    const enabledDatesInMonth = getEnabledDatesInMonth(month);
+                    if (enabledDatesInMonth.length === 0) return null;
+
+                    const weeks = getWeeksInDateRange(month);
+                    const monthTitleId = `${formikFieldName}-month-${dateToISODate(month.from)}`;
+                    return (
+                        <ExpansionCard
+                            size="small"
+                            aria-labelledby={monthTitleId}
+                            key={dateToISODate(month.from)}
+                            open={accordionOpen ? true : undefined}
+                            defaultOpen={months.length === 1}>
+                            <ExpansionCard.Header>
+                                <ExpansionCard.Title size="small" id={monthTitleId}>
+                                    {renderMonthHeader
+                                        ? renderMonthHeader(month.from, enabledDatesInMonth.length)
+                                        : dayjs(month.from).format('MMMM YYYY')}
+                                </ExpansionCard.Title>
+                            </ExpansionCard.Header>
+                            <ExpansionCard.Content>{renderWeeks(weeks)}</ExpansionCard.Content>
+                        </ExpansionCard>
+                    );
+                })}
+            </VStack>
+        );
+    }
     if (useAccordion) {
         return (
-            <Accordion>
+            <Accordion data-color="neutral">
                 {months.map((month) => {
                     const enabledDatesInMonth = getEnabledDatesInMonth(month);
                     if (enabledDatesInMonth.length === 0) return null;
@@ -85,9 +117,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                                     ? renderMonthHeader(month.from, enabledDatesInMonth.length)
                                     : dayjs(month.from).format('MMMM YYYY')}
                             </Accordion.Header>
-                            <Accordion.Content className="durationWeekdaysInput__accordionContent">
-                                <div className="durationWeekdaysInput__accordionContentMonth">{renderWeeks(weeks)}</div>
-                            </Accordion.Content>
+                            <Accordion.Content>{renderWeeks(weeks)}</Accordion.Content>
                         </Accordion.Item>
                     );
                 })}
@@ -101,11 +131,11 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                 const enabledDatesInMonth = getEnabledDatesInMonth(month);
                 const weeks = getWeeksInDateRange(month);
                 return (
-                    <div key={dateToISODate(month.from)} className="durationWeekdaysInput__month">
+                    <div key={dateToISODate(month.from)}>
                         {renderMonthHeader ? (
                             renderMonthHeader(month.from, enabledDatesInMonth.length)
                         ) : (
-                            <Heading level="3" size="xsmall" className="capitalizeFirstChar" spacing={true}>
+                            <Heading level="3" size="xsmall" spacing={true}>
                                 {dayjs(month.from).format('MMMM YYYY')}
                             </Heading>
                         )}

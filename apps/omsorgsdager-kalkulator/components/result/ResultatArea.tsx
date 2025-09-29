@@ -1,19 +1,19 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { caseResultViewOf, ResultView } from './ResultView';
-import ResultBox from './ResultBox';
 import { BodyLong, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
-import Link from 'next/link';
-import { getYear } from '../../utils/utils';
-import { lenker } from '../../utils/lenker';
-import { Result } from '../kalkulator/Kalkulator';
+import { FormattedMessage, useIntl } from 'react-intl';
 import bemUtils from '@/utils/bemUtils';
+import Link from 'next/link';
 import { intlHelper } from '../../utils/intlHelper';
+import { lenker } from '../../utils/lenker';
+import { getYear } from '../../utils/utils';
+import { Result } from '../kalkulator/Kalkulator';
+import ResultBox from './ResultBox';
+import { caseResultViewOf, ResultView } from './ResultView';
 
 interface Props {
     resultView: ResultView<Result>;
 }
 
-const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
+const ResultatArea = ({ resultView }: Props) => {
     const year = getYear();
     const intl = useIntl();
     const bem = bemUtils('OmsCalcResultBox');
@@ -21,14 +21,14 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
         () => null,
         () => (
             <ResultBox type={'WARNING'}>
-                <Box borderRadius="large" padding={'5'} background="surface-warning-moderate" className="mb-3">
+                <Box.New borderRadius="large" padding={'5'} background="warning-moderate" className="mb-3">
                     <Heading level="3" size="medium">
                         <FormattedMessage id={'resultat-area.green.2.1.a'} values={{ result: 0 }} />{' '}
                         <span className="font-normal">
                             <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
                         </span>
                     </Heading>
-                </Box>
+                </Box.New>
                 <BodyLong className="pt-4 pb-9 text-justify" size="small">
                     <FormattedMessage id={'resultat-area.orange.3'} />
                 </BodyLong>
@@ -47,7 +47,7 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                 <>
                     <ResultBox type={'SUCCESS'}>
                         <VStack gap="4">
-                            <Box borderRadius="large" padding={'5'} background="surface-success-moderate">
+                            <Box.New borderRadius="large" padding={'5'} background="success-moderate">
                                 <Heading level="3" size="medium">
                                     <FormattedMessage
                                         id={'resultat-area.green.2.1.a'}
@@ -57,7 +57,7 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                         <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
                                     </span>
                                 </Heading>
-                            </Box>
+                            </Box.New>
 
                             <div className="subtle-card">
                                 <ExpansionCard

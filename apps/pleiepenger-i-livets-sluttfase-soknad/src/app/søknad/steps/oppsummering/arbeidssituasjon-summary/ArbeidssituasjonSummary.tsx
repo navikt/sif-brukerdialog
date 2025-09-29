@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
+
 import { AppText } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -19,7 +19,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const ArbeidssituasjonSummary: React.FC<Props> = ({
+const ArbeidssituasjonSummary = ({
     apiData: {
         arbeidsgivere,
         frilans,
@@ -31,14 +31,13 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
     søknadsperiode,
     frilansoppdrag,
     onEdit,
-}) => {
+}: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummeringarbeidssituasjon.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
@@ -53,6 +52,11 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
 
                 <VernepliktSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

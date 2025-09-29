@@ -1,4 +1,5 @@
 import { guid } from '@navikt/sif-common-utils';
+
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
@@ -118,11 +119,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                             harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
                         },
                     },
-                };
-            case SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO:
-                return {
-                    ...state,
-                    kvitteringInfo: action.payload,
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_VALUES:

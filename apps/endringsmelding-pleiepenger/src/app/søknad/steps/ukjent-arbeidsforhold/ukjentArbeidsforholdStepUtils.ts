@@ -1,12 +1,13 @@
 import { getNumberFromNumberInputValue, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { Arbeidsforhold, ArbeidsgiverMedAnsettelseperioder, UkjentArbeidsforholdSøknadsdata } from '@types';
+
 import {
-    UkjentArbeidsforholdFormValues,
-    UkjentArbeidsgiverFormField,
     UkjentArbeidsforholdArbeidsgiverFormValues,
     UkjentArbeidsforholdArbeidsgiverMap,
+    UkjentArbeidsforholdFormValues,
+    UkjentArbeidsgiverFormField,
 } from './UkjentArbeidsforholdForm';
 
 const arbeidsforholdSøknadsdataToFormValues = (

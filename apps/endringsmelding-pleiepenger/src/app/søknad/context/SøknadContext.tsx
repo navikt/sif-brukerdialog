@@ -1,6 +1,7 @@
-import { createContext, Dispatch, FunctionComponent, ReactNode, useMemo, useReducer } from 'react';
 import { SøknadInitialData } from '@hooks';
 import { SøknadContextState } from '@types';
+import { createContext, Dispatch, FunctionComponent, ReactNode, useMemo, useReducer } from 'react';
+
 import { SøknadContextAction } from './action/actionCreator';
 import { søknadReducer } from './reducer/søknadReducer';
 
@@ -9,7 +10,6 @@ interface SøknadContextData {
     dispatch: Dispatch<SøknadContextAction>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const SøknadContext = createContext<SøknadContextData>(null!);
 
 interface Props {

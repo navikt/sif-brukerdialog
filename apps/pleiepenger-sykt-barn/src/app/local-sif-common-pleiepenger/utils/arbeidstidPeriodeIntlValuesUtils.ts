@@ -1,4 +1,5 @@
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+
 import { AppIntlShape } from '../../i18n';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../types';
 

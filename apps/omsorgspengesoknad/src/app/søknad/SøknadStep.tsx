@@ -13,7 +13,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
+const SøknadStep = ({ stepId, children }: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
     const {

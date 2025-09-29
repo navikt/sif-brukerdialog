@@ -1,15 +1,19 @@
-import React from 'react';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
-import { getBarn, getSøker, purge, rehydrate } from '../api/api';
+import React from 'react';
+
+import { purge, rehydrate } from '../api/api';
+import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
-import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
+import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
+import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
 
 interface Props {
@@ -37,11 +41,15 @@ const getValidVedlegg = (vedlegg: Vedlegg[] = []): Vedlegg[] => {
     });
 };
 
-const isMellomlagringValid = (mellomlagring: SøknadTempStorageData): boolean => {
-    return (
-        mellomlagring.metadata?.version === MELLOMLAGRING_VERSION &&
-        mellomlagring.formValues?.harForståttRettigheterOgPlikter === true
-    );
+const isMellomlagringValid = ({ metadata, formValues }: SøknadTempStorageData): boolean => {
+    if (metadata) {
+        const isValid =
+            metadata.version === MELLOMLAGRING_VERSJON &&
+            metadata.featureToggles.spørOmSluttetISøknadsperiode === getFeatureToggles().spørOmSluttetISøknadsperiode &&
+            formValues?.harForståttRettigheterOgPlikter === true;
+        return isValid;
+    }
+    return false;
 };
 class SøknadEssentialsLoader extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -62,12 +70,8 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
     async loadAppEssentials() {
         try {
-            const [mellomlagringResponse, søkerResponse, barnResponse] = await Promise.all([
-                rehydrate(),
-                getSøker(),
-                getBarn(),
-            ]);
-            this.handleSøkerdataFetchSuccess(mellomlagringResponse, søkerResponse, barnResponse);
+            const [mellomlagringResponse, søker, barn] = await Promise.all([rehydrate(), fetchSøker(), fetchBarn()]);
+            this.handleSøkerdataFetchSuccess(mellomlagringResponse, søker, barn);
         } catch (error: any) {
             this.handleSøkerdataFetchError(error);
         }
@@ -86,16 +90,11 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         return undefined;
     };
 
-    async handleSøkerdataFetchSuccess(
-        mellomlagringResponse: AxiosResponse,
-        søkerResponse: AxiosResponse,
-        barnResponse?: AxiosResponse,
-    ) {
-        const registrerteBarn = barnResponse ? barnResponse.data.barn : undefined;
+    async handleSøkerdataFetchSuccess(mellomlagringResponse: AxiosResponse, søker: Søker, barn: RegistrertBarn[]) {
         const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data);
         const søkerdata: Søkerdata = {
-            søker: søkerResponse.data,
-            barn: registrerteBarn,
+            søker,
+            barn,
         };
         const formValuesToUse = mellomlagring
             ? {

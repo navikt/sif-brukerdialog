@@ -1,6 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import FormikConfirmationCheckbox from '../../../src/components/formik-confirmation-checkbox/FormikConfirmationCheckbox';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikConfirmationCheckbox> = {
     title: 'Component/FormikConfirmationCheckbox',

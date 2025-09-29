@@ -1,12 +1,17 @@
 import { Heading, Link } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import {
+    datepickerUtils,
+    DateRange,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '../../../../utils/frilansValidation';
@@ -81,95 +86,82 @@ const ArbeidssituasjonFrilans = ({
     };
 
     return (
-        <>
-            <Heading level="2" size="medium">
-                <AppText id="steg.arbeidssituasjon.frilanser.tittel" />
-            </Heading>
+        <FormLayout.Questions>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             {søkerHarFrilansoppdrag === false && (
-                <Block margin="l">
-                    <YesOrNoQuestion
-                        name={FrilansFormFields.harHattInntektSomFrilanser}
-                        legend={text('frilanser.harDuHattInntekt.spm')}
-                        validate={getYesOrNoValidator()}
-                        description={
-                            søkerHarFrilansoppdrag ? undefined : (
-                                <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
-                                    <>
-                                        {text('frilanser.hjelpetekst')}{' '}
-                                        <Link href={urlSkatteetaten} target="_blank">
-                                            <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
-                                        </Link>
-                                    </>
-                                </ExpandableInfo>
-                            )
-                        }
-                    />
-                </Block>
+                <YesOrNoQuestion
+                    name={FrilansFormFields.harHattInntektSomFrilanser}
+                    legend={text('frilanser.harDuHattInntekt.spm')}
+                    validate={getYesOrNoValidator()}
+                    description={
+                        søkerHarFrilansoppdrag ? undefined : (
+                            <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
+                                <>
+                                    {text('frilanser.hjelpetekst')}{' '}
+                                    <Link href={urlSkatteetaten} target="_blank">
+                                        <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
+                                    </Link>
+                                </>
+                            </ExpandableInfo>
+                        )
+                    }
+                />
             )}
             {(harHattInntektSomFrilanser === YesOrNo.YES || søkerHarFrilansoppdrag) && (
-                <Block margin="l">
+                <>
                     {søkerHarFrilansoppdrag && (
-                        <Block padBottom="l">
-                            <Heading level="2" size="small">
-                                <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
-                            </Heading>
-                        </Block>
+                        <Heading level="2" size="small">
+                            <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
+                        </Heading>
                     )}
 
-                    <FormBlock>
-                        <DatePicker
-                            name={FrilansFormFields.startdato}
-                            label={text('frilanser.nårStartet.spm')}
-                            dropdownCaption={true}
-                            minDate={dayjs().subtract(50, 'years').toDate()}
-                            maxDate={søknadsdato}
-                            validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
-                        />
-                    </FormBlock>
-                    <FormBlock>
-                        <YesOrNoQuestion
-                            name={FrilansFormFields.jobberFortsattSomFrilans}
-                            legend={text('frilanser.jobberFortsatt.spm')}
-                            validate={getYesOrNoValidator()}
-                        />
-                    </FormBlock>
+                    <DatePicker
+                        name={FrilansFormFields.startdato}
+                        label={text('frilanser.nårStartet.spm')}
+                        dropdownCaption={true}
+                        minDate={dayjs().subtract(50, 'years').toDate()}
+                        maxDate={søknadsdato}
+                        validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
+                    />
+
+                    <YesOrNoQuestion
+                        name={FrilansFormFields.jobberFortsattSomFrilans}
+                        legend={text('frilanser.jobberFortsatt.spm')}
+                        validate={getYesOrNoValidator()}
+                    />
+
                     {jobberFortsattSomFrilans === YesOrNo.NO && (
-                        <FormBlock>
-                            <DatePicker
-                                name={FrilansFormFields.sluttdato}
-                                label={text('frilanser.nårSluttet.spm')}
-                                dropdownCaption={true}
-                                minDate={datepickerUtils.getDateFromDateString(startdato)}
-                                maxDate={søknadsdato}
-                                validate={getFrilanserSluttdatoValidator(
-                                    formValues,
-                                    søknadsperiode,
-                                    søknadsdato,
-                                    søkerHarFrilansoppdrag,
-                                )}
-                            />
-                        </FormBlock>
+                        <DatePicker
+                            name={FrilansFormFields.sluttdato}
+                            label={text('frilanser.nårSluttet.spm')}
+                            dropdownCaption={true}
+                            minDate={datepickerUtils.getDateFromDateString(startdato)}
+                            maxDate={søknadsdato}
+                            validate={getFrilanserSluttdatoValidator(
+                                formValues,
+                                søknadsperiode,
+                                søknadsdato,
+                                søkerHarFrilansoppdrag,
+                            )}
+                        />
                     )}
                     {visSpørsmålOmArbeidsforhold && (
-                        <FormBlock>
-                            <NumberInput
-                                label={text(
-                                    jobberFortsattSomFrilans === YesOrNo.NO
-                                        ? 'frilanser.jobberNormaltTimer.avsluttet.spm'
-                                        : 'frilanser.jobberNormaltTimer.spm',
-                                )}
-                                name={FrilansFormFields.jobberNormaltTimer}
-                                description={<InfoJobberNormaltTimerFrilanser />}
-                                validate={getJobberNormaltTimerValidator(intlValues)}
-                                maxLength={5}
-                                value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
-                            />
-                        </FormBlock>
+                        <NumberInput
+                            label={text(
+                                jobberFortsattSomFrilans === YesOrNo.NO
+                                    ? 'frilanser.jobberNormaltTimer.avsluttet.spm'
+                                    : 'frilanser.jobberNormaltTimer.spm',
+                            )}
+                            name={FrilansFormFields.jobberNormaltTimer}
+                            description={<InfoJobberNormaltTimerFrilanser />}
+                            validate={getJobberNormaltTimerValidator(intlValues)}
+                            maxLength={5}
+                            value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
+                        />
                     )}
-                </Block>
+                </>
             )}
-        </>
+        </FormLayout.Questions>
     );
 };
 

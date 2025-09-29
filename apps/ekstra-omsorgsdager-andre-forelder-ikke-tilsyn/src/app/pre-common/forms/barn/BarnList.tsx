@@ -1,9 +1,10 @@
-import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
-import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import './barnList.scss';
+
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+
 import { useAppIntl } from '../../../i18n';
 import { AndreBarn } from './types';
-import './barnList.scss';
 
 interface Props {
     barna: AndreBarn[];
@@ -30,7 +31,7 @@ const BarnList = ({ barna = [], onDelete, onEdit }: Props) => {
     };
 
     return (
-        <ItemList<AndreBarn>
+        <ItemListDarkside<AndreBarn>
             getItemId={(barn) => barn.id}
             getItemTitle={(barn) => barn.navn}
             onDelete={onDelete}

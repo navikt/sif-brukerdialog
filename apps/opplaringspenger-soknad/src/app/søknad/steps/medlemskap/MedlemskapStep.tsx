@@ -1,6 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getMedlemskapFormInitialValues,
     getMedlemskapSøknadsdataFromFormValues,
@@ -20,8 +19,6 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-
-// import { getMedlemskapStepInitialValues, getMedlemskapSøknadsdataFromFormValues } from './medlemskapStepUtils';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -47,7 +44,7 @@ const MedlemskapStep = () => {
         state: { søknadsdata },
     } = useSøknadContext();
     const stepId = StepId.MEDLEMSKAP;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
     const { goBack } = useStepNavigation(step);
 

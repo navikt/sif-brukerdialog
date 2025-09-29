@@ -1,16 +1,14 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getListValidator } from '@navikt/sif-validation';
 import { EndringType } from '@types';
-import OmSøknaden from './OmSøknaden';
+
 import { AppText, useAppIntl } from '../../i18n';
+import OmSøknaden from './OmSøknaden';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -44,24 +42,26 @@ const VelkommenPage = () => {
                         includeButtons={true}
                         submitButtonLabel={text('velkommenForm.submitButtonLabel')}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'velkommenForm')}>
-                        <SifGuidePanel poster={true}>
-                            <Heading level="1" size="large" data-testid="velkommen-header" spacing={true}>
+                        <FormLayout.Guide poster={true}>
+                            <Heading level="1" size="large" data-testid="velkommen-header" spacing={false}>
                                 <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
                             </Heading>
-                            <BodyLong size="large">
-                                <AppText
-                                    id="velkommenPage.guide.tekst"
-                                    values={{
-                                        barnetsNavn: <strong key="strong">{barnetsNavn}</strong>,
-                                        samletSøknadsperiodeTekst,
-                                    }}
-                                />
-                            </BodyLong>
-                            <Block margin="xl">
+                            <VStack gap="6">
+                                <BodyLong size="large">
+                                    <AppText
+                                        id="velkommenPage.guide.tekst"
+                                        values={{
+                                            barnetsNavn: <strong>{barnetsNavn}</strong>,
+                                            samletSøknadsperiodeTekst,
+                                        }}
+                                    />
+                                </BodyLong>
+
                                 <CheckboxGroup
+                                    data-color="accent"
                                     name={VelkommenFormFields.hvaSkalEndres}
                                     legend={
-                                        <Heading level={'2'} size="small">
+                                        <Heading level="2" size="small">
                                             <AppText id="velkommenPage.endre.spm" />
                                         </Heading>
                                     }
@@ -79,12 +79,11 @@ const VelkommenPage = () => {
                                         },
                                     ]}
                                 />
-                            </Block>
-                            <OmSøknaden />
-                        </SifGuidePanel>
-                        <FormBlock>
-                            <SamtykkeFormPart />
-                        </FormBlock>
+                                <OmSøknaden />
+                            </VStack>
+                        </FormLayout.Guide>
+
+                        <SamtykkeFormPart />
                     </Form>
                 )}
             />

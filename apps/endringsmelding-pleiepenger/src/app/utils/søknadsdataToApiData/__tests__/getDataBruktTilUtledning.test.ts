@@ -1,4 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 import {
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,

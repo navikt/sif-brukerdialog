@@ -1,4 +1,5 @@
 import { ISODate } from '@navikt/sif-common-utils';
+
 import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 
 export interface ArbeidsgiverAnsattApiData {

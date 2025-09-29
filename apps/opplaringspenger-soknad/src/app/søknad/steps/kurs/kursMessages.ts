@@ -1,11 +1,13 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.kurs.counsellorPanel.avsnitt.1':
         'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring. Du kan få opplæringspenger for perioder du er på kurs eller opplæring, og for eventuell reisetid til og fra opplæringsstedet.',
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringen må være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Jeg finner ikke riktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
     'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
@@ -14,13 +16,13 @@ const nb = {
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Om du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
+        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om kva for dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og derfor ikkje kan jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søker om opplæringspengar.',
+        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du treng ikkje å fylle ut noko her om du reiser til og frå opplæringa same dag som du har opplæring.',
+        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
@@ -35,9 +37,9 @@ const nb = {
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
-        'Reisedag er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikke er innenfor dager du søker.',
+        '{antallDager, plural, one {Én reisedag} other {# reisedager}} er utenfor søknadsperioden: {dager}. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Hvis du vil søke om opplæringspenger for disse dagene, må du inkludere dem i perioden du søker om opplæringspenger. Hvis du ikke søker opplæringspenger disse dagene, må du fjerne dem her.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
-        'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endrer hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker.',
+        'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker. Feriedager utenfor søknadsperiode: {dager}.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':
@@ -52,7 +54,18 @@ const nb = {
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
 
-    'steg.kurs.godkjentHelseinstitusjon.label': 'Hva er en godkjent helseinstitusjon?',
+    'steg.kurs.validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
+        'Du må svare på på om du oppholder deg i utlandet i noen av dagene du søker for.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.listIsEmpty':
+        'Du har svart ja til at du oppholder deg i utlandet i noen av dagene du søker for. Legg til minst ett utenlandsopphold.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
+        'Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsoppholdUtenforKursperiode':
+        'Du har lagt inn utenlandsopphold som er utenfor søknadsperioden.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
+        'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
+
+    'steg.kurs.godkjentHelseinstitusjon.label': 'Hvilke institusjoner er godkjente?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspenger, må du få opplæringen på en godkjent helseinstitusjon eller ved et spesialpedagogisk kompetansesenter.',
     'steg.kurs.godkjentHelseinstitusjon.text.2':
@@ -73,6 +86,11 @@ const nb = {
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
         'Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor det er nødvendig å reise på andre dager. Det kan for eksempel være at det er lang reisevei og/eller begrenset mulighet til å reise samme dag.',
+
+    'steg.kurs.utenlandsopphold.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
+    'steg.kurs.utenlandsopphold.listTitle': 'Utenlandsopphold',
+    'steg.kurs.utenlandsopphold.modalTitle': 'Utenlandsopphold',
+    'steg.kurs.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -81,15 +99,16 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.counsellorPanel.avsnitt.2':
         'Opplæringa må vere ved ein godkjend helseinstitusjon eller eit offentleg spesialpedagogisk kompetansesenter.',
     'steg.kurs.opplæringsinstitusjon.label': 'Kvar føregår opplæringa?',
-    'steg.kurs.opplæringsinstitusjon.description':
-        'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarleg for kurs eller opplæring.',
+    'steg.kurs.opplæringsinstitusjon.readMore.header': 'Eg finn ikkje riktig institusjon',
+    'steg.kurs.opplæringsinstitusjon.readMore.content':
+        'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
     'steg.kurs.kursperioder.tekst':
         'Du kan få opplæringspengar for periodar du er på opplæring, og eventuell reisetid til og frå opplæringa.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
-    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
@@ -126,6 +145,19 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.ferie.modalDescription': 'Du kan berre velje dagar som du har søkt om opplæringspengar.',
     'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, då må du legge til minst éi ferie.',
+
+    'steg.kurs.validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
+        'Du må svare på om du oppheld deg i utlandet i nokre av dagane du søkjer for.',
+
+    'steg.kurs.validation.utenlandsoppholdIPerioden.listIsEmpty':
+        'Du har svart ja til at du oppheld deg i utlandet i nokre av dagane du søkjer for. Legg til minst eitt utanlandsopphald.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
+        'Du har lagt inn utanlandsopphald med datoar som overlappar kvarandre.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsoppholdUtenforKursperiode':
+        'Du har lagt inn utanlandsopphald som er utanfor søknadsperioden.',
+    'steg.kurs.validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
+        'Eit utanlandsopphald kan ikkje starte same dag som eit anna avsluttast.',
+
     'steg.kurs.godkjentHelseinstitusjon.label': 'Kva er ein godkjend helseinstitusjon?',
     'steg.kurs.godkjentHelseinstitusjon.text.1':
         'For å få opplæringspengar, må du få opplæringa på ein godkjend helseinstitusjon eller ved eit spesialpedagogisk kompetansesenter.',
@@ -145,5 +177,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.label': 'Årsak for reisetid',
     'steg.kurs.reisedagerFormPart.reisedagerBeskrivelse.description':
         'Fordi du reiser på andre dagar enn du har kurs eller opplæring, må du beskrive kvifor det er nødvendig å reise på andre dagar. Det kan for eksempel vere at det er lang reiseveg og/eller avgrensa moglegheit til å reise same dag.',
+    'steg.kurs.utenlandsopphold.spm': 'Oppheld du deg i utlandet i nokre av dagane du søkjer for?',
+    'steg.kurs.utenlandsopphold.listTitle': 'Utanlandsopphald i perioden',
+    'steg.kurs.utenlandsopphold.modalTitle': 'Utanlandsopphald',
+    'steg.kurs.utenlandsopphold.addLabel': 'Legg til utanlandsopphald',
 };
 export const kursMessages = { nb, nn };

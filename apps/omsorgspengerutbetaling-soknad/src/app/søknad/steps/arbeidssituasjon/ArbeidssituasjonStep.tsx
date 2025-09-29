@@ -1,28 +1,29 @@
 import { Alert } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import {
+    FormikInputGroup,
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
+import { FormLayout } from '@navikt/sif-common-ui';
+
 import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-// import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { StepId } from '../../../types/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    getArbeidssituasjonStepInitialValues,
     getFrilanserSnSituasjon,
     validateArbeidssituasjonTidsrom,
 } from './arbeidssituasjonStepUtils';
@@ -63,7 +64,7 @@ const submitDisabled = (values: Partial<ArbeidssituasjonFormValues>): boolean =>
 };
 
 const ArbeidssituasjonStep = () => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -108,54 +109,51 @@ const ArbeidssituasjonStep = () => {
                                 submitDisabled={submitDisabled(values) || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="step.arbeidssituasjon.info.1" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                <FormikInputGroup
-                                    name={'arbeidssituasjon_tidsrom'}
-                                    hideLegend={true}
-                                    errorPropagation={false}
-                                    legend="Registrer frilans og/eller selvstendig næringsdrivende"
-                                    validate={() => {
-                                        const error = validateArbeidssituasjonTidsrom(
-                                            values,
-                                            søknadsdata.fravaer?.førsteOgSisteDagMedFravær,
-                                        );
-                                        const situasjon = getFrilanserSnSituasjon(values);
-                                        if (error && situasjon) {
-                                            return {
-                                                key: error,
-                                                values: {
-                                                    situasjon,
-                                                },
-                                            };
-                                        }
-                                        return undefined;
-                                    }}>
-                                    <div>
-                                        <FormBlock>
+                                <FormLayout.Questions>
+                                    <FormikInputGroup
+                                        name="arbeidssituasjon_tidsrom"
+                                        hideLegend={true}
+                                        errorPropagation={false}
+                                        legend="Registrer frilans og/eller selvstendig næringsdrivende"
+                                        validate={() => {
+                                            const error = validateArbeidssituasjonTidsrom(
+                                                values,
+                                                søknadsdata.fravaer?.førsteOgSisteDagMedFravær,
+                                            );
+                                            const situasjon = getFrilanserSnSituasjon(values);
+                                            if (error && situasjon) {
+                                                return {
+                                                    key: error,
+                                                    values: {
+                                                        situasjon: text(
+                                                            `validation.arbeidssituasjon.situasjon.${situasjon}`,
+                                                        ),
+                                                    },
+                                                };
+                                            }
+                                            return undefined;
+                                        }}>
+                                        <FormLayout.Questions>
                                             <FrilansFormPart
                                                 values={values}
                                                 fraværPeriode={søknadsdata.fravaer?.førsteOgSisteDagMedFravær}
                                             />
-                                        </FormBlock>
-
-                                        <FormBlock>
                                             <SelvstendigNæringsdrivendeFormPart values={values} />
-                                        </FormBlock>
-                                    </div>
-                                </FormikInputGroup>
+                                        </FormLayout.Questions>
+                                    </FormikInputGroup>
 
-                                {submitDisabled(values) && (
-                                    <FormBlock margin="l">
+                                    {submitDisabled(values) && (
                                         <Alert variant="warning">
                                             <AppText id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
                                         </Alert>
-                                    </FormBlock>
-                                )}
+                                    )}
+                                </FormLayout.Questions>
                             </Form>
                         </>
                     );

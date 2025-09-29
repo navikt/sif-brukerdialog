@@ -1,11 +1,12 @@
 import { FormSummary } from '@navikt/ds-react';
-import { ReactElement } from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils/src';
 import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
 import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-utils/src/timeUtils';
 import { Time } from '@navikt/sif-common-utils/src/types';
 import { isString } from 'formik';
+import { ReactElement } from 'react';
+
 import { AppText } from '../../../../i18n';
 import { ApiAktivitet, Utbetalingsperiode } from '../../../../types/søknadApiData/SøknadApiData';
 import { timeText } from '../oppsummeringStepUtils';
@@ -84,7 +85,7 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
     );
 };
 
-const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): ReactElement => {
+const UtbetalingsperioderSummaryView = ({ utbetalingsperioder = [] }: Props): ReactElement => {
     const perioder = utbetalingsperioder.filter((p) => p.antallTimerBorte === null);
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
 

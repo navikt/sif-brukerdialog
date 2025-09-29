@@ -1,10 +1,11 @@
-import { FormSummary, Heading } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
+import { FormSummary, Heading } from '@navikt/ds-react';
+import { List } from '@navikt/ds-react/List';
+import VirksomhetFormSummaryAnswers from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
+
 import { AppText } from '../../../i18n';
 import { SelvstendigApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { List } from '@navikt/ds-react/List';
-import VirksomhetFormSummaryAnswers from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
 
 interface Props {
     selvstendig: SelvstendigApiData;
@@ -24,7 +25,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                 <List>
                     {selvstendig.harInntektSomSelvstendig === false ? (
                         <List.Item>
-                            <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
+                            <AppText id="oppsummering.arbeidssituasjon.selvstendig.erIkkeSN" />
                         </List.Item>
                     ) : (
                         <>
@@ -44,7 +45,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                                     erAnsatt={true}
                                 />
                             </List.Item>
-                            <List.Item title={text('summary.virksomhet.virksomhetInfo.tittel')}>
+                            <List.Item title={text('oppsummering.virksomhet.virksomhetInfo.tittel')}>
                                 <VirksomhetFormSummaryAnswers virksomhet={selvstendig.virksomhet} />
                             </List.Item>
                         </>

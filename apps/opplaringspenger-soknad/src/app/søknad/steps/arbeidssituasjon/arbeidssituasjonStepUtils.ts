@@ -1,10 +1,10 @@
 import {
+    datepickerUtils,
     DateRange,
     getNumberFromNumberInputValue,
     getStringForNumberInputValue,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
@@ -56,11 +56,6 @@ export const visVernepliktSpørsmål = (
         if (ansatt_arbeidsforhold.some((a) => a.erAnsatt === YesOrNo.YES)) {
             return false;
         }
-        return (
-            ansatt_arbeidsforhold.some(
-                (a) => a.erAnsatt === YesOrNo.NO && a.sluttetFørSøknadsperiode !== YesOrNo.YES,
-            ) === false
-        );
     }
     return true;
 };
@@ -199,15 +194,9 @@ const getArbeidsgiverFormDataFromSøknadsData = (
 
     if (arbeidsgiverSøknadsdata) {
         switch (arbeidsgiverSøknadsdata?.type) {
-            case 'sluttetFørSøknadsperiode':
+            case 'avsluttet':
                 return {
                     erAnsatt: YesOrNo.NO,
-                    sluttetFørSøknadsperiode: YesOrNo.YES,
-                };
-            case 'sluttetISøknadsperiode':
-                return {
-                    erAnsatt: YesOrNo.NO,
-                    sluttetFørSøknadsperiode: YesOrNo.NO,
                     jobberNormaltTimer: getStringForNumberInputValue(arbeidsgiverSøknadsdata.jobberNormaltTimer),
                 };
             case 'pågående':
@@ -471,22 +460,15 @@ export const getArbeidAnsattSøknadsdata = (ansatt: AnsattFormData): ArbeidAnsat
         };
     }
 
-    if (ansatt.erAnsatt === YesOrNo.NO && ansatt.sluttetFørSøknadsperiode === YesOrNo.NO && jobberNormaltTimer) {
+    if (ansatt.erAnsatt === YesOrNo.NO && jobberNormaltTimer) {
         return {
-            type: 'sluttetISøknadsperiode',
+            type: 'avsluttet',
             arbeidsgiver: ansatt.arbeidsgiver,
-            erAnsattISøknadsperiode: true,
+            erAnsattISøknadsperiode: false,
             jobberNormaltTimer,
         };
     }
 
-    if (ansatt.erAnsatt === YesOrNo.NO && ansatt.sluttetFørSøknadsperiode === YesOrNo.YES) {
-        return {
-            type: 'sluttetFørSøknadsperiode',
-            arbeidsgiver: ansatt.arbeidsgiver,
-            erAnsattISøknadsperiode: false,
-        };
-    }
     return undefined;
 };
 

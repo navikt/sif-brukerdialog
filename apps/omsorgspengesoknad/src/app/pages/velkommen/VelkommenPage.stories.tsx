@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import VelkommenPage from './VelkommenPage';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
@@ -6,8 +6,7 @@ import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitu
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
 import { velkommenPageMessages } from './velkommenPageMessages';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { Tabs } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Box, Tabs } from '@navikt/ds-react';
 
 export default {
     title: 'Pages/Velkommen',
@@ -22,18 +21,18 @@ const Template: StoryFn<typeof VelkommenPage> = () => (
             <Tabs.Tab value="tekster" label="Tekster" />
         </Tabs.List>
         <Tabs.Panel value="steg">
-            <Block margin="xl">
+            <Box marginBlock="8">
                 <VelkommenPage />
-            </Block>
+            </Box>
         </Tabs.Panel>
         <Tabs.Panel value="tekster">
-            <Block margin="xl">
+            <Box marginBlock="8">
                 <MessagesPreview
                     messages={velkommenPageMessages}
                     showMissingTextSummary={true}
                     showExplanation={false}
                 />
-            </Block>
+            </Box>
         </Tabs.Panel>
     </Tabs>
 );

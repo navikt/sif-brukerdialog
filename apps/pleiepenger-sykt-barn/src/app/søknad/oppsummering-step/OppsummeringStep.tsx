@@ -1,24 +1,32 @@
-import { useState } from 'react';
+import './oppsummeringStep.less';
+
 import { useAppIntl } from '@i18n/index';
-import { useNavigate } from 'react-router-dom';
+import { VStack } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/src';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { isInvalidParameterErrorResponse } from '@navikt/sif-common-soknad-ds/src/utils/innsendingErrorUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { getCheckedValidator } from '@navikt/sif-validation';
+import { isAxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { purge, sendApplication } from '../../api/api';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
-import { StepID } from '../../types/StepID';
+import { AppText } from '../../i18n';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { StepID } from '../../types/StepID';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
@@ -34,16 +42,11 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
-import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
-import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import './oppsummeringStep.less';
-import { AppText } from '../../i18n';
-import SøkerSummary from './søker-summary/SøkerSummary';
-import { VStack } from '@navikt/ds-react';
-import PeriodeSummary from './periode-summary/PeriodeSummary';
-import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
 import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
-import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
+import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
+import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
+import PeriodeSummary from './periode-summary/PeriodeSummary';
+import SøkerSummary from './søker-summary/SøkerSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -54,7 +57,7 @@ interface Props {
 const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
-    const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
+    const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>();
 
     const appIntl = useAppIntl();
     const { text, intl, locale } = appIntl;
@@ -86,9 +89,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             setSoknadSent(true);
             onApplicationSent(apiValues, søkerdata);
         } catch (error: any) {
-            if (isInvalidParameterErrorResponse(error)) {
+            if (isAxiosError(error) && isInvalidParameterErrorResponse(error.response?.data)) {
                 setSendingInProgress(false);
-                setInvalidParameters(error.response.data.invalid_parameters);
+                setInvalidParameters(error.response.data.violations);
                 appSentryLogger.logApiError(error as any);
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
@@ -162,20 +165,17 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
+                        <FormLayout.Guide>
+                            <p>
+                                <AppText id="steg.oppsummering.info" />
+                            </p>
+                        </FormLayout.Guide>
                         <VStack gap="8">
-                            <SifGuidePanel>
-                                <p>
-                                    <AppText id="steg.oppsummering.info" />
-                                </p>
-                            </SifGuidePanel>
-
                             {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
-                                <FormBlock>
-                                    <ApiValidationSummary
-                                        errors={apiValuesValidationErrors}
-                                        søknadStepConfig={søknadStepConfig}
-                                    />
-                                </FormBlock>
+                                <ApiValidationSummary
+                                    errors={apiValuesValidationErrors}
+                                    søknadStepConfig={søknadStepConfig}
+                                />
                             )}
 
                             <SøkerSummary søker={søkerdata.søker} />
@@ -248,11 +248,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 name={SøknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />
-                        </VStack>
 
-                        <div aria-live="polite">
-                            {invalidParameters && <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />}
-                        </div>
+                            <div aria-live="polite">
+                                {invalidParameters && (
+                                    <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
+                                )}
+                            </div>
+                        </VStack>
                     </SøknadFormStep>
                 );
             }}

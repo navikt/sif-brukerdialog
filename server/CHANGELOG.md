@@ -1,5 +1,210 @@
 # @navikt/sif-server
 
+## 0.4.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.4.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch - slette @types/uuid
+
+## 0.4.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.31
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.6
+
+## 0.4.30
+
+### Patch Changes
+
+- 21e8832: Pakkeoppdateringer - minor/patch + major npmjs
+
+## 0.4.29
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.27
+
+### Patch Changes
+
+- Oppdatere til express 5
+
+## 0.4.26
+
+### Patch Changes
+
+- Oppdaterte pakker - minor/patch + codegen
+
+## 0.4.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.23
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.5
+
+## 0.4.17
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+- f48e4b2: Downgrade zod4 -> zod3
+
+## 0.4.15
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.14
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.13
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.4.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + oppdaterte typer i ung
+
+## 0.4.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.7
+
+### Patch Changes
+
+- 28418e5: Pakkeoppdateringer - minor/patch
+
+## 0.4.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.4
+
+## 0.4.5
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.4.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.4.3
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
+## 0.4.2
+
+### Patch Changes
+
+- 346e74d: Pakkeoppdateringer - minor/patch
+
 ## 0.4.1
 
 ### Patch Changes
@@ -63,7 +268,6 @@
 ### Minor Changes
 
 - e1dfb2e: Flytter all env-logikk til egen pakke.
-
     - Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
     - commonEnv som inneholder alle standard env variabler
     - appEnv der det er behov, som ekstender commonEnv og legger til egne
@@ -71,7 +275,6 @@
     - prefixe noen common envs med SIF_PUBLIC
 
     Innføre env.schema.ts i alle søknadsdialoger
-
     - definerer hvilke envs som er påkrevd
     - under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
 

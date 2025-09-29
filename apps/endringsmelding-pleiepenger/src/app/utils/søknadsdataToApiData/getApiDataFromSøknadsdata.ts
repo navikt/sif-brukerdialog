@@ -1,9 +1,11 @@
+import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { ArbeidsgiverMedAnsettelseperioder, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
+
+import { getEndringsdato, getTillattEndringsperiode } from '../endringsperiode';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
-import { getEndringsdato, getTillattEndringsperiode } from '../endringsperiode';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -11,6 +13,7 @@ export const getApiDataFromSøknadsdata = (
     sak: Sak,
     valgteEndringer: ValgteEndringer,
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
+    locale: Locale,
 ): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
 
@@ -20,7 +23,7 @@ export const getApiDataFromSøknadsdata = (
     return {
         søkerNorskIdent,
         id,
-        språk: '',
+        språk: locale,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true ? true : false,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true ? true : false,
         ytelse: {

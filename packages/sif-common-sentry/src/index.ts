@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/browser';
-import { SeverityLevel } from '@sentry/types';
 import { AxiosError } from 'axios';
 
 export enum SentryEnvironment {
@@ -15,7 +14,12 @@ export const isRunningLocally = (hostname: string): boolean => hostname.includes
 
 type Extras = { [key: string]: any };
 
-export const logToSentry = (message: string, severity: SeverityLevel, application: string, extras?: Extras): void => {
+export const logToSentry = (
+    message: string,
+    severity: Sentry.SeverityLevel,
+    application: string,
+    extras?: Extras,
+): void => {
     Sentry.withScope((scope) => {
         if (extras) {
             scope.setExtras(extras);
@@ -25,7 +29,12 @@ export const logToSentry = (message: string, severity: SeverityLevel, applicatio
     });
 };
 
-const logToSentryOrConsole = (message: string, severity: SeverityLevel, application: string, extras?: Extras): void => {
+const logToSentryOrConsole = (
+    message: string,
+    severity: Sentry.SeverityLevel,
+    application: string,
+    extras?: Extras,
+): void => {
     if (isRunningLocally(window.location.hostname)) {
         // eslint-disable-next-line no-console
         console.warn(`Severity: ${severity}. Message: ${message}`, extras);
@@ -117,14 +126,14 @@ const initSentryForSIF = (initProps: SentryInitProps = {}) => {
 
 const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ignoreErrors?: IgnoreErrorsType) => ({
     init: () => initSentryForSIF({ allowUrls, ignoreErrors }),
-    log: (message: string, severity: SeverityLevel, payload?: string) =>
+    log: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentryOrConsole(message, severity, application, payload ? { info: payload } : undefined),
     logInfo: (message: string, payload?: string | Extras) =>
         logToSentryOrConsole(message, 'info', application, payload ? { info: payload } : undefined),
     logError: (message: string, payload?: string) =>
         logToSentryOrConsole(message, 'error', application, payload ? { info: payload } : undefined),
     logApiError: (error: AxiosError) => logApiCallErrorToSentryOrConsole(error, application),
-    logToSentry: (message: string, severity: SeverityLevel, payload?: string) =>
+    logToSentry: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
 });
 

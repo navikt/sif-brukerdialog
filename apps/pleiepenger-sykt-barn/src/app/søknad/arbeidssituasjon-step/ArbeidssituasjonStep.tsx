@@ -1,16 +1,16 @@
-import { useContext, useState } from 'react';
 import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import { useContext, useState } from 'react';
+
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
-import FormSection from '../../components/form-section/FormSection';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
@@ -59,31 +59,33 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
             {isLoading && <LoadingSpinner type="XS" title="Henter arbeidsforhold" />}
             {!isLoading && søknadsperiode && (
                 <>
-                    <Block padBottom="xl">
+                    <FormLayout.Guide>
                         <ArbeidssituasjonStepVeileder />
-                    </Block>
+                    </FormLayout.Guide>
 
-                    <FormSection title={text('steg.arbeidssituasjon.tittel')} titleLevel="2">
-                        <ArbeidssituasjonArbeidsgivere søknadsperiode={søknadsperiode} />
-                    </FormSection>
+                    <FormLayout.Sections>
+                        <FormLayout.Section title={text('steg.arbeidssituasjon.tittel')}>
+                            <ArbeidssituasjonArbeidsgivere søknadsperiode={søknadsperiode} />
+                        </FormLayout.Section>
 
-                    <FormSection title={text('steg.arbeidssituasjon.frilanser.tittel')} titleLevel="2">
-                        <ArbeidssituasjonFrilans søknadsperiode={søknadsperiode} søknadsdato={søknadsdato} />
-                    </FormSection>
+                        <FormLayout.Section title={text('steg.arbeidssituasjon.frilanser.tittel')}>
+                            <ArbeidssituasjonFrilans søknadsperiode={søknadsperiode} søknadsdato={søknadsdato} />
+                        </FormLayout.Section>
 
-                    <FormSection title={text('steg.arbeidssituasjon.sn.tittel')} titleLevel="2">
-                        <ArbeidssituasjonSN søknadsperiode={søknadsperiode} />
-                    </FormSection>
+                        <FormLayout.Section title={text('steg.arbeidssituasjon.sn.tittel')}>
+                            <ArbeidssituasjonSN søknadsperiode={søknadsperiode} />
+                        </FormLayout.Section>
 
-                    <FormSection title={text('steg.arbeidssituasjon.opptjeningUtland.tittel')} titleLevel="2">
-                        <ArbeidssituasjonOpptjeningUtland />
-                    </FormSection>
+                        <FormLayout.Section title={text('steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                            <ArbeidssituasjonOpptjeningUtland />
+                        </FormLayout.Section>
 
-                    {visVernepliktSpørsmål(values) && (
-                        <FormSection title={text('steg.arbeidssituasjon.verneplikt.tittel')} titleLevel="2">
-                            <ArbeidssituasjonVerneplikt />
-                        </FormSection>
-                    )}
+                        {visVernepliktSpørsmål(values) && (
+                            <FormLayout.Section title={text('steg.arbeidssituasjon.verneplikt.tittel')}>
+                                <ArbeidssituasjonVerneplikt />
+                            </FormLayout.Section>
+                        )}
+                    </FormLayout.Sections>
                 </>
             )}
         </SøknadFormStep>

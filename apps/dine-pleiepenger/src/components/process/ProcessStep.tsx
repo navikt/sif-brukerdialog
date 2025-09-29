@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
-import cl from 'clsx';
 import React from 'react';
+import cl from 'clsx';
 import CompleteIcon from './checks/Complete';
 
 export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -39,14 +39,7 @@ export interface ProcessStepData {
     isLastStep?: boolean;
 }
 
-export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
-    completed,
-    current,
-    icon,
-    children,
-    isLastStep,
-    index,
-}) => {
+export const ProcessStep = ({ completed, current, icon, children, isLastStep, index }: ProcessStepProps) => {
     const getCircleContent = () => {
         if (icon) {
             return icon;
@@ -69,7 +62,7 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
                 completed && current && isLastStep ? 'process__step--completed process__item--current' : '',
                 current && !isLastStep ? 'process__item--current' : '',
             )}>
-            <span className={`process__circle`} aria-hidden="true">
+            <span className="process__circle" aria-hidden="true">
                 {getCircleContent()}
             </span>
             <BodyShort as="div" className="process__content">

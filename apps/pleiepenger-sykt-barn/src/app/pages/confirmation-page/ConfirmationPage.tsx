@@ -1,8 +1,9 @@
-import { Alert, BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import { useAppIntl } from '@i18n/index';
+import { Alert, BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering, SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { useEffect } from 'react';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { KvitteringInfo } from '../../types/KvitteringInfo';

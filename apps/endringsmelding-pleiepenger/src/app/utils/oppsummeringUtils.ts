@@ -8,6 +8,7 @@ import {
     Søknadsdata,
     ValgteEndringer,
 } from '@types';
+
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 
 interface UkjentArbeidsforholdMetadata {
@@ -17,6 +18,8 @@ interface UkjentArbeidsforholdMetadata {
 }
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
+    harEndretFrilans?: boolean;
+    harOmsorgsstønad?: boolean;
 }
 
 interface ArbeidsgiverIkkeIAaregMetadata {
@@ -79,6 +82,7 @@ const getArbeidsgiverIkkeIAaregMetadata = (sak: Sak): ArbeidsgiverIkkeIAaregMeta
         antallArbeidsgivereIkkeIAareg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
     };
 };
+
 export const getSøknadApiDataMetadata = (
     apiData: SøknadApiData,
     søknadsdata: Søknadsdata,

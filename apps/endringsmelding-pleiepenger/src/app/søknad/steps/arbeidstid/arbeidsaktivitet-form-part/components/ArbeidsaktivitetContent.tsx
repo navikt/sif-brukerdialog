@@ -1,7 +1,8 @@
-import { Heading } from '@navikt/ds-react';
-import React, { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
+import './arbeidsaktivitetContent.scss';
+
+import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
+import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     dateRangeToISODateRange,
@@ -9,19 +10,22 @@ import {
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
     ArbeidsaktivitetType,
-    ArbeiderIPeriodenSvar,
     ArbeidstidEndringMap,
     Arbeidsuke,
     LovbestemtFerieSøknadsdata,
     PeriodeMedArbeidstid,
 } from '@types';
 import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@utils';
-import DateRangeAccordion from '../../../../../components/date-range-accordion/DateRangeAccordion';
+import { useState } from 'react';
+
+import DateRangeExpansionCards from '../../../../../components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
+import { AppText } from '../../../../../i18n';
 import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
@@ -32,10 +36,8 @@ import {
     getUkjentArbeidsaktivitetArbeidstidValidator,
 } from '../../arbeidstidStepUtils';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
-import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
-import './arbeidsaktivitetContent.scss';
-import { AppText } from '../../../../../i18n';
+import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -47,7 +49,7 @@ interface Props {
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
-const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetContent = ({
     perioder,
     endringer,
     lovbestemtFerie,
@@ -55,13 +57,16 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     formValues,
     parentFieldName,
     onArbeidstidAktivitetChange,
-}) => {
+}: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
     const erNyArbeidsgiver =
         arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker && arbeidsaktivitet.erUkjentArbeidsforhold;
     const arbeiderIPerioden = formValues?.arbeiderIPerioden;
+    const mottarOmsorgsstønad = formValues?.mottarOmsorgsstønad;
+
+    const spørOmOmsorgsstønad = arbeidsaktivitet.type === ArbeidsaktivitetType.frilanser;
 
     const renderArbeidstidUker = (periode: PeriodeMedArbeidstid) => {
         return (
@@ -111,62 +116,85 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
         );
     };
 
+    const visPerioder = spørOmOmsorgsstønad === false || (spørOmOmsorgsstønad && mottarOmsorgsstønad !== undefined);
+
     return (
-        <>
+        <VStack gap="8">
             {erNyArbeidsgiver && (
-                <Block>
-                    <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
-                </Block>
+                <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
-                <Block margin={erNyArbeidsgiver ? 'xl' : 'none'}>
-                    {perioder.length > 0 ? (
-                        <>
-                            <Heading level="3" size="small" spacing={true}>
-                                <AppText
-                                    id="arbeidsaktivitetContent.heading.perioder"
-                                    values={{ antallPerioder: perioder.length }}
-                                />
-                            </Heading>
-                            <ArbeidsaktivitetUtenforPeriodeInfo
-                                arbeidsaktivitet={arbeidsaktivitet}
-                                tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                <>
+                    {spørOmOmsorgsstønad && (
+                        <VStack gap="2">
+                            <FormikYesOrNoQuestion
+                                name={`${parentFieldName}.mottarOmsorgsstønad`}
+                                legend="Mottar du omsorgsstønad i perioden du skal endre?"
                             />
-                            <FormikInputGroup
-                                legend={arbeidsaktivitet.navn}
-                                hideLegend={true}
-                                errorPropagation={false}
-                                name={`arbeidsgiver_${arbeidsaktivitet.key}`}
-                                validate={getUkjentArbeidsaktivitetArbeidstidValidator(
-                                    arbeidsaktivitet,
-                                    endringer,
-                                    arbeiderIPerioden,
-                                )}>
-                                {perioder.length === 1 ? (
-                                    renderArbeidstidUker(perioder[0])
-                                ) : (
-                                    <DateRangeAccordion
-                                        dateRanges={perioder}
-                                        renderContent={(periode) => renderArbeidstidUker(periode)}
-                                        renderHeader={(periode) => renderAccordionHeader(periode)}
-                                    />
-                                )}
-                            </FormikInputGroup>
-                        </>
-                    ) : (
-                        <>
-                            <Heading level="3" size="small" spacing={true}>
-                                <AppText id="arbeidsaktivitetContent.heading.ingenPerioder" />
-                            </Heading>
-                            <ArbeidsaktivitetUtenforPeriodeInfo
-                                arbeidsaktivitet={arbeidsaktivitet}
-                                tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
-                            />
-                        </>
+                            {mottarOmsorgsstønad === YesOrNo.YES && (
+                                <Alert variant="info">
+                                    <BodyShort spacing={true}>
+                                        <AppText id="arbeidsaktivitetContent.omsorgsstønad.1" />
+                                    </BodyShort>
+                                    <BodyShort>
+                                        <AppText id="arbeidsaktivitetContent.omsorgsstønad.2" />
+                                    </BodyShort>
+                                </Alert>
+                            )}
+                        </VStack>
                     )}
-                </Block>
+                    {visPerioder && (
+                        <div>
+                            {perioder.length > 0 ? (
+                                <>
+                                    <Heading level="3" size="small" spacing={true}>
+                                        <AppText
+                                            id="arbeidsaktivitetContent.heading.perioder"
+                                            values={{ antallPerioder: perioder.length }}
+                                        />
+                                    </Heading>
+                                    <VStack gap="6">
+                                        <ArbeidsaktivitetUtenforPeriodeInfo
+                                            arbeidsaktivitet={arbeidsaktivitet}
+                                            tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                        />
+                                        <FormikInputGroup
+                                            legend={arbeidsaktivitet.navn}
+                                            hideLegend={true}
+                                            errorPropagation={false}
+                                            name={`arbeidsgiver_${arbeidsaktivitet.key}`}
+                                            validate={getUkjentArbeidsaktivitetArbeidstidValidator(
+                                                arbeidsaktivitet,
+                                                endringer,
+                                                arbeiderIPerioden,
+                                            )}>
+                                            {perioder.length === 1 ? (
+                                                renderArbeidstidUker(perioder[0])
+                                            ) : (
+                                                <DateRangeExpansionCards
+                                                    dateRanges={perioder}
+                                                    renderContent={(periode) => renderArbeidstidUker(periode)}
+                                                    renderHeader={(periode) => renderAccordionHeader(periode)}
+                                                />
+                                            )}
+                                        </FormikInputGroup>
+                                    </VStack>
+                                </>
+                            ) : (
+                                <>
+                                    <Heading level="3" size="small" spacing={true}>
+                                        <AppText id="arbeidsaktivitetContent.heading.ingenPerioder" />
+                                    </Heading>
+                                    <ArbeidsaktivitetUtenforPeriodeInfo
+                                        arbeidsaktivitet={arbeidsaktivitet}
+                                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                    />
+                                </>
+                            )}
+                        </div>
+                    )}
+                </>
             )}
-
             <EndreArbeidstidModal
                 title={arbeidsaktivitet.navn}
                 isVisible={arbeidsukerForEndring !== undefined}
@@ -199,7 +227,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     }}
                 />
             </EndreArbeidstidModal>
-        </>
+        </VStack>
     );
 };
 

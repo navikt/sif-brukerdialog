@@ -1,4 +1,5 @@
 import { dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { ArbeidsgiverMedAnsettelseperioder } from '../../types';
 import {
     getArbeidsgivereFromArbeidsgiverOrganisasjoner,

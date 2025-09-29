@@ -1,8 +1,8 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
+
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
@@ -13,7 +13,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
+const LegeerklæringOppsummering = ({ apiData, legeerklæringSøknadsdata, onEdit }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.vedlegg,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,
@@ -25,7 +25,6 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.legeerklæring.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -40,6 +39,11 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

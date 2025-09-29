@@ -1,18 +1,22 @@
-import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import {
+    getIntlFormErrorHandler,
+    getTypedFormComponents,
+    ISOStringToDate,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
+    hasValue,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/src/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+} from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
 import { handleDateRangeValidationError } from '../../utils';
-import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
+import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './i18n';
 import utils from './opptjeningUtlandUtils';
 import { OpptjeningAktivitet, OpptjeningUtland, OpptjeningUtlandFormValues } from './types';
 
@@ -106,50 +110,48 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, '@forms.opptjeningUtlandForm')}>
-                        <Form.DateRangePicker
-                            legend={text('@forms.opptjeningUtland.form.tidsperiode.spm')}
-                            minDate={minDate}
-                            maxDate={maxDate}
-                            fromInputProps={{
-                                name: OpptjeningUtlandFormFields.fom,
-                                label: text('@forms.opptjeningUtland.form.tidsperiode.fraDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        toDate: ISOStringToDate(tom),
-                                    }).validateFromDate(value);
-                                    return handleDateRangeValidationError(error, minDate, maxDate);
-                                },
-                            }}
-                            toInputProps={{
-                                name: OpptjeningUtlandFormFields.tom,
-                                label: text('@forms.opptjeningUtland.form.tidsperiode.tilDato'),
-                                validate: (value) => {
-                                    const error = getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: ISOStringToDate(fom),
-                                    }).validateToDate(value);
-                                    return handleDateRangeValidationError(error, minDate, maxDate);
-                                },
-                            }}
-                        />
+                        formErrorHandler={getIntlFormErrorHandler(intl, '@forms.opptjeningUtlandForm')}>
+                        <FormLayout.Questions>
+                            <Form.DateRangePicker
+                                legend={text('@forms.opptjeningUtland.form.tidsperiode.spm')}
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                fromInputProps={{
+                                    name: OpptjeningUtlandFormFields.fom,
+                                    label: text('@forms.opptjeningUtland.form.tidsperiode.fraDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            toDate: ISOStringToDate(tom),
+                                        }).validateFromDate(value);
+                                        return handleDateRangeValidationError(error, minDate, maxDate);
+                                    },
+                                }}
+                                toInputProps={{
+                                    name: OpptjeningUtlandFormFields.tom,
+                                    label: text('@forms.opptjeningUtland.form.tidsperiode.tilDato'),
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: ISOStringToDate(fom),
+                                        }).validateToDate(value);
+                                        return handleDateRangeValidationError(error, minDate, maxDate);
+                                    },
+                                }}
+                            />
 
-                        {hasDateStringValues && (
-                            <>
-                                <FormBlock>
+                            {hasDateStringValues && (
+                                <>
                                     <Form.CountrySelect
                                         name={OpptjeningUtlandFormFields.landkode}
                                         label={text('@forms.opptjeningUtland.form.land.spm')}
                                         validate={getRequiredFieldValidator()}
                                         showOnlyEuAndEftaCountries={true}
                                     />
-                                </FormBlock>
-                                <FormBlock>
                                     <Form.RadioGroup
                                         legend={text('@forms.opptjeningUtland.form.opptjeningAktivitet.spm')}
                                         name={OpptjeningUtlandFormFields.opptjeningType}
@@ -170,9 +172,7 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                                         validate={getRequiredFieldValidator()}
                                         value={opptjeningType}
                                     />
-                                </FormBlock>
-                                {opptjeningType && (
-                                    <FormBlock>
+                                    {opptjeningType && (
                                         <Form.TextField
                                             label={text(
                                                 `@forms.opptjeningUtland.form.${
@@ -185,10 +185,10 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                                             validate={getRequiredFieldValidator()}
                                             width="xl"
                                         />
-                                    </FormBlock>
-                                )}
-                            </>
-                        )}
+                                    )}
+                                </>
+                            )}
+                        </FormLayout.Questions>
                     </Form.Form>
                 );
             }}

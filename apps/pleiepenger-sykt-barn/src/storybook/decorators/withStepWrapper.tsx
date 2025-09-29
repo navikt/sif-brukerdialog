@@ -1,5 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { BrowserRouter } from 'react-router-dom';
+
 import { SøkerdataContextProvider } from '../../app/context/SøkerdataContext';
 import { SøknadsdataContextProvider } from '../../app/søknad/SøknadsdataContext';
 import { StoryFormikWrapper } from '../components/StoryFormikWrapper';
@@ -12,7 +13,7 @@ import { søknadsdata } from '../data/søknadsdata';
 export const withStepWrapper = (Story: any) => (
     <BrowserRouter>
         <StoryIntlProvider locale="nb">
-            <AmplitudeProvider applicationKey={'ab'} isActive={false} apiKey="default">
+            <AmplitudeProvider applicationKey="ab" isActive={false} apiKey="default">
                 <SøkerdataContextProvider value={{ søker: søkerMock, barn: barnMock }}>
                     <StoryFormikWrapper parameters={{ initialValues: formikValues }}>
                         <SøknadsdataContextProvider

@@ -1,23 +1,22 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DatoSvar, JaNeiSvar } from '@navikt/sif-common-ui';
+
 import { AppText } from '../../../../i18n';
 import { FrilansApiData } from '../../../../types/søknadApiData/FrilansApiData';
-import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     frilans?: FrilansApiData;
     onEdit?: () => void;
 }
 
-const FrilansOppsummering: React.FC<Props> = ({ frilans, onEdit }) => {
+const FrilansOppsummering = ({ frilans, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <AppText id="frilanser.summary.header" />
                 </FormSummary.Heading>
-                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
@@ -59,6 +58,11 @@ const FrilansOppsummering: React.FC<Props> = ({ frilans, onEdit }) => {
                     </>
                 )}
             </FormSummary.Answers>
+            {onEdit && (
+                <FormSummary.Footer>
+                    <EditStepLink onEdit={onEdit} />
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 };

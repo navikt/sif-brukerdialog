@@ -1,5 +1,192 @@
 # @sif/eslint-config
 
+## 1.1.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Codegen etter ny versjon av heyapi.
+
+## 1.1.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.53
+
+### Patch Changes
+
+- Utvide lint:fix scope til flere filer
+
+## 1.1.52
+
+### Patch Changes
+
+- Minor bump på alle pakker etter linting
+
+## 1.1.51
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.50
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + major uuid
+
+## 1.1.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.46
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.45
+
+### Patch Changes
+
+- dfeb776: Pakkeoppdateringer - minor/patch
+- Oppdatert portabletext/react
+
+## 1.1.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.40
+
+### Patch Changes
+
+- f385662: eslint fix
+
+## 1.1.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.37
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/major + zod4
+
+## 1.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 1.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.32
+
+### Patch Changes
+
+- 66f1544: Erstatte gammelt dev-oppsett med vite og msw. Lage egen factory for eslint oppsett pga. module resolution issues med den gamle.
+
+## 1.1.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - major vite 7, + minor/patch
+
+## 1.1.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.27
+
+### Patch Changes
+
+- 3e4c469: Pakkeoppdateringer - minor/patch
+
 ## 1.1.26
 
 ### Patch Changes

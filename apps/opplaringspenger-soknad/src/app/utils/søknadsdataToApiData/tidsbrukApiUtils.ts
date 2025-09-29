@@ -1,9 +1,9 @@
+import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
     DateRange,
     dateToISODate,
     decimalDurationToDuration,
-    decimalDurationToISODuration,
     Duration,
     durationToISODuration,
     DurationWeekdays,
@@ -13,7 +13,6 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
-import { dateToISOString } from '@navikt/sif-common-formik-ds';
 
 export const getFasteDagerApiData = ({
     monday: mandag,
@@ -64,22 +63,15 @@ export const getEnkeltdagerIPeriodeApiData = (
     valgteDatoer: Date[],
     enkeltdager: DateDurationMap,
     periode: DateRange,
-    jobberNormaltTimer: number,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
-    const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
     const isoValgteDatoer = valgteDatoer.map((d) => dateToISODate(d));
 
     getDatesInDateRange(periode, true).forEach((date) => {
         const dateKey = dateToISODate(date);
-        const valgteDager = isoValgteDatoer.includes(dateKey);
+        const dagErSøktFor = isoValgteDatoer.includes(dateKey);
 
-        if (valgteDager === false) {
-            dager.push({
-                dato: dateToISOString(date),
-                tid: tidNormalt,
-            });
-        } else {
+        if (dagErSøktFor) {
             dager.push({
                 dato: dateToISOString(date),
                 tid: durationToISODuration(enkeltdager[dateKey] || { hours: 0, minutes: 0 }),

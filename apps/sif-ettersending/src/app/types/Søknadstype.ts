@@ -6,4 +6,5 @@ export enum Søknadstype {
     'utbetaling' = 'utbetaling',
     'utbetalingarbeidstaker' = 'utbetalingarbeidstaker',
     'regnetsomalene' = 'regnetsomalene',
+    'opplaringspenger' = 'opplaringspenger',
 }

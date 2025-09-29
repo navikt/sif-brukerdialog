@@ -7,7 +7,7 @@ interface Props extends LinkPanelProps {
     description: React.ReactNode;
 }
 
-const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, description, ...rest }) => {
+const MellomlagringLinkPanel = ({ title, description, ...rest }: Props) => {
     const icon = <EditFilled role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />;
     return (
         <LinkPanel
@@ -19,12 +19,12 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
                 bg-transparent
                 text-white
                 hover:bg-deepblue-700
-                hover:outline-none
+                hover:outline-hidden
                 hover:border-transparent
                 focus-within:shadow-focus
                 focus-within:bg-deepblue-700
                 focus-within:shadow-border-on-inverted">
-            <HStack gap="4" align={'center'} wrap={false}>
+            <HStack gap="4" align="center" wrap={false}>
                 <Hide below="sm">
                     {icon ? (
                         <Box className="rounded-md bg-blue-600 group-hover:bg-blue-500 p-4">{icon}</Box>

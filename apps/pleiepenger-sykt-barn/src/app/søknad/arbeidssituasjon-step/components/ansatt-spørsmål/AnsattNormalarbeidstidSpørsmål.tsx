@@ -1,6 +1,6 @@
-import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 import {
     ArbeidsforholdFormField,
@@ -21,7 +21,7 @@ interface Props {
     fieldName: ArbeidsforholdFormField;
 }
 
-const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
+const AnsattNormalarbeidstidSpørsmål = ({ arbeidsforhold, fieldName }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
 
@@ -29,6 +29,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
         arbeidsforhold: {
             arbeidsgiverNavn: arbeidsforhold.arbeidsgiver.navn,
             type: ArbeidsforholdType.ANSATT,
+            erAnsatt: arbeidsforhold.erAnsatt ? arbeidsforhold.erAnsatt === YesOrNo.YES : undefined,
         },
     });
 

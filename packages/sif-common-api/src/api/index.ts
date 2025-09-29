@@ -8,6 +8,7 @@ import {
     uploadVedlegg,
 } from './services';
 
+export * from './apiClient';
 export * from './schemas';
 export * from './services';
 export * from './types';

@@ -1,5 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
+
 interface Props {
     tittel: string;
     children?: React.ReactNode;

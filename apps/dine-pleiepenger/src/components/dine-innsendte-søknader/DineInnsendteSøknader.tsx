@@ -7,10 +7,10 @@ interface Props {
     søknader: InnsendtSøknad[];
 }
 
-const DineInnsendteSøknader: React.FunctionComponent<Props> = ({ søknader }) => {
+const DineInnsendteSøknader = ({ søknader }: Props) => {
     return (
         <Box data-testid="søknadsliste">
-            <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
+            <Heading level="2" size="medium" spacing={true}>
                 <AppText id="dineInnsendteSøknader.tittel" />
             </Heading>
             <InnsendtSøknadListe søknader={søknader} />

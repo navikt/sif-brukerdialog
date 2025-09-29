@@ -3,6 +3,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import {
     PeriodeApiData,
@@ -32,7 +33,6 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.tidsrom.header" />
                     </FormSummary.Heading>
-                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
@@ -108,6 +108,11 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                         </>
                     )}
                 </FormSummary.Answers>
+                {onEdit && (
+                    <FormSummary.Footer>
+                        <EditStepLink onEdit={onEdit} />
+                    </FormSummary.Footer>
+                )}
             </FormSummary>
         </>
     );

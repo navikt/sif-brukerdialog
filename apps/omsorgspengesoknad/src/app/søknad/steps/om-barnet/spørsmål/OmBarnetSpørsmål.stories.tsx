@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
     ValidateRequiredFieldError,
     ValidateRequiredFieldErrorKeys,
     ValidateYesOrNoErrorKeys,
-} from '@navikt/sif-common-formik-ds/src/validation';
+} from '@navikt/sif-validation';
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { RegistrerteBarnMock } from '../../../../../storybook/mock-data';
@@ -156,13 +156,7 @@ export const RegistrertBarnSpørsmålStory: Story = {
     name: 'RegistrertBarn',
     render: () => (
         <SpørsmålWrapper
-            spørsmål={
-                <RegistrertBarnSpørsmål
-                    onAnnetBarnSelected={() => null}
-                    registrerteBarn={RegistrerteBarnMock}
-                    søknadenGjelderEtAnnetBarn={false}
-                />
-            }
+            spørsmål={<RegistrertBarnSpørsmål registrerteBarn={RegistrerteBarnMock} />}
             formErrorHandlerIntlKey="steg.omBarnet.validation"
             messageIntlKeys={getScopedIntlKeys('steg.omBarnet.spm.gjelderAnnetBarn.')}
             validationErrorIntlKeys={getValidationIntlKeys(

@@ -1,5 +1,4 @@
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { VStack } from '@navikt/ds-react';
 import {
     DateDurationMap,
     DateRange,
@@ -7,6 +6,7 @@ import {
     getMonthsInDateRange,
 } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+
 import OmsorgstilbudMåned from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/OmsorgstilbudMåned';
 import SøknadsperioderMånedListe from '../../../local-sif-common-pleiepenger/components/søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
@@ -25,14 +25,14 @@ interface Props {
     onOmsorgstilbudChanged?: () => void;
 }
 
-const OmsorgstilbudVariert: React.FunctionComponent<Props> = ({
+const OmsorgstilbudVariert = ({
     tittel,
     periode,
     tidIOmsorgstilbud,
     formFieldName,
     omsorgsdager,
     onOmsorgstilbudChanged,
-}) => {
+}: Props) => {
     const kanLeggeTilPeriode = skalViseSpørsmålOmProsentEllerLiktHverUke(periode);
 
     const { setFieldValue } = useFormikContext<SøknadFormValues>() || {};
@@ -69,27 +69,22 @@ const OmsorgstilbudVariert: React.FunctionComponent<Props> = ({
     };
 
     return (
-        <>
-            <SøknadFormComponents.InputGroup
-                name={formFieldName}
-                legend={tittel}
-                validate={() => validateOmsorgstilbudEnkeltdagerIPeriode(tidIOmsorgstilbud, periode)}>
+        <SøknadFormComponents.InputGroup
+            name={formFieldName}
+            legend={tittel}
+            validate={() => validateOmsorgstilbudEnkeltdagerIPeriode(tidIOmsorgstilbud, periode)}>
+            <VStack gap="6">
                 {kanLeggeTilPeriode && (
-                    <>
-                        <Block margin="m" padBottom="l">
-                            <OmsorgstilbudPeriode periode={periode} onPeriodeChange={handleOnPeriodeChange} />
-                        </Block>
-                    </>
+                    <OmsorgstilbudPeriode periode={periode} onPeriodeChange={handleOnPeriodeChange} />
                 )}
-                <Block margin="l">
-                    <SøknadsperioderMånedListe
-                        periode={periode}
-                        årstallHeadingLevel="3"
-                        månedContentRenderer={omsorgstilbudMånedRenderer}
-                    />
-                </Block>
-            </SøknadFormComponents.InputGroup>
-        </>
+
+                <SøknadsperioderMånedListe
+                    periode={periode}
+                    årstallHeadingLevel="3"
+                    månedContentRenderer={omsorgstilbudMånedRenderer}
+                />
+            </VStack>
+        </SøknadFormComponents.InputGroup>
     );
 };
 

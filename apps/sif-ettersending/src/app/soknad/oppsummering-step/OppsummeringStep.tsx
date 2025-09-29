@@ -1,45 +1,52 @@
-import { Alert, FormSummary, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import './oppsummeringStep.css';
+
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Alert, FormSummary, VStack } from '@navikt/ds-react';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { FormLayout, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
+import { getCheckedValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
+
 import { AppText, useAppIntl } from '../../i18n';
-import { DokumentType } from '../../types/DokumentType';
-import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
 import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
-import './oppsummeringStep.css';
+import { inkluderDokumentTypeSteg, StepID } from '../soknadStepsConfig';
 
 interface Props {
     soknadId: string;
     søknadstype: Søknadstype;
-    søker: Person;
+    søker: Søker;
+    registrerteBarn: RegistrertBarn[];
 }
 
-const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
+const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
     const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
-    const apiValues = mapFormDataToApiData(søker.fødselsnummer, soknadId, values, intl);
+
+    const apiValues = mapFormDataToApiData(søker.fødselsnummer, soknadId, values, registrerteBarn, intl);
+
+    const { registrertBarnAktørId } = values;
+    const registrertBarn = registrertBarnAktørId
+        ? registrerteBarn.find((b) => b.aktørId === values[SoknadFormField.registrertBarnAktørId])
+        : undefined;
 
     useEffectOnce(() => {
         resetSendSøknadStatus();
     });
+
+    const brukerHarValgtDokumenttype = inkluderDokumentTypeSteg(søknadstype);
 
     return (
         <SoknadFormStep
@@ -51,10 +58,11 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             isFinalSubmit={true}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
-            <SifGuidePanel>
+            <FormLayout.Guide>
                 <AppText id="steg.oppsummering.info" />
-            </SifGuidePanel>
-            <Block margin="xl">
+            </FormLayout.Guide>
+
+            <VStack gap="8">
                 <div data-testid="oppsummering">
                     <VStack gap="8">
                         <FormSummary>
@@ -91,13 +99,15 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     </FormSummary.Label>
                                     <FormSummary.Value>{apiValues.ytelseTittel}</FormSummary.Value>
                                 </FormSummary.Answer>
-                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                {brukerHarValgtDokumenttype && (
                                     <FormSummary.Answer>
                                         <FormSummary.Label>
                                             <AppText id="steg.oppsummering.dokumentType.header" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <AppText id="steg.oppsummering.dokumentType.legeerklæring" />
+                                            <AppText
+                                                id={`steg.oppsummering.dokumentType.${apiValues.ettersendelsesType}`}
+                                            />
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}
@@ -108,27 +118,32 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                             <AppText id="steg.oppsummering.barn.spm" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            {values.valgteRegistrertBarn && (
+                                            {registrertBarn ? (
                                                 <div>
                                                     {text('steg.oppsummering.barn.registretBarnInfo', {
-                                                        navn: values.valgteRegistrertBarn?.barnetsNavn,
-                                                        fødselsdato: prettifyDate(
-                                                            values.valgteRegistrertBarn?.barnetsFødselsdato,
+                                                        navn: formatName(
+                                                            registrertBarn?.fornavn,
+                                                            registrertBarn?.etternavn,
+                                                            registrertBarn?.mellomnavn,
                                                         ),
+                                                        fødselsdato: prettifyDate(registrertBarn.fødselsdato),
                                                     })}
                                                 </div>
+                                            ) : (
+                                                <>
+                                                    {apiValues.pleietrengende?.norskIdentitetsnummer && (
+                                                        <div data-testid="fnr-barn">
+                                                            {text('steg.oppsummering.barn.fnr', {
+                                                                fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
+                                                            })}
+                                                        </div>
+                                                    )}
+                                                    {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                                        !apiValues.pleietrengende?.aktørId && (
+                                                            <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
+                                                        )}
+                                                </>
                                             )}
-                                            {apiValues.pleietrengende?.norskIdentitetsnummer && (
-                                                <div data-testid="fnr-barn">
-                                                    {text('steg.oppsummering.barn.fnr', {
-                                                        fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
-                                                    })}
-                                                </div>
-                                            )}
-                                            {!apiValues.pleietrengende?.norskIdentitetsnummer &&
-                                                !apiValues.pleietrengende?.aktørId && (
-                                                    <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
-                                                )}
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}
@@ -158,30 +173,28 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                         </FormSummary>
                     </VStack>
                 </div>
-            </Block>
 
-            <Block margin="l">
                 <SoknadFormComponents.ConfirmationCheckbox
                     label={<span data-testid="bekreft-label">{text('steg.oppsummering.bekrefterOpplysninger')}</span>}
                     name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />
-            </Block>
 
-            {isFailure(sendSoknadStatus.status) && (
-                <FormBlock>
-                    {sendSoknadStatus.failures === 1 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
-                        </Alert>
-                    )}
-                    {sendSoknadStatus.failures === 2 && (
-                        <Alert variant="error">
-                            <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
-                        </Alert>
-                    )}
-                </FormBlock>
-            )}
+                {isFailure(sendSoknadStatus.status) && (
+                    <>
+                        {sendSoknadStatus.failures === 1 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
+                            </Alert>
+                        )}
+                        {sendSoknadStatus.failures === 2 && (
+                            <Alert variant="error">
+                                <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
+                            </Alert>
+                        )}
+                    </>
+                )}
+            </VStack>
         </SoknadFormStep>
     );
 };

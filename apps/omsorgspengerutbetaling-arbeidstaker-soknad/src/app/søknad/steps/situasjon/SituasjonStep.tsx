@@ -1,31 +1,29 @@
-import { Alert } from '@navikt/ds-react';
-import { useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
+import { Alert, VStack } from '@navikt/ds-react';
 import { fetchArbeidsgivere } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import FormSection from '../../../components/form-section/FormSection';
+import { useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import {
     checkHarKlikketJaJaPåAlle,
     checkHarKlikketNeiElleJajaBlanding,
     checkHarKlikketNeiPåAlle,
 } from '../../../utils/arbeidsforholdValidations';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/søknadVedleggUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -35,10 +33,9 @@ import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
 import {
     getNMonthsAgo,
-    getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
+    getSituasjonStepInitialValues,
 } from './SituasjonStepUtils';
-import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/søknadVedleggUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -151,62 +148,53 @@ const SituasjonStep = () => {
                                 submitDisabled={isSubmitting || !harIkkeMottatLønnHosEnEllerFlere}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
+                                <FormLayout.Guide>
                                     <p>
                                         <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
                                     </p>
                                     <p>
                                         <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
                                     </p>
-                                </SifGuidePanel>
+                                </FormLayout.Guide>
 
-                                {arbeidsforhold.length > 0 && (
-                                    <FormBlock margin="xxl">
-                                        <div className="arbeidsforhold-liste">
-                                            {arbeidsforhold.map((forhold, index) => (
-                                                <Block
-                                                    key={forhold.organisasjonsnummer}
-                                                    data-testid={`arbeidsforhold-liste-${index}`}>
-                                                    <FormSection
-                                                        titleTag="h2"
-                                                        title={forhold.navn || forhold.organisasjonsnummer}
-                                                        titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
-                                                        <ArbeidsforholdSituasjon
-                                                            arbeidsforhold={forhold}
-                                                            parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                        />
-                                                        {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
-                                                            forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
-                                                                <ArbeidsforholdUtbetalingsårsak
-                                                                    arbeidsforhold={forhold}
-                                                                    andreVedlegg={andreVedlegg}
-                                                                    parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
-                                                                />
-                                                            )}
-                                                    </FormSection>
-                                                </Block>
-                                            ))}
-                                        </div>
-                                    </FormBlock>
-                                )}
+                                <VStack gap="8">
+                                    <FormLayout.Sections>
+                                        {arbeidsforhold.map((forhold, index) => (
+                                            <FormLayout.Section
+                                                key={forhold.organisasjonsnummer}
+                                                data-testid={`arbeidsforhold-liste-${index}`}
+                                                title={forhold.navn || forhold.organisasjonsnummer}
+                                                titleIcon={<Office1 role="presentation" aria-hidden={true} />}>
+                                                <FormLayout.Questions>
+                                                    <ArbeidsforholdSituasjon
+                                                        arbeidsforhold={forhold}
+                                                        parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                    />
+                                                    {forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES &&
+                                                        forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
+                                                            <ArbeidsforholdUtbetalingsårsak
+                                                                arbeidsforhold={forhold}
+                                                                andreVedlegg={andreVedlegg}
+                                                                parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
+                                                            />
+                                                        )}
+                                                </FormLayout.Questions>
+                                            </FormLayout.Section>
+                                        ))}
+                                    </FormLayout.Sections>
 
-                                {arbeidsforhold.length === 0 && (
-                                    <FormBlock>
-                                        <Alert variant={'info'}>
-                                            <AppText id={'step.situasjon.arbeidsforhold.ingen.info.text'} />
+                                    {arbeidsforhold.length === 0 && (
+                                        <Alert variant="info">
+                                            <AppText id="step.situasjon.arbeidsforhold.ingen.info.text" />
                                         </Alert>
-                                    </FormBlock>
-                                )}
+                                    )}
 
-                                {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
-                                    <FormBlock paddingBottom={'l'}>
-                                        <Alert variant={'warning'}>
-                                            <AppText
-                                                id={'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei'}
-                                            />
+                                    {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
+                                        <Alert variant="warning">
+                                            <AppText id="step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei" />
                                         </Alert>
-                                    </FormBlock>
-                                )}
+                                    )}
+                                </VStack>
                             </Form>
                         </>
                     );

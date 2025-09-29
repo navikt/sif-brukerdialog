@@ -1,12 +1,5 @@
-import { BrowserRouter } from 'react-router-dom';
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { enableMocking } from '../mock/msw/enableMocking';
 import App from './App';
 
-createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <BrowserRouter basename={'/'}>
-            <App />
-        </BrowserRouter>
-    </StrictMode>,
-);
+enableMocking().then(() => createRoot(document.getElementById('root')!).render(<App />));
