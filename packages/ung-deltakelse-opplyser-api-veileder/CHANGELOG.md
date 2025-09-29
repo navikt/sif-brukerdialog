@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.1.20
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+
 ## 0.1.19
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @navikt/sif-common-ui
 
+## 0.4.51
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.8
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+
 ## 0.4.50
 
 ### Patch Changes
