@@ -8,7 +8,12 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@types';
+import {
+    ArbeidsaktivitetType,
+    ArbeidsgiverMedAnsettelseperioder,
+    SøknadContextState,
+    UkjentArbeidsforholdSøknadsdata,
+} from '@types';
 import { useIntl } from 'react-intl';
 
 import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
@@ -58,8 +63,8 @@ const { FormikWrapper, Form } = getTypedFormComponents<
 >();
 
 interface Props {
-    arbeidsgivere: Arbeidsgiver[];
-    arbeidsgivereIkkeISak: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
     stepId: StepId;
     goBack?: () => void;

@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { ArbeiderIPeriodenSvar, Arbeidsgiver, ArbeidstakerApiData } from '@types';
+import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@types';
 
 import { AppText } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
@@ -8,7 +8,7 @@ import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     arbeidstidKolonneTittel?: string;
 };
 

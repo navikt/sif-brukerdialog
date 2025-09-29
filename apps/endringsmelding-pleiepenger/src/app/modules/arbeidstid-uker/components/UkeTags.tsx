@@ -6,16 +6,17 @@ import KortUkeTag from '../../../components/tags/KortUkeTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 
 interface Props {
+    kortUkeTooltip?: string;
     erKortUke?: boolean;
     dagerMedFerie: Date[] | undefined;
     dagerMedFjernetFerie?: Date[] | undefined;
     visDagNavn?: boolean;
 }
 
-const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, erKortUke }: Props) => {
+const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, erKortUke, kortUkeTooltip }: Props) => {
     const tags: React.ReactNode[] = [];
     if (erKortUke) {
-        tags.push(<KortUkeTag style={{ marginRight: '.5rem', marginBottom: '.25rem' }} />);
+        tags.push(<KortUkeTag tooltip={kortUkeTooltip} style={{ marginRight: '.5rem', marginBottom: '.25rem' }} />);
     }
     if (dagerMedFerie?.length > 0) {
         tags.push(
@@ -40,7 +41,7 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
         return (
             <>
                 <TagsContainer>
-                    {erKortUke && <KortUkeTag />}
+                    {erKortUke && <KortUkeTag tooltip={kortUkeTooltip} />}
                     {dagerMedFerie?.length > 0 && (
                         <FerieTag>
                             {visDagNavn

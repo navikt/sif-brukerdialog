@@ -1,7 +1,7 @@
 import { Box, Checkbox, Table } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
-import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 
@@ -9,7 +9,7 @@ import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
-import UkeInfoIkon from './UkeInfo';
+import UkeInfoTooltip, { getKortUkeTooltipText } from './UkeInfoTooltip';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
@@ -115,10 +115,7 @@ const ArbeidstidUkeTabell = ({
                                 <Table.DataCell>
                                     <div>
                                         <AppText id="arbeidstidUkeTabell.compact.uke" values={{ ukenummer }} />
-                                        <div>
-                                            {dateFormatter.compact(uke.periode.from)} - {` `}
-                                            {dateFormatter.compact(uke.periode.to)}
-                                        </div>
+                                        <div>{getDateRangeText(uke.periode, intl.locale)}</div>
                                     </div>
 
                                     <div>
@@ -137,6 +134,7 @@ const ArbeidstidUkeTabell = ({
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
                                         <Box marginBlock="0 4">
                                             <UkeTags
+                                                kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 erKortUke={uke.erKortUke}
@@ -168,7 +166,7 @@ const ArbeidstidUkeTabell = ({
                                                     )}
                                                 </span>
                                                 <span className="arbeidsukeTidsrom__info">
-                                                    {uke.erKortUke && <UkeInfoIkon uke={uke} />}
+                                                    {uke.erKortUke && <UkeInfoTooltip uke={uke} />}
                                                 </span>
                                             </div>
                                         </div>

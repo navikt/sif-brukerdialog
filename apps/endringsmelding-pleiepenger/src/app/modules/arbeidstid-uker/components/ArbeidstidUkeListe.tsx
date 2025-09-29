@@ -1,12 +1,14 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
 
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { AppText } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
+import { getKortUkeTooltipText } from './UkeInfoTooltip';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
@@ -17,7 +19,13 @@ interface Props {
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
 }
 
-const ArbeidstidUkeListe = ({ uker, visEndringSomOpprinnelig, selectableList, renderEditButton }: Props) => {
+const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
+    uker,
+    visEndringSomOpprinnelig,
+    selectableList,
+    renderEditButton,
+}) => {
+    const intl = useIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -46,14 +54,19 @@ const ArbeidstidUkeListe = ({ uker, visEndringSomOpprinnelig, selectableList, re
                                     <Heading level="3" size="xsmall">
                                         <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                     </Heading>
+
                                     <BodyShort as="div">
-                                        {dateFormatter.compact(uke.periode.from)} - {` `}
-                                        {dateFormatter.compact(uke.periode.to)}
-                                        <UkeTags
-                                            erKortUke={uke.erKortUke}
-                                            dagerMedFerie={uke.ferie?.dagerMedFerie}
-                                            dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
-                                        />
+                                        <HStack gap="4">
+                                            <Box>{getDateRangeText(uke.periode, intl.locale)}</Box>
+                                        </HStack>
+                                        <Box marginBlock="2 0">
+                                            <UkeTags
+                                                kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
+                                                erKortUke={uke.erKortUke}
+                                                dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                                dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
+                                            />
+                                        </Box>
                                     </BodyShort>
 
                                     <ArbeidstidUkeInfoListe

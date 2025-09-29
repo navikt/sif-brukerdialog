@@ -1,7 +1,7 @@
 import { useSøknadContext } from '@hooks';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { Arbeidsgiver, Søknadsdata } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, Søknadsdata } from '@types';
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 
@@ -19,7 +19,7 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -40,7 +40,7 @@ const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
@@ -55,7 +55,7 @@ const isStepFormValuesAndStepSøknadsdataValid = (
 export const useSøknadsdataStatus = (
     stepId: StepId,
     stepConfig: SoknadStepsConfig<StepId>,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ) => {
     const [invalidSteps, setInvalidSteps] = useState<StepId[]>([]);
 

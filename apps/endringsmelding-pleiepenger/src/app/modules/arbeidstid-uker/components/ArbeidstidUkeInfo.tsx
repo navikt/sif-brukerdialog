@@ -33,7 +33,11 @@ const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }:
         const { endretProsent } = uke.endret;
         return (
             <>
-                {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
+                {medLabels && (
+                    <BodyShort as="div" size="small">
+                        Arbeidstimer:
+                    </BodyShort>
+                )}
                 <span data-testid="timer-faktisk">
                     <DurationText duration={uke.endret.faktisk} />
                 </span>

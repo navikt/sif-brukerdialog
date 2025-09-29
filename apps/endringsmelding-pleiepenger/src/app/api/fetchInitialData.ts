@@ -3,7 +3,7 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/util
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
-    Arbeidsgiver,
+    ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
     isK9Sak,
     isUgyldigK9SakFormat,
@@ -32,7 +32,7 @@ export const fetchInitialData = async (
     søker: Søker;
     k9saker: K9Sak[];
     antallSakerFørEndringsperiode: number;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     lagretSøknadState?: SøknadStatePersistence;
 }> => {
     const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
@@ -53,7 +53,7 @@ export const fetchInitialData = async (
 
     try {
         let k9saker: K9Sak[];
-        let arbeidsgivere: Arbeidsgiver[];
+        let arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
 
         const sakerInnenforEndringsperiode = k9sakerResult.k9Saker;
         const sakerFørEndringsperiode = k9sakerResult.eldreSaker;
@@ -76,7 +76,7 @@ export const fetchInitialData = async (
             })
             .then((result) => {
                 arbeidsgivere = result;
-                return kontrollerTilgang(k9saker, tillattEndringsperiode);
+                return kontrollerTilgang(k9saker, tillattEndringsperiode, arbeidsgivere);
             })
             .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker))
             .then((lagretSøknadState) => {
@@ -152,8 +152,13 @@ const kontrollerSaker = (
     return Promise.resolve({ k9saker, dateRangeAlleSaker });
 };
 
-const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateRange): Promise<boolean> => {
-    const resultat = tilgangskontroll(k9saker, tillattEndringsperiode);
+const kontrollerTilgang = async (
+    k9saker: K9Sak[],
+    tillattEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
+): Promise<boolean> => {
+    const resultat = tilgangskontroll(k9saker, tillattEndringsperiode, arbeidsgivere);
+
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
     }

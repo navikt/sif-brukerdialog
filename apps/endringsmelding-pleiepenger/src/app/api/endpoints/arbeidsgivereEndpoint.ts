@@ -1,38 +1,30 @@
-import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '@types';
+import { DateRange, dateToISODate, ISODate } from '@navikt/sif-common-utils';
+import { ArbeidsgiverMedAnsettelseperioder } from '@types';
 
-import { getArbeidsgiverKey } from '../../utils/arbeidsgiverUtils';
+import { getArbeidsgivereFromArbeidsgiverOrganisasjoner } from '../../utils/initialDataUtils';
 import api from '../api';
 import { ApiEndpointPsb } from './';
 
-type AAregArbeidsgiver = {
-    organisasjoner?: Array<{
-        organisasjonsnummer: string;
-        navn: string;
-        ansattFom?: ISODate;
-        ansattTom?: ISODate;
-    }>;
+export type AAregArbeidsgiver = {
+    organisasjoner?: AARegArbeidsgiverOrganisasjon[];
+};
+
+export type AARegArbeidsgiverOrganisasjon = {
+    organisasjonsnummer: string;
+    navn: string;
+    ansattFom?: ISODate;
+    ansattTom?: ISODate;
 };
 
 export const arbeidsgivereEndpoint = {
-    fetch: async (periode: DateRange): Promise<Arbeidsgiver[]> => {
+    fetch: async (periode: DateRange): Promise<ArbeidsgiverMedAnsettelseperioder[]> => {
         try {
             const { from, to } = periode;
             const { data } = await api.psb.get<AAregArbeidsgiver>(
                 ApiEndpointPsb.arbeidsgiver,
-                `ytelse=endringsmelding-pleiepenger&fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`,
+                `ytelse=endringsmelding-pleiepenger&fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}&inkluderAlleAnsettelsesperioder=true`,
             );
-            const aaArbeidsgivere: Arbeidsgiver[] = [];
-            (data.organisasjoner || []).forEach((a) => {
-                aaArbeidsgivere.push({
-                    key: getArbeidsgiverKey(a.organisasjonsnummer),
-                    organisasjonsnummer: a.organisasjonsnummer,
-                    navn: a.navn,
-                    ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
-                    ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
-                });
-            });
-            return Promise.resolve(aaArbeidsgivere);
+            return Promise.resolve(getArbeidsgivereFromArbeidsgiverOrganisasjoner(data.organisasjoner || []));
         } catch (error) {
             return Promise.reject(error);
         }

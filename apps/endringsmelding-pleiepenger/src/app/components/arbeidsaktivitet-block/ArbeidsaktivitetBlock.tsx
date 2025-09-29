@@ -1,12 +1,12 @@
 import { BoxNew, ExpansionCard, VStack } from '@navikt/ds-react';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
+import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@types';
 
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 
 interface Props {
     navn: string;
     type: ArbeidsaktivitetType;
-    arbeidsgiver?: Arbeidsgiver;
+    arbeidsgiver?: ArbeidsgiverMedAnsettelseperioder;
     endret?: { tekst: string };
     erUkjent?: boolean;
     renderAsExpansionCard?: boolean;

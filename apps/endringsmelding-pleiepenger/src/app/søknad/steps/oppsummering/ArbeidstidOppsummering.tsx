@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { Arbeidsgiver, ArbeidstidApiData } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@types';
 
 import { AppText, useAppIntl } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
@@ -8,7 +8,7 @@ import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
 }
 
 const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {

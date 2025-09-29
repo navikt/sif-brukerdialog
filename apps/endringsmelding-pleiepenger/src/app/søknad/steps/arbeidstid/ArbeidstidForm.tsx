@@ -7,7 +7,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
+import { getArbeidsaktiviteterForUkjenteArbeidsforhold, getEndringsdato, getTillattEndringsperiode } from '@utils';
 import { useIntl } from 'react-intl';
 
 import { AppText } from '../../../i18n';
@@ -113,6 +113,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                         sak.søknadsperioder,
                         sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
+                        getTillattEndringsperiode(getEndringsdato()),
                         søknadsdata.ukjentArbeidsforhold,
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
