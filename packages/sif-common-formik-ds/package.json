@@ -59,7 +59,7 @@
         "vite": "7.1.7",
         "vite-plugin-checker": "0.10.3",
         "vitest": "3.2.4",
-        "webpack": "5.101.3"
+        "webpack": "5.102.0"
     },
     "directories": {
         "lib": "lib"
