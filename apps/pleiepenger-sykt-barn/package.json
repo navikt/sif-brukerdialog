@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "4.11.11",
+    "version": "4.11.12",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -42,7 +42,6 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.2",
-        "@chromatic-com/storybook": "4.1.1",
         "@playwright/test": "1.55.1",
         "@sentry/vite-plugin": "4.3.0",
         "@sif/eslint-config": "workspace:*",
@@ -53,14 +52,13 @@
         "@testing-library/react": "16.3.0",
         "@testing-library/user-event": "14.6.1",
         "@types/lodash.groupby": "4.6.9",
-        "@types/react": "19.1.15",
+        "@types/react": "19.1.16",
         "@types/react-dom": "19.1.9",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
         "axe-core": "4.10.3",
         "busboy": "1.6.0",
         "compression": "1.8.1",
-        "cross-env": "10.0.0",
         "dayjs": "1.11.18",
         "eslint-plugin-storybook": "9.1.8",
         "express": "5.1.0",
@@ -75,7 +73,7 @@
         "storybook": "9.1.8",
         "typescript": "5.9.2",
         "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3",
+        "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },
     "scripts": {

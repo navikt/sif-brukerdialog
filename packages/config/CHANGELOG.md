@@ -1,5 +1,11 @@
 # config
 
+## 0.11.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 0.11.28
 
 ### Patch Changes

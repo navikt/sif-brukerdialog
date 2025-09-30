@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.26.11",
+    "version": "1.26.12",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -51,16 +51,14 @@
         "@tailwindcss/vite": "4.1.13",
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.0",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.1.15",
+        "@types/react": "19.1.16",
         "@types/react-dom": "19.1.9",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
         "busboy": "1.6.0",
-        "chromatic": "13.2.1",
         "compression": "1.8.1",
-        "cross-env": "10.0.0",
         "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.8",
         "express": "5.1.0",
@@ -74,7 +72,7 @@
         "tailwindcss": "4.1.13",
         "typescript": "5.9.2",
         "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3",
+        "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },
     "scripts": {

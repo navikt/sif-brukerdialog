@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.16.11",
+    "version": "1.16.12",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -47,7 +47,6 @@
         "uuid": "13.0.0"
     },
     "devDependencies": {
-        "@chromatic-com/storybook": "4.1.1",
         "@playwright/test": "1.55.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "9.1.8",
@@ -55,15 +54,13 @@
         "@tailwindcss/postcss": "4.1.13",
         "@tailwindcss/vite": "4.1.13",
         "@testing-library/dom": "10.4.1",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.1.15",
+        "@types/react": "19.1.16",
         "@types/react-dom": "19.1.9",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
-        "chromatic": "13.2.1",
         "compression": "1.8.1",
-        "cross-env": "10.0.0",
         "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.8",
         "express": "5.1.0",
@@ -78,7 +75,7 @@
         "tailwindcss": "4.1.13",
         "typescript": "5.9.2",
         "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3",
+        "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },
     "scripts": {

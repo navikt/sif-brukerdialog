@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.4.34",
+    "version": "0.4.35",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -19,7 +19,7 @@
     "devDependencies": {
         "@types/express": "5.0.3",
         "@types/morgan": "1.9.10",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.0",
         "@vercel/ncc": "0.38.4",
         "axios": "1.12.2",
         "morgan": "1.10.1",
