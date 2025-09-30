@@ -60,7 +60,6 @@
         "busboy": "1.6.0",
         "chromatic": "13.3.0",
         "compression": "1.8.1",
-        "cross-env": "10.1.0",
         "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.8",
         "express": "5.1.0",

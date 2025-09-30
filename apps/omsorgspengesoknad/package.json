@@ -62,7 +62,6 @@
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.5",
-        "cross-env": "10.1.0",
         "eslint": "9.36.0",
         "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react": "7.37.5",
