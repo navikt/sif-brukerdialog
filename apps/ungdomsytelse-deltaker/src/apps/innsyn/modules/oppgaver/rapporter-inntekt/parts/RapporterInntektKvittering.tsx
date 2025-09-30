@@ -2,6 +2,7 @@ import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
+import Skyra from '../../../../../../components/skyra/Skyra';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
@@ -12,7 +13,7 @@ interface Props {
 const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
     return (
         <>
-            <VStack gap="4">
+            <VStack gap="8">
                 <Alert variant="success" ref={ref} tabIndex={-1}>
                     <Heading level="2" size="small" spacing>
                         <AppText id="rapporterInntektKvittering.tittel" />
@@ -27,6 +28,7 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
                         </BodyLong>
                     )}
                 </Alert>
+                <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
             </VStack>
             <div>
                 <ForsideLenkeButton />
