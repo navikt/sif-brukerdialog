@@ -26,6 +26,7 @@ skyra-survey {
     background-color: white;
     padding: 1rem;
     border-radius: 0.5rem;
+    display: block;
 }
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
