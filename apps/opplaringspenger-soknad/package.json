@@ -63,7 +63,7 @@
         "@vitejs/plugin-react": "5.0.4",
         "busboy": "1.6.0",
         "chromatic": "13.2.1",
-        "cross-env": "10.0.0",
+        "cross-env": "10.1.0",
         "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.8",
         "eslint-plugin-vitest": "0.5.4",
