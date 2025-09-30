@@ -19,7 +19,7 @@
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.1.15",
-        "chromatic": "13.2.1",
+        "chromatic": "13.3.0",
         "copyfiles": "2.4.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.18",
