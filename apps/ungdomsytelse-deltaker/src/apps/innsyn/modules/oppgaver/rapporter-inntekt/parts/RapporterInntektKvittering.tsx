@@ -12,28 +12,28 @@ interface Props {
 
 const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
     return (
-        <>
-            <VStack gap="8">
-                <Alert variant="success" ref={ref} tabIndex={-1}>
-                    <Heading level="2" size="small" spacing>
-                        <AppText id="rapporterInntektKvittering.tittel" />
-                    </Heading>
-                    {kvitteringData.harHattInntektOver0 ? (
-                        <BodyLong>
-                            <AppText id="rapporterInntektKvittering.harHattInntekt" />
-                        </BodyLong>
-                    ) : (
-                        <BodyLong>
-                            <AppText id="rapporterInntektKvittering.harIkkeHattInntekt" />
-                        </BodyLong>
-                    )}
-                </Alert>
-                <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
-            </VStack>
+        <VStack gap="8">
+            <Alert variant="success" ref={ref} tabIndex={-1}>
+                <Heading level="2" size="small" spacing>
+                    <AppText id="rapporterInntektKvittering.tittel" />
+                </Heading>
+                {kvitteringData.harHattInntektOver0 ? (
+                    <BodyLong>
+                        <AppText id="rapporterInntektKvittering.harHattInntekt" />
+                    </BodyLong>
+                ) : (
+                    <BodyLong>
+                        <AppText id="rapporterInntektKvittering.harIkkeHattInntekt" />
+                    </BodyLong>
+                )}
+            </Alert>
             <div>
                 <ForsideLenkeButton />
             </div>
-        </>
+            <div>
+                <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
+            </div>
+        </VStack>
     );
 });
 

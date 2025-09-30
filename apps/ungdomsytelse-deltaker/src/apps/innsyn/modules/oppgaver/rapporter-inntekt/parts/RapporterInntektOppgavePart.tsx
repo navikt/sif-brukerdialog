@@ -14,7 +14,6 @@ import { getAppEnv } from '@shared/utils/appEnv';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Skyra from '../../../../../../components/skyra/Skyra';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePage';
 import RapporterInntektKvittering from './RapporterInntektKvittering';
 import RapporterInntektOppgavetekst from './RapporterInntektOppgavetekst';
@@ -128,7 +127,6 @@ const RapporterInntektOppgavePart = ({
                     />
                 </VStack>
             )}
-            <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
         </VStack>
     );
 };

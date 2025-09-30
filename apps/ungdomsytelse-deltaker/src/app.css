@@ -22,6 +22,11 @@ body.innsynAppBody {
     color: var(--ax-text-neutral);
 }
 
+skyra-survey {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
