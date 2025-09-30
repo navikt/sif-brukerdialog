@@ -11,9 +11,9 @@
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "10.15.0",
-        "@sentry/react": "10.15.0",
-        "@sentry/types": "10.15.0"
+        "@sentry/browser": "10.16.0",
+        "@sentry/react": "10.16.0",
+        "@sentry/types": "10.16.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
