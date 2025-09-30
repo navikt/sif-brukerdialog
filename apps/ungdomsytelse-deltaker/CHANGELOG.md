@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.3
+
+### Patch Changes
+
+- Legge inn Skyra-undersøkelse på kvittering for meldt inn inntekt.
+
 ## 1.3.2
 
 ### Patch Changes
