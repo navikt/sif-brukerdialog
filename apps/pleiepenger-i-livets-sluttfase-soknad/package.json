@@ -69,7 +69,7 @@
         "storybook-addon-mock": "6.0.1",
         "typescript": "5.9.2",
         "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3"
+        "vite-plugin-checker": "0.11.0"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
