@@ -252,6 +252,10 @@ export const getDatoerUtenforSøknadsperioder = (datoer: Date[], søknadsperiode
     return datoer.filter((reisedag) => !isDateInDateRanges(reisedag, søknadsperioder));
 };
 
+export const getDatoerSomErHelg = (datoer: Date[]): Date[] => {
+    return datoer.filter((reisedag) => isDateWeekDay(reisedag) === false);
+};
+
 export const erAlleReisedagerInnenforSøknadsperioder = (
     reisedager: Enkeltdato[],
     søknadsperioder: DateRange[],
@@ -264,6 +268,17 @@ export const getReisedagerValidator = (kursperioder: DateRange[]) => {
         const error = getListValidator({ required: true })(reisedager);
         if (error) {
             return error;
+        }
+        /** Kontroller om datoer er på en helgedag */
+        const reisedagerPåHelg = getDatoerSomErHelg(reisedager.map((d) => d.dato));
+        if (reisedagerPåHelg.length > 0) {
+            return {
+                key: 'reisedagPåHelg',
+                values: {
+                    antallDager: reisedagerPåHelg.length,
+                    dager: reisedagerPåHelg.map((d) => dateFormatter.dayCompactDate(d)).join(', '),
+                },
+            };
         }
         /** Kontroller om datoer er innenfor søknadsperioder */
         const reisedagerUtenforSøknadsperioder = getDatoerUtenforSøknadsperioder(
