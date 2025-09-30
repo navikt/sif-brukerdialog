@@ -62,7 +62,6 @@
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
         "busboy": "1.6.0",
-        "chromatic": "13.2.1",
         "eslint": "9.36.0",
         "eslint-plugin-storybook": "9.1.8",
         "eslint-plugin-vitest": "0.5.4",

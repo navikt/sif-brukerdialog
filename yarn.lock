@@ -2101,21 +2101,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:4.1.1":
-  version: 4.1.1
-  resolution: "@chromatic-com/storybook@npm:4.1.1"
-  dependencies:
-    "@neoconfetti/react": "npm:^1.0.0"
-    chromatic: "npm:^12.0.0"
-    filesize: "npm:^10.0.12"
-    jsonfile: "npm:^6.1.0"
-    strip-ansi: "npm:^7.1.0"
-  peerDependencies:
-    storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0 || ^9.2.0-0 || ^10.0.0-0
-  checksum: 10/81cee93eb57e13bd97573f2e54fd5685c988d302b3aa04591a49d022b156d61f0b1884b9eb45ee10e18300df40196b54af9a64be8baa7dd01fa3f9bbc0cb7343
-  languageName: node
-  linkType: hard
-
 "@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.18.7":
   version: 6.18.7
   resolution: "@codemirror/autocomplete@npm:6.18.7"
@@ -4795,7 +4780,6 @@ __metadata:
     "@types/react-dom": "npm:19.1.9"
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.12.2"
-    chromatic: "npm:13.2.1"
     compression: "npm:1.8.1"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.18"
@@ -5006,7 +4990,6 @@ __metadata:
   resolution: "@navikt/omsorgsdager-aleneomsorg-dialog@workspace:apps/omsorgsdager-aleneomsorg-dialog"
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
-    "@chromatic-com/storybook": "npm:4.1.1"
     "@navikt/ds-css": "npm:7.31.0"
     "@navikt/ds-react": "npm:7.31.0"
     "@navikt/ds-tailwind": "npm:7.31.0"
@@ -5034,7 +5017,6 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:5.0.4"
     axios: "npm:1.12.2"
-    chromatic: "npm:13.2.1"
     compression: "npm:1.8.1"
     cors: "npm:2.8.5"
     csp-header: "npm:6.1.0"
@@ -5109,7 +5091,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad"
   dependencies:
-    "@chromatic-com/storybook": "npm:4.1.1"
     "@navikt/ds-css": "npm:7.31.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.31.0"
@@ -5143,7 +5124,6 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.4"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.2.1"
     compression: "npm:1.8.1"
     csp-header: "npm:6.1.0"
     dayjs: "npm:1.11.18"
@@ -5212,7 +5192,6 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.4"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.2.1"
     compression: "npm:1.8.1"
     csp-header: "npm:6.1.0"
     eslint: "npm:9.36.0"
@@ -5352,7 +5331,6 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.0.4"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
-    chromatic: "npm:13.2.1"
     compression: "npm:1.8.1"
     cookie-parser: "npm:1.4.7"
     csp-header: "npm:6.1.0"
@@ -5412,7 +5390,6 @@ __metadata:
   resolution: "@navikt/pleiepenger-i-livets-sluttfase-soknad@workspace:apps/pleiepenger-i-livets-sluttfase-soknad"
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
-    "@chromatic-com/storybook": "npm:4.1.1"
     "@navikt/ds-css": "npm:7.31.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.31.0"
@@ -5477,7 +5454,6 @@ __metadata:
   resolution: "@navikt/pleiepenger-sykt-barn@workspace:apps/pleiepenger-sykt-barn"
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
-    "@chromatic-com/storybook": "npm:4.1.1"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.31.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -6367,7 +6343,6 @@ __metadata:
   resolution: "@navikt/ungdomsytelse-veileder@workspace:apps/ungdomsytelse-veileder"
   dependencies:
     "@axe-core/playwright": "npm:4.10.2"
-    "@chromatic-com/storybook": "npm:4.1.1"
     "@eslint/eslintrc": "npm:3.3.1"
     "@eslint/js": "npm:9.36.0"
     "@grafana/faro-react": "npm:1.19.0"
@@ -6441,13 +6416,6 @@ __metadata:
     zod: "npm:4.1.11"
   languageName: unknown
   linkType: soft
-
-"@neoconfetti/react@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@neoconfetti/react@npm:1.0.0"
-  checksum: 10/71a623f2df79c773b6693fab3a252ee2d7bb1da4a8986c2d15b5ef25493835c1de64f2e44637faf823970d43d63f32227b09a6605ad23f39bc82c14d810e45cd
-  languageName: node
-  linkType: hard
 
 "@next/env@npm:15.5.4":
   version: 15.5.4
@@ -13016,44 +12984,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:13.2.1":
-  version: 13.2.1
-  resolution: "chromatic@npm:13.2.1"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 10/e2e7854c7f2e219dfe886d17d5bb1fbc23f28a8daaae3174e45e44826d226ef5d6abd848cbde8e1a5b9116b99c275d32cbe274a0a0f357c7239b221125ffab25
-  languageName: node
-  linkType: hard
-
-"chromatic@npm:^12.0.0":
-  version: 12.2.0
-  resolution: "chromatic@npm:12.2.0"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 10/e5d8787b72f1f6bcc6133848eab8ae850d247b8ae4804112e402e7294701b8291cbd6e45b29c477ac4fe41250dd2a607958e5031c207b69b6c07881dd34dc171
-  languageName: node
-  linkType: hard
-
 "chrome-trace-event@npm:^1.0.2":
   version: 1.0.4
   resolution: "chrome-trace-event@npm:1.0.4"
@@ -16420,13 +16350,6 @@ __metadata:
     strip-outer: "npm:^1.0.1"
     trim-repeated: "npm:^1.0.0"
   checksum: 10/5b71a7ff8e958c8621957e6fbf7872024126d3b5da50f59b1634af3343ba1a69d4cc15cfe4ca4bbfa7c959ad4d98614ee51e6f1d9fa7326eef8ceda2da8cd74e
-  languageName: node
-  linkType: hard
-
-"filesize@npm:^10.0.12":
-  version: 10.1.6
-  resolution: "filesize@npm:10.1.6"
-  checksum: 10/e800837c4fc02303f1944d5a4c7b706df1c5cd95d745181852604fb00a1c2d55d2d3921252722bd2f0c86b59c94edaba23fa224776bbf977455d4034e7be1f45
   languageName: node
   linkType: hard
 
@@ -20582,7 +20505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^6.0.1, jsonfile@npm:^6.1.0":
+"jsonfile@npm:^6.0.1":
   version: 6.2.0
   resolution: "jsonfile@npm:6.2.0"
   dependencies:
@@ -26814,7 +26737,6 @@ __metadata:
     "@navikt/sif-validation": "workspace:*"
     "@sif/eslint-config": "workspace:*"
     "@types/react": "npm:19.1.16"
-    chromatic: "npm:13.2.1"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:4.1.0"
