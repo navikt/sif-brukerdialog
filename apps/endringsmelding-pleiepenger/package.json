@@ -65,7 +65,6 @@
         "@vitejs/plugin-react": "5.0.4",
         "axe-core": "4.10.3",
         "compression": "1.8.1",
-        "cross-env": "10.0.0",
         "express": "5.1.0",
         "http-proxy-middleware": "3.0.5",
         "mockdate": "3.0.5",

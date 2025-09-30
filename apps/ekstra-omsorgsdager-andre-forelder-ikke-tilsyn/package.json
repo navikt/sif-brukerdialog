@@ -55,7 +55,6 @@
         "@types/react-router-dom": "5.3.3",
         "chromatic": "13.2.1",
         "compression": "1.8.1",
-        "cross-env": "10.0.0",
         "express": "5.1.0",
         "helmet": "8.1.0",
         "http-proxy-middleware": "3.0.5",
