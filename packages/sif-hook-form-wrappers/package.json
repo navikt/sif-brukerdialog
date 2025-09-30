@@ -22,7 +22,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.31.0",
         "@navikt/sif-common-utils": "workspace:*",
-        "@types/react": "19.1.15",
+        "@types/react": "19.1.16",
         "@types/react-dom": "19.1.9",
         "dayjs": "1.11.18",
         "react": "19.1.1",
@@ -45,7 +45,7 @@
         "storybook-react-intl": "4.0.7",
         "typescript": "5.9.2",
         "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3",
+        "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },
     "peerDependencies": {
