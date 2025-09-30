@@ -7,7 +7,6 @@ import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-import Skyra from '../../../../../components/skyra/Skyra';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
@@ -39,9 +38,6 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
             <RapporterInntektOppgavePart {...props} />
-            <div>
-                <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
-            </div>
         </DefaultPageLayout>
     );
 };
