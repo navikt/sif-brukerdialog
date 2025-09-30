@@ -22,7 +22,7 @@ body.innsynAppBody {
     color: var(--ax-text-neutral);
 }
 
-skyra-survey > * {
+skyra-survey::part(wrapper) {
     background-color: white;
     padding: 1rem;
     border-radius: 0.5rem;
