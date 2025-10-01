@@ -10,7 +10,7 @@ import { AppRoutes } from '@shared/utils/AppRoutes';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
+import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
@@ -75,16 +75,11 @@ const OppgaveOgTilbakemelding = ({
 };
 
 interface UbesvartProps {
-    svaralternativer?: UttalelseSvaralternativer;
     endreSvaralternativRekkefølge?: boolean;
     children: React.ReactNode;
 }
 
-const Ubesvart = ({
-    svaralternativer = { harUttalelseLabel: 'Ja', harIkkeUttalelseLabel: 'Nei' },
-    endreSvaralternativRekkefølge,
-    children,
-}: UbesvartProps) => {
+const Ubesvart = ({ endreSvaralternativRekkefølge, children }: UbesvartProps) => {
     const appIntl = useAppIntl();
     const { oppgave, visKvittering, setVisKvittering, deltakerNavn } = useOppgavebekreftelse();
     const navigate = useNavigate();
@@ -105,7 +100,7 @@ const Ubesvart = ({
             </section>
             <section aria-label={appIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
-                    svaralternativer={svaralternativer}
+                    svaralternativer={getSvaralternativer(oppgave, appIntl)}
                     reverserSvaralternativer={endreSvaralternativRekkefølge}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
                     uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
@@ -154,14 +149,10 @@ const Kvittering = ({ children }: KvitteringProps) => {
 };
 
 interface BesvartProps {
-    svaralternativer?: UttalelseSvaralternativer;
     children: React.ReactNode;
 }
 
-const Besvart = ({
-    children,
-    svaralternativer = { harUttalelseLabel: 'Ja', harIkkeUttalelseLabel: 'Nei' },
-}: BesvartProps) => {
+const Besvart = ({ children }: BesvartProps) => {
     const appIntl = useAppIntl();
     const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
@@ -171,7 +162,7 @@ const Besvart = ({
             return (
                 <OppgaveOgTilbakemelding
                     beskjedFraNav={children}
-                    svaralternativer={svaralternativer}
+                    svaralternativer={getSvaralternativer(oppgave, appIntl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
                     bekreftelse={oppgave.bekreftelse}
                 />
