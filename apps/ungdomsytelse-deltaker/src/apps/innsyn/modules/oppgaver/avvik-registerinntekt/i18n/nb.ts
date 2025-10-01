@@ -34,6 +34,10 @@ export const avvikRegisterinntektMessages_nb = {
     'avvikRegisterinntektOppgavetekst.7.kunYtelse':
         'Hvis vi ikke hører fra deg innen svarfristen, bruker vi lønnen vi har fått har oppgitt.',
 
+    'avvikRegisterinntektOppgavetekst.uttalelseForm.spørsmål': 'Stemmer lønnen vi har fått oppgitt?',
+    'avvikRegisterinntektOppgavetekst.uttalelseForm.harTilbakemeldingLabel':
+        'Nei, lønnen stemmer ikke. Jeg har en tilbakemelding.',
+    'avvikRegisterinntektOppgavetekst.uttalelseForm.harIkkeTilbakemeldingLabel': 'Ja, lønnen stemmer',
     'regelverkOgInnsyn.readMore.tittel': 'Regelverk og innsyn',
     'regelverkOgInnsyn.readMore.tekst.1': 'Se regelverket for ungdomsprogramytelsen:',
     'regelverkOgInnsyn.readMore.paragraf': '§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)',

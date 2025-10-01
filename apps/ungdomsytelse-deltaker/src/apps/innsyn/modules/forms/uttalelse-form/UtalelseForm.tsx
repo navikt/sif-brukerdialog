@@ -15,8 +15,8 @@ import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/Api
 import { AppText, useAppIntl } from '@shared/i18n';
 
 export type InvertertUttalelseVariant = {
-    jaLabel: string;
-    neiLabel: string;
+    harTilbakemeldingLabel: string;
+    harIkkeTilbakemeldingLabel: string;
     spørsmål: string;
 };
 interface Props {
@@ -100,8 +100,8 @@ const UtalelseForm = ({
                                     name={FormFields.harTilbakemelding}
                                     legend={invertertVariant.spørsmål}
                                     labels={{
-                                        no: invertertVariant.neiLabel,
-                                        yes: invertertVariant.jaLabel,
+                                        no: invertertVariant.harIkkeTilbakemeldingLabel,
+                                        yes: invertertVariant.harTilbakemeldingLabel,
                                     }}
                                     validate={getYesOrNoValidator()}
                                 />
