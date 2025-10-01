@@ -153,7 +153,7 @@ export const innsynMessages_nb = {
     'uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',
     'uttalelseForm.cancelButtonLabel': 'Avbryt',
     'uttalelseForm.defaultDescription':
-        'Du må ikke oppgi sensitive informasjon (særlige kategorier av personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
+        'Du må ikke oppgi sensitive informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
     'uttalelseForm.validation.tilbakemelding.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
