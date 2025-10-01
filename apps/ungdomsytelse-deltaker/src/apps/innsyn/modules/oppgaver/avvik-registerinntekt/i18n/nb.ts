@@ -18,9 +18,8 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi bruker denne lønnen fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
         'Vi bruker denne lønnen til å vurdere hvor mye du får utbetalt.',
-    'avvikRegisterinntektOppgavetekst.1.harIkkeInntekt':
-        '[TODO: informasjon når bruker har oppgitt inntekt, men vi har ikke registrert noe]',
     'avvikRegisterinntektOppgavetekst.2': 'Har du en tilbakemelding på disse opplysningene?',
+    'avvikRegisterinntektOppgavetekst.2.b': 'Send oss svaret ditt gjennom skjemaet lenger ned på denne siden.',
     'avvikRegisterinntektOppgavetekst.3':
         'Velg <strong>Nei</strong> hvis opplysningene er riktige, og du ikke har noen tilbakemelding.',
     'avvikRegisterinntektOppgavetekst.4':

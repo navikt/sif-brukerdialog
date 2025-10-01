@@ -77,24 +77,21 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     </BodyLong>
                 </>
             ) : (
-                <>
-                    <BodyLong spacing>
-                        <AppText
-                            id="avvikRegisterinntektOppgavetekst.ingenOpplysninger"
-                            values={{ rapporteringsmåned }}
-                        />
-                    </BodyLong>
-                    <BodyLong spacing>
-                        <AppText id="avvikRegisterinntektOppgavetekst.1.harIkkeInntekt" />
-                    </BodyLong>
-                </>
+                <BodyLong spacing>
+                    <AppText id="avvikRegisterinntektOppgavetekst.ingenOpplysninger" values={{ rapporteringsmåned }} />
+                </BodyLong>
             )}
 
             <Box marginBlock="2 0">
-                <BodyLong weight="semibold">
-                    <AppText id="avvikRegisterinntektOppgavetekst.2" />
-                </BodyLong>
-                <Box marginBlock="3 6">
+                <VStack gap="3">
+                    <BodyLong weight="semibold">
+                        <AppText id="avvikRegisterinntektOppgavetekst.2" />
+                    </BodyLong>
+                    <BodyLong>
+                        <AppText id="avvikRegisterinntektOppgavetekst.2.b" />
+                    </BodyLong>
+                </VStack>
+                <Box marginBlock="4 6">
                     <List>
                         <List.Item>
                             <AppText
