@@ -91,10 +91,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
             )}
 
             <Box marginBlock="2 0">
-                <BodyLong weight="semibold">
-                    <AppText id="avvikRegisterinntektOppgavetekst.2" />
-                </BodyLong>
-                <Box marginBlock="3 6">
+                <Box marginBlock="0 6">
                     <List>
                         <List.Item>
                             <AppText

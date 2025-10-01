@@ -27,7 +27,12 @@ const AvvikRegisterinntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvit
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart>
+                <Oppgavebekreftelse.Ubesvart
+                    invertertVariant={{
+                        spørsmål: 'Stemmer lønnen vi har fått oppgitt?',
+                        neiLabel: 'Ja, lønnen stemmer',
+                        jaLabel: 'Nei, lønnen stemmer ikke. Jeg har en tilbakemelding',
+                    }}>
                     <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
                 </Oppgavebekreftelse.Ubesvart>
 

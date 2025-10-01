@@ -14,11 +14,17 @@ import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation'
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { AppText, useAppIntl } from '@shared/i18n';
 
+export type InvertertUttalelseVariant = {
+    jaLabel: string;
+    neiLabel: string;
+    spørsmål: string;
+};
 interface Props {
     harTilbakemeldingSpørsmål: string;
     tilbakemeldingLabel: string;
     tilbakemeldingDescription?: React.ReactNode;
     oppgaveReferanse: string;
+    invertertVariant?: InvertertUttalelseVariant;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
     onCancel?: () => void;
 }
@@ -47,6 +53,7 @@ const UtalelseForm = ({
     tilbakemeldingLabel,
     tilbakemeldingDescription,
     oppgaveReferanse,
+    invertertVariant,
     onSuccess,
     onCancel,
 }: Props) => {
@@ -55,7 +62,9 @@ const UtalelseForm = ({
     const { intl, text } = useAppIntl();
 
     const handleSubmit = async (values: FormValues) => {
-        const harUttalelse = values[FormFields.harTilbakemelding] === YesOrNo.YES;
+        const harUttalelse = invertertVariant
+            ? values[FormFields.harTilbakemelding] === YesOrNo.NO
+            : values[FormFields.harTilbakemelding] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
             oppgave: {
@@ -86,12 +95,25 @@ const UtalelseForm = ({
                             includeValidationSummary={true}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
                             <VStack gap="6" marginBlock="2 0">
-                                <YesOrNoQuestion
-                                    reverse={true}
-                                    name={FormFields.harTilbakemelding}
-                                    legend={harTilbakemeldingSpørsmål}
-                                    validate={getYesOrNoValidator()}
-                                />
+                                {invertertVariant ? (
+                                    <YesOrNoQuestion
+                                        reverse={true}
+                                        name={FormFields.harTilbakemelding}
+                                        legend={invertertVariant.spørsmål}
+                                        labels={{
+                                            no: invertertVariant.neiLabel,
+                                            yes: invertertVariant.jaLabel,
+                                        }}
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                ) : (
+                                    <YesOrNoQuestion
+                                        reverse={true}
+                                        name={FormFields.harTilbakemelding}
+                                        legend={harTilbakemeldingSpørsmål}
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                )}
                                 {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
                                     <Textarea
                                         name={FormFields.tilbakemelding}

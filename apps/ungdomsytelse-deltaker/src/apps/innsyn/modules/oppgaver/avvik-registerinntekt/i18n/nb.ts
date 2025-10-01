@@ -20,10 +20,10 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi bruker denne lønnen til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.1.harIkkeInntekt':
         '[TODO: informasjon når bruker har oppgitt inntekt, men vi har ikke registrert noe]',
-    'avvikRegisterinntektOppgavetekst.2': ' Gi tilbakemelding om lønnen stemmer eller ikke:',
-    'avvikRegisterinntektOppgavetekst.3': 'Hvis det stemmer, krysser du av for <strong>Nei</strong>.',
+    'avvikRegisterinntektOppgavetekst.2': 'Vi trenger et svar fra deg på om lønnen stemmer eller ikke.',
+    'avvikRegisterinntektOppgavetekst.3': 'Hvis lønnen stemmer, krysser du av for <strong>Ja, lønnen stemmer</strong>.',
     'avvikRegisterinntektOppgavetekst.4':
-        'Hvis du mener at lønnen er feil, krysser du av på <strong>Ja</strong> og sender en tilbakemelding til oss om det.',
+        'Hvis du mener at lønnen er feil, krysser du av på <strong>Nei, lønnen stemmer ikke</strong> og sender en tilbakemelding til oss om det.',
 
     'avvikRegisterinntektOppgavetekst.5': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
     'avvikRegisterinntektOppgavetekst.6': 'Fristen for å svare er {formatertFrist}.',
