@@ -5,6 +5,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
 
+import { UttalelseSvaralternativer } from '../../forms/uttalelse-form/UtalelseForm';
 import AvvikRegisterinntektOppgavetekst, {
     getUtbetalingsmånedForAvvikRegisterinntektOppgave,
 } from './parts/AvvikRegisterinntektOppgavetekst';
@@ -20,6 +21,10 @@ const AvvikRegisterinntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvit
     const intl = useAppIntl();
 
     const utbetalingsmåned = getUtbetalingsmånedForAvvikRegisterinntektOppgave(oppgave.oppgavetypeData.fraOgMed);
+    const svaralternativer: UttalelseSvaralternativer = {
+        harIkkeUttalelseLabel: intl.text('avvikRegisterinntektOppgavetekst.uttalelseForm.harIkkeTilbakemeldingLabel'),
+        harUttalelseLabel: intl.text('avvikRegisterinntektOppgavetekst.uttalelseForm.harTilbakemeldingLabel'),
+    };
 
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(oppgave, intl)}>
@@ -27,20 +32,11 @@ const AvvikRegisterinntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvit
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart
-                    invertertVariant={{
-                        spørsmål: intl.text('avvikRegisterinntektOppgavetekst.uttalelseForm.spørsmål'),
-                        harIkkeTilbakemeldingLabel: intl.text(
-                            'avvikRegisterinntektOppgavetekst.uttalelseForm.harIkkeTilbakemeldingLabel',
-                        ),
-                        harTilbakemeldingLabel: intl.text(
-                            'avvikRegisterinntektOppgavetekst.uttalelseForm.harTilbakemeldingLabel',
-                        ),
-                    }}>
+                <Oppgavebekreftelse.Ubesvart endreSvaralternativRekkefølge={true}>
                     <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
                 </Oppgavebekreftelse.Ubesvart>
 
-                <Oppgavebekreftelse.Besvart>
+                <Oppgavebekreftelse.Besvart svaralternativer={svaralternativer}>
                     <AvvikRegisterinntektOppsummering oppgave={oppgave} />
                 </Oppgavebekreftelse.Besvart>
 

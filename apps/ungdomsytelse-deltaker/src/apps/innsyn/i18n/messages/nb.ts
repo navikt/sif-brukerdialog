@@ -98,7 +98,7 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på lønn i {månedOgÅr}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Sjekk at opplysningene våre om lønnen du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Stemmer lønnen vi har fått oppgitt?',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
         'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',

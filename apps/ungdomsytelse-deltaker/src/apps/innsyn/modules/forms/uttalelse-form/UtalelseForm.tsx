@@ -14,29 +14,29 @@ import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation'
 import ApiErrorAlert from '@navikt/ung-common/src/components/api-error-alert/ApiErrorAlert';
 import { AppText, useAppIntl } from '@shared/i18n';
 
-export type InvertertUttalelseVariant = {
-    harTilbakemeldingLabel: string;
-    harIkkeTilbakemeldingLabel: string;
-    spørsmål: string;
+export type UttalelseSvaralternativer = {
+    harUttalelseLabel: string;
+    harIkkeUttalelseLabel: string;
 };
 interface Props {
-    harTilbakemeldingSpørsmål: string;
-    tilbakemeldingLabel: string;
-    tilbakemeldingDescription?: React.ReactNode;
+    spørsmål: string;
+    svaralternativer: UttalelseSvaralternativer;
+    reverserSvaralternativer?: boolean;
+    uttalelseLabel: string;
+    uttalelseDescription?: React.ReactNode;
     oppgaveReferanse: string;
-    invertertVariant?: InvertertUttalelseVariant;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
     onCancel?: () => void;
 }
 
 enum FormFields {
-    harTilbakemelding = 'harTilbakemelding',
-    tilbakemelding = 'tilbakemelding',
+    harUttalelse = 'harUttalelse',
+    uttalelse = 'uttalelse',
 }
 
 type FormValues = Partial<{
-    [FormFields.tilbakemelding]: string;
-    [FormFields.harTilbakemelding]: YesOrNo;
+    [FormFields.harUttalelse]: YesOrNo;
+    [FormFields.uttalelse]: string;
 }>;
 
 const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponents<
@@ -45,15 +45,16 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea } = getTypedFormComponent
     ValidationError
 >();
 
-const TILBAKEMELDING_MAX_LENGTH = 2000;
-const TILBAKEMELDING_MIN_LENGTH = 5;
+const MAX_LENGTH = 2000;
+const MIN_LENGTH = 5;
 
 const UtalelseForm = ({
-    harTilbakemeldingSpørsmål,
-    tilbakemeldingLabel,
-    tilbakemeldingDescription,
+    spørsmål,
+    uttalelseLabel,
+    uttalelseDescription,
     oppgaveReferanse,
-    invertertVariant,
+    svaralternativer,
+    reverserSvaralternativer,
     onSuccess,
     onCancel,
 }: Props) => {
@@ -62,16 +63,14 @@ const UtalelseForm = ({
     const { intl, text } = useAppIntl();
 
     const handleSubmit = async (values: FormValues) => {
-        const harUttalelse = invertertVariant
-            ? values[FormFields.harTilbakemelding] === YesOrNo.NO
-            : values[FormFields.harTilbakemelding] === YesOrNo.YES;
+        const harUttalelse = values[FormFields.harUttalelse] === YesOrNo.YES;
 
         const dto: UngdomsytelseOppgavebekreftelse = {
             oppgave: {
                 oppgaveReferanse: oppgaveReferanse,
                 uttalelse: {
                     harUttalelse,
-                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.tilbakemelding] : undefined,
+                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.uttalelse] : undefined,
                 },
             },
         };
@@ -94,49 +93,40 @@ const UtalelseForm = ({
                         includeValidationSummary={true}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
                         <VStack gap="6" marginBlock="2 0">
-                            {invertertVariant ? (
-                                <YesOrNoQuestion
-                                    reverse={true}
-                                    name={FormFields.harTilbakemelding}
-                                    legend={invertertVariant.spørsmål}
-                                    labels={{
-                                        no: invertertVariant.harIkkeTilbakemeldingLabel,
-                                        yes: invertertVariant.harTilbakemeldingLabel,
-                                    }}
-                                    validate={getYesOrNoValidator()}
-                                />
-                            ) : (
-                                <YesOrNoQuestion
-                                    reverse={true}
-                                    name={FormFields.harTilbakemelding}
-                                    legend={harTilbakemeldingSpørsmål}
-                                    validate={getYesOrNoValidator()}
-                                />
-                            )}
-                            {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
+                            <YesOrNoQuestion
+                                reverse={reverserSvaralternativer}
+                                name={FormFields.harUttalelse}
+                                legend={spørsmål}
+                                labels={{
+                                    no: svaralternativer.harIkkeUttalelseLabel,
+                                    yes: svaralternativer.harUttalelseLabel,
+                                }}
+                                validate={getYesOrNoValidator()}
+                            />
+                            {values[FormFields.harUttalelse] === YesOrNo.YES ? (
                                 <Textarea
-                                    name={FormFields.tilbakemelding}
-                                    label={tilbakemeldingLabel}
+                                    name={FormFields.uttalelse}
+                                    label={uttalelseLabel}
                                     description={
-                                        tilbakemeldingDescription || (
+                                        uttalelseDescription || (
                                             <BodyLong>
                                                 <AppText id="uttalelseForm.defaultDescription" />
                                             </BodyLong>
                                         )
                                     }
-                                    maxLength={TILBAKEMELDING_MAX_LENGTH}
+                                    maxLength={MAX_LENGTH}
                                     validate={(value) => {
                                         const errorKey = getStringValidator({
                                             required: true,
-                                            minLength: TILBAKEMELDING_MIN_LENGTH,
-                                            maxLength: TILBAKEMELDING_MAX_LENGTH,
+                                            minLength: MIN_LENGTH,
+                                            maxLength: MAX_LENGTH,
                                         })(value);
                                         return errorKey
                                             ? {
                                                   key: errorKey,
                                                   values: {
-                                                      min: TILBAKEMELDING_MIN_LENGTH,
-                                                      maks: TILBAKEMELDING_MAX_LENGTH,
+                                                      min: MIN_LENGTH,
+                                                      maks: MAX_LENGTH,
                                                   },
                                               }
                                             : undefined;
