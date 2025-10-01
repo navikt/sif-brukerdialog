@@ -75,11 +75,10 @@ const OppgaveOgTilbakemelding = ({
 };
 
 interface UbesvartProps {
-    endreSvaralternativRekkefølge?: boolean;
     children: React.ReactNode;
 }
 
-const Ubesvart = ({ endreSvaralternativRekkefølge, children }: UbesvartProps) => {
+const Ubesvart = ({ children }: UbesvartProps) => {
     const appIntl = useAppIntl();
     const { oppgave, visKvittering, setVisKvittering, deltakerNavn } = useOppgavebekreftelse();
     const navigate = useNavigate();
@@ -101,7 +100,6 @@ const Ubesvart = ({ endreSvaralternativRekkefølge, children }: UbesvartProps) =
             <section aria-label={appIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
                     svaralternativer={getSvaralternativer(oppgave, appIntl)}
-                    reverserSvaralternativer={endreSvaralternativRekkefølge}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
                     uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
                     oppgaveReferanse={oppgave.oppgaveReferanse}

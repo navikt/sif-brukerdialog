@@ -21,7 +21,6 @@ export type UttalelseSvaralternativer = {
 interface Props {
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
-    reverserSvaralternativer?: boolean;
     uttalelseLabel: string;
     uttalelseDescription?: React.ReactNode;
     oppgaveReferanse: string;
@@ -54,7 +53,6 @@ const UtalelseForm = ({
     uttalelseDescription,
     oppgaveReferanse,
     svaralternativer,
-    reverserSvaralternativer,
     onSuccess,
     onCancel,
 }: Props) => {
@@ -94,7 +92,7 @@ const UtalelseForm = ({
                         formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
                         <VStack gap="6" marginBlock="2 0">
                             <YesOrNoQuestion
-                                reverse={reverserSvaralternativer}
+                                reverse={true}
                                 name={FormFields.harUttalelse}
                                 legend={spørsmål}
                                 labels={{

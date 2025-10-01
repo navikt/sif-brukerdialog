@@ -27,7 +27,7 @@ const AvvikRegisterinntektOppgavePage = ({ deltakerNavn, oppgave, initialVisKvit
                 oppgave={oppgave}
                 deltakerNavn={deltakerNavn}
                 initialVisKvittering={initialVisKvittering}>
-                <Oppgavebekreftelse.Ubesvart endreSvaralternativRekkefølge={true}>
+                <Oppgavebekreftelse.Ubesvart>
                     <AvvikRegisterinntektOppgavetekst oppgave={oppgave} />
                 </Oppgavebekreftelse.Ubesvart>
 
