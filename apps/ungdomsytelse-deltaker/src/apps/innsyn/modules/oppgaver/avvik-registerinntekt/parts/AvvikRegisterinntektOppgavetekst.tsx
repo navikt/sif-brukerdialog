@@ -78,14 +78,14 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 </>
             ) : (
                 <>
-                    <BodyLong spacing>
+                    <BodyLong>
                         <AppText
                             id="avvikRegisterinntektOppgavetekst.ingenOpplysninger"
                             values={{ rapporteringsmåned }}
                         />
                     </BodyLong>
-                    <BodyLong spacing>
-                        <AppText id="avvikRegisterinntektOppgavetekst.1.harIkkeInntekt" />
+                    <BodyLong>
+                        <AppText id="avvikRegisterinntektOppgavetekst.ingenInntekt" values={{ rapporteringsmåned }} />
                     </BodyLong>
                 </>
             )}

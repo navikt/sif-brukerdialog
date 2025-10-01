@@ -61,6 +61,9 @@ export const innsynMessages_nb = {
     'oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
     'oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
 
+    'oppgavebekreftelse.oppgavetekst.ariaLabel': 'Oppgaveinformasjon',
+    'oppgavebekreftelse.uttalelseform.ariaLabel': 'Svarskjema',
+
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
     'oppgavestatus.ULØST': 'Uløst',
@@ -138,7 +141,6 @@ export const innsynMessages_nb = {
     'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgi lønn uten desimaler.',
 
     /** UtalelseForm */
-    'uttalelseForm.ariaLabel': 'Skjema for tilbakemelding',
     'uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',
     'uttalelseForm.cancelButtonLabel': 'Avbryt',
     'uttalelseForm.defaultDescription':

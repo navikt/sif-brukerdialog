@@ -80,77 +80,75 @@ const UtalelseForm = ({
     };
 
     return (
-        <section aria-label={text('uttalelseForm.ariaLabel')}>
-            <FormikWrapper
-                initialValues={{}}
-                onSubmit={handleSubmit}
-                renderForm={({ values }) => {
-                    return (
-                        <Form
-                            submitButtonLabel={text('uttalelseForm.submitButtonLabel')}
-                            cancelButtonLabel={text('uttalelseForm.cancelButtonLabel')}
-                            onCancel={onCancel}
-                            isFinalSubmit={true}
-                            submitPending={isPending}
-                            includeValidationSummary={true}
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
-                            <VStack gap="6" marginBlock="2 0">
-                                {invertertVariant ? (
-                                    <YesOrNoQuestion
-                                        reverse={true}
-                                        name={FormFields.harTilbakemelding}
-                                        legend={invertertVariant.spørsmål}
-                                        labels={{
-                                            no: invertertVariant.neiLabel,
-                                            yes: invertertVariant.jaLabel,
-                                        }}
-                                        validate={getYesOrNoValidator()}
-                                    />
-                                ) : (
-                                    <YesOrNoQuestion
-                                        reverse={true}
-                                        name={FormFields.harTilbakemelding}
-                                        legend={harTilbakemeldingSpørsmål}
-                                        validate={getYesOrNoValidator()}
-                                    />
-                                )}
-                                {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
-                                    <Textarea
-                                        name={FormFields.tilbakemelding}
-                                        label={tilbakemeldingLabel}
-                                        description={
-                                            tilbakemeldingDescription || (
-                                                <BodyLong>
-                                                    <AppText id="uttalelseForm.defaultDescription" />
-                                                </BodyLong>
-                                            )
-                                        }
-                                        maxLength={TILBAKEMELDING_MAX_LENGTH}
-                                        validate={(value) => {
-                                            const errorKey = getStringValidator({
-                                                required: true,
-                                                minLength: TILBAKEMELDING_MIN_LENGTH,
-                                                maxLength: TILBAKEMELDING_MAX_LENGTH,
-                                            })(value);
-                                            return errorKey
-                                                ? {
-                                                      key: errorKey,
-                                                      values: {
-                                                          min: TILBAKEMELDING_MIN_LENGTH,
-                                                          maks: TILBAKEMELDING_MAX_LENGTH,
-                                                      },
-                                                  }
-                                                : undefined;
-                                        }}
-                                    />
-                                ) : null}
-                                {error ? <ApiErrorAlert error={error} /> : null}
-                            </VStack>
-                        </Form>
-                    );
-                }}
-            />
-        </section>
+        <FormikWrapper
+            initialValues={{}}
+            onSubmit={handleSubmit}
+            renderForm={({ values }) => {
+                return (
+                    <Form
+                        submitButtonLabel={text('uttalelseForm.submitButtonLabel')}
+                        cancelButtonLabel={text('uttalelseForm.cancelButtonLabel')}
+                        onCancel={onCancel}
+                        isFinalSubmit={true}
+                        submitPending={isPending}
+                        includeValidationSummary={true}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'uttalelseForm.validation')}>
+                        <VStack gap="6" marginBlock="2 0">
+                            {invertertVariant ? (
+                                <YesOrNoQuestion
+                                    reverse={true}
+                                    name={FormFields.harTilbakemelding}
+                                    legend={invertertVariant.spørsmål}
+                                    labels={{
+                                        no: invertertVariant.neiLabel,
+                                        yes: invertertVariant.jaLabel,
+                                    }}
+                                    validate={getYesOrNoValidator()}
+                                />
+                            ) : (
+                                <YesOrNoQuestion
+                                    reverse={true}
+                                    name={FormFields.harTilbakemelding}
+                                    legend={harTilbakemeldingSpørsmål}
+                                    validate={getYesOrNoValidator()}
+                                />
+                            )}
+                            {values[FormFields.harTilbakemelding] === YesOrNo.YES ? (
+                                <Textarea
+                                    name={FormFields.tilbakemelding}
+                                    label={tilbakemeldingLabel}
+                                    description={
+                                        tilbakemeldingDescription || (
+                                            <BodyLong>
+                                                <AppText id="uttalelseForm.defaultDescription" />
+                                            </BodyLong>
+                                        )
+                                    }
+                                    maxLength={TILBAKEMELDING_MAX_LENGTH}
+                                    validate={(value) => {
+                                        const errorKey = getStringValidator({
+                                            required: true,
+                                            minLength: TILBAKEMELDING_MIN_LENGTH,
+                                            maxLength: TILBAKEMELDING_MAX_LENGTH,
+                                        })(value);
+                                        return errorKey
+                                            ? {
+                                                  key: errorKey,
+                                                  values: {
+                                                      min: TILBAKEMELDING_MIN_LENGTH,
+                                                      maks: TILBAKEMELDING_MAX_LENGTH,
+                                                  },
+                                              }
+                                            : undefined;
+                                    }}
+                                />
+                            ) : null}
+                            {error ? <ApiErrorAlert error={error} /> : null}
+                        </VStack>
+                    </Form>
+                );
+            }}
+        />
     );
 };
 

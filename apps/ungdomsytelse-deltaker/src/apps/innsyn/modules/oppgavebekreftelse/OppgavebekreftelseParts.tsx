@@ -78,22 +78,26 @@ const Ubesvart = ({ invertertVariant, children }: UbesvartProps) => {
 
     return (
         <VStack gap="8">
-            <GuidePanel>
-                <VStack gap="4">
-                    <Heading level="2" size="medium">
-                        <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
-                    </Heading>
-                    <Box maxWidth="90%">{children}</Box>
-                </VStack>
-            </GuidePanel>
-            <UtalelseForm
-                invertertVariant={invertertVariant}
-                harTilbakemeldingSpørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
-                tilbakemeldingLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
-                oppgaveReferanse={oppgave.oppgaveReferanse}
-                onSuccess={() => setVisKvittering(true)}
-                onCancel={() => navigate(AppRoutes.innsyn)}
-            />
+            <section aria-label={appIntl.text('oppgavebekreftelse.oppgavetekst.ariaLabel')}>
+                <GuidePanel>
+                    <VStack gap="4">
+                        <Heading level="2" size="medium">
+                            <AppText id="oppgavebekreftelse.ubesvart.tittel" values={{ deltakerNavn }} />
+                        </Heading>
+                        <Box maxWidth="90%">{children}</Box>
+                    </VStack>
+                </GuidePanel>
+            </section>
+            <section aria-label={appIntl.text('oppgavebekreftelse.uttalelseform.ariaLabel')}>
+                <UtalelseForm
+                    invertertVariant={invertertVariant}
+                    harTilbakemeldingSpørsmål={getTilbakemeldingSpørsmål(oppgave, appIntl)}
+                    tilbakemeldingLabel={getTilbakemeldingFritekstLabel(oppgave, appIntl)}
+                    oppgaveReferanse={oppgave.oppgaveReferanse}
+                    onSuccess={() => setVisKvittering(true)}
+                    onCancel={() => navigate(AppRoutes.innsyn)}
+                />
+            </section>
         </VStack>
     );
 };
