@@ -3,12 +3,9 @@ import { getOppgaveStatusText, getOppgaveTittel } from '@innsyn/utils/textUtils'
 import { Heading, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@shared/i18n';
 import { BekreftelseOppgave } from '@shared/types/Oppgave';
+import { useState } from 'react';
 
-import {
-    OppgavebekreftelseContext,
-    useOppgavebekreftelse,
-    useOppgavebekreftelseState,
-} from './hooks/useOppgavebekreftelse';
+import { OppgavebekreftelseContext, useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 
 interface Props {
@@ -20,10 +17,16 @@ interface Props {
 
 const Oppgavebekreftelse = ({ oppgave, deltakerNavn, children, initialVisKvittering = false }: Props) => {
     const appIntl = useAppIntl();
-    const contextValue = useOppgavebekreftelseState(oppgave, deltakerNavn, initialVisKvittering);
+    const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     return (
-        <OppgavebekreftelseContext.Provider value={contextValue}>
+        <OppgavebekreftelseContext.Provider
+            value={{
+                oppgave,
+                deltakerNavn,
+                visKvittering,
+                setVisKvittering,
+            }}>
             <VStack gap="6">
                 <div>
                     <OppgaveStatusTag
