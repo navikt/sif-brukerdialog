@@ -1,6 +1,6 @@
 import InntektTable from '@innsyn/components/inntekt-table/InntektTabell';
 import { avvikRegisterinntektOppgaveUtils } from '@innsyn/modules/oppgaver/avvik-registerinntekt/avvikRegisterinntektOppgaveUtils';
-import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { AvvikRegisterinntektOppgave } from '@shared/types/Oppgave';
@@ -69,10 +69,13 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                         {harKunYtelseInntekt ? (
                             <AppText
                                 id="avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse"
-                                values={{ utbetalingsmåned }}
+                                values={{ utbetalingsmåned, strong: (content) => <strong>{content}</strong> }}
                             />
                         ) : (
-                            <AppText id="avvikRegisterinntektOppgavetekst.1.harInntekt" values={{ utbetalingsmåned }} />
+                            <AppText
+                                id="avvikRegisterinntektOppgavetekst.1.harInntekt"
+                                values={{ utbetalingsmåned, strong: (content) => <strong>{content}</strong> }}
+                            />
                         )}
                     </BodyLong>
                 </>
@@ -81,17 +84,20 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                     <BodyLong>
                         <AppText
                             id="avvikRegisterinntektOppgavetekst.ingenOpplysninger"
-                            values={{ rapporteringsmåned }}
+                            values={{ rapporteringsmåned, strong: (content) => <strong>{content}</strong> }}
                         />
                     </BodyLong>
                     <BodyLong>
-                        <AppText id="avvikRegisterinntektOppgavetekst.ingenInntekt" values={{ rapporteringsmåned }} />
+                        <AppText
+                            id="avvikRegisterinntektOppgavetekst.ingenInntekt"
+                            values={{ rapporteringsmåned, strong: (content) => <strong>{content}</strong> }}
+                        />
                     </BodyLong>
                 </>
             )}
 
             <Box marginBlock="2 0">
-                <Box marginBlock="0 6">
+                {/* <Box marginBlock="0 6">
                     <List>
                         <List.Item>
                             <AppText
@@ -106,7 +112,7 @@ const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                             />
                         </List.Item>
                     </List>
-                </Box>
+                </Box> */}
                 <BodyLong weight="semibold">
                     <AppText id="avvikRegisterinntektOppgavetekst.5" />
                 </BodyLong>
