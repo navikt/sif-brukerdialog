@@ -1,9 +1,11 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 import Skyra from '../../../components/skyra/Skyra';
+import { useSkyraReloader } from '../hooks/useSkyraReloader';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 
 const SkyraTestPage = () => {
+    useSkyraReloader();
     return (
         <DefaultPageLayout documentTitle="Skyra testside">
             <VStack gap="4">
