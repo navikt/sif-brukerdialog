@@ -1,8 +1,7 @@
-import { Alert, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, BodyLong, BoxNew, Heading, HStack, Page, VStack } from '@navikt/ds-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
@@ -11,6 +10,7 @@ import { queryKeys } from '../../queries/queryKeys';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { erÅpnetForRegistrering } from '../../utils/deltakelseUtils';
+import InformasjonIntro from './InformasjonIntro';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ const StartPage = () => {
             <AppPage>
                 <Page.Block gutters={true}>
                     <HStack align="center" justify="center" paddingBlock="14 0">
-                        <VStack gap="10" maxWidth="44rem">
+                        <VStack gap="8" maxWidth="44rem">
                             <VStack gap="4">
                                 <Heading level="1" size="large">
                                     Deltakerregistrering - ungdomsprogrammet
@@ -60,23 +60,9 @@ const StartPage = () => {
                                     </Alert>
                                 )}
                             </VStack>
-                            <VStack gap="4" marginBlock="4 0">
-                                <Alert variant="info" size="small" className="w-full" inline>
-                                    <BodyLong>
-                                        Du finner mer informasjon om denne løsningen, ungdomsprogrammet og
-                                        ungdomsprogramytelsen ved å klikke på{' '}
-                                        <span>
-                                            <InformationSquareIcon
-                                                fontSize="1.6rem"
-                                                display="inline"
-                                                className="inline"
-                                                aria-label="Informasjonikon"
-                                            />
-                                        </span>{' '}
-                                        ikonet i menyen oppe til høyre.
-                                    </BodyLong>
-                                </Alert>
-                            </VStack>
+                            <Bleed marginBlock="4 0">
+                                <InformasjonIntro />
+                            </Bleed>
                         </VStack>
                     </HStack>
                 </Page.Block>
