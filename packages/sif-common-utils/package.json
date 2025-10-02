@@ -20,8 +20,8 @@
         "config": "workspace:*",
         "globals": "16.4.0",
         "intl": "1.2.5",
-        "react": "19.1.1",
-        "react-dom": "19.1.1",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
         "react-intl": "7.1.11",
         "typescript": "5.9.2",
         "vitest": "3.2.4"
