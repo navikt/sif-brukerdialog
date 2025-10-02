@@ -2,7 +2,7 @@ import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
-import Skyra from '../../../../../../components/skyra/Skyra';
+import Skyra, { Slug } from '../../../../../../components/skyra/Skyra';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { useSkyraReloader } from '../../../../hooks/useSkyraReloader';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
@@ -33,8 +33,7 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
                 <ForsideLenkeButton />
             </div>
             <div>
-                {/* <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" /> */}
-                <Skyra slug="arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt" />
+                <Skyra slug={Slug.prod_rapporterInntekt} />
             </div>
         </VStack>
     );
