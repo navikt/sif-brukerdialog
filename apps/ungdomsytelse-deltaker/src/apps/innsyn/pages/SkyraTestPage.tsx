@@ -13,8 +13,22 @@ const SkyraTestPage = () => {
                 <Alert variant="error">Side som tester om skyra-undersøkelse vises</Alert>
             </VStack>
 
-            <BodyShort>Slug: arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt</BodyShort>
-            <Skyra slug="arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt" />
+            <VStack gap="10">
+                <div>
+                    <Heading size="medium" level="2">
+                        Test
+                    </Heading>
+                    <BodyShort>Slug: arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt</BodyShort>
+                    <Skyra slug="arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt" />
+                </div>
+                <div>
+                    <Heading size="medium" level="2">
+                        Prod
+                    </Heading>
+                    <BodyShort>Slug: arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt</BodyShort>
+                    <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
+                </div>
+            </VStack>
         </DefaultPageLayout>
     );
 };
