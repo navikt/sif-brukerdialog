@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.5
+
+### Patch Changes
+
+- Bugfix på direktelenke til oppgaver fra MinSide + legge til timeout for skyra reload.
+
 ## 1.3.4
 
 ### Patch Changes
