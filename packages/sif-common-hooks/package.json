@@ -5,8 +5,8 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "react": "19.1.1",
-        "typescript": "5.9.2"
+        "react": "19.2.0",
+        "typescript": "5.9.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
