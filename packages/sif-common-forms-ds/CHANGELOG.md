@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.10
+
+### Patch Changes
+
+- Sperre bruker fra å kun velge periode innenfor helg, og velge reisedager på helg.
+
 ## 21.0.9
 
 ### Patch Changes

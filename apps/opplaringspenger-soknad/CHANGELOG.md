@@ -1,5 +1,14 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.3.11
+
+### Patch Changes
+
+- Sperre bruker fra å kun velge periode innenfor helg, og velge reisedager på helg.
+- Updated dependencies
+    - @navikt/sif-common-forms-ds@21.0.10
+    - @navikt/sif-common-soknad-ds@26.0.10
+
 ## 1.3.10
 
 ### Patch Changes

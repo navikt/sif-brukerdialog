@@ -1,5 +1,13 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-forms-ds@21.0.10
+    - @navikt/sif-common-soknad-ds@26.0.10
+
 ## 1.3.0
 
 ### Minor Changes
