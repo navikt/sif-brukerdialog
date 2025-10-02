@@ -3,6 +3,8 @@ import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-
 import { AppIntlShape } from '@shared/i18n';
 import { BekreftelseOppgave, EndretSluttdatoOppgave, Oppgave, OppgaveBase } from '@shared/types/Oppgave';
 
+import { UttalelseSvaralternativer } from '../modules/forms/uttalelse-form/UtalelseForm';
+
 const BEKREFT_MELDT_UT = 'BEKREFT_MELDT_UT';
 
 const getSluttdatoTextKey = (oppgave: EndretSluttdatoOppgave) => {
@@ -88,6 +90,13 @@ export const getOppgaveStatusText = (oppgave: OppgaveBase): string => {
 
 export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
     return text(`oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`);
+};
+
+export const getSvaralternativer = (oppgave: BekreftelseOppgave, { text }: AppIntlShape): UttalelseSvaralternativer => {
+    return {
+        harIkkeUttalelseLabel: text(`oppgavetype.${oppgave.oppgavetype}.harIkkeUttalelseLabel`),
+        harUttalelseLabel: text(`oppgavetype.${oppgave.oppgavetype}.harUttalelseLabel`),
+    };
 };
 
 export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: AppIntlShape) => {
