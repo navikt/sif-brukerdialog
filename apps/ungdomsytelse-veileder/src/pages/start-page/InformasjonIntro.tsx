@@ -15,9 +15,9 @@ const InformasjonIntro = () => {
                             aria-label="Informasjonikon"
                         />
                     </span>{' '}
-                    Informasjon
+                    Hjelpeartikler
                 </strong>{' '}
-                ikonet i menyen oppe til høyre.
+                i menyen oppe til høyre.
             </BodyLong>
         </Alert>
     );

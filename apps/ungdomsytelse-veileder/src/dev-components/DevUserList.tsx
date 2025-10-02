@@ -6,7 +6,7 @@ const DevUserList = () => {
     if (appEnv.DEV_IS_STORYBOOK) {
         return null;
     }
-    return import.meta.env.MODE === 'msw' ? (
+    return import.meta.env.MODE === 'msw_' ? (
         <VStack gap="10">
             <VStack>
                 Testbrukere lokalt:
