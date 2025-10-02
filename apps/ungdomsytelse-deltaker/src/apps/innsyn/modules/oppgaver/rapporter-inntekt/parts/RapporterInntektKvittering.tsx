@@ -33,7 +33,7 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
                 <ForsideLenkeButton />
             </div>
             <div>
-                <Skyra slug="arbeids-og-velferdsetaten-nav/ungdomsprorgramytelsen-rapportere-inntekt" />
+                <Skyra slug="arbeids-og-velferdsetaten-nav/test-rapportering-av-inntekt" />
             </div>
         </VStack>
     );
