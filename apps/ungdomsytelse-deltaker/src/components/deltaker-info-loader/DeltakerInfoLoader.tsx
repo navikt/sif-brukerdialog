@@ -1,6 +1,6 @@
 import { ApiError } from '@navikt/ung-common';
 import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
@@ -22,6 +22,11 @@ const getErrorInfoToLog = (error: ApiError | null) => {
     }
     const { context, message, type } = error;
     return { context, message, type };
+};
+
+const OppgaveRedirect = () => {
+    const { oppgaveId } = useParams<{ oppgaveId: string }>();
+    return <Navigate to={`${AppRoutes.innsyn}/oppgave/${oppgaveId}`} replace />;
 };
 
 const DeltakerInfoLoader = () => {
@@ -98,6 +103,7 @@ const DeltakerInfoLoader = () => {
                 <Routes>
                     <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
                     <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
+                    <Route path="/oppgave/:oppgaveId" element={<OppgaveRedirect />} />
                     {/* Fallback for andre routes */}
                     <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
                 </Routes>
