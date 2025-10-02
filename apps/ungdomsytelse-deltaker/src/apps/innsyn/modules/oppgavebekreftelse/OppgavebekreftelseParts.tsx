@@ -26,7 +26,6 @@ const OppgaveOgTilbakemelding = ({
     svaralternativer,
     bekreftelse,
 }: OppgaveOgTilbakemeldingProps) => {
-    // const { text } = useAppIntl();
     return (
         <section aria-labelledby="summaryHeading">
             <FormSummary>
