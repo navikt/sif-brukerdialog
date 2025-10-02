@@ -1,5 +1,5 @@
 import { useRapporterInntekt } from '@innsyn/hooks/api/useRapporterInntekt';
-import { Alert, ReadMore, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import {
     getIntlFormErrorHandler,
@@ -104,9 +104,24 @@ const RapporterInntektForm = ({ måned, oppgaveReferanse, onCancel, onSuccess }:
                                                 allowDecimals: false,
                                             })}
                                         />
-                                        <ReadMore header={text('inntektForm.hvordanFinnerDuUtLønn')}>
-                                            <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse" />
-                                        </ReadMore>
+                                        <VStack gap="2">
+                                            <ReadMore header={text('inntektForm.hvordanFinnerDuUtLønn.tittel')}>
+                                                <BodyLong spacing>
+                                                    <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.1" />
+                                                </BodyLong>
+                                                <BodyLong spacing>
+                                                    <AppText id="inntektForm.hvordanFinnerDuUtLønnBeskrivelse.tekst.2" />
+                                                </BodyLong>
+                                            </ReadMore>
+                                            <ReadMore header={text('inntektForm.feilLønn.tittel')}>
+                                                <BodyLong spacing>
+                                                    <AppText id="inntektForm.feilLønn.tekst.1" />
+                                                </BodyLong>
+                                                <BodyLong spacing>
+                                                    <AppText id="inntektForm.feilLønn.tekst.2" />
+                                                </BodyLong>
+                                            </ReadMore>
+                                        </VStack>
                                     </VStack>
                                 ) : null}
                             </FormLayout.Questions>

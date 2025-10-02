@@ -1,5 +1,57 @@
 # @navikt/sif-ettersending
 
+## 3.49.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.36
+    - @navikt/sif-common-formik-ds@2.5.10
+    - @navikt/sif-common-soknad-ds@26.0.12
+    - @navikt/sif-common-forms-ds@21.0.12
+    - @navikt/sif-common-core-ds@10.3.11
+    - @navikt/sif-common-sentry@0.28.38
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-hooks@0.3.6
+    - @navikt/sif-common-utils@3.49.34
+    - @navikt/sif-common-env@0.1.7
+    - @navikt/sif-validation@1.0.6
+    - @navikt/sif-common-ui@0.11.12
+
+## 3.49.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.35
+    - @navikt/sif-common-formik-ds@2.5.9
+    - @navikt/sif-common-soknad-ds@26.0.11
+    - @navikt/sif-common-forms-ds@21.0.11
+    - @navikt/sif-common-core-ds@10.3.10
+    - @navikt/sif-common-sentry@0.28.37
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-common-ui@0.11.11
+    - @navikt/sif-app-register@0.1.9
+    - @navikt/sif-common-hooks@0.3.5
+    - @navikt/sif-validation@1.0.5
+
+## 3.49.11
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.34
+    - @navikt/sif-common-formik-ds@2.5.8
+    - @navikt/sif-common-soknad-ds@26.0.10
+    - @navikt/sif-common-forms-ds@21.0.10
+    - @navikt/sif-common-core-ds@10.3.9
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+    - @navikt/sif-common-ui@0.11.10
+
 ## 3.49.10
 
 ### Patch Changes

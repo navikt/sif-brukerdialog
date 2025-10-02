@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.1.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.20
+    - @navikt/k9-sak-innsyn-api@0.0.32
+    - @navikt/sif-common-utils@3.49.34
+
+## 0.1.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.19
+    - @navikt/k9-sak-innsyn-api@0.0.31
+
+## 0.1.37
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.19
+    - @navikt/k9-sak-innsyn-api@0.0.31
+    - @navikt/sif-common-utils@3.49.32
+
 ## 0.1.36
 
 ### Patch Changes

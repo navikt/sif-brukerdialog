@@ -1,6 +1,6 @@
 {
     "name": "@navikt/server-ungdomsytelse-veileder",
-    "version": "0.0.33",
+    "version": "0.0.35",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -19,13 +19,13 @@
     "devDependencies": {
         "@types/express": "5.0.3",
         "@types/morgan": "1.9.10",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.2",
         "@vercel/ncc": "0.38.4",
         "axios": "1.12.2",
         "morgan": "1.10.1",
         "prettier": "3.6.2",
-        "typescript": "5.9.2",
-        "winston": "3.17.0"
+        "typescript": "5.9.3",
+        "winston": "3.18.3"
     },
     "packageManager": "yarn@4.5.0"
 }

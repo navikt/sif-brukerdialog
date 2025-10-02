@@ -1,5 +1,43 @@
 # @navikt/dine-pleiepenger
 
+## 1.10.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.36
+    - @navikt/appstatus-react-ds@2.20.44
+    - @navikt/sif-common-core-ds@10.3.11
+    - @navikt/sif-common-sentry@0.28.38
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-utils@3.49.34
+
+## 1.10.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.35
+    - @navikt/appstatus-react-ds@2.20.43
+    - @navikt/sif-common-core-ds@10.3.10
+    - @navikt/sif-common-sentry@0.28.37
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-app-register@0.1.9
+
+## 1.10.10
+
+### Patch Changes
+
+- Pakkeoppdataringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.34
+    - @navikt/appstatus-react-ds@2.20.42
+    - @navikt/sif-common-core-ds@10.3.9
+    - @navikt/sif-common-sentry@0.28.36
+    - @navikt/sif-common-utils@3.49.32
+
 ## 1.10.9
 
 ### Patch Changes

@@ -22,8 +22,6 @@ Komponenter og sider er lagt inn i storybook. Start lokalt ved å kjøre:
 yarn storybook
 ```
 
-Storybook ligger også deployet på [Chromatic](https://www.chromatic.com/library?appId=65675d8dbb43385e5aaaa45c&inviteToken=chpi_1d3a6eab65174ab3ae3775296636362e)
-
 #### Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.
