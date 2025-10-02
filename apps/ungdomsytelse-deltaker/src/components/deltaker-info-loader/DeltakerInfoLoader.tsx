@@ -7,6 +7,7 @@ import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
+import SkyraTestPage from '../../apps/innsyn/pages/SkyraTestPage';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
@@ -32,10 +33,15 @@ const OppgaveRedirect = () => {
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
+    const { logApiError, logHendelse } = useAnalyticsInstance();
+
+    // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
+    if (window.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage />;
+    }
 
     const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
     const error = søker.isError || deltakelsePerioder.isError;
-    const { logApiError, logHendelse } = useAnalyticsInstance();
 
     if (isLoading) {
         return <UngLoadingPage />;
