@@ -4,12 +4,12 @@
     "types": "src/index.ts",
     "private": true,
     "type": "module",
-    "version": "0.1.26",
+    "version": "0.1.27",
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.84.3",
+        "@hey-api/openapi-ts": "0.84.4",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "typescript": "5.9.2",
+        "typescript": "5.9.3",
         "vitest": "3.2.4",
         "zod": "4.1.11"
     },
