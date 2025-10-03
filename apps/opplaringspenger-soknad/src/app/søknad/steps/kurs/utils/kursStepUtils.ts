@@ -11,20 +11,21 @@ import {
     getDatesInDateRanges,
     isDateInDateRanges,
     isDateWeekDay,
+    ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import { Kursperiode } from '../../../types/Kursperiode';
-import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
-import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { Kursperiode } from '../../../../types/Kursperiode';
+import { FerieuttakIPeriodenSøknadsdata } from '../../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
+import { KursSøknadsdata } from '../../../../types/søknadsdata/KursSøknadsdata';
+import { ReisedagerSøknadsdata } from '../../../../types/søknadsdata/ReisedagerSøknadsdata';
+import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
+import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
+import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 import kursperiodeUtils from './kursperiodeUtils';
-import { KursFormFields, KursFormValues } from './KursStep';
+import { KursFormFields, KursFormValues } from '../KursStep';
 
 dayjs.extend(isoWeek);
 
@@ -89,6 +90,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     const defaultValues: KursFormValues = {
         opplæringsinstitusjon: '',
         kursperioder: [{}],
+        enkeltdager: [{}],
     };
 
     const { kurs } = søknadsdata;
@@ -356,4 +358,22 @@ export const startOgSluttErSammeHelg = (start?: Date, slutt?: Date): boolean => 
     const dagerMellom = Math.abs(dayjs(slutt).diff(dayjs(start), 'day'));
 
     return startErHelgedag && sluttErHelgedag && (dagerMellom === 0 || dagerMellom === 1);
+};
+
+export const getKursperioderValidator = (perioder: KursperiodeFormValues[]) => {
+    const ranges = perioder
+        .map((periode) => {
+            const from = ISODateToDate(periode.fom);
+            const to = ISODateToDate(periode.tom);
+            return from && to ? { from, to } : undefined;
+        })
+        .filter((range) => dateRangeUtils.isDateRange(range));
+    if (!ranges || ranges.length === 0) {
+        return undefined;
+    }
+    /** Perioder overlapper */
+    if (dateRangeUtils.dateRangesCollide(ranges)) {
+        return 'kursperioderOverlapper';
+    }
+    return undefined;
 };

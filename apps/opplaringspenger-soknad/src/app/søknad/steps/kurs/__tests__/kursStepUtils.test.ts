@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { startOgSluttErSammeHelg } from '../kursStepUtils';
+import { startOgSluttErSammeHelg } from '../utils/kursStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {

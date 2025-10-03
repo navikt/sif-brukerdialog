@@ -7,7 +7,7 @@ import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbe
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/parts/kursperioder-form-part/kursperiodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';

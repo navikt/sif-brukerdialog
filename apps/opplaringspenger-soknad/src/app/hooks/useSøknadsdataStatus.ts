@@ -9,7 +9,7 @@ import { useStepFormValuesContext } from '../søknad/context/StepFormValuesConte
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
 import { KursFormValues } from '../søknad/steps/kurs/KursStep';
-import { getKursSøknadsdataFromFormValues } from '../søknad/steps/kurs/kursStepUtils';
+import { getKursSøknadsdataFromFormValues } from '../søknad/steps/kurs/utils/kursStepUtils';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';

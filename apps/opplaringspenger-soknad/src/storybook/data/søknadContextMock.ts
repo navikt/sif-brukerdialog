@@ -2,7 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
+import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/utils/kursStepUtils';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { Kursperiode } from '../../app/types/Kursperiode';
 import { SøknadContextState } from '../../app/types/SøknadContextState';

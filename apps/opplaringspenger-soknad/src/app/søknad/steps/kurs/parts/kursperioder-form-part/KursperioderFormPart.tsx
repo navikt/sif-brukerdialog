@@ -3,10 +3,10 @@ import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FieldArray, useFormikContext } from 'formik';
-import { AppText } from '../../../../i18n';
-import { KursFormValues } from '../KursStep';
+import { AppText } from '../../../../../i18n';
+import { KursFormValues } from '../../KursStep';
 import KursperiodeQuestions, { KursperiodeFormFields } from './KursperiodeQuestions';
-import { startOgSluttErSammeHelg } from '../kursStepUtils';
+import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
