@@ -5,6 +5,7 @@ import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 
 export type FrilansApiDataIngenInntekt = {
     harInntektSomFrilanser: false;
+    arbeidsforhold?: ArbeidsforholdApiData;
 };
 
 export type FrilansApiDataKunHonorarMisterIkkeHonorar = {

@@ -5,7 +5,7 @@ import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/Arb
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
+import { erFrilanserISøknadsperiode, harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import { cleanupFosterhjemsgodtgjørelse } from './cleanupFosterhjemsgodtgjørelse';
 import { cleanupOmsorgsstønad } from './cleanupOmsorgsstønad';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
@@ -30,11 +30,13 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormVa
 export const cleanupFrilansArbeidssituasjon = (
     _søknadsperiode: DateRange,
     values: FrilansFormValues,
+    beholdNormalarbeidstidVedIkkeFrilanser?: boolean,
 ): FrilansFormValues => {
     /** Ikke frilanser */
     if (values.harHattInntektSomFrilanser === YesOrNo.NO) {
         return {
             harHattInntektSomFrilanser: YesOrNo.NO,
+            arbeidsforhold: beholdNormalarbeidstidVedIkkeFrilanser ? values.arbeidsforhold : undefined,
         };
     }
 
@@ -85,10 +87,20 @@ export const cleanupArbeidssituasjonStep = (
     const values: SøknadFormValues = { ...formValues };
 
     values.ansatt_arbeidsforhold = values.ansatt_arbeidsforhold.map(cleanupAnsattArbeidsforhold);
-    values.frilans = cleanupFrilansArbeidssituasjon(søknadsperiode, values.frilans);
     values.selvstendig = cleanupSelvstendigArbeidssituasjon(values.selvstendig);
     values.omsorgsstønad = cleanupOmsorgsstønad(values.omsorgsstønad);
     values.fosterhjemsgodtgjørelse = cleanupFosterhjemsgodtgjørelse(values.fosterhjemsgodtgjørelse);
+
+    /** Kontroller om en skal beholde normalarbeidstid eller ikke
+     * - Hvis bruker har frilansoppdrag og svarer nei på både frilanser og omsorgsstønad, skal vi
+     * spørre om normalarbeidstid.
+     */
+
+    values.frilans = cleanupFrilansArbeidssituasjon(
+        søknadsperiode,
+        values.frilans,
+        skalSpørreOmNormalarbeidstidForIkkeFrilanser(values),
+    );
 
     if (values.harOpptjeningUtland === YesOrNo.NO) {
         values.opptjeningUtland = [];
@@ -101,4 +113,12 @@ export const cleanupArbeidssituasjonStep = (
     }
 
     return values;
+};
+
+export const skalSpørreOmNormalarbeidstidForIkkeFrilanser = (values: SøknadFormValues): boolean => {
+    return (
+        harFrilansoppdrag(values.frilansoppdrag) &&
+        values.omsorgsstønad.mottarOmsorgsstønad === YesOrNo.NO &&
+        values.frilans.harHattInntektSomFrilanser === YesOrNo.NO
+    );
 };

@@ -40,7 +40,7 @@ const gåTilOppsummering = async (page: Page, harArbeidsaktivitet = true) => {
 test.describe('Arbeidssituasjoner arbeidstaker', () => {
     test('Ansatt hele søknadsperioden', async ({ page }) => {
         await page.getByTestId('er-ansatt').getByText('Ja').click();
-        await page.getByLabel('Hvor mange timer jobb').fill('40');
+        await page.getByRole('textbox', { name: 'Hvor mange timer jobber du' }).fill('40');
         await gåTilOppsummering(page);
         await expect(
             page.getByText('WHOA.BOA (organisasjonsnummer 947064649)Er ansattJobber normalt 40 timer per uke'),
@@ -52,10 +52,16 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         await page.getByTestId('er-ansatt').getByText('Nei').click();
         if (spørOmSluttetISøknadsperiode) {
             await page.getByTestId('sluttet-før-søknadsperiode').getByLabel('Nei').check();
-            await page.getByLabel('Hvor mange timer jobb').fill('30');
+            await page
+                .getByTestId('arbeidssituasjonAnsatt')
+                .getByRole('textbox', { name: 'Hvor mange timer jobbet du' })
+                .fill('30');
             await gåTilOppsummering(page);
         } else {
-            await page.getByLabel('Hvor mange timer jobb').fill('30');
+            await page
+                .getByTestId('arbeidssituasjonAnsatt')
+                .getByRole('textbox', { name: 'Hvor mange timer jobbet du' })
+                .fill('30');
             await gåTilOppsummering(page, false);
         }
         await expect(
