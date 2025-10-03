@@ -1,15 +1,13 @@
 import { DateRange, dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
-import { Kursperiode } from '../../../types/Kursperiode';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { Kursperiode } from '../../../../types/Kursperiode';
+import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
 };
 
-export const getPeriodeFromKursperiodeFormValue = (
-    formValues: Partial<KursperiodeFormValues>,
-): DateRange | undefined => {
+const getPeriodeFromKursperiodeFormValue = (formValues: Partial<KursperiodeFormValues>): DateRange | undefined => {
     const from = ISOStringToDate(formValues.fom);
     const to = ISOStringToDate(formValues.tom);
 
@@ -44,6 +42,7 @@ const kursperiodeUtils = {
     isValidKursperiode,
     mapKursperiodeToFormValues,
     mapFormValuesToKursperiode,
+    getPeriodeFromKursperiodeFormValue,
 };
 
 export default kursperiodeUtils;
