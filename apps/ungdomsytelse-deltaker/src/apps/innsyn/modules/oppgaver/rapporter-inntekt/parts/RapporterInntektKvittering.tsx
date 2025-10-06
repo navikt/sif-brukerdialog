@@ -1,11 +1,11 @@
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
 import Skyra, { Slug } from '../../../../../../components/skyra/Skyra';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { useSkyraReloader } from '../../../../hooks/useSkyraReloader';
+import UXRapportertInntekt from '../../../../ux-signals/UXRapportertInntekt';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
 interface Props {
@@ -34,7 +34,7 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
                 <ForsideLenkeButton />
             </div>
             <div>
-                <UxSignalsPanel panelId="1bmhfberhs" mode="demo" />
+                <UXRapportertInntekt />
             </div>
             <div>
                 <Skyra slug={Slug.prod_rapporterInntekt} />
