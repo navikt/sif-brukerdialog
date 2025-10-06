@@ -2416,7 +2416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dual-bundle/import-meta-resolve@npm:^4.1.0":
+"@dual-bundle/import-meta-resolve@npm:^4.2.1":
   version: 4.2.1
   resolution: "@dual-bundle/import-meta-resolve@npm:4.2.1"
   checksum: 10/c93f600fe0af015fdf1d6e58cd2823b8282d02e44eb6207eb5fc17e95f6c76bf67c018b12bd6ea71017b214269b59791dad2f3d560131be2df4e995400063258
@@ -6076,7 +6076,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-hook-form: "npm:7.63.0"
-    stylelint: "npm:16.24.0"
+    stylelint: "npm:16.25.0"
     tailwindcss: "npm:4.1.14"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.45.0"
@@ -6348,7 +6348,7 @@ __metadata:
     react-intl: "npm:7.1.11"
     react-router-dom: "npm:7.9.3"
     storybook: "npm:9.1.10"
-    stylelint: "npm:16.24.0"
+    stylelint: "npm:16.25.0"
     tailwindcss: "npm:4.1.14"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.45.0"
@@ -6428,7 +6428,7 @@ __metadata:
     react-router-dom: "npm:7.9.3"
     remark-gfm: "npm:4.0.1"
     storybook: "npm:9.1.10"
-    stylelint: "npm:16.24.0"
+    stylelint: "npm:16.25.0"
     tailwindcss: "npm:4.1.14"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.45.0"
@@ -27855,21 +27855,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:16.24.0":
-  version: 16.24.0
-  resolution: "stylelint@npm:16.24.0"
+"stylelint@npm:16.25.0":
+  version: 16.25.0
+  resolution: "stylelint@npm:16.25.0"
   dependencies:
     "@csstools/css-parser-algorithms": "npm:^3.0.5"
     "@csstools/css-tokenizer": "npm:^3.0.4"
     "@csstools/media-query-list-parser": "npm:^4.0.3"
     "@csstools/selector-specificity": "npm:^5.0.0"
-    "@dual-bundle/import-meta-resolve": "npm:^4.1.0"
+    "@dual-bundle/import-meta-resolve": "npm:^4.2.1"
     balanced-match: "npm:^2.0.0"
     colord: "npm:^2.9.3"
     cosmiconfig: "npm:^9.0.0"
     css-functions-list: "npm:^3.2.3"
     css-tree: "npm:^3.1.0"
-    debug: "npm:^4.4.1"
+    debug: "npm:^4.4.3"
     fast-glob: "npm:^3.3.3"
     fastest-levenshtein: "npm:^1.0.16"
     file-entry-cache: "npm:^10.1.4"
@@ -27899,7 +27899,7 @@ __metadata:
     write-file-atomic: "npm:^5.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10/cf818bb547d8b126d5934e72f5aeda2f49271f8bf618cc801e10bc5ef15ee6e61584ab04a36d517b76ead3ae4d35fa72348f2e6d97a6c6cf28fb81ca1eb1c706
+  checksum: 10/8c3b08ace7b9580d44b3f32c26cffe894b9ba77494e63704b6a91f9150f04d3583c198cb33df384a8e6a5ef37d0cfdf29e6ef29b41a2ea7c188ea98fe44efe9d
   languageName: node
   linkType: hard
 
