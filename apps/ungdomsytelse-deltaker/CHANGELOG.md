@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.3.7
+
+### Patch Changes
+
+- Tekstjustering kvittering søknad. Endre fra 10. til 12. i måneden
+
 ## 1.3.6
 
 ### Patch Changes
