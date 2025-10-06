@@ -1,5 +1,6 @@
 import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
+import { VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { useAppIntl } from '@shared/i18n';
@@ -7,6 +8,7 @@ import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
+import UXRapportertInntekt from '../../../ux-signals/UXRapportertInntekt';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
@@ -37,7 +39,10 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
 
     return (
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
-            <RapporterInntektOppgavePart {...props} />
+            <VStack gap="6">
+                <RapporterInntektOppgavePart {...props} />
+                <UXRapportertInntekt />
+            </VStack>
         </DefaultPageLayout>
     );
 };
