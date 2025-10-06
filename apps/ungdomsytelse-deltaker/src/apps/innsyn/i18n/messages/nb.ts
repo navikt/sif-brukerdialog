@@ -6,8 +6,8 @@ export const innsynMessages_nb = {
 
     'ytelse.SYKEPENGER': 'Sykepenger',
     'ytelse.OMSORGSPENGER': 'Omsorgspenger',
-    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger for sykt barn',
-    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger i livets sluttfase',
+    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger',
+    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger',
     'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
 
     'forsideLenkeButton.tekst': 'Tilbake til oversikten',
