@@ -2,14 +2,12 @@ import ForsideHeader from '@innsyn/components/forside-header/ForsideHeader';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
-import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
 
+import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
-
-const USE_SIGNALS_PANEL = true;
 
 const ForsidePage = () => {
     const { text } = useAppIntl();
@@ -21,7 +19,7 @@ const ForsidePage = () => {
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
-                {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="1bmhfberhs" />}
+                <UXRapportertInntekt />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
         </ForsidePageLayout>
