@@ -20,8 +20,6 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi bruker denne lønnen fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
         'Vi bruker denne lønnen til å vurdere hvor mye du får utbetalt.',
-    'avvikRegisterinntektOppgavetekst.1.harIkkeInntekt':
-        '[TODO: informasjon når bruker har oppgitt inntekt, men vi har ikke registrert noe]',
     'avvikRegisterinntektOppgavetekst.2': 'Vi trenger et svar fra deg på om lønnen stemmer eller ikke.',
     'avvikRegisterinntektOppgavetekst.3': 'Hvis lønnen stemmer, krysser du av for <strong>Ja, lønnen stemmer</strong>.',
     'avvikRegisterinntektOppgavetekst.4':
