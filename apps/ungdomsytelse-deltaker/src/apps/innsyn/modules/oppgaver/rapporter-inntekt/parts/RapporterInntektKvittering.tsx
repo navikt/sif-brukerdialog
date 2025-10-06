@@ -1,4 +1,5 @@
 import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
 import { AppText } from '@shared/i18n';
 import { forwardRef } from 'react';
 
@@ -31,6 +32,9 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
             </Alert>
             <div>
                 <ForsideLenkeButton />
+            </div>
+            <div>
+                <UxSignalsPanel panelId="1bmhfberhs" mode="demo" />
             </div>
             <div>
                 <Skyra slug={Slug.prod_rapporterInntekt} />
