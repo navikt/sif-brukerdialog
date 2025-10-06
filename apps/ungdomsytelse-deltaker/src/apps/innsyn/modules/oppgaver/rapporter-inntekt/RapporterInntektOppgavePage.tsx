@@ -8,7 +8,6 @@ import { RapporterInntektOppgave } from '@shared/types/Oppgave';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-import UXRapportertInntekt from '../../../ux-signals/UXRapportertInntekt';
 import RapporterInntektOppgavePart from './parts/RapporterInntektOppgavePart';
 
 export interface RapporterInntektOppgaveProps {
@@ -41,7 +40,6 @@ const RapporterInntektOppgavePage = (props: RapporterInntektOppgaveProps) => {
         <DefaultPageLayout documentTitle={getOppgaveDokumentTittel(props.oppgave, appIntl)}>
             <VStack gap="6">
                 <RapporterInntektOppgavePart {...props} />
-                <UXRapportertInntekt />
             </VStack>
         </DefaultPageLayout>
     );
