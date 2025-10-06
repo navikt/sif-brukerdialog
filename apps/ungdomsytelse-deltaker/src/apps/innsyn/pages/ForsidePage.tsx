@@ -21,7 +21,7 @@ const ForsidePage = () => {
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
-                {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="zpvvyjk4ss" />}
+                {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="1bmhfberhs" />}
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
         </ForsidePageLayout>
