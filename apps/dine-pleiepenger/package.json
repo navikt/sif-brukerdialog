@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.10.12",
+    "version": "1.10.13",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -58,7 +58,7 @@
         "@types/react": "19.2.0",
         "classnames": "2.5.1",
         "dayjs": "1.11.18",
-        "eslint": "9.36.0",
+        "eslint": "9.37.0",
         "eslint-plugin-storybook": "9.1.10",
         "formik": "2.4.6",
         "jest": "30.2.0",
@@ -71,7 +71,7 @@
         "react": "19.2.0",
         "react-day-picker": "9.11.0",
         "react-dom": "19.2.0",
-        "react-intl": "7.1.11",
+        "react-intl": "7.1.13",
         "storybook": "9.1.10",
         "tailwindcss": "4.1.14",
         "typescript": "5.9.3",
