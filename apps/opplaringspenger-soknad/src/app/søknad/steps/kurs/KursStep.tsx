@@ -73,8 +73,6 @@ export interface KursFormValues {
 
 export const KursFormComponents = getTypedFormComponents<KursFormFields, KursFormValues, ValidationError>();
 
-const VALG_AV_ENKELTDAGER_ELLER_PERIODER = false;
-
 const KursStep = () => {
     const { intl } = useAppIntl();
 
@@ -152,11 +150,10 @@ const KursStep = () => {
                                         institusjoner={institusjoner}
                                     />
 
-                                    {VALG_AV_ENKELTDAGER_ELLER_PERIODER && <EnkeltdagerEllerPerioderQuestion />}
+                                    <EnkeltdagerEllerPerioderQuestion />
 
                                     {/* Perioder med kurs */}
-                                    {(VALG_AV_ENKELTDAGER_ELLER_PERIODER === false ||
-                                        values.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE) && (
+                                    {values.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE && (
                                         <>
                                             <FormikInputGroup
                                                 id="kursperioder"
@@ -198,7 +195,7 @@ const KursStep = () => {
                                     {values.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG && (
                                         <FormikInputGroup
                                             id="enkeltdager"
-                                            legend="Dager med kurs"
+                                            legend="Enkeltdager med kurs"
                                             hideLegend={true}
                                             name={KursFormFields.enkeltdager}
                                             errorPropagation={false}
