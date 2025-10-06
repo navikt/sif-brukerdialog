@@ -4,13 +4,13 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.44",
+    "version": "2.20.45",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "4.0.3",
-        "@sanity/client": "7.11.2"
+        "@sanity/client": "7.12.0"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.31.0",
