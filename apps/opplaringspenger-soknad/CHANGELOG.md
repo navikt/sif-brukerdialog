@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.3.14
+
+### Patch Changes
+
+- Hindre bruker i å velge periode som kun er én helg, og velge reisedag på en helgedag
+
 ## 1.3.13
 
 ### Patch Changes

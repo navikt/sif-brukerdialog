@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.9.4
+
+### Patch Changes
+
+- Promotere info på en med tydelig måte
+
 ## 0.9.3
 
 ### Patch Changes
