@@ -40,6 +40,11 @@ export const UxSignalsLoaderProvider = ({ children }: UxSignalsLoaderProviderPro
     );
 };
 
+/**
+ * Laster inn UX Signals script
+ * @param autoLoad Last inn script hvis true
+ * @returns
+ */
 export const useUxSignalsLoader = (autoLoad?: boolean): UxSignalsLoaderContextValue => {
     const context = useContext(UxSignalsLoaderContext);
     if (context === undefined) {
