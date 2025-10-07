@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.37
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
 ## 0.4.36
 
 ### Patch Changes
