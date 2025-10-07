@@ -50,7 +50,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.31.0",
         "@navikt/ds-tailwind": "7.31.0",
-        "@playwright/test": "1.55.1",
+        "@playwright/test": "1.56.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/nextjs": "9.1.10",
         "@tailwindcss/postcss": "4.1.14",
