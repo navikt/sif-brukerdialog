@@ -4635,7 +4635,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.31.0"
     "@navikt/ds-tailwind": "npm:7.31.0"
     "@navikt/nav-dekoratoren-moduler": "npm:3.4.0"
-    "@navikt/next-logger": "npm:4.1.5"
+    "@navikt/next-logger": "npm:4.3.3"
     "@navikt/oasis": "npm:3.8.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
@@ -4942,19 +4942,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/next-logger@npm:4.1.5":
-  version: 4.1.5
-  resolution: "@navikt/next-logger@npm:4.1.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F4.1.5%2F40d028e0d8ec8a978b6e58f464f255ce7605836c"
+"@navikt/next-logger@npm:4.3.3":
+  version: 4.3.3
+  resolution: "@navikt/next-logger@npm:4.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F4.3.3%2Faa1c32684f7aad80ab7614e4122dadbb02b83cdf"
   dependencies:
-    "@navikt/pino-logger": "npm:^4.1.5"
+    "@navikt/pino-logger": "npm:^4.3.3"
     pino-roll: "npm:3"
   peerDependencies:
     next: 14 || 15
-    pino: 8 || 9
+    pino: 8 || 9 || 10
   dependenciesMeta:
     pino-roll:
       optional: true
-  checksum: 10/c4c62ed72e0f951e3ca2a21bed4ff98351f13ad4ffb2cb5557cc0730e8d9eba49e2c65eee4f9eb2c27080d8c6e3644b0052be9680ad356fd72d09ba68de67603
+  checksum: 10/32d302104bca5f46d9ec7e7e518b1574273f66ae0202347992a00b912f7f5580691554175626927c2635944711c9bfb6d17dc2fcef22302c6da0adb0ac6a7b20
   languageName: node
   linkType: hard
 
@@ -5352,20 +5352,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/pino-logger@npm:^4.1.5":
-  version: 4.1.5
-  resolution: "@navikt/pino-logger@npm:4.1.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F4.1.5%2F5911c77581ba052ec69878f86e6de4634c980b57"
+"@navikt/pino-logger@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "@navikt/pino-logger@npm:4.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fpino-logger%2F4.3.3%2Fc67b3263e9eb9d1b4dccaf45b21bcfe3c0acb8d4"
   dependencies:
     pino-roll: "npm:3"
     pino-socket: "npm:7"
   peerDependencies:
-    pino: 8 || 9
+    pino: 8 || 9 || 10
   dependenciesMeta:
     pino-roll:
       optional: true
     pino-socket:
       optional: true
-  checksum: 10/2995fab68db26328f5d3e9b70ca781ccd7ecbb3bf45817d2ad613861f2a79d6011da5d1d75dc713ba0097f6a590fdec6b4030dd4f6527ab2ee06e90b6c7e192c
+  checksum: 10/4c0b6090f467e5878e940fe4ce461fdc5457c3719f0e5a0bfb9c2c401670a0c2b9bc151f3b55434fcace9ba44711daef08ed979e4ed00e72e4ac23a8f80efc7c
   languageName: node
   linkType: hard
 
