@@ -1,6 +1,9 @@
 import { getDateToday } from '@navikt/sif-common-utils';
+import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import dayjs from 'dayjs';
+
+import { Oppgave } from '../../../types/Oppgave';
 
 /**
  * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående
@@ -26,4 +29,13 @@ export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boole
         return false;
     }
     return true;
+};
+
+export const harRapportertInntekt = (oppgaver: Oppgave[]): boolean => {
+    return oppgaver.some(
+        (o) =>
+            o.oppgavetype === Oppgavetype.RAPPORTER_INNTEKT &&
+            o.status !== OppgaveStatus.ULØST &&
+            o.oppgavetypeData?.rapportertInntekt !== undefined,
+    );
 };

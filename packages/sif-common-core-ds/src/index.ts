@@ -4,6 +4,7 @@ export { default as Infolist } from './components/lists/infolist/Infolist';
 export { default as UxSignalsPanel } from './components/ux-signals-panel/UxSignalsPanel';
 export { default as VedleggList } from './components/vedlegg-list/VedleggList';
 export { default as VedleggSummaryList } from './components/vedlegg-summary-list/VedleggSummaryList';
+export * from './context/UxSignalsLoaderContext';
 export * from './hooks';
 export * from './types';
 export * from './utils/apiUtils';

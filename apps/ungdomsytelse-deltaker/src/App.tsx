@@ -5,6 +5,7 @@ import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { UxSignalsLoaderProvider } from '@navikt/sif-common-core-ds';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { EnvKey } from '@navikt/sif-common-env';
@@ -57,40 +58,42 @@ function App() {
     return (
         <ErrorBoundary fallback={<AppErrorFallback />}>
             <AppIntlMessageProvider>
-                <AppStatusWrapper
-                    applicationKey={UngdomsytelseDeltakerApp.key}
-                    sanityConfig={sanityConfig}
-                    contentRenderer={() => (
-                        <FaroProvider
-                            appVersion={env.APP_VERSION}
-                            applicationKey={UngdomsytelseDeltakerApp.key}
-                            telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
-                            isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
-                            <AnalyticsProvider
+                <UxSignalsLoaderProvider>
+                    <AppStatusWrapper
+                        applicationKey={UngdomsytelseDeltakerApp.key}
+                        sanityConfig={sanityConfig}
+                        contentRenderer={() => (
+                            <FaroProvider
+                                appVersion={env.APP_VERSION}
                                 applicationKey={UngdomsytelseDeltakerApp.key}
-                                isActive={analyticsIsActive}>
-                                <QueryClientProvider client={queryClient}>
-                                    <DeltakerInfoLoader />
-                                    <DevFooter />
-                                </QueryClientProvider>
-                            </AnalyticsProvider>
-                        </FaroProvider>
-                    )}
-                    unavailableContentRenderer={() => (
-                        <ErrorPage
-                            bannerTitle="Ungdomsprogramytelsen"
-                            pageTitle="Vi utfører vedlikehold"
-                            contentRenderer={() => (
-                                <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
-                                    <BodyShort className="pt-4" size="large">
-                                        Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner med å
-                                        være ferdige snart, så prøv gjerne igjen om en liten stund.
-                                    </BodyShort>
-                                </SifGuidePanel>
-                            )}
-                        />
-                    )}
-                />
+                                telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
+                                isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
+                                <AnalyticsProvider
+                                    applicationKey={UngdomsytelseDeltakerApp.key}
+                                    isActive={analyticsIsActive}>
+                                    <QueryClientProvider client={queryClient}>
+                                        <DeltakerInfoLoader />
+                                        <DevFooter />
+                                    </QueryClientProvider>
+                                </AnalyticsProvider>
+                            </FaroProvider>
+                        )}
+                        unavailableContentRenderer={() => (
+                            <ErrorPage
+                                bannerTitle="Ungdomsprogramytelsen"
+                                pageTitle="Vi utfører vedlikehold"
+                                contentRenderer={() => (
+                                    <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
+                                        <BodyShort className="pt-4" size="large">
+                                            Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner
+                                            med å være ferdige snart, så prøv gjerne igjen om en liten stund.
+                                        </BodyShort>
+                                    </SifGuidePanel>
+                                )}
+                            />
+                        )}
+                    />
+                </UxSignalsLoaderProvider>
             </AppIntlMessageProvider>
         </ErrorBoundary>
     );
