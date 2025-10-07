@@ -14,9 +14,9 @@
     "dependencies": {
         "@hookform/resolvers": "5.2.2",
         "@navikt/aksel-icons": "7.31.0",
-        "@navikt/ds-css": "7.31.0",
-        "@navikt/ds-react": "7.31.0",
-        "@navikt/ds-tailwind": "7.31.0",
+        "@navikt/ds-css": "7.32.0",
+        "@navikt/ds-react": "7.32.0",
+        "@navikt/ds-tailwind": "7.32.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
