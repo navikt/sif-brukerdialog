@@ -17,10 +17,10 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.0",
+        "@types/react": "19.2.2",
         "react": "19.2.0",
         "typescript": "5.9.3",
-        "zod": "4.1.11"
+        "zod": "4.1.12"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
