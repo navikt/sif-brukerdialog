@@ -14,16 +14,16 @@ export const avvikRegisterinntektMessages_nb = {
         'Vi har fått disse opplysningene fra arbeidsgiver om lønnen din for {rapporteringsmåned}:',
     'avvikRegisterinntektOppgavetekst.ingenOpplysninger':
         'Du har gitt oss beskjed om at du hadde lønn i {rapporteringsmåned}, men vi har ikke fått inn opplysninger fra arbeidsgiver om at du hadde lønn i {rapporteringsmåned}.',
+    'avvikRegisterinntektOppgavetekst.ingenInntekt':
+        'Vi bruker opplysningene fra arbeidsgiver når vi vurdere hvor mye du får utbetalt. Når vi ikke har mottatt noe fra arbeidsgiver, vil vi basere oss på at du ikke fikk utbetalt lønn i {rapporteringsmåned}.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt':
         'Vi bruker denne lønnen fra arbeidsgiver til å vurdere hvor mye du får utbetalt.',
     'avvikRegisterinntektOppgavetekst.1.harInntekt.kunYtelse':
         'Vi bruker denne lønnen til å vurdere hvor mye du får utbetalt.',
-    'avvikRegisterinntektOppgavetekst.1.harIkkeInntekt':
-        '[TODO: informasjon når bruker har oppgitt inntekt, men vi har ikke registrert noe]',
-    'avvikRegisterinntektOppgavetekst.2': ' Gi tilbakemelding om lønnen stemmer eller ikke:',
-    'avvikRegisterinntektOppgavetekst.3': 'Hvis det stemmer, krysser du av for <strong>Nei</strong>.',
+    'avvikRegisterinntektOppgavetekst.2': 'Vi trenger et svar fra deg på om lønnen stemmer eller ikke.',
+    'avvikRegisterinntektOppgavetekst.3': 'Hvis lønnen stemmer, krysser du av for <strong>Ja, lønnen stemmer</strong>.',
     'avvikRegisterinntektOppgavetekst.4':
-        'Hvis du mener at lønnen er feil, krysser du av på <strong>Ja</strong> og sender en tilbakemelding til oss om det.',
+        'Hvis du mener at lønnen er feil, krysser du av på <strong>Nei, lønnen stemmer ikke</strong> og sender en tilbakemelding til oss om det.',
 
     'avvikRegisterinntektOppgavetekst.5': 'Jo fortere du svarer, jo fortere får du pengene utbetalt.',
     'avvikRegisterinntektOppgavetekst.6': 'Fristen for å svare er {formatertFrist}.',

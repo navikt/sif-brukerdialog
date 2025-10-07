@@ -1,5 +1,28 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.4.0
+
+### Minor Changes
+
+- Tekster og funksjonalitet rundt avvik i inntekt varsel
+
+## 1.3.8
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.29
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.22
+    - @navikt/sif-common-soknad-ds@26.0.14
+    - @navikt/sif-common-forms-ds@21.0.14
+    - @navikt/sif-common-core-ds@10.3.13
+    - @navikt/sif-common-api@0.4.55
+    - @navikt/sif-common-ui@0.11.14
+    - @navikt/ung-common@0.0.55
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-faro@0.2.7
+
 ## 1.3.7
 
 ### Patch Changes

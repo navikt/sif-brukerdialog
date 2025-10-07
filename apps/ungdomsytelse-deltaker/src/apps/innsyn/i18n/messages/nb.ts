@@ -6,8 +6,8 @@ export const innsynMessages_nb = {
 
     'ytelse.SYKEPENGER': 'Sykepenger',
     'ytelse.OMSORGSPENGER': 'Omsorgspenger',
-    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger for sykt barn',
-    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger i livets sluttfase',
+    'ytelse.PLEIEPENGER_SYKT_BARN': 'Pleiepenger',
+    'ytelse.PLEIEPENGER_LIVETS_SLUTTFASE': 'Pleiepenger',
     'ytelse.OPPLAERINGSPENGER': 'Opplæringspenger',
 
     'forsideLenkeButton.tekst': 'Tilbake til oversikten',
@@ -61,6 +61,9 @@ export const innsynMessages_nb = {
     'oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
     'oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
 
+    'oppgavebekreftelse.oppgavetekst.ariaLabel': 'Oppgaveinformasjon',
+    'oppgavebekreftelse.uttalelseform.ariaLabel': 'Svarskjema',
+
     /** OppgaveMessages */
     'oppgavestatus.LØST': 'Løst',
     'oppgavestatus.ULØST': 'Uløst',
@@ -73,6 +76,8 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.info':
         'Veilederen din har endret datoen for når du startet i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på startdatoen?',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.harIkkeUttalelseLabel': 'Nei',
+    'oppgavetype.BEKREFT_ENDRET_STARTDATO.harUttalelseLabel': 'Ja',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
@@ -80,6 +85,8 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_MELDT_UT.oppgavetittel': 'Tilbakemelding på sluttdato',
     'oppgavetype.BEKREFT_MELDT_UT.info': 'Veilederen din har satt en dato for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_MELDT_UT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_MELDT_UT.harIkkeUttalelseLabel': 'Nei',
+    'oppgavetype.BEKREFT_MELDT_UT.harUttalelseLabel': 'Ja',
     'oppgavetype.BEKREFT_MELDT_UT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_MELDT_UT.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
@@ -88,6 +95,8 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.info':
         'Veilederen din har endret datoen for når du slutter i ungdomsprogrammet.',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding på sluttdatoen?',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harIkkeUttalelseLabel': 'Nei',
+    'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.harUttalelseLabel': 'Ja',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
 
@@ -95,7 +104,10 @@ export const innsynMessages_nb = {
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.oppgavetittel': 'Tilbakemelding på lønn i {månedOgÅr}',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info':
         'Sjekk at opplysningene våre om lønnen du fikk fra arbeidsgiver i {måned} er riktige. Send oss et svar når du har sjekket.',
-    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Har du en tilbakemelding?',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harTilbakemeldingSpørsmål': 'Stemmer lønnen vi har fått oppgitt?',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harIkkeUttalelseLabel': 'Ja, lønnen stemmer',
+    'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.harUttalelseLabel':
+        'Nei, lønnen stemmer ikke. Jeg har en tilbakemelding.',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.tilbakemeldingFritekstLabel': 'Tilbakemelding',
     'oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst':
         'Vi bruker tilbakemeldingen din når vi vurderer hvor mye penger du skal få i {utbetalingsmåned}. Du får et vedtaksbrev om dette.',
@@ -138,11 +150,10 @@ export const innsynMessages_nb = {
     'inntektForm.validation.lønn.numberHasDecimals': 'Du må oppgi lønn uten desimaler.',
 
     /** UtalelseForm */
-    'uttalelseForm.ariaLabel': 'Skjema for tilbakemelding',
     'uttalelseForm.submitButtonLabel': 'Send inn svaret ditt',
     'uttalelseForm.cancelButtonLabel': 'Avbryt',
     'uttalelseForm.defaultDescription':
-        'Du må ikke oppgi sensitive informasjon (særlige kategorier av personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
+        'Du må ikke oppgi sensitive informasjon (personopplysninger) om deg selv eller andre, for eksempel helseopplysninger.',
 
     'uttalelseForm.validation.harTilbakemelding.yesOrNoIsUnanswered': 'Du må svare på om du har en tilbakemelding.',
     'uttalelseForm.validation.tilbakemelding.stringHasNoValue': 'Du må fylle ut tilbakemeldingsfeltet.',
