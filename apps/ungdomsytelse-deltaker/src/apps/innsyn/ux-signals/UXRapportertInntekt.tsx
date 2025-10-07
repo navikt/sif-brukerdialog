@@ -1,8 +1,7 @@
-import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
-import useUxSignals from '@navikt/sif-common-core-ds/src/hooks/useUxSignals';
+import { useUxSignalsLoader, UxSignalsPanel } from '@navikt/sif-common-core-ds';
 
 const UXRapportertInntekt = () => {
-    useUxSignals(true);
+    useUxSignalsLoader(true);
 
     return <UxSignalsPanel panelId="1bmhfberhs" mode="demo" />;
 };

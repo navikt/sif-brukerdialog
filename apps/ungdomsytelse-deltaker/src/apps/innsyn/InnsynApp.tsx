@@ -1,5 +1,4 @@
 import { Theme } from '@navikt/ds-react';
-import useUxSignals from '@navikt/sif-common-core-ds/src/hooks/useUxSignals';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { applicationIntlMessages } from '@shared/i18n';
 import { AppRoutes } from '@shared/utils/AppRoutes';
@@ -12,8 +11,6 @@ import InnsynRouter from './InnsynRouter';
 const InnsynApp = () => {
     const navigate = useNavigate();
     const { deltakelsePeriode } = useDeltakerContext();
-
-    useUxSignals(true);
 
     /** Setter bakgrunnsfarge på body */
     useEffect(() => {

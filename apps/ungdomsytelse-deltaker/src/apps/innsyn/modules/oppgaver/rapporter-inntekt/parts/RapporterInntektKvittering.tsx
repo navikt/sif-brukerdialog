@@ -5,6 +5,7 @@ import { forwardRef } from 'react';
 import Skyra, { Slug } from '../../../../../../components/skyra/Skyra';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
 import { useSkyraReloader } from '../../../../hooks/useSkyraReloader';
+import UXRapportertInntekt from '../../../../ux-signals/UXRapportertInntekt';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 
 interface Props {
@@ -32,9 +33,9 @@ const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteri
             <div>
                 <ForsideLenkeButton />
             </div>
-            {/* <div>
+            <div>
                 <UXRapportertInntekt />
-            </div> */}
+            </div>
             <div>
                 <Skyra slug={Slug.prod_rapporterInntekt} />
             </div>

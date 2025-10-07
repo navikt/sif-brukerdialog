@@ -5,6 +5,7 @@ import { VStack } from '@navikt/ds-react';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
 
+import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
@@ -18,7 +19,7 @@ const ForsidePage = () => {
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="8">
                 <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
-                {/* <UXRapportertInntekt /> */}
+                <UXRapportertInntekt />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
             </VStack>
         </ForsidePageLayout>
