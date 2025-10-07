@@ -24,7 +24,7 @@ import { ReisedagerSøknadsdata } from '../../../../types/søknadsdata/Reisedage
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
 import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
-import kursperiodeUtils from './kursperiodeUtils';
+import kursperiodeOgDagUtils from './kursperiodeOgDagUtils';
 import { KursFormFields, KursFormValues } from '../KursStep';
 
 dayjs.extend(isoWeek);
@@ -68,7 +68,7 @@ export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursS
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
     const kursperioder = kursperioderValues.map((periode, index) =>
-        kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
+        kursperiodeOgDagUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
     );
 
     return {
@@ -90,7 +90,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     const defaultValues: KursFormValues = {
         opplæringsinstitusjon: '',
         kursperioder: [{}],
-        enkeltdager: [{}],
+        kursdager: [{}],
     };
 
     const { kurs } = søknadsdata;
@@ -99,7 +99,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
         return {
             ...defaultValues,
             opplæringsinstitusjon: kurs.kursholder,
-            kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
+            kursperioder: kurs.kursperioder.map((periode) => kursperiodeOgDagUtils.mapKursperiodeToFormValues(periode)),
             skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
             ...(kurs.reisedager.reiserUtenforKursdager === true
                 ? {
@@ -224,7 +224,7 @@ export const getDateRangesFromKursperiodeFormValues = (
     const perioder = kursperioderValues
         .map((periode, index) => {
             try {
-                const kursperiode = kursperiodeUtils.mapFormValuesToKursperiode(
+                const kursperiode = kursperiodeOgDagUtils.mapFormValuesToKursperiode(
                     periode as KursperiodeFormValues,
                     `${index}`,
                 );

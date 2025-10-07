@@ -2,6 +2,7 @@ import { DateRange, dateToISOString, ISOStringToDate } from '@navikt/sif-common-
 import { guid } from '@navikt/sif-common-utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
+import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
@@ -18,6 +19,13 @@ const getPeriodeFromKursperiodeFormValue = (formValues: Partial<KursperiodeFormV
         from,
         to,
     };
+};
+const getDatoFromKursdagFormValue = (formValues: Partial<KursdagFormValues>): Date | undefined => {
+    return ISOStringToDate(formValues.dato);
+};
+
+const getDatoFromKursdagFormDato = (dato: string | undefined): Date | undefined => {
+    return ISOStringToDate(dato);
 };
 
 const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
@@ -38,11 +46,13 @@ const mapKursperiodeToFormValues = ({ periode }: Partial<Kursperiode>): Kursperi
     };
 };
 
-const kursperiodeUtils = {
+const kursperiodeOgDagUtils = {
     isValidKursperiode,
     mapKursperiodeToFormValues,
     mapFormValuesToKursperiode,
     getPeriodeFromKursperiodeFormValue,
+    getDatoFromKursdagFormValue,
+    getDatoFromKursdagFormDato,
 };
 
-export default kursperiodeUtils;
+export default kursperiodeOgDagUtils;

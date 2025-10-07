@@ -29,7 +29,7 @@ import {
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
 } from './utils/kursStepUtils';
-import EnkeltdagerFormPart, { EnkeltdagFormValues } from './parts/enkeltdager-form-part/EnkeltdagerFormPart';
+import KursdagerFormPart from './parts/kursdager-form-part/KursdagerFormPart';
 import ReiseQuestions from './questions/ReiseQuestions';
 import KursperioderFormPart from './parts/kursperioder-form-part/KursperioderFormPart';
 import FerieQuestions from './questions/FerieQuestions';
@@ -37,6 +37,7 @@ import UtenlandsoppholdQuestions from './questions/UtenlandsoppholdQuestionst';
 import { getDateRangesBetweenDateRangesWithinDateRange } from '@navikt/sif-common-utils';
 import OpplæringsinstitusjonQuestion from './questions/OpplæringsinstitusjonQuestion';
 import EnkeltdagerEllerPerioderQuestion from './questions/EnkeltdagerEllerPerioderQuestion';
+import { KursdagFormValues } from './parts/kursdager-form-part/KursdagQuestions';
 
 export enum EnkeltdagEllerPeriode {
     ENKELTDAG = 'ENKELTDAG',
@@ -47,7 +48,7 @@ export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     enkeltdagEllerPeriode = 'enkeltdagEllerPeriode',
     kursperioder = 'kursperioder',
-    enkeltdager = 'enkeltdager',
+    kursdager = 'kursdager',
     reiserUtenforKursdager = 'reiserUtenforKursdager',
     reisedager = 'reisedager',
     reisedagerBeskrivelse = 'reisedagerBeskrivelse',
@@ -61,7 +62,7 @@ export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.enkeltdagEllerPeriode]?: EnkeltdagEllerPeriode;
     [KursFormFields.kursperioder]: Array<Partial<KursperiodeFormValues>>;
-    [KursFormFields.enkeltdager]: Array<Partial<EnkeltdagFormValues>>;
+    [KursFormFields.kursdager]: Array<Partial<KursdagFormValues>>;
     [KursFormFields.reisedager]?: Enkeltdato[];
     [KursFormFields.reisedagerBeskrivelse]?: string;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
@@ -197,10 +198,10 @@ const KursStep = () => {
                                             id="enkeltdager"
                                             legend="Enkeltdager med kurs"
                                             hideLegend={true}
-                                            name={KursFormFields.enkeltdager}
+                                            name={KursFormFields.kursdager}
                                             errorPropagation={false}
                                             validate={getKursperioderValidator}>
-                                            <EnkeltdagerFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
+                                            <KursdagerFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                                         </FormikInputGroup>
                                     )}
                                 </FormLayout.Questions>

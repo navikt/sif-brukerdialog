@@ -6,7 +6,7 @@ import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { getDateRangeValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../../../../i18n';
-import kursperiodeUtils from '../../utils/kursperiodeUtils';
+import kursperiodeOgDagUtils from '../../utils/kursperiodeOgDagUtils';
 import { KursFormFields } from '../../KursStep';
 import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
 
@@ -51,7 +51,7 @@ const KursperiodeQuestions = ({
 
     const disabledDateRanges = allePerioder
         .filter((p) => p !== values)
-        .map(kursperiodeUtils.getPeriodeFromKursperiodeFormValue)
+        .map(kursperiodeOgDagUtils.getPeriodeFromKursperiodeFormValue)
         .filter((p) => p !== undefined);
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
