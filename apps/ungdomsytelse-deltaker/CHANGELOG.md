@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.4.0
+
+### Minor Changes
+
+- Tekster og funksjonalitet rundt avvik i inntekt varsel
+
 ## 1.3.7
 
 ### Patch Changes
