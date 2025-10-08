@@ -1,7 +1,14 @@
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { Delete } from '@navikt/ds-icons';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { dateFormatter, DateRange, Duration, isDateInDateRange, ISODate } from '@navikt/sif-common-utils';
+import {
+    dateFormatter,
+    DateRange,
+    Duration,
+    isDateInDateRange,
+    isDateWeekDay,
+    ISODate,
+} from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../../i18n';
 import { KursFormFields } from '../../KursStep';
 import { getDateValidator, getTimeValidator } from '@navikt/sif-validation';
@@ -60,17 +67,21 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                     minDate={minDate}
                     maxDate={maxDate}
                     disabledDateRanges={disabledDateRanges}
+                    disableWeekends={true}
                     validate={(value) => {
                         let error: any = getDateValidator({ required: true, min: minDate, max: maxDate })(value);
                         if (!error) {
                             const dato = kursperiodeOgDagUtils.getDatoFromKursdagFormDato(value);
-                            if (
-                                dato !== undefined &&
-                                disabledDateRanges.some((range) => isDateInDateRange(dato, range))
-                            ) {
-                                error = 'likeKursdager';
+                            if (dato !== undefined) {
+                                if (disabledDateRanges.some((range) => isDateInDateRange(dato, range))) {
+                                    error = 'likeKursdager';
+                                }
+                                if (isDateWeekDay(dato) === false) {
+                                    error = 'erHelgedag';
+                                }
                             }
                         }
+
                         return error
                             ? {
                                   key: getValidationErrorKey(KursdagFormFields.dato, error),

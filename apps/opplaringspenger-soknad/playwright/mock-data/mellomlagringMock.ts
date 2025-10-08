@@ -41,6 +41,7 @@ const søknadsdata: Søknadsdata = {
             ],
             reisedagerBeskrivelse: 'Kombinerer med ferie',
         },
+        enkeltdagEllerPeriode: 'PERIODE' as any,
         kursholder: 'Barnas Fysioterapisenter i Bergen',
         kursperioder: [
             {
@@ -51,6 +52,7 @@ const søknadsdata: Søknadsdata = {
                 },
             },
         ],
+        kursdager: [],
         ferieuttakIPerioden: {
             type: 'skalTaUtFerieSøknadsdata',
             skalTaUtFerieIPerioden: true,
@@ -163,5 +165,5 @@ export const mellomlagringMock = {
     søknadsdata,
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],
-    versjon: '0.2.3',
+    versjon: '0.3.0',
 };
