@@ -15,14 +15,14 @@ interface Props {
 const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursdager } = values;
-    const periodeHeadingRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const dagHeadingRefs = useRef<Array<HTMLDivElement | null>>([]);
 
     const harFlereDager = kursdager.length > 1;
 
-    const focusNyPeriodeHeading = (dagIndex: number) => {
+    const focusDagHeading = (dagIndex: number) => {
         setTimeout(() => {
-            // Sett fokus på headingen for den nye dagen via ref
-            const heading = periodeHeadingRefs.current[dagIndex];
+            // Sett fokus på headingen for den angitte dagen via ref
+            const heading = dagHeadingRefs.current[dagIndex];
             if (heading) {
                 heading.focus();
             }
@@ -39,22 +39,21 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
                                     <section>
-                                        {harFlereDager ? (
-                                            <Heading
-                                                size="xsmall"
-                                                level="3"
-                                                spacing
-                                                as="div"
-                                                ref={(el) => {
-                                                    periodeHeadingRefs.current[index] = el;
-                                                }}
-                                                tabIndex={-1}>
-                                                <AppText
-                                                    id="steg.kurs.enkeltdager.dag.tittel"
-                                                    values={{ dagNr: index + 1 }}
-                                                />
-                                            </Heading>
-                                        ) : null}
+                                        <Heading
+                                            size="xsmall"
+                                            level="3"
+                                            spacing
+                                            as="div"
+                                            ref={(el) => {
+                                                dagHeadingRefs.current[index] = el;
+                                            }}
+                                            tabIndex={-1}>
+                                            <AppText
+                                                id="steg.kurs.enkeltdager.dag.tittel"
+                                                values={{ dagNr: index + 1 }}
+                                            />
+                                        </Heading>
+
                                         <KursdagQuestions
                                             values={kursdag}
                                             index={index}
@@ -62,9 +61,14 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                             harFlereDager={harFlereDager}
                                             alleDager={kursdager}
                                             onRemove={() => {
+                                                const isLastItem = index === kursdager.length - 1;
+                                                const focusIndex = isLastItem ? index - 1 : index;
+
                                                 arrayHelpers.remove(index);
                                                 setTimeout(() => {
                                                     validateForm();
+                                                    // Sett fokus på neste dag, eller forrige hvis det var siste dag
+                                                    focusDagHeading(focusIndex);
                                                 });
                                             }}
                                         />
@@ -81,7 +85,7 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                         arrayHelpers.push({});
                                         setTimeout(() => {
                                             validateForm(values);
-                                            focusNyPeriodeHeading(kursdager.length);
+                                            focusDagHeading(kursdager.length);
                                         });
                                     }}>
                                     <AppText id="steg.kurs.enkeltdager.leggTil.label" />
