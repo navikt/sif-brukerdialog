@@ -48,7 +48,7 @@ const nb = {
     'kursdag.form.tidReise.validation.hoursAreNegative':
         'Antall timer og minutter med reise kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { {dato}} other{}}.',
 
-    'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}} med opplæring',
+    'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}}',
 };
 
 const nn: Record<keyof typeof nb, string> = {

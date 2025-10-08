@@ -24,6 +24,8 @@ const nb = {
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.enkeltdager.tekst':
         'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
+    'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
+    'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
