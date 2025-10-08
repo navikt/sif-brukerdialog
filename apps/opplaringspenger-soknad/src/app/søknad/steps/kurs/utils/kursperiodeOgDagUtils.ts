@@ -1,8 +1,9 @@
 import { DateRange, dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { guid } from '@navikt/sif-common-utils';
+import { dateToISODate, durationAsNumberDuration, guid, numberDurationAsDuration } from '@navikt/sif-common-utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
+import { Kursdag } from '../../../../types/Kursdag';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
@@ -28,7 +29,10 @@ const getDatoFromKursdagFormDato = (dato: string | undefined): Date | undefined 
     return ISOStringToDate(dato);
 };
 
-const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
+const mapKursPeriodeFormValuesToKursperiode = (
+    formValues: KursperiodeFormValues,
+    id: string | undefined,
+): Kursperiode => {
     const periode = getPeriodeFromKursperiodeFormValue(formValues);
     if (!periode) {
         throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
@@ -38,6 +42,28 @@ const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: strin
         periode,
     };
 };
+
+const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
+    const dato = getDatoFromKursdagFormDato(formValues.dato);
+    const tidKurs = durationAsNumberDuration(formValues.tidKurs);
+    const tidReise = formValues.tidReise ? durationAsNumberDuration(formValues.tidKurs) : undefined;
+
+    if (!dato) {
+        throw new Error('Kan ikke mappe form values til kursdag');
+    }
+    return {
+        id: id || guid(),
+        dato,
+        tidKurs,
+        tidReise,
+    };
+};
+
+const mapKursdagToKursdagFormValues = (kurs: Kursdag): Partial<KursdagFormValues> => ({
+    dato: dateToISODate(kurs.dato),
+    tidKurs: numberDurationAsDuration(kurs.tidKurs),
+    tidReise: kurs.tidReise ? numberDurationAsDuration(kurs.tidReise) : undefined,
+});
 
 const mapKursperiodeToFormValues = ({ periode }: Partial<Kursperiode>): KursperiodeFormValues => {
     return {
@@ -49,7 +75,9 @@ const mapKursperiodeToFormValues = ({ periode }: Partial<Kursperiode>): Kursperi
 const kursperiodeOgDagUtils = {
     isValidKursperiode,
     mapKursperiodeToFormValues,
-    mapFormValuesToKursperiode,
+    mapKursPeriodeFormValuesToKursperiode,
+    mapKursdagFormValuesToKursdag,
+    mapKursdagToKursdagFormValues,
     getPeriodeFromKursperiodeFormValue,
     getDatoFromKursdagFormValue,
     getDatoFromKursdagFormDato,

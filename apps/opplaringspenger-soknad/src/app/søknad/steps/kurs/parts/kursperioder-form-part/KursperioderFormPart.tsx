@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -53,7 +53,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                     />
                                 </FormLayout.Panel>
                             ))}
-                            <Box>
+                            <div>
                                 <Button
                                     type="button"
                                     variant="secondary"
@@ -67,7 +67,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                     }}>
                                     <AppText id="steg.kurs.kursperioder.leggTil.label" />
                                 </Button>
-                            </Box>
+                            </div>
                             {harPerioderMedKunHelg && (
                                 <Alert variant="warning">
                                     <AppText id="kursperiode.form.validation.startOgSluttErSammeHelg.info" />

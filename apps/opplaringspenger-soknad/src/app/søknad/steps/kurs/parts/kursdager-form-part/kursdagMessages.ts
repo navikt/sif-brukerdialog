@@ -10,7 +10,7 @@ const nb = {
     'kursdag.form.tidReise.label': 'Timer med reise',
 
     'kursdag.form.dato.validation.dateHasNoValue':
-        '{harFlereDager, select, true { Dag {dagNr}} other{}}: Du må velge kursdato. Skriv inn eller velg dato fra datovelgeren.',
+        '{harFlereDager, select, true { Dag {dagNr}:} other{}} Du må velge kursdato. Skriv inn eller velg dato fra datovelgeren.',
 
     'kursdag.form.tidKurs.validation.timeHasNoValue':
         'Du må fylle hvor lenge kurset varer{harFlereDager, select, true { {dato}} other{}}.',

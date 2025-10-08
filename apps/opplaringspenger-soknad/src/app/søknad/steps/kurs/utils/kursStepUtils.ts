@@ -25,7 +25,9 @@ import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../../../types/søknadsdata/UtenlandsoppholdSøknadsdata';
 import { KursperiodeFormValues } from '../parts/kursperioder-form-part/KursperiodeQuestions';
 import kursperiodeOgDagUtils from './kursperiodeOgDagUtils';
-import { KursFormFields, KursFormValues } from '../KursStep';
+import { EnkeltdagEllerPeriode, KursFormFields, KursFormValues } from '../KursStep';
+import { KursdagFormValues } from '../parts/kursdager-form-part/KursdagQuestions';
+import { Kursdag } from '../../../../types/Kursdag';
 
 dayjs.extend(isoWeek);
 
@@ -62,24 +64,70 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
+const sortKursdag = (a: Kursdag, b: Kursdag) => {
+    return dayjs(a.dato).isBefore(dayjs(b.dato)) ? -1 : 1;
+};
+
 export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
-    const { opplæringsinstitusjon, kursperioder: kursperioderValues } = values;
-    if (!opplæringsinstitusjon || !kursperioderValues) {
+    const {
+        opplæringsinstitusjon,
+        kursperioder: kursperioderValues,
+        kursdager: kursdagerValues,
+        enkeltdagEllerPeriode,
+    } = values;
+
+    if (!opplæringsinstitusjon || !enkeltdagEllerPeriode) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
-    const kursperioder = kursperioderValues.map((periode, index) =>
-        kursperiodeOgDagUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
-    );
+    const gjelderPerioder = enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE;
 
-    return {
-        søknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode)),
-        søknadsdatoer: getDatoerIKursperioder(kursperioder),
-        reisedager: extractReisedagerSøknadsdata(values),
-        kursholder: opplæringsinstitusjon,
-        kursperioder: kursperioder.sort(sortKursperiode),
-        ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
-        utenlandsopphold: extractUtenlandsoppholdIPeriodenSøknadsdata(values),
-    };
+    if (!gjelderPerioder && !kursdagerValues) {
+        throw 'Enkeltdager er valgt, men ingen dager er lagt til';
+    }
+    if (gjelderPerioder && !kursperioderValues) {
+        throw 'Perioder er valgt, men ingen perioder er lagt til';
+    }
+
+    if (gjelderPerioder) {
+        /** Perioder */
+        const kursperioder = kursperioderValues
+            .map((periode, index) =>
+                kursperiodeOgDagUtils.mapKursPeriodeFormValuesToKursperiode(
+                    periode as KursperiodeFormValues,
+                    `${index}`,
+                ),
+            )
+            .sort(sortKursperiode);
+        return {
+            enkeltdagEllerPeriode,
+            søknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode)),
+            søknadsdatoer: getDatoerIKursperioder(kursperioder),
+            reisedager: extractReisedagerSøknadsdata(values),
+            kursholder: opplæringsinstitusjon,
+            kursperioder,
+            kursdager: [],
+            ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
+            utenlandsopphold: extractUtenlandsoppholdIPeriodenSøknadsdata(values),
+        };
+    } else {
+        /** Enkeltdager */
+        const kursdager = kursdagerValues
+            .map((dag, index) =>
+                kursperiodeOgDagUtils.mapKursdagFormValuesToKursdag(dag as KursdagFormValues, `${index}`),
+            )
+            .sort(sortKursdag);
+
+        const søknadsdatoer = kursdager.map((dag) => dag.dato);
+        return {
+            enkeltdagEllerPeriode,
+            søknadsperiode: dateRangeUtils.getDateRangeFromDates(søknadsdatoer),
+            søknadsdatoer,
+            reisedager: extractReisedagerSøknadsdata(values),
+            kursholder: opplæringsinstitusjon,
+            kursperioder: [],
+            kursdager,
+        };
+    }
 };
 
 export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?: KursFormValues): KursFormValues => {
@@ -96,32 +144,43 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     const { kurs } = søknadsdata;
 
     if (kurs) {
-        return {
-            ...defaultValues,
-            opplæringsinstitusjon: kurs.kursholder,
-            kursperioder: kurs.kursperioder.map((periode) => kursperiodeOgDagUtils.mapKursperiodeToFormValues(periode)),
-            skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
-            ...(kurs.reisedager.reiserUtenforKursdager === true
-                ? {
-                      reisedager: kurs.reisedager.reisedager,
-                      reisedagerBeskrivelse: kurs.reisedager.reisedagerBeskrivelse,
-                      reiserUtenforKursdager: YesOrNo.YES,
-                  }
-                : {
-                      reiserUtenforKursdager: YesOrNo.NO,
-                  }),
-            ferieuttak:
-                kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
-                    ? kurs.ferieuttakIPerioden.ferieuttak
-                    : undefined,
-            skalOppholdeSegIUtlandetIPerioden: getYesOrNoFromBoolean(
-                kurs.utenlandsopphold?.skalOppholdeSegIUtlandetIPerioden,
-            ),
-            utenlandsoppholdIPerioden:
-                kurs.utenlandsopphold?.type === 'harUtenlandsopphold'
-                    ? kurs.utenlandsopphold.utenlandsopphold
-                    : undefined,
-        };
+        const gjelderPerioder = kurs.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE;
+        return gjelderPerioder
+            ? {
+                  ...defaultValues,
+                  opplæringsinstitusjon: kurs.kursholder,
+                  enkeltdagEllerPeriode: kurs.enkeltdagEllerPeriode,
+                  kursperioder: kurs.kursperioder.map(kursperiodeOgDagUtils.mapKursperiodeToFormValues),
+                  kursdager: [{}],
+                  skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
+                  ...(kurs.reisedager?.reiserUtenforKursdager === true
+                      ? {
+                            reisedager: kurs.reisedager.reisedager,
+                            reisedagerBeskrivelse: kurs.reisedager.reisedagerBeskrivelse,
+                            reiserUtenforKursdager: YesOrNo.YES,
+                        }
+                      : {
+                            reiserUtenforKursdager: YesOrNo.NO,
+                        }),
+                  ferieuttak:
+                      kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
+                          ? kurs.ferieuttakIPerioden.ferieuttak
+                          : undefined,
+                  skalOppholdeSegIUtlandetIPerioden: getYesOrNoFromBoolean(
+                      kurs.utenlandsopphold?.skalOppholdeSegIUtlandetIPerioden,
+                  ),
+                  utenlandsoppholdIPerioden:
+                      kurs.utenlandsopphold?.type === 'harUtenlandsopphold'
+                          ? kurs.utenlandsopphold.utenlandsopphold
+                          : undefined,
+              }
+            : {
+                  ...defaultValues,
+                  opplæringsinstitusjon: kurs.kursholder,
+                  enkeltdagEllerPeriode: kurs.enkeltdagEllerPeriode,
+                  kursperioder: [{}],
+                  kursdager: kurs.kursdager.map(kursperiodeOgDagUtils.mapKursdagToKursdagFormValues),
+              };
     }
 
     return defaultValues;
@@ -224,7 +283,7 @@ export const getDateRangesFromKursperiodeFormValues = (
     const perioder = kursperioderValues
         .map((periode, index) => {
             try {
-                const kursperiode = kursperiodeOgDagUtils.mapFormValuesToKursperiode(
+                const kursperiode = kursperiodeOgDagUtils.mapKursPeriodeFormValuesToKursperiode(
                     periode as KursperiodeFormValues,
                     `${index}`,
                 );

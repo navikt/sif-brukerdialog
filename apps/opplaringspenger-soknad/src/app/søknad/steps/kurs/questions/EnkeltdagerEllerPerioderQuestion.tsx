@@ -6,7 +6,7 @@ const EnkeltdagerEllerPerioderQuestion = () => {
         <KursFormComponents.RadioGroup
             name={KursFormFields.enkeltdagEllerPeriode}
             legend="Gjelder søknaden enkeltdag eller periode?"
-            description="Legg til dag og antall timer du er på opplæring, og reisetid til og fra opplæringen."
+            description="Du kan legge til flere enkeltdager eller perioder etter du har valgt. "
             validate={getRequiredFieldValidator()}
             radios={[
                 {
