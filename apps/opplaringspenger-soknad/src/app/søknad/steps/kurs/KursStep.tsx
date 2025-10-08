@@ -38,6 +38,7 @@ import { getDateRangesBetweenDateRangesWithinDateRange } from '@navikt/sif-commo
 import OpplæringsinstitusjonQuestion from './questions/OpplæringsinstitusjonQuestion';
 import EnkeltdagerEllerPerioderQuestion from './questions/EnkeltdagerEllerPerioderQuestion';
 import { KursdagFormValues } from './parts/kursdager-form-part/KursdagQuestions';
+import { Box } from '@navikt/ds-react';
 
 export enum EnkeltdagEllerPeriode {
     ENKELTDAG = 'ENKELTDAG',
@@ -158,8 +159,12 @@ const KursStep = () => {
                                         <>
                                             <FormikInputGroup
                                                 id="kursperioder"
-                                                legend="Kursperioder"
-                                                hideLegend={true}
+                                                legend={<AppText id="steg.kurs.kursperioder.tittel" />}
+                                                description={
+                                                    <Box marginBlock="1 6">
+                                                        <AppText id="steg.kurs.kursperioder.tekst" />
+                                                    </Box>
+                                                }
                                                 name={KursFormFields.kursperioder}
                                                 errorPropagation={false}
                                                 validate={getKursperioderValidator}>
@@ -196,8 +201,12 @@ const KursStep = () => {
                                     {values.enkeltdagEllerPeriode === EnkeltdagEllerPeriode.ENKELTDAG && (
                                         <FormikInputGroup
                                             id="enkeltdager"
-                                            legend="Enkeltdager med kurs"
-                                            hideLegend={true}
+                                            legend={<AppText id="steg.kurs.enkeltdager.tittel" />}
+                                            description={
+                                                <Box marginBlock="1 6">
+                                                    <AppText id="steg.kurs.enkeltdager.tekst" />
+                                                </Box>
+                                            }
                                             name={KursFormFields.kursdager}
                                             errorPropagation={false}
                                             validate={getKursperioderValidator}>

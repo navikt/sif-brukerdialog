@@ -1,11 +1,10 @@
 import { FieldArray, useFormikContext } from 'formik';
 import { DateRange } from '@navikt/sif-common-utils';
-import { BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Box, Button, VStack } from '@navikt/ds-react';
 import { KursFormValues } from '../../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
 import KursdagQuestions from './KursdagQuestions';
-import { AppText } from '../../../../../i18n';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -27,31 +26,19 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
                                     <section aria-labelledby={`heading-${index}`}>
-                                        <VStack gap="6">
-                                            <VStack gap="2">
-                                                <BodyShort
-                                                    weight="semibold"
-                                                    size="large"
-                                                    className="noPadding"
-                                                    id={`heading-${index}`}>
-                                                    <AppText
-                                                        id="kursdag.form.dag.label"
-                                                        values={{ harFlereDager, dagNr: index + 1 }}
-                                                    />
-                                                </BodyShort>
-                                                <BodyLong className="noPadding">
-                                                    <AppText id="kursdag.form.dag.description" />
-                                                </BodyLong>
-                                            </VStack>
-
-                                            <KursdagQuestions
-                                                values={kursdag}
-                                                index={index}
-                                                gyldigSøknadsperiode={gyldigSøknadsperiode}
-                                                harFlereDager={harFlereDager}
-                                                alleDager={kursdager}
-                                            />
-                                        </VStack>
+                                        <KursdagQuestions
+                                            values={kursdag}
+                                            index={index}
+                                            gyldigSøknadsperiode={gyldigSøknadsperiode}
+                                            harFlereDager={harFlereDager}
+                                            alleDager={kursdager}
+                                            onRemove={() => {
+                                                arrayHelpers.remove(index);
+                                                setTimeout(() => {
+                                                    validateForm();
+                                                });
+                                            }}
+                                        />
                                     </section>
                                 </FormLayout.Panel>
                             ))}
@@ -73,7 +60,7 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                         </VStack>
                     );
                 }}
-            />{' '}
+            />
         </VStack>
     );
 };

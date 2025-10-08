@@ -1,20 +1,22 @@
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { EnkeltdagEllerPeriode, KursFormComponents, KursFormFields } from '../KursStep';
+import { useAppIntl } from '../../../../i18n';
 
 const EnkeltdagerEllerPerioderQuestion = () => {
+    const { text } = useAppIntl();
     return (
         <KursFormComponents.RadioGroup
             name={KursFormFields.enkeltdagEllerPeriode}
-            legend="Gjelder søknaden enkeltdag eller periode?"
-            description="Du kan legge til flere enkeltdager eller perioder etter du har valgt. "
+            legend={text('steg.kurs.enkeltdagEllerPeriode.spm')}
+            description={text('steg.kurs.enkeltdagEllerPeriode.description')}
             validate={getRequiredFieldValidator()}
             radios={[
                 {
-                    label: 'Enkeltdag',
+                    label: text('steg.kurs.enkeltdagEllerPeriode.enkeltdag'),
                     value: EnkeltdagEllerPeriode.ENKELTDAG,
                 },
                 {
-                    label: 'Periode',
+                    label: text('steg.kurs.enkeltdagEllerPeriode.periode'),
                     value: EnkeltdagEllerPeriode.PERIODE,
                 },
             ]}

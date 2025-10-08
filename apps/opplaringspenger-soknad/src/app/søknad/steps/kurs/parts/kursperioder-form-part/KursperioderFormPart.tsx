@@ -1,4 +1,4 @@
-import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Button, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -24,60 +24,52 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
     });
 
     return (
-        <VStack gap="4">
-            <VStack gap="2">
-                <Heading level="2" size="xsmall">
-                    <AppText id="steg.kurs.kursperioder.tittel" />
-                </Heading>
-                <AppText id="steg.kurs.kursperioder.tekst" />
-            </VStack>
-            <FieldArray
-                name="kursperioder"
-                render={(arrayHelpers) => {
-                    return (
-                        <VStack gap="4">
-                            {kursperioder.map((kursperiode, index) => (
-                                <FormLayout.Panel key={index}>
-                                    <KursperiodeQuestions
-                                        allePerioder={kursperioder}
-                                        values={kursperiode || {}}
-                                        index={index}
-                                        harFlerePerioder={harFlerePerioder}
-                                        gyldigSøknadsperiode={gyldigSøknadsperiode}
-                                        onRemove={() => {
-                                            arrayHelpers.remove(index);
-                                            setTimeout(() => {
-                                                validateForm();
-                                            });
-                                        }}
-                                    />
-                                </FormLayout.Panel>
-                            ))}
-                            <div>
-                                <Button
-                                    type="button"
-                                    variant="secondary"
-                                    size="small"
-                                    icon={<Add aria-hidden={true} />}
-                                    onClick={() => {
-                                        arrayHelpers.push({});
+        <FieldArray
+            name="kursperioder"
+            render={(arrayHelpers) => {
+                return (
+                    <VStack gap="4">
+                        {kursperioder.map((kursperiode, index) => (
+                            <FormLayout.Panel key={index}>
+                                <KursperiodeQuestions
+                                    allePerioder={kursperioder}
+                                    values={kursperiode || {}}
+                                    index={index}
+                                    harFlerePerioder={harFlerePerioder}
+                                    gyldigSøknadsperiode={gyldigSøknadsperiode}
+                                    onRemove={() => {
+                                        arrayHelpers.remove(index);
                                         setTimeout(() => {
-                                            validateForm(values);
+                                            validateForm();
                                         });
-                                    }}>
-                                    <AppText id="steg.kurs.kursperioder.leggTil.label" />
-                                </Button>
-                            </div>
-                            {harPerioderMedKunHelg && (
-                                <Alert variant="warning">
-                                    <AppText id="kursperiode.form.validation.startOgSluttErSammeHelg.info" />
-                                </Alert>
-                            )}
-                        </VStack>
-                    );
-                }}
-            />
-        </VStack>
+                                    }}
+                                />
+                            </FormLayout.Panel>
+                        ))}
+                        <div>
+                            <Button
+                                type="button"
+                                variant="secondary"
+                                size="small"
+                                icon={<Add aria-hidden={true} />}
+                                onClick={() => {
+                                    arrayHelpers.push({});
+                                    setTimeout(() => {
+                                        validateForm(values);
+                                    });
+                                }}>
+                                <AppText id="steg.kurs.kursperioder.leggTil.label" />
+                            </Button>
+                        </div>
+                        {harPerioderMedKunHelg && (
+                            <Alert variant="warning">
+                                <AppText id="kursperiode.form.validation.startOgSluttErSammeHelg.info" />
+                            </Alert>
+                        )}
+                    </VStack>
+                );
+            }}
+        />
     );
 };
 

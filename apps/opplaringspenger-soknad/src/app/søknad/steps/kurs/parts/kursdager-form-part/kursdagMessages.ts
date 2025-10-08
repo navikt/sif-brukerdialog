@@ -3,14 +3,12 @@ import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils'
 
 const nb = {
     'kursdag.form.dag.label': 'Dag {harFlereDager, select, true { {dagNr}} other{}} med opplæring',
-    'kursdag.form.dag.description':
-        'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
     'kursdag.form.dato.label': 'Velg dato',
     'kursdag.form.tidKurs.label': 'Timer med opplæring',
     'kursdag.form.tidReise.label': 'Timer med reise',
 
     'kursdag.form.dato.validation.dateHasNoValue':
-        '{harFlereDager, select, true { Dag {dagNr}:} other{}} Du må velge kursdato. Skriv inn eller velg dato fra datovelgeren.',
+        '{harFlereDager, select, true { Dag {dagNr}:} other{}} Du må velge dato. Skriv inn eller velg dato fra datovelgeren.',
 
     'kursdag.form.tidKurs.validation.timeHasNoValue':
         'Du må fylle hvor lenge kurset varer{harFlereDager, select, true { {dato}} other{}}.',
@@ -50,7 +48,7 @@ const nb = {
     'kursdag.form.tidReise.validation.hoursAreNegative':
         'Antall timer og minutter med reise kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { {dato}} other{}}.',
 
-    'kursdag.fjern.label': 'Fjern dag med kurs {harFlereDager, select, true { {dagNr}} other{}}',
+    'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}} med opplæring',
 };
 
 const nn: Record<keyof typeof nb, string> = {
