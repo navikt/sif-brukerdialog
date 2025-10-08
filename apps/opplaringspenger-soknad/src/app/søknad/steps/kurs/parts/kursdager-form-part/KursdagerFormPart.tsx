@@ -6,6 +6,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
 import KursdagQuestions from './KursdagQuestions';
 import { AppText } from '../../../../../i18n';
+import { useRef } from 'react';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -14,8 +15,19 @@ interface Props {
 const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursdager } = values;
+    const periodeHeadingRefs = useRef<Array<HTMLDivElement | null>>([]);
 
     const harFlereDager = kursdager.length > 1;
+
+    const focusNyPeriodeHeading = (dagIndex: number) => {
+        setTimeout(() => {
+            // Sett fokus på headingen for den nye dagen via ref
+            const heading = periodeHeadingRefs.current[dagIndex];
+            if (heading) {
+                heading.focus();
+            }
+        }, 100);
+    };
 
     return (
         <VStack gap="4">
@@ -26,9 +38,17 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                         <VStack gap="4">
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
-                                    <section aria-labelledby={harFlereDager ? 'dag-' + (index + 1) : undefined}>
+                                    <section>
                                         {harFlereDager ? (
-                                            <Heading size="xsmall" level="3" spacing as="div" id={'dag-' + (index + 1)}>
+                                            <Heading
+                                                size="xsmall"
+                                                level="3"
+                                                spacing
+                                                as="div"
+                                                ref={(el) => {
+                                                    periodeHeadingRefs.current[index] = el;
+                                                }}
+                                                tabIndex={-1}>
                                                 <AppText
                                                     id="steg.kurs.enkeltdager.dag.tittel"
                                                     values={{ dagNr: index + 1 }}
@@ -61,6 +81,7 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                         arrayHelpers.push({});
                                         setTimeout(() => {
                                             validateForm(values);
+                                            focusNyPeriodeHeading(kursdager.length);
                                         });
                                     }}>
                                     <AppText id="steg.kurs.enkeltdager.leggTil.label" />

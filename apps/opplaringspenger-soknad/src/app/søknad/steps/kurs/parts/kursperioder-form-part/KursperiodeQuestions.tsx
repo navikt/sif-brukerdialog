@@ -61,7 +61,7 @@ const KursperiodeQuestions = ({
         <VStack gap="4">
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
-                hideLegend={harFlerePerioder === false}
+                hideLegend={true}
                 minDate={minDate}
                 validate={() => {
                     const error = startOgSluttErSammeHelg(startdato, sluttdato);
