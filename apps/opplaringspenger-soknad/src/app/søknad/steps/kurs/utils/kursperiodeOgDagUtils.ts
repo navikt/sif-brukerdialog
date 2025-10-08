@@ -46,7 +46,7 @@ const mapKursPeriodeFormValuesToKursperiode = (
 const mapKursdagFormValuesToKursdag = (formValues: KursdagFormValues, id: string | undefined): Kursdag => {
     const dato = getDatoFromKursdagFormDato(formValues.dato);
     const tidKurs = durationAsNumberDuration(formValues.tidKurs);
-    const tidReise = formValues.tidReise ? durationAsNumberDuration(formValues.tidKurs) : undefined;
+    const tidReise = formValues.tidReise ? durationAsNumberDuration(formValues.tidReise) : undefined;
 
     if (!dato) {
         throw new Error('Kan ikke mappe form values til kursdag');

@@ -1,28 +1,40 @@
-import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, dateToISODate, durationToISODuration } from '@navikt/sif-common-utils';
 import { Institusjoner } from '../../api/institusjonService';
-import { KursApiData } from '../../types/søknadApiData/SøknadApiData';
+import { KursApiData, KursdagApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStep';
+import { Kursdag } from '../../types/Kursdag';
+
+const getKursdagApiDataFromKursdag = (kursdag: Kursdag): KursdagApiData => ({
+    dato: dateToISODate(kursdag.dato),
+    tidKurs: durationToISODuration(kursdag.tidKurs),
+    tidReise: kursdag.tidReise ? durationToISODuration(kursdag.tidReise) : undefined,
+});
 
 export const getKursApiDataFromSøknadsdata = (
-    { kursholder, kursperioder, reisedager }: KursSøknadsdata,
+    { kursholder, kursperioder, kursdager, reisedager, enkeltdagEllerPeriode }: KursSøknadsdata,
     institusjoner: Institusjoner,
 ): KursApiData => {
     const valgtInstitusjon = institusjoner.find((i) => i.navn === kursholder);
+    const gjelderPerioder = enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE;
 
     const apiData: KursApiData = {
         kursholder: {
             uuid: valgtInstitusjon?.uuid,
             navn: kursholder,
         },
-        kursperioder: kursperioder.map((p) => dateRangeToISODateRange(p.periode)),
-        reise:
-            reisedager?.reiserUtenforKursdager === true
+        enkeltdagEllerPeriode,
+        kursperioder: gjelderPerioder ? kursperioder.map((p) => dateRangeToISODateRange(p.periode)) : [],
+        kursdager: !gjelderPerioder ? kursdager.map(getKursdagApiDataFromKursdag) : [],
+        reise: gjelderPerioder
+            ? reisedager?.reiserUtenforKursdager === true
                 ? {
                       reiserUtenforKursdager: true,
                       reisedager: reisedager.reisedager.map((d) => dateToISODate(d.dato)),
                       reisedagerBeskrivelse: reisedager.reisedagerBeskrivelse,
                   }
-                : { reiserUtenforKursdager: false },
+                : { reiserUtenforKursdager: false }
+            : undefined,
     };
     return apiData;
 };
