@@ -32,7 +32,7 @@ export default defineConfig({
         alias: createAliasConfig(),
     },
     define: {
-        __IS_GITHUB_PAGES__: false,
+        __IS_GITHUB_PAGES__: true,
         __IS_VEILEDER_DEMO__: false,
         __INJECT_DECORATOR_CLIENT_SIDE__: false,
     },
