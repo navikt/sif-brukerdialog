@@ -19,7 +19,7 @@
         "@navikt/ds-tailwind": "7.32.0",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
-        "csp-header": "6.1.0",
+        "csp-header": "6.2.0",
         "date-fns": "4.1.0",
         "dayjs": "1.11.18",
         "formik": "2.4.6",

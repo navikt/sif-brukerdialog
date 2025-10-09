@@ -49,7 +49,7 @@
         "@tanstack/react-query": "5.90.2",
         "axios": "1.12.2",
         "clsx": "2.1.1",
-        "csp-header": "6.1.0",
+        "csp-header": "6.2.0",
         "dayjs": "1.11.18",
         "html-react-parser": "5.2.6",
         "jsdom": "27.0.0",

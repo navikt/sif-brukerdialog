@@ -20,7 +20,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "classnames": "2.5.1",
-        "csp-header": "6.1.0",
+        "csp-header": "6.2.0",
         "date-fns": "4.1.0",
         "fp-ts": "2.16.11",
         "html-react-parser": "5.2.6",

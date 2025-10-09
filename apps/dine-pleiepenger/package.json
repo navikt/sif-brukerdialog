@@ -28,7 +28,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "axios": "1.12.2",
-        "csp-header": "6.1.0",
+        "csp-header": "6.2.0",
         "date-fns": "4.1.0",
         "html-react-parser": "5.2.6",
         "jsdom": "27.0.0",
