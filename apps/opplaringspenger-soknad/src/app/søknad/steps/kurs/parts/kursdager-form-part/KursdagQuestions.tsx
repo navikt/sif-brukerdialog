@@ -99,12 +99,12 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                         if (!valgtDato) {
                             return;
                         }
-                        const error: any = getTimeValidator({ required: true })(value);
+                        const error: any = getTimeValidator({ required: true, min: { hours: 1, minutes: 0 } })(value);
                         return error
                             ? {
                                   key: getValidationErrorKey(KursdagFormFields.tidKurs, error),
                                   keepKeyUnaltered: true,
-                                  values: { dato: dateFormatter.compact(valgtDato), harFlereDager },
+                                  values: { dagNr, dato: dateFormatter.compact(valgtDato), harFlereDager },
                               }
                             : undefined;
                     }}
@@ -118,7 +118,7 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                         if (!valgtDato) {
                             return;
                         }
-                        const error: any = getTimeValidator()(value);
+                        const error: any = getTimeValidator({ min: { hours: 0, minutes: 30 } })(value);
                         return error
                             ? {
                                   key: getValidationErrorKey(KursdagFormFields.tidReise, error),

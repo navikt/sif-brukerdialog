@@ -8,26 +8,32 @@ const nb = {
     'kursdag.form.tidReise.label': 'Timer med reise',
 
     'kursdag.form.dato.validation.dateHasNoValue':
-        '{harFlereDager, select, true { Dag {dagNr}:} other{}} Du må velge dato. Skriv inn eller velg dato fra datovelgeren.',
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du må velge dato. Skriv inn eller velg dato fra datovelgeren.',
+    'kursdag.form.dato.validation.dateHasInvalidFormat':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du må oppgi dato i et gyldig format. Gyldig format er dd.mm.åååå.',
+    'kursdag.form.dato.validation.likeKursdager':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du har oppgitt samme dato flere ganger.',
+    'kursdag.form.dato.validation.erHelgedag':
+        '{harFlereDager, select, true { Dag {dagNr}: } other{}}Du kan ikke velge en lørdag eller søndag.',
 
     'kursdag.form.tidKurs.validation.timeHasNoValue':
-        'Du må fylle hvor lenge kurset varer{harFlereDager, select, true { {dato}} other{}}.',
+        'Du må fylle hvor lenge kurset varer{harFlereDager, select, true { (dag {dagNr}, {dato})} other{}}.',
     'kursdag.form.tidKurs.validation.hoursAreInvalid':
-        'Antall timer med kurs er ikke et gyldig tall{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer er ikke et gyldig tall{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.minutesAreInvalid':
-        'Antall minutter med kurs er ikke et gyldig tall{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall minutter er ikke et gyldig tall{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.tooManyHours':
-        'Antall timer med kurs kan ikke overstige 24 timer{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer kan ikke overstige 24 timer{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.tooManyMinutes':
-        'Antall minutter med kurs kan ikke overstige 59 minutter{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall minutter kan ikke overstige 59 minutter{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.durationIsTooLong':
-        'Antall timer og minutter registrert med kurs er for høyt. Tiden kan ikke overstige 24 timer hver ukedag{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer og minutter registrert er for høyt. Tiden kan ikke overstige 24 timer{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.durationIsTooShort':
-        'Antall timer og minutter med kurs kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer og minutter kan ikke være mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.minutesAreNegative':
-        'Antall timer og minutter med kurs kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer og minutter kan ikke være mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
     'kursdag.form.tidKurs.validation.hoursAreNegative':
-        'Antall timer og minutter med kurs kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { ({dato})} other{}}.',
+        'Antall timer og minutter kan ikke være mindre enn 1 time{harFlereDager, select, true { ({dato})} other{}}.',
 
     'kursdag.form.tidReise.validation.timeHasNoValue':
         'Du må fylle hvor lenge reisen varer{harFlereDager, select, true { {dato}} other{}}.',
@@ -40,13 +46,13 @@ const nb = {
     'kursdag.form.tidReise.validation.tooManyMinutes':
         'Antall minutter med reise kan ikke overstige 59 minutter{harFlereDager, select, true { {dato}} other{}}.',
     'kursdag.form.tidReise.validation.durationIsTooLong':
-        'Antall timer og minutter registrert med reise er for høyt. Tiden kan ikke overstige 24 timer hver ukedag{harFlereDager, select, true { {dato}} other{}}.',
+        'Antall timer og minutter registrert med reise er for høyt. Tiden kan ikke overstige 24 timer{harFlereDager, select, true { {dato}} other{}}.',
     'kursdag.form.tidReise.validation.durationIsTooShort':
-        'Antall timer og minutter med reise kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { {dato}} other{}}.',
+        'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}.',
     'kursdag.form.tidReise.validation.minutesAreNegative':
-        'Antall timer og minutter med reise kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { {dato}} other{}}.',
+        'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}.',
     'kursdag.form.tidReise.validation.hoursAreNegative':
-        'Antall timer og minutter med reise kan ikke være mindre enn 0 timer og 0 minutter{harFlereDager, select, true { {dato}} other{}}.',
+        'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}.',
 
     'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}}',
 };
