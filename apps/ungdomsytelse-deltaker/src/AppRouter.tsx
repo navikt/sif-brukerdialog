@@ -11,10 +11,10 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
     if (__IS_GITHUB_PAGES__ || __IS_VEILEDER_DEMO__) {
         return (
             <HashRouter>
-                <VStack gap="10">
-                    <header>
+                <header>
+                    <VStack gap="10">
+                        {__IS_VEILEDER_DEMO__ && <VeilederDemoHeader />}
                         <PageBoundary>
-                            {__IS_VEILEDER_DEMO__ && <VeilederDemoHeader />}
                             <Alert variant="warning" fullWidth={true} className="w-full">
                                 Demo av søknadsskjema og deltakersider for ungdomsprogrammet
                                 {__IS_VEILEDER_DEMO__ && (
@@ -45,8 +45,8 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
                                 )}
                             </Alert>
                         </PageBoundary>
-                    </header>
-                </VStack>
+                    </VStack>
+                </header>
                 <div className={__IS_VEILEDER_DEMO__ ? 'demoMode' : undefined}>{children}</div>
             </HashRouter>
         );
