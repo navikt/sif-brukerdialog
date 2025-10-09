@@ -94,7 +94,8 @@ export const getHandlers = () => [
     }),
 
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        mockUtils.setDeltakelseSøktFor();
+        // mockUtils.setDeltakelseSøktFor();
+        store.setScenario(ScenarioType.harSøkt);
         return HttpResponse.json({});
     }),
 
