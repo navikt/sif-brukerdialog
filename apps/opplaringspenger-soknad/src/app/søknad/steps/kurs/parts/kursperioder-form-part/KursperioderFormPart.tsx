@@ -53,7 +53,10 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                             periodeHeadingRefs.current[index] = el;
                                         }}
                                         tabIndex={-1}>
-                                        <AppText id="steg.kurs.enkeltdager.dag.tittel" values={{ dagNr: index + 1 }} />
+                                        <AppText
+                                            id="steg.kurs.kursperioder.periode.tittel"
+                                            values={{ periodenr: index + 1 }}
+                                        />
                                     </Heading>
 
                                     <KursperiodeQuestions

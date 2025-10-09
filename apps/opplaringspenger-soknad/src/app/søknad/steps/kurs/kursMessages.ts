@@ -20,6 +20,7 @@ const nb = {
     'steg.kurs.kursperioder.tekst':
         'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
+    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
 
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.enkeltdager.tekst':
