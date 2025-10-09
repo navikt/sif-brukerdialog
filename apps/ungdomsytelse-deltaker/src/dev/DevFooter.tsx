@@ -21,7 +21,7 @@ const DevFooter = () => {
         });
     });
 
-    if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
+    if (getAppEnv()['VELG_SCENARIO'] !== 'on' || __IS_VEILEDER_DEMO__) {
         return null;
     }
 
