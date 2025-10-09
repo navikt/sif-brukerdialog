@@ -37,9 +37,7 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
                                                 en faktisk deltaker – for eksempel vil oppgaver du har besvart vises som
                                                 besvart etterpå.
                                             </List.Item>
-                                            <List.Item>
-                                                Når du bytter scenario, tilbakestilles alt du har gjort.
-                                            </List.Item>
+                                            <List.Item>Når du bytter scenario, nullstilles demoen.</List.Item>
                                         </List>
                                     </ReadMore>
                                 )}
