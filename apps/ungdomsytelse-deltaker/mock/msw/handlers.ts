@@ -6,7 +6,7 @@ import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
-store.init(ScenarioType.harSøkt);
+store.init(ScenarioType.harIkkeSøkt);
 
 // const errorResponse = {
 //     type: 'NetworkError',

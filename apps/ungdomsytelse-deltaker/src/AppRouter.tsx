@@ -38,6 +38,7 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
                                                 besvart etterpå.
                                             </List.Item>
                                             <List.Item>Når du bytter scenario, nullstilles demoen.</List.Item>
+                                            <List.Item>Lenker til andre sider virker ikke i denne demoen.</List.Item>
                                         </List>
                                     </ReadMore>
                                 )}
