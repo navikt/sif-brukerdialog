@@ -8,10 +8,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.32.0",
+        "@navikt/ds-css": "7.32.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.32.0",
-        "@navikt/ds-tailwind": "7.32.0",
+        "@navikt/ds-react": "7.32.1",
+        "@navikt/ds-tailwind": "7.32.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
@@ -29,7 +29,7 @@
         "axios": "1.12.2",
         "busboy": "1.6.0",
         "classnames": "2.5.1",
-        "csp-header": "6.1.0",
+        "csp-header": "6.2.0",
         "dayjs": "1.11.18",
         "formik": "2.4.6",
         "html-react-parser": "5.2.6",
@@ -40,7 +40,7 @@
         "react-dom": "19.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.1.13",
-        "react-router-dom": "7.9.3",
+        "react-router-dom": "7.9.4",
         "uuid": "13.0.0"
     },
     "devDependencies": {

@@ -55,7 +55,7 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "packageManager": "yarn@4.5.3",
+    "packageManager": "yarn@4.10.3",
     "resolutions": {
         "@swc/core": "1.5.7",
         "react": "19.1.0",
