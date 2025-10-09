@@ -1,4 +1,4 @@
-import { Alert, Box } from '@navikt/ds-react';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
@@ -11,13 +11,16 @@ const AppRouter = ({ children }: { children: React.ReactNode }) => {
     if (__IS_GITHUB_PAGES__) {
         return (
             <HashRouter>
-                <PageBoundary>
-                    <div role="alert">
-                        <Box marginBlock="6">
-                            <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
-                        </Box>
-                    </div>
-                </PageBoundary>
+                <VStack gap="10">
+                    {__IS_VEILEDER_DEMO__ && <VeilederDemoHeader />}
+                    <PageBoundary>
+                        <div role="alert">
+                            <Box marginBlock="6">
+                                <Alert variant="warning">OBS - Dette er en test-versjon og ikke en reell søknad.</Alert>
+                            </Box>
+                        </div>
+                    </PageBoundary>
+                </VStack>
                 {children}
             </HashRouter>
         );
