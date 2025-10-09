@@ -22,11 +22,12 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
+        "fix-regex": "node scripts/fix-generated-regex.mjs",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts",
-        "codegen": "yarn openapi-ts"
+        "codegen": "yarn openapi-ts && yarn fix-regex"
     },
     "dependencies": {
         "@hey-api/client-axios": "0.9.1",

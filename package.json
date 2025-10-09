@@ -4,6 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-brukerdialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
+    "type": "module",
     "version": "0.0.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
