@@ -1,4 +1,4 @@
-import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 
 import SøkYtelseOppgavetekst from './part/SøkYtelseOppgavetekst';

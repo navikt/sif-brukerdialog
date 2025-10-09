@@ -3,7 +3,7 @@ import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
 import React, { useEffect } from 'react';
 
-import PageContentWrapper from './PageContentWrapper';
+import PageContentWrapper from '../../../../pages/layout/PageContentWrapper';
 
 interface Props {
     children: React.ReactNode;

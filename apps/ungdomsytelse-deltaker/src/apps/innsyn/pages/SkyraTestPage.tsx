@@ -2,7 +2,7 @@ import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 import Skyra, { Slug } from '../../../components/skyra/Skyra';
 import { useSkyraReloader } from '../hooks/useSkyraReloader';
-import DefaultPageLayout from './layout/DefaultPageLayout';
+import DefaultPageLayout from '../../../pages/layout/DefaultPageLayout';
 
 const SkyraTestPage = () => {
     useSkyraReloader();

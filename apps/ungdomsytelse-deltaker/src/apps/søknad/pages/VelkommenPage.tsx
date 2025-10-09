@@ -3,8 +3,8 @@ import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/
 import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../../i18n';
+import DefaultPageLayout from '../../../pages/layout/DefaultPageLayout';
 import getLenker from '../../../utils/lenker';
-import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
 import ExternalLink from '../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';

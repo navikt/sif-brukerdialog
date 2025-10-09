@@ -9,6 +9,7 @@ export const createAliasConfig = (baseDir: string = __dirname) => ({
     '@shared/context': resolve(baseDir, './src/context'),
     '@shared/components': resolve(baseDir, './src/components'),
     '@shared/hooks': resolve(baseDir, './src/hooks'),
+    '@shared/pages': resolve(baseDir, './src/pages'),
     '@shared/mock': resolve(baseDir, './mock'),
     '@shared/storybook': resolve(baseDir, './storybook'),
 
