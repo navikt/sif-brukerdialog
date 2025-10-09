@@ -35,7 +35,7 @@ export const fyllUtOpplæringFlereEnkeltdager = async (page: Page) => {
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').fill('4');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Timer').press('Tab');
     await page.getByRole('group', { name: 'Timer med reise', exact: true }).getByLabel('Minutter').fill('30');
-    await page.getByRole('button', { name: 'Legg til dag' }).click();
+    await page.getByRole('button', { name: 'Legg til ny dag' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
     await page.getByRole('button', { name: 'onsdag 11' }).click();
     await page.getByRole('textbox', { name: 'Timer' }).nth(2).click();
