@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
     FormikInputGroup,
     getIntlFormErrorHandler,
@@ -117,16 +118,26 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
-                    const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
-                    const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
+                    const søknadsperiode = useMemo(
+                        () => getSøknadsperiodeFromKursperioderFormValues(values.kursperioder),
+                        [values.kursperioder],
+                    );
 
-                    const disabledDateRanges = søknadsperiode
-                        ? getDateRangesBetweenDateRangesWithinDateRange(
-                              søknadsperiode.from,
-                              søknadsperiode.to,
-                              kursperioder,
-                          )
-                        : [];
+                    const kursperioder = useMemo(
+                        () => getDateRangesFromKursperiodeFormValues(values.kursperioder),
+                        [values.kursperioder],
+                    );
+
+                    const disabledDateRanges = useMemo(() => {
+                        if (!søknadsperiode) {
+                            return [];
+                        }
+                        return getDateRangesBetweenDateRangesWithinDateRange(
+                            søknadsperiode.from,
+                            søknadsperiode.to,
+                            kursperioder,
+                        );
+                    }, [søknadsperiode, kursperioder]);
 
                     return (
                         <>
