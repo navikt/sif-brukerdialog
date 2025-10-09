@@ -1,6 +1,6 @@
 import { FieldArray, useFormikContext } from 'formik';
 import { DateRange } from '@navikt/sif-common-utils';
-import { BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Hide, VStack } from '@navikt/ds-react';
 import { KursFormValues } from '../../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
@@ -29,16 +29,18 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
                                     <fieldset ref={setElementRef(index)} aria-labelledby={`kursdag-legend-${index}`}>
-                                        <Box marginBlock="0 2">
-                                            <legend id={`kursdag-legend-${index}`}>
-                                                <BodyShort weight="semibold" spacing={false} className="noPadding">
-                                                    <AppText
-                                                        id="steg.kurs.enkeltdager.dag.tittel"
-                                                        values={{ dagNr: index + 1 }}
-                                                    />
-                                                </BodyShort>
-                                            </legend>
-                                        </Box>
+                                        <Hide hidden={harFlereDager === false}>
+                                            <Box marginBlock="0 2">
+                                                <legend id={`kursdag-legend-${index}`}>
+                                                    <BodyShort weight="semibold" spacing={false} className="noPadding">
+                                                        <AppText
+                                                            id="steg.kurs.enkeltdager.dag.tittel"
+                                                            values={{ dagNr: index + 1 }}
+                                                        />
+                                                    </BodyShort>
+                                                </legend>
+                                            </Box>
+                                        </Hide>
 
                                         <KursdagQuestions
                                             values={kursdag}

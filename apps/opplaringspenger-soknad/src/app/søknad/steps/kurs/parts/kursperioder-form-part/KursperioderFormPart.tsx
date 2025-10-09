@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Hide, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -34,16 +34,18 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                         {kursperioder.map((kursperiode, index) => (
                             <FormLayout.Panel key={index}>
                                 <fieldset ref={setElementRef(index)} aria-labelledby={`kursperiode-legend-${index}`}>
-                                    <Box marginBlock="0 2">
-                                        <legend id={`kursperiode-legend-${index}`}>
-                                            <BodyShort weight="semibold" spacing={false} className="noPadding">
-                                                <AppText
-                                                    id="steg.kurs.kursperioder.periode.tittel"
-                                                    values={{ periodeNr: index + 1 }}
-                                                />
-                                            </BodyShort>
-                                        </legend>
-                                    </Box>
+                                    <Hide hidden={harFlerePerioder === false}>
+                                        <Box marginBlock="0 2">
+                                            <legend id={`kursperiode-legend-${index}`}>
+                                                <BodyShort weight="semibold" spacing={false} className="noPadding">
+                                                    <AppText
+                                                        id="steg.kurs.kursperioder.periode.tittel"
+                                                        values={{ periodeNr: index + 1 }}
+                                                    />
+                                                </BodyShort>
+                                            </legend>
+                                        </Box>
+                                    </Hide>
 
                                     <KursperiodeQuestions
                                         allePerioder={kursperioder}
