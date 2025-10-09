@@ -91,6 +91,7 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                             : undefined;
                     }}
                 />
+
                 <Form.TimeInput
                     wide={true}
                     compact={false}

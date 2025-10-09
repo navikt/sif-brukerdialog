@@ -1,12 +1,12 @@
 import { FieldArray, useFormikContext } from 'formik';
 import { DateRange } from '@navikt/sif-common-utils';
-import { Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { KursFormValues } from '../../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
 import KursdagQuestions from './KursdagQuestions';
 import { AppText } from '../../../../../i18n';
-import { useRef } from 'react';
+import { useFocusManagement } from '../../hooks/useFocusManagement';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -15,19 +15,9 @@ interface Props {
 const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursdager } = values;
-    const dagHeadingRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const { focusFirstInputElement, setElementRef } = useFocusManagement();
 
     const harFlereDager = kursdager.length > 1;
-
-    const focusDagHeading = (dagIndex: number) => {
-        setTimeout(() => {
-            // Sett fokus på headingen for den angitte dagen via ref
-            const heading = dagHeadingRefs.current[dagIndex];
-            if (heading) {
-                heading.focus();
-            }
-        }, 100);
-    };
 
     return (
         <VStack gap="4">
@@ -38,21 +28,17 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                         <VStack gap="4">
                             {kursdager.map((kursdag, index) => (
                                 <FormLayout.Panel key={index}>
-                                    <section>
-                                        <Heading
-                                            size="xsmall"
-                                            level="3"
-                                            spacing
-                                            as="div"
-                                            ref={(el) => {
-                                                dagHeadingRefs.current[index] = el;
-                                            }}
-                                            tabIndex={-1}>
-                                            <AppText
-                                                id="steg.kurs.enkeltdager.dag.tittel"
-                                                values={{ dagNr: index + 1 }}
-                                            />
-                                        </Heading>
+                                    <fieldset ref={setElementRef(index)} aria-labelledby={`kursdag-legend-${index}`}>
+                                        <Box marginBlock="0 2">
+                                            <legend id={`kursdag-legend-${index}`}>
+                                                <BodyShort weight="semibold" spacing={false} className="noPadding">
+                                                    <AppText
+                                                        id="steg.kurs.enkeltdager.dag.tittel"
+                                                        values={{ dagNr: index + 1 }}
+                                                    />
+                                                </BodyShort>
+                                            </legend>
+                                        </Box>
 
                                         <KursdagQuestions
                                             values={kursdag}
@@ -63,16 +49,14 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                             onRemove={() => {
                                                 const isLastItem = index === kursdager.length - 1;
                                                 const focusIndex = isLastItem ? index - 1 : index;
-
                                                 arrayHelpers.remove(index);
                                                 setTimeout(() => {
                                                     validateForm();
-                                                    // Sett fokus på neste dag, eller forrige hvis det var siste dag
-                                                    focusDagHeading(focusIndex);
+                                                    focusFirstInputElement(focusIndex);
                                                 });
                                             }}
                                         />
-                                    </section>
+                                    </fieldset>
                                 </FormLayout.Panel>
                             ))}
                             <Box>
@@ -85,7 +69,7 @@ const KursdagerFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                         arrayHelpers.push({});
                                         setTimeout(() => {
                                             validateForm(values);
-                                            focusDagHeading(kursdager.length);
+                                            focusFirstInputElement(kursdager.length);
                                         });
                                     }}>
                                     <AppText id="steg.kurs.enkeltdager.leggTil.label" />

@@ -1,4 +1,4 @@
-import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { Add } from '@navikt/ds-icons';
 import { DateRange, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -7,7 +7,7 @@ import { AppText } from '../../../../../i18n';
 import { KursFormValues } from '../../KursStep';
 import KursperiodeQuestions, { KursperiodeFormFields } from './KursperiodeQuestions';
 import { startOgSluttErSammeHelg } from '../../utils/kursStepUtils';
-import { useRef } from 'react';
+import { useFocusManagement } from '../../hooks/useFocusManagement';
 
 interface Props {
     gyldigSøknadsperiode: DateRange;
@@ -17,23 +17,13 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursperioder } = values;
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
-    const periodeHeadingRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const { focusFirstInputElement, setElementRef } = useFocusManagement();
 
     const harPerioderMedKunHelg = kursperioder.some((p) => {
         const startdato = ISOStringToDate(p[KursperiodeFormFields.fom]);
         const sluttdato = ISOStringToDate(p[KursperiodeFormFields.tom]);
         return startdato && sluttdato && startOgSluttErSammeHelg(startdato, sluttdato);
     });
-
-    const focusPeriodeHeading = (periodeIndex: number) => {
-        setTimeout(() => {
-            // Sett fokus på headingen for den angitte perioden via ref
-            const heading = periodeHeadingRefs.current[periodeIndex];
-            if (heading) {
-                heading.focus();
-            }
-        }, 100);
-    };
 
     return (
         <FieldArray
@@ -43,21 +33,17 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                     <VStack gap="4">
                         {kursperioder.map((kursperiode, index) => (
                             <FormLayout.Panel key={index}>
-                                <section>
-                                    <Heading
-                                        size="xsmall"
-                                        level="3"
-                                        spacing
-                                        as="div"
-                                        ref={(el) => {
-                                            periodeHeadingRefs.current[index] = el;
-                                        }}
-                                        tabIndex={-1}>
-                                        <AppText
-                                            id="steg.kurs.kursperioder.periode.tittel"
-                                            values={{ periodenr: index + 1 }}
-                                        />
-                                    </Heading>
+                                <fieldset ref={setElementRef(index)} aria-labelledby={`kursperiode-legend-${index}`}>
+                                    <Box marginBlock="0 2">
+                                        <legend id={`kursperiode-legend-${index}`}>
+                                            <BodyShort weight="semibold" spacing={false} className="noPadding">
+                                                <AppText
+                                                    id="steg.kurs.kursperioder.periode.tittel"
+                                                    values={{ periodeNr: index + 1 }}
+                                                />
+                                            </BodyShort>
+                                        </legend>
+                                    </Box>
 
                                     <KursperiodeQuestions
                                         allePerioder={kursperioder}
@@ -68,16 +54,14 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                         onRemove={() => {
                                             const isLastItem = index === kursperioder.length - 1;
                                             const focusIndex = isLastItem ? index - 1 : index;
-
                                             arrayHelpers.remove(index);
                                             setTimeout(() => {
                                                 validateForm();
-                                                // Sett fokus på neste periode, eller forrige hvis det var siste periode
-                                                focusPeriodeHeading(focusIndex);
+                                                focusFirstInputElement(focusIndex);
                                             });
                                         }}
                                     />
-                                </section>
+                                </fieldset>
                             </FormLayout.Panel>
                         ))}
                         <div>
@@ -90,7 +74,7 @@ const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
                                     arrayHelpers.push({});
                                     setTimeout(() => {
                                         validateForm(values);
-                                        focusPeriodeHeading(kursperioder.length);
+                                        focusFirstInputElement(kursperioder.length);
                                     });
                                 }}>
                                 <AppText id="steg.kurs.kursperioder.leggTil.label" />
