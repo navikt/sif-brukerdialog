@@ -53,7 +53,7 @@ const VeilederScenarioHeader = () => {
                     <ActionMenu.Divider />
                     <ActionMenu.Group label="Før og etter deltakelse">
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.ikkeStartet)}>
-                            Søkt, men ikke startet enda
+                            Deltakelse ikke påbegynt
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttet)}>
                             Avsluttet deltakelse
