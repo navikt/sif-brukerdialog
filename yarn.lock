@@ -2944,15 +2944,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ecma402-abstract@npm:2.3.5":
-  version: 2.3.5
-  resolution: "@formatjs/ecma402-abstract@npm:2.3.5"
+"@formatjs/ecma402-abstract@npm:2.3.6":
+  version: 2.3.6
+  resolution: "@formatjs/ecma402-abstract@npm:2.3.6"
   dependencies:
     "@formatjs/fast-memoize": "npm:2.2.7"
     "@formatjs/intl-localematcher": "npm:0.6.2"
     decimal.js: "npm:^10.4.3"
     tslib: "npm:^2.8.0"
-  checksum: 10/254651057170836237dc4f0fbb372157f97133c4dcee414007e0cdb5b589baf0546c2f6337d117b988ee0a4f0a4d8247780aaa9e96b410c568495f162c40dc50
+  checksum: 10/30b1b5cd6b62ba46245f934429936592df5500bc1b089dc92dd49c826757b873dd92c305dcfe370701e4df6b057bf007782113abb9b65db550d73be4961718bc
   languageName: node
   linkType: hard
 
@@ -2965,24 +2965,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:2.11.3":
-  version: 2.11.3
-  resolution: "@formatjs/icu-messageformat-parser@npm:2.11.3"
+"@formatjs/icu-messageformat-parser@npm:2.11.4":
+  version: 2.11.4
+  resolution: "@formatjs/icu-messageformat-parser@npm:2.11.4"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
-    "@formatjs/icu-skeleton-parser": "npm:1.8.15"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
+    "@formatjs/icu-skeleton-parser": "npm:1.8.16"
     tslib: "npm:^2.8.0"
-  checksum: 10/339f5ff5ea7417e2db7f01bd41340f78fd5a8e56a66e723272d21ce7ab4b265dcb45748cdca76eac7137e2b5e6767986812b471e011b4602cf7afbc6da57fb98
+  checksum: 10/2acb100c06c2ade666d72787fb9f9795b1ace41e8e73bfadc2b1a7b8562e81f655e484f0f33d8c39473aa17bf0ad96fb2228871806a9b3dc4f5f876754a0de3a
   languageName: node
   linkType: hard
 
-"@formatjs/icu-skeleton-parser@npm:1.8.15":
-  version: 1.8.15
-  resolution: "@formatjs/icu-skeleton-parser@npm:1.8.15"
+"@formatjs/icu-skeleton-parser@npm:1.8.16":
+  version: 1.8.16
+  resolution: "@formatjs/icu-skeleton-parser@npm:1.8.16"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     tslib: "npm:^2.8.0"
-  checksum: 10/19825abc1a5eef0288456c08420d06f3da8256fbe81db0b9ead48cacc94954d748c8068988e26d184d38fca2e50c191ecda5a10ff3935529c3134b8d80db0538
+  checksum: 10/428001e5bed81889b276a2356a1393157af91dc59220b765a1a132f6407ac5832b7ac6ae9737674ac38e44035295c0c1c310b2630f383f2b5779ea90bf2849e6
   languageName: node
   linkType: hard
 
@@ -2995,33 +2995,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:5.4.5":
-  version: 5.4.5
-  resolution: "@formatjs/intl-pluralrules@npm:5.4.5"
+"@formatjs/intl-pluralrules@npm:5.4.6":
+  version: 5.4.6
+  resolution: "@formatjs/intl-pluralrules@npm:5.4.6"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/intl-localematcher": "npm:0.6.2"
     decimal.js: "npm:^10.4.3"
     tslib: "npm:^2.8.0"
-  checksum: 10/00f650891893b743d126dd2bf0d17c1b16a8c9e0e0dd94cd0895e66cb556246116263e9603204e1991924814d0ed3a3503765914aff08181d5e4435dfc5e547c
+  checksum: 10/88aa244e69ccfdf459899f5fa3c64df345f451ef91ce1188eab35b7e37daa225d22120f64be633f2cd8b826ea705d19831915118f555f2d17611ee842a9a86dc
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:3.1.7":
-  version: 3.1.7
-  resolution: "@formatjs/intl@npm:3.1.7"
+"@formatjs/intl@npm:3.1.8":
+  version: 3.1.8
+  resolution: "@formatjs/intl@npm:3.1.8"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/fast-memoize": "npm:2.2.7"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
-    intl-messageformat: "npm:10.7.17"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
+    intl-messageformat: "npm:10.7.18"
     tslib: "npm:^2.8.0"
   peerDependencies:
-    typescript: 5.8.3
+    typescript: ^5.6.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/feeb02be73f1c0c0f853067f386a8afdc544cb514e7a12e01df949d70389c3d73e968e394c0ba94f34d6be18ac9a4cb0e6f1a49c5d96bf009ca5731778e926cc
+  checksum: 10/2e8b992606b8377dc4496fcc06ea0370b4f2b3fb27f4f086172cf618c9d981176831baff6a2b5bffb4a06e7aa580e28a8bda2d71ad2cb51d19f3d4bc4609e90e
   languageName: node
   linkType: hard
 
@@ -4609,7 +4609,7 @@ __metadata:
     "@portabletext/react": "npm:4.0.3"
     "@sanity/client": "npm:7.12.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     config: "workspace:*"
@@ -4672,7 +4672,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-loading-skeleton: "npm:3.5.0"
     storybook: "npm:9.1.10"
     swr: "npm:2.3.6"
@@ -4779,7 +4779,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     rimraf: "npm:6.0.1"
     storybook: "npm:9.1.10"
@@ -4830,7 +4830,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.1"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:5.0.4"
-    axe-core: "npm:4.10.3"
+    axe-core: "npm:4.11.0"
     axios: "npm:1.12.2"
     compression: "npm:1.8.1"
     csp-header: "npm:6.2.0"
@@ -4845,7 +4845,7 @@ __metadata:
     jsdom: "npm:27.0.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
-    msw: "npm:2.11.4"
+    msw: "npm:2.11.5"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     playwright-core: "npm:1.56.0"
@@ -4854,7 +4854,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
@@ -5018,7 +5018,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     typescript: "npm:5.9.3"
@@ -5042,7 +5042,7 @@ __metadata:
     "@playwright/test": "npm:1.56.0"
     "@tailwindcss/postcss": "npm:4.1.14"
     "@tailwindcss/vite": "npm:4.1.14"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     classnames: "npm:2.5.1"
@@ -5064,7 +5064,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     tailwindcss: "npm:4.1.14"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
@@ -5100,7 +5100,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.14"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
@@ -5126,7 +5126,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     storybook-addon-mock: "npm:6.0.1"
@@ -5168,7 +5168,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.14"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
@@ -5194,7 +5194,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     tailwindcss: "npm:4.1.14"
@@ -5242,7 +5242,7 @@ __metadata:
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@vitejs/plugin-react": "npm:5.0.4"
-    axe-core: "npm:4.10.3"
+    axe-core: "npm:4.11.0"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
     compression: "npm:1.8.1"
@@ -5268,7 +5268,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
     react-hook-form: "npm:7.64.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     tailwindcss: "npm:4.1.14"
@@ -5307,7 +5307,7 @@ __metadata:
     "@tailwindcss/vite": "npm:4.1.14"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
@@ -5330,7 +5330,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.0.0"
     lodash: "npm:4.17.21"
-    msw: "npm:2.11.4"
+    msw: "npm:2.11.5"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:6.8.1"
@@ -5339,7 +5339,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     tailwindcss: "npm:4.1.14"
@@ -5422,7 +5422,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     storybook-addon-mock: "npm:6.0.1"
@@ -5469,7 +5469,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.1"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:5.0.4"
-    axe-core: "npm:4.10.3"
+    axe-core: "npm:4.11.0"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
@@ -5494,7 +5494,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     typescript: "npm:5.9.3"
@@ -5514,7 +5514,7 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.3"
     "@types/morgan": "npm:1.9.10"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.12.2"
     express: "npm:5.1.0"
@@ -5560,7 +5560,7 @@ __metadata:
   dependencies:
     "@amplitude/analytics-browser": "npm:2.25.4"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     config: "workspace:*"
     constate: "npm:3.3.3"
@@ -5602,7 +5602,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     storybook: "npm:9.1.10"
     typescript: "npm:5.9.3"
     webpack: "npm:5.102.1"
@@ -5632,7 +5632,7 @@ __metadata:
     "@storybook/builder-vite": "npm:9.1.10"
     "@storybook/react-vite": "npm:9.1.10"
     "@storybook/testing-library": "npm:0.2.2"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@vitejs/plugin-react": "npm:5.0.4"
@@ -5646,14 +5646,14 @@ __metadata:
     formik: "npm:2.4.6"
     http-status-codes: "npm:2.3.0"
     i18n-iso-countries: "npm:7.14.0"
-    msw: "npm:2.11.4"
+    msw: "npm:2.11.5"
     msw-storybook-addon: "npm:2.0.5"
     postcss: "npm:8.5.6"
     prop-types: "npm:15.8.1"
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-responsive: "npm:10.0.1"
     react-syntax-highlighter: "npm:15.6.6"
     rimraf: "npm:6.0.1"
@@ -5709,7 +5709,7 @@ __metadata:
     "@storybook/test-runner": "npm:0.23.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:30.0.0"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@vitejs/plugin-react": "npm:5.0.4"
@@ -5729,7 +5729,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-dropzone: "npm:14.3.8"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-syntax-highlighter: "npm:15.6.6"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.5"
@@ -5751,7 +5751,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds"
   dependencies:
-    "@formatjs/intl-pluralrules": "npm:5.4.5"
+    "@formatjs/intl-pluralrules": "npm:5.4.6"
     "@navikt/ds-css": "npm:7.32.1"
     "@navikt/ds-react": "npm:7.32.1"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -5767,7 +5767,7 @@ __metadata:
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@vitejs/plugin-react": "npm:5.0.4"
@@ -5784,7 +5784,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-json-view: "npm:1.21.3"
     react-router-dom: "npm:7.9.4"
     rimraf: "npm:6.0.1"
@@ -5841,7 +5841,7 @@ __metadata:
     "@sentry/react": "npm:10.19.0"
     "@sentry/types": "npm:10.19.0"
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     axios: "npm:1.12.2"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -5861,7 +5861,7 @@ __metadata:
   resolution: "@navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds"
   dependencies:
     "@devexperts/remote-data-ts": "npm:2.1.1"
-    "@formatjs/intl-pluralrules": "npm:5.4.5"
+    "@formatjs/intl-pluralrules": "npm:5.4.6"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:7.32.1"
     "@navikt/ds-react": "npm:7.32.1"
@@ -5883,7 +5883,7 @@ __metadata:
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/jest": "npm:30.0.0"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@vitejs/plugin-react": "npm:5.0.4"
@@ -5909,7 +5909,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.5"
@@ -5962,7 +5962,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     storybook: "npm:9.1.10"
     typescript: "npm:5.9.3"
     webpack: "npm:5.102.1"
@@ -5974,7 +5974,7 @@ __metadata:
   resolution: "@navikt/sif-common-utils@workspace:packages/sif-common-utils"
   dependencies:
     "@sif/eslint-config": "workspace:*"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     config: "workspace:*"
@@ -5985,7 +5985,7 @@ __metadata:
     lodash: "npm:4.17.21"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     typescript: "npm:5.9.3"
     uuid: "npm:13.0.0"
     vitest: "npm:3.2.4"
@@ -6012,7 +6012,7 @@ __metadata:
     "@navikt/sif-common-ui": "workspace:*"
     "@tailwindcss/postcss": "npm:4.1.14"
     "@tailwindcss/vite": "npm:4.1.14"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@typescript-eslint/parser": "npm:8.46.0"
@@ -6079,7 +6079,7 @@ __metadata:
     "@types/react-dom": "npm:19.2.1"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:5.0.4"
-    axe-core: "npm:4.10.3"
+    axe-core: "npm:4.11.0"
     axios: "npm:1.12.2"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
@@ -6101,7 +6101,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     tailwindcss: "npm:4.1.14"
     typescript: "npm:5.9.3"
@@ -6137,7 +6137,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-hook-form: "npm:7.64.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     storybook: "npm:9.1.10"
     storybook-react-intl: "npm:4.0.7"
     typescript: "npm:5.9.3"
@@ -6158,7 +6158,7 @@ __metadata:
     "@navikt/sif-common-env": "workspace:*"
     "@types/express": "npm:5.0.3"
     "@types/morgan": "npm:1.9.10"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@vercel/ncc": "npm:0.38.4"
     axios: "npm:1.12.2"
     express: "npm:5.1.0"
@@ -6273,7 +6273,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:4.1.14"
     "@tailwindcss/vite": "npm:4.1.14"
     "@tanstack/react-query": "npm:5.90.2"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@types/react-helmet": "npm:6.1.11"
@@ -6293,7 +6293,7 @@ __metadata:
     html-react-parser: "npm:5.2.6"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.0.0"
-    msw: "npm:2.11.4"
+    msw: "npm:2.11.5"
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
     object-hash: "npm:3.0.0"
@@ -6306,7 +6306,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-error-boundary: "npm:6.0.0"
     react-helmet: "npm:6.1.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-router-dom: "npm:7.9.4"
     storybook: "npm:9.1.10"
     stylelint: "npm:16.25.0"
@@ -6348,7 +6348,7 @@ __metadata:
     "@storybook/react-vite": "npm:9.1.10"
     "@tailwindcss/postcss": "npm:4.1.14"
     "@tailwindcss/vite": "npm:4.1.14"
-    "@types/node": "npm:24.7.0"
+    "@types/node": "npm:24.7.1"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
     "@typescript-eslint/parser": "npm:8.46.0"
@@ -6373,7 +6373,7 @@ __metadata:
     html-react-parser: "npm:5.2.6"
     http-proxy-middleware: "npm:3.0.5"
     jsdom: "npm:27.0.0"
-    msw: "npm:2.11.4"
+    msw: "npm:2.11.5"
     msw-storybook-addon: "npm:2.0.5"
     mustache-express: "npm:1.3.2"
     npm-run-all: "npm:4.1.5"
@@ -6384,7 +6384,7 @@ __metadata:
     prettier: "npm:3.6.2"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     react-markdown: "npm:10.1.0"
     react-router-dom: "npm:7.9.4"
     remark-gfm: "npm:4.0.1"
@@ -10042,12 +10042,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:24.7.0":
-  version: 24.7.0
-  resolution: "@types/node@npm:24.7.0"
+"@types/node@npm:24.7.1":
+  version: 24.7.1
+  resolution: "@types/node@npm:24.7.1"
   dependencies:
     undici-types: "npm:~7.14.0"
-  checksum: 10/db0b77e9b132906cdf0350661df660c970e924093ccaa781472d61bc5c448f3d15514b15f55b4df6827254a041aad2418339fe00d45ef10687557ffc0f026d47
+  checksum: 10/b1796fa90ab360d6ca5a85457a3b6a70ac53ba75e29e36f1bae1b22d4fd5883277a2ee08475d24c29061474207b132a82d7490180e2c508ee8b081179923dd55
   languageName: node
   linkType: hard
 
@@ -11965,7 +11965,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.10.3, axe-core@npm:^4.10.0, axe-core@npm:^4.2.0, axe-core@npm:~4.10.3":
+"axe-core@npm:4.11.0":
+  version: 4.11.0
+  resolution: "axe-core@npm:4.11.0"
+  checksum: 10/18254ee95bc328aec9a909b22e4b22e8ff14a21363fdbd1a5227267e66bf1d2fc1425c186e9001759aab5827cf4ee9dc30f7ea57e8200cbf7a1cd555ed21a908
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.10.0, axe-core@npm:^4.2.0, axe-core@npm:~4.10.3":
   version: 4.10.3
   resolution: "axe-core@npm:4.10.3"
   checksum: 10/9ff51ad0fd0fdec5c0247ea74e8ace5990b54c7f01f8fa3e5cd8ba98b0db24d8ebd7bab4a9bd4d75c28c4edcd1eac455b44c8c6c258c6a98f3d2f88bc60af4cc
@@ -18327,15 +18334,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:10.7.17":
-  version: 10.7.17
-  resolution: "intl-messageformat@npm:10.7.17"
+"intl-messageformat@npm:10.7.18":
+  version: 10.7.18
+  resolution: "intl-messageformat@npm:10.7.18"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
     "@formatjs/fast-memoize": "npm:2.2.7"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
     tslib: "npm:^2.8.0"
-  checksum: 10/4f8c30c998bfc14eb64894414b94a8923045ab31d7bbf0978dab6621c644d451ff5c533c04ce8128163b74dd6d59061ec1ef3acb1cbab3302d31cbdb21947620
+  checksum: 10/96650d673912763d21bbfa14b50749b992d45f1901092a020e3155961e3c70f4644dd1731c3ecb1207a1eb94d84bedf4c34b1ac8127c29ad6b015b6a2a4045cb
   languageName: node
   linkType: hard
 
@@ -22498,9 +22505,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.11.4":
-  version: 2.11.4
-  resolution: "msw@npm:2.11.4"
+"msw@npm:2.11.5":
+  version: 2.11.5
+  resolution: "msw@npm:2.11.5"
   dependencies:
     "@inquirer/confirm": "npm:^5.0.0"
     "@mswjs/interceptors": "npm:^0.39.1"
@@ -22527,7 +22534,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10/247292340cef62fc92b70fe8e3b33d7fb8bb81b56cc79cc749f96f72ee734af938e6a296044ba3deb57dce9014f31743d03d8794a5b752e0a2048b6ac9f28dbe
+  checksum: 10/9d8addec5e8725ec8744c3cd0b10f82dcac34278b6537bcb63346870043112f02c5b41eef9276cf4d82d8dadd272d22e9978a6c25ada2dd1fc268af4ec62a65f
   languageName: node
   linkType: hard
 
@@ -25098,17 +25105,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:7.1.13":
-  version: 7.1.13
-  resolution: "react-intl@npm:7.1.13"
+"react-intl@npm:7.1.14":
+  version: 7.1.14
+  resolution: "react-intl@npm:7.1.14"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.5"
-    "@formatjs/icu-messageformat-parser": "npm:2.11.3"
-    "@formatjs/intl": "npm:3.1.7"
+    "@formatjs/ecma402-abstract": "npm:2.3.6"
+    "@formatjs/icu-messageformat-parser": "npm:2.11.4"
+    "@formatjs/intl": "npm:3.1.8"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
     "@types/react": "npm:16 || 17 || 18 || 19"
     hoist-non-react-statics: "npm:^3.3.2"
-    intl-messageformat: "npm:10.7.17"
+    intl-messageformat: "npm:10.7.18"
     tslib: "npm:^2.8.0"
   peerDependencies:
     react: 16 || 17 || 18 || 19
@@ -25116,7 +25123,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/022f786a9dad74b605882c9e37531202bb869287d2345ddc9f812eef186737ed1ec28073320805748a16e392860ab6df118c93c22dfa2823edd169b1c38cd6e9
+  checksum: 10/74b1d9a2f6e6fa964503a08a56e0d27d52344ad5495dca875e08a146d16418d29bd12769273a479f3adf9ab445fc28a322421a8afaed4a4d040a0e9e3bedb79c
   languageName: node
   linkType: hard
 
@@ -26855,7 +26862,7 @@ __metadata:
     react: "npm:19.2.0"
     react-day-picker: "npm:9.11.1"
     react-dom: "npm:19.2.0"
-    react-intl: "npm:7.1.13"
+    react-intl: "npm:7.1.14"
     storybook: "npm:9.1.10"
     typescript: "npm:5.9.3"
     webpack: "npm:5.102.1"

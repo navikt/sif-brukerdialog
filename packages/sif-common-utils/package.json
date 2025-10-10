@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "24.7.0",
+        "@types/node": "24.7.1",
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.1",
         "config": "workspace:*",
@@ -22,7 +22,7 @@
         "intl": "1.2.5",
         "react": "19.2.0",
         "react-dom": "19.2.0",
-        "react-intl": "7.1.13",
+        "react-intl": "7.1.14",
         "typescript": "5.9.3",
         "vitest": "3.2.4"
     },

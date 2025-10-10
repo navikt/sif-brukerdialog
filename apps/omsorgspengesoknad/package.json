@@ -38,7 +38,7 @@
         "react-dom": "19.2.0",
         "react-fast-compare": "3.2.2",
         "react-hook-form": "7.64.0",
-        "react-intl": "7.1.13",
+        "react-intl": "7.1.14",
         "react-router-dom": "7.9.4"
     },
     "devDependencies": {
@@ -58,7 +58,7 @@
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.1",
         "@vitejs/plugin-react": "5.0.4",
-        "axe-core": "4.10.3",
+        "axe-core": "4.11.0",
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.5",
