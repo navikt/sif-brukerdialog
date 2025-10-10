@@ -58,7 +58,7 @@
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.1",
         "@vitejs/plugin-react": "5.0.4",
-        "axe-core": "4.10.3",
+        "axe-core": "4.11.0",
         "busboy": "1.6.0",
         "compression": "1.8.1",
         "cors": "2.8.5",
