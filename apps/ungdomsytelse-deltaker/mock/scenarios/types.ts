@@ -1,7 +1,11 @@
 export enum ScenarioType {
-    harIkkeSøkt = 'harIkkeSøkt',
-    harSøkt = 'harSøkt',
-    ikkeMeldtInn = 'ikkeMeldtInn',
+    søknad = 'søknad',
+    søknadSendt = 'søknadSendt',
+    endretStartdato = 'endretStartdato',
+    meldtUt = 'meldtUt',
+    endretSluttdato = 'endretSluttdato',
+    rapporterInntekt = 'rapporterInntekt',
+    avvikInntekt = 'avvikInntekt',
 }
 
 export interface ScenarioData {

@@ -11,7 +11,7 @@ import { testAccessibility } from '../../utils/testAccessibility';
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await registerMockRoutes(page, context);
-    memoryStore.setScenario(ScenarioType.harSøkt);
+    memoryStore.setScenario(ScenarioType.søknad);
     await page.goto(`./`);
 });
 

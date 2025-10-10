@@ -1,40 +1,14 @@
-import {
-    DeltakelseKomposittDto,
-    OppgaveDto,
-    OppgaveStatus,
-    Oppgavetype,
-} from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { DeltakelseKomposittDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
 import { ScenarioData } from '../types';
-
-const rapporterInntektOppgave: OppgaveDto = {
-    oppgaveReferanse: 'f3e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
-    status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-09-01T10:32:47.664066Z',
-    frist: '2025-09-07T12:47:47.492347Z',
-    oppgavetypeData: {
-        fraOgMed: '2025-08-01',
-        tilOgMed: '2025-08-30',
-    },
-};
-const rapporterInntektOppgaveLøst: OppgaveDto = {
-    oppgaveReferanse: 'f4e1b0e2-3f3c-4e2d-8f7a-5c3e5e6b7a8c',
-    oppgavetype: Oppgavetype.RAPPORTER_INNTEKT,
-    status: OppgaveStatus.LØST,
-    opprettetDato: '2025-08-01T10:32:47.664066Z',
-    frist: '2025-08-07T12:47:47.492347Z',
-    løstDato: '2025-08-06T12:47:47.492347Z',
-    oppgavetypeData: {
-        fraOgMed: '2025-07-01',
-        tilOgMed: '2025-07-30',
-        rapportertInntekt: {
-            fraOgMed: '2025-07-01',
-            tilOgMed: '2025-07-30',
-            arbeidstakerOgFrilansInntekt: 23000,
-        },
-    },
-};
+import { mockOppgaver } from './oppgaver';
+const {
+    rapporterInntektOppgave,
+    rapporterInntektOppgaveLøst,
+    endretStartdatoOppgave,
+    bekreftAvvikOppgave,
+    søkYtelseOppgaveLøst: søkYtelseOppgave,
+} = mockOppgaver;
 
 const deltakelse: DeltakelseKomposittDto = {
     id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -48,55 +22,9 @@ const deltakelse: DeltakelseKomposittDto = {
     oppgaver: [
         rapporterInntektOppgave,
         rapporterInntektOppgaveLøst,
-        {
-            oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-            oppgavetype: 'BEKREFT_ENDRET_STARTDATO',
-            oppgavetypeData: {
-                nyStartdato: '2025-05-01',
-                forrigeStartdato: '2025-05-02',
-            },
-            bekreftelse: {
-                harUttalelse: false,
-            },
-            status: 'ULØST',
-            opprettetDato: '2025-06-04T10:32:47.664066Z',
-            frist: '2025-06-04T12:47:47.492347Z',
-        },
-        {
-            oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
-            oppgavetype: 'SØK_YTELSE',
-            oppgavetypeData: {
-                fomDato: '2025-05-01',
-            },
-            status: 'LØST',
-            opprettetDato: '2025-05-31T03:58:01.779214Z',
-            løstDato: '2025-05-31T03:58:42.211729Z',
-        },
-        {
-            oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
-            oppgavetype: 'BEKREFT_AVVIK_REGISTERINNTEKT',
-            oppgavetypeData: {
-                type: 'BEKREFT_AVVIK_REGISTERINNTEKT',
-                fraOgMed: '2025-09-01',
-                tilOgMed: '2025-09-30',
-                registerinntekt: {
-                    arbeidOgFrilansInntekter: [
-                        {
-                            inntekt: 20000,
-                            arbeidsgiver: '947064649',
-                            arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
-                        },
-                    ],
-                    ytelseInntekter: [],
-                    totalInntektArbeidOgFrilans: 20000,
-                    totalInntektYtelse: 0,
-                    totalInntekt: 20000,
-                },
-            },
-            frist: '2025-10-30T12:47:47.492347Z',
-            status: 'ULØST',
-            opprettetDato: '2025-10-15T05:00:46.869460Z',
-        },
+        endretStartdatoOppgave,
+        søkYtelseOppgave,
+        bekreftAvvikOppgave,
     ],
 } as any;
 

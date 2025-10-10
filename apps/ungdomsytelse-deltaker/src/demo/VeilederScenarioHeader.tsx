@@ -1,14 +1,15 @@
+import { PersonCircleIcon } from '@navikt/aksel-icons';
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 
+import { scenarioer } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
-import { scenarioer } from '../dev/scenarioer';
 
 const VeilederScenarioHeader = () => {
     const setScenario = (type: ScenarioType) => {
-        const scenario = scenarioer.find((s) => s.value === type);
+        const scenario = scenarioer[type];
         if (scenario) {
-            store.setScenario(scenario.value);
+            store.setScenario(type);
             window.location.reload();
         }
     };
@@ -19,15 +20,36 @@ const VeilederScenarioHeader = () => {
             <Spacer />
             <ActionMenu>
                 <ActionMenu.Trigger>
-                    <InternalHeader.Button>Velg scenario</InternalHeader.Button>
+                    <InternalHeader.Button>
+                        <PersonCircleIcon fontSize="1.5rem" title="Informasjonikon" />
+                        Velg deltakerscenario
+                    </InternalHeader.Button>
                 </ActionMenu.Trigger>
                 <ActionMenu.Content>
-                    <ActionMenu.Item onSelect={() => setScenario(ScenarioType.harIkkeSøkt)}>
-                        Søknadsskjema
-                    </ActionMenu.Item>
-                    <ActionMenu.Item onSelect={() => setScenario(ScenarioType.harSøkt)}>
-                        Registrert deltaker
-                    </ActionMenu.Item>
+                    <ActionMenu.Group label="Ny deltaker/søknad sendt">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.søknad)}>
+                            Søknadsskjema
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.søknadSendt)}>
+                            Søknad sendt
+                        </ActionMenu.Item>
+                    </ActionMenu.Group>
+                    <ActionMenu.Divider />
+                    <ActionMenu.Group label="Oppgaver for registrert deltaker">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretStartdato)}>
+                            Endret startdato
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.meldtUt)}>Meldt ut</ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.endretSluttdato)}>
+                            Endret sluttdato
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.rapporterInntekt)}>
+                            Månedlig melde fra om lønn
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avvikInntekt)}>
+                            Sjekke lønn ved avvik fra register
+                        </ActionMenu.Item>
+                    </ActionMenu.Group>
                 </ActionMenu.Content>
             </ActionMenu>
         </InternalHeader>

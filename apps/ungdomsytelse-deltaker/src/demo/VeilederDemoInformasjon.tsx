@@ -17,7 +17,7 @@ const VeilederDemoInformasjon = () => (
                             andre systemer.
                         </List.Item>
                         <List.Item>
-                            I menyen «Velg scenario» oppe til høyre kan du bytte mellom søknadsskjemaet og
+                            I menyen «Velg deltakerscenario» oppe til høyre kan du bytte mellom søknadsskjemaet og
                             deltakersidene.
                         </List.Item>
                         <List.Item>
@@ -26,6 +26,7 @@ const VeilederDemoInformasjon = () => (
                         </List.Item>
                         <List.Item>Når du bytter scenario, nullstilles demoen.</List.Item>
                         <List.Item>Lenker til andre sider virker ikke i denne demoen.</List.Item>
+                        <List.Item>Datoer i demoen er ikke korrekte, og kan være inkonsekvente.</List.Item>
                     </List>
                 </ReadMore>
             </Alert>

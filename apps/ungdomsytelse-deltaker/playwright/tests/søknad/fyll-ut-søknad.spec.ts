@@ -12,7 +12,7 @@ test.beforeEach(async ({ page, context }) => {
 });
 
 test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
-    memoryStore.setScenario(ScenarioType.harIkkeSøkt);
+    memoryStore.setScenario(ScenarioType.søknad);
 
     await page.goto(`./`);
 

@@ -6,7 +6,7 @@ import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
-store.init(ScenarioType.harIkkeSøkt);
+store.init(ScenarioType.søknad);
 
 // const errorResponse = {
 //     type: 'NetworkError',
@@ -94,7 +94,7 @@ export const getHandlers = () => [
     }),
 
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        store.setScenario(ScenarioType.harSøkt);
+        store.setScenario(ScenarioType.søknadSendt);
         return HttpResponse.json({});
     }),
 
