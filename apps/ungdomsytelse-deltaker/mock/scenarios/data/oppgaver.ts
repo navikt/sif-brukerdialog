@@ -165,6 +165,35 @@ const bekreftAvvikOppgave: OppgaveDto = {
     opprettetDato: '2025-10-15T05:00:46.869460Z',
 };
 
+const bekreftAvvikOppgaveLøst: OppgaveDto = {
+    oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
+    oppgavetype: Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+    oppgavetypeData: {
+        fraOgMed: '2025-09-01',
+        tilOgMed: '2025-09-30',
+        registerinntekt: {
+            arbeidOgFrilansInntekter: [
+                {
+                    inntekt: 20000,
+                    arbeidsgiver: '947064649',
+                    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+                },
+            ],
+            ytelseInntekter: [],
+            totalInntektArbeidOgFrilans: 20000,
+            totalInntektYtelse: 0,
+            totalInntekt: 20000,
+        },
+    },
+    bekreftelse: {
+        harUttalelse: false,
+    },
+    løstDato: '2025-09-22T05:40:05.767753Z',
+    frist: '2025-10-30T12:47:47.492347Z',
+    status: OppgaveStatus.LØST,
+    opprettetDato: '2025-10-15T05:00:46.869460Z',
+};
+
 export const mockOppgaver = {
     rapporterInntektOppgave,
     rapporterInntektOppgaveLøst,
@@ -173,6 +202,7 @@ export const mockOppgaver = {
     endretSluttdatoOppgave,
     endretSluttdatoOppgaveLøst,
     bekreftAvvikOppgave,
+    bekreftAvvikOppgaveLøst,
     søkYtelseOppgave,
     søkYtelseOppgaveLøst,
     meldtUtOppgaveLøst,

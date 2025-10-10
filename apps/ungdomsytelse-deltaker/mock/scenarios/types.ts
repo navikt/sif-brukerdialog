@@ -6,6 +6,8 @@ export enum ScenarioType {
     endretSluttdato = 'endretSluttdato',
     rapporterInntekt = 'rapporterInntekt',
     avvikInntekt = 'avvikInntekt',
+    avsluttet = 'avsluttet',
+    ikkeStartet = 'ikkeStartet',
 }
 
 export interface ScenarioData {

@@ -1,4 +1,6 @@
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import dayjs from 'dayjs';
 
 import { deltakerBaseScenarioData } from './data/deltakerBaseScenarioData';
 import { mockOppgaver } from './data/oppgaver';
@@ -33,6 +35,38 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: '2025-07-02',
             tilOgMed: undefined,
+            søktTidspunkt: '2025-04-17T05:05:01.714798Z',
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
+            oppgaver,
+        },
+    ],
+});
+const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+    ...deltakerBaseScenarioData,
+    deltakelser: [
+        {
+            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            fraOgMed: '2025-07-02',
+            tilOgMed: '2025-10-02',
+            søktTidspunkt: '2025-04-17T05:05:01.714798Z',
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
+            oppgaver,
+        },
+    ],
+});
+const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
+    ...deltakerBaseScenarioData,
+    deltakelser: [
+        {
+            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            fraOgMed: dateToISODate(dayjs().add(1, 'week').startOf('week').toDate()),
+
             søktTidspunkt: '2025-04-17T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -91,6 +125,20 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
             mockOppgaver.rapporterInntektOppgaveLøst,
             mockOppgaver.bekreftAvvikOppgave,
         ]),
+    },
+    [ScenarioType.avsluttet]: {
+        type: ScenarioType.avvikInntekt,
+        name: 'Avsluttet deltakelse',
+        data: createAvsluttetDeltakelse([
+            mockOppgaver.søkYtelseOppgaveLøst,
+            mockOppgaver.rapporterInntektOppgaveLøst,
+            mockOppgaver.bekreftAvvikOppgaveLøst,
+        ]),
+    },
+    [ScenarioType.ikkeStartet]: {
+        type: ScenarioType.ikkeStartet,
+        name: 'Ikke startet deltakelse',
+        data: createIkkeStartetDeltakelse([mockOppgaver.søkYtelseOppgaveLøst]),
     },
 };
 

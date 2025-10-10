@@ -50,6 +50,15 @@ const VeilederScenarioHeader = () => {
                             Sjekke lønn ved avvik fra register
                         </ActionMenu.Item>
                     </ActionMenu.Group>
+                    <ActionMenu.Divider />
+                    <ActionMenu.Group label="Før og etter deltakelse">
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.ikkeStartet)}>
+                            Søkt, men ikke startet enda
+                        </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttet)}>
+                            Avsluttet deltakelse
+                        </ActionMenu.Item>
+                    </ActionMenu.Group>
                 </ActionMenu.Content>
             </ActionMenu>
         </InternalHeader>
