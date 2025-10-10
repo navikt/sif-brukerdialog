@@ -56,7 +56,7 @@ const VeilederScenarioHeader = () => {
                             Deltakelse ikke påbegynt
                         </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttet)}>
-                            Avsluttet deltakelse
+                            Deltakelse avsluttet
                         </ActionMenu.Item>
                     </ActionMenu.Group>
                 </ActionMenu.Content>
