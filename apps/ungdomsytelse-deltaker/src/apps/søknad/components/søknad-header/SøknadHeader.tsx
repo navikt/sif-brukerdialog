@@ -1,7 +1,6 @@
 import { Bleed, Heading, Show, Stack, VStack } from '@navikt/ds-react';
 import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
-
-import { AppText } from '../../../../i18n';
+import { AppText } from '@shared/i18n';
 
 const SøknadHeader = () => {
     return (
