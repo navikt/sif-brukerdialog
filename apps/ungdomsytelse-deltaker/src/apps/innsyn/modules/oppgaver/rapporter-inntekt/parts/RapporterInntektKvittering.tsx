@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 import Skyra, { Slug } from '../../../../../../components/skyra/Skyra';
 import ForsideLenkeButton from '../../../../atoms/forside-lenke-button/ForsideLenkeButton';
-import { useSkyraReloader } from '../../../../hooks/useSkyraReloader';
+import { useSkyraReloader } from '../../../../../../hooks/useSkyraReloader';
 import UXRapportertInntekt from '../../../../ux-signals/UXRapportertInntekt';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePage';
 

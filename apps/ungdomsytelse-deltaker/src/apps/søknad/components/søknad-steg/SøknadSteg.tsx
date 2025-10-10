@@ -1,12 +1,12 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
+import { useAppIntl } from '@shared/i18n';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useKontrollerOmStegErTilgjengelig } from '@søknad/hooks/utils/useKontrollerOmStegErTilgjengelig';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Steg } from '@søknad/types';
+import { getSkjemaStegIndex, søknadSteg } from '@søknad/utils/stegUtils';
 
-import { useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../../pages/layout/DefaultPageLayout';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Steg } from '../../types';
-import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
 

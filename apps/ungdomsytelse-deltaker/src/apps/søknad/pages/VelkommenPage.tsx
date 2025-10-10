@@ -1,10 +1,10 @@
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '@shared/i18n';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import getLenker from '@shared/utils/lenker';
 import { useState } from 'react';
 
-import { AppText, useAppIntl } from '../../../i18n';
-import DefaultPageLayout from '../../../pages/layout/DefaultPageLayout';
-import getLenker from '../../../utils/lenker';
 import ExternalLink from '../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';

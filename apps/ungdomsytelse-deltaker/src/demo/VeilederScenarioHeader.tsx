@@ -1,20 +1,15 @@
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
 
-import { ScenarioType } from '../../../mock/scenarios/types';
-import { store } from '../../../mock/state/store';
-import { scenarioer } from '../../dev/scenarioer';
+import { ScenarioType } from '../../mock/scenarios/types';
+import { store } from '../../mock/state/store';
+import { scenarioer } from '../dev/scenarioer';
 
-const VeilederDemoHeader = () => {
-    // const initialScenario = scenarioer.find((s) => s.value === store.getScenario()) || scenarioer[0];
-
-    // const [_, setScenarioType] = useState<Scenario>(initialScenario);
-
+const VeilederScenarioHeader = () => {
     const setScenario = (type: ScenarioType) => {
         const scenario = scenarioer.find((s) => s.value === type);
         if (scenario) {
             store.setScenario(scenario.value);
             window.location.reload();
-            // setScenarioType(scenario);
         }
     };
 
@@ -39,4 +34,4 @@ const VeilederDemoHeader = () => {
     );
 };
 
-export default VeilederDemoHeader;
+export default VeilederScenarioHeader;

@@ -94,13 +94,11 @@ export const getHandlers = () => [
     }),
 
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        // mockUtils.setDeltakelseSøktFor();
         store.setScenario(ScenarioType.harSøkt);
         return HttpResponse.json({});
     }),
 
     http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
-        // return HttpResponse.json(error, { status: 500 });
         const text = await request.text();
         try {
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);
