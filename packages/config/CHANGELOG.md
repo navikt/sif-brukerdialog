@@ -1,5 +1,11 @@
 # config
 
+## 0.11.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.11.33
 
 ### Patch Changes
