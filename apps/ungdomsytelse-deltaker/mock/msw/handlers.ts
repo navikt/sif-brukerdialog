@@ -6,7 +6,7 @@ import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
-store.init(ScenarioType.harSøkt);
+store.init(ScenarioType.søknad);
 
 // const errorResponse = {
 //     type: 'NetworkError',
@@ -94,12 +94,11 @@ export const getHandlers = () => [
     }),
 
     http.post('**/ungdomsytelse/soknad/innsending', () => {
-        mockUtils.setDeltakelseSøktFor();
+        store.setScenario(ScenarioType.søknadSendt);
         return HttpResponse.json({});
     }),
 
     http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
-        // return HttpResponse.json(error, { status: 500 });
         const text = await request.text();
         try {
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);

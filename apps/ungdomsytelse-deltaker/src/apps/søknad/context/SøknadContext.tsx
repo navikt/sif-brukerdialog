@@ -1,13 +1,13 @@
+import { logUtils } from '@innsyn/utils/logUtils';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
+import { SøkYtelseOppgave } from '@shared/types/Oppgave';
 import React, { createContext, useMemo, useState } from 'react';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
-import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
-import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
-import { SøkYtelseOppgave } from '../../../types/Oppgave';
-import { logUtils } from '../../innsyn/utils/logUtils';
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { KontonummerOppslagInfo, SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
 

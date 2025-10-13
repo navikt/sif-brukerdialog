@@ -1,92 +1,92 @@
 name: Build and deploy gh-pages
 
 on:
-    workflow_dispatch:
-    push:
-        branches:
-            - '**'
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
 permissions:
-    contents: read
-    pages: write
-    id-token: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    build-and-deploy-gh-pages-content:
-        name: Build and Deploy Storybook
-        if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
-        runs-on: ubuntu-latest
-        steps:
-            # Sjekk ut koden
-            - name: Checkout repository
-              uses: actions/checkout@v5
+  build-and-deploy-gh-pages-content:
+    name: Build and Deploy storybook and demo apps to GitHub Pages
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gh-pages]')
+    runs-on: ubuntu-latest
+    steps:
+      # Sjekk ut koden
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-            # Sett opp Node.js
-            - name: Setup Node.js
-              uses: actions/setup-node@v5
-              with:
-                  node-version: 22
-                  cache: 'yarn'
+      # Sett opp Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: "yarn"
 
-            # Sett opp .yarnrc.yml for GitHub Packages
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      # Sett opp .yarnrc.yml for GitHub Packages
+      - name: Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.navikt.npmAlwaysAuth true
+          yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            # Installer avhengigheter
-            - name: Install dependencies
-              run: yarn install
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      # Installer avhengigheter
+      - name: Install dependencies
+        run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            # Bygg Storybook (eget prosjekt)
-            - name: Build Storybook
-              run: yarn build-storybook
-              working-directory: apps/storybook
+      # Bygg Storybook (eget prosjekt)
+      - name: Build Storybook
+        run: yarn build-storybook
+        working-directory: apps/storybook
 
-            # Flytt Storybook-output til en subfolder
-            - name: Prepare Storybook for deployment
-              run: |
-                  mkdir -p deployment/storybook
-                  mv apps/storybook/storybook-static/* deployment/storybook/
+      # Flytt Storybook-output til en subfolder
+      - name: Prepare Storybook for deployment
+        run: |
+          mkdir -p deployment/storybook
+          mv apps/storybook/storybook-static/* deployment/storybook/
 
-            # Bygg ungdomsytelse-deltaker demo-app med gh-pages:rebuild
-            - name: Build ungdomsytelse-deltaker
-              run: yarn gh-pages:rebuild
-              working-directory: apps/ungdomsytelse-deltaker
+      # Bygg ungdomsytelse-deltaker demo-app med gh-pages:rebuild
+      - name: Build ungdomsytelse-deltaker
+        run: yarn gh-pages:rebuild
+        working-directory: apps/ungdomsytelse-deltaker
 
-            # Flytt ungdomsytelse-deltaker-output til en subfolder
-            - name: Kopier ungdomsytelse-deltaker til gh-pages
-              run: |
-                  mkdir -p deployment/ungdomsytelse-deltaker
-                  mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
+      # Flytt ungdomsytelse-deltaker-output til en subfolder
+      - name: Kopier ungdomsytelse-deltaker til gh-pages
+        run: |
+          mkdir -p deployment/ungdomsytelse-deltaker
+          mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
 
-            # Bygg ungdomsytelse-deltaker-storybook
-            - name: Build ungdomsytelse-deltaker-storybook
-              run: yarn storybook:build
-              working-directory: apps/ungdomsytelse-deltaker
+      # Bygg ungdomsytelse-deltaker-storybook
+      - name: Build ungdomsytelse-deltaker-storybook
+        run: yarn storybook:build
+        working-directory: apps/ungdomsytelse-deltaker
 
-            # Flytt ungdomsytelse-deltaker-storybook til gh-pages
-            - name: Kopier ungdomsytelse-deltaker-storybook til gh-pages
-              run: |
-                  mkdir -p deployment/ungdomsytelse-deltaker-storybook
-                  mv apps/ungdomsytelse-deltaker/storybook-static/* deployment/ungdomsytelse-deltaker-storybook/
+      # Flytt ungdomsytelse-deltaker-storybook til gh-pages
+      - name: Kopier ungdomsytelse-deltaker-storybook til gh-pages
+        run: |
+          mkdir -p deployment/ungdomsytelse-deltaker-storybook
+          mv apps/ungdomsytelse-deltaker/storybook-static/* deployment/ungdomsytelse-deltaker-storybook/
 
-            # Last opp bygget som en artefakt
-            - name: Upload artifact for GitHub Pages
-              uses: actions/upload-pages-artifact@v4
-              with:
-                  path: deployment
+      # Last opp bygget som en artefakt
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: deployment
 
-    deploy:
-        name: Deploy to GitHub Pages
-        needs: build-and-deploy-gh-pages-content
-        runs-on: ubuntu-latest
-        environment:
-            name: github-pages
-        steps:
-            - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build-and-deploy-gh-pages-content
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

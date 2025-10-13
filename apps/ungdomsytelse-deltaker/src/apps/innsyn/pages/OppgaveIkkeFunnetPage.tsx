@@ -1,7 +1,6 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@shared/i18n';
-
-import DefaultPageLayout from './layout/DefaultPageLayout';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 
 interface Props {
     oppgaveReferanse?: string;

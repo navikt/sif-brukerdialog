@@ -14,6 +14,7 @@
             "@shared/context/*": ["src/context/*"],
             "@shared/components/*": ["src/components/*"],
             "@shared/hooks/*": ["src/hooks/*"],
+            "@shared/pages/*": ["src/pages/*"],
             "@shared/mock/*": ["mock/*"],
             "@shared/storybook/*": ["storybook/*"],
 

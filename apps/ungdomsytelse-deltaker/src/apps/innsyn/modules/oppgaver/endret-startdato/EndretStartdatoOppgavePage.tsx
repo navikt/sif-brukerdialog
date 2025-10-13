@@ -1,9 +1,9 @@
 import Oppgavebekreftelse from '@innsyn/modules/oppgavebekreftelse/Oppgavebekreftelse';
-import DefaultPageLayout from '@innsyn/pages/layout/DefaultPageLayout';
 import { getOppgaveDokumentTittel } from '@innsyn/utils/textUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { EndretStartdatoOppgave } from '@shared/types/Oppgave';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 
 import EndretStartdatoOppgavetekst from './parts/EndretStartdatoOppgavetekst';
 
