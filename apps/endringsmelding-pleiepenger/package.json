@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.40.17",
+    "version": "2.40.18",
     "private": true,
     "dependencies": {
         "@navikt/ds-css": "7.32.1",
@@ -46,7 +46,7 @@
         "@navikt/ds-tailwind": "7.32.1",
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@playwright/test": "1.56.0",
-        "@sentry/vite-plugin": "4.3.0",
+        "@sentry/vite-plugin": "4.4.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-actions": "9.0.8",
         "@storybook/testing-library": "0.2.2",

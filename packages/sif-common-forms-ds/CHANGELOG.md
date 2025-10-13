@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.5.15
+    - @navikt/sif-common-core-ds@10.3.16
+    - @navikt/sif-common-utils@3.49.38
+    - @navikt/sif-common-ui@0.11.17
+
 ## 21.0.16
 
 ### Patch Changes

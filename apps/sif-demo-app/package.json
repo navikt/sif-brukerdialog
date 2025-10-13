@@ -2,7 +2,7 @@
     "name": "@navikt/sif-demo-app",
     "type": "module",
     "private": true,
-    "version": "0.4.66",
+    "version": "0.4.67",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -32,7 +32,7 @@
         "postcss": "8.5.6",
         "react": "19.2.0",
         "react-dom": "19.2.0",
-        "react-hook-form": "7.64.0",
+        "react-hook-form": "7.65.0",
         "zod": "4.1.12"
     },
     "devDependencies": {
@@ -41,7 +41,7 @@
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@tailwindcss/postcss": "4.1.14",
         "@tailwindcss/vite": "4.1.14",
-        "@types/node": "24.7.1",
+        "@types/node": "24.7.2",
         "@types/react": "19.2.2",
         "@types/react-dom": "19.2.1",
         "@typescript-eslint/parser": "8.46.0",
