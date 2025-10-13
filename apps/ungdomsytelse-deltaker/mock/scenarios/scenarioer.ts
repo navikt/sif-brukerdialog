@@ -19,7 +19,7 @@ const søknadDeltakelseData: ScenarioData = {
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-07-02',
+            fraOgMed: '2025-08-01',
             tilOgMed: undefined,
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
@@ -34,9 +34,9 @@ const createSøktDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-07-02',
+            fraOgMed: '2025-08-01',
             tilOgMed: undefined,
-            søktTidspunkt: '2025-04-17T05:05:01.714798Z',
+            søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -50,9 +50,9 @@ const createAvsluttetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
-            fraOgMed: '2025-07-02',
+            fraOgMed: '2025-08-01',
             tilOgMed: '2025-10-02',
-            søktTidspunkt: '2025-04-17T05:05:01.714798Z',
+            søktTidspunkt: '2025-08-03T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -68,7 +68,7 @@ const createIkkeStartetDeltakelse = (oppgaver: OppgaveDto[]): ScenarioData => ({
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(dayjs().add(1, 'week').startOf('week').toDate()),
 
-            søktTidspunkt: '2025-04-17T05:05:01.714798Z',
+            søktTidspunkt: '2025-08-17T05:05:01.714798Z',
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
