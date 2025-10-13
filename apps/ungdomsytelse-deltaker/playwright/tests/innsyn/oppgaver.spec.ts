@@ -11,7 +11,7 @@ import { testAccessibility } from '../../utils/testAccessibility';
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await registerMockRoutes(page, context);
-    memoryStore.setScenario(ScenarioType.søknad);
+    memoryStore.setScenario(ScenarioType.søknadSendt);
     await page.goto(`./`);
 });
 
@@ -32,6 +32,11 @@ test.describe('Innsyn - oppgaver', () => {
     });
 
     test.describe('Endret startdato', () => {
+        test.beforeEach(async ({ page }) => {
+            memoryStore.setScenario(ScenarioType.endretStartdato);
+            await page.goto(`./`);
+        });
+
         test('Ingen tilbakemelding', async ({ page }) => {
             await page.getByRole('link', { name: 'Se og gi tilbakemelding på' }).click();
 
@@ -95,6 +100,10 @@ test.describe('Innsyn - oppgaver', () => {
     });
 
     test.describe('Meld fra om inntekt', async () => {
+        test.beforeEach(async ({ page }) => {
+            memoryStore.setScenario(ScenarioType.rapporterInntekt);
+            await page.goto(`./`);
+        });
         test('Ingen inntekt', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
             await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
@@ -126,6 +135,10 @@ test.describe('Innsyn - oppgaver', () => {
         });
     });
     test.describe('Tilbakemelding om avvik i inntekt', async () => {
+        test.beforeEach(async ({ page }) => {
+            memoryStore.setScenario(ScenarioType.avvikInntekt);
+            await page.goto(`./`);
+        });
         test('Ingen tilbakemelding/stemmer lønnen', async ({ page }) => {
             const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
             await nyeOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();

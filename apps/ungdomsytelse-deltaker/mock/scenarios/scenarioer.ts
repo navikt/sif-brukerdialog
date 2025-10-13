@@ -1,7 +1,8 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
+// import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
 
+import { dateToISODate } from '../utils/dateUtils';
 import { deltakerBaseScenarioData } from './data/deltakerBaseScenarioData';
 import { mockOppgaver } from './data/oppgaver';
 import { ScenarioData, ScenarioType } from './types';
