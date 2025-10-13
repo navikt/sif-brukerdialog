@@ -1,9 +1,8 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
+import PageContentWrapper from '@shared/pages/layout/PageContentWrapper';
 import React, { useEffect } from 'react';
-
-import PageContentWrapper from './PageContentWrapper';
 
 interface Props {
     children: React.ReactNode;

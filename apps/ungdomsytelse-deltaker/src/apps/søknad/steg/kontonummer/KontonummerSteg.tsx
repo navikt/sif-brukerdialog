@@ -2,17 +2,17 @@ import { Alert, BodyLong, BodyShort, Heading, Radio, RadioGroup } from '@navikt/
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
+import { AppText, useAppIntl } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
+import ExternalLink from '@søknad/components/external-link/ExternalLink';
+import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
+import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
-import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
-import { AppText, useAppIntl } from '../../../../i18n';
-import getLenker from '../../../../utils/lenker';
-import ExternalLink from '../../components/external-link/ExternalLink';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg } from '../../types';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
 
 const KontonummerSteg = () => {

@@ -1,9 +1,8 @@
 import { getDateToday } from '@navikt/sif-common-utils';
 import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { Oppgave } from '@shared/types/Oppgave';
 import dayjs from 'dayjs';
-
-import { Oppgave } from '../../../types/Oppgave';
 
 /**
  * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående

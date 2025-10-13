@@ -3,15 +3,15 @@ import { Button, HStack, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-rea
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useState } from 'react';
 
+import { defaultScenario, Scenario, scenarioer } from '../../mock/scenarios/scenarioer';
 import { store } from '../../mock/state/store';
 import { getAppEnv } from '../utils/appEnv';
-import { Scenario, scenarioer } from './scenarioer';
 
 const DevFooter = () => {
     const [showModal, setShowModal] = useState(false);
-    const initialScenario = scenarioer.find((s) => s.value === store.getScenario()) || scenarioer[0];
+    const initialScenario = scenarioer[store.getScenario() || defaultScenario];
 
-    const [scenarioType, setScenarioType] = useState<Scenario>(initialScenario);
+    const [scenario, setScenario] = useState<Scenario>(initialScenario);
 
     useEffectOnce(() => {
         document.addEventListener('keydown', (e) => {
@@ -21,14 +21,14 @@ const DevFooter = () => {
         });
     });
 
-    if (getAppEnv()['VELG_SCENARIO'] !== 'on') {
+    if (getAppEnv()['VELG_SCENARIO'] !== 'on' || __IS_VEILEDER_DEMO__) {
         return null;
     }
 
     const setScenarioFromValue = (value: string) => {
-        const scenarioFromValue = scenarioer.find((s) => s.value === value);
+        const scenarioFromValue = scenarioer[value];
         if (scenarioFromValue) {
-            setScenarioType(scenarioFromValue);
+            setScenario(scenarioFromValue);
         }
     };
 
@@ -42,7 +42,7 @@ const DevFooter = () => {
                     onClick={() => setShowModal(true)}
                     className="bg-white"
                     icon={<Settings aria-hidden={true} />}>
-                    {scenarioType.name}
+                    {scenario.name}
                 </Button>
             </div>
             <Modal
@@ -57,21 +57,24 @@ const DevFooter = () => {
                     <VStack gap="4">
                         <div className="scenarioes">
                             <RadioGroup
-                                value={scenarioType.value}
-                                legend="Velg secenario"
+                                value={scenario.type}
+                                legend="Velg scenario"
                                 onChange={(value) => setScenarioFromValue(value)}>
-                                {scenarioer.map(({ name, value }) => (
-                                    <Radio key={value} value={value}>
-                                        {name}
-                                    </Radio>
-                                ))}
+                                {Object.keys(scenarioer).map((key) => {
+                                    const { type, name } = scenarioer[key];
+                                    return (
+                                        <Radio key={type} value={type}>
+                                            {name}
+                                        </Radio>
+                                    );
+                                })}
                             </RadioGroup>
                         </div>
                         <HStack gap="4">
                             <Button
                                 type="button"
                                 onClick={() => {
-                                    store.setScenario(scenarioType.value);
+                                    store.setScenario(scenario.type);
                                     window.location.reload();
                                 }}>
                                 Velg
@@ -80,7 +83,7 @@ const DevFooter = () => {
                                 type="button"
                                 variant="secondary"
                                 onClick={() => {
-                                    store.setScenario(scenarioType.value);
+                                    store.setScenario(scenario.type);
                                     window.location.reload();
                                 }}>
                                 Reset scenario
