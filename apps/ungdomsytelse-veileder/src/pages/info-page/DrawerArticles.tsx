@@ -1,6 +1,7 @@
-import { BodyLong, ExpansionCard, Heading, List, VStack } from '@navikt/ds-react';
+import { BodyLong, ExpansionCard, Heading, Link, List, VStack } from '@navikt/ds-react';
 import Article from './components/Article';
 import { articleList } from './InfoInnhold';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const DrawerArticles = () => {
     return (
@@ -71,60 +72,6 @@ const DrawerArticles = () => {
                 <Heading level="2" size="medium" spacing={true}>
                     Oppgaver og forhåndsvarsel
                 </Heading>
-                {/* <ExpansionCard aria-label="Eksempel på en deltakerreise" size="small">
-                    <ExpansionCard.Header>
-                        <ExpansionCard.Title size="small">Eksempel på en deltakerreise</ExpansionCard.Title>
-                    </ExpansionCard.Header>
-                    <ExpansionCard.Content>
-                        <Process>
-                            <ProcessStep completed={true} icon={<>1</>}>
-                                <Heading size="small" level="3" spacing={true}>
-                                    Deltaker meldes inn av veileder
-                                </Heading>
-                                <BodyLong>
-                                    Veileder har en kandidat som skal registreres i ungdomsprogrammet. Veileder søker
-                                    opp og melder inn deltaker.
-                                </BodyLong>
-                            </ProcessStep>
-                            <ProcessStep completed={true} icon={<>2</>}>
-                                <Heading size="small" level="3" spacing={true}>
-                                    Deltaker søker på ungdomsprogramytelsen
-                                </Heading>
-                                <BodyLong>
-                                    Deltaker får melding om at de må logge inn på nav.no for å søke om
-                                    ungdomsprogramytelsen. Deltakeren gjør dette og sender inn søknaden.
-                                </BodyLong>
-                            </ProcessStep>
-                            <ProcessStep completed={true} icon={<>3</>}>
-                                <Heading size="small" level="3" spacing={true}>
-                                    Deltaker får oppgave om å rapportere inntekt
-                                </Heading>
-                                <BodyLong>
-                                    Underveis i deltakelsen får deltaker månedlig valgfrie oppgaver om å registrere
-                                    inntekt for forrige måned. Hvis deltaker ikke rapporterer noe, vil det bli
-                                    registrert som at deltaker har ingen inntekt forrige periode.
-                                </BodyLong>
-                            </ProcessStep>
-                            <ProcessStep completed={true} icon={<>4</>}>
-                                <Heading size="small" level="3" spacing={true}>
-                                    Deltaker starter å ha inntekt
-                                </Heading>
-                                <BodyLong>
-                                    Hvis deltaker starter å ha inntekt, skal de registrere dette. Nav vil også motta
-                                    informasjon om inntekt og ytelser deltaker mottar fra registre, og hvis dette
-                                    avviker fra det deltaker har opplyst, vil deltaker bli informert om dette gjennom en
-                                    oppgave hvor de kan uttale seg om endringen.
-                                </BodyLong>
-                            </ProcessStep>
-                            <ProcessStep completed={true} icon={<>5</>}>
-                                <Heading size="small" level="3" spacing={true}>
-                                    Deltaker meldes ut av programmet
-                                </Heading>
-                                <BodyLong>Veileder melder ut deltaker.</BodyLong>
-                            </ProcessStep>
-                        </Process>
-                    </ExpansionCard.Content>
-                </ExpansionCard> */}
                 <ExpansionCard aria-label="Deltakeroppgaver" size="small">
                     <ExpansionCard.Header>
                         <ExpansionCard.Title size="small">Oppgaver deltaker får på Min side</ExpansionCard.Title>
@@ -241,6 +188,26 @@ const DrawerArticles = () => {
                         </VStack>
                     </ExpansionCard.Content>
                 </ExpansionCard>
+            </VStack>
+            <VStack gap="4" paddingBlock="0 4">
+                <Heading level="2" size="medium">
+                    Demoversjon av deltakersidene
+                </Heading>
+                <VStack gap="6">
+                    <BodyLong>
+                        Du kan prøve ut en demoversjon av deltakersidene for å se hvordan funksjonaliteten og
+                        informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet og siden
+                        deltakerne får tilgang til etter at de har blitt med i ungdomsprogrammet.
+                    </BodyLong>
+                    <BodyLong>Mer informasjon om bruk av demoversjonen finner du i selve demoen.</BodyLong>
+                    <BodyLong>
+                        <Link href="https://navikt.github.io/sif-brukerdialog/ungdomsytelse-deltaker" target="_blank">
+                            Gå til demoversjon av deltakersidene
+                            <ExternalLinkIcon role="presentation" />
+                        </Link>
+                        .
+                    </BodyLong>
+                </VStack>
             </VStack>
         </VStack>
     );
