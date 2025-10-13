@@ -3,6 +3,8 @@ import Article from './components/Article';
 import { articleList } from './InfoInnhold';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
+const INFORMER_OM_DEMO = false;
+
 const DrawerArticles = () => {
     return (
         <VStack gap="10">
@@ -189,26 +191,30 @@ const DrawerArticles = () => {
                     </ExpansionCard.Content>
                 </ExpansionCard>
             </VStack>
-            <VStack gap="4" paddingBlock="0 4">
-                <Heading level="2" size="medium">
-                    Demoversjon av deltakersidene
-                </Heading>
-                <VStack gap="6">
-                    <BodyLong>
-                        Du kan prøve ut en demoversjon av deltakersidene for å se hvordan funksjonaliteten og
-                        informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet og siden
-                        deltakerne får tilgang til etter at de har blitt med i ungdomsprogrammet.
-                    </BodyLong>
-                    <BodyLong>Mer informasjon om bruk av demoversjonen finner du i selve demoen.</BodyLong>
-                    <BodyLong>
-                        <Link href="https://navikt.github.io/sif-brukerdialog/ungdomsytelse-deltaker" target="_blank">
-                            Gå til demoversjon av deltakersidene
-                            <ExternalLinkIcon role="presentation" />
-                        </Link>
-                        .
-                    </BodyLong>
+            {INFORMER_OM_DEMO && (
+                <VStack gap="4" paddingBlock="0 4">
+                    <Heading level="2" size="medium">
+                        Demoversjon av deltakersidene
+                    </Heading>
+                    <VStack gap="6">
+                        <BodyLong>
+                            Du kan prøve ut en demoversjon av deltakersidene for å se hvordan funksjonaliteten og
+                            informasjonen fremstår for deltakerne. I demoen kan du se både søknadsskjemaet og siden
+                            deltakerne får tilgang til etter at de har blitt med i ungdomsprogrammet.
+                        </BodyLong>
+                        <BodyLong>Mer informasjon om bruk av demoversjonen finner du i selve demoen.</BodyLong>
+                        <BodyLong>
+                            <Link
+                                href="https://navikt.github.io/sif-brukerdialog/ungdomsytelse-deltaker"
+                                target="_blank">
+                                Gå til demoversjon av deltakersidene
+                                <ExternalLinkIcon role="presentation" />
+                            </Link>
+                            .
+                        </BodyLong>
+                    </VStack>
                 </VStack>
-            </VStack>
+            )}
         </VStack>
     );
 };
