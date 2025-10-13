@@ -5,7 +5,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-amplitude",
-    "version": "2.28.38",
+    "version": "2.28.40",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "24.7.0",
+        "@types/node": "24.7.2",
         "@types/react": "19.2.2",
         "config": "workspace:*",
         "constate": "3.3.3",

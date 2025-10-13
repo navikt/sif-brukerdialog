@@ -1,5 +1,17 @@
 # @navikt/sif-server
 
+## 0.0.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.0.36
 
 ### Patch Changes

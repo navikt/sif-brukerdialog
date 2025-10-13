@@ -2,4 +2,4 @@
 
 import { fixAndFormatGeneratedCode } from '../../../codegenUtils.js';
 
-fixAndFormatGeneratedCode('src/veileder');
+fixAndFormatGeneratedCode('src');
