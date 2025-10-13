@@ -37,7 +37,7 @@
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "react-fast-compare": "3.2.2",
-        "react-hook-form": "7.64.0",
+        "react-hook-form": "7.65.0",
         "react-intl": "7.1.14",
         "react-router-dom": "7.9.4"
     },
