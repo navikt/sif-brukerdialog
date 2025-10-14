@@ -51,6 +51,4 @@ Oppgavebekreftelse.Ubesvart = Ubesvart;
 Oppgavebekreftelse.Besvart = Besvart;
 Oppgavebekreftelse.Kvittering = Kvittering;
 
-export { Oppgavebekreftelse };
-
 export default Oppgavebekreftelse;
