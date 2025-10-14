@@ -1,6 +1,6 @@
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { Delete } from '@navikt/ds-icons';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     DateRange,
@@ -114,11 +114,11 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                 <Form.TimeInput
                     wide={true}
                     compact={false}
-                    validate={(value) => {
+                    validate={(value?: InputTime) => {
                         if (!valgtDato) {
                             return;
                         }
-                        const error: any = getTimeValidator({ min: { hours: 0, minutes: 30 } })(value);
+                        const error: any = getTimeValidator({ required: false, min: { hours: 0, minutes: 30 } })(value);
                         return error
                             ? {
                                   key: getValidationErrorKey(KursdagFormFields.tidReise, error),
