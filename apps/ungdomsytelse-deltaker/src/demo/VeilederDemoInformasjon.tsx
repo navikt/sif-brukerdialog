@@ -14,7 +14,7 @@ const VeilederDemoInformasjon = () => (
                         Alle datoene som vises i demoen er kun eksempeldatoer.
                     </BodyLong>
 
-                    <ReadMore header="Mer informasjon om demo" size="small">
+                    <ReadMore header="Mer informasjon om bruk av demoen" size="small">
                         <List>
                             <List.Item>
                                 Denne demoen er en interaktiv løsning der du kan sende inn en søknad og besvare oppgaver
@@ -29,11 +29,11 @@ const VeilederDemoInformasjon = () => (
                                 deltakersidene.
                             </List.Item>
                             <List.Item>
-                                Demoen husker midlertidig det du gjør, slik at den oppfører seg som for en faktisk
-                                deltaker – for eksempel vil oppgaver du har besvart vises som besvart etterpå.
+                                Demoen oppfører seg som for en faktisk deltaker – for eksempel vil oppgaver du har
+                                besvart vises som besvart etterpå.
                             </List.Item>
-                            <List.Item>Når du bytter scenario, nullstilles demoen.</List.Item>
-                            <List.Item>Lenker til andre sider virker ikke i denne demoen.</List.Item>
+                            <List.Item>Når du bytter scenario, nullstilles informasjonen.</List.Item>
+                            <List.Item>Lenker til andre sider virker ikke.</List.Item>
                         </List>
                     </ReadMore>
                 </VStack>
