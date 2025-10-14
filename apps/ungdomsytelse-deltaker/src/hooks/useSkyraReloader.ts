@@ -4,7 +4,7 @@ export const useSkyraReloader = () => {
     useEffectOnce(() => {
         // Sjekk om Skyra eksisterer og kall reload
         setTimeout(() => {
-            const skyra = (window as any).skyra;
+            const skyra = (globalThis as any).skyra;
             if (skyra?.reload) {
                 skyra.reload();
             }
