@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 1.4.4
+
+### Patch Changes
+
+- Korrigere tekst om frist for å melde inntekt. Oppdatere demo-tekster.
+
 ## 1.4.3
 
 ### Patch Changes
