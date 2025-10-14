@@ -38,5 +38,5 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: Kontonu
 };
 
 export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, kontonummerInfo: KontonummerInfo): boolean => {
-    return getTilgjengeligeSteg(svar, kontonummerInfo).some((s) => s === steg) !== undefined;
+    return getTilgjengeligeSteg(svar, kontonummerInfo).some((s) => s === steg);
 };
