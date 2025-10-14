@@ -14,7 +14,7 @@ const VeilederScenarioHeader = () => {
         if (scenario) {
             store.setScenario(type);
             navigate(getRequiredEnv('PUBLIC_PATH'));
-            window.location.reload();
+            globalThis.location.reload();
         }
     };
 

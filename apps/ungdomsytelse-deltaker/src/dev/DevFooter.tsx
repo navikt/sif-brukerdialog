@@ -75,7 +75,7 @@ const DevFooter = () => {
                                 type="button"
                                 onClick={() => {
                                     store.setScenario(scenario.type);
-                                    window.location.reload();
+                                    globalThis.location.reload();
                                 }}>
                                 Velg
                             </Button>
@@ -84,7 +84,7 @@ const DevFooter = () => {
                                 variant="secondary"
                                 onClick={() => {
                                     store.setScenario(scenario.type);
-                                    window.location.reload();
+                                    globalThis.location.reload();
                                 }}>
                                 Reset scenario
                             </Button>

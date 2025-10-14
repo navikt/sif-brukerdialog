@@ -8,7 +8,7 @@ export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
         message: error.message,
         type: error.type,
         timestamp: new Date().toISOString(),
-        url: window.location.href,
+        url: globalThis.location.href,
     };
 
     // Legg til sikkert metadata fra AxiosError uten sensitive data
