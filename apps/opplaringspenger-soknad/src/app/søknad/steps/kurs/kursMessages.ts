@@ -16,17 +16,17 @@ const nb = {
     'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
     'steg.kurs.enkeltdagEllerPeriode.periode': 'Periode',
 
-    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger?',
-    'steg.kurs.kursperioder.tekst':
-        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
-    'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
-    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
-
     'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
     'steg.kurs.enkeltdager.tekst':
         'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
     'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
     'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
+
+    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
+    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger?',
+    'steg.kurs.kursperioder.tekst':
+        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
+    'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
     'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
@@ -108,7 +108,6 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
     'steg.kurs.counsellorPanel.avsnitt.1':
         'Her treng me informasjon om kvar og når du har vore, eller skal, på opplæring. Du kan få opplæringspengar for periodar du er på kurs eller opplæring, og for eventuell reisetid til og frå opplæringsstaden.',
     'steg.kurs.counsellorPanel.avsnitt.2':
@@ -118,6 +117,20 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.opplæringsinstitusjon.readMore.content':
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
+
+    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjeld søknaden enkeltdag eller periode?',
+    'steg.kurs.enkeltdagEllerPeriode.description':
+        'Du kan legge til flere enkeltdager eller perioder etter du har valgt.',
+    'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
+    'steg.kurs.enkeltdagEllerPeriode.periode': 'Periode',
+
+    'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
+    'steg.kurs.enkeltdager.tekst':
+        'Legg til dag og antall timer du er på opplæring, og eventuell reisetid til og fra opplæringen. Hvis du ikke reiser, trenger du ikke fylle ut timer med reise.',
+    'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
+    'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
+
+    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
 
     'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
     'steg.kurs.kursperioder.tekst':
