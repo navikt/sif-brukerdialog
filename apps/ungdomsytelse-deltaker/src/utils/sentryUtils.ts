@@ -7,7 +7,7 @@ enum SentryEnvironment {
 }
 
 const resolveEnvironment = (): SentryEnvironment | undefined => {
-    const hostname = window.location.hostname || undefined;
+    const hostname = globalThis.location.hostname || undefined;
     if (hostname) {
         if (hostname.includes('localhost')) {
             return SentryEnvironment.localhost;

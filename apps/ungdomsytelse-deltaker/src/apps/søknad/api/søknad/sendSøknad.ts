@@ -7,7 +7,6 @@ export const sendSøknad = async (data: ungdomsytelse.Ungdomsytelsesøknad): Pro
             body: data,
             headers: commonRequestHeader,
         });
-        return Promise.resolve();
     } catch (e) {
         throw handleApiError(e, 'sendSøknad');
     }

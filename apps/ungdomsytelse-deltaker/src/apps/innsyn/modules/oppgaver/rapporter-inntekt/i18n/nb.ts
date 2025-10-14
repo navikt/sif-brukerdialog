@@ -2,7 +2,7 @@ export const rapporterInntektMessages_nb = {
     'rapporterInntektOppgavetekst.tittel': 'Hei {deltakerNavn}',
     'rapporterInntektOppgavetekst.intro': 'Gi oss beskjed hvis du fikk utbetalt lønn i {måned}.',
     'rapporterInntektOppgavetekst.instruks':
-        'Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt før {frist}.',
+        'Kryss av på “Ja”, skriv inn lønnen du fikk (før skatt) og send inn svaret ditt <strong>senest {frist}</strong>.',
     'rapporterInntektOppgavetekst.ingenLønn':
         'Du kan la være å svare eller krysse av på ”Nei” hvis du ikke hadde lønn i {måned}.',
 
