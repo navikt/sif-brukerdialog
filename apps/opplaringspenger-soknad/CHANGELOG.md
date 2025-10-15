@@ -1,5 +1,12 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.3.21
+
+### Patch Changes
+
+- Updated dependencies [ea18e6b]
+    - @navikt/sif-common-soknad-ds@26.1.0
+
 ## 1.3.20
 
 ### Patch Changes
