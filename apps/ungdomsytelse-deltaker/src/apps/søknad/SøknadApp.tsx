@@ -69,7 +69,7 @@ const SøknadApp = () => {
     }
 
     return (
-        <Theme hasBackground={__IS_VEILEDER_DEMO__ ? false : true}>
+        <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
             <SøknadProvider
                 søknadOppgave={søknadOppgave}
                 søker={søker}

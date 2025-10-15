@@ -1,7 +1,6 @@
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
-
 import { AppText } from '@shared/i18n';
 
 interface Props {
@@ -24,7 +23,10 @@ const RapporterInntektOppgavetekst = ({ deltakerNavn, svarfrist, periode }: Prop
                     <AppText id="rapporterInntektOppgavetekst.intro" values={{ måned }} />
                 </BodyLong>
                 <BodyLong spacing>
-                    <AppText id="rapporterInntektOppgavetekst.instruks" values={{ frist }} />
+                    <AppText
+                        id="rapporterInntektOppgavetekst.instruks"
+                        values={{ frist, strong: (content) => <strong>{content}</strong> }}
+                    />
                 </BodyLong>
                 <BodyLong spacing>
                     <AppText id="rapporterInntektOppgavetekst.ingenLønn" values={{ måned }} />

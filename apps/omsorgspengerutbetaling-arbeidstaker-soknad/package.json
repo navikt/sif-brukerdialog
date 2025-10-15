@@ -9,7 +9,7 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
-    "version": "1.16.18",
+    "version": "1.16.19",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -35,7 +35,7 @@
         "busboy": "1.6.0",
         "csp-header": "6.2.0",
         "dayjs": "1.11.18",
-        "html-react-parser": "5.2.6",
+        "html-react-parser": "5.2.7",
         "jsdom": "27.0.0",
         "object-hash": "3.0.0",
         "react": "19.2.0",
@@ -57,7 +57,7 @@
         "@types/node": "24.7.2",
         "@types/object-hash": "3.0.6",
         "@types/react": "19.2.2",
-        "@types/react-dom": "19.2.1",
+        "@types/react-dom": "19.2.2",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "5.0.4",
         "compression": "1.8.1",
@@ -74,7 +74,7 @@
         "storybook-addon-mock": "6.0.1",
         "tailwindcss": "4.1.14",
         "typescript": "5.9.3",
-        "vite": "7.1.9",
+        "vite": "7.1.10",
         "vite-plugin-checker": "0.11.0",
         "vitest": "3.2.4"
     },

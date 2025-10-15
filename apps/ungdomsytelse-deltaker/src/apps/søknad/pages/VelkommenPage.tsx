@@ -20,10 +20,10 @@ const VelkommenPage = () => {
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        if (!infoStemmer) {
-            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
-        } else {
+        if (infoStemmer) {
             startSøknad(infoStemmer);
+        } else {
+            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
         }
     };
 

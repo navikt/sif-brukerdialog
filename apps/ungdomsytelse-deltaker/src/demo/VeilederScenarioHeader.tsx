@@ -1,16 +1,20 @@
 import { PersonCircleIcon } from '@navikt/aksel-icons';
 import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
+import { getRequiredEnv } from '@navikt/sif-common-env';
+import { useNavigate } from 'react-router-dom';
 
 import { scenarioer } from '../../mock/scenarios/scenarioer';
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
 
 const VeilederScenarioHeader = () => {
+    const navigate = useNavigate();
     const setScenario = (type: ScenarioType) => {
         const scenario = scenarioer[type];
         if (scenario) {
             store.setScenario(type);
-            window.location.reload();
+            navigate(getRequiredEnv('PUBLIC_PATH'));
+            globalThis.location.reload();
         }
     };
 

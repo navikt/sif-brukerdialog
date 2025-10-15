@@ -36,7 +36,7 @@ const DeltakerInfoLoader = () => {
     const { logApiError, logHendelse } = useAnalyticsInstance();
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
-    if (window.location.pathname.includes('skyra/test')) {
+    if (globalThis.location.pathname.includes('skyra/test')) {
         return <SkyraTestPage />;
     }
 
