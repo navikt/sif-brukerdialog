@@ -118,7 +118,7 @@ const KursdagQuestions = ({ index, harFlereDager, alleDager, gyldigSøknadsperio
                         if (!valgtDato) {
                             return;
                         }
-                        const error: any = getTimeValidator({ required: false, min: { hours: 0, minutes: 30 } })(value);
+                        const error: any = getTimeValidator({ required: false })(value);
                         return error
                             ? {
                                   key: getValidationErrorKey(KursdagFormFields.tidReise, error),

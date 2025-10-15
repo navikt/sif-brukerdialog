@@ -50,9 +50,9 @@ const nb = {
     'kursdag.form.tidReise.validation.durationIsTooShort':
         'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}. Hvis du ikke har reisetid må du sette timer og minutter til 0.',
     'kursdag.form.tidReise.validation.minutesAreNegative':
-        'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}. Hvis du ikke har reisetid må du sette timer og minutter til 0.',
+        'Antall minutter med reise {harFlereDager, select, true { {dato},} other{}} kan ikke være et negativt tall.',
     'kursdag.form.tidReise.validation.hoursAreNegative':
-        'Antall timer og minutter med reise kan ikke være mindre enn 30 minutter{harFlereDager, select, true { {dato}} other{}}. Hvis du ikke har reisetid må du sette timer og minutter til 0.',
+        'Antall timer med reise {harFlereDager, select, true { {dato},} other{}} kan ikke være mindre et negativt tall.',
 
     'kursdag.fjern.label': 'Fjern dag {harFlereDager, select, true { {dagNr}} other{}}',
 };
