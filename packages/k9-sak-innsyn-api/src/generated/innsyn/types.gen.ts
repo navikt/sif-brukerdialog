@@ -511,6 +511,7 @@ export type SakDto = {
     saksbehandlingsFrist?: string;
     /**
      * bruk ytelseType
+     *
      * @deprecated
      */
     fagsakYtelseType:

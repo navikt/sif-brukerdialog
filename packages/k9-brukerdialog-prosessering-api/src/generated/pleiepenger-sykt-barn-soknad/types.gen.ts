@@ -212,6 +212,7 @@ export type PleiepengerSyktBarnSøknad = {
     frilans: Frilans;
     /**
      * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
      * @deprecated
      */
     stønadGodtgjørelse?: StønadGodtgjørelse;
