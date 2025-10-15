@@ -1,4 +1,4 @@
-name: Deploy app to dev (next.js)
+name: Deploy dine pleiepenger to dev
 run-name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
 
 on:
@@ -19,6 +19,6 @@ jobs:
         permissions:
             id-token: write
         with:
-            app-name: '${{ inputs.app-name }}'
-            working-directory: 'apps/${{ inputs.app-name }}'
+            app-name: "${{ inputs.app-name }}"
+            working-directory: "apps/${{ inputs.app-name }}"
             is-next-app: true

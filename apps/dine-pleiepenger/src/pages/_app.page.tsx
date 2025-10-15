@@ -23,7 +23,6 @@ import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
 import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
-import '../components/process/process.css';
 import '../style/global.css';
 
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';

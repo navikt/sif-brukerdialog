@@ -1,29 +1,22 @@
-import { Heading, Link } from '@navikt/ds-react';
-import { AppText } from '../../i18n';
+import { Heading, Link, Process } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
-import { Process } from '../process';
-import ProcessStep from '../process/ProcessStep';
 
 const HvaSkjer = () => {
+    const { text } = useAppIntl();
     return (
         <div className="max-w-xl">
             <Heading size="medium" level="2" spacing={true}>
                 <AppText id="hvaSkjerInfo.tittel" />
             </Heading>
-            <div className="md:pl-3">
+            <div className="md:pl-3 mt-6">
                 <Process>
-                    <ProcessStep>
-                        <Heading size="small" level="3" spacing={true}>
-                            <AppText id="hvaSkjerInfo.legeerklæring.tittel" />
-                        </Heading>
+                    <Process.Event title={text('hvaSkjerInfo.legeerklæring.tittel')}>
                         <p>
                             <AppText id="hvaSkjerInfo.legeerklæring" />
                         </p>
-                    </ProcessStep>
-                    <ProcessStep>
-                        <Heading size="small" level="3" spacing={true}>
-                            <AppText id="hvaSkjerInfo.inntektsmelding.tittel" />
-                        </Heading>
+                    </Process.Event>
+                    <Process.Event title={text('hvaSkjerInfo.inntektsmelding.tittel')}>
                         <p>
                             <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.1" />
                         </p>
@@ -35,19 +28,13 @@ const HvaSkjer = () => {
 
                             <AppText id="hvaSkjerInfo.inntektsmelding.avsnitt.2.3" />
                         </p>
-                    </ProcessStep>
-                    <ProcessStep>
-                        <Heading size="small" level="3" spacing={true}>
-                            <AppText id="hvaSkjerInfo.behandling.tittel" />
-                        </Heading>
+                    </Process.Event>
+                    <Process.Event title={text('hvaSkjerInfo.behandling.tittel')}>
                         <p>
                             <AppText id="hvaSkjerInfo.behandling" />
                         </p>
-                    </ProcessStep>
-                    <ProcessStep>
-                        <Heading size="small" level="3" spacing={true}>
-                            <AppText id="hvaSkjerInfo.ferdigBehandlet.tittel" />
-                        </Heading>
+                    </Process.Event>
+                    <Process.Event title={text('hvaSkjerInfo.ferdigBehandlet.tittel')}>
                         <p>
                             <AppText id="hvaSkjerInfo.ferdigBehandlet.1" />
                             <Link href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
@@ -55,11 +42,8 @@ const HvaSkjer = () => {
                             </Link>
                             <AppText id="hvaSkjerInfo.ferdigBehandlet.3" />
                         </p>
-                    </ProcessStep>
-                    <ProcessStep>
-                        <Heading size="small" level="3" spacing={true}>
-                            <AppText id="hvaSkjerInfo.utbetaling.tittel" />
-                        </Heading>
+                    </Process.Event>
+                    <Process.Event title={text('hvaSkjerInfo.utbetaling.tittel')}>
                         <p>
                             <AppText id="hvaSkjerInfo.utbetaling.1" />
                             <Link href={browserEnv.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL}>
@@ -67,7 +51,7 @@ const HvaSkjer = () => {
                             </Link>
                             <AppText id="hvaSkjerInfo.utbetaling.3" />
                         </p>
-                    </ProcessStep>
+                    </Process.Event>
                 </Process>
             </div>
         </div>

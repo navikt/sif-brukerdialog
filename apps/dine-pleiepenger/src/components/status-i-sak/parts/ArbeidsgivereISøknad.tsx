@@ -15,7 +15,7 @@ const ArbeidsgivereISøknad = ({ søknadId, arbeidsgivere }: Props) => {
     const intl = useIntl();
     return (
         <Box className="mt-4">
-            <Heading size="xsmall" level="4" spacing={true}>
+            <Heading size="xsmall" level="3" spacing={true}>
                 <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
             </Heading>
             <p>
